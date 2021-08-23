@@ -257,7 +257,7 @@ h1 {
 
 ## CSS isolation bundling
 
-CSS isolation occurs at build time. Blazor rewrites CSS selectors to match markup rendered by the component. The rewritten CSS styles are bundled and produced as a static asset. The stylesheet is referenced inside the `<head>` tag of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server). The following `<link>` element is added by default to an app created from the Blazor project templates, where the placeholder `{ASSEMBLY NAME}` is the project's assembly name:
+CSS isolation occurs at build time. Blazor rewrites CSS selectors to match markup rendered by the component. The rewritten CSS styles are bundled and produced as a static asset. The stylesheet is referenced inside the `<head>` tag of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server). The following `<link>` element is added by default to an app created from the Blazor project templates, where the placeholder `{ASSEMBLY NAME}` is the project's assembly name:
 
 ```html
 <link href="{ASSEMBLY NAME}.styles.css" rel="stylesheet">
