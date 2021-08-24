@@ -475,7 +475,19 @@ Contains configuration data, like connection strings. For more information, see 
 
 ### Program.cs
 
-Contains the entry point for the app. <!-- expand -->
+The *Program.cs* file contains the following code:
+
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program.cs?name=snippet_all)]
+
+The following code create a `WebApplicationBuilder` with preconfigured defaults, and builds the web app:
+
+  ```csharp
+  var builder = WebApplication.CreateBuilder(args);
+  var app = builder.Build();
+  ```
+
+
+`app.Run();` runs the app.
 
 ## Next steps
 
