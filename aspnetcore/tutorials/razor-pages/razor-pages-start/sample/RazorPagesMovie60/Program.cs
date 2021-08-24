@@ -1,11 +1,14 @@
 #region snippet_all
+#region snippet_di
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
+#endregion
 
+#region snippet_env
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -18,6 +21,7 @@ else
     // scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+#endregion
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
