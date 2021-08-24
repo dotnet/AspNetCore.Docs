@@ -409,6 +409,7 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 	![macOS name the project](razor-pages-start/_static/RazorPagesMovie.png)
 
 -->
+
 ---
 
 ## Run the app
