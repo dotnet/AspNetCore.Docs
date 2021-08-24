@@ -48,7 +48,7 @@ var connection = new HubConnectionBuilder()
 
 ### Switch to Newtonsoft.Json
 
-If you need features of `Newtonsoft.Json` that aren't supported in `System.Text.Json`, see [Switch to Newtonsoft.Json](xref:migration/22-to-30#switch-to-newtonsoftjson).
+If you need features of `Newtonsoft.Json` that aren't supported in `System.Text.Json`, see [Switch to `Newtonsoft.Json`](xref:migration/22-to-30#switch-to-newtonsoftjson).
 
 ### MessagePack serialization options
 
@@ -442,7 +442,7 @@ var connection = new HubConnectionBuilder()
 
 ### Switch to Newtonsoft.Json
 
-If you need features of `Newtonsoft.Json` that aren't supported in `System.Text.Json`, see [Switch to Newtonsoft.Json](xref:migration/22-to-30#switch-to-newtonsoftjson).
+If you need features of `Newtonsoft.Json` that aren't supported in `System.Text.Json`, see [Switch to `Newtonsoft.Json`](xref:migration/22-to-30#switch-to-newtonsoftjson).
 
 ### MessagePack serialization options
 
@@ -835,7 +835,7 @@ var connection = new HubConnectionBuilder()
 
 ### Switch to Newtonsoft.Json
 
-If you need features of `Newtonsoft.Json` that aren't supported in `System.Text.Json`, see [Switch to Newtonsoft.Json](xref:migration/22-to-30#switch-to-newtonsoftjson).
+If you need features of `Newtonsoft.Json` that aren't supported in `System.Text.Json`, see [Switch to `Newtonsoft.Json`](xref:migration/22-to-30#switch-to-newtonsoftjson).
 
 ### MessagePack serialization options
 
@@ -1222,7 +1222,7 @@ var connection = new HubConnectionBuilder()
 
 ### Switch to Newtonsoft.Json
 
-If you need features of `Newtonsoft.Json` that aren't supported in `System.Text.Json`, see [Switch to Newtonsoft.Json](xref:migration/22-to-30#switch-to-newtonsoftjson).
+If you need features of `Newtonsoft.Json` that aren't supported in `System.Text.Json`, see [Switch to `Newtonsoft.Json`](xref:migration/22-to-30#switch-to-newtonsoftjson).
 
 ### MessagePack serialization options
 
