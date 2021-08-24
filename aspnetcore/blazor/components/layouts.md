@@ -70,7 +70,7 @@ The following rendered HTML markup is produced by the preceding `DoctorWhoLayout
         </header>
 
         <nav>
-            <a href="masterlist">Master Episode List</a>
+            <a href="main-list">Main Episode List</a>
             <a href="search">Search</a>
             <a href="new">Add Episode</a>
         </nav>
@@ -181,7 +181,7 @@ The following rendered HTML markup is produced by the preceding nested layout. E
         </header>
 
         <nav>
-            <a href="master-production-list">Master Production List</a>
+            <a href="main-production-list">Main Production List</a>
             <a href="production-search">Search</a>
             <a href="new-production">Add Production</a>
         </nav>
@@ -189,7 +189,7 @@ The following rendered HTML markup is produced by the preceding nested layout. E
         <h1>Doctor Who&trade; Episode Database</h1>
 
         <nav>
-            <a href="episode-masterlist">Master Episode List</a>
+            <a href="episode-main-list">Main Episode List</a>
             <a href="episode-search">Search</a>
             <a href="new-episode">Add Episode</a>
         </nav>
@@ -283,7 +283,7 @@ The following rendered HTML markup is produced by the preceding `DoctorWhoLayout
         </header>
 
         <nav>
-            <a href="masterlist">Master Episode List</a>
+            <a href="main-list">Main Episode List</a>
             <a href="search">Search</a>
             <a href="new">Add Episode</a>
         </nav>
@@ -398,7 +398,7 @@ The following rendered HTML markup is produced by the preceding nested layout. E
         </header>
 
         <nav>
-            <a href="master-production-list">Master Production List</a>
+            <a href="main-production-list">Main Production List</a>
             <a href="production-search">Search</a>
             <a href="new-production">Add Production</a>
         </nav>
@@ -406,7 +406,7 @@ The following rendered HTML markup is produced by the preceding nested layout. E
         <h1>Doctor Who&trade; Episode Database</h1>
 
         <nav>
-            <a href="episode-masterlist">Master Episode List</a>
+            <a href="episode-main-list">Main Episode List</a>
             <a href="episode-search">Search</a>
             <a href="new-episode">Add Episode</a>
         </nav>
@@ -496,7 +496,7 @@ The following rendered HTML markup is produced by the preceding `DoctorWhoLayout
         </header>
 
         <nav>
-            <a href="masterlist">Master Episode List</a>
+            <a href="main-list">Main Episode List</a>
             <a href="search">Search</a>
             <a href="new">Add Episode</a>
         </nav>
@@ -606,7 +606,7 @@ The following rendered HTML markup is produced by the preceding nested layout. E
         </header>
 
         <nav>
-            <a href="master-production-list">Master Production List</a>
+            <a href="main-production-list">Main Production List</a>
             <a href="production-search">Search</a>
             <a href="new-production">Add Production</a>
         </nav>
@@ -614,7 +614,7 @@ The following rendered HTML markup is produced by the preceding nested layout. E
         <h1>Doctor Who&trade; Episode Database</h1>
 
         <nav>
-            <a href="episode-masterlist">Master Episode List</a>
+            <a href="episode-main-list">Main Episode List</a>
             <a href="episode-search">Search</a>
             <a href="new-episode">Add Episode</a>
         </nav>
