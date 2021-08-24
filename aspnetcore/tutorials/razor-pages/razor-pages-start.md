@@ -336,12 +336,9 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
 [!INCLUDE[](~/includes/net-prereqs-vsc-6.0.md)]
 
-<!-- VS Mac in next PR 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 [!INCLUDE[](~/includes/net-prereqs-mac-6.0.md)]
-
--->
 
 ---
 
@@ -387,7 +384,6 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
    * The `dotnet new` command creates a new Razor Pages project in the *RazorPagesMovie* folder.
    * The `code` command opens the *RazorPagesMovie* folder in the current instance of Visual Studio Code.
 
-<!-- VS Mac in next PR
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 1. Select **File** > **New Solution**.
@@ -407,8 +403,6 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 1. Name the project *RazorPagesMovie* and select **Create**.
 
 	![macOS name the project](razor-pages-start/_static/RazorPagesMovie.png)
-
--->
 
 ---
 
@@ -445,11 +439,9 @@ Visual Studio launches:
 
 Press Ctrl+F5 to run the app. In a browser, go to following URL: [https://localhost:5001](https://localhost:5001)
 
-<!-- add VS Mac later 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 Select **Run** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number. 
--->
 
 ---
 
