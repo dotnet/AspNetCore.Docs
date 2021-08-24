@@ -221,17 +221,19 @@ When executing a hosted Blazor WebAssembly app, run the app from the solution's 
 
 The Blazor framework provides templates for creating new apps for each of the two Blazor hosting models. The templates are used to create new Blazor projects and solutions regardless of the tooling that you select for Blazor development (Visual Studio, Visual Studio for Mac, Visual Studio Code, or the .NET CLI):
 
-* Blazor WebAssembly project template: `blazorwasm`
 * Blazor Server project template: `blazorserver`
+* Blazor WebAssembly project template: `blazorwasm`
 
 For more information on Blazor's hosting models, see <xref:blazor/hosting-models>. For more information on Blazor project templates, see <xref:blazor/project-structure>.
 
-Template options are available by passing the help option (`-h` or `--help`) to the [`dotnet new`](/dotnet/core/tools/dotnet-new) CLI command in a command shell:
+For more information on template options, see the following resources:
 
-```dotnetcli
-dotnet new blazorwasm -h
-dotnet new blazorserver -h
-```
+* *.NET default templates for dotnet new* article in the .NET Core documentation:
+  * [`blazorserver`](/dotnet/core/tools/dotnet-new-sdk-templates#blazorserver)
+  * [`blazorwasm`](/dotnet/core/tools/dotnet-new-sdk-templates#blazorwasm)
+* Passing the help option (`-h` or `--help`) to the [`dotnet new`](/dotnet/core/tools/dotnet-new) CLI command in a command shell:
+  * `dotnet new blazorserver -h`
+  * `dotnet new blazorwasm -h`
 
 ## Blazor WebAssembly ahead-of-time (AOT) compilation
 
