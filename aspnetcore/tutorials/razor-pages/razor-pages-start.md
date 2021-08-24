@@ -22,8 +22,6 @@ For a more advanced introduction aimed at developers who are familiar with contr
 
 At the end of the series, you'll have an app that manages a database of movies.  
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50) ([how to download](xref:index#how-to-download-a-sample)).
-
 In this tutorial, you:
 
 > [!div class="checklist"]
@@ -152,6 +150,10 @@ Contains the entry point for the app. For more information, see <xref:fundamenta
 ### Startup.cs
 
 Contains code that configures app behavior. For more information, see <xref:fundamentals/startup>.
+
+## Troubleshooting with the completed sample
+
+If you run into a problem you can't resolve, compare your code to the completed project. [View or download completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50) ([how to download](xref:index#how-to-download-a-sample)).
 
 ## Next steps
 
