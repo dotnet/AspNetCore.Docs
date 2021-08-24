@@ -36,7 +36,7 @@ This tutorial creates the following API:
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-prereqs/6/net-prereqs-vs22-6.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vs-6.0.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
