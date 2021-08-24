@@ -48,7 +48,7 @@ var connection = new HubConnectionBuilder()
 
 ### Switch to Newtonsoft.Json
 
-If you need features of `Newtonsoft.Json` that aren't supported in `System.Text.Json`, See [Switch to Newtonsoft.Json](xref:migration/22-to-30#switch-to-newtonsoftjson).
+If you need features of `Newtonsoft.Json` that aren't supported in `System.Text.Json`, see [Switch to Newtonsoft.Json](xref:migration/22-to-30#switch-to-newtonsoftjson).
 
 ### MessagePack serialization options
 
@@ -199,7 +199,7 @@ The following table lists the available log levels. The value you provide to `co
 
 For more information on logging, see the [SignalR Diagnostics documentation](xref:signalr/diagnostics).
 
-The SignalR Java client uses the [SLF4J](https://www.slf4j.org/) library for logging. It's a high-level logging API that allows users of the library to chose their own specific logging implementation by bringing in a specific logging dependency. The following code snippet shows how to use `java.util.logging` with the SignalR Java client.
+The SignalR Java client uses the [SLF4J](https://www.slf4j.org/) library for logging. It's a high-level logging API that allows users of the library to choose their own specific logging implementation by bringing in a specific logging dependency. The following code snippet shows how to use `java.util.logging` with the SignalR Java client.
 
 ```gradle
 implementation 'org.slf4j:slf4j-jdk14:1.7.25'
@@ -442,7 +442,7 @@ var connection = new HubConnectionBuilder()
 
 ### Switch to Newtonsoft.Json
 
-If you need features of `Newtonsoft.Json` that aren't supported in `System.Text.Json`, See [Switch to Newtonsoft.Json](xref:migration/22-to-30#switch-to-newtonsoftjson).
+If you need features of `Newtonsoft.Json` that aren't supported in `System.Text.Json`, see [Switch to Newtonsoft.Json](xref:migration/22-to-30#switch-to-newtonsoftjson).
 
 ### MessagePack serialization options
 
@@ -592,7 +592,7 @@ The following table lists the available log levels. The value you provide to `co
 
 For more information on logging, see the [SignalR Diagnostics documentation](xref:signalr/diagnostics).
 
-The SignalR Java client uses the [SLF4J](https://www.slf4j.org/) library for logging. It's a high-level logging API that allows users of the library to chose their own specific logging implementation by bringing in a specific logging dependency. The following code snippet shows how to use `java.util.logging` with the SignalR Java client.
+The SignalR Java client uses the [SLF4J](https://www.slf4j.org/) library for logging. It's a high-level logging API that allows users of the library to choose their own specific logging implementation by bringing in a specific logging dependency. The following code snippet shows how to use `java.util.logging` with the SignalR Java client.
 
 ```gradle
 implementation 'org.slf4j:slf4j-jdk14:1.7.25'
@@ -835,7 +835,7 @@ var connection = new HubConnectionBuilder()
 
 ### Switch to Newtonsoft.Json
 
-If you need features of `Newtonsoft.Json` that aren't supported in `System.Text.Json`, See [Switch to Newtonsoft.Json](xref:migration/22-to-30#switch-to-newtonsoftjson).
+If you need features of `Newtonsoft.Json` that aren't supported in `System.Text.Json`, see [Switch to Newtonsoft.Json](xref:migration/22-to-30#switch-to-newtonsoftjson).
 
 ### MessagePack serialization options
 
@@ -984,7 +984,7 @@ The following table lists the available log levels. The value you provide to `co
 
 For more information on logging, see the [SignalR Diagnostics documentation](xref:signalr/diagnostics).
 
-The SignalR Java client uses the [SLF4J](https://www.slf4j.org/) library for logging. It's a high-level logging API that allows users of the library to chose their own specific logging implementation by bringing in a specific logging dependency. The following code snippet shows how to use `java.util.logging` with the SignalR Java client.
+The SignalR Java client uses the [SLF4J](https://www.slf4j.org/) library for logging. It's a high-level logging API that allows users of the library to choose their own specific logging implementation by bringing in a specific logging dependency. The following code snippet shows how to use `java.util.logging` with the SignalR Java client.
 
 ```gradle
 implementation 'org.slf4j:slf4j-jdk14:1.7.25'
@@ -1222,7 +1222,7 @@ var connection = new HubConnectionBuilder()
 
 ### Switch to Newtonsoft.Json
 
-If you need features of `Newtonsoft.Json` that aren't supported in `System.Text.Json`, See [Switch to Newtonsoft.Json](xref:migration/22-to-30#switch-to-newtonsoftjson).
+If you need features of `Newtonsoft.Json` that aren't supported in `System.Text.Json`, see [Switch to Newtonsoft.Json](xref:migration/22-to-30#switch-to-newtonsoftjson).
 
 ### MessagePack serialization options
 
@@ -1370,7 +1370,7 @@ The following table lists the available log levels. The value you provide to `co
 
 For more information on logging, see the [SignalR Diagnostics documentation](xref:signalr/diagnostics).
 
-The SignalR Java client uses the [SLF4J](https://www.slf4j.org/) library for logging. It's a high-level logging API that allows users of the library to chose their own specific logging implementation by bringing in a specific logging dependency. The following code snippet shows how to use `java.util.logging` with the SignalR Java client.
+The SignalR Java client uses the [SLF4J](https://www.slf4j.org/) library for logging. It's a high-level logging API that allows users of the library to choose their own specific logging implementation by bringing in a specific logging dependency. The following code snippet shows how to use `java.util.logging` with the SignalR Java client.
 
 ```gradle
 implementation 'org.slf4j:slf4j-jdk14:1.7.25'
@@ -1731,7 +1731,7 @@ let connection = new signalR.HubConnectionBuilder()
 
 For more information on logging, see the [SignalR Diagnostics documentation](xref:signalr/diagnostics).
 
-The SignalR Java client uses the [SLF4J](https://www.slf4j.org/) library for logging. It's a high-level logging API that allows users of the library to chose their own specific logging implementation by bringing in a specific logging dependency. The following code snippet shows how to use `java.util.logging` with the SignalR Java client.
+The SignalR Java client uses the [SLF4J](https://www.slf4j.org/) library for logging. It's a high-level logging API that allows users of the library to choose their own specific logging implementation by bringing in a specific logging dependency. The following code snippet shows how to use `java.util.logging` with the SignalR Java client.
 
 ```gradle
 implementation 'org.slf4j:slf4j-jdk14:1.7.25'
@@ -2080,7 +2080,7 @@ let connection = new signalR.HubConnectionBuilder()
 
 For more information on logging, see the [SignalR Diagnostics documentation](xref:signalr/diagnostics).
 
-The SignalR Java client uses the [SLF4J](https://www.slf4j.org/) library for logging. It's a high-level logging API that allows users of the library to chose their own specific logging implementation by bringing in a specific logging dependency. The following code snippet shows how to use `java.util.logging` with the SignalR Java client.
+The SignalR Java client uses the [SLF4J](https://www.slf4j.org/) library for logging. It's a high-level logging API that allows users of the library to choose their own specific logging implementation by bringing in a specific logging dependency. The following code snippet shows how to use `java.util.logging` with the SignalR Java client.
 
 ```gradle
 implementation 'org.slf4j:slf4j-jdk14:1.7.25'
