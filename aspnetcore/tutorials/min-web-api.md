@@ -110,7 +110,7 @@ The *Program.cs* file contains the following code:
 
 [!code-csharp[](min-web-api/samples/6.x/Program.cs)]
 
-The following code create a `WebApplicationBuilder` with preconfigured defaults, and builds the web app:
+The following code creates a `WebApplicationBuilder` with preconfigured defaults, and builds the web app:
 
   ```csharp
   var builder = WebApplication.CreateBuilder(args);
@@ -126,6 +126,8 @@ The preceding code is a complete web app with one endpoint.
 ### Run the app
 
 # [Visual Studio](#tab/visual-studio)
+
+<!-- replace all of this with an include -->
 
 Press Ctrl+F5 to run without the debugger.
 
