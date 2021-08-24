@@ -68,9 +68,6 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
   * The `dotnet new` command creates a new gRPC service in the *GrpcGreeter* folder.
   * The `code` command opens the *GrpcGreeter* folder in a new instance of Visual Studio Code.
 
-  A dialog box appears with **Required assets to build and debug are missing from 'GrpcGreeter'. Add them?**
-* Select **Yes**.
-
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * Start Visual Studio for Mac and select **New**. Alternatively, from the Visual Studio **File** menu, select **New Solution**.
@@ -81,14 +78,6 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 ---
 
 ### Run the service
-
-* Select **Run** > **Start Without Debugging** to launch the app.
-
-  Visual Studio for Mac:
-
-  * Starts [Kestrel](xref:fundamentals/servers/index#kestrel) server.
-  * Launches a browser.
-  * Navigates to `http://localhost:port`, where *port* is a randomly chosen port number.
 
   [!INCLUDE[](~/includes/run-the-app.md)]
 
