@@ -11,7 +11,7 @@ uid: mvc/views/razor
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Taylor Mullen](https://twitter.com/ntaylormullen), and [Dan Vicarel](https://github.com/Rabadash8820)
 
-Razor is a markup syntax for embedding server-based code into webpages. The Razor syntax consists of Razor markup, C#, and HTML. Files containing Razor generally have a `.cshtml` file extension. Razor is also found in [Razor components](xref:blazor/components/index) files (`.razor`).
+Razor is a markup syntax for embedding .NET based code into webpages. The Razor syntax consists of Razor markup, C#, and HTML. Files containing Razor generally have a `.cshtml` file extension. Razor is also found in [Razor components](xref:blazor/components/index) files (`.razor`). Most commonly, Razor syntax is not disimiliar than templating engines of various JavaScript Single-Page Application frameworks; such as Angular, React, VueJs, and Svelte. For more information see, [Use JavaScript Services to Create Single Page Applications in ASP.NET Core](xref:client-side/spa-services).
 
 ## Rendering HTML
 
