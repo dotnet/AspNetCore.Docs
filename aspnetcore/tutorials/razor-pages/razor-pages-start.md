@@ -472,13 +472,29 @@ The *Program.cs* file contains the following code:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program.cs?name=snippet_all)]
 
-The following code create a `WebApplicationBuilder` with preconfigured defaults, and builds the web app:
+The following code creates a `WebApplicationBuilder` with preconfigured defaults, adds Razor Pages support to the [Dependency Injection (DI) container](xref:fundamentals/dependency-injection), and builds the app:
 
-  ```csharp
-  var builder = WebApplication.CreateBuilder(args);
-  var app = builder.Build();
-  ```
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program.cs?name=snippet_di)]
 
+The following highlighted code enables the developer exception page when the app is running in development mode:
+
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program.cs?name=snippet_env?highlight=2-5)]
+
+The developer exception page provides helpful information on exceptions. Production apps should not be run in development mode because the developer exception page can leak sensitive information.
+
+The following highlighted code set the exception endpoint to `/Error` and enables HSTS when the app is **not** running in development mode:
+
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program.cs?name=snippet_env?highlight=2-5)]
+
+For example, the preceding code runs when the app is in production or test mode. For more information, see [Use multiple environments in ASP.NET Core](xref:fundamentals/environments). For more information on HSTS, see [HTTP Strict Transport Security Protocol](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts)
+
+The following code enable various [Middleware](xref:fundamentals/middleware/index):
+
+* `app.UseHttpsRedirection();` Redirects HTTP requests to HTTPS.
+* `app.UseStaticFiles();` : Enables static files, such as HTML, CSS, images, and JavaScript to be served. For more information, see <xref:fundamentals/static-files>.
+* `app.UseRouting();` : Adds route matching to the middleware pipeline. For more information, see <xref:fundamentals/routing>
+* `app.MapRazorPages();`: Configures endpoint routing for Razor Pages.
+* `app.UseAuthorization();` : Authorizes a user to access secure resources. This app doesn't use authorization.
 
 `app.Run();` runs the app.
 
