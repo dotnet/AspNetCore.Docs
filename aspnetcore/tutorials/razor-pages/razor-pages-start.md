@@ -336,9 +336,12 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
 [!INCLUDE[](~/includes/net-prereqs-vsc-6.0.md)]
 
+<!-- VS Mac in next PR 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 [!INCLUDE[](~/includes/net-prereqs-mac-6.0.md)]
+
+-->
 
 ---
 
@@ -346,13 +349,13 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
 # [Visual Studio](#tab/visual-studio)
 
-1. Start Visual Studio and select **Create a new project**. For more information, see [Create a new project in Visual Studio](/visualstudio/ide/create-new-project). Some of the images may not match the version of Visual Studio you're using.
+1. Start Visual Studio 2022 and select **Create a new project**. For more information, see [Create a new project in Visual Studio](/visualstudio/ide/create-new-project).
 
-   ![Create a new project from the start window](razor-pages-start/_static/5/start-window-create-new-project.png)
+   ![Create a new project from the start window](razor-pages-start/_static/6/start-window-create-new-project.png)
 
-1. In the **Create a new project** dialog, select **ASP.NET Core Web Application**, and then select **Next**.
+1. In the **Create a new project** dialog, select **ASP.NET Core Web App**, and then select **Next**.
 
-	![Create an ASP.NET Core Web Application](razor-pages-start/_static/5/np.png)
+	![Create an ASP.NET Core Web App](razor-pages-start/_static/6/np.png)
 	
 1. In the **Configure your new project** dialog, enter `RazorPagesMovie` for **Project name**. It's important to name the project *RazorPagesMovie*, including matching the capitalization, so the namespaces will match when you copy and paste example code.
 
@@ -384,6 +387,7 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
    * The `dotnet new` command creates a new Razor Pages project in the *RazorPagesMovie* folder.
    * The `code` command opens the *RazorPagesMovie* folder in the current instance of Visual Studio Code.
 
+<!-- VS Mac in next PR
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 1. Select **File** > **New Solution**.
@@ -404,13 +408,49 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
 	![macOS name the project](razor-pages-start/_static/RazorPagesMovie.png)
 
-<!-- End of VS tabs -->
-
+-->
 ---
 
 ## Run the app
 
-  [!INCLUDE[](~/includes/run-the-app.md)]
+# [Visual Studio](#tab/visual-studio)
+
+<!-- replace all of this with updated includes  -->
+
+Press Ctrl+F5 to run without the debugger.
+
+Visual Studio displays the following dialog:
+
+![This project is configured to use SSL. To avoid SSL warnings in the browser you can choose to trust the self-signed certificate that IIS Express has generated. Would you like to trust the IIS Express SSL certificate?](~/getting-started/_static/trustCertVS22.png)
+
+Select **Yes** if you trust the IIS Express SSL certificate.
+
+The following dialog is displayed:
+
+![Security warning dialog](~/getting-started/_static/cert.png)
+
+Select **Yes** if you agree to trust the development certificate.
+
+[!INCLUDE[trust FF](~/includes/trust-ff.md)]
+
+Visual Studio launches:
+
+* The [Kestrel web server](xref:fundamentals/servers/kestrel).
+* The default browser and navigates to `https://localhost:5001`.
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+[!INCLUDE[](~/includes/trustCertVSC.md)]
+
+Press Ctrl+F5 to run the app. In a browser, go to following URL: [https://localhost:5001](https://localhost:5001)
+
+<!-- add VS Mac later 
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+Select **Run** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number. 
+-->
+
+---
 
 ## Examine the project files
 
@@ -435,11 +475,7 @@ Contains configuration data, like connection strings. For more information, see 
 
 ### Program.cs
 
-Contains the entry point for the app. For more information, see <xref:fundamentals/host/generic-host>.
-
-### Startup.cs
-
-Contains code that configures app behavior. For more information, see <xref:fundamentals/startup>.
+Contains the entry point for the app. <!-- expand -->
 
 ## Next steps
 
