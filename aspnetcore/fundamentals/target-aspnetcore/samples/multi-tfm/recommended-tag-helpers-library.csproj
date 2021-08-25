@@ -1,18 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
   
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp2.1;netcoreapp3.0;net461</TargetFrameworks>
+    <TargetFrameworks>netcoreapp2.1;netcoreapp3.1;net461</TargetFrameworks>
   </PropertyGroup>
   
   <ItemGroup>
     <PackageReference Include="Markdig" Version="0.16.0" />
   </ItemGroup>
   
-  <ItemGroup Condition="'$(TargetFramework)' != 'netcoreapp3.0'">
+  <ItemGroup Condition="'$(TargetFramework)' != 'netcoreapp3.1'">
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor" Version="2.1.0" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.0'">
+  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 </Project>
