@@ -308,10 +308,10 @@ Use the following approaches to reference static assets:
 * When the asset is in the `wwwroot` folder of a [Razor Class Library (RCL)](xref:blazor/components/class-libraries), reference the static asset in the client app per the guidance in <xref:razor-pages/ui-class#consume-content-from-a-referenced-rcl>:
 
   ```razor
-  <img alt="..." src="_content/{LIBRARY NAME}/{PATH AND FILE NAME}" />
+  <img alt="..." src="_content/{PACKAGE ID}/{PATH AND FILE NAME}" />
   ```
 
-  The `{LIBRARY NAME}` placeholder is the library's assembly name or [NuGet `PackageId` (if specified)](/nuget/create-packages/creating-a-package-msbuild#set-properties). The `{PATH AND FILE NAME}` placeholder is path and file name under `wwwroot`.
+  The `{PACKAGE ID}` placeholder is the library's [package ID](/nuget/create-packages/creating-a-package-msbuild#set-properties). The package ID defaults to the project's assembly name if `<PackageId>` isn't specified in the project file. The `{PATH AND FILE NAME}` placeholder is path and file name under `wwwroot`.
 
 For more information on RCLs, see:
 
@@ -1115,10 +1115,10 @@ Use the following approaches to reference static assets:
 * When the asset is in the `wwwroot` folder of a [Razor Class Library (RCL)](xref:blazor/components/class-libraries), reference the static asset in the client app per the guidance in <xref:razor-pages/ui-class#consume-content-from-a-referenced-rcl>:
 
   ```razor
-  <img alt="..." src="_content/{LIBRARY NAME}/{PATH AND FILE NAME}" />
+  <img alt="..." src="_content/{PACKAGE ID}/{PATH AND FILE NAME}" />
   ```
 
-  The `{LIBRARY NAME}` placeholder is the library's assembly name or [NuGet `PackageId` (if specified)](/nuget/create-packages/creating-a-package-msbuild#set-properties). The `{PATH AND FILE NAME}` placeholder is path and file name under `wwwroot`.
+  The `{PACKAGE ID}` placeholder is the library's [package ID](/nuget/create-packages/creating-a-package-msbuild#set-properties). The package ID defaults to the project's assembly name if `<PackageId>` isn't specified in the project file. The `{PATH AND FILE NAME}` placeholder is path and file name under `wwwroot`.
 
 For more information on RCLs, see:
 
@@ -1922,10 +1922,10 @@ Use the following approaches to reference static assets:
 * When the asset is in the `wwwroot` folder of a [Razor Class Library (RCL)](xref:blazor/components/class-libraries), reference the static asset in the client app per the guidance in <xref:razor-pages/ui-class#consume-content-from-a-referenced-rcl>:
 
   ```razor
-  <img alt="..." src="_content/{LIBRARY NAME}/{PATH AND FILE NAME}" />
+  <img alt="..." src="_content/{PACKAGE ID}/{PATH AND FILE NAME}" />
   ```
 
-  The `{LIBRARY NAME}` placeholder is the library's assembly name or [NuGet `PackageId` (if specified)](/nuget/create-packages/creating-a-package-msbuild#set-properties). The `{PATH AND FILE NAME}` placeholder is path and file name under `wwwroot`.
+  The `{PACKAGE ID}` placeholder is the library's [package ID](/nuget/create-packages/creating-a-package-msbuild#set-properties). The package ID defaults to the project's assembly name if `<PackageId>` isn't specified in the project file. The `{PATH AND FILE NAME}` placeholder is path and file name under `wwwroot`.
 
 For more information on RCLs, see:
 

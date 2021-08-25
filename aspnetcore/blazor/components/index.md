@@ -312,7 +312,7 @@ The code in the preceding example generates a *compiler error* when the app is b
 
 > The 'await' operator can only be used within an async method. Consider marking this method with the 'async' modifier and changing its return type to 'Task'.
 
-To obtain a value for the `Title` parameter in the preceding example asychronously, the component can use the [`OnInitializedAsync` lifecycle event](xref:blazor/components/lifecycle#component-initialization-oninitializedasync), as the following example demonstrates:
+To obtain a value for the `Title` parameter in the preceding example asynchronously, the component can use the [`OnInitializedAsync` lifecycle event](xref:blazor/components/lifecycle#component-initialization-oninitializedasync), as the following example demonstrates:
 
 ```razor
 <ParameterChild Title="@title" />
@@ -1318,7 +1318,7 @@ The code in the preceding example generates a *compiler error* when the app is b
 
 > The 'await' operator can only be used within an async method. Consider marking this method with the 'async' modifier and changing its return type to 'Task'.
 
-To obtain a value for the `Title` parameter in the preceding example asychronously, the component can use the [`OnInitializedAsync` lifecycle event](xref:blazor/components/lifecycle#component-initialization-oninitializedasync), as the following example demonstrates:
+To obtain a value for the `Title` parameter in the preceding example asynchronously, the component can use the [`OnInitializedAsync` lifecycle event](xref:blazor/components/lifecycle#component-initialization-oninitializedasync), as the following example demonstrates:
 
 ```razor
 <ParameterChild Title="@title" />
@@ -2257,7 +2257,7 @@ The code in the preceding example generates a *compiler error* when the app is b
 
 > The 'await' operator can only be used within an async method. Consider marking this method with the 'async' modifier and changing its return type to 'Task'.
 
-To obtain a value for the `Title` parameter in the preceding example asychronously, the component can use the [`OnInitializedAsync` lifecycle event](xref:blazor/components/lifecycle#component-initialization-oninitializedasync), as the following example demonstrates:
+To obtain a value for the `Title` parameter in the preceding example asynchronously, the component can use the [`OnInitializedAsync` lifecycle event](xref:blazor/components/lifecycle#component-initialization-oninitializedasync), as the following example demonstrates:
 
 ```razor
 <ParameterChild Title="@title" />
