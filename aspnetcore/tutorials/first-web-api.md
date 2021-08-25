@@ -34,11 +34,11 @@ This tutorial creates the following API:
 
 |API | Description | Request body | Response body |
 |--- | ---- | ---- | ---- |
-|`GET /api/TodoItems` | Get all to-do items | None | Array of to-do items|
-|`GET /api/TodoItems/{id}` | Get an item by ID | None | To-do item|
-|`POST /api/TodoItems` | Add a new item | To-do item | To-do item |
-|`PUT /api/TodoItems/{id}` | Update an existing item &nbsp; | To-do item | None |
-|`DELETE /api/TodoItems/{id}` &nbsp; &nbsp; | Delete an item &nbsp; &nbsp; | None | None|
+|`GET /api/todoitems` | Get all to-do items | None | Array of to-do items|
+|`GET /api/todoitems/{id}` | Get an item by ID | None | To-do item|
+|`POST /api/todoitems` | Add a new item | To-do item | To-do item |
+|`PUT /api/todoitems/{id}` | Update an existing item &nbsp; | To-do item | None |
+|`DELETE /api/todoitems/{id}` &nbsp; &nbsp; | Delete an item &nbsp; &nbsp; | None | None|
 
 The following diagram shows the design of the app.
 
@@ -198,10 +198,10 @@ JSON similar to the following is returned:
 
 ### Update the launchUrl
 
-In *Properties\launchSettings.json*, update `launchUrl` from `"swagger"` to `"api/TodoItems"`:
+In *Properties\launchSettings.json*, update `launchUrl` from `"swagger"` to `"api/todoitems"`:
 
 ```json
-"launchUrl": "api/TodoItems",
+"launchUrl": "api/todoitems",
 ```
 
 Because Swagger will be removed, the preceding markup changes the URL that is launched to the GET method of the controller added in the following sections.
@@ -367,7 +367,7 @@ This tutorial uses Postman to test the web API.
 
 * Create a new request.
 * Set the HTTP method to `POST`.
-* Set the URI to `https://localhost:<port>/api/TodoItems`. For example, `https://localhost:5001/api/TodoItems`.
+* Set the URI to `https://localhost:<port>/api/todoitems`. For example, `https://localhost:5001/api/todoitems`.
 * Select the **Body** tab.
 * Select the **raw** radio button.
 * Set the type to **JSON (application/json)**.
@@ -396,20 +396,20 @@ To test in Postman:
   ![Headers tab of the Postman console](first-web-api/_static/3/create.png)
 
 * Set the HTTP method to `GET`.
-* Set the URI to `https://localhost:<port>/api/TodoItems/1`. For example, `https://localhost:5001/api/TodoItems/1`.
+* Set the URI to `https://localhost:<port>/api/todoitems/1`. For example, `https://localhost:5001/api/todoitems/1`.
 * Select **Send**.
 
 ## Examine the GET methods
 
 Two GET endpoints are implemented:
 
-* `GET /api/TodoItems`
-* `GET /api/TodoItems/{id}`
+* `GET /api/todoitems`
+* `GET /api/todoitems/{id}`
 
 Test the app by calling the two endpoints from a browser or Postman. For example:
 
-* `https://localhost:5001/api/TodoItems`
-* `https://localhost:5001/api/TodoItems/1`
+* `https://localhost:5001/api/todoitems`
+* `https://localhost:5001/api/todoitems/1`
 
 A response similar to the following is produced by the call to `GetTodoItems`:
 
@@ -427,7 +427,7 @@ A response similar to the following is produced by the call to `GetTodoItems`:
 
 * Create a new request.
 * Set the HTTP method to **GET**.
-* Set the request URI to `https://localhost:<port>/api/TodoItems`. For example, `https://localhost:5001/api/TodoItems`.
+* Set the request URI to `https://localhost:<port>/api/todoitems`. For example, `https://localhost:5001/api/todoitems`.
 * Set **Two pane view** in Postman.
 * Select **Send**.
 
@@ -496,7 +496,7 @@ Examine the `DeleteTodoItem` method:
 Use Postman to delete a to-do item:
 
 * Set the method to `DELETE`.
-* Set the URI of the object to delete (for example `https://localhost:5001/api/TodoItems/1`).
+* Set the URI of the object to delete (for example `https://localhost:5001/api/todoitems/1`).
 * Select **Send**.
 
 <a name="over-post-v5"></a>
@@ -555,11 +555,11 @@ This tutorial creates the following API:
 
 |API | Description | Request body | Response body |
 |--- | ---- | ---- | ---- |
-|`GET /api/TodoItems` | Get all to-do items | None | Array of to-do items|
-|`GET /api/TodoItems/{id}` | Get an item by ID | None | To-do item|
-|`POST /api/TodoItems` | Add a new item | To-do item | To-do item |
-|`PUT /api/TodoItems/{id}` | Update an existing item &nbsp; | To-do item | None |
-|`DELETE /api/TodoItems/{id}` &nbsp; &nbsp; | Delete an item &nbsp; &nbsp; | None | None|
+|`GET /api/todoitems` | Get all to-do items | None | Array of to-do items|
+|`GET /api/todoitems/{id}` | Get an item by ID | None | To-do item|
+|`POST /api/todoitems` | Add a new item | To-do item | To-do item |
+|`PUT /api/todoitems/{id}` | Update an existing item &nbsp; | To-do item | None |
+|`DELETE /api/todoitems/{id}` &nbsp; &nbsp; | Delete an item &nbsp; &nbsp; | None | None|
 
 The following diagram shows the design of the app.
 
@@ -855,7 +855,7 @@ This tutorial uses Postman to test the web API.
 
 * Create a new request.
 * Set the HTTP method to `POST`.
-* Set the URI to `https://localhost:<port>/api/TodoItems`. For example, `https://localhost:5001/api/TodoItems`.
+* Set the URI to `https://localhost:<port>/api/todoitems`. For example, `https://localhost:5001/api/todoitems`.
 * Select the **Body** tab.
 * Select the **raw** radio button.
 * Set the type to **JSON (application/json)**.
@@ -880,20 +880,20 @@ This tutorial uses Postman to test the web API.
   ![Headers tab of the Postman console](first-web-api/_static/3/create.png)
 
 * Set the HTTP method to `GET`.
-* Set the URI to `https://localhost:<port>/api/TodoItems/1`. For example, `https://localhost:5001/api/TodoItems/1`.
+* Set the URI to `https://localhost:<port>/api/todoitems/1`. For example, `https://localhost:5001/api/todoitems/1`.
 * Select **Send**.
 
 ## Examine the GET methods
 
 These methods implement two GET endpoints:
 
-* `GET /api/TodoItems`
-* `GET /api/TodoItems/{id}`
+* `GET /api/todoitems`
+* `GET /api/todoitems/{id}`
 
 Test the app by calling the two endpoints from a browser or Postman. For example:
 
-* `https://localhost:5001/api/TodoItems`
-* `https://localhost:5001/api/TodoItems/1`
+* `https://localhost:5001/api/todoitems`
+* `https://localhost:5001/api/todoitems/1`
 
 A response similar to the following is produced by the call to `GetTodoItems`:
 
@@ -911,7 +911,7 @@ A response similar to the following is produced by the call to `GetTodoItems`:
 
 * Create a new request.
 * Set the HTTP method to **GET**.
-* Set the request URI to `https://localhost:<port>/api/TodoItems`. For example, `https://localhost:5001/api/TodoItems`.
+* Set the request URI to `https://localhost:<port>/api/todoitems`. For example, `https://localhost:5001/api/todoitems`.
 * Set **Two pane view** in Postman.
 * Select **Send**.
 
@@ -980,7 +980,7 @@ Examine the `DeleteTodoItem` method:
 Use Postman to delete a to-do item:
 
 * Set the method to `DELETE`.
-* Set the URI of the object to delete (for example `https://localhost:5001/api/TodoItems/1`).
+* Set the URI of the object to delete (for example `https://localhost:5001/api/todoitems/1`).
 * Select **Send**.
 
 <a name="over-post"></a>
@@ -1043,11 +1043,11 @@ This tutorial creates the following API:
 
 |API | Description | Request body | Response body |
 |--- | ---- | ---- | ---- |
-|GET /api/TodoItems | Get all to-do items | None | Array of to-do items|
-|GET /api/TodoItems/{id} | Get an item by ID | None | To-do item|
-|POST /api/TodoItems | Add a new item | To-do item | To-do item |
-|PUT /api/TodoItems/{id} | Update an existing item &nbsp; | To-do item | None |
-|DELETE /api/TodoItems/{id} &nbsp; &nbsp; | Delete an item &nbsp; &nbsp; | None | None|
+|GET /api/todoitems | Get all to-do items | None | Array of to-do items|
+|GET /api/todoitems/{id} | Get an item by ID | None | To-do item|
+|POST /api/todoitems | Add a new item | To-do item | To-do item |
+|PUT /api/todoitems/{id} | Update an existing item &nbsp; | To-do item | None |
+|DELETE /api/todoitems/{id} &nbsp; &nbsp; | Delete an item &nbsp; &nbsp; | None | None|
 
 The following diagram shows the design of the app.
 
@@ -1366,7 +1366,7 @@ The `CreatedAtAction` method:
   ![Headers tab of the Postman console](first-web-api/_static/pmc2.png)
 
 * Set the method to GET.
-* Set the URI to `https://localhost:<port>/api/TodoItems/2`. For example, `https://localhost:5001/api/TodoItems/2`.
+* Set the URI to `https://localhost:<port>/api/todoitems/2`. For example, `https://localhost:5001/api/todoitems/2`.
 * Select **Send**.
 
 ## Add a PutTodoItem method 2.1

@@ -30,7 +30,7 @@ This article describes how to use Blazor's globalization and localization featur
 For additional general information, see <xref:fundamentals/localization>.
 
 > [!NOTE]
-> Often, the terms *language* and *culture* are used interchangably when dealing with globalization and localization concepts.
+> Often, the terms *language* and *culture* are used interchangeably when dealing with globalization and localization concepts.
 >
 > In this article, *language* refers to selections made by a user in their browser's settings. The user's language selections are submitted in browser requests in the [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Language). Browser settings usually use the word "language" in the UI.
 >
@@ -893,7 +893,7 @@ This article describes how to use Blazor's globalization and localization featur
 For additional general information, see <xref:fundamentals/localization>.
 
 > [!NOTE]
-> Often, the terms *language* and *culture* are used interchangably when dealing with globalization and localization concepts.
+> Often, the terms *language* and *culture* are used interchangeably when dealing with globalization and localization concepts.
 >
 > In this article, *language* refers to selections made by a user in their browser's settings. The user's language selections are submitted in browser requests in the [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Language). Browser settings usually use the word "language" in the UI.
 >
@@ -1756,7 +1756,7 @@ This article describes how to use Blazor's globalization and localization featur
 For additional general information, see <xref:fundamentals/localization>.
 
 > [!NOTE]
-> Often, the terms *language* and *culture* are used interchangably when dealing with globalization and localization concepts.
+> Often, the terms *language* and *culture* are used interchangeably when dealing with globalization and localization concepts.
 >
 > In this article, *language* refers to selections made by a user in their browser's settings. The user's language selections are submitted in browser requests in the [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Language). Browser settings usually use the word "language" in the UI.
 >

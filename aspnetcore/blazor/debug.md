@@ -368,7 +368,7 @@ Browser source maps allow the browser to map compiled files back to their origin
 If a firewall blocks communication with the debug proxy, create a firewall exception rule that permits communication between the browser and the `NodeJS` process.
 
 > [!WARNING]
-> Modification of a firewall configuration must be made with care to avoid creating security vulnerablities. Carefully apply security guidance, follow best security practices, and respect warnings issued by the firewall's manufacturer.
+> Modification of a firewall configuration must be made with care to avoid creating security vulnerabilities. Carefully apply security guidance, follow best security practices, and respect warnings issued by the firewall's manufacturer.
 >
 > Permitting open communication with the `NodeJS` process:
 >
@@ -791,7 +791,7 @@ Browser source maps allow the browser to map compiled files back to their origin
 If a firewall blocks communication with the debug proxy, create a firewall exception rule that permits communication between the browser and the `NodeJS` process.
 
 > [!WARNING]
-> Modification of a firewall configuration must be made with care to avoid creating security vulnerablities. Carefully apply security guidance, follow best security practices, and respect warnings issued by the firewall's manufacturer.
+> Modification of a firewall configuration must be made with care to avoid creating security vulnerabilities. Carefully apply security guidance, follow best security practices, and respect warnings issued by the firewall's manufacturer.
 >
 > Permitting open communication with the `NodeJS` process:
 >
@@ -1214,7 +1214,7 @@ Browser source maps allow the browser to map compiled files back to their origin
 If a firewall blocks communication with the debug proxy, create a firewall exception rule that permits communication between the browser and the `NodeJS` process.
 
 > [!WARNING]
-> Modification of a firewall configuration must be made with care to avoid creating security vulnerablities. Carefully apply security guidance, follow best security practices, and respect warnings issued by the firewall's manufacturer.
+> Modification of a firewall configuration must be made with care to avoid creating security vulnerabilities. Carefully apply security guidance, follow best security practices, and respect warnings issued by the firewall's manufacturer.
 >
 > Permitting open communication with the `NodeJS` process:
 >

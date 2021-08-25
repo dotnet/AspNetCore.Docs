@@ -38,7 +38,7 @@ IIS must have a website configured with the following:
 * **Host name**: Typically, the **Default Web Site** is used with a **Host name** of `localhost`. However, any valid IIS website with a unique host name works.
 * **Site Binding**
   * For apps that require HTTPS, create a binding to port 443 with a certificate. Typically, the **IIS Express Development Certificate** is used, but any valid certificate works.
-  * For apps that use HTTP, confirm the existence of a binding to post 80 or create a binding to port 80 for a new site.
+  * For apps that use HTTP, confirm the existence of a binding to port 80 or create a binding to port 80 for a new site.
   * Use a single binding for either HTTP or HTTPS. **Binding to both HTTP and HTTPS ports simultaneously isn't supported.**
 
 ## Enable development-time IIS support in Visual Studio
