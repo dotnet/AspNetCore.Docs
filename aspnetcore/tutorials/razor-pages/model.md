@@ -724,7 +724,7 @@ The `Movie` class contains:
 
 ### Add NuGet packages and EF tools
 
-[!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI-5.md)]
+[!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI-6.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 

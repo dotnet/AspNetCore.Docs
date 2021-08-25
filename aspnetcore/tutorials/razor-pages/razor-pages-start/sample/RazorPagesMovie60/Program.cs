@@ -1,3 +1,4 @@
+#region snippet_all
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using RazorPagesMovie.Data;
@@ -33,3 +34,4 @@ app.UseAuthorization();
 app.MapRazorPages();
 
 app.Run();
+#endregion
