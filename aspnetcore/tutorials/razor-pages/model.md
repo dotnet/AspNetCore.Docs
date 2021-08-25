@@ -718,9 +718,7 @@ The `Movie` class contains:
   * The user is not required to enter time information in the date field.
   * Only the date is displayed, not time information.
 
-### Add Microsoft.EntityFrameworkCore.Design for scaffolding
-
-<a name="dc"></a>
+<a name="dc6"></a>
 
 ### Add NuGet packages and EF tools
 
@@ -759,7 +757,16 @@ In this section, the movie model is scaffolded. That is, the scaffolding tool pr
 
 # [Visual Studio](#tab/visual-studio)
 
-1. Create a *Pages/Movies* folder:
+1. Add the NuGet package `Microsoft.EntityFrameworkCore.Design`, which is required for the scaffolding tool
+   1. From the **Tools** menu, select **NuGet Package Manager** > **Manage NuGet Packages for Solution**
+      ![NuGet Package Manager - manage](model/_static/6/nugetMP.png)
+   1. Select the **Browse** tab.
+   1. Enter `Microsoft.EntityFrameworkCore.Design` in the search box.
+   1. Check **Include prerelease** and **Project**
+   1. Select **Install**
+      ![NuGet Package Manager - add package](model/_static/6/na.png)
+
+1. Create the *Pages/Movies* folder:
    1. Right-click on the *Pages* folder > **Add** > **New Folder**.
    1. Name the folder *Movies*.
 
@@ -767,9 +774,9 @@ In this section, the movie model is scaffolded. That is, the scaffolding tool pr
 
    ![New Scaffolded Item](model/_static/5/sca.png)
 
-1. In the **Add Scaffold** dialog, select **Razor Pages using Entity Framework (CRUD)** > **Add**.
+1. In the **Add New Scaffold** dialog, select **Razor Pages using Entity Framework (CRUD)** > **Add**.
 
-   ![Add Scaffold](model/_static/add_scaffold.png)
+   ![Add Scaffold](model/_static/6/add_scaffold.png)
 
 1. Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
    1. In the **Model class** drop down, select **Movie (RazorPagesMovie.Models)**.
