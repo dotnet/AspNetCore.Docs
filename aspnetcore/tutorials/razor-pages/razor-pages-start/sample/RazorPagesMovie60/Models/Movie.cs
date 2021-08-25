@@ -1,4 +1,6 @@
-﻿using System;
+﻿#define First
+#if First
+#region snippet1
 using System.ComponentModel.DataAnnotations;
 
 namespace RazorPagesMovie.Models
@@ -14,3 +16,5 @@ namespace RazorPagesMovie.Models
         public decimal Price { get; set; }
     }
 }
+#endregion
+#endif

@@ -474,7 +474,7 @@ Contains configuration data, like connection strings. For more information, see 
 
 The *Program.cs* file contains the following code:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Programw1Snip.cs?name=snippet_all)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program1Snip.cs?name=snippet_all)]
 
 The following code creates a `WebApplicationBuilder` with preconfigured defaults, adds Razor Pages support to the [Dependency Injection (DI) container](xref:fundamentals/dependency-injection), and builds the app:
 
@@ -482,13 +482,13 @@ The following code creates a `WebApplicationBuilder` with preconfigured defaults
 
 The following highlighted code enables the developer exception page when the app is running in development mode:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Programw1Snip.cs?name=snippet_env&highlight=2-5)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program1Snip.cs?name=snippet_env&highlight=2-5)]
 
 The developer exception page provides helpful information on exceptions. Production apps should not be run in development mode because the developer exception page can leak sensitive information.
 
 The following highlighted code set the exception endpoint to `/Error` and enables HSTS when the app is **not** running in development mode:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Programw1Snip.cs?name=snippet_env&highlight=6-99)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program1Snip.cs?name=snippet_env&highlight=6-99)]
 
 For example, the preceding code runs when the app is in production or test mode. For more information, see [Use multiple environments in ASP.NET Core](xref:fundamentals/environments). For more information on HSTS, see [HTTP Strict Transport Security Protocol](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts)
 

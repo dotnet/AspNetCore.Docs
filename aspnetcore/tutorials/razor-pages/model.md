@@ -691,7 +691,7 @@ The model classes are known as POCO classes (from "**P**lain-**O**ld **C**LR **O
 1. Right-click the *Models* folder. Select **Add** > **Class**. Name the class *Movie*.
 1. Add the following properties to the `Movie` class:
 
-   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/Movie.cs?name=snippet1)]
+   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Models/Movie.cs?name=snippet1)]
 
 The `Movie` class contains:
 
@@ -708,7 +708,7 @@ The `Movie` class contains:
 
 Add the following properties to the `Movie` class:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/Movie.cs?name=snippet1)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Models/Movie.cs?name=snippet1)]
 
 The `Movie` class contains:
 
@@ -737,7 +737,7 @@ The `Movie` class contains:
 
 1. Add the following properties to the `Movie` class:
 
-   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/Movie.cs?name=snippet1)]
+   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Models/Movie.cs?name=snippet1)]
 
 The `Movie` class contains:
 
@@ -843,11 +843,11 @@ The scaffold process creates the following files:
 * *Pages/Movies*: Create, Delete, Details, Edit, and Index.
 * *Data/RazorPagesMovieContext.cs*
 
-#### Updated files
+The scaffold process updates the *Program.cs* files. The following highlighted code is added to the *Program.cs* file:
 
-* *Startup.cs*
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program.cs?name=snippet_all&highlight=1-3,9)]
 
-The created and updated files are explained in the next section.
+The updated files are explained in the next section.
 
 <a name="pmc"></a>
 
