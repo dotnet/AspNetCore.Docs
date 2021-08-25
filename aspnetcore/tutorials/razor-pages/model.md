@@ -757,7 +757,7 @@ In this section, the movie model is scaffolded. That is, the scaffolding tool pr
 
 # [Visual Studio](#tab/visual-studio)
 
-1. Add the NuGet package `Microsoft.EntityFrameworkCore.Design`, which is required for the scaffolding tool
+1. Add the NuGet package `Microsoft.EntityFrameworkCore.Design`, which is required for the scaffolding tool.
    1. From the **Tools** menu, select **NuGet Package Manager** > **Manage NuGet Packages for Solution**
       ![NuGet Package Manager - manage](model/_static/6/nugetMP.png)
    1. Select the **Browse** tab.
