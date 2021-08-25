@@ -10,6 +10,9 @@ using RazorPagesMovie.Models;
 
 namespace RazorPagesMovie.Pages.Movies
 {
+#pragma warning disable CS8618
+#pragma warning disable CS8601
+#pragma warning disable CS8604
     public class DetailsModel : PageModel
     {
         private readonly RazorPagesMovie.Data.RazorPagesMovieContext _context;
@@ -37,4 +40,7 @@ namespace RazorPagesMovie.Pages.Movies
             return Page();
         }
     }
+#pragma warning restore CS8618
+#pragma warning restore CS8601
+#pragma warning restore CS8604
 }

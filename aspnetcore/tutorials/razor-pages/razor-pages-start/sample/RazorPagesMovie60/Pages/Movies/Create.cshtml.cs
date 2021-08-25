@@ -10,6 +10,9 @@ using RazorPagesMovie.Models;
 
 namespace RazorPagesMovie.Pages.Movies
 {
+#pragma warning disable CS8618
+#pragma warning disable CS8602
+
     public class CreateModel : PageModel
     {
         private readonly RazorPagesMovie.Data.RazorPagesMovieContext _context;
@@ -41,4 +44,6 @@ namespace RazorPagesMovie.Pages.Movies
             return RedirectToPage("./Index");
         }
     }
+#pragma warning restore CS8618
+#pragma warning restore CS8602
 }

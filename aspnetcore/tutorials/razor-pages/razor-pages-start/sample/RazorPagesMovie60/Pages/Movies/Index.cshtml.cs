@@ -8,8 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie.Data;
 using RazorPagesMovie.Models;
 
+#region snippet
 namespace RazorPagesMovie.Pages.Movies
 {
+#pragma warning disable CS8618
+#pragma warning disable CS8604
     public class IndexModel : PageModel
     {
         private readonly RazorPagesMovie.Data.RazorPagesMovieContext _context;
@@ -26,4 +29,7 @@ namespace RazorPagesMovie.Pages.Movies
             Movie = await _context.Movie.ToListAsync();
         }
     }
+#pragma warning disable CS8618
+#pragma warning disable CS8604
 }
+#endregion

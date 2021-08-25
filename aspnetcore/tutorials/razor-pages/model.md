@@ -918,13 +918,19 @@ ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-i
 
 The scaffolding tool automatically created a database context and registered it with the dependency injection container.
 
-Examine the `Startup.ConfigureServices` method. The highlighted line was added by the scaffolder:
+Examine the *Program.cs* file. The highlighted line was added by the scaffolder:
 
-[!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Startup.cs?name=snippet_ConfigureServices&highlight=5-6)]
+The following highlighted code is added to the *Program.cs* file:
 
-The `RazorPagesMovieContext` coordinates EF Core functionality, such as Create, Read, Update and Delete, for the `Movie` model. The data context (`RazorPagesMovieContext`) is derived from [Microsoft.EntityFrameworkCore.DbContext](xref:Microsoft.EntityFrameworkCore.DbContext). The data context specifies which entities are included in the data model.
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program.cs?name=snippet_all&highlight=9)]
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50/Data/RazorPagesMovieContext.cs)]
+The data context `RazorPagesMovieContext`:
+
+* Is derived from [Microsoft.EntityFrameworkCore.DbContext](xref:Microsoft.EntityFrameworkCore.DbContext).
+* Specifies which entities are included in the data model.
+* Coordinates EF Core functionality, such as Create, Read, Update and Delete, for the `Movie` model.
+
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Data/RazorPagesMovieContext.cs?name=snippet_1)]
 
 The preceding code creates a [DbSet\<Movie>](xref:Microsoft.EntityFrameworkCore.DbSet%601) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
 
@@ -938,7 +944,43 @@ Examine the `Up` method.
 
 <a name="test"></a>
 
-## Test the app
+## Build the app
+
+Build the app. The compiler generates several warnings. The `RazorPagesMovieContext` generates the following warning:
+
+> Warning	CS8618 Non-nullable property 'Movie' must contain a non-null value when exiting constructor. Consider declaring the property as nullable.
+
+To fix the warning, apply the suggestion and declare the `Movie` property [nullable](/dotnet/csharp/nullable-references).
+
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Data/RazorPagesMovieContext.cs?name=snippet_fix)]
+
+The `?` declares the property nullable.
+
+An alternative approach is to disable the CS8618 [warning with pragma](/dotnet/fundamentals/code-analysis/suppress-warnings) statements:
+
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Data/RazorPagesMovieContext.cs?name=snippet_prag)]
+
+For the warnings in the Razor Pages csharp code behind files, use the [pragma](/dotnet/csharp/language-reference/preprocessor-directives#pragmas) C# preprocessor directive. For example, use the following highlighted code in the *Pages/Movies/Index.cshtml.cs* file:
+
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Pages/Movies/Index.cshtml.cs?name=snippet&highlight=3-4,21,22)]
+
+The *Pages/Movies/Delete.cshtml.cs* file requires the following `pragma` statements:
+
+```csharp
+#pragma warning disable CS8618
+#pragma warning disable CS8601
+#pragma warning disable CS8602
+#pragma warning disable CS8604
+// Class
+#pragma warning restore CS8618
+#pragma warning restore CS8601
+#pragma warning restore CS8602
+#pragma warning restore CS8604
+```
+
+Ignore any warning NU1603 package mismatch warnings, they will be fixed when .NET 6 is released.
+
+### Test the app
 
 1. Run the app and append `/Movies` to the URL in the browser (`http://localhost:port/movies`).
 
