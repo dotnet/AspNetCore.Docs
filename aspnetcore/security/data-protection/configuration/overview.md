@@ -453,7 +453,7 @@ Enable `Information` level logging of DataProtection to help diagnosis problem. 
 {
   "Logging": {
     "LogLevel": {
-      " Microsoft.AspNetCore.DataProtection": "Information"
+      "Microsoft.AspNetCore.DataProtection": "Information"
     }
   }
 }
