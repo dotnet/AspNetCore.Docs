@@ -726,6 +726,8 @@ The `Movie` class contains:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
+We hope to have Visual Studio for Mac instructions soon.
+<!-- 
 1. In the **Solution Tool Window**, control-click the *RazorPagesMovie* project, and then select **Add** > **New Folder...**. Name the folder *Models*.
 1. Control-click the *Models* folder, and then select **Add** > **New File...**.
 1. In the **New File** dialog:
@@ -744,7 +746,7 @@ The `Movie` class contains:
 
   * The user is not required to enter time information in the date field.
   * Only the date is displayed, not time information.
-
+-->
 ---
 
 [DataAnnotations](xref:System.ComponentModel.DataAnnotations) are covered in a later tutorial.
@@ -819,6 +821,9 @@ For more information, see [dotnet-aspnet-codegenerator](xref:fundamentals/tools/
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
+We hope to have Visual Studio for Mac instructions soon.
+<!-- 
+
 1. Create a *Pages/Movies* folder:
    1. Control-click on the *Pages* folder > **Add** > **New Folder**.
    1. Name the folder *Movies*.
@@ -840,7 +845,7 @@ For more information, see [dotnet-aspnet-codegenerator](xref:fundamentals/tools/
 The *appsettings.json* file is updated with the connection string used to connect to a local database.
 
 [!INCLUDE[](~/includes/RP/sqlitedev.md)]
-
+-->
 ---
 
 ### Files created and updated
