@@ -1,0 +1,24 @@
+﻿@page
+@using Microsoft.AspNetCore.Localization
+@model RP.Pages.LanguageModel
+@{
+    var setCultureName = HttpContext.Features.Get<IRequestCultureFeature>()?.RequestCulture.Culture.Name;
+    var languages = new List<CultureInfo>();
+    languages.Add(RequetLocalizationOptions.Value.DefaultRequestCulture.Culture);
+    languages.AddRange(RequetLocalizationOptions.Value.SupportedCultures);
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-6 offset-3">
+            <h4>Set the language here</h4>
+            @foreach (var item in languages)
+            {
+                var btnColor = @item.Name == @setCultureName ? "btn-success" : "btn-secondary";
+                <form asp-route-lang="@item.Name" asp-route-returnUrl=@Model.ReturnUrl method="post">
+                    <button type="submit" class="btn btn-block @btnColor">@item.NativeName | @item.EnglishName</button>
+                </form>
+            }
+        </div>
+    </div>
+</div>

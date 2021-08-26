@@ -1,0 +1,15 @@
+﻿@using Microsoft.AspNetCore.Localization
+@{
+    var usedCulture = Context.Features.Get<IRequestCultureFeature>()?.RequestCulture.Culture;
+    
+    // Set returnUrl to where the user was.
+    // However, if the user clicks several times the language button, set the returnUrl to root
+    var path = @Context.Request.Path.ToUriComponent();
+    var returnUrl = path == "/Language" ? "/" : path;
+}
+<ul class="nav nav-pills">
+    <li class="nav-item">
+        <a class="nav-link btn-success" asp-area="" asp-page="/Language"
+        asp-route-returnUrl="@returnUrl">@usedCulture?.NativeName | @usedCulture?.EnglishName</a>
+    </li>
+</ul>
