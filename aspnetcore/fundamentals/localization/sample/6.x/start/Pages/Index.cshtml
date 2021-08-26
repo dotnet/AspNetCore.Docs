@@ -1,0 +1,20 @@
+﻿@page
+@model IndexModel
+@{
+    var price = 1501999.568m;
+}
+<!--Place everything inside this div-->
+<div class="text-center">
+    <strong>CultureInfo</strong>
+    <div>CurrentCulture: <span>@CultureInfo.CurrentCulture</span></div>
+    <div>CurrentUICulture: <span>@CultureInfo.CurrentUICulture</span></div>
+    
+    <br />
+
+    <strong>Dates and currency</strong>
+    <div>@DateTime.Now.ToLongDateString()</div>
+    <div>@DateTimeFormatInfo.CurrentInfo.GetDayName(DateTime.Now.DayOfWeek)</div>
+    <div>@CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(DateTime.Now.DayOfWeek)</div>
+    <div>@price.ToString("c")</div>
+    <br />
+</div>

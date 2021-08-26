@@ -103,7 +103,7 @@ Replace the contents of *index.cshtml* with the following markup:
 
 Run the app to display the `CurrentCulture`, `CurrentUICulture`, dates, and more:
 
-   ![Show CultureInfo and formats in RP app](localization/_static/cultureinfoformats1.png)
+![Show CultureInfo and formats in RP app](localization/_static/cultureinfoformats1.png)
 
 In the preceding image:
 
@@ -112,52 +112,37 @@ In the preceding image:
 
 What you see depends on the culture the app is running on.
 
-The `ToString("c")` overload displays the currency in the servers culture format. In the preceding image, the culture is `en-GB`. The response is generated on the server, so changing the browsers language won't change what the browser displays. <!-- stop -->
+The `ToString("c")` overload displays the currency in the servers culture format. In the preceding image, the culture is `en-GB`. The response is generated on the server, so changing the browsers language won't change what the browser displays.
+<!-- TODO: Is this a risky suggestion? Does it change windows UI to French? If so, most folks won't be able to change it back to their native language. -->
+Change the OS regional format and observe the differences. On windows, **Settings** > **Regional Format**. Restart the web server. The following image show the Index page with the regional setting `fr-FR` (French, France):
 
-Now we change the regional format of the OS, say for example by setting it to `fr-FR` (French, France).
-On Windows 10 this is done in Settings -> Regional Format. You need to run the server again (Kestrel in our case):
+![CultureInfo with a French regional format](localization/_static/cultureinfoformats2.png)
 
-   ![CultureInfo with a French regional format](localization/_static/cultureinfoformats2.png)
+If you changed the regional format, restore it to the original setting.
 
-This time, the `CurrentCulture` is changed to `fr-FR`, as well as the date, in French and lower cased,
-and the price in Euros, placed on the number's right side, and the 6-digit number spaced according to France's standard.
-However, the `UICulture` remains `en-GB`. To change it, we would need to change the entire language display in the OS.
+## Two ares of localization
 
-If you have experimented with a change of the regional format and/or display language,
-revert to the original configuration for the rest of the tutorial.
+The preceding section showed that the runtime automatically displays the time, date, and currency in the server locale. Frequently a web app needs to support more than one locale.
 
-## Two steps for localization
+A fully localized ASP.NET Core app uses the following:
 
-The take-away message from the previous section is that the runtime already has built-in features to display
-formats for each culture.
-But now we need to instruct the server to localize whatever content in the way we or our users choose to.
-
-A complete localization in ASP.NET 6 and ASP.NET Core requires two steps, each of which addresses different parts of the libraries.
-The first step is the use of the `AddRequestLocalization` extension service and middleware and the second step is the use
-of `AddLocalization` and related extension services to allow you to inject localizers as services that communicate
+* <xref:Microsoft.Extensions.DependencyInjection.RequestLocalizationServiceCollectionExtensions.AddRequestLocalization%2A> : Todo brief description.
+* <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A> : Allow injecting localizers as services that communicate
 with your translated content.
-Addressing the task in this way is important to highlight the separation of concerns,
-and to see how far one can get, one step at the time.
 
-## Step I: Control the Cultures and UICultures to be used
+### Control the Cultures and UICultures
 
-In `Program.cs`, add the localization middleware to the pipeline, after the `UseRouting` middelware
+Update *Program.cs* with the following highlighted code:
 
-````csharp
-app.UseRequestLocalization();
-````
+[!code-csharp[](localization/sample/6.x/start/Program.cs?name=snippet_full&highlight=3-7,28)]
 
-This middleware requires a `RequestLocalizationOptions`.
-You configure the latter, as a singleton service, by using the `AddRequestLocalization` extension (not `AddLocalization`):
+`UseRequestLocalization` initializes a `RequestLocalizationOptions` object. On every request the list of `RequestCultureProvider` in the `RequestLocalizationOptions` is enumerated and the first provider that can successfully determine the request culture is used. The default providers come from the `RequestLocalizationOptions` class:
 
-````csharp
-builder.Services.AddRequestLocalization(options =>
-{
-    options.AddSupportedCultures(new[] { "fr-FR", "it-IT", "es-ES" });
-    options.AddSupportedUICultures(new[] { "fr-FR", "it-IT", "es-ES" });
-});
-builder.Services.AddRazorPages();
-````
+1. `QueryStringRequestCultureProvider`
+1. `CookieRequestCultureProvider`
+1. `AcceptLanguageHeaderRequestCultureProvider`
+
+The default list goes from most specific to least specific. Later in the article we'll see how you can change the order and even add a custom culture provider. If none of the providers can determine the request culture, the `DefaultRequestCulture` is used.
 
 The methods `AddSupportedCultures` and `AddSupportedUICultures` do nothing more than creating a list of `CultureInfo`
 objects for the cultures that we provided. To follow along, we recommend that you choose cultures and uicultures
