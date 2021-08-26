@@ -334,10 +334,11 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
 [!INCLUDE[](~/includes/net-prereqs-vsc-6.0.md)]
 
-We hope to have Visual Studio for Mac instructions soon.
-<!--
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
+We hope to have Visual Studio for Mac instructions soon.
+
+<!--
 [!INCLUDE[](~/includes/net-prereqs-mac-6.0.md)]
 -->
 ---
@@ -450,7 +451,7 @@ We hope to have Visual Studio for Mac instructions soon.
 <!-- 
 Select **Run** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number. 
 -->
--->
+
 ---
 
 ## Examine the project files
