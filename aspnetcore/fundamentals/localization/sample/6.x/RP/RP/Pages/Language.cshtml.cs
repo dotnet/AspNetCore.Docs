@@ -27,7 +27,7 @@ public class LanguageModel : PageModel
                 is CookieRequestCultureProvider cookieRequestCultureProvider)
             {
                 Response.Cookies.Append(cookieRequestCultureProvider.CookieName,
-                          //CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                          //CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(lang)),
                           //new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) });
                           CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(lang)));
             }
