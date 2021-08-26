@@ -1,22 +1,20 @@
 ---
-title: ASP.NET Core Blazor WebAssembly performance best practices
+title: ASP.NET Core Blazor performance best practices
 author: pranavkm
-description: Tips for increasing performance in ASP.NET Core Blazor WebAssembly apps and avoiding common performance problems.
+description: Tips for increasing performance in ASP.NET Core Blazor apps and avoiding common performance problems.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc, devx-track-js
-ms.date: 10/09/2020
+ms.date: 08/26/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
-uid: blazor/webassembly-performance-best-practices
+uid: blazor/performance
+zone_pivot_groups: blazor-hosting-models
 ---
-# ASP.NET Core Blazor WebAssembly performance best practices
+# ASP.NET Core Blazor performance best practices
 
 ::: moniker range=">= aspnetcore-6.0"
 
-Blazor WebAssembly is carefully designed and optimized to enable high performance in most realistic application UI scenarios. However, producing the best results depends on developers using the right patterns and features. Consider the following aspects:
-
-* **Runtime throughput**: The .NET code runs on an interpreter within the WebAssembly runtime, so CPU throughput is limited. In demanding scenarios, the app benefits from [optimizing rendering speed](#optimize-rendering-speed).
-* **Startup time**: The app transfers a .NET runtime to the browser, so it's important to use features that [minimize the application download size](#minimize-app-download-size).
+Blazor is carefully designed and optimized to enable high performance in most realistic application UI scenarios. However, producing the best results depends on developers using the right patterns and features.
 
 ## Optimize rendering speed
 
@@ -97,7 +95,7 @@ Each component is a separate island that can render independently of its parents
 * By splitting the UI into more components, you can have smaller portions of the UI rerender when events occur. For example when a user clicks a button in a table row, you may be able to have only that single row rerender instead of the whole page or table.
 * However, each extra component involves some extra memory and CPU overhead to deal with its independent state and rendering lifecycle.
 
-When tuning the performance of Blazor WebAssembly on .NET 5, we measured a rendering overhead of around 0.06 ms per component instance. This is based on a simple component that accepts three parameters running on a typical laptop. Internally, the overhead is largely due to retrieving per-component state from dictionaries and passing and receiving parameters. By multiplication, you can see that adding 2,000 extra component instances would add 0.12 seconds to the rendering time and the UI would begin feeling slow to users.
+In a test performed by the ASP.NET Core product unit engineers, a rendering overhead of around 0.06 ms per component instance was seen in a Blazor WebAssembly app. The test app rendered a simple component that accepts three parameters. Internally, the overhead is largely due to retrieving per-component state from dictionaries and passing and receiving parameters. By multiplication, you can see that adding 2,000 extra component instances would add 0.12 seconds to the rendering time and the UI would begin feeling slow to users.
 
 It's possible to make components more lightweight so that you can have more of them, but often the more powerful technique is not to have so many components. The following sections describe two approaches.
 
@@ -216,7 +214,7 @@ protected RenderFragment DisplayTitle => __builder =>
 
 If a component repeats extremely often, for example hundreds or thousands of times, then bear in mind that the overhead of passing and receiving each parameter builds up.
 
-It's rare that too many parameters severely restricts performance, but it can be a factor. For a `<TableCell>` component that renders 1,000 times within a grid, each extra parameter passed to it could add around 15 ms to the total rendering cost. If each cell accepted 10 parameters, parameter passing takes around 150 ms per component render and  thus perhaps 150,000 ms (150 seconds) and on its own cause a laggy UI.
+It's rare that too many parameters severely restricts performance, but it can be a factor. For a `<TableCell>` component that renders 1,000 times within a grid, each extra parameter passed to it could add around 15 ms to the total rendering cost. If each cell accepted 10 parameters, parameter passing takes around 150 ms per component render and thus perhaps 150,000 ms (150 seconds) and on its own cause a lag in UI rendering.
 
 To reduce this load, you could bundle together multiple parameters via custom classes. For example, a `<TableCell>` component might accept:
 
@@ -247,7 +245,7 @@ For more information on generic type parameters (`@typeparam`), see the followin
 The `<CascadingValue>` component has an optional parameter called `IsFixed`.
 
 * If the `IsFixed` value is `false` (the default), then every recipient of the cascaded value sets up a subscription to receive change notifications. In this case, each `[CascadingParameter]` is **substantially more expensive** than a regular `[Parameter]` due to the subscription tracking.
-* If the `IsFixed` value is `true` (for example, `<CascadingValue Value="@someValue" IsFixed="true">`), then receipients receive the initial value but do *not* set up any subscription to receive updates. In this case, each `[CascadingParameter]` is lightweight and **no more expensive** than a regular `[Parameter]`.
+* If the `IsFixed` value is `true` (for example, `<CascadingValue Value="@someValue" IsFixed="true">`), then recipients receive the initial value but do *not* set up any subscription to receive updates. In this case, each `[CascadingParameter]` is lightweight and **no more expensive** than a regular `[Parameter]`.
 
 So wherever possible, you should use `IsFixed="true"` on cascaded values. You can do this whenever the value being supplied doesn't change over time. In the common pattern where a component passes `this` as a cascaded value, you should use `IsFixed="true"`:
 
@@ -283,7 +281,7 @@ For more information, see <xref:blazor/components/index#attribute-splatting-and-
 
 #### Implement `SetParametersAsync` manually
 
-One of the main aspects of the per-component rendering overhead is writing incoming parameter values to the `[Parameter]` properties. The renderer has to use reflection to do this. Even though this is somewhat optimized, the absence of JIT support on the WebAssembly runtime imposes limits.
+One of the main aspects of the per-component rendering overhead is writing incoming parameter values to the `[Parameter]` properties. The renderer has to use reflection to do this.
 
 In some extreme cases, you may wish to avoid the reflection and implement your own parameter setting logic manually. This may be applicable when:
 
@@ -394,8 +392,6 @@ The corresponding JavaScript code, which can be placed in the `index.html` page 
   }
 </script>
 ```
-
-This technique can be even more important for Blazor Server, since each event invocation involves delivering a message over the network. It's valuable for Blazor WebAssembly because it can greatly reduce the amount of rendering work.
 
 ### Avoid rerendering after handling events without state changes
 
@@ -517,7 +513,7 @@ In the following example:
     {
         dt = DateTime.Now;
 
-        Logger.LogInformatione("This event handler doesn't trigger a rerender.");
+        Logger.LogInformation("This event handler doesn't trigger a rerender.");
     }
 }
 ```
@@ -567,11 +563,13 @@ function storeAllInLocalStorage(items) {
 }
 ```
 
-For Blazor WebAssembly, this usually only matters if you're making a large number of JS interop calls.
+For Blazor WebAssembly apps, this usually only matters if you're making a large number of JS interop calls.
 
-### Consider making synchronous calls
+::: zone pivot="webassembly"
 
-JavaScript interop calls are asynchronous by default, regardless of whether the code being called is synchronous or asynchronous. This is to ensure components are compatible with both Blazor WebAssembly and Blazor Server. On Blazor Server, all JavaScript interop calls must be asynchronous because they are sent over a network connection.
+### Consider the use of synchronous calls
+
+JavaScript interop calls are asynchronous by default, regardless of whether the code being called is synchronous or asynchronous. This is to ensure components are compatible with both Blazor hosting models. On Blazor Server, all JavaScript interop calls must be asynchronous because they're sent over a network connection.
 
 If you know for certain that your app only ever runs on Blazor WebAssembly, you can choose to make synchronous JavaScript interop calls. This has slightly less overhead than making asynchronous calls and can result in fewer render cycles because there is no intermediate state while awaiting results.
 
@@ -602,7 +600,7 @@ Synchronous calls work if:
 
 For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet>.
 
-### Consider making unmarshalled calls
+### Consider the use of unmarshalled calls
 
 When running on Blazor WebAssembly, it's possible to make unmarshalled calls from .NET to JavaScript. These are synchronous calls that don't perform JSON serialization of arguments or return values. All aspects of memory management and translations between .NET and JavaScript representations are left up to the developer.
 
@@ -627,11 +625,9 @@ function jsInteropCall() {
 }
 ```
 
+::: zone-end
+
 ## Minimize app download size
-
-### Intermediate Language (IL) trimming
-
-Trimming unused assemblies from a Blazor WebAssembly app reduces the app's size by removing unused code in the app's binaries. For more information, see <xref:blazor/host-and-deploy/configure-trimmer>.
 
 ### Use System.Text.Json
 
@@ -639,13 +635,19 @@ Blazor's JS interop implementation relies on <xref:System.Text.Json>, which is a
 
 For migration guidance, see [How to migrate from `Newtonsoft.Json` to `System.Text.Json`](/dotnet/standard/serialization/system-text-json-migrate-from-newtonsoft-how-to).
 
+::: zone pivot="webassembly"
+
+### Intermediate Language (IL) trimming
+
+Trimming unused assemblies from a Blazor WebAssembly app reduces the app's size by removing unused code in the app's binaries. For more information, see <xref:blazor/host-and-deploy/configure-trimmer>.
+
 ### Lazy load assemblies
 
 Load assemblies at runtime when the assemblies are required by a route. For more information, see <xref:blazor/webassembly-lazy-load-assemblies>.
 
 ### Compression
 
-When a Blazor WebAssembly app is published, the output is statically compressed during publish to reduce the app's size and remove the overhead for runtime compression. Blazor relies on the server to perform content negotation and serve statically-compressed files.
+When a Blazor WebAssembly app is published, the output is statically compressed during publish to reduce the app's size and remove the overhead for runtime compression. Blazor relies on the server to perform content negotiation and serve statically-compressed files.
 
 After an app is deployed, verify that the app serves compressed files. Inspect the Network tab in a browser's Developer Tools and verify that the files are served with `Content-Encoding: br` or `Content-Encoding: gz`. If the host isn't serving compressed files, follow the instructions in <xref:blazor/host-and-deploy/webassembly#compression>.
 
@@ -668,15 +670,14 @@ Blazor WebAssembly's runtime includes the following .NET features that can be di
     <InvariantGlobalization>true</InvariantGlobalization>
   </PropertyGroup>
   ```
+
+::: zone-end
 
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-Blazor WebAssembly is carefully designed and optimized to enable high performance in most realistic application UI scenarios. However, producing the best results depends on developers using the right patterns and features. Consider the following aspects:
-
-* **Runtime throughput**: The .NET code runs on an interpreter within the WebAssembly runtime, so CPU throughput is limited. In demanding scenarios, the app benefits from [optimizing rendering speed](#optimize-rendering-speed).
-* **Startup time**: The app transfers a .NET runtime to the browser, so it's important to use features that [minimize the application download size](#minimize-app-download-size).
+Blazor is carefully designed and optimized to enable high performance in most realistic application UI scenarios. However, producing the best results depends on developers using the right patterns and features.
 
 ## Optimize rendering speed
 
@@ -757,7 +758,7 @@ Each component is a separate island that can render independently of its parents
 * By splitting the UI into more components, you can have smaller portions of the UI rerender when events occur. For example when a user clicks a button in a table row, you may be able to have only that single row rerender instead of the whole page or table.
 * However, each extra component involves some extra memory and CPU overhead to deal with its independent state and rendering lifecycle.
 
-When tuning the performance of Blazor WebAssembly on .NET 5, we measured a rendering overhead of around 0.06 ms per component instance. This is based on a simple component that accepts three parameters running on a typical laptop. Internally, the overhead is largely due to retrieving per-component state from dictionaries and passing and receiving parameters. By multiplication, you can see that adding 2,000 extra component instances would add 0.12 seconds to the rendering time and the UI would begin feeling slow to users.
+In a test performed by the ASP.NET Core product unit engineers, a rendering overhead of around 0.06 ms per component instance was seen in a Blazor WebAssembly app. The test app rendered a simple component that accepts three parameters. Internally, the overhead is largely due to retrieving per-component state from dictionaries and passing and receiving parameters. By multiplication, you can see that adding 2,000 extra component instances would add 0.12 seconds to the rendering time and the UI would begin feeling slow to users.
 
 It's possible to make components more lightweight so that you can have more of them, but often the more powerful technique is not to have so many components. The following sections describe two approaches.
 
@@ -868,7 +869,7 @@ protected RenderFragment DisplayTitle => __builder =>
 {
     <div>
         @TitleTemplate
-    </div>   
+    </div>
 };
 ```
 
@@ -876,7 +877,7 @@ protected RenderFragment DisplayTitle => __builder =>
 
 If a component repeats extremely often, for example hundreds or thousands of times, then bear in mind that the overhead of passing and receiving each parameter builds up.
 
-It's rare that too many parameters severely restricts performance, but it can be a factor. For a `<TableCell>` component that renders 1,000 times within a grid, each extra parameter passed to it could add around 15 ms to the total rendering cost. If each cell accepted 10 parameters, parameter passing takes around 150 ms per component render and  thus perhaps 150,000 ms (150 seconds) and on its own cause a laggy UI.
+It's rare that too many parameters severely restricts performance, but it can be a factor. For a `<TableCell>` component that renders 1,000 times within a grid, each extra parameter passed to it could add around 15 ms to the total rendering cost. If each cell accepted 10 parameters, parameter passing takes around 150 ms per component render and  thus perhaps 150,000 ms (150 seconds) and on its own cause a lag in UI rendering.
 
 To reduce this load, you could bundle together multiple parameters via custom classes. For example, a `<TableCell>` component might accept:
 
@@ -907,7 +908,7 @@ For more information on generic type parameters (`@typeparam`), see the followin
 The `<CascadingValue>` component has an optional parameter called `IsFixed`.
 
 * If the `IsFixed` value is `false` (the default), then every recipient of the cascaded value sets up a subscription to receive change notifications. In this case, each `[CascadingParameter]` is **substantially more expensive** than a regular `[Parameter]` due to the subscription tracking.
-* If the `IsFixed` value is `true` (for example, `<CascadingValue Value="@someValue" IsFixed="true">`), then receipients receive the initial value but do *not* set up any subscription to receive updates. In this case, each `[CascadingParameter]` is lightweight and **no more expensive** than a regular `[Parameter]`.
+* If the `IsFixed` value is `true` (for example, `<CascadingValue Value="@someValue" IsFixed="true">`), then recipients receive the initial value but do *not* set up any subscription to receive updates. In this case, each `[CascadingParameter]` is lightweight and **no more expensive** than a regular `[Parameter]`.
 
 So wherever possible, you should use `IsFixed="true"` on cascaded values. You can do this whenever the value being supplied doesn't change over time. In the common pattern where a component passes `this` as a cascaded value, you should use `IsFixed="true"`:
 
@@ -943,7 +944,7 @@ For more information, see <xref:blazor/components/index#attribute-splatting-and-
 
 #### Implement `SetParametersAsync` manually
 
-One of the main aspects of the per-component rendering overhead is writing incoming parameter values to the `[Parameter]` properties. The renderer has to use reflection to do this. Even though this is somewhat optimized, the absence of JIT support on the WebAssembly runtime imposes limits.
+One of the main aspects of the per-component rendering overhead is writing incoming parameter values to the `[Parameter]` properties. The renderer has to use reflection to do this.
 
 In some extreme cases, you may wish to avoid the reflection and implement your own parameter setting logic manually. This may be applicable when:
 
@@ -1054,8 +1055,6 @@ The corresponding JavaScript code, which can be placed in the `index.html` page 
   }
 </script>
 ```
-
-This technique can be even more important for Blazor Server, since each event invocation involves delivering a message over the network. It's valuable for Blazor WebAssembly because it can greatly reduce the amount of rendering work.
 
 ### Avoid rerendering after handling events without state changes
 
@@ -1177,7 +1176,7 @@ In the following example:
     {
         dt = DateTime.Now;
 
-        Logger.LogInformatione("This event handler doesn't trigger a rerender.");
+        Logger.LogInformation("This event handler doesn't trigger a rerender.");
     }
 }
 ```
@@ -1227,9 +1226,11 @@ function storeAllInLocalStorage(items) {
 }
 ```
 
-For Blazor WebAssembly, this usually only matters if you're making a large number of JS interop calls.
+For Blazor WebAssembly apps, this usually only matters if you're making a large number of JS interop calls.
 
-### Consider making synchronous calls
+::: zone pivot="webassembly"
+
+### Consider the use of synchronous calls
 
 JavaScript interop calls are asynchronous by default, regardless of whether the code being called is synchronous or asynchronous. This is to ensure components are compatible with both Blazor WebAssembly and Blazor Server. On Blazor Server, all JavaScript interop calls must be asynchronous because they are sent over a network connection.
 
@@ -1262,7 +1263,7 @@ Synchronous calls work if:
 
 For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet>.
 
-### Consider making unmarshalled calls
+### Consider the use of unmarshalled calls
 
 When running on Blazor WebAssembly, it's possible to make unmarshalled calls from .NET to JavaScript. These are synchronous calls that don't perform JSON serialization of arguments or return values. All aspects of memory management and translations between .NET and JavaScript representations are left up to the developer.
 
@@ -1287,17 +1288,21 @@ function jsInteropCall() {
 }
 ```
 
+::: zone-end
+
 ## Minimize app download size
-
-### Intermediate Language (IL) trimming
-
-Trimming unused assemblies from a Blazor WebAssembly app reduces the app's size by removing unused code in the app's binaries. For more information, see <xref:blazor/host-and-deploy/configure-trimmer>.
 
 ### Use System.Text.Json
 
 Blazor's JS interop implementation relies on <xref:System.Text.Json>, which is a high-performance JSON serialization library with low memory allocation. Using <xref:System.Text.Json> doesn't result in additional app payload size over adding one or more alternate JSON libraries.
 
 For migration guidance, see [How to migrate from `Newtonsoft.Json` to `System.Text.Json`](/dotnet/standard/serialization/system-text-json-migrate-from-newtonsoft-how-to).
+
+::: zone pivot="webassembly"
+
+### Intermediate Language (IL) trimming
+
+Trimming unused assemblies from a Blazor WebAssembly app reduces the app's size by removing unused code in the app's binaries. For more information, see <xref:blazor/host-and-deploy/configure-trimmer>.
 
 ### Lazy load assemblies
 
@@ -1329,14 +1334,13 @@ Blazor WebAssembly's runtime includes the following .NET features that can be di
   </PropertyGroup>
   ```
 
+::: zone-end
+
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-Blazor WebAssembly is carefully designed and optimized to enable high performance in most realistic application UI scenarios. However, producing the best results depends on developers using the right patterns and features. Consider the following aspects:
-
-* **Runtime throughput**: The .NET code runs on an interpreter within the WebAssembly runtime, so CPU throughput is limited. In demanding scenarios, the app benefits from [optimizing rendering speed](#optimize-rendering-speed).
-* **Startup time**: The app transfers a .NET runtime to the browser, so it's important to use features that [minimize the application download size](#minimize-app-download-size).
+Blazor is carefully designed and optimized to enable high performance in most realistic application UI scenarios. However, producing the best results depends on developers using the right patterns and features.
 
 ## Optimize rendering speed
 
@@ -1409,7 +1413,7 @@ Each component is a separate island that can render independently of its parents
 * By splitting the UI into more components, you can have smaller portions of the UI rerender when events occur. For example when a user clicks a button in a table row, you may be able to have only that single row rerender instead of the whole page or table.
 * However, each extra component involves some extra memory and CPU overhead to deal with its independent state and rendering lifecycle.
 
-When tuning the performance of Blazor WebAssembly on .NET 5, we measured a rendering overhead of around 0.06 ms per component instance. This is based on a simple component that accepts three parameters running on a typical laptop. Internally, the overhead is largely due to retrieving per-component state from dictionaries and passing and receiving parameters. By multiplication, you can see that adding 2,000 extra component instances would add 0.12 seconds to the rendering time and the UI would begin feeling slow to users.
+In a test performed by the ASP.NET Core product unit engineers, a rendering overhead of around 0.06 ms per component instance was seen in a Blazor WebAssembly app. The test app rendered a simple component that accepts three parameters. Internally, the overhead is largely due to retrieving per-component state from dictionaries and passing and receiving parameters. By multiplication, you can see that adding 2,000 extra component instances would add 0.12 seconds to the rendering time and the UI would begin feeling slow to users.
 
 It's possible to make components more lightweight so that you can have more of them, but often the more powerful technique is not to have so many components. The following sections describe two approaches.
 
@@ -1528,7 +1532,7 @@ protected RenderFragment DisplayTitle => __builder =>
 
 If a component repeats extremely often, for example hundreds or thousands of times, then bear in mind that the overhead of passing and receiving each parameter builds up.
 
-It's rare that too many parameters severely restricts performance, but it can be a factor. For a `<TableCell>` component that renders 1,000 times within a grid, each extra parameter passed to it could add around 15 ms to the total rendering cost. If each cell accepted 10 parameters, parameter passing takes around 150 ms per component render and  thus perhaps 150,000 ms (150 seconds) and on its own cause a laggy UI.
+It's rare that too many parameters severely restricts performance, but it can be a factor. For a `<TableCell>` component that renders 1,000 times within a grid, each extra parameter passed to it could add around 15 ms to the total rendering cost. If each cell accepted 10 parameters, parameter passing takes around 150 ms per component render and  thus perhaps 150,000 ms (150 seconds) and on its own cause a lag in UI rendering.
 
 To reduce this load, you could bundle together multiple parameters via custom classes. For example, a `<TableCell>` component might accept:
 
@@ -1559,7 +1563,7 @@ For more information on generic type parameters (`@typeparam`), see the followin
 The `<CascadingValue>` component has an optional parameter called `IsFixed`.
 
 * If the `IsFixed` value is `false` (the default), then every recipient of the cascaded value sets up a subscription to receive change notifications. In this case, each `[CascadingParameter]` is **substantially more expensive** than a regular `[Parameter]` due to the subscription tracking.
-* If the `IsFixed` value is `true` (for example, `<CascadingValue Value="@someValue" IsFixed="true">`), then receipients receive the initial value but do *not* set up any subscription to receive updates. In this case, each `[CascadingParameter]` is lightweight and **no more expensive** than a regular `[Parameter]`.
+* If the `IsFixed` value is `true` (for example, `<CascadingValue Value="@someValue" IsFixed="true">`), then recipients receive the initial value but do *not* set up any subscription to receive updates. In this case, each `[CascadingParameter]` is lightweight and **no more expensive** than a regular `[Parameter]`.
 
 So wherever possible, you should use `IsFixed="true"` on cascaded values. You can do this whenever the value being supplied doesn't change over time. In the common pattern where a component passes `this` as a cascaded value, you should use `IsFixed="true"`:
 
@@ -1595,7 +1599,7 @@ For more information, see <xref:blazor/components/index#attribute-splatting-and-
 
 #### Implement `SetParametersAsync` manually
 
-One of the main aspects of the per-component rendering overhead is writing incoming parameter values to the `[Parameter]` properties. The renderer has to use reflection to do this. Even though this is somewhat optimized, the absence of JIT support on the WebAssembly runtime imposes limits.
+One of the main aspects of the per-component rendering overhead is writing incoming parameter values to the `[Parameter]` properties. The renderer has to use reflection to do this.
 
 In some extreme cases, you may wish to avoid the reflection and implement your own parameter setting logic manually. This may be applicable when:
 
@@ -1706,8 +1710,6 @@ The corresponding JavaScript code, which can be placed in the `index.html` page 
   }
 </script>
 ```
-
-This technique can be even more important for Blazor Server, since each event invocation involves delivering a message over the network. It's valuable for Blazor WebAssembly because it can greatly reduce the amount of rendering work.
 
 ### Avoid rerendering after handling events without state changes
 
@@ -1829,7 +1831,7 @@ In the following example:
     {
         dt = DateTime.Now;
 
-        Logger.LogInformatione("This event handler doesn't trigger a rerender.");
+        Logger.LogInformation("This event handler doesn't trigger a rerender.");
     }
 }
 ```
@@ -1879,9 +1881,11 @@ function storeAllInLocalStorage(items) {
 }
 ```
 
-For Blazor WebAssembly, this usually only matters if you're making a large number of JS interop calls.
+For Blazor WebAssembly apps, this usually only matters if you're making a large number of JS interop calls.
 
-### Consider making synchronous calls
+::: zone pivot="webassembly"
+
+### Consider the use of synchronous calls
 
 JavaScript interop calls are asynchronous by default, regardless of whether the code being called is synchronous or asynchronous. This is to ensure components are compatible with both Blazor WebAssembly and Blazor Server. On Blazor Server, all JavaScript interop calls must be asynchronous because they are sent over a network connection.
 
@@ -1912,7 +1916,17 @@ Synchronous calls work if:
 
 For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet>.
 
+::: zone-end
+
 ## Minimize app download size
+
+### Use System.Text.Json
+
+Blazor's JS interop implementation relies on <xref:System.Text.Json>, which is a high-performance JSON serialization library with low memory allocation. Using <xref:System.Text.Json> doesn't result in additional app payload size over adding one or more alternate JSON libraries.
+
+For migration guidance, see [How to migrate from `Newtonsoft.Json` to `System.Text.Json`](/dotnet/standard/serialization/system-text-json-migrate-from-newtonsoft-how-to).
+
+::: zone pivot="webassembly"
 
 ### Intermediate Language (IL) linking
 
@@ -1922,19 +1936,13 @@ For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet>.
 dotnet publish -c Release
 ```
 
-### Use System.Text.Json
-
-Blazor's JS interop implementation relies on <xref:System.Text.Json>, which is a high-performance JSON serialization library with low memory allocation. Using <xref:System.Text.Json> doesn't result in additional app payload size over adding one or more alternate JSON libraries.
-
-For migration guidance, see [How to migrate from `Newtonsoft.Json` to `System.Text.Json`](/dotnet/standard/serialization/system-text-json-migrate-from-newtonsoft-how-to).
-
 ### Lazy load assemblies
 
 Load assemblies at runtime when the assemblies are required by a route. For more information, see <xref:blazor/webassembly-lazy-load-assemblies>.
 
 ### Compression
 
-When a Blazor WebAssembly app is published, the output is statically compressed during publish to reduce the app's size and remove the overhead for runtime compression. Blazor relies on the server to perform content negotation and serve statically-compressed files.
+When a Blazor WebAssembly app is published, the output is statically compressed during publish to reduce the app's size and remove the overhead for runtime compression. Blazor relies on the server to perform content negotiation and serve statically-compressed files.
 
 After an app is deployed, verify that the app serves compressed files. Inspect the Network tab in a browser's Developer Tools and verify that the files are served with `Content-Encoding: br` or `Content-Encoding: gz`. If the host isn't serving compressed files, follow the instructions in <xref:blazor/host-and-deploy/webassembly#compression>.
 
@@ -1957,5 +1965,7 @@ Blazor WebAssembly's runtime includes the following .NET features that can be di
     <BlazorWebAssemblyPreserveCollationData>false</BlazorWebAssemblyPreserveCollationData>
   </PropertyGroup>
   ```
+
+::: zone-end
 
 ::: moniker-end
