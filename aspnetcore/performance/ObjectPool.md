@@ -63,7 +63,7 @@ When <xref:Microsoft.Extensions.ObjectPool.DefaultObjectPoolProvider> is used an
 NOTE: After the pool is disposed:
 
 * Calling `Get` throws a `ObjectDisposedException`.
-* `return` disposes the given item.
+* `Return` disposes the given item.
 
 ::: moniker-end
 
