@@ -13,75 +13,61 @@ uid: fundamentals/localization
 
 By [Ponant](https://github.com/Ponant), [Damien Bowden](https://twitter.com/damien_bod), [Bart Calixto](https://twitter.com/bartmax), [Nadeem Afana](https://afana.me/), and [Hisham Bin Ateya](https://twitter.com/hishambinateya)
 
-In this article you will learn how to configure a ASP.NET 6 website to accept several languages.
-If you are new to localization, we recommend that you follow in order the steps below.
-Localizing a website requires understanding subtle behaviors of the .Net runtime, servers, browsers
-and the middleware and localization services that are introduced hereafter.
+This topic shows how to configure a ASP.NET Core website to accept several languages. Localizing a website requires:
+
+* Configuration of the .Net runtime, servers, middleware and localization services.
+* Understand browser behavior.
 
 ## Terms and definitions
 
 Internationalization involves [Globalization](/dotnet/api/system.globalization)
 and [Localization](/dotnet/standard/globalization-localization/localization).
-Globalization is the process of designing apps to support different cultures. Globalization adds support for input, display,
-and output of a defined set of language scripts that relate to specific geographic areas.
+Globalization is the process of designing apps to support different cultures. Globalization adds support for input, display, and output of a defined set of language scripts that relate to specific geographic areas.
+
 Localization is the process of adapting a globalized app to a particular culture/locale.
 
-The process of localizing your app requires a basic understanding of relevant character sets commonly used in software development
-as well as an understanding of the issues associated with them. Although computers store text as numbers (codes),
-different systems store the same text using different numbers.
+The process of localizing an app requires an understanding of relevant character sets commonly used in software development. For example, text can be stored in different formats depending on the operating system.
 
-[Localizability](/dotnet/standard/globalization-localization/localizability-review) is an intermediate process for verifying
-that a globalized app is ready for localization.
+[Localizability](/dotnet/standard/globalization-localization/localizability-review) is an intermediate process for verifying that a globalized app is ready for localization.
 
-The [RFC 4646](https://www.ietf.org/rfc/rfc4646.txt) format for the culture name is `<languagecode2>-<country/regioncode2>`,
-where `<languagecode2>` is the language code and `<country/regioncode2>` is the subculture code.
-For example, `es-CL` for Spanish (Chile), `en-US` for English (United States), and `en-AU` for English (Australia).
-[RFC 4646](https://www.ietf.org/rfc/rfc4646.txt) is a combination of an ISO 639 two-letter lowercase culture code associated
-with a language and an ISO 3166 two-letter uppercase subculture code associated with a country or region.
+The [RFC 4646](https://www.ietf.org/rfc/rfc4646.txt) format for the culture name is `<languagecode2>-<country/regioncode2>`, where `<languagecode2>` is the language code and `<country/regioncode2>` is the subculture code. For example, `es-CL` for Spanish (Chile), `en-US` for English (United States), and `en-AU` for English (Australia).
 
-Internationalization is often abbreviated to "I18N". The abbreviation takes the first and last letters and the number of
-letters between them, so 18 stands for the number of letters between the first "I" and the last "N".
-The same applies to Globalization (G11N), and Localization (L10N).
+[RFC 4646](https://www.ietf.org/rfc/rfc4646.txt) is a combination of an ISO 639 two-letter lowercase culture code associated with a language and an ISO 3166 two-letter uppercase subculture code associated with a country or region.
+
+Internationalization is often abbreviated to "I18N". The abbreviation takes the first and last letters and the number of letters between them, so 18 stands for the number of letters between the first "I" and the last "N". The same applies to Globalization (G11N), and Localization (L10N).
 
 Summary of terms:
 
 * Globalization (G11N): The process of making an app support different languages and regions.
 * Localization (L10N): The process of customizing an app for a given language and region.
 * Internationalization (I18N): Describes both globalization and localization.
-* Culture: It's a language and, optionally, a region.
-* Neutral culture: A culture that has a specified language, but not a region. (for example "en", "es")
-* Specific culture: A culture that has a specified language and region. (for example "en-US", "en-GB", "es-CL")
-* Parent culture: The neutral culture that contains a specific culture. (for example, "en" is the parent culture of "en-US" and "en-GB")
+* Culture: The language and, optionally, a region.
+* Neutral culture: A culture that has a specified language, but not a region. For example "en" and "es".
+* Specific culture: A culture that has a specified language and region. For example "en-US", "en-GB" and "es-CL".
+* Parent culture: The neutral culture that contains a specific culture. For example, "en" is the parent culture of "en-US" and "en-GB".
 * Locale: A locale is the same as a culture.
 
-## Prerequisites and goal
+## Prerequisites
 
-Create a simple Razor Pages web app using ASP.NET 6 and name it `RP` in order to be consistent with the code below.
-You may refer to the beginning of the get started guide for [Razor Pages](../getting-started/index.md).
-While the tutorial uses a Razor Pages website as a basis, we will show MVC localization code whenever
-an important distinction occurs.
+Create a simple [Razor Pages](xref:tutorials/razor-pages/razor-pages-start web app and name it `RP`. It's important to name the project `RP` so the namespaces match when copying and pasting code. Although this topic uses Razor Page, most of the content applies to MVC apps. Where there is a difference it's pointed out.
 
-To implement localization in an application, you need to understand:
+Localization requires an understanding of the following concepts:
 
-1. What is the responsibility and scope of each part of the localization services
-1. How to configure your app to have a full control over localization
-1. How to store and retrieve your translated content
+1. What is the responsibility and scope of each part of the localization services.
+1. How to configure an app to have a full control over localization.
+1. How to store and retrieve translated content.
 
-[View or download the complete sample project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/localization/sample/6.x/) ([how to download](xref:index#how-to-download-a-sample))
+If you have problems with this sample, you can [view or download the complete sample project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/localization/sample/6.x/) ([how to download](xref:index#how-to-download-a-sample)).
 
 ## Built-in localization
 
-In .NET, the <xref:System.Globalization.CultureInfo?displayProperty=fullName> object encompasses the
-[RFC 4646](https://www.ietf.org/rfc/rfc4646.txt) format and already understands localization.
-This is why understanding localization starts with understanding the `CultureInfo` object.
-In particular, we will focus on the `CurrentCulture` and `CurrentUICulture`, both of which are handled by `CultureInfo`.
+The <xref:System.Globalization.CultureInfo?displayProperty=fullName> object encompasses the [RFC 4646](https://www.ietf.org/rfc/rfc4646.txt) format and supports localization. Understanding `CultureInfo` is fundamental to localization. This topic focuses on `CurrentCulture` and `CurrentUICulture`, both of which are handled by `CultureInfo`.
 
-`Culture` refers to operations such as letter casing, formatting of dates and numbers of that specific culture,
-whereas `UICulture` represents the current user interface culture used by the Resource Manager to translate your text at run time.
+`Culture` refers to operations such as letter casing, formatting of dates and numbers of that specific culture. `UICulture` represents the current user interface culture used by the Resource Manager to translate text at run time.
 
-Let's display key `CultureInfo` static properties as well as some dates and a number formatted as a currency using the
-`ToString("c")` overload. 
-Open `_ViewImports.cshtml` and add a using statement for `System.Globalization`
+This section updates the RP app to display key `CultureInfo` static properties, dates, and a number formatted as a currency.
+
+* Update *_ViewImports.cshtml* and add a using statement for `System.Globalization` as shown in the following code.
 
 ````cshtml
 @using RP
@@ -90,7 +76,7 @@ Open `_ViewImports.cshtml` and add a using statement for `System.Globalization`
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 ````
 
-Open `index.cshtml` and replace all content with:
+Replace the contents of *index.cshtml* with the following markup:
 
 ````cshtml
 @page
@@ -115,21 +101,18 @@ Open `index.cshtml` and replace all content with:
 </div>
 ````
 
-Run the website and you should see something like this
+Run the app to display the `CurrentCulture`, `CurrentUICulture`, dates, and more:
 
    ![Show CultureInfo and formats in RP app](localization/_static/cultureinfoformats1.png)
 
-The server returns `en-GB` for both `Culture` and `UICulture`, and dates and currency are in this culture.
-Notice how it suffices to use the `ToString("c")` overload in order to display the British Pound currency, placed on the left,
-together with the price being truncated to two decimals as well as the presence of commas to separate thousands.
-This conforms with the `en-GB` culture format.
+In the preceding image:
 
-The reason the server chose `en-GB` traces back to the OS's display language and regional format,
-which in our case is `en-GB` on Windows 10.
-You may have a different output culture. Take notice of the culture output in your testing,
-because we will see how we circumvent this culture as we carry on. Bear in mind that this is a response
-from the server which is independent from the browser's language settings. Indeed, if we set our browser's language to, say,
-only `es-ES` (Spanish, Spain), the result will remain `en-GB`.
+* The server returns `en-GB` for both `Culture` and `UICulture`.
+* Dates and currency are displayed in the `en-GB` `Culture`.
+
+What you see depends on the culture the app is running on.
+
+The `ToString("c")` overload displays the currency in the servers culture format. In the preceding image, the culture is `en-GB`. The response is generated on the server, so changing the browsers language won't change what the browser displays. <!-- stop -->
 
 Now we change the regional format of the OS, say for example by setting it to `fr-FR` (French, France).
 On Windows 10 this is done in Settings -> Regional Format. You need to run the server again (Kestrel in our case):
@@ -1958,4 +1941,3 @@ Terms:
 * [Localization & Generics](http://hishambinateya.com/localization-and-generics)
 
 ::: moniker-end
-
