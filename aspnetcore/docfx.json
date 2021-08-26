@@ -3,7 +3,7 @@
     "content": [
       {
         "files": [ "**/*.md", "**/*.yml" ], 
-        "exclude": [ "3.1/**", "5.0/**", "6.0/**", "**/includes/**", "***/license.md", "**/obj/**", "***/readme.md", "**/sample/**", "**/samples/**", "_site/**" ], 
+        "exclude": [ "**/includes/**", "***/license.md", "**/obj/**", "***/readme.md", "**/sample/**", "**/samples/**", "_site/**" ], 
         "group": "group1", 
         "src": "."
       }
@@ -65,25 +65,9 @@
         "**/getting-started/**/**.md": "tutorial",
         "**/tutorials/**/**.md": "tutorial"
       },
-      "monikerRange": {
-        "3.1/**/*.png": "aspnetcore-3.1",
-        "3.1/**/*.jpg": "aspnetcore-3.1",
-        "3.1/**/*.gif": "aspnetcore-3.1",
-        "3.1/**/*.svg": "aspnetcore-3.1",
-        "3.1/**/*.pdf": "aspnetcore-3.1",
-
-        "5.0/**/*.png": "aspnetcore-5.0",
-        "5.0/**/*.jpg": "aspnetcore-5.0",
-        "5.0/**/*.gif": "aspnetcore-5.0",
-        "5.0/**/*.svg": "aspnetcore-5.0",
-        "5.0/**/*.pdf": "aspnetcore-5.0",
-
-        "6.0/**/*.png": "aspnetcore-6.0",
-        "6.0/**/*.jpg": "aspnetcore-6.0",
-        "6.0/**/*.gif": "aspnetcore-6.0",
-        "6.0/**/*.svg": "aspnetcore-6.0",
-        "6.0/**/*.pdf": "aspnetcore-6.0"
-      }
+      "recommendations": {
+        "**/tutorials/**/**.md": "false"
+      },
     },
     "template": [],
     "dest": "_site",
