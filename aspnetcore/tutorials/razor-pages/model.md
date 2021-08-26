@@ -948,7 +948,9 @@ Examine the `Up` method.
 
 ## Build the app
 
-Build the app. The compiler generates several `nullable` warnings. The `RazorPagesMovieContext` generates the following warning:
+Build the app. The compiler generates several `nullable` warnings. The released version of the .NET 6 will scaffold code without these warnings. See [this GitHub issue](https://github.com/dotnet/Scaffolding/issues) for details.
+
+The `RazorPagesMovieContext` generates the following warning:
 
 > Warning	CS8618 Non-nullable property 'Movie' must contain a non-null value when exiting constructor. Consider declaring the property as nullable.
 
@@ -979,8 +981,6 @@ The *Pages/Movies/Delete.cshtml.cs* file requires the following `pragma` stateme
 #pragma warning restore CS8602
 #pragma warning restore CS8604
 ```
-
-The released version of the .NET 6 will scaffold code without these warnings. See [this GitHub issue](https://github.com/dotnet/Scaffolding/issues) for details.
 
 Ignore NU1603 package mismatch warnings, they will be fixed when .NET 6 is released.
 
