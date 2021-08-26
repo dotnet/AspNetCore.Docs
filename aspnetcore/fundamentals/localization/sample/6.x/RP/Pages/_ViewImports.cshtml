@@ -1,0 +1,11 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Localization
+@using Microsoft.Extensions.Options
+@using RP
+@using System.Globalization
+@inject IOptions<RequestLocalizationOptions> RequetLocalizationOptions
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@inject IViewLocalizer ViewLocalizer
+
+@namespace RP.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
