@@ -12,6 +12,10 @@ zone_pivot_groups: blazor-hosting-models
 ---
 # ASP.NET Core Blazor performance best practices
 
+::: zone pivot="server"
+
+::: zone-end
+
 ::: moniker range=">= aspnetcore-6.0"
 
 Blazor is carefully designed and optimized to enable high performance in most realistic application UI scenarios. However, producing the best results depends on developers using the right patterns and features.
