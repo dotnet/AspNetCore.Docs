@@ -948,7 +948,7 @@ Examine the `Up` method.
 
 ## Build the app
 
-Build the app. The compiler generates several `nullable` warnings. The released version of the .NET 6 will scaffold code without these warnings. See [this GitHub issue](https://github.com/dotnet/Scaffolding/issues) for details.
+Build the app. The compiler generates several `nullable` warnings. The released version of the .NET 6 will scaffold code without these warnings. See [this GitHub issue](https://github.com/dotnet/Scaffolding/issues/1594) for details.
 
 The `RazorPagesMovieContext` generates the following warning:
 
