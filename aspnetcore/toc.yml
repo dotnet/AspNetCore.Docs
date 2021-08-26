@@ -694,7 +694,7 @@
     - name: Compare SignalR and SignalR Core
       uid: signalr/version-differences
       displayName: signalr
-    - name: WebSockets without SignalR
+    - name: WebSockets
       displayName: signalr
       uid: fundamentals/websockets
     - name: Logging and diagnostics
