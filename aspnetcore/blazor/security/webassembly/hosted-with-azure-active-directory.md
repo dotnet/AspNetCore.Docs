@@ -97,7 +97,7 @@ dotnet new blazorwasm -au SingleOrg --api-client-id "{SERVER API APP CLIENT ID}"
 ```
 
 > [!WARNING]
-> **Avoid using dashes (`-`) in the app name `{APP NAME}` that break the formation of the OIDC app identifier.** Logic in the Blazor WebAssembly project template uses the project name for an OIDC app identifier in the solution's configuration. Pascal case (`BlazorSample`) or underscores (`Blazor_Sample`) are acceptable alternatives. For more information, see [Can't run blank, newly created Blazor WASM app with ASP.Net Hosting and Individual Authentication (dotnet/aspnetcore #35337)](https://github.com/dotnet/aspnetcore/issues/35337).
+> **Avoid using dashes (`-`) in the app name `{APP NAME}` that break the formation of the OIDC app identifier.** Logic in the Blazor WebAssembly project template uses the project name for an OIDC app identifier in the solution's configuration. Pascal case (`BlazorSample`) or underscores (`Blazor_Sample`) are acceptable alternatives. For more information, see [Dashes in a hosted Blazor WebAssembly project name break OIDC security (dotnet/aspnetcore #35337)](https://github.com/dotnet/aspnetcore/issues/35337).
 
 | Placeholder                  | Azure portal name                                     | Example                                        |
 | ---------------------------- | ----------------------------------------------------- | ---------------------------------------------- |
@@ -501,7 +501,7 @@ dotnet new blazorwasm -au SingleOrg --api-client-id "{SERVER API APP CLIENT ID}"
 ```
 
 > [!WARNING]
-> **Avoid using dashes (`-`) in the app name `{APP NAME}` that break the formation of the OIDC app identifier.** Logic in the Blazor WebAssembly project template uses the project name for an OIDC app identifier in the solution's configuration. Pascal case (`BlazorSample`) or underscores (`Blazor_Sample`) are acceptable alternatives. For more information, see [Can't run blank, newly created Blazor WASM app with ASP.Net Hosting and Individual Authentication (dotnet/aspnetcore #35337)](https://github.com/dotnet/aspnetcore/issues/35337).
+> **Avoid using dashes (`-`) in the app name `{APP NAME}` that break the formation of the OIDC app identifier.** Logic in the Blazor WebAssembly project template uses the project name for an OIDC app identifier in the solution's configuration. Pascal case (`BlazorSample`) or underscores (`Blazor_Sample`) are acceptable alternatives. For more information, see [Dashes in a hosted Blazor WebAssembly project name break OIDC security (dotnet/aspnetcore #35337)](https://github.com/dotnet/aspnetcore/issues/35337).
 
 | Placeholder                  | Azure portal name                                     | Example                                        |
 | ---------------------------- | ----------------------------------------------------- | ---------------------------------------------- |
@@ -902,7 +902,7 @@ dotnet new blazorwasm -au SingleOrg --api-client-id "{SERVER API APP CLIENT ID}"
 ```
 
 > [!WARNING]
-> **Avoid using dashes (`-`) in the app name `{APP NAME}` that break the formation of the OIDC app identifier.** Logic in the Blazor WebAssembly project template uses the project name for an OIDC app identifier in the solution's configuration. Pascal case (`BlazorSample`) or underscores (`Blazor_Sample`) are acceptable alternatives. For more information, see [Can't run blank, newly created Blazor WASM app with ASP.Net Hosting and Individual Authentication (dotnet/aspnetcore #35337)](https://github.com/dotnet/aspnetcore/issues/35337).
+> **Avoid using dashes (`-`) in the app name `{APP NAME}` that break the formation of the OIDC app identifier.** Logic in the Blazor WebAssembly project template uses the project name for an OIDC app identifier in the solution's configuration. Pascal case (`BlazorSample`) or underscores (`Blazor_Sample`) are acceptable alternatives. For more information, see [Dashes in a hosted Blazor WebAssembly project name break OIDC security (dotnet/aspnetcore #35337)](https://github.com/dotnet/aspnetcore/issues/35337).
 
 | Placeholder                  | Azure portal name                                     | Example                                        |
 | ---------------------------- | ----------------------------------------------------- | ---------------------------------------------- |
