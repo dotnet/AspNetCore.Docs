@@ -67,7 +67,7 @@
       },
       "recommendations": {
         "**/tutorials/**/**.md": "false"
-      },
+      }
     },
     "template": [],
     "dest": "_site",
