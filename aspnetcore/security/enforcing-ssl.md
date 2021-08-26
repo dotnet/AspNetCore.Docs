@@ -1,7 +1,7 @@
 ---
 title: Enforce HTTPS in ASP.NET Core
 author: rick-anderson
-description: Learn how to require HTTPS/TLS in a ASP.NET Core web app.
+description: Learn how to require HTTPS/TLS in an ASP.NET Core web app.
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/06/2019
@@ -352,7 +352,7 @@ dotnet dev-certs https --help
 
 ### Trust the HTTPS certificate with Firefox to prevent SEC_ERROR_INADEQUATE_KEY_USAGE error
 
-The Firefox browser uses it's own certificate store, and therefore doesn't trust the [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) or [Kestrel](xref:fundamentals/servers/kestrel) developer certificates.
+The Firefox browser uses its own certificate store, and therefore doesn't trust the [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) or [Kestrel](xref:fundamentals/servers/kestrel) developer certificates.
 
 There are two approaches to trusting the HTTPS certificate with Firefox, create a policy file or configure with the FireFox browser. Configuring with the browser creates the policy file, so the two approaches are equivalent.
 
@@ -376,7 +376,7 @@ Add the following JSON to the Firefox policy file:
 }
 ```
 
-The preceding policy file makes Firefox trust certificates from the trusted certificates in the Windows certificate store. The next section provides an alternative approach to create the preceding policy file buy using the Firefox browser.
+The preceding policy file makes Firefox trust certificates from the trusted certificates in the Windows certificate store. The next section provides an alternative approach to create the preceding policy file by using the Firefox browser.
 
 <a name="trust-ff-ba"></a>
 
