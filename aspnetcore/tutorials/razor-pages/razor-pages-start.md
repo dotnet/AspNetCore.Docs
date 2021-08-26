@@ -313,8 +313,6 @@ For a more advanced introduction aimed at developers who are familiar with contr
 
 At the end of the series, you'll have an app that manages a database of movies.  
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50) ([how to download](xref:index#how-to-download-a-sample)).
-
 In this tutorial, you:
 
 > [!div class="checklist"]
@@ -336,10 +334,12 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
 [!INCLUDE[](~/includes/net-prereqs-vsc-6.0.md)]
 
+We hope to have Visual Studio for Mac instructions soon.
+<!--
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 [!INCLUDE[](~/includes/net-prereqs-mac-6.0.md)]
-
+-->
 ---
 
 ## Create a Razor Pages web app
@@ -360,7 +360,7 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
 1. Select **Next**.
 
-1. In the **Additional information** dialog, select **.NET Core** and **ASP.NET Core 6.0 (Preview)** and then select **Create**.
+1. In the **Additional information** dialog, select **.NET 6.0 (Preview)** and then select **Create**.
 
 	 ![Additional information](razor-pages-start/_static/6/additional-info.png)
 
@@ -387,7 +387,8 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
    * The `code` command opens the *RazorPagesMovie* folder in the current instance of Visual Studio Code.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
-
+We hope to have Visual Studio for Mac instructions soon.
+<!--
 1. Select **File** > **New Solution**.
 
 	![macOS New solution](../first-mvc-app/start-mvc/_static/new_project_vsmac.png)
@@ -405,7 +406,7 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 1. Name the project *RazorPagesMovie* and select **Create**.
 
 	![macOS name the project](razor-pages-start/_static/RazorPagesMovie.png)
-
+-->
 ---
 
 ## Run the app
@@ -449,12 +450,12 @@ We hope to have Visual Studio for Mac instructions soon.
 <!-- 
 Select **Run** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number. 
 -->
-
+-->
 ---
 
 ## Examine the project files
 
-Here's an overview of the main project folders and files that you'll work with in later tutorials.
+The following sections contain an overview of the main project folders and files that you'll work with in later tutorials.
 
 ### Pages folder
 
@@ -489,21 +490,25 @@ The following highlighted code enables the developer exception page when the app
 
 The developer exception page provides helpful information on exceptions. Production apps should not be run in development mode because the developer exception page can leak sensitive information.
 
-The following highlighted code set the exception endpoint to `/Error` and enables HSTS when the app is **not** running in development mode:
+The following highlighted code sets the exception endpoint to `/Error` and enables HSTS when the app is ***not*** running in development mode:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program1Snip.cs?name=snippet_env&highlight=6-99)]
 
 For example, the preceding code runs when the app is in production or test mode. For more information, see [Use multiple environments in ASP.NET Core](xref:fundamentals/environments). For more information on HSTS, see [HTTP Strict Transport Security Protocol](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts)
 
-The following code enable various [Middleware](xref:fundamentals/middleware/index):
+The following code enables various [Middleware](xref:fundamentals/middleware/index):
 
 * `app.UseHttpsRedirection();` : Redirects HTTP requests to HTTPS.
 * `app.UseStaticFiles();` : Enables static files, such as HTML, CSS, images, and JavaScript to be served. For more information, see <xref:fundamentals/static-files>.
 * `app.UseRouting();` : Adds route matching to the middleware pipeline. For more information, see <xref:fundamentals/routing>
 * `app.MapRazorPages();`: Configures endpoint routing for Razor Pages.
-* `app.UseAuthorization();` : Authorizes a user to access secure resources. This app doesn't use authorization.
+* `app.UseAuthorization();` : Authorizes a user to access secure resources. This app doesn't use authorization, therefore this line could be removed.
 
 `app.Run();` : runs the app.
+
+## Troubleshooting with the completed sample
+
+If you run into a problem you can't resolve, compare your code to the completed project. [View or download completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60) ([how to download](xref:index#how-to-download-a-sample)).
 
 ## Next steps
 

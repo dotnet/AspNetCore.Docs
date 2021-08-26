@@ -681,8 +681,6 @@ In this section, classes are added for managing movies in a database. The app's 
 
 The model classes are known as POCO classes (from "**P**lain-**O**ld **C**LR **O**bjects") because they don't have a dependency on EF Core. They define the properties of the data that are stored in the database.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50) ([how to download](xref:index#how-to-download-a-sample)).
-
 ## Add a data model
 
 # [Visual Studio](#tab/visual-studio)
@@ -763,9 +761,10 @@ In this section, the movie model is scaffolded. That is, the scaffolding tool pr
    1. From the **Tools** menu, select **NuGet Package Manager** > **Manage NuGet Packages for Solution**
       ![NuGet Package Manager - manage](model/_static/6/nugetMP.png)
    1. Select the **Browse** tab.
-   1. Enter `Microsoft.EntityFrameworkCore.Design` in the search box.
-   1. Check **Include prerelease** and **Project**
-   1. Select **Install**
+   1. Check **Include prerelease**
+   1. Enter `Microsoft.EntityFrameworkCore.Design` and select it from the list.
+   1. Check **Project** and then Select **Install**
+   1. Select **I Accept** in the **License Acceptance** dialog.
       ![NuGet Package Manager - add package](model/_static/6/na.png)
 
 1. Create the *Pages/Movies* folder:
@@ -855,20 +854,22 @@ The scaffold process creates the following files:
 * *Pages/Movies*: Create, Delete, Details, Edit, and Index.
 * *Data/RazorPagesMovieContext.cs*
 
-The scaffold process updates the *Program.cs* files. The following highlighted code is added to the *Program.cs* file:
+The created files are explained in the next tutorial.
+
+The scaffold process adds the following highlighted code to the *Program.cs* file:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program.cs?name=snippet_all&highlight=1-3,9)]
 
-The updated files are explained in the next section.
+The *Program.cs* changes are explained later in this tutorial.
 
-<a name="pmc"></a>
+<a name="pmc6"></a>
 
 ## Create the initial database schema using EF's migration feature
 
 The migrations feature in Entity Framework Core provides a way to:
 
 * Create the initial database schema.
-* Incrementally update the database schema to keep it in sync with the application's data model.  Existing data in the database is preserved.
+* Incrementally update the database schema to keep it in sync with the app's data model.  Existing data in the database is preserved.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -886,6 +887,7 @@ In this section, the **Package Manager Console** (PMC) window is used to:
    ```powershell
    Add-Migration InitialCreate
    Update-Database
+
    ```
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
@@ -960,7 +962,7 @@ An alternative approach is to disable the CS8618 [warning with pragma](/dotnet/f
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Data/RazorPagesMovieContext.cs?name=snippet_prag)]
 
-For the warnings in the Razor Pages csharp code behind files, use the [pragma](/dotnet/csharp/language-reference/preprocessor-directives#pragmas) C# preprocessor directive. For example, use the following highlighted code in the *Pages/Movies/Index.cshtml.cs* file:
+For the warnings in the Razor Pages C# code behind files, use the [pragma](/dotnet/csharp/language-reference/preprocessor-directives#pragmas) C# preprocessor directive is disable warnings. For example, use the following highlighted code in the *Pages/Movies/Index.cshtml.cs* file:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Pages/Movies/Index.cshtml.cs?name=snippet&highlight=3-4,21,22)]
 
@@ -978,7 +980,7 @@ The *Pages/Movies/Delete.cshtml.cs* file requires the following `pragma` stateme
 #pragma warning restore CS8604
 ```
 
-Ignore any warning NU1603 package mismatch warnings, they will be fixed when .NET 6 is released.
+Ignore NU1603 package mismatch warnings, they will be fixed when .NET 6 is released.
 
 ### Test the app
 
@@ -1005,6 +1007,10 @@ Ignore any warning NU1603 package mismatch warnings, they will be fixed when .NE
 [!INCLUDE[s](~/includes/sql-log.md)]
 
 The next tutorial explains the files created by scaffolding.
+
+## Troubleshooting with the completed sample
+
+If you run into a problem you can't resolve, compare your code to the completed project. [View or download completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60) ([how to download](xref:index#how-to-download-a-sample)).
 
 ## Additional resources
 

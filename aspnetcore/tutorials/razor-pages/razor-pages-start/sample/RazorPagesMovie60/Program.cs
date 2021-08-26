@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 
-builder.Services.AddDbContext<RazorPagesMovieContext>(options =>    options.UseSqlServer(builder.Configuration.GetConnectionString("RazorPagesMovieContext")));
+builder.Services.AddDbContext<RazorPagesMovieContext>(options =>  options.UseSqlServer(builder.Configuration.GetConnectionString("RazorPagesMovieContext")));
 
 var app = builder.Build();
 
