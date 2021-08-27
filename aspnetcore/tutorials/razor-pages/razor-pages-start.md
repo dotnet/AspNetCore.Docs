@@ -479,7 +479,12 @@ Contains configuration data, like connection strings. For more information, see 
 
 The *Program.cs* file contains the following code:
 
+# [Visual Studio](#tab/visual-studio)
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program1Snip.cs?name=snippet_all)]
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program1Snip.cs?name=snippet_all_sl)]
+
+---
 
 The following code creates a `WebApplicationBuilder` with preconfigured defaults, adds Razor Pages support to the [Dependency Injection (DI) container](xref:fundamentals/dependency-injection), and builds the app:
 
