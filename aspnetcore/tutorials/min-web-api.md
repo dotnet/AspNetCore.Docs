@@ -117,9 +117,7 @@ The following code creates a `WebApplicationBuilder` with preconfigured defaults
   var app = builder.Build();
   ```
 
-`app.MapGet("/", () => "Hello World!");`  maps the `/` endpoint to a method that returns `Hello World!`.
-
-`app.Run();` runs the app.
+`app.MapGet("/", () => "Hello World!");` maps the `/` endpoint to a method that returns `Hello World!`. `app.Run();` runs the app.
 
 The preceding code is a complete web app with one endpoint.
 
@@ -268,7 +266,7 @@ Test the app by calling the two endpoints from a browser or Postman. For example
 * `GET https://localhost:5001/todoitems`
 * `GET https://localhost:5001/todoitems/1`
 
-A response similar to the following is produced by the call to `Gettodoitems`:
+A response similar to the following is produced by the call to `GET /todoitems`:
 
 ```json
 [
