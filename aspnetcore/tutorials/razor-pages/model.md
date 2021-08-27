@@ -919,8 +919,6 @@ The `migrations` command generates code to create the initial database schema. T
 
 The `update` command runs the `Up` method in migrations that have not been applied. In this case, `update` runs the `Up` method in the *Migrations/\<time-stamp>_InitialCreate.cs* file, which creates the database.
 
-# [Visual Studio](#tab/visual-studio)
-
 ### Examine the context registered with dependency injection
 
 ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-injection). Services, such as the EF Core database context, are registered with dependency injection during application startup. Components that require these services (such as Razor Pages) are provided these services via constructor parameters. The constructor code that gets a database context instance is shown later in the tutorial.
