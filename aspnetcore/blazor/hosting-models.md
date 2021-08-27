@@ -40,7 +40,6 @@ The Blazor WebAssembly hosting model has the following limitations:
 * The app is restricted to the capabilities of the browser.
 * Capable client hardware and software (for example, WebAssembly support) is required.
 * Download size is larger, and apps take longer to load.
-* .NET runtime and tooling support is less mature. For example, limitations exist in [.NET Standard](/dotnet/standard/net-standard) support and debugging.
 
 To create a Blazor WebAssembly app, see <xref:blazor/tooling>.
 
