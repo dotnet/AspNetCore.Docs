@@ -245,10 +245,9 @@ The `@page` Razor directive makes the file an MVC action, which means that it ca
 
 ### The @model directive
 
-[!code-cshtml[](razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Index.cshtml?range=1-2&highlight=2)]
+[!code-cshtml[](razor-pages-start/snapshot_sample6/Pages/Movies/Index.cshtml?range=1-2&highlight=2)]
 
-The `@model` directive specifies the type of the model passed to the Razor Page. In the preceding example, the `@model` line makes the `PageModel`-derived class available to the Razor Page. The model is used in the `@Html.DisplayNameFor` and `@Html.DisplayFor` [HTML Helpers](/aspnet/mvc/overview/older-versions-1/views/creating-custom-html-helpers-cs#understanding-html-helpers) on the page.
-
+The `@model` directive specifies the type of the model passed to the Razor Page. In the preceding example, the `@model` line makes the `PageModel` derived class available to the Razor Page. The model is used in the `@Html.DisplayNameFor` and `@Html.DisplayFor` [HTML Helpers](/aspnet/mvc/overview/older-versions-1/views/creating-custom-html-helpers-cs#understanding-html-helpers) on the page.
 
 Examine the lambda expression used in the following HTML Helper:
 
@@ -277,7 +276,7 @@ Find the `@RenderBody()` line. `RenderBody` is a placeholder where all the page-
 
 Consider the following markup from the *Pages/Movies/Index.cshtml* file:
 
-[!code-cshtml[](razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Index.cshtml?range=1-6&highlight=4-999)]
+[!code-cshtml[](razor-pages-start/snapshot_sample6/Pages/Movies/Index.cshtml?range=1-6&highlight=4-999)]
 
 The preceding highlighted markup is an example of Razor transitioning into C#. The `{` and `}` characters enclose a block of C# code.
 
@@ -287,7 +286,7 @@ The `Title` property is used in the *Pages/Shared/_Layout.cshtml* file. The foll
 
 <!-- We need a snapshot copy of layout because we are changing in the next step. -->
 
-[!code-cshtml[](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/NU/_Layout.cshtml?highlight=6)]
+[!code-cshtml[](razor-pages-start/sample/RazorPagesMovie60/Pages/Shared/_Layout.cshtml?highlight=6)]
 
 The line `@*Markup removed for brevity.*@` is a Razor comment. Unlike HTML comments `<!-- -->`, Razor comments are not sent to the client. See [MDN web docs: Getting started with HTML](https://developer.mozilla.org/docs/Learn/HTML/Introduction_to_HTML/Getting_started#HTML_comments) for more information.
 

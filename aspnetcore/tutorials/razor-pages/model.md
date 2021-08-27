@@ -964,7 +964,7 @@ An alternative approach is to disable the CS8618 [warning with pragma](/dotnet/f
 
 For the warnings in the Razor Pages C# code behind files, use the [pragma](/dotnet/csharp/language-reference/preprocessor-directives#pragmas) C# preprocessor directive is disable warnings. For example, use the following highlighted code in the *Pages/Movies/Index.cshtml.cs* file:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_v6/Index.cshtml.cs?name=snippet&highlight=3-4,21,22)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample6/Pages/Movies/Index.cshtml.cs?name=snippet&highlight=3-4,21,22)]
 
 The *Pages/Movies/Delete.cshtml.cs* file requires the following `pragma` statements:
 
