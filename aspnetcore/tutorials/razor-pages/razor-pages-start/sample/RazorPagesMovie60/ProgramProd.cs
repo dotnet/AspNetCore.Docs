@@ -1,4 +1,4 @@
-#define PROD
+//#define PROD
 #if PROD
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
