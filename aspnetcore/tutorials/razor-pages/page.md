@@ -288,7 +288,7 @@ The `Title` property is used in the *Pages/Shared/_Layout.cshtml* file. The foll
 
 <!-- We need a snapshot copy of layout because we are changing in the next step. -->
 
-[!code-cshtml[](razor-pages-start/sample/RazorPagesMovie60/Pages/Shared/_Layout.cshtml?highlight=6&range=1-6)]
+[!code-cshtml[](razor-pages-start/sample/RazorPagesMovie60/Pages/Shared/_Layout.cshtml?highlight=6&range=1-7)]
 
 The line `@*Markup removed for brevity.*@` is a Razor comment. Unlike HTML comments `<!-- -->`, Razor comments are not sent to the client. See [MDN web docs: Getting started with HTML](https://developer.mozilla.org/docs/Learn/HTML/Introduction_to_HTML/Getting_started#HTML_comments) for more information.
 
