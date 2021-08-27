@@ -25,7 +25,6 @@ namespace RazorPagesMovie.Pages.Movies
         public Movie Movie { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
-        #region snippet
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -38,7 +37,6 @@ namespace RazorPagesMovie.Pages.Movies
 
             return RedirectToPage("./Index");
         }
-        #endregion
     }
 #pragma warning restore CS8618
 #pragma warning restore CS8602
