@@ -88,9 +88,6 @@ For example, the following `Chart` component receives stock price data and casca
 
     [Parameter]
     public decimal Value { get; set; }
-
-    [Parameter]
-    public IEnumerable<TLineData> Data { get; set; }
 }
 ```
 
