@@ -230,9 +230,9 @@ When `OnGet` returns `void` or `OnGetAsync` returns `Task`, no return statement 
 
 When the return type is <xref:Microsoft.AspNetCore.Mvc.IActionResult> or `Task<IActionResult>`, a return statement must be provided. For example, the *Pages/Movies/Create.cshtml.cs* `OnPostAsync` method:
 
-[!code-csharp[](razor-pages-start/snapshot_sample6/Pages/Movies/Create.cshtml.cs?name=snippet)]
+[!code-csharp[](razor-pages-start/snapshot_sample6/Pages/Movies/Create.cshtml.cs?name=snippetPost)]
 
-<a name="index"></a>
+<a name="index6"></a>
 Examine the *Pages/Movies/Index.cshtml* Razor Page:
 
 [!code-cshtml[](razor-pages-start/snapshot_sample6/Pages/Movies/Index.cshtml)]
@@ -311,7 +311,7 @@ The line `@*Markup removed for brevity.*@` is a Razor comment. Unlike HTML comme
 
    The preceding anchor element is a [Tag Helper](xref:mvc/views/tag-helpers/intro). In this case, it's the [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper). The `asp-page="/Movies/Index"` Tag Helper attribute and value creates a link to the `/Movies/Index` Razor Page. The `asp-area` attribute value is empty, so the area isn't used in the link. See [Areas](xref:mvc/controllers/areas) for more information.
 
-1. Save the changes and test the app by selecting the **RpMovie** link. See the [_Layout.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Pages/Shared/_Layout.cshtml) file in GitHub if you have any problems.
+1. Save the changes and test the app by selecting the **RpMovie** link. See the [_Layout.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Pages/Shared/_Layout.cshtml) file in GitHub if you have any problems.
 
 1. Test the **Home**, **RpMovie**, **Create**, **Edit**, and **Delete** links. Each page sets the title, which you can see in the browser tab. When you bookmark a page, the title is used for the bookmark.
 
@@ -320,7 +320,7 @@ The line `@*Markup removed for brevity.*@` is a Razor comment. Unlike HTML comme
 
 The `Layout` property is set in the *Pages/_ViewStart.cshtml* file:
 
-[!code-cshtml[](razor-pages-start/sample/RazorPagesMovie30/Pages/_ViewStart.cshtml)]
+[!code-cshtml[](razor-pages-start/sample/RazorPagesMovie60/Pages/_ViewStart.cshtml)]
 
 The preceding markup sets the layout file to *Pages/Shared/_Layout.cshtml* for all Razor files under the *Pages* folder. See [Layout](xref:razor-pages/index#layout) for more information.
 
@@ -328,7 +328,7 @@ The preceding markup sets the layout file to *Pages/Shared/_Layout.cshtml* for a
 
 Examine the *Pages/Movies/Create.cshtml.cs* page model:
 
-[!code-csharp[](razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Create.cshtml.cs?name=snippetALL)]
+[!code-csharp[](razor-pages-start/snapshot_sample6/Pages/Movies/Create.cshtml.cs?name=snippetALL)]
 
 The `OnGet` method initializes any state needed for the page. The Create page doesn't have any state to initialize, so `Page` is returned. Later in the tutorial, an example of `OnGet` initializing state is shown. The `Page` method creates a `PageResult` object that renders the *Create.cshtml* page.
 
@@ -336,7 +336,7 @@ The `Movie` property uses the [[BindProperty]](xref:Microsoft.AspNetCore.Mvc.Bin
 
 The `OnPostAsync` method is run when the page posts form data:
 
-[!code-csharp[](razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Create.cshtml.cs?name=snippetPost)]
+[!code-csharp[](razor-pages-start/snapshot_sample6/Pages/Movies/Create.cshtml.cs?name=snippetPost)]
 
 If there are any model errors, the form is redisplayed, along with any form data posted. Most model errors can be caught on the client-side before the form is posted. An example of a model error is posting a value for the date field that cannot be converted to a date. Client-side validation and model validation are discussed later in the tutorial.
 
