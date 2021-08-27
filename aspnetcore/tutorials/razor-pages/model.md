@@ -814,7 +814,9 @@ dotnet-aspnet-codegenerator razorpage -h
 
 For more information, see [dotnet-aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
 
+<!-- 
 [!INCLUDE[](~/includes/RP/sqlitedev.md)]
+-->
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
