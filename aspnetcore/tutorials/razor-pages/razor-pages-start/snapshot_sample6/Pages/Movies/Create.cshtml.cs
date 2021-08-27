@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿#region snippetALL
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RazorPagesMovie.Models;
 
@@ -25,7 +26,7 @@ namespace RazorPagesMovie.Pages.Movies
         public Movie Movie { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
-        #region snippet
+        #region snippetPost
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -43,3 +44,4 @@ namespace RazorPagesMovie.Pages.Movies
 #pragma warning restore CS8618
 #pragma warning restore CS8602
 }
+#endregion
