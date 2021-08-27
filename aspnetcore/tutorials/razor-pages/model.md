@@ -859,9 +859,9 @@ The created files are explained in the next tutorial.
 The scaffold process adds the following highlighted code to the *Program.cs* file:
 
 # [Visual Studio](#tab/visual-studio)
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program.cs?name=snippet_all&highlight=1-3,9)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program.cs?name=snippet_all&highlight=1-3,9-10)]
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program.cs?name=snippet_all_sl&highlight=1-3,9)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program.cs?name=snippet_all_sl&highlight=1-3,9-10)]
 
 ---
 
@@ -952,6 +952,10 @@ The name of the connection string is passed in to the context by calling a metho
 
 Build the app. The compiler generates several `nullable` warnings. The released version of .NET 6 will scaffold code without these warnings. See [this GitHub issue](https://github.com/dotnet/Scaffolding/issues/1594) and [Nullable reference types](/dotnet/csharp/nullable-references) for more information.
 
+### Fix the warning messages
+
+You can skip this section and ignore the warnings. When .NET 6 is released, the generated code will not contain complier warnings.
+
 The `RazorPagesMovieContext` generates the following warning:
 
 > Warning CS8618 Non-nullable property 'Movie' must contain a non-null value when exiting constructor. Consider declaring the property as nullable.
@@ -997,7 +1001,7 @@ Ignore NU1603 package mismatch warnings, they will be fixed when .NET 6 is relea
    Login failed for user 'User-name'.
    ```
 
-   You missed the [migrations step](#pmc).
+   You missed the [migrations step](#pmc6).
 
 1. Test the **Create** link.
 
