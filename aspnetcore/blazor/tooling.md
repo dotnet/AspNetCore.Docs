@@ -16,7 +16,7 @@ zone_pivot_groups: operating-systems
 
 ::: zone pivot="windows"
 
-1. Install the latest version of [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/) with the **ASP.NET and web development** workload.
+1. Install the latest version of [Visual Studio 2022](https://visualstudio.microsoft.com/vs/preview/) with the **ASP.NET and web development** workload.
 
 1. Create a new project.
 
@@ -273,7 +273,7 @@ For Blazor WebAssembly apps, only method body replacement is currently supported
 
 ::: zone pivot="windows"
 
-1. Install the latest version of [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/) with the **ASP.NET and web development** workload.
+1. Install the latest version of [Visual Studio 2022](https://visualstudio.microsoft.com/vs/preview/) with the **ASP.NET and web development** workload.
 
 1. Create a new project.
 
@@ -501,7 +501,7 @@ dotnet new blazorserver -h
 
 ::: zone pivot="windows"
 
-1. Install the latest version of [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/) with the **ASP.NET and web development** workload.
+1. Install the latest version of [Visual Studio 2022](https://visualstudio.microsoft.com/vs/preview/) with the **ASP.NET and web development** workload.
 
 1. Create a new project.
 
