@@ -347,7 +347,7 @@ We hope to have Visual Studio for Mac instructions soon.
 
 # [Visual Studio](#tab/visual-studio)
 
-1. Start Visual Studio 2022 and select **Create a new project**. For more information, see [Create a new project in Visual Studio](/visualstudio/ide/create-new-project).
+1. Start Visual Studio 2022 and select **Create a new project**.
 
    ![Create a new project from the start window](razor-pages-start/_static/6/start-window-create-new-project.png)
 
@@ -373,19 +373,20 @@ We hope to have Visual Studio for Mac instructions soon.
 
 1. Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
 
-1. Change to the directory (`cd`) which will contain the project.
+1. Change to the directory (`cd`) that will contain the project.
 1. Run the following commands:
 
    ```dotnetcli
    dotnet new webapp -o RazorPagesMovie
    code -r RazorPagesMovie
    ```
-  Visual Studio Code display as dialog box **Do you trust the authors of the files in this folder**.  Select:
-    * The checkbox **trust the authors of all files in the parent folder
-    * **Yes, I trust the authors** because dotnet generated the files.
+   Visual Studio Code displays a dialog box that asks **Do you trust the authors of the files in this folder**.  Select:
+    * The checkbox **trust the authors of all files in the parent folder**
+   * **Yes, I trust the authors** (because dotnet generated the files).
 
-   * The `dotnet new` command creates a new Razor Pages project in the *RazorPagesMovie* folder.
-   * The `code` command opens the *RazorPagesMovie* folder in the current instance of Visual Studio Code.
+   The `dotnet new` command creates a new Razor Pages project in the *RazorPagesMovie* folder.
+
+   The `code` command opens the *RazorPagesMovie* folder in the current instance of Visual Studio Code.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 We hope to have Visual Studio for Mac instructions soon.
@@ -434,14 +435,12 @@ Select **Yes** if you agree to trust the development certificate.
 
 Visual Studio launches:
 
-* The [Kestrel web server](xref:fundamentals/servers/kestrel).
-* The default browser and navigates to `https://localhost:5001`.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
 [!INCLUDE[](~/includes/trustCertVSC.md)]
 
-Press Ctrl+F5 to run the app. At the **Select environment** prompt, select **.NET Core**. 
+In Visual Studio Code, press Ctrl+F5 to run the app. At the **Select environment** prompt, select **.NET Core**. 
 
 The default browser launched with the following URL: [https://localhost:5001](https://localhost:5001)
 
@@ -477,7 +476,7 @@ Contains configuration data, like connection strings. For more information, see 
 
 ### Program.cs
 
-The *Program.cs* file contains the following code:
+Contains the following code:
 
 # [Visual Studio](#tab/visual-studio)
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program1Snip.cs?name=snippet_all)]
@@ -486,7 +485,7 @@ The *Program.cs* file contains the following code:
 
 ---
 
-The following code creates a `WebApplicationBuilder` with preconfigured defaults, adds Razor Pages support to the [Dependency Injection (DI) container](xref:fundamentals/dependency-injection), and builds the app:
+The following lines of code in this file create a `WebApplicationBuilder` with preconfigured defaults, add Razor Pages support to the [Dependency Injection (DI) container](xref:fundamentals/dependency-injection), and build the app:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program.cs?name=snippet_di)]
 
@@ -496,11 +495,11 @@ The following highlighted code enables the developer exception page when the app
 
 The developer exception page provides helpful information on exceptions. Production apps should not be run in development mode because the developer exception page can leak sensitive information.
 
-The following highlighted code sets the exception endpoint to `/Error` and enables HSTS when the app is ***not*** running in development mode:
+The following highlighted code sets the exception endpoint to `/Error` and enables [HTTP Strict Transport Security Protocol (HSTS)](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts) when the app is ***not*** running in development mode:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program1Snip.cs?name=snippet_env&highlight=6-99)]
 
-For example, the preceding code runs when the app is in production or test mode. For more information, see [Use multiple environments in ASP.NET Core](xref:fundamentals/environments). For more information on HSTS, see [HTTP Strict Transport Security Protocol](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts)
+For example, the preceding code runs when the app is in production or test mode. For more information, see [Use multiple environments in ASP.NET Core](xref:fundamentals/environments).
 
 The following code enables various [Middleware](xref:fundamentals/middleware/index):
 
