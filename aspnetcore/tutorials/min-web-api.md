@@ -159,7 +159,7 @@ NuGet packages must be added to support the database and diagnostics used in thi
 # [Visual Studio](#tab/visual-studio)
 
 * From the **Tools** menu, select **NuGet Package Manager > Manage NuGet Packages for Solution**.
-* Select the **Browse** tab, and then enter `Microsoft.EntityFrameworkCore.InMemory` in the search box. Verify **Include prerelease** is checked.
+* Select the **Browse** tab, and verify that **Include prerelease** is checked.
 * Enter **Microsoft.EntityFrameworkCore.InMemory** in the search box, and then select `Microsoft.EntityFrameworkCore.InMemory`.
 * Select the **Project** checkbox in the right pane and then select **Install**.
 * Follow the preceding instructions to add the `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` package.
@@ -186,19 +186,19 @@ Open a command terminal in the project folder and run the following command:
 
 ## Add the API code
 
-Replace the contents of the *program.cs* file with the following code:
+Replace the contents of the *program.cs* file with the following sample app code:
 
 [!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_all)]
 
 ## The model and database context classes
 
-The preceding code contains the following model:
+The sample app contains the following model:
 
 [!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_model)]
 
 A *model* is a set of classes that represent the data that the app manages. The model for this app is the `Todo` class.
 
-The sample app contains the following database context class:
+The sample app also contains the following database context class:
 
 [!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_cntx)]
 
@@ -285,7 +285,7 @@ A response similar to the following is produced by the call to `GET /todoitems`:
 * Set the request URI to `https://localhost:<port>/todoitems`. For example, `https://localhost:5001/todoitems`.
 * Select **Send**.
 
-This app uses an in-memory database. If the app is stopped and started, the preceding GET request will not return any data. If no data is returned, [POST](#post) data to the app.
+This app uses an in-memory database. If the app is stopped and started, the GET request will not return any data. If no data is returned, [POST](#post) data to the app.
 
 ## Return values
 
@@ -377,6 +377,8 @@ The following code uses <xref:Microsoft.AspNetCore.Http.Json.JsonOptions>:
 The following code uses <xref:System.Text.Json.JsonSerializerOptions>:
 
 [!code-csharp[](min-web-api/samples/6.x/WebMinJson/Program.cs?name=snippet_2)]
+
+The preceding code uses [web defaults](/dotnet/standard/serialization/system-text-json-configure-options#web-defaults-for-jsonserializeroptions), which converts property names to camel case.
 
 ## Test minimal API
 
