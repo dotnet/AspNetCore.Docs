@@ -11,7 +11,7 @@ uid: fundamentals/localization
 
 ::: moniker range=">= aspnetcore-6.0"
 
-By [Ponant](https://github.com/Ponant), [Damien Bowden](https://twitter.com/damien_bod), [Bart Calixto](https://twitter.com/bartmax), [Nadeem Afana](https://afana.me/), and [Hisham Bin Ateya](https://twitter.com/hishambinateya)
+By [Karim Murr](https://github.com/Ponant), [Damien Bowden](https://twitter.com/damien_bod), [Bart Calixto](https://twitter.com/bartmax), [Nadeem Afana](https://afana.me/), and [Hisham Bin Ateya](https://twitter.com/hishambinateya)
 
 This topic shows how to configure a ASP.NET Core website to accept several languages. Localizing a website requires:
 
@@ -110,24 +110,24 @@ In the preceding image:
 * The server returns `en-GB` for both `Culture` and `UICulture`.
 * Dates and currency are displayed in the `en-GB` `Culture`.
 
-What you see depends on the culture the app is running on.
+What you see depends on the culture of the operating system where the app is running (Windows 10 in the `en-GB` locale when the snapshot was taken).
 
-The `ToString("c")` overload displays the currency in the servers culture format. In the preceding image, the culture is `en-GB`. The response is generated on the server, so changing the browsers language won't change what the browser displays.
+The `ToString("c")` overload displays the currency in the server's culture format. The response is generated on the server, so changing the browser's language at this stage won't change what the browser displays.
 <!-- TODO: Is this a risky suggestion? Does it change windows UI to French? If so, most folks won't be able to change it back to their native language. -->
-Change the OS regional format and observe the differences. On windows, **Settings** > **Regional Format**. Restart the web server. The following image show the Index page with the regional setting `fr-FR` (French, France):
+Change the OS regional format to anohter culture of your choosing and observe the differences. You may need to install a new language pack. On windows, **Settings** > **Regional Format**. Restart the web server. The following image show the Index page with the regional format setting `fr-FR` (French, France):
 
 ![CultureInfo with a French regional format](localization/_static/cultureinfoformats2.png)
 
 If you changed the regional format, restore it to the original setting.
 
-## Two ares of localization
+## Localization configuration
 
 The preceding section showed that the runtime automatically displays the time, date, and currency in the server locale. Frequently a web app needs to support more than one locale.
 
 A fully localized ASP.NET Core app uses the following:
 
-* <xref:Microsoft.Extensions.DependencyInjection.RequestLocalizationServiceCollectionExtensions.AddRequestLocalization%2A> : Todo brief description.
-* <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A> : Allow injecting localizers as services that communicate
+* <xref:Microsoft.Extensions.DependencyInjection.RequestLocalizationServiceCollectionExtensions.AddRequestLocalization%2A> : Configures the cultures and the middleware's behavior.
+* <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A> : Allows injecting localizers as services that communicate
 with your translated content.
 
 ### Control the Cultures and UICultures
@@ -227,7 +227,7 @@ in the `index.cshtml` page. Go to `_ViewImports.cshtml` and inject the options w
 
 In the `index.cshtml` paste the following code at the bottom but inside the parent div to keep the text centered:
 
-````csharp
+````cshtml
  <strong>Default Culture & UICulture</strong>
  <span>@RequetLocalizationOptions.Value.DefaultRequestCulture.Culture,</span>
  <span>@RequetLocalizationOptions.Value.DefaultRequestCulture.UICulture</span>
@@ -487,7 +487,7 @@ In this case, the language variable will be `SupportedCultures` (or `SupportedUI
 in a simpler code.
 
 Next, the culture selected by the user is sent to the page as a `POST` request together with binding route parameters,
-`lang` and `returnUrl`. In the code behind, `Language..cshtml.cs`, paste the following:
+`lang` and `returnUrl`. In the code behind, `Language.cshtml.cs`, paste the following:
 
 ````csharp
 using Microsoft.AspNetCore.Localization;
@@ -697,7 +697,7 @@ Since we want to keep `Sharedresources.cs` in *MyResources* we need to instruct 
 in several ways (see link above), the simplest way being to edit the `.csproj` file by setting
 `EmbeddedResourceUseDependentUponConvention` to false
 
-````
+````csproj
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
@@ -931,7 +931,7 @@ You can localize [data annotation](/aspnet/core/tutorials/razor-pages/validation
 messages during form validation by using the `AddDataAnnotationsLocalization` extension,
 which is an extenstion on `IMvcBuilder` in the same way as `AddViewLocalization`.
 You can localize by using a shared resource file,
-in the same way as we have done in [Localize with IStringLocalizer](/#localize-with-istringlocalizer). This is convenient
+in the same way as we have done in [Localize with IStringLocalizer](#localize-with-istringlocalizer). This is convenient
 because, usually, translations for data annotations are needed in more than one page.
 
 In `Program.cs`, use the following:
