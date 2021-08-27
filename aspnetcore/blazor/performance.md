@@ -14,6 +14,8 @@ zone_pivot_groups: blazor-hosting-models
 
 ::: zone pivot="server"
 
+<!-- Blazor Server pivot without content to avoid doc build system error. -->
+
 ::: zone-end
 
 ::: moniker range=">= aspnetcore-6.0"
