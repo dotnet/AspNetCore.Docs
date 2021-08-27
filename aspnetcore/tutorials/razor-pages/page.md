@@ -226,7 +226,7 @@ When `OnGet` returns `void` or `OnGetAsync` returns `Task`, no return statement 
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie60/Pages/Privacy.cshtml.cs)]
 
-When the return type is `<xref:Microsoft.AspNetCore.Mvc.IActionResult>` or `Task<IActionResult>`, a return statement must be provided. For example, the *Pages/Movies/Create.cshtml.cs* `OnPostAsync` method:
+When the return type is <xref:Microsoft.AspNetCore.Mvc.IActionResult> or `Task<IActionResult>`, a return statement must be provided. For example, the *Pages/Movies/Create.cshtml.cs* `OnPostAsync` method:
 
 [!code-csharp[](razor-pages-start/snapshot_sample6/Pages/Movies/Create.cshtml.cs?name=snippet)]
 
@@ -286,15 +286,14 @@ The `Title` property is used in the *Pages/Shared/_Layout.cshtml* file. The foll
 
 <!-- We need a snapshot copy of layout because we are changing in the next step. -->
 
-[!code-cshtml[](razor-pages-start/sample/RazorPagesMovie60/Pages/Shared/_Layout.cshtml?highlight=6)]
+[!code-cshtml[](razor-pages-start/sample/RazorPagesMovie60/Pages/Shared/_Layout.cshtml?highlight=6&range=1-6)]
 
 The line `@*Markup removed for brevity.*@` is a Razor comment. Unlike HTML comments `<!-- -->`, Razor comments are not sent to the client. See [MDN web docs: Getting started with HTML](https://developer.mozilla.org/docs/Learn/HTML/Introduction_to_HTML/Getting_started#HTML_comments) for more information.
 
 ### Update the layout
 
 1. Change the `<title>` element in the *Pages/Shared/_Layout.cshtml* file to display **Movie** rather than **RazorPagesMovie**.
-
-   [!code-cshtml[](razor-pages-start/sample/RazorPagesMovie30/Pages/Shared/_Layout.cshtml?range=1-6&highlight=6)]
+   [!code-cshtml[](razor-pages-start/sample/RazorPagesMovie60/Pages/Shared/_Layout.cshtml?range=1-6&highlight=6)]
 
 1. Find the following anchor element in the *Pages/Shared/_Layout.cshtml* file.
 

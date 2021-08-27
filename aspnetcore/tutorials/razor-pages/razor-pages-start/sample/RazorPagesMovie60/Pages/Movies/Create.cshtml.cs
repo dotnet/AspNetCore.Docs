@@ -18,6 +18,13 @@ namespace RazorPagesMovie.Pages.Movies
 
         public IActionResult OnGet()
         {
+            Movie = new Movie
+            {
+                Genre = "Western",
+                Price = 3.99M,
+                ReleaseDate = DateTime.Today,
+                Title = "Conan"
+            };
             return Page();
         }
 
@@ -25,7 +32,6 @@ namespace RazorPagesMovie.Pages.Movies
         public Movie Movie { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
-        #region snippet
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -38,7 +44,6 @@ namespace RazorPagesMovie.Pages.Movies
 
             return RedirectToPage("./Index");
         }
-        #endregion
     }
 #pragma warning restore CS8618
 #pragma warning restore CS8602
