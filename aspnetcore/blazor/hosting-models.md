@@ -46,7 +46,7 @@ To create a Blazor WebAssembly app, see <xref:blazor/tooling>.
 
 The hosted Blazor app model supports [Docker containers](/dotnet/standard/microservices-architecture/container-docker-introduction/index). For Docker support in Visual Studio, right-click on the **`Server`** project of a hosted Blazor WebAssembly solution and select **Add** > **Docker Support**.
 
-Blazor WebAssembly includes support for trimming unused code from .NET Core framework libraries and the Blazor runtime. For example, Blazor's globalization data can be trimmed from the framework's libraries, which reduces the download time of the app. For more information, see <xref:blazor/globalization-localization> and <xref:blazor/host-and-deploy/webassembly#runtime-relinking>.
+Blazor WebAssembly includes support for trimming unused code from .NET Core framework libraries and the Blazor runtime. For more information, see <xref:blazor/globalization-localization> and <xref:blazor/host-and-deploy/webassembly#runtime-relinking>.
 
 Blazor WebAssembly supports [ahead-of-time (AOT) compilation](/dotnet/standard/glossary#aot), where you can compile your .NET code directly into WebAssembly. AOT compilation results in runtime performance improvements at the expense of a larger app size. For more information, see <xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation>.
 

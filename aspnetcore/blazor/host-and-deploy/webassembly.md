@@ -31,18 +31,6 @@ Blazor WebAssembly supports [ahead-of-time (AOT) compilation](/dotnet/standard/g
 
 Without enabling AOT compilation, Blazor WebAssembly apps run on the browser using a .NET Intermediate Language (IL) interpreter implemented in WebAssembly. Because the .NET code is interpreted, apps typically run slower than they would on a server-side [.NET just-in-time (JIT) runtime](/dotnet/standard/glossary#jit). AOT compilation addresses this performance issue by compiling an app's .NET code directly into WebAssembly for native WebAssembly execution by the browser. The AOT performance improvement can yield dramatic improvements for apps that execute CPU intensive tasks. The drawback to using AOT compilation is that AOT-compiled apps are generally larger than their IL-interpreted counterparts, so they usually take longer to download to the client when first requested.
 
-To install the latest .NET WebAssembly tools for AOT compilation and runtime relinking:
-
-* Uninstall any `microsoft-net-sdk-blazorwebassembly-aot` workloads, if they were installed on the system earlier.
-* Install the `wasm-tools` workload.
-
-Execute the following commands from an administrator command prompt:
-
-```dotnetcli
-dotnet workload uninstall microsoft-net-sdk-blazorwebassembly-aot
-dotnet workload install wasm-tools
-```
-
 To enable WebAssembly AOT compilation, add the `<RunAOTCompilation>` property set to `true` to the Blazor WebAssembly app's project file:
 
 ```xml
@@ -65,9 +53,9 @@ The size of an AOT-compiled Blazor WebAssembly app is generally larger than the 
 
 *The following guidance on runtime relinking is a preview release feature of ASP.NET Core 6.0. ASP.NET Core 6.0 is scheduled for release later this year.*
 
-One of the largest parts of a Blazor WebAssembly app is the WebAssembly-based .NET runtime (`dotnet.wasm`) that the browser must download when the app is first accessed by a user's browser. Use the .NET WebAssembly tools to relink the runtime, which trims unused runtime code and thus improves download speed.
+One of the largest parts of a Blazor WebAssembly app is the WebAssembly-based .NET runtime (`dotnet.wasm`) that the browser must download when the app is first accessed by a user's browser. Relinking the .NET WebAssembly runtime trims unused runtime code and thus improves download speed.
 
-If you have the .NET WebAssembly workload installed, runtime relinking is performed automatically when you publish an app. The size reduction is particularly dramatic when disabling globalization. For more information, see <xref:blazor/globalization-localization>.
+Runtime relinking is performed automatically when you publish an app. The size reduction is particularly dramatic when disabling globalization. For more information, see <xref:blazor/globalization-localization>.
 
 ## Customize how boot resources are loaded
 
