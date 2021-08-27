@@ -6,7 +6,7 @@ public async Task Invoke(HttpContext httpContext)
         httpContext.Response.ContentType = "application/json";
         httpContext.Response.ContentLength = _bufferSize;
 
-#if !NETCOREAPP3_0 && !NETCOREAPP5_0
+#if !NETCOREAPP3_1 && !NETCOREAPP5_0
         var syncIOFeature = httpContext.Features.Get<IHttpBodyControlFeature>();
         if (syncIOFeature != null)
         {

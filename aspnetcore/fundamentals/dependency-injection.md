@@ -809,7 +809,7 @@ public class Program
 }
 ```
 
-It isn't necessary to create a scope for transient services, including for the `ILogger` in the preceding example (see: <xref:fundamentals/logging/index#create-logs-in-main>). Transients don't resolve inadvertantly as singletons when resolved from the root, as scoped services would. Transients are created when requested. If a transient service happens to be disposable, then it's rooted by the container until disposal. For example, see <xref:fundamentals/http-requests#use-ihttpclientfactory-in-a-console-app>.
+It isn't necessary to create a scope for transient services, including for the `ILogger` in the preceding example (see: <xref:fundamentals/logging/index#create-logs-in-main>). Transients don't resolve inadvertently as singletons when resolved from the root, as scoped services would. Transients are created when requested. If a transient service happens to be disposable, then it's rooted by the container until disposal. For example, see <xref:fundamentals/http-requests#use-ihttpclientfactory-in-a-console-app>.
 
 ## Scope validation
 
@@ -943,7 +943,7 @@ The following third-party containers can be used with ASP.NET Core apps:
 
 ### Thread safety
 
-Create thread-safe singleton services. If a singleton service has a dependency on a transient service, the transient service may also require thread safety depending how it's used by the singleton.
+Create thread-safe singleton services. If a singleton service has a dependency on a transient service, the transient service may also require thread safety depending on how it's used by the singleton.
 
 The factory method of single service, such as the second argument to [AddSingleton\<TService>(IServiceCollection, Func\<IServiceProvider,TService>)](xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton*), doesn't need to be thread-safe. Like a type (`static`) constructor, it's guaranteed to be called once by a single thread.
 
