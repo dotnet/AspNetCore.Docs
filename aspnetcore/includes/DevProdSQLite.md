@@ -6,3 +6,5 @@ no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cook
 When SQLite is selected, the template generated code is ready for development. The following code shows how to select the SQLite connection string in develpment and SQL Server in production.
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/ProgramProd.cs?name=snippet&highlight=7-16)]
+
+The preceding code doesn't call `UseDeveloperExceptionPage` in development because `WebApplication` calls `UseDeveloperExceptionPage` in development mode.
