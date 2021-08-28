@@ -23,6 +23,40 @@ The following deployment strategies are supported:
 * The Blazor app is served by an ASP.NET Core app. This strategy is covered in the [Hosted deployment with ASP.NET Core](#hosted-deployment-with-aspnet-core) section.
 * The Blazor app is placed on a static hosting web server or service, where .NET isn't used to serve the Blazor app. This strategy is covered in the [Standalone deployment](#standalone-deployment) section, which includes information on hosting a Blazor WebAssembly app as an IIS sub-app.
 
+## Ahead-of-time (AOT) compilation
+
+*The following guidance on Blazor WebAssembly ahead-of-time (AOT) compilation is a preview release feature of ASP.NET Core 6.0. ASP.NET Core 6.0 is scheduled for release later this year.*
+
+Blazor WebAssembly supports [ahead-of-time (AOT) compilation](/dotnet/standard/glossary#aot), where you can compile your .NET code directly into WebAssembly. AOT compilation results in runtime performance improvements at the expense of a larger app size.
+
+Without enabling AOT compilation, Blazor WebAssembly apps run on the browser using a .NET Intermediate Language (IL) interpreter implemented in WebAssembly. Because the .NET code is interpreted, apps typically run slower than they would on a server-side [.NET just-in-time (JIT) runtime](/dotnet/standard/glossary#jit). AOT compilation addresses this performance issue by compiling an app's .NET code directly into WebAssembly for native WebAssembly execution by the browser. The AOT performance improvement can yield dramatic improvements for apps that execute CPU intensive tasks. The drawback to using AOT compilation is that AOT-compiled apps are generally larger than their IL-interpreted counterparts, so they usually take longer to download to the client when first requested.
+
+To enable WebAssembly AOT compilation, add the `<RunAOTCompilation>` property set to `true` to the Blazor WebAssembly app's project file:
+
+```xml
+<PropertyGroup>
+  <RunAOTCompilation>true</RunAOTCompilation>
+</PropertyGroup>
+```
+
+To compile the app to WebAssembly, publish the app. Publishing the `Release` configuration ensures the .NET Intermediate Language (IL) linking is also run to reduce the size of the published app:
+
+```dotnetcli
+dotnet publish -c Release
+```
+
+WebAssembly AOT compilation is only performed when the the project is published. AOT compilation isn't used when the project is run during development (`Development` environment) because AOT compilation usually takes several minutes on small projects and potentially much longer for larger projects. Reducing the build time for AOT compilation is under development for future releases of ASP.NET Core.
+
+The size of an AOT-compiled Blazor WebAssembly app is generally larger than the size of the app if compiled into .NET IL. Although the size difference depends on the app, most AOT-compiled apps are about twice the size of their IL-compiled versions. This means that using AOT compilation trades off load time performance for runtime performance. Whether this tradeoff is worth using AOT compilation depends on your app. Blazor WebAssembly apps that are CPU intensive generally benefit the most from AOT compilation.
+
+## Runtime relinking
+
+*The following guidance on runtime relinking is a preview release feature of ASP.NET Core 6.0. ASP.NET Core 6.0 is scheduled for release later this year.*
+
+One of the largest parts of a Blazor WebAssembly app is the WebAssembly-based .NET runtime (`dotnet.wasm`) that the browser must download when the app is first accessed by a user's browser. Relinking the .NET WebAssembly runtime trims unused runtime code and thus improves download speed.
+
+Runtime relinking is performed automatically when you publish an app. The size reduction is particularly dramatic when disabling globalization. For more information, see <xref:blazor/globalization-localization>.
+
 ## Customize how boot resources are loaded
 
 Customize how boot resources are loaded using the `loadBootResource` API. For more information, see <xref:blazor/fundamentals/startup#load-boot-resources>.

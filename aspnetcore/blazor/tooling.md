@@ -16,7 +16,7 @@ zone_pivot_groups: operating-systems
 
 ::: zone pivot="windows"
 
-1. Install the latest version of [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/) with the **ASP.NET and web development** workload.
+1. Install the latest version of [Visual Studio 2022](https://visualstudio.microsoft.com/vs/preview/) with the **ASP.NET and web development** workload.
 
 1. Create a new project.
 
@@ -221,17 +221,46 @@ When executing a hosted Blazor WebAssembly app, run the app from the solution's 
 
 The Blazor framework provides templates for creating new apps for each of the two Blazor hosting models. The templates are used to create new Blazor projects and solutions regardless of the tooling that you select for Blazor development (Visual Studio, Visual Studio for Mac, Visual Studio Code, or the .NET CLI):
 
-* Blazor WebAssembly project template: `blazorwasm`
 * Blazor Server project template: `blazorserver`
+* Blazor WebAssembly project template: `blazorwasm`
 
 For more information on Blazor's hosting models, see <xref:blazor/hosting-models>. For more information on Blazor project templates, see <xref:blazor/project-structure>.
 
-Template options are available by passing the help option (`-h` or `--help`) to the [`dotnet new`](/dotnet/core/tools/dotnet-new) CLI command in a command shell:
+For more information on template options, see the following resources:
+
+* *.NET default templates for dotnet new* article in the .NET Core documentation:
+  * [`blazorserver`](/dotnet/core/tools/dotnet-new-sdk-templates#blazorserver)
+  * [`blazorwasm`](/dotnet/core/tools/dotnet-new-sdk-templates#blazorwasm)
+* Passing the help option (`-h` or `--help`) to the [`dotnet new`](/dotnet/core/tools/dotnet-new) CLI command in a command shell:
+  * `dotnet new blazorserver -h`
+  * `dotnet new blazorwasm -h`
+
+## .NET Hot reload
+
+.NET Hot Reload applies code changes, including changes to stylesheets, to a running app without restarting the app and without losing app state.
+
+Hot Reload is activated using the [`dotnet watch`](/aspnet/core/tutorials/dotnet-watch) command:
 
 ```dotnetcli
-dotnet new blazorwasm -h
-dotnet new blazorserver -h
+dotnet watch
 ```
+
+To force the app to rebuild and restart, use the keyboard combination <kbd>Ctrl</kbd>+<kbd>R</kbd> in the command shell.
+
+When an unsupported code edit is made, called a *rude edit*, `dotnet watch` asks you if you want to restart the app:
+
+* **Yes**: Restarts the app.
+* **No**: Doesn't restart the app and leaves the app running without the changes applied.
+* **Always**: Restarts the app as needed when rude edits occur.
+* **Never**: Doesn't restart the app and avoids future prompts.
+
+To disable support for Hot Reload, pass the `--no-hot-reload` option to the `dotnet watch` command:
+
+```dotnetcli
+dotnet watch --no-hot-reload
+```
+
+For Blazor WebAssembly apps, only method body replacement is currently supported. Additional features will be added in upcoming releases of ASP.NET Core. For more information on supported scenarios, see [Supported code changes (C# and Visual Basic)](/visualstudio/debugger/supported-code-changes-csharp).
 
 ## Additional resources
 
@@ -244,7 +273,7 @@ dotnet new blazorserver -h
 
 ::: zone pivot="windows"
 
-1. Install the latest version of [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/) with the **ASP.NET and web development** workload.
+1. Install the latest version of [Visual Studio 2022](https://visualstudio.microsoft.com/vs/preview/) with the **ASP.NET and web development** workload.
 
 1. Create a new project.
 
@@ -472,7 +501,7 @@ dotnet new blazorserver -h
 
 ::: zone pivot="windows"
 
-1. Install the latest version of [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/) with the **ASP.NET and web development** workload.
+1. Install the latest version of [Visual Studio 2022](https://visualstudio.microsoft.com/vs/preview/) with the **ASP.NET and web development** workload.
 
 1. Create a new project.
 
