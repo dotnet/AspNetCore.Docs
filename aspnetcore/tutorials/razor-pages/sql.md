@@ -406,8 +406,6 @@ There are many third-party tools you can download to manage and view a SQLite da
 
 Create a new class named `SeedData` in the *Models* folder with the following code:
 
-
-
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie60/Models/SeedData.cs?name=snippet_1)]
 
 If there are any movies in the database, the seed initializer returns and no movies are added.
@@ -435,8 +433,6 @@ Replace the contents of the *Program.cs* with the following code:
 
 ---
 
-
-
 In the previous code, the `Main` method has been modified to do the following:
 
 * Get a database context instance from the dependency injection container.
@@ -450,26 +446,7 @@ The following exception occurs when `Update-Database` has not been run:
 
 ### Test the app
 
-# [Visual Studio](#tab/visual-studio)
-
-1. Delete all the records in the database. Use the delete links in the browser or from [SSOX](xref:tutorials/razor-pages/new-field#ssox)
-
-1. Force the app to initialize by calling the methods in the `Startup` class, so the seed method runs. To force initialization, IIS Express must be stopped and restarted. Stop and restart IIS with any of the following approaches:
-
-   1. Right-click the IIS Express system tray icon in the notification area and select **Exit** or **Stop Site**:
-
-      ![IIS Express system tray icon](../first-mvc-app/working-with-sql/_static/iisExIcon.png)
-
-      ![Contextual menu](sql/_static/stopIIS.png)
-
-   1. If the app is running in non-debug mode, press <kbd>F5</kbd> to run in debug mode.
-   1. If the app in debug mode, stop the debugger and press <kbd>F5</kbd>.
-
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
-
-Delete all the records in the database, so the seed method will run. Stop and start the app to seed the database.
-
----
+Delete all the records in the database so the seed method will run. Stop and start the app to seed the database. If the database isn't seeded, put a breakpoint on `if (context.Movie.Any())` and step through the code.
 
 The app shows the seeded data:
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿#region snippet_1
+using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie.Data;
 
 namespace RazorPagesMovie.Models
@@ -55,3 +56,4 @@ namespace RazorPagesMovie.Models
         }
     }
 }
+#endregion
