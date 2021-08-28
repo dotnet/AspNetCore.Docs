@@ -1,25 +1,27 @@
 //#define PROD
 #if PROD
+#region snippet_all
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
 
-var app = builder.Build();
-
-if (app.Environment.IsDevelopment())
+if (builder.Environment.IsDevelopment())
 {
     builder.Services.AddDbContext<RazorPagesMovieContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("RazorPagesMovieContext")));
-    app.UseDeveloperExceptionPage();
+        options.UseSqlite(builder.Configuration.GetConnectionString("RazorPagesMovieContext")));
 }
 else
 {
-    builder.Services.AddDbContext<RazorPagesMovieContext>(options 
-        => options.UseSqlServer(builder.Configuration.GetConnectionString("ProductionMovieContext")));
+    builder.Services.AddDbContext<RazorPagesMovieContext>(options =>
+        options.UseSqlServer(builder.Configuration.GetConnectionString("ProductionMovieContext")));
+}
 
+var app = builder.Build();
+
+if (!app.Environment.IsDevelopment())
+{
     app.UseExceptionHandler("/Error");
     app.UseHsts();
 }
@@ -34,4 +36,5 @@ app.UseAuthorization();
 app.MapRazorPages();
 
 app.Run();
+#endregion
 #endif
