@@ -43,7 +43,7 @@ app.Run();
 #else
 #region snippet_all_sl
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+using RazorPagesMovie.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

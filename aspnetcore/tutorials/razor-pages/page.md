@@ -212,7 +212,7 @@ For more information on Tag Helpers such as `<form method="post">`, see [Tag Hel
 
 Examine the *Pages/Movies/Index.cshtml.cs* Page Model:
 
-[!code-csharp[](razor-pages-start/snapshot_sample6/Pages/Movies/Index.cshtml.cs?name=snippetFull)]
+[!code-csharp[](razor-pages-start/snapshot_sample6/Pages/Movies/IndexClean.cshtml.cs?name=snippetFull)]
 
 Razor Pages are derived from <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel>. By convention, the `PageModel` derived class is named `PageNameModel`. For example, the Index page is named `IndexModel`.
 
