@@ -699,12 +699,14 @@ The following example shows how the weather forecast in the `FetchData` componen
 ...
 
 @code {
+    private WeatherForecast[] forecasts;
+
     protected override async Task OnInitializedAsync()
     {
         ApplicationState.OnPersisting += PersistForecasts;
 
         if (!ApplicationState
-            .TryTakeAsJson<WeatherForecast[]>("fetchdata", out var forecasts))
+            .TryTakeAsJson<WeatherForecast[]>("fetchdata", out forecasts))
         {
             forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
         }
