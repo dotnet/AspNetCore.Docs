@@ -1,6 +1,6 @@
 //#define PROD
 #if PROD
-#region snippet_all
+#region snippet
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
