@@ -72,7 +72,7 @@ For general ASP.NET Core logging guidance that pertains to Blazor Server, see <x
 
 ::: zone-end
 
-## Log in Razor components
+## Razor component logging
 
 Loggers respect app startup configuration.
 
@@ -156,7 +156,7 @@ For general ASP.NET Core logging guidance that pertains to Blazor Server, see <x
 
 ::: zone-end
 
-## Log in Razor components
+## Razor component logging
 
 Loggers respect app startup configuration.
 
@@ -240,7 +240,7 @@ For general ASP.NET Core logging guidance that pertains to Blazor Server, see <x
 
 ::: zone-end
 
-## Log in Razor components
+## Razor component logging
 
 Loggers respect app startup configuration.
 
