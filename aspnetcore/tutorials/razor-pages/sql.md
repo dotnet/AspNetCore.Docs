@@ -421,21 +421,21 @@ if (context.Movie.Any())
 
 ### Add the seed initializer
 
-Replace the contents of the *Program.cs* with the following code:
+Update the *Program.cs* with the following highlighted code:
 
 # [Visual Studio](#tab/visual-studio)
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/ProgramSeed.cs?name=snippet_all&highlight=9-10)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/ProgramSeed.cs?name=snippet_all&highlight=14-27)]
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/ProgramSeed.cs?name=snippet_all_sl&highlight=9-10)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/ProgramSeed.cs?name=snippet_all_sl&highlight=14-27)]
 
 ---
 
-In the previous code, the `Main` method has been modified to do the following:
+In the previous code, *Program.cs* has been modified to do the following:
 
-* Get a database context instance from the dependency injection container.
+* Get a database context instance from the dependency injection (DI) container.
 * Call the `seedData.Initialize` method, passing to it the database context instance.
 * Dispose the context when the seed method completes. The [using statement](/dotnet/csharp/language-reference/keywords/using-statement) ensures the context is disposed.
 

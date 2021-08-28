@@ -12,6 +12,11 @@ namespace RazorPagesMovie.Models
                 serviceProvider.GetRequiredService<
                     DbContextOptions<RazorPagesMovieContext>>()))
             {
+                if (context == null || context.Movie == null)
+                {
+                    throw new ArgumentNullException("Null RazorPagesMovieContext");
+                }
+
                 // Look for any movies.
                 if (context.Movie.Any())
                 {
