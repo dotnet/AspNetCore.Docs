@@ -29,7 +29,10 @@ To create a new Blazor WebAssembly project with an authentication mechanism:
 
 1. Choose the **Blazor WebAssembly App** template. Select **Next**.
 
-1. Provide a **Project name** and confirm that the **Location** is correct. Select **Next**.
+1. Provide a **Project name** without using dashes (see the following WARNING). Confirm that the **Location** is correct. Select **Next**.
+
+   > [!WARNING]
+   > **Avoid using dashes (`-`) in the project name that break the formation of the OIDC app identifier.** Logic in the Blazor WebAssembly project template uses the project name for an OIDC app identifier in the solution's configuration. Pascal case (`BlazorSample`) or underscores (`Blazor_Sample`) are acceptable alternatives. For more information, see [Dashes in a hosted Blazor WebAssembly project name break OIDC security (dotnet/aspnetcore #35337)](https://github.com/dotnet/aspnetcore/issues/35337).
 
 1. In the **Additional information** dialog, select **Individual Accounts** as the **Authentication Type** to store users within the app using ASP.NET Core's [Identity](xref:security/authentication/identity) system.
 
@@ -47,7 +50,7 @@ dotnet new blazorwasm -au Individual -ho -o {APP NAME}
 | ------------ | -------------- |
 | `{APP NAME}` | `BlazorSample` |
 
-The output location specified with the `-o|--output` option creates a project folder if it doesn't exist and becomes part of the app's name.
+The output location specified with the `-o|--output` option creates a project folder if it doesn't exist and becomes part of the app's name. **Avoid using dashes (`-`) in the app name that break the formation of the OIDC app identifier (see the earlier WARNING).**
 
 For more information, see the [`dotnet new`](/dotnet/core/tools/dotnet-new) command in the .NET Core Guide.
 
@@ -597,7 +600,10 @@ To create a new Blazor WebAssembly project with an authentication mechanism:
 
 1. Choose the **Blazor WebAssembly App** template. Select **Next**.
 
-1. Provide a **Project name** and confirm that the **Location** is correct. Select **Next**.
+1. Provide a **Project name** without using dashes (see the following WARNING). Confirm that the **Location** is correct. Select **Next**.
+
+   > [!WARNING]
+   > **Avoid using dashes (`-`) in the project name that break the formation of the OIDC app identifier.** Logic in the Blazor WebAssembly project template uses the project name for an OIDC app identifier in the solution's configuration. Pascal case (`BlazorSample`) or underscores (`Blazor_Sample`) are acceptable alternatives. For more information, see [Dashes in a hosted Blazor WebAssembly project name break OIDC security (dotnet/aspnetcore #35337)](https://github.com/dotnet/aspnetcore/issues/35337).
 
 1. In the **Additional information** dialog, select **Individual Accounts** as the **Authentication Type** to store users within the app using ASP.NET Core's [Identity](xref:security/authentication/identity) system.
 
@@ -615,7 +621,7 @@ dotnet new blazorwasm -au Individual -ho -o {APP NAME}
 | ------------ | -------------- |
 | `{APP NAME}` | `BlazorSample` |
 
-The output location specified with the `-o|--output` option creates a project folder if it doesn't exist and becomes part of the app's name.
+The output location specified with the `-o|--output` option creates a project folder if it doesn't exist and becomes part of the app's name. **Avoid using dashes (`-`) in the app name that break the formation of the OIDC app identifier (see the earlier WARNING).**
 
 For more information, see the [`dotnet new`](/dotnet/core/tools/dotnet-new) command in the .NET Core Guide.
 
@@ -1164,7 +1170,10 @@ To create a new Blazor WebAssembly project with an authentication mechanism:
 
 1. Choose the **Blazor WebAssembly App** template. Select **Next**.
 
-1. Provide a **Project name** and confirm that the **Location** is correct. Select **Next**.
+1. Provide a **Project name** without using dashes (see the following WARNING). Confirm that the **Location** is correct. Select **Next**.
+
+   > [!WARNING]
+   > **Avoid using dashes (`-`) in the project name that break the formation of the OIDC app identifier.** Logic in the Blazor WebAssembly project template uses the project name for an OIDC app identifier in the solution's configuration. Pascal case (`BlazorSample`) or underscores (`Blazor_Sample`) are acceptable alternatives. For more information, see [Dashes in a hosted Blazor WebAssembly project name break OIDC security (dotnet/aspnetcore #35337)](https://github.com/dotnet/aspnetcore/issues/35337).
 
 1. In the **Additional information** dialog, select **Individual Accounts** as the **Authentication Type** to store users within the app using ASP.NET Core's [Identity](xref:security/authentication/identity) system.
 
@@ -1182,7 +1191,7 @@ dotnet new blazorwasm -au Individual -ho -o {APP NAME}
 | ------------ | -------------- |
 | `{APP NAME}` | `BlazorSample` |
 
-The output location specified with the `-o|--output` option creates a project folder if it doesn't exist and becomes part of the app's name.
+The output location specified with the `-o|--output` option creates a project folder if it doesn't exist and becomes part of the app's name. **Avoid using dashes (`-`) in the app name that break the formation of the OIDC app identifier (see the earlier WARNING).**
 
 For more information, see the [`dotnet new`](/dotnet/core/tools/dotnet-new) command in the .NET Core Guide.
 
