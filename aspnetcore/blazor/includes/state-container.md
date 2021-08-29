@@ -78,14 +78,14 @@ services.AddScoped<StateContainer>();
 }
 ```
 
-`Pages/StateContainer.razor`:
+`Pages/StateContainerExample.razor`:
 
 ```razor
-@page "/state-container"
+@page "/state-container-example"
 @implements IDisposable
 @inject StateContainer StateContainer
 
-<h1>State Container component</h1>
+<h1>State Container Example component</h1>
 
 <p>State Container component Property: <b>@StateContainer.Property</b></p>
 
