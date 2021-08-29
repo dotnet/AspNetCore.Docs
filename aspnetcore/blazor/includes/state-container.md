@@ -105,9 +105,8 @@ services.AddScoped<StateContainer>();
 
     private void ChangePropertyValue()
     {
-        StateContainer.Property = 
-            "New value set in the State Container Example " +
-            $"component: {DateTime.Now}";
+        StateContainer.Property = "New value set in the State " +
+            $"Container Example component: {DateTime.Now}";
     }
 
     public void Dispose()
