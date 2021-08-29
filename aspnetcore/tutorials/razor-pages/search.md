@@ -18,7 +18,7 @@ In the following sections, searching movies by *genre* or *name* is added.
 
 Add the following highlighted code to *Pages/Movies/Index.cshtml.cs*:
 
-[!code-csharp[](razor-pages-start/sample/RazorPagesMovie60/Pages/Movies/Index.cshtml.cs?name=snippet_newProps&highlight=3,23,24,25,26,27)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie60/Pages/Movies/Index.cshtml.cs?name=snippet_newProps&highlight=3,22-27)]
 
 In the previous code:
 
@@ -86,7 +86,6 @@ Save the changes and test the filter.
 
 ![Index view with the word ghost typed into the Title filter textbox](search/_static/filter.png)
 
-zz
 ## Search by genre
 
 Update the Index page's `OnGetAsync` method with the following code:
@@ -115,8 +114,6 @@ Update the *Index.cshtml* [`<form>` element](https://developer.mozilla.org/docs/
 [!code-cshtml[](razor-pages-start/snapshot_sample6/Pages/Movies/IndexFormGenreNoRating.cshtml?highlight=14-19&range=1-22)]
 
 Test the app by searching by genre, by movie title, and by both.
-
-## Additional resources
 
 > [!div class="step-by-step"]
 > [Previous: Update the pages](xref:tutorials/razor-pages/da1)
