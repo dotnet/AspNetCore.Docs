@@ -84,7 +84,7 @@ The HTML `<form>` tag uses the following [Tag Helpers](xref:mvc/views/tag-helper
 
 Save the changes and test the filter.
 
-![Index view with the word ghost typed into the Title filter textbox](search/_static/filter.png)
+![Index view with the word ghost typed into the Title filter textbox](search/_static/filter2.png)
 
 ## Search by genre
 
@@ -193,7 +193,7 @@ The HTML `<form>` tag uses the following [Tag Helpers](xref:mvc/views/tag-helper
 
 Save the changes and test the filter.
 
-![Index view with the word ghost typed into the Title filter textbox](search/_static/filter.png)
+![Index view with the word ghost typed into the Title filter textbox](search/_static/filter2.png)
 
 ## Search by genre
 
