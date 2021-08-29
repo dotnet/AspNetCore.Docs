@@ -12,7 +12,6 @@ using System.Threading.Tasks;
 
 namespace RazorPagesMovie.Pages.Movies
 {
-
     public class IndexModel : PageModel
     {
         private readonly RazorPagesMovie.Data.RazorPagesMovieContext _context;
@@ -59,7 +58,6 @@ using System.Threading.Tasks;
 
 namespace RazorPagesMovie.Pages.Movies
 {
-
     public class IndexModel : PageModel
     {
         private readonly RazorPagesMovie.Data.RazorPagesMovieContext _context;
