@@ -1,7 +1,7 @@
 ---
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 ---
-Nested components typically bind data using *chained bind* as described in <xref:blazor/components/data-binding>. Nested and un-nested components can share access to data using a registered in-memory state container. A custom state container class can use an assignable <xref:System.Action> to notify components in different parts of the app of state changes. In the following example:
+Nested components typically bind data using *chained bind* as described in <xref:blazor/components/data-binding>. Nested and unnested components can share access to data using a registered in-memory state container. A custom state container class can use an assignable <xref:System.Action> to notify components in different parts of the app of state changes. In the following example:
 
 * A pair of components uses a state container to track a property.
 * One component in the following example is nested in the other component, but nesting isn't required for this approach to work.
@@ -78,20 +78,20 @@ services.AddScoped<StateContainer>();
 }
 ```
 
-`Pages/StateContainer.razor`:
+`Pages/StateContainerExample.razor`:
 
 ```razor
-@page "/state-container"
+@page "/state-container-example"
 @implements IDisposable
 @inject StateContainer StateContainer
 
-<h1>State Container component</h1>
+<h1>State Container Example component</h1>
 
 <p>State Container component Property: <b>@StateContainer.Property</b></p>
 
 <p>
     <button @onclick="ChangePropertyValue">
-        Change the Property from the State Container component
+        Change the Property from the State Container Example component
     </button>
 </p>
 
@@ -105,8 +105,8 @@ services.AddScoped<StateContainer>();
 
     private void ChangePropertyValue()
     {
-        StateContainer.Property = 
-            $"New value set in the State Container component: {DateTime.Now}";
+        StateContainer.Property = "New value set in the State " +
+            $"Container Example component: {DateTime.Now}";
     }
 
     public void Dispose()
