@@ -28,11 +28,11 @@ The following feature interfaces are from <xref:Microsoft.AspNetCore.Http.Featur
 
 <xref:Microsoft.AspNetCore.Http.Features.IHttpRequestFeature>: Defines the structure of an HTTP request, including the protocol, path, query string, headers, and body. This feature is required in order to process requests.
 
-<xref:Microsoft.AspNetCore.Http.Features.IHttpResponseFeature>: Defines the structure of an HTTP response, including the status code, headers, and body of the response. This feature is required in order to process requests.
+<xref:Microsoft.AspNetCore.Http.Features.IHttpResponseFeature>: Defines the structure of an HTTP response, including the status code, headers, and body of the response. This feature is required in order to process response.
 
 ::: moniker range=">= aspnetcore-3.0"
 
-<xref:Microsoft.AspNetCore.Http.Features.IHttpResponseBodyFeature>: Defines different ways of writing out the response body, using either a `Stream`, a `PipeWriter`, or a file. This feature is required in order to process requests. This replaces `IHttpResponseFeature.Body` and `IHttpSendFileFeature`.
+<xref:Microsoft.AspNetCore.Http.Features.IHttpResponseBodyFeature>: Defines different ways of writing out the response body, using either a `Stream`, a `PipeWriter`, or a file. This feature is required in order to process responses. This replaces `IHttpResponseFeature.Body` and `IHttpSendFileFeature`.
 
 ::: moniker-end
 
