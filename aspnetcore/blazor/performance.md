@@ -14,7 +14,7 @@ zone_pivot_groups: blazor-hosting-models
 
 ::: zone pivot="server"
 
-<!-- Blazor Server pivot without content to avoid doc build system error. -->
+<!-- DO NOT DELETE: Blazor Server pivot without content to avoid doc build system error. -->
 
 ::: zone-end
 
@@ -24,59 +24,63 @@ Blazor is carefully designed and optimized to enable high performance in most re
 
 ## Optimize rendering speed
 
-The following sections provide recommendations to minimize rendering workload and improve UI responsiveness. Following this advice could easily make a *ten-fold or higher improvement* in UI rendering speeds.
+The following sections provide recommendations to minimize rendering workload and improve UI responsiveness. Following this advice could easily make a *ten-fold or higher improvement* in UI rendering speed.
 
 ### Avoid unnecessary rendering of component subtrees
 
-At runtime, components exist as a hierarchy. A root component has child components. In turn, the root's children have their own child components, and so on. When an event occurs, such as a user selecting a button, this is how Blazor decides which components to rerender:
+You might able to remove the majority of a parent component's rendering cost by skipping the rerendering of whole child component subtrees when an event occurs. You should only be concerned about skipping the rerendering subtrees if those subtrees are particularly expensive to render and are causing UI lag.
+
+At runtime, components exist in a hierarchy. A root component has child components. In turn, the root's children have their own child components, and so on. When an event occurs, such as a user selecting a button, the following process determines which components to rerender:
 
 1. The event itself is dispatched to whichever component rendered the event's handler. After executing the event handler, that component is rerendered.
 1. Whenever any component is rerendered, it supplies a new copy of the parameter values to each of its child components.
-1. When receiving a new set of parameter values, each component chooses whether to rerender. By default, components rerender if the parameter values may have changed (for example, if they are mutable objects).
+1. When receiving a new set of parameter values, each component decides whether to rerender. By default, components rerender if the parameter values may have changed (for example, if they are mutable objects).
 
-The last two steps of this sequence continue recursively down the component hierarchy. In many cases, the entire subtree is rerendered. This means that events targeting high-level components can cause expensive rerendering processes because everything below that point must be rerendered.
+The last two steps of the preceding sequence continue recursively down the component hierarchy. In many cases, the entire subtree is rerendered. Events targeting high-level components can cause expensive rerendering processes because everything below that point must be rerendered.
 
 If you want to interrupt this process and prevent rendering recursion into a particular subtree, then you can either:
 
 * Ensure that all parameters to a certain component are of primitive immutable types (for example, `string`, `int`, `bool`, `DateTime`, and others). The built-in logic for detecting changes automatically skips rerendering if none of these parameter values have changed. If you render a child component with `<Customer CustomerId="@item.CustomerId" />`, where `CustomerId` is an `int` value, then it isn't rerendered except when `item.CustomerId` changes.
-* If you need to accept nonprimitive parameter values, such as custom model types, event callbacks, or <xref:Microsoft.AspNetCore.Components.RenderFragment> values or if authoring a UI-only component that doesn't change after the initial render (regardless of any parameter values), override <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> to control the decision about whether to render. The following example uses private fields to track the necessary information to detect changes. The value of `shouldRender` is based on checking for any kind of change or mutation that should prompt a rerender. `prevOutboundFlightId` and `prevInboundFlightId` track information for the next potential update:
+* If you need to accept nonprimitive parameter values, such as complex custom model types, event callbacks, or <xref:Microsoft.AspNetCore.Components.RenderFragment> values or if authoring a UI-only component that doesn't change after the initial render (regardless of any parameter values), override <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> to control the decision about whether to render.
 
-  ```razor
-  @code {
-      [Parameter]
-      public FlightInfo OutboundFlight { get; set; }
+The following airline flight search tool example uses private fields to track the necessary information to detect changes. The value of `shouldRender` is based on checking for any kind of change or mutation that should prompt a rerender. The previous outbound flight identifier (`prevOutboundFlightId`) and previous inbound flight identifier (`prevInboundFlightId`) track information for the next potential component update. If either of the flight identifiers change when the component's parameters are set in [`OnParametersSet`](xref:blazor/components/lifecycle#after-parameters-are-set-onparameterssetasync), the component is rerendered because `shouldRender` is set to `true`:
 
-      [Parameter]
-      public FlightInfo InboundFlight { get; set; }
+```razor
+@code {
+    private int prevInboundFlightId;
+    private int prevOutboundFlightId;
+    private bool shouldRender;
 
-      private int prevOutboundFlightId;
-      private int prevInboundFlightId;
-      private bool shouldRender;
+    [Parameter]
+    public FlightInfo InboundFlight { get; set; }
 
-      protected override void OnParametersSet()
-      {
-          shouldRender = OutboundFlight.FlightId != prevOutboundFlightId
-              || InboundFlight.FlightId != prevInboundFlightId;
+    [Parameter]
+    public FlightInfo OutboundFlight { get; set; }
 
-          prevOutboundFlightId = OutboundFlight.FlightId;
-          prevInboundFlightId = InboundFlight.FlightId;
-      }
+    protected override void OnParametersSet()
+    {
+        shouldRender = InboundFlight.FlightId != prevInboundFlightId
+            || OutboundFlight.FlightId != prevOutboundFlightId;
 
-     protected override bool ShouldRender() => shouldRender;
-  }
-  ```
+        prevInboundFlightId = InboundFlight.FlightId;
+        prevOutboundFlightId = OutboundFlight.FlightId;
+    }
 
-  In the preceding example, an event handler may also set `shouldRender` to `true` so that the component is rerendered after the event. For most components, this level of manual control isn't necessary. You should only be concerned about skipping rendering subtrees if those subtrees are particularly expensive to render and are causing UI lag. For more information, see <xref:blazor/components/lifecycle>.
+    protected override bool ShouldRender() => shouldRender;
+}
+```
 
-  For general information on `ShouldRender`, see <xref:blazor/components/rendering#suppress-ui-refreshing-shouldrender>.
+An event handler may also decide to set `shouldRender` to `true`. For most components, determining rerendering at the level of individual event handlers isn't necessary.
 
-By skipping rerendering of whole subtrees, you may be able to remove the vast majority of the rendering cost when an event occurs.
+For more information, see the following resources:
 
-You may wish to factor out child components specifically so that you can skip rerendering that part of the UI. This is a valid way to reduce the rendering cost of a parent component.
+* <xref:blazor/components/lifecycle>
+* <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A>
+* <xref:blazor/components/rendering#suppress-ui-refreshing-shouldrender>
 
 ### Virtualization
 
-When rendering large amounts of UI within a loop, for example a list or grid with thousands of entries, the sheer quantity of rendering operations can lead to a lag in UI rendering and thus a poor user experience. Given that the user can only see a small number of elements at once without scrolling, it seems wasteful to spend so much time rendering elements that aren't currently visible.
+When rendering large amounts of UI within a loop, for example a list or grid with thousands of entries, the sheer quantity of rendering operations can lead to a lag in UI rendering and thus a poor user experience. Given that the user can only see a small number of elements at once without scrolling, it's often wasteful to spend so much time rendering elements that aren't currently visible.
 
 To address this, Blazor provides the `Virtualize` component that creates the appearance and scroll behaviors of an arbitrarily-large list but only renders the list items that are within the current scroll viewport. For example, this means that the app can have a list with 100,000 entries but only pay the rendering cost of 20 items that are visible at any one time. Use of the `Virtualize` component can scale up UI performance by orders of magnitude.
 
@@ -84,26 +88,25 @@ For more information, see <xref:blazor/components/virtualization>.
 
 ### Create lightweight, optimized components
 
-Most Blazor components don't require aggressive optimization efforts. This is because most components don't often repeat in the UI and don't rerender at high frequency. For example, `@page` components and components representing high-level UI pieces such as dialogs or forms, most likely appear only one at a time and only rerender in response to a user gesture. These components don't create a high rendering workload, so you can freely use any combination of framework features you want without worrying much about rendering performance.
+Most Blazor components don't require aggressive optimization efforts because most components don't repeat in the UI and don't rerender at high frequency. For example, routable components with an `@page` directive and components representing high-level UI pieces, such as dialogs or forms, most likely appear only one at a time and only rerender in response to a user gesture. These components don't create a high rendering workload, so you can freely use any combination of framework features you want without worrying much about rendering performance.
 
-However, there are also common scenarios where you build components that need to be repeated at scale. For example:
+However, there are common scenarios where components are repeated at scale and result in poor UI performance:
 
-* Large nested forms may have hundreds of individual inputs, labels, and other elements.
-* Grids may have thousands of cells.
-* Scatter plots may have millions of data points.
+* Large nested forms with hundreds of individual elements, such as inputs or labels.
+* Grids with thousands of cells.
+* Scatter plots with millions of data points.
 
-If modelling each unit as separate component instances, there will be so many of them that their rendering performance does become critical. This section provides advice on making such components lightweight so that the UI remains fast and responsive.
+If modelling each element, cell, or data point as a separate component instance, there are often so many of them that their rendering performance becomes critical. This section provides advice on making such components lightweight so that the UI remains fast and responsive.
 
 #### Avoid thousands of component instances
 
-Each component is a separate island that can render independently of its parents and children. By choosing how to split up the UI into a hierarchy of components, you are taking control over the granularity of UI rendering. This can be either good or bad for performance.
+Each component is a separate island that can render independently of its parents and children. By choosing how to split up the UI into a hierarchy of components, you are taking control over the granularity of UI rendering. This can result in either good or poor performance.
 
-* By splitting the UI into more components, you can have smaller portions of the UI rerender when events occur. For example when a user clicks a button in a table row, you may be able to have only that single row rerender instead of the whole page or table.
-* However, each extra component involves some extra memory and CPU overhead to deal with its independent state and rendering lifecycle.
+By splitting the UI into separate components, you can have smaller portions of the UI rerender when events occur. In a table with many rows where a user clicks a button in a row, you may be able to have only that single row rerender instead of the whole page or table. However, each component requires additional memory and CPU overhead to deal with its independent state and rendering lifecycle.
 
 In a test performed by the ASP.NET Core product unit engineers, a rendering overhead of around 0.06 ms per component instance was seen in a Blazor WebAssembly app. The test app rendered a simple component that accepts three parameters. Internally, the overhead is largely due to retrieving per-component state from dictionaries and passing and receiving parameters. By multiplication, you can see that adding 2,000 extra component instances would add 0.12 seconds to the rendering time and the UI would begin feeling slow to users.
 
-It's possible to make components more lightweight so that you can have more of them, but often the more powerful technique is not to have so many components. The following sections describe two approaches.
+It's possible to make components more lightweight so that you can have more of them. However, a more powerful technique is often to avoid having so many components to render. The following sections describe two approaches that you can take.
 
 ##### Inline child components into their parents
 
@@ -118,7 +121,7 @@ Consider the following component that renders a sequence of child components:
 </div>
 ```
 
-For the preceding example code, the `<ChatMessageDisplay>` component is defined in a file `ChatMessageDisplay.razor` containing:
+`Shared/ChatMessageDisplay.razor`: 
 
 ```razor
 <div class="chat-message">
@@ -146,32 +149,32 @@ The preceding example works fine and performs well as long as thousands of messa
 </div>
 ```
 
-This avoids the per-component overhead of rendering so many child components at the cost of not being able to rerender each of them independently.
+The preceding approach avoids the per-component overhead of rendering so many child components at the cost of not being able to rerender each of them independently.
 
 ##### Define reusable `RenderFragments` in code
 
-You may be factoring out child components purely as a way of reusing rendering logic. If that's the case, it's still possible to reuse rendering logic without declaring actual components. In any component's `@code` block, you can define a <xref:Microsoft.AspNetCore.Components.RenderFragment> that emits UI and can be called from anywhere:
+You might be factoring out child components purely as a way of reusing rendering logic. If that's the case, it's still possible to reuse rendering logic without declaring actual components. In any component's `@code` block, you can define a <xref:Microsoft.AspNetCore.Components.RenderFragment> that emits UI and can be called from anywhere:
 
 ```razor
 <h1>Hello, world!</h1>
 
 @RenderWelcomeInfo
 
+<p>Render a second time:</p>
+
+@RenderWelcomeInfo
+
 @code {
     private RenderFragment RenderWelcomeInfo = __builder =>
     {
-        <div>
-            <p>Welcome to your new app!</p>
-
-            <SurveyPrompt Title="How is Blazor working for you?" />
-        </div>
+        <p>Welcome to your new app!</p>
     };
 }
 ```
 
-As demonstrated in the preceding example, components can emit markup from code within their `@code` block and outside it. This approach defines a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate that you can render inside the component's normal render output, optionally in multiple places. It's necessary for the delegate to accept a parameter called `__builder` of type <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> so that the Razor compiler can produce rendering instructions for it.
+As demonstrated in the preceding example, components can emit markup from code within their `@code` blocks and outside of them. This approach defines a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate that you can render inside the component's normal render output, optionally in multiple places. It's necessary for the delegate to accept a parameter called `__builder` of type <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> so that the Razor compiler can produce rendering instructions for it.
 
-If you want to make this reusable across multiple components, consider declaring it as a `public static` member:
+If you want to make <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> code reusable across multiple components, declare the member as `public` and `static`:
 
 ```razor
 public static RenderFragment SayHello = __builder =>
@@ -180,9 +183,9 @@ public static RenderFragment SayHello = __builder =>
 };
 ```
 
-This could now be invoked from an unrelated component. This technique is useful for building libraries of reusable markup snippets that render without any per-component overhead.
+`SayHello` in the preceding example can be invoked from an unrelated component. This technique is useful for building libraries of reusable markup snippets that render without any per-component overhead.
 
-<xref:Microsoft.AspNetCore.Components.RenderFragment> delegates can also accept parameters. To create the equivalent of the `ChatMessageDisplay` component from the earlier example:
+<xref:Microsoft.AspNetCore.Components.RenderFragment> delegates can also accept parameters. The following component passes the message (`message`) to the <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate:
 
 ```razor
 <div class="chat">
@@ -203,7 +206,7 @@ This could now be invoked from an unrelated component. This technique is useful 
 }
 ```
 
-This approach provides the benefit of reusing rendering logic without per-component overhead. However, it doesn't have the benefit of being able to refresh its subtree of the UI independently, nor does it have the ability to skip rendering that subtree of the UI when its parent renders, since there's no component boundary.
+The preceding approach provides the benefit of reusing rendering logic without per-component overhead. However, it doesn't have the benefit of being able to refresh its subtree of the UI independently, nor does it have the ability to skip rendering that subtree of the UI when its parent renders because there's no component boundary.
 
 For a non-static field, method, or property that can't be referenced by a field initializer, such as `TitleTemplate` in the following example, use a property instead of a field for the <xref:Microsoft.AspNetCore.Components.RenderFragment>:
 
@@ -212,17 +215,17 @@ protected RenderFragment DisplayTitle => __builder =>
 {
     <div>
         @TitleTemplate
-    </div>   
+    </div>
 };
 ```
 
 #### Don't receive too many parameters
 
-If a component repeats extremely often, for example hundreds or thousands of times, then bear in mind that the overhead of passing and receiving each parameter builds up.
+If a component repeats extremely often, for example hundreds or thousands of times, the overhead of passing and receiving each parameter builds up.
 
-It's rare that too many parameters severely restricts performance, but it can be a factor. For a `<TableCell>` component that renders 1,000 times within a grid, each extra parameter passed to it could add around 15 ms to the total rendering cost. If each cell accepted 10 parameters, parameter passing takes around 150 ms per component render and thus perhaps 150,000 ms (150 seconds) and on its own cause a lag in UI rendering.
+It's rare that too many parameters severely restricts performance, but it can be a factor. For a `TableCell` component that renders 1,000 times within a grid, each extra parameter passed to the component could add around 15 ms to the total rendering cost. If each cell accepted 10 parameters, parameter passing would take around 150 ms per component for a total rendering cost of 150,000 ms (150 seconds) and cause a lag in UI rendering.
 
-To reduce this load, you could bundle together multiple parameters via custom classes. For example, a `<TableCell>` component might accept:
+To reduce this load, you could bundle together multiple parameters via custom classes. For example, a table cell component might accept a common object:
 
 ```razor
 @typeparam TItem
@@ -238,9 +241,9 @@ To reduce this load, you could bundle together multiple parameters via custom cl
 }
 ```
 
-In the preceding example, `Data` is different for every cell, but `Options` is common across all of them. Of course, it might be an improvement not to have a `<TableCell>` component and instead inline its logic into the parent component.
+In the preceding example, `Data` is different for every cell, but `Options` is common across all of them. However, it might be an improvement not to have a `TableCell` component and instead inline its logic into the parent component.
 
-For more information on generic type parameters (`@typeparam`), see the following articles:
+For more information on generic type parameters (`@typeparam`), see the following resources:
 
 * <xref:mvc/views/razor#typeparam>
 * <xref:blazor/components/index#generic-type-parameter-support>
@@ -248,12 +251,12 @@ For more information on generic type parameters (`@typeparam`), see the followin
 
 #### Ensure cascading parameters are fixed
 
-The `<CascadingValue>` component has an optional parameter called `IsFixed`.
+The [`CascadingValue` component](xref:blazor/components/cascading-values-and-parameters#cascadingvalue-component) has an optional `IsFixed` parameter:
 
 * If the `IsFixed` value is `false` (the default), then every recipient of the cascaded value sets up a subscription to receive change notifications. In this case, each `[CascadingParameter]` is **substantially more expensive** than a regular `[Parameter]` due to the subscription tracking.
-* If the `IsFixed` value is `true` (for example, `<CascadingValue Value="@someValue" IsFixed="true">`), then recipients receive the initial value but do *not* set up any subscription to receive updates. In this case, each `[CascadingParameter]` is lightweight and **no more expensive** than a regular `[Parameter]`.
+* If the `IsFixed` value is `true` (for example, `<CascadingValue Value="@someValue" IsFixed="true">`), then recipients receive the initial value but do *not* set up a subscription to receive updates. In this case, each `[CascadingParameter]` is lightweight and **no more expensive** than a regular `[Parameter]`.
 
-So wherever possible, you should use `IsFixed="true"` on cascaded values. You can do this whenever the value being supplied doesn't change over time. In the common pattern where a component passes `this` as a cascaded value, you should use `IsFixed="true"`:
+Wherever possible, set `IsFixed` to `true` on cascaded values. You can do this whenever the value being supplied doesn't change over time. Where a component passes `this` as a cascaded value, also set `IsFixed` to `true`:
 
 ```razor
 <CascadingValue Value="this" IsFixed="true">
@@ -261,7 +264,7 @@ So wherever possible, you should use `IsFixed="true"` on cascaded values. You ca
 </CascadingValue>
 ```
 
-This makes a huge difference if there are a large number of other components that receive the cascaded value. For more information, see <xref:blazor/components/cascading-values-and-parameters>.
+Setting `IsFixed` to `true` improves performance if there are a large number of other components that receive the cascaded value. For more information, see <xref:blazor/components/cascading-values-and-parameters>.
 
 #### Avoid attribute splatting with `CaptureUnmatchedValues`
 
@@ -281,21 +284,21 @@ This approach allows passing through arbitrary additional attributes to the elem
 * Match all of the supplied parameters against the set of known parameters to build a dictionary.
 * Keep track of how multiple copies of the same attribute overwrite each other.
 
-Feel free to use <xref:Microsoft.AspNetCore.Components.ParameterAttribute.CaptureUnmatchedValues> on non-performance-critical components, such as ones that are not repeated frequently. However for components that render at scale, such as each items in a large list or cells in a grid, try to avoid attribute splatting.
+Use <xref:Microsoft.AspNetCore.Components.ParameterAttribute.CaptureUnmatchedValues> on non-performance-critical components, such as components that aren't repeated frequently. For components that render at scale, such as each item in a large list or in the cells of a grid, try to avoid attribute splatting.
 
 For more information, see <xref:blazor/components/index#attribute-splatting-and-arbitrary-parameters>.
 
 #### Implement `SetParametersAsync` manually
 
-One of the main aspects of the per-component rendering overhead is writing incoming parameter values to the `[Parameter]` properties. The renderer has to use reflection to do this.
+One of the main aspects of the per-component rendering overhead is writing incoming parameter values to `[Parameter]` properties. The renderer uses reflection to write the parameter values, which can lead to poor performance at scale.
 
 In some extreme cases, you may wish to avoid the reflection and implement your own parameter setting logic manually. This may be applicable when:
 
-* You have a component that renders extremely often (for example, there are hundreds or thousands of copies of it in the UI).
-* It accepts many parameters.
+* A component that renders extremely often, for example, when there are hundreds or thousands of copies of it in the UI.
+* A component accepts many parameters.
 * You find that the overhead of receiving parameters has an observable impact on UI responsiveness.
 
-In these cases, you can override the component's virtual <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> method and implement your own component-specific logic. The following example deliberately avoids any dictionary lookups:
+In extreme cases, you can override the component's virtual <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> method and implement your own component-specific logic. The following example deliberately avoids dictionary lookups:
 
 ```razor
 @code {
@@ -347,7 +350,7 @@ As you can see in the preceding code, overriding <xref:Microsoft.AspNetCore.Comp
 
 Some browser events fire extremely frequently, for example `onmousemove` and `onscroll`, which can fire tens or hundreds of times per second. In most cases, you don't need to perform UI updates this frequently. If you try to do so, you may harm UI responsiveness or consume excessive CPU time.
 
-Rather than using native `@onmousemove` or `@onscroll` events, you may prefer to use JS interop to register a callback that fires less frequently. For example, the following component (`MyComponent.razor`) displays the position of the mouse but only updates at most once every 500 ms:
+Rather than using native `@onmousemove` or `@onscroll` events, you may prefer to use JS interop to register a callback that fires less frequently. For example, the following component displays the position of the mouse but only updates at most once every 500 ms:
 
 ```razor
 @inject IJSRuntime JS
@@ -355,13 +358,13 @@ Rather than using native `@onmousemove` or `@onscroll` events, you may prefer to
 
 <h1>@message</h1>
 
-<div @ref="myMouseMoveElement" style="border:1px dashed red;height:200px;">
+<div @ref="mouseMoveElement" style="border:1px dashed red;height:200px;">
     Move mouse here
 </div>
 
 @code {
-    ElementReference myMouseMoveElement;
-    DotNetObjectReference<MyComponent> selfReference;
+    private ElementReference mouseMoveElement;
+    private DotNetObjectReference<MyComponent> selfReference;
     private string message = "Move the mouse in the box";
 
     [JSInvokable]
@@ -376,9 +379,9 @@ Rather than using native `@onmousemove` or `@onscroll` events, you may prefer to
         if (firstRender)
         {
             selfReference = DotNetObjectReference.Create(this);
-            var minInterval = 500; // Only notify every 500 ms
+            var minInterval = 500;
             await JS.InvokeVoidAsync("onThrottledMouseMove", 
-                myMouseMoveElement, selfReference, minInterval);
+                mouseMoveElement, selfReference, minInterval);
         }
     }
 
@@ -386,7 +389,7 @@ Rather than using native `@onmousemove` or `@onscroll` events, you may prefer to
 }
 ```
 
-The corresponding JavaScript code, which can be placed in the `index.html` page or loaded as an ES6 module, registers the actual DOM event listener. In this example, the event listener uses [Lodash's `throttle` function](https://lodash.com/docs/4.17.15#throttle) to limit the rate of invocations:
+The corresponding JavaScript code registers the actual DOM event listener. In this example, the event listener uses [Lodash's `throttle` function](https://lodash.com/docs/4.17.15#throttle) to limit the rate of invocations:
 
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js"></script>
@@ -438,7 +441,7 @@ In the following example, no event handler added to the component triggers a rer
 }
 ```
 
-In addition to preventing rerenders after all event handlers in a component, it's possible to prevent rerenders after a single event handler by employing the following utility method.
+In addition to preventing rerenders after event handlers fire in a component in a global fashion, it's possible to prevent rerenders after a single event handler by employing the following utility method.
 
 Add the following `EventUntil` class to a Blazor app. The static actions and functions at the top of the `EventUtil` class provide handlers that cover several combinations of arguments and return types that Blazor uses when handling events.
 
@@ -559,7 +562,7 @@ private async Task StoreAllInLocalStorage(IEnumerable<TodoItem> items)
 }
 ```
 
-The corresponding JavaScript function defined as follows:
+The corresponding JavaScript function stores the whole collection of items on the client:
 
 ```javascript
 function storeAllInLocalStorage(items) {
@@ -569,17 +572,17 @@ function storeAllInLocalStorage(items) {
 }
 ```
 
-For Blazor WebAssembly apps, this usually only matters if you're making a large number of JS interop calls.
+For Blazor WebAssembly apps, rolling individual JS interop calls into a single call usually only improves performance significantly if the component makes a large number of JS interop calls.
 
 ::: zone pivot="webassembly"
 
 ### Consider the use of synchronous calls
 
-JavaScript interop calls are asynchronous by default, regardless of whether the code being called is synchronous or asynchronous. This is to ensure components are compatible with both Blazor hosting models. On Blazor Server, all JavaScript interop calls must be asynchronous because they're sent over a network connection.
+JavaScript interop (JS interop) calls are asynchronous by default, regardless of whether the code being called is synchronous or asynchronous. This is to ensure that components are compatible across both Blazor hosting models. On Blazor Server, all JS interop calls must be asynchronous because they're sent over a network connection.
 
-If you know for certain that your app only ever runs on Blazor WebAssembly, you can choose to make synchronous JavaScript interop calls. This has slightly less overhead than making asynchronous calls and can result in fewer render cycles because there is no intermediate state while awaiting results.
+If you know for certain that your app only ever runs on Blazor WebAssembly, you can choose to make synchronous JS interop calls. This has slightly less overhead than making asynchronous calls and can result in fewer render cycles because there's no intermediate state while awaiting results.
 
-To make a synchronous call from .NET to JavaScript, cast <xref:Microsoft.JSInterop.IJSRuntime> to <xref:Microsoft.JSInterop.IJSInProcessRuntime>:
+To make a synchronous call from .NET to JavaScript in a Blazor WebAssembly app, cast <xref:Microsoft.JSInterop.IJSRuntime> to <xref:Microsoft.JSInterop.IJSInProcessRuntime> to make the JS interop call:
 
 ```razor
 @inject IJSRuntime JS
@@ -602,7 +605,7 @@ To make a synchronous call from JavaScript to .NET, use `DotNet.invokeMethod` in
 Synchronous calls work if:
 
 * The app is running on Blazor WebAssembly, not Blazor Server.
-* The called function returns a value synchronously (it isn't an `async` method and doesn't return a .NET <xref:System.Threading.Tasks.Task> or JavaScript `Promise`).
+* The called function returns a value synchronously. The function isn't an `async` method and doesn't return a .NET <xref:System.Threading.Tasks.Task> or JavaScript `Promise`.
 
 For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet>.
 
@@ -615,7 +618,7 @@ When running on Blazor WebAssembly, it's possible to make unmarshalled calls fro
 
 ```javascript
 function jsInteropCall() {
-    return BINDING.js_to_mono_obj("Hello world");
+  return BINDING.js_to_mono_obj("Hello world");
 }
 ```
 
@@ -637,7 +640,7 @@ function jsInteropCall() {
 
 ### Use System.Text.Json
 
-Blazor's JS interop implementation relies on <xref:System.Text.Json>, which is a high-performance JSON serialization library with low memory allocation. Using <xref:System.Text.Json> doesn't result in additional app payload size over adding one or more alternate JSON libraries.
+Blazor's JavaScript interop (JS interop) implementation relies on <xref:System.Text.Json>, which is a high-performance JSON serialization library with low memory allocation. Using <xref:System.Text.Json> doesn't result in additional app payload size over adding one or more alternate JSON libraries.
 
 For migration guidance, see [How to migrate from `Newtonsoft.Json` to `System.Text.Json`](/dotnet/standard/serialization/system-text-json-migrate-from-newtonsoft-how-to).
 
@@ -659,7 +662,7 @@ After an app is deployed, verify that the app serves compressed files. Inspect t
 
 ### Disable unused features
 
-Blazor WebAssembly's runtime includes the following .NET features that can be disabled if the app doesn't require them for a smaller payload size:
+Blazor WebAssembly's runtime includes the following .NET features that can be disabled for a smaller payload size if the app doesn't require them:
 
 * A data file is included to make timezone information correct. If the app doesn't require this feature, consider disabling it by setting the `BlazorEnableTimeZoneSupport` MSBuild property in the app's project file to `false`:
 
@@ -687,59 +690,63 @@ Blazor is carefully designed and optimized to enable high performance in most re
 
 ## Optimize rendering speed
 
-The following sections provide recommendations to minimize rendering workload and improve UI responsiveness. Following this advice could easily make a *ten-fold or higher improvement* in UI rendering speeds.
+The following sections provide recommendations to minimize rendering workload and improve UI responsiveness. Following this advice could easily make a *ten-fold or higher improvement* in UI rendering speed.
 
 ### Avoid unnecessary rendering of component subtrees
 
-At runtime, components exist as a hierarchy. A root component has child components. In turn, the root's children have their own child components, and so on. When an event occurs, such as a user selecting a button, this is how Blazor decides which components to rerender:
+You might able to remove the majority of a parent component's rendering cost by skipping the rerendering of whole child component subtrees when an event occurs. You should only be concerned about skipping the rerendering subtrees if those subtrees are particularly expensive to render and are causing UI lag.
+
+At runtime, components exist in a hierarchy. A root component has child components. In turn, the root's children have their own child components, and so on. When an event occurs, such as a user selecting a button, the following process determines which components to rerender:
 
 1. The event itself is dispatched to whichever component rendered the event's handler. After executing the event handler, that component is rerendered.
 1. Whenever any component is rerendered, it supplies a new copy of the parameter values to each of its child components.
-1. When receiving a new set of parameter values, each component chooses whether to rerender. By default, components rerender if the parameter values may have changed (for example, if they are mutable objects).
+1. When receiving a new set of parameter values, each component decides whether to rerender. By default, components rerender if the parameter values may have changed (for example, if they are mutable objects).
 
-The last two steps of this sequence continue recursively down the component hierarchy. In many cases, the entire subtree is rerendered. This means that events targeting high-level components can cause expensive rerendering processes because everything below that point must be rerendered.
+The last two steps of the preceding sequence continue recursively down the component hierarchy. In many cases, the entire subtree is rerendered. Events targeting high-level components can cause expensive rerendering processes because everything below that point must be rerendered.
 
 If you want to interrupt this process and prevent rendering recursion into a particular subtree, then you can either:
 
 * Ensure that all parameters to a certain component are of primitive immutable types (for example, `string`, `int`, `bool`, `DateTime`, and others). The built-in logic for detecting changes automatically skips rerendering if none of these parameter values have changed. If you render a child component with `<Customer CustomerId="@item.CustomerId" />`, where `CustomerId` is an `int` value, then it isn't rerendered except when `item.CustomerId` changes.
-* If you need to accept nonprimitive parameter values, such as custom model types, event callbacks, or <xref:Microsoft.AspNetCore.Components.RenderFragment> values or if authoring a UI-only component that doesn't change after the initial render (regardless of any parameter values), override <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> to control the decision about whether to render. The following example uses private fields to track the necessary information to detect changes. The value of `shouldRender` is based on checking for any kind of change or mutation that should prompt a rerender. `prevOutboundFlightId` and `prevInboundFlightId` track information for the next potential update:
+* If you need to accept nonprimitive parameter values, such as complex custom model types, event callbacks, or <xref:Microsoft.AspNetCore.Components.RenderFragment> values or if authoring a UI-only component that doesn't change after the initial render (regardless of any parameter values), override <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> to control the decision about whether to render.
 
-  ```razor
-  @code {
-      [Parameter]
-      public FlightInfo OutboundFlight { get; set; }
+The following airline flight search tool example uses private fields to track the necessary information to detect changes. The value of `shouldRender` is based on checking for any kind of change or mutation that should prompt a rerender. The previous outbound flight identifier (`prevOutboundFlightId`) and previous inbound flight identifier (`prevInboundFlightId`) track information for the next potential component update. If either of the flight identifiers change when the component's parameters are set in [`OnParametersSet`](xref:blazor/components/lifecycle#after-parameters-are-set-onparameterssetasync), the component is rerendered because `shouldRender` is set to `true`:
 
-      [Parameter]
-      public FlightInfo InboundFlight { get; set; }
+```razor
+@code {
+    private int prevInboundFlightId;
+    private int prevOutboundFlightId;
+    private bool shouldRender;
 
-      private int prevOutboundFlightId;
-      private int prevInboundFlightId;
-      private bool shouldRender;
+    [Parameter]
+    public FlightInfo InboundFlight { get; set; }
 
-      protected override void OnParametersSet()
-      {
-          shouldRender = OutboundFlight.FlightId != prevOutboundFlightId
-              || InboundFlight.FlightId != prevInboundFlightId;
+    [Parameter]
+    public FlightInfo OutboundFlight { get; set; }
 
-          prevOutboundFlightId = OutboundFlight.FlightId;
-          prevInboundFlightId = InboundFlight.FlightId;
-      }
+    protected override void OnParametersSet()
+    {
+        shouldRender = InboundFlight.FlightId != prevInboundFlightId
+            || OutboundFlight.FlightId != prevOutboundFlightId;
 
-     protected override bool ShouldRender() => shouldRender;
-  }
-  ```
+        prevInboundFlightId = InboundFlight.FlightId;
+        prevOutboundFlightId = OutboundFlight.FlightId;
+    }
 
-  In the preceding example, an event handler may also set `shouldRender` to `true` so that the component is rerendered after the event. For most components, this level of manual control isn't necessary. You should only be concerned about skipping rendering subtrees if those subtrees are particularly expensive to render and are causing UI lag. For more information, see <xref:blazor/components/lifecycle>.
+    protected override bool ShouldRender() => shouldRender;
+}
+```
 
-  For general information on `ShouldRender`, see <xref:blazor/components/rendering#suppress-ui-refreshing-shouldrender>.
+An event handler may also decide to set `shouldRender` to `true`. For most components, determining rerendering at the level of individual event handlers isn't necessary.
 
-By skipping rerendering of whole subtrees, you may be able to remove the vast majority of the rendering cost when an event occurs.
+For more information, see the following resources:
 
-You may wish to factor out child components specifically so that you can skip rerendering that part of the UI. This is a valid way to reduce the rendering cost of a parent component.
+* <xref:blazor/components/lifecycle>
+* <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A>
+* <xref:blazor/components/rendering#suppress-ui-refreshing-shouldrender>
 
 ### Virtualization
 
-When rendering large amounts of UI within a loop, for example a list or grid with thousands of entries, the sheer quantity of rendering operations can lead to a lag in UI rendering and thus a poor user experience. Given that the user can only see a small number of elements at once without scrolling, it seems wasteful to spend so much time rendering elements that aren't currently visible.
+When rendering large amounts of UI within a loop, for example a list or grid with thousands of entries, the sheer quantity of rendering operations can lead to a lag in UI rendering and thus a poor user experience. Given that the user can only see a small number of elements at once without scrolling, it's often wasteful to spend so much time rendering elements that aren't currently visible.
 
 To address this, Blazor provides the `Virtualize` component that creates the appearance and scroll behaviors of an arbitrarily-large list but only renders the list items that are within the current scroll viewport. For example, this means that the app can have a list with 100,000 entries but only pay the rendering cost of 20 items that are visible at any one time. Use of the `Virtualize` component can scale up UI performance by orders of magnitude.
 
@@ -747,26 +754,25 @@ For more information, see <xref:blazor/components/virtualization>.
 
 ### Create lightweight, optimized components
 
-Most Blazor components don't require aggressive optimization efforts. This is because most components don't often repeat in the UI and don't rerender at high frequency. For example, `@page` components and components representing high-level UI pieces such as dialogs or forms, most likely appear only one at a time and only rerender in response to a user gesture. These components don't create a high rendering workload, so you can freely use any combination of framework features you want without worrying much about rendering performance.
+Most Blazor components don't require aggressive optimization efforts because most components don't repeat in the UI and don't rerender at high frequency. For example, routable components with an `@page` directive and components representing high-level UI pieces, such as dialogs or forms, most likely appear only one at a time and only rerender in response to a user gesture. These components don't create a high rendering workload, so you can freely use any combination of framework features you want without worrying much about rendering performance.
 
-However, there are also common scenarios where you build components that need to be repeated at scale. For example:
+However, there are common scenarios where components are repeated at scale and result in poor UI performance:
 
-* Large nested forms may have hundreds of individual inputs, labels, and other elements.
-* Grids may have thousands of cells.
-* Scatter plots may have millions of data points.
+* Large nested forms with hundreds of individual elements, such as inputs or labels.
+* Grids with thousands of cells.
+* Scatter plots with millions of data points.
 
-If modelling each unit as separate component instances, there will be so many of them that their rendering performance does become critical. This section provides advice on making such components lightweight so that the UI remains fast and responsive.
+If modelling each element, cell, or data point as a separate component instance, there are often so many of them that their rendering performance becomes critical. This section provides advice on making such components lightweight so that the UI remains fast and responsive.
 
 #### Avoid thousands of component instances
 
-Each component is a separate island that can render independently of its parents and children. By choosing how to split up the UI into a hierarchy of components, you are taking control over the granularity of UI rendering. This can be either good or bad for performance.
+Each component is a separate island that can render independently of its parents and children. By choosing how to split up the UI into a hierarchy of components, you are taking control over the granularity of UI rendering. This can result in either good or poor performance.
 
-* By splitting the UI into more components, you can have smaller portions of the UI rerender when events occur. For example when a user clicks a button in a table row, you may be able to have only that single row rerender instead of the whole page or table.
-* However, each extra component involves some extra memory and CPU overhead to deal with its independent state and rendering lifecycle.
+By splitting the UI into separate components, you can have smaller portions of the UI rerender when events occur. In a table with many rows where a user clicks a button in a row, you may be able to have only that single row rerender instead of the whole page or table. However, each component requires additional memory and CPU overhead to deal with its independent state and rendering lifecycle.
 
 In a test performed by the ASP.NET Core product unit engineers, a rendering overhead of around 0.06 ms per component instance was seen in a Blazor WebAssembly app. The test app rendered a simple component that accepts three parameters. Internally, the overhead is largely due to retrieving per-component state from dictionaries and passing and receiving parameters. By multiplication, you can see that adding 2,000 extra component instances would add 0.12 seconds to the rendering time and the UI would begin feeling slow to users.
 
-It's possible to make components more lightweight so that you can have more of them, but often the more powerful technique is not to have so many components. The following sections describe two approaches.
+It's possible to make components more lightweight so that you can have more of them. However, a more powerful technique is often to avoid having so many components to render. The following sections describe two approaches that you can take.
 
 ##### Inline child components into their parents
 
@@ -781,7 +787,7 @@ Consider the following component that renders a sequence of child components:
 </div>
 ```
 
-For the preceding example code, the `<ChatMessageDisplay>` component is defined in a file `ChatMessageDisplay.razor` containing:
+`Shared/ChatMessageDisplay.razor`: 
 
 ```razor
 <div class="chat-message">
@@ -809,32 +815,32 @@ The preceding example works fine and performs well as long as thousands of messa
 </div>
 ```
 
-This avoids the per-component overhead of rendering so many child components at the cost of not being able to rerender each of them independently.
+The preceding approach avoids the per-component overhead of rendering so many child components at the cost of not being able to rerender each of them independently.
 
 ##### Define reusable `RenderFragments` in code
 
-You may be factoring out child components purely as a way of reusing rendering logic. If that's the case, it's still possible to reuse rendering logic without declaring actual components. In any component's `@code` block, you can define a <xref:Microsoft.AspNetCore.Components.RenderFragment> that emits UI and can be called from anywhere:
+You might be factoring out child components purely as a way of reusing rendering logic. If that's the case, it's still possible to reuse rendering logic without declaring actual components. In any component's `@code` block, you can define a <xref:Microsoft.AspNetCore.Components.RenderFragment> that emits UI and can be called from anywhere:
 
 ```razor
 <h1>Hello, world!</h1>
 
 @RenderWelcomeInfo
 
+<p>Render a second time:</p>
+
+@RenderWelcomeInfo
+
 @code {
     private RenderFragment RenderWelcomeInfo = __builder =>
     {
-        <div>
-            <p>Welcome to your new app!</p>
-
-            <SurveyPrompt Title="How is Blazor working for you?" />
-        </div>
+        <p>Welcome to your new app!</p>
     };
 }
 ```
 
-As demonstrated in the preceding example, components can emit markup from code within their `@code` block and outside it. This approach defines a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate that you can render inside the component's normal render output, optionally in multiple places. It's necessary for the delegate to accept a parameter called `__builder` of type <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> so that the Razor compiler can produce rendering instructions for it.
+As demonstrated in the preceding example, components can emit markup from code within their `@code` blocks and outside of them. This approach defines a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate that you can render inside the component's normal render output, optionally in multiple places. It's necessary for the delegate to accept a parameter called `__builder` of type <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> so that the Razor compiler can produce rendering instructions for it.
 
-If you want to make this reusable across multiple components, consider declaring it as a `public static` member:
+If you want to make <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> code reusable across multiple components, declare it as a `public static` member:
 
 ```razor
 public static RenderFragment SayHello = __builder =>
@@ -843,9 +849,9 @@ public static RenderFragment SayHello = __builder =>
 };
 ```
 
-This could now be invoked from an unrelated component. This technique is useful for building libraries of reusable markup snippets that render without any per-component overhead.
+`SayHello` in the preceding example can be invoked from an unrelated component. This technique is useful for building libraries of reusable markup snippets that render without any per-component overhead.
 
-<xref:Microsoft.AspNetCore.Components.RenderFragment> delegates can also accept parameters. To create the equivalent of the `ChatMessageDisplay` component from the earlier example:
+<xref:Microsoft.AspNetCore.Components.RenderFragment> delegates can also accept parameters. The following component passes the message (`message`) to the <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate:
 
 ```razor
 <div class="chat">
@@ -866,7 +872,7 @@ This could now be invoked from an unrelated component. This technique is useful 
 }
 ```
 
-This approach provides the benefit of reusing rendering logic without per-component overhead. However, it doesn't have the benefit of being able to refresh its subtree of the UI independently, nor does it have the ability to skip rendering that subtree of the UI when its parent renders, since there's no component boundary.
+The preceding approach provides the benefit of reusing rendering logic without per-component overhead. However, it doesn't have the benefit of being able to refresh its subtree of the UI independently, nor does it have the ability to skip rendering that subtree of the UI when its parent renders because there's no component boundary.
 
 For a non-static field, method, or property that can't be referenced by a field initializer, such as `TitleTemplate` in the following example, use a property instead of a field for the <xref:Microsoft.AspNetCore.Components.RenderFragment>:
 
@@ -881,11 +887,11 @@ protected RenderFragment DisplayTitle => __builder =>
 
 #### Don't receive too many parameters
 
-If a component repeats extremely often, for example hundreds or thousands of times, then bear in mind that the overhead of passing and receiving each parameter builds up.
+If a component repeats extremely often, for example hundreds or thousands of times, the overhead of passing and receiving each parameter builds up.
 
-It's rare that too many parameters severely restricts performance, but it can be a factor. For a `<TableCell>` component that renders 1,000 times within a grid, each extra parameter passed to it could add around 15 ms to the total rendering cost. If each cell accepted 10 parameters, parameter passing takes around 150 ms per component render and  thus perhaps 150,000 ms (150 seconds) and on its own cause a lag in UI rendering.
+It's rare that too many parameters severely restricts performance, but it can be a factor. For a `TableCell` component that renders 1,000 times within a grid, each extra parameter passed to the component could add around 15 ms to the total rendering cost. If each cell accepted 10 parameters, parameter passing would take around 150 ms per component render and  thus perhaps 150,000 ms (150 seconds) and cause a lag in UI rendering.
 
-To reduce this load, you could bundle together multiple parameters via custom classes. For example, a `<TableCell>` component might accept:
+To reduce this load, you could bundle together multiple parameters via custom classes. For example, a table cell component might accept a common object:
 
 ```razor
 @typeparam TItem
@@ -901,9 +907,9 @@ To reduce this load, you could bundle together multiple parameters via custom cl
 }
 ```
 
-In the preceding example, `Data` is different for every cell, but `Options` is common across all of them. Of course, it might be an improvement not to have a `<TableCell>` component and instead inline its logic into the parent component.
+In the preceding example, `Data` is different for every cell, but `Options` is common across all of them. However, it might be an improvement not to have a `TableCell` component and instead inline its logic into the parent component.
 
-For more information on generic type parameters (`@typeparam`), see the following articles:
+For more information on generic type parameters (`@typeparam`), see the following resources:
 
 * <xref:mvc/views/razor#typeparam>
 * <xref:blazor/components/index#generic-type-parameter-support>
@@ -911,12 +917,12 @@ For more information on generic type parameters (`@typeparam`), see the followin
 
 #### Ensure cascading parameters are fixed
 
-The `<CascadingValue>` component has an optional parameter called `IsFixed`.
+The [`CascadingValue` component](xref:blazor/components/cascading-values-and-parameters#cascadingvalue-component) has an optional `IsFixed` parameter:
 
 * If the `IsFixed` value is `false` (the default), then every recipient of the cascaded value sets up a subscription to receive change notifications. In this case, each `[CascadingParameter]` is **substantially more expensive** than a regular `[Parameter]` due to the subscription tracking.
-* If the `IsFixed` value is `true` (for example, `<CascadingValue Value="@someValue" IsFixed="true">`), then recipients receive the initial value but do *not* set up any subscription to receive updates. In this case, each `[CascadingParameter]` is lightweight and **no more expensive** than a regular `[Parameter]`.
+* If the `IsFixed` value is `true` (for example, `<CascadingValue Value="@someValue" IsFixed="true">`), then recipients receive the initial value but do *not* set up a subscription to receive updates. In this case, each `[CascadingParameter]` is lightweight and **no more expensive** than a regular `[Parameter]`.
 
-So wherever possible, you should use `IsFixed="true"` on cascaded values. You can do this whenever the value being supplied doesn't change over time. In the common pattern where a component passes `this` as a cascaded value, you should use `IsFixed="true"`:
+Wherever possible, set `IsFixed` to `true` on cascaded values. You can do this whenever the value being supplied doesn't change over time. Where a component passes `this` as a cascaded value, also set `IsFixed` to `true`:
 
 ```razor
 <CascadingValue Value="this" IsFixed="true">
@@ -924,7 +930,7 @@ So wherever possible, you should use `IsFixed="true"` on cascaded values. You ca
 </CascadingValue>
 ```
 
-This makes a huge difference if there are a large number of other components that receive the cascaded value. For more information, see <xref:blazor/components/cascading-values-and-parameters>.
+Setting `IsFixed` to `true` improves performance if there are a large number of other components that receive the cascaded value. For more information, see <xref:blazor/components/cascading-values-and-parameters>.
 
 #### Avoid attribute splatting with `CaptureUnmatchedValues`
 
@@ -944,21 +950,21 @@ This approach allows passing through arbitrary additional attributes to the elem
 * Match all of the supplied parameters against the set of known parameters to build a dictionary.
 * Keep track of how multiple copies of the same attribute overwrite each other.
 
-Feel free to use <xref:Microsoft.AspNetCore.Components.ParameterAttribute.CaptureUnmatchedValues> on non-performance-critical components, such as ones that are not repeated frequently. However for components that render at scale, such as each items in a large list or cells in a grid, try to avoid attribute splatting.
+Use <xref:Microsoft.AspNetCore.Components.ParameterAttribute.CaptureUnmatchedValues> on non-performance-critical components, such as components that aren't repeated frequently. For components that render at scale, such as each item in a large list or in the cells of a grid, try to avoid attribute splatting.
 
 For more information, see <xref:blazor/components/index#attribute-splatting-and-arbitrary-parameters>.
 
 #### Implement `SetParametersAsync` manually
 
-One of the main aspects of the per-component rendering overhead is writing incoming parameter values to the `[Parameter]` properties. The renderer has to use reflection to do this.
+One of the main aspects of the per-component rendering overhead is writing incoming parameter values to `[Parameter]` properties. The renderer uses reflection to write the parameter values, which can lead to poor performance at scale.
 
 In some extreme cases, you may wish to avoid the reflection and implement your own parameter setting logic manually. This may be applicable when:
 
-* You have a component that renders extremely often (for example, there are hundreds or thousands of copies of it in the UI).
-* It accepts many parameters.
+* A component that renders extremely often, for example, when there are hundreds or thousands of copies of it in the UI.
+* A component accepts many parameters.
 * You find that the overhead of receiving parameters has an observable impact on UI responsiveness.
 
-In these cases, you can override the component's virtual <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> method and implement your own component-specific logic. The following example deliberately avoids any dictionary lookups:
+In extreme cases, you can override the component's virtual <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> method and implement your own component-specific logic. The following example deliberately avoids dictionary lookups:
 
 ```razor
 @code {
@@ -1010,7 +1016,7 @@ As you can see in the preceding code, overriding <xref:Microsoft.AspNetCore.Comp
 
 Some browser events fire extremely frequently, for example `onmousemove` and `onscroll`, which can fire tens or hundreds of times per second. In most cases, you don't need to perform UI updates this frequently. If you try to do so, you may harm UI responsiveness or consume excessive CPU time.
 
-Rather than using native `@onmousemove` or `@onscroll` events, you may prefer to use JS interop to register a callback that fires less frequently. For example, the following component (`MyComponent.razor`) displays the position of the mouse but only updates at most once every 500 ms:
+Rather than using native `@onmousemove` or `@onscroll` events, you may prefer to use JS interop to register a callback that fires less frequently. For example, the following component displays the position of the mouse but only updates at most once every 500 ms:
 
 ```razor
 @inject IJSRuntime JS
@@ -1018,13 +1024,13 @@ Rather than using native `@onmousemove` or `@onscroll` events, you may prefer to
 
 <h1>@message</h1>
 
-<div @ref="myMouseMoveElement" style="border:1px dashed red;height:200px;">
+<div @ref="mouseMoveElement" style="border:1px dashed red;height:200px;">
     Move mouse here
 </div>
 
 @code {
-    ElementReference myMouseMoveElement;
-    DotNetObjectReference<MyComponent> selfReference;
+    private ElementReference mouseMoveElement;
+    private DotNetObjectReference<MyComponent> selfReference;
     private string message = "Move the mouse in the box";
 
     [JSInvokable]
@@ -1039,9 +1045,9 @@ Rather than using native `@onmousemove` or `@onscroll` events, you may prefer to
         if (firstRender)
         {
             selfReference = DotNetObjectReference.Create(this);
-            var minInterval = 500; // Only notify every 500 ms
+            var minInterval = 500;
             await JS.InvokeVoidAsync("onThrottledMouseMove", 
-                myMouseMoveElement, selfReference, minInterval);
+                mouseMoveElement, selfReference, minInterval);
         }
     }
 
@@ -1049,7 +1055,7 @@ Rather than using native `@onmousemove` or `@onscroll` events, you may prefer to
 }
 ```
 
-The corresponding JavaScript code, which can be placed in the `index.html` page or loaded as an ES6 module, registers the actual DOM event listener. In this example, the event listener uses [Lodash's `throttle` function](https://lodash.com/docs/4.17.15#throttle) to limit the rate of invocations:
+The corresponding JavaScript code registers the actual DOM event listener. In this example, the event listener uses [Lodash's `throttle` function](https://lodash.com/docs/4.17.15#throttle) to limit the rate of invocations:
 
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js"></script>
@@ -1101,7 +1107,7 @@ In the following example, no event handler added to the component triggers a rer
 }
 ```
 
-In addition to preventing rerenders after all event handlers in a component, it's possible to prevent rerenders after a single event handler by employing the following utility method.
+In addition to preventing rerenders after event handlers fire in a component in a global fashion, it's possible to prevent rerenders after a single event handler by employing the following utility method.
 
 Add the following `EventUntil` class to a Blazor app. The static actions and functions at the top of the `EventUtil` class provide handlers that cover several combinations of arguments and return types that Blazor uses when handling events.
 
@@ -1222,7 +1228,7 @@ private async Task StoreAllInLocalStorage(IEnumerable<TodoItem> items)
 }
 ```
 
-The corresponding JavaScript function defined as follows:
+The corresponding JavaScript function stores the whole collection of items on the client:
 
 ```javascript
 function storeAllInLocalStorage(items) {
@@ -1232,15 +1238,15 @@ function storeAllInLocalStorage(items) {
 }
 ```
 
-For Blazor WebAssembly apps, this usually only matters if you're making a large number of JS interop calls.
+For Blazor WebAssembly apps, rolling individual JS interop calls into a single call usually only improves performance significantly if the component makes a large number of JS interop calls.
 
 ::: zone pivot="webassembly"
 
 ### Consider the use of synchronous calls
 
-JavaScript interop calls are asynchronous by default, regardless of whether the code being called is synchronous or asynchronous. This is to ensure components are compatible with both Blazor WebAssembly and Blazor Server. On Blazor Server, all JavaScript interop calls must be asynchronous because they are sent over a network connection.
+JavaScript interop (JS interop) calls are asynchronous by default, regardless of whether the code being called is synchronous or asynchronous. This is to ensure components are compatible with both Blazor WebAssembly and Blazor Server. On Blazor Server, all JS interop calls must be asynchronous because they are sent over a network connection.
 
-If you know for certain that your app only ever runs on Blazor WebAssembly, you can choose to make synchronous JavaScript interop calls. This has slightly less overhead than making asynchronous calls and can result in fewer render cycles because there is no intermediate state while awaiting results.
+If you know for certain that your app only ever runs on Blazor WebAssembly, you can choose to make synchronous JS interop calls. This has slightly less overhead than making asynchronous calls and can result in fewer render cycles because there is no intermediate state while awaiting results.
 
 To make a synchronous call from .NET to JavaScript, cast <xref:Microsoft.JSInterop.IJSRuntime> to <xref:Microsoft.JSInterop.IJSInProcessRuntime>:
 
@@ -1278,7 +1284,7 @@ When running on Blazor WebAssembly, it's possible to make unmarshalled calls fro
 
 ```javascript
 function jsInteropCall() {
-    return BINDING.js_to_mono_obj("Hello world");
+  return BINDING.js_to_mono_obj("Hello world");
 }
 ```
 
@@ -1300,7 +1306,7 @@ function jsInteropCall() {
 
 ### Use System.Text.Json
 
-Blazor's JS interop implementation relies on <xref:System.Text.Json>, which is a high-performance JSON serialization library with low memory allocation. Using <xref:System.Text.Json> doesn't result in additional app payload size over adding one or more alternate JSON libraries.
+Blazor's JavaScript interop (JS interop) implementation relies on <xref:System.Text.Json>, which is a high-performance JSON serialization library with low memory allocation. Using <xref:System.Text.Json> doesn't result in additional app payload size over adding one or more alternate JSON libraries.
 
 For migration guidance, see [How to migrate from `Newtonsoft.Json` to `System.Text.Json`](/dotnet/standard/serialization/system-text-json-migrate-from-newtonsoft-how-to).
 
@@ -1322,7 +1328,7 @@ After an app is deployed, verify that the app serves compressed files. Inspect t
 
 ### Disable unused features
 
-Blazor WebAssembly's runtime includes the following .NET features that can be disabled if the app doesn't require them for a smaller payload size:
+Blazor WebAssembly's runtime includes the following .NET features that can be disabled for a smaller payload size if the app doesn't require them:
 
 * A data file is included to make timezone information correct. If the app doesn't require this feature, consider disabling it by setting the `BlazorEnableTimeZoneSupport` MSBuild property in the app's project file to `false`:
 
@@ -1350,78 +1356,81 @@ Blazor is carefully designed and optimized to enable high performance in most re
 
 ## Optimize rendering speed
 
-The following sections provide recommendations to minimize rendering workload and improve UI responsiveness. Following this advice could easily make a *ten-fold or higher improvement* in UI rendering speeds.
+The following sections provide recommendations to minimize rendering workload and improve UI responsiveness. Following this advice could easily make a *ten-fold or higher improvement* in UI rendering speed.
 
 ### Avoid unnecessary rendering of component subtrees
 
-At runtime, components exist as a hierarchy. A root component has child components. In turn, the root's children have their own child components, and so on. When an event occurs, such as a user selecting a button, this is how Blazor decides which components to rerender:
+You might able to remove the majority of a parent component's rendering cost by skipping the rerendering of whole child component subtrees when an event occurs. You should only be concerned about skipping the rerendering subtrees if those subtrees are particularly expensive to render and are causing UI lag.
+
+At runtime, components exist in a hierarchy. A root component has child components. In turn, the root's children have their own child components, and so on. When an event occurs, such as a user selecting a button, the following process determines which components to rerender:
 
 1. The event itself is dispatched to whichever component rendered the event's handler. After executing the event handler, that component is rerendered.
 1. Whenever any component is rerendered, it supplies a new copy of the parameter values to each of its child components.
-1. When receiving a new set of parameter values, each component chooses whether to rerender. By default, components rerender if the parameter values may have changed (for example, if they are mutable objects).
+1. When receiving a new set of parameter values, each component decides whether to rerender. By default, components rerender if the parameter values may have changed (for example, if they are mutable objects).
 
-The last two steps of this sequence continue recursively down the component hierarchy. In many cases, the entire subtree is rerendered. This means that events targeting high-level components can cause expensive rerendering processes because everything below that point must be rerendered.
+The last two steps of the preceding sequence continue recursively down the component hierarchy. In many cases, the entire subtree is rerendered. Events targeting high-level components can cause expensive rerendering processes because everything below that point must be rerendered.
 
 If you want to interrupt this process and prevent rendering recursion into a particular subtree, then you can either:
 
 * Ensure that all parameters to a certain component are of primitive immutable types (for example, `string`, `int`, `bool`, `DateTime`, and others). The built-in logic for detecting changes automatically skips rerendering if none of these parameter values have changed. If you render a child component with `<Customer CustomerId="@item.CustomerId" />`, where `CustomerId` is an `int` value, then it isn't rerendered except when `item.CustomerId` changes.
-* If you need to accept nonprimitive parameter values, such as custom model types, event callbacks, or <xref:Microsoft.AspNetCore.Components.RenderFragment> values or if authoring a UI-only component that doesn't change after the initial render (regardless of any parameter values), override <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> to control the decision about whether to render. The following example uses private fields to track the necessary information to detect changes. The value of `shouldRender` is based on checking for any kind of change or mutation that should prompt a rerender. `prevOutboundFlightId` and `prevInboundFlightId` track information for the next potential update:
+* If you need to accept nonprimitive parameter values, such as complex custom model types, event callbacks, or <xref:Microsoft.AspNetCore.Components.RenderFragment> values or if authoring a UI-only component that doesn't change after the initial render (regardless of any parameter values), override <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> to control the decision about whether to render.
 
-  ```razor
-  @code {
-      [Parameter]
-      public FlightInfo OutboundFlight { get; set; }
+The following airline flight search tool example uses private fields to track the necessary information to detect changes. The value of `shouldRender` is based on checking for any kind of change or mutation that should prompt a rerender. The previous outbound flight identifier (`prevOutboundFlightId`) and previous inbound flight identifier (`prevInboundFlightId`) track information for the next potential component update. If either of the flight identifiers change when the component's parameters are set in [`OnParametersSet`](xref:blazor/components/lifecycle#after-parameters-are-set-onparameterssetasync), the component is rerendered because `shouldRender` is set to `true`:
 
-      [Parameter]
-      public FlightInfo InboundFlight { get; set; }
+```razor
+@code {
+    private int prevInboundFlightId;
+    private int prevOutboundFlightId;
+    private bool shouldRender;
 
-      private int prevOutboundFlightId;
-      private int prevInboundFlightId;
-      private bool shouldRender;
+    [Parameter]
+    public FlightInfo InboundFlight { get; set; }
 
-      protected override void OnParametersSet()
-      {
-          shouldRender = OutboundFlight.FlightId != prevOutboundFlightId
-              || InboundFlight.FlightId != prevInboundFlightId;
+    [Parameter]
+    public FlightInfo OutboundFlight { get; set; }
 
-          prevOutboundFlightId = OutboundFlight.FlightId;
-          prevInboundFlightId = InboundFlight.FlightId;
-      }
+    protected override void OnParametersSet()
+    {
+        shouldRender = InboundFlight.FlightId != prevInboundFlightId
+            || OutboundFlight.FlightId != prevOutboundFlightId;
 
-     protected override bool ShouldRender() => shouldRender;
-  }
-  ```
+        prevInboundFlightId = InboundFlight.FlightId;
+        prevOutboundFlightId = OutboundFlight.FlightId;
+    }
 
-  In the preceding example, an event handler may also set `shouldRender` to `true` so that the component is rerendered after the event. For most components, this level of manual control isn't necessary. You should only be concerned about skipping rendering subtrees if those subtrees are particularly expensive to render and are causing UI lag. For more information, see <xref:blazor/components/lifecycle>.
+    protected override bool ShouldRender() => shouldRender;
+}
+```
 
-  For general information on `ShouldRender`, see <xref:blazor/components/rendering#suppress-ui-refreshing-shouldrender>.
+An event handler may also decide to set `shouldRender` to `true`. For most components, determining rerendering at the level of individual event handlers isn't necessary.
 
-By skipping rerendering of whole subtrees, you may be able to remove the vast majority of the rendering cost when an event occurs.
+For more information, see the following resources:
 
-You may wish to factor out child components specifically so that you can skip rerendering that part of the UI. This is a valid way to reduce the rendering cost of a parent component.
+* <xref:blazor/components/lifecycle>
+* <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A>
+* <xref:blazor/components/rendering#suppress-ui-refreshing-shouldrender>
 
 ### Create lightweight, optimized components
 
-Most Blazor components don't require aggressive optimization efforts. This is because most components don't often repeat in the UI and don't rerender at high frequency. For example, `@page` components and components representing high-level UI pieces such as dialogs or forms, most likely appear only one at a time and only rerender in response to a user gesture. These components don't create a high rendering workload, so you can freely use any combination of framework features you want without worrying much about rendering performance.
+Most Blazor components don't require aggressive optimization efforts because most components don't repeat in the UI and don't rerender at high frequency. For example, routable components with an `@page` directive and components representing high-level UI pieces, such as dialogs or forms, most likely appear only one at a time and only rerender in response to a user gesture. These components don't create a high rendering workload, so you can freely use any combination of framework features you want without worrying much about rendering performance.
 
-However, there are also common scenarios where you build components that need to be repeated at scale. For example:
+However, there are common scenarios where components are repeated at scale and result in poor UI performance:
 
-* Large nested forms may have hundreds of individual inputs, labels, and other elements.
-* Grids may have thousands of cells.
-* Scatter plots may have millions of data points.
+* Large nested forms with hundreds of individual elements, such as inputs or labels.
+* Grids with thousands of cells.
+* Scatter plots with millions of data points.
 
-If modelling each unit as separate component instances, there will be so many of them that their rendering performance does become critical. This section provides advice on making such components lightweight so that the UI remains fast and responsive.
+If modelling each element, cell, or data point as a separate component instance, there are often so many of them that their rendering performance becomes critical. This section provides advice on making such components lightweight so that the UI remains fast and responsive.
 
 #### Avoid thousands of component instances
 
-Each component is a separate island that can render independently of its parents and children. By choosing how to split up the UI into a hierarchy of components, you are taking control over the granularity of UI rendering. This can be either good or bad for performance.
+Each component is a separate island that can render independently of its parents and children. By choosing how to split up the UI into a hierarchy of components, you are taking control over the granularity of UI rendering. This can result in either good or poor performance.
 
-* By splitting the UI into more components, you can have smaller portions of the UI rerender when events occur. For example when a user clicks a button in a table row, you may be able to have only that single row rerender instead of the whole page or table.
-* However, each extra component involves some extra memory and CPU overhead to deal with its independent state and rendering lifecycle.
+By splitting the UI into separate components, you can have smaller portions of the UI rerender when events occur. In a table with many rows where a user clicks a button in a row, you may be able to have only that single row rerender instead of the whole page or table. However, each component requires additional memory and CPU overhead to deal with its independent state and rendering lifecycle.
 
 In a test performed by the ASP.NET Core product unit engineers, a rendering overhead of around 0.06 ms per component instance was seen in a Blazor WebAssembly app. The test app rendered a simple component that accepts three parameters. Internally, the overhead is largely due to retrieving per-component state from dictionaries and passing and receiving parameters. By multiplication, you can see that adding 2,000 extra component instances would add 0.12 seconds to the rendering time and the UI would begin feeling slow to users.
 
-It's possible to make components more lightweight so that you can have more of them, but often the more powerful technique is not to have so many components. The following sections describe two approaches.
+It's possible to make components more lightweight so that you can have more of them. However, a more powerful technique is often to avoid having so many components to render. The following sections describe two approaches that you can take.
 
 ##### Inline child components into their parents
 
@@ -1436,7 +1445,7 @@ Consider the following component that renders a sequence of child components:
 </div>
 ```
 
-For the preceding example code, the `<ChatMessageDisplay>` component is defined in a file `ChatMessageDisplay.razor` containing:
+`Shared/ChatMessageDisplay.razor`: 
 
 ```razor
 <div class="chat-message">
@@ -1464,32 +1473,32 @@ The preceding example works fine and performs well as long as thousands of messa
 </div>
 ```
 
-This avoids the per-component overhead of rendering so many child components at the cost of not being able to rerender each of them independently.
+The preceding approach avoids the per-component overhead of rendering so many child components at the cost of not being able to rerender each of them independently.
 
 ##### Define reusable `RenderFragments` in code
 
-You may be factoring out child components purely as a way of reusing rendering logic. If that's the case, it's still possible to reuse rendering logic without declaring actual components. In any component's `@code` block, you can define a <xref:Microsoft.AspNetCore.Components.RenderFragment> that emits UI and can be called from anywhere:
+You might be factoring out child components purely as a way of reusing rendering logic. If that's the case, it's still possible to reuse rendering logic without declaring actual components. In any component's `@code` block, you can define a <xref:Microsoft.AspNetCore.Components.RenderFragment> that emits UI and can be called from anywhere:
 
 ```razor
 <h1>Hello, world!</h1>
 
 @RenderWelcomeInfo
 
+<p>Render a second time:</p>
+
+@RenderWelcomeInfo
+
 @code {
     private RenderFragment RenderWelcomeInfo = __builder =>
     {
-        <div>
-            <p>Welcome to your new app!</p>
-
-            <SurveyPrompt Title="How is Blazor working for you?" />
-        </div>
+        <p>Welcome to your new app!</p>
     };
 }
 ```
 
-As demonstrated in the preceding example, components can emit markup from code within their `@code` block and outside it. This approach defines a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate that you can render inside the component's normal render output, optionally in multiple places. It's necessary for the delegate to accept a parameter called `__builder` of type <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> so that the Razor compiler can produce rendering instructions for it.
+As demonstrated in the preceding example, components can emit markup from code within their `@code` blocks and outside of them. This approach defines a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate that you can render inside the component's normal render output, optionally in multiple places. It's necessary for the delegate to accept a parameter called `__builder` of type <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> so that the Razor compiler can produce rendering instructions for it.
 
-If you want to make this reusable across multiple components, consider declaring it as a `public static` member:
+If you want to make <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> code reusable across multiple components, declare it as a `public static` member:
 
 ```razor
 public static RenderFragment SayHello = __builder =>
@@ -1498,9 +1507,9 @@ public static RenderFragment SayHello = __builder =>
 };
 ```
 
-This could now be invoked from an unrelated component. This technique is useful for building libraries of reusable markup snippets that render without any per-component overhead.
+`SayHello` in the preceding example can be invoked from an unrelated component. This technique is useful for building libraries of reusable markup snippets that render without any per-component overhead.
 
-<xref:Microsoft.AspNetCore.Components.RenderFragment> delegates can also accept parameters. To create the equivalent of the `ChatMessageDisplay` component from the earlier example:
+<xref:Microsoft.AspNetCore.Components.RenderFragment> delegates can also accept parameters. The following component passes the message (`message`) to the <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate:
 
 ```razor
 <div class="chat">
@@ -1521,7 +1530,7 @@ This could now be invoked from an unrelated component. This technique is useful 
 }
 ```
 
-This approach provides the benefit of reusing rendering logic without per-component overhead. However, it doesn't have the benefit of being able to refresh its subtree of the UI independently, nor does it have the ability to skip rendering that subtree of the UI when its parent renders, since there's no component boundary.
+The preceding approach provides the benefit of reusing rendering logic without per-component overhead. However, it doesn't have the benefit of being able to refresh its subtree of the UI independently, nor does it have the ability to skip rendering that subtree of the UI when its parent renders because there's no component boundary.
 
 For a non-static field, method, or property that can't be referenced by a field initializer, such as `TitleTemplate` in the following example, use a property instead of a field for the <xref:Microsoft.AspNetCore.Components.RenderFragment>:
 
@@ -1530,17 +1539,17 @@ protected RenderFragment DisplayTitle => __builder =>
 {
     <div>
         @TitleTemplate
-    </div>   
+    </div>
 };
 ```
 
 #### Don't receive too many parameters
 
-If a component repeats extremely often, for example hundreds or thousands of times, then bear in mind that the overhead of passing and receiving each parameter builds up.
+If a component repeats extremely often, for example hundreds or thousands of times, the overhead of passing and receiving each parameter builds up.
 
-It's rare that too many parameters severely restricts performance, but it can be a factor. For a `<TableCell>` component that renders 1,000 times within a grid, each extra parameter passed to it could add around 15 ms to the total rendering cost. If each cell accepted 10 parameters, parameter passing takes around 150 ms per component render and  thus perhaps 150,000 ms (150 seconds) and on its own cause a lag in UI rendering.
+It's rare that too many parameters severely restricts performance, but it can be a factor. For a `TableCell` component that renders 1,000 times within a grid, each extra parameter passed to the component could add around 15 ms to the total rendering cost. If each cell accepted 10 parameters, parameter passing would take around 150 ms per component render and  thus perhaps 150,000 ms (150 seconds) and cause a lag in UI rendering.
 
-To reduce this load, you could bundle together multiple parameters via custom classes. For example, a `<TableCell>` component might accept:
+To reduce this load, you could bundle together multiple parameters via custom classes. For example, a table cell component might accept a common object:
 
 ```razor
 @typeparam TItem
@@ -1556,9 +1565,9 @@ To reduce this load, you could bundle together multiple parameters via custom cl
 }
 ```
 
-In the preceding example, `Data` is different for every cell, but `Options` is common across all of them. Of course, it might be an improvement not to have a `<TableCell>` component and instead inline its logic into the parent component.
+In the preceding example, `Data` is different for every cell, but `Options` is common across all of them. However, it might be an improvement not to have a `TableCell` component and instead inline its logic into the parent component.
 
-For more information on generic type parameters (`@typeparam`), see the following articles:
+For more information on generic type parameters (`@typeparam`), see the following resources:
 
 * <xref:mvc/views/razor#typeparam>
 * <xref:blazor/components/index#generic-type-parameter-support>
@@ -1566,12 +1575,12 @@ For more information on generic type parameters (`@typeparam`), see the followin
 
 #### Ensure cascading parameters are fixed
 
-The `<CascadingValue>` component has an optional parameter called `IsFixed`.
+The [`CascadingValue` component](xref:blazor/components/cascading-values-and-parameters#cascadingvalue-component) has an optional `IsFixed` parameter:
 
 * If the `IsFixed` value is `false` (the default), then every recipient of the cascaded value sets up a subscription to receive change notifications. In this case, each `[CascadingParameter]` is **substantially more expensive** than a regular `[Parameter]` due to the subscription tracking.
-* If the `IsFixed` value is `true` (for example, `<CascadingValue Value="@someValue" IsFixed="true">`), then recipients receive the initial value but do *not* set up any subscription to receive updates. In this case, each `[CascadingParameter]` is lightweight and **no more expensive** than a regular `[Parameter]`.
+* If the `IsFixed` value is `true` (for example, `<CascadingValue Value="@someValue" IsFixed="true">`), then recipients receive the initial value but do *not* set up a subscription to receive updates. In this case, each `[CascadingParameter]` is lightweight and **no more expensive** than a regular `[Parameter]`.
 
-So wherever possible, you should use `IsFixed="true"` on cascaded values. You can do this whenever the value being supplied doesn't change over time. In the common pattern where a component passes `this` as a cascaded value, you should use `IsFixed="true"`:
+Wherever possible, set `IsFixed` to `true` on cascaded values. You can do this whenever the value being supplied doesn't change over time. Where a component passes `this` as a cascaded value, also set `IsFixed` to `true`:
 
 ```razor
 <CascadingValue Value="this" IsFixed="true">
@@ -1579,7 +1588,7 @@ So wherever possible, you should use `IsFixed="true"` on cascaded values. You ca
 </CascadingValue>
 ```
 
-This makes a huge difference if there are a large number of other components that receive the cascaded value. For more information, see <xref:blazor/components/cascading-values-and-parameters>.
+Setting `IsFixed` to `true` improves performance if there are a large number of other components that receive the cascaded value. For more information, see <xref:blazor/components/cascading-values-and-parameters>.
 
 #### Avoid attribute splatting with `CaptureUnmatchedValues`
 
@@ -1599,21 +1608,21 @@ This approach allows passing through arbitrary additional attributes to the elem
 * Match all of the supplied parameters against the set of known parameters to build a dictionary.
 * Keep track of how multiple copies of the same attribute overwrite each other.
 
-Feel free to use <xref:Microsoft.AspNetCore.Components.ParameterAttribute.CaptureUnmatchedValues> on non-performance-critical components, such as ones that are not repeated frequently. However for components that render at scale, such as each items in a large list or cells in a grid, try to avoid attribute splatting.
+Use <xref:Microsoft.AspNetCore.Components.ParameterAttribute.CaptureUnmatchedValues> on non-performance-critical components, such as components that aren't repeated frequently. For components that render at scale, such as each item in a large list or in the cells of a grid, try to avoid attribute splatting.
 
 For more information, see <xref:blazor/components/index#attribute-splatting-and-arbitrary-parameters>.
 
 #### Implement `SetParametersAsync` manually
 
-One of the main aspects of the per-component rendering overhead is writing incoming parameter values to the `[Parameter]` properties. The renderer has to use reflection to do this.
+One of the main aspects of the per-component rendering overhead is writing incoming parameter values to `[Parameter]` properties. The renderer uses reflection to write the parameter values, which can lead to poor performance at scale.
 
 In some extreme cases, you may wish to avoid the reflection and implement your own parameter setting logic manually. This may be applicable when:
 
-* You have a component that renders extremely often (for example, there are hundreds or thousands of copies of it in the UI).
-* It accepts many parameters.
+* A component that renders extremely often, for example, when there are hundreds or thousands of copies of it in the UI.
+* A component accepts many parameters.
 * You find that the overhead of receiving parameters has an observable impact on UI responsiveness.
 
-In these cases, you can override the component's virtual <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> method and implement your own component-specific logic. The following example deliberately avoids any dictionary lookups:
+In extreme cases, you can override the component's virtual <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> method and implement your own component-specific logic. The following example deliberately avoids dictionary lookups:
 
 ```razor
 @code {
@@ -1665,7 +1674,7 @@ As you can see in the preceding code, overriding <xref:Microsoft.AspNetCore.Comp
 
 Some browser events fire extremely frequently, for example `onmousemove` and `onscroll`, which can fire tens or hundreds of times per second. In most cases, you don't need to perform UI updates this frequently. If you try to do so, you may harm UI responsiveness or consume excessive CPU time.
 
-Rather than using native `@onmousemove` or `@onscroll` events, you may prefer to use JS interop to register a callback that fires less frequently. For example, the following component (`MyComponent.razor`) displays the position of the mouse but only updates at most once every 500 ms:
+Rather than using native `@onmousemove` or `@onscroll` events, you may prefer to use JS interop to register a callback that fires less frequently. For example, the following component displays the position of the mouse but only updates at most once every 500 ms:
 
 ```razor
 @inject IJSRuntime JS
@@ -1673,13 +1682,13 @@ Rather than using native `@onmousemove` or `@onscroll` events, you may prefer to
 
 <h1>@message</h1>
 
-<div @ref="myMouseMoveElement" style="border:1px dashed red;height:200px;">
+<div @ref="mouseMoveElement" style="border:1px dashed red;height:200px;">
     Move mouse here
 </div>
 
 @code {
-    ElementReference myMouseMoveElement;
-    DotNetObjectReference<MyComponent> selfReference;
+    private ElementReference mouseMoveElement;
+    private DotNetObjectReference<MyComponent> selfReference;
     private string message = "Move the mouse in the box";
 
     [JSInvokable]
@@ -1694,9 +1703,9 @@ Rather than using native `@onmousemove` or `@onscroll` events, you may prefer to
         if (firstRender)
         {
             selfReference = DotNetObjectReference.Create(this);
-            var minInterval = 500; // Only notify every 500 ms
+            var minInterval = 500;
             await JS.InvokeVoidAsync("onThrottledMouseMove", 
-                myMouseMoveElement, selfReference, minInterval);
+                mouseMoveElement, selfReference, minInterval);
         }
     }
 
@@ -1704,7 +1713,7 @@ Rather than using native `@onmousemove` or `@onscroll` events, you may prefer to
 }
 ```
 
-The corresponding JavaScript code, which can be placed in the `index.html` page or loaded as an ES6 module, registers the actual DOM event listener. In this example, the event listener uses [Lodash's `throttle` function](https://lodash.com/docs/4.17.15#throttle) to limit the rate of invocations:
+The corresponding JavaScript code registers the actual DOM event listener. In this example, the event listener uses [Lodash's `throttle` function](https://lodash.com/docs/4.17.15#throttle) to limit the rate of invocations:
 
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js"></script>
@@ -1756,7 +1765,7 @@ In the following example, no event handler added to the component triggers a rer
 }
 ```
 
-In addition to preventing rerenders after all event handlers in a component, it's possible to prevent rerenders after a single event handler by employing the following utility method.
+In addition to preventing rerenders after event handlers fire in a component in a global fashion, it's possible to prevent rerenders after a single event handler by employing the following utility method.
 
 Add the following `EventUntil` class to a Blazor app. The static actions and functions at the top of the `EventUtil` class provide handlers that cover several combinations of arguments and return types that Blazor uses when handling events.
 
@@ -1877,7 +1886,7 @@ private async Task StoreAllInLocalStorage(IEnumerable<TodoItem> items)
 }
 ```
 
-The corresponding JavaScript function defined as follows:
+The corresponding JavaScript function stores the whole collection of items on the client:
 
 ```javascript
 function storeAllInLocalStorage(items) {
@@ -1887,15 +1896,15 @@ function storeAllInLocalStorage(items) {
 }
 ```
 
-For Blazor WebAssembly apps, this usually only matters if you're making a large number of JS interop calls.
+For Blazor WebAssembly apps, rolling individual JS interop calls into a single call usually only improves performance significantly if the component makes a large number of JS interop calls.
 
 ::: zone pivot="webassembly"
 
 ### Consider the use of synchronous calls
 
-JavaScript interop calls are asynchronous by default, regardless of whether the code being called is synchronous or asynchronous. This is to ensure components are compatible with both Blazor WebAssembly and Blazor Server. On Blazor Server, all JavaScript interop calls must be asynchronous because they are sent over a network connection.
+JavaScript interop (JS interop) calls are asynchronous by default, regardless of whether the code being called is synchronous or asynchronous. This is to ensure components are compatible with both Blazor WebAssembly and Blazor Server. On Blazor Server, all JS interop calls must be asynchronous because they are sent over a network connection.
 
-If you know for certain that your app only ever runs on Blazor WebAssembly, you can choose to make synchronous JavaScript interop calls. This has slightly less overhead than making asynchronous calls and can result in fewer render cycles because there is no intermediate state while awaiting results.
+If you know for certain that your app only ever runs on Blazor WebAssembly, you can choose to make synchronous JS interop calls. This has slightly less overhead than making asynchronous calls and can result in fewer render cycles because there is no intermediate state while awaiting results.
 
 To make a synchronous call from .NET to JavaScript, cast <xref:Microsoft.JSInterop.IJSRuntime> to <xref:Microsoft.JSInterop.IJSInProcessRuntime>:
 
@@ -1928,7 +1937,7 @@ For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet>.
 
 ### Use System.Text.Json
 
-Blazor's JS interop implementation relies on <xref:System.Text.Json>, which is a high-performance JSON serialization library with low memory allocation. Using <xref:System.Text.Json> doesn't result in additional app payload size over adding one or more alternate JSON libraries.
+Blazor's JavaScript interop (JS interop) implementation relies on <xref:System.Text.Json>, which is a high-performance JSON serialization library with low memory allocation. Using <xref:System.Text.Json> doesn't result in additional app payload size over adding one or more alternate JSON libraries.
 
 For migration guidance, see [How to migrate from `Newtonsoft.Json` to `System.Text.Json`](/dotnet/standard/serialization/system-text-json-migrate-from-newtonsoft-how-to).
 
@@ -1954,7 +1963,7 @@ After an app is deployed, verify that the app serves compressed files. Inspect t
 
 ### Disable unused features
 
-Blazor WebAssembly's runtime includes the following .NET features that can be disabled if the app doesn't require them for a smaller payload size:
+Blazor WebAssembly's runtime includes the following .NET features that can be disabled for a smaller payload size if the app doesn't require them:
 
 * A data file is included to make timezone information correct. If the app doesn't require this feature, consider disabling it by setting the `BlazorEnableTimeZoneSupport` MSBuild property in the app's project file to `false`:
 
