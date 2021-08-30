@@ -335,6 +335,7 @@ Automatic verification that the schema and model are in sync makes it easier to 
 1. Edit *Pages/Movies/Index.cshtml*, and add a `Rating` field:
    <a name="addrat6"></a>
    [!code-cshtml[](razor-pages-start/snapshot_sample6/Pages/Movies/IndexRating.cshtml?highlight=40-42,62-64)]
+
 1. Update the Delete, Details, Create, and Edit pages with the `Rating` field.
 
 The app won't work until the database is updated to include the new field. Running the app without an update to the database throws a `SqlException`:
@@ -451,7 +452,7 @@ For more information, see the following resources:
 
 ---
 
-Run the app and verify you can create/edit/display movies with a `Rating` field. If the database isn't seeded, set a break point in the `SeedData.Initialize` method.
+Run the app and verify you can create, edit, and display movies with a `Rating` field. If the database isn't seeded, set a break point in the `SeedData.Initialize` method.
 
 ## Additional resources
 
