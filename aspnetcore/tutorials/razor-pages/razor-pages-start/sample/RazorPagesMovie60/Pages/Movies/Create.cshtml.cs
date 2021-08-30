@@ -45,6 +45,6 @@ namespace RazorPagesMovie.Pages.Movies
             return RedirectToPage("./Index");
         }
     }
-#pragma warning restore CS8618
-#pragma warning restore CS8602
+//#pragma warning restore CS8618
+//#pragma warning restore CS8602
 }

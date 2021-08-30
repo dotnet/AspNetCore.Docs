@@ -27,27 +27,26 @@ namespace RazorPagesMovie.Pages.Movies
         public SelectList Genres { get; set; }
         [BindProperty(SupportsGet = true)]
         public string MovieGenre { get; set; }
-#endregion
+        #endregion
 
-#region snippet_1stSearch
+        #region snippet_1stSearch
         public async Task OnGetAsync()
         {
             var movies = from m in _context.Movie
                          select m;
-#region snippet_SearchNull
+            #region snippet_SearchNull
             if (!string.IsNullOrEmpty(SearchString))
             {
                 movies = movies.Where(s => s.Title.Contains(SearchString));
             }
-#endregion
+            #endregion
 
             Movie = await movies.ToListAsync();
         }
-#endregion
+        #endregion
     }
 }
 #else
-#pragma warning disable CS8618
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
