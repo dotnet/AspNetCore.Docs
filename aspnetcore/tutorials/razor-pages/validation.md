@@ -206,7 +206,7 @@ Update-Database
 ```
 
 `Update-Database` runs the `Up` methods of the `New_DataAnnotations` class. Examine the `Up` method:
-zz
+
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie60/Migrations/20210830233901_New_DataAnnotations.cs?name=snippet)]
 
 The updated `Movie` table has the following schema:
