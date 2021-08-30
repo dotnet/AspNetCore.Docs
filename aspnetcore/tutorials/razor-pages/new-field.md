@@ -334,7 +334,7 @@ Automatic verification that the schema and model are in sync makes it easier to 
    [!code-csharp[](razor-pages-start/sample/RazorPagesMovie60/Models/MovieDateRating.cs?highlight=13&name=snippet)]
 1. Edit *Pages/Movies/Index.cshtml*, and add a `Rating` field:
    <a name="addrat6"></a>
-   [!code-cshtml[](razor-pages-start/snapshot_sample6/Pages/Movies/IndexRating.cshtml.cs?highlight=40-42,62-64)]
+   [!code-cshtml[](razor-pages-start/snapshot_sample6/Pages/Movies/IndexRating.cshtml?highlight=40-42,62-64)]
 1. Update the Delete, Details, Create, and Edit pages with the `Rating` field.
 
 The app won't work until the database is updated to include the new field. Running the app without an update to the database throws a `SqlException`:
