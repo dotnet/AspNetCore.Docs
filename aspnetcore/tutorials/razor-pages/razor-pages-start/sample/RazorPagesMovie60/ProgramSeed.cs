@@ -52,7 +52,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
 
-builder.Services.AddDbContext<RazorPagesMovieContext>(options => 
+builder.Services.AddDbContext<RazorPagesMovieContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("RazorPagesMovieContext")));
 
 var app = builder.Build();
@@ -61,15 +61,7 @@ using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
 
-    try
-    {
-        SeedData.Initialize(services);
-    }
-    catch (Exception ex)
-    {
-        var logger = services.GetRequiredService<ILogger<Movie>>();
-        logger.LogError(ex, "An error occurred seeding the DB.");
-    }
+    SeedData.Initialize(services);
 }
 
 if (app.Environment.IsDevelopment())

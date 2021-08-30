@@ -425,7 +425,7 @@ Update the *Program.cs* with the following highlighted code:
 
 # [Visual Studio](#tab/visual-studio)
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/ProgramSeed.cs?name=snippet_all&highlight=14-27)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/ProgramSeed.cs?name=snippet_all&highlight=14-19)]
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
