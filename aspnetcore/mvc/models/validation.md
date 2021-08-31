@@ -96,7 +96,7 @@ public class Person
 }
 ```
 
-. This behavior can be disabled by configuring <xref:Microsoft.AspNetCore.Mvc.MvcOptions.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes> in `Startup.ConfigureServices`:
+This behavior can be disabled by configuring <xref:Microsoft.AspNetCore.Mvc.MvcOptions.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes> in `Startup.ConfigureServices`:
 
 ```csharp
 services.AddControllers(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
@@ -403,7 +403,7 @@ The preceding approach won't prevent client side validation of ASP.NET Core Iden
 
 This article explains how to validate user input in an ASP.NET Core MVC or Razor Pages app.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/validation/sample) ([how to download](xref:index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/validation/samples) ([how to download](xref:index#how-to-download-a-sample)).
 
 ## Model state
 
@@ -546,7 +546,7 @@ For scenarios that the built-in validation attributes don't handle, you can crea
 
 The `IsValid` method accepts an object named *value*, which is the input to be validated. An overload also accepts a `ValidationContext` object, which provides additional information, such as the model instance created by model binding.
 
-The following example validates that the release date for a movie in the *Classic* genre isn't later than a specified year. The `[ClassicMovie2]` attribute checks the genre first and continues only if it's *Classic*. For movies identified as classics, it checks the release date to make sure it's not later than the limit passed to the attribute constructor.)
+The following example validates that the release date for a movie in the *Classic* genre isn't later than a specified year. The `[ClassicMovie2]` attribute checks the genre first and continues only if it's *Classic*. For movies identified as classics, it checks the release date to make sure it's not later than the limit passed to the attribute constructor.
 
 [!code-csharp[](validation/samples/2.x/ValidationSample/Attributes/ClassicMovieAttribute.cs?name=snippet_ClassicMovieAttribute)]
 

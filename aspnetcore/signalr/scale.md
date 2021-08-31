@@ -153,9 +153,9 @@ With [Nginx Open Source](https://nginx.org/en/), use `ip_hash` to route connecti
 http {
   upstream backend {
     # App server 1
-    server http://localhost:5000;
+    server localhost:5000;
     # App server 2
-    server http://localhost:5002;
+    server localhost:5002;
 
     ip_hash;
   }
@@ -168,9 +168,9 @@ With [Nginx Plus](https://www.nginx.com/products/nginx), use `sticky` to add a c
 http {
   upstream backend {
     # App server 1
-    server http://localhost:5000;
+    server localhost:5000;
     # App server 2
-    server http://localhost:5002;
+    server localhost:5002;
 
     sticky cookie srv_id expires=max domain=.example.com path=/ httponly;
   }

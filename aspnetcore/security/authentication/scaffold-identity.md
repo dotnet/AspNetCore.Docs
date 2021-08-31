@@ -35,7 +35,7 @@ For example, `AddDbContext` and `AddDefaultIdentity` are commented out in the fo
 
 [!code-csharp[](scaffold-identity/3.1sample/StartupRemove.cs?name=snippet)]
 
-The preceeding code comments out the code that is duplicated in *Areas/Identity/IdentityHostingStartup.cs*
+The preceding code comments out the code that is duplicated in *Areas/Identity/IdentityHostingStartup.cs*
 
 Typically, apps that were created with individual accounts should ***not*** create a new data context.
 

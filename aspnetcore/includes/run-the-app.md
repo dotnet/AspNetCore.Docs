@@ -20,6 +20,14 @@ no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cook
   
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
+* Select **Run** > **Start Without Debugging** to launch the app.
+
+  Visual Studio for Mac:
+
+  * Starts [Kestrel](xref:fundamentals/servers/index#kestrel) server.
+  * Launches a browser.
+  * Navigates to `http://localhost:port`, where *port* is a randomly chosen port number.
+
   [!INCLUDE[](~/includes/trustCertMac.md)]
 
 * From Visual Studio, press **Opt-Cmd-Return** to run without the debugger. Alternatively, navigate to the menu bar and go to **Run>Start Without Debugging**.

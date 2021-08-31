@@ -61,16 +61,16 @@ conceptualContent:
     - title: "Interactive client-side Blazor apps"
       summary: Develop with reusable UI components that can take advantage of WebAssembly for near-native performance
       links:
-        - url: 5.0/blazor/index.md
+        - url: blazor/index.md
           itemType: overview
           text: "Overview"
         - url: https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro
           itemType: get-started
           text: "Build your first Blazor app"
-        - url: 5.0/tutorials/build-a-blazor-app.md
+        - url: tutorials/build-a-blazor-app.md
           itemType: get-started
           text: "Build your first Blazor app with reusable components"
-        - url: 5.0/blazor/hosting-models.md
+        - url: blazor/hosting-models.md
           itemType: concept
           text: "Blazor hosting models"
     # Card
@@ -152,7 +152,7 @@ conceptualContent:
         - url: signalr/introduction.md
           itemType: get-started
           text: "Create your first SignalR app"
-        - url: 5.0/tutorials/signalr-blazor.md
+        - url: tutorials/signalr-blazor.md
           itemType: tutorial
           text: "SignalR with Blazor WebAssembly"
         - url: tutorials/signalr-typescript-webpack.md
@@ -205,7 +205,7 @@ conceptualContent:
         - url: tutorials/first-mvc-app/start-mvc.md
           itemType: tutorial
           text: "SQL with ASP.NET Core"
-        - url: 5.0/blazor/components/data-binding.md
+        - url: blazor/components/data-binding.md
           itemType: concept
           text: "Data binding in ASP.NET Core Blazor"
         - url: tutorials/razor-pages/razor-pages-start.md

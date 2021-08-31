@@ -239,7 +239,7 @@ Follow the instructions in [Scaffold Student pages](xref:data/ef-rp/intro#scaffo
 
 ### Add a utility class
 
-Add a class named `Utility` with the following code:
+In the project folder, create the `Utility`  class with the following code:
 
 # [Visual Studio](#tab/visual-studio)
 

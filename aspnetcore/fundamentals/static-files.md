@@ -93,7 +93,7 @@ Static files are publicly cacheable for 600 seconds:
 The ASP.NET Core templates call <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> before calling <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>. Most apps follow this pattern. When the Static File Middleware is called before the authorization middleware:
 
   * No authorization checks are performed on the static files.
-  * Static files served by the Static File Middleware, such as those those under `wwwroot`, are publicly accessible.
+  * Static files served by the Static File Middleware, such as those under `wwwroot`, are publicly accessible.
   
 To serve static files based on authorization:
 

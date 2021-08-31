@@ -9,7 +9,7 @@ no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cook
   
   The preceding command doesn't work on Linux. See your Linux distribution's documentation for trusting a certificate.
 
-  The preceding command displays the following dialog:
+  The preceding command displays the following dialog, provided the certificate was not previously trusted:
 
   ![Security warning dialog](~/getting-started/_static/cert.png)
 
