@@ -417,7 +417,7 @@ We hope to have Visual Studio for Mac instructions soon.
 
 <!-- replace all of this with updated includes  -->
 
-Press Ctrl+F5 to run without the debugger.
+Select **RazorPagesMovie** in **Solution Explorer**, and then press Ctrl+F5 to run without the debugger.
 
 Visual Studio displays the following dialog when a project is not yet configured to use SSL:
 
@@ -503,8 +503,7 @@ The following code enables various [Middleware](xref:fundamentals/middleware/ind
 * `app.UseRouting();` : Adds route matching to the middleware pipeline. For more information, see <xref:fundamentals/routing>
 * `app.MapRazorPages();`: Configures endpoint routing for Razor Pages.
 * `app.UseAuthorization();` : Authorizes a user to access secure resources. This app doesn't use authorization, therefore this line could be removed.
-
-`app.Run();` : runs the app.
+* `app.Run();` : Runs the app.
 
 ## Troubleshooting with the completed sample
 
