@@ -1,4 +1,4 @@
-﻿#define MovieDateRatingDA
+﻿//#define MovieDateRatingDA
 #if MovieDateRatingDA
 #region snippet1
 using System.ComponentModel.DataAnnotations;
