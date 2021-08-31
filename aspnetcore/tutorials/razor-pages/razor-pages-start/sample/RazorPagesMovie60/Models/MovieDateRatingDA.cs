@@ -37,6 +37,6 @@ namespace RazorPagesMovie.Models
         [Required]
         public string Rating { get; set; } = string.Empty;
     }
-    #endregion
 }
+#endregion
 #endif
