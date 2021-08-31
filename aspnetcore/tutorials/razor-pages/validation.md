@@ -168,7 +168,7 @@ It's a best practice to avoid compiling hard dates in models, so using the `[Ran
 
 The following code shows combining attributes on one line:
 
-[!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Models/MovieDateRatingDAmult.cs?name=snippet1)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie60/Models/MovieDateRatingDAmult.cs?name=snippet1)]
 
 [Get started with Razor Pages and EF Core](xref:data/ef-rp/intro) shows advanced EF Core operations with Razor Pages.
 
@@ -176,7 +176,7 @@ The following code shows combining attributes on one line:
 
 The DataAnnotations applied to the class changes the schema. For example, the DataAnnotations applied to the `Title` field:
 
-[!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Models/MovieDateRatingDA.cs?name=snippet11)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie60/Models/MovieDateRatingDA.cs?name=snippet11)]
 
 * Limits the characters to 60.
 * Doesn't allow a `null` value.
@@ -266,7 +266,7 @@ The `DataAnnotations` namespace provides:
 
 Update the `Movie` class to take advantage of the built-in `[Required]`, `[StringLength]`, `[RegularExpression]`, and `[Range]` validation attributes.
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Models/MovieDateRatingDA.cs?name=snippet1)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Models/MovieDateRatingDA.cs?name=snippet1)]
 
 The validation attributes specify behavior to enforce on the model properties they're applied to:
 
