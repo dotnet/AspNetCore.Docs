@@ -116,8 +116,6 @@ In this section, the movie model is scaffolded. That is, the scaffolding tool pr
 
    ![Add Razor Pages](model/_static/3/arp.png)
 
-   If you get an error message that says you need to install the `Microsoft.EntityFrameworkCore.SqlServer` package, repeat the steps starting with **Add** > **New Scaffolded Item**.
-   
 The *appsettings.json* file is updated with the connection string used to connect to a local database.
 
 # [Visual Studio Code](#tab/visual-studio-code)
@@ -786,6 +784,8 @@ In this section, the movie model is scaffolded. That is, the scaffolding tool pr
    1. Select **Add**.
 
    ![Add Razor Pages](model/_static/3/arp.png)
+   
+   If you get an error message that says you need to install the `Microsoft.EntityFrameworkCore.SqlServer` package, repeat the steps starting with **Add** > **New Scaffolded Item**.
 
 The *appsettings.json* file is updated with the connection string used to connect to a local database.
 
