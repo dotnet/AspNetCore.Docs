@@ -88,7 +88,7 @@ The `Movie` class contains:
 
 [DataAnnotations](xref:System.ComponentModel.DataAnnotations) are covered in a later tutorial.
 
-Press Ctrl+Shift+B to build the project and verify there are no compilation errors.
+Build the project to verify there are no compilation errors.
 
 ## Scaffold the movie model
 
@@ -328,6 +328,8 @@ The `Movie` class contains:
   * Only the date is displayed, not time information.
 
 [DataAnnotations](xref:System.ComponentModel.DataAnnotations) are covered in a later tutorial.
+
+Build the project to verify there are no compilation errors.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
