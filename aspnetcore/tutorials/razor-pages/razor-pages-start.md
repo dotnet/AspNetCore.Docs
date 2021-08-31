@@ -435,7 +435,7 @@ Select **Yes** if you agree to trust the development certificate.
 
 Visual Studio:
 
-* Run the app, which  launches the Kestrel server](xref:fundamentals/servers/kestrel).
+* Runs the app, which  launches the [Kestrel server](xref:fundamentals/servers/kestrel).
 * Launches the default browser at `https://localhost:5001`, which displays the apps UI.
 
 # [Visual Studio Code](#tab/visual-studio-code)
