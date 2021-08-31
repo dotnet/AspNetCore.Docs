@@ -329,8 +329,6 @@ The `Movie` class contains:
 
 [DataAnnotations](xref:System.ComponentModel.DataAnnotations) are covered in a later tutorial.
 
-Build the project to verify there are no compilation errors.
-
 # [Visual Studio Code](#tab/visual-studio-code)
 
 * Add a folder named *Models*.
