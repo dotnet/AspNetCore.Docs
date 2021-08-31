@@ -88,7 +88,7 @@ The `Movie` class contains:
 
 [DataAnnotations](xref:System.ComponentModel.DataAnnotations) are covered in a later tutorial.
 
-Build the project to verify there are no compilation errors.
+Press Ctrl+Shift+B to build the project and verify there are no compilation errors.
 
 ## Scaffold the movie model
 
@@ -968,7 +968,7 @@ An alternative approach is to disable the CS8618 [warning with pragma](/dotnet/f
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Data/RazorPagesMovieContext.cs?name=snippet_prag)]
 
-For the warnings in the Razor Pages C# code behind files, use the [pragma](/dotnet/csharp/language-reference/preprocessor-directives#pragmas) C# preprocessor directive is disable warnings. For example, use the following highlighted code in the *Pages/Movies/Index.cshtml.cs* file:
+For the warnings in the Razor Pages C# code behind files, use the [pragma](/dotnet/csharp/language-reference/preprocessor-directives#pragmas) C# preprocessor directive to disable warnings. For example, use the following highlighted code in the *Pages/Movies/Index.cshtml.cs* file:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample6/Pages/Movies/Index.cshtml.cs?name=snippet&highlight=3-4,21,22)]
 
