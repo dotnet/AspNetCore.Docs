@@ -233,7 +233,7 @@ The following instructions post data to the app:
   * Set the URI to `https://localhost:<port>/todoitems`. For example: `https://localhost:5001/todoitems`
   * Select the **Body** tab.
   * Select the **raw** radio button.
-  * Set the type to **JSON (application/json)**.
+  * Set the type to **JSON**.
   * In the request body enter JSON for a to-do item:
   
       ```json
@@ -245,7 +245,6 @@ The following instructions post data to the app:
   
   * Select **Send**.
     ![Postman with Post request details](min-web-api/_static/post2.png)
-    <!-- ![Postman with Post request](min-web-api/_static/post.png) -->
 
 ## Examine the GET methods
 
