@@ -433,8 +433,10 @@ Select **Yes** if you agree to trust the development certificate.
 
 [!INCLUDE[trust FF](~/includes/trust-ff.md)]
 
-Visual Studio launches:
+Visual Studio:
 
+* Runs the app, which  launches the [Kestrel server](xref:fundamentals/servers/kestrel).
+* Launches the default browser at `https://localhost:5001`, which displays the apps UI.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
