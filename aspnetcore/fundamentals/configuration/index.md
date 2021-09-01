@@ -55,7 +55,7 @@ For more information on `CreateBuilder`, see [Default builder settings](xref:fun
 
 The following code displays the enabled configuration providers in the order they were added:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/Pages/Index2.cshtml.cs?name=snippet)]
+[!code-csharp[](index/samples/6.x/ConfigSample/Pages/Index2.cshtml.cs?name=snippet)]
 
 ### appsettings.json
 
