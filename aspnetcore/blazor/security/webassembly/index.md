@@ -68,11 +68,24 @@ In Blazor WebAssembly apps, authorization checks can be bypassed because all cli
 
 Apply the [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribute) ([API documentation](xref:System.Web.Mvc.AuthorizeAttribute)) to each Razor component of the app using one of the following approaches:
 
-* Use the [`@attribute`](xref:mvc/views/razor#attribute) directive in the `_Imports.razor` file:
+* Add the [`@attribute`](xref:mvc/views/razor#attribute) directive in the imports file with `[Authorize]`.
+
+  `_Imports.razor`:
 
   ```razor
   @using Microsoft.AspNetCore.Authorization
   @attribute [Authorize]
+  ```
+  
+  Allow anonymous access to the `Authentication` component to permit redirection to the Idenfity Provider.
+  
+  `Pages/Authentication.razor`:
+  
+  ```razor
+  ...
+  @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+  @attribute [AllowAnonymous]
+  ...
   ```
 
 * Add the attribute to each Razor component in the `Pages` folder.
@@ -190,11 +203,24 @@ In Blazor WebAssembly apps, authorization checks can be bypassed because all cli
 
 Apply the [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribute) ([API documentation](xref:System.Web.Mvc.AuthorizeAttribute)) to each Razor component of the app using one of the following approaches:
 
-* Use the [`@attribute`](xref:mvc/views/razor#attribute) directive in the `_Imports.razor` file:
+* Add the [`@attribute`](xref:mvc/views/razor#attribute) directive in the imports file with `[Authorize]`.
+
+  `_Imports.razor`:
 
   ```razor
   @using Microsoft.AspNetCore.Authorization
   @attribute [Authorize]
+  ```
+  
+  Allow anonymous access to the `Authentication` component to permit redirection to the Idenfity Provider.
+  
+  `Pages/Authentication.razor`:
+  
+  ```razor
+  ...
+  @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+  @attribute [AllowAnonymous]
+  ...
   ```
 
 * Add the attribute to each Razor component in the `Pages` folder.
@@ -312,11 +338,24 @@ In Blazor WebAssembly apps, authorization checks can be bypassed because all cli
 
 Apply the [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribute) ([API documentation](xref:System.Web.Mvc.AuthorizeAttribute)) to each Razor component of the app using one of the following approaches:
 
-* Use the [`@attribute`](xref:mvc/views/razor#attribute) directive in the `_Imports.razor` file:
+* Add the [`@attribute`](xref:mvc/views/razor#attribute) directive in the imports file with `[Authorize]`.
+
+  `_Imports.razor`:
 
   ```razor
   @using Microsoft.AspNetCore.Authorization
   @attribute [Authorize]
+  ```
+  
+  Allow anonymous access to the `Authentication` component to permit redirection to the Idenfity Provider.
+  
+  `Pages/Authentication.razor`:
+  
+  ```razor
+  ...
+  @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+  @attribute [AllowAnonymous]
+  ...
   ```
 
 * Add the attribute to each Razor component in the `Pages` folder.
