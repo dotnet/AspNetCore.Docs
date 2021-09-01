@@ -36,9 +36,11 @@ This topic provides information on configuration in ASP.NET Core. For informatio
 
 ASP.NET Core web apps created with [dotnet new](/dotnet/core/tools/dotnet-new) or Visual Studio generate the following code:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/Program.cs?name=snippet&highlight=9)]
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+```
 
- <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> provides default configuration for the app in the following order:
+`CreateBuilder` provides default configuration for the app in the following order:
 
 1. [ChainedConfigurationProvider](xref:Microsoft.Extensions.Configuration.ChainedConfigurationSource) :  Adds an existing `IConfiguration` as a source. In the default configuration case, adds the [host](#hvac) configuration and setting it as the first source for the _app_ configuration.
 1. [appsettings.json](#appsettingsjson) using the [JSON configuration provider](#file-configuration-provider).
@@ -49,7 +51,7 @@ ASP.NET Core web apps created with [dotnet new](/dotnet/core/tools/dotnet-new) o
 
 Configuration providers that are added later override previous key settings. For example, if `MyKey` is set in both *appsettings.json* and the environment, the environment value is used. Using the default configuration providers, the  [Command-line configuration provider](#clcp) overrides all other providers.
 
-For more information on `CreateDefaultBuilder`, see [Default builder settings](xref:fundamentals/host/generic-host#default-builder-settings).
+For more information on `CreateBuilder`, see [Default builder settings](xref:fundamentals/host/generic-host#default-builder-settings).
 
 The following code displays the enabled configuration providers in the order they were added:
 
