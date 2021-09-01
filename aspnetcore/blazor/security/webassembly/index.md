@@ -77,7 +77,7 @@ Apply the [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribu
   @attribute [Authorize]
   ```
   
-  Allow anonymous access to the `Authentication` component to permit redirection to the Idenfity Provider. Add the following Razor code to the component under the `@page` directive.
+  Allow anonymous access to the `Authentication` component to permit redirection to the Idenfity Provider. Add the following Razor code to the component under the [`@page](xref:mvc/views/razor/page) directive.
   
   `Pages/Authentication.razor`:
   
@@ -210,7 +210,7 @@ Apply the [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribu
   @attribute [Authorize]
   ```
   
-  Allow anonymous access to the `Authentication` component to permit redirection to the Idenfity Provider. Add the following Razor code to the component under the `@page` directive.
+  Allow anonymous access to the `Authentication` component to permit redirection to the Idenfity Provider. Add the following Razor code to the component under the [`@page](xref:mvc/views/razor/page) directive.
   
   `Pages/Authentication.razor`:
   
@@ -343,7 +343,7 @@ Apply the [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribu
   @attribute [Authorize]
   ```
   
-  Allow anonymous access to the `Authentication` component to permit redirection to the Idenfity Provider. Add the following Razor code to the component under the `@page` directive.
+  Allow anonymous access to the `Authentication` component to permit redirection to the Idenfity Provider. Add the following Razor code to the component under the [`@page](xref:mvc/views/razor/page) directive.
   
   `Pages/Authentication.razor`:
   
