@@ -1,6 +1,7 @@
 ﻿using ConfigSample.Options;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Diagnostics;
 
 namespace ConfigSample.Pages
 {
@@ -18,6 +19,9 @@ namespace ConfigSample.Pages
         {
             var positionOptions = new PositionOptions();
             Configuration.GetSection(PositionOptions.Position).Bind(positionOptions);
+
+            Debug.WriteLine($"Title: {positionOptions.Title} \n" +
+                           $"Name: {positionOptions.Name}");
 
             return Content($"Title: {positionOptions.Title} \n" +
                            $"Name: {positionOptions.Name}");
