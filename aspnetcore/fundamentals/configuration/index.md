@@ -154,7 +154,7 @@ To test that the preceding commands override *appsettings.json* and *appsettings
 
 Call <xref:Microsoft.Extensions.Configuration.EnvironmentVariablesExtensions.AddEnvironmentVariables*> with a string to specify a prefix for environment variables:
 
-[!code-csharp[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/Program.cs?name=snippet4&highlight=12)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Program.cs?name=snippet_env&highlight=3-4)]
 
 In the preceding code:
 

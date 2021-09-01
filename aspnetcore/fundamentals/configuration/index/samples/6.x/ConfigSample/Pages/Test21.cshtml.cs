@@ -9,7 +9,7 @@ namespace ConfigSample.Pages
     public class Test21Model : PageModel
     {
         private readonly IConfiguration Configuration;
-        public PositionOptions positionOptions { get; private set; }
+        public PositionOptions? positionOptions { get; private set; }
 
         public Test21Model(IConfiguration configuration)
         {

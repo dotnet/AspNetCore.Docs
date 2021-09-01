@@ -18,7 +18,7 @@ namespace ConfigSample
 
         public ContentResult OnGet()
         {
-            string? s = null;
+            string s = "";
             var selection = Config.GetSection("section2");
             if (!selection.Exists())
             {

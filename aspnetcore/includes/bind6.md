@@ -37,10 +37,10 @@ In the preceding code, by default, changes to the JSON configuration file after 
 
 An alternative approach when using the ***options pattern*** is to bind the `Position` section and add it to the [dependency injection service container](xref:fundamentals/dependency-injection). In the following code, `PositionOptions` is added to the service container with <xref:Microsoft.Extensions.DependencyInjection.OptionsConfigurationServiceCollectionExtensions.Configure*> and bound to configuration:
 
-[!code-csharp[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/Startup.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Program.cs?name=snippet)]
 
 Using the preceding code, the following code reads the position options:
 
-[!code-csharp[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/Pages/Test2.cshtml.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Pages/Test2.cshtml.cs?name=snippet)]
 
 In the preceding code, changes to the JSON configuration file after the app has started are ***not*** read. To read changes after the app has started, use [IOptionsSnapshot](xref:fundamentals/configuration/options#ios).
