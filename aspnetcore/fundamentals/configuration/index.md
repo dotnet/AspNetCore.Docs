@@ -65,7 +65,7 @@ Consider the following *appsettings.json* file:
 
 The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/6.x/ConfigSample) displays several of the preceding configurations settings:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
+[!code-csharp[](index/samples/6.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
 
 The default <xref:Microsoft.Extensions.Configuration.Json.JsonConfigurationProvider> loads configuration in the following order:
 
@@ -85,7 +85,7 @@ Using the [default](#default) configuration, the *appsettings.json* and *appsett
 
 ### Bind hierarchical configuration data using the options pattern
 
-[!INCLUDE[](~/includes/bind.md)]
+[!INCLUDE[](~/includes/bind6.md)]
 
 Using the [default](#default) configuration, the *appsettings.json* and *appsettings.*`Environment`*.json* files are enabled with [reloadOnChange: true](https://github.com/dotnet/extensions/blob/release/3.1/src/Hosting/Hosting/src/Host.cs#L74-L75). Changes made to the *appsettings.json* and *appsettings.*`Environment`*.json* file ***after*** the app starts are read by the [JSON configuration provider](#jcp).
 

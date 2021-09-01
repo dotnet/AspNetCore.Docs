@@ -18,11 +18,11 @@ namespace ConfigSample
 
         public ContentResult OnGet()
         {
-            string s = null;
+            string? s = null;
             var selection = Config.GetSection("section2");
             if (!selection.Exists())
             {
-                throw new System.Exception("section2 does not exist.");
+                throw new Exception("section2 does not exist.");
             }
             var children = selection.GetChildren();
 

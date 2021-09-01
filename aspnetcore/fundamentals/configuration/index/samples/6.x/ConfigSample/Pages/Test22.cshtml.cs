@@ -20,9 +20,6 @@ namespace ConfigSample.Pages
             var positionOptions = new PositionOptions();
             Configuration.GetSection(PositionOptions.Position).Bind(positionOptions);
 
-            Debug.WriteLine($"Title: {positionOptions.Title} \n" +
-                           $"Name: {positionOptions.Name}");
-
             return Content($"Title: {positionOptions.Title} \n" +
                            $"Name: {positionOptions.Name}");
         }
