@@ -383,7 +383,7 @@ A typical sequence of configuration providers is:
 1. *appsettings*.`Environment`.*json*
 1. [User secrets](xref:security/app-secrets)
 1. Environment variables using the [Environment Variables configuration provider](#evcp).
-1. Command-line arguments using the [Command-line configuration provider](#command-line-configuration-provider).
+1. Command-line arguments using the [Command-line configuration provider](#clcp).
 
 A common practice is to add the Command-line configuration provider last in a series of providers to allow command-line arguments to override configuration set by the other providers.
 
@@ -745,7 +745,7 @@ Create a class that implements <xref:Microsoft.Extensions.Configuration.IConfigu
 
 [!code-csharp[](index/samples/3.x/ConfigurationSample/EFConfigurationProvider/EFConfigurationSource.cs?name=snippet1)]
 
-Create the custom configuration provider by inheriting from <xref:Microsoft.Extensions.Configuration.ConfigurationProvider>. The configuration provider initializes the database when it's empty. Since [configuration keys are case-insensitive](#keys), the dictionary used to initialize the database is created with the case-insensitive comparer ([StringComparer.OrdinalIgnoreCase](xref:System.StringComparer.OrdinalIgnoreCase)).
+Create the custom configuration provider by inheriting from <xref:Microsoft.Extensions.Configuration.ConfigurationProvider>. The configuration provider initializes the database when it's empty. Since configuration keys are case-insensitive, the dictionary used to initialize the database is created with the case-insensitive comparer ([StringComparer.OrdinalIgnoreCase](xref:System.StringComparer.OrdinalIgnoreCase)). zz
 
 *EFConfigurationProvider/EFConfigurationProvider.cs*:
 
@@ -821,7 +821,7 @@ For details on the default configuration when using the [Web Host](xref:fundamen
 
 * Host configuration is provided from:
   * Environment variables prefixed with `DOTNET_` (for example, `DOTNET_ENVIRONMENT`) using the [Environment Variables configuration provider](#environment-variables). The prefix (`DOTNET_`) is stripped when the configuration key-value pairs are loaded.
-  * Command-line arguments using the [Command-line configuration provider](#command-line-configuration-provider).
+  * Command-line arguments using the [Command-line configuration provider](#clcp).
 * Web Host default configuration is established (`ConfigureWebHostDefaults`):
   * Kestrel is used as the web server and configured using the app's configuration providers.
   * Add Host Filtering Middleware.
@@ -887,7 +887,7 @@ ASP.NET Core web apps created with [dotnet new](/dotnet/core/tools/dotnet-new) o
 1. *appsettings.*`Environment`*.json* using the [JSON configuration provider](#file-configuration-provider). For example, *appsettings*.***Production***.*json* and *appsettings*.***Development***.*json*.
 1. [App secrets](xref:security/app-secrets) when the app runs in the `Development` environment.
 1. Environment variables using the [Environment Variables configuration provider](#evcp).
-1. Command-line arguments using the [Command-line configuration provider](#command-line).
+1. Command-line arguments using the [Command-line configuration provider](#clcp).
 
 Configuration providers that are added later override previous key settings. For example, if `MyKey` is set in both *appsettings.json* and the environment, the environment value is used. Using the default configuration providers, the  [Command-line configuration provider](#clcp) overrides all other providers.
 
@@ -1593,7 +1593,7 @@ Create a class that implements <xref:Microsoft.Extensions.Configuration.IConfigu
 
 [!code-csharp[](index/samples/3.x/ConfigurationSample/EFConfigurationProvider/EFConfigurationSource.cs?name=snippet1)]
 
-Create the custom configuration provider by inheriting from <xref:Microsoft.Extensions.Configuration.ConfigurationProvider>. The configuration provider initializes the database when it's empty. Since [configuration keys are case-insensitive](#keys), the dictionary used to initialize the database is created with the case-insensitive comparer ([StringComparer.OrdinalIgnoreCase](xref:System.StringComparer.OrdinalIgnoreCase)).
+Create the custom configuration provider by inheriting from <xref:Microsoft.Extensions.Configuration.ConfigurationProvider>. The configuration provider initializes the database when it's empty. Since configuration keys are case-insensitive, the dictionary used to initialize the database is created with the case-insensitive comparer ([StringComparer.OrdinalIgnoreCase](xref:System.StringComparer.OrdinalIgnoreCase)).
 
 *EFConfigurationProvider/EFConfigurationProvider.cs*:
 
