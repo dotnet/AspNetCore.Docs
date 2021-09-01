@@ -1225,7 +1225,7 @@ A typical sequence of configuration providers is:
 1. *appsettings*.`Environment`.*json*
 1. [User secrets](xref:security/app-secrets)
 1. Environment variables using the [Environment Variables configuration provider](#evcp).
-1. Command-line arguments using the [Command-line configuration provider](#command-line-configuration-provider).
+1. Command-line arguments using the [Command-line configuration provider](#clcp).
 
 A common practice is to add the Command-line configuration provider last in a series of providers to allow command-line arguments to override configuration set by the other providers.
 
@@ -1669,7 +1669,7 @@ For details on the default configuration when using the [Web Host](xref:fundamen
 
 * Host configuration is provided from:
   * Environment variables prefixed with `DOTNET_` (for example, `DOTNET_ENVIRONMENT`) using the [Environment Variables configuration provider](#environment-variables). The prefix (`DOTNET_`) is stripped when the configuration key-value pairs are loaded.
-  * Command-line arguments using the [Command-line configuration provider](#command-line-configuration-provider).
+  * Command-line arguments using the Command-line configuration provider.
 * Web Host default configuration is established (`ConfigureWebHostDefaults`):
   * Kestrel is used as the web server and configured using the app's configuration providers.
   * Add Host Filtering Middleware.
