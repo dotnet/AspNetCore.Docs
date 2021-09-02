@@ -1,4 +1,4 @@
-#define SUB // CONFIG DEFAULT Second Third SWITCH JSON1 INI XML MEM SUB
+#define RAY // CONFIG DEFAULT Second Third SWITCH JSON1 INI XML MEM SUB RAY
 #if DEFAULT
 var builder = WebApplication.CreateBuilder(args);
 
@@ -357,6 +357,39 @@ builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
     config.AddJsonFile("MySubsection.json",
                        optional: true,
                        reloadOnChange: true);
+});
+
+builder.Services.AddRazorPages();
+
+var app = builder.Build();
+#endregion
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthorization();
+
+app.MapRazorPages();
+
+app.Run();
+#elif RAY
+#region snippet_ray
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
+{
+    var env = hostingContext.HostingEnvironment;
+
+    config.AddJsonFile("MyArray.json",
+                        optional: true,
+                        reloadOnChange: true);
 });
 
 builder.Services.AddRazorPages();

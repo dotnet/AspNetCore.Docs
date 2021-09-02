@@ -672,7 +672,7 @@ Index: 4  Value: value50
 ```
 
 In the preceding output, Index 3 has value `value40`, corresponding to `"4": "value40",` in *MyArray.json*. The bound array indices are continuous and not bound to the configuration key index. The configuration binder isn't capable of binding null values or creating null entries in bound objects
-
+<!-- Not needed sample 
 The  following code loads the `array:entries` configuration with the <xref:Microsoft.Extensions.Configuration.MemoryConfigurationBuilderExtensions.AddInMemoryCollection*> extension method:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/ProgramArray.cs?name=snippet)]
@@ -772,11 +772,13 @@ The following code displays configuration data in `Startup` methods:
 
 For an example of accessing configuration using startup convenience methods, see [App startup: Convenience methods](xref:fundamentals/startup#convenience-methods).
 
+-->
+
 ## Access configuration in Razor Pages
 
 The following code displays configuration data in a Razor Page:
 
-[!code-cshtml[](index/samples/3.x/ConfigSample/Pages/Test5.cshtml)]
+[!code-cshtml[](index/samples/5.x/ConfigSample/Pages/Test5.cshtml)]
 
 In the following code, `MyOptions` is added to the service container with <xref:Microsoft.Extensions.DependencyInjection.OptionsConfigurationServiceCollectionExtensions.Configure*> and bound to configuration:
 
