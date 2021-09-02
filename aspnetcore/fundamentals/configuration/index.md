@@ -778,7 +778,7 @@ For an example of accessing configuration using startup convenience methods, see
 
 The following code displays configuration data in a Razor Page:
 
-[!code-cshtml[](index/samples/5.x/ConfigSample/Pages/Test5.cshtml)]
+[!code-cshtml[](index/samples/6.x/ConfigSample/Pages/Test5.cshtml)]
 
 In the following code, `MyOptions` is added to the service container with <xref:Microsoft.Extensions.DependencyInjection.OptionsConfigurationServiceCollectionExtensions.Configure*> and bound to configuration:
 
