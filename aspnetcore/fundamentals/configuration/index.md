@@ -315,13 +315,10 @@ For apps that use switch mappings, the call to `CreateDefaultBuilder` shouldn't 
 
 ## Set environment and command-line arguments with Visual Studio
 
-The following image shows setting environment and command-line arguments with Visual Studio:
+Environment and command-line arguments can be set in Visual Studio from the launch profiles dialog: 
 
-![Debug tab of VS](index/_static/vs-cmd-env.png)
-
-In Visual Studio 2019 version 16.10 preview 4 and later, setting environment and command-line arguments is done from the launch profiles UI:
-
-![launch profiles UI](index/_static/dbg-launch-profiles-ui.png)
+* In Solution Explorer, right cick the project and select **Properties**.
+* Select the **Debug > General** tab and select **Open debug launch profiles UI**.
 
 ## Hierarchical configuration data
 
