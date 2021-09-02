@@ -663,12 +663,12 @@ Consider *MyArray.json* from the [sample download](https://github.com/dotnet/Asp
 [!code-json[](index/samples/6.x/ConfigSample/MyArray.json)]
 
 The following code adds *MyArray.json* to the configuration providers:
-zz fix this?
-[!code-csharp[](index/samples/3.x/ConfigSample/ProgramJSONarray.cs?name=snippet)]
+
+[!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Program.cs?name=snippet_ba)]
 
 The following code reads the configuration and displays the values:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/Pages/Array.cshtml.cs?name=snippet)]
+[!code-csharp[](index/samples/6.x/ConfigSample/Pages/Array.cshtml.cs?name=snippet)]
 
 The preceding code returns the following output:
 
@@ -790,7 +790,7 @@ The following code displays configuration data in a Razor Page:
 [!code-cshtml[](index/samples/6.x/ConfigSample/Pages/Test5.cshtml)]
 
 In the following code, `MyOptions` is added to the service container with <xref:Microsoft.Extensions.DependencyInjection.OptionsConfigurationServiceCollectionExtensions.Configure*> and bound to configuration:
-
+zz- fix
 [!code-csharp[](~/fundamentals/configuration/options/samples/3.x/OptionsSample/Startup3.cs?name=snippet_Example2)]
 
 The following markup uses the [`@inject`](xref:mvc/views/razor#inject) Razor directive to resolve and display the options values:

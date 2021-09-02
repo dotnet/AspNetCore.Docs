@@ -22,6 +22,7 @@ namespace ConfigSample
             {
                 throw new ArgumentNullException(nameof(_array));
             }
+
             _array = Config.GetSection("array").Get<ArrayExample>();
             string s = String.Empty;
 

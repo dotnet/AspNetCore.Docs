@@ -1,4 +1,4 @@
-#define RAY // CONFIG DEFAULT Second Third SWITCH JSON1 INI XML MEM SUB RAY
+#define SUB // CONFIG DEFAULT Second Third SWITCH JSON1 INI XML MEM SUB RAY BA
 #if DEFAULT
 var builder = WebApplication.CreateBuilder(args);
 
@@ -93,7 +93,6 @@ app.Run();
 using Microsoft.Extensions.DependencyInjection.ConfigSample.Options;
 
 var builder = WebApplication.CreateBuilder(args);
-
 
 builder.Services
     .AddConfig(builder.Configuration)
@@ -352,8 +351,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
 {
-    var env = hostingContext.HostingEnvironment;
-
     config.AddJsonFile("MySubsection.json",
                        optional: true,
                        reloadOnChange: true);
@@ -385,11 +382,40 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
 {
-    var env = hostingContext.HostingEnvironment;
-
     config.AddJsonFile("MyArray.json",
                         optional: true,
                         reloadOnChange: true);
+});
+
+builder.Services.AddRazorPages();
+
+var app = builder.Build();
+#endregion
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthorization();
+
+app.MapRazorPages();
+
+app.Run();
+#elif BA
+#region snippet_ba
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
+{
+    config.AddJsonFile("MyArray.json",
+                        optional: true,
+                        reloadOnChange: true); ;
 });
 
 builder.Services.AddRazorPages();
