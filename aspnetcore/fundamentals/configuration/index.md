@@ -429,19 +429,18 @@ When an environment variable is discovered and loaded into configuration with an
 The <xref:Microsoft.Extensions.Configuration.Ini.IniConfigurationProvider> loads configuration from INI file key-value pairs at runtime.
 
 The following code clears all the configuration providers and adds several configuration providers:
-
-[!code-csharp[](index/samples/3.x/ConfigSample/ProgramINI.cs?name=snippet&highlight=10-30)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Program.cs?name=snippet_ini)]
 
 In the preceding code, settings in the *MyIniConfig.ini* and  *MyIniConfig*.`Environment`.*ini* files are overridden by settings in the:
 
 * [Environment variables configuration provider](#evcp)
 * [Command-line configuration provider](#clcp).
 
-The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) contains the following *MyIniConfig.ini* file:
+The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/6.x/ConfigSample) contains the following *MyIniConfig.ini* file:
 
-[!code-ini[](index/samples/3.x/ConfigSample/MyIniConfig.ini)]
+[!code-ini[](index/samples/6.x/ConfigSample/MyIniConfig.ini)]
 
-The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) displays several of the preceding configurations settings:
+The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/6.x/ConfigSample) displays several of the preceding configurations settings:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
 
@@ -458,7 +457,7 @@ Overloads can specify:
 
 Consider the following code:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/ProgramJSON.cs?name=snippet&highlight=12-14)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Program.cs?name=snippet_json)]
 
 The preceding code:
 
@@ -468,7 +467,7 @@ The preceding code:
 * Reads the [default configuration providers](#default) before the *MyConfig.json* file. Settings in the *MyConfig.json* file override setting in the default configuration providers, including the [Environment variables configuration provider](#evcp) and the [Command-line configuration provider](#clcp).
 
 You typically ***don't*** want a custom JSON file overriding values set in the [Environment variables configuration provider](#evcp) and the [Command-line configuration provider](#clcp).
-
+<!-- not needed sample 
 The following code clears all the configuration providers and adds several configuration providers:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/ProgramJSON2.cs?name=snippet)]
@@ -486,34 +485,36 @@ The following code from the [sample download](https://github.com/dotnet/AspNetCo
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
 
+-->
+
 ### XML configuration provider
 
 The <xref:Microsoft.Extensions.Configuration.Xml.XmlConfigurationProvider> loads configuration from XML file key-value pairs at runtime.
 
 The following code clears all the configuration providers and adds several configuration providers:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/ProgramXML.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Program.cs?name=snippet_xml)]
 
 In the preceding code, settings in the *MyXMLFile.xml* and  *MyXMLFile*.`Environment`.*xml* files are overridden by settings in the:
 
 * [Environment variables configuration provider](#evcp)
 * [Command-line configuration provider](#clcp).
 
-The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) contains the following *MyXMLFile.xml* file:
+The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/6.x/ConfigSample) contains the following *MyXMLFile.xml* file:
 
-[!code-xml[](index/samples/3.x/ConfigSample/MyXMLFile.xml)]
+[!code-xml[](index/samples/6.x/ConfigSample/MyXMLFile.xml)]
 
-The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) displays several of the preceding configurations settings:
+The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/6.x/ConfigSample) displays several of the preceding configurations settings:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
+[!code-csharp[](index/samples/6.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
 
 Repeating elements that use the same element name work if the `name` attribute is used to distinguish the elements:
 
-[!code-xml[](index/samples/3.x/ConfigSample/MyXMLFile3.xml)]
+[!code-xml[](index/samples/6.x/ConfigSample/MyXMLFile3.xml)]
 
 The following code reads the previous configuration file and displays the keys and values:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/Pages/XML/Index.cshtml.cs?name=snippet)]
+[!code-csharp[](index/samples/6.x/ConfigSample/Pages/XML/Index.cshtml.cs?name=snippet)]
 
 Attributes can be used to supply values:
 

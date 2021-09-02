@@ -1,4 +1,4 @@
-#define INI // CONFIG DEFAULT Second Third SWITCH JSON1 INI
+#define XML // CONFIG DEFAULT Second Third SWITCH JSON1 INI XML
 #if DEFAULT
 var builder = WebApplication.CreateBuilder(args);
 
@@ -191,7 +191,7 @@ app.MapRazorPages();
 
 app.Run();
 #elif JSON1
-#region snippet3
+#region snippet_json
 using Microsoft.Extensions.DependencyInjection.ConfigSample.Options;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -224,9 +224,7 @@ app.MapRazorPages();
 
 app.Run();
 #elif INI
-#region snippet3
-using Microsoft.Extensions.DependencyInjection.ConfigSample.Options;
-
+#region snippet_ini
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
@@ -237,6 +235,48 @@ builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
 
     config.AddIniFile("MyIniConfig.ini", optional: true, reloadOnChange: true)
           .AddIniFile($"MyIniConfig.{env.EnvironmentName}.ini",
+                         optional: true, reloadOnChange: true);
+
+    config.AddEnvironmentVariables();
+
+    if (args != null)
+    {
+        config.AddCommandLine(args);
+    }
+});
+
+builder.Services.AddRazorPages();
+
+var app = builder.Build();
+#endregion
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthorization();
+
+app.MapRazorPages();
+
+app.Run();
+#elif XML
+#region snippet_xml
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
+{
+    config.Sources.Clear();
+
+    var env = hostingContext.HostingEnvironment;
+
+    config.AddXmlFile("MyXMLFile.xml", optional: true, reloadOnChange: true)
+          .AddXmlFile($"MyXMLFile.{env.EnvironmentName}.xml",
                          optional: true, reloadOnChange: true);
 
     config.AddEnvironmentVariables();
