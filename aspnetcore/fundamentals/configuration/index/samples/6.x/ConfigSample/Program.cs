@@ -95,8 +95,9 @@ using Microsoft.Extensions.DependencyInjection.ConfigSample.Options;
 var builder = WebApplication.CreateBuilder(args);
 
 
-builder.Services.AddConfig(/* Need Configuration here */ )
-         .AddMyDependencyGroup();
+builder.Services
+    .AddConfig(builder.Configuration)
+    .AddMyDependencyGroup();
 
 // Works but wrong approach
 builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
