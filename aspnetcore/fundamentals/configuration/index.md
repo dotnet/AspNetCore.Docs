@@ -565,7 +565,7 @@ The <xref:Microsoft.Extensions.Configuration.Memory.MemoryConfigurationProvider>
 
 The following code adds a memory collection to the configuration system:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/ProgramArray.cs?name=snippet6)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Program.cs?name=snippet_mem)]
 
 The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) displays the preceding configurations settings:
 
@@ -605,7 +605,7 @@ In the preceding environment variable, `Https` is the name of the Kestrel specif
 
 [`ConfigurationBinder.GetValue<T>`](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.GetValue*) extracts a single value from configuration with a specified key and converts it to the specified type:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/Pages/TestNum.cshtml.cs?name=snippet)]
+[!code-csharp[](index/samples/6.x/ConfigSample/Pages/TestNum.cshtml.cs?name=snippet)]
 
 In the preceding code,  if `NumberKey` isn't found in the configuration, the default value of `99` is used.
 
@@ -613,11 +613,11 @@ In the preceding code,  if `NumberKey` isn't found in the configuration, the def
 
 For the examples that follow, consider the following *MySubsection.json* file:
 
-[!code-json[](index/samples/3.x/ConfigSample/MySubsection.json)]
+[!code-json[](index/samples/6.x/ConfigSample/MySubsection.json)]
 
 The following code adds *MySubsection.json* to the configuration providers:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/ProgramJSONsection.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Program.cs?name=snippet_sub)]
 
 ### GetSection
 
@@ -625,11 +625,11 @@ The following code adds *MySubsection.json* to the configuration providers:
 
 The following code returns values for `section1`:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/Pages/TestSection.cshtml.cs?name=snippet)]
+[!code-csharp[](index/samples/6.x/ConfigSample/Pages/TestSection.cshtml.cs?name=snippet)]
 
 The following code returns values for `section2:subsection0`:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/Pages/TestSection2.cshtml.cs?name=snippet)]
+[!code-csharp[](index/samples/6.x/ConfigSample/Pages/TestSection2.cshtml.cs?name=snippet)]
 
 `GetSection` never returns `null`. If a matching section isn't found, an empty `IConfigurationSection` is returned.
 
@@ -639,7 +639,7 @@ When `GetSection` returns a matching section, <xref:Microsoft.Extensions.Configu
 
 The following code calls [IConfiguration.GetChildren](xref:Microsoft.Extensions.Configuration.IConfiguration.GetChildren*) and returns values for `section2:subsection0`:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/Pages/TestSection4.cshtml.cs?name=snippet)]
+[!code-csharp[](index/samples/6.x/ConfigSample/Pages/TestSection4.cshtml.cs?name=snippet)]
 
 The preceding code calls [ConfigurationExtensions.Exists](xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.Exists*) to verify the  section exists:
 
@@ -649,12 +649,12 @@ The preceding code calls [ConfigurationExtensions.Exists](xref:Microsoft.Extensi
 
 The [ConfigurationBinder.Bind](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*) supports binding arrays to objects using array indices in configuration keys. Any array format that exposes a numeric key segment is capable of array binding to a [POCO](https://wikipedia.org/wiki/Plain_Old_CLR_Object) class array.
 
-Consider *MyArray.json* from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample):
+Consider *MyArray.json* from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/6.x/ConfigSample):
 
-[!code-json[](index/samples/3.x/ConfigSample/MyArray.json)]
+[!code-json[](index/samples/6.x/ConfigSample/MyArray.json)]
 
 The following code adds *MyArray.json* to the configuration providers:
-
+zz
 [!code-csharp[](index/samples/3.x/ConfigSample/ProgramJSONarray.cs?name=snippet)]
 
 The following code reads the configuration and displays the values:

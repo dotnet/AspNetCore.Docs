@@ -1,4 +1,4 @@
-#define XML // CONFIG DEFAULT Second Third SWITCH JSON1 INI XML
+#define SUB // CONFIG DEFAULT Second Third SWITCH JSON1 INI XML MEM SUB
 #if DEFAULT
 var builder = WebApplication.CreateBuilder(args);
 
@@ -98,14 +98,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services
     .AddConfig(builder.Configuration)
     .AddMyDependencyGroup();
-
-// Works but wrong approach
-builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
-{
-    var Configuration = hostingContext.Configuration;
-    builder.Services.AddConfig(Configuration)
-             .AddMyDependencyGroup();
-});
 
 builder.Services.AddRazorPages();
 
@@ -286,6 +278,85 @@ builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
     {
         config.AddCommandLine(args);
     }
+});
+
+builder.Services.AddRazorPages();
+
+var app = builder.Build();
+#endregion
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthorization();
+
+app.MapRazorPages();
+
+app.Run();
+#elif MEM
+#region snippet_mem
+var builder = WebApplication.CreateBuilder(args);
+
+var Dict = new Dictionary<string, string>
+        {
+           {"MyKey", "Dictionary MyKey Value"},
+           {"Position:Title", "Dictionary_Title"},
+           {"Position:Name", "Dictionary_Name" },
+           {"Logging:LogLevel:Default", "Warning"}
+        };
+
+builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
+{
+    config.Sources.Clear();
+
+    config.AddInMemoryCollection(Dict);
+
+    config.AddEnvironmentVariables();
+
+    if (args != null)
+    {
+        config.AddCommandLine(args);
+    }
+});
+
+builder.Services.AddRazorPages();
+
+var app = builder.Build();
+#endregion
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthorization();
+
+app.MapRazorPages();
+
+app.Run();
+#elif SUB
+#region snippet_sub
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
+{
+    var env = hostingContext.HostingEnvironment;
+
+    config.AddJsonFile("MySubsection.json",
+                       optional: true,
+                       reloadOnChange: true);
 });
 
 builder.Services.AddRazorPages();
