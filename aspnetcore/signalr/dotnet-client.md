@@ -48,7 +48,7 @@ To establish a connection, create a `HubConnectionBuilder` and call `Build`. The
 
 ## Registering handlers on strongly-typed hubs
 
-While the hub side of the connection supports strongly-typed messaging, the client has to register using the generic method [HubConnection.On](../../../dotnet/api/microsoft.aspnetcore.signalr.client.hubconnection.on) with the method name.
+While the hub side of the connection supports strongly-typed messaging, the client has to register using the generic method [HubConnection.On](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.signalr.client.hubconnection.on) with the method name.
 
 For an example, see the how to [Call a SignalR Hub from a background service](background-services.md#call-a-signalr-hub-from-a-background-service)
 
