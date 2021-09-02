@@ -93,7 +93,7 @@ See [JSON configuration provider](#jcp) in this document for information on addi
 
 ## Combining service collection
 
-[!INCLUDE[](~/includes/combine-di.md)]
+[!INCLUDE[](~/includes/combine-di6.md)]
 
 <a name="security"></a>
 
@@ -771,7 +771,7 @@ The following code displays configuration data in `Startup` methods:
 [!code-csharp[](index/samples/3.x/ConfigSample/StartupKey.cs?name=snippet&highlight=13,18)]
 
 For an example of accessing configuration using startup convenience methods, see [App startup: Convenience methods](xref:fundamentals/startup#convenience-methods).
-
+zz start here
 -->
 
 ## Access configuration in Razor Pages
