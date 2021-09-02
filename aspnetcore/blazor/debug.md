@@ -432,6 +432,10 @@ VsRegEdit.exe set "<VSInstallFolder>" HKCU JSDebugger\Options\Debugging "BlazorT
 
 The `{TIMEOUT}` placeholder in the preceding command is in milliseconds. For example, one minute is assigned as `60000`.
 
+### Protocol exception
+
+If you receive an exception of type `Microsoft.VisualStudio.Shared.VSCodeDebugProtocol.ProtocolException`, avoid using [Fiddler](https://www.telerik.com/fiddler) during debugging.
+
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
@@ -855,6 +859,10 @@ VsRegEdit.exe set "<VSInstallFolder>" HKCU JSDebugger\Options\Debugging "BlazorT
 
 The `{TIMEOUT}` placeholder in the preceding command is in milliseconds. For example, one minute is assigned as `60000`.
 
+### Protocol exception
+
+If you receive an exception of type `Microsoft.VisualStudio.Shared.VSCodeDebugProtocol.ProtocolException`, avoid using [Fiddler](https://www.telerik.com/fiddler) during debugging.
+
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
@@ -1277,5 +1285,9 @@ VsRegEdit.exe set "<VSInstallFolder>" HKCU JSDebugger\Options\Debugging "BlazorT
 ```
 
 The `{TIMEOUT}` placeholder in the preceding command is in milliseconds. For example, one minute is assigned as `60000`.
+
+### Protocol exception
+
+If you receive an exception of type `Microsoft.VisualStudio.Shared.VSCodeDebugProtocol.ProtocolException`, avoid using [Fiddler](https://www.telerik.com/fiddler) during debugging.
 
 ::: moniker-end
