@@ -510,7 +510,7 @@ Alternatively, use a [`foreach`](/dotnet/csharp/language-reference/keywords/fore
 For information on how a <xref:Microsoft.AspNetCore.Components.RenderFragment> can be used as a template for component UI, see the following articles:
 
 * <xref:blazor/components/templated-components>
-* <xref:blazor/webassembly-performance-best-practices#define-reusable-renderfragments-in-code>
+* <xref:blazor/performance#define-reusable-renderfragments-in-code>
 
 ## Attribute splatting and arbitrary parameters
 
@@ -1501,7 +1501,7 @@ Alternatively, use a [`foreach`](/dotnet/csharp/language-reference/keywords/fore
 For information on how a <xref:Microsoft.AspNetCore.Components.RenderFragment> can be used as a template for component UI, see the following articles:
 
 * <xref:blazor/components/templated-components>
-* <xref:blazor/webassembly-performance-best-practices#define-reusable-renderfragments-in-code>
+* <xref:blazor/performance#define-reusable-renderfragments-in-code>
 
 ## Attribute splatting and arbitrary parameters
 
@@ -2440,7 +2440,7 @@ Alternatively, use a [`foreach`](/dotnet/csharp/language-reference/keywords/fore
 For information on how a <xref:Microsoft.AspNetCore.Components.RenderFragment> can be used as a template for component UI, see the following articles:
 
 * <xref:blazor/components/templated-components>
-* <xref:blazor/webassembly-performance-best-practices#define-reusable-renderfragments-in-code>
+* <xref:blazor/performance#define-reusable-renderfragments-in-code>
 
 ## Attribute splatting and arbitrary parameters
 

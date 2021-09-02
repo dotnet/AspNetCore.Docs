@@ -132,7 +132,7 @@ For more information, see the following articles:
 
 ## Additional resources
 
-* <xref:blazor/webassembly-performance-best-practices#define-reusable-renderfragments-in-code>
+* <xref:blazor/performance#define-reusable-renderfragments-in-code>
 
 ::: moniker-end
 
@@ -183,7 +183,7 @@ Inferred generic types are supported in ASP.NET Core 6.0 or later. For more info
 
 ## Additional resources
 
-* <xref:blazor/webassembly-performance-best-practices#define-reusable-renderfragments-in-code>
+* <xref:blazor/performance#define-reusable-renderfragments-in-code>
 
 ::: moniker-end
 
@@ -234,6 +234,6 @@ Inferred generic types are supported in ASP.NET Core 6.0 or later. For more info
 
 ## Additional resources
 
-* <xref:blazor/webassembly-performance-best-practices#define-reusable-renderfragments-in-code>
+* <xref:blazor/performance#define-reusable-renderfragments-in-code>
 
 ::: moniker-end

@@ -30,7 +30,7 @@ To configure the Trimmer, see the [Trimming options](/dotnet/core/deploying/trim
 ## Additional resources
 
 * [Trim self-contained deployments and executables](/dotnet/core/deploying/trim-self-contained)
-* <xref:blazor/webassembly-performance-best-practices#intermediate-language-il-trimming>
+* <xref:blazor/performance#intermediate-language-il-trimming>
 
 ::: moniker-end
 
@@ -53,6 +53,6 @@ To configure the Trimmer, see the [Trimming options](/dotnet/core/deploying/trim
 ## Additional resources
 
 * [Trim self-contained deployments and executables](/dotnet/core/deploying/trim-self-contained)
-* <xref:blazor/webassembly-performance-best-practices#intermediate-language-il-trimming>
+* <xref:blazor/performance#intermediate-language-il-trimming>
 
 ::: moniker-end
