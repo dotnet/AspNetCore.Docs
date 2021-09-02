@@ -244,7 +244,17 @@ On Linux, the value of URL environment variables must be escaped so `systemd` ca
 
 The following code displays the environment variables and values on application startup, which can be helpful when debugging environment settings:
 
-[!code-csharp[](~/fundamentals/configuration/index/samples_snippets/5.x/Program.cs?name=snippet)]
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+var config = app.Services.GetRequiredService<IConfiguration>();
+
+foreach (var c in config.AsEnumerable())
+{
+    Console.WriteLine(c.Key + " = " + c.Value);
+}
+```
 
 <a name="clcp"></a>
 
@@ -298,7 +308,7 @@ Switch mappings dictionary key rules:
 
 To use a switch mappings dictionary, pass it into the call to `AddCommandLine`:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/ProgramSwitch.cs?name=snippet&highlight=10-18,23)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Program.cs?name=snippet_sw)]
 
 Run the following command works to test key replacement:
 
@@ -308,14 +318,13 @@ dotnet run -k1 value1 -k2 value2 --alt3=value2 /alt4=value3 --alt5 value5 /alt6 
 
 The following code shows the key values for the replaced keys:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test3.cshtml.cs?name=snippet)]
-
+[!code-csharp[](index/samples/6.x/ConfigSample/Pages/Test3.cshtml.cs?name=snippet)]
 
 For apps that use switch mappings, the call to `CreateDefaultBuilder` shouldn't pass arguments. The `CreateDefaultBuilder` method's `AddCommandLine` call doesn't include mapped switches, and there's no way to pass the switch-mapping dictionary to `CreateDefaultBuilder`. The solution isn't to pass the arguments to `CreateDefaultBuilder` but instead to allow the `ConfigurationBuilder` method's `AddCommandLine` method to process both the arguments and the switch-mapping dictionary.
 
 ## Set environment and command-line arguments with Visual Studio
 
-Environment and command-line arguments can be set in Visual Studio from the launch profiles dialog: 
+Environment and command-line arguments can be set in Visual Studio from the launch profiles dialog:
 
 * In Solution Explorer, right cick the project and select **Properties**.
 * Select the **Debug > General** tab and select **Open debug launch profiles UI**.
@@ -324,13 +333,13 @@ Environment and command-line arguments can be set in Visual Studio from the laun
 
 The Configuration API reads hierarchical configuration data by flattening the hierarchical data with the use of a delimiter in the configuration keys.
 
-The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) contains the following  *appsettings.json* file:
+The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/6.x/ConfigSample) contains the following  *appsettings.json* file:
 
-[!code-json[](index/samples/3.x/ConfigSample/appsettings.json)]
+[!code-json[](index/samples/6.x/ConfigSample/appsettings.json)]
 
-The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) displays several of the configurations settings:
+The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/6.x/ConfigSample) displays several of the configurations settings:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
+[!code-csharp[](index/samples/6.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
 
 The preferred way to read hierarchical configuration data is using the options pattern. For more information, see [Bind hierarchical configuration data](#optpat) in this document.
 
@@ -654,7 +663,7 @@ Consider *MyArray.json* from the [sample download](https://github.com/dotnet/Asp
 [!code-json[](index/samples/6.x/ConfigSample/MyArray.json)]
 
 The following code adds *MyArray.json* to the configuration providers:
-zz
+zz fix this?
 [!code-csharp[](index/samples/3.x/ConfigSample/ProgramJSONarray.cs?name=snippet)]
 
 The following code reads the configuration and displays the values:
