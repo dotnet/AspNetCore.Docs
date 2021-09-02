@@ -46,11 +46,11 @@ To establish a connection, create a `HubConnectionBuilder` and call `Build`. The
 
 [!code-csharp[Build hub connection](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?name=snippet_MainWindowClass&highlight=15-17,39)]
 
-## Registering handlers on strongly-typed hubs
+## Registered handlers for strongly-typed hubs
 
-While the hub side of the connection supports strongly-typed messaging, the client has to register using the generic method [HubConnection.On](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.signalr.client.hubconnection.on) with the method name.
+While the hub side of the connection supports strongly-typed messaging, the client must register using the generic method <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.On%2A?displayProperty=nameWithType> with the method name.
 
-For an example, see the how to [Call a SignalR Hub from a background service](background-services.md#call-a-signalr-hub-from-a-background-service)
+For an example, see <xref:signalr/background-services#call-a-signalr-hub-from-a-background-service>.
 
 ## Handle lost connection
 
