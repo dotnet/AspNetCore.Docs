@@ -33,7 +33,7 @@ For now, you *can't*:
 * Break on unhandled exceptions.
 * Hit breakpoints during app startup before the debug proxy is running. This includes breakpoints in `Program.Main` (`Program.cs`) and breakpoints in the [`OnInitialized{Async}` lifecycle methods](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) of components that are loaded by the first page requested from the app.
 * Debug in non-local scenarios (for example, [Windows Subsystem for Linux (WSL)](/windows/wsl/) or [Visual Studio Codespaces](/visualstudio/devinit/devinit-and-codespaces)).
-* Automatically rebuild the backend `*Server*` app of a hosted Blazor WebAssembly solution during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
+* Automatically rebuild the backend `*Server*` app of a hosted Blazor WebAssembly solution while debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
 
 ## Prerequisites
 
@@ -434,7 +434,7 @@ The `{TIMEOUT}` placeholder in the preceding command is in milliseconds. For exa
 
 ### Protocol exception
 
-If you receive an exception of type `Microsoft.VisualStudio.Shared.VSCodeDebugProtocol.ProtocolException`, avoid using [Fiddler](https://www.telerik.com/fiddler) during debugging.
+If you receive an exception of type `Microsoft.VisualStudio.Shared.VSCodeDebugProtocol.ProtocolException`, avoid using [Fiddler](https://www.telerik.com/fiddler) while debugging.
 
 ::: moniker-end
 
@@ -460,7 +460,7 @@ For now, you *can't*:
 * Break on unhandled exceptions.
 * Hit breakpoints during app startup before the debug proxy is running. This includes breakpoints in `Program.Main` (`Program.cs`) and breakpoints in the [`OnInitialized{Async}` lifecycle methods](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) of components that are loaded by the first page requested from the app.
 * Debug in non-local scenarios (for example, [Windows Subsystem for Linux (WSL)](/windows/wsl/) or [Visual Studio Codespaces](/visualstudio/devinit/devinit-and-codespaces)).
-* Automatically rebuild the backend `*Server*` app of a hosted Blazor WebAssembly solution during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
+* Automatically rebuild the backend `*Server*` app of a hosted Blazor WebAssembly solution while debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
 
 ## Prerequisites
 
@@ -861,7 +861,7 @@ The `{TIMEOUT}` placeholder in the preceding command is in milliseconds. For exa
 
 ### Protocol exception
 
-If you receive an exception of type `Microsoft.VisualStudio.Shared.VSCodeDebugProtocol.ProtocolException`, avoid using [Fiddler](https://www.telerik.com/fiddler) during debugging.
+If you receive an exception of type `Microsoft.VisualStudio.Shared.VSCodeDebugProtocol.ProtocolException`, avoid using [Fiddler](https://www.telerik.com/fiddler) while debugging.
 
 ::: moniker-end
 
@@ -887,7 +887,7 @@ For now, you *can't*:
 * Break on unhandled exceptions.
 * Hit breakpoints during app startup before the debug proxy is running. This includes breakpoints in `Program.Main` (`Program.cs`) and breakpoints in the [`OnInitialized{Async}` lifecycle methods](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) of components that are loaded by the first page requested from the app.
 * Debug in non-local scenarios (for example, [Windows Subsystem for Linux (WSL)](/windows/wsl/) or [Visual Studio Codespaces](/visualstudio/devinit/devinit-and-codespaces)).
-* Automatically rebuild the backend `*Server*` app of a hosted Blazor WebAssembly solution during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
+* Automatically rebuild the backend `*Server*` app of a hosted Blazor WebAssembly solution while debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
 
 ## Prerequisites
 
@@ -1288,6 +1288,6 @@ The `{TIMEOUT}` placeholder in the preceding command is in milliseconds. For exa
 
 ### Protocol exception
 
-If you receive an exception of type `Microsoft.VisualStudio.Shared.VSCodeDebugProtocol.ProtocolException`, avoid using [Fiddler](https://www.telerik.com/fiddler) during debugging.
+If you receive an exception of type `Microsoft.VisualStudio.Shared.VSCodeDebugProtocol.ProtocolException`, avoid using [Fiddler](https://www.telerik.com/fiddler) while debugging.
 
 ::: moniker-end
