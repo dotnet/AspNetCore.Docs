@@ -150,6 +150,21 @@ Blazor WebAssembly includes support for trimming unused code from .NET Core fram
 
 ::: moniker-end
 
+## Hosting model selection
+
+Choice of the Blazor hosting model is an early consideration for Blazor app development. The following table shows the primary considerations that developers take into account when making hosting model selections.
+
+| &nbsp; | Blazor Server | Blazor WebAssembly |
+| --- | :---: | :---: |
+| Wide .NET Core API compatibility              | ✔️ | ❌ |
+| Wide .NET tooling support                     | ✔️ | ❌ |
+| Small payload size with fast initial download | ✔️ | ❌ |
+| App code secure and private on the server     | ✔️ | ❌&dagger; |
+| Serverless deployment                         | ❌ | ✔️ |
+| Offloads processing to clients                | ❌ | ✔️ |
+
+&dagger;Blazor WebAssembly apps can leverage web API to shield private C# code from clients, including with the use of authorization for secure access.
+
 ## Additional resources
 
 * <xref:blazor/tooling>
