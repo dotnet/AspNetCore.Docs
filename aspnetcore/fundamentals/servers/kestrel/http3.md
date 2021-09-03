@@ -62,13 +62,7 @@ HTTP/3 is discovered as an upgrade from HTTP/1.1 or HTTP/2 via the `alt-svc` hea
 
 ## Get started
 
-HTTP/3 is configured on app start-up. The following code:
-
-* Configures the `WebHost` to `UseQuic`.
-* Sets `EnableAltSvc` to `true` on Kestrel options.
-* Configures port 5001 to use `HttpProtocols.Http1AndHttp2AndHttp3`.
-
-This sample code is specific to .NET 6 Preview 7, and will change in .NET 6 RC 1.
+HTTP/3 is configured on app start-up. The following code configures port 5001 to use `HttpProtocols.Http1AndHttp2AndHttp3`.
 
 [!code-csharp[](samples/6.x/Http3Sample/Program.cs?name=snippet_UseHttp3&highlight=8)]
 
