@@ -1495,3 +1495,4 @@ public class MyClass
 
 * <xref:fundamentals/host/hosted-services>
 * GitHub link to [Generic Host source](https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Hosting/src/Host.cs)
+  [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
