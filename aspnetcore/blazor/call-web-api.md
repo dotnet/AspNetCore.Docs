@@ -1180,7 +1180,7 @@ Various network tools are publicly available for testing web API backend apps di
 
 [`HttpClientTest` assets in the `dotnet/aspnetcore` GitHub repository](https://github.com/dotnet/aspnetcore/tree/main/src/Components/test/testassets/BasicTestApp/HttpClientTest)
 
-[!INCLUDE[](~/blazor/includes/aspnetcore-repo-ref-source-links.md)]
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 ## Additional resources
 
@@ -1778,7 +1778,7 @@ Various network tools are publicly available for testing web API backend apps di
 
 [`HttpClientTest` assets in the `dotnet/aspnetcore` GitHub repository](https://github.com/dotnet/aspnetcore/tree/main/src/Components/test/testassets/BasicTestApp/HttpClientTest)
 
-[!INCLUDE[](~/blazor/includes/aspnetcore-repo-ref-source-links.md)]
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 ## Additional resources
 

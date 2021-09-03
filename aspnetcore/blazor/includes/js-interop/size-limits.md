@@ -42,7 +42,7 @@ Increasing the SignalR incoming message size limit comes at the cost of requirin
 
 One option for reading large payloads is to send the content in smaller chunks and process the payload as a <xref:System.IO.Stream>. This can be used when reading large JSON payloads or if data is available in JS as raw bytes. For an example that demonstrates sending large binary payloads in Blazor Server that uses techniques similar to the [`InputFile` component](xref:blazor/file-uploads), see the [Binary Submit sample app](https://github.com/aspnet/samples/tree/main/samples/aspnetcore/blazor/BinarySubmit).
 
-[!INCLUDE[](../aspnetcore-repo-ref-source-links.md)]
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 Consider the following guidance when developing code that transfers a large amount of data between JS and Blazor in Blazor Server apps:
 

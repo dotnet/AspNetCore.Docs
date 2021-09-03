@@ -73,7 +73,7 @@ For more information, see the following resources:
 
 * [`EventArgs` classes in the ASP.NET Core reference source (dotnet/aspnetcore `main` branch)](https://github.com/dotnet/aspnetcore/tree/main/src/Components/Web/src/Web)
 
-  [!INCLUDE[](~/blazor/includes/aspnetcore-repo-ref-source-links.md)]
+  [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 * [MDN web docs: GlobalEventHandlers](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers): Includes information on which HTML elements support each DOM event.
 
@@ -393,7 +393,7 @@ For more information, see the following resources:
 
 * [`EventArgs` classes in the ASP.NET Core reference source (dotnet/aspnetcore `main` branch)](https://github.com/dotnet/aspnetcore/tree/main/src/Components/Web/src/Web)
 
-  [!INCLUDE[](~/blazor/includes/aspnetcore-repo-ref-source-links.md)]
+  [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 * [MDN web docs: GlobalEventHandlers](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers): Includes information on which HTML elements support each DOM event.
 
@@ -565,7 +565,7 @@ For more information, see the following resources:
 
 * [`EventArgs` classes in the ASP.NET Core reference source (dotnet/aspnetcore `main` branch)](https://github.com/dotnet/aspnetcore/tree/main/src/Components/Web/src/Web)
 
-  [!INCLUDE[](~/blazor/includes/aspnetcore-repo-ref-source-links.md)]
+  [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 * [MDN web docs: GlobalEventHandlers](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers): Includes information on which HTML elements support each DOM event.
 
