@@ -1494,3 +1494,4 @@ public class MyClass
 ## Additional resources
 
 * <xref:fundamentals/host/hosted-services>
+* GitHub link to [Generic Host source](https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Hosting/src/Host.cs)
