@@ -790,20 +790,20 @@ The following code displays configuration data in a Razor Page:
 [!code-cshtml[](index/samples/6.x/ConfigSample/Pages/Test5.cshtml)]
 
 In the following code, `MyOptions` is added to the service container with <xref:Microsoft.Extensions.DependencyInjection.OptionsConfigurationServiceCollectionExtensions.Configure*> and bound to configuration:
-zz- fix
+
 [!code-csharp[](~/fundamentals/configuration/options/samples/6.x/OptionsSample/Program.cs?name=snippet)]
 
 The following markup uses the [`@inject`](xref:mvc/views/razor#inject) Razor directive to resolve and display the options values:
 
 [!code-cshtml[](~/fundamentals/configuration/options/samples/6.x/OptionsSample/Pages/Test3.cshtml)]
 
-<!-- zz start here  -->
 ## Access configuration in a MVC view file
 
 The following code displays configuration data in a MVC view:
 
 [!code-cshtml[](index/samples/3.x/ConfigSample/Views/Home2/Index.cshtml)]
 
+<!-- zz start here  -->
 ## Configure options with a delegate
 
 Options configured in a delegate override values set in the configuration providers.
@@ -812,11 +812,11 @@ Configuring options with a delegate is demonstrated as Example 2 in the sample a
 
 In the following code, an <xref:Microsoft.Extensions.Options.IConfigureOptions%601> service is added to the service container. It uses a delegate to configure values for `MyOptions`:
 
-[!code-csharp[](~/fundamentals/configuration/options/samples/3.x/OptionsSample/Startup2.cs?name=snippet_Example2)]
+[!code-csharp[](~/fundamentals/configuration/options/samples/6.x/OptionsSample/Program.cs?name=snippet_del)]
 
 The following code displays the options values:
 
-[!code-csharp[](options/samples/3.x/OptionsSample/Pages/Test2.cshtml.cs?name=snippet)]
+[!code-csharp[](options/samples/6.x/OptionsSample/Pages/Test2.cshtml.cs?name=snippet)]
 
 In the preceding example, the values of `Option1` and `Option2` are specified in *appsettings.json* and then overridden by the configured delegate.
 
