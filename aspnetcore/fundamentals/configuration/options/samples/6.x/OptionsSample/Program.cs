@@ -31,7 +31,7 @@ app.MapRazorPages();
 
 app.Run();
 #elif DELEGATE
-#region snippet
+#region snippet_del
 using SampleApp.Models;
 
 var builder = WebApplication.CreateBuilder(args);
