@@ -803,12 +803,9 @@ The following code displays configuration data in a MVC view:
 
 [!code-cshtml[](index/samples/3.x/ConfigSample/Views/Home2/Index.cshtml)]
 
-<!-- zz start here  -->
 ## Configure options with a delegate
 
 Options configured in a delegate override values set in the configuration providers.
-
-Configuring options with a delegate is demonstrated as Example 2 in the sample app.
 
 In the following code, an <xref:Microsoft.Extensions.Options.IConfigureOptions%601> service is added to the service container. It uses a delegate to configure values for `MyOptions`:
 
