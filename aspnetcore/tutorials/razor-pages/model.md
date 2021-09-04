@@ -784,6 +784,8 @@ In this section, the movie model is scaffolded. That is, the scaffolding tool pr
    1. Select **Add**.
 
    ![Add Razor Pages](model/_static/3/arp.png)
+   
+   If you get an error message that says you need to install the `Microsoft.EntityFrameworkCore.SqlServer` package, repeat the steps starting with **Add** > **New Scaffolded Item**.
 
 The *appsettings.json* file is updated with the connection string used to connect to a local database.
 
@@ -968,7 +970,7 @@ An alternative approach is to disable the CS8618 [warning with pragma](/dotnet/f
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Data/RazorPagesMovieContext.cs?name=snippet_prag)]
 
-For the warnings in the Razor Pages C# code behind files, use the [pragma](/dotnet/csharp/language-reference/preprocessor-directives#pragmas) C# preprocessor directive is disable warnings. For example, use the following highlighted code in the *Pages/Movies/Index.cshtml.cs* file:
+For the warnings in the Razor Pages C# code behind files, use the [pragma](/dotnet/csharp/language-reference/preprocessor-directives#pragmas) C# preprocessor directive to disable warnings. For example, use the following highlighted code in the *Pages/Movies/Index.cshtml.cs* file:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample6/Pages/Movies/Index.cshtml.cs?name=snippet&highlight=3-4,21,22)]
 

@@ -427,6 +427,12 @@ Update the *Program.cs* with the following highlighted code:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/ProgramSeed.cs?name=snippet_all&highlight=14-19)]
 
+Add a `using` directive to the top of the file:
+
+```csharp
+using RazorPagesMovie.Models;
+```
+
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/ProgramSeed.cs?name=snippet_all_sl&highlight=14-19)]

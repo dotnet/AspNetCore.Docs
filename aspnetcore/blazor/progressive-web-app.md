@@ -95,7 +95,7 @@ To obtain static assets, use **one** of the following approaches:
 
   [Blazor WebAssembly project template `wwwroot` folder (dotnet/aspnetcore GitHub repository `main` branch)](https://github.com/dotnet/aspnetcore/tree/main/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot)
 
-  [!INCLUDE[](~/blazor/includes/aspnetcore-repo-ref-source-links.md)]
+  [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 From the source `wwwroot` folder either in the app that you created or from the reference assets in the `dotnet/aspnetcore` GitHub repository, copy the following files into the app's `wwwroot` folder:
 
@@ -451,7 +451,7 @@ To obtain static assets, use **one** of the following approaches:
 
   [Blazor WebAssembly project template `wwwroot` folder (dotnet/aspnetcore GitHub repository `main` branch)](https://github.com/dotnet/aspnetcore/tree/main/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot)
 
-  [!INCLUDE[](~/blazor/includes/aspnetcore-repo-ref-source-links.md)]
+  [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 From the source `wwwroot` folder either in the app that you created or from the reference assets in the `dotnet/aspnetcore` GitHub repository, copy the following files into the app's `wwwroot` folder:
 
@@ -807,7 +807,7 @@ To obtain static assets, use **one** of the following approaches:
   >
   > [Blazor WebAssembly project template `wwwroot` folder (dotnet/aspnetcore GitHub repository `main` branch)](https://github.com/dotnet/aspnetcore/tree/main/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot)
   >
-  > [!INCLUDE[](~/blazor/includes/aspnetcore-repo-ref-source-links.md)]
+  > [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 From the source `wwwroot` folder either in the app that you created or from the reference assets in the `dotnet/aspnetcore` GitHub repository, copy the following files into the app's `wwwroot` folder:
 

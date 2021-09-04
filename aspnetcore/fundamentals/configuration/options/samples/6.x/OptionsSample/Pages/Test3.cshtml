@@ -1,0 +1,9 @@
+﻿@page
+@model SampleApp.Pages.Test3Model
+@using Microsoft.Extensions.Options
+@using SampleApp.Models
+@inject IOptions<MyOptions> optionsAccessor
+
+
+<p><b>Option1:</b> @optionsAccessor.Value.Option1</p>
+<p><b>Option2:</b> @optionsAccessor.Value.Option2</p>

@@ -1027,7 +1027,7 @@
         },
         {
             "source_path": "aspnetcore/performance/blazor/webassembly-best-practices.md",
-            "redirect_url": "/aspnet/core/blazor/webassembly-performance-best-practices",
+            "redirect_url": "/aspnet/core/blazor/performance",
             "redirect_document_id": false
         },
         {
@@ -1152,6 +1152,11 @@
         {
             "source_path": "aspnetcore/blazor/layouts.md",
             "redirect_url": "/aspnet/core/blazor/components/layouts",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/webassembly-performance-best-practices.md",
+            "redirect_url": "/aspnet/core/blazor/performance",
             "redirect_document_id": false
         }
     ]

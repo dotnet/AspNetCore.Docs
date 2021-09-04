@@ -434,8 +434,8 @@
         uid: blazor/debug
       - name: Lazy load assemblies with WebAssembly
         uid: blazor/webassembly-lazy-load-assemblies
-      - name: WebAssembly performance
-        uid: blazor/webassembly-performance-best-practices
+      - name: Performance
+        uid: blazor/performance
       - name: Test components
         uid: blazor/test
       - name: Progressive Web Applications
