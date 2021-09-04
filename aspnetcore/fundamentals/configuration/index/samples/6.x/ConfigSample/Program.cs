@@ -1,4 +1,4 @@
-#define DELEGATE // CONFIG DEFAULT Second Third SWITCH JSON1 INI XML MEM SUB RAY BA RP
+#define DEFAULT // CONFIG DEFAULT Second Third SWITCH JSON1 INI XML MEM SUB RAY BA RP
 #if DEFAULT
 var builder = WebApplication.CreateBuilder(args);
 
