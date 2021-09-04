@@ -31,29 +31,11 @@ This topic provides information on dependency injection in ASP.NET Core. The pri
 
 A *dependency* is an object that another object depends on. Examine the following `MyDependency` class with a `WriteMessage` method that other classes depend on:
 
-```csharp
-public class MyDependency
-{
-    public void WriteMessage(string message)
-    {
-        Console.WriteLine($"MyDependency.WriteMessage called. Message: {message}");
-    }
-}
-```
+[!code-csharp[](dependency-injection/samples/6.x/DIwebApp/MyDependency.cs?name=snippet)]
 
 A class can create an instance of the `MyDependency` class to make use of its `WriteMessage` method. In the following example, the `MyDependency` class is a dependency of the `IndexModel` class:
 
-```csharp
-public class IndexModel : PageModel
-{
-    private readonly MyDependency _dependency = new MyDependency();
-
-    public void OnGet()
-    {
-        _dependency.WriteMessage("IndexModel.OnGet created this message.");
-    }
-}
-```
+[!code-csharp[](dependency-injection/samples/6.x/DIwebApp/Pages/Index.cshtml.cs?name=snippet)]
 
 The class creates and directly depends on the `MyDependency` class. Code dependencies, such as in the previous example, are problematic and should be avoided for the following reasons:
 
