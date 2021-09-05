@@ -763,8 +763,7 @@ In a non-host console app, call the provider's `Add{provider name}` extension me
 
 [!code-csharp[](index/samples/3.x/LoggingConsoleApp/Program.cs?name=snippet_LoggerFactory&highlight=11-12)]
 
-<h2 id="cl">Create logs</h2>
-### Create logs
+<h3 id="cl">Create logs</h3>
 
 To create logs, use an <xref:Microsoft.Extensions.Logging.ILogger%601> object. Use the `LoggerFactory` to create an `ILogger`.
 
@@ -949,8 +948,6 @@ To create a custom logger, see [Implement a custom logging provider in .NET](/do
 * Logging bugs should be created in the [github.com/dotnet/runtime/](https://github.com/dotnet/runtime/issues) repo.
 * <xref:blazor/fundamentals/logging>
 ::: moniker-end
-
-<!-- zzz versions 3.0 and 5.0 -->
 
 ::: moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 
