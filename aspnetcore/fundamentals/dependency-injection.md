@@ -196,16 +196,6 @@ To reduce the logging output, set "Logging:LogLevel:Microsoft:Error" in the *app
 
 [!code-json[](dependency-injection/samples/3.x/DependencyInjectionSample/appsettings.Development.json?highlight=7)]
 
-## Call services from main
-
-Create an <xref:Microsoft.Extensions.DependencyInjection.IServiceScope> with [IServiceScopeFactory.CreateScope](xref:Microsoft.Extensions.DependencyInjection.IServiceScopeFactory.CreateScope%2A) to resolve a scoped service within the app's scope. This approach is useful to access a scoped service at startup to run initialization tasks.
-
-The following example shows how to access the scoped `IMyDependency` service and call its `WriteMessage` method in `Program.Main`:
-
-[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Program.cs?name=snippet)]
-
-<a name="sv"></a>
-
 ## Scope validation
 
 See [Constructor injection behavior](/dotnet/core/extensions/dependency-injection#constructor-injection-behavior) in [Dependency injection in .NET](/dotnet/core/extensions/dependency-injection)
@@ -237,9 +227,9 @@ The container calls <xref:System.IDisposable.Dispose%2A> for the <xref:System.ID
 
 In the following example, the services are created by the service container and disposed automatically:
 
-[!code-csharp[](dependency-injection/samples/3.x/DIsample2/DIsample2/Services/Service1.cs?name=snippet)]
+[!code-csharp[](dependency-injection/samples/6.x/DIsample2/DIsample2/Services/Service1.cs?name=snippet)]
 
-[!code-csharp[](dependency-injection/samples/3.x/DIsample2/DIsample2/Startup.cs?name=snippet)]
+[!code-csharp[](dependency-injection/samples/6.x/DIsample2/DIsample2/Program.cs?name=snippet)]
 
 [!code-csharp[](dependency-injection/samples/3.x/DIsample2/DIsample2/Pages/Index.cshtml.cs?name=snippet)]
 
@@ -256,7 +246,7 @@ Service1.Dispose
 
 Consider the following code:
 
-[!code-csharp[](dependency-injection/samples/3.x/DIsample2/DIsample2/Startup2.cs?name=snippet)]
+[!code-csharp[](dependency-injection/samples/6.x/DIsample2/DIsample2/Program.cs?name=snippet2)]
 
 In the preceding code:
 
@@ -318,7 +308,7 @@ See [Recommendations](/dotnet/core/extensions/dependency-injection-guidelines#re
 
   A correct way to get `LoginPath` is to use the options pattern's built-in support for DI:
 
-  [!code-csharp[](dependency-injection/samples/3.x/AntiPattern3/Startup.cs?name=snippet)]
+  [!code-csharp[](dependency-injection/samples/3.x/AntiPattern3/Program.cs?name=snippet)]
 
 * Disposable transient services are captured by the container for disposal. This can turn into a memory leak if resolved from the top level container.
 * Enable scope validation to make sure the app doesn't have singletons that capture scoped services. For more information, see [Scope validation](#scope-validation).
