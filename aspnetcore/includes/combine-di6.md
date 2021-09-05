@@ -11,7 +11,7 @@ Related groups of registrations can be moved to an extension method to register 
 
 [!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Options/MyConfigServiceCollectionExtensions.cs)]
 
-The remaining services are registered in a similar class. The following `ConfigureServices` method uses the new extension methods to register the services:
+The remaining services are registered in a similar class. The following code uses the new extension methods to register the services:
 
 [!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/program.cs?name=snippet3)]
 
