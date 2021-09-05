@@ -628,7 +628,7 @@ Use the dotnet trace tooling to collect a trace from an app:
 
 1. Open the trace with [Perfview](#perfview). Open the *trace.nettrace* file and explore the trace events.
 
-If the app doesn't build the host with `CreateDefaultBuilder`, add the [Event Source provider](#event-source-provider) to the app's logging configuration.
+If the app doesn't build the host with `CreateDefaultBuilder`, add the Event Source provider to the app's logging configuration.
 
 For more information, see:
 
@@ -755,7 +755,7 @@ For more information, see each provider's documentation. Third-party logging pro
 
 For an example of how to use the Generic Host in a non-web console app, see the *Program.cs* file of the [Background Tasks sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/host/hosted-services/samples) (<xref:fundamentals/host/hosted-services>).
 
-Logging code for apps without Generic Host differs in the way [providers are added](#add-providers) and [loggers are created](#create-logs). 
+Logging code for apps without Generic Host differs in the way [providers are added](#add-providers) and [loggers are created](#cl).
 
 ### Logging providers
 
@@ -763,6 +763,7 @@ In a non-host console app, call the provider's `Add{provider name}` extension me
 
 [!code-csharp[](index/samples/3.x/LoggingConsoleApp/Program.cs?name=snippet_LoggerFactory&highlight=11-12)]
 
+<h2 id="cl">Create logs</h2>
 ### Create logs
 
 To create logs, use an <xref:Microsoft.Extensions.Logging.ILogger%601> object. Use the `LoggerFactory` to create an `ILogger`.
@@ -1568,7 +1569,7 @@ Use the dotnet trace tooling to collect a trace from an app:
 
 1. Open the trace with [Perfview](#perfview). Open the *trace.nettrace* file and explore the trace events.
 
-If the app doesn't build the host with `CreateDefaultBuilder`, add the [Event Source provider](#event-source-provider) to the app's logging configuration.
+If the app doesn't build the host with `CreateDefaultBuilder`, add the Event Source provider to the app's logging configuration.
 
 For more information, see:
 
@@ -1695,7 +1696,7 @@ For more information, see each provider's documentation. Third-party logging pro
 
 For an example of how to use the Generic Host in a non-web console app, see the *Program.cs* file of the [Background Tasks sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/host/hosted-services/samples) (<xref:fundamentals/host/hosted-services>).
 
-Logging code for apps without Generic Host differs in the way [providers are added](#add-providers) and [loggers are created](#create-logs). 
+Logging code for apps without Generic Host differs in the way [providers are added](#add-providers) and [loggers are created](#create-logs). zz
 
 ### Logging providers
 
