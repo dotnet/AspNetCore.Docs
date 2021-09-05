@@ -1,8 +1,8 @@
 ﻿using DependencyInjectionSample.Interfaces;
 using DependencyInjectionSample.Services;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
 
+// Requires #define OS
 namespace DependencyInjectionSample.Pages
 {
     #region snippet1

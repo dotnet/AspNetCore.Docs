@@ -171,7 +171,7 @@ The following `Operation` class implements all of the preceding interfaces. The 
 [!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/Models/Operation.cs?name=snippet1)]
 
 The following code creates multiple registrations of the `Operation` class according to the named lifetimes:
-zz
+
 [!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/Program.cs?name=snippet3)]
 
 The sample app demonstrates object lifetimes both within and between requests. The `IndexModel` and the middleware request each kind of `IOperation` type and log the `OperationId` for each:
