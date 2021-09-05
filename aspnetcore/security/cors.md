@@ -25,7 +25,7 @@ Browser security prevents a web page from making requests to a different domain 
 * Allows a server to explicitly allow some cross-origin requests while rejecting others.
 * Is safer and more flexible than earlier techniques, such as [JSONP](/dotnet/framework/wcf/samples/jsonp).
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/cors/3.1sample/Cors/WebAPI) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/cors/6.0sample/Cors/WebAPI) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Same origin
 
@@ -64,7 +64,7 @@ Each approach is detailed in the following sections.
 
 CORS Middleware handles cross-origin requests. The following code applies a CORS policy to all the app's endpoints with the specified origins:
 
-[!code-csharp[](cors/3.1sample/Cors/WebAPI/Startup.cs?name=snippet&highlight=3,9,32)]
+[!code-csharp[](cors/6.0sample/Cors/WebAPI/Program.cs?name=snippet&highlight=3,9,32)]
 
 The preceding code:
 
