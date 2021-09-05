@@ -1,4 +1,4 @@
-#define FIRST // FIRST
+#define SECOND // FIRST SECOND
 #if FIRST
 #region snippet
 var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
@@ -16,6 +16,39 @@ builder.Services.AddCors(options =>
 });
 
 // services.AddResponseCaching();
+
+builder.Services.AddControllers();
+
+var app = builder.Build();
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseRouting();
+
+app.UseCors(MyAllowSpecificOrigins);
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.Run();
+#endregion
+#elif SECOND
+#region snippet2
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(MyAllowSpecificOrigins,
+                          builder =>
+                          {
+                              builder.WithOrigins("http://example.com",
+                                                  "http://www.contoso.com")
+                                                  .AllowAnyHeader()
+                                                  .AllowAnyMethod();
+                          });
+});
 
 builder.Services.AddControllers();
 

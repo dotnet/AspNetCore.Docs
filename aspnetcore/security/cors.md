@@ -64,7 +64,7 @@ Each approach is detailed in the following sections.
 
 CORS Middleware handles cross-origin requests. The following code applies a CORS policy to all the app's endpoints with the specified origins:
 
-[!code-csharp[](cors/6.0sample/Cors/WebAPI/Program.cs?name=snippet&highlight=3,9,32)]
+[!code-csharp[](cors/6.0sample/Cors/WebAPI/Program.cs?name=snippet&highlight=1,5-13,24)]
 
 The preceding code:
 
@@ -74,19 +74,19 @@ The preceding code:
 * Enables the `_myAllowSpecificOrigins` CORS policy for all controller endpoints. See [endpoint routing](#ecors) to apply a CORS policy to specific endpoints.
 * When using [Response Caching Middleware](xref:performance/caching/middleware), call <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A> before <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A>.
 
-With endpoint routing, the CORS middleware **must** be configured to execute between the calls to `UseRouting` and `UseEndpoints`.
+With endpoint routing, the CORS middleware **must** be configured to execute between the calls to `UseRouting` and  `UseEndpoints`.
 
 See [Test CORS](#testc) for instructions on testing code similar to the preceding code.
 
 The <xref:Microsoft.Extensions.DependencyInjection.MvcCorsMvcCoreBuilderExtensions.AddCors*> method call adds CORS services to the app's service container:
 
-[!code-csharp[](cors/3.1sample/Cors/WebAPI/Startup.cs?name=snippet2)]
+[!code-csharp[](cors/6.0sample/Cors/WebAPI/Program.cs?name=snippet&highlight=5-13)]
 
-For more information, see [CORS policy options](#cpo) in this document.
+For more information, see [CORS policy options](#cpo6) in this document.
 
 The <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder> methods can be chained, as shown in the following code:
 
-[!code-csharp[](cors/3.1sample/Cors/WebAPI/Startup2.cs?name=snippet)]
+[!code-csharp[](cors/6.0sample/Cors/WebAPI/Program.cs?name=snippet2)]
 
 Note: The specified URL must **not** contain a trailing slash (`/`). If the URL terminates with `/`, the comparison returns `false` and no header is returned.
 
@@ -180,7 +180,7 @@ The preceding code:
 
 See [Test CORS](#testc) for instructions on testing the preceding code.
 
-<a name="cpo"></a>
+<a name="cpo6"></a>
 
 ## CORS policy options
 
