@@ -164,27 +164,27 @@ By default, Entity Framework contexts are added to the service container using t
 
 To demonstrate the difference between service lifetimes and their registration options, consider the following interfaces that represent a task as an operation with an identifier, `OperationId`. Depending on how the lifetime of an operation's service is configured for the following interfaces, the container provides either the same or different instances of the service when requested by a class:
 
-[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Interfaces/IOperation.cs?name=snippet1)]
+[!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/Interfaces/IOperation.cs?name=snippet1)]
 
 The following `Operation` class implements all of the preceding interfaces. The `Operation` constructor generates a GUID and stores the last 4 characters in the `OperationId` property:
 
-[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Models/Operation.cs?name=snippet1)]
+[!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/Models/Operation.cs?name=snippet1)]
 
-The `Startup.ConfigureServices` method creates multiple registrations of the `Operation` class according to the named lifetimes:
-
-[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Startup2.cs?name=snippet1)]
+The following code creates multiple registrations of the `Operation` class according to the named lifetimes:
+zz
+[!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/Program.cs?name=snippet3)]
 
 The sample app demonstrates object lifetimes both within and between requests. The `IndexModel` and the middleware request each kind of `IOperation` type and log the `OperationId` for each:
 
-[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Pages/Index.cshtml.cs?name=snippet1)]
+[!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/Pages/Index.cshtml.cs?name=snippet1)]
 
 Similar to the `IndexModel`, the middleware resolves the same services:
 
-[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Middleware/MyMiddleware.cs?name=snippet)]
+[!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/Middleware/MyMiddleware.cs?name=snippet)]
 
 Scoped services must be resolved in the `InvokeAsync` method:
 
-[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Middleware/MyMiddleware.cs?name=snippet2&highlight=2)]
+[!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/Middleware/MyMiddleware.cs?name=snippet2&highlight=2)]
 
 The logger output shows:
 
