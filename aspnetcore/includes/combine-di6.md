@@ -3,7 +3,7 @@ no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cook
 ---
 <a name="csc"></a>
 
-Consider the following `ConfigureServices` method, which registers services and configures options:
+Consider the following which registers services and configures options:
 
 [!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/program.cs?name=snippet2)]
 

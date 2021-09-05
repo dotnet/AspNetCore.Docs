@@ -89,11 +89,11 @@ In dependency injection terminology, a service:
 * Is typically an object that provides a service to other objects, such as the `IMyDependency` service.
 * Is not related to a web service, although the service may use a web service.
 
-The framework provides a robust [logging](xref:fundamentals/logging/index) system. The `IMyDependency` implementations shown in the preceding examples were written to demonstrate basic DI, not to implement logging. Most apps shouldn't need to write loggers. The following code demonstrates using the default logging, which doesn't require any services to be registered in `ConfigureServices`:
+The framework provides a robust [logging](xref:fundamentals/logging/index) system. The `IMyDependency` implementations shown in the preceding examples were written to demonstrate basic DI, not to implement logging. Most apps shouldn't need to write loggers. The following code demonstrates using the default logging, which doesn't require any services to be registered:
 
 [!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/Pages/About.cshtml.cs?name=snippet)]
 
-Using the preceding code, there is no need to update `ConfigureServices`, because [logging](xref:fundamentals/logging/index) is provided by the framework.
+Using the preceding code, there is no need to update *Program.cs*, because [logging](xref:fundamentals/logging/index) is provided by the framework.
 
 ## Services injected into Program.c
 
@@ -295,8 +295,9 @@ See [Recommendations](/dotnet/core/extensions/dependency-injection-guidelines#re
 * Another service locator variation to avoid is injecting a factory that resolves dependencies at runtime. Both of these practices mix [Inversion of Control](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#dependency-inversion) strategies.
 * Avoid static access to `HttpContext` (for example, [IHttpContextAccessor.HttpContext](xref:Microsoft.AspNetCore.Http.IHttpContextAccessor.HttpContext)).
 
+<!--
 <a name="ASP0000"></a>
-* Avoid calls to <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionContainerBuilderExtensions.BuildServiceProvider%2A> in `ConfigureServices`. Calling `BuildServiceProvider` typically happens when the developer wants to resolve a service in `ConfigureServices`. For example, consider the case where the `LoginPath` is loaded from configuration. Avoid the following approach:
+* Avoid calls to <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionContainerBuilderExtensions.BuildServiceProvider%2A> in `ConfigureServices`.  For example, consider the case where the `LoginPath` is loaded from configuration. Avoid the following approach:
 
   ![bad code calling BuildServiceProvider](~/fundamentals/dependency-injection/_static/badcodeX.png)
 
@@ -314,7 +315,7 @@ See [Recommendations](/dotnet/core/extensions/dependency-injection-guidelines#re
 * Enable scope validation to make sure the app doesn't have singletons that capture scoped services. For more information, see [Scope validation](#scope-validation).
 
 Like all sets of recommendations, you may encounter situations where ignoring a recommendation is required. Exceptions are rare, mostly special cases within the framework itself.
-
+-->
 DI is an *alternative* to static/global object access patterns. You may not be able to realize the benefits of DI if you mix it with static object access.
 
 ## Recommended patterns for multi-tenancy in DI
@@ -325,7 +326,7 @@ See the [Orchard Core samples](https://github.com/OrchardCMS/OrchardCore.Samples
 
 ## Framework-provided services
 
-The `Startup.ConfigureServices` method registers services that the app uses, including platform features, such as Entity Framework Core and ASP.NET Core MVC. Initially, the `IServiceCollection` provided to `ConfigureServices` has services defined by the framework depending on [how the host was configured](xref:fundamentals/index#host). For apps based on the ASP.NET Core templates, the framework registers more than 250 services. 
+*Program.cs* registers services that the app uses, including platform features, such as Entity Framework Core and ASP.NET Core MVC. Initially, the `IServiceCollection` provided to *Program.cs* has services defined by the framework depending on [how the host was configured](xref:fundamentals/index#host). For apps based on the ASP.NET Core templates, the framework registers more than 250 services.
 
 The following table lists a small sample of these framework-registered services:
 
