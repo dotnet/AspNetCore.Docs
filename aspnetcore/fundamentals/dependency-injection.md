@@ -41,42 +41,42 @@ The class creates and directly depends on the `MyDependency` class. Code depende
 
 * To replace `MyDependency` with a different implementation, the `IndexModel` class must be modified.
 * If `MyDependency` has dependencies, they must also be configured by the `IndexModel` class. In a large project with multiple classes depending on `MyDependency`, the configuration code becomes scattered across the app.
-* This implementation is difficult to unit test. The app should use a mock or stub `MyDependency` class, which isn't possible with this approach.
+* This implementation is difficult to unit test.
 
 Dependency injection addresses these problems through:
 
 * The use of an interface or base class to abstract the dependency implementation.
-* Registration of the dependency in a service container. ASP.NET Core provides a built-in service container, <xref:System.IServiceProvider>. Services are typically registered in the app's `Startup.ConfigureServices` method.
+* Registration of the dependency in a service container. ASP.NET Core provides a built-in service container, <xref:System.IServiceProvider>. Services are typically registered in the app's *Program.cs* file.
 * *Injection* of the service into the constructor of the class where it's used. The framework takes on the responsibility of creating an instance of the dependency and disposing of it when it's no longer needed.
 
-In the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/dependency-injection/samples), the `IMyDependency` interface defines the `WriteMessage` method:
+In the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/dependency-injection/samples/6.x), the `IMyDependency` interface defines the `WriteMessage` method:
 
-[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Interfaces/IMyDependency.cs?name=snippet1)]
+[!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/Interfaces/IMyDependency.cs?name=snippet1)]
 
 This interface is implemented by a concrete type, `MyDependency`:
 
-[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Services/MyDependency.cs?name=snippet1)]
+[!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/Services/MyDependency.cs?name=snippet1)]
 
 The sample app registers the `IMyDependency` service with the concrete type `MyDependency`. The <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped%2A> method registers the service with a scoped lifetime, the lifetime of a single request. [Service lifetimes](#service-lifetimes) are described later in this topic.
 
-[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/StartupMyDependency.cs?name=snippet1)]
+[!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/Program.cs?name=snippet1)]
 
 In the sample app, the `IMyDependency` service is requested and used to call the `WriteMessage` method:
 
-[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Pages/Index2.cshtml.cs?name=snippet1)]
+[!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/Pages/Index2.cshtml.cs?name=snippet1)]
 
-By using the DI pattern, the controller:
+By using the DI pattern, the controller or Razor Page:
 
-* Doesn't use the concrete type `MyDependency`, only the `IMyDependency` interface it implements. That makes it easy to change the implementation that the controller uses without modifying the controller.
+* Doesn't use the concrete type `MyDependency`, only the `IMyDependency` interface it implements. That makes it easy to change the implementation without modifying the controller or Razor Page.
 * Doesn't create an instance of `MyDependency`, it's created by the DI container.
 
 The implementation of the `IMyDependency` interface can be improved by using the built-in logging API:
 
-[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Services/MyDependency.cs?name=snippet2)]
+[!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/Services/MyDependency.cs?name=snippet2)]
 
-The updated `ConfigureServices` method registers the new `IMyDependency` implementation:
+The updated *Program.cs* registers the new `IMyDependency` implementation:
 
-[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/StartupMyDependency2.cs?name=snippet1)]
+[!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/Program.cs?name=snippet2)]
 
 `MyDependency2` depends on <xref:Microsoft.Extensions.Logging.ILogger%601>, which it requests in the constructor. `ILogger<TCategoryName>` is a [framework-provided service](#framework-provided-services).
 
@@ -91,7 +91,7 @@ In dependency injection terminology, a service:
 
 The framework provides a robust [logging](xref:fundamentals/logging/index) system. The `IMyDependency` implementations shown in the preceding examples were written to demonstrate basic DI, not to implement logging. Most apps shouldn't need to write loggers. The following code demonstrates using the default logging, which doesn't require any services to be registered in `ConfigureServices`:
 
-[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Pages/About.cshtml.cs?name=snippet)]
+[!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/Pages/About.cshtml.cs?name=snippet)]
 
 Using the preceding code, there is no need to update `ConfigureServices`, because [logging](xref:fundamentals/logging/index) is provided by the framework.
 
