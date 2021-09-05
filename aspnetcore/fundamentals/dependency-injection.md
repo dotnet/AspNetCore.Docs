@@ -97,8 +97,6 @@ Using the preceding code, there is no need to update *Program.cs*, because [logg
 
 ## Services injected into Program.c
 
-Services can be injected into the *Program.c* file.
-
 Any service registered with the DI container can be injected into *Program.c* method:
 
 [!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/Program.cs?name=snippet1)]
