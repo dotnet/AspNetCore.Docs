@@ -1,3 +1,4 @@
+#if NEVER
 #region snippet
 using DependencyInjectionSample.Data;
 using Microsoft.AspNetCore.Identity;
@@ -42,3 +43,4 @@ app.UseAuthorization();
 app.MapRazorPages();
 
 app.Run();
+#endif
