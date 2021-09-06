@@ -1,4 +1,4 @@
-#define DC // FIRST SECOND THIRD ENDP ATTR DC
+#define AAH // FIRST SECOND THIRD ENDP ATTR DC DCORS AA SA AAH
 #if FIRST
 #region snippet
 var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
@@ -212,4 +212,128 @@ app.MapRazorPages();
 
 app.Run();
 #endregion
+#elif DCORS
+#region snippet_dcors
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "MyPolicy",
+        builder =>
+        {
+            builder.WithOrigins("http://example.com",
+                                "http://www.contoso.com")
+                    .WithMethods("PUT", "DELETE", "GET");
+        });
+});
+
+builder.Services.AddControllers();
+builder.Services.AddRazorPages();
+
+var app = builder.Build();
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseRouting();
+
+app.UseCors();
+
+app.UseAuthorization();
+
+app.MapControllers();
+app.MapRazorPages();
+#endregion
+#elif AA
+#region snippet_aa
+var MyAllowSpecificOrigins = "_MyAllowSubdomainPolicy";
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+        builder =>
+        {
+            builder.WithOrigins("https://*.example.com")
+                .SetIsOriginAllowedToAllowWildcardSubdomains();
+        });
+});
+
+builder.Services.AddControllers();
+
+var app = builder.Build();
+#endregion
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseRouting();
+
+app.UseCors();
+
+app.UseAuthorization();
+
+app.MapControllers();
+#elif SA
+#region snippet_sa
+using Microsoft.Net.Http.Headers;
+
+var MyAllowSpecificOrigins = "_MyAllowSubdomainPolicy";
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+       builder =>
+       {
+           builder.WithOrigins("http://example.com")
+                  .WithHeaders(HeaderNames.ContentType, "x-custom-header");
+       });
+});
+
+builder.Services.AddControllers();
+
+var app = builder.Build();
+#endregion
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseRouting();
+
+app.UseCors();
+
+app.UseAuthorization();
+
+app.MapControllers();
+#elif AAH
+#region snippet_aah
+var MyAllowSpecificOrigins = "_MyAllowSubdomainPolicy";
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+        builder =>
+        {
+            builder.WithOrigins("https://*.example.com")
+                   .AllowAnyHeader();
+        });
+});
+
+builder.Services.AddControllers();
+
+var app = builder.Build();
+#endregion
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseRouting();
+
+app.UseCors();
+app.UseAuthorization();
+
+app.MapControllers();
 #endif

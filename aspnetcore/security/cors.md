@@ -159,17 +159,17 @@ See [Test CORS](#testc6) for instructions on testing code similar to the precedi
 
 <a name="dc6"></a>
 
-### Disable CORS zz
+### Disable CORS
 
 The [[DisableCors]](xref:Microsoft.AspNetCore.Cors.DisableCorsAttribute) attribute does **not**  disable CORS that has been enabled by [endpoint routing](#ecors6).
 
 The following code defines the CORS policy `"MyPolicy"`:
 
-[!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupTestMyPolicy.cs?name=snippet)]
+[!code-csharp[](cors/6.0sample/Cors/WebAPI/Program.cs?name=snippet_dcors)]
 
 The following code disables CORS for the `GetValues2` action:
 
-[!code-csharp[](cors/3.1sample/Cors/WebAPI/Controllers/ValuesController.cs?name=snippet&highlight=1,23)]
+[!code-csharp[](cors/6.0sample/Cors/WebAPI/Controllers/ValuesController.cs?name=snippet&highlight=1,23)]
 
 The preceding code:
 
@@ -206,7 +206,7 @@ This section describes the various options that can be set in a CORS policy:
 
 <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.SetIsOriginAllowedToAllowWildcardSubdomains*>: Sets the <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy.IsOriginAllowed*> property of the policy to be a function that allows origins to match a configured wildcard domain when evaluating if the origin is allowed.
 
-[!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupAllowSubdomain.cs?name=snippet)]
+[!code-csharp[](cors/6.0sample/Cors/WebAPI/Program.cs?name=snippet_aa)]
 
 ### Set the allowed HTTP methods
 
@@ -219,11 +219,11 @@ This section describes the various options that can be set in a CORS policy:
 
 To allow specific headers to be sent in a CORS request, called [author request headers](https://xhr.spec.whatwg.org/#request), call <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithHeaders*> and specify the allowed headers:
 
-[!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupAllowSubdomain.cs?name=snippet2)]
+[!code-csharp[](cors/6.0sample/Cors/WebAPI/Program.cs?name=snippet_sa)]
 
 To allow all [author request headers](https://www.w3.org/TR/cors/#author-request-headers), call <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.AllowAnyHeader*>:
 
-[!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupAllowSubdomain.cs?name=snippet3)]
+[!code-csharp[](cors/6.0sample/Cors/WebAPI/Program.cs?name=snippet_aah)]
 
 `AllowAnyHeader` affects preflight requests and the [Access-Control-Request-Headers](https://developer.mozilla.org/docs/Web/HTTP/Headers/Access-Control-Request-Method) header. For more information, see the [Preflight requests](#preflight-requests) section.
 
@@ -231,7 +231,9 @@ A CORS Middleware policy match to specific headers specified by `WithHeaders` is
 
 For instance, consider an app configured as follows:
 
-[!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupAllowSubdomain.cs?name=snippet4)]
+```csharp
+app.UseCors(policy => policy.WithHeaders(HeaderNames.CacheControl));
+```
 
 CORS Middleware declines a preflight request with the following request header because `Content-Language` ([HeaderNames.ContentLanguage](xref:Microsoft.Net.Http.Headers.HeaderNames.ContentLanguage)) isn't listed in `WithHeaders`:
 
@@ -241,7 +243,7 @@ Access-Control-Request-Headers: Cache-Control, Content-Language
 
 The app returns a *200 OK* response but doesn't send the CORS headers back. Therefore, the browser doesn't attempt the cross-origin request.
 
-### Set the exposed response headers
+### Set the exposed response headers zz
 
 By default, the browser doesn't expose all of the response headers to the app. For more information, see [W3C Cross-Origin Resource Sharing (Terminology): Simple Response Header](https://www.w3.org/TR/cors/#simple-response-header).
 
