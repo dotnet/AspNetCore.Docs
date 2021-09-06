@@ -243,7 +243,7 @@ Access-Control-Request-Headers: Cache-Control, Content-Language
 
 The app returns a *200 OK* response but doesn't send the CORS headers back. Therefore, the browser doesn't attempt the cross-origin request.
 
-### Set the exposed response headers zz
+### Set the exposed response headers
 
 By default, the browser doesn't expose all of the response headers to the app. For more information, see [W3C Cross-Origin Resource Sharing (Terminology): Simple Response Header](https://www.w3.org/TR/cors/#simple-response-header).
 
@@ -258,7 +258,8 @@ The response headers that are available by default are:
 
 The CORS specification calls these headers *simple response headers*. To make other headers available to the app, call <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithExposedHeaders*>:
 
-[!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupAllowSubdomain.cs?name=snippet5)]
+[!code-csharp[](cors/6.0sample/Cors/WebAPI/Program.cs?name=snippet_erh)]
+
 ### Credentials in cross-origin requests
 
 Credentials require special handling in a CORS request. By default, the browser doesn't send credentials with a cross-origin request. Credentials include cookies and HTTP authentication schemes. To send credentials with a cross-origin request, the client must set `XMLHttpRequest.withCredentials` to `true`.
@@ -293,7 +294,7 @@ fetch('https://www.example.com/api/test', {
 
 The server must allow the credentials. To allow cross-origin credentials, call <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.AllowCredentials*>:
 
-[!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupAllowSubdomain.cs?name=snippet6)]
+[!code-csharp[](cors/6.0sample/Cors/WebAPI/Program.cs?name=snippet_cco)]
 
 The HTTP response includes an `Access-Control-Allow-Credentials` header, which tells the browser that the server allows credentials for a cross-origin request.
 
@@ -364,11 +365,11 @@ Using the F12 tools, the console app shows an error similar to one of the follow
 
 To allow specific headers, call <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithHeaders*>:
 
-[!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupAllowSubdomain.cs?name=snippet2)]
+[!code-csharp[](cors/6.0sample/Cors/WebAPI/Program.cs?name=snippet_whx)]
 
 To allow all [author request headers](https://www.w3.org/TR/cors/#author-request-headers), call <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.AllowAnyHeader*>:
 
-[!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupAllowSubdomain.cs?name=snippet3)]
+[!code-csharp[](cors/6.0sample/Cors/WebAPI/Program.cs?name=snippet_aah2)]
 
 Browsers aren't consistent in how they set `Access-Control-Request-Headers`. If either:
 
@@ -378,7 +379,7 @@ Browsers aren't consistent in how they set `Access-Control-Request-Headers`. If 
 
 <a name="apf"></a>
 
-### Automatic preflight request code
+### Automatic preflight request code zz
 
 When the CORS policy is applied either:
 

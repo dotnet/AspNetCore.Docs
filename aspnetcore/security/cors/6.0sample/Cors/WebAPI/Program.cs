@@ -1,4 +1,4 @@
-#define AAH // FIRST SECOND THIRD ENDP ATTR DC DCORS AA SA AAH
+#define AAH2 // FIRST SECOND THIRD ENDP ATTR DC DCORS AA SA AAH ERH CCO WHX AAH AAH2
 #if FIRST
 #region snippet
 var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
@@ -316,6 +316,118 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: MyAllowSpecificOrigins,
+        builder =>
+        {
+            builder.WithOrigins("https://*.example.com")
+                   .AllowAnyHeader();
+        });
+});
+
+builder.Services.AddControllers();
+
+var app = builder.Build();
+#endregion
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseRouting();
+
+app.UseCors();
+app.UseAuthorization();
+
+app.MapControllers();
+#elif ERH
+#region snippet_erh
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("MyExposeResponseHeadersPolicy",
+        builder =>
+        {
+            builder.WithOrigins("https://*.example.com")
+                   .WithExposedHeaders("x-custom-header");
+        });
+});
+
+builder.Services.AddControllers();
+
+var app = builder.Build();
+#endregion
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseRouting();
+
+app.UseCors();
+app.UseAuthorization();
+
+app.MapControllers();
+#elif CCO
+#region snippet_cco
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("MyMyAllowCredentialsPolicy",
+        builder =>
+        {
+            builder.WithOrigins("http://example.com")
+                   .AllowCredentials();
+        });
+});
+
+builder.Services.AddControllers();
+
+var app = builder.Build();
+#endregion
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseRouting();
+
+app.UseCors();
+app.UseAuthorization();
+
+app.MapControllers();
+#elif WHX
+#region snippet_whx
+using Microsoft.Net.Http.Headers;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("MyAllowHeadersPolicy",
+        builder =>
+        {
+        builder.WithOrigins("http://example.com")
+                   .WithHeaders(HeaderNames.ContentType, "x-custom-header");
+        });
+});
+
+builder.Services.AddControllers();
+
+var app = builder.Build();
+#endregion
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseRouting();
+
+app.UseCors();
+app.UseAuthorization();
+
+app.MapControllers();
+#elif AAH2
+#region snippet_aah2
+using Microsoft.Net.Http.Headers;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("MyAllowAllHeadersPolicy",
         builder =>
         {
             builder.WithOrigins("https://*.example.com")
