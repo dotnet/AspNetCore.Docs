@@ -531,7 +531,7 @@ Firefox shows OPTIONS requests by default.
 When deploying to IIS, CORS has to run before Windows Authentication if the server isn't configured to allow anonymous access. To support this scenario, the [IIS CORS module](https://www.iis.net/downloads/microsoft/iis-cors-module)
 needs to be installed and configured for the app.
 
-<a name="testc"></a>
+<a name="testc6"></a>
 
 ## Test CORS
 
@@ -760,7 +760,7 @@ The code in the next section meets the preceding list.
 
 See [Test CORS](#testc) for instructions on testing code similar to the preceding code.
 
-<a name="dc6"></a>
+<a name="dc"></a>
 
 ### Disable CORS
 
