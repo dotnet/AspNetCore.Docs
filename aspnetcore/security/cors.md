@@ -48,7 +48,7 @@ These URLs have different origins than the previous two URLs:
 There are three ways to enable CORS:
 
 * In middleware using a [named policy](#np) or [default policy](#dp).
-* Using [endpoint routing](#ecors).
+* Using [endpoint routing](#ecors6).
 * With the [[EnableCors]](#attr) attribute.
 
 Using the [[EnableCors]](#attr) attribute with a named policy provides the finest control in limiting endpoints that support CORS.
@@ -71,12 +71,12 @@ The preceding code:
 * Sets the policy name to `_myAllowSpecificOrigins`. The policy name is arbitrary.
 * Calls the <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> extension method and specifies the  `_myAllowSpecificOrigins` CORS policy. `UseCors` adds the CORS middleware. The call to `UseCors` must be placed after `UseRouting`, but before `UseAuthorization`. For more information, see [Middleware order](xref:fundamentals/middleware/index#middleware-order).
 * Calls <xref:Microsoft.Extensions.DependencyInjection.CorsServiceCollectionExtensions.AddCors*> with a [lambda expression](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions). The lambda takes a <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder> object. [Configuration options](#cors-policy-options), such as `WithOrigins`, are described later in this article.
-* Enables the `_myAllowSpecificOrigins` CORS policy for all controller endpoints. See [endpoint routing](#ecors) to apply a CORS policy to specific endpoints.
+* Enables the `_myAllowSpecificOrigins` CORS policy for all controller endpoints. See [endpoint routing](#ecors6) to apply a CORS policy to specific endpoints.
 * When using [Response Caching Middleware](xref:performance/caching/middleware), call <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A> before <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A>.
 
 With endpoint routing, the CORS middleware **must** be configured to execute between the calls to `UseRouting` and  `UseEndpoints`.
 
-See [Test CORS](#testc) for instructions on testing code similar to the preceding code.
+See [Test CORS](#testc6) for instructions on testing code similar to the preceding code.
 
 The <xref:Microsoft.Extensions.DependencyInjection.MvcCorsMvcCoreBuilderExtensions.AddCors*> method call adds CORS services to the app's service container:
 
@@ -96,11 +96,11 @@ Note: The specified URL must **not** contain a trailing slash (`/`). If the URL 
 
 The following highlighted code enables the default CORS policy:
 
-[!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupDefaultPolicy.cs?name=snippet2&highlight=7,29)]
+[!code-csharp[](cors/6.0sample/Cors/WebAPI/Program.cs?name=snippet3&highlight=5,21)]
 
 The preceding code applies the default CORS policy to all controller endpoints.
 
-<a name="ecors"></a>
+<a name="ecors6"></a>
 
 ## Enable Cors with endpoint routing
 
@@ -108,7 +108,7 @@ Enabling CORS on a per-endpoint basis using `RequireCors` ***does not support [a
 
 With endpoint routing, CORS can be enabled on a per-endpoint basis using the <xref:Microsoft.AspNetCore.Builder.CorsEndpointConventionBuilderExtensions.RequireCors*> set of extension methods:
 
-[!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupEndPt.cs?name=snippet2&highlight=3,7-15,32,40,43)]
+[!code-csharp[](cors/6.0sample/Cors/WebAPI/Program.cs?name=snippet_endp&highlight=1,5-13,24,32,35,38)]
 
 In the preceding code:
 
@@ -116,7 +116,7 @@ In the preceding code:
 * The `/echo` and controller endpoints allow cross-origin requests using the specified policy.
 * The `/echo2` and Razor Pages endpoints do **not** allow cross-origin requests because no default policy was specified.
 
-The [[DisableCors]](#dc) attribute does **not**  disable CORS that has been enabled by endpoint routing with `RequireCors`.
+The [[DisableCors]](#dc6) attribute does **not**  disable CORS that has been enabled by endpoint routing with `RequireCors`.
 
 See [Test CORS with endpoint routing and [HttpOptions]](#tcer) for instructions on testing code similar to the preceding.
 
@@ -141,27 +141,27 @@ Different policies can be applied to controllers, page models, or action methods
 
 The following code applies a different policy to each method:
 
-[!code-csharp[](cors/3.1sample/Cors/WebAPI/Controllers/WidgetController.cs?name=snippet&highlight=6,14)]
+[!code-csharp[](cors/6.0sample/Cors/WebAPI/Controllers/WidgetController.cs?name=snippet&highlight=6,14)]
 
 The following code creates two CORS policies:
 
-[!code-csharp[](cors/3.1sample/Cors/WebAPI/Startup3.cs?name=snippet&highlight=12-28,44)]
+[!code-csharp[](cors/6.0sample/Cors/WebAPI/Program.cs?name=snippet_attr)]
 
 For the finest control of limiting CORS requests:
 
 * Use `[EnableCors("MyPolicy")]` with a named policy.
 * Don't define a default policy.
-* Don't use [endpoint routing](#ecors).
+* Don't use [endpoint routing](#ecors6).
 
 The code in the next section meets the preceding list.
 
-See [Test CORS](#testc) for instructions on testing code similar to the preceding code.
+See [Test CORS](#testc6) for instructions on testing code similar to the preceding code.
 
-<a name="dc"></a>
+<a name="dc6"></a>
 
-### Disable CORS
+### Disable CORS zz
 
-The [[DisableCors]](xref:Microsoft.AspNetCore.Cors.DisableCorsAttribute) attribute does **not**  disable CORS that has been enabled by [endpoint routing](#ecors).
+The [[DisableCors]](xref:Microsoft.AspNetCore.Cors.DisableCorsAttribute) attribute does **not**  disable CORS that has been enabled by [endpoint routing](#ecors6).
 
 The following code defines the CORS policy `"MyPolicy"`:
 
@@ -173,12 +173,12 @@ The following code disables CORS for the `GetValues2` action:
 
 The preceding code:
 
-* Doesn't enable CORS with [endpoint routing](#ecors).
+* Doesn't enable CORS with [endpoint routing](#ecors6).
 * Doesn't define a [default CORS policy](#dp).
 * Uses [[EnableCors("MyPolicy")]](#attr) to enable the `"MyPolicy"` CORS policy for the controller.
 * Disables CORS for the `GetValues2` method.
 
-See [Test CORS](#testc) for instructions on testing the preceding code.
+See [Test CORS](#testc6) for instructions on testing the preceding code.
 
 <a name="cpo6"></a>
 
@@ -317,7 +317,7 @@ For some CORS requests, the browser sends an additional [OPTIONS](https://develo
 
 The rule on request headers set for the client request applies to headers that the app sets by calling `setRequestHeader` on the `XMLHttpRequest` object. The CORS specification calls these headers [author request headers](https://www.w3.org/TR/cors/#author-request-headers). The rule doesn't apply to headers the browser can set, such as `User-Agent`, `Host`, or `Content-Length`.
 
-The following is an example response similar to the preflight request made from the **[Put test]** button in the [Test CORS](#testc) section of this document.
+The following is an example response similar to the preflight request made from the **[Put test]** button in the [Test CORS](#testc6) section of this document.
 
 ```
 General:
@@ -353,7 +353,7 @@ The preflight request uses the [HTTP OPTIONS](https://developer.mozilla.org/docs
 * [Access-Control-Request-Headers](https://developer.mozilla.org/docs/Web/HTTP/Headers/Access-Control-Allow-Headers): A list of request headers that the app sets on the actual request. As stated earlier, this doesn't include headers that the browser sets, such as `User-Agent`.
 * [Access-Control-Allow-Methods](https://developer.mozilla.org/docs/Web/HTTP/Headers/Access-Control-Allow-Methods)
 
-If the preflight request is denied, the app returns a `200 OK` response but doesn't set the CORS headers. Therefore, the browser doesn't attempt the cross-origin request. For an example of a denied preflight request, see the [Test CORS](#testc) section of this document.
+If the preflight request is denied, the app returns a `200 OK` response but doesn't set the CORS headers. Therefore, the browser doesn't attempt the cross-origin request. For an example of a denied preflight request, see the [Test CORS](#testc6) section of this document.
 
 Using the F12 tools, the console app shows an error similar to one of the following, depending on the browser:
 
@@ -387,13 +387,13 @@ ASP.NET Core responds to the preflight OPTIONS request.
 
 Enabling CORS on a per-endpoint basis using `RequireCors` currently does **not** support automatic preflight requests.
 
-The [Test CORS](#testc) section of this document demonstrates this behavior.
+The [Test CORS](#testc6) section of this document demonstrates this behavior.
 
 <a name="pro"></a>
 
 ### [HttpOptions] attribute for preflight requests
 
-When CORS is enabled with the appropriate policy, ASP.NET Core generally responds to CORS preflight requests automatically. In some scenarios, this may not be the case. For example, using [CORS with endpoint routing](#ecors).
+When CORS is enabled with the appropriate policy, ASP.NET Core generally responds to CORS preflight requests automatically. In some scenarios, this may not be the case. For example, using [CORS with endpoint routing](#ecors6).
 
 The following code uses the [[HttpOptions]](xref:Microsoft.AspNetCore.Mvc.HttpOptionsAttribute) attribute to create endpoints for OPTIONS requests:
 
@@ -582,7 +582,7 @@ C:\Program Files\Git\mingw64\bin\
 
 ### Test CORS with endpoint routing and [HttpOptions]
 
-Enabling CORS on a per-endpoint basis using `RequireCors` currently does **not** support [automatic preflight requests](#apf). Consider the following code which uses [endpoint routing to enable CORS](#ecors):
+Enabling CORS on a per-endpoint basis using `RequireCors` currently does **not** support [automatic preflight requests](#apf). Consider the following code which uses [endpoint routing to enable CORS](#ecors6):
 
 [!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupEndPointBugTest.cs?name=snippet2)]
 
@@ -760,7 +760,7 @@ The code in the next section meets the preceding list.
 
 See [Test CORS](#testc) for instructions on testing code similar to the preceding code.
 
-<a name="dc"></a>
+<a name="dc6"></a>
 
 ### Disable CORS
 
