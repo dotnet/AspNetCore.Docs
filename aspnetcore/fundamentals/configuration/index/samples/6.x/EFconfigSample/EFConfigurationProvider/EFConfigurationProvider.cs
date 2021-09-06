@@ -65,3 +65,4 @@ public class EFConfigurationProvider : ConfigurationProvider
     }
 }
 #endregion
+
