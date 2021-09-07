@@ -684,16 +684,15 @@ The default caching implementation stores results in memory. You can provide you
 This section provides information for apps that must protect a subset of the app with a certificate. For example, a Razor Page or controller in the app might require client certificates. This presents challenges as client certificates:
   
 * Are a TLS feature, not an HTTP feature.
-* Are negotiated per-connection and must be be negotiated at the start of the connection before any HTTP data is available. At the start of the connection, only the Server Name Indication (SNI)&dagger; is known. The client and server certificates are negotiated prior to the first request on a connection and requests generally aren't able to renegotiate.
+* Are negotiated per-connection and usually at the start of the connection before any HTTP data is available. 
 
-TLS renegotiation was an old way to implement optional client certificates. This is no longer recommended because:
-- In HTTP/1.1, renegotiating during a POST request could cause a deadlock where the request body filled up the TCP window and the renegotiation packets can't be received.
-- HTTP/2 [explicitly prohibits](https://tools.ietf.org/html/rfc7540#section-9.2.1) renegotiation.
-- TLS 1.3 has [removed](https://tools.ietf.org/html/rfc8740#section-1) support for renegotiation.
+There are two aproaches to implementing optional client certificates:
+1. Using seperate host names (SNI) and redirecting. While more work to configure, this is recomended because it works in most environments and protocols.
+2. Renegotiation durring an HTTP request. This has many limitations and is not recomended.
 
-ASP.NET Core 5 preview 7 and later adds more convenient support for optional client certificates. For more information, see the [Optional certificates sample](https://github.com/dotnet/aspnetcore/tree/9ce4a970a21bace3fb262da9591ed52359309592/src/Security/Authentication/Certificate/samples/Certificate.Optional.Sample).
+### Seperate Hosts (SNI)
 
-The following approach supports optional client certificates:
+At the start of the connection, only the Server Name Indication (SNI)&dagger; is known. Client certificates can be configured per host name so that one host requires them and another does not.
 
 ::: moniker range=">= aspnetcore-5.0"
 
@@ -703,7 +702,6 @@ The following approach supports optional client certificates:
     * <xref:fundamentals/servers/kestrel>:
       * [ListenOptions.UseHttps](xref:fundamentals/servers/kestrel/endpoints#listenoptionsusehttps)
       * <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ClientCertificateMode>
-      * Note Kestrel does not currently support multiple TLS configurations on one binding, you'll need two bindings with unique IPs or ports. See https://github.com/dotnet/runtime/issues/31097
     * IIS
       * [Hosting IIS](xref:host-and-deploy/iis/index#create-the-iis-site)
       * [Configure security on IIS](/iis/manage/configuring-security/how-to-set-up-ssl-on-iis#configure-ssl-settings-2)
@@ -727,11 +725,20 @@ The following approach supports optional client certificates:
 
 ::: moniker-end
 
+ASP.NET Core 5 and later adds more convenient support for redirecting to aquire optional client certificates. For more information, see the [Optional certificates sample](https://github.com/dotnet/aspnetcore/tree/9ce4a970a21bace3fb262da9591ed52359309592/src/Security/Authentication/Certificate/samples/Certificate.Optional.Sample).
+
 * For requests to the web app that require a client certificate and don't have one:
   * Redirect to the same page using the client certificate protected subdomain.
   * For example, redirect to `myClient.contoso.com/requestedPage`. Because the request to `myClient.contoso.com/requestedPage` is a different hostname than `contoso.com/requestedPage`, the client establishes a different connection and the client certificate is provided.
   * For more information, see <xref:security/authorization/introduction>.
 
+&dagger; Server Name Indication (SNI) is a TLS extension to include a virtual domain as a part of SSL negotiation. This effectively means the virtual domain name, or a hostname, can be used to identify the network end point.
+
+### Renegotiation
+
+TLS renegotiation is a process by which the client and server can re-assess the encryption requirments for an individual connection, including requesting a client certificate if not previously provided. This is not recommended because:
+- In HTTP/1.1 the server must first deal with any HTTP data that is in flight such as POST request bodies to make sure the connection is clear for the renegotiation. Otherwise the renegotiation can hang or fail.
+- HTTP/2 and HTTP/3 [explicitly prohibit](https://tools.ietf.org/html/rfc7540#section-9.2.1) renegotiation.
+
 Leave questions, comments, and other feedback on optional client certificates in [this GitHub discussion](https://github.com/dotnet/AspNetCore.Docs/issues/18720) issue.
 
-&dagger; Server Name Indication (SNI) is a TLS extension to include a virtual domain as a part of SSL negotiation. This effectively means the virtual domain name, or a hostname, can be used to identify the network end point.
