@@ -11,7 +11,7 @@ uid: tutorials/first-web-api
 
 # Tutorial: Create a web API with ASP.NET Core
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT), [Kirk Larkin](https://twitter.com/serpent5), and [Mike Wasson](https://github.com/mikewasson)
+By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://twitter.com/serpent5)
 
 This tutorial teaches the basics of building a web API with ASP.NET Core.
 
