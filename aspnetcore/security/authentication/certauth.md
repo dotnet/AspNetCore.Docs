@@ -771,7 +771,7 @@ The other setting is [ClientCertificateMethod](https://docs.microsoft.com/dotnet
 
 ::: moniker range=">= aspnetcore-6.0"
 
-An application can first check the [ConnectionInfo.ClientCertificate](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.http.connectioninfo.clientcertificate) property to see if the certificate is already available. If it is not available, ensure the request body has been consumed before calling [GetClientCertificateAsync](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.http.connectioninfo.getclientcertificateasync).
+An application can first check the [ConnectionInfo.ClientCertificate](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.http.connectioninfo.clientcertificate) property to see if the certificate is already available. If it is not available, ensure the request body has been consumed before calling [GetClientCertificateAsync](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.http.connectioninfo.getclientcertificateasync) to negotiate one. Note `GetClientCertificateAsync` can return a null certificiate if the client declines to provide one.
 
 *NOTE* This behavior changed in .NET 6, see https://github.com/aspnet/Announcements/issues/466 if working with prior versions.
 
@@ -779,7 +779,27 @@ An application can first check the [ConnectionInfo.ClientCertificate](https://do
 
 ::: moniker range="< aspnetcore-6.0"
 
-There is a [known issue](https://github.com/dotnet/aspnetcore/issues/33586) where enabling `AllowRenegotation` can cause the renegotiation to happen synchronously when accessing the [ConnectionInfo.ClientCertificate](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.http.connectioninfo.clientcertificate) property. Call the [GetClientCertificateAsync](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.http.connectioninfo.getclientcertificateasync) method to avoid this. This has been addressed in .NET 6, see https://github.com/aspnet/Announcements/issues/466.
+There is a [known issue](https://github.com/dotnet/aspnetcore/issues/33586) where enabling `AllowRenegotation` can cause the renegotiation to happen synchronously when accessing the [ConnectionInfo.ClientCertificate](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.http.connectioninfo.clientcertificate) property. Call the [GetClientCertificateAsync](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.http.connectioninfo.getclientcertificateasync) method to avoid this. This has been addressed in .NET 6, see https://github.com/aspnet/Announcements/issues/466. Note `GetClientCertificateAsync` can return a null certificiate if the client declines to provide one.
+
+::: moniker-end
+
+#### Kestrel
+
+Kestrel controls client certificate negotation with the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ClientCertificateMode> option.
+
+::: moniker range=">= aspnetcore-6.0"
+
+<xref:Microsoft.AspNetCore.Server.Kestrel.Https.ClientCertificateMode.DelayCertificate> is new option available in .NET 6 and later. When set, an application can first check the [ConnectionInfo.ClientCertificate](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.http.connectioninfo.clientcertificate) property to see if the certificate is already available. If it is not available, ensure the request body has been consumed before calling [GetClientCertificateAsync](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.http.connectioninfo.getclientcertificateasync) to negotiate one. Note `GetClientCertificateAsync` can return a null certificiate if the client declines to provide one.
+
+*NOTE* The application should buffer or consume any request body data before attempting the renegotiation, otherwise `GetClientCertificateAsync` may throw an InvalidOperationExeption.
+
+If you are programatically configuring the TLS settings per host there is a new `UseHttps` overload available in .NET 6 and later that takes `TlsHandshakeCallbackOptions` and controls client certificate renegotiation via `TlsHandshakeCallbackContext.AllowDelayedClientCertificateNegotation`.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-6.0"
+
+For .NET 5 and lower Kestrel does not support renegotiating to aquire a client certificate after the start of a connection. This feature has been added in .NET 6.
 
 ::: moniker-end
 
