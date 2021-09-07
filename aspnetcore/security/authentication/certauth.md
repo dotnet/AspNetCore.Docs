@@ -753,13 +753,13 @@ IIS will automatically buffer any request body data up to a configured size limi
 
 HttpSys has two settings which control the client certificate negotation and both should be set. The first is in netsh.exe under `http add sslcert clientcertnegotation=enable/disable`. This flag indicates if the client certificate should be negiatated at the start of a connection and it should be set to `disable` for optional client certificates. See the [netsh docs](/windows-server/networking/technologies/netsh/netsh-http#add-sslcert) for details.
 
-The other setting is <xref:Microsoft.AspNetCore.Server.Httpsys.HttpSysOptions.ClientCertificateMethod>. When set to `AllowRenegotation`, the client certificate can be renegotiated durring a request.
+The other setting is <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.ClientCertificateMethod>. When set to `AllowRenegotation`, the client certificate can be renegotiated durring a request.
 
 *NOTE* The application should buffer or consume any request body data before attempting the renegotiation, otherwise the request may hang.
 
 ::: moniker range=">= aspnetcore-6.0"
 
-An application can first check the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.ClientCertificate> property to see if the certificate is available. If it is not available, ensure the request body has been consumed before calling <xref:Microsoft.AspNetCore.Http.ConnectionInfo.GetClientCertificateAsync> to negotiate one. Note `GetClientCertificateAsync` can return a null certificiate if the client declines to provide one.
+An application can first check the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.ClientCertificate> property to see if the certificate is available. If it is not available, ensure the request body has been consumed before calling <xref:Microsoft.AspNetCore.Http.ConnectionInfo.GetClientCertificateAsync*> to negotiate one. Note `GetClientCertificateAsync` can return a null certificiate if the client declines to provide one.
 
 *NOTE* The behavior of the `ClientCertificate` property changed in .NET 6, see https://github.com/aspnet/Announcements/issues/466 if working with prior versions.
 
@@ -767,7 +767,7 @@ An application can first check the <xref:Microsoft.AspNetCore.Http.ConnectionInf
 
 ::: moniker range="< aspnetcore-6.0"
 
-There is a [known issue](https://github.com/dotnet/aspnetcore/issues/33586) where enabling `AllowRenegotation` can cause the renegotiation to happen synchronously when accessing the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.ClientCertificate> property. Call the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.GetClientCertificateAsync> method to avoid this. This has been addressed in .NET 6, see https://github.com/aspnet/Announcements/issues/466. Note `GetClientCertificateAsync` can return a null certificiate if the client declines to provide one.
+There is a [known issue](https://github.com/dotnet/aspnetcore/issues/33586) where enabling `AllowRenegotation` can cause the renegotiation to happen synchronously when accessing the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.ClientCertificate> property. Call the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.GetClientCertificateAsync*> method to avoid this. This has been addressed in .NET 6, see https://github.com/aspnet/Announcements/issues/466. Note `GetClientCertificateAsync` can return a null certificiate if the client declines to provide one.
 
 ::: moniker-end
 
@@ -777,7 +777,7 @@ Kestrel controls client certificate negotation with the <xref:Microsoft.AspNetCo
 
 ::: moniker range=">= aspnetcore-6.0"
 
-<xref:Microsoft.AspNetCore.Server.Kestrel.Https.ClientCertificateMode.DelayCertificate> is new option available in .NET 6 or later. When set, an application can first check the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.ClientCertificate> property to see if the certificate is already available. If it is not available, ensure the request body has been consumed before calling <xref:Microsoft.AspNetCore.Http.ConnectionInfo.GetClientCertificateAsync> to negotiate one. Note `GetClientCertificateAsync` can return a null certificiate if the client declines to provide one.
+<xref:Microsoft.AspNetCore.Server.Kestrel.Https.ClientCertificateMode.DelayCertificate> is new option available in .NET 6 or later. When set, an application can first check the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.ClientCertificate> property to see if the certificate is already available. If it is not available, ensure the request body has been consumed before calling <xref:Microsoft.AspNetCore.Http.ConnectionInfo.GetClientCertificateAsync*> to negotiate one. Note `GetClientCertificateAsync` can return a null certificiate if the client declines to provide one.
 
 *NOTE* The application should buffer or consume any request body data before attempting the renegotiation, otherwise `GetClientCertificateAsync` may throw `InvalidOperationExeption: Client stream needs to be drained before renegotiation.`.
 
