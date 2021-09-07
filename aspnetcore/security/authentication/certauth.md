@@ -761,7 +761,27 @@ https://docs.microsoft.com/en-us/iis/configuration/system.webserver/security/acc
 
 IIS will automatically buffer any request body data up to a configured size limit before renegotiating. Requests that exceed that limit will be rejected with a 413 response. This is configurable by setting the [`uploadReadAheadSize`](https://docs.microsoft.com/en-us/iis/configuration/system.webserver/serverruntime) which defaults to 48MB.
 
+#### HttpSys
 
+HttpSys has two settings which control the client certificate negotation and both should be set. The first is in netsh.exe under `http add sslcert clientcertnegotation=enable/disable`. This flag indicates if the client certificate should be negiatated at the start of a connection. See the [netsh docs](https://docs.microsoft.com/en-us/windows-server/networking/technologies/netsh/netsh-http#add-sslcert) for details.
+
+The other setting is [ClientCertificateMethod](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.server.httpsys.httpsysoptions.clientcertificatemethod). When set to `AllowRenegotation`, the client certificate can be renegotiated durring a request.
+
+*NOTE* The application should buffer or consume any request body data before attempting the renegotiation.
+
+::: moniker range=">= aspnetcore-6.0"
+
+An application can first check the [ConnectionInfo.ClientCertificate](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.http.connectioninfo.clientcertificate) property to see if the certificate is already available. If it is not available, ensure the request body has been consumed before calling [GetClientCertificateAsync](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.http.connectioninfo.getclientcertificateasync).
+
+*NOTE* This behavior changed in .NET 6, see https://github.com/aspnet/Announcements/issues/466 if working with prior versions.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-6.0"
+
+There is a [known issue](https://github.com/dotnet/aspnetcore/issues/33586) where enabling `AllowRenegotation` can cause the renegotiation to happen synchronously when accessing the [ConnectionInfo.ClientCertificate](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.http.connectioninfo.clientcertificate) property. Call the [GetClientCertificateAsync](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.http.connectioninfo.getclientcertificateasync) method to avoid this. This has been addressed in .NET 6, see https://github.com/aspnet/Announcements/issues/466.
+
+::: moniker-end
 
 Leave questions, comments, and other feedback on optional client certificates in [this GitHub discussion](https://github.com/dotnet/AspNetCore.Docs/issues/18720) issue.
 
