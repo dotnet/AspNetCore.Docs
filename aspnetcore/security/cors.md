@@ -379,7 +379,7 @@ Browsers aren't consistent in how they set `Access-Control-Request-Headers`. If 
 
 <a name="apf"></a>
 
-### Automatic preflight request code zz
+### Automatic preflight request code
 
 When the CORS policy is applied either:
 
@@ -392,7 +392,7 @@ Enabling CORS on a per-endpoint basis using `RequireCors` currently does **not**
 
 The [Test CORS](#testc6) section of this document demonstrates this behavior.
 
-<a name="pro"></a>
+<a name="pro6"></a>
 
 ### [HttpOptions] attribute for preflight requests
 
@@ -400,7 +400,7 @@ When CORS is enabled with the appropriate policy, ASP.NET Core generally respond
 
 The following code uses the [[HttpOptions]](xref:Microsoft.AspNetCore.Mvc.HttpOptionsAttribute) attribute to create endpoints for OPTIONS requests:
 
-[!code-csharp[](cors/3.1sample/Cors/WebAPI/Controllers/TodoItems2Controller.cs?name=snippet&highlight=5-17)]
+[!code-csharp[](cors/6.00sample/Cors/WebAPI/Controllers/TodoItems2Controller.cs?name=snippet&highlight=5-17)]
 
 See [Test CORS with endpoint routing and [HttpOptions]](#tcer) for instructions on testing the preceding code.
 
@@ -408,7 +408,8 @@ See [Test CORS with endpoint routing and [HttpOptions]](#tcer) for instructions 
 
 The `Access-Control-Max-Age` header specifies how long the response to the preflight request can be cached. To set this header, call <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.SetPreflightMaxAge*>:
 
-[!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupAllowSubdomain.cs?name=snippet7)]
+[!code-csharp[](cors/6.0sample/Cors/WebAPI/Program.cs?name=snippet_pfx)]
+
 <a name="how-cors"></a>
 
 ## How CORS works
@@ -540,14 +541,14 @@ needs to be installed and configured for the app.
 
 The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/cors/3.1sample/Cors/WebAPI) has code to test CORS. See [how to download](xref:index#how-to-download-a-sample). The sample is an API project with Razor Pages added:
 
-[!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupTest2.cs?name=snippet2)]
+[!code-csharp[](cors/6.0sample/Cors/WebAPI/Program.cs?name=snippet_test)]
 
   > [!WARNING]
   > `WithOrigins("https://localhost:<port>");` should only be used for testing a sample app similar to the [download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/cors/3.1sample/Cors).
 
 The following `ValuesController` provides the endpoints for testing:
 
-[!code-csharp[](cors/3.1sample/Cors/WebAPI/Controllers/ValuesController.cs?name=snippet)]
+[!code-csharp[](cors/6.0sample/Cors/WebAPI/Controllers/ValuesController.cs?name=snippet)]
 
 [MyDisplayRouteInfo](https://github.com/Rick-Anderson/RouteInfo/blob/master/Microsoft.Docs.Samples.RouteInfo/ControllerContextExtensions.cs) is provided by the [Rick.Docs.Samples.RouteInfo](https://www.nuget.org/packages/Rick.Docs.Samples.RouteInfo) NuGet package and displays route information.
 
@@ -579,6 +580,7 @@ curl -X OPTIONS https://cors3.azurewebsites.net/api/TodoItems2/5 -i
 <!--
 curl come with Git. Add to path variable
 C:\Program Files\Git\mingw64\bin\
+zz
 -->
 
 <a name="tcer"></a>
@@ -587,11 +589,11 @@ C:\Program Files\Git\mingw64\bin\
 
 Enabling CORS on a per-endpoint basis using `RequireCors` currently does **not** support [automatic preflight requests](#apf). Consider the following code which uses [endpoint routing to enable CORS](#ecors6):
 
-[!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupEndPointBugTest.cs?name=snippet2)]
+[!code-csharp[](cors/6.0sample/Cors/WebAPI/Program.cs?name=snippet_teste)]
 
 The following `TodoItems1Controller` provides endpoints for testing:
 
-[!code-csharp[](cors/3.1sample/Cors/WebAPI/Controllers/TodoItems1Controller.cs?name=snippet2)]
+[!code-csharp[](cors/6.0sample/Cors/WebAPI/Controllers/TodoItems1Controller.cs?name=snippet2)]
 
 Test the preceding code from the [test page](https://cors1.azurewebsites.net/test?number=1) of the deployed [sample](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/cors/3.1sample/Cors/WebAPI).
 
@@ -605,7 +607,7 @@ The **Delete [EnableCors]** and **GET [EnableCors]** buttons succeed, because th
 
 The following `TodoItems2Controller` provides similar endpoints, but includes explicit code to respond to OPTIONS requests:
 
-[!code-csharp[](cors/3.1sample/Cors/WebAPI/Controllers/TodoItems2Controller.cs?name=snippet2)]
+[!code-csharp[](cors/6.0sample/Cors/WebAPI/Controllers/TodoItems2Controller.cs?name=snippet2)]
 
 Test the preceding code from the [test page](https://cors1.azurewebsites.net/test?number=2) of the deployed sample. In the **Controller** drop down list, select **Preflight** and then **Set Controller**. All the CORS calls to the `TodoItems2Controller` endpoints succeed.
 

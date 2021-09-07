@@ -1,4 +1,5 @@
-#define AAH2 // FIRST SECOND THIRD ENDP ATTR DC DCORS AA SA AAH ERH CCO WHX AAH AAH2
+#define TEST // FIRST SECOND THIRD ENDP ATTR DC DCORS AA SA AAH ERH CCO WHX AAH AAH2 PFX
+// PFX TEST TESTE
 #if FIRST
 #region snippet
 var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
@@ -244,6 +245,8 @@ app.UseAuthorization();
 
 app.MapControllers();
 app.MapRazorPages();
+
+app.Run();
 #endregion
 #elif AA
 #region snippet_aa
@@ -275,6 +278,8 @@ app.UseCors();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.Run();
 #elif SA
 #region snippet_sa
 using Microsoft.Net.Http.Headers;
@@ -307,6 +312,8 @@ app.UseCors();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.Run();
 #elif AAH
 #region snippet_aah
 var MyAllowSpecificOrigins = "_MyAllowSubdomainPolicy";
@@ -336,6 +343,8 @@ app.UseCors();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.Run();
 #elif ERH
 #region snippet_erh
 var builder = WebApplication.CreateBuilder(args);
@@ -363,6 +372,8 @@ app.UseCors();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.Run();
 #elif CCO
 #region snippet_cco
 var builder = WebApplication.CreateBuilder(args);
@@ -390,6 +401,8 @@ app.UseCors();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.Run();
 #elif WHX
 #region snippet_whx
 using Microsoft.Net.Http.Headers;
@@ -419,6 +432,8 @@ app.UseCors();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.Run();
 #elif AAH2
 #region snippet_aah2
 using Microsoft.Net.Http.Headers;
@@ -448,4 +463,109 @@ app.UseCors();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.Run();
+#elif PFX
+#region snippet_pfx
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("MySetPreflightExpirationPolicy",
+        builder =>
+        {
+            builder.WithOrigins("http://example.com")
+                   .SetPreflightMaxAge(TimeSpan.FromSeconds(2520));
+        });
+});
+
+builder.Services.AddControllers();
+
+var app = builder.Build();
+#endregion
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseRouting();
+
+app.UseCors();
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.Run();
+#elif TEST
+#region snippet_test
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "MyPolicy",
+                builder =>
+                {
+                    builder.WithOrigins("http://example.com",
+                        "http://www.contoso.com",
+                        "https://cors1.azurewebsites.net",
+                        "https://cors3.azurewebsites.net",
+                        "https://localhost:44398",
+                        "https://localhost:5001")
+                            .WithMethods("PUT", "DELETE", "GET");
+                });
+});
+
+builder.Services.AddControllers();
+builder.Services.AddRazorPages();
+
+var app = builder.Build();
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseRouting();
+
+app.UseCors();
+
+app.UseAuthorization();
+
+app.MapControllers();
+app.MapRazorPages();
+
+app.Run();
+#endregion
+#elif TESTE
+#region snippet_teste
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "MyPolicy",
+                builder =>
+                {
+                    builder.WithOrigins("http://example.com",
+                        "http://www.contoso.com",
+                        "https://cors1.azurewebsites.net",
+                        "https://cors3.azurewebsites.net",
+                        "https://localhost:44398",
+                        "https://localhost:5001")
+                            .WithMethods("PUT", "DELETE", "GET");
+                });
+});
+
+builder.Services.AddControllers();
+builder.Services.AddRazorPages();
+
+var app = builder.Build();
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseRouting();
+
+app.UseCors();
+
+app.UseAuthorization();
+
+app.MapControllers();
+app.MapRazorPages();
+
+app.Run();
+#endregion
 #endif
