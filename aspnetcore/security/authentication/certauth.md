@@ -688,7 +688,7 @@ This section provides information for apps that must protect a subset of the app
 
 There are two aproaches to implementing optional client certificates:
 1. Using seperate host names (SNI) and redirecting. While more work to configure, this is recomended because it works in most environments and protocols.
-2. Renegotiation durring an HTTP request. This has many limitations and is not recomended.
+2. Renegotiation durring an HTTP request. This has several limitations and is not recomended.
 
 ### Seperate Hosts (SNI)
 
@@ -737,49 +737,37 @@ ASP.NET Core 5 and later adds more convenient support for redirecting to aquire 
 ### Renegotiation
 
 TLS renegotiation is a process by which the client and server can re-assess the encryption requirments for an individual connection, including requesting a client certificate if not previously provided. This is not recommended because:
-- In HTTP/1.1 the server must first deal with any HTTP data that is in flight such as POST request bodies to make sure the connection is clear for the renegotiation. Otherwise the renegotiation can hang or fail.
+- In HTTP/1.1 the server must first buffer or consume any HTTP data that is in flight such as POST request bodies to make sure the connection is clear for the renegotiation. Otherwise the renegotiation can hang or fail.
 - HTTP/2 and HTTP/3 [explicitly prohibit](https://tools.ietf.org/html/rfc7540#section-9.2.1) renegotiation.
-- There are security risks associated with renegotiation. TLS 1.3 removed renegotiation of the whole connection and replaced it with a new extension for requesting only the client certificiate after the start of the connection. This mechanism is exposed via the same APIs and is still subject to the prior two constraints.
+- There are security risks associated with renegotiation. TLS 1.3 removed renegotiation of the whole connection and replaced it with a new extension for requesting only the client certificiate after the start of the connection. This mechanism is exposed via the same APIs and is still subject to the prior constraints of buffering and HTTP protocol versions.
 
 The implmentation and configuration of this feature varies by server and framework version.
 
 #### IIS
 
-IIS manages the client certificate negotation on your behalf. A subsection of the application identified as a `location path` can enable the `SslRequireCert` option to negotiate the client certificate for those requests.
+IIS manages the client certificate negotation on your behalf. A subsection of the application can enable the `SslRequireCert` option to negotiate the client certificate for those requests. See the [IIS docs](/iis/configuration/system.webserver/security/access#configuration) for details.
 
-https://docs.microsoft.com/en-us/iis/configuration/system.webserver/security/access#configuration
-
-```XML
-<location path="subpath">
-    <system.webServer>
-      <security>
-        <access sslFlags="Ssl, SslNegotiateCert, SslRequireCert"/>
-      </security>
-    </system.webServer>
-</location>
-```
-
-IIS will automatically buffer any request body data up to a configured size limit before renegotiating. Requests that exceed that limit will be rejected with a 413 response. This is configurable by setting the [`uploadReadAheadSize`](https://docs.microsoft.com/en-us/iis/configuration/system.webserver/serverruntime) which defaults to 48MB.
+IIS will automatically buffer any request body data up to a configured size limit before renegotiating. Requests that exceed the limit will be rejected with a 413 response. This limit defaults to 48MB and is configurable by setting the [uploadReadAheadSize](/iis/configuration/system.webserver/serverruntime).
 
 #### HttpSys
 
-HttpSys has two settings which control the client certificate negotation and both should be set. The first is in netsh.exe under `http add sslcert clientcertnegotation=enable/disable`. This flag indicates if the client certificate should be negiatated at the start of a connection. See the [netsh docs](https://docs.microsoft.com/en-us/windows-server/networking/technologies/netsh/netsh-http#add-sslcert) for details.
+HttpSys has two settings which control the client certificate negotation and both should be set. The first is in netsh.exe under `http add sslcert clientcertnegotation=enable/disable`. This flag indicates if the client certificate should be negiatated at the start of a connection and it should be set to `disable` for optional client certificates. See the [netsh docs](/windows-server/networking/technologies/netsh/netsh-http#add-sslcert) for details.
 
-The other setting is [ClientCertificateMethod](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.server.httpsys.httpsysoptions.clientcertificatemethod). When set to `AllowRenegotation`, the client certificate can be renegotiated durring a request.
+The other setting is <xref:microsoft.aspnetcore.server.httpsys.httpsysoptions.clientcertificatemethod>. When set to `AllowRenegotation`, the client certificate can be renegotiated durring a request.
 
-*NOTE* The application should buffer or consume any request body data before attempting the renegotiation.
+*NOTE* The application should buffer or consume any request body data before attempting the renegotiation, otherwise the request may hang.
 
 ::: moniker range=">= aspnetcore-6.0"
 
-An application can first check the [ConnectionInfo.ClientCertificate](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.http.connectioninfo.clientcertificate) property to see if the certificate is already available. If it is not available, ensure the request body has been consumed before calling [GetClientCertificateAsync](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.http.connectioninfo.getclientcertificateasync) to negotiate one. Note `GetClientCertificateAsync` can return a null certificiate if the client declines to provide one.
+An application can first check the <xref:microsoft.aspnetcore.http.connectioninfo.clientcertificate> property to see if the certificate is available. If it is not available, ensure the request body has been consumed before calling <xref:microsoft.aspnetcore.http.connectioninfo.getclientcertificateasync> to negotiate one. Note `GetClientCertificateAsync` can return a null certificiate if the client declines to provide one.
 
-*NOTE* This behavior changed in .NET 6, see https://github.com/aspnet/Announcements/issues/466 if working with prior versions.
+*NOTE* The behavior of the `ClientCertificate` property changed in .NET 6, see https://github.com/aspnet/Announcements/issues/466 if working with prior versions.
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-6.0"
 
-There is a [known issue](https://github.com/dotnet/aspnetcore/issues/33586) where enabling `AllowRenegotation` can cause the renegotiation to happen synchronously when accessing the [ConnectionInfo.ClientCertificate](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.http.connectioninfo.clientcertificate) property. Call the [GetClientCertificateAsync](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.http.connectioninfo.getclientcertificateasync) method to avoid this. This has been addressed in .NET 6, see https://github.com/aspnet/Announcements/issues/466. Note `GetClientCertificateAsync` can return a null certificiate if the client declines to provide one.
+There is a [known issue](https://github.com/dotnet/aspnetcore/issues/33586) where enabling `AllowRenegotation` can cause the renegotiation to happen synchronously when accessing the <xref:microsoft.aspnetcore.http.connectioninfo.clientcertificate> property. Call the <xref:microsoft.aspnetcore.http.connectioninfo.getclientcertificateasync> method to avoid this. This has been addressed in .NET 6, see https://github.com/aspnet/Announcements/issues/466. Note `GetClientCertificateAsync` can return a null certificiate if the client declines to provide one.
 
 ::: moniker-end
 
@@ -789,17 +777,17 @@ Kestrel controls client certificate negotation with the <xref:Microsoft.AspNetCo
 
 ::: moniker range=">= aspnetcore-6.0"
 
-<xref:Microsoft.AspNetCore.Server.Kestrel.Https.ClientCertificateMode.DelayCertificate> is new option available in .NET 6 and later. When set, an application can first check the [ConnectionInfo.ClientCertificate](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.http.connectioninfo.clientcertificate) property to see if the certificate is already available. If it is not available, ensure the request body has been consumed before calling [GetClientCertificateAsync](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.http.connectioninfo.getclientcertificateasync) to negotiate one. Note `GetClientCertificateAsync` can return a null certificiate if the client declines to provide one.
+<xref:Microsoft.AspNetCore.Server.Kestrel.Https.ClientCertificateMode.DelayCertificate> is new option available in .NET 6 or later. When set, an application can first check the <xref:microsoft.aspnetcore.http.connectioninfo.clientcertificate> property to see if the certificate is already available. If it is not available, ensure the request body has been consumed before calling <xref:microsoft.aspnetcore.http.connectioninfo.getclientcertificateasync> to negotiate one. Note `GetClientCertificateAsync` can return a null certificiate if the client declines to provide one.
 
-*NOTE* The application should buffer or consume any request body data before attempting the renegotiation, otherwise `GetClientCertificateAsync` may throw an InvalidOperationExeption.
+*NOTE* The application should buffer or consume any request body data before attempting the renegotiation, otherwise `GetClientCertificateAsync` may throw `InvalidOperationExeption: Client stream needs to be drained before renegotiation.`.
 
-If you are programatically configuring the TLS settings per host there is a new `UseHttps` overload available in .NET 6 and later that takes `TlsHandshakeCallbackOptions` and controls client certificate renegotiation via `TlsHandshakeCallbackContext.AllowDelayedClientCertificateNegotation`.
+If you are programatically configuring the TLS settings per host there is a new [UseHttps](xref:fundamentals/servers/kestrel/endpoints#listenoptionsusehttps) overload available in .NET 6 and later that takes <xref:Microsoft.AspNetCore.Server.Kestrel.Https.TlsHandshakeCallbackOptions> and controls client certificate renegotiation via <xref:Microsoft.AspNetCore.Server.Kestrel.Https.TlsHandshakeCallbackContext.AllowDelayedClientCertificateNegotation>.
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-6.0"
 
-For .NET 5 and lower Kestrel does not support renegotiating to aquire a client certificate after the start of a connection. This feature has been added in .NET 6.
+For .NET 5 and earlier Kestrel does not support renegotiating after the start of a connection to aquire a client certificate. This feature has been added in .NET 6.
 
 ::: moniker-end
 
