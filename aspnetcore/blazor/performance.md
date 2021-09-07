@@ -535,6 +535,69 @@ In the following example:
 
 In addition to implementing the <xref:Microsoft.AspNetCore.Components.IHandleEvent> interface, leveraging the other best practices described in this article can also help reduce unwanted renders after events are handled. For example, overriding <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> in child components of the target component can be used to control rerendering.
 
+### Avoid recreating delegates for many repeated elements or components
+
+Blazor's recreation of [lambda expression delegates](xref:blazor/components/event-handling#lambda-expressions) for elements or components in a loop can lead to poor performance.
+
+The following component shown in the [event handling article](xref:blazor/components/event-handling#lambda-expressions) renders a set of buttons. Each button assigns a delegate to its [`@onclick`](xref:mvc/views/razor#onclick) event, which is fine if there aren't many buttons to render:
+
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample5.razor)]
+
+If a large number of buttons is rendered using the preceding approach, rendering speed is adversely impacted leading to a poor user experience. To render a large number of buttons with a callback for click events, the following example uses a collection of button objects that assign each button's [`@onclick`](xref:mvc/views/razor#onclick) delegate to an <xref:System.Action>. The following approach doesn't require Blazor to rebuild all of the button delegates each time the buttons are rendered:
+
+`Pages/LambdaEventPerformance.razor`:
+
+```razor
+@page "/lambda-event-performance"
+
+<h1>@heading</h1>
+
+@foreach (var button in Buttons)
+{
+    <p>
+        <button @key="button.Id" @onclick="@(e => button.Action(e))">
+            Button #@button.Id
+        </button>
+    </p>
+}
+
+@code {
+    private string heading = "Select a button to learn its position";
+
+    private List<Button> Buttons { get; set; } = new();
+
+    protected override void OnInitialized()
+    {
+        for (var i = 0; i < 100; i++)
+        {
+            var button = new Button();
+
+            button.Id = Guid.NewGuid().ToString();
+
+            button.Action = (e) =>
+            {
+                UpdateHeading(button, e);
+            };
+
+            Buttons.Add(button);
+        }
+    }
+
+    private void UpdateHeading(Button button, MouseEventArgs e)
+    {
+        heading = $"Selected #{button.Id} at {e.ClientX}:{e.ClientY}";
+    }
+
+    private class Button
+    {
+        public string Id { get; set; }
+        public Action<MouseEventArgs> Action { get; set; }
+    }
+}
+```
+
+For more information, see [Blazor Binary message size send from server to client increases (dotnet/aspnetcore #17886)](https://github.com/dotnet/aspnetcore/issues/17886).
+
 ## Optimize JavaScript interop speed
 
 Calls between .NET and JavaScript require additional overhead because:
@@ -1207,6 +1270,69 @@ In the following example:
 
 In addition to implementing the <xref:Microsoft.AspNetCore.Components.IHandleEvent> interface, leveraging the other best practices described in this article can also help reduce unwanted renders after events are handled. For example, overriding <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> in child components of the target component can be used to control rerendering.
 
+### Avoid recreating delegates for many repeated elements or components
+
+Blazor's recreation of [lambda expression delegates](xref:blazor/components/event-handling#lambda-expressions) for elements or components in a loop can lead to poor performance.
+
+The following component shown in the [event handling article](xref:blazor/components/event-handling#lambda-expressions) renders a set of buttons. Each button assigns a delegate to its [`@onclick`](xref:mvc/views/razor#onclick) event, which is fine if there aren't many buttons to render:
+
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample5.razor)]
+
+If a large number of buttons is rendered using the preceding approach, rendering speed is adversely impacted leading to a poor user experience. To render a large number of buttons with a callback for click events, the following example uses a collection of button objects that assign each button's [`@onclick`](xref:mvc/views/razor#onclick) delegate to an <xref:System.Action>. The following approach doesn't require Blazor to rebuild all of the button delegates each time the buttons are rendered:
+
+`Pages/LambdaEventPerformance.razor`:
+
+```razor
+@page "/lambda-event-performance"
+
+<h1>@heading</h1>
+
+@foreach (var button in Buttons)
+{
+    <p>
+        <button @key="button.Id" @onclick="@(e => button.Action(e))">
+            Button #@button.Id
+        </button>
+    </p>
+}
+
+@code {
+    private string heading = "Select a button to learn its position";
+
+    private List<Button> Buttons { get; set; } = new();
+
+    protected override void OnInitialized()
+    {
+        for (var i = 0; i < 100; i++)
+        {
+            var button = new Button();
+
+            button.Id = Guid.NewGuid().ToString();
+
+            button.Action = (e) =>
+            {
+                UpdateHeading(button, e);
+            };
+
+            Buttons.Add(button);
+        }
+    }
+
+    private void UpdateHeading(Button button, MouseEventArgs e)
+    {
+        heading = $"Selected #{button.Id} at {e.ClientX}:{e.ClientY}";
+    }
+
+    private class Button
+    {
+        public string Id { get; set; }
+        public Action<MouseEventArgs> Action { get; set; }
+    }
+}
+```
+
+For more information, see [Blazor Binary message size send from server to client increases (dotnet/aspnetcore #17886)](https://github.com/dotnet/aspnetcore/issues/17886).
+
 ## Optimize JavaScript interop speed
 
 Calls between .NET and JavaScript require additional overhead because:
@@ -1870,6 +1996,69 @@ In the following example:
 ```
 
 In addition to implementing the <xref:Microsoft.AspNetCore.Components.IHandleEvent> interface, leveraging the other best practices described in this article can also help reduce unwanted renders after events are handled. For example, overriding <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> in child components of the target component can be used to control rerendering.
+
+### Avoid recreating delegates for many repeated elements or components
+
+Blazor's recreation of [lambda expression delegates](xref:blazor/components/event-handling#lambda-expressions) for elements or components in a loop can lead to poor performance.
+
+The following component shown in the [event handling article](xref:blazor/components/event-handling#lambda-expressions) renders a set of buttons. Each button assigns a delegate to its [`@onclick`](xref:mvc/views/razor#onclick) event, which is fine if there aren't many buttons to render:
+
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample5.razor)]
+
+If a large number of buttons is rendered using the preceding approach, rendering speed is adversely impacted leading to a poor user experience. To render a large number of buttons with a callback for click events, the following example uses a collection of button objects that assign each button's [`@onclick`](xref:mvc/views/razor#onclick) delegate to an <xref:System.Action>. The following approach doesn't require Blazor to rebuild all of the button delegates each time the buttons are rendered:
+
+`Pages/LambdaEventPerformance.razor`:
+
+```razor
+@page "/lambda-event-performance"
+
+<h1>@heading</h1>
+
+@foreach (var button in Buttons)
+{
+    <p>
+        <button @key="button.Id" @onclick="@(e => button.Action(e))">
+            Button #@button.Id
+        </button>
+    </p>
+}
+
+@code {
+    private string heading = "Select a button to learn its position";
+
+    private List<Button> Buttons { get; set; } = new();
+
+    protected override void OnInitialized()
+    {
+        for (var i = 0; i < 100; i++)
+        {
+            var button = new Button();
+
+            button.Id = Guid.NewGuid().ToString();
+
+            button.Action = (e) =>
+            {
+                UpdateHeading(button, e);
+            };
+
+            Buttons.Add(button);
+        }
+    }
+
+    private void UpdateHeading(Button button, MouseEventArgs e)
+    {
+        heading = $"Selected #{button.Id} at {e.ClientX}:{e.ClientY}";
+    }
+
+    private class Button
+    {
+        public string Id { get; set; }
+        public Action<MouseEventArgs> Action { get; set; }
+    }
+}
+```
+
+For more information, see [Blazor Binary message size send from server to client increases (dotnet/aspnetcore #17886)](https://github.com/dotnet/aspnetcore/issues/17886).
 
 ## Optimize JavaScript interop speed
 
