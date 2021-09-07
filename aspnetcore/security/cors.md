@@ -400,7 +400,7 @@ When CORS is enabled with the appropriate policy, ASP.NET Core generally respond
 
 The following code uses the [[HttpOptions]](xref:Microsoft.AspNetCore.Mvc.HttpOptionsAttribute) attribute to create endpoints for OPTIONS requests:
 
-[!code-csharp[](cors/6.00sample/Cors/WebAPI/Controllers/TodoItems2Controller.cs?name=snippet&highlight=5-17)]
+[!code-csharp[](cors/6.0sample/Cors/WebAPI/Controllers/TodoItems2Controller.cs?name=snippet&highlight=5-17)]
 
 See [Test CORS with endpoint routing and [HttpOptions]](#tcer) for instructions on testing the preceding code.
 
