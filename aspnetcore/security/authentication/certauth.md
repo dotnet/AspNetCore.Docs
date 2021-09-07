@@ -739,6 +739,29 @@ ASP.NET Core 5 and later adds more convenient support for redirecting to aquire 
 TLS renegotiation is a process by which the client and server can re-assess the encryption requirments for an individual connection, including requesting a client certificate if not previously provided. This is not recommended because:
 - In HTTP/1.1 the server must first deal with any HTTP data that is in flight such as POST request bodies to make sure the connection is clear for the renegotiation. Otherwise the renegotiation can hang or fail.
 - HTTP/2 and HTTP/3 [explicitly prohibit](https://tools.ietf.org/html/rfc7540#section-9.2.1) renegotiation.
+- There are security risks associated with renegotiation. TLS 1.3 removed renegotiation of the whole connection and replaced it with a new extension for requesting only the client certificiate after the start of the connection. This mechanism is exposed via the same APIs and is still subject to the prior two constraints.
+
+The implmentation and configuration of this feature varies by server and framework version.
+
+#### IIS
+
+IIS manages the client certificate negotation on your behalf. A subsection of the application identified as a `location path` can enable the `SslRequireCert` option to negotiate the client certificate for those requests.
+
+https://docs.microsoft.com/en-us/iis/configuration/system.webserver/security/access#configuration
+
+```XML
+<location path="subpath">
+    <system.webServer>
+      <security>
+        <access sslFlags="Ssl, SslNegotiateCert, SslRequireCert"/>
+      </security>
+    </system.webServer>
+</location>
+```
+
+IIS will automatically buffer any request body data up to a configured size limit before renegotiating. Requests that exceed that limit will be rejected with a 413 response. This is configurable by setting the [`uploadReadAheadSize`](https://docs.microsoft.com/en-us/iis/configuration/system.webserver/serverruntime) which defaults to 48MB.
+
+
 
 Leave questions, comments, and other feedback on optional client certificates in [this GitHub discussion](https://github.com/dotnet/AspNetCore.Docs/issues/18720) issue.
 
