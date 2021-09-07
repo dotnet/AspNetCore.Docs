@@ -541,7 +541,7 @@ needs to be installed and configured for the app.
 
 The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/cors/3.1sample/Cors/WebAPI) has code to test CORS. See [how to download](xref:index#how-to-download-a-sample). The sample is an API project with Razor Pages added:
 
-[!code-csharp[](cors/6.0sample/Cors/WebAPI/Program.cs?name=snippet_test)]
+[!code-csharp[](cors/6.0sample/Cors/WebAPI/ProgramTest.cs?name=snippet_test)]
 
   > [!WARNING]
   > `WithOrigins("https://localhost:<port>");` should only be used for testing a sample app similar to the [download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/cors/3.1sample/Cors).
@@ -589,7 +589,7 @@ zz
 
 Enabling CORS on a per-endpoint basis using `RequireCors` currently does **not** support [automatic preflight requests](#apf). Consider the following code which uses [endpoint routing to enable CORS](#ecors6):
 
-[!code-csharp[](cors/6.0sample/Cors/WebAPI/Program.cs?name=snippet_teste)]
+[!code-csharp[](cors/6.0sample/Cors/WebAPI/ProgramTest.cs?name=snippet_teste)]
 
 The following `TodoItems1Controller` provides endpoints for testing:
 
