@@ -87,8 +87,8 @@ The following diagram shows the design of the app.
 
   The preceding commands:
 
-  * Creates a new web API project and opens it in Visual Studio Code.
-  * Adds the NuGet packages which are required in the next section.
+  * Create a new web API project and opens it in Visual Studio Code.
+  * Add a NuGet package that is needed for the next section.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -313,8 +313,8 @@ dotnet aspnet-codegenerator controller -name TodoItemsController -async -api -m 
 The preceding commands:
 
 * Add NuGet packages required for scaffolding.
-* Installs the scaffolding engine (`dotnet-aspnet-codegenerator`).
-* Scaffolds the `TodoItemsController`.
+* Install the scaffolding engine (`dotnet-aspnet-codegenerator`).
+* Scaffold the `TodoItemsController`.
 
 ---
 
