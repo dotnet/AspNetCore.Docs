@@ -269,7 +269,7 @@ The *database context* is the main class that coordinates Entity Framework funct
 
 * Add a `TodoContext` class to the *Models* folder. 
 
-[Visual Studio for Mac](#tab/visual-studio-mac)
+# [Visual Studio for Mac](#tab/visual-studio-mac)
 
 For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 
@@ -332,7 +332,7 @@ The preceding commands:
 * Install the scaffolding engine (`dotnet-aspnet-codegenerator`).
 * Scaffold the `TodoItemsController`.
 
-[Visual Studio for Mac](#tab/visual-studio-mac)
+# [Visual Studio for Mac](#tab/visual-studio-mac)
 
 For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 
