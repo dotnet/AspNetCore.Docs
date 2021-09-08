@@ -1100,7 +1100,7 @@ See [Tutorial: Call an ASP.NET Core web API with JavaScript](xref:tutorials/web-
 
 ::: moniker-end
 
-::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
+::: moniker range="< aspnetcore-5.0"
 
 In this tutorial, you learn how to:
 
