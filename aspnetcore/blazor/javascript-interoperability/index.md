@@ -176,6 +176,25 @@ JS isolation provides the following benefits:
 
 For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules>.
 
+## Cached JavaScript files
+
+JavaScript (JS) files and other static assets aren't generally cached on clients during development in the [`Development` environment](xref:fundamentals/index#environments). During development, static asset requests include the [`Cache-Control` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control) with a value of [`no-cache`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control#cacheability) or [`max-age`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control#expiration) with a value of zero (`0`).
+
+During production in the [`Production` environment](xref:fundamentals/index#environments), JS files are usually cached by clients.
+
+To disable client-side caching in browsers, developers usually adopt one of the following approaches:
+
+* Disable caching when the browser's developer tools console is open. Guidance can be found in the developer tools documentation of each browser maintainer:
+  * [Chrome DevTools](https://developer.chrome.com/docs/devtools/)
+  * [Firefox Developer Tools](https://developer.mozilla.org/docs/Tools)
+  * [Microsoft Edge Developer Tools overview](/microsoft-edge/devtools-guide-chromium/)
+* Perform a manual browser refresh of any webpage of the Blazor app to reload JS files from the server. ASP.NET Core's HTTP Caching Middleware always honors a valid no-cache [`Cache-Control` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control) sent by a client.
+
+For more information, see:
+
+* <xref:blazor/fundamentals/environments>
+* <xref:performance/caching/response>
+
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
@@ -343,6 +362,25 @@ JS isolation provides the following benefits:
 
 For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules>.
 
+## Cached JavaScript files
+
+JavaScript (JS) files and other static assets aren't generally cached on clients during development in the [`Development` environment](xref:fundamentals/index#environments). During development, static asset requests include the [`Cache-Control` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control) with a value of [`no-cache`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control#cacheability) or [`max-age`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control#expiration) with a value of zero (`0`).
+
+During production in the [`Production` environment](xref:fundamentals/index#environments), JS files are usually cached by clients.
+
+To disable client-side caching in browsers, developers usually adopt one of the following approaches:
+
+* Disable caching when the browser's developer tools console is open. Guidance can be found in the developer tools documentation of each browser maintainer:
+  * [Chrome DevTools](https://developer.chrome.com/docs/devtools/)
+  * [Firefox Developer Tools](https://developer.mozilla.org/docs/Tools)
+  * [Microsoft Edge Developer Tools overview](/microsoft-edge/devtools-guide-chromium/)
+* Perform a manual browser refresh of any webpage of the Blazor app to reload JS files from the server. ASP.NET Core's HTTP Caching Middleware always honors a valid no-cache [`Cache-Control` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control) sent by a client.
+
+For more information, see:
+
+* <xref:blazor/fundamentals/environments>
+* <xref:performance/caching/response>
+
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
@@ -498,5 +536,25 @@ The following example injects the `wwwroot/scripts.js` file after Blazor starts:
 The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or `server` for a Blazor Server app (`blazor.server.js`).
 
 For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
+
+
+## Cached JavaScript files
+
+JavaScript (JS) files and other static assets aren't generally cached on clients during development in the [`Development` environment](xref:fundamentals/index#environments). During development, static asset requests include the [`Cache-Control` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control) with a value of [`no-cache`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control#cacheability) or [`max-age`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control#expiration) with a value of zero (`0`).
+
+During production in the [`Production` environment](xref:fundamentals/index#environments), JS files are usually cached by clients.
+
+To disable client-side caching in browsers, developers usually adopt one of the following approaches:
+
+* Disable caching when the browser's developer tools console is open. Guidance can be found in the developer tools documentation of each browser maintainer:
+  * [Chrome DevTools](https://developer.chrome.com/docs/devtools/)
+  * [Firefox Developer Tools](https://developer.mozilla.org/docs/Tools)
+  * [Microsoft Edge Developer Tools overview](/microsoft-edge/devtools-guide-chromium/)
+* Perform a manual browser refresh of any webpage of the Blazor app to reload JS files from the server. ASP.NET Core's HTTP Caching Middleware always honors a valid no-cache [`Cache-Control` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control) sent by a client.
+
+For more information, see:
+
+* <xref:blazor/fundamentals/environments>
+* <xref:performance/caching/response>
 
 ::: moniker-end
