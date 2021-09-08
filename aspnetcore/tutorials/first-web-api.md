@@ -316,6 +316,8 @@ The preceding code:
 # [Visual Studio Code](#tab/visual-studio-code)
 <!-- # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)-->
 
+Make sure that all of your changes so far are saved.
+
 Run the following commands from the project folder, that is, the `TodoApi` folder:
 
 ```dotnetcli
@@ -372,37 +374,39 @@ This tutorial uses [http-repl](../web-api/http-repl/index.md) to test the web AP
 
 * Run the following command at a command prompt:
 
-```dotnetcli
-dotnet tool install -g Microsoft.dotnet-httprepl
-```
+  ```dotnetcli
+  dotnet tool install -g Microsoft.dotnet-httprepl
+  ```
 
+* If you don't have the .NET 5.0 SDK or runtime installed, install the [.NET 5.0 runtime](https://dotnet.microsoft.com/download/dotnet/5.0/runtime).
+  
 <a name="post"></a>
 
 ### Test PostTodoItem
 
 * Run the following commands at a command prompt:
 
-```dotnetcli
-httprepl https://localhost:5001/api/todoitems
-post -h Content-Type=application/json -c "{"name":"walk dog","isComplete":true}"
-```
-
-Here's an example of the output from the command:
-
-```output
-HTTP/1.1 201 Created
-Content-Type: application/json; charset=utf-8
-Date: Tue, 07 Sep 2021 20:39:47 GMT
-Location: https://localhost:5001/api/TodoItems/1
-Server: Kestrel
-Transfer-Encoding: chunked
-
-{
-  "id": 1,
-  "name": "walk dog",
-  "isComplete": true
-}
-```
+  ```dotnetcli
+  httprepl https://localhost:5001/api/todoitems
+  post -h Content-Type=application/json -c "{"name":"walk dog","isComplete":true}"
+  ```
+  
+  Here's an example of the output from the command:
+  
+  ```output
+  HTTP/1.1 201 Created
+  Content-Type: application/json; charset=utf-8
+  Date: Tue, 07 Sep 2021 20:39:47 GMT
+  Location: https://localhost:5001/api/TodoItems/1
+  Server: Kestrel
+  Transfer-Encoding: chunked
+  
+  {
+    "id": 1,
+    "name": "walk dog",
+    "isComplete": true
+  }
+  ```
   
 ### Test the location header URI
 
@@ -474,7 +478,7 @@ The [`[HttpGet]`](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute) attribute deno
 
 * Start with the template string in the controller's `Route` attribute:
 
-  [!code-csharp[](first-web-api/samples/6.0/TodoApi/Controllers/TodoItemsController.cs?name=TodoController&highlight=1)]
+  [!code-csharp[](first-web-api/samples/5.x/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Route&highlight=1)]
 
 * Replace `[controller]` with the name of the controller, which by convention is the controller class name minus the "Controller" suffix. For this sample, the controller class name is **TodoItems**Controller, so the controller name is "TodoItems". ASP.NET Core [routing](xref:mvc/controllers/routing) is case insensitive.
 * If the `[HttpGet]` attribute has a route template (for example, `[HttpGet("products")]`), append that to the path. This sample doesn't use a template. For more information, see [Attribute routing with Http[Verb] attributes](xref:mvc/controllers/routing#attribute-routing-with-httpverb-attributes).

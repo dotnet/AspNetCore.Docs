@@ -9,9 +9,11 @@ using TodoApi.Models;
 
 namespace TodoApi.Controllers
 {
+    #region snippet_Route
     [Route("api/[controller]")]
     [ApiController]
     public class TodoItemsController : ControllerBase
+    #endregion
     {
         private readonly TodoContext _context;
 
