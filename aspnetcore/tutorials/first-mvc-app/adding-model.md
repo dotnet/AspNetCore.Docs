@@ -452,7 +452,7 @@ Because the `Model` object is strongly typed as an `IEnumerable<Movie>` object, 
 
 ::: moniker-end
 
-::: moniker range=">= aspnetcore-5.0"
+::: moniker range="= aspnetcore-5.0"
 
 ## Add a data model class
 
