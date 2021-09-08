@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to build a web API with ASP.NET Core.
 ms.author: riande
 ms.custom: mvc, devx-track-js
-ms.date: 09/08/2021
+ms.date: 09/07/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, Models]
 uid: tutorials/first-web-api
 ---
@@ -54,11 +54,10 @@ The following diagram shows the design of the app.
 
 [!INCLUDE[](~/includes/net-prereqs-vsc-6.0.md)]
 
-<!--
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-[!INCLUDE[](~/includes/net-core-prereqs-mac-5.0.md)]
--->
+For Visual Studio for Mac, see the .NET 5 version of this tutorial.
+<!-- [!INCLUDE[](~/includes/net-core-prereqs-mac-5.0.md)] -->
 
 ---
 
@@ -92,10 +91,11 @@ The following diagram shows the design of the app.
   * Create a new web API project and opens it in Visual Studio Code.
   * Add a NuGet package that is needed for the next section.
 
-<!--
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* Select **File** > **New Solution**.
+For Visual Studio for Mac, see the .NET 5 version of this tutorial.
+
+<!-- * Select **File** > **New Solution**.
 
   ![macOS New solution](first-web-api-mac/_static/sln.png)
 
@@ -115,8 +115,7 @@ Open a command terminal in the project folder and run the following command:
 
    ```dotnetcli
    dotnet add package Microsoft.EntityFrameworkCore.InMemory
-   ```
--->
+   ``` -->
 
 ---
 
@@ -140,11 +139,12 @@ Press Ctrl+F5 to run without the debugger.
 [!INCLUDE[](~/includes/trustCertVSC.md)]
 
 Press Ctrl+F5 to run the app. In a browser, go to following URL: [https://localhost:5001/swagger](https://localhost:5001/swagger)
-<!-- 
+
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Select **Run** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number. An HTTP 404 (Not Found) error is returned. Append `/swagger` to the URL (change the URL to `https://localhost:<port>/swagger`). 
--->
+For Visual Studio for Mac, see the .NET 5 version of this tutorial.
+
+<!-- Select **Run** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number. An HTTP 404 (Not Found) error is returned. Append `/swagger` to the URL (change the URL to `https://localhost:<port>/swagger`). -->
 
 ---
 
@@ -226,10 +226,11 @@ A *model* is a set of classes that represent the data that the app manages. The 
 
 * Add a `TodoItem` class to the *Models* folder with the following code:
 
-<!-- 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* Right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
+For Visual Studio for Mac, see the .NET 5 version of this tutorial.
+
+<!-- * Right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
 
   ![new folder](first-web-api-mac/_static/folder.png)
 
@@ -237,8 +238,7 @@ A *model* is a set of classes that represent the data that the app manages. The 
 
 * Name the class *TodoItem*, and then click **New**.
 
-* Replace the template code with the following:
--->
+* Replace the template code with the following: -->
 
 ---
 
@@ -265,13 +265,17 @@ The *database context* is the main class that coordinates Entity Framework funct
 
 * Right-click the *Models* folder and select **Add** > **Class**. Name the class *TodoContext* and click **Add**.
 
-<!--
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
--->
-
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Add a `TodoContext` class to the *Models* folder.
+* Add a `TodoContext` class to the *Models* folder. 
+
+[Visual Studio for Mac](#tab/visual-studio-mac)
+
+For Visual Studio for Mac, see the .NET 5 version of this tutorial.
+
+<!-- # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+
+* Add a `TodoContext` class to the *Models* folder. -->
 
 ---
 
@@ -309,11 +313,8 @@ The preceding code:
 
   If the scaffolding operation fails, select **Add** to try scaffolding a second time.
 
-<!--
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
--->
-
 # [Visual Studio Code](#tab/visual-studio-code)
+<!-- # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)-->
 
 Run the following commands from the project folder, `TodoApi/TodoApi`:
 
@@ -330,6 +331,10 @@ The preceding commands:
 * Add NuGet packages required for scaffolding.
 * Install the scaffolding engine (`dotnet-aspnet-codegenerator`).
 * Scaffold the `TodoItemsController`.
+
+[Visual Studio for Mac](#tab/visual-studio-mac)
+
+For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 
 ---
 
@@ -398,7 +403,7 @@ Transfer-Encoding: chunked
   "isComplete": true
 }
 ```
-
+  
 ### Test the location header URI
 
 To test the location header, copy and paste it into an httprepl command. The following example assumes that you're still in an httprepl session. If you ended the previous httprepl session, replace `connect` with `httprepl` in the following commands:
@@ -1491,7 +1496,7 @@ In the following `GetTodoItem` method, `"{id}"` is a placeholder variable for th
 
 [!code-csharp[](first-web-api/samples/3.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_GetByID&highlight=1-2)]
 
-## Return values
+## Return values 
 
 The return type of the `GetTodoItems` and `GetTodoItem` methods is [ActionResult\<T> type](xref:web-api/action-return-types#actionresultt-type). ASP.NET Core automatically serializes the object to [JSON](https://www.json.org/) and writes the JSON into the body of the response message. The response code for this return type is 200, assuming there are no unhandled exceptions. Unhandled exceptions are translated into 5xx errors.
 
