@@ -1,0 +1,52 @@
+﻿@page "/receive-notifications"
+@implements IDisposable
+@inject NotifierService Notifier
+@inject TimerService Timer
+
+<h1>Receive Notifications</h1>
+
+<h2>Timer Service</h2>
+
+<button @onclick="StartTimer">Start Timer</button>
+
+<h2>Notifications</h2>
+
+<p>
+    Status:
+    @if (lastNotification.key is not null)
+    {
+        <span>@lastNotification.key = @lastNotification.value</span>
+    }
+    else
+    {
+        <span>Awaiting first notification</span>
+    }
+</p>
+
+@code {
+    private (string key, int value) lastNotification;
+
+    protected override void OnInitialized()
+    {
+        Notifier.Notify += OnNotify;
+    }
+
+    public async Task OnNotify(string key, int value)
+    {
+        await InvokeAsync(() =>
+        {
+            lastNotification = (key, value);
+            StateHasChanged();
+        });
+    }
+
+    private void StartTimer()
+    {
+        Timer.Start();
+    }
+
+    public void Dispose()
+    {
+        Notifier.Notify -= OnNotify;
+    }
+}
