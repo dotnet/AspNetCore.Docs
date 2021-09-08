@@ -539,7 +539,12 @@ The <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationS
 
 ## Additional resources
 
-* [Microsoft identity platform documentation](/azure/active-directory/develop/)
+* Microsoft identity platform documentation
+  * [Overview](/azure/active-directory/develop/)
+  * [OAuth 2.0 and OpenID Connect protocols on the Microsoft identity platform](/azure/active-directory/develop/active-directory-v2-protocols)
+  * [Microsoft identity platform and OAuth 2.0 authorization code flow](/azure/active-directory/develop/v2-oauth2-auth-code-flow)
+  * [Microsoft identity platform ID tokens](/azure/active-directory/develop/id-tokens)
+  * [Microsoft identity platform access tokens](/azure/active-directory/develop/access-tokens)
 * <xref:security/index>
 * <xref:security/authentication/windowsauth>
 * [Build a custom version of the Authentication.MSAL JavaScript library](xref:blazor/security/webassembly/additional-scenarios#build-a-custom-version-of-the-authenticationmsal-javascript-library)
@@ -1081,7 +1086,12 @@ The <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationS
 
 ## Additional resources
 
-* [Microsoft identity platform documentation](/azure/active-directory/develop/)
+* Microsoft identity platform documentation
+  * [Overview](/azure/active-directory/develop/)
+  * [OAuth 2.0 and OpenID Connect protocols on the Microsoft identity platform](/azure/active-directory/develop/active-directory-v2-protocols)
+  * [Microsoft identity platform and OAuth 2.0 authorization code flow](/azure/active-directory/develop/v2-oauth2-auth-code-flow)
+  * [Microsoft identity platform ID tokens](/azure/active-directory/develop/id-tokens)
+  * [Microsoft identity platform access tokens](/azure/active-directory/develop/access-tokens)
 * <xref:security/index>
 * <xref:security/authentication/windowsauth>
 * [Build a custom version of the Authentication.MSAL JavaScript library](xref:blazor/security/webassembly/additional-scenarios#build-a-custom-version-of-the-authenticationmsal-javascript-library)
