@@ -56,7 +56,7 @@ From the **View** menu, open **SQL Server Object Explorer** (SSOX).
 
 Right-click on the `Movie` table **> View Designer**
 
-![Contextual menu open on Movie table](working-with-sql/_static/design.png)
+![Right-click on the Movie table > View Designer.](working-with-sql/_static/design.png)
 
 ![Movie table open in Designer](working-with-sql/_static/dv.png)
 
@@ -64,7 +64,7 @@ Note the key icon next to `ID`. By default, EF makes a property named `ID` the p
 
 Right-click on the `Movie` table **> View Data**
 
-![Contextual menu open on Movie table](working-with-sql/_static/ssox2.png)
+![Right-click on the Movie table > View Data.](working-with-sql/_static/ssox2.png)
 
 ![Movie table open showing table data](working-with-sql/_static/vd22.png)
 
@@ -177,7 +177,7 @@ From the **View** menu, open **SQL Server Object Explorer** (SSOX).
 
 Right-click on the `Movie` table **> View Designer**
 
-![Contextual menu open on Movie table](working-with-sql/_static/design.png)
+![Right-click on the Movie table > View Designer](working-with-sql/_static/design.png)
 
 ![Movie table open in Designer](working-with-sql/_static/dv.png)
 
@@ -185,7 +185,7 @@ Note the key icon next to `ID`. By default, EF makes a property named `ID` the p
 
 Right-click on the `Movie` table **> View Data**
 
-![Contextual menu open on Movie table](working-with-sql/_static/ssox2.png)
+![Right-click on the Movie table > View Data](working-with-sql/_static/ssox2.png)
 
 ![Movie table open showing table data](working-with-sql/_static/vd22.png)
 
