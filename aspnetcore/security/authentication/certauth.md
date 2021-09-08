@@ -737,7 +737,7 @@ ASP.NET Core 5 and later adds more convenient support for redirecting to aquire 
 ### Renegotiation
 
 TLS renegotiation is a process by which the client and server can re-assess the encryption requirements for an individual connection, including requesting a client certificate if not previously provided. TLS renegotiation is a security risk and isn't recommended because:
-- In HTTP/1.1 the server must first buffer or consume any HTTP data that is in flight such as POST request bodies to make sure the connection is clear for the renegotiation. Otherwise the renegotiation can hang or fail.
+- In HTTP/1.1 the server must first buffer or consume any HTTP data that is in flight such as POST request bodies to make sure the connection is clear for the renegotiation. Otherwise the renegotiation can stop responding or fail.
 - HTTP/2 and HTTP/3 [explicitly prohibit](https://tools.ietf.org/html/rfc7540#section-9.2.1) renegotiation.
 - There are security risks associated with renegotiation. TLS 1.3 removed renegotiation of the whole connection and replaced it with a new extension for requesting only the client certificiate after the start of the connection. This mechanism is exposed via the same APIs and is still subject to the prior constraints of buffering and HTTP protocol versions.
 
@@ -755,7 +755,7 @@ HttpSys has two settings which control the client certificate negotation and bot
 
 The other setting is <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.ClientCertificateMethod>. When set to `AllowRenegotation`, the client certificate can be renegotiated durring a request.
 
-*NOTE* The application should buffer or consume any request body data before attempting the renegotiation, otherwise the request may hang.
+*NOTE* The application should buffer or consume any request body data before attempting the renegotiation, otherwise the request may become unresponsive.
 
 ::: moniker range=">= aspnetcore-6.0"
 
@@ -798,4 +798,3 @@ For .NET 5 and earlier Kestrel does not support renegotiating after the start of
 ::: moniker-end
 
 Leave questions, comments, and other feedback on optional client certificates in [this GitHub discussion](https://github.com/dotnet/AspNetCore.Docs/issues/18720) issue.
-

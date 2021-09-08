@@ -649,7 +649,7 @@ A functioning app may fail immediately after upgrading either the .NET Core SDK 
 1. Restore and rebuild the project.
 1. Delete all of the files in the deployment folder on the server prior to redeploying the app.
 
-### Slow or hanging app
+### Slow or unresponsive app
 
 A *crash dump* is a snapshot of the system's memory and can help determine the cause of an app crash, startup failure, or slow app.
 
