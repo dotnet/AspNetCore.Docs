@@ -402,6 +402,23 @@ webBuilder.ConfigureKestrel(serverOptions =>
 });
 ```
 
+```json
+{
+  "Kestrel": {
+    "Endpoints": {
+      "MyHttpsEndpoint": {
+        "Url": "https://localhost:5001",
+        "SslProtocols": ["Tls11", "Tls12"],
+        "Certificate": {
+          "Path": "<path to .pfx file>",
+          "Password": "<certificate password>"
+        }
+      }
+    }
+  }
+}
+```
+
 The default value, `SslProtocols.None`, causes Kestrel to use the operating system defaults to choose the best protocol. Unless you have a specific reason to select a protocol, use the default.
 
 ## Connection logging
