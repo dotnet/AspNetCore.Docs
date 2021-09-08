@@ -140,7 +140,21 @@ Press Ctrl+F5 to run without the debugger.
 
 [!INCLUDE[](~/includes/trustCertVSC.md)]
 
-Press Ctrl+F5 to run the app. In a browser, go to following URL: [https://localhost:5001/swagger](https://localhost:5001/swagger)
+Run the app:
+
+* Press Ctrl+F5.
+* At the **Select environment** prompt, choose **.NET Core**.
+* Select **Add Configuration** > **.NET: Launch a local .NET Core Console App**.
+* In the configuration JSON:
+  * Replace `<target-framework>` with `net6.0`.
+  * Replace  `<project-name.dll>` with `TodoApi.dll`.
+* Press Ctrl+F5.
+* In the **Could not find the task 'build'** dialog, select **Configure Task**.
+* Select **Create *tasks.json* file from template**.
+* Select the **.NET Core** task template.
+* Press Ctrl+F5.
+
+In a browser, go to following URL: [https://localhost:5001/swagger](https://localhost:5001/swagger)
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -392,7 +406,9 @@ This tutorial uses [http-repl](../web-api/http-repl/index.md) to test the web AP
 
 ### Test PostTodoItem
 
-* Run the following commands at a command prompt:
+* Press Ctrl+F5 to run the app.
+
+* Open a new terminal window, and run the following commands:
 
   ```dotnetcli
   httprepl https://localhost:5001/api/todoitems
