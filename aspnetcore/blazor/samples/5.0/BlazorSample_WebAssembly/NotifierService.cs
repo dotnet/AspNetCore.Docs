@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-public class Notifier
+public class NotifierService
 {
     public async Task Update(string key, int value)
     {
