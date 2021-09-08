@@ -408,7 +408,7 @@ webBuilder.ConfigureKestrel(serverOptions =>
     "Endpoints": {
       "MyHttpsEndpoint": {
         "Url": "https://localhost:5001",
-        "SslProtocols": ["Tls11", "Tls12"],
+        "SslProtocols": ["Tls12", "Tls13"],
         "Certificate": {
           "Path": "<path to .pfx file>",
           "Password": "<certificate password>"
@@ -420,6 +420,41 @@ webBuilder.ConfigureKestrel(serverOptions =>
 ```
 
 The default value, `SslProtocols.None`, causes Kestrel to use the operating system defaults to choose the best protocol. Unless you have a specific reason to select a protocol, use the default.
+
+## Client Certificates
+
+`ClientCertificateMode` configures the [client certificate requirements](xref:Microsoft.AspNetCore.Server.Kestrel.Https.ClientCertificateMode).
+
+```csharp
+webBuilder.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.ConfigureHttpsDefaults(listenOptions =>
+    {
+        listenOptions.ClientCertificateMode = ClientCertificateMode.AllowCertificate;
+    });
+});
+```
+
+```json
+{
+  "Kestrel": {
+    "Endpoints": {
+      "MyHttpsEndpoint": {
+        "Url": "https://localhost:5001",
+        "ClientCertificateMode": "AllowCertificate",
+        "Certificate": {
+          "Path": "<path to .pfx file>",
+          "Password": "<certificate password>"
+        }
+      }
+    }
+  }
+}
+```
+
+The default value is `ClientCertificateMode.NoCertificate` where Kestrel will not request or require a certificate from the client.
+
+See [Certificate Authenticaiton](/aspnet/core/security/authentication/certauth) for more details.
 
 ## Connection logging
 
