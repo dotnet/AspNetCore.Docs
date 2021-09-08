@@ -80,7 +80,7 @@ For Visual Studio for Mac, see the .NET 5 version of this tutorial.
    ```dotnetcli
    dotnet new webapi -o TodoApi
    cd TodoApi
-   dotnet add package Microsoft.EntityFrameworkCore.InMemory
+   dotnet add package Microsoft.EntityFrameworkCore.InMemory --prerelease
    code -r ../TodoApi
    ```
 
@@ -294,7 +294,7 @@ Update *Program.cs* with the following code:
 The preceding code:
 
 * Removes the Swagger calls.
-* Removes unused `using` declarations.
+* Removes unused `using` directives.
 * Adds the database context to the DI container.
 * Specifies that the database context will use an in-memory database.
 
@@ -316,13 +316,13 @@ The preceding code:
 # [Visual Studio Code](#tab/visual-studio-code)
 <!-- # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)-->
 
-Run the following commands from the project folder, `TodoApi/TodoApi`:
+Run the following commands from the project folder, that is, the `TodoApi` folder:
 
 ```dotnetcli
-dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
-dotnet add package Microsoft.EntityFrameworkCore.Design
-dotnet add package Microsoft.EntityFrameworkCore.SqlServer
-dotnet tool install -g dotnet-aspnet-codegenerator
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --prerelease
+dotnet add package Microsoft.EntityFrameworkCore.Design --prerelease
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer --prerelease
+dotnet tool install -g dotnet-aspnet-codegenerator --version 6.0.0-preview.7.21413.1
 dotnet aspnet-codegenerator controller -name TodoItemsController -async -api -m TodoItem -dc TodoContext -outDir Controllers
 ```
 
@@ -354,7 +354,7 @@ When the `[action]` token isn't in the route template, the [action](xref:mvc/con
 
 Update the return statement in the `PostTodoItem` to use the [nameof](/dotnet/csharp/language-reference/operators/nameof) operator:
 
-[!code-csharp[](first-web-api/samples/5.x/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Create)]
+[!code-csharp[](first-web-api/samples/6.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Create)]
 
 The preceding code is an HTTP POST method, as indicated by the [`[HttpPost]`](xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute) attribute. The method gets the value of the to-do item from the body of the HTTP request.
 
@@ -474,14 +474,14 @@ The [`[HttpGet]`](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute) attribute deno
 
 * Start with the template string in the controller's `Route` attribute:
 
-  [!code-csharp[](first-web-api/samples/5.x/TodoApi/Controllers/TodoItemsController.cs?name=TodoController&highlight=1)]
+  [!code-csharp[](first-web-api/samples/6.0/TodoApi/Controllers/TodoItemsController.cs?name=TodoController&highlight=1)]
 
 * Replace `[controller]` with the name of the controller, which by convention is the controller class name minus the "Controller" suffix. For this sample, the controller class name is **TodoItems**Controller, so the controller name is "TodoItems". ASP.NET Core [routing](xref:mvc/controllers/routing) is case insensitive.
 * If the `[HttpGet]` attribute has a route template (for example, `[HttpGet("products")]`), append that to the path. This sample doesn't use a template. For more information, see [Attribute routing with Http[Verb] attributes](xref:mvc/controllers/routing#attribute-routing-with-httpverb-attributes).
 
 In the following `GetTodoItem` method, `"{id}"` is a placeholder variable for the unique identifier of the to-do item. When `GetTodoItem` is invoked, the value of `"{id}"` in the URL is provided to the method in its `id` parameter.
 
-[!code-csharp[](first-web-api/samples/3.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_GetByID&highlight=1-2)]
+[!code-csharp[](first-web-api/samples/6.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_GetByID&highlight=1-2)]
 
 ## Return values
 
@@ -496,7 +496,7 @@ The return type of the `GetTodoItems` and `GetTodoItem` methods is [ActionResult
 
 Examine the `PutTodoItem` method:
 
-[!code-csharp[](first-web-api/samples/5.x/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Update)]
+[!code-csharp[](first-web-api/samples/6.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Update)]
 
 `PutTodoItem` is similar to `PostTodoItem`, except it uses HTTP PUT. The response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html). According to the HTTP specification, a PUT request requires the client to send the entire updated entity, not just the changes. To support partial updates, use [HTTP PATCH](xref:Microsoft.AspNetCore.Mvc.HttpPatchAttribute).
 
@@ -525,7 +525,7 @@ Server: Kestrel
 
 Examine the `DeleteTodoItem` method:
 
-[!code-csharp[](first-web-api/samples/5.x/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Delete)]
+[!code-csharp[](first-web-api/samples/6.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Delete)]
 
 ### Test the DeleteTodoItem method
 
@@ -557,7 +557,7 @@ A DTO may be used to:
 
 To demonstrate the DTO approach, update the `TodoItem` class to include a secret field:
 
-[!code-csharp[](first-web-api/samples/5.x/TodoApiDTO/Models/TodoItem.cs?highlight=8)]
+[!code-csharp[](first-web-api/samples/6.0/TodoApiDTO/Models/TodoItem.cs?highlight=8)]
 
 The secret field needs to be hidden from this app, but an administrative app could choose to expose it.
 
@@ -565,11 +565,11 @@ Verify you can post and get the secret field.
 
 Create a DTO model:
 
-[!code-csharp[](first-web-api/samples/5.x/TodoApiDTO/Models/TodoItemDTO.cs)]
+[!code-csharp[](first-web-api/samples/6.0/TodoApiDTO/Models/TodoItemDTO.cs)]
 
 Update the `TodoItemsController` to use `TodoItemDTO`:
 
-[!code-csharp[](first-web-api/samples/5.x/TodoApiDTO/Controllers/TodoItemsController.cs)]
+[!code-csharp[](first-web-api/samples/6.0/TodoApiDTO/Controllers/TodoItemsController.cs)]
 
 Verify you can't post or get the secret field.
 
