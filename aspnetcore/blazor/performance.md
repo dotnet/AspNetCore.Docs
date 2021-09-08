@@ -678,13 +678,7 @@ Blazor WebAssembly's runtime includes the following .NET features that can be di
   </PropertyGroup>
   ```
 
-* By default, Blazor WebAssembly carries globalization resources required to display values, such as dates and currency, in the user's culture. If the app doesn't require localization, you may [configure the app to support the invariant culture](xref:blazor/globalization-localization), which is based on the `en-US` culture:
-
-  ```xml
-  <PropertyGroup>
-    <InvariantGlobalization>true</InvariantGlobalization>
-  </PropertyGroup>
-  ```
+* By default, Blazor WebAssembly carries globalization resources required to display values, such as dates and currency, in the user's culture. If the app doesn't require localization, you may [configure the app to support the invariant culture](xref:blazor/globalization-localization#invariant-globalization), which is based on the `en-US` culture.
 
 ::: zone-end
 
@@ -1350,13 +1344,7 @@ Blazor WebAssembly's runtime includes the following .NET features that can be di
   </PropertyGroup>
   ```
 
-* By default, Blazor WebAssembly carries globalization resources required to display values, such as dates and currency, in the user's culture. If the app doesn't require localization, you may [configure the app to support the invariant culture](xref:blazor/globalization-localization), which is based on the `en-US` culture:
-
-  ```xml
-  <PropertyGroup>
-    <InvariantGlobalization>true</InvariantGlobalization>
-  </PropertyGroup>
-  ```
+* By default, Blazor WebAssembly carries globalization resources required to display values, such as dates and currency, in the user's culture. If the app doesn't require localization, you may [configure the app to support the invariant culture](xref:blazor/globalization-localization#invariant-globalization), which is based on the `en-US` culture.
 
 ::: zone-end
 
@@ -1998,6 +1986,8 @@ Blazor WebAssembly's runtime includes the following .NET features that can be di
     <BlazorWebAssemblyPreserveCollationData>false</BlazorWebAssemblyPreserveCollationData>
   </PropertyGroup>
   ```
+
+* By default, Blazor WebAssembly carries globalization resources required to display values, such as dates and currency, in the user's culture. If the app doesn't require localization, you may [configure the app to support the invariant culture](xref:blazor/globalization-localization#invariant-globalization), which is based on the `en-US` culture.
 
 ::: zone-end
 
