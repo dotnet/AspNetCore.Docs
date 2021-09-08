@@ -95,7 +95,8 @@ For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 
 For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 
-<!-- * Select **File** > **New Solution**.
+<!--
+* Select **File** > **New Solution**.
 
   ![macOS New solution](first-web-api-mac/_static/sln.png)
 
@@ -115,7 +116,8 @@ Open a command terminal in the project folder and run the following command:
 
    ```dotnetcli
    dotnet add package Microsoft.EntityFrameworkCore.InMemory
-   ``` -->
+   ```
+-->
 
 ---
 
@@ -144,7 +146,9 @@ Press Ctrl+F5 to run the app. In a browser, go to following URL: [https://localh
 
 For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 
-<!-- Select **Run** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number. An HTTP 404 (Not Found) error is returned. Append `/swagger` to the URL (change the URL to `https://localhost:<port>/swagger`). -->
+<!--
+Select **Run** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number. An HTTP 404 (Not Found) error is returned. Append `/swagger` to the URL (change the URL to `https://localhost:<port>/swagger`).
+-->
 
 ---
 
@@ -230,7 +234,8 @@ A *model* is a set of classes that represent the data that the app manages. The 
 
 For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 
-<!-- * Right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
+<!--
+* Right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
 
   ![new folder](first-web-api-mac/_static/folder.png)
 
@@ -238,7 +243,8 @@ For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 
 * Name the class *TodoItem*, and then click **New**.
 
-* Replace the template code with the following: -->
+* Replace the template code with the following:
+-->
 
 ---
 
@@ -273,9 +279,11 @@ The *database context* is the main class that coordinates Entity Framework funct
 
 For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 
-<!-- # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+<!--
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-* Add a `TodoContext` class to the *Models* folder. -->
+* Add a `TodoContext` class to the *Models* folder.
+-->
 
 ---
 
