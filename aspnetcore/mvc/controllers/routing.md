@@ -511,8 +511,8 @@ To match the literal token replacement delimiter `[` or  `]`, escape it by repea
 ### Use a parameter transformer to customize token replacement
 
 Token replacement can be customized using a parameter transformer. A parameter transformer implements <xref:Microsoft.AspNetCore.Routing.IOutboundParameterTransformer> and transforms the value of parameters. For example, a custom `SlugifyParameterTransformer` parameter transformer changes the `SubscriptionManagement` route value to `subscription-management`:
-zz
-[!code-csharp[](routing/samples/6.x/main/StartupSlugifyParamTransformer.cs?name=snippet2)]
+
+[!code-csharp[](routing/samples/6.x/main/SlugifyParameterTransformer.cs)]
 
 The <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.RouteTokenTransformerConvention> is an application model convention that:
 
@@ -525,7 +525,7 @@ The preceding `ListAll` method matches `/subscription-management/list-all`.
 
 The `RouteTokenTransformerConvention` is registered as an option in `ConfigureServices`.
 
-[!code-csharp[](routing/samples/6.x/main/StartupSlugifyParamTransformer.cs?name=snippet)]
+[!code-csharp[](routing/samples/6.x/main/Program.cs?name=snippet_slug)]
 
 See [MDN web docs on Slug](https://developer.mozilla.org/docs/Glossary/Slug) for the definition of Slug.
 
@@ -611,8 +611,8 @@ The `NamespaceRoutingConvention.Apply` method:
 * Sets the controllers template based on the `namespace`, with the base `namespace` removed.
 
 The `NamespaceRoutingConvention` can be applied in `Startup.ConfigureServices`:
-
-[!code-csharp[](routing/samples/6.x/nsrc/Startup.cs?name=snippet&highlight=1,14-18)]
+zz
+//[!code-csharp[](routing/samples/6.x/nsrc/Startup.cs?name=snippet&highlight=1,14-18)]
 
 For example, consider the following controller:
 
@@ -634,16 +634,16 @@ The `NamespaceRoutingConvention` can also be applied as an attribute on a contro
 
 ASP.NET Core apps can mix the use of conventional routing and attribute routing. It's typical to use conventional routes for controllers serving HTML pages for browsers, and attribute routing for controllers serving REST APIs.
 
-Actions are either conventionally routed or attribute routed. Placing a route on the controller or the action makes it attribute routed. Actions that define attribute routes cannot be reached through the conventional routes and vice-versa. **Any** route attribute on the controller makes **all** actions in the controller attribute routed.
+Actions are either conventionally routed or attribute routed. Placing a route on the controller or the action makes it attribute routed. Actions that define attribute routes cannot be reached through the conventional routes and vice-versa. ***Any*** route attribute on the controller makes ***all*** actions in the controller attribute routed.
 
 Attribute routing and conventional routing use the same routing engine.
 
 <a name="routing-url-gen-ref-label"></a>
 <a name="ambient"></a>
 
-## URL Generation and ambient values
+## URL Generation and ambient values zz
 
-Apps can use routing URL generation features to generate URL links to actions. Generating URLs eliminates hardcoding URLs, making code more robust and maintainable. This section focuses on the URL generation features provided by MVC and only cover basics of how URL generation works. See [Routing](xref:fundamentals/routing) for a detailed description of URL generation.
+Apps can use routing URL generation features to generate URL links to actions. Generating URLs eliminates [hard-coding](https://wikipedia.org/wiki/Hard_coding) URLs, making code more robust and maintainable. This section focuses on the URL generation features provided by MVC and only cover basics of how URL generation works. See [Routing](xref:fundamentals/routing) for a detailed description of URL generation.
 
 The <xref:Microsoft.AspNetCore.Mvc.IUrlHelper> interface is the underlying element of infrastructure between MVC and routing for URL generation. An instance of `IUrlHelper` is available through the `Url` property in controllers, views, and view components.
 
