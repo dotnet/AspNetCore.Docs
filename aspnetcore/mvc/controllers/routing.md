@@ -612,8 +612,9 @@ The `NamespaceRoutingConvention.Apply` method:
 
 The `NamespaceRoutingConvention` can be applied in `Startup.ConfigureServices`:
 zz
-//[!code-csharp[](routing/samples/6.x/nsrc/Startup.cs?name=snippet&highlight=1,14-18)]
-
+<!--
+[!code-csharp[](routing/samples/6.x/nsrc/Startup.cs?name=snippet&highlight=1,14-18)]
+-->
 For example, consider the following controller:
 
 [!code-csharp[](routing/samples/6.x/nsrc/Controllers/UsersController.cs)]
@@ -773,7 +774,7 @@ The action results factory methods such as <xref:Microsoft.AspNetCore.Mvc.Contro
 
 [Conventional routing](#cr6) can use a special kind of route definition called a [dedicated conventional route](#dcr). In the following example, the route named `blog` is a dedicated conventional route:
 
-[!code-csharp[](routing/samples/6.x/main/Startup.cs?name=snippet_mcr)]
+[!code-csharp[](routing/samples/6.x/main/Program.cs?name=snippet_mcr)]
 
 Using the preceding route definitions, `Url.Action("Index", "Home")` generates the URL path `/` using the `default` route, but why? You might guess the route values `{ controller = Home, action = Index }` would be enough to generate a URL using `blog`, and the result would be `/blog?action=Index&controller=Home`.
 
