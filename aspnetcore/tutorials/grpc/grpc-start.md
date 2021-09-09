@@ -27,7 +27,7 @@ In this tutorial, you:
 
 ## Prerequisites
 
- [Visual Studio](#tab/visual-studio)
+# [Visual Studio](#tab/visual-studio)
 
 [!INCLUDE[](~/includes/net-prereqs-vs-6.0.md)]
 
