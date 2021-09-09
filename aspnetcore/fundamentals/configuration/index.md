@@ -770,7 +770,7 @@ An `AddEFConfiguration` extension method permits adding the configuration source
 
 The following code shows how to use the custom `EFConfigurationProvider` in *Program.cs*:
 
-[!code-csharp[](index/samples_snippets/6.x/Program.cs?highlight=5-6)]
+[!code-csharp[](index/samples_snippets/6.x/EfconfigSample/Program.cs?highlight=5-6)]
 
 ## Access configuration in Razor Pages
 
