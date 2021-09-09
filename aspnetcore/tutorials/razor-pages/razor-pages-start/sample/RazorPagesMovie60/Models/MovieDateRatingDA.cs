@@ -1,4 +1,4 @@
-﻿#define MovieDateRatingDA
+﻿//#define MovieDateRatingDA
 #if MovieDateRatingDA
 #region snippet1
 using System.ComponentModel.DataAnnotations;
@@ -37,6 +37,6 @@ namespace RazorPagesMovie.Models
         [Required]
         public string Rating { get; set; } = string.Empty;
     }
-    #endregion
 }
+#endregion
 #endif

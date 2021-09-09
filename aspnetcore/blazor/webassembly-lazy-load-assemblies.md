@@ -375,7 +375,7 @@ If the `Robot` component from the RCL is requested at `https://localhost:5001/ro
 ## Additional resources
 
 * [Handle asynchronous navigation events with `OnNavigateAsync`](xref:blazor/fundamentals/routing#handle-asynchronous-navigation-events-with-onnavigateasync)
-* <xref:blazor/webassembly-performance-best-practices>
+* <xref:blazor/performance>
 
 ::: moniker-end
 
@@ -749,6 +749,6 @@ If the `Robot` component from the RCL is requested at `https://localhost:5001/ro
 ## Additional resources
 
 * [Handle asynchronous navigation events with `OnNavigateAsync`](xref:blazor/fundamentals/routing#handle-asynchronous-navigation-events-with-onnavigateasync)
-* <xref:blazor/webassembly-performance-best-practices>
+* <xref:blazor/performance>
 
 ::: moniker-end

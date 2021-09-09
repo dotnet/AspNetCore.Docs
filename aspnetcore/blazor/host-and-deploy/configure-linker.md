@@ -118,4 +118,4 @@ For more information, see [I18N: Pnetlib Internationalization Framework Library 
 
 ## Additional resources
 
-* <xref:blazor/webassembly-performance-best-practices#intermediate-language-il-linking>
+* <xref:blazor/performance#intermediate-language-il-linking>

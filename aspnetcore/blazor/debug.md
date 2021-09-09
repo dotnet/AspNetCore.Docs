@@ -83,7 +83,7 @@ The placeholder values for the WebSockets protocol (`wsProtocol`), host (`url.ho
 To debug a Blazor WebAssembly app in Visual Studio:
 
 1. Create a new hosted Blazor WebAssembly solution.
-1. Press <kbd>F5</kbd> to run the app in the debugger.
+1. With the **`Server`** project selected in **Solution Explorer**, press <kbd>F5</kbd> to run the app in the debugger.
 
    > [!NOTE]
    > **Start Without Debugging** (<kbd>Ctrl</kbd>+<kbd>F5</kbd>) isn't supported. When the app is run in Debug configuration, debugging overhead always results in a small performance reduction.
@@ -189,7 +189,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
 For guidance on configuring VS Code assets in the `.vscode` folder and where to place the `.vscode` folder in the solution, see the **Linux** operating system guidance in <xref:blazor/tooling?pivots=linux>.
 
-The `.vscode/launch.json` file sets the current working directory to the `**Server**` project's folder, typically `Server` for a hosted Blazor WebAssembly solution:
+The `.vscode/launch.json` file sets the current working directory to the **`Server`** project's folder, typically `Server` for a hosted Blazor WebAssembly solution:
 
 ```json
 "cwd": "${workspaceFolder}/Server"
@@ -201,7 +201,7 @@ If Microsoft Edge is used for debugging instead of Google Chrome, the `.vscode/l
 "browser": "edge"
 ```
 
-The `.vscode/tasks.json` file adds the **`Server`** app's project file path to the `dotnet build` arguments under `args`. The `**Server**` project's folder is typically named `Server` in a solution based on the hosted Blazor WebAssembly project template. The following example uses the project file for the **`Server`** app of the [Blazor-SignalR tutorial](xref:tutorials/signalr-blazor)), which has a project file named `BlazorWebAssemblySignalRApp.Server.csproj`:
+The `.vscode/tasks.json` file adds the **`Server`** app's project file path to the `dotnet build` arguments under `args`. The **`Server`** project's folder is typically named `Server` in a solution based on the hosted Blazor WebAssembly project template. The following example uses the project file for the **`Server`** app of the [Blazor-SignalR tutorial](xref:tutorials/signalr-blazor)), which has a project file named `BlazorWebAssemblySignalRApp.Server.csproj`:
 
 ```json
 {
@@ -506,7 +506,7 @@ The placeholder values for the WebSockets protocol (`wsProtocol`), host (`url.ho
 To debug a Blazor WebAssembly app in Visual Studio:
 
 1. Create a new hosted Blazor WebAssembly solution.
-1. Press <kbd>F5</kbd> to run the app in the debugger.
+1. With the **`Server`** project selected in **Solution Explorer**, press <kbd>F5</kbd> to run the app in the debugger.
 
    > [!NOTE]
    > **Start Without Debugging** (<kbd>Ctrl</kbd>+<kbd>F5</kbd>) isn't supported. When the app is run in Debug configuration, debugging overhead always results in a small performance reduction.
@@ -612,7 +612,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
 For guidance on configuring VS Code assets in the `.vscode` folder and where to place the `.vscode` folder in the solution, see the **Linux** operating system guidance in <xref:blazor/tooling?pivots=linux>.
 
-The `.vscode/launch.json` file sets the current working directory to the `**Server**` project's folder, typically `Server` for a hosted Blazor WebAssembly solution:
+The `.vscode/launch.json` file sets the current working directory to the **`Server`** project's folder, typically `Server` for a hosted Blazor WebAssembly solution:
 
 ```json
 "cwd": "${workspaceFolder}/Server"
@@ -624,7 +624,7 @@ If Microsoft Edge is used for debugging instead of Google Chrome, the `.vscode/l
 "browser": "edge"
 ```
 
-The `.vscode/tasks.json` file adds the **`Server`** app's project file path to the `dotnet build` arguments under `args`. The `**Server**` project's folder is typically named `Server` in a solution based on the hosted Blazor WebAssembly project template. The following example uses the project file for the **`Server`** app of the [Blazor-SignalR tutorial](xref:tutorials/signalr-blazor)), which has a project file named `BlazorWebAssemblySignalRApp.Server.csproj`:
+The `.vscode/tasks.json` file adds the **`Server`** app's project file path to the `dotnet build` arguments under `args`. The **`Server`** project's folder is typically named `Server` in a solution based on the hosted Blazor WebAssembly project template. The following example uses the project file for the **`Server`** app of the [Blazor-SignalR tutorial](xref:tutorials/signalr-blazor)), which has a project file named `BlazorWebAssemblySignalRApp.Server.csproj`:
 
 ```json
 {
@@ -929,7 +929,7 @@ The placeholder values for the WebSockets protocol (`wsProtocol`), host (`url.ho
 To debug a Blazor WebAssembly app in Visual Studio:
 
 1. Create a new hosted Blazor WebAssembly solution.
-1. Press <kbd>F5</kbd> to run the app in the debugger.
+1. With the **`Server`** project selected in **Solution Explorer**, press <kbd>F5</kbd> to run the app in the debugger.
 
    > [!NOTE]
    > **Start Without Debugging** (<kbd>Ctrl</kbd>+<kbd>F5</kbd>) isn't supported. When the app is run in Debug configuration, debugging overhead always results in a small performance reduction.
@@ -1035,7 +1035,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
 For guidance on configuring VS Code assets in the `.vscode` folder and where to place the `.vscode` folder in the solution, see the **Linux** operating system guidance in <xref:blazor/tooling?pivots=linux>.
 
-The `.vscode/launch.json` file sets the current working directory to the `**Server**` project's folder, typically `Server` for a hosted Blazor WebAssembly solution:
+The `.vscode/launch.json` file sets the current working directory to the **`Server`** project's folder, typically `Server` for a hosted Blazor WebAssembly solution:
 
 ```json
 "cwd": "${workspaceFolder}/Server"
@@ -1047,7 +1047,7 @@ If Microsoft Edge is used for debugging instead of Google Chrome, the `.vscode/l
 "browser": "edge"
 ```
 
-The `.vscode/tasks.json` file adds the **`Server`** app's project file path to the `dotnet build` arguments under `args`. The `**Server**` project's folder is typically named `Server` in a solution based on the hosted Blazor WebAssembly project template. The following example uses the project file for the **`Server`** app of the [Blazor-SignalR tutorial](xref:tutorials/signalr-blazor)), which has a project file named `BlazorWebAssemblySignalRApp.Server.csproj`:
+The `.vscode/tasks.json` file adds the **`Server`** app's project file path to the `dotnet build` arguments under `args`. The **`Server`** project's folder is typically named `Server` in a solution based on the hosted Blazor WebAssembly project template. The following example uses the project file for the **`Server`** app of the [Blazor-SignalR tutorial](xref:tutorials/signalr-blazor)), which has a project file named `BlazorWebAssemblySignalRApp.Server.csproj`:
 
 ```json
 {

@@ -99,7 +99,7 @@ namespace WebMvcRouting.Controllers
 
     public class Products11Controller : MyBase2Controller
     {
-        [HttpGet]                      // /api/products11/
+        [HttpGet]                      // /api/products11/list
         public IActionResult List()
         {
             return ControllerContext.MyDisplayRouteInfo();

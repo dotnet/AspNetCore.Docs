@@ -308,7 +308,7 @@ The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> compon
 * [`DataAnnotationsValidator`](https://github.com/dotnet/AspNetCore/blob/main/src/Components/Forms/src/DataAnnotationsValidator.cs)
 * [`AddDataAnnotationsValidation`](https://github.com/dotnet/AspNetCore/blob/main/src/Components/Forms/src/EditContextDataAnnotationsExtensions.cs).
 
-[!INCLUDE[](~/blazor/includes/aspnetcore-repo-ref-source-links.md)]
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 Blazor performs two types of validation:
 
@@ -1296,7 +1296,7 @@ The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> compon
 * [`DataAnnotationsValidator`](https://github.com/dotnet/AspNetCore/blob/main/src/Components/Forms/src/DataAnnotationsValidator.cs)
 * [`AddDataAnnotationsValidation`](https://github.com/dotnet/AspNetCore/blob/main/src/Components/Forms/src/EditContextDataAnnotationsExtensions.cs).
 
-[!INCLUDE[](~/blazor/includes/aspnetcore-repo-ref-source-links.md)]
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 Blazor performs two types of validation:
 
@@ -2249,7 +2249,7 @@ The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> compon
 * [`DataAnnotationsValidator`](https://github.com/dotnet/AspNetCore/blob/main/src/Components/Forms/src/DataAnnotationsValidator.cs)
 * [`AddDataAnnotationsValidation`](https://github.com/dotnet/AspNetCore/blob/main/src/Components/Forms/src/EditContextDataAnnotationsExtensions.cs).
 
-[!INCLUDE[](~/blazor/includes/aspnetcore-repo-ref-source-links.md)]
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 Blazor performs two types of validation:
 

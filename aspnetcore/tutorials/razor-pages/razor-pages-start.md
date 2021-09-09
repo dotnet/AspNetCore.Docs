@@ -417,7 +417,7 @@ We hope to have Visual Studio for Mac instructions soon.
 
 <!-- replace all of this with updated includes  -->
 
-Press Ctrl+F5 to run without the debugger.
+Select **RazorPagesMovie** in **Solution Explorer**, and then press Ctrl+F5 to run without the debugger.
 
 Visual Studio displays the following dialog when a project is not yet configured to use SSL:
 
@@ -433,8 +433,10 @@ Select **Yes** if you agree to trust the development certificate.
 
 [!INCLUDE[trust FF](~/includes/trust-ff.md)]
 
-Visual Studio launches:
+Visual Studio:
 
+* Runs the app, which  launches the [Kestrel server](xref:fundamentals/servers/kestrel).
+* Launches the default browser at `https://localhost:5001`, which displays the apps UI.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -503,8 +505,7 @@ The following code enables various [Middleware](xref:fundamentals/middleware/ind
 * `app.UseRouting();` : Adds route matching to the middleware pipeline. For more information, see <xref:fundamentals/routing>
 * `app.MapRazorPages();`: Configures endpoint routing for Razor Pages.
 * `app.UseAuthorization();` : Authorizes a user to access secure resources. This app doesn't use authorization, therefore this line could be removed.
-
-`app.Run();` : runs the app.
+* `app.Run();` : Runs the app.
 
 ## Troubleshooting with the completed sample
 

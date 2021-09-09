@@ -510,7 +510,7 @@ Alternatively, use a [`foreach`](/dotnet/csharp/language-reference/keywords/fore
 For information on how a <xref:Microsoft.AspNetCore.Components.RenderFragment> can be used as a template for component UI, see the following articles:
 
 * <xref:blazor/components/templated-components>
-* <xref:blazor/webassembly-performance-best-practices#define-reusable-renderfragments-in-code>
+* <xref:blazor/performance#define-reusable-renderfragments-in-code>
 
 ## Attribute splatting and arbitrary parameters
 
@@ -655,33 +655,39 @@ Generally, don't call the following methods in components. The following methods
 
 In the event a component must be updated based on an external event, such as a timer or other notification, use the `InvokeAsync` method, which dispatches code execution to Blazor's synchronization context. For example, consider the following *notifier service* that can notify any listening component about updated state. The `Update` method can be called from anywhere in the app.
 
-`Notifier.cs`:
+`TimerService.cs`:
 
-[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Notifier.cs)]
+[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/TimerService.cs)]
 
-Register the `Notifier` service:
+`NotifierService.cs`:
 
-* In a Blazor WebAssembly app, register the service as singleton in `Program.Main`:
+[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/NotifierService.cs)]
 
-  ```csharp
-  builder.Services.AddSingleton<Notifier>();
-  ```
+Register the services:
 
-* In a Blazor Server app, register the service as scoped in `Startup.ConfigureServices`:
+* In a Blazor WebAssembly app, register the services as singletons in `Program.Main`:
 
   ```csharp
-  services.AddScoped<Notifier>();
+  builder.Services.AddSingleton<NotifierService>();
+  builder.Services.AddSingleton<TimerService>();
   ```
 
-Use the `Notifier` service to update a component.
+* In a Blazor Server app, register the services as scoped in `Startup.ConfigureServices`:
 
-`Pages/NotifierExample.razor`:
+  ```csharp
+  services.AddScoped<NotifierService>();
+  services.AddScoped<TimerService>();
+  ```
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/index/NotifierExample.razor)]
+Use the `NotifierService` to update a component.
+
+`Pages/ReceiveNotifications.razor`:
+
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/index/ReceiveNotifications.razor)]
 
 In the preceding example:
 
-* `Notifier` invokes the component's `OnNotify` method outside of Blazor's synchronization context. `InvokeAsync` is used to switch to the correct context and queue a render. For more information, see <xref:blazor/components/rendering>.
+* `NotifierService` invokes the component's `OnNotify` method outside of Blazor's synchronization context. `InvokeAsync` is used to switch to the correct context and queue a render. For more information, see <xref:blazor/components/rendering>.
 * The component implements <xref:System.IDisposable>. The `OnNotify` delegate is unsubscribed in the `Dispose` method, which is called by the framework when the component is disposed. For more information, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
 
 ## Use `@key` to control the preservation of elements and components
@@ -1501,7 +1507,7 @@ Alternatively, use a [`foreach`](/dotnet/csharp/language-reference/keywords/fore
 For information on how a <xref:Microsoft.AspNetCore.Components.RenderFragment> can be used as a template for component UI, see the following articles:
 
 * <xref:blazor/components/templated-components>
-* <xref:blazor/webassembly-performance-best-practices#define-reusable-renderfragments-in-code>
+* <xref:blazor/performance#define-reusable-renderfragments-in-code>
 
 ## Attribute splatting and arbitrary parameters
 
@@ -1646,33 +1652,39 @@ Generally, don't call the following methods in components. The following methods
 
 In the event a component must be updated based on an external event, such as a timer or other notification, use the `InvokeAsync` method, which dispatches code execution to Blazor's synchronization context. For example, consider the following *notifier service* that can notify any listening component about updated state. The `Update` method can be called from anywhere in the app.
 
-`Notifier.cs`:
+`TimerService.cs`:
 
-[!code-csharp[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Notifier.cs)]
+[!code-csharp[](~/blazor/samples/5.0/BlazorSample_WebAssembly/TimerService.cs)]
 
-Register the `Notifier` service:
+`NotifierService.cs`:
 
-* In a Blazor WebAssembly app, register the service as singleton in `Program.Main`:
+[!code-csharp[](~/blazor/samples/5.0/BlazorSample_WebAssembly/NotifierService.cs)]
 
-  ```csharp
-  builder.Services.AddSingleton<Notifier>();
-  ```
+Register the services:
 
-* In a Blazor Server app, register the service as scoped in `Startup.ConfigureServices`:
+* In a Blazor WebAssembly app, register the services as singletons in `Program.Main`:
 
   ```csharp
-  services.AddScoped<Notifier>();
+  builder.Services.AddSingleton<NotifierService>();
+  builder.Services.AddSingleton<TimerService>();
   ```
 
-Use the `Notifier` service to update a component.
+* In a Blazor Server app, register the services as scoped in `Startup.ConfigureServices`:
 
-`Pages/NotifierExample.razor`:
+  ```csharp
+  services.AddScoped<NotifierService>();
+  services.AddScoped<TimerService>();
+  ```
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/index/NotifierExample.razor)]
+Use the `NotifierService` to update a component.
+
+`Pages/ReceiveNotifications.razor`:
+
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/index/ReceiveNotifications.razor)]
 
 In the preceding example:
 
-* `Notifier` invokes the component's `OnNotify` method outside of Blazor's synchronization context. `InvokeAsync` is used to switch to the correct context and queue a render. For more information, see <xref:blazor/components/rendering>.
+* `NotifierService` invokes the component's `OnNotify` method outside of Blazor's synchronization context. `InvokeAsync` is used to switch to the correct context and queue a render. For more information, see <xref:blazor/components/rendering>.
 * The component implements <xref:System.IDisposable>. The `OnNotify` delegate is unsubscribed in the `Dispose` method, which is called by the framework when the component is disposed. For more information, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
 
 ## Use `@key` to control the preservation of elements and components
@@ -2440,7 +2452,7 @@ Alternatively, use a [`foreach`](/dotnet/csharp/language-reference/keywords/fore
 For information on how a <xref:Microsoft.AspNetCore.Components.RenderFragment> can be used as a template for component UI, see the following articles:
 
 * <xref:blazor/components/templated-components>
-* <xref:blazor/webassembly-performance-best-practices#define-reusable-renderfragments-in-code>
+* <xref:blazor/performance#define-reusable-renderfragments-in-code>
 
 ## Attribute splatting and arbitrary parameters
 
@@ -2585,33 +2597,39 @@ Generally, don't call the following methods in components. The following methods
 
 In the event a component must be updated based on an external event, such as a timer or other notification, use the `InvokeAsync` method, which dispatches code execution to Blazor's synchronization context. For example, consider the following *notifier service* that can notify any listening component about updated state. The `Update` method can be called from anywhere in the app.
 
-`Notifier.cs`:
+`TimerService.cs`:
 
-[!code-csharp[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Notifier.cs)]
+[!code-csharp[](~/blazor/samples/3.1/BlazorSample_WebAssembly/TimerService.cs)]
 
-Register the `Notifier` service:
+`NotifierService.cs`:
 
-* In a Blazor WebAssembly app, register the service as singleton in `Program.Main`:
+[!code-csharp[](~/blazor/samples/3.1/BlazorSample_WebAssembly/NotifierService.cs)]
 
-  ```csharp
-  builder.Services.AddSingleton<Notifier>();
-  ```
+Register the services:
 
-* In a Blazor Server app, register the service as scoped in `Startup.ConfigureServices`:
+* In a Blazor WebAssembly app, register the services as singletons in `Program.Main`:
 
   ```csharp
-  services.AddScoped<Notifier>();
+  builder.Services.AddSingleton<NotifierService>();
+  builder.Services.AddSingleton<TimerService>();
   ```
 
-Use the `Notifier` service to update a component.
+* In a Blazor Server app, register the services as scoped in `Startup.ConfigureServices`:
 
-`Pages/NotifierExample.razor`:
+  ```csharp
+  services.AddScoped<NotifierService>();
+  services.AddScoped<TimerService>();
+  ```
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/index/NotifierExample.razor)]
+Use the `NotifierService` to update a component.
+
+`Pages/ReceiveNotifications.razor`:
+
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/index/ReceiveNotifications.razor)]
 
 In the preceding example:
 
-* `Notifier` invokes the component's `OnNotify` method outside of Blazor's synchronization context. `InvokeAsync` is used to switch to the correct context and queue a render. For more information, see <xref:blazor/components/rendering>.
+* `NotifierService` invokes the component's `OnNotify` method outside of Blazor's synchronization context. `InvokeAsync` is used to switch to the correct context and queue a render. For more information, see <xref:blazor/components/rendering>.
 * The component implements <xref:System.IDisposable>. The `OnNotify` delegate is unsubscribed in the `Dispose` method, which is called by the framework when the component is disposed. For more information, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
 
 ## Use `@key` to control the preservation of elements and components
