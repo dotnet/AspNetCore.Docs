@@ -62,7 +62,7 @@ webBuilder.ConfigureKestrel(serverOptions =>
 
 ## Configure(IConfiguration)
 
-This enables Kestrel to load endpoints from an <xref:Microsoft.Extensions.Configuration.IConfiguration>. The configuration must be scoped to the configuration section for Kestrel.
+Enables Kestrel to load endpoints from an <xref:Microsoft.Extensions.Configuration.IConfiguration>. The configuration must be scoped to the configuration section for Kestrel.
 
 The `Configure(IConfiguration, bool)` overload can be used to enable reloading endpoints when the configuration source changes.
 
@@ -89,7 +89,7 @@ The `Configure(IConfiguration, bool)` overload can be used to enable reloading e
 
 If reloading configuration is enabled and a change is signaled then the following steps are taken:
 - The new configuraiton is compared to the old one, any endpoint without configuration changes are not modified.
-- Removed or modified endpoints are drained and stopped using a 5 second timeout.
+- Removed or modified endpoints are given 5 seconds to complete processing requests and shut down.
 - New or modified endpoints are started.
 
 Clients connecting to a modified endpoint may be disconnected or refused while the endpoint is restarted.
