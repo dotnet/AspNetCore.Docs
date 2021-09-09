@@ -1,7 +1,7 @@
 ---
 title: Security considerations in ASP.NET Core SignalR
 author: bradygaster
-description: Learn how to use authentication and authorization in ASP.NET Core SignalR.
+description: Learn about security in ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: anurse
 ms.custom: mvc
