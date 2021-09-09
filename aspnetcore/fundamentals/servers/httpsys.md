@@ -5,7 +5,7 @@ description: Learn about HTTP.sys, a web server for ASP.NET Core on Windows. Bui
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/07/2020
+ms.date: 09/09/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/servers/httpsys
 ---
@@ -62,6 +62,32 @@ HTTP.sys is mature technology that protects against many types of attacks and pr
 If an HTTP/2 connection is established, [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) reports `HTTP/2`.
 
 HTTP/2 is enabled by default. If an HTTP/2 connection isn't established, the connection falls back to HTTP/1.1. In a future release of Windows, HTTP/2 configuration flags will be available, including the ability to disable HTTP/2 with HTTP.sys.
+
+::: moniker range="> aspnetcore-6.0"
+
+## HTTP/3 support
+
+[HTTP/3](https://quicwg.org/base-drafts/draft-ietf-quic-http.html) is enabled for ASP.NET Core apps if the following base requirements are met:
+
+* Windows Server 2022/Windows 11 or later
+* An `https` url binding is used.
+* The [EnableHttp3 registry key](https://techcommunity.microsoft.com/t5/networking-blog/enabling-http-3-support-on-windows-server-2022/ba-p/2676880) is set.
+
+The preceding Windows 11 Build versions may require the use of a [Windows Insider](https://insider.windows.com) build.
+
+HTTP/3 is discovered as an upgrade from HTTP/1.1 or HTTP/2 via the `alt-svc` header. That means the first request will normally use HTTP/1.1 or HTTP/2 before switching to HTTP/3. Http.Sys does not automatically adds the `alt-svc` header, it must be added by the application. Here is a middleware example that adds the `alt-svc` response header, place this early in your request pipeline.
+
+```C#
+app.Use((context, next) =>
+{
+    context.Response.Headers.AltSvc = "h3=\":443\"";
+    return next(context);
+});
+```
+
+Http.Sys also supports sending an AltSvc HTTP/2 protocol message rather than a response header to notify the client that HTTP/3 is available. See the [EnableAltSvc registry key](https://techcommunity.microsoft.com/t5/networking-blog/enabling-http-3-support-on-windows-server-2022/ba-p/2676880). Note this requires netsh sslcert bindings that use host names rather than IP addresses.
+
+::: moniker-end
 
 ## Kernel mode authentication with Kerberos
 
