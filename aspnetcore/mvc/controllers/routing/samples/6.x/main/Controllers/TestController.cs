@@ -7,7 +7,7 @@ public class TestController : Controller
     public IActionResult Index()
     {
         var url = Url.Action("Buy", "Products", new { id = 17, color = "red" });
-        return Content(url);
+        return Content(url!);
     }
     #endregion
     #region snippet2
