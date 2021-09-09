@@ -159,7 +159,7 @@ namespace WebMvcRouting.Controllers
 
     public class Product
     {
-        public string name { get; set; }
+        public string name { get; set; } = string.Empty;
     }
 
 

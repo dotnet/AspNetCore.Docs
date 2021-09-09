@@ -2,6 +2,7 @@
 
 public class TestController : Controller
 {
+#pragma warning disable CS8604 // Possible null reference argument.
     #region snippet
     public IActionResult Index()
     {
@@ -17,4 +18,5 @@ public class TestController : Controller
         return Content(url);
     }
     #endregion
+#pragma warning restore CS8604 // Possible null reference argument.
 }

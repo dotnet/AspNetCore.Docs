@@ -7,14 +7,14 @@ namespace WebMvcRouting.TagHelpers
     [HtmlTargetElement("a", Attributes = "href-key")]
     public class HrefKeyTagHelper : TagHelper
     {
-        public string HrefKey { get; set; }
+        public string HrefKey { get; set; } = String.Empty;
 
         [ViewContext]
-        public ViewContext ViewContext { get; set; }
+        public ViewContext? ViewContext { get; set; }
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
-            if (HrefKey == null)
+            if (HrefKey == null || ViewContext == null)
                 return;
 
             var href = ViewContext.ViewData[HrefKey] as string;
