@@ -53,7 +53,7 @@ HTTP.sys is mature technology that protects against many types of attacks and pr
 
 ## HTTP/2 support
 
-[HTTP/2](https://httpwg.org/specs/rfc7540.html) is enabled for ASP.NET Core apps if the following base requirements are met:
+[HTTP/2](https://httpwg.org/specs/rfc7540.html) is enabled for ASP.NET Core apps when the following base requirements are met:
 
 * Windows Server 2016/Windows 10 or later
 * [Application-Layer Protocol Negotiation (ALPN)](https://tools.ietf.org/html/rfc7301#section-3) connection
@@ -65,7 +65,7 @@ HTTP/2 is enabled by default. If an HTTP/2 connection isn't established, the con
 
 ## HTTP/3 support
 
-[HTTP/3](https://quicwg.org/base-drafts/draft-ietf-quic-http.html) is enabled for ASP.NET Core apps if the following base requirements are met:
+[HTTP/3](https://quicwg.org/base-drafts/draft-ietf-quic-http.html) is enabled for ASP.NET Core apps when the following base requirements are met:
 
 * Windows Server 2022/Windows 11 or later
 * An `https` url binding is used.
@@ -73,7 +73,7 @@ HTTP/2 is enabled by default. If an HTTP/2 connection isn't established, the con
 
 The preceding Windows 11 Build versions may require the use of a [Windows Insider](https://insider.windows.com) build.
 
-HTTP/3 is discovered as an upgrade from HTTP/1.1 or HTTP/2 via the `alt-svc` header. That means the first request will normally use HTTP/1.1 or HTTP/2 before switching to HTTP/3. Http.Sys does not automatically adds the `alt-svc` header, it must be added by the application. Here is a middleware example that adds the `alt-svc` response header, place this early in your request pipeline.
+HTTP/3 is discovered as an upgrade from HTTP/1.1 or HTTP/2 via the `alt-svc` header. That means the first request will normally use HTTP/1.1 or HTTP/2 before switching to HTTP/3. Http.Sys does not automatically adds the `alt-svc` header, it must be added by the application. The following code is a middleware example that adds the `alt-svc` response header.
 
 ```C#
 app.Use((context, next) =>
@@ -82,6 +82,8 @@ app.Use((context, next) =>
     return next(context);
 });
 ```
+
+Place the preceding code early in the request pipeline.
 
 Http.Sys also supports sending an AltSvc HTTP/2 protocol message rather than a response header to notify the client that HTTP/3 is available. See the [EnableAltSvc registry key](https://techcommunity.microsoft.com/t5/networking-blog/enabling-http-3-support-on-windows-server-2022/ba-p/2676880). Note this requires netsh sslcert bindings that use host names rather than IP addresses.
 
