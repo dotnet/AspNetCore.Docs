@@ -11,6 +11,6 @@ namespace TodoApi.Models
         }
 
         [NotNull]
-        public DbSet<TodoItem>? TodoItems { get; set; }
+        public DbSet<TodoItem> TodoItems { get; set; } = null!;
     }
 }
