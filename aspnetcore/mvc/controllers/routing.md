@@ -315,7 +315,7 @@ The special parameter names are used by the URL generation to determine if a URL
 
 These keywords shouldn't be used for link generations, model bound parameters, or top level properties.
 
-<a name="verb"></a>
+<a name="verb6"></a>
 
 ## HTTP verb templates
 
@@ -328,13 +328,13 @@ ASP.NET Core has the following HTTP verb templates:
 * [[HttpHead]](xref:Microsoft.AspNetCore.Mvc.HttpHeadAttribute)
 * [[HttpPatch]](xref:Microsoft.AspNetCore.Mvc.HttpPatchAttribute)
 
-<a name="rt"></a>
+<a name="rt6"></a>
 
 ### Route templates
 
 ASP.NET Core has the following route templates:
 
-* All the [HTTP verb templates](#verb) are route templates.
+* All the [HTTP verb templates](#verb6) are route templates.
 * [[Route]](xref:Microsoft.AspNetCore.Mvc.RouteAttribute)
 
 <a name="arx"></a>
@@ -360,16 +360,16 @@ In the preceding code:
   * Returns a [400 Bad Request](https://developer.mozilla.org/docs/Web/HTTP/Status/400) because model binding failed to convert`abc` to an integer.
       [!code-csharp[](routing/samples/6.x/main/Controllers/Test2Controller.cs?name=snippet4)]
 
-Attribute routing can use <xref:Microsoft.AspNetCore.Mvc.Routing.HttpMethodAttribute> attributes such as <xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute>, <xref:Microsoft.AspNetCore.Mvc.HttpPutAttribute>, and <xref:Microsoft.AspNetCore.Mvc.HttpDeleteAttribute>. All of the [HTTP verb](#verb) attributes accept a route template. The following example shows two actions that match the same route template:
+Attribute routing can use <xref:Microsoft.AspNetCore.Mvc.Routing.HttpMethodAttribute> attributes such as <xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute>, <xref:Microsoft.AspNetCore.Mvc.HttpPutAttribute>, and <xref:Microsoft.AspNetCore.Mvc.HttpDeleteAttribute>. All of the [HTTP verb](#verb6) attributes accept a route template. The following example shows two actions that match the same route template:
 
 [!code-csharp[](routing/samples/6.x/main/Controllers/MyProductsController.cs?name=snippet1)]
 
 Using the URL path `/products3`:
 
-* The `MyProductsController.ListProducts` action runs when the [HTTP verb](#verb) is `GET`.
-* The `MyProductsController.CreateProduct` action runs when the [HTTP verb](#verb) is `POST`.
+* The `MyProductsController.ListProducts` action runs when the [HTTP verb](#verb6) is `GET`.
+* The `MyProductsController.CreateProduct` action runs when the [HTTP verb](#verb6) is `POST`.
 
-When building a REST API, it's rare that you'll need to use `[Route(...)]` on an action method because the action accepts all HTTP methods. It's better to use the more specific [HTTP verb attribute](#verb) to be precise about what your API supports. Clients of REST APIs are expected to know what paths and HTTP verbs map to specific logical operations.
+When building a REST API, it's rare that you'll need to use `[Route(...)]` on an action method because the action accepts all HTTP methods. It's better to use the more specific [HTTP verb attribute](#verb6) to be precise about what your API supports. Clients of REST APIs are expected to know what paths and HTTP verbs map to specific logical operations.
 
 REST APIs should use attribute routing to model the app's functionality as a set of resources where operations are represented by HTTP verbs. This means that many operations, for example, GET and POST on the same logical resource use the same URL. Attribute routing provides a level of control that's needed to carefully design an API's public endpoint layout.
 
@@ -512,7 +512,7 @@ To match the literal token replacement delimiter `[` or  `]`, escape it by repea
 
 Token replacement can be customized using a parameter transformer. A parameter transformer implements <xref:Microsoft.AspNetCore.Routing.IOutboundParameterTransformer> and transforms the value of parameters. For example, a custom `SlugifyParameterTransformer` parameter transformer changes the `SubscriptionManagement` route value to `subscription-management`:
 zz
-[!code-csharp[](routing/samples/3.x/main/StartupSlugifyParamTransformer.cs?name=snippet2)]
+[!code-csharp[](routing/samples/6.x/main/StartupSlugifyParamTransformer.cs?name=snippet2)]
 
 The <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.RouteTokenTransformerConvention> is an application model convention that:
 
@@ -525,7 +525,7 @@ The preceding `ListAll` method matches `/subscription-management/list-all`.
 
 The `RouteTokenTransformerConvention` is registered as an option in `ConfigureServices`.
 
-[!code-csharp[](routing/samples/3.x/main/StartupSlugifyParamTransformer.cs?name=snippet)]
+[!code-csharp[](routing/samples/6.x/main/StartupSlugifyParamTransformer.cs?name=snippet)]
 
 See [MDN web docs on Slug](https://developer.mozilla.org/docs/Glossary/Slug) for the definition of Slug.
 
@@ -542,7 +542,7 @@ Putting multiple route attributes on the controller means that each one combines
 
 [!code-csharp[](routing/samples/6.x/main/Controllers/ProductsController.cs?name=snippet6)]
 
-All the [HTTP verb](#verb) route constraints implement `IActionConstraint`.
+All the [HTTP verb](#verb6) route constraints implement `IActionConstraint`.
 
 When multiple route attributes that implement <xref:Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint> are placed on an action:
 
@@ -568,7 +568,7 @@ See [Route Template Reference](xref:fundamentals/routing#route-template-referenc
 
 ### Custom route attributes using IRouteTemplateProvider
 
-All of the [route attributes](#rt) implement <xref:Microsoft.AspNetCore.Mvc.Routing.IRouteTemplateProvider>. The ASP.NET Core runtime:
+All of the [route attributes](#rt6) implement <xref:Microsoft.AspNetCore.Mvc.Routing.IRouteTemplateProvider>. The ASP.NET Core runtime:
 
 * Looks for attributes on controller classes and action methods when the app starts.
 * Uses the attributes that implement `IRouteTemplateProvider` to build the initial set of routes.
@@ -595,15 +595,15 @@ The application model includes all of the data gathered from route attributes. T
 
 This section shows a basic example of customizing routing using application model. The following code makes routes roughly line up with the folder structure of the project.
 
-[!code-csharp[](routing/samples/3.x/nsrc/NamespaceRoutingConvention.cs?name=snippet)]
+[!code-csharp[](routing/samples/6.x/nsrc/NamespaceRoutingConvention.cs?name=snippet)]
 
 The following code prevents the `namespace` convention from being applied to controllers that are attribute routed:
 
-[!code-csharp[](routing/samples/3.x/nsrc/NamespaceRoutingConvention.cs?name=snippet2)]
+[!code-csharp[](routing/samples/6.x/nsrc/NamespaceRoutingConvention.cs?name=snippet2)]
 
 For example, the following controller doesn't use `NamespaceRoutingConvention`:
 
-[!code-csharp[](routing/samples/3.x/nsrc/Controllers/ManagersController.cs?name=snippet&highlight=1)]
+[!code-csharp[](routing/samples/6.x/nsrc/Controllers/ManagersController.cs?name=snippet&highlight=1)]
 
 The `NamespaceRoutingConvention.Apply` method:
 
@@ -612,11 +612,11 @@ The `NamespaceRoutingConvention.Apply` method:
 
 The `NamespaceRoutingConvention` can be applied in `Startup.ConfigureServices`:
 
-[!code-csharp[](routing/samples/3.x/nsrc/Startup.cs?name=snippet&highlight=1,14-18)]
+[!code-csharp[](routing/samples/6.x/nsrc/Startup.cs?name=snippet&highlight=1,14-18)]
 
 For example, consider the following controller:
 
-[!code-csharp[](routing/samples/3.x/nsrc/Controllers/UsersController.cs)]
+[!code-csharp[](routing/samples/6.x/nsrc/Controllers/UsersController.cs)]
 
 In the preceding code:
 
@@ -626,7 +626,7 @@ In the preceding code:
 
 The `NamespaceRoutingConvention` can also be applied as an attribute on a controller:
 
-[!code-csharp[](routing/samples/3.x/nsrc/Controllers/TestController.cs?name=snippet&highlight=1)]
+[!code-csharp[](routing/samples/6.x/nsrc/Controllers/TestController.cs?name=snippet&highlight=1)]
 
 <a name="routing-mixed-ref-label"></a>
 
@@ -649,7 +649,7 @@ The <xref:Microsoft.AspNetCore.Mvc.IUrlHelper> interface is the underlying eleme
 
 In the following example, the `IUrlHelper` interface is used through the `Controller.Url` property to generate a URL to another action.
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/UrlGenerationController.cs?name=snippet_1)]
+[!code-csharp[](routing/samples/6.x/main/Controllers/UrlGenerationController.cs?name=snippet_1)]
 
 If the app is using the default conventional route, the value of the `url` variable is the URL path string `/UrlGeneration/Destination`. This URL path is created by routing by combining:
 
@@ -678,7 +678,7 @@ The preceding example of `Url.Action` assumes [conventional routing](#cr6). URL 
 
 The following example uses attribute routing:
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/UrlGenerationAttrController.cs?name=snippet_1)]
+[!code-csharp[](routing/samples/6.x/main/Controllers/UrlGenerationAttrController.cs?name=snippet_1)]
 
 The `Source` action in the preceding code generates `custom/url/to/destination`.
 
@@ -717,13 +717,13 @@ Several overloads of [Url.Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Actio
 
 Any additional route values that don't match route parameters are put in the query string.
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/TestController.cs?name=snippet)]
+[!code-csharp[](routing/samples/6.x/main/Controllers/TestController.cs?name=snippet)]
 
 The preceding code generates `/Products/Buy/17?color=red`.
 
 The following code generates an absolute URL:
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/TestController.cs?name=snippet2)]
+[!code-csharp[](routing/samples/6.x/main/Controllers/TestController.cs?name=snippet2)]
 
 To create an absolute URL, use one of the following:
 
@@ -739,11 +739,11 @@ The preceding code demonstrated generating a URL by passing in the controller an
 * Specifies a route name to generate the URL.
 * Generally doesn't specify a controller or action name.
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/UrlGeneration2Controller.cs?name=snippet_1)]
+[!code-csharp[](routing/samples/6.x/main/Controllers/UrlGeneration2Controller.cs?name=snippet_1)]
 
 The following Razor file generates an HTML link to the `Destination_Route`:
 
-[!code-cshtml[](routing/samples/3.x/main/Views/Shared/MyLink.cshtml)]
+[!code-cshtml[](routing/samples/6.x/main/Views/Shared/MyLink.cshtml)]
 
 <a name="routing-gen-urls-html-ref-label"></a>
 
@@ -763,7 +763,7 @@ The preceding examples showed using `IUrlHelper` in a controller. The most commo
 
 The <xref:Microsoft.AspNetCore.Mvc.ControllerBase> and <xref:Microsoft.AspNetCore.Mvc.Controller> base classes provide convenience methods for action results that reference another action. One typical usage is to redirect after accepting user input:
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/CustomerController.cs?name=snippet)]
+[!code-csharp[](routing/samples/6.x/main/Controllers/CustomerController.cs?name=snippet)]
 
 The action results factory methods such as <xref:Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToAction%2A> and <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction%2A> follow a similar pattern to the methods on `IUrlHelper`.
 
@@ -773,7 +773,7 @@ The action results factory methods such as <xref:Microsoft.AspNetCore.Mvc.Contro
 
 [Conventional routing](#cr6) can use a special kind of route definition called a [dedicated conventional route](#dcr). In the following example, the route named `blog` is a dedicated conventional route:
 
-[!code-csharp[](routing/samples/3.x/main/Startup.cs?name=snippet_1)]
+[!code-csharp[](routing/samples/6.x/main/Startup.cs?name=snippet_1)]
 
 Using the preceding route definitions, `Url.Action("Index", "Home")` generates the URL path `/` using the `default` route, but why? You might guess the route values `{ controller = Home, action = Index }` would be enough to generate a URL using `blog`, and the result would be `/blog?action=Index&controller=Home`.
 
@@ -791,7 +791,7 @@ Using the preceding route definitions, `Url.Action("Index", "Home")` generates t
 Using areas allows an app to have multiple controllers with the same name, as long as they have different areas. Using areas creates a hierarchy for the purpose of routing by adding another route parameter, `area` to `controller` and `action`. This section discusses how routing interacts with areas. See [Areas](xref:mvc/controllers/areas) for details about how areas are used with views.
 
 The following example configures MVC to use the default conventional route and an `area` route for an `area` named `Blog`:
-
+zz
 [!code-csharp[](routing/samples/3.x/AreasRouting/Startup.cs?name=snippet1)]
 
 In the preceding code, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute%2A> is called to create the `"blog_route"`. The second parameter, `"Blog"`, is the area name.
