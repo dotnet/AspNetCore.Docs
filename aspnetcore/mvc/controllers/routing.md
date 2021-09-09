@@ -772,9 +772,9 @@ The action results factory methods such as <xref:Microsoft.AspNetCore.Mvc.Contro
 ### Special case for dedicated conventional routes
 
 [Conventional routing](#cr6) can use a special kind of route definition called a [dedicated conventional route](#dcr). In the following example, the route named `blog` is a dedicated conventional route:
-<!--
-[!code-csharp[](routing/samples/6.x/main/Startup.cs?name=snippet_1)]
--->
+
+[!code-csharp[](routing/samples/6.x/main/Startup.cs?name=snippet_mcr)]
+
 Using the preceding route definitions, `Url.Action("Index", "Home")` generates the URL path `/` using the `default` route, but why? You might guess the route values `{ controller = Home, action = Index }` would be enough to generate a URL using `blog`, and the result would be `/blog?action=Index&controller=Home`.
 
 [Dedicated conventional routes](#dcr) rely on a special behavior of default values that don't have a corresponding route parameter that prevents the route from being too [greedy](xref:fundamentals/routing#greedy) with URL generation. In this case the default values are `{ controller = Blog, action = Article }`, and neither `controller` nor `action` appears as a route parameter. When routing performs URL generation, the values provided must match the default values. URL generation using `blog` fails because the values `{ controller = Home, action = Index }` don't match `{ controller = Blog, action = Article }`. Routing then falls back to try `default`, which succeeds.
