@@ -652,7 +652,7 @@ The following code calls [IConfiguration.GetChildren](xref:Microsoft.Extensions.
 
 The preceding code calls [ConfigurationExtensions.Exists](xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.Exists*) to verify the  section exists:
 
- <a name="boa"></a>
+<a name="boa"></a>
 
 ## Bind an array
 
@@ -680,7 +680,7 @@ Index: 3  Value: value40
 Index: 4  Value: value50
 ```
 
-In the preceding output, Index 3 has value `value40`, corresponding to `"4": "value40",` in *MyArray.json*. The bound array indices are continuous and not bound to the configuration key index. The configuration binder isn't capable of binding null values or creating null entries in bound objects
+In the preceding output, Index 3 has value `value40`, corresponding to `"4": "value40",` in *MyArray.json*. The bound array indices are continuous and not bound to the configuration key index. The configuration binder isn't capable of binding null values or creating null entries in bound objects.
 <!-- Not needed sample 
 The  following code loads the `array:entries` configuration with the <xref:Microsoft.Extensions.Configuration.MemoryConfigurationBuilderExtensions.AddInMemoryCollection*> extension method:
 
