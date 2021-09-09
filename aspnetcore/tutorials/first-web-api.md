@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to build a web API with ASP.NET Core.
 ms.author: riande
 ms.custom: mvc, devx-track-js
-ms.date: 09/07/2021
+ms.date: 09/09/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, Models]
 uid: tutorials/first-web-api
 ---
@@ -84,12 +84,12 @@ For Visual Studio for Mac, see the .NET 5 version of this tutorial.
    code -r ../TodoApi
    ```
 
-* When a dialog box asks if you want to add required assets to the project, select **Yes**.
+  These commands:
 
-  The preceding commands:
-
-  * Create a new web API project and opens it in Visual Studio Code.
+  * Create a new web API project and open it in Visual Studio Code.
   * Add a NuGet package that is needed for the next section.
+
+* When a dialog box asks if you want to add required assets to the project, select **Yes**.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -131,10 +131,7 @@ Press Ctrl+F5 to run without the debugger.
 
 [!INCLUDE[](~/includes/trustCertVS.md)]
 
-  Visual Studio launches:
-
-* The IIS Express web server.
-* The default browser and navigates to `https://localhost:<port>/swagger/index.html`, where `<port>` is a randomly chosen port number.
+Visual Studio launches the default browser and navigates to `https://localhost:<port>/swagger/index.html`, where `<port>` is a randomly chosen port number.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -179,7 +176,7 @@ Swagger is used to generate useful documentation and help pages for web APIs. Th
 
 Copy and paste the **Request URL** in the browser:  `https://localhost:<port>/WeatherForecast`
 
-JSON similar to the following is returned:
+JSON similar to the following example is returned:
 
 ```json
 [
@@ -242,7 +239,7 @@ A *model* is a set of classes that represent the data that the app manages. The 
 
 * Add a folder named *Models*.
 
-* Add a `TodoItem` class to the *Models* folder with the following code:
+* Add a *TodoItem.cs* file to the *Models* folder with the following code:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -287,7 +284,7 @@ The *database context* is the main class that coordinates Entity Framework funct
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Add a `TodoContext` class to the *Models* folder. 
+* Add a *TodoContext.cs* file to the *Models* folder. 
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
