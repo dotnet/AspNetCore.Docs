@@ -5,7 +5,7 @@ description: Learn how to configure and manage Blazor SignalR connections.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/12/2021
+ms.date: 09/09/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/fundamentals/signalr
 zone_pivot_groups: blazor-hosting-models
@@ -86,7 +86,7 @@ For general guidance on ASP.NET Core SignalR configuration, see the topics in th
 
 ## Use sticky sessions for webfarm hosting
 
-A Blazor Server app prerenders in response to the first client request, which creates the UI state on the server. When the client attempts to create a SignalR connection, **the client must reconnect to the same server**. Blazor Server apps that use more than one backend server should implement *sticky sessions* for SignalR connections.
+A Blazor Server app prerenders in response to the first client request, which creates UI state on the server. When the client attempts to create a SignalR connection, **the client must reconnect to the same server**. Blazor Server apps that use more than one backend server should implement *sticky sessions* for SignalR connections.
 
 ## Azure SignalR Service
 
@@ -186,7 +186,7 @@ By default, Blazor Server apps prerender the UI on the server before the client 
 
 ## Blazor startup
 
-Configure the manual start of a Blazor Server app's [SignalR circuit](xref:blazor/hosting-models#circuits) in the `Pages/_Layout.cshtml` file:
+Configure the manual start of a Blazor Server app's SignalR circuit in the `Pages/_Layout.cshtml` file:
 
 * Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` script.
 * Place a script that calls `Blazor.start` after the `blazor.server.js` script's `<script>` tag and inside the closing `</body>` tag.
@@ -573,7 +573,7 @@ By default, Blazor Server apps prerender the UI on the server before the client 
 
 ## Blazor startup
 
-Configure the manual start of a Blazor Server app's [SignalR circuit](xref:blazor/hosting-models#circuits) in the `Pages/_Host.cshtml` file:
+Configure the manual start of a Blazor Server app's SignalR circuit in the `Pages/_Host.cshtml` file:
 
 * Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` script.
 * Place a script that calls `Blazor.start` after the `blazor.server.js` script's `<script>` tag and inside the closing `</body>` tag.
@@ -922,7 +922,7 @@ By default, Blazor Server apps prerender the UI on the server before the client 
 
 ## Blazor startup
 
-Configure the manual start of a Blazor Server app's [SignalR circuit](xref:blazor/hosting-models#circuits) in the `Pages/_Host.cshtml` file:
+Configure the manual start of a Blazor Server app's SignalR circuit in the `Pages/_Host.cshtml` file:
 
 * Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` script.
 * Place a script that calls `Blazor.start` after the `blazor.server.js` script's `<script>` tag and inside the closing `</body>` tag.

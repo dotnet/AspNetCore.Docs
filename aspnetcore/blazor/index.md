@@ -115,13 +115,13 @@ The size of the published app, its *payload size*, is a critical performance fac
 
 ## Blazor Server
 
-Blazor decouples component rendering logic from how UI updates are applied. *Blazor Server* provides support for hosting Razor components on the server in an ASP.NET Core app. UI updates are handled over a [SignalR](xref:signalr/introduction) connection.
+Blazor Server provides support for hosting Razor components on the server in an ASP.NET Core app. UI updates are handled over a [SignalR](xref:signalr/introduction) connection.
 
 The runtime stays on the server and handles:
 
 * Executing the app's C# code.
 * Sending UI events from the browser to the server.
-* Applying UI updates to the rendered component that are sent back by the server.
+* Applying UI updates to a rendered component that are sent back by the server.
 
 The connection used by Blazor Server to communicate with the browser is also used to handle JavaScript interop calls.
 
@@ -129,13 +129,13 @@ The connection used by Blazor Server to communicate with the browser is also use
 
 Blazor Server apps render content differently than traditional models for rendering UI in ASP.NET Core apps using Razor views or Razor Pages. Both models use the [Razor language](xref:mvc/views/razor) to describe HTML content for rendering, but they significantly differ in *how* markup is rendered.
 
-When a Razor Page or view is rendered, every line of Razor code emits HTML in text form. After rendering, the server disposes of the page or view instance, including any state that was produced. When another request for the page occurs, the entire page is rerendered to HTML text again and sent to the client.
+When a Razor Page or view is rendered, every line of Razor code emits HTML in text form. After rendering, the server disposes of the page or view instance, including any state that was produced. When another request for the page occurs, the entire page is rerendered to HTML again and sent to the client.
 
-Blazor Server produces a graph of components to display similar to an HTML or XML Document Object Model (DOM). This graph includes component state held in properties and fields. Blazor evaluates the component graph to produce a binary representation of the markup, which is sent to the client for rendering. After the connection is made between the client and the server, the component's static prerendered elements are replaced with interactive elements. *Prerendering* the content on the server and displaying the prerendered elements on the client makes the app feel more responsive to the user.
+Blazor Server produces a graph of components to display similar to an HTML or XML Document Object Model (DOM). The component graph includes state held in properties and fields. Blazor evaluates the component graph to produce a binary representation of the markup, which is sent to the client for rendering. After the connection is made between the client and the server, the component's static prerendered elements are replaced with interactive elements. Prerendering the content on the server makes the app feel more responsive on the client.
 
 After the components are interactive on the client, UI updates are triggered by user interaction and app events. When an update occurs, the component graph is rerendered, and a UI *diff* (difference) is calculated. This diff is the smallest set of DOM edits required to update the UI on the client. The diff is sent to the client in a binary format and applied by the browser.
 
-A component is disposed after the user navigates away from it on the client. While a user is interacting with a component, the component's state (services, resources) must be held in the server's memory. Because the state of many components might be maintained by the server concurrently, memory exhaustion is a concern that must be addressed. 
+A component is disposed after the user navigates away from the component.
 
 ## JavaScript interop
 

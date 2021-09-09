@@ -17,21 +17,16 @@ Blazor is a web framework designed to run server-side in ASP.NET Core (*Blazor S
 
 With the Blazor Server hosting model, the app is executed on the server from within an ASP.NET Core app. UI updates, event handling, and JavaScript calls are handled over a [SignalR](xref:signalr/introduction) connection called a *circuit*. A circuit can tolerate temporary network interruptions and attempts to reconnect to the server when the connection is lost.
 
-In a traditional server-rendered app, opening the same app in multiple browser screens (browser tabs or iframes) typically doesn't translate into additional resource demands on the server. In a Blazor Server app, each browser screen requires a separate circuit and separate instances of component state to be managed by the server. Blazor considers closing a browser tab or navigating to an external URL a *graceful* termination. In the event of a graceful termination, the circuit and associated resources are immediately released. A client may also disconnect non-gracefully, for instance due to a network interruption. Blazor Server stores disconnected circuits for a configurable interval to allow the client to reconnect.
+In a traditional server-rendered app, opening the same app in multiple browser screens (tabs or iframes) typically doesn't translate into additional resource demands on the server. In a Blazor Server app, each browser screen requires a separate circuit and separate instances of server-managed component state. Blazor considers closing a browser tab or navigating to an external URL a *graceful* termination. In the event of a graceful termination, the circuit and associated resources are immediately released. A client may also disconnect non-gracefully, for instance due to a network interruption. Blazor Server stores disconnected circuits for a configurable interval to allow the client to reconnect.
 
 ![The browser interacts with the app (hosted inside of an ASP.NET Core app) on the server over a SignalR connection.](~/blazor/hosting-models/_static/blazor-server.png)
 
-The ASP.NET Core app references the app's `Startup` class to add:
-
-* Server-side services.
-* The app to the request handling pipeline.
-
-On the client, the `blazor.server.js` script establishes the SignalR connection with the server. The script is served to the client-side app from an embedded resource in the ASP.NET Core shared framework. The client-side app is responsible for persisting and restoring app state as required. 
+On the client, the Blazor script (`blazor.server.js`) establishes the SignalR connection with the server. The script is served to the client-side app from an embedded resource in the ASP.NET Core shared framework. The client-side app is responsible for persisting and restoring app state as required. 
 
 The Blazor Server hosting model offers several benefits:
 
 * Download size is significantly smaller than a Blazor WebAssembly app, and the app loads much faster.
-* The app takes full advantage of server capabilities, including use of any .NET Core compatible APIs.
+* The app takes full advantage of server capabilities, including use of any .NET Core APIs.
 * .NET Core on the server is used to run the app, so existing .NET tooling, such as debugging, works as expected.
 * Thin clients are supported. For example, Blazor Server apps work with browsers that don't support WebAssembly and on resource-constrained devices.
 * The app's .NET/C# code base, including the app's component code, isn't served to clients.
