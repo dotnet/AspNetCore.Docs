@@ -610,11 +610,10 @@ The `NamespaceRoutingConvention.Apply` method:
 * Does nothing if the controller is attribute routed.
 * Sets the controllers template based on the `namespace`, with the base `namespace` removed.
 
-The `NamespaceRoutingConvention` can be applied in `Startup.ConfigureServices`:
-zz
-<!--
-[!code-csharp[](routing/samples/6.x/nsrc/Startup.cs?name=snippet&highlight=1,14-18)]
--->
+The `NamespaceRoutingConvention` can be applied in *Program.cs*:
+
+[!code-csharp[](routing/samples/6.x/nsrc/Program.cs?name=snippet_nrc)]
+
 For example, consider the following controller:
 
 [!code-csharp[](routing/samples/6.x/nsrc/Controllers/UsersController.cs)]
