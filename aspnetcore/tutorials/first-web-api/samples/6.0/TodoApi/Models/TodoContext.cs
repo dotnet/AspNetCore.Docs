@@ -10,7 +10,6 @@ namespace TodoApi.Models
         {
         }
 
-        [NotNull]
         public DbSet<TodoItem> TodoItems { get; set; } = null!;
     }
 }
