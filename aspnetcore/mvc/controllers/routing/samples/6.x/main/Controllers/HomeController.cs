@@ -1,30 +1,98 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
-using WebMvcRouting.Models;
+﻿// This uses same routes as MyDemoController, so only one can be defined unless order is set
+// Test with 
 
-namespace WebMvcRouting.Controllers;
-public class HomeController : Controller
+//#define First
+//#define Second
+//#define Third
+
+#define Forth
+
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Docs.Samples;
+
+namespace WebMvcRouting.Controllers
 {
-    private readonly ILogger<HomeController> _logger;
+#if First
 
-    public HomeController(ILogger<HomeController> logger)
+    #region snippet
+    [Route("Home")]
+    public class HomeController : Controller
     {
-        _logger = logger;
-    }
+        [Route("")]
+        [Route("Index")]
+        [Route("/")]
+        public IActionResult Index()
+        {
+            return ControllerContext.MyDisplayRouteInfo();
+        }
 
-    public IActionResult Index()
-    {
-        return View();
+        [Route("About")]
+        public IActionResult About()
+        {
+            return ControllerContext.MyDisplayRouteInfo();
+        }
     }
+    #endregion
+#elif Second
+    #region snippet2
+    public class HomeController : Controller
+    {
+        [Route("")]
+        [Route("Home")]
+        [Route("Home/Index")]
+        [Route("Home/Index/{id?}")]
+        public IActionResult Index(int? id)
+        {
+            return ControllerContext.MyDisplayRouteInfo(id);
+        }
 
-    public IActionResult Privacy()
-    {
-        return View();
+        [Route("Home/About")]
+        [Route("Home/About/{id?}")]
+        public IActionResult About(int? id)
+        {
+            return ControllerContext.MyDisplayRouteInfo(id);
+        }
     }
+    #endregion
+#elif Third
+    #region snippet22
+    public class HomeController : Controller
+    {
+        [Route("")]
+        [Route("Home")]
+        [Route("[controller]/[action]")]
+        public IActionResult Index()
+        {
+            return ControllerContext.MyDisplayRouteInfo();
+        }
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        [Route("[controller]/[action]")]
+        public IActionResult About()
+        {
+            return ControllerContext.MyDisplayRouteInfo();
+        }
     }
+    #endregion
+
+#elif Forth
+    #region snippet24
+    [Route("[controller]/[action]")]
+    public class HomeController : Controller
+    {
+        [Route("~/")]
+        [Route("/Home")]
+        [Route("~/Home/Index")]
+        public IActionResult Index()
+        {
+            return ControllerContext.MyDisplayRouteInfo();
+        }
+
+        public IActionResult About()
+        {
+            return ControllerContext.MyDisplayRouteInfo();
+        }
+    }
+    #endregion
+#endif
 }
+
