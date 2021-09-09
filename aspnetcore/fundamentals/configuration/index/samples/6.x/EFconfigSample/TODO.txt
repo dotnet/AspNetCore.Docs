@@ -1,1 +1,0 @@
-Put the EF custom config in this folder and delete this file. Keep the snippets from the 3.0 version so it's easy to update the document.

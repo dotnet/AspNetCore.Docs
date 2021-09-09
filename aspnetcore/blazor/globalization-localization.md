@@ -63,6 +63,37 @@ The following field types have specific formatting requirements and aren't curre
 
 For current browser support of the preceding types, see [Can I use](https://caniuse.com).
 
+## Invariant globalization
+
+If the app doesn't require localization, configure the app to support the invariant culture, which is generally based on United States English (`en-US`). Set the `InvariantGlobalization` property to `true` in the app's project file (`.csproj`):
+
+```xml
+<PropertyGroup>
+  <InvariantGlobalization>true</InvariantGlobalization>
+</PropertyGroup>
+```
+
+Alternatively, configure invariant globalization with the following approaches:
+
+* In `runtimeconfig.json`:
+
+  ```json
+  {
+    "runtimeOptions": {
+      "configProperties": {
+        "System.Globalization.Invariant": true
+      }
+    }
+  }
+  ```
+
+* With an environment variable:
+
+  * Key: `DOTNET_SYSTEM_GLOBALIZATION_INVARIANT`
+  * Value: `true` or `1`
+
+For more information, see [Runtime configuration options for globalization (.NET documentation)](/dotnet/core/run-time-config/globalization).
+
 ## Demonstration component
 
 The following `CultureExample1` component can be used to demonstrate Blazor globalization and localization concepts covered by this article.
@@ -257,14 +288,6 @@ For information on ordering the Localization Middleware in the middleware pipeli
 ::: zone-end
 
 Use the `CultureExample1` component shown in the [Demonstration component](#demonstration-component) section to study how globalization works. Issue a request with United States English (`en-US`). Switch to Chilean Spanish (`es-CL`) in the browser's language settings. Request the webpage again. When the requested language is Chilean Spanish, the app's culture remains United States English (`en-US`).
-
-If the app doesn't require localization, configure the app to support the invariant culture, which is generally based on United States English (`en-US`). Set the `InvariantGlobalization` property to `true` in the app's project file (`.csproj`):
-
-```xml
-<PropertyGroup>
-  <InvariantGlobalization>true</InvariantGlobalization>
-</PropertyGroup>
-```
 
 ## Dynamically set the culture by user preference
 
@@ -926,6 +949,37 @@ The following field types have specific formatting requirements and aren't curre
 
 For current browser support of the preceding types, see [Can I use](https://caniuse.com).
 
+## Invariant globalization
+
+If the app doesn't require localization, configure the app to support the invariant culture, which is generally based on United States English (`en-US`). Set the `InvariantGlobalization` property to `true` in the app's project file (`.csproj`):
+
+```xml
+<PropertyGroup>
+  <InvariantGlobalization>true</InvariantGlobalization>
+</PropertyGroup>
+```
+
+Alternatively, configure invariant globalization with the following approaches:
+
+* In `runtimeconfig.json`:
+
+  ```json
+  {
+    "runtimeOptions": {
+      "configProperties": {
+        "System.Globalization.Invariant": true
+      }
+    }
+  }
+  ```
+
+* With an environment variable:
+
+  * Key: `DOTNET_SYSTEM_GLOBALIZATION_INVARIANT`
+  * Value: `true` or `1`
+
+For more information, see [Runtime configuration options for globalization (.NET documentation)](/dotnet/core/run-time-config/globalization).
+
 ## Demonstration component
 
 The following `CultureExample1` component can be used to demonstrate Blazor globalization and localization concepts covered by this article.
@@ -1120,14 +1174,6 @@ For information on ordering the Localization Middleware in the middleware pipeli
 ::: zone-end
 
 Use the `CultureExample1` component shown in the [Demonstration component](#demonstration-component) section to study how globalization works. Issue a request with United States English (`en-US`). Switch to Chilean Spanish (`es-CL`) in the browser's language settings. Request the webpage again. When the requested language is Chilean Spanish, the app's culture remains United States English (`en-US`).
-
-If the app doesn't require localization, configure the app to support the invariant culture, which is generally based on United States English (`en-US`). Set the `InvariantGlobalization` property to `true` in the app's project file (`.csproj`):
-
-```xml
-<PropertyGroup>
-  <InvariantGlobalization>true</InvariantGlobalization>
-</PropertyGroup>
-```
 
 ## Dynamically set the culture by user preference
 
@@ -1789,6 +1835,37 @@ The following field types have specific formatting requirements and aren't curre
 
 For current browser support of the preceding types, see [Can I use](https://caniuse.com).
 
+## Invariant globalization
+
+If the app doesn't require localization, configure the app to support the invariant culture, which is generally based on United States English (`en-US`). Set the `InvariantGlobalization` property to `true` in the app's project file (`.csproj`):
+
+```xml
+<PropertyGroup>
+  <InvariantGlobalization>true</InvariantGlobalization>
+</PropertyGroup>
+```
+
+Alternatively, configure invariant globalization with the following approaches:
+
+* In `runtimeconfig.json`:
+
+  ```json
+  {
+    "runtimeOptions": {
+      "configProperties": {
+        "System.Globalization.Invariant": true
+      }
+    }
+  }
+  ```
+
+* With an environment variable:
+
+  * Key: `DOTNET_SYSTEM_GLOBALIZATION_INVARIANT`
+  * Value: `true` or `1`
+
+For more information, see [Runtime configuration options for globalization (.NET documentation)](/dotnet/core/run-time-config/globalization).
+
 ## Demonstration component
 
 The following `CultureExample1` component can be used to demonstrate Blazor globalization and localization concepts covered by this article.
@@ -1930,14 +2007,6 @@ For information on ordering the Localization Middleware in the middleware pipeli
 ::: zone-end
 
 Use the `CultureExample1` component shown in the [Demonstration component](#demonstration-component) section to study how globalization works. Issue a request with United States English (`en-US`). Switch to Chilean Spanish (`es-CL`) in the browser's language settings. Request the webpage again. When the requested language is Chilean Spanish, the app's culture remains United States English (`en-US`).
-
-If the app doesn't require localization, configure the app to support the invariant culture, which is generally based on United States English (`en-US`). Set the `InvariantGlobalization` property to `true` in the app's project file (`.csproj`):
-
-```xml
-<PropertyGroup>
-  <InvariantGlobalization>true</InvariantGlobalization>
-</PropertyGroup>
-```
 
 ## Dynamically set the culture by user preference
 

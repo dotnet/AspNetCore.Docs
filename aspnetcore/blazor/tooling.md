@@ -30,6 +30,8 @@ zone_pivot_groups: operating-systems
 
 1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app.
 
+   When running a hosted Blazor WebAssembly solution in Visual Studio, the startup project of the solution is the **`Server`** project.
+
 For more information on trusting the ASP.NET Core HTTPS development certificate, see <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos>.
 
 When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
@@ -287,6 +289,8 @@ For Blazor WebAssembly apps, only method body replacement is currently supported
 
 1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app.
 
+   When running a hosted Blazor WebAssembly solution in Visual Studio, the startup project of the solution is the **`Server`** project.
+
 For more information on trusting the ASP.NET Core HTTPS development certificate, see <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos>.
 
 When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
@@ -514,6 +518,8 @@ dotnet new blazorserver -h
    For information on the two Blazor hosting models, *Blazor WebAssembly* (standalone and hosted) and *Blazor Server*, see <xref:blazor/hosting-models>.
 
 1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app.
+
+   When running a hosted Blazor WebAssembly solution in Visual Studio, the startup project of the solution is the **`Server`** project.
 
 For more information on trusting the ASP.NET Core HTTPS development certificate, see <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos>.
 

@@ -55,13 +55,12 @@ Create a class to fetch the secure email key. For this sample, create *Services/
 
 #### Configure SendGrid user secrets
 
-Set the `SendGridUser` and `SendGridKey` with the [secret-manager tool](xref:security/app-secrets). For example:
+Set the `SendGridKey` with the [secret-manager tool](xref:security/app-secrets). For example:
 
 ```dotnetcli
-dotnet user-secrets set SendGridUser RickAndMSFT
 dotnet user-secrets set SendGridKey <key>
 
-Successfully saved SendGridUser = RickAndMSFT to the secret store.
+Successfully saved SendGridKey to the secret store.
 ```
 
 On Windows, Secret Manager stores keys/value pairs in a *secrets.json* file in the `%APPDATA%/Microsoft/UserSecrets/<WebAppName-userSecretsId>` directory.
@@ -70,7 +69,6 @@ The contents of the *secrets.json* file aren't encrypted. The following markup s
 
 ```json
 {
-  "SendGridUser": "RickAndMSFT",
   "SendGridKey": "<key removed>"
 }
 ```
