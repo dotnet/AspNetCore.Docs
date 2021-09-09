@@ -65,7 +65,7 @@ The code that calls `CreateDefaultBuilder` is in a method named `CreateWebHostBu
   * [User secrets](xref:security/app-secrets) when the app runs in the `Development` environment using the entry assembly.
   * Environment variables.
   * Command-line arguments.
-* Configures [logging](xref:fundamentals/logging/index) for console and debug output. Logging includes [log filtering](xref:fundamentals/logging/index#log-filtering) rules specified in a Logging configuration section of an *appsettings.json* or *appsettings.{Environment}.json* file.
+* Configures [logging](xref:fundamentals/logging/index) for console and debug output. Logging includes [log filtering](xref:fundamentals/logging/index#apply-log-filter-rules-in-code) rules specified in a Logging configuration section of an *appsettings.json* or *appsettings.{Environment}.json* file.
 * When running behind IIS with the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module), `CreateDefaultBuilder` enables [IIS Integration](xref:host-and-deploy/iis/index), which configures the app's base address and port. IIS Integration also configures the app to [capture startup errors](#capture-startup-errors). For the IIS default options, see <xref:host-and-deploy/iis/index#iis-options>.
 * Sets [ServiceProviderOptions.ValidateScopes](/dotnet/api/microsoft.extensions.dependencyinjection.serviceprovideroptions.validatescopes) to `true` if the app's environment is Development. For more information, see [Scope validation](#scope-validation).
 
