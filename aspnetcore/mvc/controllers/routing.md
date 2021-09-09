@@ -35,7 +35,7 @@ This document:
 
 ## Set up conventional route
 
-The ASP.NET Core MVC template generates [conventional routing](#crd) code similar to the following:
+The ASP.NET Core MVC template generates [conventional routing](#crd6) code similar to the following:
 
 [!code-csharp[](routing/samples/6.x/main/Program.cs?name=snippet)]
 
@@ -48,7 +48,7 @@ The route template `"{controller=Home}/{action=Index}/{id?}"`:
 * Matches a URL path like `/Products/Details/5`
 * Extracts the route values `{ controller = Products, action = Details, id = 5 }` by tokenizing the path. The extraction of route values results in a match if the app has a controller named `ProductsController` and a `Details` action:
 
-  [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippetA)]
+  [!code-csharp[](routing/samples/6.x/main/Controllers/ProductsController.cs?name=snippetA)]
 
   [!INCLUDE[](~/includes/MyDisplayRouteInfo.md)]
 
@@ -80,30 +80,26 @@ The URL path `/` uses the route template default `Home` controllers and `Index` 
 
 The convenience method <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapDefaultControllerRoute%2A>:
 
-```csharp
-endpoints.MapDefaultControllerRoute();
-```
+[!code-csharp[](routing/samples/6.x/main/Program.cs?name=snippet4)]
 
 Replaces:
 
-```csharp
-endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
-```
+[!code-csharp[](routing/samples/6.x/main/Program.cs?name=snippet2)]
 
 > [!IMPORTANT]
 > Routing is configured using the <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A> and <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> middleware. To use controllers:
 >
-> * Call <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers%2A> inside `UseEndpoints` to map [attribute routed](#ar6) controllers.
+> * Call <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers%2A> to map [attribute routed](#ar6) controllers.
 > * Call <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute%2A> or <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute%2A>, to map both [conventionally routed](#cr6) controllers and [attribute routed](#ar6) controllers.
 
 <a name="routing-conventional-ref-label"></a>
-<a name="crd"></a>
+<a name="crd6"></a>
 
 ## Conventional routing
 
 Conventional routing is used with controllers and views. The `default` route:
 
-[!code-csharp[](routing/samples/3.x/main/StartupDefaultMVC.cs?name=snippet2)]
+[!code-csharp[](routing/samples/6.x/main/Program.cs?name=snippet2)]
 
 The preceding is an example of a *conventional route*. It's called *conventional routing* because it establishes a *convention* for URL paths:
 
@@ -144,7 +140,7 @@ Most apps should choose a basic and descriptive routing scheme so that URLs are 
 
 * Automatically assign an **order** value to their endpoints based on the order they are invoked.
 
-Endpoint routing in ASP.NET Core 3.0 and later:
+Endpoint routing in ASP.NET Core:
 
 * Doesn't have a concept of routes.
 * Doesn't provide ordering guarantees for the execution of extensibility,  all endpoints are processed at once.
@@ -153,13 +149,13 @@ Enable [Logging](xref:fundamentals/logging/index) to see how the built-in routin
 
 [Attribute routing](#ar6) is explained later in this document.
 
-<a name="mr"></a>
+<a name="mr6"></a>
 
 ### Multiple conventional routes
 
 Multiple [conventional routes](#cr6) can be added inside `UseEndpoints` by adding more calls to <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute%2A> and <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute%2A>. Doing so allows defining multiple conventions, or to adding conventional routes that are dedicated to a specific [action](#action), such as:
 
-[!code-csharp[](routing/samples/3.x/main/Startup.cs?name=snippet_1)]
+[!code-csharp[](routing/samples/6.x/main/Program.cs?name=snippet_mcr)]
 
 <a name="dcr"></a>
 
@@ -181,13 +177,13 @@ The preceding example:
 * Is an example of [Slug](https://developer.mozilla.org/docs/Glossary/Slug) style routing where it's typical to have an article name as part of the URL.
 
 > [!WARNING]
-> In ASP.NET Core 3.0 and later, routing doesn't:
+> In ASP.NET Core, routing doesn't:
 > * Define a concept called a *route*. `UseRouting` adds route matching to the middleware pipeline. The `UseRouting` middleware looks at the set of endpoints defined in the app, and selects the best endpoint match based on the request.
 > * Provide guarantees about the execution order of extensibility like <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> or <xref:Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint>.
 >
 >See [Routing](xref:fundamentals/routing) for reference material on routing.
 
-<a name="cro"></a>
+<a name="cro6"></a>
 
 ### Conventional routing order
 
@@ -207,7 +203,7 @@ When two endpoints match through routing, routing must do one of the following:
 
 For example:
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet9)]
+[!code-csharp[](routing/samples/6.x/main/Controllers/ProductsController.cs?name=snippet9)]
 
 The preceding controller defines two actions that match:
 
@@ -236,7 +232,7 @@ If routing can't choose a best candidate, an <xref:System.Reflection.AmbiguousMa
 
 The strings  `"blog"` and `"default"` in the following examples are conventional route names:
 
-[!code-csharp[](routing/samples/3.x/main/Startup.cs?name=snippet_1)]
+[!code-csharp[](routing/samples/6.x/main/Program.cs?name=snippet_mcr)]
 
 The route names give the route a logical name. The named route can be used for URL generation. Using a named route simplifies URL creation when the ordering of routes could make URL generation complicated. Route names must be unique application wide.
 
@@ -257,9 +253,9 @@ The route name concept is represented in routing as [IEndpointNameMetadata](xref
 
 REST APIs should use attribute routing to model the app's functionality as a set of resources where operations are represented by [HTTP verbs](#verb).
 
-Attribute routing uses a set of attributes to map actions directly to route templates. The following `StartUp.Configure` code is typical for a REST API and is used in the next sample:
+Attribute routing uses a set of attributes to map actions directly to route templates. The following code is typical for a REST API and is used in the next sample:
 
-[!code-csharp[](routing/samples/3.x/main/StartupAPI.cs?name=snippet)]
+[!code-csharp[](routing/samples/6.x/main/Program.cs?name=snippet_webapi)]
 
 In the preceding code, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers%2A> is called inside `UseEndpoints` to map attribute routed controllers.
 
@@ -268,7 +264,7 @@ In the following example:
 * The preceding `Configure` method is used.
 * `HomeController` matches a set of URLs similar to what the default conventional route `{controller=Home}/{action=Index}/{id?}` matches.
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/HomeController.cs?name=snippet2)]
+[!code-csharp[](routing/samples/6.x/main/Controllers/HomeController.cs?name=snippet2)]
 
 The `HomeController.Index` action is run for any of the URL paths `/`, `/Home`, `/Home/Index`, or `/Home/Index/3`.
 
@@ -276,15 +272,15 @@ This example highlights a key programming difference between attribute routing a
 
 With attribute routing, the controller and action names play no part in which action is matched, unless [token replacement](#routing-token-replacement-templates-ref-label) is used. The following example matches the same URLs as the previous example:
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/MyDemoController.cs?name=snippet)]
+[!code-csharp[](routing/samples/6.x/main/Controllers/MyDemoController.cs?name=snippet)]
 
 The following code uses token replacement for `action` and `controller`:
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/HomeController.cs?name=snippet22)]
+[!code-csharp[](routing/samples/6.x/main/Controllers/HomeController.cs?name=snippet22)]
 
 The following code applies `[Route("[controller]/[action]")]` to the controller:
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/HomeController.cs?name=snippet24)]
+[!code-csharp[](routing/samples/6.x/main/Controllers/HomeController.cs?name=snippet24)]
 
 In the preceding code, the `Index` method templates must prepend `/` or `~/` to the route templates. Route templates applied to an action that begin with `/` or `~/` don't get combined with route templates applied to the controller.
 
@@ -302,7 +298,7 @@ The following keywords are reserved route parameter names when using Controllers
 
 Using `page` as a route parameter with attribute routing is a common error. Doing that results in inconsistent and confusing behavior with URL generation.
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/MyDemo2Controller.cs?name=snippet)]
+[!code-csharp[](routing/samples/6.x/main/Controllers/MyDemo2Controller.cs?name=snippet)]
 
 The special parameter names are used by the URL generation to determine if a URL generation operation refers to a Razor Page or to a Controller.
 
@@ -347,26 +343,26 @@ ASP.NET Core has the following route templates:
 
 Consider the following controller:
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/Test2Controller.cs?name=snippet)]
+[!code-csharp[](routing/samples/6.x/main/Controllers/Test2Controller.cs?name=snippet)]
 
 In the preceding code:
 
 * Each action contains the `[HttpGet]` attribute, which constrains matching to HTTP GET requests only.
 * The `GetProduct` action includes the `"{id}"` template, therefore `id` is appended to the `"api/[controller]"` template on the controller. The methods template is `"api/[controller]/"{id}""`. Therefore this action only matches GET requests for the form `/api/test2/xyz`,`/api/test2/123`,`/api/test2/{any string}`, etc.
-  [!code-csharp[](routing/samples/3.x/main/Controllers/Test2Controller.cs?name=snippet2)]
+  [!code-csharp[](routing/samples/6.x/main/Controllers/Test2Controller.cs?name=snippet2)]
 * The `GetIntProduct` action contains the `"int/{id:int}")` template. The `:int` portion of the template constrains the `id` route values to strings that can be converted to an integer. A GET request to `/api/test2/int/abc`:
   * Doesn't match this action.
   * Returns a [404 Not Found](https://developer.mozilla.org/docs/Web/HTTP/Status/404) error.
-    [!code-csharp[](routing/samples/3.x/main/Controllers/Test2Controller.cs?name=snippet3)]
+    [!code-csharp[](routing/samples/6.x/main/Controllers/Test2Controller.cs?name=snippet3)]
 * The `GetInt2Product` action contains `{id}` in the template, but doesn't constrain `id` to values that can be converted to an integer. A GET request to `/api/test2/int2/abc`:
   * Matches this route.
   * Model binding fails to convert `abc` to an integer. The `id` parameter of the method is integer.
   * Returns a [400 Bad Request](https://developer.mozilla.org/docs/Web/HTTP/Status/400) because model binding failed to convert`abc` to an integer.
-      [!code-csharp[](routing/samples/3.x/main/Controllers/Test2Controller.cs?name=snippet4)]
+      [!code-csharp[](routing/samples/6.x/main/Controllers/Test2Controller.cs?name=snippet4)]
 
 Attribute routing can use <xref:Microsoft.AspNetCore.Mvc.Routing.HttpMethodAttribute> attributes such as <xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute>, <xref:Microsoft.AspNetCore.Mvc.HttpPutAttribute>, and <xref:Microsoft.AspNetCore.Mvc.HttpDeleteAttribute>. All of the [HTTP verb](#verb) attributes accept a route template. The following example shows two actions that match the same route template:
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/MyProductsController.cs?name=snippet1)]
+[!code-csharp[](routing/samples/6.x/main/Controllers/MyProductsController.cs?name=snippet1)]
 
 Using the URL path `/products3`:
 
@@ -379,7 +375,7 @@ REST APIs should use attribute routing to model the app's functionality as a set
 
 Since an attribute route applies to a specific action, it's easy to make parameters required as part of the route template definition. In the following example, `id` is required as part of the URL path:
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/ProductsApiController.cs?name=snippet2)]
+[!code-csharp[](routing/samples/6.x/main/Controllers/ProductsApiController.cs?name=snippet2)]
 
 The `Products2ApiController.GetProduct(int)` action:
 
@@ -396,7 +392,7 @@ For more information on `[ApiController]`, see [ApiController attribute](xref:we
 
 The following code  defines a route name of `Products_List`:
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/ProductsApiController.cs?name=snippet2)]
+[!code-csharp[](routing/samples/6.x/main/Controllers/ProductsApiController.cs?name=snippet2)]
 
 Route names can be used to generate a URL based on a specific route. Route names:
 
@@ -413,7 +409,7 @@ Contrast the preceding code with the conventional default route, which defines t
 
 To make attribute routing less repetitive, route attributes on the controller are combined with route attributes on the individual actions. Any route templates defined on the controller are prepended to route templates on the actions. Placing a route attribute on the controller makes **all** actions in the controller use attribute routing.
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/ProductsApiController.cs?name=snippet)]
+[!code-csharp[](routing/samples/6.x/main/Controllers/ProductsApiController.cs?name=snippet)]
 
 In the preceding example:
 
@@ -424,7 +420,7 @@ Both of these actions only match HTTP `GET` because they're marked with the `[Ht
 
 Route templates applied to an action that begin with `/` or `~/` don't get combined with route templates applied to the controller. The following example matches a set of URL paths similar to the default route.
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/HomeController.cs?name=snippet)]
+[!code-csharp[](routing/samples/6.x/main/Controllers/HomeController.cs?name=snippet)]
 
 The following table explains the `[Route]` attributes in the preceding code:
 
@@ -453,9 +449,9 @@ Attribute routes can configure an order using the <xref:Microsoft.AspNetCore.Mvc
 
 Consider the following two controllers which both define the route matching `/home`:
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/HomeController.cs?name=snippet2)]
+[!code-csharp[](routing/samples/6.x/main/Controllers/HomeController.cs?name=snippet2)]
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/MyDemoController.cs?name=snippet)]
+[!code-csharp[](routing/samples/6.x/main/Controllers/MyDemoController.cs?name=snippet)]
 
 Requesting `/home` with the preceding code throws an exception similar to the following:
 
@@ -468,7 +464,7 @@ AmbiguousMatchException: The request matched multiple endpoints. Matches:
 
 Adding `Order` to one of the route attributes resolves the ambiguity:
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/MyDemo3Controller.cs?name=snippet3& highlight=2)]
+[!code-csharp[](routing/samples/6.x/main/Controllers/MyDemo3Controller.cs?name=snippet3& highlight=2)]
 
 With the preceding code, `/home` runs the `HomeController.Index` endpoint. To get to the `MyDemoController.MyIndex`, request `/home/MyIndex`. **Note**:
 
@@ -485,28 +481,28 @@ In some cases, an HTTP 500 error is returned with ambiguous routes. Use [logging
 
 For convenience, attribute routes support *token replacement* by enclosing a token in square-brackets (`[`, `]`). The tokens `[action]`, `[area]`, and `[controller]` are replaced with the values of the action name, area name, and controller name from the action where the route is defined:
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet)]
+[!code-csharp[](routing/samples/6.x/main/Controllers/ProductsController.cs?name=snippet)]
 
 In the preceding code:
 
-  [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet10)]
+  [!code-csharp[](routing/samples/6.x/main/Controllers/ProductsController.cs?name=snippet10)]
 
   * Matches `/Products0/List`
 
-  [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet11)]
+  [!code-csharp[](routing/samples/6.x/main/Controllers/ProductsController.cs?name=snippet11)]
 
   * Matches `/Products0/Edit/{id}`
 
 Token replacement occurs as the last step of building the attribute routes. The preceding example behaves the same as the following code:
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet20)]
+[!code-csharp[](routing/samples/6.x/main/Controllers/ProductsController.cs?name=snippet20)]
 
 [!INCLUDE[](~/includes/MTcomments.md)]
 
 Attribute routes can also be combined with inheritance. This is powerful combined with token replacement. Token replacement also applies to route names defined by attribute routes.
 `[Route("[controller]/[action]", Name="[controller]_[action]")]`generates a unique route name for each action:
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet5)]
+[!code-csharp[](routing/samples/6.x/main/Controllers/ProductsController.cs?name=snippet5)]
 
 To match the literal token replacement delimiter `[` or  `]`, escape it by repeating the character (`[[` or `]]`).
 
@@ -515,7 +511,7 @@ To match the literal token replacement delimiter `[` or  `]`, escape it by repea
 ### Use a parameter transformer to customize token replacement
 
 Token replacement can be customized using a parameter transformer. A parameter transformer implements <xref:Microsoft.AspNetCore.Routing.IOutboundParameterTransformer> and transforms the value of parameters. For example, a custom `SlugifyParameterTransformer` parameter transformer changes the `SubscriptionManagement` route value to `subscription-management`:
-
+zz
 [!code-csharp[](routing/samples/3.x/main/StartupSlugifyParamTransformer.cs?name=snippet2)]
 
 The <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.RouteTokenTransformerConvention> is an application model convention that:
@@ -523,7 +519,7 @@ The <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.RouteTokenTransformerConven
 * Applies a parameter transformer to all attribute routes in an application.
 * Customizes the attribute route token values as they are replaced.
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/SubscriptionManagementController.cs?name=snippet)]
+[!code-csharp[](routing/samples/6.x/main/Controllers/SubscriptionManagementController.cs?name=snippet)]
 
 The preceding `ListAll` method matches `/subscription-management/list-all`.
 
@@ -540,11 +536,11 @@ See [MDN web docs on Slug](https://developer.mozilla.org/docs/Glossary/Slug) for
 
 Attribute routing supports defining multiple routes that reach the same action. The most common usage of this is to mimic the behavior of the default conventional route as shown in the following example:
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet6x)]
+[!code-csharp[](routing/samples/6.x/main/Controllers/ProductsController.cs?name=snippet6x)]
 
 Putting multiple route attributes on the controller means that each one combines with each of the route attributes on the action methods:
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet6)]
+[!code-csharp[](routing/samples/6.x/main/Controllers/ProductsController.cs?name=snippet6)]
 
 All the [HTTP verb](#verb) route constraints implement `IActionConstraint`.
 
@@ -552,7 +548,7 @@ When multiple route attributes that implement <xref:Microsoft.AspNetCore.Mvc.Act
 
 * Each action constraint combines with the route template applied to the controller.
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet7)]
+[!code-csharp[](routing/samples/6.x/main/Controllers/ProductsController.cs?name=snippet7)]
 
 Using multiple routes on actions might seem useful and powerful, it's better to keep your app's URL space basic and well defined. Use multiple routes on actions **only** where needed, for example, to support existing clients.
 
@@ -562,7 +558,7 @@ Using multiple routes on actions might seem useful and powerful, it's better to 
 
 Attribute routes support the same inline syntax as conventional routes to specify optional parameters, default values, and constraints.
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet8&highlight=3)]
+[!code-csharp[](routing/samples/6.x/main/Controllers/ProductsController.cs?name=snippet8&highlight=3)]
 
 In the preceding code, `[HttpPost("product14/{id:int}")]` applies a route constraint. The `Products14Controller.ShowProduct` action is matched only by URL paths like `/product14/3`. The route template portion `{id:int}` constrains that segment to only integers.
 
@@ -579,7 +575,7 @@ All of the [route attributes](#rt) implement <xref:Microsoft.AspNetCore.Mvc.Rout
 
 Implement `IRouteTemplateProvider` to define custom route attributes. Each `IRouteTemplateProvider` allows you to define a single route with a custom route template, order, and name:
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/MyTestApiController.cs?name=snippet&highlight=1-10)]
+[!code-csharp[](routing/samples/6.x/main/Controllers/MyTestApiController.cs?name=snippet&highlight=1-10)]
 
 The preceding `Get` method returns `Order = 2, Template = api/MyTestApi`.
 

@@ -5,7 +5,7 @@
 //#define Second
 //#define Third
 
-#define Forth
+#define Second
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Docs.Samples;

@@ -153,9 +153,8 @@ namespace WebMvcRouting.Controllers
                 return ControllerContext.MyDisplayRouteInfo(id, product.name);
             }
         }
+        #endregion
     }
-
-    #endregion
 
     public class Product
     {

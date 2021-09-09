@@ -1,4 +1,4 @@
-﻿#define MYDEMO
+﻿//#define MYDEMO
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Docs.Samples;
