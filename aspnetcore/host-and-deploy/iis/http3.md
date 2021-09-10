@@ -27,7 +27,7 @@ For an in-process deployment when an HTTP/3 connection is established, [`HttpReq
 
 For more information on the in-process and out-of-process hosting models, see <xref:host-and-deploy/aspnet-core-module>.
 
-HTTP/3 is discovered as an upgrade from HTTP/1.1 or HTTP/2 via the `alt-svc` header. That means the first request will normally use HTTP/1.1 or HTTP/2 before switching to HTTP/3. IIS does not automatically adds the `alt-svc` header, it must be added by the application. Here is a middleware example that adds the `alt-svc` response header, place this early in your request pipeline.
+HTTP/3 is discovered as an upgrade from HTTP/1.1 or HTTP/2 via the `alt-svc` header. That means the first request will normally use HTTP/1.1 or HTTP/2 before switching to HTTP/3. IIS doesn't automatically add the `alt-svc` header, it must be added by the application. The following code is a middleware example that adds the `alt-svc` response header.
 
 ```C#
 app.Use((context, next) =>
@@ -36,5 +36,7 @@ app.Use((context, next) =>
     return next(context);
 });
 ```
+
+Place the preceding code early in the request pipeline.
 
 IIS also supports sending an AltSvc HTTP/2 protocol message rather than a response header to notify the client that HTTP/3 is available. See the [EnableAltSvc registry key](https://techcommunity.microsoft.com/t5/networking-blog/enabling-http-3-support-on-windows-server-2022/ba-p/2676880). Note this requires netsh sslcert bindings that use host names rather than IP addresses.
