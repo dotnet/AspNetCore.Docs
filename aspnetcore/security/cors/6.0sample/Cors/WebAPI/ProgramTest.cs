@@ -1,5 +1,6 @@
 #define  TEST // TEST TESTE
 #if TEST
+// Deploy to CORS1
 #region snippet_test
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,7 +37,7 @@ app.MapRazorPages();
 
 app.Run();
 #endregion
-#elif TESTE
+#elif TESTE  // Deploy to CORS3
 #region snippet_teste
 var builder = WebApplication.CreateBuilder(args);
 
