@@ -1,7 +1,7 @@
 ---
 title: Controller action return types in ASP.NET Core web API
 author: rick-anderson
-description: Learn about using the various controller action method return types in an ASP.NET Core web API.
+description: IActionResult vs IActionResult
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 02/03/2020
@@ -139,7 +139,7 @@ For example, the following model indicates that requests must include the `Name`
 
 If the [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute in ASP.NET Core 2.1 or later is applied, model validation errors result in a 400 status code. For more information, see [Automatic HTTP 400 responses](xref:web-api/index#automatic-http-400-responses).
 
-## ActionResult\<T> type
+## ActionResult\<T> type vs IActionResult 
 
 ASP.NET Core 2.1 introduced the [ActionResult\<T>](xref:Microsoft.AspNetCore.Mvc.ActionResult`1) return type for web API controller actions. It enables you to return a type deriving from <xref:Microsoft.AspNetCore.Mvc.ActionResult> or return a [specific type](#specific-type). `ActionResult<T>` offers the following benefits over the [IActionResult type](#iactionresult-type):
 
