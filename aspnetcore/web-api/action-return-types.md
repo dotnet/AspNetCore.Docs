@@ -19,7 +19,7 @@ ASP.NET Core offers the following options for web API controller action return t
 ::: moniker range=">= aspnetcore-2.1"
 
 * [Specific type](#specific-type)
-* [IActionResult](#iactionresult-type)
+* [IActionResult](#arvi)
 * [ActionResult\<T>](#actionresultt-type)
 
 ::: moniker-end
@@ -27,7 +27,7 @@ ASP.NET Core offers the following options for web API controller action return t
 ::: moniker range="<= aspnetcore-2.0"
 
 * [Specific type](#specific-type)
-* [IActionResult](#iactionresult-type)
+* [IActionResult](#arvi)
 
 ::: moniker-end
 
@@ -41,7 +41,7 @@ The simplest action returns a primitive or complex data type (for example, `stri
 
 Without known conditions to safeguard against during action execution, returning a specific type could suffice. The preceding action accepts no parameters, so parameter constraints validation isn't needed.
 
-When multiple return types are possible, it's common to mix an <xref:Microsoft.AspNetCore.Mvc.ActionResult> return type with the primitive or complex return type. Either [IActionResult](#iactionresult-type) or [ActionResult\<T>](#actionresultt-type) are necessary to accommodate this type of action. Several samples of multiple return types are provided in this document.
+When multiple return types are possible, it's common to mix an <xref:Microsoft.AspNetCore.Mvc.ActionResult> return type with the primitive or complex return type. Either [IActionResult](#arvi) or [ActionResult\<T>](#actionresultt-type) are necessary to accommodate this type of action. Several samples of multiple return types are provided in this document.
 
 ### Return IEnumerable\<T> or IAsyncEnumerable\<T>
 
@@ -139,9 +139,9 @@ For example, the following model indicates that requests must include the `Name`
 
 If the [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute in ASP.NET Core 2.1 or later is applied, model validation errors result in a 400 status code. For more information, see [Automatic HTTP 400 responses](xref:web-api/index#automatic-http-400-responses).
 
-## ActionResult\<T> type vs IActionResult 
+<h2 id="arvi">ActionResult\<T> type vs IActionResult</h2>
 
-ASP.NET Core 2.1 introduced the [ActionResult\<T>](xref:Microsoft.AspNetCore.Mvc.ActionResult`1) return type for web API controller actions. It enables you to return a type deriving from <xref:Microsoft.AspNetCore.Mvc.ActionResult> or return a [specific type](#specific-type). `ActionResult<T>` offers the following benefits over the [IActionResult type](#iactionresult-type):
+ASP.NET Core 2.1 introduced the [ActionResult\<T>](xref:Microsoft.AspNetCore.Mvc.ActionResult`1) return type for web API controller actions. It enables you to return a type deriving from <xref:Microsoft.AspNetCore.Mvc.ActionResult> or return a [specific type](#specific-type). `ActionResult<T>` offers the following benefits over the [IActionResult type](#arvi):
 
 * The [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) attribute's `Type` property can be excluded. For example, `[ProducesResponseType(200, Type = typeof(Product))]` is simplified to `[ProducesResponseType(200)]`. The action's expected return type is instead inferred from the `T` in `ActionResult<T>`.
 * [Implicit cast operators](/dotnet/csharp/language-reference/keywords/implicit) support the conversion of both `T` and `ActionResult` to `ActionResult<T>`. `T` converts to <xref:Microsoft.AspNetCore.Mvc.ObjectResult>, which means `return new ObjectResult(T);` is simplified to `return T;`.
