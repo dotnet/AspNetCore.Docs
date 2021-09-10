@@ -1,7 +1,7 @@
 ---
 title: Controller action return types in ASP.NET Core web API
 author: rick-anderson
-description: IActionResult vs IActionResult
+description: ActionResult vs IActionResult
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 02/03/2020
