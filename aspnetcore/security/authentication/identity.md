@@ -117,6 +117,8 @@ The template-generated app doesn't use [authorization](xref:security/authorizati
 
 For more information on `IdentityOptions`, see <xref:Microsoft.AspNetCore.Identity.IdentityOptions> and [Application Startup](xref:fundamentals/startup).
 
+<!-- Start here for .NET 6 -->
+
 ## Scaffold Register, Login, LogOut, and RegisterConfirmation
 
 # [Visual Studio](#tab/visual-studio)
