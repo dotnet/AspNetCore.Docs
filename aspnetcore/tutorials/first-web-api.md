@@ -405,7 +405,7 @@ This tutorial uses [http-repl](../web-api/http-repl/index.md) to test the web AP
 
 * Press Ctrl+F5 to run the app.
 
-* Open a new terminal window, and run the following commands:
+* Open a new terminal window, and run the following commands. If your app uses a different port number, replace 5001 in the httprepl command with your port number.
 
   ```dotnetcli
   httprepl https://localhost:5001/api/todoitems
@@ -431,7 +431,9 @@ This tutorial uses [http-repl](../web-api/http-repl/index.md) to test the web AP
   
 ### Test the location header URI
 
-To test the location header, copy and paste it into an httprepl command. The following example assumes that you're still in an httprepl session. If you ended the previous httprepl session, replace `connect` with `httprepl` in the following commands:
+To test the location header, copy and paste it into an httprepl `get` command.
+
+The following example assumes that you're still in an httprepl session. If you ended the previous httprepl session, replace `connect` with `httprepl` in the following commands:
 
 ```dotnetcli
 connect https://localhost:5001/api/todoitems/1
@@ -462,9 +464,6 @@ Two GET endpoints are implemented:
 * `GET /api/todoitems/{id}`
 
 You just saw an example of the `/api/todoitems/{id}` route. Test the `/api/todoitems` route:
-
-* `https://localhost:5001/api/todoitems`
-* `https://localhost:5001/api/todoitems/1`
 
 ```dotnetcli
 connect https://localhost:5001/api/todoitems
@@ -571,7 +570,7 @@ Server: Kestrel
 
 ## Prevent over-posting
 
-Currently the sample app exposes the entire `TodoItem` object. Production apps typically limit the data that's input and returned using a subset of the model. There are multiple reasons behind this and security is a major one. The subset of a model is usually referred to as a Data Transfer Object (DTO), input model, or view model. **DTO** is used in this article.
+Currently the sample app exposes the entire `TodoItem` object. Production apps typically limit the data that's input and returned using a subset of the model. There are multiple reasons behind this, and security is a major one. The subset of a model is usually referred to as a Data Transfer Object (DTO), input model, or view model. **DTO** is used in this tutorial.
 
 A DTO may be used to:
 
