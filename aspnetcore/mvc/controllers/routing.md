@@ -15,7 +15,7 @@ By [Ryan Nowak](https://github.com/rynowak), [Kirk Larkin](https://twitter.com/s
 
 ASP.NET Core controllers use the Routing [middleware](xref:fundamentals/middleware/index) to match the URLs of incoming requests and map them to [actions](#action).  Route templates:
 
-* Are defined in startup code or attributes.
+* Are defined at startup in *Program.cs* or in attributes.
 * Describe how URL paths are matched to [actions](#action).
 * Are used to generate URLs for links. The generated links are typically returned in responses.
 
@@ -261,7 +261,6 @@ In the preceding code, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRout
 
 In the following example:
 
-* The preceding `Configure` method is used.
 * `HomeController` matches a set of URLs similar to what the default conventional route `{controller=Home}/{action=Index}/{id?}` matches.
 
 [!code-csharp[](routing/samples/6.x/main/Controllers/HomeController.cs?name=snippet2)]
@@ -585,7 +584,7 @@ The preceding `Get` method returns `Order = 2, Template = api/MyTestApi`.
 
 The application model:
 
-* Is an object model created at startup.
+* Is an object model created at startup in *Program.cs*.
 * Contains all of the metadata used by ASP.NET Core to route and execute the actions in an app.
 
 The application model includes all of the data gathered from route attributes. The data from route attributes is provided by the `IRouteTemplateProvider` implementation. Conventions:
@@ -927,7 +926,7 @@ endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}"
 ```
 
 > [!IMPORTANT]
-> Routing is configured using the <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A> and <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> middleware. To use controllers:
+> Routing is configured using the <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>, `MapControllerRoute`, and `MapAreaControllerRoute` middleware . To use controllers:
 >
 > * Call <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers%2A> inside `UseEndpoints` to map [attribute routed](#ar) controllers.
 > * Call <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute%2A> or <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute%2A>, to map both [conventionally routed](#cr) controllers and [attribute routed](#ar) controllers.
@@ -1101,7 +1100,6 @@ In the preceding code, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRout
 
 In the following example:
 
-* The preceding `Configure` method is used.
 * `HomeController` matches a set of URLs similar to what the default conventional route `{controller=Home}/{action=Index}/{id?}` matches.
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/HomeController.cs?name=snippet2)]
