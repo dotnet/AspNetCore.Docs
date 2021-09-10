@@ -38,7 +38,7 @@ The Developer Exception Page can include the following information about the exc
 * Cookies if any
 * Headers
 
-The Developer Exception Page is not guaranteed to provide any information. Use [Logging](fundamentals/logging/index) for complete error information.
+The Developer Exception Page is not guaranteed to provide any information. Use [Logging](xref:fundamentals/logging/index) for complete error information.
 
 ## Exception handler page
 
