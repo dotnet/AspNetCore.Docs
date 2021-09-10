@@ -1,6 +1,4 @@
-#define NRC // FIRST SECOND   NRC
 
-#if FIRST
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -32,35 +30,3 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
-#elif NRC
-#region snippet_nrc
-using My.Application.Controllers;
-
-var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddControllersWithViews(options =>
-{
-    options.Conventions.Add(
-     new NamespaceRoutingConvention(typeof(HomeController).Namespace!));
-});
-
-var app = builder.Build();
-#endregion
-
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Home/Error");
-    app.UseHsts();
-}
-
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-
-app.UseRouting();
-
-app.UseAuthorization();
-
-app.MapDefaultControllerRoute();
-
-app.Run();
-#endif

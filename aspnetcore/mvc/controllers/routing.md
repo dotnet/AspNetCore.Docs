@@ -641,7 +641,7 @@ Attribute routing and conventional routing use the same routing engine.
 <a name="routing-url-gen-ref-label"></a>
 <a name="ambient"></a>
 
-## URL Generation and ambient values zz
+## URL Generation and ambient values
 
 Apps can use routing URL generation features to generate URL links to actions. Generating URLs eliminates [hard-coding](https://wikipedia.org/wiki/Hard_coding) URLs, making code more robust and maintainable. This section focuses on the URL generation features provided by MVC and only cover basics of how URL generation works. See [Routing](xref:fundamentals/routing) for a detailed description of URL generation.
 
