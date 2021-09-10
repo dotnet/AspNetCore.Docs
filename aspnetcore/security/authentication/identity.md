@@ -256,17 +256,6 @@ To prevent publishing static Identity assets (stylesheets and JavaScript files f
 
 ::: moniker-end
 
----
-title: Introduction to Identity on ASP.NET Core
-author: rick-anderson
-description: Use Identity with an ASP.NET Core app. Learn how to set password requirements (RequireDigit, RequiredLength, RequiredUniqueChars, and more).
-ms.author: riande
-ms.date: 7/15/2020
-no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
-uid: security/authentication/identity
----
-# Introduction to Identity on ASP.NET Core
-
 ::: moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
