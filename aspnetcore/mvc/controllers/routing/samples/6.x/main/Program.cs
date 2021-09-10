@@ -19,6 +19,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
 #region snippet2
 app.MapControllerRoute(
     name: "default",
@@ -46,6 +47,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
 #region snippet4
 app.MapDefaultControllerRoute();
 #endregion
@@ -70,6 +72,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
 #region snippet_mcr
 app.MapControllerRoute(name: "blog",
                 pattern: "blog/{*article}",

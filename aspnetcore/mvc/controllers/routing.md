@@ -37,7 +37,7 @@ This document:
 
 The ASP.NET Core MVC template generates [conventional routing](#crd6) code similar to the following:
 
-[!code-csharp[](routing/samples/6.x/main/Program.cs?name=snippet)]
+[!code-csharp[](routing/samples/6.x/main/Program.cs?name=snippet&highlight=20-22)]
 
 <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute%2A> is used to create a single route. The single route is named `default` route. Most apps with controllers and views use a route template similar to the `default` route. REST APIs should use [attribute routing](#ar6).
 
@@ -523,9 +523,9 @@ The <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.RouteTokenTransformerConven
 
 The preceding `ListAll` method matches `/subscription-management/list-all`.
 
-The `RouteTokenTransformerConvention` is registered as an option in `ConfigureServices`.
+The `RouteTokenTransformerConvention` is registered as an option:
 
-[!code-csharp[](routing/samples/6.x/main/Program.cs?name=snippet_slug)]
+[!code-csharp[](routing/samples/6.x/main/Program.cs?name=snippet_slug&range=5-9)]
 
 See [MDN web docs on Slug](https://developer.mozilla.org/docs/Glossary/Slug) for the definition of Slug.
 
