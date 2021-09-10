@@ -31,12 +31,14 @@ The templates place <xref:Microsoft.AspNetCore.Builder.DeveloperExceptionPageExt
 
 The preceding code enables the Developer Exception Page ***only*** when the app runs in the Development environment. Detailed exception information should not be displayed publicly when the app runs in the Production environment. For more information on configuring environments, see <xref:fundamentals/environments>.
 
-The Developer Exception Page includes the following information about the exception and the request:
+The Developer Exception Page can include the following information about the exception and the request:
 
 * Stack trace
 * Query string parameters if any
 * Cookies if any
 * Headers
+
+The Developer Exception Page is not guaranteed to provide any information. Use [Logging](xref:fundamentals/logging/index) for complete error information.
 
 ## Exception handler page
 
