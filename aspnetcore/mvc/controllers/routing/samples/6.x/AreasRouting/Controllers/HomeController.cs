@@ -1,30 +1,32 @@
-﻿using AreasRouting.Models;
-using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
+﻿using Microsoft.AspNetCore.Mvc;
 
-namespace AreasRouting.Controllers;
-public class HomeController : Controller
+namespace AreasRouting.Controllers
 {
-    private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
+    // Use  webBuilder.UseStartup<Startup6>();
+    #region snippet
+    public class HomeController : Controller
     {
-        _logger = logger;
-    }
+        public IActionResult About()
+        {
+            var url = Url.Action("AddUser", "Users", new { Area = "Zebra" });
+            return Content($"URL: {url}");
+        }
+        #endregion
 
-    public IActionResult Index()
-    {
-        return View();
-    }
+        public IActionResult Index()
+        {
+            return View();
+        }
+        public IActionResult Contact()
+        {
+            ViewData["Message"] = "Your contact page.";
 
-    public IActionResult Privacy()
-    {
-        return View();
-    }
+            return View();
+        }
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        public IActionResult Error()
+        {
+            return View();
+        }
     }
 }

@@ -791,14 +791,14 @@ Using the preceding route definitions, `Url.Action("Index", "Home")` generates t
 Using areas allows an app to have multiple controllers with the same name, as long as they have different areas. Using areas creates a hierarchy for the purpose of routing by adding another route parameter, `area` to `controller` and `action`. This section discusses how routing interacts with areas. See [Areas](xref:mvc/controllers/areas) for details about how areas are used with views.
 
 The following example configures MVC to use the default conventional route and an `area` route for an `area` named `Blog`:
-zz
-[!code-csharp[](routing/samples/3.x/AreasRouting/Startup.cs?name=snippet1)]
+
+[!code-csharp[](routing/samples/6.x/AreasRouting/Program.cs?name=snippet_)]
 
 In the preceding code, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute%2A> is called to create the `"blog_route"`. The second parameter, `"Blog"`, is the area name.
 
 When matching a URL path like `/Manage/Users/AddUser`, the `"blog_route"` route generates the route values `{ area = Blog, controller = Users, action = AddUser }`. The `area` route value is produced by a default value for `area`. The route created by `MapAreaControllerRoute` is equivalent to the following:
 
-[!code-csharp[](routing/samples/3.x/AreasRouting/Startup2.cs?name=snippet2)]
+[!code-csharp[](routing/samples/6.x/AreasRouting/Program.cs?name=snippet_2)]
 
 `MapAreaControllerRoute` creates a route using both a default value and constraint for `area` using the provided area name, in this case `Blog`. The default value ensures that the route always produces `{ area = Blog, ... }`, the constraint requires the value `{ area = Blog, ... }` for URL generation.
 
@@ -826,7 +826,7 @@ In terms of matching *no value*, the absence of the `area` value is the same as 
 
 When executing an action inside an area, the route value for `area` is available as an [ambient value](#ambient) for routing to use for URL generation. This means that by default areas act *sticky* for URL generation as demonstrated by the following sample.
 
-[!code-csharp[](routing/samples/3.x/AreasRouting/Startup3.cs?name=snippet3)]
+[!code-csharp[](routing/samples/6.x/AreasRouting/Program.cs?name=snippet_3)]
 
 [!code-csharp[](routing/samples/3.x/AreasRouting/Areas/Duck/Controllers/UsersController.cs)]
 
