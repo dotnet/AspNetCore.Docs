@@ -600,7 +600,7 @@ In the following example:
 > [!NOTE]
 > The following examples aren't typical use cases for this scenario because the [struct](/dotnet/csharp/language-reference/builtin-types/struct) passed to JS doesn't result in poor component performance. The example uses a small object merely to demonstrate the concepts for passing unserialized .NET data.
 
-Place the following `<script>` block in `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server). Alternatively, you can place the JS in an external JS file referenced inside the closing `</body>` tag with `<script src="{SCRIPT PATH AND FILE NAME (.js)}"></script>`, where the `{SCRIPT PATH AND FILE NAME (.js)}` placeholder is the path and file name of the script.
+Place the following `<script>` block in `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server). Alternatively, add the JS to an external file referenced inside the closing `</body>` tag. For example, `<script src="{SCRIPT PATH AND FILE NAME (.js)}"></script>`, where the `{SCRIPT PATH AND FILE NAME (.js)}` placeholder is the path and file name of the script.
 
 ```javascript
 <script>
