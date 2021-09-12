@@ -366,7 +366,7 @@ For more information, see the [Blazor Security and Identity articles](xref:blazo
 <a name="full"></a>
 
 ## Create full Identity UI source
-
+<!-- remove AllowAreas  #23280 -->
 To maintain full control of the Identity UI, run the Identity scaffolder and select **Override all files**.
 
 The following highlighted code shows the changes to replace the default Identity UI with Identity in an ASP.NET Core 2.1 web app. You might want to do this to have full control of the Identity UI.
