@@ -26,7 +26,7 @@ On the client, the Blazor script (`blazor.server.js`) establishes the SignalR co
 The Blazor Server hosting model offers several benefits:
 
 * Download size is significantly smaller than a Blazor WebAssembly app, and the app loads much faster.
-* The app takes full advantage of server capabilities, including use of any .NET Core APIs.
+* The app takes full advantage of server capabilities, including the use of .NET Core APIs.
 * .NET Core on the server is used to run the app, so existing .NET tooling, such as debugging, works as expected.
 * Thin clients are supported. For example, Blazor Server apps work with browsers that don't support WebAssembly and on resource-constrained devices.
 * The app's .NET/C# code base, including the app's component code, isn't served to clients.
@@ -93,7 +93,7 @@ Choice of the Blazor hosting model is an early consideration for Blazor app deve
 | Serverless deployment                         | ❌ | ✔️ |
 | Offloads processing to clients                | ❌ | ✔️ |
 
-&dagger;Blazor WebAssembly apps can leverage web API to shield private C# code from clients, including with the use of authorization for secure access.
+&dagger;Blazor WebAssembly apps can use web API with ASP.NET Core Identity to keep C# code private and secure.
 
 ## Additional resources
 
