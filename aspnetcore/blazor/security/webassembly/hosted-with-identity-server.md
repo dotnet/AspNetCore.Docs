@@ -481,7 +481,7 @@ For this hosting scenario, do **not** use the same certificate for [Identity Ser
 * TLS certificates for communication with browsers is managed independently without affecting Identity Server's token signing.
 * When [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) supplies a certificate to an App Service app for custom domain binding, Identity Server can't obtain the same certificate from Azure Key Vault for token signing. Although configuring Identity Server to use the same TLS certificate from a physical path is possible, placing security certificates into source control is a **poor practice and should be avoided in most scenarios**.
 
-In the following guidance, a self-signed certificate is created in Azure Key Vault solely for Identity Server token signing. The Identity Server configuration uses the key vault certificate via the app's `My` > `CurrentUser` certificate store. Other certificates used for HTTPS traffic with custom domains are created and configured separately from the Identity Server signing certificate.
+In the following guidance, a self-signed certificate is created in Azure Key Vault solely for Identity Server token signing. The Identity Server configuration uses the key vault certificate via the app's `CurrentUser` > `My` certificate store. Other certificates used for HTTPS traffic with custom domains are created and configured separately from the Identity Server signing certificate.
 
 To configure an app, Azure App Service, and Azure Key Vault to host with a custom domain and HTTPS:
 
@@ -564,7 +564,7 @@ We recommend using a new in-private or incognito browser window for each app tes
 
 When App Service configuration is changed in the Azure portal, the updates generally take effect quickly but aren't instant. Sometimes, you must wait a short period for an App Service to restart in order for a configuration change to take effect.
 
-If troubleshooting a certificate loading problem, execute the following command in an Azure portal [Kudu](https://github.com/projectkudu/kudu/wiki/Accessing-the-kudu-service) PowerShell command shell. The command provides a list of certificates that the app can access from the `My` > `CurrentUser` certificate store. The output includes certificate subjects and thumbprints useful when debugging an app:
+If troubleshooting a certificate loading problem, execute the following command in an Azure portal [Kudu](https://github.com/projectkudu/kudu/wiki/Accessing-the-kudu-service) PowerShell command shell. The command provides a list of certificates that the app can access from the `CurrentUser` > `My` certificate store. The output includes certificate subjects and thumbprints useful when debugging an app:
 
 ```powershell
 Get-ChildItem -path Cert:\CurrentUser\My -Recurse | Format-List DnsNameList, Subject, Thumbprint, EnhancedKeyUsageList
@@ -1111,7 +1111,7 @@ The guidance in this section explains:
 
 In the following guidance, a self-signed certificate is created in Azure Key Vault solely for Identity Server token signing. The Identity Server configuration uses the key vault certificate following different approaches for **Windows** App Service and **Linux** App Service:
 
-* **Windows** App Service: The app's `My` > `CurrentUser` certificate store is accessed by the app to load the certificate.
+* **Windows** App Service: The app's `CurrentUser` > `My` certificate store is accessed by the app to load the certificate.
 * **Linux** App Service: The app loads the certificate manually.
 
 > [!WARNING]
@@ -1177,7 +1177,7 @@ To configure an app, Azure App Service, and Azure Key Vault to host with a custo
    },
    ```
 
-   If troubleshooting a certificate loading problem on Windows App Service, execute the following command in an Azure portal [Kudu](https://github.com/projectkudu/kudu/wiki/Accessing-the-kudu-service) PowerShell command shell. The command provides a list of certificates that the app can access from the `My` > `CurrentUser` certificate store. The output includes certificate subjects and thumbprints useful when debugging an app:
+   If troubleshooting a certificate loading problem on Windows App Service, execute the following command in an Azure portal [Kudu](https://github.com/projectkudu/kudu/wiki/Accessing-the-kudu-service) PowerShell command shell. The command provides a list of certificates that the app can access from the `CurrentUser` > `My` certificate store. The output includes certificate subjects and thumbprints useful when debugging an app:
 
    ```powershell
    Get-ChildItem -path Cert:\CurrentUser\My -Recurse | Format-List DnsNameList, Subject, Thumbprint, EnhancedKeyUsageList
@@ -1276,7 +1276,7 @@ To configure an app, Azure App Service, and Azure Key Vault to host with a custo
 1. Open the app's **Configuration** in App Service and add a new application setting with a key of `WEBSITE_LOAD_CERTIFICATES` (if it doesn't already exist) or modify the existing `WEBSITE_LOAD_CERTIFICATES` application setting. Specify the certificate thumbprint of the TLS certificate recorded earlier:
 
    * When using automatic token signing, there is only a single thumbprint for the HTTPS communication. Example key: `WEBSITE_LOAD_CERTIFICATES` Example value: `57443A552A46DB...D55E28D412B943565`
-   * When using a separate token signing certificate, there are two thumbprints for the setting with thumbprint values separated by a comman. Example key: `WEBSITE_LOAD_CERTIFICATES` Example value: `57443A552A46DB...D55E28D412B943565,29F43A772CB6AF...1D04F0C67F85FB0B1`
+   * When using a separate token signing certificate, there are two thumbprints for the setting with thumbprint values separated by a comma. Example key: `WEBSITE_LOAD_CERTIFICATES` Example value: `57443A552A46DB...D55E28D412B943565,29F43A772CB6AF...1D04F0C67F85FB0B1`
 
    In the Azure portal, saving app settings is a two-step process: Save the `WEBSITE_LOAD_CERTIFICATES` key-value setting, then select the **Save** button at the top of the blade.
 
@@ -1306,7 +1306,7 @@ We recommend using a new in-private or incognito browser window for each app tes
 
 When App Service configuration is changed in the Azure portal, the updates generally take effect quickly but aren't instant. Sometimes, you must wait a short period for an App Service to restart in order for a configuration change to take effect.
 
-If troubleshooting a certificate loading problem on Windows App Service, execute the following command in an Azure portal [Kudu](https://github.com/projectkudu/kudu/wiki/Accessing-the-kudu-service) PowerShell command shell. The command provides a list of certificates that the app can access from the `My` > `CurrentUser` certificate store. The output includes certificate subjects and thumbprints useful when debugging an app:
+If troubleshooting a certificate loading problem on Windows App Service, execute the following command in an Azure portal [Kudu](https://github.com/projectkudu/kudu/wiki/Accessing-the-kudu-service) PowerShell command shell. The command provides a list of certificates that the app can access from the `CurrentUser` > `My` certificate store. The output includes certificate subjects and thumbprints useful when debugging an app:
 
 ```powershell
 Get-ChildItem -path Cert:\CurrentUser\My -Recurse | Format-List DnsNameList, Subject, Thumbprint, EnhancedKeyUsageList
@@ -1793,7 +1793,7 @@ For this hosting scenario, do **not** use the same certificate for [Identity Ser
 * TLS certificates for communication with browsers is managed independently without affecting Identity Server's token signing.
 * When [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) supplies a certificate to an App Service app for custom domain binding, Identity Server can't obtain the same certificate from Azure Key Vault for token signing. Although configuring Identity Server to use the same TLS certificate from a physical path is possible, placing security certificates into source control is a **poor practice and should be avoided in most scenarios**.
 
-In the following guidance, a self-signed certificate is created in Azure Key Vault solely for Identity Server token signing. The Identity Server configuration uses the key vault certificate via the app's `My` > `CurrentUser` certificate store. Other certificates used for HTTPS traffic with custom domains are created and configured separately from the Identity Server signing certificate.
+In the following guidance, a self-signed certificate is created in Azure Key Vault solely for Identity Server token signing. The Identity Server configuration uses the key vault certificate via the app's `CurrentUser` > `My` certificate store. Other certificates used for HTTPS traffic with custom domains are created and configured separately from the Identity Server signing certificate.
 
 To configure an app, Azure App Service, and Azure Key Vault to host with a custom domain and HTTPS:
 
@@ -1876,7 +1876,7 @@ We recommend using a new in-private or incognito browser window for each app tes
 
 When App Service configuration is changed in the Azure portal, the updates generally take effect quickly but aren't instant. Sometimes, you must wait a short period for an App Service to restart in order for a configuration change to take effect.
 
-If troubleshooting a certificate loading problem, execute the following command in an Azure portal [Kudu](https://github.com/projectkudu/kudu/wiki/Accessing-the-kudu-service) PowerShell command shell. The command provides a list of certificates that the app can access from the `My` > `CurrentUser` certificate store. The output includes certificate subjects and thumbprints useful when debugging an app:
+If troubleshooting a certificate loading problem, execute the following command in an Azure portal [Kudu](https://github.com/projectkudu/kudu/wiki/Accessing-the-kudu-service) PowerShell command shell. The command provides a list of certificates that the app can access from the `CurrentUser` > `My` certificate store. The output includes certificate subjects and thumbprints useful when debugging an app:
 
 ```powershell
 Get-ChildItem -path Cert:\CurrentUser\My -Recurse | Format-List DnsNameList, Subject, Thumbprint, EnhancedKeyUsageList
