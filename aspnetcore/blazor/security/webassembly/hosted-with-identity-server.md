@@ -1064,6 +1064,7 @@ The guidance in this section explains:
 1. Create a new Azure Key Vault or use an existing key vault in your Azure subscription.
 
 1. Navigate to Azure App Service in the Azure portal and create a new App Service with the following configuration:
+
    * **Publish** set to `Code`.
    * **Runtime stack** set to the app's runtime.
    * For **Sku and size**, confirm that the App Service tier is `Basic B1` or higher if you also plan to use a custom domain. App Service requires a `Basic B1` or higher service tier to use custom domains.
@@ -1083,6 +1084,7 @@ The guidance in this section explains:
    No configuration changes to the default settings are required for the key vault service.
 
    For testing purposes, an app's local [SQLite](https://www.sqlite.org/index.html) database, which is configured by default by the Blazor template, can be deployed with the app without additional configuration. Configuring a different database for Identity Server in production is beyond the scope of this article. For more information, see the database resources in the following documentation sets:
+
    * [App Service](/azure/app-service/)
    * [Identity Server](https://docs.duendesoftware.com/identityserver/v5/overview/)
 
@@ -1141,14 +1143,18 @@ To configure an app, Azure App Service, and Azure Key Vault to host with a custo
    For more information on Azure Key Vault certificates, see [Azure Key Vault: Certificates](/azure/key-vault/certificates/).
 
 1. Navigate to Azure App Service in the Azure portal and create a new App Service with the following configuration:
+
    * **Publish** set to `Code`.
    * **Runtime stack** set to the app's runtime.
    * For **Sku and size**, confirm that the App Service tier is `Basic B1` or higher.  App Service requires a `Basic B1` or higher service tier to use custom domains.
+
 1. After Azure creates the App Service, open the app's **Configuration** and add a new application setting specifying the certificate thumbprint recorded earlier. The app setting key is `WEBSITE_LOAD_CERTIFICATES`:
+
    * Key: `WEBSITE_LOAD_CERTIFICATES`
    * Value: `57443A552A46DB...D55E28D412B943565`
 
    In the Azure portal, saving app settings is a two-step process: Save the `WEBSITE_LOAD_CERTIFICATES` key-value setting, then select the **Save** button at the top of the blade.
+
 1. Select the app's **TLS/SSL settings**. Select **Private Key Certificates (.pfx)**. Use the **Import Key Vault Certificate** process to import the site's self-signed Identity Server token signing certificate.
 
 1. Configure the app to use the token signing certificate based on your choice of host OS, either Windows App Service or Linux App Service:
@@ -1192,18 +1198,20 @@ To configure an app, Azure App Service, and Azure Key Vault to host with a custo
    In `Startup.ConfigureServices`, update the Identity Server configuration to use a manually-loaded certificate. In the following example, the `{THUMBPRINT}` placeholder is the certificate's thumbprint:
 
    ```csharp
-   try
+   var certPath = "/var/ssl/private/{THUMBPRINT}.p12";
+
+   if (File.Exists(certPath))
    {
-       var bytes = File.ReadAllBytes($"/var/ssl/private/{THUMBPRINT}.p12");
+       var bytes = File.ReadAllBytes(certPath);
        var certificate = new X509Certificate2(bytes);
 
        services.AddIdentityServer()
            .AddApiAuthorization<ApplicationUser, ApplicationDbContext>(options => { })
            .AddSigningCredential(certificate);
    }
-   catch (FileNotFoundException)
+   else
    {
-       throw new Exception("The certificate could not be found.");
+       throw new FileNotFoundException($"Certificate path: {certPath}.");
    }
    ```
 
@@ -1214,6 +1222,7 @@ To configure an app, Azure App Service, and Azure Key Vault to host with a custo
    No configuration changes to the default settings are required for the key vault service.
 
    For testing purposes, an app's local [SQLite](https://www.sqlite.org/index.html) database, which is configured by default by the Blazor template, can be deployed with the app without additional configuration. Configuring a different database for Identity Server in production is beyond the scope of this article. For more information, see the database resources in the following documentation sets:
+
    * [App Service](/azure/app-service/)
    * [Identity Server](https://docs.duendesoftware.com/identityserver/v5/overview/)
 
@@ -1240,6 +1249,7 @@ To configure an app, Azure App Service, and Azure Key Vault to host with a custo
 1. Use an [App Service plan](/azure/app-service/overview-hosting-plans) with an plan level of `Basic B1` or higher. App Service requires a `Basic B1` or higher service tier to use custom domains.
 
 1. Create a PFX certificate for the site's secure browser communication (HTTPS protocol) with a common name of the site's fully qualified domain name (FQDN) that your organization controls (for example, `www.contoso.com`). Create the certificate with:
+
    * Key uses
      * Digital signature validation (`digitalSignature`)
      * Key encipherment (`keyEncipherment`)
@@ -1264,6 +1274,7 @@ To configure an app, Azure App Service, and Azure Key Vault to host with a custo
 1. In Azure App Service in the Azure portal for **Sku and size**, confirm that the App Service tier is `Basic B1` or higher. App Service requires a `Basic B1` or higher service tier to use custom domains.
 
 1. Open the app's **Configuration** in App Service and add a new application setting with a key of `WEBSITE_LOAD_CERTIFICATES` (if it doesn't already exist) or modify the existing `WEBSITE_LOAD_CERTIFICATES` application setting. Specify the certificate thumbprint of the TLS certificate recorded earlier:
+
    * When using automatic token signing, there is only a single thumbprint for the HTTPS communication. Example key: `WEBSITE_LOAD_CERTIFICATES` Example value: `57443A552A46DB...D55E28D412B943565`
    * When using a separate token signing certificate, there are two thumbprints for the setting with thumbprint values separated by a comman. Example key: `WEBSITE_LOAD_CERTIFICATES` Example value: `57443A552A46DB...D55E28D412B943565,29F43A772CB6AF...1D04F0C67F85FB0B1`
 
@@ -1272,6 +1283,7 @@ To configure an app, Azure App Service, and Azure Key Vault to host with a custo
 1. Select the app's **TLS/SSL settings**. Select **Private Key Certificates (.pfx)**. Use the **Import Key Vault Certificate** process to import the site's certificate for HTTPS communication.
 
 1. Navigate to the **Custom domains** blade. At your domain registrar's website, use the **IP address** and **Custom Domain Verification ID** to configure the domain. A typical domain configuration includes:
+
    * An **A Record** with a **Host** of `@` and a value of the IP address from the Azure portal.
    * A **TXT Record** with a **Host** of `asuid` and the value of the verification ID generated by Azure and provided by the Azure portal.
 
