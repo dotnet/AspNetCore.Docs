@@ -1041,9 +1041,14 @@ In the **`Client`** app, component authorization approaches are functional at th
 
 ## Token signing scenarios with Azure App Service
 
+Two scenarios are covered. Follow the guidance in either **one** of the following sections:
+
+* [Host in Azure App Service with automatic token signing and Data Protection key security using Azure Key Vault](#host-in-azure-app-service-with-automatic-token-signing-and-data-protection-key-security-using-azure-key-vault)
+* [Host in Azure App Service with certificate token signing](#host-in-azure-app-service-with-certificate-token-signing)
+
 ### Host in Azure App Service with automatic token signing and Data Protection key security using Azure Key Vault
 
-The following guidance explains:
+The guidance in this section explains:
 
 * How to deploy a hosted Blazor WebAssembly app with Identity Server to [Azure App Service](https://azure.microsoft.com/services/app-service/).
 * How to use automatic Identity Server token signing with Data Protection keys secured by Azure Key Vault.
@@ -1094,7 +1099,7 @@ When App Service configuration is changed in the Azure portal, the updates gener
 
 ### Host in Azure App Service with certificate token signing
 
-The following guidance explains:
+The guidance in this section explains:
 
 * How to deploy a hosted Blazor WebAssembly app with Identity Server to [Azure App Service](https://azure.microsoft.com/services/app-service/).
 * How to create and use a TLS certificate for Identity Server token signing.
@@ -1104,15 +1109,15 @@ The following guidance explains:
 
 In the following guidance, a self-signed certificate is created in Azure Key Vault solely for Identity Server token signing. The Identity Server configuration uses the key vault certificate following different approaches for **Windows** App Service and **Linux** App Service:
 
-* **Windows** App Service: The app's `My` > `CurrentUser` certificate store is accessed by the app.
-* **Linux** App Service: The app loads the certificate manually using a Key Vault Client.
+* **Windows** App Service: The app's `My` > `CurrentUser` certificate store is accessed by the app to load the certificate.
+* **Linux** App Service: The app loads the certificate manually.
 
 > [!WARNING]
 > When seeking to use a certificate for Identity Server token signing and a custom domain, do **not** use the same certificate for Identity Server's token signing and the site's HTTPS secure communication with browsers:
 >
 > * Using different certificates for these two requirements is a good security practice because it isolates private keys for each purpose.
 > * TLS certificates for communication with browsers is managed independently without affecting Identity Server's token signing.
-> * When [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) supplies a certificate to an App Service app for custom domain binding, Identity Server can't obtain the same certificate from Azure Key Vault for token signing. Although configuring Identity Server to use the same TLS certificate from a physical path is possible, placing security certificates into source control is a **poor practice and should be avoided in most scenarios**.
+> * When [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) supplies a certificate to an App Service app for custom domain binding, Identity Server can't obtain the same certificate from Azure Key Vault for token signing. Although configuring Identity Server to use the same TLS certificate from a physical path is possible, placing security certificates into source control is a poor practice and should be avoided in most scenarios.
 
 To configure an app, Azure App Service, and Azure Key Vault to host with a custom token signing certificate:
 
@@ -1174,9 +1179,9 @@ To configure an app, Azure App Service, and Azure Key Vault to host with a custo
 
    **Linux App Service**
 
-   Linux doesn't use a Windows certificate store to load a TLS certificate. On Linux App Service, certificates are placed at the path `/var/ssl/private/`. Manually load and use the certificate from that path for Identity Server token signing.
+   Linux can't use a Windows certificate store to load a TLS certificate. On Linux App Service, certificates are placed at the path `/var/ssl/private/`. Manually load and use the certificate from the preceding path.
 
-   Add the following namespaces to the top of `Startup.cs` in the **Server** project if they don't exist:
+   If the following namespaces aren't already present at the top of `Startup.cs` in the **Server** project, add them to the file:
 
    ```csharp
    using System;
@@ -1198,11 +1203,12 @@ To configure an app, Azure App Service, and Azure Key Vault to host with a custo
    }
    catch (FileNotFoundException)
    {
-       throw new Exception($"The certificate could not be found.");
+       throw new Exception("The certificate could not be found.");
    }
    ```
 
 1. In Visual Studio, create an Azure App Service [publish profile](xref:host-and-deploy/visual-studio-publish-profiles#publish-profiles) for the *Server* project. From the menu bar, select: **Build** > **Publish** > **New** > **Azure** > **Azure App Service** (Windows or Linux). When Visual Studio is connected to an Azure subscription, you can set the **View** of Azure resources by **Resource type**. Navigate within the **Web App** list to find the App Service for the app and select it. Select **Finish**.
+
 1. When Visual Studio returns to the **Publish** window, the key vault and SQL Server database service dependencies are automatically detected.
 
    No configuration changes to the default settings are required for the key vault service.
@@ -1224,10 +1230,7 @@ When App Service configuration is changed in the Azure portal, the updates gener
 
 ## Use a custom domain and TLS certificate for HTTPS protocol communication in Azure App Service
 
-The following guidance explains:
-
-* How to use a custom domain  hosted Blazor WebAssembly app with Identity Server to [Azure App Service](https://azure.microsoft.com/services/app-service/) with a custom domain.
-* How to create and use a TLS certificate for HTTPS protocol communication with browsers for an app that has been deployed to Azure App Service. Although the guidance focuses on using the certificate with a custom domain, the guidance is equally applicable to using a default Azure Apps domain, for example `contoso.azurewebsites.net`.
+The guidance in this section explains how to create and use a TLS certificate for HTTPS protocol communication with browsers for an app that has been deployed to [Azure App Service](https://azure.microsoft.com/services/app-service/). Although the guidance focuses on using the certificate with a custom domain, the guidance is equally applicable to using a default Azure Apps domain, for example, `contoso.azurewebsites.net`.
 
 > [!NOTE]
 > The guidance in this section assumes that the app is already hosted in Azure App Service. If deploying to App Service for the first time, follow the guidance in the [Token signing scenarios with Azure App Service](#token-signing-scenarios-with-azure-app-service) section before using the guidance in this section.
@@ -1235,6 +1238,7 @@ The following guidance explains:
 To configure an app, Azure App Service, and Azure Key Vault to host with a custom domain and HTTPS:
 
 1. Use an [App Service plan](/azure/app-service/overview-hosting-plans) with an plan level of `Basic B1` or higher. App Service requires a `Basic B1` or higher service tier to use custom domains.
+
 1. Create a PFX certificate for the site's secure browser communication (HTTPS protocol) with a common name of the site's fully qualified domain name (FQDN) that your organization controls (for example, `www.contoso.com`). Create the certificate with:
    * Key uses
      * Digital signature validation (`digitalSignature`)
@@ -1252,23 +1256,31 @@ To configure an app, Azure App Service, and Azure Key Vault to host with a custo
    Make note of the password, which is used later to import the certificate into Azure Key Vault.
 
    For more information on Azure Key Vault certificates, see [Azure Key Vault: Certificates](/azure/key-vault/certificates/).
+
 1. Create a new Azure Key Vault or use an existing key vault in your Azure subscription.
+
 1. In the key vault's **Certificates** area, import the PFX site certificate. Record the certificate's thumbprint, which is used in the app's configuration later.
+
 1. In Azure App Service in the Azure portal for **Sku and size**, confirm that the App Service tier is `Basic B1` or higher. App Service requires a `Basic B1` or higher service tier to use custom domains.
+
 1. Open the app's **Configuration** in App Service and add a new application setting with a key of `WEBSITE_LOAD_CERTIFICATES` (if it doesn't already exist) or modify the existing `WEBSITE_LOAD_CERTIFICATES` application setting. Specify the certificate thumbprint of the TLS certificate recorded earlier:
    * When using automatic token signing, there is only a single thumbprint for the HTTPS communication. Example key: `WEBSITE_LOAD_CERTIFICATES` Example value: `57443A552A46DB...D55E28D412B943565`
    * When using a separate token signing certificate, there are two thumbprints for the setting with thumbprint values separated by a comman. Example key: `WEBSITE_LOAD_CERTIFICATES` Example value: `57443A552A46DB...D55E28D412B943565,29F43A772CB6AF...1D04F0C67F85FB0B1`
 
    In the Azure portal, saving app settings is a two-step process: Save the `WEBSITE_LOAD_CERTIFICATES` key-value setting, then select the **Save** button at the top of the blade.
+
 1. Select the app's **TLS/SSL settings**. Select **Private Key Certificates (.pfx)**. Use the **Import Key Vault Certificate** process to import the site's certificate for HTTPS communication.
+
 1. Navigate to the **Custom domains** blade. At your domain registrar's website, use the **IP address** and **Custom Domain Verification ID** to configure the domain. A typical domain configuration includes:
    * An **A Record** with a **Host** of `@` and a value of the IP address from the Azure portal.
    * A **TXT Record** with a **Host** of `asuid` and the value of the verification ID generated by Azure and provided by the Azure portal.
 
    Make sure that you save the changes at your domain registrar's website correctly. Some registrar websites require a two-step process to save domain records: One or more records are saved individually followed by updating the domain's registration with a separate button.
+
 1. Return to the **Custom domains** blade in the Azure portal. Select **Add custom domain**. Select the **A Record** option. Provide the domain and select **Validate**. If the domain records are correct and propagated across the Internet, the portal allows you to select the **Add custom domain** button.
 
    It can take a few days for domain registration changes to propagate across Internet domain name servers (DNS) after they're processed by your domain registrar. If domain records aren't updated within three business days, confirm the records are correctly set with the domain registrar and contact their customer support.
+
 1. In the **Custom domains** blade, the **SSL STATE** for the domain is marked `Not Secure`. Select the **Add binding** link. Select the site HTTPS certificate from the key vault for the custom domain binding.
 
 The Azure documentation contains additional detail on using Azure services and custom domains with TLS binding in App Service, including information on using CNAME records instead of A records. For more information, see the following resources:
