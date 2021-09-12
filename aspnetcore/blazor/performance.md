@@ -543,7 +543,7 @@ The following component shown in the [event handling article](xref:blazor/compon
 
 [!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample5.razor)]
 
-If a large number of buttons is rendered using the preceding approach, rendering speed is adversely impacted leading to a poor user experience. To render a large number of buttons with a callback for click events, the following example uses a collection of button objects that assign each button's [`@onclick`](xref:mvc/views/razor#onclick) delegate to an <xref:System.Action>. The following approach doesn't require Blazor to rebuild all of the button delegates each time the buttons are rendered:
+If a large number of buttons are rendered using the preceding approach, rendering speed is adversely impacted leading to a poor user experience. To render a large number of buttons with a callback for click events, the following example uses a collection of button objects that assign each button's [`@onclick`](xref:mvc/views/razor#onclick) delegate to an <xref:System.Action>. The following approach doesn't require Blazor to rebuild all of the button delegates each time the buttons are rendered:
 
 `Pages/LambdaEventPerformance.razor`:
 
@@ -1278,7 +1278,7 @@ The following component shown in the [event handling article](xref:blazor/compon
 
 [!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample5.razor)]
 
-If a large number of buttons is rendered using the preceding approach, rendering speed is adversely impacted leading to a poor user experience. To render a large number of buttons with a callback for click events, the following example uses a collection of button objects that assign each button's [`@onclick`](xref:mvc/views/razor#onclick) delegate to an <xref:System.Action>. The following approach doesn't require Blazor to rebuild all of the button delegates each time the buttons are rendered:
+If a large number of buttons are rendered using the preceding approach, rendering speed is adversely impacted leading to a poor user experience. To render a large number of buttons with a callback for click events, the following example uses a collection of button objects that assign each button's [`@onclick`](xref:mvc/views/razor#onclick) delegate to an <xref:System.Action>. The following approach doesn't require Blazor to rebuild all of the button delegates each time the buttons are rendered:
 
 `Pages/LambdaEventPerformance.razor`:
 
@@ -2005,7 +2005,7 @@ The following component shown in the [event handling article](xref:blazor/compon
 
 [!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample5.razor)]
 
-If a large number of buttons is rendered using the preceding approach, rendering speed is adversely impacted leading to a poor user experience. To render a large number of buttons with a callback for click events, the following example uses a collection of button objects that assign each button's [`@onclick`](xref:mvc/views/razor#onclick) delegate to an <xref:System.Action>. The following approach doesn't require Blazor to rebuild all of the button delegates each time the buttons are rendered:
+If a large number of buttons are rendered using the preceding approach, rendering speed is adversely impacted leading to a poor user experience. To render a large number of buttons with a callback for click events, the following example uses a collection of button objects that assign each button's [`@onclick`](xref:mvc/views/razor#onclick) delegate to an <xref:System.Action>. The following approach doesn't require Blazor to rebuild all of the button delegates each time the buttons are rendered:
 
 `Pages/LambdaEventPerformance.razor`:
 
