@@ -13,8 +13,6 @@ uid: fundamentals/host/hosted-services
 
 By [Jeow Li Huan](https://github.com/huan086)
 
-::: moniker range=">= aspnetcore-3.0"
-
 In ASP.NET Core, background tasks can be implemented as *hosted services*. A hosted service is a class with background task logic that implements the <xref:Microsoft.Extensions.Hosting.IHostedService> interface. This article provides three hosted service examples:
 
 * Background task that runs on a timer.
@@ -63,7 +61,7 @@ The <xref:Microsoft.Extensions.Hosting.IHostedService> interface defines two met
 ::: moniker range=">= aspnetcore-6.0"
 The default behavior can be changed so that the hosted service's `StartAsync` runs after the app's pipeline has been configured and `ApplicationStarted` is called. To change the default behavior, add the hosted service (`VideosWatcher` in the following example) after calling `CreateBuilder`:
 
-``csharp
+```csharp
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
