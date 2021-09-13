@@ -30,6 +30,10 @@ In a few documentation examples, JS interop is used to mutate an element *purely
 
 For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#capture-references-to-elements>.
 
+## Asyncronous JavaScript calls
+
+JS interop calls are asynchronous by default, regardless of whether the called code is synchronous or asynchronous. Calls are asynchronous by default to ensure that components are compatible across both Blazor hosting models, Blazor Server and Blazor WebAssembly. On Blazor Server, JS interop calls must be asynchronous because they're sent over a network connection. For apps that exclusively adopt the Blazor WebAssembly hosting model, synchronous JS interop calls are supported. For more information, see <xref:blazor/performance?pivots=webassembly#consider-the-use-of-synchronous-calls>.
+
 ## Location of JavaScipt
 
 Load JavaScript (JS) code using any of the following approaches:
@@ -216,6 +220,10 @@ In a few documentation examples, JS interop is used to mutate an element *purely
 
 For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#capture-references-to-elements>.
 
+## Asyncronous JavaScript calls
+
+JS interop calls are asynchronous by default, regardless of whether the called code is synchronous or asynchronous. Calls are asynchronous by default to ensure that components are compatible across both Blazor hosting models, Blazor Server and Blazor WebAssembly. On Blazor Server, JS interop calls must be asynchronous because they're sent over a network connection. For apps that exclusively adopt the Blazor WebAssembly hosting model, synchronous JS interop calls are supported. For more information, see <xref:blazor/performance?pivots=webassembly#consider-the-use-of-synchronous-calls>.
+
 ## Location of JavaScipt
 
 Load JavaScript (JS) code using any of the following approaches:
@@ -401,6 +409,10 @@ This guidance not only applies to your own JS interop code but also to any JS li
 In a few documentation examples, JS interop is used to mutate an element *purely for demonstration purposes* as part of an example. In those cases, a warning appears in the text.
 
 For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#capture-references-to-elements>.
+
+## Asyncronous JavaScript calls
+
+JS interop calls are asynchronous by default, regardless of whether the called code is synchronous or asynchronous. Calls are asynchronous by default to ensure that components are compatible across both Blazor hosting models, Blazor Server and Blazor WebAssembly. On Blazor Server, JS interop calls must be asynchronous because they're sent over a network connection. For apps that exclusively adopt the Blazor WebAssembly hosting model, synchronous JS interop calls are supported. For more information, see <xref:blazor/performance?pivots=webassembly#consider-the-use-of-synchronous-calls>.
 
 ## Location of JavaScipt
 
