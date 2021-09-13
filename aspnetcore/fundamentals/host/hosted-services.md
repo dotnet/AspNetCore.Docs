@@ -37,7 +37,7 @@ To use the template as a basis for a hosted services app:
 ::: moniker range=">= aspnetcore-6.0"
 [!INCLUDE[](~/includes/worker-template-instructions-net6.md)]
 ::: moniker-end
-::: moniker range=">= aspnetcore-3.0 and < aspnetcore-6.0"
+::: moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 [!INCLUDE[](~/includes/worker-template-instructions.md)]
 ::: moniker-end
 ::: moniker range=">= aspnetcore-3.0"
@@ -76,7 +76,7 @@ builder.Services.AddHostedService<VideosWatcher>();}
 ```
 ::: moniker-end
 
-::: moniker range=">= aspnetcore-3.0 and < aspnetcore-6.0"
+::: moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 ```csharp
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -140,7 +140,7 @@ A timed background task makes use of the [System.Threading.Timer](xref:System.Th
 ::: moniker range=">= aspnetcore-6.0"
 [!code-csharp[](hosted-services/samples/6.0/BackgroundTasksSample/Services/TimedHostedService.cs?name=snippet1&highlight=16-17,34,41)]
 ::: moniker-end
-::: moniker range=">= aspnetcore-3.0 and < aspnetcore-6.0"
+::: moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Services/TimedHostedService.cs?name=snippet1&highlight=16-17,34,41)]
 ::: moniker-end
 ::: moniker range=">= aspnetcore-3.0"
@@ -153,7 +153,7 @@ The service is registered in `IHostBuilder.ConfigureServices` (*Program.cs*) wit
 ::: moniker range=">= aspnetcore-6.0"
 [!code-csharp[](hosted-services/samples/6.0/BackgroundTasksSample/Program.cs?name=snippet1)]
 ::: moniker-end
-::: moniker range=">= aspnetcore-3.0 and < aspnetcore-6.0"
+::: moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Program.cs?name=snippet1)]
 ::: moniker-end
 ::: moniker range=">= aspnetcore-3.0"
@@ -171,7 +171,7 @@ The scoped background task service contains the background task's logic. In the 
 ::: moniker range=">= aspnetcore-6.0"
 [!code-csharp[](hosted-services/samples/6.0/BackgroundTasksSample/Services/ScopedProcessingService.cs?name=snippet1)]
 ::: moniker-end
-::: moniker range=">= aspnetcore-3.0 and < aspnetcore-6.0"
+::: moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Services/ScopedProcessingService.cs?name=snippet1)]
 ::: moniker-end
 ::: moniker range=">= aspnetcore-3.0"
@@ -182,7 +182,7 @@ The hosted service creates a scope to resolve the scoped background task service
 ::: moniker range=">= aspnetcore-6.0"
 [!code-csharp[](hosted-services/samples/6.0/BackgroundTasksSample/Services/ConsumeScopedServiceHostedService.cs?name=snippet1&highlight=19,22-35)]
 ::: moniker-end
-::: moniker range=">= aspnetcore-3.0 and < aspnetcore-6.0"
+::: moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Services/ConsumeScopedServiceHostedService.cs?name=snippet1&highlight=19,22-35)]
 ::: moniker-end
 ::: moniker range=">= aspnetcore-3.0"
@@ -199,7 +199,7 @@ A background task queue is based on the .NET 4.x <xref:System.Web.Hosting.Hostin
 ::: moniker range=">= aspnetcore-6.0"
 [!code-csharp[](hosted-services/samples/6.0/BackgroundTasksSample/Services/BackgroundTaskQueue.cs?name=snippet1)]
 ::: moniker-end
-::: moniker range=">= aspnetcore-3.0 and < aspnetcore-6.0"
+::: moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Services/BackgroundTaskQueue.cs?name=snippet1)]
 ::: moniker-end
 ::: moniker range=">= aspnetcore-3.0"
@@ -214,7 +214,7 @@ In the following `QueueHostedService` example:
 ::: moniker range=">= aspnetcore-6.0"
 [!code-csharp[](hosted-services/samples/6.0/BackgroundTasksSample/Services/QueuedHostedService.cs?name=snippet1&highlight=28-29,33)]
 ::: moniker-end
-::: moniker range=">= aspnetcore-3.0 and < aspnetcore-6.0"
+::: moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Services/QueuedHostedService.cs?name=snippet1&highlight=28-29,33)]
 ::: moniker-end
 ::: moniker range=">= aspnetcore-3.0"
@@ -231,7 +231,7 @@ A `MonitorLoop` service handles enqueuing tasks for the hosted service whenever 
 ::: moniker range=">= aspnetcore-6.0"
 [!code-csharp[](hosted-services/samples/6.0/BackgroundTasksSample/Services/MonitorLoop.cs?name=snippet_Monitor&highlight=7,33)]
 ::: moniker-end
-::: moniker range=">= aspnetcore-3.0 and < aspnetcore-6.0"
+::: moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Services/MonitorLoop.cs?name=snippet_Monitor&highlight=7,33)]
 ::: moniker-end
 ::: moniker range=">= aspnetcore-3.0"
@@ -246,7 +246,7 @@ The services are registered in `IHostBuilder.ConfigureServices` (*Program.cs*). 
 
 [!code-csharp[](hosted-services/samples/6.0/BackgroundTasksSample/Program.cs?name=snippet4)]
 ::: moniker-end
-::: moniker range=">= aspnetcore-3.0 and < aspnetcore-6.0"
+::: moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Program.cs?name=snippet3)]
 
 `MonitorLoop` is started in `Program.Main`:
