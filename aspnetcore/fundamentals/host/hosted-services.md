@@ -253,9 +253,6 @@ The services are registered in `IHostBuilder.ConfigureServices` (*Program.cs*). 
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Program.cs?name=snippet4)]
 ::: moniker-end
-::: moniker range=">= aspnetcore-3.0"
-
-::: moniker-end
 
 ## Additional resources
 
