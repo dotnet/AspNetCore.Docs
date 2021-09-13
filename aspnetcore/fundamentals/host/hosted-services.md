@@ -1,4 +1,4 @@
-s---
+---
 title: Background tasks with hosted services in ASP.NET Core
 author: rick-anderson
 description: Learn how to implement background tasks with hosted services in ASP.NET Core.
