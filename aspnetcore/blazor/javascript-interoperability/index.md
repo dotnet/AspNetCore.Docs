@@ -30,7 +30,7 @@ In a few documentation examples, JS interop is used to mutate an element *purely
 
 For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#capture-references-to-elements>.
 
-## Asyncronous JavaScript calls
+## Asynchronous JavaScript calls
 
 JS interop calls are asynchronous by default, regardless of whether the called code is synchronous or asynchronous. Calls are asynchronous by default to ensure that components are compatible across both Blazor hosting models, Blazor Server and Blazor WebAssembly. On Blazor Server, JS interop calls must be asynchronous because they're sent over a network connection. For apps that exclusively adopt the Blazor WebAssembly hosting model, synchronous JS interop calls are supported. For more information, see <xref:blazor/performance?pivots=webassembly#consider-the-use-of-synchronous-calls>.
 
@@ -220,7 +220,7 @@ In a few documentation examples, JS interop is used to mutate an element *purely
 
 For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#capture-references-to-elements>.
 
-## Asyncronous JavaScript calls
+## Asynchronous JavaScript calls
 
 JS interop calls are asynchronous by default, regardless of whether the called code is synchronous or asynchronous. Calls are asynchronous by default to ensure that components are compatible across both Blazor hosting models, Blazor Server and Blazor WebAssembly. On Blazor Server, JS interop calls must be asynchronous because they're sent over a network connection. For apps that exclusively adopt the Blazor WebAssembly hosting model, synchronous JS interop calls are supported. For more information, see <xref:blazor/performance?pivots=webassembly#consider-the-use-of-synchronous-calls>.
 
@@ -410,7 +410,7 @@ In a few documentation examples, JS interop is used to mutate an element *purely
 
 For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#capture-references-to-elements>.
 
-## Asyncronous JavaScript calls
+## Asynchronous JavaScript calls
 
 JS interop calls are asynchronous by default, regardless of whether the called code is synchronous or asynchronous. Calls are asynchronous by default to ensure that components are compatible across both Blazor hosting models, Blazor Server and Blazor WebAssembly. On Blazor Server, JS interop calls must be asynchronous because they're sent over a network connection. For apps that exclusively adopt the Blazor WebAssembly hosting model, synchronous JS interop calls are supported. For more information, see <xref:blazor/performance?pivots=webassembly#consider-the-use-of-synchronous-calls>.
 
