@@ -196,7 +196,7 @@ dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 ### Add greet.proto
 
 * Create a *Protos* folder in the gRPC client project.
-* Copy the *Protos\greet.proto* file from the gRPC Greeter service to the gRPC client project.
+* Copy the *Protos\greet.proto* file from the gRPC Greeter service to the *Protos* folder in the gRPC client project.
 * Update the namespace inside the `greet.proto` file to the project's namespace:
 
   ```
@@ -489,7 +489,7 @@ dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 ### Add greet.proto
 
 * Create a *Protos* folder in the gRPC client project.
-* Copy the *Protos\greet.proto* file from the gRPC Greeter service to the gRPC client project.
+* Copy the *Protos\greet.proto* file from the gRPC Greeter service to the *Protos* folder in the gRPC client project.
 * Update the namespace inside the `greet.proto` file to the project's namespace:
 
   ```
@@ -791,7 +791,7 @@ dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 ### Add greet.proto
 
 * Create a *Protos* folder in the gRPC client project.
-* Copy the *Protos\greet.proto* file from the gRPC Greeter service to the gRPC client project.
+* Copy the *Protos\greet.proto* file from the gRPC Greeter service to the *Protos* folder in the gRPC client project.
 * Update the namespace inside the `greet.proto` file to the project's namespace:
 
   ```
