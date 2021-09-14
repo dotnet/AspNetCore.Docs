@@ -39,7 +39,7 @@ For example, `HttpProtocols.Http1AndHttp2AndHttp3` allows Kestrel to enable HTTP
 
 ### Windows
 
-* Windows 11 Build 22000 or later.
+* Windows 11 Build 22000 or later OR Windows Server 2022.
 * TLS 1.3 or later connection.
 
 The preceding Windows 11 Build versions may require the use of a [Windows Insider](https://insider.windows.com) build.
