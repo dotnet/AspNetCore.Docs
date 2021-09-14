@@ -52,22 +52,28 @@ These instructions use *qrcode.js* from the https://davidshimjs.github.io/qrcode
     @await Html.PartialAsync("_ValidationScriptsPartial")
 }
 ```
+* Create a new JavaScript file called `qr.js` in wwwroot/js and add the following code to generate the QR Code:
 
-* Update the `Scripts` section to add a reference to the `qrcodejs` library you added and a call to generate the QR Code. It should look as follows:
+```javascript
+window.addEventListener("load", () => {
+    const uri = document.getElementById("qrCodeData").getAttribute('data-url');
+    new QRCode(document.getElementById("qrCode"),
+        {
+            text: uri,
+            width: 150,
+            height: 150
+        });
+});
+```
+
+* Update the `Scripts` section to add a reference to the `qrcode.js` library you downloaded previously and also add the `qr.js` file with the call to generate the QR code. Based on our example it should look as follows:
 
 ```cshtml
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")
 
     <script type="text/javascript" src="~/lib/qrcode.js"></script>
-    <script type="text/javascript">
-        new QRCode(document.getElementById("qrCode"),
-            {
-                text: "@Html.Raw(Model.AuthenticatorUri)",
-                width: 150,
-                height: 150
-            });
-    </script>
+    <script type="text/javascript" src="~/js/qs.js"></script>
 }
 ```
 
