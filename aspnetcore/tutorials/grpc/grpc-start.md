@@ -325,7 +325,7 @@ This tutorial shows how to create a .NET Core [gRPC](xref:grpc/index) client and
 
 At the end, you'll have a gRPC client that communicates with the gRPC Greeter service.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/grpc/grpc-start/sample) ([how to download](xref:index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/grpc/grpc-start/sample5) ([how to download](xref:index#how-to-download-a-sample)).
 
 In this tutorial, you:
 
@@ -509,7 +509,7 @@ dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 
   Right-click the project and select **Edit Project File**.
 
-  # [Visual Studio Code](#tab/visual-studio-code
+  # [Visual Studio Code](#tab/visual-studio-code)
 
   Select the *GrpcGreeterClient.csproj* file.
 
@@ -619,7 +619,7 @@ This tutorial shows how to create a .NET Core [gRPC](xref:grpc/index) client and
 
 At the end, you'll have a gRPC client that communicates with the gRPC Greeter service.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/grpc/grpc-start/sample) ([how to download](xref:index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/grpc/grpc-start/sample5) ([how to download](xref:index#how-to-download-a-sample)).
 
 In this tutorial, you:
 
