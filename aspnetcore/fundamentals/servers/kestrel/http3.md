@@ -39,7 +39,7 @@ For example, `HttpProtocols.Http1AndHttp2AndHttp3` allows Kestrel to enable HTTP
 
 ### Windows
 
-* Windows 11 Build 22000 or later.
+* Windows 11 Build 22000 or later OR Windows Server 2022.
 * TLS 1.3 or later connection.
 
 The preceding Windows 11 Build versions may require the use of a [Windows Insider](https://insider.windows.com) build.
@@ -62,13 +62,7 @@ HTTP/3 is discovered as an upgrade from HTTP/1.1 or HTTP/2 via the `alt-svc` hea
 
 ## Get started
 
-HTTP/3 is configured on app start-up. The following code:
-
-* Configures the `WebHost` to `UseQuic`.
-* Sets `EnableAltSvc` to `true` on Kestrel options.
-* Configures port 5001 to use `HttpProtocols.Http1AndHttp2AndHttp3`.
-
-This sample code is specific to .NET 6 Preview 7, and will change in .NET 6 RC 1.
+HTTP/3 is configured on app start-up. The following code configures port 5001 to use `HttpProtocols.Http1AndHttp2AndHttp3`.
 
 [!code-csharp[](samples/6.x/Http3Sample/Program.cs?name=snippet_UseHttp3&highlight=8)]
 
