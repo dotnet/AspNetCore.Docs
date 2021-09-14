@@ -16,7 +16,7 @@ This tutorial shows how to create a .NET Core [gRPC](xref:grpc/index) client and
 
 At the end, you'll have a gRPC client that communicates with the gRPC Greeter service.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/grpc/grpc-start/sample) ([how to download](xref:index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/grpc/grpc-start/sample6) ([how to download](xref:index#how-to-download-a-sample)).
 
 In this tutorial, you:
 
@@ -53,6 +53,12 @@ We hope to have Visual Studio for Mac instructions soon.
 * In the **Configure your new project** dialog, enter `GrpcGreeter` for **Project name**. It's important to name the project *GrpcGreeter* so the namespaces match when you copy and paste code.
 * Select **Next**.
 * In the **Additional information** dialog, select **.NET 6.0 (Preview)** and then select **Create**.
+* Update the *Program.cs* with the following highlighted code:
+
+  [!code-csharp[](~/tutorials/grpc/grpc-start/sample6/GrpcGreeterClient/Program.cs?name=snippet1&highlight=14-19)]
+<!-- 
+    Ensuring Environment.SetEnvironmentVariable("ASPNETCORE_PREVENTHOSTINGSTARTUP", "true") is a temporary step for VS2022 preview only. Remove this step once it no longer needs to be entered manually to product.cs 
+-->
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -109,8 +115,9 @@ info: Microsoft.Hosting.Lifetime[0]
 * *greet.proto*: The *Protos/greet.proto* file defines the `Greeter` gRPC and is used to generate the gRPC server assets. For more information, see [Introduction to gRPC](xref:grpc/index).
 * *Services* folder: Contains the implementation of the `Greeter` service.
 * *appSettings.json*: Contains configuration data, such as protocol used by Kestrel. For more information, see <xref:fundamentals/configuration/index>.
-* *Program.cs*: Contains the entry point for the gRPC service. For more information, see <xref:fundamentals/host/generic-host>.
-* *Startup.cs*: Contains code that configures app behavior. For more information, see [App startup](xref:fundamentals/startup).
+* *Program.cs*: 
+  * Contains the entry point for the gRPC service and contains the code that configures app behavior. For more information, see <xref:fundamentals/host/generic-host>.
+  * Contains code that configures app behavior. For more information, see [App startup](xref:fundamentals/startup).
 
 ## Create the gRPC client in a .NET console app
 
@@ -233,7 +240,7 @@ Build the client project to create the types in the `GrpcGreeter` namespace. The
 
 Update the gRPC client *Program.cs* file with the following code:
 
-[!code-csharp[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet2)]
+[!code-csharp[](~/tutorials/grpc/grpc-start/sample6/GrpcGreeterClient/Program.cs?name=snippet2)]
 
 *Program.cs* contains the entry point and logic for the gRPC client.
 
@@ -242,11 +249,11 @@ The Greeter client is created by:
 * Instantiating a `GrpcChannel` containing the information for creating the connection to the gRPC service.
 * Using the `GrpcChannel` to construct the Greeter client:
 
-[!code-csharp[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet&highlight=3-5)]
+[!code-csharp[](~/tutorials/grpc/grpc-start/sample6/GrpcGreeterClient/Program.cs?name=snippet&highlight=3-5)]
 
 The Greeter client calls the asynchronous `SayHello` method. The result of the `SayHello` call is displayed:
 
-[!code-csharp[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet&highlight=6-8)]
+[!code-csharp[](~/tutorials/grpc/grpc-start/sample6/GrpcGreeterClient/Program.cs?name=snippet&highlight=6-8)]
 
 ## Test the gRPC client with the gRPC Greeter service
 
@@ -502,7 +509,7 @@ dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 
   Right-click the project and select **Edit Project File**.
 
-  # [Visual Studio Code](#tab/visual-studio-code)
+  # [Visual Studio Code](#tab/visual-studio-code
 
   Select the *GrpcGreeterClient.csproj* file.
 
@@ -526,7 +533,7 @@ Build the client project to create the types in the `GrpcGreeter` namespace. The
 
 Update the gRPC client *Program.cs* file with the following code:
 
-[!code-csharp[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet2)]
+[!code-csharp[](~/tutorials/grpc/grpc-start/sample5/GrpcGreeterClient/Program.cs?name=snippet2)]
 
 *Program.cs* contains the entry point and logic for the gRPC client.
 
@@ -535,11 +542,11 @@ The Greeter client is created by:
 * Instantiating a `GrpcChannel` containing the information for creating the connection to the gRPC service.
 * Using the `GrpcChannel` to construct the Greeter client:
 
-[!code-csharp[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet&highlight=3-5)]
+[!code-csharp[](~/tutorials/grpc/grpc-start/sample5/GrpcGreeterClient/Program.cs?name=snippet&highlight=3-5)]
 
 The Greeter client calls the asynchronous `SayHello` method. The result of the `SayHello` call is displayed:
 
-[!code-csharp[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet&highlight=6-8)]
+[!code-csharp[](~/tutorials/grpc/grpc-start/sample5/GrpcGreeterClient/Program.cs?name=snippet&highlight=6-8)]
 
 ## Test the gRPC client with the gRPC Greeter service
 
@@ -828,7 +835,7 @@ Build the client project to create the types in the `GrpcGreeter` namespace. The
 
 Update the gRPC client *Program.cs* file with the following code:
 
-[!code-csharp[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet2)]
+[!code-csharp[](~/tutorials/grpc/grpc-start/sample5/GrpcGreeterClient/Program.cs?name=snippet2)]
 
 *Program.cs* contains the entry point and logic for the gRPC client.
 
@@ -837,11 +844,11 @@ The Greeter client is created by:
 * Instantiating a `GrpcChannel` containing the information for creating the connection to the gRPC service.
 * Using the `GrpcChannel` to construct the Greeter client:
 
-[!code-csharp[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet&highlight=3-5)]
+[!code-csharp[](~/tutorials/grpc/grpc-start/sample5/GrpcGreeterClient/Program.cs?name=snippet&highlight=3-5)]
 
 The Greeter client calls the asynchronous `SayHello` method. The result of the `SayHello` call is displayed:
 
-[!code-csharp[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet&highlight=6-8)]
+[!code-csharp[](~/tutorials/grpc/grpc-start/sample5/GrpcGreeterClient/Program.cs?name=snippet&highlight=6-8)]
 
 ## Test the gRPC client with the gRPC Greeter service
 
