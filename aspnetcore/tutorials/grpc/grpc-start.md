@@ -192,11 +192,15 @@ dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
+We hope to have Visual Studio for Mac instructions soon.
+<!--
+
 * Right-click **GrpcGreeterClient** project in the **Solution Pad** and select **Manage NuGet Packages**.
 * Enter **Grpc.Net.Client** in the search box.
 * Select the **Grpc.Net.Client** package from the results pane and select **Add Package**.
 * Select the **Accept** button on the **Accept License** dialog.
 * Repeat for `Google.Protobuf` and `Grpc.Tools`.
+-->
 
 ---
 
@@ -222,7 +226,10 @@ dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 
   # [Visual Studio for Mac](#tab/visual-studio-mac)
 
+  We hope to have Visual Studio for Mac instructions soon.
+<!--
   Right-click the project and select **Edit Project File**.
+-->
 
   ---
 
@@ -270,12 +277,16 @@ The Greeter client calls the asynchronous `SayHello` method. The result of the `
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
+We hope to have Visual Studio for Mac instructions soon.
+<!--
+
 * Due to the previously mentioned [HTTP/2 TLS issue on macOS workaround](xref:grpc/troubleshoot#unable-to-start-aspnet-core-grpc-app-on-macos), you'll need to update the channel address in the client to "http://localhost:5000". Update line 13 of **GrpcGreeterClient/Program.cs** to read:
   ```csharp
   using var channel = GrpcChannel.ForAddress("http://localhost:5000");
   ``` 
 * Start the Greeter service.
 * Start the client.
+-->
 
 ---
 
