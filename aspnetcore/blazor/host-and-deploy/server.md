@@ -359,7 +359,7 @@ http {
 
     server {
         listen      80;
-        server_name example.com *.example.com
+        server_name example.com *.example.com;
         location / {
             proxy_pass         http://localhost:5000;
             proxy_http_version 1.1;
