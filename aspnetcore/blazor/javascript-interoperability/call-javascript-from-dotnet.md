@@ -692,8 +692,6 @@ In the preceding example:
 
 ## Stream from .NET to JavaScript
 
-*This feature applies to ASP.NET Core 6.0 Release Candidate 1 or later. ASP.NET Core 6.0 Release Candidate 1 is scheduled for release in September. ASP.NET Core 6.0 is scheduled for release later this year.*
-
 Blazor supports streaming data directly from .NET to JavaScript. Streams are created using a `Microsoft.JSInterop.DotNetStreamReference`.
 
 `Microsoft.JSInterop.DotNetStreamReference` represents a .NET stream and uses the following parameters:
