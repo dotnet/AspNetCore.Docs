@@ -3,7 +3,7 @@ title: Use ASP.NET Core with HTTP/3 on IIS
 author: rick-anderson
 description: Learn how to use HTTP/3 features with IIS.
 monikerRange: '>= aspnetcore-6.0'
-ms.author: tratcher
+ms.author: chrross
 ms.custom: mvc
 ms.date: 09/09/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
