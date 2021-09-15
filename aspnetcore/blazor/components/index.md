@@ -1025,7 +1025,7 @@ For more information, see the following articles:
 
 Razor components can be dynamically-rendered from JavaScript (JS) for existing JS apps.
 
-To render a Razor component from JS, first register the component as a root component for JS rendering and assign the component an identifier:
+To render a Razor component from JS, register the component as a root component for JS rendering and assign the component an identifier:
 
 * In a Blazor Server app, modify the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A> in `Program.cs`:
 
@@ -1036,7 +1036,7 @@ To render a Razor component from JS, first register the component as a root comp
   });
   ```
 
-* Blazor WebAssembly in `Program.cs`:
+* In Blazor WebAssembly app, call `RegisterForJavaScript` on <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.RootComponents> in `Program.cs`:
 
   ```csharp
   builder.RootComponents.RegisterForJavaScript<Counter>(identifier: "counter");
