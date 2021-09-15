@@ -1036,7 +1036,7 @@ To render a Razor component from JS, register the component as a root component 
   });
   ```
 
-* In Blazor WebAssembly app, call `RegisterForJavaScript` on <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.RootComponents> in `Program.cs`:
+* In a Blazor WebAssembly app, call `RegisterForJavaScript` on <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.RootComponents> in `Program.cs`:
 
   ```csharp
   builder.RootComponents.RegisterForJavaScript<Counter>(identifier: "counter");
