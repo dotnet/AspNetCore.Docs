@@ -352,7 +352,7 @@ We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-
 
 ## Long Polling
 
-In early releases of ASP.NET Core, Long Polling was enabled as a fallback transport for situations in which the WebSockets transport wasn't available. If an app must use Long Polling, make the following changes:
+In earlier versions of ASP.NET Core, Long Polling was enabled as a fallback transport for situations in which the WebSockets transport wasn't available. If an app must use Long Polling, make the following changes:
 
 In the app's `Startup.cs` file, replace `endpoints.MapBlazorHub()` with the following code:
 
