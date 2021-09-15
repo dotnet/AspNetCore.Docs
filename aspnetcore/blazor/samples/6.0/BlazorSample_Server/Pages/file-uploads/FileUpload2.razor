@@ -1,5 +1,6 @@
 @page "/file-upload-2"
 @using System.Linq
+@using System.Net.Http.Headers
 @using System.Text.Json
 @using Microsoft.Extensions.Logging
 @inject IHttpClientFactory ClientFactory
@@ -70,6 +71,9 @@
                 {
                     var fileContent = 
                         new StreamContent(file.OpenReadStream(maxFileSize));
+
+                    fileContent.Headers.ContentType = 
+                        new MediaTypeHeaderValue(file.ContentType);
 
                     files.Add(new() { Name = file.Name });
 
