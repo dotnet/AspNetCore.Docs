@@ -52,7 +52,7 @@ These instructions use *qrcode.js* from the https://davidshimjs.github.io/qrcode
     @await Html.PartialAsync("_ValidationScriptsPartial")
 }
 ```
-* Create a new JavaScript file called `qr.js` in wwwroot/js and add the following code to generate the QR Code:
+* Create a new JavaScript file called *qr.js* in *wwwroot/js* and add the following code to generate the QR Code:
 
 ```javascript
 window.addEventListener("load", () => {
@@ -66,7 +66,8 @@ window.addEventListener("load", () => {
 });
 ```
 
-* Update the `Scripts` section to add a reference to the `qrcode.js` library you downloaded previously and also add the `qr.js` file with the call to generate the QR code. Based on our example it should look as follows:
+* Update the `Scripts` section to add a reference to the `qrcode.js` library previously downloaded.
+* Add the *qr.js* file with the call to generate the QR code:
 
 ```cshtml
 @section Scripts {
