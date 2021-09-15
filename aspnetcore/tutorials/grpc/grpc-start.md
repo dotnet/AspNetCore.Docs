@@ -53,12 +53,9 @@ We hope to have Visual Studio for Mac instructions soon.
 * In the **Configure your new project** dialog, enter `GrpcGreeter` for **Project name**. It's important to name the project *GrpcGreeter* so the namespaces match when you copy and paste code.
 * Select **Next**.
 * In the **Additional information** dialog, select **.NET 6.0 (Preview)** and then select **Create**.
-* Update the *Program.cs* with the following highlighted code:
+* Update *Program.cs* with the following highlighted code:
 
   [!code-csharp[](~/tutorials/grpc/grpc-start/sample6/GrpcGreeterClient/Program.cs?name=snippet1&highlight=14-19)]
-<!-- 
-    Ensuring Environment.SetEnvironmentVariable("ASPNETCORE_PREVENTHOSTINGSTARTUP", "true") is a temporary step for VS2022 preview only. Remove this step once it no longer needs to be entered manually to product.cs 
--->
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -112,9 +109,9 @@ info: Microsoft.Hosting.Lifetime[0]
 
 *GrpcGreeter* project files:
 
-* *greet.proto*: The *Protos/greet.proto* file defines the `Greeter` gRPC and is used to generate the gRPC server assets. For more information, see [Introduction to gRPC](xref:grpc/index).
+* *Protos/greet.proto*: defines the `Greeter` gRPC and is used to generate the gRPC server assets. For more information, see [Introduction to gRPC](xref:grpc/index).
 * *Services* folder: Contains the implementation of the `Greeter` service.
-* *appSettings.json*: Contains configuration data, such as protocol used by Kestrel. For more information, see <xref:fundamentals/configuration/index>.
+* *appSettings.json*: Contains configuration data such as the protocol used by Kestrel. For more information, see <xref:fundamentals/configuration/index>.
 * *Program.cs*: 
   * Contains the entry point for the gRPC service and contains the code that configures app behavior. For more information, see <xref:fundamentals/host/generic-host>.
   * Contains code that configures app behavior. For more information, see [App startup](xref:fundamentals/startup).
@@ -148,9 +145,9 @@ Follow the instructions in [Building a complete .NET Core solution on macOS usin
 
 ---
 
-### Add required packages
+### Add required NuGet packages
 
-The gRPC client project requires the following packages:
+The gRPC client project requires the following NuGet packages:
 
 * [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client), which contains the .NET Core client.
 * [Google.Protobuf](https://www.nuget.org/packages/Google.Protobuf/), which contains protobuf message APIs for C#.
