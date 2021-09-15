@@ -1021,6 +1021,34 @@ For more information, see the following articles:
 * <xref:mvc/views/razor#typeparam>
 * <xref:blazor/components/templated-components>
 
+## Render Razor components from JavaScript
+
+Razor components can be dynamically-rendered from JavaScript (JS) for existing JS apps.
+
+To render a Razor component from JS, first register the component as a root component for JS rendering and assign the component an identifier:
+
+* In a Blazor Server app, modify the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A> in `Program.cs`:
+
+  ```csharp
+  builder.Services.AddServerSideBlazor(options =>
+  {
+      options.RootComponents.RegisterForJavaScript<Counter>(identifier: "counter");
+  });
+  ```
+
+* Blazor WebAssembly in `Program.cs`:
+
+  ```csharp
+  builder.RootComponents.RegisterForJavaScript<Counter>(identifier: "counter");
+  ```
+
+Load Blazor into your JS app (`blazor.server.js` or `blazor.webassembly.js`). Render the component from JS into a container element using the registered identifier, passing component parameters as needed:
+
+```javascript
+let containerElement = document.getElementById('my-counter');
+await Blazor.rootComponents.add(containerElement, 'counter', { incrementAmount: 10 });
+```
+
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
