@@ -1097,52 +1097,6 @@ For a complete example of how to create custom elements with Blazor, see the [Bl
 
 Generate framework-specific JavaScript (JS) components from Razor components for web frameworks, such as Angular or React. This capability isn't included with .NET 6, but is enabled by the new support for rendering Razor components from JS. The [JS component generation sample on GitHub](https://github.com/aspnet/samples/tree/main/samples/aspnetcore/blazor/JSComponentGeneration) demonstrates how to generate Angular and React components from Razor components.
 
-In the sample, an attribute for Razor components is used to generate Angular or React component wrappers:
-
-* For Angular:
-
-  ```razor
-  @*Generate an Angular component*@
-  @attribute [GenerateAngular]
-  ```
-
-* For React:
-
-  ```razor
-  @*Generate an React component*@
-  @attribute [GenerateReact]
-  ```
-
-Register the Razor components as Angular or React components:
-
-* For Angular:
-
-  ```csharp
-  options.RootComponents.RegisterForAngular<Counter>();
-  ```
-
-* For React:
-
-  ```csharp
-  options.RootComponents.RegisterForReact<Counter>();
-  ```
-
-When the project is built, Angular or React components are generated based on the Razor components. Use the components:
-
-* In Angular:
-
-  ```html
-  <counter [incrementAmount]="incrementAmount"></counter>
-  ```
-
-* In React:
-
-  ```html
-  <Counter incrementAmount={incrementAmount}></Counter>
-  ```
-
-The [sample](https://github.com/aspnet/samples/tree/main/samples/aspnetcore/blazor/JSComponentGeneration) isn't a complete solution for generating Angular and React components from Razor components, but we hope that the sample provides a basic demonstration. We welcome and encourage community efforts to build on this functionality.
-
 > [!WARNING]
 > The Angular and React component features are currently **experimental, unsupported, and subject to change or be removed at any time**. We welcome your feedback on how well this particular approach meets your requirements.
 
