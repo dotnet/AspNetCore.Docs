@@ -315,8 +315,6 @@ For more information, see <xref:razor-pages/ui-class#create-an-rcl-with-static-a
 
 [!INCLUDE[](~/includes/js-collocation.md)]
 
-For more information on RCLs, see <xref:razor-pages/ui-class>.
-
 ## Supply components and static assets to multiple hosted Blazor apps
 
 For more information, see <xref:blazor/host-and-deploy/webassembly#static-assets-and-class-libraries-for-multiple-blazor-webassembly-apps>.
