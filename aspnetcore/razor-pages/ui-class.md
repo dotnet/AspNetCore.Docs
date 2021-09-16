@@ -225,7 +225,7 @@ For more information, see [dotnet new](/dotnet/core/tools/dotnet-new). To avoid 
 
 Add Razor files to the RCL.
 
-The ASP.NET Core templates assume the RCL content is in the `Areas` folder. See [RCL Pages layout](#rcl-pages-layout) to create an RCL that exposes content in `~/Pages` rather than `~/Areas/Pages`.
+The ASP.NET Core templates assume the RCL content is in the `Areas` folder. See [RCL Pages layout](#rcl-layout) to create an RCL that exposes content in `~/Pages` rather than `~/Areas/Pages`.
 
 ## Reference RCL content
 
@@ -377,6 +377,8 @@ When a view, partial view, or Razor Page is found in both the web app and the RC
 In the sample download, rename `WebApp1/Areas/MyFeature2` to `WebApp1/Areas/MyFeature` to test precedence.
 
 Copy the `RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml` partial view to `WebApp1/Areas/MyFeature/Pages/Shared/_Message.cshtml`. Update the markup to indicate the new location. Build and run the app to verify the app's version of the partial is being used.
+
+<a name="rcl-layout"></a>
 
 ### RCL Pages layout
 
