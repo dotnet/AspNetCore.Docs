@@ -96,6 +96,11 @@ The `{webassembly|server}` placeholder in the preceding markup is either `webass
 
 [!INCLUDE[](~/includes/js-collocation.md)]
 
+For more information on RCLs, see the following articles:
+
+* <xref:razor-pages/ui-class>
+* <xref:blazor/components/class-libraries>
+
 ### Load a script from an external JavaScript file (`.js`)
 
 Place the JavaScript (JS) tags (`<script>...</script>`) with a script source (`src`) path inside the closing `</body>` tag after the Blazor script reference.
