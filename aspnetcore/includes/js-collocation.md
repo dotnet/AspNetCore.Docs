@@ -1,53 +1,50 @@
 ---
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 ---
-Collocation of script files in the same folder as pages, views, or Razor components is a convenient way to organize JS code specific to components. Collocated JS files are publicly addressable using the path to the file in the project.
+Collocation of JavaScript (JS) files in the same folder as pages, views, or Razor components is a convenient way to organize scripts in an app.
 
-Collocate JavaScript (JS) files using the following filename extension conventions:
+Collocate JS files using the following filename extension conventions:
 
-* Pages of Razor Pages apps: `.cshtml.js`
-* Views of MVC apps: `.cshtml.js`
-* Razor components of Blazor apps: `.razor.js`
+* Pages of Razor Pages apps and views of MVC apps: `.cshtml.js`. Examples:
+  * `Pages/Contact.cshtml.js` for the app's `Contact` page at `Pages/Contact.cshtml`.
+  * `Views/Home/Contact.cshtml.js` for the app's `Contact` view at `Views/Home/Contact.cshtml`.
+* Razor components of Blazor apps: `.razor.js`. Example: `Pages/Index.razor.js` for the app's `Index` component at `Pages/Index.razor`.
 
-[JS module](#javascript-isolation-in-javascript-modules) examples:
+Collocated JS files are publicly addressable using the path to the file in the project:
 
-* `{Pages|Views}/{PAGE, VIEW, OR COMPONENT NAME}.{cshtml|razor}.js` for script files.
+* Pages, views, and components from a collocated scripts file in the app:
 
-  * The `{Pages|Views}` placeholder is either `Pages` for the pages folder of a Razor Pages/Blazor app or `Views` for the views folder of an MVC app.
-  * The `{PAGE, VIEW, OR COMPONENT NAME}` placeholder is the name of the page, view, or component.
-  * The `{cshtml|razor}` placeholder is either `cshtml` for pages and views or `razor` for a component.
-
-  In the following example, scripts are loaded for the `Index` component (`Pages/Index.razor`) of a Blazor app:
-
-  ```csharp
-  var module = await JS.InvokeAsync<IJSObjectReference>("import", 
-      "./Pages/Index.razor.js");
-  ```
+  `{PATH}/{PAGE, VIEW, OR COMPONENT}.{EXTENSION}.js`
   
-  In the following example, scripts are loaded for the `Contact` view (`Views/Contact.cshtml`) of an MVC app:
+  * The `{PATH}` placeholder is the path to the page, view, or component.
+  * The `{PAGE, VIEW, OR COMPONENT}` placeholder is the page, view, or component.
+  * The `{EXTENSION}` placeholder matches the extension of page, view, or component, either `razor` or `cshtml`.
+  
+  In the following example from a Razor Pages app, the script is collocated in the `Pages` folder with the `Contact` page (`Pages/Contact.cshtml`):
 
-  ```csharp
-  var module = await JS.InvokeAsync<IJSObjectReference>("import", 
-      "./Views/Contact.cshtml.js");
+  ```razor
+  @section Scripts {
+    <script src="~/Pages/Contact.cshtml.js"></script>
+  }
   ```
 
-* `_content/{PACKAGE ID}/{Pages|Views}/{PAGE, VIEW, OR COMPONENT NAME}.{cshtml|razor}.js` for scripts provided by a [Razor class library (RCL)](xref:blazor/components/class-libraries).
+* For scripts provided by a Razor class library (RCL):
+
+  `_content/{PACKAGE ID}/{PATH}/{PAGE, VIEW, OR COMPONENT}.{EXTENSION}.js`
 
   * The `{PACKAGE ID}` placeholder is the RCL's package identifier.
-  * The `{Pages|Views}` placeholder is either `Pages` for the pages folder of a Razor Pages/Blazor app or `Views` for the views folder of an MVC app.
-  * The `{PAGE, VIEW, OR COMPONENT NAME}` placeholder is the name of the page, view, or component.
-  * The `{cshtml|razor}` placeholder is either `cshtml` for pages and views or `razor` for a component.
+  * The `{PATH}` placeholder is the path to the page, view, or component.
+  * The `{PAGE, VIEW, OR COMPONENT}` placeholder is the page, view, or component.
+  * The `{EXTENSION}` placeholder matches the extension of page, view, or component, either `razor` or `cshtml`.
 
-  In the following example, the RCL's package identifier is `AppJS`, and the scripts are loaded for the `Index` component (`Pages/Index.razor`) of a Blazor app:
+  In the following Blazor app example, the RCL's package identifier is `AppJS`, and a module's scripts are loaded for the `Index` component (`Pages/Index.razor`):
 
   ```csharp
   var module = await JS.InvokeAsync<IJSObjectReference>("import", 
       "_content/AppJS/Pages/Index.razor.js");
   ```
   
-  In the following example, the RCL's package identifier is `AppJS`, and the scripts are loaded for the `Contact` view (`Views/Contact.cshtml`) of an MVC app:
-
-  ```csharp
-  var module = await JS.InvokeAsync<IJSObjectReference>("import", 
-      "_content/AppJS/Views/Contact.cshtml.js");
-  ```
+  For more information on RCLs, see the following articles:
+  
+  * <xref:razor-pages/ui-class>
+  * <xref:blazor/components/class-libraries>
