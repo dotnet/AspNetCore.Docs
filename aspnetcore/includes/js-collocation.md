@@ -1,7 +1,7 @@
 ---
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 ---
-Collocation of JavaScript (JS) files for pages, views, or Razor components is a convenient way to organize scripts in an app.
+Collocation of JavaScript (JS) files for pages, views, and Razor components is a convenient way to organize scripts in an app.
 
 Collocate JS files using the following filename extension conventions:
 
@@ -18,7 +18,7 @@ Collocated JS files are publicly addressable using the path to the file in the p
   
   * The `{PATH}` placeholder is the path to the page, view, or component.
   * The `{PAGE, VIEW, OR COMPONENT}` placeholder is the page, view, or component.
-  * The `{EXTENSION}` placeholder matches the extension of page, view, or component, either `razor` or `cshtml`.
+  * The `{EXTENSION}` placeholder matches the extension of the page, view, or component, either `razor` or `cshtml`.
   
   In the following example from a Razor Pages app, the script is collocated in the `Pages` folder with the `Contact` page (`Pages/Contact.cshtml`):
 
