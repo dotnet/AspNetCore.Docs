@@ -364,12 +364,14 @@ endpoints.MapBlazorHub(configureOptions: options =>
 });
 ```
 
-Add the following script to the `Shared/_Layout.cshtml` file immediately inside the closing `</body>` tag. WebSockets (`1`) and Long Polling (`4`) are the supported `HTTPTransportTypes`. The following example:
+Add the following script to the `Pages/_Layout.cshtml` file immediately inside the closing `</body>` tag. WebSockets (`1`) and Long Polling (`4`) are the supported `HTTPTransportTypes`. The following example:
 
+* Adds the `autostart="false"` attribute to the Blazor script tag.
 * Specifies support for both WebSockets and Long Polling transports (`1 | 4`).
 * Defaults to the WebSockets transport when a WebSockets connection can be established.
 
 ```html
+<script src="_framework/blazor.server.js" autostart="false"></script>
 <script>
   (function start() {
     Blazor.start({
