@@ -507,7 +507,6 @@ rm localhost.crt
 ```
 
 See [this GitHub comment](https://github.com/dotnet/aspnetcore/issues/32361#issuecomment-837111639) for more information.
-=======
 See [this GitHub comment](https://github.com/dotnet/aspnetcore/issues/32361#issuecomment-837111639).
 
 ### Trust the certificate with other distros
