@@ -43,8 +43,3 @@ Collocated JS files are publicly addressable using the path to the file in the p
   var module = await JS.InvokeAsync<IJSObjectReference>("import", 
       "_content/AppJS/Pages/Index.razor.js");
   ```
-  
-  For more information on RCLs, see the following articles:
-  
-  * <xref:razor-pages/ui-class>
-  * <xref:blazor/components/class-libraries>
