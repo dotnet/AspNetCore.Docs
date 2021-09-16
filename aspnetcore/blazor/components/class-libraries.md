@@ -311,7 +311,7 @@ Rendered `Jeep` component:
 
 For more information, see <xref:razor-pages/ui-class#create-an-rcl-with-static-assets>.
 
-## Create an RCL with static assets collocated with components
+## Create an RCL with JavaScript files collocated with components
 
 [!INCLUDE[](~/includes/js-collocation.md)]
 
