@@ -6,9 +6,9 @@ Collocation of JavaScript (JS) files in the same folder as pages, views, or Razo
 Collocate JS files using the following filename extension conventions:
 
 * Pages of Razor Pages apps and views of MVC apps: `.cshtml.js`. Examples:
-  * `Pages/Contact.cshtml.js` for the app's `Contact` page at `Pages/Contact.cshtml`.
-  * `Views/Home/Contact.cshtml.js` for the app's `Contact` view at `Views/Home/Contact.cshtml`.
-* Razor components of Blazor apps: `.razor.js`. Example: `Pages/Index.razor.js` for the app's `Index` component at `Pages/Index.razor`.
+  * `Pages/Contact.cshtml.js` for the `Contact` page of a Razor Pages app at `Pages/Contact.cshtml`.
+  * `Views/Home/Contact.cshtml.js` for the `Contact` view of an MVC app at `Views/Home/Contact.cshtml`.
+* Razor components of Blazor apps: `.razor.js`. Example: `Pages/Index.razor.js` for the `Index` component at `Pages/Index.razor`.
 
 Collocated JS files are publicly addressable using the path to the file in the project:
 
@@ -32,7 +32,7 @@ Collocated JS files are publicly addressable using the path to the file in the p
 
   `_content/{PACKAGE ID}/{PATH}/{PAGE, VIEW, OR COMPONENT}.{EXTENSION}.js`
 
-  * The `{PACKAGE ID}` placeholder is the RCL's package identifier.
+  * The `{PACKAGE ID}` placeholder is the RCL's package identifier (or library name for a class library referenced by the app).
   * The `{PATH}` placeholder is the path to the page, view, or component.
   * The `{PAGE, VIEW, OR COMPONENT}` placeholder is the page, view, or component.
   * The `{EXTENSION}` placeholder matches the extension of page, view, or component, either `razor` or `cshtml`.
