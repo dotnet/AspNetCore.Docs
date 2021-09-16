@@ -14,11 +14,11 @@ Collocated JS files are publicly addressable using the path to the file in the p
 
 * Pages, views, and components from a collocated scripts file in the app:
 
-  `{PATH}/{PAGE, VIEW, OR COMPONENT}.{EXTENSION}.js`
+  `{PATH}/{PAGE, VIEW, OR COMPONENT}.{EXTENSION}`
   
   * The `{PATH}` placeholder is the path to the page, view, or component.
   * The `{PAGE, VIEW, OR COMPONENT}` placeholder is the page, view, or component.
-  * The `{EXTENSION}` placeholder matches the extension of the page, view, or component, either `razor` or `cshtml`.
+  * The `{EXTENSION}` placeholder matches the extension of the page, view, or component, either `razor` or `cshtml`, followed by `.js`.
   
   In the following example from a Razor Pages app, the script is collocated in the `Pages` folder with the `Contact` page (`Pages/Contact.cshtml`):
 
@@ -30,12 +30,12 @@ Collocated JS files are publicly addressable using the path to the file in the p
 
 * For scripts provided by a Razor class library (RCL):
 
-  `_content/{PACKAGE ID}/{PATH}/{PAGE, VIEW, OR COMPONENT}.{EXTENSION}.js`
+  `_content/{PACKAGE ID}/{PATH}/{PAGE, VIEW, OR COMPONENT}.{EXTENSION}`
 
   * The `{PACKAGE ID}` placeholder is the RCL's package identifier (or library name for a class library referenced by the app).
   * The `{PATH}` placeholder is the path to the page, view, or component. If a Razor component is located at the root of the RCL, the path segment isn't included.
   * The `{PAGE, VIEW, OR COMPONENT}` placeholder is the page, view, or component.
-  * The `{EXTENSION}` placeholder matches the extension of page, view, or component, either `razor` or `cshtml`.
+  * The `{EXTENSION}` placeholder matches the extension of page, view, or component, either `razor` or `cshtml`, followed by `.js`.
 
   In the following Blazor app example:
   
