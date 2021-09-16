@@ -70,7 +70,7 @@ For more information on building the host, see the **Set up a host** and **Defau
 
 ## Localhost testing
 
-* Browsers do not enable HTTP/3 on localhost/loopback connections: to test with a browser, run the client and server on separate machines.
+* Browsers do not enable HTTP/3 on localhost/loopback connections: to test with a browser, run the client and server on separate machines, using a VM or in WSL.
 * `HttpClient` can be used for localhost/loopback testing in .NET 6 or later. Extra configured is required when using `HttpClient` to make an HTTP/3 request:
   * Set `HttpRequestMessage.Version` to 3.0, or
   * Set `HttpRequestMessage.VersionPolicy` to `HttpVersionPolicy.RequestVersionOrHigher`.
