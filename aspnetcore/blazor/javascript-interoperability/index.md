@@ -40,7 +40,8 @@ Load JavaScript (JS) code using any of the following approaches:
 
 * [Load a script in `<head>` markup](#load-a-script-in-head-markup) (*Not generally recommended*)
 * [Load a script in `<body>` markup](#load-a-script-in-body-markup)
-* [Load a script from an external JS file (`.js`)](#load-a-script-from-an-external-js-file-js)
+* [Load a script from an external JavaScript file (`.js`) collocated with a component](#load-a-script-from-an-external-js-file-js-collocated-with-a-component)
+* [Load a script from an external JavaScript file (`.js`)](#load-a-script-from-an-external-js-file-js)
 * [Inject a script after Blazor starts](#inject-a-script-after-blazor-starts)
 
 > [!WARNING]
@@ -53,7 +54,7 @@ Load JavaScript (JS) code using any of the following approaches:
 
 *The approach in this section isn't generally recommended.*
 
-Place the script  (`<script>...</script>`) in the `<head>` element markup of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server):
+Place the JavaScript (JS) tags (`<script>...</script>`) in the `<head>` element markup of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server):
 
 ```html
 <head>
@@ -74,7 +75,7 @@ Loading JS from the `<head>` isn't the best approach for the following reasons:
 
 ### Load a script in `<body>` markup
 
-Place the script  (`<script>...</script>`) inside the closing `</body>` element markup of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server):
+Place the JavaScript (JS) tags (`<script>...</script>`) inside the closing `</body>` element markup of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server):
 
 ```html
 <body>
@@ -91,9 +92,36 @@ Place the script  (`<script>...</script>`) inside the closing `</body>` element 
 
 The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or `server` for a Blazor Server app (`blazor.server.js`).
 
-### Load a script from an external JS file (`.js`)
+### Load a script from an external JavaScript file (`.js`) collocated with a component
 
-Place the script  (`<script>...</script>`) with a script `src` path inside the closing `</body>` tag after the Blazor script reference.
+Collocate JavaScript (JS) files with Razor components using the `.razor.js` filename extension convention. Collocation of script files is a convenient way to organize JS code specific to components. Collocated JS files are publicly addressable using the path to the file in the project.
+
+[JS module](#javascript-isolation-in-javascript-modules) examples:
+
+* `Pages/{COMPONENT}.razor.js` for a scripts file in the app's `Pages` folder, where the `{COMPONENT}` placeholder is the name of the component.
+
+  In the following example, scripts are loaded for the `Index` component (`Pages/Index.razor`):
+   
+  ```csharp
+  var module = await JS.InvokeAsync<IJSObjectReference>("import", 
+      "./Pages/Index.razor.js");
+  ```
+
+* `_content/{PACKAGE ID}/Pages/{COMPONENT}.razor.js` for scripts provided by a [Razor class library (RCL)](xref:blazor/components/class-libraries). The `{PACKAGE ID}` placeholder is the RCL's package identifier, and the `{COMPONENT}` placeholder is the name of the component.
+
+  In the following example, the RCL's package identifier is `AppJS`, and the scripts are loaded for the `Index` component (`Pages/Index.razor`):
+  
+  ```csharp
+  var module = await JS.InvokeAsync<IJSObjectReference>("import", 
+      "_content/AppJS/Pages/Index.cshtml.js");
+  ```
+  
+> [!NOTE]
+> Collocation of JS is also supported for pages of Razor Pages apps and views of MVC apps using the `.cshtml.js` file extension convention. For more information, see XXXXXXXXXXXX.
+
+### Load a script from an external JavaScript file (`.js`)
+
+Place the JavaScript (JS) tags (`<script>...</script>`) with a script source (`src`) path inside the closing `</body>` tag after the Blazor script reference.
 
 In `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server):
 
