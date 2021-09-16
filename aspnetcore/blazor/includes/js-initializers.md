@@ -32,3 +32,6 @@ export function afterStarted(blazor) {
 ```
 
 JS initializers are detected as part of the build process and then imported automatically in Blazor apps. Use of JS initializers often removes the need to manually add script references when using Razor class libraries (RCLs).
+
+> [!NOTE]
+> MVC and Razor Pages apps don't automatically load JS initializers. However, developer code can include a script to fetch the app's manifest and trigger the load of the JS initializers.
