@@ -49,9 +49,6 @@ We hope to have Visual Studio for Mac instructions soon.
 * In the **Configure your new project** dialog, enter `GrpcGreeter` for **Project name**. It's important to name the project *GrpcGreeter* so the namespaces match when you copy and paste code.
 * Select **Next**.
 * In the **Additional information** dialog, select **.NET 6.0 (Preview)** and then select **Create**.
-* Update *Program.cs* with the following highlighted code:
-
-  [!code-csharp[](~/tutorials/grpc/grpc-start/sample6/GrpcGreeterClient/Program.cs?name=snippet1&highlight=14-19)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
