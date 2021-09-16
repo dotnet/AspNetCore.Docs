@@ -252,7 +252,7 @@ The distinction between using the `Link` component in a child component and plac
 * Can be modified by application state. A hard-coded `<link>` HTML tag can't be modified by application state.
 * Is removed from the HTML `<head>` when the parent component is no longer rendered.
 
-## Create an RCL with static assets
+## Create an RCL with static assets in the `wwwroot` folder
 
 An RCL's static assets are available to any app that consumes the library.
 
@@ -310,6 +310,12 @@ Rendered `Jeep` component:
 ![Jeep component](~/blazor/components/class-libraries/_static/jeep-component.png)
 
 For more information, see <xref:razor-pages/ui-class#create-an-rcl-with-static-assets>.
+
+## Create an RCL with static assets collocated with components
+
+[!INCLUDE[](~/includes/js-collocation.md)]
+
+For more information on RCLs, see <xref:razor-pages/ui-class>.
 
 ## Supply components and static assets to multiple hosted Blazor apps
 
