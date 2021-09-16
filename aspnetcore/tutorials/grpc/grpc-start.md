@@ -12,11 +12,7 @@ uid: tutorials/grpc/grpc-start
 By [John Luo](https://github.com/juntaoluo)
 
 ::: moniker range=">= aspnetcore-6.0"
-This tutorial shows how to create a .NET Core [gRPC](xref:grpc/index) client and an ASP.NET Core gRPC Server.
-
-At the end, you'll have a gRPC client that communicates with the gRPC Greeter service.
-
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/grpc/grpc-start/sample6) ([how to download](xref:index#how-to-download-a-sample)).
+This tutorial shows how to create a .NET Core [gRPC](xref:grpc/index) client and an ASP.NET Core gRPC Server. At the end, you'll have a gRPC client that communicates with the gRPC Greeter service.
 
 In this tutorial, you:
 
@@ -49,7 +45,7 @@ We hope to have Visual Studio for Mac instructions soon.
 # [Visual Studio](#tab/visual-studio)
 
 * Start Visual Studio 2022 and select **Create a new project**.
-* In the **Create a new project** dialog, select **ASP.NET Core gRPC Service** and select **Next**.
+* In the **Create a new project** dialog, search for `gRPC`. Select **ASP.NET Core gRPC Service** and select **Next**.
 * In the **Configure your new project** dialog, enter `GrpcGreeter` for **Project name**. It's important to name the project *GrpcGreeter* so the namespaces match when you copy and paste code.
 * Select **Next**.
 * In the **Additional information** dialog, select **.NET 6.0 (Preview)** and then select **Create**.
@@ -112,7 +108,7 @@ info: Microsoft.Hosting.Lifetime[0]
 * *Protos/greet.proto*: defines the `Greeter` gRPC and is used to generate the gRPC server assets. For more information, see [Introduction to gRPC](xref:grpc/index).
 * *Services* folder: Contains the implementation of the `Greeter` service.
 * *appSettings.json*: Contains configuration data such as the protocol used by Kestrel. For more information, see <xref:fundamentals/configuration/index>.
-* *Program.cs*: 
+* *Program.cs, which contains*:
   * Contains the entry point for the gRPC service. For more information, see <xref:fundamentals/host/generic-host>.
   * Contains code that configures app behavior. For more information, see [App startup](xref:fundamentals/startup).
 
@@ -121,7 +117,7 @@ info: Microsoft.Hosting.Lifetime[0]
 # [Visual Studio](#tab/visual-studio)
 
 * Open a second instance of Visual Studio and select **Create a new project**.
-* In the **Create a new project** dialog, select **Console Application** and select **Next**.
+* In the **Create a new project** dialog, select **Console Application**, and select **Next**.
 * In the **Project name** text box, enter **GrpcGreeterClient** and select **Next**.
 * In the **Additional information** dialog, select **.NET 6.0 (Preview)** and then select **Create**.
 
@@ -151,7 +147,7 @@ The gRPC client project requires the following NuGet packages:
 
 * [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client), which contains the .NET Core client.
 * [Google.Protobuf](https://www.nuget.org/packages/Google.Protobuf/), which contains protobuf message APIs for C#.
-* [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/), which contains C# tooling support for protobuf files. The tooling package isn't required at runtime, so the dependency is marked with `PrivateAssets="All"`.
+* [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/), which contain C# tooling support for protobuf files. The tooling package isn't required at runtime, so the dependency is marked with `PrivateAssets="All"`.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -322,6 +318,7 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
 
 ### Next steps
 
+* View or download [the completed sample code for this tutorial](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/grpc/grpc-start/sample6) ([how to download](xref:index#how-to-download-a-sample)).
 * <xref:grpc/index>
 * <xref:grpc/basics>
 * <xref:grpc/migration>
