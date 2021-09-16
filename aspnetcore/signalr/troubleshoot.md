@@ -11,7 +11,7 @@ uid: signalr/troubleshoot
 ---
 # Troubleshoot connection errors
 
-This section provides help with errors that can occur when trying to establish a connection to a ASP.NET Core SignalR hub.
+This section provides help with errors that can occur when trying to establish a connection to an ASP.NET Core SignalR hub.
 
 ### Response code 404
 

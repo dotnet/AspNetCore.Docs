@@ -87,7 +87,7 @@ By default, there's no limit on the number of connections per user for a Blazor 
   * At the server level: Use a proxy/gateway in front of the app.
   
     > [!NOTE]
-    > Long Polling isn't enabled by default for ASP.NET Core 6.0 or later Blazor Server apps.
+    > Long Polling isn't enabled by default for Blazor Server apps.
     >
     > For more information, see the following resources:
     >

@@ -177,10 +177,6 @@ When using generic-typed components, the type parameter is inferred if possible.
 
 [!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/templated-components/Pets4.razor?highlight=5)]
 
-## Infer generic types based on ancestor components
-
-Inferred generic types are supported in ASP.NET Core 6.0 or later. For more information, see a 6.0 or later version of this article.
-
 ## Additional resources
 
 * <xref:blazor/performance#define-reusable-renderfragments-in-code>
@@ -227,10 +223,6 @@ When using generic-typed components, the type parameter is inferred if possible.
 `Pages/Pets4.razor`:
 
 [!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/templated-components/Pets4.razor?highlight=5)]
-
-## Infer generic types based on ancestor components
-
-Inferred generic types are supported in ASP.NET Core 6.0 or later. For more information, see a 6.0 or later version of this article.
 
 ## Additional resources
 

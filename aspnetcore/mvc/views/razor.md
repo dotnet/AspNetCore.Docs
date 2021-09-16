@@ -21,7 +21,7 @@ The default Razor language is HTML. Rendering HTML from Razor markup is no diffe
 
 Razor supports C# and uses the `@` symbol to transition from HTML to C#. Razor evaluates C# expressions and renders them in the HTML output.
 
-When an `@` symbol is followed by a [Razor reserved keyword](#razor-reserved-keywords), it transitions into Razor-specific markup. Otherwise, it transitions into plain C#.
+When an `@` symbol is followed by a [Razor reserved keyword](#razor-reserved-keywords), it transitions into Razor-specific markup. Otherwise, it transitions into plain HTML.
 
 To escape an `@` symbol in Razor markup, use a second `@` symbol:
 

@@ -220,7 +220,7 @@ public class HomeController : Controller
         }
 
         ViewData["CachedTime"] = _cache.Get<string>(CacheKeys.Ticks);
-        ViewData["Message"] = _cache.Get<string>(CacheKeys.CancelMsg); ;
+        ViewData["Message"] = _cache.Get<string>(CacheKeys.CancelMsg);
 
         return View();
     }
