@@ -94,30 +94,7 @@ The `{webassembly|server}` placeholder in the preceding markup is either `webass
 
 ### Load a script from an external JavaScript file (`.js`) collocated with a component
 
-Collocate JavaScript (JS) files with Razor components using the `.razor.js` filename extension convention. Collocation of script files is a convenient way to organize JS code specific to components. Collocated JS files are publicly addressable using the path to the file in the project.
-
-[JS module](#javascript-isolation-in-javascript-modules) examples:
-
-* `Pages/{COMPONENT}.razor.js` for a scripts file in the app's `Pages` folder, where the `{COMPONENT}` placeholder is the name of the component.
-
-  In the following example, scripts are loaded for the `Index` component (`Pages/Index.razor`):
-   
-  ```csharp
-  var module = await JS.InvokeAsync<IJSObjectReference>("import", 
-      "./Pages/Index.razor.js");
-  ```
-
-* `_content/{PACKAGE ID}/Pages/{COMPONENT}.razor.js` for scripts provided by a [Razor class library (RCL)](xref:blazor/components/class-libraries). The `{PACKAGE ID}` placeholder is the RCL's package identifier, and the `{COMPONENT}` placeholder is the name of the component.
-
-  In the following example, the RCL's package identifier is `AppJS`, and the scripts are loaded for the `Index` component (`Pages/Index.razor`):
-  
-  ```csharp
-  var module = await JS.InvokeAsync<IJSObjectReference>("import", 
-      "_content/AppJS/Pages/Index.cshtml.js");
-  ```
-  
-> [!NOTE]
-> Collocation of JS is also supported for pages of Razor Pages apps and views of MVC apps using the `.cshtml.js` file extension convention. For more information, see XXXXXXXXXXXX.
+[!INCLUDE[](~/includes/js-collocation.md)]
 
 ### Load a script from an external JavaScript file (`.js`)
 
