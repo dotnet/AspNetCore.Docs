@@ -40,8 +40,8 @@ Load JavaScript (JS) code using any of the following approaches:
 
 * [Load a script in `<head>` markup](#load-a-script-in-head-markup) (*Not generally recommended*)
 * [Load a script in `<body>` markup](#load-a-script-in-body-markup)
-* [Load a script from an external JavaScript file (`.js`) collocated with a component](#load-a-script-from-an-external-js-file-js-collocated-with-a-component)
-* [Load a script from an external JavaScript file (`.js`)](#load-a-script-from-an-external-js-file-js)
+* [Load a script from an external JavaScript file (`.js`) collocated with a component](#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component)
+* [Load a script from an external JavaScript file (`.js`)](#load-a-script-from-an-external-javascript-file-js)
 * [Inject a script after Blazor starts](#inject-a-script-after-blazor-starts)
 
 > [!WARNING]
