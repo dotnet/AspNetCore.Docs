@@ -11,9 +11,10 @@ uid: signalr/hubcontext
 ---
 # Send messages from outside a hub
 
-By [Mikael Mengistu](https://twitter.com/MikaelM_12)
-
 The SignalR hub is the core abstraction for sending messages to clients connected to the SignalR server. It's also possible to send messages from other places in your app using the `IHubContext` service. This article explains how to access a SignalR `IHubContext` to send notifications to clients from outside a hub.
+
+> [!NOTE]
+> The `IHubContext` is for sending notifications to clients, it is not used to call methods on the `Hub`.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/hubcontext/sample/) [(how to download)](xref:index#how-to-download-a-sample)
 
@@ -30,7 +31,7 @@ You can inject an instance of `IHubContext` into a controller by adding it to yo
 
 [!code-csharp[IHubContext](hubcontext/sample/Controllers/HomeController.cs?range=12-19,57)]
 
-Now, with access to an instance of `IHubContext`, you can call hub methods as if you were in the hub itself.
+With access to an instance of `IHubContext`, call client methods as if you were in the hub itself:
 
 [!code-csharp[IHubContext](hubcontext/sample/Controllers/HomeController.cs?range=21-25)]
 
@@ -53,7 +54,7 @@ app.Use(async (context, next) =>
 ```
 
 > [!NOTE]
-> When hub methods are called from outside of the `Hub` class, there's no caller associated with the invocation. Therefore, there's no access to the `ConnectionId`, `Caller`, and `Others` properties.
+> When client methods are called from outside of the `Hub` class, there's no caller associated with the invocation. Therefore, there's no access to the `ConnectionId`, `Caller`, and `Others` properties.
 
 ### Get an instance of IHubContext from IHost
 
@@ -100,6 +101,43 @@ public class ChatController : Controller
 ```
 
 See [Strongly typed hubs](xref:signalr/hubs#strongly-typed-hubs) for more information.
+
+::: moniker range=">= aspnetcore-6.0"
+
+### Use IHubContext in generic code
+
+An injected `IHubContext<THub>` instance can be cast to `IHubContext` without a generic `Hub` type specified.
+
+```csharp
+class MyHub : Hub
+{ }
+
+class MyOtherHub : Hub
+{ }
+
+app.Use(async (context, next) =>
+{
+    var myHubContext = context.RequestServices
+                            .GetRequiredService<IHubContext<MyHub>>();
+    var myOtherHubContext = context.RequestServices
+                            .GetRequiredService<IHubContext<MyOtherHub>>();
+    await CommonHubContextMethod((IHubContext)myHubContext);
+    await CommonHubContextMethod((IHubContext)myOtherHubContext);
+
+    await next.Invoke();
+}
+
+async Task CommonHubContextMethod(IHubContext context)
+{
+    await context.Clients.All.SendAsync("clientMethod", new Args());
+}
+```
+
+This is useful when:
+* Writing libraries that don't have a reference to the specific `Hub` type the app is using.
+* Writing code that is generic and can apply to multiple different `Hub` implementations
+
+::: moniker-end
 
 ## Related resources
 

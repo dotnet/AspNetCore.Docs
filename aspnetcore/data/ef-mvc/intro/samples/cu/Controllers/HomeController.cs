@@ -11,6 +11,7 @@ using System.Data.Common;
 using Microsoft.EntityFrameworkCore;
 using ContosoUniversity.Data;
 using ContosoUniversity.Models.SchoolViewModels;
+using Microsoft.Extensions.Logging;
 #endregion
 
 namespace ContosoUniversity.Controllers
@@ -18,10 +19,12 @@ namespace ContosoUniversity.Controllers
     #region snippet_AddContext
     public class HomeController : Controller
     {
+        private readonly ILogger<HomeController> _logger;
         private readonly SchoolContext _context;
 
-        public HomeController(SchoolContext context)
+        public HomeController(ILogger<HomeController> logger, SchoolContext context)
         {
+            _logger = logger;
             _context = context;
         }
         #endregion

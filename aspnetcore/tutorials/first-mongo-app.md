@@ -216,10 +216,10 @@ The database is ready. You can start creating the ASP.NET Core web API.
    In the preceding class, the `Id` property:
 
    * Is required for mapping the Common Language Runtime (CLR) object to the MongoDB collection.
-   * Is annotated with [`[BsonId]`](https://api.mongodb.com/csharp/current/html/T_MongoDB_Bson_Serialization_Attributes_BsonIdAttribute.htm) to designate this property as the document's primary key.
-   * Is annotated with [`[BsonRepresentation(BsonType.ObjectId)]`](https://api.mongodb.com/csharp/current/html/T_MongoDB_Bson_Serialization_Attributes_BsonRepresentationAttribute.htm) to allow passing the parameter as type `string` instead of an [ObjectId](https://api.mongodb.com/csharp/current/html/T_MongoDB_Bson_ObjectId.htm) structure. Mongo handles the conversion from `string` to `ObjectId`.
+   * Is annotated with [`[BsonId]`](https://mongodb.github.io/mongo-csharp-driver/2.11/apidocs/html/T_MongoDB_Bson_Serialization_Attributes_BsonIdAttribute.htm) to designate this property as the document's primary key.
+   * Is annotated with [`[BsonRepresentation(BsonType.ObjectId)]`](https://mongodb.github.io/mongo-csharp-driver/2.11/apidocs/html/T_MongoDB_Bson_Serialization_Attributes_BsonRepresentationAttribute.htm) to allow passing the parameter as type `string` instead of an [ObjectId](https://mongodb.github.io/mongo-csharp-driver/2.11/apidocs/html/T_MongoDB_Bson_ObjectId.htm) structure. Mongo handles the conversion from `string` to `ObjectId`.
 
-   The `BookName` property is annotated with the [`[BsonElement]`](https://api.mongodb.com/csharp/current/html/T_MongoDB_Bson_Serialization_Attributes_BsonElementAttribute.htm) attribute. The attribute's value of `Name` represents the property name in the MongoDB collection.
+   The `BookName` property is annotated with the [`[BsonElement]`](https://mongodb.github.io/mongo-csharp-driver/2.11/apidocs/html/T_MongoDB_Bson_Serialization_Attributes_BsonElementAttribute.htm) attribute. The attribute's value of `Name` represents the property name in the MongoDB collection.
 
 ## Add a configuration model
 
@@ -267,21 +267,21 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
 The `BookService` class uses the following `MongoDB.Driver` members to perform CRUD operations against the database:
 
-* [MongoClient](https://api.mongodb.com/csharp/current/html/T_MongoDB_Driver_MongoClient.htm): Reads the server instance for performing database operations. The constructor of this class is provided the MongoDB connection string:
+* [MongoClient](https://mongodb.github.io/mongo-csharp-driver/2.11/apidocs/html/T_MongoDB_Driver_MongoClient.htm): Reads the server instance for performing database operations. The constructor of this class is provided the MongoDB connection string:
 
   [!code-csharp[](first-mongo-app/samples/3.x/SampleApp/Services/BookService.cs?name=snippet_BookServiceConstructor&highlight=3)]
 
-* [IMongoDatabase](https://api.mongodb.com/csharp/current/html/T_MongoDB_Driver_IMongoDatabase.htm): Represents the Mongo database for performing operations. This tutorial uses the generic [GetCollection\<TDocument>(collection)](https://api.mongodb.com/csharp/current/html/M_MongoDB_Driver_IMongoDatabase_GetCollection__1.htm) method on the interface to gain access to data in a specific collection. Perform CRUD operations against the collection after this method is called. In the `GetCollection<TDocument>(collection)` method call:
+* [IMongoDatabase](https://mongodb.github.io/mongo-csharp-driver/2.11/apidocs/html/T_MongoDB_Driver_IMongoDatabase.htm): Represents the Mongo database for performing operations. This tutorial uses the generic [GetCollection\<TDocument>(collection)](https://mongodb.github.io/mongo-csharp-driver/2.11/apidocs/html/M_MongoDB_Driver_IMongoDatabase_GetCollection__1.htm) method on the interface to gain access to data in a specific collection. Perform CRUD operations against the collection after this method is called. In the `GetCollection<TDocument>(collection)` method call:
 
   * `collection` represents the collection name.
   * `TDocument` represents the CLR object type stored in the collection.
 
-`GetCollection<TDocument>(collection)` returns a [MongoCollection](https://api.mongodb.com/csharp/current/html/T_MongoDB_Driver_MongoCollection.htm) object representing the collection. In this tutorial, the following methods are invoked on the collection:
+`GetCollection<TDocument>(collection)` returns a [MongoCollection](https://mongodb.github.io/mongo-csharp-driver/2.11/apidocs/html/T_MongoDB_Driver_MongoCollection.htm) object representing the collection. In this tutorial, the following methods are invoked on the collection:
 
-* [DeleteOne](https://api.mongodb.com/csharp/current/html/M_MongoDB_Driver_IMongoCollection_1_DeleteOne.htm): Deletes a single document matching the provided search criteria.
-* [Find\<TDocument>](https://api.mongodb.com/csharp/current/html/M_MongoDB_Driver_IMongoCollectionExtensions_Find__1_1.htm): Returns all documents in the collection matching the provided search criteria.
-* [InsertOne](https://api.mongodb.com/csharp/current/html/M_MongoDB_Driver_IMongoCollection_1_InsertOne.htm): Inserts the provided object as a new document in the collection.
-* [ReplaceOne](https://api.mongodb.com/csharp/current/html/M_MongoDB_Driver_IMongoCollection_1_ReplaceOne.htm): Replaces the single document matching the provided search criteria with the provided object.
+* [DeleteOne](https://mongodb.github.io/mongo-csharp-driver/2.11/apidocs/html/M_MongoDB_Driver_IMongoCollection_1_DeleteOne.htm): Deletes a single document matching the provided search criteria.
+* [Find\<TDocument>](https://mongodb.github.io/mongo-csharp-driver/2.11/apidocs/html/M_MongoDB_Driver_IMongoCollectionExtensions_Find__1_1.htm): Returns all documents in the collection matching the provided search criteria.
+* [InsertOne](https://mongodb.github.io/mongo-csharp-driver/2.11/apidocs/html/M_MongoDB_Driver_IMongoCollection_1_InsertOne.htm): Inserts the provided object as a new document in the collection.
+* [ReplaceOne](https://mongodb.github.io/mongo-csharp-driver/2.11/apidocs/html/M_MongoDB_Driver_IMongoCollection_1_ReplaceOne.htm): Replaces the single document matching the provided search criteria with the provided object.
 
 ## Add a controller
 
@@ -566,10 +566,10 @@ The database is ready. You can start creating the ASP.NET Core web API.
    In the preceding class, the `Id` property:
 
    * Is required for mapping the Common Language Runtime (CLR) object to the MongoDB collection.
-   * Is annotated with [`[BsonId]`](https://api.mongodb.com/csharp/current/html/T_MongoDB_Bson_Serialization_Attributes_BsonIdAttribute.htm) to designate this property as the document's primary key.
-   * Is annotated with [`[BsonRepresentation(BsonType.ObjectId)]`](https://api.mongodb.com/csharp/current/html/T_MongoDB_Bson_Serialization_Attributes_BsonRepresentationAttribute.htm) to allow passing the parameter as type `string` instead of an [ObjectId](https://api.mongodb.com/csharp/current/html/T_MongoDB_Bson_ObjectId.htm) structure. Mongo handles the conversion from `string` to `ObjectId`.
+   * Is annotated with [`[BsonId]`](https://mongodb.github.io/mongo-csharp-driver/2.11/apidocs/html/T_MongoDB_Bson_Serialization_Attributes_BsonIdAttribute.htm) to designate this property as the document's primary key.
+   * Is annotated with [`[BsonRepresentation(BsonType.ObjectId)]`](https://mongodb.github.io/mongo-csharp-driver/2.11/apidocs/html/T_MongoDB_Bson_Serialization_Attributes_BsonRepresentationAttribute.htm) to allow passing the parameter as type `string` instead of an [ObjectId](https://mongodb.github.io/mongo-csharp-driver/2.11/apidocs/html/T_MongoDB_Bson_ObjectId.htm) structure. Mongo handles the conversion from `string` to `ObjectId`.
 
-   The `BookName` property is annotated with the [`[BsonElement]`](https://api.mongodb.com/csharp/current/html/T_MongoDB_Bson_Serialization_Attributes_BsonElementAttribute.htm) attribute. The attribute's value of `Name` represents the property name in the MongoDB collection.
+   The `BookName` property is annotated with the [`[BsonElement]`](https://mongodb.github.io/mongo-csharp-driver/2.11/apidocs/html/T_MongoDB_Bson_Serialization_Attributes_BsonElementAttribute.htm) attribute. The attribute's value of `Name` represents the property name in the MongoDB collection.
 
 ## Add a configuration model
 
@@ -617,21 +617,21 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
 The `BookService` class uses the following `MongoDB.Driver` members to perform CRUD operations against the database:
 
-* [MongoClient](https://api.mongodb.com/csharp/current/html/T_MongoDB_Driver_MongoClient.htm): Reads the server instance for performing database operations. The constructor of this class is provided with the MongoDB connection string:
+* [MongoClient](https://mongodb.github.io/mongo-csharp-driver/2.11/apidocs/html/T_MongoDB_Driver_MongoClient.htm): Reads the server instance for performing database operations. The constructor of this class is provided with the MongoDB connection string:
 
   [!code-csharp[](first-mongo-app/samples/2.x/SampleApp/Services/BookService.cs?name=snippet_BookServiceConstructor&highlight=3)]
 
-* [IMongoDatabase](https://api.mongodb.com/csharp/current/html/T_MongoDB_Driver_IMongoDatabase.htm): Represents the Mongo database for performing operations. This tutorial uses the generic [GetCollection\<TDocument>(collection)](https://api.mongodb.com/csharp/current/html/M_MongoDB_Driver_IMongoDatabase_GetCollection__1.htm) method on the interface to gain access to data in a specific collection. Perform CRUD operations against the collection after this method is called. In the `GetCollection<TDocument>(collection)` method call:
+* [IMongoDatabase](https://mongodb.github.io/mongo-csharp-driver/2.11/apidocs/html/T_MongoDB_Driver_IMongoDatabase.htm): Represents the Mongo database for performing operations. This tutorial uses the generic [GetCollection\<TDocument>(collection)](https://mongodb.github.io/mongo-csharp-driver/2.11/apidocs/html/M_MongoDB_Driver_IMongoDatabase_GetCollection__1.htm) method on the interface to gain access to data in a specific collection. Perform CRUD operations against the collection after this method is called. In the `GetCollection<TDocument>(collection)` method call:
 
   * `collection` represents the collection name.
   * `TDocument` represents the CLR object type stored in the collection.
 
-`GetCollection<TDocument>(collection)` returns a [MongoCollection](https://api.mongodb.com/csharp/current/html/T_MongoDB_Driver_MongoCollection.htm) object representing the collection. In this tutorial, the following methods are invoked on the collection:
+`GetCollection<TDocument>(collection)` returns a [MongoCollection](https://mongodb.github.io/mongo-csharp-driver/2.11/apidocs/html/T_MongoDB_Driver_MongoCollection.htm) object representing the collection. In this tutorial, the following methods are invoked on the collection:
 
-* [DeleteOne](https://api.mongodb.com/csharp/current/html/M_MongoDB_Driver_IMongoCollection_1_DeleteOne.htm): Deletes a single document matching the provided search criteria.
-* [Find\<TDocument>](https://api.mongodb.com/csharp/current/html/M_MongoDB_Driver_IMongoCollectionExtensions_Find__1_1.htm): Returns all documents in the collection matching the provided search criteria.
-* [InsertOne](https://api.mongodb.com/csharp/current/html/M_MongoDB_Driver_IMongoCollection_1_InsertOne.htm): Inserts the provided object as a new document in the collection.
-* [ReplaceOne](https://api.mongodb.com/csharp/current/html/M_MongoDB_Driver_IMongoCollection_1_ReplaceOne.htm): Replaces the single document matching the provided search criteria with the provided object.
+* [DeleteOne](https://mongodb.github.io/mongo-csharp-driver/2.11/apidocs/html/M_MongoDB_Driver_IMongoCollection_1_DeleteOne.htm): Deletes a single document matching the provided search criteria.
+* [Find\<TDocument>](https://mongodb.github.io/mongo-csharp-driver/2.11/apidocs/html/M_MongoDB_Driver_IMongoCollectionExtensions_Find__1_1.htm): Returns all documents in the collection matching the provided search criteria.
+* [InsertOne](https://mongodb.github.io/mongo-csharp-driver/2.11/apidocs/html/M_MongoDB_Driver_IMongoCollection_1_InsertOne.htm): Inserts the provided object as a new document in the collection.
+* [ReplaceOne](https://mongodb.github.io/mongo-csharp-driver/2.11/apidocs/html/M_MongoDB_Driver_IMongoCollection_1_ReplaceOne.htm): Replaces the single document matching the provided search criteria with the provided object.
 
 ## Add a controller
 
@@ -713,7 +713,17 @@ To satisfy the preceding requirements, make the following changes:
 
 ## Add authentication support to a web API
 
+::: moniker range=">= aspnetcore-6.0"
+
+[!INCLUDE[](~/includes/DuendeIdentityServer.md)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-6.0"
+
 [!INCLUDE[](~/includes/IdentityServer4.md)]
+
+::: moniker-end
 
 ## Next steps
 

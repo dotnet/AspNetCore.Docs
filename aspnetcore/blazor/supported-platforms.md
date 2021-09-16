@@ -11,7 +11,7 @@ uid: blazor/supported-platforms
 ---
 # ASP.NET Core Blazor supported platforms
 
-::: moniker range=">= aspnetcore-5.0"
+::: moniker range=">= aspnetcore-6.0"
 
 Blazor WebAssembly and Blazor Server are supported in the browsers shown in the following table.
 
@@ -24,39 +24,49 @@ Blazor WebAssembly and Blazor Server are supported in the browsers shown in the 
 
 &dagger;*Current* refers to the latest version of the browser.  
 
+## Additional resources
+
+* <xref:blazor/hosting-models>
+* <xref:signalr/supported-platforms>
+
 ::: moniker-end
 
-::: moniker range="< aspnetcore-5.0"
+::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-## Blazor WebAssembly
-
-| Browser                          | Version               |
-| -------------------------------- | --------------------- |
-| Apple Safari, including iOS      | Current&dagger;       |
-| Google Chrome, including Android | Current&dagger;       |
-| Microsoft Edge                   | Current&dagger;       |
-| Microsoft Internet Explorer      | Not Supported&Dagger; |
-| Mozilla Firefox                  | Current&dagger;       |  
-
-&dagger;*Current* refers to the latest version of the browser.  
-&Dagger;Microsoft Internet Explorer doesn't support [WebAssembly](https://webassembly.org).
-
-## Blazor Server
+Blazor WebAssembly and Blazor Server are supported in the browsers shown in the following table.
 
 | Browser                          | Version         |
 | -------------------------------- | --------------- |
 | Apple Safari, including iOS      | Current&dagger; |
 | Google Chrome, including Android | Current&dagger; |
 | Microsoft Edge                   | Current&dagger; |
-| Microsoft Internet Explorer      | 11&Dagger;      |
-| Mozilla Firefox                  | Current&dagger; |
+| Mozilla Firefox                  | Current&dagger; |  
 
 &dagger;*Current* refers to the latest version of the browser.  
-&Dagger;Additional polyfills are required. For example, promises can be added via a [`Polyfill.io`](https://polyfill.io/v3/) bundle.
-
-::: moniker-end
 
 ## Additional resources
 
 * <xref:blazor/hosting-models>
 * <xref:signalr/supported-platforms>
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+Blazor WebAssembly and Blazor Server are supported in the browsers shown in the following table.
+
+| Browser                          | Version         |
+| -------------------------------- | --------------- |
+| Apple Safari, including iOS      | Current&dagger; |
+| Google Chrome, including Android | Current&dagger; |
+| Microsoft Edge                   | Current&dagger; |
+| Mozilla Firefox                  | Current&dagger; |  
+
+&dagger;*Current* refers to the latest version of the browser.  
+
+## Additional resources
+
+* <xref:blazor/hosting-models>
+* <xref:signalr/supported-platforms>
+
+::: moniker-end

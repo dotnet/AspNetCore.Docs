@@ -94,7 +94,7 @@ Run the app and verify that the database is seeded.
 
 ## Up and Down methods
 
-The EF Core `migrations add` command generated code to create the database. This migrations code is in the *Migrations\<timestamp>_InitialCreate.cs* file. The `Up` method of the `InitialCreate` class creates the database tables that correspond to the data model entity sets. The `Down` method deletes them, as shown in the following example:
+The EF Core `migrations add` command generated code to create the database. This migrations code is in the `Migrations\<timestamp>_InitialCreate.cs` file. The `Up` method of the `InitialCreate` class creates the database tables that correspond to the data model entity sets. The `Down` method deletes them, as shown in the following example:
 
 [!code-csharp[](intro/samples/cu30/Migrations/20190731193522_InitialCreate.cs)]
 
@@ -118,8 +118,7 @@ Migrations creates a *snapshot* of the current data model in *Migrations/SchoolC
 
 Because the snapshot file tracks the state of the data model, a migration cannot be deleted by deleting the `<timestamp>_<migrationname>.cs` file. To back out the most recent migration, use the [`migrations remove`](/ef/core/managing-schemas/migrations/managing#remove-a-migration) command. `migrations remove` deletes the migration and ensures the snapshot is correctly reset. For more information, see [dotnet ef migrations remove](/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove).
 
-See [Resetting all migrations
-](/ef/core/miscellaneous/cli/dotnet#resetting-all-migrations) to remove all migrations
+See [Resetting all migrations](/ef/core/managing-schemas/migrations/managing?tabs=dotnet-core-cli#resetting-all-migrations) to remove all migrations.
 
 ## Applying migrations in production
 
@@ -223,7 +222,7 @@ dotnet ef database update
 
 ### Examine the Up and Down methods
 
-The EF Core `migrations add` command  generated code to create the DB. This migrations code is in the *Migrations\<timestamp>_InitialCreate.cs* file. The `Up` method of the `InitialCreate` class creates the DB tables that correspond to the data model entity sets. The `Down` method deletes them, as shown in the following example:
+The EF Core `migrations add` command generated code to create the database. This migrations code is in the `Migrations\<timestamp>_InitialCreate.cs` file. The `Up` method of the `InitialCreate` class creates the database tables that correspond to the data model entity sets. The `Down` method deletes them, as shown in the following example:
 
 [!code-csharp[](intro/samples/cu21/Migrations/20180626224812_InitialCreate.cs?range=7-24,77-88)]
 
@@ -299,7 +298,7 @@ EF Core uses the `__MigrationsHistory` table to see if any migrations need to ru
 ## Troubleshooting
 
 Download the [completed app](
-https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples/cu21snapshots/cu-part4-migrations).
+https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples/cu21snapshots/part-4-migrations).
 
 The app generates the following exception:
 

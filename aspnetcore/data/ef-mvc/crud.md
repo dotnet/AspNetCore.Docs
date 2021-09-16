@@ -34,7 +34,7 @@ In this tutorial, you:
 
 The scaffolded code for the Students Index page left out the `Enrollments` property, because that property holds a collection. In the **Details** page, you'll display the contents of the collection in an HTML table.
 
-In *Controllers/StudentsController.cs*, the action method for the Details view uses the `SingleOrDefaultAsync` method to retrieve a single `Student` entity. Add code that calls `Include`. `ThenInclude`,  and `AsNoTracking` methods, as shown in the following highlighted code.
+In *Controllers/StudentsController.cs*, the action method for the Details view uses the `FirstOrDefaultAsync` method to retrieve a single `Student` entity. Add code that calls `Include`. `ThenInclude`,  and `AsNoTracking` methods, as shown in the following highlighted code.
 
 [!code-csharp[](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_Details&highlight=8-12)]
 
@@ -46,7 +46,7 @@ The `AsNoTracking` method improves performance in scenarios where the entities r
 
 The key value that's passed to the `Details` method comes from *route data*. Route data is data that the model binder found in a segment of the URL. For example, the default route specifies controller, action, and id segments:
 
-[!code-csharp[](intro/samples/cu/Startup.cs?name=snippet_Route&highlight=5)]
+[!code-csharp[](intro/samples/5cu/Startup.cs?name=snippet2)]
 
 In the following URL, the default route maps Instructor as the controller, Index as the action, and 1 as the id; these are route data values.
 
@@ -163,7 +163,7 @@ Change the date to a valid value and click **Create** to see the new student app
 
 ## Update the Edit page
 
-In *StudentController.cs*, the HttpGet `Edit` method (the one without the `HttpPost` attribute) uses the `SingleOrDefaultAsync` method to retrieve the selected Student entity, as you saw in the `Details` method. You don't need to change this method.
+In *StudentController.cs*, the HttpGet `Edit` method (the one without the `HttpPost` attribute) uses the `FirstOrDefaultAsync` method to retrieve the selected Student entity, as you saw in the `Details` method. You don't need to change this method.
 
 ### Recommended HttpPost Edit code: Read and update
 
@@ -223,7 +223,7 @@ Change some of the data and click **Save**. The **Index** page opens and you see
 
 ## Update the Delete page
 
-In *StudentController.cs*, the template code for the HttpGet `Delete` method uses the `SingleOrDefaultAsync` method to retrieve the selected Student entity, as you saw in the Details and Edit methods. However, to implement a custom error message when the call to `SaveChanges` fails, you'll add some functionality to this method and its corresponding view.
+In *StudentController.cs*, the template code for the HttpGet `Delete` method uses the `FirstOrDefaultAsync` method to retrieve the selected Student entity, as you saw in the Details and Edit methods. However, to implement a custom error message when the call to `SaveChanges` fails, you'll add some functionality to this method and its corresponding view.
 
 As you saw for update and create operations, delete operations require two action methods. The method that's called in response to a GET request displays a view that gives the user a chance to approve or cancel the delete operation. If the user approves it, a POST request is created. When that happens, the HttpPost `Delete` method is called and then that method actually performs the delete operation.
 

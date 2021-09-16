@@ -2,43 +2,18 @@
   "build": {
     "content": [
       {
-        "files": [
-          "**/*.md",
-          "**/*.yml"
-        ],
-        "exclude": [
-          "**/obj/**",
-          "**/sample/**",
-          "**/samples/**",
-          "aspnet/**",
-          "**/includes/**",
-          "**/aspnet-core-conceptual/**",
-          "_site/**",
-          "***/readme.md",
-          "***/license.md"
-        ],
-        "group": "group1",
+        "files": [ "**/*.md", "**/*.yml" ], 
+        "exclude": [ "**/includes/**", "***/license.md", "**/obj/**", "***/readme.md", "**/sample/**", "**/samples/**", "_site/**" ], 
+        "group": "group1", 
         "src": "."
       }
     ],
     "resource": [
       {
-        "files": [
-          "**/*.png",
-          "**/*.jpg",
-          "**/*.gif",
-          "**/*.svg",
-          "**/*.pdf",
-          "**/zone-pivot-groups.json"
-        ],
-        "exclude": [
-          "**/obj/**",
-          "aspnet/core/**",
-          "**/includes/**",
-          "_site/**"
-        ],
-        "group": "group1",
-        "src": "."
+        "files": [ "**/*.png", "**/*.jpg", "**/*.gif", "**/*.svg", "**/*.pdf", "**/zone-pivot-groups.json" ], 
+        "exclude": [ "**/includes/**", "**/obj/**", "_site/**" ], 
+        "group": "group1", 
+        "src": "." 
       }
     ],
     "overwrite": [],
@@ -54,9 +29,7 @@
       "ms.prod": "aspnet-core",
       "ms.topic": "conceptual",
       "uhfHeaderId": "MSDocsHeader-AspNet",
-      "searchScope": [
-        "ASP.NET Core"
-      ],
+      "searchScope": [ "ASP.NET Core" ],
       "zone_pivot_group_filename": "core/zone-pivot-groups.json"
     },
     "fileMetadata": {
@@ -67,41 +40,40 @@
         "whats-new/**/**.md": "riande"
       },
       "ms.technology": {
-        "azure/**/**.md": "aspnetcore-azure",
-        "client-side/**/**.md": "aspnetcore-clientside",
-        "blazor/**/**.md": "aspnetcore-blazor",
-        "data/**/**.md": "aspnetcore-data",
-        "fundamentals/**/**.md": "aspnetcore-fundamentals",
-        "getting-started/**/**.md": "aspnetcore-getstarted",
-        "grpc/**/**.md": "aspnetcore-grpc",
-        "host-and-deploy/**/**.md": "aspnetcore-hostdeploy",
+        "**/client-side/**/**.md": "aspnetcore-clientside",
+        "**/blazor/**/**.md": "aspnetcore-blazor",
+        "**/data/**/**.md": "aspnetcore-data",
+        "**/fundamentals/**/**.md": "aspnetcore-fundamentals",
+        "**/getting-started/**/**.md": "aspnetcore-getstarted",
+        "**/grpc/**/**.md": "aspnetcore-grpc",
+        "**/host-and-deploy/**/**.md": "aspnetcore-hostdeploy",
         "introduction-to-aspnet-core.md": "aspnetcore",
-        "migration/**/**.md": "aspnetcore-migration",
-        "mobile/**/**.md": "aspnetcore-mobile",
-        "mvc/**/**.md": "aspnetcore-mvc",
-        "performance/**/**.md": "aspnetcore-performance",
-        "razor-pages/**/**.md": "aspnetcore-razorpages",
-        "release-notes/**/**.md": "aspnetcore-releasenotes",
-        "security/**/**.md": "aspnetcore-security",
-        "signalr/**/**.md": "aspnetcore-signalr",
-        "test/**/**.md": "aspnetcore-test",
-        "tutorials/**/**.md": "aspnetcore-tutorials",
-        "web-api/**/**.md": "aspnetcore-webapi",
+        "**/migration/**/**.md": "aspnetcore-migration",
+        "**/mobile/**/**.md": "aspnetcore-mobile",
+        "**/mvc/**/**.md": "aspnetcore-mvc",
+        "**/performance/**/**.md": "aspnetcore-performance",
+        "**/razor-pages/**/**.md": "aspnetcore-razorpages",
+        "**/release-notes/**/**.md": "aspnetcore-releasenotes",
+        "**/security/**/**.md": "aspnetcore-security",
+        "**/signalr/**/**.md": "aspnetcore-signalr",
+        "**/test/**/**.md": "aspnetcore-test",
+        "**/tutorials/**/**.md": "aspnetcore-tutorials",
+        "**/web-api/**/**.md": "aspnetcore-webapi",
         "whats-new/**/**.md": "aspnetcore-whatsnew"
       },
       "ms.topic": {
-        "getting-started/**/**.md": "tutorial",
-        "tutorials/**/**.md": "tutorial"
+        "**/getting-started/**/**.md": "tutorial",
+        "**/tutorials/**/**.md": "tutorial"
+      },
+      "recommendations": {
+        "**/tutorials/**/**.md": "false"
       }
     },
     "template": [],
     "dest": "_site",
     "markdownEngineName": "markdig",
     "groups": {
-      "group1": {
-        "dest": "group1-dest",
-        "moniker_range": ">= aspnetcore-1.0"
-      }
+      "group1": { "dest": "group1-dest", "moniker_range": ">= aspnetcore-1.0" }
     }
   }
 }

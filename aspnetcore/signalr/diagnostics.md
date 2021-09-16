@@ -20,7 +20,7 @@ This article provides guidance for gathering diagnostics from your ASP.NET Core 
 > [!WARNING]
 > Server-side logs may contain sensitive information from your app. **Never** post raw logs from production apps to public forums like GitHub.
 
-Since SignalR is part of ASP.NET Core, it uses the ASP.NET Core logging system. In the default configuration, SignalR logs very little information, but this can configured. See the documentation on [ASP.NET Core logging](xref:fundamentals/logging/index#configuration) for details on configuring ASP.NET Core logging.
+Since SignalR is part of ASP.NET Core, it uses the ASP.NET Core logging system. In the default configuration, SignalR logs very little information, but this can configured. See the documentation on [ASP.NET Core logging](xref:fundamentals/logging/index) for details on configuring ASP.NET Core logging.
 
 SignalR uses two logger categories:
 

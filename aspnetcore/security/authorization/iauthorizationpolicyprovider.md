@@ -174,7 +174,7 @@ public Task<AuthorizationPolicy> GetFallbackPolicyAsync() =>
 
 To use custom policies from an `IAuthorizationPolicyProvider`, you ***must***:
 
-* Register the appropriate `AuthorizationHandler` types with dependency injection (described in [policy-based authorization](xref:security/authorization/policies#authorization-handlers)), as with all policy-based authorization scenarios.
+* Register the appropriate `AuthorizationHandler` types with dependency injection (described in [policy-based authorization](xref:security/authorization/policies#security-authorization-policies-based-authorization-handler)), as with all policy-based authorization scenarios.
 * Register the custom `IAuthorizationPolicyProvider` type in the app's dependency injection service collection in `Startup.ConfigureServices` to replace the default policy provider.
 
   ```csharp

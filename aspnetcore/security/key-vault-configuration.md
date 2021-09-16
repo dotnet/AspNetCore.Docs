@@ -293,7 +293,7 @@ When this approach is implemented:
 
 The provider can read configuration values into an array for binding to a POCO array.
 
-When reading from a configuration source that allows keys to contain colon (`:`) separators, a numeric key segment is used to distinguish the keys that make up an array (`:0:`, `:1:`, &hellip; `:{n}:`). For more information, see [Configuration: Bind an array to a class](xref:fundamentals/configuration/index#bind-an-array-to-a-class).
+When reading from a configuration source that allows keys to contain colon (`:`) separators, a numeric key segment is used to distinguish the keys that make up an array (`:0:`, `:1:`, &hellip; `:{n}:`). For more information, see [Configuration: Bind an array to a class](xref:fundamentals/configuration/index#boa).
 
 Azure Key Vault keys can't use a colon as a separator. The approach described in this document uses double dashes (`--`) as a separator for hierarchical values (sections). Array keys are stored in Azure Key Vault with double dashes and numeric key segments (`--0--`, `--1--`, &hellip; `--{n}--`).
 
@@ -619,7 +619,7 @@ When this approach is implemented:
 
 The provider can read configuration values into an array for binding to a POCO array.
 
-When reading from a configuration source that allows keys to contain colon (`:`) separators, a numeric key segment is used to distinguish the keys that make up an array (`:0:`, `:1:`, &hellip; `:{n}:`). For more information, see [Configuration: Bind an array to a class](xref:fundamentals/configuration/index#bind-an-array-to-a-class).
+When reading from a configuration source that allows keys to contain colon (`:`) separators, a numeric key segment is used to distinguish the keys that make up an array (`:0:`, `:1:`, &hellip; `:{n}:`). For more information, see [Configuration: Bind an array to a class](xref:fundamentals/configuration/index#boa).
 
 Azure Key Vault keys can't use a colon as a separator. The approach described in this document uses double dashes (`--`) as a separator for hierarchical values (sections). Array keys are stored in Azure Key Vault with double dashes and numeric key segments (`--0--`, `--1--`, &hellip; `--{n}--`).
 

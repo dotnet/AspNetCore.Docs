@@ -57,6 +57,10 @@ For getting started with hosting a website on Azure App Services, see our [deplo
 
 In general, we recommend using a pattern like [blue-green deployments](https://www.martinfowler.com/bliki/BlueGreenDeployment.html) for zero-downtime deployments. Features like Overlapped Recycle help, but don't guarantee that you can do a zero-downtime deployment. For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/10117).
 
+## Optional client certificates
+
+For information on apps that must protect a subset of the app with a certificate, see [Optional client certificates](xref:security/authentication/certauth#optional-client-certificates).
+
 ## Additional resources
 
 * <xref:test/troubleshoot>
@@ -521,16 +525,16 @@ For more information, see the following topics:
 
 To set environment variables for individual apps running in isolated app pools (supported for IIS 10.0 or later), see the *AppCmd.exe command* section of the [Environment Variables \<environmentVariables>](/iis/configuration/system.applicationHost/applicationPools/add/environmentVariables/#appcmdexe) topic in the IIS reference documentation.
 
-## Configuration sections of web.config
+### Sections that aren't used by ASP.NET Core
 
-Configuration sections of ASP.NET 4.x apps in *web.config* aren't used by ASP.NET Core apps for configuration:
+Configuration sections of ASP.NET apps in *web.config* aren't used by ASP.NET Core apps for configuration:
 
 * `<system.web>`
 * `<appSettings>`
 * `<connectionStrings>`
 * `<location>`
 
-ASP.NET Core apps are configured using other configuration providers. For more information, see [Configuration](xref:fundamentals/configuration/index).
+ASP.NET Core apps are configured using other configuration providers. For more information, see [Configuration](xref:fundamentals/configuration/index) and [.NET Core run-time configuration settings](/dotnet/core/run-time-config/)
 
 ## Application Pools
 
@@ -1121,7 +1125,7 @@ For more information, see the following topics:
 
 To set environment variables for individual apps running in isolated app pools (supported for IIS 10.0 or later), see the *AppCmd.exe command* section of the [Environment Variables \<environmentVariables>](/iis/configuration/system.applicationHost/applicationPools/add/environmentVariables/#appcmdexe) topic in the IIS reference documentation.
 
-## Configuration sections of web.config
+### Sections that aren't used by ASP.NET Core
 
 Configuration sections of ASP.NET 4.x apps in *web.config* aren't used by ASP.NET Core apps for configuration:
 
@@ -1722,7 +1726,7 @@ For more information, see the following topics:
 
 To set environment variables for individual apps running in isolated app pools (supported for IIS 10.0 or later), see the *AppCmd.exe command* section of the [Environment Variables \<environmentVariables>](/iis/configuration/system.applicationHost/applicationPools/add/environmentVariables/#appcmdexe) topic in the IIS reference documentation.
 
-## Configuration sections of web.config
+### Sections that aren't used by ASP.NET Core
 
 Configuration sections of ASP.NET 4.x apps in *web.config* aren't used by ASP.NET Core apps for configuration:
 

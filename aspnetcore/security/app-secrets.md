@@ -172,7 +172,7 @@ Mapping an entire object literal to a POCO (a simple .NET class with properties)
 
 [!INCLUDE[secrets.json file](~/includes/app-secrets/secrets-json-file-and-text.md)]
 
-To map the preceding secrets to a POCO, use the .NET Configuration API's [object graph binding](xref:fundamentals/configuration/index#bind-to-an-object-graph) feature. The following code binds to a custom `MovieSettings` POCO and accesses the `ServiceApiKey` property value:
+To map the preceding secrets to a POCO, use the .NET Configuration API's [object graph binding](xref:fundamentals/configuration/index#boa) feature. The following code binds to a custom `MovieSettings` POCO and accesses the `ServiceApiKey` property value:
 
 [!code-csharp[](app-secrets/samples/3.x/UserSecrets/Startup3.cs?name=snippet_BindToObjectGraph)]
 
@@ -266,6 +266,14 @@ Running `dotnet user-secrets list` displays the following message:
 ```console
 No secrets configured for this application.
 ```
+
+<a name="muswvs"></a>
+
+## Manage user secrets with Visual Studio
+
+To manage user secrets in Visual Studio, right click the project in solution explorer and select **Manage User Secrets**:
+
+![Visual Studio showing Manage User Secrets](app-secrets/_static/usvs.png)
 
 ## Additional resources
 
@@ -417,7 +425,7 @@ Mapping an entire object literal to a POCO (a simple .NET class with properties)
 
 [!INCLUDE[secrets.json file](~/includes/app-secrets/secrets-json-file-and-text.md)]
 
-To map the preceding secrets to a POCO, use the .NET Configuration API's [object graph binding](xref:fundamentals/configuration/index#bind-to-an-object-graph) feature. The following code binds to a custom `MovieSettings` POCO and accesses the `ServiceApiKey` property value:
+To map the preceding secrets to a POCO, use the .NET Configuration API's [object graph binding](xref:fundamentals/configuration/index#boa) feature. The following code binds to a custom `MovieSettings` POCO and accesses the `ServiceApiKey` property value:
 
 [!code-csharp[](app-secrets/samples/2.x/UserSecrets/Startup3.cs?name=snippet_BindToObjectGraph)]
 

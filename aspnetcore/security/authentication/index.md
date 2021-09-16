@@ -85,6 +85,13 @@ Based on the authentication scheme's configuration and the incoming request cont
   * They are unauthorized to access (forbid).
   * When they are unauthenticated (challenge).
 
+### `RemoteAuthenticationHandler<TOptions>` vs `AuthenticationHandler<TOptions>`
+
+<xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationHandler%601> is the class for authentication that requires a remote authentication step. When the remote authentication step is finished, the handler calls back to the `CallbackPath` set by the handler. The handler finishes the authentication step using the information passed to the <xref:Microsoft.AspNetCore.Authentication.Twitter.TwitterHandler.HandleRemoteAuthenticateAsync%2A> callback path. [OAuth 2.0](https://oauth.net/2/) and [OIDC](https://openid.net/connect/) both use this pattern. JWT and cookies do not since they can just directly use the bearer header and cookie to authenticate. The remotely hosted provider in this case:
+
+* Is the authentication provider.
+* Examples include [Facebook](xref:security/authentication/facebook-logins), [Twitter](xref:security/authentication/twitter-logins), [Google](xref:security/authentication/google-logins), [Microsoft](xref:security/authentication/microsoft-logins), and any other OIDC provider which handles authenticating users using the handlers mechanism.
+
 ### Authenticate
 
 An authentication scheme's authenticate action is responsible for constructing the user's identity based on request context. It returns an <xref:Microsoft.AspNetCore.Authentication.AuthenticateResult> indicating whether authentication was successful and, if so, the user's identity in an authentication ticket. See <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.AuthenticateAsync%2A>. Authenticate examples include:

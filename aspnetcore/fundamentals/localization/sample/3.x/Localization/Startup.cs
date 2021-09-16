@@ -76,6 +76,10 @@ namespace Localization
                 catch { }
             }
 
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+            app.UseRouting();
+
             #region snippet2
             var supportedCultures = new[] { "en-US", "fr" };
             var localizationOptions = new RequestLocalizationOptions().SetDefaultCulture(supportedCultures[0])
@@ -83,19 +87,15 @@ namespace Localization
                 .AddSupportedUICultures(supportedCultures);
 
             app.UseRequestLocalization(localizationOptions);
-
-            app.UseRouting();
-            app.UseStaticFiles();
+            #endregion
 
             app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
             });
-            #endregion
-
-            app.UseRequestLocalization();
         }
     }
 }

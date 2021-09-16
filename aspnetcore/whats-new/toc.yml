@@ -1,23 +1,17 @@
+items:
 - name: What's new
   href: index.yml
   expanded: true
   items:
-    - name: 2021
-      expanded: true
-      items:
-      - name: April
-        href: 2021-04-01.md
-      - name: March
-        href: 2021-03.md
-      - name: February
-        href: 2021-02.md
-      - name: January
-        href: 2021-01.md
-    - name: 2020
-      expanded: true
-      items:
-      - name: December
-        href: 2020-12.md
-      - name: November
-        href: 2020-11.md
-
+    - name: August 2021
+      href: 21-08.md
+    - name: July 2021
+      href: 21-07.md
+    - name: June 2021
+      href: 21-06.md
+    - name: May 2021
+      href: 2021-05.md
+    - name: April 2021
+      href: 2021-04-01.md
+    - name: March 2021
+      href: 2021-03.md

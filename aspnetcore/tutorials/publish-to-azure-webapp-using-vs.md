@@ -18,7 +18,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 ::: moniker-end
 
 
-See [Publish a Web app to Azure App Service using Visual Studio for Mac](/visualstudio/mac/publish-app-svc?view=vsmac-2019) if you are working on macOS.
+If you're working on macOS, see [Publish a Web app to Azure App Service using Visual Studio for Mac](/visualstudio/mac/publish-app-svc).
 
 To troubleshoot an App Service deployment issue, see <xref:test/troubleshoot-azure-iis>.
 
@@ -28,7 +28,7 @@ To troubleshoot an App Service deployment issue, see <xref:test/troubleshoot-azu
 
 ## Create a web app
 
-In the Visual Studio Start Page, select **File > New > Project...**
+In the Visual Studio Start Page, select **File** > **New** > **Project**.
 
 ![File menu](publish-to-azure-webapp-using-vs/_static/file_new_project.png)
 
@@ -77,7 +77,7 @@ The app displays the email used to register the new user and a **Logout** link.
 
 ## Deploy the app to Azure
 
-Right-click on the project in Solution Explorer and select **Publish...**.
+Right-click on the project in Solution Explorer and select **Publish**.
 
 ![Contextual menu open with Publish link highlighted](publish-to-azure-webapp-using-vs/_static/pub.png)
 
@@ -95,7 +95,7 @@ In the **Publish** dialog:
 
 ![Publish Dialog: select Azure Service](publish-to-azure-webapp-using-vs/_static/maas2.png)
 
-In the **Publish** dialog select **Create a new Azure App Service...**
+In the **Publish** dialog, select **Create a new Azure App Service**.
 
 ![Publish dialog: select Azure Service instance](publish-to-azure-webapp-using-vs/_static/maas3.png)
 
@@ -124,9 +124,9 @@ The **Configure dependency** dialog appears:
 
 ![Configure SQL Server Dependency dialog](publish-to-azure-webapp-using-vs/_static/sql1.png)
 
-In the **Configure Azure SQL database** dialog select **Create a SQL Database**
+In the **Configure Azure SQL database** dialog, select **Create a SQL Database**.
 
-![Configure Azure SQL Database dialog](publish-to-azure-webapp-using-vs/_static/sql2.png)
+![Select Create a SQL DB](publish-to-azure-webapp-using-vs/_static/sql2.png)
 
 The **Create Azure SQL Database** appears:
 
@@ -141,7 +141,7 @@ After creation is completed the dialog is automatically closed and the **Configu
 * The new instance that was just created is automatically selected.
 * Select **Next**.
 
-![Configure Azure SQL Database dialog](publish-to-azure-webapp-using-vs/_static/sql_select.png)
+![Select Next](publish-to-azure-webapp-using-vs/_static/sql_select.png)
 
 In the next step of the **Configure Azure SQL Database** dialog:
 
@@ -161,11 +161,11 @@ On the **Settings** page of the **Publish** dialog:
 
 * Select **Save**. Visual Studio returns to the **Publish** dialog. 
 
-![Publish dialog: Settings panel](publish-to-azure-webapp-using-vs/_static/pp_settings.png)
+![Publish dialog: Settings panel:Save](publish-to-azure-webapp-using-vs/_static/pp_settings.png)
 
 Click **Publish**. Visual Studio publishes your app to Azure. When the deployment completes, the app is opened in a browser.
 
-![Publish dialog: Settings panel](publish-to-azure-webapp-using-vs/_static/pp_publish.png)
+![Last step](publish-to-azure-webapp-using-vs/_static/pp_publish.png)
 
 ### Update the app
 
@@ -194,10 +194,6 @@ When you have finished testing the app, go to the [Azure portal](https://portal.
 ![Azure Portal: Resource Groups page](publish-to-azure-webapp-using-vs/_static/rgd.png)
 
 * Enter the name of the resource group and select **Delete**. Your app and all other resources created in this tutorial are now deleted from Azure.
-
-### Next steps
-
-* <xref:host-and-deploy/azure-apps/azure-continuous-deployment>
 
 ## Additional resources
 

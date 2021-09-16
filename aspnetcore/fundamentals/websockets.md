@@ -77,6 +77,10 @@ The following example is from later in the `Configure` method:
 
 A WebSocket request could come in on any URL, but this sample code only accepts requests for `/ws`.
 
+A similar approach can be taken in a controller method:
+
+[!code-csharp[](websockets/samples/6.x/WebSocketsSample/Controllers/WebSocketController.cs?name=snippet)]
+
 When using a WebSocket, you **must** keep the middleware pipeline running for the duration of the connection. If you attempt to send or receive a WebSocket message after the middleware pipeline ends, you may get an exception like the following:
 
 ```
@@ -91,6 +95,33 @@ If you're using a background service to write data to a WebSocket, make sure you
 The WebSocket closed exception can also happen when returning too soon from an action method. When accepting a socket in an action method, wait for the code that uses the socket to complete before returning from the action method.
 
 Never use `Task.Wait`, `Task.Result`, or similar blocking calls to wait for the socket to complete, as that can cause serious threading issues. Always use `await`.
+
+::: moniker range=">= aspnetcore-6.0"
+
+### Compression
+
+> [!WARNING]
+> Enabling compression over encrypted connections can make an app subject to CRIME/BREACH attacks.
+> If sending sensitive information, avoid enabling compression or use `WebSocketMessageFlags.DisableCompression` when calling `WebSocket.SendAsync`.
+> This applies to both sides of the WebSocket. Note that the WebSockets API in the browser doesn't have configuration for disabling compression per send. 
+
+If compression of messages over WebSockets is desired, then the accept code must specify that it allows compression as follows:
+
+```csharp
+using (WebSocket webSocket = await context.WebSockets.AcceptWebSocketAsync(
+    new WebSocketAcceptContext() { DangerousEnableCompression = true }))
+{
+}
+````
+
+`WebSocketAcceptContext.ServerMaxWindowBits` and `WebSocketAcceptContext.DisableServerContextTakeover` are advanced options that control how the compression works.
+
+Compression is negotiated between the client and server when first establishing a connection. You can read more about the negotiation in the [Compression Extensions for WebSocket RFC](https://datatracker.ietf.org/doc/html/rfc7692#section-7).
+
+> [!NOTE]
+> If the compression negotiation isn't accepted by either the server or client, the connection is still established. However, the connection doesn't use compression when sending and receiving messages.
+
+::: moniker-end
 
 ## Send and receive messages
 

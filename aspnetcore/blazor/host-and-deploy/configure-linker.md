@@ -2,7 +2,7 @@
 title: Configure the Linker for ASP.NET Core Blazor
 author: guardrex
 description: Learn how to control the Intermediate Language (IL) Linker when building a Blazor app.
-monikerRange: '>= aspnetcore-3.1 < aspnetcore-5.0'
+monikerRange: '= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/19/2020
@@ -114,8 +114,8 @@ To control which I18N assemblies are retained, set the `<BlazorWebAssemblyI18NAs
 
 Use a comma to separate multiple values (for example, `mideast,west`).
 
-For more information, see [I18N: Pnetlib Internationalization Framework Library (mono/mono GitHub repository)](https://github.com/mono/mono/tree/master/mcs/class/I18N).
+For more information, see [I18N: Pnetlib Internationalization Framework Library (mono/mono GitHub repository)](https://github.com/mono/mono/tree/main/mcs/class/I18N).
 
 ## Additional resources
 
-* <xref:blazor/webassembly-performance-best-practices#intermediate-language-il-linking>
+* <xref:blazor/performance#intermediate-language-il-linking>

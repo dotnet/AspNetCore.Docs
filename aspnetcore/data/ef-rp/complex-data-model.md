@@ -217,7 +217,7 @@ SqliteException: SQLite Error 1: 'no such column: s.FirstName'.
   dotnet ef migrations add ColumnFirstName
   dotnet ef database update
   ```
-
+<!--
   The database update command displays an error like the following example:
 
   ```text
@@ -235,7 +235,7 @@ For this tutorial, the way to get past this error is to delete and re-create the
   dotnet ef database update
    
   ```
-
+-->
 * Examine the Student table with a SQLite tool. The column that was `FirstMidName` is now `FirstName`.
 
 ---
@@ -506,10 +506,7 @@ Update *Data/SchoolContext.cs* with the following code:
 [!code-csharp[](intro/samples/cu50/Data/SchoolContext.cs?name=snippet_SS&highlight=15-17,21-28)]
 
 <!-- TODO review -->
-The preceding code adds the new entities and:
-
-* Configures the many-to-many relationship between the `Instructor` and `Course` entities.
-* Configures a concurrency token for the `Department` entity. Concurrency is discussed later in the tutorial.
+The preceding code adds the new entities and configures the many-to-many relationship between the `Instructor` and `Course` entities.
 
 ## Fluent API alternative to attributes
 
@@ -528,7 +525,7 @@ In this tutorial, the fluent API is used only for database mapping that can't be
 
 Some attributes such as `MinimumLength` can't be applied with the fluent API. `MinimumLength` doesn't change the schema, it only applies a minimum length validation rule.
 
-Some developers prefer to use the fluent API exclusively so that they can keep their entity classes *clean*. Attributes and the fluent API can be mixed. There are some configurations that can only be done with the fluent API, for example, , specifying a composite PK. There are some configurations that can only be done with attributes (`MinimumLength`). The recommended practice for using fluent API or attributes:
+Some developers prefer to use the fluent API exclusively so that they can keep their entity classes *clean*. Attributes and the fluent API can be mixed. There are some configurations that can only be done with the fluent API, for example, specifying a composite PK. There are some configurations that can only be done with attributes (`MinimumLength`). The recommended practice for using fluent API or attributes:
 
 * Choose one of these two approaches.
 * Use the chosen approach consistently as much as possible.
@@ -612,7 +609,7 @@ The next section fixes this error.
 
 With the existing database, there are two approaches to changing the database:
 
-* [Drop and re-create the database](#drop). Choose this section if when using SQLite.
+* [Drop and re-create the database](#drop). Choose this section when using SQLite.
 * [Apply the migration to the existing database](#applyexisting). The instructions in this section work for SQL Server only, ***not for SQLite***.
 
 Either choice works for SQL Server. While the apply-migration method is more complex and time-consuming, it's the preferred approach for real-world, production environments.

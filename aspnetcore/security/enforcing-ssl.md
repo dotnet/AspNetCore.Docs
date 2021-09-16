@@ -1,7 +1,7 @@
 ---
 title: Enforce HTTPS in ASP.NET Core
 author: rick-anderson
-description: Learn how to require HTTPS/TLS in a ASP.NET Core web app.
+description: Learn how to require HTTPS/TLS in an ASP.NET Core web app.
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/06/2019
@@ -28,6 +28,8 @@ No API can prevent a client from sending sensitive data on the first request.
 >
 > * Not listen on HTTP.
 > * Close the connection with status code 400 (Bad Request) and not serve the request.
+>
+> To disable HTTP redirection in an API, set the `ASPNETCORE_URLS` environment variable or use the `--urls` command line flag. For more information, see <xref:fundamentals/environments> and [5 ways to set the URLs for an ASP.NET Core app](https://andrewlock.net/5-ways-to-set-the-urls-for-an-aspnetcore-app/) by Andrew Lock.
 >
 > ## HSTS and API projects
 >
@@ -343,11 +345,14 @@ The following command provides help on the `dev-certs` tool:
 dotnet dev-certs https --help
 ```
 
+> [!WARNING]
+> Do not create a development certificate in an environment that will be redistributed, such as a container image or virtual machine. Doing so can lead to spoofing and elevation of privilege. To help prevent this, set the `DOTNET_GENERATE_ASPNET_CERTIFICATE` environment variable to `false` prior to calling the .NET CLI for the first time. This will skip the automatic generation of the ASP.NET Core development certificate during the CLI's first-run experience.
+
 <a name="trust-ff"></a>
 
 ### Trust the HTTPS certificate with Firefox to prevent SEC_ERROR_INADEQUATE_KEY_USAGE error
 
-The Firefox browser uses it's own certificate store, and therefore doesn't trust the [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) or [Kestrel](xref:fundamentals/servers/kestrel) developer certificates.
+The Firefox browser uses its own certificate store, and therefore doesn't trust the [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) or [Kestrel](xref:fundamentals/servers/kestrel) developer certificates.
 
 There are two approaches to trusting the HTTPS certificate with Firefox, create a policy file or configure with the FireFox browser. Configuring with the browser creates the policy file, so the two approaches are equivalent.
 
@@ -371,7 +376,7 @@ Add the following JSON to the Firefox policy file:
 }
 ```
 
-The preceding policy file makes Firefox trust certificates from the trusted certificates in the Windows certificate store. The next section provides an alternative approach to create the preceding policy file buy using the Firefox browser.
+The preceding policy file makes Firefox trust certificates from the trusted certificates in the Windows certificate store. The next section provides an alternative approach to create the preceding policy file by using the Firefox browser.
 
 <a name="trust-ff-ba"></a>
 
@@ -421,13 +426,13 @@ For chromium browsers on Linux:
     dotnet dev-certs https -ep /usr/local/share/ca-certificates/aspnet/https.crt --format PEM
     ```
 
-    The path in the preceding command is specific for Ubuntu. For other distributions, select an appropriate path or use the path for the Certificate Authorities (CAs).
+    The path in the preceding command is specific for Ubuntu. For other distributions, select an appropriate path or use the path for the Certificate Authorities (CAs). **You may need elevated permissions to export the certificate to the `ca-certificates` folder.**
 
   * Run the following commands:
   
     ```cli
-    certutil -d sql:$HOME/.pki/nssdb -A -t "P,," -n localhost -i /usr/local/share/ca-certificates/  aspnet/https.crt
-    certutil -d sql:$HOME/.pki/nssdb -A -t "C,," -n localhost -i /usr/local/share/ca-certificates/  aspnet/https.crt
+    certutil -d sql:$HOME/.pki/nssdb -A -t "P,," -n localhost -i /usr/local/share/ca-certificates/aspnet/https.crt
+    certutil -d sql:$HOME/.pki/nssdb -A -t "C,," -n localhost -i /usr/local/share/ca-certificates/aspnet/https.crt
     ```
   
   * Exit and restart the browser.
@@ -502,6 +507,13 @@ rm localhost.crt
 ```
 
 See [this GitHub comment](https://github.com/dotnet/aspnetcore/issues/32361#issuecomment-837111639) for more information.
+=======
+See [this GitHub comment](https://github.com/dotnet/aspnetcore/issues/32361#issuecomment-837111639).
+
+### Trust the certificate with other distros
+
+See [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/32842).
+
 
 ## Trust HTTPS certificate from Windows Subsystem for Linux
 
@@ -522,7 +534,9 @@ The [Windows Subsystem for Linux (WSL)](/windows/wsl/about) generates an HTTPS s
 
 The preceding approach is a one time operation per certificate and per WSL distribution. It's easier than exporting the certificate over and over. If you update or regenerate the certificate on windows, you might need to run the preceding commands again.
 
-## Troubleshoot certificate problems
+<a name="tcp"></a>
+
+## Troubleshoot certificate problems such as certificate not trusted
 
 This section provides help when the ASP.NET Core HTTPS development certificate has been [installed and trusted](#trust), but you still have browser warnings that the certificate is not trusted. The ASP.NET Core HTTPS development certificate is used by [Kestrel](xref:fundamentals/servers/kestrel).
 
@@ -538,6 +552,8 @@ dotnet dev-certs https --trust
 ```
 
 Close any browser instances open. Open a new browser window to app. Certificate trust is cached by browsers.
+
+### dotnet dev-certs https --clean Fails
 
 The preceding commands solve most browser trust issues. If the browser is still not trusting the certificate, follow the platform-specific suggestions that follow.
 

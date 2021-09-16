@@ -1,0 +1,31 @@
+@page "/prerendered-interop-2"
+@using Microsoft.AspNetCore.Components
+@using Microsoft.JSInterop
+@inject IJSRuntime JS
+
+<p>
+    Get value via JS interop call:
+    <strong id="val-get-by-interop">@(data ?? "No value yet")</strong>
+</p>
+
+<p>
+    Set value via JS interop call:
+</p>
+
+<div id="val-set-by-interop" @ref="divElement"></div>
+
+@code {
+    private string data;
+    private ElementReference divElement;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender && data == null)
+        {
+            data = await JS.InvokeAsync<string>(
+                "setElementText2", divElement, "Hello from interop call!");
+
+            StateHasChanged();
+        }
+    }
+}

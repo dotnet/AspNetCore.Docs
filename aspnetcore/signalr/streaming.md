@@ -123,7 +123,7 @@ A `StreamAsync` example that returns `IAsyncEnumerable<int>`:
 // Call "Cancel" on this CancellationTokenSource to send a cancellation message to
 // the server, which will trigger the corresponding token in the hub method.
 var cancellationTokenSource = new CancellationTokenSource();
-var stream = await hubConnection.StreamAsync<int>(
+var stream = hubConnection.StreamAsync<int>(
     "Counter", 10, 500, cancellationTokenSource.Token);
 
 await foreach (var count in stream)

@@ -36,8 +36,10 @@ document.addEventListener("DOMContentLoaded", () => {
             setTimeout(start, 5000);
         }
     };
-
-    connection.onclose(start);
+    
+    connection.onclose(async () => {
+        await start();
+    });
 
     // Start the connection.
     start();

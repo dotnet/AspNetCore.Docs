@@ -30,7 +30,7 @@ The table indicates native IIS modules that are functional with ASP.NET Core app
 | **Digest Authentication**<br>`DigestAuthenticationModule`                                        | Yes | |
 | **Directory Browsing**<br>`DirectoryListingModule`                                               | No  | [Directory Browsing Middleware](xref:fundamentals/static-files#enable-directory-browsing) |
 | **Dynamic Compression**<br>`DynamicCompressionModule`                                            | Yes | [Response Compression Middleware](xref:performance/response-compression) |
-| **Failed Requests Tracing**<br>`FailedRequestsTracingModule`                                     | Yes | [ASP.NET Core Logging](xref:fundamentals/logging/index#tracesource-provider) |
+| **Failed Requests Tracing**<br>`FailedRequestsTracingModule`                                     | Yes | [ASP.NET Core Logging](xref:fundamentals/logging/index#dotnet-trace-tooling) |
 | **File Caching**<br>`FileCacheModule`                                                            | No  | [Response Caching Middleware](xref:performance/caching/middleware) |
 | **HTTP Caching**<br>`HttpCacheModule`                                                            | No  | [Response Caching Middleware](xref:performance/caching/middleware) |
 | **HTTP Logging**<br>`HttpLoggingModule`                                                          | Yes | [ASP.NET Core Logging](xref:fundamentals/logging/index) |

@@ -76,7 +76,7 @@ Any [.NET Core CLI command](/dotnet/core/tools#cli-commands) can be run with `do
 Run `dotnet watch run` in the *WebApp* folder. The console output indicates `watch` has started.
 
 ::: moniker range=">= aspnetcore-5.0"
-Running `dotnet watch run` on a web app launches a browser that navigates to the app's URL once ready. `dotnet watch` does this by reading the app's console output and waiting for the the ready message displayed by <xref:Microsoft.AspNetCore.WebHost>.
+Running `dotnet watch run` on a web app launches a browser that navigates to the app's URL once ready. `dotnet watch` does this by reading the app's console output and waiting for the ready message displayed by <xref:Microsoft.AspNetCore.WebHost>.
 
 `dotnet watch` refreshes the browser when it detects changes to watched files. To do this, the watch command injects a middleware to the app that modifies HTML responses created by the app. The middleware adds a JavaScript script block to the page that allows `dotnet watch` to instruct the browser to refresh. Currently, changes to all watched files, including static content such as *.html* and *.css* files cause the app to be rebuilt.
 
@@ -85,7 +85,7 @@ Running `dotnet watch run` on a web app launches a browser that navigates to the
 * Only watches files that impact builds by default.
 * Any additionally watched files (via configuration) still results in a build taking place.
 
-For more information on configuration, see [dotnet-watch configuration](#dotnet-watch-configuration) in this document
+For more information on configuration, see [dotnet-watch configuration](#dotnet-watch-configuration) in this document.
 
 ::: moniker-end
 
@@ -210,3 +210,14 @@ Some configuration options can be passed to `dotnet watch` through environment v
 | `DOTNET_WATCH_SUPPRESS_MSBUILD_INCREMENTALISM`   | By default, `dotnet watch` optimizes the build by avoiding certain operations such as running restore or re-evaluating the set of watched files on every file change. If set to "1" or "true",  these optimizations are disabled. |
 | `DOTNET_WATCH_SUPPRESS_LAUNCH_BROWSER`   | `dotnet watch run` attempts to launch browsers for web apps with `launchBrowser` configured in *launchSettings.json*. If set to "1" or "true", this behavior is suppressed. |
 | `DOTNET_WATCH_SUPPRESS_BROWSER_REFRESH`   | `dotnet watch run` attempts to refresh browsers when it detects file changes. If set to "1" or "true", this behavior is suppressed. This behavior is also suppressed if `DOTNET_WATCH_SUPPRESS_LAUNCH_BROWSER` is set. |
+
+## Browser refresh
+
+`dotnet watch` injects a script into the app that allows it to refresh the browser when the content changes. In some scenarios, such as when the app enables response compression, `dotnet watch` might ***not*** be unable to inject the script. For such cases in development, manually inject the script into the app. For example, to configure the  web app to manually inject the script, update the layout file to include `_framework/aspnet-browser-refresh.js`:
+
+```razor
+@* _Layout.cshtml *@
+<environment names="Development">
+    <script src="/_framework/aspnetcore-browser-refresh.js"></script>
+</environment>
+```

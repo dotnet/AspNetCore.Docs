@@ -71,6 +71,8 @@ To disable automatic loading of hosting startup assemblies, use one of the follo
                     .UseStartup<Startup>();
             });
     ```
+    
+    The `{ASSEMBLY1;ASSEMBLY2; ...}` placeholder represents the semicolon-separated list of assemblies.
 
   * `ASPNETCORE_HOSTINGSTARTUPEXCLUDEASSEMBLIES` environment variable.
 
@@ -225,6 +227,8 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
         });
 ```
 
+The `{ASSEMBLY1;ASSEMBLY2; ...}` placeholder represents the semicolon-separated list of assemblies.
+
 When multiple hosting startup assembles are present, their <xref:Microsoft.AspNetCore.Hosting.IHostingStartup.Configure*> methods are executed in the order that the assemblies are listed.
 
 ## Activation
@@ -331,7 +335,7 @@ deployment/additionalDeps/shared/Microsoft.AspNetCore.App/3.0.0/StartupDiagnosti
 
 For runtime to discover the runtime store location, the additional dependencies file location is added to the `DOTNET_ADDITIONAL_DEPS` environment variable.
 
-In the sample app (*RuntimeStore* project), building the runtime store and generating the additional dependencies file is accomplished using a [PowerShell](/powershell/scripting/powershell-scripting) script.
+In the sample app (*RuntimeStore* project), building the runtime store and generating the additional dependencies file is accomplished using a [PowerShell](/powershell/scripting/overview) script.
 
 For examples of how to set environment variables for various operating systems, see [Use multiple environments](xref:fundamentals/environments).
 
@@ -424,7 +428,7 @@ dotnet nuget locals all --clear
 
 **Activation from a runtime store-deployed assembly**
 
-1. The *StartupDiagnostics* project uses [PowerShell](/powershell/scripting/powershell-scripting) to modify its *StartupDiagnostics.deps.json* file. PowerShell is installed by default on Windows starting with Windows 7 SP1 and Windows Server 2008 R2 SP1. To obtain PowerShell on other platforms, see [Installing various versions of PowerShell](/powershell/scripting/install/installing-powershell).
+1. The *StartupDiagnostics* project uses [PowerShell](/powershell/scripting/overview) to modify its *StartupDiagnostics.deps.json* file. PowerShell is installed by default on Windows starting with Windows 7 SP1 and Windows Server 2008 R2 SP1. To obtain PowerShell on other platforms, see [Installing various versions of PowerShell](/powershell/scripting/install/installing-powershell).
 1. Execute the *build.ps1* script in the *RuntimeStore* folder. The script:
    * Generates the `StartupDiagnostics` package in the *obj\packages* folder.
    * Generates the runtime store for `StartupDiagnostics` in the *store* folder. The `dotnet store` command in the script uses the `win7-x64` [runtime identifier (RID)](/dotnet/core/rid-catalog) for a hosting startup deployed to Windows. When providing the hosting startup for a different runtime, substitute the correct RID on line 37 of the script. The runtime store for `StartupDiagnostics` would later be moved to the user's or system's runtime store on the machine where the assembly will be consumed. The user runtime store install location for the `StartupDiagnostics` assembly is *.dotnet/store/x64/netcoreapp3.0/startupdiagnostics/1.0.0/lib/netcoreapp3.0/StartupDiagnostics.dll*.
@@ -717,7 +721,7 @@ deployment/additionalDeps/shared/Microsoft.AspNetCore.App/2.1.0/StartupDiagnosti
 
 For runtime to discover the runtime store location, the additional dependencies file location is added to the `DOTNET_ADDITIONAL_DEPS` environment variable.
 
-In the sample app (*RuntimeStore* project), building the runtime store and generating the additional dependencies file is accomplished using a [PowerShell](/powershell/scripting/powershell-scripting) script.
+In the sample app (*RuntimeStore* project), building the runtime store and generating the additional dependencies file is accomplished using a [PowerShell](/powershell/scripting/overview) script.
 
 For examples of how to set environment variables for various operating systems, see [Use multiple environments](xref:fundamentals/environments).
 
@@ -810,7 +814,7 @@ dotnet nuget locals all --clear
 
 **Activation from a runtime store-deployed assembly**
 
-1. The *StartupDiagnostics* project uses [PowerShell](/powershell/scripting/powershell-scripting) to modify its *StartupDiagnostics.deps.json* file. PowerShell is installed by default on Windows starting with Windows 7 SP1 and Windows Server 2008 R2 SP1. To obtain PowerShell on other platforms, see [Installing various versions of PowerShell](/powershell/scripting/install/installing-powershell).
+1. The *StartupDiagnostics* project uses [PowerShell](/powershell/scripting/overview) to modify its *StartupDiagnostics.deps.json* file. PowerShell is installed by default on Windows starting with Windows 7 SP1 and Windows Server 2008 R2 SP1. To obtain PowerShell on other platforms, see [Installing various versions of PowerShell](/powershell/scripting/install/installing-powershell).
 1. Execute the *build.ps1* script in the *RuntimeStore* folder. The script:
    * Generates the `StartupDiagnostics` package in the *obj\packages* folder.
    * Generates the runtime store for `StartupDiagnostics` in the *store* folder. The `dotnet store` command in the script uses the `win7-x64` [runtime identifier (RID)](/dotnet/core/rid-catalog) for a hosting startup deployed to Windows. When providing the hosting startup for a different runtime, substitute the correct RID on line 37 of the script. The runtime store for `StartupDiagnostics` would later be moved to the user's or system's runtime store on the machine where the assembly will be consumed. The user runtime store install location for the `StartupDiagnostics` assembly is *.dotnet/store/x64/netcoreapp2.2/startupdiagnostics/1.0.0/lib/netcoreapp2.2/StartupDiagnostics.dll*.

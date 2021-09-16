@@ -41,6 +41,8 @@ The simplest `fetch` call accepts a single parameter representing the route. A s
 
 1. Create a *wwwroot* folder in the project root.
 
+1. Create a *css* folder inside of the *wwwroot* folder.
+
 1. Create a *js* folder inside of the *wwwroot* folder.
 
 1. Add an HTML file named *index.html* to the *wwwroot* folder. Replace the contents of *index.html* with the following markup:
@@ -64,7 +66,7 @@ This sample calls all of the CRUD methods of the web API. Following are explanat
 
 ### Get a list of to-do items
 
-In the following code, an HTTP GET request is sent to the *api/TodoItems* route:
+In the following code, an HTTP GET request is sent to the *api/todoitems* route:
 
 [!code-javascript[](first-web-api/samples/3.0/TodoApi/wwwroot/js/site.js?name=snippet_GetItems)]
 
@@ -79,7 +81,7 @@ In the following code:
   * `method`&mdash;specifies the POST HTTP action verb.
   * `body`&mdash;specifies the JSON representation of the request body. The JSON is produced by passing the object literal stored in `item` to the [JSON.stringify](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify) function.
   * `headers`&mdash;specifies the `Accept` and `Content-Type` HTTP request headers. Both headers are set to `application/json` to specify the media type being received and sent, respectively.
-* An HTTP POST request is sent to the *api/TodoItems* route.
+* An HTTP POST request is sent to the *api/todoitems* route.
 
 [!code-javascript[](first-web-api/samples/3.0/TodoApi/wwwroot/js/site.js?name=snippet_AddItem)]
 
@@ -89,7 +91,7 @@ When the web API returns a successful status code, the `getItems` function is in
 
 Updating a to-do item is similar to adding one; however, there are two significant differences:
 
-* The route is suffixed with the unique identifier of the item to update. For example, *api/TodoItems/1*.
+* The route is suffixed with the unique identifier of the item to update. For example, *api/todoitems/1*.
 * The HTTP action verb is PUT, as indicated by the `method` option.
 
 [!code-javascript[](first-web-api/samples/3.0/TodoApi/wwwroot/js/site.js?name=snippet_UpdateItem)]

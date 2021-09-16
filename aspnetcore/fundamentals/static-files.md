@@ -2,6 +2,7 @@
 title: Static files in ASP.NET Core
 author: rick-anderson
 description: Learn how to serve and secure static files and configure static file hosting middleware behaviors in an ASP.NET Core web app.
+monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 6/23/2020
@@ -92,7 +93,7 @@ Static files are publicly cacheable for 600 seconds:
 The ASP.NET Core templates call <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> before calling <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>. Most apps follow this pattern. When the Static File Middleware is called before the authorization middleware:
 
   * No authorization checks are performed on the static files.
-  * Static files served by the Static File Middleware, such as those those under `wwwroot`, are publicly accessible.
+  * Static files served by the Static File Middleware, such as those under `wwwroot`, are publicly accessible.
   
 To serve static files based on authorization:
 
@@ -121,7 +122,7 @@ An alternative approach to serve files based on authorization is to:
 
 Directory browsing allows directory listing within specified directories.
 
-Directory browsing is disabled by default for security reasons. For more information, see [Considerations](#considerations).
+Directory browsing is disabled by default for security reasons. For more information, see [Security considerations for static files](#security-considerations-for-static-files).
 
 Enable directory browsing with:
 
@@ -136,7 +137,7 @@ The preceding code allows directory browsing of the *wwwroot/images* folder usin
 
 ## Serve default documents
 
-Setting a default page provides visitors a starting point on a site. To serve a default page from `wwwroot` without a fully qualified URI, call the <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles%2A> method:
+Setting a default page provides visitors a starting point on a site. To serve a default file from `wwwroot` without requiring the request URL to include the file's name, call the <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles%2A> method:
 
 [!code-csharp[](~/fundamentals/static-files/samples/3.x/StaticFilesSample/StartupEmpty.cs?name=snippet_Configure&highlight=15)]
 
@@ -149,7 +150,7 @@ With `UseDefaultFiles`, requests to a folder in `wwwroot` search for:
 * *index.htm*
 * *index.html*
 
-The first file found from the list is served as though the request were the fully qualified URI. The browser URL continues to reflect the URI requested.
+The first file found from the list is served as though the request included the file's name. The browser URL continues to reflect the URI requested.
 
 The following code changes the default file name to *mydefault.html*:
 

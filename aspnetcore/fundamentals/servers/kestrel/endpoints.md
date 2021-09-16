@@ -62,9 +62,11 @@ webBuilder.ConfigureKestrel(serverOptions =>
 
 ## Configure(IConfiguration)
 
-Creates a configuration loader for setting up Kestrel that takes an <xref:Microsoft.Extensions.Configuration.IConfiguration> as input. The configuration must be scoped to the configuration section for Kestrel.
+Enables Kestrel to load endpoints from an <xref:Microsoft.Extensions.Configuration.IConfiguration>. The configuration must be scoped to the configuration section for Kestrel.
 
-`CreateDefaultBuilder` calls `Configure(context.Configuration.GetSection("Kestrel"))` by default to load Kestrel configuration.
+The `Configure(IConfiguration, bool)` overload can be used to enable reloading endpoints when the configuration source changes.
+
+`IHostBuilder.ConfigureWebHostDefaults` calls `Configure(context.Configuration.GetSection("Kestrel"), reloadOnChange: true)` by default to load Kestrel configuration and enable reloading.
 
 ```json
 {
@@ -84,6 +86,13 @@ Creates a configuration loader for setting up Kestrel that takes an <xref:Micros
   }
 }
 ```
+
+If reloading configuration is enabled and a change is signaled then the following steps are taken:
+- The new configuraiton is compared to the old one, any endpoint without configuration changes are not modified.
+- Removed or modified endpoints are given 5 seconds to complete processing requests and shut down.
+- New or modified endpoints are started.
+
+Clients connecting to a modified endpoint may be disconnected or refused while the endpoint is restarted.
 
 ## ConfigureHttpsDefaults(Action\<HttpsConnectionAdapterOptions>)
 
@@ -321,6 +330,99 @@ webBuilder.ConfigureKestrel(serverOptions =>
 });
 ```
 
+### SNI with `ServerOptionsSelectionCallback`
+
+Kestrel supports additional dynamic TLS configuraiton via the `ServerOptionsSelectionCallback` callback. The callback is invoked once per connection to allow the app to inspect the host name and select the appropriate certificate and TLS configuration. Default certificates and `ConfigureHttpsDefaults` are not used with this callback.
+
+```csharp
+//using System.Security.Cryptography.X509Certificates;
+//using Microsoft.AspNetCore.Server.Kestrel.Https;
+
+webBuilder.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.ListenAnyIP(5005, listenOptions =>
+    {
+        listenOptions.UseHttps(httpsOptions =>
+        {
+            var localhostCert = CertificateLoader.LoadFromStoreCert(
+                "localhost", "My", StoreLocation.CurrentUser,
+                allowInvalid: true);
+            var exampleCert = CertificateLoader.LoadFromStoreCert(
+                "example.com", "My", StoreLocation.CurrentUser,
+                allowInvalid: true);
+
+            listenOptions.UseHttps((stream, clientHelloInfo, state, cancellationToken) =>
+            {
+                if (string.Equals(clientHelloInfo.ServerName, "localhost", StringComparison.OrdinalIgnoreCase))
+                {
+                    return new ValueTask<SslServerAuthenticationOptions>(new SslServerAuthenticationOptions
+                    {
+                        ServerCertificate = localhostCert,
+                        // Different TLS requirements for this host
+                        ClientCertificateRequired = true,
+                    });
+                }
+
+                return new ValueTask<SslServerAuthenticationOptions>(new SslServerAuthenticationOptions
+                {
+                    ServerCertificate = exampleCert,
+                });
+            }, state: null);
+        });
+    });
+});
+```
+
+::: moniker range=">= aspnetcore-6.0"
+
+### SNI with `TlsHandshakeCallbackOptions`
+
+Kestrel supports additional dynamic TLS configuration via the `TlsHandshakeCallbackOptions.OnConnection` callback. The callback is invoked once per connection to allow the app to inspect the host name and select the appropriate certificate, TLS configuration, and other server options. Default certificates and `ConfigureHttpsDefaults` are not used with this callback.
+
+```csharp
+//using System.Security.Cryptography.X509Certificates;
+//using Microsoft.AspNetCore.Server.Kestrel.Https;
+
+webBuilder.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.ListenAnyIP(5005, listenOptions =>
+    {
+        listenOptions.UseHttps(httpsOptions =>
+        {
+            var localhostCert = CertificateLoader.LoadFromStoreCert(
+                "localhost", "My", StoreLocation.CurrentUser,
+                allowInvalid: true);
+            var exampleCert = CertificateLoader.LoadFromStoreCert(
+                "example.com", "My", StoreLocation.CurrentUser,
+                allowInvalid: true);
+
+            listenOptions.UseHttps(new TlsHandshakeCallbackOptions()
+            {
+                OnConnection = context =>
+                {
+                    if (string.Equals(context.ClientHelloInfo.ServerName, "localhost", StringComparison.OrdinalIgnoreCase))
+                    {
+                        // Different TLS requirements for this host
+                        context.AllowDelayedClientCertificateNegotation = true;
+                        return new ValueTask<SslServerAuthenticationOptions>(new SslServerAuthenticationOptions
+                        {
+                            ServerCertificate = localhostCert,
+                        });
+                    }
+
+                    return new ValueTask<SslServerAuthenticationOptions>(new SslServerAuthenticationOptions
+                    {
+                        ServerCertificate = exampleCert,
+                    });
+                }
+            });
+        });
+    });
+});
+```
+
+::: moniker-end
+
 ### SNI in configuration
 
 Kestrel supports SNI defined in configuration. An endpoint can be configured with an `Sni` object that contains a mapping between host names and HTTPS options. The connection host name is matched to the options and they are used for that connection.
@@ -402,7 +504,59 @@ webBuilder.ConfigureKestrel(serverOptions =>
 });
 ```
 
+```json
+{
+  "Kestrel": {
+    "Endpoints": {
+      "MyHttpsEndpoint": {
+        "Url": "https://localhost:5001",
+        "SslProtocols": ["Tls12", "Tls13"],
+        "Certificate": {
+          "Path": "<path to .pfx file>",
+          "Password": "<certificate password>"
+        }
+      }
+    }
+  }
+}
+```
+
 The default value, `SslProtocols.None`, causes Kestrel to use the operating system defaults to choose the best protocol. Unless you have a specific reason to select a protocol, use the default.
+
+## Client Certificates
+
+`ClientCertificateMode` configures the [client certificate requirements](xref:Microsoft.AspNetCore.Server.Kestrel.Https.ClientCertificateMode).
+
+```csharp
+webBuilder.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.ConfigureHttpsDefaults(listenOptions =>
+    {
+        listenOptions.ClientCertificateMode = ClientCertificateMode.AllowCertificate;
+    });
+});
+```
+
+```json
+{
+  "Kestrel": {
+    "Endpoints": {
+      "MyHttpsEndpoint": {
+        "Url": "https://localhost:5001",
+        "ClientCertificateMode": "AllowCertificate",
+        "Certificate": {
+          "Path": "<path to .pfx file>",
+          "Password": "<certificate password>"
+        }
+      }
+    }
+  }
+}
+```
+
+The default value is `ClientCertificateMode.NoCertificate` where Kestrel will not request or require a certificate from the client.
+
+See [Certificate Authenticaiton](/aspnet/core/security/authentication/certauth) for more details.
 
 ## Connection logging
 

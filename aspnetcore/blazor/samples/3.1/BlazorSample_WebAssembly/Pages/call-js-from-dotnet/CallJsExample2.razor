@@ -1,0 +1,27 @@
+@page "/call-js-example-2"
+@inject IJSRuntime JS
+
+<h1>Call JS Example 2</h1>
+
+<p>
+    <button @onclick="SetStock">Set Stock</button>
+</p>
+
+@if (stockSymbol != null)
+{
+    <p>@stockSymbol price: @price.ToString("c")</p>
+}
+
+@code {
+    private Random r = new Random();
+    private string stockSymbol;
+    private decimal price;
+
+    private async Task SetStock()
+    {
+        stockSymbol = 
+            $"{(char)('A' + r.Next(0, 26))}{(char)('A' + r.Next(0, 26))}";
+        price = r.Next(1, 101);
+        await JS.InvokeVoidAsync("displayTickerAlert1", stockSymbol, price);
+    }
+}

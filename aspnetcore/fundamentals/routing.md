@@ -34,7 +34,7 @@ This document covers low-level details of ASP.NET Core routing. For information 
 The endpoint routing system described in this document applies to ASP.NET Core 3.0 and later. For information on the previous routing system based on <xref:Microsoft.AspNetCore.Routing.IRouter>, select the ASP.NET Core 2.1 version using one of the following approaches:
 
 * The version selector for a previous version.
-* Select [ASP.NET Core 2.1 routing](?view=aspnetcore-2.1).
+* Select [ASP.NET Core 2.1 routing](?preserve-view=true&view=aspnetcore-2.1).
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/routing/samples/3.x) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -138,7 +138,7 @@ The following code shows how to retrieve and inspect the endpoint matching the c
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/EndpointInspectorStartup.cs?name=snippet)]
 
-The endpoint, if selected, can be retrieved from the `HttpContext`. Its properties can be inspected. Endpoint objects are immutable and cannot be modified after creation. The most common type of endpoint is a <xref:Microsoft.AspNetCore.Routing.RouteEndpoint>. `RouteEndpoint` includes information that allows it to be to selected by the routing system.
+The endpoint, if selected, can be retrieved from the `HttpContext`. Its properties can be inspected. Endpoint objects are immutable and cannot be modified after creation. The most common type of endpoint is a <xref:Microsoft.AspNetCore.Routing.RouteEndpoint>. `RouteEndpoint` includes information that allows it to be selected by the routing system.
 
 In the preceding code, [app.Use](xref:Microsoft.AspNetCore.Builder.UseExtensions.Use*) configures an in-line [middleware](xref:fundamentals/middleware/index).
 
@@ -1007,7 +1007,7 @@ services.AddMvc(options => options.EnableEndpointRouting = false)
     .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 ```
 
-For more information on <xref:Microsoft.AspNetCore.Routing.IRouter>-based routing, see the [ASP.NET Core 2.1 version of this topic](?view=aspnetcore-2.1).
+For more information on <xref:Microsoft.AspNetCore.Routing.IRouter>-based routing, see the [ASP.NET Core 2.1 version of this topic](?preserve-view=true&view=aspnetcore-2.1).
 
 > [!IMPORTANT]
 > This document covers low-level ASP.NET Core routing. For information on ASP.NET Core MVC routing, see <xref:mvc/controllers/routing>. For information on routing conventions in Razor Pages, see <xref:razor-pages/razor-pages-conventions>.
@@ -1021,7 +1021,7 @@ Most apps should choose a basic and descriptive routing scheme so that URLs are 
 * Supports a basic and descriptive routing scheme.
 * Is a useful starting point for UI-based apps.
 
-Developers commonly add additional terse routes to high-traffic areas of an app in specialized situations using [attribute routing](xref:mvc/controllers/routing#attribute-routing) or dedicated conventional routes. Specialized situations examples include, blog and ecommerce endpoints.
+Developers commonly add additional terse routes to high-traffic areas of an app in specialized situations using [attribute routing](xref:mvc/controllers/routing#ar) or dedicated conventional routes. Specialized situations examples include, blog and ecommerce endpoints.
 
 Web APIs should use attribute routing to model the app's functionality as a set of resources where operations are represented by HTTP verbs. This means that many operations, for example, GET, and POST, on the same logical resource use the same URL. Attribute routing provides a level of control that's needed to carefully design an API's public endpoint layout.
 
@@ -1412,6 +1412,8 @@ The following keywords are reserved names and can't be used as route names or pa
 * `handler`
 * `page`
 
+[!INCLUDE[](~/includes/reservedRouting.md)]
+
 ## Route constraint reference
 
 Route constraints execute when a match has occurred to the incoming URL and the URL path is tokenized into route values. Route constraints generally inspect the route value associated via the route template and make a yes/no decision about whether or not the value is acceptable. Some route constraints use data outside the route value to consider whether the request can be routed. For example, the <xref:Microsoft.AspNetCore.Routing.Constraints.HttpMethodRouteConstraint> can accept or reject a request based on its HTTP verb. Constraints are used in routing requests and link generation.
@@ -1603,7 +1605,7 @@ Most apps should choose a basic and descriptive routing scheme so that URLs are 
 * Supports a basic and descriptive routing scheme.
 * Is a useful starting point for UI-based apps.
 
-Developers commonly add additional terse routes to high-traffic areas of an app in specialized situations (for example, blog and ecommerce endpoints) using [attribute routing](xref:mvc/controllers/routing#attribute-routing) or dedicated conventional routes.
+Developers commonly add additional terse routes to high-traffic areas of an app in specialized situations (for example, blog and ecommerce endpoints) using [attribute routing](xref:mvc/controllers/routing#ar) or dedicated conventional routes.
 
 Web APIs should use attribute routing to model the app's functionality as a set of resources where operations are represented by HTTP verbs. This means that many operations (for example, GET, POST) on the same logical resource will use the same URL. Attribute routing provides a level of control that's needed to carefully design an API's public endpoint layout.
 

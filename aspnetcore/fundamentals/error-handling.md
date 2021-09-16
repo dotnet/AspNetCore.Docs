@@ -31,25 +31,30 @@ The templates place <xref:Microsoft.AspNetCore.Builder.DeveloperExceptionPageExt
 
 The preceding code enables the Developer Exception Page ***only*** when the app runs in the Development environment. Detailed exception information should not be displayed publicly when the app runs in the Production environment. For more information on configuring environments, see <xref:fundamentals/environments>.
 
-The Developer Exception Page includes the following information about the exception and the request:
+The Developer Exception Page can include the following information about the exception and the request:
 
 * Stack trace
 * Query string parameters if any
 * Cookies if any
 * Headers
 
+The Developer Exception Page is not guaranteed to provide any information. Use [Logging](xref:fundamentals/logging/index) for complete error information.
+
 ## Exception handler page
 
 To configure a custom error handling page for the [Production environment](xref:fundamentals/environments), call <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A>. This exception handling middleware:
 
 * Catches and logs unhandled exceptions.
-* Re-executes the request in an alternate pipeline using the path indicated. The request isn't re-executed if the response has started. The template generated code re-executes the request using the `/Error` path.
+* Re-executes the request in an alternate pipeline using the path indicated. The request isn't re-executed if the response has started. The template-generated code re-executes the request using the `/Error` path.
+
+> [!WARNING]
+> If the alternate pipeline throws an exception of its own, Exception Handling Middleware rethrows the original exception.
 
 In the following example, <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A> adds the exception handling middleware in non-Development environments:
 
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_DevPageAndHandlerPage&highlight=5-9)]
 
-The Razor Pages app template provides an Error page (*.cshtml*) and <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> class (`ErrorModel`) in the *Pages* folder. For an MVC app, the project template includes an `Error` action method and an Error view for the Home controller.
+The Razor Pages app template provides an Error page (`.cshtml`) and <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> class (`ErrorModel`) in the *Pages* folder. For an MVC app, the project template includes an `Error` action method and an Error view for the Home controller.
 
 The exception handling middleware re-executes the request using the *original* HTTP method. If an error handler endpoint is restricted to a specific set of HTTP methods, it runs only for those HTTP methods. For example, an MVC controller action that uses the `[HttpGet]` attribute runs only for GET requests. To ensure that *all* requests reach the custom error handling page, don't restrict them to a specific set of HTTP methods.
 
@@ -72,7 +77,7 @@ Use <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerPathFeature> to acce
 To test the exception in the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/error-handling/samples/5.x):
 
 * Set the environment to production.
-* Remove the comments from `webBuilder.UseStartup<Startup>();` in *Program.cs*.
+* Remove the comments from `webBuilder.UseStartup<Startup>();` in `Program.cs`.
 * Select **Trigger an exception** on the home page.
 
 ## Exception handler lambda
@@ -93,7 +98,7 @@ In the preceding code, `await context.Response.WriteAsync(new string(' ', 512));
 To test the exception handling lambda in the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/error-handling/samples/5.x):
 
 * Set the environment to production.
-* Remove the comments from `webBuilder.UseStartup<StartupLambda>();` in *Program.cs*.
+* Remove the comments from `webBuilder.UseStartup<StartupLambda>();` in `Program.cs`.
 * Select **Trigger an exception** on the home page.
 
 ## UseStatusCodePages
@@ -115,7 +120,7 @@ Status Code: 404; Not Found
 To test `UseStatusCodePages` in the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/error-handling/samples/5.x):
 
 * Set the environment to production.
-* Remove the comments from `webBuilder.UseStartup<StartupUseStatusCodePages>();` in *Program.cs*.
+* Remove the comments from `webBuilder.UseStartup<StartupUseStatusCodePages>();` in `Program.cs`.
 * Select the links on the home page on the home page.
 
 > [!NOTE]
@@ -131,7 +136,7 @@ In the preceding code, `{0}` is a placeholder for the error code.
 
 `UseStatusCodePages` with a format string isn't typically used in production because it returns a message that isn't useful to users.
 
-To test `UseStatusCodePages` in the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/error-handling/samples/5.x), remove the comments from `webBuilder.UseStartup<StartupFormat>();` in *Program.cs*.
+To test `UseStatusCodePages` in the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/error-handling/samples/5.x), remove the comments from `webBuilder.UseStartup<StartupFormat>();` in `Program.cs`.
 
 ### UseStatusCodePages with lambda
 
@@ -141,7 +146,7 @@ To specify custom error-handling and response-writing code, use the overload of 
 
 `UseStatusCodePages` with a lambda isn't typically used in production because it returns a message that isn't useful to users.
 
-To test `UseStatusCodePages` in the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/error-handling/samples/5.x), remove the comments from `webBuilder.UseStartup<StartupStatusLambda>();` in *Program.cs*.
+To test `UseStatusCodePages` in the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/error-handling/samples/5.x), remove the comments from `webBuilder.UseStartup<StartupStatusLambda>();` in `Program.cs`.
 
 ### UseStatusCodePagesWithRedirects
 
@@ -159,7 +164,7 @@ This method is commonly used when the app:
 * Should redirect the client to a different endpoint, usually in cases where a different app processes the error. For web apps, the client's browser address bar reflects the redirected endpoint.
 * Shouldn't preserve and return the original status code with the initial redirect response.
 
-To test `UseStatusCodePages` in the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/error-handling/samples/5.x), remove the comments from `webBuilder.UseStartup<StartupSCredirect>();` in *Program.cs*.
+To test `UseStatusCodePages` in the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/error-handling/samples/5.x), remove the comments from `webBuilder.UseStartup<StartupSCredirect>();` in `Program.cs`.
 
 ### UseStatusCodePagesWithReExecute
 
@@ -196,7 +201,7 @@ The endpoint that processes the error can get the original URL that generated th
 
 For a Razor Pages example, see [Pages/MyStatusCode2.cshtml](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/error-handling/samples/5.x/ErrorHandlingSample/Pages) in the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/error-handling/samples/5.x).
 
-To test `UseStatusCodePages` in the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/error-handling/samples/5.x), remove the comments from `webBuilder.UseStartup<StartupSCreX>();` in *Program.cs*.
+To test `UseStatusCodePages` in the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/error-handling/samples/5.x), remove the comments from `webBuilder.UseStartup<StartupSCreX>();` in `Program.cs`.
 
 ## Disable status code pages
 
@@ -301,7 +306,7 @@ In the following example, <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExt
 
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_DevPageAndHandlerPage&highlight=5-9)]
 
-The Razor Pages app template provides an Error page (*.cshtml*) and <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> class (`ErrorModel`) in the *Pages* folder. For an MVC app, the project template includes an Error action method and an Error view in the Home controller.
+The Razor Pages app template provides an Error page (`.cshtml`) and <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> class (`ErrorModel`) in the *Pages* folder. For an MVC app, the project template includes an Error action method and an Error view in the Home controller.
 
 Don't mark the error handler action method with HTTP method attributes, such as `HttpGet`. Explicit verbs prevent some requests from reaching the method. Allow anonymous access to the method if unauthenticated users should see the error view.
 

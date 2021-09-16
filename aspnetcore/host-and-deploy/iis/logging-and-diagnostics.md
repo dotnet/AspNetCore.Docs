@@ -36,7 +36,7 @@ The following sample `aspNetCore` element configures stdout logging at the relat
 
 When publishing an app for Azure App Service deployment, the Web SDK sets the `stdoutLogFile` value to `\\?\%home%\LogFiles\stdout`. The `%home` environment variable is predefined for apps hosted by Azure App Service.
 
-To create logging filter rules, see the [Configuration](xref:fundamentals/logging/index#log-filtering) and [Log filtering](xref:fundamentals/logging/index#log-filtering) sections of the ASP.NET Core logging documentation.
+To create logging filter rules, see the [Apply log filter rules in code](xref:fundamentals/logging/index#apply-log-filter-rules-in-code) section of the ASP.NET Core logging documentation.
 
 For more information on path formats, see [File path formats on Windows systems](/dotnet/standard/io/file-path-formats).
 

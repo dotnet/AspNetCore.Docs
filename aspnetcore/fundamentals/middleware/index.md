@@ -80,18 +80,19 @@ The following `Startup.Configure` method adds security-related middleware compon
 In the preceding code:
 
 * Middleware that is not added when creating a new web app with [individual users accounts](xref:security/authentication/identity) is commented out.
-* Not every middleware needs to go in this exact order, but many do. For example:
-  * `UseCors`, `UseAuthentication`, and `UseAuthorization` must go in the order shown.
-  * `UseCors` currently must go before `UseResponseCaching` due to [this bug](https://github.com/dotnet/aspnetcore/issues/23218).
+* Not every middleware appears in this exact order, but many do. For example:
+  * `UseCors`, `UseAuthentication`, and `UseAuthorization` must appear in the order shown.
+  * `UseCors` currently must appear before `UseResponseCaching` due to [this bug](https://github.com/dotnet/aspnetcore/issues/23218).
+  * `UseRequestLocalization` must appear before any middleware that might check the request culture (for example, `app.UseMvcWithDefaultRoute()`).
 
-In some scenarios, middleware will have different ordering. For example, caching and compression ordering is scenario specific, and there's multiple valid orderings. For example:
+In some scenarios, middleware has different ordering. For example, caching and compression ordering is scenario specific, and there's multiple valid orderings. For example:
 
 ```csharp
 app.UseResponseCaching();
 app.UseResponseCompression();
 ```
 
-With the preceding code, CPU could be saved by caching the compressed response, but you might end up caching multiple representations of a resource using different compression algorithms such as gzip or brotli.
+With the preceding code, CPU could be saved by caching the compressed response, but you might end up caching multiple representations of a resource using different compression algorithms such as Gzip or Brotli.
 
 The following ordering combines static files to allow caching compressed static files:
 
@@ -270,7 +271,7 @@ ASP.NET Core ships with the following middleware components. The *Order* column 
 | [OWIN](xref:fundamentals/owin) | Interop with OWIN-based apps, servers, and middleware. | Terminal if the OWIN Middleware fully processes the request. |
 | [Response Caching](xref:performance/caching/middleware) | Provides support for caching responses. | Before components that require caching. `UseCORS` must come before `UseResponseCaching`.|
 | [Response Compression](xref:performance/response-compression) | Provides support for compressing responses. | Before components that require compression. |
-| [Request Localization](xref:fundamentals/localization) | Provides localization support. | Before localization sensitive components. |
+| [Request Localization](xref:fundamentals/localization) | Provides localization support. | Before localization sensitive components. Must appear after Routing Middleware when using <xref:Microsoft.AspNetCore.Localization.Routing.RouteDataRequestCultureProvider>. |
 | [Endpoint Routing](xref:fundamentals/routing) | Defines and constrains request routes. | Terminal for matching routes. |
 | [SPA](xref:Microsoft.AspNetCore.Builder.SpaApplicationBuilderExtensions.UseSpa%2A) | Handles all requests from this point in the middleware chain by returning the default page for the Single Page Application (SPA) | Late in the chain, so that other middleware for serving static files, MVC actions, etc., takes precedence.|
 | [Session](xref:fundamentals/app-state) | Provides support for managing user sessions. | Before components that require Session. | 

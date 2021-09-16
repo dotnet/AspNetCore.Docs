@@ -226,6 +226,22 @@ This isolation mechanism assumes that the apps are not malicious. A malicious ap
 
 If the Data Protection system isn't provided by an ASP.NET Core host (for example, if you instantiate it via the `DataProtectionProvider` concrete type) app isolation is disabled by default. When app isolation is disabled, all apps backed by the same keying material can share payloads as long as they provide the appropriate [purposes](xref:security/data-protection/consumer-apis/purpose-strings). To provide app isolation in this environment, call the [SetApplicationName](#setapplicationname) method on the configuration object and provide a unique name for each app.
 
+### Data Protection and app isolation
+
+Consider the following for app isolation:
+
+* When multiple apps are pointed at the same key repository, the intention is that the apps share the same master key material. Data Protection is developed with the assumption that all apps sharing a key ring can access all items in that key ring. The application unique identifier is used to isolate application specific keys derived from the key ring provided keys. It doesn't expect item level permissions, such as those provided by Azure KeyVault to be used to enforce extra isolation. Attempting item level permissions generates application errors. If you don't want to rely on the built-in application isolation, separate key store locations should be used and not shared between applications.
+
+* The application discriminator is used to allow different apps to share the same master key material but to keep their cryptographic payloads distinct from one another. <!-- The docs already draw an analogy between this and multi-tenancy.--> For the apps to be able to read each other's cryptographic payloads, they must have the same application discriminator.
+
+* If an app is compromised (for example, by an RCE attack), all master key material accessible to that app must also be considered compromised, regardless of its protection-at-rest state. This implies that if two apps are pointed at the same repository, even if they use different app discriminators, a compromise of one is functionally equivalent to a compromise of both.
+
+  This "functionally equivalent to a compromise of both" clause holds even if the two apps use different mechanisms for key protection at rest. Typically, this isn't an expected configuration. The protection-at-rest mechanism is intended to provide protection in the event an adversary gains read access to the repository. An adversary who gains write access to the repository (perhaps because they attained code execution permission within an app) can insert malicious keys into storage. The Data Protection system intentionally does not provide protection against an adversary who gains write access to the key repository.
+
+* If apps need to remain truly isolated from one another, they should use different key repositories. This naturally falls out of the definition of "isolated". Apps are ***not*** isolated if they all have Read and Write access to each other's data stores.
+
+
+
 ## Changing algorithms with UseCryptographicAlgorithms
 
 The Data Protection stack allows you to change the default algorithm used by newly-generated keys. The simplest way to do this is to call [UseCryptographicAlgorithms](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions.usecryptographicalgorithms) from the configuration callback:
@@ -423,11 +439,27 @@ Though not exposed as a first-class API, the Data Protection system is extensibl
 When hosting in a [Docker](/dotnet/standard/microservices-architecture/container-docker-introduction/) container, keys should be maintained in either:
 
 * A folder that's a Docker volume that persists beyond the container's lifetime, such as a shared volume or a host-mounted volume.
-* An external provider, such as [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) or [Redis](https://redis.io/).
+* An external provider, such as [Azure Blob Storage](/azure/storage/blobs/storage-blobs-introduction) (shown in the [`ProtectKeysWithAzureKeyVault`](#protectkeyswithazurekeyvault) section) or [Redis](https://redis.io).
 
 ## Persisting keys with Redis
 
 Only Redis versions supporting [Redis Data Persistence](/azure/azure-cache-for-redis/cache-how-to-premium-persistence) should be used to store keys. [Azure Blob storage](/azure/storage/blobs/storage-blobs-introduction) is persistent and can be used to store keys. For more information, see [this GitHub issue](https://github.com/dotnet/AspNetCore/issues/13476).
+
+## Logging DataProtection
+
+Enable `Information` level logging of DataProtection to help diagnosis problem. The following *appsetting.json* file enables information logging of the DataProtection API:
+
+```JSON
+{
+  "Logging": {
+    "LogLevel": {
+      "Microsoft.AspNetCore.DataProtection": "Information"
+    }
+  }
+}
+```
+
+For more information on logging, see [Logging in .NET Core and ASP.NET Core](xref:fundamentals/logging/index).
 
 ## Additional resources
 

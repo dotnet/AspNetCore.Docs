@@ -30,9 +30,9 @@ Web API controllers don't have to check `ModelState.IsValid` if they have the `[
 
 ## Rerun validation
 
-Validation is automatic, but you might want to repeat it manually. For example, you might compute a value for a property and want to rerun validation after setting the property to the computed value. To rerun validation, call the `TryValidateModel` method, as shown here:
+Validation is automatic, but you might want to repeat it manually. For example, you might compute a value for a property and want to rerun validation after setting the property to the computed value. To rerun validation, call <xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.ClearValidationState%2A?displayProperty=nameWithType> to clear validation specific to the model being validated followed by `TryValidateModel`:
 
-[!code-csharp[](validation/samples/3.x/ValidationSample/Pages/Movies/Create.cshtml.cs?name=snippet_TryValidate&highlight=3-6)]
+[!code-csharp[](validation/samples/3.x/ValidationSample/Pages/Movies/Create.cshtml.cs?name=snippet_TryValidate&highlight=6-10)]
 
 ## Validation attributes
 
@@ -51,7 +51,7 @@ Here are some of the built-in validation attributes:
 * `[Phone]`: Validates that the property has a telephone number format.
 * `[Range]`: Validates that the property value falls within a specified range.
 * `[RegularExpression]`: Validates that the property value matches a specified regular expression.
-* `[Required]`: Validates that the field is not null. See [`[Required]` attribute](#required-attribute) for details about this attribute's behavior.
+* `[Required]`: Validates that the field is not null. See [`[Required]` attribute](#non-nullable-reference-types-and-required-attribute) for details about this attribute's behavior.
 * `[StringLength]`: Validates that a string property value doesn't exceed a specified length limit.
 * `[Url]`: Validates that the property has a URL format.
 * `[Remote]`: Validates input on the client by calling an action method on the server. See [`[Remote]` attribute](#remote-attribute) for details about this attribute's behavior.
@@ -96,7 +96,7 @@ public class Person
 }
 ```
 
-. This behavior can be disabled by configuring <xref:Microsoft.AspNetCore.Mvc.MvcOptions.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes> in `Startup.ConfigureServices`:
+This behavior can be disabled by configuring <xref:Microsoft.AspNetCore.Mvc.MvcOptions.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes> in `Startup.ConfigureServices`:
 
 ```csharp
 services.AddControllers(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
@@ -403,7 +403,7 @@ The preceding approach won't prevent client side validation of ASP.NET Core Iden
 
 This article explains how to validate user input in an ASP.NET Core MVC or Razor Pages app.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/validation/sample) ([how to download](xref:index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/validation/samples) ([how to download](xref:index#how-to-download-a-sample)).
 
 ## Model state
 
@@ -546,7 +546,7 @@ For scenarios that the built-in validation attributes don't handle, you can crea
 
 The `IsValid` method accepts an object named *value*, which is the input to be validated. An overload also accepts a `ValidationContext` object, which provides additional information, such as the model instance created by model binding.
 
-The following example validates that the release date for a movie in the *Classic* genre isn't later than a specified year. The `[ClassicMovie2]` attribute checks the genre first and continues only if it's *Classic*. For movies identified as classics, it checks the release date to make sure it's not later than the limit passed to the attribute constructor.)
+The following example validates that the release date for a movie in the *Classic* genre isn't later than a specified year. The `[ClassicMovie2]` attribute checks the genre first and continues only if it's *Classic*. For movies identified as classics, it checks the release date to make sure it's not later than the limit passed to the attribute constructor.
 
 [!code-csharp[](validation/samples/2.x/ValidationSample/Attributes/ClassicMovieAttribute.cs?name=snippet_ClassicMovieAttribute)]
 

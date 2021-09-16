@@ -55,7 +55,7 @@ The options for solving this problem are the [Azure SignalR Service](#azure-sign
 
 ## Azure SignalR Service
 
-The Azure SignalR Service is a proxy rather than a backplane. Each time a client initiates a connection to the server, the client is redirected to connect to the service. That process is illustrated in the following diagram:
+The Azure SignalR Service functions as a proxy for real-time traffic and doubles as a backplane when the app is scaled out across multiple servers. Each time a client initiates a connection to the server, the client is redirected to connect to the service. The process is illustrated by the following diagram:
 
 ![Establishing a connection to the Azure SignalR Service](scale/_static/azure-signalr-service-one-connection.png)
 
@@ -126,6 +126,8 @@ http {
       proxy_set_header Upgrade $http_upgrade;
       proxy_set_header Connection $connection_upgrade;
       proxy_cache off;
+      # WebSockets were implemented after http/1.0
+      proxy_http_version 1.1;
 
       # Configuration for ServerSentEvents
       proxy_buffering off;
@@ -151,9 +153,9 @@ With [Nginx Open Source](https://nginx.org/en/), use `ip_hash` to route connecti
 http {
   upstream backend {
     # App server 1
-    server http://localhost:5000;
+    server localhost:5000;
     # App server 2
-    server http://localhost:5002;
+    server localhost:5002;
 
     ip_hash;
   }
@@ -166,9 +168,9 @@ With [Nginx Plus](https://www.nginx.com/products/nginx), use `sticky` to add a c
 http {
   upstream backend {
     # App server 1
-    server http://localhost:5000;
+    server localhost:5000;
     # App server 2
-    server http://localhost:5002;
+    server localhost:5002;
 
     sticky cookie srv_id expires=max domain=.example.com path=/ httponly;
   }

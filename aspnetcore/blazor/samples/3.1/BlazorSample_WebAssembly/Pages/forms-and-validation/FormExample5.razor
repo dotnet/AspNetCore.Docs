@@ -1,0 +1,69 @@
+@page "/form-example-5"
+@using Microsoft.Extensions.Logging
+@inject ILogger<FormExample5> Logger
+
+<h1>Starfleet Starship Database</h1>
+
+<h2>New Ship Entry Form</h2>
+
+<EditForm Model="@starship" OnValidSubmit="@HandleValidSubmit">
+    <CustomValidation @ref="customValidation" />
+    <ValidationSummary />
+
+    <p>
+        <label>
+            Primary Classification:
+            <InputSelect @bind-Value="starship.Classification">
+                <option value="">Select classification ...</option>
+                <option value="Exploration">Exploration</option>
+                <option value="Diplomacy">Diplomacy</option>
+                <option value="Defense">Defense</option>
+            </InputSelect>
+        </label>
+    </p>
+    <p>
+        <label>
+            Description (optional):
+            <InputTextArea @bind-Value="starship.Description" />
+        </label>
+    </p>
+
+    <button type="submit">Submit</button>
+
+    <p>
+        <a href="http://www.startrek.com/">Star Trek</a>,
+        &copy;1966-2019 CBS Studios, Inc. and
+        <a href="https://www.paramount.com">Paramount Pictures</a>
+    </p>
+</EditForm>
+
+@code {
+    private CustomValidation customValidation;
+    private Starship starship = new Starship() { ProductionDate = DateTime.UtcNow };
+
+    private void HandleValidSubmit()
+    {
+        customValidation.ClearErrors();
+
+        var errors = new Dictionary<string, List<string>>();
+
+        if (starship.Classification == "Defense" &&
+                string.IsNullOrEmpty(starship.Description))
+        {
+            errors.Add(nameof(starship.Description),
+                new List<string>() { "For a 'Defense' ship classification, " +
+                "'Description' is required." });
+        }
+
+        if (errors.Any())
+        {
+            customValidation.DisplayErrors(errors);
+        }
+        else
+        {
+            Logger.LogInformation("HandleValidSubmit called: Processing the form");
+
+            // Process the valid form
+        }
+    }
+}

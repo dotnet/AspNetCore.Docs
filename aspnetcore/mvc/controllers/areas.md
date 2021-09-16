@@ -216,6 +216,11 @@ To share a common layout for the entire app, move the *_ViewStart.cshtml* to the
 ### Publishing Areas
 
 All *.cshtml files and files within the *wwwroot* directory are published to output when `<Project Sdk="Microsoft.NET.Sdk.Web">` is included in the *.csproj file.
+
+## Add MVC Area with Visual Studio
+
+In Solution Explorer, right click the project and select **ADD > New Scaffolded Item**, then select **MVC Area**.
+
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"

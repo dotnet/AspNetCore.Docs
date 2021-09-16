@@ -1,0 +1,15 @@
+﻿@page "/conditional-attribute"
+
+<label>
+    <input type="checkbox" checked="@IsCompleted" />
+    Is Completed?
+</label>
+
+<button @onclick="@(() => IsCompleted = !IsCompleted)">
+    Change IsCompleted
+</button>
+
+@code {
+    [Parameter]
+    public bool IsCompleted { get; set; }
+}

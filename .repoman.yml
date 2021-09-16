@@ -1,0 +1,77 @@
+revision: 2
+schema-version: 1
+owner-ms-alias: adegeo
+
+config:
+  DocMetadata:
+    Headers:
+      - ["---", "#### "]
+
+    ParserRegex: "^\\* (.*): (.*)$"
+
+issues:
+
+  opened:
+    # New issue opened, add Not Triaged  
+    - labels-add: [":watch: Not Triaged"]
+
+
+    # default for doc comment
+    - check:
+        - type: metadata-exists
+      pass:
+        - labels-add: ["Source - Docs.ms"]
+
+        # technology types
+        - check:
+            - type: metadata-comment
+              name: technology
+              value: "(?i)aspnetcore-blazor$"
+          pass:
+            - labels-add: ["Blazor"]
+            - projects-add: [35]
+            - labels-remove: [":watch: Not Triaged"]
+        - check:
+            - type: metadata-comment
+              name: technology
+              value: "(?i)aspnetcore-grpc$"
+          pass:
+            - labels-add: ["gRPC"]
+        - check:
+            - type: metadata-comment
+              name: technology
+              value: "(?i)aspnetcore-signalr$"
+          pass:
+            - labels-add: ["SignalR"]
+
+        # Checks for specific files
+        - check:
+            - type: metadata-comment
+              name: content source
+              value: "(?i).*main\/aspnetcore\/mvc\/views\/tag-helpers\/built-in\/component-tag-helper.md"
+          pass:
+            - labels-add: ["Blazor"]
+            - projects-add: [35]
+            - labels-remove: [":watch: Not Triaged"]
+        
+        # If the word appears anywhere in the file name path, add the label
+        - check:
+            - type: metadata-comment
+              name: content source
+              value: "(?i).*blazor.*"
+          pass:
+            - labels-add: ["Blazor"]
+            - projects-add: [35]
+            - labels-remove: [":watch: Not Triaged"]
+        - check:
+            - type: metadata-comment
+              name: content source
+              value: "(?i).*grpc.*"
+          pass:
+            - labels-add: ["gRPC"]
+        - check:
+            - type: metadata-comment
+              name: content source
+              value: "(?i).*signalr.*"
+          pass:
+            - labels-add: ["SignalR"]

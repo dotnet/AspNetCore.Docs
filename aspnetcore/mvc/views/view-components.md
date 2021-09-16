@@ -259,6 +259,10 @@ Add a `using` statement to your Razor view file, and use the `nameof` operator:
 
 [!code-cshtml[](view-components/sample/ViewCompFinal/Views/ToDo/IndexNameof.cshtml?range=1-6,35-)]
 
+You can use an overload of `Component.InvokeAsync` method that takes a CLR type. Remember to use the `typeof` operator in this case:
+
+[!code-cshtml[](view-components/sample/ViewCompFinal/Views/ToDo/IndexTypeof.cshtml?range=1-6,35-)]
+
 ## Perform synchronous work
 
 The framework handles invoking a synchronous `Invoke` method if you don't need to perform asynchronous work. The following method creates a synchronous `Invoke` view component:

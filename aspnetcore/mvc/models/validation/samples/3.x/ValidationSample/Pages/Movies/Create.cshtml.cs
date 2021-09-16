@@ -34,13 +34,13 @@ namespace ValidationSample.Pages.Movies
         }
         #endregion
 
+       #region snippet_TryValidate
         public async Task<IActionResult> OnPostTryValidateAsync()
         {
             var modifiedReleaseDate = DateTime.Now.Date;
-
-            #region snippet_TryValidate
             Movie.ReleaseDate = modifiedReleaseDate;
 
+            ModelState.ClearValidationState(nameof(Movie));
             if (!TryValidateModel(Movie, nameof(Movie)))
             {
                 return Page();
@@ -50,7 +50,7 @@ namespace ValidationSample.Pages.Movies
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
-            #endregion
         }
+        #endregion
     }
 }

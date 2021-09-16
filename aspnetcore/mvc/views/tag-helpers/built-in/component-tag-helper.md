@@ -3,14 +3,13 @@ title: Component Tag Helper in ASP.NET Core
 author: guardrex
 ms.author: riande
 description: Learn how to use the ASP.NET Core Component Tag Helper to render Razor components in pages and views.
+monikerRange: '>= aspnetcore-3.1'
 ms.custom: mvc
 ms.date: 10/29/2020
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/views/tag-helpers/builtin-th/component-tag-helper
 ---
 # Component Tag Helper in ASP.NET Core
-
-By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)
 
 ## Prerequisites
 

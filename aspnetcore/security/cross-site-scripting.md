@@ -35,11 +35,11 @@ Take the following Razor view:
 
 ```cshtml
 @{
-       var untrustedInput = "<\"123\">";
-   }
+    var untrustedInput = "<\"123\">";
+}
 
-   @untrustedInput
-   ```
+@untrustedInput
+```
 
 This view outputs the contents of the *untrustedInput* variable. This variable includes some characters which are used in XSS attacks, namely &lt;, " and &gt;. Examining the source shows the rendered output encoded as:
 
@@ -94,7 +94,7 @@ There may be times you want to insert a value into JavaScript to process in your
     document.body.appendChild(y);
 
 </script>
-   ```
+```
 
 The preceding markup generates the following HTML:
 
@@ -134,7 +134,7 @@ The preceding markup generates the following HTML:
     document.body.appendChild(y);
 
 </script>
-   ```
+```
 
 The preceding code generates the following output:
 
@@ -161,21 +161,21 @@ To use the configurable encoders via DI your constructors should take an *HtmlEn
 
 ```csharp
 public class HomeController : Controller
-   {
-       HtmlEncoder _htmlEncoder;
-       JavaScriptEncoder _javaScriptEncoder;
-       UrlEncoder _urlEncoder;
+{
+    HtmlEncoder _htmlEncoder;
+    JavaScriptEncoder _javaScriptEncoder;
+    UrlEncoder _urlEncoder;
 
-       public HomeController(HtmlEncoder htmlEncoder,
-                             JavaScriptEncoder javascriptEncoder,
-                             UrlEncoder urlEncoder)
-       {
-           _htmlEncoder = htmlEncoder;
-           _javaScriptEncoder = javascriptEncoder;
-           _urlEncoder = urlEncoder;
-       }
-   }
-   ```
+    public HomeController(HtmlEncoder htmlEncoder,
+                          JavaScriptEncoder javascriptEncoder,
+                          UrlEncoder urlEncoder)
+    {
+        _htmlEncoder = htmlEncoder;
+        _javaScriptEncoder = javascriptEncoder;
+        _urlEncoder = urlEncoder;
+    }
+}
+```
 
 ## Encoding URL Parameters
 
@@ -183,8 +183,8 @@ If you want to build a URL query string with untrusted input as a value use the 
 
 ```csharp
 var example = "\"Quoted Value with spaces and &\"";
-   var encodedValue = _urlEncoder.Encode(example);
-   ```
+var encodedValue = _urlEncoder.Encode(example);
+```
 
 After encoding the encodedValue variable will contain `%22Quoted%20Value%20with%20spaces%20and%20%26%22`. Spaces, quotes, punctuation and other unsafe characters will be percent encoded to their hexadecimal value, for example a space character will become %20.
 
@@ -205,13 +205,13 @@ For example, using the default configuration you might use a Razor HtmlHelper li
 
 ```html
 <p>This link text is in Chinese: @Html.ActionLink("汉语/漢語", "Index")</p>
-   ```
+```
 
 When you view the source of the web page you will see it has been rendered as follows, with the Chinese text encoded;
 
 ```html
 <p>This link text is in Chinese: <a href="/">&#x6C49;&#x8BED;/&#x6F22;&#x8A9E;</a></p>
-   ```
+```
 
 To widen the characters treated as safe by the encoder you would insert the following line into the `ConfigureServices()` method in `startup.cs`;
 
@@ -219,13 +219,13 @@ To widen the characters treated as safe by the encoder you would insert the foll
 services.AddSingleton<HtmlEncoder>(
      HtmlEncoder.Create(allowedRanges: new[] { UnicodeRanges.BasicLatin,
                                                UnicodeRanges.CjkUnifiedIdeographs }));
-   ```
+```
 
 This example widens the safe list to include the Unicode Range CjkUnifiedIdeographs. The rendered output would now become
 
 ```html
 <p>This link text is in Chinese: <a href="/">汉语/漢語</a></p>
-   ```
+```
 
 Safe list ranges are specified as Unicode code charts, not languages. The [Unicode standard](https://unicode.org/) has a list of [code charts](https://www.unicode.org/charts/index.html) you can use to find the chart containing your characters. Each encoder, Html, JavaScript and Url, must be configured separately.
 

@@ -1,5 +1,5 @@
 using System;
-using Sytem.Net;
+using System.Net;
 using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Rewrite;

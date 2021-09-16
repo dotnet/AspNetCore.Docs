@@ -81,7 +81,7 @@ In the ASP.NET Core project, a new empty controller class and view class would b
 
 The ASP.NET Core *WebApp1* project already includes a minimal example controller and view by the same name as the ASP.NET MVC project. So those will serve as placeholders for the ASP.NET MVC controller and views to be migrated from the ASP.NET MVC *WebApp1* project.
 
-1. Copy the methods from the ASP.NET MVC `HomeController` to replace the new ASP.NET Core `HomeController` methods. There's no need to change the return type of the action methods. The ASP.NET MVC built-in template's controller action method return type is <https://docs.microsoft.com/dotnet/api/system.web.mvc.actionresult?view=aspnet-mvc-5.2>; in ASP.NET Core MVC, the action methods return `IActionResult` instead. `ActionResult` implements `IActionResult`.
+1. Copy the methods from the ASP.NET MVC `HomeController` to replace the new ASP.NET Core `HomeController` methods. There's no need to change the return type of the action methods. The ASP.NET MVC built-in template's controller action method return type is <xref:System.Web.Mvc.ActionResult>; in ASP.NET Core MVC, the action methods return `IActionResult` instead. `ActionResult` implements `IActionResult`.
 1. In the ASP.NET Core project, right-click the *Views/Home* directory, select **Add** > **Existing Item**.
 1. In the **Add Existing Item** dialog, navigate to the ASP.NET MVC *WebApp1* project's *Views/Home* directory.
 1. Select the *About.cshtml*, *Contact.cshtml*, and *Index.cshtml* Razor view files, then select **Add**, replacing the existing files.
@@ -231,7 +231,7 @@ In this section, a minimal controller and view are added to serve as placeholder
 
 * Add a **Controller Class** named *HomeController.cs* to the *Controllers* directory.
 
-![Add New Item dialog](mvc/_static/add_mvc_ctl.png)
+![Add New Item dialog with MVC Controller Class selected](mvc/_static/add_mvc_ctl.png)
 
 * Add a *Views* directory.
 
@@ -239,7 +239,7 @@ In this section, a minimal controller and view are added to serve as placeholder
 
 * Add a **Razor View** named *Index.cshtml* to the *Views/Home* directory.
 
-![Add New Item dialog](mvc/_static/view.png)
+![Add New Item dialog with MVC View Page selected](mvc/_static/view.png)
 
 The project structure is shown below:
 
@@ -275,7 +275,7 @@ The following functionality requires migration from the example ASP.NET MVC proj
 
 ## Controllers and views
 
-* Copy each of the methods from the ASP.NET MVC `HomeController` to the new `HomeController`. In ASP.NET MVC, the built-in template's controller action method return type is <https://docs.microsoft.com/dotnet/api/system.web.mvc.actionresult?view=aspnet-mvc-5.2>; in ASP.NET Core MVC, the action methods return `IActionResult` instead. `ActionResult` implements `IActionResult`, so there's no need to change the return type of the action methods.
+* Copy each of the methods from the ASP.NET MVC `HomeController` to the new `HomeController`. In ASP.NET MVC, the built-in template's controller action method return type is <xref:System.Web.Mvc.ActionResult>; in ASP.NET Core MVC, the action methods return `IActionResult` instead. `ActionResult` implements `IActionResult`, so there's no need to change the return type of the action methods.
 
 * Copy the *About.cshtml*, *Contact.cshtml*, and *Index.cshtml* Razor view files from the ASP.NET MVC project to the ASP.NET Core project.
 
@@ -379,7 +379,7 @@ For migrating configuration and Identity code, see [Migrate configuration to ASP
 
 ## Create the starter ASP.NET MVC project
 
-To demonstrate the upgrade, we'll start by creating a ASP.NET MVC app. Create it with the name *WebApp1* so the namespace matches the ASP.NET Core project created in the next step.
+To demonstrate the upgrade, we'll start by creating an ASP.NET MVC app. Create it with the name *WebApp1* so the namespace matches the ASP.NET Core project created in the next step.
 
 ![Visual Studio New Project dialog](mvc/_static/new-project.png)
 
@@ -417,7 +417,7 @@ In this section, a minimal controller and view are added to serve as placeholder
 
 * Add a **Controller Class** named *HomeController.cs* to the *Controllers* directory.
 
-![Add New Item dialog](mvc/_static/add_mvc_ctl.png)
+![Add New Item dialog with MVC Controller Class selected (prior to the release of ASP.NET Core 2.1)](mvc/_static/add_mvc_ctl.png)
 
 * Add a *Views* directory.
 
@@ -425,7 +425,7 @@ In this section, a minimal controller and view are added to serve as placeholder
 
 * Add a **Razor View** named *Index.cshtml* to the *Views/Home* directory.
 
-![Add New Item dialog](mvc/_static/view.png)
+![Add New Item dialog with MVC View Page selected (prior to the release of ASP.NET Core 2.1)](mvc/_static/view.png)
 
 The project structure is shown below:
 
@@ -461,7 +461,7 @@ The following functionality requires migration from the example ASP.NET MVC proj
 
 ## Controllers and views
 
-* Copy each of the methods from the ASP.NET MVC `HomeController` to the new `HomeController`. In ASP.NET MVC, the built-in template's controller action method return type is <https://docs.microsoft.com/dotnet/api/system.web.mvc.actionresult?view=aspnet-mvc-5.2>; in ASP.NET Core MVC, the action methods return `IActionResult` instead. `ActionResult` implements `IActionResult`, so there's no need to change the return type of the action methods.
+* Copy each of the methods from the ASP.NET MVC `HomeController` to the new `HomeController`. In ASP.NET MVC, the built-in template's controller action method return type is <xref:System.Web.Mvc.ActionResult>; in ASP.NET Core MVC, the action methods return `IActionResult` instead. `ActionResult` implements `IActionResult`, so there's no need to change the return type of the action methods.
 
 * Copy the *About.cshtml*, *Contact.cshtml*, and *Index.cshtml* Razor view files from the ASP.NET MVC project to the ASP.NET Core project.
 

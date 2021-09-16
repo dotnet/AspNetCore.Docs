@@ -102,7 +102,7 @@ dotnet ef database update
 
 Append [AddRoles](/dotnet/api/microsoft.aspnetcore.identity.identitybuilder.addroles#Microsoft_AspNetCore_Identity_IdentityBuilder_AddRoles__1) to add Role services:
 
-[!code-csharp[](secure-data/samples/final3/Startup.cs?name=snippet2&highlight=9)]
+[!code-csharp[](secure-data/samples/final3/Startup.cs?name=snippet2&highlight=8)]
 
 <a name="rau"></a>
 
@@ -168,10 +168,10 @@ Create a `ContactIsOwnerAuthorizationHandler` class in the *Authorization* folde
 
 The `ContactIsOwnerAuthorizationHandler` calls [context.Succeed](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.succeed#Microsoft_AspNetCore_Authorization_AuthorizationHandlerContext_Succeed_Microsoft_AspNetCore_Authorization_IAuthorizationRequirement_) if the current authenticated user is the contact owner. Authorization handlers generally:
 
-* Return `context.Succeed` when the requirements are met.
-* Return `Task.CompletedTask` when requirements aren't met. `Task.CompletedTask` is not success or failure&mdash;it allows other authorization handlers to run.
+* Call `context.Succeed` when the requirements are met.
+* Return `Task.CompletedTask` when requirements aren't met. Returning `Task.CompletedTask` without a prior call to `context.Success` or `context.Fail`, is not a success or failure, it allows other authorization handlers to run.
 
-If you need to explicitly fail, return [context.Fail](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.fail).
+If you need to explicitly fail, call [context.Fail](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.fail).
 
 The app allows contact owners to edit/delete/create their own data. `ContactIsOwnerAuthorizationHandler` doesn't need to check the operation passed in the requirement parameter.
 
@@ -458,7 +458,7 @@ dotnet ef database update
 
 Append [AddRoles](/dotnet/api/microsoft.aspnetcore.identity.identitybuilder.addroles#Microsoft_AspNetCore_Identity_IdentityBuilder_AddRoles__1) to add Role services:
 
-[!code-csharp[](secure-data/samples/final2.1/Startup.cs?name=snippet2&highlight=11)]
+[!code-csharp[](secure-data/samples/final2.1/Startup.cs?name=snippet2&highlight=12)]
 
 ### Require authenticated users
 
@@ -504,10 +504,10 @@ Create an *Authorization* folder and create a `ContactIsOwnerAuthorizationHandle
 
 The `ContactIsOwnerAuthorizationHandler` calls [context.Succeed](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.succeed#Microsoft_AspNetCore_Authorization_AuthorizationHandlerContext_Succeed_Microsoft_AspNetCore_Authorization_IAuthorizationRequirement_) if the current authenticated user is the contact owner. Authorization handlers generally:
 
-* Return `context.Succeed` when the requirements are met.
-* Return `Task.CompletedTask` when requirements aren't met. `Task.CompletedTask` is not success or failure&mdash;it allows other authorization handlers to run.
+* Call `context.Succeed` when the requirements are met.
+* Return `Task.CompletedTask` when requirements aren't met. Returning `Task.CompletedTask` without a prior call to `context.Success` or `context.Fail`, is not a success or failure, it allows other authorization handlers to run.
 
-If you need to explicitly fail, return [context.Fail](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.fail).
+If you need to explicitly fail, call [context.Fail](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.fail).
 
 The app allows contact owners to edit/delete/create their own data. `ContactIsOwnerAuthorizationHandler` doesn't need to check the operation passed in the requirement parameter.
 

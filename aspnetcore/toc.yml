@@ -33,6 +33,8 @@
   items:
     - name: Web apps
       items:
+        - name: Choose an ASP.NET Core UI
+          uid: tutorials/choose-web-ui
         - name: Razor Pages
           displayName: tutorial
           items:
@@ -189,6 +191,12 @@
             - name: Implement feature flags >>
               display: tutorial, kubernetes, aks, acr, docker
               href: /learn/modules/microservices-configuration-aspnet-core/
+            - name: Use managed data stores >>
+              display: tutorial, kubernetes, aks, acr, docker
+              href: /learn/modules/microservices-data-aspnet-core/
+            - name: Implement API gateways >>
+              display: tutorial, kubernetes, aks, acr, docker
+              href: /learn/modules/microservices-apigateway-aspnet-core/
         - name: Data access >>
           displayName: tutorial, ef, entity framework
           href: /learn/modules/persist-data-ef-core/
@@ -234,6 +242,8 @@
       uid: fundamentals/static-files
 - name: Web apps
   items:
+    - name: Choose an ASP.NET Core UI
+      uid: tutorials/choose-web-ui
     - name: Razor Pages
       items:
         - name: Introduction
@@ -304,186 +314,148 @@
           uid: mvc/controllers/testing
     - name: Blazor
       items:
-        - name: Overview
-          uid: blazor/index
-        - name: Supported platforms
-          uid: blazor/supported-platforms
-        - name: Tooling
-          uid: blazor/tooling
-        - name: Hosting models
-          uid: blazor/hosting-models
-        - name: Tutorials
-          items:
-            - name: Build your first Blazor app
-              href: https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro
-            - name: Build a Blazor todo list app
-              uid: tutorials/build-a-blazor-app
-            - name: SignalR with Blazor
-              uid: tutorials/signalr-blazor
-        - name: Project structure
-          uid: blazor/project-structure
-        - name: Fundamentals
-          items:
-            - name: Routing
-              uid: blazor/fundamentals/routing
-            - name: Configuration
-              uid: blazor/fundamentals/configuration
-            - name: Dependency injection
-              uid: blazor/fundamentals/dependency-injection
-            - name: Environments
-              uid: blazor/fundamentals/environments
-            - name: Logging
-              uid: blazor/fundamentals/logging
-            - name: Handle errors
-              uid: blazor/fundamentals/handle-errors
-            - name: SignalR
-              uid: blazor/fundamentals/signalr
-            - name: Static files
-              uid: blazor/fundamentals/static-files
-        - name: Components
-          items:
-            - name: Overview
-              uid: blazor/components/index
-            - name: Cascading values and parameters
-              uid: blazor/components/cascading-values-and-parameters
-            - name: Data binding
-              uid: blazor/components/data-binding
-            - name: Event handling
-              uid: blazor/components/event-handling
-            - name: Lifecycle
-              uid: blazor/components/lifecycle
-            - name: Rendering
-              uid: blazor/components/rendering
-            - name: Component virtualization
-              uid: blazor/components/virtualization
-            - name: Templated components
-              uid: blazor/components/templated-components
-            - name: CSS isolation
-              uid: blazor/components/css-isolation
-            - name: Prerender and integrate components
-              uid: blazor/components/prerendering-and-integration
-            - name: Class libraries
-              uid: blazor/components/class-libraries
-        - name: Globalization and localization
-          uid: blazor/globalization-localization
-        - name: Layouts
-          uid: blazor/layouts
-        - name: Forms and validation
-          uid: blazor/forms-validation
-        - name: File uploads
-          uid: blazor/file-uploads
-        - name: Call JavaScript from .NET
-          uid: blazor/call-javascript-from-dotnet
-        - name: Call .NET from JavaScript
-          uid: blazor/call-dotnet-from-javascript
-        - name: Call a web API from WebAssembly
-          uid: blazor/call-web-api
-        - name: Security and Identity
-          items:
-            - name: Overview
-              uid: blazor/security/index
-            - name: Blazor WebAssembly
-              items:
-                - name: Overview
-                  uid: blazor/security/webassembly/index
-                - name: Standalone with Authentication library
-                  uid: blazor/security/webassembly/standalone-with-authentication-library
-                - name: Standalone with Microsoft Accounts
-                  uid: blazor/security/webassembly/standalone-with-microsoft-accounts
-                - name: Standalone with AAD
-                  uid: blazor/security/webassembly/standalone-with-azure-active-directory
-                - name: Standalone with AAD B2C
-                  uid: blazor/security/webassembly/standalone-with-azure-active-directory-b2c
-                - name: Hosted with AAD
-                  uid: blazor/security/webassembly/hosted-with-azure-active-directory
-                - name: Hosted with AAD B2C
-                  uid: blazor/security/webassembly/hosted-with-azure-active-directory-b2c
-                - name: Hosted with Identity Server
-                  uid: blazor/security/webassembly/hosted-with-identity-server
-                - name: Additional scenarios
-                  uid: blazor/security/webassembly/additional-scenarios
-                - name: AAD groups and roles
-                  uid: blazor/security/webassembly/aad-groups-roles
-                - name: Graph API
-                  uid: blazor/security/webassembly/graph-api
-            - name: Blazor Server
-              items:
-                - name: Overview
-                  uid: blazor/security/server/index
-                - name: Threat mitigation
-                  uid: blazor/security/server/threat-mitigation
-                - name: Additional scenarios
-                  uid: blazor/security/server/additional-scenarios
-            - name: Content Security Policy
-              uid: blazor/security/content-security-policy
-        - name: State management
-          uid: blazor/state-management
-        - name: Debug WebAssembly
-          uid: blazor/debug
-        - name: Lazy load assemblies with WebAssembly
-          uid: blazor/webassembly-lazy-load-assemblies
-        - name: WebAssembly performance
-          uid: blazor/webassembly-performance-best-practices
-        - name: Test components
-          uid: blazor/test
-        - name: Progressive Web Applications
-          uid: blazor/progressive-web-app
-        - name: Host and deploy
-          items:
-            - name: Overview
-              uid: blazor/host-and-deploy/index
-            - name: Blazor WebAssembly
-              uid: blazor/host-and-deploy/webassembly
-            - name: Blazor Server
-              uid: blazor/host-and-deploy/server
-            - name: Configure the Linker
-              uid: blazor/host-and-deploy/configure-linker
-            - name: Configure the Trimmer
-              uid: blazor/host-and-deploy/configure-trimmer
-        - name: Blazor Server and EF Core
-          uid: blazor/blazor-server-ef-core
-        - name: Advanced scenarios
-          uid: blazor/advanced-scenarios
-        - name: Built-in components
-          items:
-            - name: App
-              uid: blazor/project-structure
-            - name: Authentication
-              href: blazor/security/webassembly/index.md#authentication-component
-            - name: AuthorizeView
-              href: blazor/security/index.md#authorizeview-component
-            - name: CascadingValue
-              href: blazor/components/cascading-values-and-parameters.md#cascadingvalue-component
-            - name: InputCheckbox
-              href: blazor/forms-validation.md#built-in-form-components
-            - name: InputDate
-              href: blazor/forms-validation.md#built-in-form-components
-            - name: InputFile
-              uid: blazor/file-uploads
-            - name: InputNumber
-              href: blazor/forms-validation.md#built-in-form-components
-            - name: InputRadio
-              href: blazor/forms-validation.md#built-in-form-components
-            - name: InputRadioGroup
-              href: blazor/forms-validation.md#built-in-form-components
-            - name: InputSelect
-              href: blazor/forms-validation.md#built-in-form-components
-            - name: InputText
-              href: blazor/forms-validation.md#built-in-form-components
-            - name: InputTextArea
-              href: blazor/forms-validation.md#built-in-form-components
-            - name: LayoutView
-              href: blazor/layouts.md#apply-a-layout-to-arbitrary-content-layoutview-component
-            - name: MainLayout
-              href: blazor/layouts.md#mainlayout-component
-            - name: NavLink
-              href: blazor/fundamentals/routing.md#navlink-and-navmenu-components
-            - name: NavMenu
-              href: blazor/fundamentals/routing.md#navlink-and-navmenu-components
-            - name: Router
-              href: blazor/fundamentals/routing.md#route-templates
-            - name: Virtualize
-              uid: blazor/components/virtualization
+      - name: Overview
+        uid: blazor/index
+      - name: Supported platforms
+        uid: blazor/supported-platforms
+      - name: Tooling
+        uid: blazor/tooling
+      - name: Hosting models
+        uid: blazor/hosting-models
+      - name: Tutorials
+        uid: blazor/tutorials
+      - name: Project structure
+        uid: blazor/project-structure
+      - name: Fundamentals
+        items:
+          - name: Routing
+            uid: blazor/fundamentals/routing
+          - name: Configuration
+            uid: blazor/fundamentals/configuration
+          - name: Dependency injection
+            uid: blazor/fundamentals/dependency-injection
+          - name: Startup
+            uid: blazor/fundamentals/startup
+          - name: Environments
+            uid: blazor/fundamentals/environments
+          - name: Logging
+            uid: blazor/fundamentals/logging
+          - name: Handle errors
+            uid: blazor/fundamentals/handle-errors
+          - name: SignalR
+            uid: blazor/fundamentals/signalr
+          - name: Static files
+            uid: blazor/fundamentals/static-files
+      - name: Components
+        items:
+          - name: Overview
+            uid: blazor/components/index
+          - name: Layouts
+            uid: blazor/components/layouts
+          - name: Control <head> content
+            uid: blazor/components/control-head-content
+          - name: Cascading values and parameters
+            uid: blazor/components/cascading-values-and-parameters
+          - name: Data binding
+            uid: blazor/components/data-binding
+          - name: Event handling
+            uid: blazor/components/event-handling
+          - name: Lifecycle
+            uid: blazor/components/lifecycle
+          - name: Rendering
+            uid: blazor/components/rendering
+          - name: Templated components
+            uid: blazor/components/templated-components
+          - name: CSS isolation
+            uid: blazor/components/css-isolation
+          - name: Dynamically-rendered components
+            uid: blazor/components/dynamiccomponent
+          - name: Prerender and integrate components
+            uid: blazor/components/prerendering-and-integration
+          - name: Class libraries
+            uid: blazor/components/class-libraries
+          - name: Built-in components
+            uid: blazor/components/built-in-components
+      - name: Globalization and localization
+        uid: blazor/globalization-localization
+      - name: Forms and validation
+        uid: blazor/forms-validation
+      - name: File uploads
+        uid: blazor/file-uploads
+      - name: JavaScript interop
+        items:
+          - name: Overview
+            uid: blazor/js-interop/index
+          - name: Call JavaScript from .NET
+            uid: blazor/js-interop/call-javascript-from-dotnet
+          - name: Call .NET from JavaScript
+            uid: blazor/js-interop/call-dotnet-from-javascript
+      - name: Call a web API
+        uid: blazor/call-web-api
+      - name: Security and Identity
+        items:
+          - name: Overview
+            uid: blazor/security/index
+          - name: Blazor WebAssembly
+            items:
+              - name: Overview
+                uid: blazor/security/webassembly/index
+              - name: Standalone with Authentication library
+                uid: blazor/security/webassembly/standalone-with-authentication-library
+              - name: Standalone with Microsoft Accounts
+                uid: blazor/security/webassembly/standalone-with-microsoft-accounts
+              - name: Standalone with AAD
+                uid: blazor/security/webassembly/standalone-with-azure-active-directory
+              - name: Standalone with AAD B2C
+                uid: blazor/security/webassembly/standalone-with-azure-active-directory-b2c
+              - name: Hosted with AAD
+                uid: blazor/security/webassembly/hosted-with-azure-active-directory
+              - name: Hosted with AAD B2C
+                uid: blazor/security/webassembly/hosted-with-azure-active-directory-b2c
+              - name: Hosted with Identity Server
+                uid: blazor/security/webassembly/hosted-with-identity-server
+              - name: Additional scenarios
+                uid: blazor/security/webassembly/additional-scenarios
+              - name: Graph API
+                uid: blazor/security/webassembly/graph-api
+          - name: Blazor Server
+            items:
+              - name: Overview
+                uid: blazor/security/server/index
+              - name: Threat mitigation
+                uid: blazor/security/server/threat-mitigation
+              - name: Additional scenarios
+                uid: blazor/security/server/additional-scenarios
+          - name: Content Security Policy
+            uid: blazor/security/content-security-policy
+      - name: State management
+        uid: blazor/state-management
+      - name: Debug WebAssembly
+        uid: blazor/debug
+      - name: Lazy load assemblies with WebAssembly
+        uid: blazor/webassembly-lazy-load-assemblies
+      - name: Performance
+        uid: blazor/performance
+      - name: Test components
+        uid: blazor/test
+      - name: Progressive Web Applications
+        uid: blazor/progressive-web-app
+      - name: Host and deploy
+        items:
+          - name: Overview
+            uid: blazor/host-and-deploy/index
+          - name: Blazor WebAssembly
+            uid: blazor/host-and-deploy/webassembly
+          - name: Blazor Server
+            uid: blazor/host-and-deploy/server
+          - name: Configure the Linker
+            uid: blazor/host-and-deploy/configure-linker
+          - name: Configure the Trimmer
+            uid: blazor/host-and-deploy/configure-trimmer
+      - name: Blazor Server and EF Core
+        uid: blazor/blazor-server-ef-core
+      - name: Advanced scenarios
+        uid: blazor/advanced-scenarios
     - name: Client-side development
       items:
         - name: Single Page Apps
@@ -555,6 +527,8 @@
               uid: mvc/views/tag-helpers/builtin-th/link-tag-helper
             - name: Partial
               uid: mvc/views/tag-helpers/builtin-th/partial-tag-helper
+            - name: Preserve Component State
+              uid: mvc/views/tag-helpers/builtin-th/preserve-component-state-tag-helper
             - name: Script
               uid: mvc/views/tag-helpers/builtin-th/script-tag-helper
             - name: Select
@@ -720,7 +694,7 @@
     - name: Compare SignalR and SignalR Core
       uid: signalr/version-differences
       displayName: signalr
-    - name: WebSockets without SignalR
+    - name: WebSockets
       displayName: signalr
       uid: fundamentals/websockets
     - name: Logging and diagnostics
@@ -764,6 +738,8 @@
           uid: grpc/deadlines-cancellation
         - name: Transient fault handling
           uid: grpc/retries
+        - name: Client-side load balancing
+          uid: grpc/loadbalancing
         - name: .NET Standard 2.0 support
           uid: grpc/netstandard
     - name: gRPC services with ASP.NET Core
@@ -907,9 +883,6 @@
         - name: Publish with the CLI
           displayName: azure, deploy, publish
           href: /azure/app-service/tutorial-dotnetcore-sqldb-app?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
-        - name: Publish with Visual Studio and Git
-          displayName: azure, deploy, publish
-          uid: host-and-deploy/azure-apps/azure-continuous-deployment
         - name: Continuous deployment with Azure Pipelines
           displayName: azure, deploy, publish
           href: /azure/devops/pipelines/get-started-yaml
@@ -989,29 +962,35 @@
         - name: HTTP/2
           displayName: deploy, publish
           uid: host-and-deploy/iis/protocols
+        - name: HTTP/3
+          displayName: deploy, publish
+          uid: host-and-deploy/iis/http3
     - name: Kestrel
-      displayName: deploy, publish, server
+      displayName: deploy, publish, server, Kestrel
       items:
-        - name: Overview
+        - name: Kestrel overview
           displayName: deploy, publish, server
           uid: fundamentals/servers/kestrel
         - name: Endpoints
-          displayName: deploy, publish, server
+          displayName: deploy, publish, server, Kestrel
           uid: fundamentals/servers/kestrel/endpoints
         - name: Options
-          displayName: deploy, publish, server
+          displayName: deploy, publish, server, Kestrel
           uid: fundamentals/servers/kestrel/options
         - name: HTTP/2
-          displayName: deploy, publish, server
+          displayName: deploy, publish, server, Kestrel
           uid: fundamentals/servers/kestrel/http2
+        - name: HTTP/3
+          displayName: HTTP/3, kestrel
+          uid: fundamentals/servers/kestrel/http3
         - name: When to use a reverse proxy
-          displayName: deploy, publish, server
+          displayName: deploy, publish, server, Kestrel
           uid: fundamentals/servers/kestrel/when-to-use-a-reverse-proxy
         - name: Host filtering
-          displayName: deploy, publish, server
+          displayName: deploy, publish, server, Kestrel
           uid: fundamentals/servers/kestrel/host-filtering
         - name: Request draining
-          displayName: deploy, publish, server
+          displayName: deploy, publish, server, Kestrel
           uid: fundamentals/servers/kestrel/request-draining
     - name: HTTP.sys
       displayName: deploy, publish, server
@@ -1072,6 +1051,8 @@
           uid: security/authentication/index
         - name: Introduction to Identity
           uid: security/authentication/identity
+        - name: Mapping, customizing, and transforming claims
+          uid: security/authentication/claims
         - name: Identity with SPA
           uid: security/authentication/identity/spa
         - name: Scaffold Identity
@@ -1146,6 +1127,8 @@
                   href: /samples/azure-samples/active-directory-dotnet-native-aspnetcore-v2/calling-an-aspnet-core-web-api-from-a-wpf-application-using-azure-ad-v2/
                 - name: Web API with Azure AD B2C
                   href: https://azure.microsoft.com/resources/samples/active-directory-b2c-dotnetcore-webapi/
+        - name: Secure ASP.NET Core apps with Duende Identity Server
+          href: https://docs.duendesoftware.com
         - name: Secure ASP.NET Core apps with IdentityServer4
           href: https://identityserver4.readthedocs.io/
         - name: Secure ASP.NET Core apps with Azure App Service authentication (Easy Auth)

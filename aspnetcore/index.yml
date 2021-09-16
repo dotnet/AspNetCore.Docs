@@ -11,7 +11,7 @@ metadata:
   ms.topic: hub-page
   author: WadePickett
   ms.author: wpickett
-  ms.date: 06/05/2020
+  ms.date: 05/25/2021
 
 # highlightedContent section (optional)
 # Maximum of 8 items
@@ -205,7 +205,7 @@ conceptualContent:
         - url: tutorials/first-mvc-app/start-mvc.md
           itemType: tutorial
           text: "SQL with ASP.NET Core"
-        - url: ./blazor/components/data-binding.md
+        - url: blazor/components/data-binding.md
           itemType: concept
           text: "Data binding in ASP.NET Core Blazor"
         - url: tutorials/razor-pages/razor-pages-start.md
@@ -214,7 +214,7 @@ conceptualContent:
         - url: data/ef-rp/intro.md
           itemType: tutorial
           text: "Entity Framework Core with Razor Pages"
-        - url: data/ef-rp/intro.md
+        - url: data/ef-mvc/intro.md
           itemType: tutorial
           text: "Entity Framework Core with ASP.NET Core MVC"
         - url: /visualstudio/azure/vs-azure-tools-connected-services-storage?view=vs-2019&viewFallbackFrom=aspnetcore-3.1

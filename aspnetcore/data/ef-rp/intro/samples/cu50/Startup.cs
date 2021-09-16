@@ -17,6 +17,7 @@ namespace ContosoUniversity
 
         public IConfiguration Configuration { get; }
 
+        #region snippet
         #region snippet_ConfigureServices
         public void ConfigureServices(IServiceCollection services)
         {
@@ -34,6 +35,7 @@ namespace ContosoUniversity
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseMigrationsEndPoint();
             }
             else
             {
@@ -53,5 +55,6 @@ namespace ContosoUniversity
                 endpoints.MapRazorPages();
             });
         }
+        #endregion
     }
 }

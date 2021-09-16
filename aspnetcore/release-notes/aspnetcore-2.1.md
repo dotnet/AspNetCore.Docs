@@ -70,7 +70,7 @@ In production, HTTPS must be explicitly configured. In 2.1, default configuratio
 
 ## GDPR
 
-ASP.NET Core provides APIs and templates to help meet some of the [EU General Data Protection Regulation (GDPR)](https://www.eugdpr.org/) requirements. For more information, see [GDPR support in ASP.NET Core](xref:security/gdpr). A [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/gdpr/sample) shows how to use and lets you test most of the GDPR extension points and APIs added to the ASP.NET Core 2.1 templates.
+ASP.NET Core provides APIs and templates to help meet some of the [EU General Data Protection Regulation (GDPR)](https://gdpr.eu) requirements. For more information, see [GDPR support in ASP.NET Core](xref:security/gdpr). A [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/gdpr/sample) shows how to use and lets you test most of the GDPR extension points and APIs added to the ASP.NET Core 2.1 templates.
 
 ## Integration tests
 
@@ -80,7 +80,7 @@ A new package is introduced that streamlines test creation and execution. The [M
 * Sets the content root to the tested app's project root so that static files and pages/views are found when the tests are executed.
 * Provides the [WebApplicationFactory](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1) class to streamline bootstrapping the tested app with [TestServer](/dotnet/api/microsoft.aspnetcore.testhost.testserver).
 
-The following test uses [xUnit](https://xunit.github.io/) to check that the Index page loads with a success status code and with the correct Content-Type header:
+The following test uses [xUnit](https://github.com/xunit/xunit) to check that the Index page loads with a success status code and with the correct Content-Type header:
 
 ```csharp
 public class BasicTests

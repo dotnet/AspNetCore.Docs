@@ -1,0 +1,72 @@
+@page "/form-example-4"
+@using Microsoft.Extensions.Logging
+@implements IDisposable
+@inject ILogger<FormExample4> Logger
+
+<h2>Ship Holodecks</h2>
+
+<EditForm EditContext="editContext" OnValidSubmit="@HandleValidSubmit">
+    <label>
+        Type 1:
+        <InputCheckbox @bind-Value="holodeck.Type1" />
+    </label>
+
+    <label>
+        Type 2:
+        <InputCheckbox @bind-Value="holodeck.Type2" />
+    </label>
+
+    <button type="submit">Update</button>
+
+    <ValidationMessage For="() => holodeck.Options" />
+
+    <p>
+        <a href="http://www.startrek.com/">Star Trek</a>,
+        &copy;1966-2019 CBS Studios, Inc. and
+        <a href="https://www.paramount.com">Paramount Pictures</a>
+    </p>
+</EditForm>
+
+@code {
+    private EditContext editContext;
+    private Holodeck holodeck = new Holodeck();
+    private ValidationMessageStore messageStore;
+
+    protected override void OnInitialized()
+    {
+        editContext = new EditContext(holodeck);
+        editContext.OnValidationRequested += HandleValidationRequested;
+        messageStore = new ValidationMessageStore(editContext);
+    }
+
+    private void HandleValidationRequested(object sender, 
+        ValidationRequestedEventArgs args)
+    {
+        messageStore.Clear();
+
+        // Custom validation logic
+        if (!holodeck.Options)
+        {
+            messageStore.Add(() => holodeck.Options, "Select at least one.");
+        }
+    }
+
+    private void HandleValidSubmit()
+    {
+        Logger.LogInformation("HandleValidSubmit called: Processing the form");
+
+        // Process the form
+    }
+
+    public class Holodeck
+    {
+        public bool Type1 { get; set; }
+        public bool Type2 { get; set; }
+        public bool Options => Type1 || Type2;
+    }
+
+    public void Dispose()
+    {
+        editContext.OnValidationRequested -= HandleValidationRequested;
+    }
+}

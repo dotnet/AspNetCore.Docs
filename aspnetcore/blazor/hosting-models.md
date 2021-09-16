@@ -11,44 +11,13 @@ uid: blazor/hosting-models
 ---
 # ASP.NET Core Blazor hosting models
 
-Blazor is a web framework designed to run client-side in the browser on a [WebAssembly](https://webassembly.org/)-based .NET runtime (*Blazor WebAssembly*) or server-side in ASP.NET Core (*Blazor Server*). Regardless of the hosting model, the app and component models *are the same*.
-
-## Blazor WebAssembly
-
-The primary Blazor hosting model is running client-side in the browser on WebAssembly. The Blazor app, its dependencies, and the .NET runtime are downloaded to the browser. The app is executed directly on the browser UI thread. UI updates and event handling occur within the same process. The app's assets are deployed as static files to a web server or service capable of serving static content to clients.
-
-![Blazor WebAssembly: The Blazor app runs on a UI thread inside the browser.](hosting-models/_static/blazor-webassembly.png)
-
-When the Blazor WebAssembly app is created for deployment without a backend ASP.NET Core app to serve its files, the app is called a *standalone* Blazor WebAssembly app. When the app is created for deployment with a backend app to serve its files, the app is called a *hosted* Blazor WebAssembly app. A hosted Blazor WebAssembly **`Client`** app typically interacts with the backend **`Server`** app over the network using web API calls or [SignalR](xref:signalr/introduction) (<xref:tutorials/signalr-blazor>).
-
-The `blazor.webassembly.js` script is provided by the framework and handles:
-
-* Downloading the .NET runtime, the app, and the app's dependencies.
-* Initialization of the runtime to run the app.
-
-The Blazor WebAssembly hosting model offers several benefits:
-
-* There's no .NET server-side dependency. The app is fully functioning after it's downloaded to the client.
-* Client resources and capabilities are fully leveraged.
-* Work is offloaded from the server to the client.
-* An ASP.NET Core web server isn't required to host the app. Serverless deployment scenarios are possible, such as serving the app from a Content Delivery Network (CDN).
-
-The Blazor WebAssembly hosting model has the following limitations:
-
-* The app is restricted to the capabilities of the browser.
-* Capable client hardware and software (for example, WebAssembly support) is required.
-* Download size is larger, and apps take longer to load.
-* .NET runtime and tooling support is less mature. For example, limitations exist in [.NET Standard](/dotnet/standard/net-standard) support and debugging.
-
-To create a Blazor WebAssembly app, see <xref:blazor/tooling>.
-
-The hosted Blazor app model supports [Docker containers](/dotnet/standard/microservices-architecture/container-docker-introduction/index). For Docker support in Visual Studio, right-click on the **`Server`** project of a hosted Blazor WebAssembly solution and select **Add** > **Docker Support**.
+Blazor is a web framework designed to run server-side in ASP.NET Core (*Blazor Server*) or client-side in the browser on a [WebAssembly](https://webassembly.org/)-based .NET runtime (*Blazor WebAssembly*). Regardless of the hosting model, the app and component models *are the same*.
 
 ## Blazor Server
 
 With the Blazor Server hosting model, the app is executed on the server from within an ASP.NET Core app. UI updates, event handling, and JavaScript calls are handled over a [SignalR](xref:signalr/introduction) connection.
 
-![The browser interacts with the app (hosted inside of an ASP.NET Core app) on the server over a SignalR connection.](hosting-models/_static/blazor-server.png)
+![The browser interacts with the app (hosted inside of an ASP.NET Core app) on the server over a SignalR connection.](~/blazor/hosting-models/_static/blazor-server.png)
 
 The ASP.NET Core app references the app's `Startup` class to add:
 
@@ -136,6 +105,50 @@ A Blazor Server app prerenders in response to the first client request, which cr
 We recommend using the [Azure SignalR Service](/azure/azure-signalr) for Blazor Server apps. The service allows for scaling up a Blazor Server app to a large number of concurrent SignalR connections. Sticky sessions are enabled for the Azure SignalR Service by setting the service's `ServerStickyMode` option or configuration value to `Required`. For more information, see <xref:blazor/host-and-deploy/server#signalr-configuration>.
 
 When using IIS, sticky sessions are enabled with *Application Request Routing*. For more information, see [HTTP Load Balancing using Application Request Routing](/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing).
+
+## Blazor WebAssembly
+
+Blazor WebAssembly apps run client-side in the browser on a WebAssembly-based .NET runtime. The Blazor app, its dependencies, and the .NET runtime are downloaded to the browser. The app is executed directly on the browser UI thread. UI updates and event handling occur within the same process. The app's assets are deployed as static files to a web server or service capable of serving static content to clients.
+
+![Blazor WebAssembly: The Blazor app runs on a UI thread inside the browser.](~/blazor/hosting-models/_static/blazor-webassembly.png)
+
+When the Blazor WebAssembly app is created for deployment without a backend ASP.NET Core app to serve its files, the app is called a *standalone* Blazor WebAssembly app. When the app is created for deployment with a backend app to serve its files, the app is called a *hosted* Blazor WebAssembly app. A hosted Blazor WebAssembly **`Client`** app typically interacts with the backend **`Server`** app over the network using web API calls or [SignalR](xref:signalr/introduction) (<xref:tutorials/signalr-blazor>).
+
+The `blazor.webassembly.js` script is provided by the framework and handles:
+
+* Downloading the .NET runtime, the app, and the app's dependencies.
+* Initialization of the runtime to run the app.
+
+The Blazor WebAssembly hosting model offers several benefits:
+
+* There's no .NET server-side dependency. The app is fully functioning after it's downloaded to the client.
+* Client resources and capabilities are fully leveraged.
+* Work is offloaded from the server to the client.
+* An ASP.NET Core web server isn't required to host the app. Serverless deployment scenarios are possible, such as serving the app from a Content Delivery Network (CDN).
+
+The Blazor WebAssembly hosting model has the following limitations:
+
+* The app is restricted to the capabilities of the browser.
+* Capable client hardware and software (for example, WebAssembly support) is required.
+* Download size is larger, and apps take longer to load.
+
+To create a Blazor WebAssembly app, see <xref:blazor/tooling>.
+
+The hosted Blazor app model supports [Docker containers](/dotnet/standard/microservices-architecture/container-docker-introduction/index). For Docker support in Visual Studio, right-click on the **`Server`** project of a hosted Blazor WebAssembly solution and select **Add** > **Docker Support**.
+
+::: moniker range=">= aspnetcore-6.0"
+
+Blazor WebAssembly includes support for trimming unused code from .NET Core framework libraries and the Blazor runtime. For more information, see <xref:blazor/globalization-localization> and <xref:blazor/host-and-deploy/webassembly#runtime-relinking>.
+
+Blazor WebAssembly supports [ahead-of-time (AOT) compilation](/dotnet/standard/glossary#aot), where you can compile your .NET code directly into WebAssembly. AOT compilation results in runtime performance improvements at the expense of a larger app size. For more information, see <xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation>.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-6.0"
+
+Blazor WebAssembly includes support for trimming unused code from .NET Core framework libraries. For more information, see <xref:blazor/globalization-localization>.
+
+::: moniker-end
 
 ## Additional resources
 

@@ -32,9 +32,6 @@ The following articles are available in ASP.NET Core documentation:
 <xref:tutorials/publish-to-azure-webapp-using-vs>  
 Learn how to publish an ASP.NET Core app to Azure App Service using Visual Studio.
 
-<xref:host-and-deploy/azure-apps/azure-continuous-deployment>  
-Learn how to create an ASP.NET Core web app using Visual Studio and deploy it to Azure App Service using Git for continuous deployment.
-
 [Create your first pipeline](/azure/devops/pipelines/get-started-yaml)  
 Set up a CI build for an ASP.NET Core app, then create a continuous deployment release to Azure App Service.
 
@@ -87,11 +84,11 @@ When an app uses the [Generic Host](xref:fundamentals/host/generic-host), enviro
 ::: moniker-end
 ::: moniker range="< aspnetcore-3.0"
 
-App settings in the Azure Portal permit you to set environment variables for the app. Environment variables can be consumed by the [Environment Variables Configuration Provider](xref:fundamentals/configuration/index#environment-variables-configuration-provider).
+App settings in the Azure Portal permit you to set environment variables for the app. Environment variables can be consumed by the [Environment Variables Configuration Provider](xref:fundamentals/configuration/index#evcp).
 
 When an app setting is created or modified in the Azure Portal and the **Save** button is selected, the Azure App is restarted. The environment variable is available to the app after the service restarts.
 
-When an app uses the [Web Host](xref:fundamentals/host/web-host), environment variables are loaded into the app's configuration when <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> is called to build the host. For more information, see <xref:fundamentals/host/web-host> and the [Environment Variables Configuration Provider](xref:fundamentals/configuration/index#environment-variables-configuration-provider).
+When an app uses the [Web Host](xref:fundamentals/host/web-host), environment variables are loaded into the app's configuration when <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> is called to build the host. For more information, see <xref:fundamentals/host/web-host> and the [Environment Variables Configuration Provider](xref:fundamentals/configuration/index#evcp).
 
 ::: moniker-end
 

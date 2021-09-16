@@ -1,0 +1,13 @@
+{
+  "version": "0.1",
+  "language": "en",
+  "words": [
+    "appsettings","aspnet","aspnetcore","Blazor","Blazor's","blazorwasm","blazorserver","blazor","dotnetcli",
+    "guardrex","Linq","Microservices","microservices","NuGet","nuget","Prerender","prerendering","signalr",
+    "rerender","rerenders","rerendering","riande","Routable","routable","Prerendered","prerendered",
+    "wadepickett","wasm","webassembly","webform","webforms","websocket","websockets","wwwroot"
+  ],
+  "flagWords": [
+    "hte"
+  ]
+}

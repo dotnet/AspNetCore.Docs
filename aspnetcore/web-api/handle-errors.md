@@ -193,6 +193,7 @@ Exception Handling Middleware can also provide more detailed content-negotiated 
     * A route of `/error-local-development` in the Development environment.
     * A route of `/error` in environments that aren't Development.
     
+    <a name="pd"></a>
 1. Apply attribute routing to controller actions:
 
     ::: moniker range=">= aspnetcore-3.0"
@@ -328,3 +329,8 @@ Use the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.ClientErrorMapping%2A>
 ## Custom Middleware to handle exceptions
 
 The defaults in the exception handling middleware works well for most apps. For apps that require specialized exception handling, consider [customizing the exception handling middleware](xref:fundamentals/error-handling#exception-handler-lambda).
+
+### Producing a ProblemDetails payload for exceptions
+
+ASP.NET Core doesn't produce a standardized error payload when the server encounters an unhandled exception. For scenarios where it is desirable to return a standardized [ProblemDetails response](https://datatracker.ietf.org/doc/html/rfc7807) to the client, the [ProblemDetails middleware](https://www.nuget.org/packages/Hellang.Middleware.ProblemDetails/) can be used to map exceptions and 404s to a [ProblemDetails](xref:web-api/handle-errors#pd) payload. The exception handling middleware can also be used to return a <xref:Microsoft.AspNetCore.Mvc.ProblemDetails> payload for unhandled exceptions.
+

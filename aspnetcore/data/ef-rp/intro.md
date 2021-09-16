@@ -17,7 +17,7 @@ By [Tom Dykstra](https://github.com/tdykstra), [Jeremy Likness](https://twitter.
 
 This is the first in a series of tutorials that show how to use Entity Framework (EF) Core in an [ASP.NET Core Razor Pages](xref:razor-pages/index) app. The tutorials build a web site for a fictional Contoso University. The site includes functionality such as student admission, course creation, and instructor assignments. The tutorial uses the code first approach. For information on following this tutorial using the database first approach, see [this Github issue](https://github.com/dotnet/AspNetCore.Docs/issues/16897).
 
-[Download or view the completed app.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu50) [Download instructions](xref:index#how-to-download-a-sample).
+[Download or view the completed app.](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples/cu50) [Download instructions](xref:index#how-to-download-a-sample).
 
 ## Prerequisites
 
@@ -307,6 +307,8 @@ Shorten the SQLite connection string to *CU.db*:
 
 [!code-json[Main](intro/samples/cu50/appsettingsSQLite.json?highlight=11)]
 
+Don't change the directory without making sure it's valid.
+
 ---
 
 ## Update the database context class
@@ -362,13 +364,15 @@ See [Use SQLite for development, SQL Server for production](xref:tutorials/razor
 
 The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
 
+<a name="dbx"></a>
+
 ### Add the database exception filter
 
-Add <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptionFilterServiceExtensions.AddDatabaseDeveloperPageExceptionFilter%2A> to `ConfigureServices` as shown in the following code:
+Add <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptionFilterServiceExtensions.AddDatabaseDeveloperPageExceptionFilter%2A> and <xref:Microsoft.AspNetCore.Builder.MigrationsEndPointExtensions.UseMigrationsEndPoint%2A> as shown in the following code:
 
 # [Visual Studio](#tab/visual-studio)
 
-[!code-csharp[Main](intro/samples/cu50/Startup.cs?name=snippet_ConfigureServices&highlight=8)]
+[!code-csharp[Main](intro/samples/cu50/Startup.cs?name=snippet&highlight=8,15-16)]
 
 Add the [Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) NuGet package.
 
@@ -380,13 +384,13 @@ Install-Package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!code-csharp[Main](intro/samples/cu50/StartupSQLite.cs?name=snippet_ConfigureServices&highlight=8)]
+[!code-csharp[Main](intro/samples/cu50/StartupSQLite.cs?name=snippet_ConfigureServices&highlight=8,16)]
 
 ---
 
 The `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` NuGet package provides ASP.NET Core middleware for Entity Framework Core error pages. This middleware helps to detect and diagnose errors with Entity Framework Core migrations.
 
-The `AddDatabaseDeveloperPageExceptionFilter` provides helpful error information in the [development environment](xref:fundamentals/environments).
+The `AddDatabaseDeveloperPageExceptionFilter` provides helpful error information in the [development environment](xref:fundamentals/environments) for EF migrations errors.
 
 ## Create the database
 
@@ -514,6 +518,8 @@ See [Configuration](xref:fundamentals/configuration/index) for information on co
 Paging is covered later in the tutorial.
 
 For more information, see [Performance considerations (EF)](/dotnet/framework/data/adonet/ef/performance-considerations).
+
+[!INCLUDE[s](~/includes/sql-log.md)]
 
 ## Next steps
 

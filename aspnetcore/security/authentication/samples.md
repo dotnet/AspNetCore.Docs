@@ -26,7 +26,7 @@ The [ASP.NET Core repository](https://github.com/dotnet/aspnetcore) contains the
 
 The sample links provided in this article provide samples for the upcoming release of ASP.NET Core. To obtain a sample for the current release or a prior release, perform the following steps:
 
-* Select the release branch of the [ASP.NET Core repository](https://github.com/dotnet/aspnetcore)](https://github.com/dotnet/aspnetcore). For example, the `release/5.0` branch contains the samples for the ASP.NET Core 5.0 release.
+* Select the release branch of the [ASP.NET Core repository](https://github.com/dotnet/aspnetcore). For example, the `release/5.0` branch contains the samples for the ASP.NET Core 5.0 release.
 * Clone or download the ASP.NET Core repository.
 * On your local system, verify installation of the [.NET Core SDK](https://dotnet.microsoft.com/download/dotnet-core) version matching the clone of the ASP.NET Core repository.
 * Navigate to a sample in `aspnetcore/src/Security/samples` folder and run the sample with the [`dotnet run` command](/dotnet/core/tools/dotnet-run).

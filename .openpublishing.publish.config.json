@@ -46,7 +46,7 @@
     {
       "path_to_root": "xamarin-forms-samples",
       "url": "https://github.com/xamarin/xamarin-forms-samples",
-      "branch": "master",
+      "branch": "main",
       "branch_mapping": {}
     }
   ],
