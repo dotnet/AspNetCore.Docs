@@ -3,7 +3,7 @@ title: Part 3, add a view to an ASP.NET Core MVC app
 author: rick-anderson
 description: Part 3 of tutorial series on ASP.NET Core MVC.
 ms.author: riande
-ms.date: 09/08/2021
+ms.date: 09/15/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/adding-view
 ms.custom: contperf-fy21q3
@@ -24,11 +24,11 @@ View templates are created using Razor. Razor-based view templates:
 
 Currently the `Index` method returns a string with a message in the controller class. In the `HelloWorldController` class, replace the `Index` method with the following code:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_4)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Controllers/HelloWorldController.cs?name=snippet_4)]
 
 The preceding code:
 
-* Calls the controller's <xref:Microsoft.AspNetCore.Mvc.Controller.View*> method.
+* Calls the controller's <xref:Microsoft.AspNetCore.Mvc.Controller.View%2A> method.
 * Uses a view template to generate an HTML response.
 
 Controller methods:
@@ -58,10 +58,13 @@ In the **Add New Item - MvcMovie** dialog:
 Add an `Index` view for the `HelloWorldController`:
 
 * Add a new folder named *Views/HelloWorld*.
-* Add a new file to the *Views/HelloWorld* folder name *Index.cshtml*.
+* Add a new file to the *Views/HelloWorld* folder, and name it *Index.cshtml*.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
+For Visual Studio for Mac, see the .NET 5 version of this tutorial.
+
+<!--
 Control-click on the *Views* folder, and then **Add > New Folder** and name the folder *HelloWorld*.
 
 Control-click on the *Views/HelloWorld* folder, and then **Add > New File**.
@@ -74,12 +77,13 @@ In the **New File** dialog:
 * Select **New**.
 
   ![Add New Item dialog](adding-view/_static/add_view_macVSM8.9.png)
+-->
 
 ---
 
 Replace the contents of the *Views/HelloWorld/Index.cshtml* Razor view file with the following:
 
-[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/HelloWorld/Index1.cshtml?highlight=7)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Views/HelloWorld/Index.cshtml?highlight=7)]
 
 Navigate to `https://localhost:{PORT}/HelloWorld`:
 
@@ -95,7 +99,7 @@ Select the menu links **MvcMovie**, **Home**, and **Privacy**. Each page shows t
 
 Open the *Views/Shared/_Layout.cshtml* file.
 
-[Layout](xref:mvc/views/layout) templates allows:
+[Layout](xref:mvc/views/layout) templates allow:
 
 * Specifying the HTML container layout of a site in one place.
 * Applying the HTML container layout across multiple pages in the site.
@@ -106,7 +110,7 @@ Find the `@RenderBody()` line. `RenderBody` is a placeholder where all the view-
 
 Replace the content of the *Views/Shared/_Layout.cshtml* file with the following markup. The changes are highlighted:
 
-[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie5/Views/Shared/_Layout.cshtml?highlight=6,14,40)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Views/Shared/_Layout.cshtml?highlight=6,14,40)]
 
 The preceding markup made the following changes:
 
@@ -117,7 +121,7 @@ In the preceding markup, the `asp-area=""` [anchor Tag Helper attribute](xref:mv
 
 **Note**: The `Movies` controller hasn't been implemented. At this point, the `Movie App` link isn't functional.
 
-Save the changes and select the **Privacy** link. Notice how the title on the browser tab displays **Privacy Policy - Movie App** instead of **Privacy Policy - Mvc Movie**:
+Save the changes and select the **Privacy** link. Notice how the title on the browser tab displays **Privacy Policy - Movie App** instead of **Privacy Policy - MvcMovie**:
 
 ![Privacy tab](~/tutorials/first-mvc-app/adding-view/_static/privacy50.png)
 
@@ -139,7 +143,7 @@ Open the *Views/HelloWorld/Index.cshtml* view file.
 
 Change the title and `<h2>` element as highlighted in the following:
 
-[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/HelloWorld/Index2.cshtml?highlight=2,5)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Views/HelloWorld/Index2.cshtml?highlight=2,5)]
 
 The title and `<h2>` element are slightly different so it's clear which part of the code changes the display.
 
@@ -190,7 +194,7 @@ In *HelloWorldController.cs*, change the `Welcome` method to add a `Message` and
 
 The `ViewData` dictionary is a dynamic object, which means any type can be used. The `ViewData` object has no defined properties until something is added. The [MVC model binding system](xref:mvc/models/model-binding) automatically maps the named parameters `name` and `numTimes` from the query string to parameters in the method. The complete `HelloWorldController`:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_5&highlight=13-19)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Controllers/HelloWorldController.cs?name=snippet_5&highlight=13-19)]
 
 The `ViewData` dictionary object contains data that will be passed to the view.
 
@@ -198,7 +202,7 @@ Create a Welcome view template named *Views/HelloWorld/Welcome.cshtml*.
 
 You'll create a loop in the *Welcome.cshtml* view template that displays "Hello" `NumTimes`. Replace the contents of *Views/HelloWorld/Welcome.cshtml* with the following:
 
-[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/HelloWorld/Welcome.cshtml)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Views/HelloWorld/Welcome.cshtml)]
 
 Save your changes and browse to the following URL:
 

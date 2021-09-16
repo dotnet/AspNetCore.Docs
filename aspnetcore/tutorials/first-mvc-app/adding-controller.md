@@ -3,7 +3,7 @@ title: Part 2, add a controller to an ASP.NET Core MVC app
 author: rick-anderson
 description: Part 2 of tutorial series on ASP.NET Core MVC.
 ms.author: riande
-ms.date: 09/08/2021
+ms.date: 09/15/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/adding-controller
 ms.custom: contperf-fy21q3
@@ -41,15 +41,15 @@ These concepts are introduced and demonstrated in this tutorial series while bui
 
 # [Visual Studio](#tab/visual-studio)
 
-In the **Solution Explorer**, right-click **Controllers > Add > Controller**.
+In **Solution Explorer**, right-click **Controllers > Add > Controller**.
 
 ![Solution Explorer, right click Controllers > Add > Controller](~/tutorials/first-mvc-app/adding-controller/_static/add_controllercopyVS19v16.9.png)
 
-In the **Add Scaffold** dialog box, select **MVC Controller - Empty**.
+In the **Add New Scaffolded Item** dialog box, select **MVC Controller - Empty** > **Add**.
 
-![Add MVC controller and name it](~/tutorials/first-mvc-app/adding-controller/_static/acCopyVS19v16.9.png)
+![Add MVC controller](~/tutorials/first-mvc-app/adding-controller/_static/acCopyVS19v16.9.png)
 
-In the **Add New Item - MvcMovie dialog**, enter **HelloWorldController.cs** and select **Add**.
+In the **Add New Item - MvcMovie** dialog, enter **HelloWorldController.cs** and select **Add**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -59,6 +59,9 @@ Select the **EXPLORER** icon and then control-click (right-click) **Controllers 
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
+For Visual Studio for Mac, see the .NET 5 version of this tutorial.
+
+<!--
 In **Solution Explorer**, right-click **Controllers > Add > New File**.
 
 ![Contextual menu](~/tutorials/first-mvc-app-mac/adding-controller/_static/add_controller.png)
@@ -68,12 +71,13 @@ Select **ASP.NET Core** and **Controller Class**.
 Name the controller **HelloWorldController**.
 
 ![Add MVC controller and name it](~/tutorials/first-mvc-app-mac/adding-controller/_static/ac.png)
+-->
 
 ---
 
-Replace the contents of *Controllers/HelloWorldController.cs* with the following:
+Replace the contents of *Controllers/HelloWorldController.cs* with the following code:
 
-  [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_1)]
+  [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Controllers/HelloWorldController.cs?name=snippet_1)]
 
 Every `public` method in a controller is callable as an HTTP endpoint. In the sample above, both methods return a string. Note the comments preceding each method.
 
@@ -99,13 +103,13 @@ MVC invokes controller classes, and the action methods within them, depending on
 
 `/[Controller]/[ActionName]/[Parameters]`
 
-The routing format is set in the `Configure` method in *Startup.cs* file.
+The routing format is set in the *Program.cs* file.
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_1&highlight=5)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=MapControllerRoute&highlight=3)]
 
 When you browse to the app and don't supply any URL segments, it defaults to the "Home" controller and the "Index" method specified in the template line highlighted above.  In the preceding URL segments:
 
-* The first URL segment determines the controller class to run. So `localhost:5001/HelloWorld` maps to the **HelloWorld**Controller class.
+* The first URL segment determines the controller class to run. So `localhost:5001/HelloWorld` maps to the **HelloWorld** Controller class.
 * The second part of the URL segment determines the action method on the class. So `localhost:5001/HelloWorld/Index` causes the `Index` method of the `HelloWorldController` class to run. Notice that you only had to browse to `localhost:5001/HelloWorld` and the `Index` method was called by default. `Index` is the default method that will be called on a controller if a method name isn't explicitly specified.
 * The third part of the URL segment ( `id`) is for route data. Route data is explained later in the tutorial.
 
@@ -119,7 +123,7 @@ Modify the code to pass some parameter information from the URL to the controlle
 
 Change the `Welcome` method to include two parameters as shown in the following code.
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_2)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Controllers/HelloWorldController.cs?name=snippet_2)]
 
 The preceding code:
 
@@ -142,7 +146,7 @@ In the previous image:
 
 Replace the `Welcome` method with the following code:
 
-  [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_3)]
+  [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Controllers/HelloWorldController.cs?name=snippet_3)]
 
 Run the app and enter the following URL: `https://localhost:{PORT}/HelloWorld/Welcome/3?name=Rick`
 
@@ -152,7 +156,7 @@ In the preceding URL:
 * The `Welcome` method contains a parameter `id` that matched the URL template in the `MapControllerRoute` method.
 * The trailing `?` starts the [query string](https://wikipedia.org/wiki/Query_string).
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie5/Startup.cs?name=snippet_route&highlight=5)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Program.cs?name=MapControllerRoute&highlight=3)]
 
 In the preceding example:
 
