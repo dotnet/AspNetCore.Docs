@@ -22,7 +22,7 @@ Good candidates for SignalR:
 * Collaborative apps. Whiteboard apps and team meeting software are examples of collaborative apps.
 * Apps that require notifications. Social networks, email, chat, games, travel alerts, and many other apps use notifications.
 
-SignalR provides an API for creating server-to-client [remote procedure calls (RPC)](https://wikipedia.org/wiki/Remote_procedure_call). The RPCs call JavaScript functions on clients from server-side .NET Core code.
+SignalR provides an API for creating server-to-client [remote procedure calls (RPC)](https://wikipedia.org/wiki/Remote_procedure_call). The RPCs invoke functions on clients from server-side .NET Core code. There are various [supported platforms](xref:signalr/supported-platforms), each with thier respective client SDK &mdash; as such the RPC function invocation language varies.
 
 Here are some features of SignalR for ASP.NET Core:
 
