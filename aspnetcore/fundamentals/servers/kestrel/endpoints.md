@@ -377,7 +377,7 @@ webBuilder.ConfigureKestrel(serverOptions =>
 
 ### SNI with `TlsHandshakeCallbackOptions`
 
-Kestrel supports additional dynamic TLS configuraiton via the `TlsHandshakeCallbackOptions.OnConnection` callback. The callback is invoked once per connection to allow the app to inspect the host name and select the appropriate certificate, TLS configuration, and other server options. Default certificates and `ConfigureHttpsDefaults` are not used with this callback.
+Kestrel supports additional dynamic TLS configuration via the `TlsHandshakeCallbackOptions.OnConnection` callback. The callback is invoked once per connection to allow the app to inspect the host name and select the appropriate certificate, TLS configuration, and other server options. Default certificates and `ConfigureHttpsDefaults` are not used with this callback.
 
 ```csharp
 //using System.Security.Cryptography.X509Certificates;
