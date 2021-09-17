@@ -7,7 +7,7 @@ JavaScript (JS) initializers execute logic before and after a Blazor app loads. 
 * Initializing libraries before Blazor starts up.
 * Configuring Blazor settings.
 
-To define a JS initializer, add a JS module to the project named `{PACKAGE ID OR LIBRARY NAME}.lib.module.js`, where the `{PACKAGE ID OR LIBRARY NAME}` placeholder is the package identifier or library name. When supplying the module from a Razor class library (RCL), use the RCL's name for the `{PACKAGE ID OR LIBRARY NAME}` placeholder. To consume the module from the app's static assets, any name can be used for the `{PACKAGE ID OR LIBRARY NAME}` placeholder, and the file should be placed in the app's web root, which is typically the `wwwroot` folder.
+To define a JS initializer, add a JS module to the project named `{NAME}.lib.module.js`, where the `{NAME}` placeholder is the assembly name, library name, or package identifier. To consume the module from the app's static assets, place the file in the app's web root, which is typically the `wwwroot` folder.
 
 The module can export the following conventional functions:
 
@@ -17,9 +17,12 @@ The module can export the following conventional functions:
   * In `BlazorWebViews`, no options are passed.
 * `afterStarted`: Called after Blazor is ready to receive calls from JS. For example, `afterStarted` is used to initialize libraries by making JS interop calls and registering custom elements. The Blazor instance is always passed to `afterStarted` as an argument.
 
-The following demonstrates example JS initializers.
+The following example demonstrates JS initializers for `beforeStart` and `afterStarted`.
 
-`RazorClassLibrary1.lib.module.js`:
+For the filename of the following example:
+
+* Use the app's assembly name in the filename if the JS initializers are consumed as a static asset from the project's `wwwroot` folder. For example, name the file `BlazorSample.lib.module.js` for a project assembly name of `BlazorSample`. Place the file in the app's `wwwroot` folder.
+* Use the project's library name or package identifier if the JS initializers are consumed from an RCL. For example, name the file `RazorClassLibrary1.lib.module.js` for an RCL with a package identifier of `RazorClassLibrary1`. The file is placed in the `wwwroot` folder of the RCL.
 
 ```javascript
 export function beforeStart(options) {
