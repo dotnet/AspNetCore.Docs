@@ -11,3 +11,4 @@ namespace MvcMovie.Models
         public string? SearchString { get; set; }
     }
 }
+

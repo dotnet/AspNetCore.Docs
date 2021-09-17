@@ -12,8 +12,7 @@ namespace MvcMovie.Migrations
                 name: "Rating",
                 table: "Movie",
                 type: "nvarchar(max)",
-                nullable: false,
-                defaultValue: "");
+                nullable: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -10,6 +10,7 @@ using MvcMovie.Models;
 
 namespace MvcMovie.Controllers
 {
+#region Constructor
     public class MoviesController : Controller
     {
         private readonly MvcMovieContext _context;
@@ -18,16 +19,72 @@ namespace MvcMovie.Controllers
         {
             _context = context;
         }
-
+        #endregion
+#if FirstIndex
+#region FirstIndex
         // GET: Movies
+        public async Task<IActionResult> Index()
+        {
+            return View(await _context.Movie.ToListAsync());
+        }
+#endregion
+#endif
+
+#if IndexSearch1
+#region IndexSearch1
+public async Task<IActionResult> Index(string searchString)
+{
+    var movies = from m in _context.Movie
+                 select m;
+
+#region IndexSearchCheckForNull
+    if (!String.IsNullOrEmpty(searchString))
+    {
+        movies = movies.Where(s => s.Title.Contains(searchString));
+    }
+#endregion
+
+    return View(await movies.ToListAsync());
+}
+#endregion
+#endif
+
+#if IndexSearchID
+#region IndexSearchID
+public async Task<IActionResult> Index(string id)
+{
+    var movies = from m in _context.Movie
+                 select m;
+
+    if (!String.IsNullOrEmpty(id))
+    {
+        movies = movies.Where(s => s.Title.Contains(id));
+    }
+
+    return View(await movies.ToListAsync());
+}
+#endregion
+#endif
+#if IndexPost
+#region IndexPost
+        [HttpPost]
+        public string Index(string searchString, bool notUsed)
+        {
+            return "From [HttpPost]Index: filter on " + searchString;
+        }
+#endregion
+#endif
+
+#region IndexGenre
         // GET: Movies
         public async Task<IActionResult> Index(string movieGenre, string searchString)
         {
+            #region IndexGenreLINQ
             // Use LINQ to get list of genres.
             IQueryable<string> genreQuery = from m in _context.Movie
                                             orderby m.Genre
                                             select m.Genre;
-
+            #endregion
             var movies = from m in _context.Movie
                          select m;
 
@@ -49,7 +106,10 @@ namespace MvcMovie.Controllers
 
             return View(movieGenreVM);
         }
-        
+        #endregion
+
+
+        #region Details
         // GET: Movies/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -67,7 +127,8 @@ namespace MvcMovie.Controllers
 
             return View(movie);
         }
-
+        #endregion
+        #region Create
         // GET: Movies/Create
         public IActionResult Create()
         {
@@ -89,7 +150,9 @@ namespace MvcMovie.Controllers
             }
             return View(movie);
         }
+        #endregion
 
+        #region EditGet
         // GET: Movies/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -105,7 +168,9 @@ namespace MvcMovie.Controllers
             }
             return View(movie);
         }
+#endregion
 
+#region EditPost
         // POST: Movies/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -140,10 +205,14 @@ namespace MvcMovie.Controllers
             }
             return View(movie);
         }
+        #endregion
 
+        #region Delete
+        #region DeleteSignature
         // GET: Movies/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            #endregion
             if (id == null)
             {
                 return NotFound();
@@ -159,20 +228,37 @@ namespace MvcMovie.Controllers
             return View(movie);
         }
 
+        #region DeleteConfirmedSignature
+        // POST: Movies/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            #endregion
+            var movie = await _context.Movie.FindAsync(id);
+            _context.Movie.Remove(movie);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+        #endregion
+
+#if NRTChange
+        #region NRTChange
         // POST: Movies/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var movie = await _context.Movie.FindAsync(id);
-            if (movie is not null)
+            if (movie != null)
             {
                 _context.Movie.Remove(movie);
                 await _context.SaveChangesAsync();
             }
             return RedirectToAction(nameof(Index));
         }
-
+        #endregion
+#endif
         private bool MovieExists(int id)
         {
             return _context.Movie.Any(e => e.Id == id);

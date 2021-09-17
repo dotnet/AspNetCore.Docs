@@ -1,7 +1,7 @@
 ---
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 ---
-<!-- USED in RP and MVC tutorial for .NET 5 and earlier-->
+<!-- USED in RP and MVC tutorial for .NET 6 -->
 
 ## Add validation rules to the movie model
 
@@ -9,7 +9,7 @@ The DataAnnotations namespace provides a set of built-in validation attributes t
 
 Update the `Movie` class to take advantage of the built-in `Required`, `StringLength`, `RegularExpression`, and `Range` validation attributes.
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Models/MovieDateRatingDA.cs?name=snippet1)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Models/Movie.cs?name=FinalSnippet)]
 
 The validation attributes specify behavior that you want to enforce on the model properties they're applied to:
 
