@@ -5,7 +5,7 @@ description: Learn how to gather diagnostics from Kestrel.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: soshir
 ms.date: 07/01/2021
-uid: kestrel/diagnostics
+uid: fundamentals/servers/kestrel/diagnostics
 ---
 
 # Diagnostics in Kestrel
