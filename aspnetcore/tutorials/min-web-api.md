@@ -14,9 +14,9 @@ uid: tutorials/min-web-api
 <!-- TODO: Remove aspnetcore\tutorials\min-web-api\samples\6.x -->
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-Minimal APIs are architected to create REST APIs with the minimal dependencies. They are ideal for microservices and apps that want to include only the minimum files, features, and dependencies in ASP.NET Core.
+Minimal APIs are architected to create REST APIs with minimal dependencies. They are ideal for microservices and apps that want to include only the minimum files, features, and dependencies in ASP.NET Core.
 
-This tutorial teaches the basics of building a miminal web API with ASP.NET Core. For a tutorial on creating a web API project that contains more features, see [Create a web API](xref:tutorials/first-web-api)
+This tutorial teaches the basics of building a miminal web API with ASP.NET Core. For a tutorial on creating a web API project that contains more features, see [Create a web API](xref:tutorials/first-web-api).
 
 ## Overview
 
@@ -53,7 +53,7 @@ This tutorial creates the following API:
 
 # [Visual Studio](#tab/visual-studio)
 
-* Start Visual Studio 2022 and select **Create a new project**
+* Start Visual Studio 2022 and select **Create a new project**.
   ![Visual Studio new project start page](min-web-api/_static/create.png)
 * In the **Create a new project** dialog:
   * Enter `Empty` in the **Search for templates** search box.
@@ -196,7 +196,7 @@ The sample app contains the following model:
 
 [!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_model)]
 
-A *model* is a set of classes that represent the data that the app manages. The model for this app is the `Todo` class.
+A *model* is a class that represent data that the app manages. The model for this app is the `Todo` class.
 
 The sample app also contains the following database context class:
 
