@@ -32,29 +32,7 @@ Like most components in ASP.NET Core, Kestrel uses `Microsoft.Extensions.Logging
 
 ### Connection logging
 
-// TODO: WIP
-
-```csharp
-using System.Diagnostics;
-using System.Net;
-var builder = WebApplication.CreateBuilder(args);
-builder.WebHost.ConfigureLogging(logging =>
-    logging.AddFilter((category, level) =>
-        category.Equals("Microsoft.AspNetCore.Server.Kestrel.Core.Internal.LoggingConnectionMiddleware") && level >= LogLevel.Trace));
-builder.WebHost.ConfigureKestrel(o =>
-{
-    o.Listen(IPAddress.Loopback, 5000, listenOptions => listenOptions.UseConnectionLogging());
-    o.Listen(IPAddress.Loopback, 5001, listenOptions =>
-    {
-        listenOptions.UseHttps();
-        // For logging decrypted traffic
-        listenOptions.UseConnectionLogging();
-    });
-});
-var app = builder.Build();
-app.MapGet("/", () => "Hello world");
-app.Run();
-```
+Kestrel also supports the ability to emit `Debug` level logs for byte-level communication and can be enabled on a per-endpoint basis. To enable connection logging, see [configure endpoints for Kestrel](xref:fundamentals/servers/kestrel/endpoints)
 
 ## Metrics
 
@@ -62,8 +40,8 @@ Metrics is a representation of data measures over intervals of time, for example
 
 > [!NOTE]
 > The `connections-per-second` and `tls-handshakes-per-second` counters are named incorrectly. The counters:
->  * Do ***not*** always contain the number of new connections or TLS handshakes per second
->  * Display the number of new connection or TLS handshakes in the last update interval as requested as the consumer of Events via the `EventCounterIntervalSec` argument in the `filterPayload` to `KestrelEventSource`.
+> * Do ***not*** always contain the number of new connections or TLS handshakes per second
+> * Display the number of new connection or TLS handshakes in the last update interval as requested as the consumer of Events via the `EventCounterIntervalSec` argument in the `filterPayload` to `KestrelEventSource`.
 >
 > We **recommend** consumers of these counters scale the metric value based on the `DisplayRateTimeScale` of one second.
 
