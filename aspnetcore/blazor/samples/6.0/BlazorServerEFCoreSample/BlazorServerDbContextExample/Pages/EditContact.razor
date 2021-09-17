@@ -48,17 +48,17 @@ else
     /// <summary>
     /// The <see cref="ContactContext"/> for database access.
     /// </summary>
-    private ContactContext Context { get; set; }
+    private ContactContext? Context { get; set; }
 
     /// <summary>
     /// Contact being edited
     /// </summary>
-    private Contact Contact { get; set; }
+    private Contact? Contact { get; set; }
 
     /// <summary>
     /// Database version when concurrency issues exist
     /// </summary>
-    private Contact DbContact { get; set; }
+    private Contact? DbContact { get; set; }
 
     /// <summary>
     /// Avoid concurrent requests

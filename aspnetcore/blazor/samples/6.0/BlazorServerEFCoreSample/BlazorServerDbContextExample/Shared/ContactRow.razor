@@ -42,7 +42,7 @@
 }
 @code {
 
-    private Contact _currentContact;
+    private Contact? _currentContact;
 
     /// <summary>
     /// The <see cref="Contact"/> being rendered.
@@ -71,7 +71,7 @@
     /// Overall wrapper of functionality.
     /// </summary>
     [CascadingParameter]
-    public GridWrapper Wrapper { get; set; }
+    public GridWrapper? Wrapper { get; set; }
 
     /// <summary>
     /// Returns <c>true</c> if conditions for delete are met.

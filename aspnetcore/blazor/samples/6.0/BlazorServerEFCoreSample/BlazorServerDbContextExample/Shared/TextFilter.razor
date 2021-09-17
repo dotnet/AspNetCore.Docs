@@ -17,7 +17,7 @@ Filter on: <select @bind="SelectedColumn">
     /// Get a reference to the global <see cref="GridWrapper"/>.
     /// </summary>
     [CascadingParameter]
-    public GridWrapper Wrapper { get; set; }
+    public GridWrapper? Wrapper { get; set; }
 
     /// <summary>
     /// Wait period in (ms) after the user stops typing.
@@ -27,7 +27,7 @@ Filter on: <select @bind="SelectedColumn">
     /// <summary>
     /// Timer for debounce.
     /// </summary>
-    Timer timer;
+    Timer? timer;
 
     /// <summary>
     /// When ready.
@@ -76,12 +76,12 @@ Filter on: <select @bind="SelectedColumn">
         }
     }
 
-    private string filterText;
+    private string? filterText;
 
     /// <summary>
     /// Text to filter on.
     /// </summary>
-    private string FilterText
+    private string? FilterText
     {
         get => filterText;
         set

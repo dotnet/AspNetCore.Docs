@@ -107,12 +107,12 @@
     /// <summary>
     /// A wrapper for grid-related activity (like delete).
     /// </summary>
-    private GridWrapper Wrapper { get; set; }
+    private GridWrapper? Wrapper { get; set; }
 
     /// <summary>
     /// Current page of <see cref="Contact"/>.
     /// </summary>
-    private ICollection<Contact> Contacts { get; set; }
+    private ICollection<Contact>? Contacts { get; set; }
 
     /// <summary>
     /// Helper method to set disabled on class for paging.

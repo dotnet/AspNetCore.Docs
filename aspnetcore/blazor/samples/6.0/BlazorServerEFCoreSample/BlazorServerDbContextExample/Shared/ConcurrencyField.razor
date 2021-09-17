@@ -16,19 +16,19 @@
     /// The <see cref="TModel"/> being edited.
     /// </summary>
     [Parameter]
-    public TModel Model { get; set; }
+    public TModel? Model { get; set; }
 
     /// <summary>
     /// The <see cref="TModel"/> in the database.
     /// </summary>
     [Parameter]
-    public TModel DbModel { get; set; }
+    public TModel? DbModel { get; set; }
 
     /// <summary>
     /// Returns the property to inspect.
     /// </summary>
     [Parameter]
-    public Func<TModel, IComparable> Property { get; set; }
+    public Func<TModel, IComparable>? Property { get; set; }
 
     /// <summary>
     /// Only show if concurrency conflict exists.
