@@ -16,13 +16,13 @@ The module can export the following conventional functions:
 * `beforeStart`: Called before Blazor starts. For example, `beforeStart` is used to customize the loading process, logging level, and other options specific to the hosting model.
   * In Blazor WebAssembly, `beforeStart` receives the Blazor WebAssembly options and any extensions added during publishing.
   * In Blazor Server, `beforeStart` receives the circuit start options.
-  * In `BlazorWebViews`, no options are passed.
+  * In [`BlazorWebViews`](/mobile-blazor-bindings/walkthroughs/hybrid-hello-world#mainrazor-native-ui-page), no options are passed.
 * `afterStarted`: Called after Blazor is ready to receive calls from JS. For example, `afterStarted` is used to initialize libraries by making JS interop calls and registering custom elements. The Blazor instance is passed to `afterStarted` as an argument.
 
 The following example demonstrates JS initializers for `beforeStart` and `afterStarted`. For the filename of the following example:
 
-* Use the app's assembly name in the filename if the JS initializers are consumed as a static asset from the project. For example, name the file `BlazorSample.lib.module.js` for a project assembly name of `BlazorSample` and place the file in the app's `wwwroot` folder.
-* Use the project's library name or package identifier if the JS initializers are consumed from an RCL. For example, name the file `RazorClassLibrary1.lib.module.js` for an RCL with a package identifier of `RazorClassLibrary1` and place the file in the RCL's `wwwroot` folder.
+* Use the app's assembly name in the filename if the JS initializers are consumed as a static asset in the project. For example, name the file `BlazorSample.lib.module.js` for a project assembly name of `BlazorSample`. Place the file in the app's `wwwroot` folder.
+* Use the project's library name or package identifier if the JS initializers are consumed from an RCL. For example, name the file `RazorClassLibrary1.lib.module.js` for an RCL with a package identifier of `RazorClassLibrary1`. Place the file in the RCL's `wwwroot` folder.
 
 ```javascript
 export function beforeStart(options) {
