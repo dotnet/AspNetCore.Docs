@@ -43,7 +43,7 @@ var app = builder.Build();
 // this section sets up and seeds the database. It would NOT normally
 // be done this way in production. It is here to make the sample easier,
 // i.e. clone, set connection string and run.
-await using var scope = app.Services.GetService<IServiceScopeFactory>().CreateAsyncScope();
+await using var scope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateAsyncScope();
 var options = scope.ServiceProvider.GetRequiredService<DbContextOptions<ContactContext>>();
 await DatabaseUtility.EnsureDbCreatedAndSeedWithCountOfAsync(options, 500);
 
