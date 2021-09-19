@@ -7,7 +7,7 @@ no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cook
 
 <!-- replace all of this with updated includes  -->
 
-Select **RazorPagesMovie** in **Solution Explorer**, and then press Ctrl+F5 to run without the debugger.
+Press Ctrl+F5 to run without the debugger.
 
 Visual Studio displays the following dialog when a project is not yet configured to use SSL:
 
