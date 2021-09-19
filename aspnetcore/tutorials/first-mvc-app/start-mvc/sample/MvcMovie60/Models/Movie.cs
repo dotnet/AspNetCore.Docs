@@ -1,6 +1,6 @@
 ﻿#define Final
 #if First
-#region FirstSnippet
+#region First
 using System.ComponentModel.DataAnnotations;
 
 namespace MvcMovie.Models
@@ -20,7 +20,7 @@ namespace MvcMovie.Models
 #endif
 
 #if Second
-#region SecondSnippet
+#region Second
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -44,8 +44,8 @@ namespace MvcMovie.Models
 #endregion
 #endif
 
-#if Third
-#region ThirdSnippet
+#if AddRating
+#region AddRating
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;

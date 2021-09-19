@@ -10,7 +10,7 @@ using MvcMovie.Models;
 
 namespace MvcMovie.Controllers
 {
-#region Constructor
+    #region Constructor
     public class MoviesController : Controller
     {
         private readonly MvcMovieContext _context;
@@ -21,36 +21,36 @@ namespace MvcMovie.Controllers
         }
         #endregion
 #if FirstIndex
-#region FirstIndex
+        #region FirstIndex
         // GET: Movies
         public async Task<IActionResult> Index()
         {
             return View(await _context.Movie.ToListAsync());
         }
-#endregion
+        #endregion
 #endif
 
 #if IndexSearch1
-#region IndexSearch1
+        #region IndexSearch1
 public async Task<IActionResult> Index(string searchString)
 {
     var movies = from m in _context.Movie
                  select m;
 
-#region IndexSearchCheckForNull
+        #region IndexSearchCheckForNull
     if (!String.IsNullOrEmpty(searchString))
     {
-        movies = movies.Where(s => s.Title.Contains(searchString));
+        movies = movies.Where(s => s.Title!.Contains(searchString));
     }
-#endregion
+        #endregion
 
     return View(await movies.ToListAsync());
 }
-#endregion
+        #endregion
 #endif
 
 #if IndexSearchID
-#region IndexSearchID
+        #region IndexSearchID
 public async Task<IActionResult> Index(string id)
 {
     var movies = from m in _context.Movie
@@ -58,24 +58,24 @@ public async Task<IActionResult> Index(string id)
 
     if (!String.IsNullOrEmpty(id))
     {
-        movies = movies.Where(s => s.Title.Contains(id));
+        movies = movies.Where(s => s.Title!.Contains(searchString));
     }
 
     return View(await movies.ToListAsync());
 }
-#endregion
+        #endregion
 #endif
 #if IndexPost
-#region IndexPost
+        #region IndexPost
         [HttpPost]
         public string Index(string searchString, bool notUsed)
         {
             return "From [HttpPost]Index: filter on " + searchString;
         }
-#endregion
+        #endregion
 #endif
 
-#region IndexGenre
+        #region IndexGenre
         // GET: Movies
         public async Task<IActionResult> Index(string movieGenre, string searchString)
         {
@@ -168,9 +168,9 @@ public async Task<IActionResult> Index(string id)
             }
             return View(movie);
         }
-#endregion
+        #endregion
 
-#region EditPost
+        #region EditPost
         // POST: Movies/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -242,23 +242,6 @@ public async Task<IActionResult> Index(string id)
         }
         #endregion
 
-#if NRTChange
-        #region NRTChange
-        // POST: Movies/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var movie = await _context.Movie.FindAsync(id);
-            if (movie != null)
-            {
-                _context.Movie.Remove(movie);
-                await _context.SaveChangesAsync();
-            }
-            return RedirectToAction(nameof(Index));
-        }
-        #endregion
-#endif
         private bool MovieExists(int id)
         {
             return _context.Movie.Any(e => e.Id == id);

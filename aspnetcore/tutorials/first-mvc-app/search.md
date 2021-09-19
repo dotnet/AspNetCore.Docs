@@ -27,13 +27,13 @@ var movies = from m in _context.Movie
              select m;
 ```
 
-The query is *only* defined at this point, it has **not** been run against the database.
+The query is *only defined* at this point, it has **not** been run against the database.
 
 If the `searchString` parameter contains a string, the movies query is modified to filter on the value of the search string:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Controllers/MoviesController.cs?name=IndexSearchCheckForNull)]
 
-The `s => s.Title.Contains()` code above is a [Lambda Expression](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions). Lambdas are used in method-based [LINQ](/dotnet/standard/using-linq) queries as arguments to standard query operator methods such as the [Where](/dotnet/api/system.linq.enumerable.where) method or `Contains` (used in the code above). LINQ queries are not executed when they're defined or when they're modified by calling a method such as `Where`, `Contains`, or `OrderBy`. Rather, query execution is deferred.  That means that the evaluation of an expression is delayed until its realized value is actually iterated over or the `ToListAsync` method is called. For more information about deferred query execution, see [Query Execution](/dotnet/framework/data/adonet/ef/language-reference/query-execution).
+The `s => s.Title.Contains(searchString)` code above is a [Lambda Expression](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions). Lambdas are used in method-based [LINQ](/dotnet/standard/using-linq) queries as arguments to standard query operator methods such as the [Where](/dotnet/api/system.linq.enumerable.where) method or `Contains` (used in the code above). LINQ queries are not executed when they're defined or when they're modified by calling a method such as `Where`, `Contains`, or `OrderBy`. Rather, query execution is deferred.  That means that the evaluation of an expression is delayed until its realized value is actually iterated over or the `ToListAsync` method is called. For more information about deferred query execution, see [Query Execution](/dotnet/framework/data/adonet/ef/language-reference/query-execution).
 
 Note: The [Contains](/dotnet/api/system.data.objects.dataclasses.entitycollection-1.contains) method is run on the database, not in the c# code shown above. The case sensitivity on the query depends on the database and the collation. On SQL Server, [Contains](/dotnet/api/system.data.objects.dataclasses.entitycollection-1.contains) maps to [SQL LIKE](/sql/t-sql/language-elements/like-transact-sql), which is case insensitive. In SQLite, with the default collation, it's case sensitive.
 
@@ -45,7 +45,7 @@ If you change the signature of the `Index` method to have a parameter named `id`
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Program.cs?highlight=3&name=MapControllerRoute)]
 
-Change the parameter to `id` and all occurrences of `searchString` change to `id`.
+Change the parameter to `id` and change all occurrences of `searchString` to `id`.
 
 The previous `Index` method:
 
@@ -53,7 +53,7 @@ The previous `Index` method:
 
 The updated `Index` method with `id` parameter:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Controllers/MoviesController.cs?highlight=1,6,8&name=IndexSearchID)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Controllers/MoviesController.cs?highlight=1,6,9&name=IndexSearchID)]
 
 You can now pass the search title as route data (a URL segment) instead of as a query string value.
 
@@ -61,7 +61,7 @@ You can now pass the search title as route data (a URL segment) instead of as a 
 
 However, you can't expect users to modify the URL every time they want to search for a movie. So now you'll add UI elements to help them filter movies. If you changed the signature of the `Index` method to test how to pass the route-bound `ID` parameter, change it back so that it takes a parameter named `searchString`:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Controllers/MoviesController.cs?highlight=1,6,8&name=IndexSearch1)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Controllers/MoviesController.cs?highlight=1,6,9&name=IndexSearch1)]
 
 Open the *Views/Movies/Index.cshtml* file, and add the `<form>` markup highlighted below:
 
@@ -75,7 +75,7 @@ There's no `[HttpPost]` overload of the `Index` method as you might expect. You 
 
 You could add the following `[HttpPost] Index` method.
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/MoviesController.cs?highlight=1&name=IndexPost)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Controllers/MoviesController.cs?highlight=1&name=IndexPost)]
 
 The `notUsed` parameter is used to create an overload for the `Index` method. We'll talk about that later in the tutorial.
 
@@ -91,7 +91,7 @@ You can see the search parameter and [XSRF](xref:security/anti-request-forgery) 
 
 Because the search parameter is in the request body and not the URL, you can't capture that search information to bookmark or share with others. Fix this by specifying the request should be `HTTP GET` found in the *Views/Movies/Index.cshtml* file.
 
-[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Views/Movies/IndexGet.cshtml?highlight=12&range=1-19)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Views/Movies/IndexGet.cshtml?highlight=13&range=1-19)]
 
 Now when you submit a search, the URL contains the search query string. Searching will also go to the `HttpGet Index` action method, even if you have a `HttpPost Index` method.
 
@@ -132,7 +132,7 @@ When the user searches for the item, the search value is retained in the search 
 
 Update `Index.cshtml` found in *Views/Movies/* as follows:
 
-[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Views/Movies/IndexFormGenreNoRating.cshtml?highlight=1,15,16,17,19,28,31,34,37,43)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Views/Movies/IndexFormGenreNoRating.cshtml?highlight=1,15,16,17,28,31,34,37,43)]
 
 Examine the lambda expression used in the following HTML Helper:
 

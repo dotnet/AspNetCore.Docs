@@ -45,7 +45,7 @@ Control-click the *Models* folder > **Add** > **New Class** > **Empty Class**. N
 
 Update the *Models/Movie.cs* file with the following code:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Models/Movie.cs?name=FirstSnippet)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Models/Movie.cs?name=First)]
 
 The `Movie` class contains an `Id` field, which is required by the database for the primary key.
 
@@ -145,7 +145,7 @@ Complete the **Add MVC Controller with views, using Entity Framework** dialog:
 
 ![Add Data context keep defaults](adding-model/_static/dc5_last_step.png)
 
-If the scaffolding you get an error message, select **Add** a second time to try it again.
+If you get an error message, select **Add** a second time to try it again.
 
 <a name="scaffolding-created"></a>
 
@@ -318,23 +318,13 @@ With EF Core, data access is performed using a model. A model is made up of enti
 
 Scaffolding creates the *Data/MvcMovieContext.cs* database context class:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Data/MvcMovieContext.cs?name=FirstSnippet)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Data/MvcMovieContext.cs?name=First)]
 
 The preceding code creates a [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) property that represents the movies in the database.
 
-**Optional**: To eliminate [nullable reference type](/dotnet/csharp/nullable-references) warning messages when you compile, change the scaffolded code in two places:
-
-* Add `= null!;` to the end of the `Movie` property declaration:
-
-  [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Data/MvcMovieContext.cs?name=NRTChange)]
-
-* In *MoviesController.cs*, replace the `DeleteConfirmed` method with the following code:
-
-  [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Controllers/MoviesController.cs?name=NRTChange)]
-
 ### Dependency injection
 
-ASP.NET Core is built with [dependency injection (DI)](xref:fundamentals/dependency-injection). Services, such as the database context, must be registered with DI in `Startup`. Components that require these services are provided these services via constructor parameters.
+ASP.NET Core is built with [dependency injection (DI)](xref:fundamentals/dependency-injection). Services, such as the database context, are registered with DI in *Program.cs*. Components that require these services are provided these services via constructor parameters.
 
 In the *Controllers/MoviesController.cs* file, the constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the `MvcMovieContext` database context into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
 
@@ -372,7 +362,7 @@ Scaffolding added a connection string to the *appsettings.json* file:
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-[!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/appsettings_SQLite.json?highlight=10-12)]
+[!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/appsettings_SQLite.json?highlight=9-10)]
 
 ---
 
@@ -382,7 +372,7 @@ For local development, the [ASP.NET Core configuration system](xref:fundamentals
 
 Examine the *Migrations/{timestamp}_InitialCreate.cs* migration file:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Migrations/20210915202210_InitialCreate.cs?name=snippet)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Migrations/20210915202210_InitialCreate.cs)]
 
 In the preceding code:
 
@@ -464,7 +454,7 @@ When the movies controller was created, scaffolding included the following `@mod
 
 The `@model` directive allows access to the list of movies that the controller passed to the view by using a `Model` object that's strongly typed. For example, in the *Index.cshtml* view, the code loops through the movies with a `foreach` statement over the strongly typed `Model` object:
 
-[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexOriginal.cshtml?highlight=1,31,34,37,40,43,46-48)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Views/Movies/IndexOriginal.cshtml?highlight=1,31,34,37,40,43,46-48)]
 
 Because the `Model` object is strongly typed as an `IEnumerable<Movie>` object, each item in the loop is typed as `Movie`. Among other benefits, the compiler validates the types used in the code.
 

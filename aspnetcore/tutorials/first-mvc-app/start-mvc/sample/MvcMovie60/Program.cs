@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using MvcMovie.Data;
 
-#region SQLServerSnippet
+#region SQLServer
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<MvcMovieContext>(options =>
@@ -46,7 +46,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using MvcMovie.Data;
 
-#region SQLiteSnippet
+#region SQLite
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<MvcMovieContext>(options =>
@@ -85,6 +85,7 @@ app.Run();
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using MvcMovie.Data;
+using MvcMovie.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -139,6 +140,7 @@ app.Run();
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using MvcMovie.Data;
+using MvcMovie.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 

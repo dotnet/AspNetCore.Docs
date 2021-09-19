@@ -1,8 +1,9 @@
-﻿#define Second
+﻿#define Third
 
-#if FIRST
-#region snippet_1
+#if First
+#region First
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Encodings.Web;
 
 namespace MvcMovie.Controllers
 {
@@ -46,17 +47,16 @@ namespace MvcMovie.Controllers
 
         // 
         // GET: /HelloWorld/Welcome/ 
-        #region snippet_2
+#region Second
         // GET: /HelloWorld/Welcome/ 
         // Requires using System.Text.Encodings.Web;
         public string Welcome(string name, int numTimes = 1)
         {
             return HtmlEncoder.Default.Encode($"Hello {name}, NumTimes is: {numTimes}");
         }
-        #endregion
+#endregion
     }
 }
-
 
 #endif
 
@@ -78,7 +78,7 @@ namespace MvcMovie.Controllers
 
         // 
         // GET: /HelloWorld/Welcome/ 
-#region snippet_3
+#region Third
         public string Welcome(string name, int ID = 1)
         {
             return HtmlEncoder.Default.Encode($"Hello {name}, ID: {ID}");
@@ -89,7 +89,7 @@ namespace MvcMovie.Controllers
 }
 #endif
 
-#if View
+#if AddView
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Encodings.Web;
 
@@ -99,13 +99,13 @@ namespace MvcMovie.Controllers
     {
         // 
         // GET: /HelloWorld/ 
-#region snippet_4
+#region AddView
         public IActionResult Index()
         {
             return View();
         }
 #endregion
-// 
+ 
         // GET: /HelloWorld/Welcome/ 
 
         public string Welcome(string name, int ID = 1)
@@ -118,38 +118,8 @@ namespace MvcMovie.Controllers
 
 #endif
 
-#if Index2
-using Microsoft.AspNetCore.Mvc;
-using System.Text.Encodings.Web;
-
-namespace MvcMovie.Controllers
-{
-    public class HelloWorldController : Controller
-    {
-        // 
-        // GET: /HelloWorld/ 
-
-        public IActionResult Index()
-        {
-            return View("Index2");
-        }
-
-        // 
-        // GET: /HelloWorld/Welcome/ 
-
-        public string Welcome(string name, int ID = 1)
-        {
-            return HtmlEncoder.Default.Encode(
-                "Hello " + name + ", ID: " + ID);
-        }
-    }
-}
-
-#endif
-
-#if VD
-
-#region snippet_5
+#if ViewData
+#region ViewData
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Encodings.Web;
 

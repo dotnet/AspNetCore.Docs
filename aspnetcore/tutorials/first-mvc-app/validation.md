@@ -31,7 +31,7 @@ The validation support provided by MVC and Entity Framework Core Code First is a
 
 Run the app and navigate to the Movies controller.
 
-Tap the **Create New** link to add a new movie. Fill out the form with some invalid values. As soon as jQuery client side validation detects the error, it displays an error message.
+Select the **Create New** link to add a new movie. Fill out the form with some invalid values. As soon as jQuery client side validation detects the error, it displays an error message.
 
 ![Movie view form with multiple jQuery client side validation errors](~/tutorials/first-mvc-app/validation/_static/val.png)
 
@@ -65,7 +65,7 @@ After you disable JavaScript, post invalid data and step through the debugger.
 
 ![While debugging on a post of invalid data, Intellisense on ModelState.IsValid shows the value is false.](~/tutorials/first-mvc-app/validation/_static/ms.png)
 
-The portion of the *Create.cshtml* view template is shown in the following markup:
+A portion of the *Create.cshtml* view template is shown in the following markup:
 
 [!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Views/Movies/CreateRatingBrevity.html)]
 

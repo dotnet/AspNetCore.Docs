@@ -3,7 +3,7 @@ title: Get started with ASP.NET Core MVC
 author: rick-anderson
 description: Learn how to get started with ASP.NET Core MVC.
 ms.author: riande
-ms.date: 09/15/2021
+ms.date: 09/17/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/start-mvc
 ms.custom: contperf-fy21q3
@@ -56,14 +56,14 @@ For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 * In the **Create a new project** dialog, select **ASP.NET Core Web App (Model-View-Controller)** > **Next**.
 * In the **Configure your new project** dialog, enter `MvcMovie` for **Project name**. It's important to name the project *MvcMovie*. Capitalization needs to match each `namespace` when code is copied.
 * Select **Next**.
-* In the **Additional information** dialog, select **.NET 6.0 (Preview)** > **ASP.NET Core Web App (Model-View-Controller)**.
-  * **Create**.
+* In the **Additional information** dialog, select **.NET 6.0 (Preview)**.
+* Select **Create**.
 
 ![Additional info dialog](start-mvc/_static/net6-additional-info.png)
 
 For alternative approaches to create the project, see [Create a new project in Visual Studio](/visualstudio/ide/create-new-project).
 
-Visual Studio used the default project template for the created MVC project. The created project:
+Visual Studio uses the default project template for the created MVC project. The created project:
 
 * Is a working app.
 * Is a basic starter project.
@@ -120,9 +120,9 @@ For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 
   [!INCLUDE[](~/includes/trustCertVS.md)]
 
-  Visual Studio runs the app and opens the default browser.
+Visual Studio runs the app and opens the default browser.
 
-  The address bar shows `localhost:port#` and not something like `example.com`. The standard hostname for your local computer is `localhost`. When Visual Studio creates a web project, a random port is used for the web server.
+The address bar shows `localhost:port#` and not something like `example.com`. The standard hostname for your local computer is `localhost`. When Visual Studio creates a web project, a random port is used for the web server.
 
 Launching the app without debugging by selecting Ctrl+F5 allows you to:
 
