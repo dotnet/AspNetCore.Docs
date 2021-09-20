@@ -267,6 +267,9 @@ No forwarding configuration is required for Azure. This is already setup in the 
 > [!NOTE]
 > This requires that the CertificateForwardingMiddleware is present.
 
+Add "WEBSITE_LOAD_USER_PROFILE=1" to the application setting when hosting on a Windows instance, and the App Service plan needs to be on a Basic or above.
+
+
 ### Use certificate authentication in custom web proxies
 
 The `AddCertificateForwarding` method is used to specify:
