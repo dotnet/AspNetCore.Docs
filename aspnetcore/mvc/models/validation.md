@@ -78,7 +78,7 @@ To find out which parameters are passed to `String.Format` for a particular attr
 
 ## Non-nullable reference types and [Required] attribute
 
-The validation system treats non-nullable parameters or bound properties as if they had a `[Required]` attribute. By [enabling `Nullable` contexts](/dotnet/csharp/nullable-references#nullable-contexts), MVC implicitly starts validating non-nullable properties or parameters as if they had been attributed with the `[Required]` attribute. Consider the following code:
+The validation system treats non-nullable parameters or bound properties as if they had a `[Required(AllowEmptyStrings = true)]` attribute. By [enabling `Nullable` contexts](/dotnet/csharp/nullable-references#nullable-contexts), MVC implicitly starts validating non-nullable properties or parameters as if they had been attributed with the `[Required(AllowEmptyStrings = true)]` attribute. Consider the following code:
 
 ```csharp
 public class Person
@@ -122,7 +122,7 @@ Non-nullable types and strings are handled differently on the client compared to
 * A value is considered present only if input is entered for it. Therefore, client-side validation handles non-nullable types the same as nullable types.
 * Whitespace in a string field is considered valid input by the jQuery Validation [required](https://jqueryvalidation.org/required-method/) method. Server-side validation considers a required string field invalid if only whitespace is entered.
 
-As noted earlier, non-nullable types are treated as though they had a `[Required]` attribute. That means you get client-side validation even if you don't apply the `[Required]` attribute. But if you don't use the attribute, you get a default error message. To specify a custom error message, use the attribute.
+As noted earlier, non-nullable types are treated as though they had a `[Required(AllowEmptyStrings = true)]` attribute. That means you get client-side validation even if you don't apply the `[Required(AllowEmptyStrings = true)]` attribute. But if you don't use the attribute, you get a default error message. To specify a custom error message, use the attribute.
 
 ## [Remote] attribute
 
