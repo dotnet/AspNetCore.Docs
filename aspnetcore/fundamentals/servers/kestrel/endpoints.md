@@ -556,7 +556,7 @@ webBuilder.ConfigureKestrel(serverOptions =>
 
 The default value is `ClientCertificateMode.NoCertificate` where Kestrel will not request or require a certificate from the client.
 
-See [Certificate Authenticaiton](/aspnet/core/security/authentication/certauth) for more details.
+See [Certificate Authentication](../../../security/authentication/certauth.md) for more details.
 
 ## Connection logging
 

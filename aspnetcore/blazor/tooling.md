@@ -241,7 +241,7 @@ For more information on template options, see the following resources:
 
 .NET Hot Reload applies code changes, including changes to stylesheets, to a running app without restarting the app and without losing app state.
 
-Hot Reload is activated using the [`dotnet watch`](/aspnet/core/tutorials/dotnet-watch) command:
+Hot Reload is activated using the [`dotnet watch`](../tutorials/dotnet-watch.md) command:
 
 ```dotnetcli
 dotnet watch
