@@ -279,22 +279,18 @@ An existing Razor Pages or MVC app can integrate Razor components into pages and
 
    * Add the following `<base>` tag to the `<head>` element in `Pages/Shared/_Layout.cshtml` (Razor Pages) or `Views/Shared/_Layout.cshtml` (MVC):
 
-     ```diff
-     + <base href="~/" />
+     ```html
+     <base href="~/" />
      ```
 
      The `href` value (the *app base path*) in the preceding example assumes that the app resides at the root URL path (`/`). If the app is a sub-application, follow the guidance in the *App base path* section of the <xref:blazor/host-and-deploy/index#app-base-path> article.
 
-   * Add a `<script>` tag for the `blazor.server.js` script immediately before the `Scripts` render section.
+   * Add a `<script>` tag for the `blazor.server.js` script immediately before the `Scripts` render section (`@await RenderSectionAsync(...)`) in the app's layout.
 
      `Pages/Shared/_Layout.cshtml` (Razor Pages) or `Views/Shared/_Layout.cshtml` (MVC):
 
-     ```diff
-         ...
-     +   <script src="_framework/blazor.server.js"></script>
-
-         @await RenderSectionAsync("Scripts", required: false)
-     </body>
+     ```html
+     <script src="_framework/blazor.server.js"></script>
      ```
 
      The framework adds the `blazor.server.js` script to the app. There's no need to manually add a `blazor.server.js` script file to the app.
@@ -310,24 +306,21 @@ An existing Razor Pages or MVC app can integrate Razor components into pages and
    @using Microsoft.AspNetCore.Components.Forms
    @using Microsoft.AspNetCore.Components.Routing
    @using Microsoft.AspNetCore.Components.Web
+   @using Microsoft.AspNetCore.Components.Web.Virtualization
    @using Microsoft.JSInterop
    @using {APP NAMESPACE}
    ```
 
-1. Register the Blazor Server service in `Startup.ConfigureServices`.
+1. Register the Blazor Server service in `Program.cs` where services are registered:
 
-   `Startup.cs`:
-
-   ```diff
-   + services.AddServerSideBlazor();
+   ```csharp
+   builder.Services.AddServerSideBlazor();
    ```
 
-1. Add the Blazor Hub endpoint to the endpoints (`app.UseEndpoints`) of `Startup.Configure`.
+1. Add the Blazor Hub endpoint to the endpoints of `Program.cs` where routes are mapped:
 
-   `Startup.cs`:
-
-   ```diff
-   + endpoints.MapBlazorHub();
+   ```csharp
+   app.MapBlazorHub();
    ```
 
 1. Integrate components into any page or view. For example, add a `Counter` component to the project's `Shared` folder.
