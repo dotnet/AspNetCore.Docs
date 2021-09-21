@@ -33,7 +33,7 @@ To set up prerendering for a hosted Blazor WebAssembly app:
 
 1. **Delete** the `wwwroot/index.html` file from the Blazor WebAssembly **`Client`** project.
 
-1. In the **`Client`** project, **delete** the following line in `Program.Main` (`Program.cs`):
+1. In the **`Client`** project, **delete** the following line in `Program.cs`:
 
    ```diff
    - builder.RootComponents.Add<App>("#app");
@@ -41,12 +41,13 @@ To set up prerendering for a hosted Blazor WebAssembly app:
 
 1. Add `_Host.cshtml` and `_Layout.cshtml` files to the **`Server`** project's `Pages` folder. You can obtain `_Host.cshtml` and `_Layout.cshtml` files from a project created from the Blazor Server template with the `dotnet new blazorserver -o BlazorServer` command in a command shell (the `-o BlazorServer` option creates a folder for the project). After placing the files into the **`Server`** project's `Pages` folder, make the following changes to the `_Layout.cshtml` file:
 
+   * Update the `Pages` namespace (for example, `@namespace BlazorHosted.Pages`).
    * Provide an [`@using`](xref:mvc/views/razor#using) directive for the **`Client`** project (for example, `@using BlazorHosted.Client`).
    * Update the stylesheet links to point to the WebAssembly project's stylesheets. In the following example, the client project's namespace is `BlazorHosted.Client`:
 
      ```diff
      - <link href="css/site.css" rel="stylesheet" />
-     - <link href="_content/BlazorServer/_framework/scoped.styles.css" rel="stylesheet" />
+     - <link href="{APP NAMESPACE}.styles.css" rel="stylesheet" />
      + <link href="css/app.css" rel="stylesheet" />
      + <link href="BlazorHosted.Client.styles.css" rel="stylesheet" />
      ```
@@ -68,13 +69,11 @@ To set up prerendering for a hosted Blazor WebAssembly app:
      + <component type="typeof(App)" render-mode="WebAssemblyPrerendered" />
      ```
 
-1. In `Startup.Configure` of the **`Server`** project, change the fallback from the `index.html` file to the `_Host.cshtml` page.
-
-   `Startup.cs`:
+1. In endpoint mapping of the **`Server`** project in `Program.cs`, change the fallback from the `index.html` file to the `_Host.cshtml` page:
 
    ```diff
-   - endpoints.MapFallbackToFile("index.html");
-   + endpoints.MapFallbackToPage("/_Host");
+   - app.MapFallbackToFile("index.html");
+   + app.MapFallbackToPage("/_Host");
    ```
 
 1. Run the **`Server`** project. The hosted Blazor WebAssembly app is prerendered by the **`Server`** project for clients.
