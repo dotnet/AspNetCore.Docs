@@ -262,13 +262,12 @@ See the [host and deploy documentation](xref:host-and-deploy/proxy-load-balancer
 
 ### Use certificate authentication in Azure Web Apps
 
-No forwarding configuration is required for Azure. This is already setup in the certificate forwarding middleware.
+No forwarding configuration is required for Azure. Forwarding configuration is set up by the Certificate Forwarding Middleware.
 
 > [!NOTE]
-> This requires that the CertificateForwardingMiddleware is present.
+> Certificate Forwarding Middleware is required for this scenario.
 
-Add "WEBSITE_LOAD_USER_PROFILE=1" to the application setting when hosting on a Windows instance, and the App Service plan needs to be on a Basic or above.
-
+For more information, see [Use a TLS/SSL certificate in your code in Azure App Service (Azure documentation)](/azure/app-service/configure-ssl-certificate-in-code).
 
 ### Use certificate authentication in custom web proxies
 
