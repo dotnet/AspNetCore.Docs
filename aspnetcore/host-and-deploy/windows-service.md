@@ -306,7 +306,7 @@ A functioning app may fail immediately after upgrading either the .NET Core SDK 
 1. Restore and rebuild the project.
 1. Delete all of the files in the deployment folder on the server prior to redeploying the app.
 
-### Slow or hanging app
+### Slow or unresponsive app
 
 A *crash dump* is a snapshot of the system's memory and can help determine the cause of an app crash, startup failure, or slow app.
 
@@ -333,7 +333,7 @@ After an app crashes and dump collection is complete, the app is allowed to term
 > [!WARNING]
 > Crash dumps might take up a large amount of disk space (up to several gigabytes each).
 
-#### App hangs, fails during startup, or runs normally
+#### App is unresponsive, fails during startup, or runs normally
 
 When an app *hangs* (stops responding but doesn't crash), fails during startup, or runs normally, see [User-Mode Dump Files: Choosing the Best Tool](/windows-hardware/drivers/debugger/user-mode-dump-files#choosing-the-best-tool) to select an appropriate tool to produce the dump.
 
@@ -676,7 +676,7 @@ After an app crashes and dump collection is complete, the app is allowed to term
 > [!WARNING]
 > Crash dumps might take up a large amount of disk space (up to several gigabytes each).
 
-#### App hangs, fails during startup, or runs normally
+#### App unresponsive, fails during startup, or runs normally
 
 When an app *hangs* (stops responding but doesn't crash), fails during startup, or runs normally, see [User-Mode Dump Files: Choosing the Best Tool](/windows-hardware/drivers/debugger/user-mode-dump-files#choosing-the-best-tool) to select an appropriate tool to produce the dump.
 
@@ -986,7 +986,7 @@ A functioning app may fail immediately after upgrading either the .NET Core SDK 
 1. Restore and rebuild the project.
 1. Delete all of the files in the deployment folder on the server prior to redeploying the app.
 
-### Slow or hanging app
+### Slow or unresponsive app
 
 A *crash dump* is a snapshot of the system's memory and can help determine the cause of an app crash, startup failure, or slow app.
 
@@ -1013,7 +1013,7 @@ After an app crashes and dump collection is complete, the app is allowed to term
 > [!WARNING]
 > Crash dumps might take up a large amount of disk space (up to several gigabytes each).
 
-#### App hangs, fails during startup, or runs normally
+#### App unresponsive, fails during startup, or runs normally
 
 When an app *hangs* (stops responding but doesn't crash), fails during startup, or runs normally, see [User-Mode Dump Files: Choosing the Best Tool](/windows-hardware/drivers/debugger/user-mode-dump-files#choosing-the-best-tool) to select an appropriate tool to produce the dump.
 

@@ -18,6 +18,10 @@ Configure a manual start in the `wwwroot/index.html` file (Blazor WebAssembly) o
 * Add an `autostart="false"` attribute and value to the `<script>` tag for the Blazor script.
 * Place a script that calls `Blazor.start` after the Blazor `<script>` tag and inside the closing `</body>` tag.
 
+## JavaScript initializers
+
+[!INCLUDE[](~/blazor/includes/js-initializers.md)]
+
 ## Initialize Blazor when the document is ready
 
 The following example starts Blazor when the document is ready:

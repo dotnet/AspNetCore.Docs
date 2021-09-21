@@ -977,6 +977,9 @@
         - name: Options
           displayName: deploy, publish, server, Kestrel
           uid: fundamentals/servers/kestrel/options
+        - name: Diagnostics
+          displayName: diagnostics
+          uid: fundamentals/servers/kestrel/diagnostics
         - name: HTTP/2
           displayName: deploy, publish, server, Kestrel
           uid: fundamentals/servers/kestrel/http2

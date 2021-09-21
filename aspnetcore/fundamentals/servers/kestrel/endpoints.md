@@ -330,6 +330,99 @@ webBuilder.ConfigureKestrel(serverOptions =>
 });
 ```
 
+### SNI with `ServerOptionsSelectionCallback`
+
+Kestrel supports additional dynamic TLS configuraiton via the `ServerOptionsSelectionCallback` callback. The callback is invoked once per connection to allow the app to inspect the host name and select the appropriate certificate and TLS configuration. Default certificates and `ConfigureHttpsDefaults` are not used with this callback.
+
+```csharp
+//using System.Security.Cryptography.X509Certificates;
+//using Microsoft.AspNetCore.Server.Kestrel.Https;
+
+webBuilder.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.ListenAnyIP(5005, listenOptions =>
+    {
+        listenOptions.UseHttps(httpsOptions =>
+        {
+            var localhostCert = CertificateLoader.LoadFromStoreCert(
+                "localhost", "My", StoreLocation.CurrentUser,
+                allowInvalid: true);
+            var exampleCert = CertificateLoader.LoadFromStoreCert(
+                "example.com", "My", StoreLocation.CurrentUser,
+                allowInvalid: true);
+
+            listenOptions.UseHttps((stream, clientHelloInfo, state, cancellationToken) =>
+            {
+                if (string.Equals(clientHelloInfo.ServerName, "localhost", StringComparison.OrdinalIgnoreCase))
+                {
+                    return new ValueTask<SslServerAuthenticationOptions>(new SslServerAuthenticationOptions
+                    {
+                        ServerCertificate = localhostCert,
+                        // Different TLS requirements for this host
+                        ClientCertificateRequired = true,
+                    });
+                }
+
+                return new ValueTask<SslServerAuthenticationOptions>(new SslServerAuthenticationOptions
+                {
+                    ServerCertificate = exampleCert,
+                });
+            }, state: null);
+        });
+    });
+});
+```
+
+::: moniker range=">= aspnetcore-6.0"
+
+### SNI with `TlsHandshakeCallbackOptions`
+
+Kestrel supports additional dynamic TLS configuration via the `TlsHandshakeCallbackOptions.OnConnection` callback. The callback is invoked once per connection to allow the app to inspect the host name and select the appropriate certificate, TLS configuration, and other server options. Default certificates and `ConfigureHttpsDefaults` are not used with this callback.
+
+```csharp
+//using System.Security.Cryptography.X509Certificates;
+//using Microsoft.AspNetCore.Server.Kestrel.Https;
+
+webBuilder.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.ListenAnyIP(5005, listenOptions =>
+    {
+        listenOptions.UseHttps(httpsOptions =>
+        {
+            var localhostCert = CertificateLoader.LoadFromStoreCert(
+                "localhost", "My", StoreLocation.CurrentUser,
+                allowInvalid: true);
+            var exampleCert = CertificateLoader.LoadFromStoreCert(
+                "example.com", "My", StoreLocation.CurrentUser,
+                allowInvalid: true);
+
+            listenOptions.UseHttps(new TlsHandshakeCallbackOptions()
+            {
+                OnConnection = context =>
+                {
+                    if (string.Equals(context.ClientHelloInfo.ServerName, "localhost", StringComparison.OrdinalIgnoreCase))
+                    {
+                        // Different TLS requirements for this host
+                        context.AllowDelayedClientCertificateNegotation = true;
+                        return new ValueTask<SslServerAuthenticationOptions>(new SslServerAuthenticationOptions
+                        {
+                            ServerCertificate = localhostCert,
+                        });
+                    }
+
+                    return new ValueTask<SslServerAuthenticationOptions>(new SslServerAuthenticationOptions
+                    {
+                        ServerCertificate = exampleCert,
+                    });
+                }
+            });
+        });
+    });
+});
+```
+
+::: moniker-end
+
 ### SNI in configuration
 
 Kestrel supports SNI defined in configuration. An endpoint can be configured with an `Sni` object that contains a mapping between host names and HTTPS options. The connection host name is matched to the options and they are used for that connection.
@@ -463,7 +556,7 @@ webBuilder.ConfigureKestrel(serverOptions =>
 
 The default value is `ClientCertificateMode.NoCertificate` where Kestrel will not request or require a certificate from the client.
 
-See [Certificate Authenticaiton](/aspnet/core/security/authentication/certauth) for more details.
+For more information, see <xref:security/authentication/certauth>.
 
 ## Connection logging
 
