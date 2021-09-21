@@ -317,7 +317,9 @@ An existing Razor Pages or MVC app can integrate Razor components into pages and
    builder.Services.AddServerSideBlazor();
    ```
 
-1. Add the Blazor Hub endpoint to the endpoints of `Program.cs` where routes are mapped:
+1. Add the Blazor Hub endpoint to the endpoints of `Program.cs` where routes are mapped.
+
+   Place the following line after the call to `MapRazorPages` (Razor Pages) or `MapControllerRoute` (MVC):
 
    ```csharp
    app.MapBlazorHub();
@@ -399,13 +401,13 @@ To support routable Razor components in Razor Pages apps:
    ```razor
    @using Microsoft.AspNetCore.Components.Routing
 
-   <Router AppAssembly="@typeof(Program).Assembly">
+   <Router AppAssembly="@typeof(App).Assembly">
        <Found Context="routeData">
-           <RouteView RouteData="routeData" />
+           <RouteView RouteData="@routeData" />
        </Found>
        <NotFound>
-           <h1>Page not found</h1>
-           <p>Sorry, but there's nothing here!</p>
+           <PageTitle>Not found</PageTitle>
+           <p role="alert">Sorry, there's nothing at this address.</p>
        </NotFound>
    </Router>
    ```
@@ -416,16 +418,16 @@ To support routable Razor components in Razor Pages apps:
 
    ```cshtml
    @page "/blazor"
+   @namespace {APP NAMESPACE}.Pages.Shared
+   @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
    @{
        Layout = "_Layout";
    }
 
-   <app>
-       <component type="typeof(App)" render-mode="ServerPrerendered" />
-   </app>
+   <component type="typeof(App)" render-mode="ServerPrerendered" />
    ```
 
-   Components use the shared `_Layout.cshtml` file for their layout.
+   In this scenario, components use the shared `_Layout.cshtml` file for their layout.
 
    <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configures whether the `App` component:
 
@@ -434,15 +436,10 @@ To support routable Razor components in Razor Pages apps:
 
    For more information on the Component Tag Helper, including passing parameters and <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configuration, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 
-1. In the `Startup.Configure` endpoints of `Startup.cs`, add a low-priority route for the `_Host` page as the last endpoint:
+1. In the `Program.cs` endpoints, add a low-priority route for the `_Host` page as the last endpoint:
 
-   ```diff
-   app.UseEndpoints(endpoints =>
-   {
-       endpoints.MapRazorPages();
-       endpoints.MapBlazorHub();
-   +   endpoints.MapFallbackToPage("/_Host");
-   });
+   ```csharp
+   app.MapFallbackToPage("/_Host");
    ```
 
 1. Add routable components to the project.
