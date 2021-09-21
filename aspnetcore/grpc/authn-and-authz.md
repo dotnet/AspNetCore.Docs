@@ -8,10 +8,7 @@ ms.date: 05/26/2020
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/authn-and-authz
 ---
-
 # Authentication and authorization in gRPC for ASP.NET Core
-
-By [James Newton-King](https://twitter.com/jamesnk)
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/grpc/authn-and-authz/sample/) [(how to download)](xref:index#how-to-download-a-sample)
 

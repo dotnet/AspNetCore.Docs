@@ -10,8 +10,6 @@ uid: grpc/versioning
 ---
 # Versioning gRPC services
 
-By [James Newton-King](https://twitter.com/jamesnk)
-
 New features added to an app can require gRPC services provided to clients to change, sometimes in unexpected and breaking ways. When gRPC services change:
 
 * Consideration should be given on how changes impact clients.

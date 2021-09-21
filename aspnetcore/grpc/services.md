@@ -10,8 +10,6 @@ uid: grpc/services
 ---
 # Create gRPC services and methods
 
-By [James Newton-King](https://twitter.com/jamesnk)
-
 This document explains how to create gRPC services and methods in C#. Topics include:
 
 * How to define services and methods in *.proto* files.

@@ -10,8 +10,6 @@ uid: grpc/clientfactory
 ---
 # gRPC client factory integration in .NET
 
-By [James Newton-King](https://twitter.com/jamesnk)
-
 gRPC integration with `HttpClientFactory` offers a centralized way to create gRPC clients. It can be used as an alternative to [configuring stand-alone gRPC client instances](xref:grpc/client). Factory integration is available in the [Grpc.Net.ClientFactory](https://www.nuget.org/packages/Grpc.Net.ClientFactory) NuGet package.
 
 The factory offers the following benefits:

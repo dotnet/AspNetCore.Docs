@@ -10,8 +10,6 @@ uid: grpc/code-first
 ---
 # Code-first gRPC services and clients with .NET
 
-By [James Newton-King](https://twitter.com/jamesnk) and [Marc Gravell](https://twitter.com/marcgravell)
-
 Code-first gRPC uses .NET types to define service and message contracts.
 
 Code-first is a good choice when an entire system uses .NET:

@@ -11,8 +11,6 @@ uid: grpc/troubleshoot
 ---
 # Troubleshoot gRPC on .NET Core
 
-By [James Newton-King](https://twitter.com/jamesnk)
-
 This document discusses commonly encountered problems when developing gRPC apps on .NET.
 
 ## Mismatch between client and service SSL/TLS configuration

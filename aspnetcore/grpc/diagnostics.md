@@ -10,8 +10,6 @@ uid: grpc/diagnostics
 ---
 # Logging and diagnostics in gRPC on .NET
 
-By [James Newton-King](https://twitter.com/jamesnk)
-
 This article provides guidance for gathering diagnostics from a gRPC app to help troubleshoot issues. Topics covered include:
 
 * **Logging** - Structured logs written to [.NET Core logging](xref:fundamentals/logging/index). <xref:Microsoft.Extensions.Logging.ILogger> is used by app frameworks to write logs, and by users for their own logging in an app.

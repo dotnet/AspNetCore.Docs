@@ -10,8 +10,6 @@ uid: grpc/netstandard
 ---
 # Use gRPC client with .NET Standard 2.0
 
-By [James Newton-King](https://twitter.com/jamesnk)
-
 This article discusses how to use the .NET gRPC client with .NET implementations that support [.NET Standard 2.0](/dotnet/standard/net-standard).
 
 ## .NET implementations
