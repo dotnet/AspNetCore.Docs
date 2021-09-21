@@ -83,7 +83,10 @@
         using var context = DbFactory.CreateDbContext();
 
         // this just attaches
-        context.Contacts.Add(Contact);
+        if (Contact is not null)
+        {
+            context.Contacts?.Add(Contact);
+        }
 
         try
         {
