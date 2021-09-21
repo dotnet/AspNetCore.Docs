@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using MvcMovie.Data;
 
-#region SQLServer
+#region FirstSQLServer
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<MvcMovieContext>(options =>
@@ -46,7 +46,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using MvcMovie.Data;
 
-#region SQLite
+#region FirstSQLite
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<MvcMovieContext>(options =>

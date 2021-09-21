@@ -177,9 +177,13 @@ dotnet-aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMo
 
 ### Use SQLite for development, SQL Server for production
 
-When SQLite is selected, the template generated code is ready for development. The following code in `Program.cs` shows how to use SQLite in development and SQL Server in production.
+The following highlighted code in `Program.cs` shows how to use SQLite in development and SQL Server in production.
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Program.cs?name=SQLite2)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Program.cs?name=SQLiteDevProd&highlight=3-99)]
+
+For this tutorial, however, just change the scaffolded code to always use SQLite:
+
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Program.cs?name=FirstSQLite&highlight=3-4)]
 
 <a name="scaffolding-created"></a>
 
@@ -332,11 +336,11 @@ Scaffolding generated the following highlighted code in *Program.cs*:
 
 # [Visual Studio](#tab/visual-studio)
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Program.cs?name=SQLServerSnippet&highlight=3-4)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Program.cs?name=FirstSQLServer&highlight=3-4)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Program.cs?name=SQLiteSnippet&highlight=3-4)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Program.cs?name=FirstSQLite&highlight=3-4)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
