@@ -56,7 +56,7 @@ To set up prerendering for a hosted Blazor WebAssembly app:
      + @using BlazorHosted.Client
      ```
 
-   * Update the stylesheet links to point to the WebAssembly project's stylesheets. In the following example, the client project's namespace is `BlazorHosted.Client`. The `{APP NAMESPACE}` placeholder represents the namespace of the donor app that provided the `_Layout.cshtml` file. Update the `render-mode` of the Component Tag Helper (`<component>` tag) for the `HeadOutlet` component to `WebAssemblyPrerendered`.
+   * Update the stylesheet links to point to the WebAssembly project's stylesheets. In the following example, the client project's namespace is `BlazorHosted.Client`. The `{APP NAMESPACE}` placeholder represents the namespace of the donor app that provided the `_Layout.cshtml` file. Remove the Component Tag Helper (`<component>` tag) for the `HeadOutlet` component.
 
      ```diff
      - <link href="css/site.css" rel="stylesheet" />
@@ -64,7 +64,6 @@ To set up prerendering for a hosted Blazor WebAssembly app:
      - <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
      + <link href="css/app.css" rel="stylesheet" />
      + <link href="BlazorHosted.Client.styles.css" rel="stylesheet" />
-     + <component type="typeof(HeadOutlet)" render-mode="WebAssemblyPrerendered" />
      ```
 
      > [!NOTE]
