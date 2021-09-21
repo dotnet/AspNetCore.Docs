@@ -484,13 +484,13 @@ To support routable Razor components in MVC apps:
    ```razor
    @using Microsoft.AspNetCore.Components.Routing
 
-   <Router AppAssembly="@typeof(Program).Assembly">
+   <Router AppAssembly="@typeof(App).Assembly">
        <Found Context="routeData">
-           <RouteView RouteData="routeData" />
+           <RouteView RouteData="@routeData" />
        </Found>
        <NotFound>
-           <h1>Page not found</h1>
-           <p>Sorry, but there's nothing here!</p>
+           <PageTitle>Not found</PageTitle>
+           <p role="alert">Sorry, there's nothing at this address.</p>
        </NotFound>
    </Router>
    ```
@@ -500,13 +500,13 @@ To support routable Razor components in MVC apps:
    `Views/Home/_Host.cshtml`:
 
    ```cshtml
+   @namespace {APP NAMESPACE}.Views.Shared
+   @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
    @{
        Layout = "_Layout";
    }
 
-   <app>
-       <component type="typeof(App)" render-mode="ServerPrerendered" />
-   </app>
+   <component type="typeof(App)" render-mode="ServerPrerendered" />
    ```
 
    Components use the shared `_Layout.cshtml` file for their layout.
@@ -529,20 +529,13 @@ To support routable Razor components in MVC apps:
    }
    ```
 
-1. In the `Startup.Configure` endpoints of `Startup.cs`, add a low-priority route for the controller action that returns the `_Host` view:
+1. In the `Program.cs` endpoints, add a low-priority route for the controller action that returns the `_Host` view:
 
-   ```diff
-   app.UseEndpoints(endpoints =>
-   {
-       endpoints.MapControllerRoute(
-           name: "default",
-           pattern: "{controller=Home}/{action=Index}/{id?}");
-       endpoints.MapBlazorHub();
-   +   endpoints.MapFallbackToController("Blazor", "Home");
-   });
+   ```csharp
+   app.MapFallbackToController("Blazor", "Home");
    ```
 
-1. Add routable components to the project.
+1. Create a `Pages` folder in the MVC app and add routable components.
 
    `Pages/RoutableCounter.razor`:
 
