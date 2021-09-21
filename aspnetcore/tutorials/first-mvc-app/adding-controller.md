@@ -3,7 +3,7 @@ title: Part 2, add a controller to an ASP.NET Core MVC app
 author: rick-anderson
 description: Part 2 of tutorial series on ASP.NET Core MVC.
 ms.author: riande
-ms.date: 09/15/2021
+ms.date: 09/21/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/adding-controller
 ms.custom: contperf-fy21q3
@@ -146,7 +146,7 @@ In the previous image:
 
 Replace the `Welcome` method with the following code:
 
-  [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Controllers/HelloWorldController.cs?name=snippet_3)]
+  [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Controllers/HelloWorldController.cs?name=Third)]
 
 Run the app and enter the following URL: `https://localhost:{PORT}/HelloWorld/Welcome/3?name=Rick`
 

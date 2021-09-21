@@ -3,7 +3,7 @@ title: Part 4, add a model to an ASP.NET Core MVC app
 author: rick-anderson
 description: Part 4 of tutorial series on ASP.NET Core MVC.
 ms.author: riande
-ms.date: 09/15/2021
+ms.date: 09/21/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/adding-model
 ms.custom: contperf-fy21q3
@@ -80,7 +80,7 @@ The preceding commands add:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI-5.md)]
+[!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI-6.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -177,9 +177,9 @@ dotnet-aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMo
 
 ### Use SQLite for development, SQL Server for production
 
-When SQLite is selected, the template generated code is ready for development. The following code shows how to inject <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> into `Startup`. `IWebHostEnvironment` is injected so `ConfigureServices` can use SQLite in development and SQL Server in production.
+When SQLite is selected, the template generated code is ready for development. The following code in `Program.cs` shows how to use SQLite in development and SQL Server in production.
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/StartupDevProd.cs?name=snippet_StartupClass&highlight=3,5,10,16-28)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Program.cs?name=SQLite2)]
 
 <a name="scaffolding-created"></a>
 
