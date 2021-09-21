@@ -87,7 +87,8 @@ In the `<head>` content of the `wwwroot/index.html` host page, apply the directi
                upgrade-insecure-requests;">
 ```
 
-Note `sha256-v8v3RKRPmN4odZ1CWM5gw80QKPCCWMcpNeOmimNL2AA=` represents the hash of an [inline](https://github.com/dotnet/aspnetcore/blob/57501251222b199597b9ac16888f362a69eb13c1/src/Components/Web.JS/src/Platform/Mono/MonoPlatform.ts#L212) script which is used for Blazor WebAssembly. This may be removed in the future.
+> [!NOTE]
+> The `sha256-v8v3RKRPmN4odZ1CWM5gw80QKPCCWMcpNeOmimNL2AA=` hash represents the [inline](https://github.com/dotnet/aspnetcore/blob/57501251222b199597b9ac16888f362a69eb13c1/src/Components/Web.JS/src/Platform/Mono/MonoPlatform.ts#L212) script that's used for Blazor WebAssembly. This may be removed in the future.
 
 Add additional `script-src` and `style-src` hashes as required by the app. During development, use an online tool or browser developer tools to have the hashes calculated for you. For example, the following browser tools console error reports the hash for a required script not covered by the policy:
 
