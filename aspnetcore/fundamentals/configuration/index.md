@@ -1449,7 +1449,7 @@ In the preceding environment variable, `Https` is the name of the Kestrel specif
 
 ## GetValue
 
-[`ConfigurationBinder.GetValue<T>`](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.GetValue*) extracts a single value from configuration with a specified key and converts it to the specified type:
+[`ConfigurationBinder.GetValue<T>`](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.GetValue*) extracts a single value from configuration with a specified key and converts it to the specified type. In practice, this method is used as an extension method to [`IConfiguration`](xref:Microsoft.Extensions.Configuration.IConfiguration):
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/TestNum.cshtml.cs?name=snippet)]
 
@@ -1609,6 +1609,14 @@ The following code shows how to use the custom `EFConfigurationProvider` in *Pro
 [!code-csharp[](index/samples_snippets/3.x/ConfigurationSample/Program.cs?highlight=7-8)]
 
 <a name="acs"></a>
+
+## Generic access to configuration information
+
+The [`IConfiguration`](xref:Microsoft.Extensions.Configuration.IConfiguration) service may be retrieved via [Dependency Injection](xref:fundamentals/dependency-injection), and used to access configuration information within an application:
+
+[!code-csharp[](index/samples/3.x/ConfigSample/configAccess.cs)]
+
+For information on the specifics on information retrieval from the [`IConfiguration`](xref:Microsoft.Extensions.Configuration.IConfiguration), see [GetValue](#GetValue-1) and [GetSection](#GetSection-getchildren-and-exists-1) subsections of this article.
 
 ## Access configuration in Startup
 
