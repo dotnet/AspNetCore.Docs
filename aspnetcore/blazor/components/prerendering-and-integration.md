@@ -39,12 +39,24 @@ To set up prerendering for a hosted Blazor WebAssembly app:
    - builder.RootComponents.Add<App>("#app");
    ```
 
-1. Add `_Host.cshtml` and `_Layout.cshtml` files to the **`Server`** project's `Pages` folder. You can obtain `_Host.cshtml` and `_Layout.cshtml` files from a project created from the Blazor Server template with the `dotnet new blazorserver -o BlazorServer` command in a command shell (the `-o BlazorServer` option creates a folder for the project). After placing the files into the **`Server`** project's `Pages` folder, make the following changes to the `_Layout.cshtml` file:
+1. Add `_Host.cshtml` and `_Layout.cshtml` files to the **`Server`** project's `Pages` folder. You can obtain `_Host.cshtml` and `_Layout.cshtml` files from a project created from the Blazor Server template with the `dotnet new blazorserver -o BlazorServer` command in a command shell (the `-o BlazorServer` option creates a folder for the project). After placing the files into the **`Server`** project's `Pages` folder:
 
-   * Update the `Pages` namespace at the top of the file (for example, `@namespace {APP NAMESPACE}.Pages`) to match the namespace of the **`Server`** app's pages (for example, `@namespace BlazorHosted.Server.Pages`). The `{APP NAMESPACE}` placeholder represents the namespace of the donor app that provided the `_Layout.cshtml` file.
-   * Provide an [`@using`](xref:mvc/views/razor#using) directive for the **`Client`** project (for example, `@using BlazorHosted.Client`).
-   * Update the stylesheet links to point to the WebAssembly project's stylesheets. In the following example, the client project's namespace is `BlazorHosted.Client`. The `{APP NAMESPACE}` placeholder represents the namespace of the donor app that provided the `_Layout.cshtml` file.
-   * Update the `render-mode` of the Component Tag Helper (`<component>` tag) for the `HeadOutlet` component to `WebAssemblyPrerendered`.
+   Make the following changes to the `_Layout.cshtml` file:
+
+   * Update the `Pages` namespace at the top of the file to match the namespace of the **`Server`** app's pages. The `{APP NAMESPACE}` placeholder represents the namespace of the donor app's pages that provided the `_Layout.cshtml` file:
+
+     ```diff
+     - @namespace {APP NAMESPACE}.Pages
+     + @namespace BlazorHosted.Server.Pages
+     ```
+
+   * Add an [`@using`](xref:mvc/views/razor#using) directive for the **`Client`** project at the top of the file:
+
+     ```diff
+     + @using BlazorHosted.Client
+     ```
+
+   * Update the stylesheet links to point to the WebAssembly project's stylesheets. In the following example, the client project's namespace is `BlazorHosted.Client`. The `{APP NAMESPACE}` placeholder represents the namespace of the donor app that provided the `_Layout.cshtml` file. Update the `render-mode` of the Component Tag Helper (`<component>` tag) for the `HeadOutlet` component to `WebAssemblyPrerendered`.
 
      ```diff
      - <link href="css/site.css" rel="stylesheet" />
@@ -58,25 +70,27 @@ To set up prerendering for a hosted Blazor WebAssembly app:
      > [!NOTE]
      > Leave the `<link>` element that requests the Bootstrap stylesheet (`css/bootstrap/bootstrap.min.css`) in place.
 
-   * In the `_Layout.cshtml` file, update the Blazor script source to use the client-side Blazor WebAssembly script:
+   * Update the Blazor script source to use the client-side Blazor WebAssembly script:
 
      ```diff
      - <script src="_framework/blazor.server.js"></script>
      + <script src="_framework/blazor.webassembly.js"></script>
      ```
 
-   * In the `_Host.cshtml` file, update the `render-mode` of the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) to prerender the root `App` component with <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>:
+   In the `_Host.cshtml` file:
 
-     ```diff
-     - <component type="typeof(App)" render-mode="ServerPrerendered" />
-     + <component type="typeof(App)" render-mode="WebAssemblyPrerendered" />
-     ```
-
-   * In the `_Host.cshtml` file, change the `{APP NAMESPACE}.Pages` namespace, if it exists, to that of the **`Client`** project. The `{APP NAMESPACE}` placeholder represents the namespace of the donor app that provided the `_Host.cshtml` file. If a namespace for `{APP NAMESPACE}.Pages` doesn't exist, add the namespace for the **`Client`** project (for example, `BlazorHosted.Client`):
+   * Change the `Pages` namespace to that of the **`Client`** project. The `{APP NAMESPACE}` placeholder represents the namespace of the donor app's pages that provided the `_Host.cshtml` file:
 
      ```diff
      - @namespace {APP NAMESPACE}.Pages
      + @namespace BlazorHosted.Client
+     ```
+
+   * Update the `render-mode` of the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) to prerender the root `App` component with <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>:
+
+     ```diff
+     - <component type="typeof(App)" render-mode="ServerPrerendered" />
+     + <component type="typeof(App)" render-mode="WebAssemblyPrerendered" />
      ```
 
 1. In endpoint mapping of the **`Server`** project in `Program.cs`, change the fallback from the `index.html` file to the `_Host.cshtml` page:
