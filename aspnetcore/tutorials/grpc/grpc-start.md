@@ -31,10 +31,9 @@ In this tutorial, you:
 
 [!INCLUDE[](~/includes/net-prereqs-vsc-6.0.md)]
 
+<!--  Visual Studio for Mac tab to be updated and available once 2022 is available.
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-We hope to have Visual Studio for Mac instructions soon.
-<!--
 [!INCLUDE[](~/includes/net-prereqs-mac-6.0.md)]
 -->
 
@@ -66,9 +65,9 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
   * The `dotnet new` command creates a new gRPC service in the *GrpcGreeter* folder.
   * The `code` command opens the *GrpcGreeter* folder in a new instance of Visual Studio Code.
 
+<!--  Visual Studio for Mac tab to be updated and available once 2022 is available.
 # [Visual Studio for Mac](#tab/visual-studio-mac)
-We hope to have Visual Studio for Mac instructions soon.
-<!--
+
 * Start Visual Studio for Mac and select **New**. Alternatively, from the Visual Studio **File** menu, select **New Solution**.
 * In the **Choose a template for your new project** dialog, select **Web and Console** > **App** > **gRPC Service** and select **Next**.
 * Select **.NET 5.0** for the target framework and select **Next**.
@@ -82,11 +81,11 @@ We hope to have Visual Studio for Mac instructions soon.
 
   [!INCLUDE[](~/includes/run-the-app.md)]
 
-The logs show the service listening on `https://localhost:5001`.
+The logs show the service listening on `https://localhost:7042`.
 
 ```console
 info: Microsoft.Hosting.Lifetime[0]
-      Now listening on: https://localhost:5001
+      Now listening on: https://localhost:7042
 info: Microsoft.Hosting.Lifetime[0]
       Application started. Press Ctrl+C to shut down.
 info: Microsoft.Hosting.Lifetime[0]
@@ -129,10 +128,9 @@ info: Microsoft.Hosting.Lifetime[0]
   code -r GrpcGreeterClient
   ```
 
+<!--  Visual Studio for Mac tab to be updated and available once 2022 is available.
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-We hope to have Visual Studio for Mac instructions soon.
-<!-- 
 Follow the instructions in [Building a complete .NET Core solution on macOS using Visual Studio for Mac](/dotnet/core/tutorials/using-on-mac-vs-full-solution) to create a console app with the name *GrpcGreeterClient*.
 -->
 
@@ -180,10 +178,8 @@ dotnet add GrpcGreeterClient.csproj package Google.Protobuf
 dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 ```
 
+<!--  Visual Studio for Mac tab to be updated and available once 2022 is available.
 # [Visual Studio for Mac](#tab/visual-studio-mac)
-
-We hope to have Visual Studio for Mac instructions soon.
-<!--
 
 * Right-click **GrpcGreeterClient** project in the **Solution Pad** and select **Manage NuGet Packages**.
 * Enter **Grpc.Net.Client** in the search box.
@@ -214,10 +210,9 @@ We hope to have Visual Studio for Mac instructions soon.
 
   Select the *GrpcGreeterClient.csproj* file.
 
+<!--  Visual Studio for Mac tab to be updated and available once 2022 is available.
   # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-  We hope to have Visual Studio for Mac instructions soon.
-<!--
   Right-click the project and select **Edit Project File**.
 -->
 
@@ -264,11 +259,8 @@ The Greeter client calls the asynchronous `SayHello` method. The result of the `
 * Start the Greeter service.
 * Start the client.
 
-
+<!--  Visual Studio for Mac tab to be updated and available once 2022 is available.
 # [Visual Studio for Mac](#tab/visual-studio-mac)
-
-We hope to have Visual Studio for Mac instructions soon.
-<!--
 
 * Due to the previously mentioned [HTTP/2 TLS issue on macOS workaround](xref:grpc/troubleshoot#unable-to-start-aspnet-core-grpc-app-on-macos), you'll need to update the channel address in the client to "http://localhost:5000". Update line 13 of **GrpcGreeterClient/Program.cs** to read:
   ```csharp
@@ -291,7 +283,7 @@ The gRPC service records the details of the successful call in the logs written 
 
 ```console
 info: Microsoft.Hosting.Lifetime[0]
-      Now listening on: https://localhost:5001
+      Now listening on: https://localhost:
 info: Microsoft.Hosting.Lifetime[0]
       Application started. Press Ctrl+C to shut down.
 info: Microsoft.Hosting.Lifetime[0]
@@ -299,7 +291,7 @@ info: Microsoft.Hosting.Lifetime[0]
 info: Microsoft.Hosting.Lifetime[0]
       Content root path: C:\GH\aspnet\docs\4\Docs\aspnetcore\tutorials\grpc\grpc-start\sample\GrpcGreeter
 info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
-      Request starting HTTP/2 POST https://localhost:5001/Greet.Greeter/SayHello application/grpc
+      Request starting HTTP/2 POST https://localhost:7042/Greet.Greeter/SayHello application/grpc
 info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
       Executing endpoint 'gRPC - /Greet.Greeter/SayHello'
 info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
