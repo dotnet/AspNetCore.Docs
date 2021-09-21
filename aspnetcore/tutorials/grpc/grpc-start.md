@@ -31,6 +31,12 @@ In this tutorial, you:
 
 [!INCLUDE[](~/includes/net-prereqs-vsc-6.0.md)]
 
+<!--  Visual Studio for Mac tab to be updated and available once 2022 is available.
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+[!INCLUDE[](~/includes/net-prereqs-mac-6.0.md)]
+-->
+
 ---
 
 ## Create a gRPC service
@@ -58,6 +64,16 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 
   * The `dotnet new` command creates a new gRPC service in the *GrpcGreeter* folder.
   * The `code` command opens the *GrpcGreeter* folder in a new instance of Visual Studio Code.
+
+<!--  Visual Studio for Mac tab to be updated and available once 2022 is available.
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+* Start Visual Studio for Mac and select **New**. Alternatively, from the Visual Studio **File** menu, select **New Solution**.
+* In the **Choose a template for your new project** dialog, select **Web and Console** > **App** > **gRPC Service** and select **Next**.
+* Select **.NET 5.0** for the target framework and select **Next**.
+* Name the project **GrpcGreeter**. It's important to name the project *GrpcGreeter* so the namespaces match when you copy and paste code.
+* Select **Create**.
+-->
 
 ---
 
@@ -112,6 +128,12 @@ info: Microsoft.Hosting.Lifetime[0]
   code -r GrpcGreeterClient
   ```
 
+<!--  Visual Studio for Mac tab to be updated and available once 2022 is available.
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+Follow the instructions in [Building a complete .NET Core solution on macOS using Visual Studio for Mac](/dotnet/core/tutorials/using-on-mac-vs-full-solution) to create a console app with the name *GrpcGreeterClient*.
+-->
+
 ---
 
 ### Add required NuGet packages
@@ -156,6 +178,16 @@ dotnet add GrpcGreeterClient.csproj package Google.Protobuf
 dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 ```
 
+<!--  Visual Studio for Mac tab to be updated and available once 2022 is available.
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+* Right-click **GrpcGreeterClient** project in the **Solution Pad** and select **Manage NuGet Packages**.
+* Enter **Grpc.Net.Client** in the search box.
+* Select the **Grpc.Net.Client** package from the results pane and select **Add Package**.
+* Select the **Accept** button on the **Accept License** dialog.
+* Repeat for `Google.Protobuf` and `Grpc.Tools`.
+-->
+
 ---
 
 ### Add greet.proto
@@ -177,6 +209,12 @@ dotnet add GrpcGreeterClient.csproj package Grpc.Tools
   # [Visual Studio Code](#tab/visual-studio-code)
 
   Select the *GrpcGreeterClient.csproj* file.
+
+<!--  Visual Studio for Mac tab to be updated and available once 2022 is available.
+  # [Visual Studio for Mac](#tab/visual-studio-mac)
+
+  Right-click the project and select **Edit Project File**.
+-->
 
   ---
 
@@ -220,6 +258,17 @@ The Greeter client calls the asynchronous `SayHello` method. The result of the `
 
 * Start the Greeter service.
 * Start the client.
+
+<!--  Visual Studio for Mac tab to be updated and available once 2022 is available.
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+* Due to the previously mentioned [HTTP/2 TLS issue on macOS workaround](xref:grpc/troubleshoot#unable-to-start-aspnet-core-grpc-app-on-macos), you'll need to update the channel address in the client to "http://localhost:5000". Update line 13 of **GrpcGreeterClient/Program.cs** to read:
+  ```csharp
+  using var channel = GrpcChannel.ForAddress("http://localhost:5000");
+  ``` 
+* Start the Greeter service.
+* Start the client.
+-->
 
 ---
 
@@ -293,7 +342,6 @@ In this tutorial, you:
 
 * [Visual Studio for Mac version 8.7 or later](/visualstudio/releasenotes/vs2019-mac-relnotes)
 * [!INCLUDE [.NET Core 3.1 SDK](~/includes/5.0-SDK.md)]
-
 ---
 
 ## Create a gRPC service
