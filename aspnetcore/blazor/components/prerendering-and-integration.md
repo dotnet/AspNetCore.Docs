@@ -69,6 +69,13 @@ To set up prerendering for a hosted Blazor WebAssembly app:
      + <component type="typeof(App)" render-mode="WebAssemblyPrerendered" />
      ```
 
+   * In the `_Host.cshtml` file, change the `{APP NAMESPACE}.Pages` namespace, if it exists, to that of the **`Client`** project. If a namespace of `{APP NAMESPACE}.Pages` doesn't exist, add the namespace for the **`Client`** project:
+
+     ```diff
+     - @namespace {APP NAMESPACE}.Pages
+     + @namespace BlazorHosted.Client
+     ```
+
 1. In endpoint mapping of the **`Server`** project in `Program.cs`, change the fallback from the `index.html` file to the `_Host.cshtml` page:
 
    ```diff
