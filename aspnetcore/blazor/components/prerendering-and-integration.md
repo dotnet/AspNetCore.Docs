@@ -270,18 +270,18 @@ Additional work might be required depending on the static resources that compone
 
 ## Render components in a page or view with a CSS selector
 
-After [configuring the solution](#solution-configuration), including the [additional configuration](#configuration-for-embedding-razor-components-into-pages-and-views), add root components to the **`Client`** project of a hosted Blazor WebAssembly solution in `Program.Main`. In the following example, the `Counter` component is declared as a root component with a CSS selector that selects the element with the `id` that matches `counter-component`. In the following example, the **`Client`** project's namespace is `BlazorHosted.Client`.
+After [configuring the solution](#solution-configuration), including the [additional configuration](#configuration-for-embedding-razor-components-into-pages-and-views), add root components to the **`Client`** project of a hosted Blazor WebAssembly solution in the `Program.cs` file. In the following example, the `Counter` component is declared as a root component with a CSS selector that selects the element with the `id` that matches `counter-component`. In the following example, the **`Client`** project's namespace is `BlazorHosted.Client`.
 
-In `Program.cs` of the **`Client`** project, add the namespace for the project's Razor components to the top of the file:
+In `Program.cs` file of the **`Client`** project, add the namespace for the project's Razor components to the top of the file:
 
-```diff
-+ using BlazorHosted.Client.Pages;
+```csharp
+using BlazorHosted.Client.Pages;
 ```
 
-After the `builder` is established in `Program.Main`, add the `Counter` component as a root component:
+After the `builder` is established in `Program.cs`, add the `Counter` component as a root component:
 
-```diff
-+ builder.RootComponents.Add<Counter>("#counter-component");
+```csharp
+builder.RootComponents.Add<Counter>("#counter-component");
 ```
 
 In the following Razor Pages example, the `Counter` component is rendered in a page. To make the component interactive, the Blazor WebAssembly script is included in the page's [render section](xref:mvc/views/layout#sections).
@@ -303,11 +303,18 @@ Run the **`Server`** project. Navigate to the Razor page at `/razorpagescounter2
 Additional work might be required depending on the static resources that components use and how layout pages are organized in an app. Typically, scripts are added to a page or view's `Scripts` render section and stylesheets are added to the layout's `<head>` element content.
 
 > [!NOTE]
-> The preceding example throws a <xref:Microsoft.JSInterop.JSException> if a Blazor WebAssembly app is prerendered and integrated into a Razor Pages or MVC app **simultaneously** with a CSS selector. Navigating to one of the **`Client`** project's Razor components throws the following exception:
->
-> > Microsoft.JSInterop.JSException: Could not find any element matching selector '#counter-component'.
+> The preceding example throws a <xref:Microsoft.JSInterop.JSException> if a Blazor WebAssembly app is prerendered and integrated into a Razor Pages or MVC app **simultaneously** with the use of a CSS selector. Navigating to one of the **`Client`** project's Razor components or navigating to a page or view of the **`Server`** with an embedded component throws one or more <xref:Microsoft.JSInterop.JSException>.
 >
 > This is normal behavior because prerendering and integrating a Blazor WebAssembly app with routable Razor components is incompatible with the use of CSS selectors.
+>
+> If you've been working with the examples in the preceding sections and just wish to see the CSS selector work in your sample app, comment out the specification of the `App` root component of the **`Client`** project's `Program.cs` file:
+>
+> ```diff
+> - builder.RootComponents.Add<App>("#app");
+> + //builder.RootComponents.Add<App>("#app");
+> ```
+>
+> Navigate to the page or view with the embedded Razor component that uses a CSS selector (for example, `/razorpagescounter2` of the preceding example). The page or view loads with the embedded component, and the embedded component functions as expected.
 
 ::: zone-end
 
