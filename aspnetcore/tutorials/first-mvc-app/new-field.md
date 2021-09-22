@@ -28,7 +28,7 @@ When EF Code First is used to automatically create a database, Code First:
 
 Add a `Rating` property to *Models/Movie.cs*:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Models/Movie.cs?name=AddRating)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Models/Movie.cs?name=AddRating&highlight=19)]
 
 Build the app
 
