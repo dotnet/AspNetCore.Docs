@@ -53,7 +53,7 @@ The previous `Index` method:
 
 The updated `Index` method with `id` parameter:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Controllers/MoviesController.cs?highlight=1,6,9&name=IndexSearchID)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Controllers/MoviesController.cs?highlight=1,6,8&name=IndexSearchID)]
 
 You can now pass the search title as route data (a URL segment) instead of as a query string value.
 
