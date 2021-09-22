@@ -193,7 +193,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<MvcMovieContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("MvcMovieContext")));
-#endregion
 
 using (var scope = builder.Services.BuildServiceProvider().CreateScope())
 {
@@ -235,4 +234,5 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+#endregion
 #endif
