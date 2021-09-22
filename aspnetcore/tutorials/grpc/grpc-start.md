@@ -79,7 +79,40 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 
 ### Run the service
 
-  [!INCLUDE[](~/includes/run-the-app.md)]
+<!-->  Add run-the-app include back in replacing the partial section below once run-the-app.md is updated for VS 2022 for Mac and accounts for randomly assigned ports as in this case for the service app.
+[!INCLUDE[](~/includes/run-the-app.md)]
+-->
+
+# [Visual Studio](#tab/visual-studio)
+
+* Press Ctrl+F5 to run without the debugger.
+
+Visual Studio displays the following dialog when a project is not yet configured to use SSL:
+
+![This project is configured to use SSL. To avoid SSL warnings in the browser you can choose to trust the self-signed certificate that IIS Express has generated. Would you like to trust the IIS Express SSL certificate?](~/getting-started/_static/trustCertVS22.png)
+
+Select **Yes** if you trust the IIS Express SSL certificate.
+
+The following dialog is displayed:
+
+![Security warning dialog](~/getting-started/_static/cert.png)
+
+Select **Yes** if you agree to trust the development certificate.
+
+[!INCLUDE[trust FF](~/includes/trust-ff.md)]
+
+Visual Studio:
+
+  Visual Studio Code starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and navigates to a port that was randomly assigned for the service, such as `http://localhost:7042`. The address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for  local computer. Localhost only serves web requests from the local computer.
+ 
+# [Visual Studio Code](#tab/visual-studio-code)
+
+  [!INCLUDE[](~/includes/trustCertVSC.md)]
+
+* Press **Ctrl-F5** to run without the debugger.
+
+  Visual Studio Code starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and navigates to a port that was randomly assigned for the service, such as `http://localhost:7042`. The address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for  local computer. Localhost only serves web requests from the local computer.
+<!-- Replace the above section with the run the app include once it can be updated for VS 2022 for Mac  -->
 
 The logs show the service listening on `https://localhost:7042`.
 
