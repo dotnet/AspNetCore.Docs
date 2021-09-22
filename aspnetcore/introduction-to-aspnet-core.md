@@ -182,8 +182,8 @@ For a reference guide to migrating ASP.NET apps to ASP.NET Core, see <xref:migra
 Many of the articles and tutorials include links to sample code.
 
 1. [Download the ASP.NET repository zip file](https://codeload.github.com/dotnet/AspNetCore.Docs/zip/main).
-1. Unzip the *Docs-main.zip* file.
-1. Use the URL in the sample link to help you navigate to the sample directory.
+1. Unzip the `AspNetCore.Docs-main.zip` file.
+1. To access an article's sample app in the unzipped repository, use the URL in the article's sample link to help you navigate to the sample's folder. Usually, an article's sample link appears at the top of the article with the link text *View or download sample code*. 
 
 ### Preprocessor directives in sample code
 
