@@ -103,9 +103,9 @@ To set up prerendering for a hosted Blazor WebAssembly app:
 
 ### Configuration for embedding Razor components into pages and views
 
-The following sections and examples in this article for embedding Razor components of the client Blazor WebAssembly app into pages and views of the server app require additional configuration.
+This section covered how to embed Razor components into pages and views of a hosted Blazor WebAssembly app's **`Server`** project.
 
-Use a default Razor Pages or MVC layout file in the **`Server`** project. The **`Server`** project must have the following files and folders.
+The **`Server`** project must have the following files and folders.
 
 Razor Pages:
 
@@ -119,9 +119,28 @@ MVC:
 * `Views/_ViewImports.cshtml`
 * `Views/_ViewStart.cshtml`
 
-Obtain the preceding files from an app created from the Razor Pages or MVC project template. For more information, see <xref:tutorials/razor-pages/razor-pages-start> or <xref:tutorials/first-mvc-app/start-mvc>.
+The preceding files can be obtained by generating an app from the ASP.NET Core project templates using:
+
+* Visual Studio's new project creation tools.
+* Opening a command shell and executing `dotnet new razor -o {APP NAME}` (Razor Pages) or `dotnet new mvc -o {APP NAME}` (MVC). The option `-o|--output` with a value for the `{APP NAME}` placeholder provides a name for the app and creates a folder for the app.
 
 Update the namespaces in the imported `_ViewImports.cshtml` file to match those in use by the **`Server`** project receiving the files.
+
+`Pages/_ViewImports.cshtml` (Razor Pages):
+
+```razor
+@using BlazorHosted.Server
+@namespace BlazorHosted.Server.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+```
+
+`Views/_ViewImports.cshtml` (MVC):
+
+```razor
+@using BlazorHosted.Server
+@using BlazorHosted.Server.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+```
 
 Update the imported layout file (`_Layout.cshtml`) to include the **`Client`** project's styles. In the following example, the **`Client`** project's namespace is `BlazorHosted.Client`. The `<title>` element can be updated at the same time.
 
@@ -140,6 +159,16 @@ Update the imported layout file (`_Layout.cshtml`) to include the **`Client`** p
 </head>
 ```
 
+Add the Blazor script tag to the layout file inside where the `Scripts` section is rendered near the closing `</body>` tag:
+
+```diff
+    ...
+    <script src="~/js/site.js" asp-append-version="true"></script>
++   <script src="_framework/blazor.webassembly.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+```
+
 The imported layout contains `Home` and `Privacy` navigation links. To make the `Home` link point to the hosted Blazor WebAssembly app, change the hyperlink:
 
 ```diff
@@ -155,7 +184,7 @@ In an MVC layout file:
 + <a class="nav-link text-dark" href="/">Home</a>
 ```
 
-To make the `Privacy` link lead to a privacy page, add a privacy page to the **`Server`** project.
+To make the `Privacy` link lead to a privacy page (Razor Pages), add a privacy page to the **`Server`** project.
 
 `Pages/Privacy.cshtml` in the **`Server`** project:
 
@@ -166,11 +195,13 @@ To make the `Privacy` link lead to a privacy page, add a privacy page to the **`
 }
 
 <h1>Privacy Policy</h1>
+
+<p>Use this page to detail your site's privacy policy.</p>
 ```
 
-If an MVC-based privacy view is preferred, create a privacy view in the **`Server`** project.
+For an MVC-based privacy view, create a privacy view in the **`Server`** project.
 
-`View/Home/Privacy.cshtml`:
+`View/Home/Privacy.cshtml` in the **`Server` project:
 
 ```cshtml
 @{
@@ -178,9 +209,11 @@ If an MVC-based privacy view is preferred, create a privacy view in the **`Serve
 }
 
 <h1>@ViewData["Title"]</h1>
+
+<p>Use this page to detail your site's privacy policy.</p>
 ```
 
-In the `Home` controller, return the view.
+In the `Home` controller of the MVC app, return the view.
 
 `Controllers/HomeController.cs`:
 
@@ -191,6 +224,8 @@ In the `Home` controller, return the view.
 + }
 ```
 
+If you import files from a donor app, be sure to update any namespaces in the files to match that of the **`Server`** project (for example, `BlazorHosted.Server`).
+
 Import static assets to the **`Server`** project from the donor project's `wwwroot` folder:
 
 * `wwwroot/css` folder and contents
@@ -199,12 +234,57 @@ Import static assets to the **`Server`** project from the donor project's `wwwro
 
 If the donor project is created from an ASP.NET Core project template and the files aren't modified, you can copy the entire `wwwroot` folder from the donor project into the **`Server`** project and remove the `favicon.ico` icon file.
 
-> [!NOTE]
-> If the **`Client`** and **`Server`** projects contain the same static asset in their `wwwroot` folders (for example, `favicon.ico`), an exception is thrown because the static asset in each folder shares the same web root path:
->
-> > The static web asset '...\favicon.ico' has a conflicting web root path '/wwwroot/favicon.ico' with the project file 'wwwroot\favicon.ico'.
->
-> Therefore, host a static asset in either `wwwroot` folder, not both.
+Avoid placing the same file (for example, `favicon.ico`) into both the **`Client`** and **`Server`** `wwwroot` folders. If the same file is present in both folders an exception is thrown because the static asset in each folder shares the same web root path:
+
+> The static web asset '...\favicon.ico' has a conflicting web root path '/wwwroot/favicon.ico' with the project file 'wwwroot\favicon.ico'.
+
+Therefore, host a static asset in either `wwwroot` folder, not both.
+
+After adopting the preceding configuration, embed Razor components into pages or views of the **`Server`** project. The following example embeds the Blazor WebAssembly app's `Counter` component into the privacy page or view shown earlier in this section.
+
+`Pages/Privacy.cshtml` in the **`Server`** project:
+
+```cshtml
+@page
+@model BlazorHosted.Server.Pages.PrivacyModel
+@using BlazorHosted.Client.Pages
+@{
+}
+
+<h1>Privacy Policy</h1>
+
+<p>Use this page to detail your site's privacy policy.</p>
+
+<h2>Counter component from the Client project</h2>
+
+<component type="typeof(Counter)" render-mode="WebAssemblyPrerendered" />
+```
+
+For an MVC-based privacy view, create a privacy view in the **`Server`** project.
+
+`View/Home/Privacy.cshtml` in the **`Server` project:
+
+```cshtml
+@using BlazorHosted.Client.Pages
+@{
+    ViewData["Title"] = "Privacy Policy";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>Use this page to detail your site's privacy policy.</p>
+
+<h2>Counter component from the Client project</h2>
+
+<component type="typeof(Counter)" render-mode="WebAssemblyPrerendered" />
+```
+
+The preceding examples specify an `@using` statement (`@using BlazorHosted.Client.Pages`) for the **`Client`** project's Razor components in its `Pages` folder. Alternatively, the page or view can use a fully-qualified reference to the component in the Component Tag Helper. With the fully-qualified type, the `@using` statement isn't required:
+
+```razor
+<component type="typeof(BlazorHosted.Client.Pages.Counter)" 
+    render-mode="WebAssemblyPrerendered" />
+```
 
 ## Render components in a page or view with the Component Tag Helper
 
