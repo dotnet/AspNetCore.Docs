@@ -56,6 +56,8 @@ The <xref:System.ComponentModel.DataAnnotations.DataType> attribute on `ReleaseD
 
 [DataAnnotations](/dotnet/api/system.componentmodel.dataannotations) are covered in a later tutorial.
 
+he question mark after `string` indicates that the property is nullable. For more information, see [Nullable reference types](/dotnet/csharp/nullable-references). 
+
 ## Add NuGet packages
 
 # [Visual Studio](#tab/visual-studio)
@@ -70,7 +72,6 @@ In the PMC, run the following command:
 
 ```powershell
 Install-Package Microsoft.EntityFrameworkCore.Design -IncludePrerelease
- 
 ```
 
 The preceding commands add:
@@ -240,6 +241,16 @@ The automatic creation of these files and file updates is known as *scaffolding*
 The scaffolded pages can't be used yet because the database doesn't exist. Running the app and selecting the **Movie App** link results in a *Cannot open database* or *no such table: Movie* error message.
 
 <a name="migration"></a>
+
+## Build the app
+
+Build the app. The compiler generates several warnings about how `null` values are handled. The released version of .NET 6 will scaffold code without these warnings. See [this GitHub issue](https://github.com/dotnet/Scaffolding/issues/1594) and [Nullable reference types](/dotnet/csharp/nullable-references) for more information.
+
+To eliminate the warnings from nullable reference types, remove the following line from the *MvcMovie.csproj* file:
+
+```xml
+<Nullable>enable</Nullable>
+```
 
 ## Initial migration
 
