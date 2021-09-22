@@ -48,6 +48,8 @@ LocalDB:
 * Is targeted for program development. It runs in user mode, so there's no complex configuration.
 * By default creates *.mdf* files in the *C:/Users/{user}* directory.
 
+<!--
+Temporarily commented out because SSOX isn't available in VS 2022 Preview
 ### Examine the database
 
 From the **View** menu, open **SQL Server Object Explorer** (SSOX).
@@ -67,6 +69,7 @@ Right-click on the `Movie` table **> View Data**
 ![Right-click on the Movie table > View Data.](working-with-sql/_static/ssox2.png)
 
 ![Movie table open showing table data](working-with-sql/_static/vd22.png)
+-->
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
@@ -80,7 +83,7 @@ Right-click on the `Movie` table **> View Data**
 
 Create a new class named `SeedData` in the *Models* folder. Replace the generated code with the following:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Models/SeedData.cs?name=FirstVersion&highlight=11-24)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Models/SeedData.cs?name=FirstVersion)]
 
 If there are any movies in the database, the seed initializer returns and no movies are added.
 
@@ -109,7 +112,7 @@ Test the app. Force the app to initialize, calling the code in the *Program.cs* 
 
 Replace the contents of *Program.cs* with the following code:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Program.cs?name=SQLiteSeedData)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Program.cs?name=SQLiteSeedData&highlight=11-24)]
 
 Delete all the records in the database.
 
