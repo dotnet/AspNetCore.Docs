@@ -183,7 +183,7 @@ Many of the articles and tutorials include links to sample code.
 
 1. [Download the ASP.NET repository zip file](https://codeload.github.com/dotnet/AspNetCore.Docs/zip/main).
 1. Unzip the `AspNetCore.Docs-main.zip` file.
-1. To obtain a sample app for a given topic, use the URL in the sample link of the topic to help you navigate to the sample directory locally. The sample link of most topics appears at the article with the link text *View or download sample code*. 
+1. To access an article's sample app in the unzipped repository, use the URL in the article's sample link to help you navigate to the sample folder. Usually, an article's sample link appears at the top of article with the link text *View or download sample code*. 
 
 ### Preprocessor directives in sample code
 
