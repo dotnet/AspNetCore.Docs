@@ -1616,7 +1616,7 @@ The [`IConfiguration`](xref:Microsoft.Extensions.Configuration.IConfiguration) s
 
 [!code-csharp[](index/samples/3.x/ConfigSample/configAccess.cs)]
 
-For information on the specifics on information retrieval from the [`IConfiguration`](xref:Microsoft.Extensions.Configuration.IConfiguration), see [GetValue](#GetValue-1) and [GetSection](#GetSection-getchildren-and-exists-1) subsections of this article.
+For information on the specifics on information retrieval from the [`IConfiguration`](xref:Microsoft.Extensions.Configuration.IConfiguration), see [GetValue](#getvalue-1) and [GetSection](#getsection-getchildren-and-exists-1) subsections of this article.
 
 ## Access configuration in Startup
 
