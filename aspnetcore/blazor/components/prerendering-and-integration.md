@@ -201,7 +201,7 @@ To make the `Privacy` link lead to a privacy page (Razor Pages), add a privacy p
 
 For an MVC-based privacy view, create a privacy view in the **`Server`** project.
 
-`View/Home/Privacy.cshtml` in the **`Server` project:
+`View/Home/Privacy.cshtml` in the **`Server`** project:
 
 ```cshtml
 @{
