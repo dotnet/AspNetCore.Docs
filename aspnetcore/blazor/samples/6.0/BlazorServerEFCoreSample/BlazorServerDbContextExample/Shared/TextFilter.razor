@@ -110,7 +110,7 @@ Filter on: <select @bind="SelectedColumn">
         if (Filters.FilterText != filterText)
         {
             // notify the controls
-            Filters.FilterText = filterText.Trim();
+            Filters.FilterText = filterText?.Trim();
 
             if (Wrapper is not null)
             {

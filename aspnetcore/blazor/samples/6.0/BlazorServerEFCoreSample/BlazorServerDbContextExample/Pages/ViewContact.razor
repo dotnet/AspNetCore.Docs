@@ -183,7 +183,7 @@ else
         Loading = true;
         using var context = DbFactory?.CreateDbContext();
 
-        if (context.Contacts is not null)
+        if (context?.Contacts is not null)
         {
             var contact = await context.Contacts
                 .SingleOrDefaultAsync(c => c.Id == ContactId);

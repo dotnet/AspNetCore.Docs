@@ -84,7 +84,7 @@
             @foreach (var contact in Contacts)
             {
                 <ContactRow @key=contact CurrentContact="@contact"
-                            DeleteContact="DeleteContactAsync" />
+                    DeleteContact="DeleteContactAsync" />
             }
         }
     </div>
@@ -107,7 +107,7 @@
     /// <summary>
     /// A wrapper for grid-related activity (like delete).
     /// </summary>
-    private GridWrapper? Wrapper { get; set; }
+    private GridWrapper Wrapper { get; set; } = new GridWrapper();
 
     /// <summary>
     /// Current page of <see cref="Contact"/>.
@@ -200,16 +200,18 @@
     private async Task DeleteContactAsync()
     {
         using var context = DbFactory.CreateDbContext();
-
         Filters.Loading = true;
 
-        var contact = await context.Contacts.FirstAsync(
-            c => c.Id == Wrapper.DeleteRequestId);
-
-        if (contact != null)
+        if (Wrapper is not null)
         {
-            context.Contacts.Remove(contact);
-            await context.SaveChangesAsync();
+            var contact = await context.Contacts?
+                .FirstAsync(c => c.Id == Wrapper.DeleteRequestId);
+
+            if (contact != null)
+            {
+                context.Contacts?.Remove(contact);
+                await context.SaveChangesAsync();
+            }
         }
 
         Filters.Loading = false;
@@ -231,17 +233,21 @@
 
         Filters.Loading = true;
 
-        if (Wrapper != null)
+        if (Wrapper is not null)
         {
             Wrapper.DeleteRequestId = 0;
         }
 
-        Contacts = null;
+        Contacts = new List<Contact>();
 
         using var context = DbFactory.CreateDbContext();
+        var query = context.Contacts?.AsQueryable();
 
-        // run the query to load the current page
-        Contacts = await QueryAdapter.FetchAsync(context.Contacts.AsQueryable());
+        if (query is not null)
+        {
+            // run the query to load the current page
+            Contacts = await QueryAdapter.FetchAsync(query);
+        }
 
         // now we're done
         Filters.Loading = false;

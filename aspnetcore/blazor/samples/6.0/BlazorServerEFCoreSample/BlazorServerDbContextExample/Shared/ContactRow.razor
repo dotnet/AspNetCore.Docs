@@ -41,8 +41,7 @@
     </div>
 }
 @code {
-
-    private Contact? _currentContact;
+    private Contact _currentContact = new Contact();
 
     /// <summary>
     /// The <see cref="Contact"/> being rendered.
@@ -77,8 +76,8 @@
     /// Returns <c>true</c> if conditions for delete are met.
     /// </summary>
     private bool CanDelete => !DeleteConfirmation &&
-    (Wrapper.DeleteRequestId == 0 ||
-    Wrapper.DeleteRequestId == CurrentContact?.Id);
+    (Wrapper?.DeleteRequestId == 0 ||
+    Wrapper?.DeleteRequestId == CurrentContact?.Id);
 
     /// <summary>
     /// Navigate to view.
@@ -104,7 +103,11 @@
         else
         {
             DeleteConfirmation = false;
-            await Wrapper.DeleteRequested.InvokeAsync(0);
+
+            if (Wrapper is not null)
+            {
+                await Wrapper.DeleteRequested.InvokeAsync(0);
+            }
         }
     }
 
@@ -113,7 +116,7 @@
     /// </summary>
     private async Task DeleteRequestAsync()
     {
-        if (Wrapper.DeleteRequestId == 0)
+        if (Wrapper?.DeleteRequestId == 0)
         {
             DeleteConfirmation = true;
             await Wrapper.DeleteRequested.InvokeAsync(CurrentContact.Id);

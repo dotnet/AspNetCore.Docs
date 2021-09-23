@@ -4,13 +4,14 @@
 {
     @if (IsDelta)
     {
-        <span class="alert alert-warning"><strong>@Property(DbModel)</strong></span>
+        <span class="alert alert-warning"><strong>@property</strong></span>
     }
     else
     {
         <span class="alert alert-success">(same)</span>
     }
 }
+
 @code {
     /// <summary>
     /// The <see cref="TModel"/> being edited.
@@ -38,5 +39,20 @@
     /// <summary>
     /// Highlight properties with different values.
     /// </summary>
-    private bool IsDelta => !Property(Model).Equals(Property(DbModel));
+    private bool IsDelta;
+
+    private IComparable? property;
+
+    protected override void OnInitialized()
+    {
+        if (Property is not null && DbModel is not null)
+        {
+            property = Property(DbModel);
+
+            if (Model is not null)
+            {
+                IsDelta = !Property(Model).Equals(Property(DbModel));
+            }
+        }
+    }
 }
