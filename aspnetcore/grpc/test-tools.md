@@ -10,6 +10,8 @@ uid: grpc/test-tools
 ---
 # Test gRPC services with gRPCurl in ASP.NET Core
 
+By [James Newton-King](https://twitter.com/jamesnk)
+
 Tooling is available for gRPC that allows developers to test services without building client apps:
 
 * [gRPCurl](https://github.com/fullstorydev/grpcurl) is a command-line tool that provides interaction with gRPC services.

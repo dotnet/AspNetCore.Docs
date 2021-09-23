@@ -10,6 +10,8 @@ uid: grpc/deadlines-cancellation
 ---
 # Reliable gRPC services with deadlines and cancellation
 
+By [James Newton-King](https://twitter.com/jamesnk)
+
 Deadlines and cancellation are features used by gRPC clients to abort in-progress calls. This article discusses why deadlines and cancellation are important, and how to use them in .NET gRPC apps.
 
 ## Deadlines

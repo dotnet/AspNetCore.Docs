@@ -10,6 +10,8 @@ uid: grpc/loadbalancing
 ---
 # gRPC client-side load balancing
 
+By [James Newton-King](https://twitter.com/jamesnk)
+
 Client-side load balancing is a feature that allows gRPC clients to distribute load optimally across available servers. This article discusses how to configure client-side load balancing to create scalable, high-performance gRPC apps in .NET.
 
 Client-side load balancing requires:

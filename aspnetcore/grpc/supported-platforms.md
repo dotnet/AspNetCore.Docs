@@ -10,6 +10,8 @@ uid: grpc/supported-platforms
 ---
 # gRPC on .NET supported platforms
 
+By [James Newton-King](https://twitter.com/jamesnk)
+
 This article discusses the requirements and supported platforms for using gRPC with .NET. There are different requirements for the two major gRPC workloads:
 
 * [Hosting gRPC services in ASP.NET Core](#aspnet-core-grpc-server-requirements)

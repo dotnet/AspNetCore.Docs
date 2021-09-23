@@ -11,6 +11,8 @@ uid: grpc/security
 ---
 # Security considerations in gRPC for ASP.NET Core
 
+By [James Newton-King](https://twitter.com/jamesnk)
+
 This article provides information on securing gRPC with .NET Core.
 
 ## Transport security

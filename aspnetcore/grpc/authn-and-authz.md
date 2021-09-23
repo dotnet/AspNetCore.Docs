@@ -10,6 +10,8 @@ uid: grpc/authn-and-authz
 ---
 # Authentication and authorization in gRPC for ASP.NET Core
 
+By [James Newton-King](https://twitter.com/jamesnk)
+
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/grpc/authn-and-authz/sample/) [(how to download)](xref:index#how-to-download-a-sample)
 
 ## Authenticate users calling a gRPC service

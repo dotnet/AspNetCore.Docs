@@ -10,6 +10,8 @@ uid: grpc/index
 ---
 # Introduction to gRPC on .NET
 
+By [James Newton-King](https://twitter.com/jamesnk)
+
 [gRPC](https://grpc.io) is a language agnostic, high-performance Remote Procedure Call (RPC) framework.
 
 The main benefits of gRPC are:

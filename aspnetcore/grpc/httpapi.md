@@ -10,6 +10,8 @@ uid: grpc/httpapi
 ---
 # Create JSON Web APIs from gRPC
 
+By [James Newton-King](https://twitter.com/jamesnk)
+
 > [!IMPORTANT]
 > gRPC HTTP API is an experimental project, not a committed product. We want to:
 >

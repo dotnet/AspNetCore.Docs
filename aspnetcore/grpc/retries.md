@@ -10,6 +10,8 @@ uid: grpc/retries
 ---
 # Transient fault handling with gRPC retries
 
+By [James Newton-King](https://twitter.com/jamesnk)
+
 gRPC retries is a feature that allows gRPC clients to automatically retry failed calls. This article discusses how to configure a retry policy to make resilient, fault tolerant gRPC apps in .NET.
 
 gRPC retries requires [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client) version 2.36.0 or later.
