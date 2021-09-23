@@ -104,7 +104,7 @@ Select **Yes** if you agree to trust the development certificate.
 
 Visual Studio:
 
-  Visual Studio Code starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and navigates to a port that was randomly assigned for the service, such as `http://localhost:7042`. The address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for  local computer. Localhost only serves web requests from the local computer.
+  Visual Studio starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and navigates to a port that was randomly assigned for the service, such as `http://localhost:7042`. The address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for  local computer. Localhost only serves web requests from the local computer.
  
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -114,6 +114,8 @@ Visual Studio:
 
   Visual Studio Code starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and navigates to a port that was randomly assigned for the service, such as `http://localhost:7042`. The address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for  local computer. Localhost only serves web requests from the local computer.
 <!-- Replace the above section with the run the app include once it can be updated for VS 2022 for Mac  -->
+
+---
 
 The logs show the service listening on `https://localhost:7042`.
 
