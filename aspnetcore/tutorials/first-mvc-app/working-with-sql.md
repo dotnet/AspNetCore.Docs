@@ -102,7 +102,7 @@ if (context.Movie.Any())
 
 Replace the contents of *Program.cs* with the following code. The new code is highlighted.
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Program.cs?name=SQLServerSeedData&highlight=11-24)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Program.cs?name=SQLServerSeedData&highlight=16-21)]
 
 Delete all the records in the database. You can do this with the delete links in the browser or from SSOX.
 
@@ -112,7 +112,7 @@ Test the app. Force the app to initialize, calling the code in the *Program.cs* 
 
 Replace the contents of *Program.cs* with the following code:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Program.cs?name=SQLiteSeedData&highlight=11-24)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Program.cs?name=SQLiteSeedData&highlight=16-21)]
 
 Delete all the records in the database.
 
