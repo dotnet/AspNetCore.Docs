@@ -346,6 +346,8 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
 
 ::: moniker-end
 
+<!--  all past versions turned off for the moment to isolate tab issue, remove after test.
+
 ::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 This tutorial shows how to create a .NET Core [gRPC](xref:grpc/index) client and an ASP.NET Core gRPC Server.
 
@@ -638,7 +640,9 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
 * <xref:grpc/migration>
 
 ::: moniker-end
-<!--  all past versions turned off for the moment to isolate tab issue, remove after test.
+
+-->
+
 ::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
 This tutorial shows how to create a .NET Core [gRPC](xref:grpc/index) client and an ASP.NET Core gRPC Server.
@@ -940,4 +944,3 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
 * <xref:grpc/migration>
 
 ::: moniker-end
--->
