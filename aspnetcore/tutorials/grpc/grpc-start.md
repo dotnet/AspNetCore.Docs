@@ -374,6 +374,7 @@ In this tutorial, you:
 
 * [Visual Studio for Mac version 8.7 or later](/visualstudio/releasenotes/vs2019-mac-relnotes)
 * [!INCLUDE [.NET Core 3.1 SDK](~/includes/5.0-SDK.md)]
+
 ---
 
 ## Create a gRPC service
@@ -410,6 +411,7 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 * Select **.NET 5.0** for the target framework and select **Next**.
 * Name the project **GrpcGreeter**. It's important to name the project *GrpcGreeter* so the namespaces match when you copy and paste code.
 * Select **Create**.
+
 ---
 
 ### Run the service
@@ -531,15 +533,15 @@ dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 
 * Edit the *GrpcGreeterClient.csproj* project file:
 
-  # [Visual Studio](#tab/visual-studio)
+# [Visual Studio](#tab/visual-studio)
 
   Right-click the project and select **Edit Project File**.
 
-  # [Visual Studio Code](#tab/visual-studio-code)
+# [Visual Studio Code](#tab/visual-studio-code)
 
   Select the *GrpcGreeterClient.csproj* file.
 
-  # [Visual Studio for Mac](#tab/visual-studio-mac)
+# [Visual Studio for Mac](#tab/visual-studio-mac)
 
   Right-click the project and select **Edit Project File**.
 
@@ -668,6 +670,7 @@ In this tutorial, you:
 
 * [Visual Studio for Mac version 8.7 or later](/visualstudio/releasenotes/vs2019-mac-relnotes)
 * [!INCLUDE [.NET Core 3.1 SDK](~/includes/3.1-SDK.md)]
+
 ---
 
 ## Create a gRPC service
@@ -712,6 +715,7 @@ In this tutorial, you:
 * Select **.NET Core 3.1** for the target framework and select **Next**.
 * Name the project **GrpcGreeter**. It's important to name the project *GrpcGreeter* so the namespaces match when you copy and paste code.
 * Select **Create**.
+
 ---
 
 ### Run the service
