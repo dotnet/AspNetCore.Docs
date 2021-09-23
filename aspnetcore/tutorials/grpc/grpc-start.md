@@ -79,7 +79,8 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 
 ### Run the service
 
-<!--  Add run-the-app include back in replacing the partial section below once run-the-app.md is updated for VS 2022 for Mac and accounts for randomly assigned ports as in this case for the service app.
+<!--  
+Add run-the-app include back in replacing the partial section below once run-the-app.md is updated for VS 2022 for Mac and accounts for randomly assigned ports as in this case for the service app.
 [!INCLUDE[](~/includes/run-the-app.md)]
 -->
 
@@ -162,7 +163,6 @@ info: Microsoft.Hosting.Lifetime[0]
   ```
 
 <!--  Visual Studio for Mac tab to be updated and available once 2022 is available.
-# [Visual Studio for Mac](#tab/visual-studio-mac)
 
 Follow the instructions in [Building a complete .NET Core solution on macOS using Visual Studio for Mac](/dotnet/core/tutorials/using-on-mac-vs-full-solution) to create a console app with the name *GrpcGreeterClient*.
 -->
@@ -212,7 +212,6 @@ dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 ```
 
 <!--  Visual Studio for Mac tab to be updated and available once 2022 is available.
-# [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * Right-click **GrpcGreeterClient** project in the **Solution Pad** and select **Manage NuGet Packages**.
 * Enter **Grpc.Net.Client** in the search box.
@@ -235,16 +234,15 @@ dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 
 * Edit the *GrpcGreeterClient.csproj* project file:
 
-  # [Visual Studio](#tab/visual-studio)
+# [Visual Studio](#tab/visual-studio)
 
   Right-click the project and select **Edit Project File**.
 
-  # [Visual Studio Code](#tab/visual-studio-code)
+# [Visual Studio Code](#tab/visual-studio-code)
 
   Select the *GrpcGreeterClient.csproj* file.
 
 <!--  Visual Studio for Mac tab to be updated and available once 2022 is available.
-  # [Visual Studio for Mac](#tab/visual-studio-mac)
 
   Right-click the project and select **Edit Project File**.
 -->
@@ -293,7 +291,6 @@ The Greeter client calls the asynchronous `SayHello` method. The result of the `
 * Start the client.
 
 <!--  Visual Studio for Mac tab to be updated and available once 2022 is available.
-# [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * Due to the previously mentioned [HTTP/2 TLS issue on macOS workaround](xref:grpc/troubleshoot#unable-to-start-aspnet-core-grpc-app-on-macos), you'll need to update the channel address in the client to "http://localhost:5000". Update line 13 of **GrpcGreeterClient/Program.cs** to read:
   ```csharp
