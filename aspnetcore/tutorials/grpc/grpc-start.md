@@ -79,7 +79,7 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 
 ### Run the service
 
-<!-->  Add run-the-app include back in replacing the partial section below once run-the-app.md is updated for VS 2022 for Mac and accounts for randomly assigned ports as in this case for the service app.
+<!--  Add run-the-app include back in replacing the partial section below once run-the-app.md is updated for VS 2022 for Mac and accounts for randomly assigned ports as in this case for the service app.
 [!INCLUDE[](~/includes/run-the-app.md)]
 -->
 
