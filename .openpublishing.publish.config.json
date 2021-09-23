@@ -7,7 +7,7 @@
       "build_output_subfolder": "aspnet-core-conceptual-ppe",
       "locale": "en-us",
       "moniker_ranges": [
-        ">= aspnetcore-1.0"
+        "\u003E= aspnetcore-1.0"
       ],
       "open_to_public_contributors": true,
       "type_mapping": {
@@ -22,7 +22,7 @@
   "notification_subscribers": [],
   "sync_notification_subscribers": [],
   "branches_to_filter": [],
-  "git_repository_branch_open_to_public_contributors": "master",
+  "git_repository_branch_open_to_public_contributors": "main",
   "skip_source_output_uploading": false,
   "need_preview_pull_request": true,
   "need_pr_comments": false,
@@ -31,7 +31,7 @@
     {
       "path_to_root": "_themes",
       "url": "https://github.com/Microsoft/templates.docs.msft",
-      "branch": "master",
+      "branch": "main",
       "branch_mapping": {}
     }
   ],
