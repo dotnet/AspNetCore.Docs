@@ -217,7 +217,7 @@ namespace BlazorServerDbContextExample.Data
                 }
                 if (list.Count > 0)
                 {
-                    context.Contacts.AddRange(list);
+                    context.Contacts?.AddRange(list);
                     await context.SaveChangesAsync();
                 }
                 currentCycle = 0;

@@ -153,12 +153,17 @@ else
 
         using var context = DbFactory.CreateDbContext();
 
-        Contact = await context.Contacts.AsNoTracking()
-            .SingleOrDefaultAsync(c => c.Id == ContactId);
-
-        if (Contact == null)
+        if (context.Contacts is not null)
         {
-            NotFound = true;
+            Contact = await context.Contacts
+                .AsNoTracking()
+                .SingleOrDefaultAsync(
+                    c => c.Id == ContactId);
+
+            if (Contact == null)
+            {
+                NotFound = true;
+            }
         }
 
         Loading = false;
@@ -176,15 +181,26 @@ else
         }
 
         Loading = true;
-        using var context = DbFactory.CreateDbContext();
-        var contact = await context.Contacts
-            .SingleOrDefaultAsync(c => c.Id == ContactId);
-        if (contact != null)
+        using var context = DbFactory?.CreateDbContext();
+
+        if (context.Contacts is not null)
         {
-            context.Contacts.Remove(contact);
-            await context.SaveChangesAsync();
-            Loading = false;
-            Deleted = true;
+            var contact = await context.Contacts
+                .SingleOrDefaultAsync(c => c.Id == ContactId);
+
+            if (contact != null)
+            {
+                context.Contacts?.Remove(contact);
+                await context.SaveChangesAsync();
+                Loading = false;
+                Deleted = true;
+            }
+            else
+            {
+                Loading = false;
+                // show not found
+                await LoadContactAsync();
+            }
         }
         else
         {

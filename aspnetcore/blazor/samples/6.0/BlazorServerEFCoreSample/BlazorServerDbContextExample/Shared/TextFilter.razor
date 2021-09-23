@@ -103,7 +103,7 @@ Filter on: <select @bind="SelectedColumn">
     /// </summary>
     /// <param name="sender">Timer.</param>
     /// <param name="e">Event args.</param>
-    private async void NotifyTimerElapsed(object sender, ElapsedEventArgs e)
+    private async void NotifyTimerElapsed(object? sender, ElapsedEventArgs e)
     {
         timer?.Dispose();
         timer = null;
@@ -111,7 +111,11 @@ Filter on: <select @bind="SelectedColumn">
         {
             // notify the controls
             Filters.FilterText = filterText.Trim();
-            await InvokeAsync(() => Wrapper.FilterChanged.InvokeAsync(this));
+
+            if (Wrapper is not null)
+            {
+                await InvokeAsync(() => Wrapper.FilterChanged.InvokeAsync(this));
+            }
         }
     }
 

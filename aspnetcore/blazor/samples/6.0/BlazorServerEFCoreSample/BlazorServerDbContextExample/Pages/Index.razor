@@ -120,7 +120,7 @@
     /// <param name="condition"><c>true</c> when the element is active (and therefore should not be disabled).</param>
     /// <returns>The string literal "disabled" or an empty string.</returns>
     private string IsDisabled(bool condition) =>
-    !Filters.Loading && condition ? "" : "disabled";
+        !Filters.Loading && condition ? "" : "disabled";
 
     /// <summary>
     /// Keeps track of the last page loaded.
