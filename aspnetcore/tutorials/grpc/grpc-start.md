@@ -31,13 +31,9 @@ In this tutorial, you:
 
 [!INCLUDE[](~/includes/net-prereqs-vsc-6.0.md)]
 
-<!--  Visual Studio for Mac tab to be updated and available once 2022 is available.
-# [Visual Studio for Mac](#tab/visual-studio-mac)
+<!--  Visual Studio for Mac tab to be updated and available once 2022 is available.-->
 
-[!INCLUDE[](~/includes/net-prereqs-mac-6.0.md)]
--->
-
----
+--- 
 
 ## Create a gRPC service
 
@@ -65,24 +61,13 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
   * The `dotnet new` command creates a new gRPC service in the *GrpcGreeter* folder.
   * The `code` command opens the *GrpcGreeter* folder in a new instance of Visual Studio Code.
 
-<!--  Visual Studio for Mac tab to be updated and available once 2022 is available.
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-* Start Visual Studio for Mac and select **New**. Alternatively, from the Visual Studio **File** menu, select **New Solution**.
-* In the **Choose a template for your new project** dialog, select **Web and Console** > **App** > **gRPC Service** and select **Next**.
-* Select **.NET 5.0** for the target framework and select **Next**.
-* Name the project **GrpcGreeter**. It's important to name the project *GrpcGreeter* so the namespaces match when you copy and paste code.
-* Select **Create**.
--->
+<!--  Visual Studio for Mac tab to be updated and available once 2022 is available. -->
 
 ---
 
 ### Run the service
 
-<!--  
-Add run-the-app include back in replacing the partial section below once run-the-app.md is updated for VS 2022 for Mac and accounts for randomly assigned ports as in this case for the service app.
-[!INCLUDE[](~/includes/run-the-app.md)]
--->
+<!--  Add include/run-the-app.md include back in replacing the partial section below once run-the-app.md is updated for VS 2022 for Mac and accounts for randomly assigned ports as in this case for the service app. -->
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -345,8 +330,7 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
 * <xref:grpc/migration>
 
 ::: moniker-end
-
-<!--  all past versions turned off for the moment to isolate tab issue, remove after test.
+-->
 
 ::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 This tutorial shows how to create a .NET Core [gRPC](xref:grpc/index) client and an ASP.NET Core gRPC Server.
@@ -640,8 +624,6 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
 * <xref:grpc/migration>
 
 ::: moniker-end
-
--->
 
 ::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
