@@ -142,7 +142,7 @@ When executing a hosted Blazor WebAssembly app, run the app from the solution's 
 
    In the preceding configuration:
 
-   * The `{SERVER APP FOLDER}` placeholder is the **`Server`** project's folder, typically "`Server`".
+   * The `{SERVER APP FOLDER}` placeholder is the **`Server`** project's folder, typically `Server`.
    * The `{URL}` placeholder is the app's URL, which is also specified in the app's `Properties/launchSettings.json` file in the `applicationUrl` property.
 
    If Microsoft Edge is used and Google Chrome isn't installed on the system, add an additional property of `"browser": "edge"` to the configuration.
