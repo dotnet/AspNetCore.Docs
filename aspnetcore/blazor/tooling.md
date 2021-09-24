@@ -5,7 +5,7 @@ description: Learn about the tooling available to build Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/11/2021
+ms.date: 09/24/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/tooling
 zone_pivot_groups: operating-systems
@@ -80,19 +80,16 @@ When executing a hosted Blazor WebAssembly app, run the app from the solution's 
 
    ```json
    {
-       // Use IntelliSense to learn about possible attributes.
-       // Hover to view descriptions of existing attributes.
-       // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-       "version": "0.2.0",
-       "configurations": [
-           {
-               "type": "blazorwasm",
-               "name": "Launch and Debug Blazor WebAssembly Application",
-               "request": "launch",
-               "cwd": "${workspaceFolder}",
-               "browser": "edge"
-           }
-       ]
+     "version": "0.2.0",
+     "configurations": [
+       {
+         "type": "blazorwasm",
+         "name": "Launch and Debug Blazor WebAssembly Application",
+         "request": "launch",
+         "cwd": "${workspaceFolder}",
+         "browser": "edge"
+       }
+     ]
    }
    ```
 
@@ -100,82 +97,129 @@ When executing a hosted Blazor WebAssembly app, run the app from the solution's 
 
    ```json
    {
-       // See https://go.microsoft.com/fwlink/?LinkId=733558
-       // for the documentation about the tasks.json format
-       "version": "2.0.0",
-       "tasks": [
-           {
-               "label": "build",
-               "command": "dotnet",
-               "type": "shell",
-               "args": [
-                   "build",
-                   // Ask dotnet build to generate full paths for file names.
-                   "/property:GenerateFullPaths=true",
-                   // Do not generate summary otherwise it leads to duplicate errors in Problems panel
-                   "/consoleloggerparameters:NoSummary",
-               ],
-               "group": "build",
-               "presentation": {
-                   "reveal": "silent"
-               },
-               "problemMatcher": "$msCompile"
-           }
-       ]
+     "version": "2.0.0",
+     "tasks": [
+       {
+         "label": "build",
+         "command": "dotnet",
+         "type": "shell",
+         "args": [
+           "build",
+           "/property:GenerateFullPaths=true",
+           "/consoleloggerparameters:NoSummary",
+          ],
+          "group": "build",
+          "presentation": {
+             "reveal": "silent"
+          },
+          "problemMatcher": "$msCompile"
+       }
+     ]
    }
+   ```
+
+   The project's `Properties/launchSettings.json` file includes the `inspectUri` property for the debugging proxy for any profiles in the `profiles` section of the file:
+
+   ```json
+   "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/_framework/debug/ws-proxy?browser={browserInspectUri}",
    ```
 
    **Hosted Blazor WebAssembly launch and task configuration**
 
    For hosted Blazor WebAssembly solutions, add (or move) the `.vscode` folder with `launch.json` and `tasks.json` files to the solution's parent folder, which is the folder that contains the typical project folders: `Client`, `Server`, and `Shared`. Update or confirm that the configuration in the `launch.json` and `tasks.json` files execute a hosted Blazor WebAssembly app from the **`Server`** project.
 
-   **`.vscode/launch.json`** (`launch` configuration):
+   Examine the `Properties/launchSettings.json` file and determine the URL of the app from the `applicationUrl` property (for example, `https://localhost:7268`). Note this value for use in the `launch.json` file.
+
+   In the launch configuration of the `.vscode/launch.json` file:
+
+   * Set the current working directory (`cwd`) to the **`Server`** project folder.
+   * Indicate the app's URL with the `url` property. Use the value recorded earlier from the `Properties/launchSettings.json` file.
 
    ```json
-   ...
    "cwd": "${workspaceFolder}/{SERVER APP FOLDER}",
-   ...
+   "url": "{URL}"
    ```
 
-   In the preceding configuration for the current working directory (`cwd`), the `{SERVER APP FOLDER}` placeholder is the **`Server`** project's folder, typically "`Server`".
+   In the preceding configuration:
+
+   * The `{SERVER APP FOLDER}` placeholder is the **`Server`** project's folder, typically `Server`.
+   * The `{URL}` placeholder is the app's URL, which is specified in the app's `Properties/launchSettings.json` file in the `applicationUrl` property.
 
    If Microsoft Edge is used and Google Chrome isn't installed on the system, add an additional property of `"browser": "edge"` to the configuration.
 
-   Example for a project folder of `Server` and that spawns Microsoft Edge as the browser for debug runs instead of the default browser Google Chrome:
+   The follow example `.vscode/launch.json` file:
+
+   * Sets the current working directory to the `Server` folder.
+   * Sets the URL for the app to `https://localhost:7268`.
+   * Changes the default browser from Google Chrome, which is the default browser, to Microsoft Edge.
 
    ```json
-   ...
    "cwd": "${workspaceFolder}/Server",
+   "url": "https://localhost:7268",
    "browser": "edge"
-   ...
    ```
 
-   **`.vscode/tasks.json`** ([`dotnet` command](/dotnet/core/tools/dotnet) arguments):
+   The complete `.vscode/launch.json` file:
 
    ```json
-   ...
+   {
+     "version": "0.2.0",
+     "configurations": [
+       {
+         "type": "blazorwasm",
+         "name": "Launch and Debug Blazor WebAssembly Application",
+         "request": "launch",
+         "cwd": "${workspaceFolder}/Server",
+         "url": "https://localhost:7268",
+         "browser": "edge"
+       }
+     ]
+   }
+   ```
+
+   In `.vscode/tasks.json`, add a `build` argument that specifies the path to the **`Server`** app's project file:
+
+   ```json
    "${workspaceFolder}/{SERVER APP FOLDER}/{PROJECT NAME}.csproj",
-   ...
    ```
 
    In the preceding argument:
 
-   * The `{SERVER APP FOLDER}` placeholder is the **`Server`** project's folder, typically "`Server`".
-   * The `{PROJECT NAME}` placeholder is the app's name, typically based on the solution's name followed by "`.Server`" in an app generated from the [Blazor project template](xref:blazor/project-structure).
+   * The `{SERVER APP FOLDER}` placeholder is the **`Server`** project's folder, typically `Server`.
+   * The `{PROJECT NAME}` placeholder is the app's name, typically based on the solution's name followed by `.Server` in an app generated from the Blazor WebAssembly project template.
 
-   The following example from the [tutorial for using SignalR with a Blazor WebAssembly app](xref:tutorials/signalr-blazor) uses a project folder name of `Server` and a project name of `BlazorWebAssemblySignalRApp.Server`:
+   An example `.vscode/tasks.json` file with a **`Server`** project named `BlazorHosted` in the `Server` folder of the solution:
 
    ```json
-   ...
-   "args": [
-     "build",
-       "${workspaceFolder}/Server/BlazorWebAssemblySignalRApp.Server.csproj",
-       ...
-   ],
-   ...
+   {
+     "version": "2.0.0",
+     "tasks": [
+       {
+         "label": "build",
+         "command": "dotnet",
+         "type": "process",
+           "args": [
+             "build",
+             "${workspaceFolder}/Server/BlazorHosted.Server.csproj",
+             "/property:GenerateFullPaths=true",
+             "/consoleloggerparameters:NoSummary",
+           ],
+           "group": "build",
+           "presentation": {
+             "reveal": "silent"
+           },
+           "problemMatcher": "$msCompile"
+       }
+     ]
+   }
    ```
 
 1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app.
+
+> [!NOTE]
+> Only [browser debugging](xref:blazor/debug#debug-in-the-browser) is supported at this time.
+>
+> You can't automatically rebuild the backend **`Server`** app of a hosted Blazor WebAssembly solution during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
 
 ## Trust a development certificate
 
