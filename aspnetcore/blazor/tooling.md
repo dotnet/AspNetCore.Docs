@@ -128,9 +128,9 @@ When executing a hosted Blazor WebAssembly app, run the app from the solution's 
 
    For hosted Blazor WebAssembly solutions, add (or move) the `.vscode` folder with `launch.json` and `tasks.json` files to the solution's parent folder, which is the folder that contains the typical project folders: `Client`, `Server`, and `Shared`. Update or confirm that the configuration in the `launch.json` and `tasks.json` files execute a hosted Blazor WebAssembly app from the **`Server`** project.
 
-   Examine the `Properties/launchSettings.json` file and determine the URL of the app from the `applicationUrl` property (for example, `https://localhost:7268`). Note this value for use later in the `launch.json` file.
+   Examine the `Properties/launchSettings.json` file and determine the URL of the app from the `applicationUrl` property (for example, `https://localhost:7268`). Note this value for use in the `launch.json` file.
 
-   In `.vscode/launch.json`** (`launch` configuration):
+   In the launch configuration of the `.vscode/launch.json` file:
 
    * Set the current working directory (`cwd`) to the **`Server`** project folder.
    * Indicate the app's URL with the `url` property. Use the value recorded earlier from the `Properties/launchSettings.json` file.
@@ -143,15 +143,15 @@ When executing a hosted Blazor WebAssembly app, run the app from the solution's 
    In the preceding configuration:
 
    * The `{SERVER APP FOLDER}` placeholder is the **`Server`** project's folder, typically `Server`.
-   * The `{URL}` placeholder is the app's URL, which is also specified in the app's `Properties/launchSettings.json` file in the `applicationUrl` property.
+   * The `{URL}` placeholder is the app's URL, which is specified in the app's `Properties/launchSettings.json` file in the `applicationUrl` property.
 
    If Microsoft Edge is used and Google Chrome isn't installed on the system, add an additional property of `"browser": "edge"` to the configuration.
 
-   The follow example sets:
+   The follow example `.vscode/launch.json` file:
 
    * Sets the current working directory to the `Server` folder.
    * Sets the URL for the app to `https://localhost:7268`.
-   * Changes the default browser from Google Chrome to Microsoft Edge.
+   * Changes the default browser from Google Chrome, which is the default browser, to Microsoft Edge.
 
    ```json
    "cwd": "${workspaceFolder}/Server",
@@ -170,8 +170,8 @@ When executing a hosted Blazor WebAssembly app, run the app from the solution's 
          "name": "Launch and Debug Blazor WebAssembly Application",
          "request": "launch",
          "cwd": "${workspaceFolder}/Server",
-         "browser": "edge",
-         "url": "https://localhost:7268"
+         "url": "https://localhost:7268",
+         "browser": "edge"
        }
      ]
    }
@@ -188,7 +188,7 @@ When executing a hosted Blazor WebAssembly app, run the app from the solution's 
    * The `{SERVER APP FOLDER}` placeholder is the **`Server`** project's folder, typically `Server`.
    * The `{PROJECT NAME}` placeholder is the app's name, typically based on the solution's name followed by `.Server` in an app generated from the Blazor WebAssembly project template.
 
-   The complete `.vscode/tasks.json` file with an example **`Server`** project named `BlazorHosted`:
+   An example `.vscode/tasks.json` file with a **`Server`** project named `BlazorHosted` in the `Server` folder of the solution:
 
    ```json
    {
