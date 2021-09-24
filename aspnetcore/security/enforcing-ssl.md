@@ -396,23 +396,28 @@ For more information, see [Setting Up Certificate Authorities (CAs) in Firefox](
 
 See [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/6199).
 
-## Ubuntu trust the certificate for service-to-service communication
+## Trust HTTPS certificate on Linux
+
+Establishing trust is distribution and browser specific. The following sections provide instructions for some popular distributions and the Chromium browsers (Edge and Chrome) and for Firefox.
+
+### Ubuntu trust the certificate for service-to-service communication
 
 1. Install [OpenSSL](https://www.openssl.org/) 1.1.1h or later. See your distribution for instructions on how to update OpenSSL.
 1. Run the following commands:
 
     ```cli
-    sudo dotnet dev-certs https -ep /usr/local/share/ca-certificates/aspnet/https.crt --format PEM
+    dotnet dev-certs https
+    sudo -E dotnet dev-certs https -ep /usr/local/share/ca-certificates/aspnet/https.crt --format PEM
     sudo update-ca-certificates
     ```
+
+This first ensure the current user's developer certificate is created, and then exports it with elevated permissions needed for the `ca-certificates` folder, but using the current user's environment.
+
+Without `-E` it would export the root user certificate (generating it if necessary), which has a different thumbprint. If you are running as root, then you won't need `sudo` (or the `-E`).
 
 The path in the preceding command is specific for Ubuntu. For other distributions, select an appropriate path or use the path for the Certificate Authorities (CAs).
 
 <a name="ssl-linux"></a>
-
-## Trust HTTPS certificate on Linux
-
-Establishing trust is browser specific. The following sections provide instructions for the Chromium browsers Edge and Chrome and for Firefox.
 
 ### Trust HTTPS certificate on Linux using Edge or Chrome
 
@@ -423,10 +428,11 @@ For chromium browsers on Linux:
   * Export the certificate with the following command:
   
     ```cli
-    dotnet dev-certs https -ep /usr/local/share/ca-certificates/aspnet/https.crt --format PEM
+    dotnet dev-certs https
+    sudo -E dotnet dev-certs https -ep /usr/local/share/ca-certificates/aspnet/https.crt --format PEM
     ```
 
-    The path in the preceding command is specific for Ubuntu. For other distributions, select an appropriate path or use the path for the Certificate Authorities (CAs). **You may need elevated permissions to export the certificate to the `ca-certificates` folder.**
+    The path in the preceding command is specific for Ubuntu. For other distributions, select an appropriate path or use the path for the Certificate Authorities (CAs).
 
   * Run the following commands:
   
@@ -444,7 +450,8 @@ For chromium browsers on Linux:
 * Export the certificate with the following command:
 
   ```vstscli
-  dotnet dev-certs https -ep /usr/local/share/ca-certificates/aspnet/https.crt --format PEM
+  dotnet dev-certs https
+  sudo -E dotnet dev-certs https -ep /usr/local/share/ca-certificates/aspnet/https.crt --format PEM
   ```
 
   The path in the preceding command is specific for Ubuntu. For other distributions, select an appropriate path or use the path for the Certificate Authorities (CAs).
