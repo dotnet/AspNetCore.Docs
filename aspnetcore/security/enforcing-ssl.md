@@ -458,17 +458,19 @@ For chromium browsers on Linux:
 
 * Create a JSON file at `/usr/lib/firefox/distribution/policies.json` with the following contents:
 
-  ```json
-  {
-      "policies": {
-          "Certificates": {
-              "Install": [
-                  "/usr/local/share/ca-certificates/aspnet/https.crt"
-              ]
-          }
-      }
-  }
-  ```
+```sh
+cat <<EOF | sudo tee /usr/lib/firefox/distribution/policies.json
+{
+    "policies": {
+        "Certificates": {
+            "Install": [
+                "/usr/local/share/ca-certificates/aspnet/https.crt"
+            ]
+        }
+    }
+}
+EOF
+```
   
 See [Configure trust of HTTPS certificate using Firefox browser](#trust-ff-ba) in this document for an alternative way to configure the policy file using the browser.
 
