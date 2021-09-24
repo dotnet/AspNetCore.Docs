@@ -563,6 +563,28 @@ Close any browser instances open. Open a new browser window to app.
 
 See [HTTPS Error using IIS Express (dotnet/AspNetCore #16892)](https://github.com/dotnet/AspNetCore/issues/16892) for troubleshooting certificate issues with Visual Studio.
 
+### Linux - certificate not trusted
+
+Check that the certificate you are configuring for trust is the user HTTPS developer certificate that will be used by the dotnet Kestrel server.
+
+You can check the current user default HTTPS developer certificate (used by Kestrel) at the following location; the filename will be the SHA1 thumbprint. If you clear this file (via `dotnet dev-certs https --clean`) then it will be regenerated when needed, but with a different thumbprint.
+
+```
+ls -la ~/.dotnet/corefx/cryptography/x509stores/my
+```
+
+Check the thumbprint of the exported certificate (being trusted) matches:
+
+```
+openssl x509 -noout -fingerprint -sha1 -inform pem -in /usr/local/share/ca-certificates/aspnet/https.crt
+```
+
+If it does not match, you either have an old certificate, or may have exported a developer certificate for the root user, and will need to export the correct certificate again. You can check the root user certificate at:
+
+```
+ls -la /root/.dotnet/corefx/cryptography/x509stores/my
+```
+
 ### IIS Express SSL certificate used with Visual Studio
 
 To fix problems with the IIS Express certificate, select **Repair** from the Visual Studio installer. For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/16892).
