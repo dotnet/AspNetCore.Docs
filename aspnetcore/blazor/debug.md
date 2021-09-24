@@ -189,6 +189,11 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
 For guidance on configuring VS Code assets in the `.vscode` folder and where to place the `.vscode` folder in the solution, see the **Linux** operating system guidance in <xref:blazor/tooling?pivots=linux>.
 
+> [!NOTE]
+> Only [browser debugging](#debug-in-the-browser) is supported at this time.
+>
+> You can't automatically rebuild the backend **`Server`** app of a hosted Blazor WebAssembly solution during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
+
 ## Attach to an existing debugging session
 
 To attach to a running Blazor app, create a `launch.json` file with the following configuration:
@@ -211,7 +216,7 @@ The following launch configuration options are supported for the `blazorwasm` de
 | Option    | Description |
 | --------- | ----------- |
 | `request` | Use `launch` to launch and attach a debugging session to a Blazor WebAssembly app or `attach` to attach a debugging session to an already-running app. |
-| `url`     | The URL to open in the browser when debugging. Defaults to `https://localhost:5001`. |
+| `url`     | The URL to open in the browser when debugging. |
 | `browser` | The browser to launch for the debugging session. Set to `edge` or `chrome`. Defaults to `chrome`. |
 | `trace`   | Used to generate logs from the JS debugger. Set to `true` to generate logs. |
 | `hosted`  | Must be set to `true` if launching and debugging a hosted Blazor WebAssembly app. |
@@ -240,7 +245,7 @@ The following launch configuration options are supported for the `blazorwasm` de
   "type": "blazorwasm",
   "request": "attach",
   "name": "Attach and Debug",
-  "url": "http://localhost:5000"
+  "url": "https://localhost:7268"
 }
 ```
 
@@ -283,7 +288,7 @@ For more information, see [Debugging with Visual Studio for Mac](/visualstudio/m
 
 1. Run a Debug build of the app in the Development environment.
 
-1. Launch a browser and navigate to the app's URL (for example, `https://localhost:5001`).
+1. Launch a browser and navigate to the app's URL (for example, `https://localhost:7268`).
 
 1. In the browser, attempt to commence remote debugging by pressing <kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>d</kbd>.
 

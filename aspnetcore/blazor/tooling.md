@@ -216,6 +216,11 @@ When executing a hosted Blazor WebAssembly app, run the app from the solution's 
 
 1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app.
 
+> [!NOTE]
+> Only [browser debugging](xref:blazor/debug#debug-in-the-browser) is supported at this time.
+>
+> You can't automatically rebuild the backend **`Server`** app of a hosted Blazor WebAssembly solution during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
+
 ## Trust a development certificate
 
 There's no centralized way to trust a certificate on Linux. Typically, one of the following approaches is adopted:
