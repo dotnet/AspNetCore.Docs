@@ -1,9 +1,9 @@
 ---
 title: gRPC services with C#
-author: juntaoluo
+author: jamesnk
 description: Learn the basic concepts when writing gRPC services with C#.
 monikerRange: '>= aspnetcore-3.0'
-ms.author: johluo
+ms.author: jamesnk
 ms.date: 07/09/2020
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/basics

@@ -49,7 +49,7 @@ The resolver is configured using the address a channel is created with. The [URI
 
 A channel doesn't directly call a URI that matches a resolver. Instead, a matching resolver is created and used to resolve the addresses.
 
-For example, using `GrpcChannel.ForAddress("dns:///my-example-host", new GrpcChannelOptions { ChannelCredentials = ChannelCredentials.Insecure })`:
+For example, using `GrpcChannel.ForAddress("dns:///my-example-host", new GrpcChannelOptions { Credentials = ChannelCredentials.Insecure })`:
 
 * The `dns` scheme maps to `DnsResolverFactory`. A new instance of a DNS resolver is created for the channel.
 * The resolver makes a DNS query for `my-example-host` and gets two results: `localhost:80` and `localhost:81`.
@@ -62,7 +62,7 @@ The `DnsResolverFactory` creates a resolver designed to get addresses from an ex
 ```csharp
 var channel = GrpcChannel.ForAddress(
     "dns:///my-example-host",
-    new GrpcChannelOptions { ChannelCredentials = ChannelCredentials.Insecure });
+    new GrpcChannelOptions { Credentials = ChannelCredentials.Insecure });
 var client = new Greet.GreeterClient(channel);
 
 var response = await client.SayHelloAsync(new HelloRequest { Name = "world" });
@@ -100,7 +100,7 @@ var channel = GrpcChannel.ForAddress(
     "static:///my-example-host",
     new GrpcChannelOptions
     {
-        ChannelCredentials = ChannelCredentials.Insecure,
+        Credentials = ChannelCredentials.Insecure,
         ServiceProvider = services.BuildServiceProvider()
     });
 var client = new Greet.GreeterClient(channel);
@@ -136,7 +136,7 @@ var channel = GrpcChannel.ForAddress(
     "dns:///my-example-host",
     new GrpcChannelOptions
     {
-        ChannelCredentials = ChannelCredentials.Insecure,
+        Credentials = ChannelCredentials.Insecure,
         ServiceConfig = new ServiceConfig { LoadBalancingConfigs = { new RoundRobinConfig() } }
     });
 var client = new Greet.GreeterClient(channel);
@@ -154,7 +154,7 @@ The preceding code:
 
 ## Configure channel credentials
 
-A channel must know whether gRPC calls are sent using [transport security](xref:grpc/security#transport-security). `http` and `https` are no longer part of the address, the scheme now specifies a resolver, so `ChannelCredentials` must be configured on channel options when using load balancing.
+A channel must know whether gRPC calls are sent using [transport security](xref:grpc/security#transport-security). `http` and `https` are no longer part of the address, the scheme now specifies a resolver, so `Credentials` must be configured on channel options when using load balancing.
 
 * `ChannelCredentials.SecureSsl` - gRPC calls are secured with [Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc5246). Equivalent to an `https` address.
 * `ChannelCredentials.Insecure` - gRPC calls don't use transport security. Equivalent to an `http` address.
@@ -162,7 +162,7 @@ A channel must know whether gRPC calls are sent using [transport security](xref:
 ```csharp
 var channel = GrpcChannel.ForAddress(
     "dns:///my-example-host",
-    new GrpcChannelOptions { ChannelCredentials = ChannelCredentials.Insecure });
+    new GrpcChannelOptions { Credentials = ChannelCredentials.Insecure });
 var client = new Greet.GreeterClient(channel);
 
 var response = await client.SayHelloAsync(new HelloRequest { Name = "world" });
@@ -313,7 +313,7 @@ var channel = GrpcChannel.ForAddress(
     "file:///c:/data/addresses.json",
     new GrpcChannelOptions
     {
-        ChannelCredentials = ChannelCredentials.Insecure,
+        Credentials = ChannelCredentials.Insecure,
         ServiceConfig = new ServiceConfig { LoadBalancingConfigs = { new LoadBalancingConfig("random") } },
         ServiceProvider = services.BuildServiceProvider()
     });
