@@ -341,6 +341,8 @@ For more information, see:
 * [Add validation to the Movie app](xref:tutorials/razor-pages/validation)
 * [Model validation in ASP.NET Core](xref:mvc/models/validation).
 
+::: moniker-end
+
 ::: moniker range=">= aspnetcore-6.0"
 
 ## CSS isolation
@@ -348,6 +350,8 @@ For more information, see:
 [!INCLUDE[](~/includes/css-isolation.md)]
 
 ::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
 
 ## Handle HEAD requests with an OnGet handler fallback
 
