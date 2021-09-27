@@ -3,7 +3,7 @@ title: Part 9, add validation to an ASP.NET Core MVC app
 author: rick-anderson
 description: Part 9 of tutorial series on ASP.NET Core MVC.
 ms.author: riande
-ms.date: 09/08/2021
+ms.date: 09/16/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/validation
 ---
@@ -25,13 +25,13 @@ One of the design tenets of MVC is [DRY](https://wikipedia.org/wiki/Don%27t_repe
 
 The validation support provided by MVC and Entity Framework Core Code First is a good example of the DRY principle in action. You can declaratively specify validation rules in one place (in the model class) and the rules are enforced everywhere in the app.
 
-[!INCLUDE[](~/includes/RP-MVC/validation.md)]
+[!INCLUDE[](~/includes/RP-MVC/validation-net6.md)]
 
 ## Validation Error UI
 
 Run the app and navigate to the Movies controller.
 
-Tap the **Create New** link to add a new movie. Fill out the form with some invalid values. As soon as jQuery client side validation detects the error, it displays an error message.
+Select the **Create New** link to add a new movie. Fill out the form with some invalid values. As soon as jQuery client side validation detects the error, it displays an error message.
 
 ![Movie view form with multiple jQuery client side validation errors](~/tutorials/first-mvc-app/validation/_static/val.png)
 
@@ -47,7 +47,7 @@ The form data isn't sent to the server until there are no client side validation
 
 You might wonder how the validation UI was generated without any updates to the code in the controller or views. The following code shows the two `Create` methods.
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/MoviesController.cs?name=snippetCreate)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Controllers/MoviesController.cs?name=Create)]
 
 The first (HTTP GET) `Create` action method displays the initial Create form. The second (`[HttpPost]`) version handles the form post. The second `Create` method (The `[HttpPost]` version) calls `ModelState.IsValid` to check whether the movie has any validation errors. Calling this method evaluates any validation attributes that have been applied to the object. If the object has validation errors, the `Create` method re-displays the form. If there are no errors, the method saves the new movie in the database. In our movie example, the form isn't posted to the server when there are validation errors detected on the client side; the second `Create` method is never called when there are client side validation errors. If you disable JavaScript in your browser, client validation is disabled and you can test the HTTP POST `Create` method `ModelState.IsValid` detecting any validation errors.
 
@@ -65,9 +65,9 @@ After you disable JavaScript, post invalid data and step through the debugger.
 
 ![While debugging on a post of invalid data, Intellisense on ModelState.IsValid shows the value is false.](~/tutorials/first-mvc-app/validation/_static/ms.png)
 
-The portion of the *Create.cshtml* view template is shown in the following markup:
+A portion of the *Create.cshtml* view template is shown in the following markup:
 
-[!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/CreateRatingBrevity.html)]
+[!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Views/Movies/CreateRatingBrevity.html)]
 
 The preceding markup is used by the action methods to display the initial form and to redisplay it in the event of an error.
 
@@ -81,7 +81,7 @@ When you need to change validation logic, you can do so in exactly one place by 
 
 Open the *Movie.cs* file and examine the `Movie` class. The `System.ComponentModel.DataAnnotations` namespace provides formatting attributes in addition to the built-in set of validation attributes. We've already applied a `DataType` enumeration value to the release date and to the price fields. The following code shows the `ReleaseDate` and `Price` properties with the appropriate `DataType` attribute.
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Models/MovieDateRatingDA.cs?highlight=2,6&name=snippet2)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Models/Movie.cs?highlight=2,6&name=DataType)]
 
 The `DataType` attributes only provide hints for the view engine to format the data (and supplies elements/attributes such as `<a>` for URL's and `<a href="mailto:EmailAddress.com">` for email. You can use the `RegularExpression` attribute to validate the format of the data. The `DataType` attribute is used to specify a data type that's more specific than the database intrinsic type, they're not validation attributes. In this case we only want to keep track of the date, not the time. The `DataType` Enumeration provides for many data types, such as Date, Time, PhoneNumber, Currency, EmailAddress and more. The `DataType` attribute can also enable the application to automatically provide type-specific features. For example, a `mailto:` link can be created for `DataType.EmailAddress`, and a date selector can be provided for `DataType.Date` in browsers that support HTML5. The `DataType` attributes emit HTML 5 `data-` (pronounced data dash) attributes that HTML 5 browsers can understand. The
 `DataType` attributes do **not** provide any validation.
@@ -114,7 +114,7 @@ You will need to disable jQuery date validation to use the `Range` attribute wit
 
 The following code shows combining attributes on one line:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Models/MovieDateRatingDAmult.cs?name=snippet1)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Models/Movie.cs?name=AttrOneLine)]
 
 In the next part of the series, we review the app and make some improvements to the automatically generated `Details` and `Delete` methods.
 

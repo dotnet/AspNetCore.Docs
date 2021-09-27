@@ -5,9 +5,9 @@ Run the following .NET CLI commands:
 
 ```dotnetcli
 dotnet tool uninstall -g dotnet-aspnet-codegenerator
-dotnet tool install -g dotnet-aspnet-codegenerator --version 6.0.0-preview.7.21413.1
+dotnet tool install -g dotnet-aspnet-codegenerator --version 6.0.0-rc.1.21464.1
 dotnet tool uninstall -g dotnet-ef
-dotnet tool install --global dotnet-ef --version 6.0.0-preview.1.21112.2
+dotnet tool install --global dotnet-ef --version 6.0.0-rc.1.21452.10
 dotnet add package Microsoft.EntityFrameworkCore.Design --prerelease
 dotnet add package Microsoft.EntityFrameworkCore.SQLite --prerelease
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --prerelease
