@@ -566,7 +566,7 @@ Close any browser instances open. Open a new browser window to app.
 
 See [HTTPS Error using IIS Express (dotnet/AspNetCore #16892)](https://github.com/dotnet/AspNetCore/issues/16892) for troubleshooting certificate issues with Visual Studio.
 
-### Linux - certificate not trusted
+### Linux certificate not trusted
 
 Check that the certificate you are configuring for trust is the user HTTPS developer certificate that will be used by the dotnet Kestrel server.
 
