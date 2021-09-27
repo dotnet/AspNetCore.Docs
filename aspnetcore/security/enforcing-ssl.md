@@ -576,13 +576,19 @@ Check the current user default HTTPS developer Kestrel certificate at the follow
 ls -la ~/.dotnet/corefx/cryptography/x509stores/my
 ```
 
-Check the thumbprint of the exported certificate (being trusted) matches:
+The HTTPS developer Kestrel certificate file is the SHA1 thumbprint. When the file is deleted via `dotnet dev-certs https --clean`, it's regenerated when needed with a different thumbprint.
+Check the thumbprint of the exported certificate matches with the following command:
 
 ```
 openssl x509 -noout -fingerprint -sha1 -inform pem -in /usr/local/share/ca-certificates/aspnet/https.crt
 ```
 
-If it does not match, you either have an old certificate, or may have exported a developer certificate for the root user, and will need to export the correct certificate again. You can check the root user certificate at:
+If the certificate doesn't match, it could be one of the following:
+
+* An old certificate.
+* An exported a developer certificate for the root user. For this case, export the  certificate.
+
+The root user certificate can be checked at:
 
 ```
 ls -la /root/.dotnet/corefx/cryptography/x509stores/my
