@@ -568,7 +568,7 @@ See [HTTPS Error using IIS Express (dotnet/AspNetCore #16892)](https://github.co
 
 ### Linux certificate not trusted
 
-Check that the certificate you are configuring for trust is the user HTTPS developer certificate that will be used by the dotnet Kestrel server.
+Check that the certificate being configured for trust is the user HTTPS developer certificate that will be used by the Kestrel server.
 
 You can check the current user default HTTPS developer certificate (used by Kestrel) at the following location; the filename will be the SHA1 thumbprint. If you clear this file (via `dotnet dev-certs https --clean`) then it will be regenerated when needed, but with a different thumbprint.
 
