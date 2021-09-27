@@ -15,7 +15,7 @@ By [Dave Brock](https://twitter.com/daveabrock)
 
 ::: moniker range=">= aspnetcore-6.0"
 
-CSS isolation simplifies an app's CSS footprint by preventing dependencies on global styles and helps to avoid styling conflicts among components and libraries.
+CSS isolation simplifies an app's CSS footprint by preventing dependencies on global styles and helps to avoid styling conflicts among pages, views, and components.
 
 ## Enable CSS isolation 
 
@@ -143,7 +143,7 @@ However, excluding the `div` element removes the descendant relationship. In the
 
 CSS preprocessors are useful for improving CSS development by utilizing features such as variables, nesting, modules, mixins, and inheritance. While CSS isolation doesn't natively support CSS preprocessors such as Sass or Less, integrating CSS preprocessors is seamless as long as preprocessor compilation occurs before Blazor rewrites the CSS selectors during the build process. Using Visual Studio for example, configure existing preprocessor compilation as a **Before Build** task in the Visual Studio Task Runner Explorer.
 
-Many third-party NuGet packages, such as [Delegate.SassBuilder](https://www.nuget.org/packages/Delegate.SassBuilder), can compile SASS/SCSS files at the beginning of the build process before CSS isolation occurs, and no additional configuration is required.
+Many third-party NuGet packages, such as [`Delegate.SassBuilder`](https://www.nuget.org/packages/Delegate.SassBuilder), can compile SASS/SCSS files at the beginning of the build process before CSS isolation occurs, and no additional configuration is required.
 
 ## CSS isolation configuration
 
@@ -216,10 +216,15 @@ In the following example:
 <link href="_content/ClassLib/ClassLib.bundle.scp.css" rel="stylesheet">
 ```
 
-For more information on RCLs and Razor class libraries, see the following articles:
+For more information on RCLs, see the following articles:
 
 * <xref:blazor/components/class-libraries>
 * <xref:razor-pages/ui-class>
+
+## Additional resources
+
+* [Razor Pages CSS isolation](xref:razor-pages/index#css-isolation)
+* [MVC CSS isolation](xref:mvc/views/overview#css-isolation)
 
 ::: moniker-end
 
@@ -426,7 +431,7 @@ In the following example:
 <link href="_content/ClassLib/ClassLib.bundle.scp.css" rel="stylesheet">
 ```
 
-For more information on RCLs and Razor class libraries, see the following articles:
+For more information on RCLs, see the following articles:
 
 * <xref:blazor/components/class-libraries>
 * <xref:razor-pages/ui-class>
