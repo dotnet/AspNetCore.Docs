@@ -411,7 +411,11 @@ Establishing trust is distribution and browser specific. The following sections 
     sudo update-ca-certificates
     ```
 
-This first ensure the current user's developer certificate is created, and then exports it with elevated permissions needed for the `ca-certificates` folder, but using the current user's environment.
+The preceding commands:
+
+* Ensure the current user's developer certificate is created.
+* Exports the certificate with elevated permissions needed for the `ca-certificates` folder, using the current user's environment.
+* Removing the `-E`  flag exports the root user certificate, generating it if necessary. Each newly generated certificate has a different thumbprint. When running as root, `sudo`  and  `-E` are not needed.
 
 Without `-E` it would export the root user certificate (generating it if necessary), which has a different thumbprint. If you are running as root, then you won't need `sudo` (or the `-E`).
 
