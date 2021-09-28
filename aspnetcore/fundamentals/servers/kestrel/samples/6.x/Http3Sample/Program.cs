@@ -13,16 +13,9 @@ namespace Http3Sample
         public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            builder.WebHost.UseKestrel()
-            // Set up QUIC options
-            .UseQuic(options =>
-            {
-                options.Alpn = "h3-29";
-                options.IdleTimeout = TimeSpan.FromMinutes(1);
-            })
+            builder.WebHost
             .ConfigureKestrel((context, options) =>
             {
-                options.EnableAltSvc = true;
                 options.Listen(IPAddress.Any, 5001, listenOptions =>
                 {
                     // Use HTTP/3

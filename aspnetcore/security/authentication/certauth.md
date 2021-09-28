@@ -262,10 +262,12 @@ See the [host and deploy documentation](xref:host-and-deploy/proxy-load-balancer
 
 ### Use certificate authentication in Azure Web Apps
 
-No forwarding configuration is required for Azure. This is already setup in the certificate forwarding middleware.
+No forwarding configuration is required for Azure. Forwarding configuration is set up by the Certificate Forwarding Middleware.
 
 > [!NOTE]
-> This requires that the CertificateForwardingMiddleware is present.
+> Certificate Forwarding Middleware is required for this scenario.
+
+For more information, see [Use a TLS/SSL certificate in your code in Azure App Service (Azure documentation)](/azure/app-service/configure-ssl-certificate-in-code).
 
 ### Use certificate authentication in custom web proxies
 
@@ -686,11 +688,11 @@ This section provides information for apps that must protect a subset of the app
 * Are a TLS feature, not an HTTP feature.
 * Are negotiated per-connection and usually at the start of the connection before any HTTP data is available. 
 
-There are two aproaches to implementing optional client certificates:
-1. Using seperate host names (SNI) and redirecting. While more work to configure, this is recomended because it works in most environments and protocols.
-2. Renegotiation durring an HTTP request. This has several limitations and is not recomended.
+There are two approaches to implementing optional client certificates:
+1. Using separate host names (SNI) and redirecting. While more work to configure, this is recommended because it works in most environments and protocols.
+2. Renegotiation during an HTTP request. This has several limitations and is not recommended.
 
-### Seperate Hosts (SNI)
+### Separate Hosts (SNI)
 
 At the start of the connection, only the Server Name Indication (SNI)&dagger; is known. Client certificates can be configured per host name so that one host requires them and another does not.
 
@@ -725,7 +727,7 @@ At the start of the connection, only the Server Name Indication (SNI)&dagger; is
 
 ::: moniker-end
 
-ASP.NET Core 5 and later adds more convenient support for redirecting to aquire optional client certificates. For more information, see the [Optional certificates sample](https://github.com/dotnet/aspnetcore/tree/9ce4a970a21bace3fb262da9591ed52359309592/src/Security/Authentication/Certificate/samples/Certificate.Optional.Sample).
+ASP.NET Core 5 and later adds more convenient support for redirecting to acquire optional client certificates. For more information, see the [Optional certificates sample](https://github.com/dotnet/aspnetcore/tree/9ce4a970a21bace3fb262da9591ed52359309592/src/Security/Authentication/Certificate/samples/Certificate.Optional.Sample).
 
 * For requests to the web app that require a client certificate and don't have one:
   * Redirect to the same page using the client certificate protected subdomain.
@@ -739,9 +741,9 @@ ASP.NET Core 5 and later adds more convenient support for redirecting to aquire 
 TLS renegotiation is a process by which the client and server can re-assess the encryption requirements for an individual connection, including requesting a client certificate if not previously provided. TLS renegotiation is a security risk and isn't recommended because:
 - In HTTP/1.1 the server must first buffer or consume any HTTP data that is in flight such as POST request bodies to make sure the connection is clear for the renegotiation. Otherwise the renegotiation can stop responding or fail.
 - HTTP/2 and HTTP/3 [explicitly prohibit](https://tools.ietf.org/html/rfc7540#section-9.2.1) renegotiation.
-- There are security risks associated with renegotiation. TLS 1.3 removed renegotiation of the whole connection and replaced it with a new extension for requesting only the client certificiate after the start of the connection. This mechanism is exposed via the same APIs and is still subject to the prior constraints of buffering and HTTP protocol versions.
+- There are security risks associated with renegotiation. TLS 1.3 removed renegotiation of the whole connection and replaced it with a new extension for requesting only the client certificate after the start of the connection. This mechanism is exposed via the same APIs and is still subject to the prior constraints of buffering and HTTP protocol versions.
 
-The implmentation and configuration of this feature varies by server and framework version.
+The implementation and configuration of this feature varies by server and framework version.
 
 #### IIS
 
@@ -753,13 +755,13 @@ IIS will automatically buffer any request body data up to a configured size limi
 
 HttpSys has two settings which control the client certificate negotation and both should be set. The first is in netsh.exe under `http add sslcert clientcertnegotation=enable/disable`. This flag indicates if the client certificate should be negiatated at the start of a connection and it should be set to `disable` for optional client certificates. See the [netsh docs](/windows-server/networking/technologies/netsh/netsh-http#add-sslcert) for details.
 
-The other setting is <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.ClientCertificateMethod>. When set to `AllowRenegotation`, the client certificate can be renegotiated durring a request.
+The other setting is <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.ClientCertificateMethod>. When set to `AllowRenegotation`, the client certificate can be renegotiated during a request.
 
 *NOTE* The application should buffer or consume any request body data before attempting the renegotiation, otherwise the request may become unresponsive.
 
 ::: moniker range=">= aspnetcore-6.0"
 
-An application can first check the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.ClientCertificate> property to see if the certificate is available. If it is not available, ensure the request body has been consumed before calling <xref:Microsoft.AspNetCore.Http.ConnectionInfo.GetClientCertificateAsync*> to negotiate one. Note `GetClientCertificateAsync` can return a null certificiate if the client declines to provide one.
+An application can first check the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.ClientCertificate> property to see if the certificate is available. If it is not available, ensure the request body has been consumed before calling <xref:Microsoft.AspNetCore.Http.ConnectionInfo.GetClientCertificateAsync*> to negotiate one. Note `GetClientCertificateAsync` can return a null certificate if the client declines to provide one.
 
 *NOTE* The behavior of the `ClientCertificate` property changed in .NET 6, see https://github.com/aspnet/Announcements/issues/466 if working with prior versions.
 
@@ -767,7 +769,7 @@ An application can first check the <xref:Microsoft.AspNetCore.Http.ConnectionInf
 
 ::: moniker range="< aspnetcore-6.0"
 
-There is a [known issue](https://github.com/dotnet/aspnetcore/issues/33586) where enabling `AllowRenegotation` can cause the renegotiation to happen synchronously when accessing the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.ClientCertificate> property. Call the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.GetClientCertificateAsync*> method to avoid this. This has been addressed in .NET 6, see https://github.com/aspnet/Announcements/issues/466. Note `GetClientCertificateAsync` can return a null certificiate if the client declines to provide one.
+There is a [known issue](https://github.com/dotnet/aspnetcore/issues/33586) where enabling `AllowRenegotation` can cause the renegotiation to happen synchronously when accessing the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.ClientCertificate> property. Call the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.GetClientCertificateAsync*> method to avoid this. This has been addressed in .NET 6, see https://github.com/aspnet/Announcements/issues/466. Note `GetClientCertificateAsync` can return a null certificate if the client declines to provide one.
 
 ::: moniker-end
 
@@ -793,7 +795,7 @@ If you're programmatically configuring the TLS settings per host there is a new 
 
 ::: moniker range="< aspnetcore-6.0"
 
-For .NET 5 and earlier Kestrel does not support renegotiating after the start of a connection to aquire a client certificate. This feature has been added in .NET 6.
+For .NET 5 and earlier Kestrel does not support renegotiating after the start of a connection to acquire a client certificate. This feature has been added in .NET 6.
 
 ::: moniker-end
 

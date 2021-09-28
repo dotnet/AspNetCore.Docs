@@ -962,6 +962,9 @@
         - name: HTTP/2
           displayName: deploy, publish
           uid: host-and-deploy/iis/protocols
+        - name: HTTP/3
+          displayName: deploy, publish
+          uid: host-and-deploy/iis/http3
     - name: Kestrel
       displayName: deploy, publish, server, Kestrel
       items:
@@ -974,6 +977,9 @@
         - name: Options
           displayName: deploy, publish, server, Kestrel
           uid: fundamentals/servers/kestrel/options
+        - name: Diagnostics
+          displayName: diagnostics
+          uid: fundamentals/servers/kestrel/diagnostics
         - name: HTTP/2
           displayName: deploy, publish, server, Kestrel
           uid: fundamentals/servers/kestrel/http2

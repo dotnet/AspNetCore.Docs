@@ -26,7 +26,7 @@ At the end of this tutorial, you'll have a working todo list app.
 
 ## Prerequisites
 
-[!INCLUDE[](~/includes/5.0-SDK.md)]
+[!INCLUDE[](~/includes/6.0-SDK.md)]
 
 ## Create a Blazor app
 
@@ -79,11 +79,11 @@ cd TodoList
 
    The `NavMenu` component is used in the app's layout. Layouts are components that allow you to avoid duplication of content in an app. The `NavLink` component provides a cue in the app's UI when the component URL is loaded by the app.
 
-   In the unordered list (`<ul>...</ul>`) of the `NavMenu` component, add the following list item (`<li>...</li>`) and `NavLink` component for the `Todo` component.
+   In the navigation element content (`<nav class="flex-column">`) of the `NavMenu` component, add the following `<div>` element for the `Todo` component.
 
    In `Shared/NavMenu.razor`:
 
-   [!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Shared/build-a-blazor-app/NavMenu.razor?highlight=5-9)]
+   [!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Shared/build-a-blazor-app/NavMenu.razor)]
 
    Save the `Shared/NavMenu.razor` file.
 
@@ -110,11 +110,11 @@ cd TodoList
 
    `Pages/Todo.razor`:
 
-   [!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo2.razor?highlight=5-10,13)]
+   [!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo2.razor?highlight=7-12,15)]
 
 1. The app requires UI elements for adding todo items to the list. Add a text input (`<input>`) and a button (`<button>`) below the unordered list (`<ul>...</ul>`):
 
-   [!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo3.razor?highlight=12-13)]
+   [!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo3.razor?highlight=14-15)]
 
 1. Save the `TodoItem.cs` file and the updated `Pages/Todo.razor` file. In the command shell, the app is automatically rebuilt when the files are saved. The browser reloads the page.
 
@@ -136,7 +136,7 @@ cd TodoList
 
 1. Update the `AddTodo` method to add the `TodoItem` with the specified title to the list. Clear the value of the text input by setting `newTodo` to an empty string:
 
-   [!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo6.razor?highlight=19-26)]
+   [!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo6.razor?highlight=21-28)]
 
 1. Save the `Pages/Todo.razor` file. The app is automatically rebuilt in the command shell, and the page reloads in the browser.
 

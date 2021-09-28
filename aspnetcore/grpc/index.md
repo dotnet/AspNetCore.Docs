@@ -1,16 +1,16 @@
 ---
 title: Introduction to gRPC on .NET
-author: juntaoluo
+author: jamesnk
 description: Learn about gRPC services with Kestrel server and the ASP.NET Core stack.
 monikerRange: '>= aspnetcore-3.0'
-ms.author: johluo
+ms.author: jamesnk
 ms.date: 03/29/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/index
 ---
 # Introduction to gRPC on .NET
 
-By [John Luo](https://github.com/juntaoluo) and [James Newton-King](https://twitter.com/jamesnk)
+By [James Newton-King](https://twitter.com/jamesnk)
 
 [gRPC](https://grpc.io) is a language agnostic, high-performance Remote Procedure Call (RPC) framework.
 

@@ -1021,7 +1021,7 @@ Most apps should choose a basic and descriptive routing scheme so that URLs are 
 * Supports a basic and descriptive routing scheme.
 * Is a useful starting point for UI-based apps.
 
-Developers commonly add additional terse routes to high-traffic areas of an app in specialized situations using [attribute routing](xref:mvc/controllers/routing#attribute-routing) or dedicated conventional routes. Specialized situations examples include, blog and ecommerce endpoints.
+Developers commonly add additional terse routes to high-traffic areas of an app in specialized situations using [attribute routing](xref:mvc/controllers/routing#ar) or dedicated conventional routes. Specialized situations examples include, blog and ecommerce endpoints.
 
 Web APIs should use attribute routing to model the app's functionality as a set of resources where operations are represented by HTTP verbs. This means that many operations, for example, GET, and POST, on the same logical resource use the same URL. Attribute routing provides a level of control that's needed to carefully design an API's public endpoint layout.
 
@@ -1605,7 +1605,7 @@ Most apps should choose a basic and descriptive routing scheme so that URLs are 
 * Supports a basic and descriptive routing scheme.
 * Is a useful starting point for UI-based apps.
 
-Developers commonly add additional terse routes to high-traffic areas of an app in specialized situations (for example, blog and ecommerce endpoints) using [attribute routing](xref:mvc/controllers/routing#attribute-routing) or dedicated conventional routes.
+Developers commonly add additional terse routes to high-traffic areas of an app in specialized situations (for example, blog and ecommerce endpoints) using [attribute routing](xref:mvc/controllers/routing#ar) or dedicated conventional routes.
 
 Web APIs should use attribute routing to model the app's functionality as a set of resources where operations are represented by HTTP verbs. This means that many operations (for example, GET, POST) on the same logical resource will use the same URL. Attribute routing provides a level of control that's needed to carefully design an API's public endpoint layout.
 

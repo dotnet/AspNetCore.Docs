@@ -249,7 +249,7 @@ It's often convenient to close over additional values using C# method parameters
 > * The loop variable `i` is assigned to `buttonNumber`.
 > * `buttonNumber` is used in the lambda expression.
 
-Use of the approach in this section can lead to poor performance with many rendered components. For more information, see [Blazor Binary message size send from server to client increases (dotnet/aspnetcore #17886)](https://github.com/dotnet/aspnetcore/issues/17886).
+Creating a large number of event delegates in a loop may cause poor rendering performance. For more information, see <xref:blazor/performance#avoid-recreating-delegates-for-many-repeated-elements-or-components>.
 
 ## EventCallback
 
@@ -420,8 +420,7 @@ It's often convenient to close over additional values using C# method parameters
 > * The loop variable `i` is assigned to `buttonNumber`.
 > * `buttonNumber` is used in the lambda expression.
 
-> [!NOTE]
-> Use of the approach in this section can lead to poor performance with many rendered components. For more information, see [Blazor Binary message size send from server to client increases (dotnet/aspnetcore #17886)](https://github.com/dotnet/aspnetcore/issues/17886).
+Creating a large number of event delegates in a loop may cause poor rendering performance. For more information, see <xref:blazor/performance#avoid-recreating-delegates-for-many-repeated-elements-or-components>.
 
 ## EventCallback
 
@@ -592,7 +591,7 @@ It's often convenient to close over additional values using C# method parameters
 > * The loop variable `i` is assigned to `buttonNumber`.
 > * `buttonNumber` is used in the lambda expression.
 
-Use of the approach in this section can lead to poor performance with many rendered components. For more information, see [Blazor Binary message size send from server to client increases (dotnet/aspnetcore #17886)](https://github.com/dotnet/aspnetcore/issues/17886).
+Creating a large number of event delegates in a loop may cause poor rendering performance. For more information, see <xref:blazor/performance#avoid-recreating-delegates-for-many-repeated-elements-or-components>.
 
 ## EventCallback
 
