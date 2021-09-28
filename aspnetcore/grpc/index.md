@@ -2,6 +2,7 @@
 title: Introduction to gRPC on .NET
 author: jamesnk
 description: Learn about gRPC services with Kestrel server and the ASP.NET Core stack.
+monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 03/29/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
