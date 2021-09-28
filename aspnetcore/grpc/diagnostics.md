@@ -27,7 +27,7 @@ gRPC services and the gRPC client write logs using [.NET Core logging](xref:fund
 > [!WARNING]
 > Server-side logs may contain sensitive information from your app. **Never** post raw logs from production apps to public forums like GitHub.
 
-Since gRPC services are hosted on ASP.NET Core, it uses the ASP.NET Core logging system. In the default configuration, gRPC logs very little information, but this can configured. See the documentation on [ASP.NET Core logging](xref:fundamentals/logging/index#configuration) for details on configuring ASP.NET Core logging.
+Since gRPC services are hosted on ASP.NET Core, it uses the ASP.NET Core logging system. In the default configuration, gRPC logs very little information, but this can configured. See the documentation on [ASP.NET Core logging](xref:fundamentals/logging/index) for details on configuring ASP.NET Core logging.
 
 gRPC adds logs under the `Grpc` category. To enable detailed logs from gRPC, configure the `Grpc` prefixes to the `Debug` level in your *appsettings.json* file by adding the following items to the `LogLevel` sub-section in `Logging`:
 

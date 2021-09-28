@@ -87,14 +87,13 @@ By default, there's no limit on the number of connections per user for a Blazor 
   * At the server level: Use a proxy/gateway in front of the app.
   
     > [!NOTE]
-    > Long Polling isn't enabled by default for ASP.NET Core 6.0 or later Blazor Server apps. [Azure Front Door](/azure/frontdoor/front-door-overview) doesn't support WebSockets at this time, but support for WebSockets is under consideration for a future release of the service.
+    > Long Polling isn't enabled by default for Blazor Server apps.
     >
     > For more information, see the following resources:
     >
     > * <xref:blazor/host-and-deploy/server#signalr-configuration>
     > * <xref:blazor/fundamentals/signalr?pivots=server#long-polling>
     > * [Disable Long Polling Fallback Transport for Blazor Server (ASP.NET Announcements)](https://github.com/aspnet/Announcements/issues/470)
-    > * [Support WebSocket connections on Azure Front Door](https://feedback.azure.com/forums/217313-networking/suggestions/37346371-support-websocket-connections-on-azure-front-door)
 
 ## Denial of service (DoS) attacks
 
@@ -482,10 +481,10 @@ By default, there's no limit on the number of connections per user for a Blazor 
     * Require authentication to connect to the app and keep track of the active sessions per user.
     * Reject new sessions upon reaching a limit.
     * Proxy WebSocket connections to an app through the use of a proxy, such as the [Azure SignalR Service](/azure/azure-signalr/signalr-overview) that multiplexes connections from clients to an app. This provides an app with greater connection capacity than a single client can establish, preventing a client from exhausting the connections to the server.
-  * At the server level: Use a proxy/gateway in front of the app. For example, [Azure Front Door](/azure/frontdoor/front-door-overview) enables you to define, manage, and monitor the global routing of web traffic to an app and works when Blazor Server apps are configured to use Long Polling.
+  * At the server level: Use a proxy/gateway in front of the app.
   
     > [!NOTE]
-    > Although Long Polling is supported for Blazor Server apps, [WebSockets is the recommended transport protocol](xref:blazor/host-and-deploy/server#azure-signalr-service). [Azure Front Door](/azure/frontdoor/front-door-overview) doesn't support WebSockets at this time, but support for WebSockets is under consideration for a future release of the service.
+    > Although Long Polling is supported for Blazor Server apps, [WebSockets is the recommended transport protocol](xref:blazor/host-and-deploy/server#azure-signalr-service).
 
 ## Denial of service (DoS) attacks
 
@@ -873,10 +872,10 @@ By default, there's no limit on the number of connections per user for a Blazor 
     * Require authentication to connect to the app and keep track of the active sessions per user.
     * Reject new sessions upon reaching a limit.
     * Proxy WebSocket connections to an app through the use of a proxy, such as the [Azure SignalR Service](/azure/azure-signalr/signalr-overview) that multiplexes connections from clients to an app. This provides an app with greater connection capacity than a single client can establish, preventing a client from exhausting the connections to the server.
-  * At the server level: Use a proxy/gateway in front of the app. For example, [Azure Front Door](/azure/frontdoor/front-door-overview) enables you to define, manage, and monitor the global routing of web traffic to an app and works when Blazor Server apps are configured to use Long Polling.
+  * At the server level: Use a proxy/gateway in front of the app.
   
     > [!NOTE]
-    > Although Long Polling is supported for Blazor Server apps, [WebSockets is the recommended transport protocol](xref:blazor/host-and-deploy/server#azure-signalr-service). [Azure Front Door](/azure/frontdoor/front-door-overview) doesn't support WebSockets at this time, but support for WebSockets is under consideration for a future release of the service.
+    > Although Long Polling is supported for Blazor Server apps, [WebSockets is the recommended transport protocol](xref:blazor/host-and-deploy/server#azure-signalr-service).
 
 ## Denial of service (DoS) attacks
 

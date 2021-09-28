@@ -10,6 +10,6 @@ public class EFConfigurationContext : DbContext
     {
     }
 
-    public DbSet<EFConfigurationValue>? Values => Set<EFConfigurationValue>();
+    public DbSet<EFConfigurationValue> Values => Set<EFConfigurationValue>();
 }
 #endregion

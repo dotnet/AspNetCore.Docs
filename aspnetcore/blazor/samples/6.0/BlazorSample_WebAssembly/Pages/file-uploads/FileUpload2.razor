@@ -1,5 +1,6 @@
 @page "/file-upload-2"
 @using System.Linq
+@using System.Net.Http.Headers
 @using Microsoft.Extensions.Logging
 @inject HttpClient Http
 @inject ILogger<FileUpload2> Logger
@@ -69,6 +70,9 @@
                 {
                     var fileContent = 
                         new StreamContent(file.OpenReadStream(maxFileSize));
+
+                    fileContent.Headers.ContentType = 
+                        new MediaTypeHeaderValue(file.ContentType);
 
                     files.Add(new() { Name = file.Name });
 

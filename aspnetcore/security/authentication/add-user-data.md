@@ -17,7 +17,7 @@ This article shows how to:
 * Add custom user data to an ASP.NET Core web app.
 * Mark the custom user data model with the <xref:Microsoft.AspNetCore.Identity.PersonalDataAttribute> attribute so it's automatically available for download and deletion. Making the data able to be downloaded and deleted helps meet [GDPR](xref:security/gdpr) requirements.
 
-The project sample is created from a Razor Pages web app, but the instructions are similar for a ASP.NET Core MVC web app.
+The project sample is created from a Razor Pages web app, but the instructions are similar for an ASP.NET Core MVC web app.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/add-user-data) ([how to download](xref:index#how-to-download-a-sample))
 
