@@ -119,14 +119,6 @@ public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = 
 
 The framework handles validating request data both on the client and on the server. Validation logic specified on model types is added to the rendered views as unobtrusive annotations and is enforced in the browser with [jQuery Validation](https://jqueryvalidation.org/).
 
-::: moniker range=">= aspnetcore-6.0"
-
-## CSS isolation
-
-Use CSS isolation to confine CSS styles to single views. For more information, see <xref:mvc/views/overview#css-isolation>.
-
-::: moniker-end
-
 ## Dependency injection
 
 ASP.NET Core has built-in support for [dependency injection (DI)](../fundamentals/dependency-injection.md). In ASP.NET Core MVC, [controllers](controllers/dependency-injection.md) can request needed services through their constructors, allowing them to follow the [Explicit Dependencies Principle](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#explicit-dependencies).
