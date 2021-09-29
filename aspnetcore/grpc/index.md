@@ -4,7 +4,7 @@ author: jamesnk
 description: Learn about gRPC services with Kestrel server and the ASP.NET Core stack.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 03/29/2021
+ms.date: 09/28/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/index
 ---
@@ -72,7 +72,7 @@ gRPC requires the [Grpc.AspNetCore](https://www.nuget.org/packages/Grpc.AspNetCo
 
 ### The gRPC service project template
 
-The gRPC service project template provides a starter service:
+The **ASP.NET Core gRPC Service** project template provides a starter service:
 
 ```csharp
 public class GreeterService : Greeter.GreeterBase
@@ -96,7 +96,7 @@ public class GreeterService : Greeter.GreeterBase
 }
 ```
 
-`GreeterService` inherits from the `GreeterBase` type, which is generated from the `Greeter` service in the *\*.proto* file. The service is made accessible to clients in *Startup.cs*:
+`GreeterService` inherits from the `GreeterBase` type, which is generated from the `Greeter` service in the *\*.proto* file. The service is made accessible to clients in *Program.cs*:
 
 ```csharp
 app.UseEndpoints(endpoints =>
