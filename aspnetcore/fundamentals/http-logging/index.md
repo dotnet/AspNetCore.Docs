@@ -1,9 +1,9 @@
 ---
-title: HTTP Logging in .NET Core and ASP.NET Core
-author: jkotalik
-description: Learn how to log HTTP Requests and Response.
+title: W3C Logger in .NET Core and ASP.NET Core
+author: wtgodbe
+description: Learn how to create server logs in the W3C standard format.
 monikerRange: '>= aspnetcore-6.0'
-ms.author: jukotali
+ms.author: wigodbe
 ms.custom: mvc
 ms.date: 04/20/2021
 no-loc: [Home, Privacy, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
@@ -37,7 +37,7 @@ HTTP Logging is enabled with `UseHttpLogging`, which adds HTTP logging middlewar
 
 [!code-csharp[](samples/6.x/Startup.cs?name=snippet&highlight=3)]
 
-By default, HTTP Logging logs common properties such as path, query, status-code, and headers for requests and responses. The output is logged as a single message at `LogLevel.Information`.
+By default, HTTP Logging logs common properties such as path, status-code, and headers for requests and responses. The output is logged as a single message at `LogLevel.Information`.
 
 ![Sample request output](_static/requestlog.png)
 
