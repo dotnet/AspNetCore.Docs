@@ -13,8 +13,8 @@ To define a JS initializer, add a JS module to the project named `{NAME}.lib.mod
 
 The module exports either or both of the following conventional functions:
 
-* `beforeStart`: Called before Blazor starts. For example, `beforeStart` is used to customize the loading process, logging level, and other options specific to the hosting model.
-  * In Blazor WebAssembly, `beforeStart` receives the Blazor WebAssembly options and any extensions added during publishing.
+* `beforeStart(options, extensions)`: Called before Blazor starts. For example, `beforeStart` is used to customize the loading process, logging level, and other options specific to the hosting model.
+  * In Blazor WebAssembly, `beforeStart` receives the Blazor WebAssembly options (`options`) and any extensions (`extensions`) added during publishing.
   * In Blazor Server, `beforeStart` receives the circuit start options.
   * In [`BlazorWebViews`](/mobile-blazor-bindings/walkthroughs/hybrid-hello-world#mainrazor-native-ui-page), no options are passed.
 * `afterStarted`: Called after Blazor is ready to receive calls from JS. For example, `afterStarted` is used to initialize libraries by making JS interop calls and registering custom elements. The Blazor instance is passed to `afterStarted` as an argument.
@@ -25,7 +25,7 @@ The following example demonstrates JS initializers for `beforeStart` and `afterS
 * Use the project's library name or package identifier if the JS initializers are consumed from an RCL. For example, name the file `RazorClassLibrary1.lib.module.js` for an RCL with a package identifier of `RazorClassLibrary1`. Place the file in the library's `wwwroot` folder.
 
 ```javascript
-export function beforeStart(options) {
+export function beforeStart(options, extensions) {
     console.log("beforeStart");
 }
 
@@ -36,3 +36,5 @@ export function afterStarted(blazor) {
 
 > [!NOTE]
 > MVC and Razor Pages apps don't automatically load JS initializers. However, developer code can include a script to fetch the app's manifest and trigger the load of the JS initializers.
+
+For an example of JS initializers, see <xref:blazor/host-and-deploy/webassembly-deployment-layout>.
