@@ -29,7 +29,7 @@ W3C Logging is valuable in several scenarios to:
 W3CLogger ***can reduce the performance of an app***. Consider the performance impact when selecting fields to log. Test the performance impact of the selected logging properties.
 
 > [!WARNING]
-> HTTP Logging can potentially log personally identifiable information (PII). Consider the risk and avoid logging sensitive information. By default, fields that could contain PII are not logged.
+> W3CLogger can potentially log personally identifiable information (PII). Consider the risk and avoid logging sensitive information. By default, fields that could contain PII are not logged.
 
 ## Enabling W3C Logging
 
