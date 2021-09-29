@@ -1,9 +1,9 @@
 ---
-title: W3C Logger in .NET Core and ASP.NET Core
-author: wtgodbe
-description: Learn how to create server logs in the W3C standard format.
+title: HTTP Logging in .NET Core and ASP.NET Core
+author: jkotalik
+description: Learn how to log HTTP Requests and Response.
 monikerRange: '>= aspnetcore-6.0'
-ms.author: wigodbe
+ms.author: jukotali
 ms.custom: mvc
 ms.date: 04/20/2021
 no-loc: [Home, Privacy, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
