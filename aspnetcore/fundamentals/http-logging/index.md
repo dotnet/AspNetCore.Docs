@@ -37,7 +37,7 @@ HTTP Logging is enabled with `UseHttpLogging`, which adds HTTP logging middlewar
 
 [!code-csharp[](samples/6.x/Startup.cs?name=snippet&highlight=3)]
 
-By default, HTTP Logging logs common properties such as path, query, status-code, and headers for requests and responses. The output is logged as a single message at `LogLevel.Information`.
+By default, HTTP Logging logs common properties such as path, status-code, and headers for requests and responses. The output is logged as a single message at `LogLevel.Information`.
 
 ![Sample request output](_static/requestlog.png)
 
