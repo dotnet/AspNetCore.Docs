@@ -34,7 +34,7 @@ W3CLogger ***can reduce the performance of an app***. Consider the performance i
 
 W3CLogger is enabled with `UseW3CLogging`, which adds the W3CLogger middleware.
 
-[!code-csharp[](samples/6.x/Startup.cs?name=snippet&highlight=3)]
+[!code-csharp[](samples/6.x/Program.cs?name=snippet&highlight=1)]
 
 By default, W3CLogger logs common properties such as path, status-code, date, time, and protocol. All information about a single request/response pair is written to the same line.
 
@@ -57,7 +57,7 @@ To configure the W3CLogger middleware, call `AddW3CLogging` in `ConfigureService
 
 `W3CLoggerOptions.LoggingFields` is a bit flag enumeration that configures specific parts of the request and response to log, and other information about the connection. `LoggingFields` defaults to include all possible fields except `UserName` and `Cookie`. 
 
-[!code-csharp[](samples/6.x/Startup.cs?name=configureservices&highlight=6)]
+[!code-csharp[](samples/6.x/Program.cs?name=configureservices&highlight=4)]
 
 | Flag | Description | Value |
 | ---- | ----------- | :---: |
@@ -88,28 +88,28 @@ To configure the W3CLogger middleware, call `AddW3CLogging` in `ConfigureService
 
 Maximum log file size in bytes. Defaults to 10 MiB.
 
-[!code-csharp[](samples/6.x/Startup.cs?name=configureservices&highlight=8)]
+[!code-csharp[](samples/6.x/Program.cs?name=configureservices&highlight=6)]
 
 ### `RetainedFileCountLimit`
 
 Maximum number of files to keep on disk before rolling, per application. Defaults to 4, capped at 10,000.
 
-[!code-csharp[](samples/6.x/Startup.cs?name=configureservices&highlight=9)]
+[!code-csharp[](samples/6.x/Program.cs?name=configureservices&highlight=7)]
 
 ### `FileName`
 
 Prefix to be used for log file name. The current date plus a file number, in the format `{YYYYMMDD.X}`, will be appended.
 
-[!code-csharp[](samples/6.x/Startup.cs?name=configureservices&highlight=10)]
+[!code-csharp[](samples/6.x/Program.cs?name=configureservices&highlight=8)]
 
 ### `LogDirectory`
 
 Directory where the log file will be written to. Defaults to `./logs/`, relative to the app directory.
 
-[!code-csharp[](samples/6.x/Startup.cs?name=configureservices&highlight=11)]
+[!code-csharp[](samples/6.x/Program.cs?name=configureservices&highlight=9)]
 
 ### `FlushInterval`
 
 The period after which logs will be flushed to the log file. Defaults to 1 second.
 
-[!code-csharp[](samples/6.x/Startup.cs?name=configureservices&highlight=12)]
+[!code-csharp[](samples/6.x/Program.cs?name=configureservices&highlight=10)]
