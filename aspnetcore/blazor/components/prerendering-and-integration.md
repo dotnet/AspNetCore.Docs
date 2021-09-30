@@ -33,10 +33,11 @@ To set up prerendering for a hosted Blazor WebAssembly app:
 
 1. **Delete** the `wwwroot/index.html` file from the Blazor WebAssembly **`Client`** project.
 
-1. In the **`Client`** project, **delete** the following line in `Program.cs`:
+1. In the **`Client`** project, **delete** the following lines in `Program.cs`:
 
    ```diff
    - builder.RootComponents.Add<App>("#app");
+   - builder.RootComponents.Add<HeadOutlet>("head::after");
    ```
 
 1. Add `_Host.cshtml` and `_Layout.cshtml` files to the **`Server`** project's `Pages` folder. You can obtain the files from a project created from the Blazor Server template using Visual Studio or using the .NET CLI with the `dotnet new blazorserver -o BlazorServer` command in a command shell (the `-o BlazorServer` option creates a folder for the project). After placing the files into the **`Server`** project's `Pages` folder:
@@ -63,7 +64,7 @@ To set up prerendering for a hosted Blazor WebAssembly app:
      @using BlazorHosted.Client
      ```
 
-   * Update the stylesheet links to point to the WebAssembly project's stylesheets. In the following example, the client project's namespace is `BlazorHosted.Client`. The `{APP NAMESPACE}` placeholder represents the namespace of the donor app that provided the `_Layout.cshtml` file. Remove the Component Tag Helper (`<component>` tag) for the `HeadOutlet` component.
+   * Update the stylesheet links to point to the WebAssembly project's stylesheets. In the following example, the client project's namespace is `BlazorHosted.Client`. The `{APP NAMESPACE}` placeholder represents the namespace of the donor app that provided the `_Layout.cshtml` file. Update the Component Tag Helper (`<component>` tag) for the `HeadOutlet` component to prerender the component.
 
      Delete:
 
@@ -78,6 +79,7 @@ To set up prerendering for a hosted Blazor WebAssembly app:
      ```razor
      <link href="css/app.css" rel="stylesheet" />
      <link href="BlazorHosted.Client.styles.css" rel="stylesheet" />
+     <component type="typeof(HeadOutlet)" render-mode="WebAssemblyPrerendered" />
      ```
 
      > [!NOTE]

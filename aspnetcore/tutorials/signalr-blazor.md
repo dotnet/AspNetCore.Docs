@@ -31,21 +31,21 @@ At the end of this tutorial, you'll have a working chat app.
 
 # [Visual Studio](#tab/visual-studio)
 
-* [Visual Studio 2019 16.10 or later](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) with the **ASP.NET and web development** workload
-* [!INCLUDE [.NET Core 5.0 SDK](~/includes/5.0-SDK.md)]
+* [Visual Studio 2022 or later](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2022) with the **ASP.NET and web development** workload
+* [!INCLUDE [.NET Core 6.0 SDK](~/includes/6.0-SDK.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-core-prereqs-vsc-5.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vsc-6.0.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* [Visual Studio for Mac version 8.8 or later](https://visualstudio.microsoft.com/vs/mac/)
-* [!INCLUDE [.NET Core 5.0 SDK](~/includes/5.0-SDK.md)]
+* [Visual Studio for Mac 2022 or later](https://visualstudio.microsoft.com/vs/mac/)
+* [!INCLUDE [.NET Core 6.0 SDK](~/includes/6.0-SDK.md)]
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
-[!INCLUDE[](~/includes/5.0-SDK.md)]
+[!INCLUDE[](~/includes/6.0-SDK.md)]
 
 ---
 
@@ -58,7 +58,7 @@ Follow the guidance for your choice of tooling:
 # [Visual Studio](#tab/visual-studio)
 
 > [!NOTE]
-> Visual Studio 16.10 or later and .NET Core SDK 5.0.0 or later are required.
+> Visual Studio 2022 or later and .NET Core SDK 6.0.0 or later are required.
 
 1. Create a new project.
 
@@ -179,7 +179,7 @@ In the `BlazorWebAssemblySignalRApp.Server` project, create a `Hubs` (plural) fo
 
 ## Add services and an endpoint for the SignalR hub
 
-1. In the `BlazorWebAssemblySignalRApp.Server` project, open the `Startup.cs` file.
+1. In the `BlazorWebAssemblySignalRApp.Server` project, open the `Program.cs` file.
 
 1. Add the namespace for the `ChatHub` class to the top of the file:
 
@@ -187,16 +187,16 @@ In the `BlazorWebAssemblySignalRApp.Server` project, create a `Hubs` (plural) fo
    using BlazorWebAssemblySignalRApp.Server.Hubs;
    ```
 
-1. Add SignalR and Response Compression Middleware services to `Startup.ConfigureServices`:
+1. Add SignalR and Response Compression Middleware services to `Program.cs`:
 
-   [!code-csharp[](~/tutorials/signalr-blazor/samples/6.0/BlazorWebAssemblySignalRApp/Server/Startup.cs?name=snippet_ConfigureServices&highlight=3,6-10)]
+   [!code-csharp[](~/tutorials/signalr-blazor/samples/6.0/BlazorWebAssemblySignalRApp/Server/Program.cs?name=snippet_ConfigureServices)]
 
-1. In `Startup.Configure`:
+1. In `Program.cs`:
 
    * Use Response Compression Middleware at the top of the processing pipeline's configuration.
    * Between the endpoints for controllers and the client-side fallback, add an endpoint for the hub.
 
-   [!code-csharp[](~/tutorials/signalr-blazor/samples/6.0/BlazorWebAssemblySignalRApp/Server/Startup.cs?name=snippet_Configure&highlight=3,26)]
+   [!code-csharp[](~/tutorials/signalr-blazor/samples/6.0/BlazorWebAssemblySignalRApp/Server/Program.cs?name=snippet_Configure)]
 
 ## Add Razor component code for chat
 
@@ -278,7 +278,7 @@ Follow the guidance for your choice of tooling:
 # [Visual Studio](#tab/visual-studio)
 
 > [!NOTE]
-> Visual Studio 16.10 or later and .NET Core SDK 5.0.0 or later are required.
+> Visual Studio 2022 or later and .NET Core SDK 6.0.0 or later are required.
 
 1. Create a new project.
 
@@ -390,7 +390,7 @@ Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/Cha
 
 ## Add services and an endpoint for the SignalR hub
 
-1. Open the `Startup.cs` file.
+1. Open the `Program.cs` file.
 
 1. Add the namespaces for <xref:Microsoft.AspNetCore.ResponseCompression?displayProperty=fullName> and the `ChatHub` class to the top of the file:
 
@@ -399,16 +399,16 @@ Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/Cha
    using BlazorServerSignalRApp.Server.Hubs;
    ```
 
-1. Add Response Compression Middleware services to `Startup.ConfigureServices`:
+1. Add Response Compression Middleware services to `Program.cs`:
 
-   [!code-csharp[](~/tutorials/signalr-blazor/samples/6.0/BlazorServerSignalRApp/Startup.cs?name=snippet_ConfigureServices&highlight=6-10)]
+   [!code-csharp[](~/tutorials/signalr-blazor/samples/6.0/BlazorServerSignalRApp/Program.cs?name=snippet_ConfigureServices)]
 
-1. In `Startup.Configure`:
+1. In `Program.cs`:
 
    * Use Response Compression Middleware at the top of the processing pipeline's configuration.
    * Between the endpoints for mapping the Blazor hub and the client-side fallback, add an endpoint for the hub.
 
-   [!code-csharp[](~/tutorials/signalr-blazor/samples/6.0/BlazorServerSignalRApp/Startup.cs?name=snippet_Configure&highlight=3,23)]
+   [!code-csharp[](~/tutorials/signalr-blazor/samples/6.0/BlazorServerSignalRApp/Program.cs?name=snippet_Configure)]
 
 ## Add Razor component code for chat
 
