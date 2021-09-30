@@ -7,17 +7,17 @@ JavaScript (JS) initializers execute logic before and after a Blazor app loads. 
 * Initializing libraries before Blazor starts up.
 * Configuring Blazor settings.
 
-JS initializers are detected as part of the build process and imported automatically in Blazor apps. Use of JS initializers often removes the need to manually add script references when using Razor class libraries (RCLs).
+JS initializers are detected as part of the build process and imported automatically in Blazor apps. Use of JS initializers often removes the need to [manually trigger script functions from the app](xref:blazor/fundamentals/startup#chain-to-the-promise-that-results-from-a-manual-start) when using [Razor class libraries (RCLs)](xref:blazor/components/class-libraries).
 
 To define a JS initializer, add a JS module to the project named `{NAME}.lib.module.js`, where the `{NAME}` placeholder is the assembly name, library name, or package identifier. Place the file in the project's web root, which is typically the `wwwroot` folder.
 
 The module exports either or both of the following conventional functions:
 
 * `beforeStart(options, extensions)`: Called before Blazor starts. For example, `beforeStart` is used to customize the loading process, logging level, and other options specific to the hosting model.
-  * In Blazor WebAssembly, `beforeStart` receives the Blazor WebAssembly options (`options`) and any extensions (`extensions`) added during publishing.
-  * In Blazor Server, `beforeStart` receives the circuit start options.
+  * In Blazor WebAssembly, `beforeStart` receives the Blazor WebAssembly options (`options` in this section's example) and any extensions (`extensions` in this section's example) added during publishing. For example, options can specify the use of a custom [boot resource loader](xref:blazor/fundamentals/startup#load-boot-resources).
+  * In Blazor Server, `beforeStart` receives SignalR circuit start options (`options` in this section's example).
   * In [`BlazorWebViews`](/mobile-blazor-bindings/walkthroughs/hybrid-hello-world#mainrazor-native-ui-page), no options are passed.
-* `afterStarted`: Called after Blazor is ready to receive calls from JS. For example, `afterStarted` is used to initialize libraries by making JS interop calls and registering custom elements. The Blazor instance is passed to `afterStarted` as an argument.
+* `afterStarted`: Called after Blazor is ready to receive calls from JS. For example, `afterStarted` is used to initialize libraries by making JS interop calls and registering custom elements. The Blazor instance is passed to `afterStarted` as an argument (`blazor` in this section's example).
 
 The following example demonstrates JS initializers for `beforeStart` and `afterStarted`. For the filename of the following example:
 
@@ -37,4 +37,9 @@ export function afterStarted(blazor) {
 > [!NOTE]
 > MVC and Razor Pages apps don't automatically load JS initializers. However, developer code can include a script to fetch the app's manifest and trigger the load of the JS initializers.
 
-For an example of JS initializers, see <xref:blazor/host-and-deploy/webassembly-deployment-layout>.
+For an examples of JS initializers, see the following resources:
+
+* <xref:blazor/host-and-deploy/webassembly-deployment-layout>
+* [Basic Test App in the ASP.NET Core GitHub repository (`BasicTestApp.lib.module.js`)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/test/testassets/BasicTestApp/wwwroot/BasicTestApp.lib.module.js)
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
