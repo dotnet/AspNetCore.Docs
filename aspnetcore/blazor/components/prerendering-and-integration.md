@@ -33,7 +33,7 @@ To set up prerendering for a hosted Blazor WebAssembly app:
 
 1. **Delete** the `wwwroot/index.html` file from the Blazor WebAssembly **`Client`** project.
 
-1. In the **`Client`** project, **delete** the following line in `Program.cs`:
+1. In the **`Client`** project, **delete** the following lines in `Program.cs`:
 
    ```diff
    - builder.RootComponents.Add<App>("#app");
