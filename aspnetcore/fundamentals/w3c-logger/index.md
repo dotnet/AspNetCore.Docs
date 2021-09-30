@@ -51,7 +51,7 @@ By default, W3CLogger logs common properties such as path, status-code, date, ti
 
 To configure the W3CLogger middleware, call `AddW3CLogging` in `ConfigureServices`.
 
-[!code-csharp[](samples/6.x/Startup.cs?name=configureservices)]
+[!code-csharp[](samples/6.x/Program.cs?name=configureservices)]
 
 ### `LoggingFields`
 
