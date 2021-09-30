@@ -49,7 +49,7 @@ To set up prerendering for a hosted Blazor WebAssembly app:
      Delete:
 
      ```diff
-     -@namespace {APP NAMESPACE}.Pages
+     - @namespace {APP NAMESPACE}.Pages
      ```
 
      Add:
