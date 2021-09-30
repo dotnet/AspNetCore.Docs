@@ -1,26 +1,33 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.HttpLogging;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace W3CLoggerSample
+var builder = WebApplication.CreateBuilder(args);
+
+#region configureservices
+builder.Services.AddW3CLogging(logging =>
 {
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateHostBuilder(args).Build().Run();
-        }
+    // Log all W3C fields
+    logging.LoggingFields = W3CLoggingFields.All;
+    
+    logging.FileSizeLimit = 5 * 1024 * 1024;
+    logging.RetainedFileCountLimit = 2;
+    logging.FileName = "MyLogFile";
+    logging.LogDirectory = @"C:\logs";
+    logging.FlushInterval = TimeSpan.FromSeconds(2);
+});
+#endregion
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
-    }
-}
+var app = builder.Build();
+
+#region snippet
+app.UseW3CLogging();
+
+app.UseRouting();
+
+app.MapGet("/", () => "Hello World!");
+
+app.Run();
+#endregion
