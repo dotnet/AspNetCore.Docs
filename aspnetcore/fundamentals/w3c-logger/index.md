@@ -1,18 +1,17 @@
 ---
-title: W3C Logger in .NET Core and ASP.NET Core
+title: W3CLogger in .NET Core and ASP.NET Core
 author: wtgodbe
 description: Learn how to create server logs in the W3C standard format.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: wigodbe
-ms.custom: mvc
 ms.date: 09/29/2021
 no-loc: [Home, Privacy, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/w3c-logger/index
 ---
 
-# W3C Logger in ASP.NET Core
+# W3CLogger in ASP.NET Core
 
-W3CLogger is a middleware that writes log files, in the W3C standard format (described [here](https://www.w3.org/TR/WD-logfile.html)), containing information about HTTP requests and HTTP responses. W3C logger provides logs of:
+W3CLogger is a middleware that writes log files in the [W3C standard format](https://www.w3.org/TR/WD-logfile.html). The logs contain information about HTTP requests and HTTP responses. W3CLogger provides logs of:
 
 * HTTP request information
 * Common properties
@@ -20,20 +19,20 @@ W3CLogger is a middleware that writes log files, in the W3C standard format (des
 * HTTP response information
 * Metadata about the request/response pair (date/time started, time taken)
 
-W3C Logging is valuable in several scenarios to:
+W3CLogger is valuable in several scenarios to:
 
 * Record information about incoming requests and responses.
 * Filter which parts of the request and response are logged.
-* Filtering which headers to log.
+* Filter which headers to log.
 
-W3CLogger ***can reduce the performance of an app***. Consider the performance impact when selecting fields to log. Test the performance impact of the selected logging properties.
+W3CLogger ***can reduce the performance of an app***. Consider the performance impact when selecting fields to log - the performance reduction will increase as you log more properties. Test the performance impact of the selected logging properties.
 
 > [!WARNING]
 > W3CLogger can potentially log personally identifiable information (PII). Consider the risk and avoid logging sensitive information. By default, fields that could contain PII are not logged.
 
-## Enabling W3C Logging
+## Enabling W3CLogger
 
-W3C Logging is enabled with `UseW3CLogging`, which adds the W3CLogger middleware.
+W3CLogger is enabled with `UseW3CLogging`, which adds the W3CLogger middleware.
 
 [!code-csharp[](samples/6.x/Startup.cs?name=snippet&highlight=3)]
 
@@ -48,7 +47,7 @@ By default, W3CLogger logs common properties such as path, status-code, date, ti
 2021-09-29 22:18:30 ::1 DESKTOP-LH3TLTA ::1 5000 GET / - 200 0.0966 HTTP/1.1 localhost:5000 Mozilla/5.0+(Windows+NT+10.0;+WOW64)+AppleWebKit/537.36+(KHTML,+like+Gecko)+Chrome/93.0.4577.82+Safari/537.36 -
 ```
 
-## W3C Logger options
+## W3CLogger options
 
 To configure the W3CLogger middleware, call `AddW3CLogging` in `ConfigureServices`.
 
@@ -56,7 +55,7 @@ To configure the W3CLogger middleware, call `AddW3CLogging` in `ConfigureService
 
 ### `LoggingFields`
 
-`W3CLoggerOptions.LoggingFields` is an enum flag that configures specific parts of the request and response to log, as well as other information about the connection. `LoggingFields` defaults to include all possible fields except `UserName` and `Cookie`. 
+`W3CLoggerOptions.LoggingFields` is a bit flag enumeration that configures specific parts of the request and response to log, and other information about the connection. `LoggingFields` defaults to include all possible fields except `UserName` and `Cookie`. 
 
 [!code-csharp[](samples/6.x/Startup.cs?name=configureservices&highlight=6)]
 
@@ -64,7 +63,7 @@ To configure the W3CLogger middleware, call `AddW3CLogging` in `ConfigureService
 | ---- | ----------- | :---: |
 | None | No logging. | 0x0 |
 | `Date` | The date that the activity occurred. | 0x1 |
-| `Time` |  The date that the activity occurred. | 0x2 |
+| `Time` |  The time that the activity occurred. | 0x2 |
 | `ClientIpAddress` |  The IP address of the client that accessed the server. | 0x4 |
 | `UserName` |  The name of the authenticated user that accessed the server. | 0x8 |
 | `ServerName` |  The name of the server on which the log entry was generated. | 0x10 |
@@ -89,28 +88,28 @@ To configure the W3CLogger middleware, call `AddW3CLogging` in `ConfigureService
 
 Maximum log file size in bytes. Defaults to 10 MiB.
 
-[!code-csharp[](samples/6.x/Startup.cs?name=configureservices&highlight=7)]
+[!code-csharp[](samples/6.x/Startup.cs?name=configureservices&highlight=8)]
 
 ### `RetainedFileCountLimit`
 
 Maximum number of files to keep on disk before rolling, per application. Defaults to 4, capped at 10,000.
 
-[!code-csharp[](samples/6.x/Startup.cs?name=configureservices&highlight=8)]
+[!code-csharp[](samples/6.x/Startup.cs?name=configureservices&highlight=9)]
 
 ### `FileName`
 
 Prefix to be used for log file name. The current date plus a file number, in the format `{YYYYMMDD.X}`, will be appended.
 
-[!code-csharp[](samples/6.x/Startup.cs?name=configureservices&highlight=9)]
+[!code-csharp[](samples/6.x/Startup.cs?name=configureservices&highlight=10)]
 
 ### `LogDirectory`
 
 Directory where the log file will be written to. Defaults to `./logs/`, relative to the app directory.
 
-[!code-csharp[](samples/6.x/Startup.cs?name=configureservices&highlight=10)]
+[!code-csharp[](samples/6.x/Startup.cs?name=configureservices&highlight=11)]
 
 ### `FlushInterval`
 
 The period after which logs will be flushed to the log file. Defaults to 1 second.
 
-[!code-csharp[](samples/6.x/Startup.cs?name=configureservices&highlight=11)]
+[!code-csharp[](samples/6.x/Startup.cs?name=configureservices&highlight=12)]

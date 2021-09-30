@@ -20,6 +20,7 @@ namespace W3CLoggerSample
             {
                 // Log all W3C fields
                 logging.LoggingFields = W3CLoggingFields.All;
+                
                 logging.FileSizeLimit = 5 * 1024 * 1024;
                 logging.RetainedFileCountLimit = 2;
                 logging.FileName = "MyLogFile";
