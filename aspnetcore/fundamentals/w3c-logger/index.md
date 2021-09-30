@@ -75,10 +75,10 @@ To configure the W3CLogger middleware, call `AddW3CLogging` in `ConfigureService
 | `ProtocolStatus` |  Response <xref:Microsoft.AspNetCore.Http.HttpResponse.StatusCode>. | 0x400 |
 | `TimeTaken` |  The duration of time, in milliseconds, that the action consumed. | 0x800 |
 | `ProtocolVersion` |  Request <xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol>. | 0x1000 |
-| `Host` |  Request <xref:Microsoft.AspNetCore.Http.Headers.HeaderNames.Host>. | 0x2000 |
-| `UserAgent` |  Request <xref:Microsoft.AspNetCore.Http.Headers.HeaderNames.UserAgent>. | 0x4000 |
-| `Cookie` |  Request <xref:Microsoft.AspNetCore.Http.Headers.HeaderNames.Cookie>. | 0x8000 |
-| `Referer` |  Request <xref:Microsoft.AspNetCore.Http.Headers.HeaderNames.Referer>. | 0x10000 |
+| `Host` |  Request `Microsoft.AspNetCore.Http.Headers.HeaderNames.Host`. | 0x2000 |
+| `UserAgent` |  Request `Microsoft.AspNetCore.Http.Headers.HeaderNames.UserAgent`. | 0x4000 |
+| `Cookie` |  Request `Microsoft.AspNetCore.Http.Headers.HeaderNames.Cookie`. | 0x8000 |
+| `Referer` |  Request `Microsoft.AspNetCore.Http.Headers.HeaderNames.Referer`. | 0x10000 |
 | `ConnectionInfoFields` | Flag for logging a collection of properties, about the HTTP Connection, including `ClientIpAddress`, `ServerIpAddress`, and `ServerPort`. | `ClientIpAddress | ServerIpAddress | ServerPort` |
 | `RequestHeaders` | Flag for logging a collection of request headers, including `Host`, `Referer`, and `UserAgent`. | `Host | Referer | UserAgent` |
 | `Request` | Flag for logging a collection of properties about the request, including `UriStem`, `UriQuery`, `ProtocolVersion`, `Method`, and `RequestHeaders`. | `UriStem | UriQuery | ProtocolVersion | Method | RequestHeaders` |
