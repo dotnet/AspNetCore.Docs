@@ -15,7 +15,10 @@ By [Dave Brock](https://twitter.com/daveabrock)
 
 ::: moniker range=">= aspnetcore-6.0"
 
-CSS isolation simplifies an app's CSS by preventing dependencies on global styles and avoiding styling conflicts among pages, views, and components.
+Isolate CSS styles to individual pages, views, and components to reduce or avoid:
+
+* Dependencies on global styles that can be challenging to maintain.
+* Style conflicts in nested content.
 
 ## Enable CSS isolation 
 

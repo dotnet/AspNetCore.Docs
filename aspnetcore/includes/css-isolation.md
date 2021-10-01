@@ -1,7 +1,10 @@
 ---
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 ---
-CSS isolation simplifies an app's CSS by preventing dependencies on global styles and avoiding styling conflicts among pages, views, and components.
+Isolate CSS styles to individual pages, views, and components to reduce or avoid:
+
+* Dependencies on global styles that can be challenging to maintain.
+* Style conflicts in nested content.
 
 To add a *scoped CSS file* for a page or view, place the CSS styles in a companion `.cshtml.css` file matching the name of the `.cshtml` file. In the following example, a `Index.cshtml.css` file supplies CSS styles that are only applied to the `Index.cshtml` page or view.
 
