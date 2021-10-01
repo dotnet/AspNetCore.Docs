@@ -23,7 +23,7 @@ The approach described in this article uses the experimental [`Microsoft.AspNetC
 [Experimental code (includes the NuGet package reference source and `CustomPackagedApp` sample app)](https://github.com/aspnet/AspLabs/tree/main/src/BlazorWebAssemblyCustomInitialization)
 
 > [!WARNING]
-> `Microsoft.AspNetCore.Components.WebAssembly.MultipartBundle` and the `CustomPackagedApp` sample app are unsupported, experimental resources unsuitable for production use. For more information and to provide feedback to the ASP.NET Core product unit, see [Consider releasing a supported version of Microsoft.AspNetCore.Components.WebAssembly.MultipartBundle (dotnet/aspnetcore #36978)](https://github.com/dotnet/aspnetcore/issues/36978).
+> `Microsoft.AspNetCore.Components.WebAssembly.MultipartBundle` and the `CustomPackagedApp` sample app are unsupported, experimental resources not intended for for production use. For more information and to provide feedback to the ASP.NET Core product unit, see [Consider releasing a supported version of Microsoft.AspNetCore.Components.WebAssembly.MultipartBundle (dotnet/aspnetcore #36978)](https://github.com/dotnet/aspnetcore/issues/36978).
 
 ## JavaScript initializers
 
