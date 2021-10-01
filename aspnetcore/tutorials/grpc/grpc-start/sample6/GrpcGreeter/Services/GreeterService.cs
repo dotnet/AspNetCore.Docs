@@ -3,6 +3,7 @@ using GrpcGreeter;
 
 namespace GrpcGreeter.Services;
 
+#region snippet
 public class GreeterService : Greeter.GreeterBase
 {
     private readonly ILogger<GreeterService> _logger;
@@ -19,3 +20,4 @@ public class GreeterService : Greeter.GreeterBase
         });
     }
 }
+#endregion
