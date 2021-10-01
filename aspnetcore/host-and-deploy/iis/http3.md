@@ -17,7 +17,7 @@ By [Chris Ross](https://github.com/tratcher)
 [HTTP/3](https://quicwg.org/base-drafts/draft-ietf-quic-http.html) is supported with ASP.NET Core in the following IIS deployment scenarios:
 
 * In-process
-* [Out-of-Process](xref:host-and-deploy/iis/index#out-of-process-hosting-model). In this case IIS will respond to the client using HTTP/3, but the reverse proxy connection to the [Kestrel server](xref:fundamentals/servers/kestrel) uses HTTP/1.1.
+* [Out-of-Process](xref:host-and-deploy/iis/index#out-of-process-hosting-model). In Out-of-Process, IIS responds to the client using HTTP/3, but the reverse proxy connection to the [Kestrel server](xref:fundamentals/servers/kestrel) uses HTTP/1.1.
 
 For more information on the in-process and out-of-process hosting models, see <xref:host-and-deploy/aspnet-core-module>.
 
@@ -29,7 +29,7 @@ The following requirements also need to be met:
 
 The preceding Windows 11 Build versions may require the use of a [Windows Insider](https://insider.windows.com) build.
 
-For an in-process deployment when an HTTP/3 connection is established, [`HttpRequest.Protocol`](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) will report `HTTP/3`. For an out-of-process deployment when an HTTP/3 connection is established, [`HttpRequest.Protocol`](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) reports `HTTP/1.1` as that is how IIS proxies the requests to Kestrel.
+For an in-process deployment when an HTTP/3 connection is established, [`HttpRequest.Protocol`](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) reports `HTTP/3`. For an out-of-process deployment when an HTTP/3 connection is established, [`HttpRequest.Protocol`](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) reports `HTTP/1.1` because that is how IIS proxies the requests to Kestrel.
 
 ## Alt-Service
 
