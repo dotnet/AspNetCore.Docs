@@ -46,7 +46,7 @@ Internal links should use the `uid` of the target article with an xref link (lin
 <xref:uid_of_the_topic>
 ```
 
-If the title of the article is unsuitable for link text (for example, a word or phrase in a sentence is the link text), specify the xref link and link text with the following:
+If the title of the article isn't intended for link text (for example, a word or phrase in a sentence is the link text), specify the xref link and link text with the following:
 
 ```md
 [link text](xref:uid_of_the_topic)
