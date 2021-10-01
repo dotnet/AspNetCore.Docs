@@ -74,3 +74,14 @@ For more information on building the host, see the **Set up a host** and **Defau
 * `HttpClient` can be used for localhost/loopback testing in .NET 6 or later. Extra configuration is required when using `HttpClient` to make an HTTP/3 request:
   * Set `HttpRequestMessage.Version` to 3.0, or
   * Set `HttpRequestMessage.VersionPolicy` to `HttpVersionPolicy.RequestVersionOrHigher`.
+
+## Limitations
+
+Certain HTTPS scenarios are not yet supported for HTTP/3 in Kestrel. When calling <xref:Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps> with <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions> while using HTTP/3, setting the following options on the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions> will no-op:
+* <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.HandshakeTimeout>
+* <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.OnAuthenticate>
+
+Calling the following implementations of <xref:Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps> will throw an error when using HTTP/3:
+
+`UseHttps(this ListenOptions listenOptions, ServerOptionsSelectionCallback serverOptionsSelectionCallback, object state, TimeSpan handshakeTimeout)`
+`UseHttps(this ListenOptions listenOptions, TlsHandshakeCallbackOptions callbackOptions)`
