@@ -83,5 +83,5 @@ Some HTTPS scenarios are not yet supported for HTTP/3 in Kestrel. When calling `
 
 Calling the following implementations of `Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps` throw an error when using HTTP/3:
 
-`UseHttps(this ListenOptions listenOptions, ServerOptionsSelectionCallback serverOptionsSelectionCallback, object state, TimeSpan handshakeTimeout)`
-`UseHttps(this ListenOptions listenOptions, TlsHandshakeCallbackOptions callbackOptions)`
+* `UseHttps(this ListenOptions listenOptions, ServerOptionsSelectionCallback serverOptionsSelectionCallback, object state, TimeSpan handshakeTimeout)`
+* `UseHttps(this ListenOptions listenOptions, TlsHandshakeCallbackOptions callbackOptions)`
