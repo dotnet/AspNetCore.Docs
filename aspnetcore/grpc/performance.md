@@ -92,7 +92,7 @@ With client-side load balancing, the client knows about endpoints. For each gRPC
 
 Lookaside client load balancing is a technique where load balancing state is stored in a central location. Clients periodically query the central location for information to use when making load balancing decisions.
 
-`Grpc.Net.Client` currently doesn't support client-side load balancing. [Grpc.Core](https://www.nuget.org/packages/Grpc.Core) is a good choice if client-side load balancing is required in .NET.
+For more information, see <xref:grpc/loadbalancing>.
 
 ### Proxy load balancing
 
