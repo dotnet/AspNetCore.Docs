@@ -57,22 +57,22 @@ To configure the HTTP logging middleware, call `AddHttpLogging` in `ConfigureSer
 | ---- | ----------- | :---: |
 | None | No logging. | 0x0 |
 | `RequestPath` | Request Path, which includes both the <xref:Microsoft.AspNetCore.Http.HttpRequest.Path> and <xref:Microsoft.AspNetCore.Http.HttpRequest.PathBase>. | 0x1 |
-| `RequestQuery` |  Request <xref:Microsoft.AspNetCore.Http.HttpRequest.QueryString> | 0x2 |
+| `RequestQuery` |  Request <xref:Microsoft.AspNetCore.Http.HttpRequest.QueryString>. | 0x2 |
 | `RequestProtocol` |  Request <xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol>. | 0x4 |
 | `RequestMethod` |  Request <xref:Microsoft.AspNetCore.Http.HttpRequest.Method>. | 0x8 |
 | `RequestScheme` |  Request <xref:Microsoft.AspNetCore.Http.HttpRequest.Scheme>. | 0x10 |
 | `ResponseStatusCode` |  Response <xref:Microsoft.AspNetCore.Http.HttpResponse.StatusCode>. | 0x20 |
 | `RequestHeaders` |  Request <xref:Microsoft.AspNetCore.Http.HttpRequest.Headers>. Request headers are logged as soon as the middleware is invoked. Headers are redacted by default with the character '[Redacted]' unless specified in the `HttpLoggingOptions.RequestHeaders`. | 0x40 |
 | `ResponseHeaders` |  Response <xref:Microsoft.AspNetCore.Http.HttpResponse.Headers>. Response headers are logged when the <xref:Microsoft.AspNetCore.Http.HttpResponse.Body> is written to or when <xref:Microsoft.AspNetCore.Http.Features.IHttpResponseBodyFeature.StartAsync%2A> is called. Headers are redacted by default with the character '[Redacted]' unless specified in the `HttpLoggingOptions.ResponseHeaders`. | 0x80 |
-| `RequestTrailers` |  Request [IHttpRequestTrailersFeature.Trailers](xref:Microsoft.AspNetCore.Http.Features.IHttpRequestTrailersFeature.Trailers) Request Trailers are currently not logged. | 0x100 |
+| `RequestTrailers` |  Request [IHttpRequestTrailersFeature.Trailers](xref:Microsoft.AspNetCore.Http.Features.IHttpRequestTrailersFeature.Trailers). Request Trailers are currently not logged. | 0x100 |
 | `ResponseTrailers` |  Response [IHttpResponseTrailersFeature.Trailers](xref:Microsoft.AspNetCore.Http.Features.IHttpResponseTrailersFeature.Trailers). Response Trailers are currently not logged. | 0x200 |
-| `RequestBody` |  Request <xref:Microsoft.AspNetCore.Http.HttpRequest.Body>.Logging the request body has performance implications, as it requires buffering the entire request body up to `HttpLoggingOptions.RequestBodyLogLimit`. | 0x400 |
+| `RequestBody` |  Request <xref:Microsoft.AspNetCore.Http.HttpRequest.Body>. Logging the request body has performance implications, as it requires buffering the entire request body up to `HttpLoggingOptions.RequestBodyLogLimit`. | 0x400 |
 | `ResponseBody` |  Response <xref:Microsoft.AspNetCore.Http.HttpResponse.Body>. Logging the response body has performance implications, as it requires buffering the entire response body up to `HttpLoggingOptions.ResponseBodyLogLimit`. | 0x800 |
 | `RequestProperties` | Flag for logging a collection of HTTP Request properties, including `RequestPath`, `RequestQuery`, `RequestProtocol`, `RequestMethod`, and `RequestScheme`. | `RequestPath | RequestQuery | RequestProtocol | RequestMethod | RequestScheme` |
 | `RequestPropertiesAndHeaders` | Flag for logging HTTP Request properties and headers. Includes `RequestProperties` and `RequestHeaders`. | `RequestProperties | RequestHeaders` |
 | `ResponsePropertiesAndHeaders` | Flag for logging HTTP Response properties and headers. Includes `ResponseStatusCode` and `ResponseHeaders`. | `ResponseStatusCode | ResponseHeaders` |
 | `Request` | Flag for logging the entire HTTP Request. Includes `RequestPropertiesAndHeaders` and `RequestBody`. Logging the request body has performance implications, as it requires buffering the entire request body up to `HttpLoggingOptions.RequestBodyLogLimit`. | `RequestPropertiesAndHeaders | RequestBody` |
-| `Response` | Flag for logging the entire HTTP Response. Includes `ResponsePropertiesAndHeaders` and `ResponseBody`. Logging the response body has performance implications, as it requires buffering the entire response body up to `HttpLoggingOptions.ResponseBodyLogLimit`. | `ResponseStatusCode | ResponseHeaders | ResponseBody` |
+| `Response` | Flag for logging the entire HTTP Response. Includes `ResponseStatusCode`, `ResponseHeaders` and `ResponseBody`. Logging the response body has performance implications, as it requires buffering the entire response body up to `HttpLoggingOptions.ResponseBodyLogLimit`. | `ResponseStatusCode | ResponseHeaders | ResponseBody` |
 | `All` | Flag for logging both the HTTP Request and Response. Includes `Request` and `Response`. Logging the request and response body has performance implications, as it requires buffering the entire request and response body up to the `HttpLoggingOptions.RequestBodyLogLimit` and `HttpLoggingOptions.ResponseBodyLogLimit`. | `Request | Response` |
 
 ### `RequestHeaders`
