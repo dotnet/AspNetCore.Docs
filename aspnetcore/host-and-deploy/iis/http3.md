@@ -31,7 +31,7 @@ The preceding Windows 11 Build versions may require the use of a [Windows Inside
 
 For an in-process deployment when an HTTP/3 connection is established, [`HttpRequest.Protocol`](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) reports `HTTP/3`. For an out-of-process deployment when an HTTP/3 connection is established, [`HttpRequest.Protocol`](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) reports `HTTP/1.1` because that is how IIS proxies the requests to Kestrel.
 
-## Alt-Service
+## Alt-Svc
 
 HTTP/3 is discovered as an upgrade from HTTP/1.1 or HTTP/2 via the `alt-svc` header. That means the first request will normally use HTTP/1.1 or HTTP/2 before switching to HTTP/3. IIS doesn't automatically add the `alt-svc` header, it must be added by the application. The following code is a middleware example that adds the `alt-svc` response header.
 
