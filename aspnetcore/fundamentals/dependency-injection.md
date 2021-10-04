@@ -2,7 +2,6 @@
 title: Dependency injection in ASP.NET Core
 author: rick-anderson
 description: Learn how ASP.NET Core implements dependency injection and how to use it.
-monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 7/21/2020
@@ -193,6 +192,12 @@ The logger output shows:
 To reduce the logging output, set "Logging:LogLevel:Microsoft:Error" in the *appsettings.Development.json* file:
 
 [!code-json[](dependency-injection/samples/3.x/DependencyInjectionSample/appsettings.Development.json?highlight=7)]
+
+## Resolve a service at app start up
+
+The following code shows how to resolve a scoped service for a limited duration when the app starts:
+
+[!code-json[](dependency-injection/samples/6.x/WebApp1/Program.cs?highlight=3,7-13)]
 
 ## Scope validation
 
