@@ -232,20 +232,6 @@ Validation stops when the maximum number of errors is reached (200 by default). 
 
 Validation is automatically short-circuited (skipped) if the model graph doesn't require validation. Objects that the runtime skips validation for include collections of primitives (such as `byte[]`, `string[]`, `Dictionary<string, string>`) and complex object graphs that don't have any validators.
 
-## Disable validation
-
-To disable validation:
-
-1. Create an implementation of `IObjectModelValidator` that doesn't mark any fields as invalid.
-
-   [!code-csharp[](validation/samples/3.x/ValidationSample/Validation/NullObjectModelValidator.cs?name=snippet_Class)]
-
-1. Add the following code to `Startup.ConfigureServices` to replace the default `IObjectModelValidator` implementation in the dependency injection container.
-
-   [!code-csharp[](validation/samples/3.x/ValidationSample/Startup.cs?name=snippet_DisableValidation)]
-
-You might still see model state errors that originate from model binding.
-
 ## Client-side validation
 
 Client-side validation prevents submission until the form is valid. The Submit button runs JavaScript that either submits the form or displays error messages.

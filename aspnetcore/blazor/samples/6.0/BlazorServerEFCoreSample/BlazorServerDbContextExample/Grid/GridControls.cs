@@ -45,6 +45,6 @@
         /// <summary>
         /// Text to filter on.
         /// </summary>
-        public string FilterText { get; set; }
+        public string? FilterText { get; set; }
     }
 }

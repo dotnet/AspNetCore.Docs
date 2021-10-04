@@ -83,7 +83,7 @@ The recommended solution to create a new <xref:Microsoft.EntityFrameworkCore.DbC
 
 The following example configures [SQLite](https://www.sqlite.org/index.html) and enables data logging. The code uses an extension method (`AddDbContextFactory`) to configure the database factory for DI and provide default options:
 
-[!code-csharp[](~/blazor/samples/6.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Startup.cs?name=snippet1)]
+[!code-csharp[](~/blazor/samples/6.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Program.cs?name=snippet1)]
 
 The factory is injected into components and used to create new instances. For example, in `Pages/Index.razor`:
 

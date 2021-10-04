@@ -1,5 +1,4 @@
 using System;
-using System.Timers;
 using Microsoft.Extensions.Logging;
 
 public class TimerService : IDisposable
@@ -7,9 +6,10 @@ public class TimerService : IDisposable
     private int elapsedCount;
     private readonly ILogger<TimerService> logger;
     private readonly NotifierService notifier;
-    private Timer timer;
+    private System.Timers.Timer timer;
 
-    public TimerService(NotifierService notifier, ILogger<TimerService> logger)
+    public TimerService(NotifierService notifier, 
+	    ILogger<TimerService> logger)
     {
         this.notifier = notifier;
         this.logger = logger;
@@ -28,7 +28,8 @@ public class TimerService : IDisposable
         }
     }
 
-    private async void HandleTimer(object source, ElapsedEventArgs e)
+    private async void HandleTimer(object source, 
+	    System.Timers.ElapsedEventArgs e)
     {
         elapsedCount += 1;
         await notifier.Update("elapsedCount", elapsedCount);
