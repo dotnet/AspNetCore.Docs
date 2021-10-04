@@ -17,7 +17,7 @@ Filter on: <select @bind="SelectedColumn">
     /// Get a reference to the global <see cref="GridWrapper"/>.
     /// </summary>
     [CascadingParameter]
-    public GridWrapper Wrapper { get; set; }
+    public GridWrapper? Wrapper { get; set; }
 
     /// <summary>
     /// Wait period in (ms) after the user stops typing.
@@ -27,7 +27,7 @@ Filter on: <select @bind="SelectedColumn">
     /// <summary>
     /// Timer for debounce.
     /// </summary>
-    Timer timer;
+    Timer? timer;
 
     /// <summary>
     /// When ready.
@@ -76,12 +76,12 @@ Filter on: <select @bind="SelectedColumn">
         }
     }
 
-    private string filterText;
+    private string? filterText;
 
     /// <summary>
     /// Text to filter on.
     /// </summary>
-    private string FilterText
+    private string? FilterText
     {
         get => filterText;
         set
@@ -103,15 +103,19 @@ Filter on: <select @bind="SelectedColumn">
     /// </summary>
     /// <param name="sender">Timer.</param>
     /// <param name="e">Event args.</param>
-    private async void NotifyTimerElapsed(object sender, ElapsedEventArgs e)
+    private async void NotifyTimerElapsed(object? sender, ElapsedEventArgs e)
     {
         timer?.Dispose();
         timer = null;
         if (Filters.FilterText != filterText)
         {
             // notify the controls
-            Filters.FilterText = filterText.Trim();
-            await InvokeAsync(() => Wrapper.FilterChanged.InvokeAsync(this));
+            Filters.FilterText = filterText?.Trim();
+
+            if (Wrapper is not null)
+            {
+                await InvokeAsync(() => Wrapper.FilterChanged.InvokeAsync(this));
+            }
         }
     }
 

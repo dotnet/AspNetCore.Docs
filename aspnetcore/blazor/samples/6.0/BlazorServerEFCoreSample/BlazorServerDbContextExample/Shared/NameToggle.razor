@@ -19,7 +19,7 @@
     /// Reference to the <see cref="GridWrapper"/>.
     /// </summary>
     [CascadingParameter]
-    public GridWrapper GridWrapper { get; set; }
+    public GridWrapper? GridWrapper { get; set; }
 
     /// <summary>
     /// Toggle name preference.
@@ -28,6 +28,7 @@
     private Task ToggleAsync()
     {
         Filters.ShowFirstNameFirst = !Filters.ShowFirstNameFirst;
-        return GridWrapper.FilterChanged.InvokeAsync(this);
+
+        return GridWrapper is not null ? GridWrapper.FilterChanged.InvokeAsync(this) : Task.CompletedTask;
     }
 }

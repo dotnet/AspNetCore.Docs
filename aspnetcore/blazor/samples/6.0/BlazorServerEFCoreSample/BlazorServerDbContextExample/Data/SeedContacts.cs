@@ -14,33 +14,33 @@ namespace BlazorServerDbContextExample.Data
         /// </summary>
         private readonly string[] _gems = new[] {
             "Diamond",
-        "Crystal",
-        "Morion",
-        "Azore",
-        "Sapphire",
-        "Cobalt",
-        "Aquamarine",
-        "Montana",
-        "Turquoise",
-        "Lime",
-        "Erinite",
-        "Emerald",
-        "Turmaline",
-        "Jonquil",
-        "Olivine",
-        "Topaz",
-        "Citrine",
-        "Sun",
-        "Quartz",
-        "Opal",
-        "Alabaster",
-        "Rose",
-        "Burgundy",
-        "Siam",
-        "Ruby",
-        "Amethyst",
-        "Violet",
-        "Lilac"};
+            "Crystal",
+            "Morion",
+            "Azore",
+            "Sapphire",
+            "Cobalt",
+            "Aquamarine",
+            "Montana",
+            "Turquoise",
+            "Lime",
+            "Erinite",
+            "Emerald",
+            "Turmaline",
+            "Jonquil",
+            "Olivine",
+            "Topaz",
+            "Citrine",
+            "Sun",
+            "Quartz",
+            "Opal",
+            "Alabaster",
+            "Rose",
+            "Burgundy",
+            "Siam",
+            "Ruby",
+            "Amethyst",
+            "Violet",
+            "Lilac"};
 
         /// <summary>
         /// Combined with things for last names.
@@ -217,7 +217,7 @@ namespace BlazorServerDbContextExample.Data
                 }
                 if (list.Count > 0)
                 {
-                    context.Contacts.AddRange(list);
+                    context.Contacts?.AddRange(list);
                     await context.SaveChangesAsync();
                 }
                 currentCycle = 0;
