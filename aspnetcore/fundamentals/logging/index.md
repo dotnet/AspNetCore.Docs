@@ -382,11 +382,11 @@ The following code sets the default log level when the default log level is not 
 <!-- review required: I say this a couple times -->
 Generally, log levels should be specified in configuration and not code.
 
-### Filter function zz
+### Filter function
 
 A filter function is invoked for all providers and categories that don't have rules assigned to them by configuration or code:
 
-[!code-csharp[](index/samples/3.x/MyMain/Program.cs?name=snippet_FilterFunction)]
+[!code-csharp[](index/samples/6.x/WebApp/Program.cs?name=snippet_FF)]
 
 The preceding code displays console logs when the category contains `Controller` or `Microsoft` and the log level is `Information` or higher.
 
@@ -677,7 +677,7 @@ The provider package isn't included in the shared framework. To use the provider
 
 To configure provider settings, use <xref:Microsoft.Extensions.Logging.AzureAppServices.AzureFileLoggerOptions> and <xref:Microsoft.Extensions.Logging.AzureAppServices.AzureBlobLoggerOptions>, as shown in the following example:
 
-[!code-csharp[](index/samples/3.x/MyMain/Program.cs?name=snippet_AzLogOptions)]
+[!code-csharp[](index/samples/6.x/WebApp/Program.cs?name=snippet_AAS)]
 
 When deployed to Azure App Service, the app uses the settings in the [App Service logs](/azure/app-service/web-sites-enable-diagnostic-log/#enable-application-logging-windows) section of the **App Service** page of the Azure portal. When the following settings are updated, the changes take effect immediately without requiring a restart or redeployment of the app.
 
