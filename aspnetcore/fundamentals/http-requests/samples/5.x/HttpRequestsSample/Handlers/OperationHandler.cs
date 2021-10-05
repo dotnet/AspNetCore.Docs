@@ -15,7 +15,7 @@ namespace HttpRequestsSample.Handlers
             _operationService = operationScoped;
         }
 
-        protected override async Task<HttpResponseMessage> SendAsync(
+        protected async override Task<HttpResponseMessage> SendAsync(
             HttpRequestMessage request, CancellationToken cancellationToken)
         {
             request.Headers.Add("X-OPERATION-ID", _operationService.OperationId);
