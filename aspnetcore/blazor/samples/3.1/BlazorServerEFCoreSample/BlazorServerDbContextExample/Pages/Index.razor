@@ -161,7 +161,7 @@
     /// Triggered for any paging update.
     /// </summary>
     /// <returns>A <see cref="Task"/>.</returns>
-    protected async override Task OnParametersSetAsync()
+    protected override async Task OnParametersSetAsync()
     {
         // Make sure the page really chagned.
         if (Page != _lastPage)
