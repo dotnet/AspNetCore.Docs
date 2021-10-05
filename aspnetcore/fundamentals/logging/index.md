@@ -852,6 +852,7 @@ The preferred approach for setting log filter rules is by using [Configuration](
 The following example shows how to register filter rules in code:
 
 [!code-csharp[](index/samples/3.x/MyMain/Program.cs?name=snippet_FilterInCode)]
+[!code-csharp[](index/samples/6.x/WebApp/Program.cs?name=snippet_FR)]
 
 `logging.AddFilter("System", LogLevel.Debug)` specifies the `System` category and log level `Debug`. The filter is applied to all providers because a specific provider was not configured.
 
