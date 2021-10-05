@@ -32,17 +32,17 @@ The default ASP.NET Core web app templates:
   * [EventSource](#event-source)
   * [EventLog](#welog): Windows only
 
-[!code-csharp[](/index/samples/6.x/WebApp/Program.cs?name=snippet1&highlight=1)]
+[!code-csharp[](index/samples/6.x/WebApp/Program.cs?name=snippet1&highlight=1)]
 
 The preceding code shows the *Program.cs* file  created with the ASP.NET Core web app templates. The next several sections provide samples based on the ASP.NET Core web app templates, which use the Generic Host. [Non-host console apps](#nhca) are discussed later in this document.
 
 The following code overridse the default set of logging providers added by `WebApplication.CreateBuilder`:
 
-[!code-csharp[](/index/samples/6.x/WebApp/Program.cs?name=snippet2&highlight=2-3)]
+[!code-csharp[](index/samples/6.x/WebApp/Program.cs?name=snippet2&highlight=2-3)]
 
 Alternatively, the preceding code can be written as follows:
 
-[!code-csharp[](/index/samples/6.x/WebApp/Program.cs?name=snippet3)]
+[!code-csharp[](index/samples/6.x/WebApp/Program.cs?name=snippet3)]
 
 For additional providers, see:
 
@@ -382,7 +382,7 @@ The following code sets the default log level when the default log level is not 
 <!-- review required: I say this a couple times -->
 Generally, log levels should be specified in configuration and not code.
 
-### Filter function
+### Filter function zz
 
 A filter function is invoked for all providers and categories that don't have rules assigned to them by configuration or code:
 
