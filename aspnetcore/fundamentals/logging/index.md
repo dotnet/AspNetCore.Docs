@@ -666,7 +666,7 @@ To log events lower than <xref:Microsoft.Extensions.Logging.LogLevel.Warning?dis
 
 The following code changes the `SourceName` from the default value of `".NET Runtime"` to `MyLogs`:
 
-[!code-csharp[](index/samples/3.x/MyMain/Program.cs?name=snippetEventLog)]
+[!code-csharp[](index/samples/6.x/WebApp/Program.cs?name=snippet_WEL)]
 
 ### Azure App Service
 

@@ -1,4 +1,4 @@
-#define MIN  // First  Second Third FF AAS MIN
+#define WEL  // First  Second Third FF AAS MIN FR WEL
 #if First
 #region snippet1
 var builder = WebApplication.CreateBuilder(args);
@@ -171,6 +171,73 @@ app.Run();
 #region snippet_MIN
 var builder = WebApplication.CreateBuilder();
 builder.Host.ConfigureLogging(logging => logging.SetMinimumLevel(LogLevel.Warning));
+#endregion
+
+builder.Services.AddRazorPages();
+
+var app = builder.Build();
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthorization();
+
+app.MapRazorPages();
+
+app.Run();
+#elif FR
+#region snippet_FR
+using Microsoft.Extensions.Logging.Console;
+using Microsoft.Extensions.Logging.Debug;
+
+var builder = WebApplication.CreateBuilder();
+builder.Host.ConfigureLogging(logging =>
+               logging.AddFilter("System", LogLevel.Debug)
+                  .AddFilter<DebugLoggerProvider>("Microsoft", LogLevel.Information)
+                  .AddFilter<ConsoleLoggerProvider>("Microsoft", LogLevel.Trace));
+#endregion
+
+builder.Services.AddRazorPages();
+
+var app = builder.Build();
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthorization();
+
+app.MapRazorPages();
+
+app.Run();
+#elif WEL
+#region snippet_WEL
+using Microsoft.Extensions.Logging.Console;
+using Microsoft.Extensions.Logging.Debug;
+
+var builder = WebApplication.CreateBuilder();
+builder.Host.ConfigureLogging(logging =>
+{
+    logging.AddEventLog(eventLogSettings =>
+    {
+        eventLogSettings.SourceName = "MyLogs";
+    });
+});
 #endregion
 
 builder.Services.AddRazorPages();
