@@ -1,4 +1,4 @@
-#define FF  // First  Second Third FF
+#define MIN  // First  Second Third FF AAS MIN
 #if First
 #region snippet1
 var builder = WebApplication.CreateBuilder(args);
@@ -106,6 +106,71 @@ builder.Host.ConfigureLogging(logging =>
         }
     });
 });
+#endregion
+
+builder.Services.AddRazorPages();
+
+var app = builder.Build();
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthorization();
+
+app.MapRazorPages();
+
+app.Run();
+#elif AAS
+#region snippet_AAS
+using Microsoft.Extensions.Logging.AzureAppServices;
+
+var builder = WebApplication.CreateBuilder();
+builder.Host.ConfigureLogging(logging => logging.AddAzureWebAppDiagnostics())
+                .ConfigureServices(serviceCollection => serviceCollection
+                    .Configure<AzureFileLoggerOptions>(options =>
+                    {
+                        options.FileName = "azure-diagnostics-";
+                        options.FileSizeLimit = 50 * 1024;
+                        options.RetainedFileCountLimit = 5;
+                    })
+                    .Configure<AzureBlobLoggerOptions>(options =>
+                    {
+                        options.BlobName = "log.txt";
+                    }));
+#endregion
+
+builder.Services.AddRazorPages();
+
+var app = builder.Build();
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthorization();
+
+app.MapRazorPages();
+
+app.Run();
+#elif MIN
+#region snippet_MIN
+var builder = WebApplication.CreateBuilder();
+builder.Host.ConfigureLogging(logging => logging.SetMinimumLevel(LogLevel.Warning));
 #endregion
 
 builder.Services.AddRazorPages();

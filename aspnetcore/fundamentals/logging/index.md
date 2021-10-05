@@ -377,9 +377,8 @@ With the preceding setup, navigating to the privacy or home page produces many `
 
 The following code sets the default log level when the default log level is not set in configuration:
 
-[!code-csharp[](index/samples/3.x/MyMain/Program.cs?name=snippet_MinLevel&highlight=10)]
+[!code-csharp[](index/samples/6.x/WebApp/Program.cs?name=snippet_MIN)]
 
-<!-- review required: I say this a couple times -->
 Generally, log levels should be specified in configuration and not code.
 
 ### Filter function
