@@ -74,7 +74,7 @@ window.addEventListener("load", () => {
     @await Html.PartialAsync("_ValidationScriptsPartial")
 
     <script type="text/javascript" src="~/lib/qrcode.js"></script>
-    <script type="text/javascript" src="~/js/qs.js"></script>
+    <script type="text/javascript" src="~/js/qr.js"></script>
 }
 ```
 
