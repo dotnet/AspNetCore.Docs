@@ -417,7 +417,7 @@ The following example shows how to:
 
     public Profile User { get; set; } = new Profile();
 
-    protected async override Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
     {
         var currentQuery = new Uri(Navigation.Uri).Query;
 
@@ -550,7 +550,7 @@ The `Authentication` component (`Pages/Authentication.razor`) saves and restores
     public ApplicationAuthenticationState AuthenticationState { get; set; } =
         new ApplicationAuthenticationState();
 
-    protected async override Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
     {
         if (RemoteAuthenticationActions.IsAction(RemoteAuthenticationActions.LogIn,
             Action) ||
@@ -729,7 +729,7 @@ public class CustomAccountFactory
     {
     }
   
-    public async override ValueTask<ClaimsPrincipal> CreateUserAsync(
+    public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
         CustomUserAccount account, RemoteAuthenticationUserOptions options)
     {
         var initialUser = await base.CreateUserAsync(account, options);
@@ -1458,7 +1458,7 @@ The following example shows how to:
 
     public Profile User { get; set; } = new Profile();
 
-    protected async override Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
     {
         var currentQuery = new Uri(Navigation.Uri).Query;
 
@@ -1591,7 +1591,7 @@ The `Authentication` component (`Pages/Authentication.razor`) saves and restores
     public ApplicationAuthenticationState AuthenticationState { get; set; } =
         new ApplicationAuthenticationState();
 
-    protected async override Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
     {
         if (RemoteAuthenticationActions.IsAction(RemoteAuthenticationActions.LogIn,
             Action) ||
@@ -1770,7 +1770,7 @@ public class CustomAccountFactory
     {
     }
   
-    public async override ValueTask<ClaimsPrincipal> CreateUserAsync(
+    public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
         CustomUserAccount account, RemoteAuthenticationUserOptions options)
     {
         var initialUser = await base.CreateUserAsync(account, options);
@@ -2499,7 +2499,7 @@ The following example shows how to:
 
     public Profile User { get; set; } = new Profile();
 
-    protected async override Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
     {
         var currentQuery = new Uri(Navigation.Uri).Query;
 
@@ -2632,7 +2632,7 @@ The `Authentication` component (`Pages/Authentication.razor`) saves and restores
     public ApplicationAuthenticationState AuthenticationState { get; set; } =
         new ApplicationAuthenticationState();
 
-    protected async override Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
     {
         if (RemoteAuthenticationActions.IsAction(RemoteAuthenticationActions.LogIn,
             Action) ||
@@ -2811,7 +2811,7 @@ public class CustomAccountFactory
     {
     }
   
-    public async override ValueTask<ClaimsPrincipal> CreateUserAsync(
+    public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
         CustomUserAccount account, RemoteAuthenticationUserOptions options)
     {
         var initialUser = await base.CreateUserAsync(account, options);

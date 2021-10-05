@@ -312,11 +312,11 @@ For more information, see <xref:host-and-deploy/aspnet-core-module#log-creation-
 The ASP.NET Core Module debug log provides additional, deeper logging from the ASP.NET Core Module. To enable and view stdout logs:
 
 1. To enable the enhanced diagnostic log, perform either of the following:
-   * Follow the instructions in [Enhanced diagnostic logs](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs) to configure the app for an enhanced diagnostic logging. Redeploy the app.
-   * Add the `<handlerSettings>` shown in [Enhanced diagnostic logs](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs) to the live app's *web.config* file using the Kudu console:
+   * Follow the instructions in [Enhanced diagnostic logs](xref:host-and-deploy/iis/logging-and-diagnostics#enhanced-diagnostic-logs) to configure the app for an enhanced diagnostic logging. Redeploy the app.
+   * Add the `<handlerSettings>` shown in [Enhanced diagnostic logs](xref:host-and-deploy/iis/logging-and-diagnostics#enhanced-diagnostic-logs) to the live app's *web.config* file using the Kudu console:
      1. Open **Advanced Tools** in the **Development Tools** area. Select the **Go&rarr;** button. The Kudu console opens in a new browser tab or window.
      1. Using the navigation bar at the top of the page, open **Debug console** and select **CMD**.
-     1. Open the folders to the path **site** > **wwwroot**. Edit the *web.config* file by selecting the pencil button. Add the `<handlerSettings>` section as shown in [Enhanced diagnostic logs](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs). Select the **Save** button.
+     1. Open the folders to the path **site** > **wwwroot**. Edit the *web.config* file by selecting the pencil button. Add the `<handlerSettings>` section as shown in [Enhanced diagnostic logs](xref:host-and-deploy/iis/logging-and-diagnostics#enhanced-diagnostic-logs). Select the **Save** button.
 1. Open **Advanced Tools** in the **Development Tools** area. Select the **Go&rarr;** button. The Kudu console opens in a new browser tab or window.
 1. Using the navigation bar at the top of the page, open **Debug console** and select **CMD**.
 1. Open the folders to the path **site** > **wwwroot**. If you didn't supply a path for the *aspnetcore-debug.log* file, the file appears in the list. If you supplied a path, navigate to the location of the log file.
@@ -329,7 +329,7 @@ To disable the enhanced debug log, perform either of the following:
 * Remove the `<handlerSettings>` from the *web.config* file locally and redeploy the app.
 * Use the Kudu console to edit the *web.config* file and remove the `<handlerSettings>` section. Save the file.
 
-For more information, see <xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs>.
+For more information, see <xref:host-and-deploy/iis/logging-and-diagnostics#enhanced-diagnostic-logs>.
 
 > [!WARNING]
 > Failure to disable the debug log can lead to app or server failure. There's no limit on log file size. Only use debug logging to troubleshoot app startup problems.
@@ -460,7 +460,7 @@ Add the following handler settings to the app's *web.config* file to enable ASP.
 
 Confirm that the path specified for the log exists and that the app pool's identity has write permissions to the location.
 
-For more information, see <xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs>.
+For more information, see <xref:host-and-deploy/iis/logging-and-diagnostics#enhanced-diagnostic-logs>.
 
 ### Enable the Developer Exception Page
 
@@ -802,11 +802,11 @@ For more information, see <xref:host-and-deploy/aspnet-core-module#log-creation-
 The ASP.NET Core Module debug log provides additional, deeper logging from the ASP.NET Core Module. To enable and view stdout logs:
 
 1. To enable the enhanced diagnostic log, perform either of the following:
-   * Follow the instructions in [Enhanced diagnostic logs](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs) to configure the app for an enhanced diagnostic logging. Redeploy the app.
-   * Add the `<handlerSettings>` shown in [Enhanced diagnostic logs](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs) to the live app's *web.config* file using the Kudu console:
+   * Follow the instructions in [Enhanced diagnostic logs](xref:host-and-deploy/iis/logging-and-diagnostics#enhanced-diagnostic-logs) to configure the app for an enhanced diagnostic logging. Redeploy the app.
+   * Add the `<handlerSettings>` shown in [Enhanced diagnostic logs](xref:host-and-deploy/iis/logging-and-diagnostics#enhanced-diagnostic-logs) to the live app's *web.config* file using the Kudu console:
      1. Open **Advanced Tools** in the **Development Tools** area. Select the **Go&rarr;** button. The Kudu console opens in a new browser tab or window.
      1. Using the navigation bar at the top of the page, open **Debug console** and select **CMD**.
-     1. Open the folders to the path **site** > **wwwroot**. Edit the *web.config* file by selecting the pencil button. Add the `<handlerSettings>` section as shown in [Enhanced diagnostic logs](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs). Select the **Save** button.
+     1. Open the folders to the path **site** > **wwwroot**. Edit the *web.config* file by selecting the pencil button. Add the `<handlerSettings>` section as shown in [Enhanced diagnostic logs](xref:host-and-deploy/iis/logging-and-diagnostics#enhanced-diagnostic-logs). Select the **Save** button.
 1. Open **Advanced Tools** in the **Development Tools** area. Select the **Go&rarr;** button. The Kudu console opens in a new browser tab or window.
 1. Using the navigation bar at the top of the page, open **Debug console** and select **CMD**.
 1. Open the folders to the path **site** > **wwwroot**. If you didn't supply a path for the *aspnetcore-debug.log* file, the file appears in the list. If you supplied a path, navigate to the location of the log file.
@@ -819,7 +819,7 @@ To disable the enhanced debug log, perform either of the following:
 * Remove the `<handlerSettings>` from the *web.config* file locally and redeploy the app.
 * Use the Kudu console to edit the *web.config* file and remove the `<handlerSettings>` section. Save the file.
 
-For more information, see <xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs>.
+For more information, see <xref:host-and-deploy/iis/logging-and-diagnostics#enhanced-diagnostic-logs>.
 
 > [!WARNING]
 > Failure to disable the debug log can lead to app or server failure. There's no limit on log file size. Only use debug logging to troubleshoot app startup problems.
@@ -953,7 +953,7 @@ Add the following handler settings to the app's *web.config* file to enable ASP.
 
 Confirm that the path specified for the log exists and that the app pool's identity has write permissions to the location.
 
-For more information, see <xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs>.
+For more information, see <xref:host-and-deploy/iis/logging-and-diagnostics#enhanced-diagnostic-logs>.
 
 ### Enable the Developer Exception Page
 

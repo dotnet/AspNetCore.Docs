@@ -170,7 +170,7 @@ This section uses the [utility classes (`GraphClientExtensions.cs`)](#graph-sdk)
 @code {
     private User user;
 
-    protected async override Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
     {
         var request = GraphClient.Me.Request();
         user = await request.GetAsync();
@@ -215,7 +215,7 @@ public class CustomAccountFactory
         this.logger = logger;
     }
 
-    public async override ValueTask<ClaimsPrincipal> CreateUserAsync(
+    public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
         RemoteUserAccount account,
         RemoteAuthenticationUserOptions options)
     {
@@ -447,7 +447,7 @@ public class CustomAccountFactory
         this.logger = logger;
     }
 
-    public async override ValueTask<ClaimsPrincipal> CreateUserAsync(
+    public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
         RemoteUserAccount account,
         RemoteAuthenticationUserOptions options)
     {
@@ -661,7 +661,7 @@ This section uses the [utility classes (`GraphClientExtensions.cs`)](#graph-sdk)
 @code {
     private User user;
 
-    protected async override Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
     {
         var request = GraphClient.Me.Request();
         user = await request.GetAsync();
@@ -706,7 +706,7 @@ public class CustomAccountFactory
         this.logger = logger;
     }
 
-    public async override ValueTask<ClaimsPrincipal> CreateUserAsync(
+    public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
         RemoteUserAccount account,
         RemoteAuthenticationUserOptions options)
     {
@@ -938,7 +938,7 @@ public class CustomAccountFactory
         this.logger = logger;
     }
 
-    public async override ValueTask<ClaimsPrincipal> CreateUserAsync(
+    public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
         RemoteUserAccount account,
         RemoteAuthenticationUserOptions options)
     {
@@ -1174,7 +1174,7 @@ public class CustomAccountFactory
         this.logger = logger;
     }
 
-    public async override ValueTask<ClaimsPrincipal> CreateUserAsync(
+    public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
         RemoteUserAccount account,
         RemoteAuthenticationUserOptions options)
     {
