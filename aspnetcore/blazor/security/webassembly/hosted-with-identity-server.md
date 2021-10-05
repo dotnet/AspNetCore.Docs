@@ -306,7 +306,7 @@ public class CustomUserFactory
     {
     }
 
-    public async override ValueTask<ClaimsPrincipal> CreateUserAsync(
+    public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
         RemoteUserAccount account,
         RemoteAuthenticationUserOptions options)
     {
@@ -877,7 +877,7 @@ public class CustomUserFactory
     {
     }
 
-    public async override ValueTask<ClaimsPrincipal> CreateUserAsync(
+    public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
         RemoteUserAccount account,
         RemoteAuthenticationUserOptions options)
     {
@@ -1618,7 +1618,7 @@ public class CustomUserFactory
     {
     }
 
-    public async override ValueTask<ClaimsPrincipal> CreateUserAsync(
+    public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
         RemoteUserAccount account,
         RemoteAuthenticationUserOptions options)
     {

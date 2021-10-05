@@ -23,7 +23,7 @@ namespace PageFilter
             return Task.CompletedTask;
         }
 
-        public async override Task OnPageHandlerExecutionAsync(PageHandlerExecutingContext context, 
+        public override async Task OnPageHandlerExecutionAsync(PageHandlerExecutingContext context, 
                                                                PageHandlerExecutionDelegate next)
         {
             var key = _config["UserAgentID"];

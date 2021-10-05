@@ -729,7 +729,7 @@ public class CustomAccountFactory
     {
     }
   
-    public async override ValueTask<ClaimsPrincipal> CreateUserAsync(
+    public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
         CustomUserAccount account, RemoteAuthenticationUserOptions options)
     {
         var initialUser = await base.CreateUserAsync(account, options);
@@ -1770,7 +1770,7 @@ public class CustomAccountFactory
     {
     }
   
-    public async override ValueTask<ClaimsPrincipal> CreateUserAsync(
+    public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
         CustomUserAccount account, RemoteAuthenticationUserOptions options)
     {
         var initialUser = await base.CreateUserAsync(account, options);
@@ -2811,7 +2811,7 @@ public class CustomAccountFactory
     {
     }
   
-    public async override ValueTask<ClaimsPrincipal> CreateUserAsync(
+    public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
         CustomUserAccount account, RemoteAuthenticationUserOptions options)
     {
         var initialUser = await base.CreateUserAsync(account, options);

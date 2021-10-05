@@ -215,7 +215,7 @@ public class CustomAccountFactory
         this.logger = logger;
     }
 
-    public async override ValueTask<ClaimsPrincipal> CreateUserAsync(
+    public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
         RemoteUserAccount account,
         RemoteAuthenticationUserOptions options)
     {
@@ -447,7 +447,7 @@ public class CustomAccountFactory
         this.logger = logger;
     }
 
-    public async override ValueTask<ClaimsPrincipal> CreateUserAsync(
+    public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
         RemoteUserAccount account,
         RemoteAuthenticationUserOptions options)
     {
@@ -706,7 +706,7 @@ public class CustomAccountFactory
         this.logger = logger;
     }
 
-    public async override ValueTask<ClaimsPrincipal> CreateUserAsync(
+    public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
         RemoteUserAccount account,
         RemoteAuthenticationUserOptions options)
     {
@@ -938,7 +938,7 @@ public class CustomAccountFactory
         this.logger = logger;
     }
 
-    public async override ValueTask<ClaimsPrincipal> CreateUserAsync(
+    public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
         RemoteUserAccount account,
         RemoteAuthenticationUserOptions options)
     {
@@ -1174,7 +1174,7 @@ public class CustomAccountFactory
         this.logger = logger;
     }
 
-    public async override ValueTask<ClaimsPrincipal> CreateUserAsync(
+    public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
         RemoteUserAccount account,
         RemoteAuthenticationUserOptions options)
     {

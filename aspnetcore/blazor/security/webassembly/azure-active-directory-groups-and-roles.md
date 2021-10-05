@@ -141,7 +141,7 @@ public class CustomAccountFactory
         this.serviceProvider = serviceProvider;
         this.logger = logger;
     }
-    public async override ValueTask<ClaimsPrincipal> CreateUserAsync(
+    public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
         CustomUserAccount account,
         RemoteAuthenticationUserOptions options)
     {
@@ -683,7 +683,7 @@ public class CustomAccountFactory
         this.serviceProvider = serviceProvider;
         this.logger = logger;
     }
-    public async override ValueTask<ClaimsPrincipal> CreateUserAsync(
+    public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
         CustomUserAccount account,
         RemoteAuthenticationUserOptions options)
     {
