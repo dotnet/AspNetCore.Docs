@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
-using System;
 
 namespace TodoApi.Pages
 {
@@ -13,7 +11,7 @@ namespace TodoApi.Pages
         {
             _logger = logger;
         }
-        public string Message { get; set; }
+        public string ? Message { get; set; }
 
         public void OnGet()
         {
