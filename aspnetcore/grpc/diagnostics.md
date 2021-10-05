@@ -28,9 +28,9 @@ gRPC services and the gRPC client write logs using [.NET Core logging](xref:fund
 > [!WARNING]
 > Server-side logs may contain sensitive information from your app. **Never** post raw logs from production apps to public forums like GitHub.
 
-Since gRPC services are hosted on ASP.NET Core, it uses the ASP.NET Core logging system. In the default configuration, gRPC logs little information, but logging can be configured. See the documentation on [ASP.NET Core logging](xref:fundamentals/logging/index) for details on configuring ASP.NET Core logging.
+Since gRPC services are hosted on ASP.NET Core, it uses the ASP.NET Core logging system. In the default configuration, gRPC logs minimal information, but logging can be configured. See the documentation on [ASP.NET Core logging](xref:fundamentals/logging/index) for details on configuring ASP.NET Core logging.
 
-gRPC adds logs under the `Grpc` category. To enable detailed logs from gRPC, configure the `Grpc` prefixes to the `Debug` level in your *appsettings.json* file by adding the following items to the `LogLevel` subsection in `Logging`:
+gRPC adds logs under the `Grpc` category. To enable detailed logs from gRPC, configure the `Grpc` prefixes to the `Debug` level in the *appsettings.json* file by adding the following items to the `LogLevel` subsection in `Logging`:
 
 [!code-json[](diagnostics/sample/logging-config.json?highlight=7)]
 
@@ -44,7 +44,7 @@ If you aren't using JSON-based configuration, set the following configuration va
 
 Check the documentation for your configuration system to determine how to specify nested configuration values. For example, when using environment variables, two `_` characters are used instead of the `:` (for example, `Logging__LogLevel__Grpc`).
 
-We recommend using the `Debug` level when gathering more detailed diagnostics for your app. The `Trace` level produces low-level diagnostics and is rarely needed to diagnose issues in your app.
+We recommend using the `Debug` level when gathering detailed diagnostics for an app. The `Trace` level produces low-level diagnostics and is rarely needed to diagnose issues.
 
 #### Sample logging output
 
@@ -84,7 +84,7 @@ If the app is deployed to another environment (for example, Docker, Kubernetes, 
 > [!WARNING]
 > Client-side logs may contain sensitive information from your app. **Never** post raw logs from production apps to public forums like GitHub.
 
-To get logs from the .NET client, you can set the `GrpcChannelOptions.LoggerFactory` property when the client's channel is created. If you are calling a gRPC service from an ASP.NET Core app, then the logger factory can be resolved from dependency injection (DI):
+To get logs from the .NET client, set the `GrpcChannelOptions.LoggerFactory` property when the client's channel is created.  When calling a gRPC service from an ASP.NET Core app, the logger factory can be resolved from dependency injection (DI):
 
 [!code-csharp[](diagnostics/sample/net-client-dependency-injection.cs?highlight=7,16)]
 
