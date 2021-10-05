@@ -329,7 +329,7 @@ To disable the enhanced debug log, perform either of the following:
 * Remove the `<handlerSettings>` from the *web.config* file locally and redeploy the app.
 * Use the Kudu console to edit the *web.config* file and remove the `<handlerSettings>` section. Save the file.
 
-For more information, see <xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs>.
+For more information, see <xref:host-and-deploy/iis/logging-and-diagnostics#enhanced-diagnostic-logs>.
 
 > [!WARNING]
 > Failure to disable the debug log can lead to app or server failure. There's no limit on log file size. Only use debug logging to troubleshoot app startup problems.
@@ -460,7 +460,7 @@ Add the following handler settings to the app's *web.config* file to enable ASP.
 
 Confirm that the path specified for the log exists and that the app pool's identity has write permissions to the location.
 
-For more information, see <xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs>.
+For more information, see <xref:host-and-deploy/iis/logging-and-diagnostics#enhanced-diagnostic-logs>.
 
 ### Enable the Developer Exception Page
 
@@ -819,7 +819,7 @@ To disable the enhanced debug log, perform either of the following:
 * Remove the `<handlerSettings>` from the *web.config* file locally and redeploy the app.
 * Use the Kudu console to edit the *web.config* file and remove the `<handlerSettings>` section. Save the file.
 
-For more information, see <xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs>.
+For more information, see <xref:host-and-deploy/iis/logging-and-diagnostics#enhanced-diagnostic-logs>.
 
 > [!WARNING]
 > Failure to disable the debug log can lead to app or server failure. There's no limit on log file size. Only use debug logging to troubleshoot app startup problems.
@@ -953,7 +953,7 @@ Add the following handler settings to the app's *web.config* file to enable ASP.
 
 Confirm that the path specified for the log exists and that the app pool's identity has write permissions to the location.
 
-For more information, see <xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs>.
+For more information, see <xref:host-and-deploy/iis/logging-and-diagnostics#enhanced-diagnostic-logs>.
 
 ### Enable the Developer Exception Page
 
