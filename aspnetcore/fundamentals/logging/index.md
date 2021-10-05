@@ -745,36 +745,7 @@ Using a third-party framework is similar to using one of the built-in providers:
 
 For more information, see each provider's documentation. Third-party logging providers aren't supported by Microsoft.
 
-<a name="nhca"></a>
-
-## Non-host console app
-
-For an example of how to use the Generic Host in a non-web console app, see the *Program.cs* file of the [Background Tasks sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/host/hosted-services/samples) (<xref:fundamentals/host/hosted-services>).
-
-Logging code for apps without Generic Host differs in the way providers are added and [loggers are created](#cl).
-
-### Logging providers
-
-In a non-host console app, call the provider's `Add{provider name}` extension method while creating a `LoggerFactory`:
-
-[!code-csharp[](index/samples/3.x/LoggingConsoleApp/Program.cs?name=snippet_LoggerFactory&highlight=11-12)]
-
-<h3 id="cl">Create logs</h3>
-
-To create logs, use an <xref:Microsoft.Extensions.Logging.ILogger%601> object. Use the `LoggerFactory` to create an `ILogger`.
-
-The following example creates a logger with `LoggingConsoleApp.Program` as the category.
-
-[!code-csharp[](index/samples/3.x/LoggingConsoleApp/Program.cs?name=snippet_LoggerFactory&highlight=14)]
-
-In the following example, the logger is used to create logs with `Information` as the level. The Log *level* indicates the severity of the logged event.
-
-[!code-csharp[](index/samples/3.x/LoggingConsoleApp/Program.cs?name=snippet_LoggerFactory&highlight=15)]
-
-[Levels](#log-level) and [categories](#log-category) are explained in more detail in this document.
-
-<a name="lhc"></a>
-
+<!-- 
 ## Log during host construction
 
 Logging during host construction isn't directly supported. However, a separate logger can be used. In the following example, a [Serilog](https://serilog.net/) logger is used to log in `CreateHostBuilder`. `AddSerilog` uses the static configuration specified in `Log.Logger`:
@@ -839,7 +810,9 @@ public class Program
     }
 }
 ```
+-->
 
+<!-- 
 <a name="csdi"></a>
 
 ## Configure a service that depends on ILogger
@@ -851,29 +824,7 @@ To configure a service that depends on `ILogger<T>`, use constructor injection o
 [!code-csharp[](index/samples/3.x/TodoApiSample/Startup2.cs?name=snippet_ConfigureServices&highlight=6-10)]
 
 The preceding highlighted code is a [Func](/dotnet/api/system.func-2) that runs the first time the DI container needs to construct an instance of `MyService`. You can access any of the registered services in this way.
-
-<a name="clms"></a>
-
-## Create logs in Main
-
-The following code logs in `Main` by getting an `ILogger` instance from DI after building the host:
-
-[!code-csharp[](index/samples/3.x/TodoApiDTO/Program.cs?name=snippet_LogProgram)]
-
-### Create logs in Startup
-
-The following code writes logs in `Startup.Configure`:
-
-[!code-csharp[](index/samples/3.x/TodoApiDTO/Startup.cs?name=snippet_Configure)]
-
-Writing logs before completion of the DI container setup in the `Startup.ConfigureServices` method is not supported:
-
-* Logger injection into the `Startup` constructor is not supported.
-* Logger injection into the `Startup.ConfigureServices` method signature is not supported
-
-The reason for this restriction is that logging depends on DI and on configuration, which in turns depends on DI. The DI container isn't set up until `ConfigureServices` finishes.
-
-For information on configuring a service that depends on `ILogger<T>` or why constructor injection of a logger into `Startup` worked in earlier versions, see [Configure a service that depends on ILogger](#csdi)
+-->
 
 ### No asynchronous logger methods
 
