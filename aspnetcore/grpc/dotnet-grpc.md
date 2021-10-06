@@ -48,7 +48,7 @@ If any files are outside the project directory, a `Link` element is added to dis
 ### Usage
 
 ```dotnetcli
-dotnet grpc add-file [options] <files>...
+dotnet-grpc add-file [options] <files>...
 ```
 
 #### Arguments
