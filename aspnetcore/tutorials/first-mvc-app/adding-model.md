@@ -72,6 +72,7 @@ In the PMC, run the following command:
 
 ```powershell
 Install-Package Microsoft.EntityFrameworkCore.Design -IncludePrerelease
+Install-Package Microsoft.EntityFrameworkCore.SqlServer -IncludePrerelease
 ```
 
 The preceding commands add:
