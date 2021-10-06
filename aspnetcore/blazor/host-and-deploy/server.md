@@ -45,12 +45,7 @@ Each circuit uses approximately 250 KB of memory for a minimal *Hello World*-sty
 
 Blazor Server apps use ASP.NET Core SignalR to communicate with the browser. [SignalR's hosting and scaling conditions](xref:signalr/publish-to-azure-web-app) apply to Blazor Server apps.
 
-Blazor works best when using WebSockets as the SignalR transport due to lower latency, reliability, and [security](xref:signalr/security). When deploying to Azure App Service, configure the app to use WebSockets in the Azure portal settings for the service. For details on configuring the app for Azure App Service, see the [SignalR publishing guidelines](xref:signalr/publish-to-azure-web-app).
-
-> [!NOTE]
-> In earlier versions of ASP.NET Core, Long Polling was enabled as a fallback transport for situations in which the WebSockets transport wasn't available. If an app must use Long Polling, see <xref:blazor/fundamentals/signalr?pivots=server#long-polling> for configuration guidance.
->
-> For more information, see [Disable Long Polling Fallback Transport for Blazor Server (ASP.NET Announcements)](https://github.com/aspnet/Announcements/issues/470).
+Blazor works best when using WebSockets as the SignalR transport due to lower latency, reliability, and [security](xref:signalr/security). Long Polling is used by SignalR when WebSockets isn't available or when the app is explicitly configured to use Long Polling. When deploying to Azure App Service, configure the app to use WebSockets in the Azure portal settings for the service. For details on configuring the app for Azure App Service, see the [SignalR publishing guidelines](xref:signalr/publish-to-azure-web-app).
 
 #### Azure SignalR Service
 
@@ -60,8 +55,6 @@ We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-
 > When [WebSockets](https://wikipedia.org/wiki/WebSocket) are disabled, Azure App Service simulates a real-time connection using HTTP Long Polling. HTTP Long Polling is noticeably slower than running with WebSockets enabled, which doesn't use polling to simulate a client-server connection.
 >
 > We recommend using WebSockets for Blazor Server apps deployed to Azure App Service. The [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) uses WebSockets by default. If the app doesn't use the Azure SignalR Service, see <xref:signalr/publish-to-azure-web-app#configure-the-app-in-azure-app-service>.
->
-> As of the release of ASP.NET Core 6.0, Long Polling isn't enabled by default. For more information, see the [SignalR configuration](#signalr-configuration) section.
 >
 > For more information, see:
 >
