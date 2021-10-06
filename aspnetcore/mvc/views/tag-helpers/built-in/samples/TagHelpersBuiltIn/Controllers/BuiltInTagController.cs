@@ -7,7 +7,7 @@ namespace TagHelpersBuiltIn.Controllers
         public IActionResult Index() => View();
 
         #region snippet_AnchorTagHelperAction
-        public IActionResult AnchorTagHelper(int id)
+        public IActionResult Detail(int id)
         {
             var speaker = new Speaker
             {
