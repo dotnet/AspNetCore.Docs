@@ -1,4 +1,4 @@
-#define Third // First Second Third
+#define Five // First Second Third Four Five
 #if First
 #region snippet1
 var builder = WebApplication.CreateBuilder(args);
@@ -130,7 +130,7 @@ app.MapRazorPages();
 app.Run();
 #endregion
 #elif Third
-#region snippet3
+#region snippet4
 var builder = WebApplication.CreateBuilder(args);
 
 try
@@ -167,4 +167,74 @@ app.UseAuthorization();
 app.MapRazorPages();
 
 app.Run();
+#elif Four
+#region snippet4
+var builder = WebApplication.CreateBuilder(args);
+
+try
+{
+    builder.WebHost.UseStartup<Startup>();
+}
+catch (Exception ex)
+{
+    Console.WriteLine(ex.Message);
+    throw;    
+}
+
+builder.Services.AddRazorPages();
+
+var app = builder.Build();
+#endregion
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthorization();
+
+app.MapRazorPages();
+
+app.Run();
+#elif Five
+#region snippet5
+using Microsoft.Extensions.DependencyInjection.Extensions;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.ConfigureServices(services =>
+{
+    services.TryAddSingleton<IService, Service1>();
+});
+
+builder.Services.TryAddSingleton<IService, Service2>();
+
+var app = builder.Build();
+
+// Displays Service1
+Console.WriteLine(app.Services.GetRequiredService<IService>());
+
+app.Run();
+
+class Service1 : IService
+{
+
+}
+
+class Service2 : IService
+{
+
+}
+
+interface IService
+{
+
+}
+#endregion
 #endif
