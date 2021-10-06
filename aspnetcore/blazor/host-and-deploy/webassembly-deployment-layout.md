@@ -209,7 +209,7 @@ Generate a NuGet package with MSBuild targets that are automatically included wh
 The approach described in this section only uses the package to deliver targets and content, which is different from most packages where the package includes a library DLL.
 
 > [!WARNING]
-> The sample package described in this section demonstrates how to customize the Blazor publish process. **This NuGet package is for use as a local demonstration only. Using this package in production is not supported.**
+> The sample package described in this section demonstrates how to customize the Blazor publish process. **The sample NuGet package is for use as a local demonstration only. Using this package in production is not supported.**
 
 > [!NOTE]
 > The NuGet package for the examples in this article are named after the package provided by Microsoft, `Microsoft.AspNetCore.Components.WebAssembly.MultipartBundle`. For guidance on naming and producing your own NuGet package, see the following NuGet articles:
@@ -228,8 +228,8 @@ The approach described in this section only uses the package to deliver targets 
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Description>
-      Sample demonstration package demonstrating how to customize the Blazor 
-      publish process. Use of this package in production is not supported!
+      Sample demonstration package showing how to customize the Blazor publish 
+      process. Using this package in production is not supported!
     </Description>
     <IsPackable>true</IsPackable>
     <IsShipping>true</IsShipping>
