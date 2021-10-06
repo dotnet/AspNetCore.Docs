@@ -36,7 +36,12 @@ The preceding Windows 11 Build versions may require the use of a [Windows Inside
 
 * `libmsquic` package installed.
 
-`libmsquic` is published via Microsoft official Linux package repository `packages.microsoft.com`. In order to consume it, it must be added manually. See [Linux Software Repository for Microsoft Products](/windows-server/administration/linux-package-repository-for-microsoft-software). After adding `libmsquic`, it can be installed via the package manager of your distro, for example, for Ubuntu:
+`libmsquic` is published via Microsoft's official Linux package repository at `packages.microsoft.com`. To install this package:
+
+1. Add the `packages.microsoft.com` repository to Linux. See [Linux Software Repository for Microsoft Products](/windows-server/administration/linux-package-repository-for-microsoft-software) for instructions.
+2. Install the `libmsquic` package using the distro's package manager.
+
+The following example adds the package to Ubuntu:
 
 ```cmd
 apt install libmsquic
