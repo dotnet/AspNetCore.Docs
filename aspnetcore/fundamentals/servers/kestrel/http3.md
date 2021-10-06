@@ -41,12 +41,6 @@ The preceding Windows 11 Build versions may require the use of a [Windows Inside
 1. Add the `packages.microsoft.com` repository. See [Linux Software Repository for Microsoft Products](/windows-server/administration/linux-package-repository-for-microsoft-software) for instructions.
 2. Install the `libmsquic` package using the distro's package manager.
 
-The following example adds the package to Ubuntu:
-
-```cmd
-apt install libmsquic
-```
-
 ### macOS
 
 HTTP/3 isn't currently supported on macOS and may be available in a future release.
