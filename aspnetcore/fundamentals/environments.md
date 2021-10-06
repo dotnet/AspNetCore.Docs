@@ -2,10 +2,10 @@
 title: Use multiple environments in ASP.NET Core
 author: rick-anderson
 description: Learn how to control app behavior across multiple environments in ASP.NET Core apps.
-monikerRange: '>= aspnetcore-2.1'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/04/2021
+ms.date: 10/06/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/environments
 ---
@@ -258,18 +258,21 @@ For Linux distributions, use the `export` command at a command prompt for sessio
 
 ## Set the environment in code
 
-Call <xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.UseEnvironment%2A> when building the host. See <xref:fundamentals/host/generic-host#environmentname>.
-<!-- Does this still apply?-->
+To set the environment in code, set `WebApplicationOptions.EnvironmentName` when creating `WebApplicationBuilder`, as shown in the following example:
+
+[!code-csharp[](environments/6.0sample/EnvironmentsSample/Program.cs?name=SetInCode&highlight=1-4)]
+
+For more information, see <xref:fundamentals/host/generic-host#environmentname>.
 
 ## Configuration by environment
 
 To load configuration by environment, see <xref:fundamentals/configuration/index#json-configuration-provider>.
 
-## Environment-based services and middleware
+## Environment-specific services and middleware
 
-[Configure](xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure%2A) and [ConfigureServices](xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices%2A) support environment-specific versions of the form `Configure<EnvironmentName>` and `Configure<EnvironmentName>Services`. If a matching `Configure<EnvironmentName>Services` or `Configure<EnvironmentName>` method isn't found, the `ConfigureServices` or `Configure` method is used, respectively. This approach is useful when the app requires configuring startup for several environments with many code differences per environment:
+Use `WebApplicationBuilder.Environment` to conditionally add services or middleware depending on the current environment. The project template includes an example of code that adds middleware only when the current environment isn't Development:
 
-[!code-csharp[](environments/3.1sample/EnvironmentsSample/StartupMethodConventions.cs?name=snippet)]
+[!code-csharp[](environments/6.0sample/EnvironmentsSample/Program.cs?name=First&highlight=9-14)]
 
 ## Additional resources
 

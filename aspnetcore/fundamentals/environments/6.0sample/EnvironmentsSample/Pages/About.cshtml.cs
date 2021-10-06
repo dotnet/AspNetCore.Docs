@@ -5,7 +5,7 @@ namespace EnvironmentsSample.Pages
 {
     public class AboutModel : PageModel
     {
-        public string Message { get; set; }
+        public string? Message { get; set; }
 
         public void OnGet()
         {
