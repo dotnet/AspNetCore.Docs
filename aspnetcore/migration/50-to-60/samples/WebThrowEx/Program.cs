@@ -130,7 +130,7 @@ app.MapRazorPages();
 app.Run();
 #endregion
 #elif Third
-#region snippet4
+#region snippet3
 var builder = WebApplication.CreateBuilder(args);
 
 try
@@ -217,7 +217,7 @@ builder.Services.TryAddSingleton<IService, Service2>();
 
 var app = builder.Build();
 
-// Displays Service1
+// Displays Service1 only.
 Console.WriteLine(app.Services.GetRequiredService<IService>());
 
 app.Run();
