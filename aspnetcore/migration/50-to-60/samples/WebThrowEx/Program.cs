@@ -1,4 +1,4 @@
-#define Five // First Second Third Four Five
+#define Empty // First Second Third Four Five Empty
 #if First
 #region snippet1
 var builder = WebApplication.CreateBuilder(args);
@@ -224,17 +224,31 @@ app.Run();
 
 class Service1 : IService
 {
-
 }
 
 class Service2 : IService
 {
-
 }
 
 interface IService
 {
+}
+#endregion
+#elif Empty
+#region snippetE
+var builder = WebApplication.CreateBuilder(args);
 
+ConfigurationValue = builder.Configuration["SomeKey"] ?? "Hello";
+
+var app = builder.Build();
+
+app.MapGet("/", () => ConfigurationValue);
+
+app.Run();
+
+partial class Program
+{
+    public static string? ConfigurationValue { get; private set; }
 }
 #endregion
 #endif
