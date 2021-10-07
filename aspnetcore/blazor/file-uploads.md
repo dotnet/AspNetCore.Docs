@@ -142,10 +142,10 @@ The following example demonstrates uploading files from a Blazor Server app to a
 
 In the Blazor Server app, add <xref:System.Net.Http.IHttpClientFactory> and related services that allow the app to create <xref:System.Net.Http.HttpClient> instances.
 
-In `Startup.ConfigureServices` of `Startup.cs`:
+In `Program.cs`:
 
 ```csharp
-services.AddHttpClient();
+builder.Services.AddHttpClient();
 ```
 
 For more information, see <xref:fundamentals/http-requests>.

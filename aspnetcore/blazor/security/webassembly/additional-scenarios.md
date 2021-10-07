@@ -93,7 +93,7 @@ public class CustomAuthorizationMessageHandler : AuthorizationMessageHandler
 }
 ```
 
-In `Program.Main` (`Program.cs`), `CustomAuthorizationMessageHandler` is registered as a scoped service and is configured as the <xref:System.Net.Http.DelegatingHandler> for outgoing <xref:System.Net.Http.HttpResponseMessage> instances made by a named <xref:System.Net.Http.HttpClient>:
+In `Program.cs`, `CustomAuthorizationMessageHandler` is registered as a scoped service and is configured as the <xref:System.Net.Http.DelegatingHandler> for outgoing <xref:System.Net.Http.HttpResponseMessage> instances made by a named <xref:System.Net.Http.HttpClient>:
 
 ```csharp
 builder.Services.AddScoped<CustomAuthorizationMessageHandler>();
@@ -136,7 +136,7 @@ The configured <xref:System.Net.Http.HttpClient> is used to make authorized requ
 
 <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler> can be configured with authorized URLs, scopes, and a return URL using the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler.ConfigureHandler%2A> method. <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler.ConfigureHandler%2A> configures the handler to authorize outbound HTTP requests using an access token. The access token is only attached if at least one of the authorized URLs is a base of the request URI (<xref:System.Net.Http.HttpRequestMessage.RequestUri?displayProperty=nameWithType>). If the request URI is a relative URI, it's combined with the <xref:System.Net.Http.HttpClient.BaseAddress>.
 
-In the following example, <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler> configures an <xref:System.Net.Http.HttpClient> in `Program.Main` (`Program.cs`):
+In the following example, <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler> configures an <xref:System.Net.Http.HttpClient> in `Program.cs`:
 
 ```csharp
 using System.Net.Http;
@@ -202,7 +202,7 @@ public class WeatherForecastClient
 
 The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `using static BlazorSample.Data;`).
 
-`Program.Main` (`Program.cs`):
+In `Program.cs`:
 
 ```csharp
 using System.Net.Http;
@@ -234,7 +234,7 @@ protected override async Task OnInitializedAsync()
 
 The handler can be further configured with <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler.ConfigureHandler%2A> for outbound HTTP requests.
 
-`Program.Main` (`Program.cs`):
+In `Program.cs`:
 
 ```csharp
 builder.Services.AddHttpClient<WeatherForecastClient>(
@@ -254,7 +254,7 @@ For a hosted Blazor solution based on the [Blazor WebAssembly project template](
 
 If the Blazor WebAssembly app ordinarily uses a secure default <xref:System.Net.Http.HttpClient>, the app can also make unauthenticated or unauthorized web API requests by configuring a named <xref:System.Net.Http.HttpClient>:
 
-`Program.Main` (`Program.cs`):
+In `Program.cs`:
 
 ```csharp
 builder.Services.AddHttpClient("WebAPI.NoAuthenticationClient", 
@@ -296,7 +296,7 @@ An alternative approach to using the <xref:System.Net.Http.IHttpClientFactory> i
 
 Access tokens can be manually obtained by calling `IAccessTokenProvider.RequestAccessToken`. In the following example, an additional scope is required by an app for the default <xref:System.Net.Http.HttpClient>. The Microsoft Authentication Library (MSAL) example configures the scope with `MsalProviderOptions`:
 
-`Program.Main` (`Program.cs`):
+In `Program.cs`:
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
@@ -581,7 +581,7 @@ The `Authentication` component (`Pages/Authentication.razor`) saves and restores
 }
 ```
 
-This example uses Azure Active Directory (AAD) for authentication. In `Program.Main` (`Program.cs`):
+This example uses Azure Active Directory (AAD) for authentication. In `Program.cs`:
 
 * The `ApplicationAuthenticationState` is configured as the Microsoft Autentication Library (MSAL) `RemoteAuthenticationState` type.
 * The state container is registered in the service container.
@@ -629,7 +629,7 @@ In the following example, all the paths are prefixed with `/security`.
 }
 ```
 
-`Program.Main` (`Program.cs`):
+In `Program.cs`:
 
 ```csharp
 builder.Services.AddApiAuthorization(options => { 
@@ -809,60 +809,52 @@ Prerendering content that requires authentication and authorization isn't curren
 * Prerenders paths for which authorization isn't required.
 * Doesn't prerender paths for which authorization is required.
 
-In the client (**`Client`**) app's `Program` class (`Program.cs`), factor common service registrations into a separate method (for example, `ConfigureCommonServices`). Common services are those that the developer registers for use by both the client and server (**`Server`**) apps.
+For the client (**`Client`**) app's `Program.cs`, factor common service registrations into a separate method (for example, `ConfigureCommonServices`). Common services are those that the developer registers for use by both the client and server (**`Server`**) apps.
+
+``:
 
 ```csharp
-public class Program
+public static void ConfigureCommonServices(IServiceCollection services)
 {
-    public static async Task Main(string[] args)
-    {
-        var builder = WebAssemblyHostBuilder.CreateDefault(args);
-        builder.RootComponents.Add...;
-
-        // Services that only the client app uses
-        builder.Services.AddScoped( ... );
-
-        ConfigureCommonServices(builder.Services);
-
-        await builder.Build().RunAsync();
-    }
-
-    public static void ConfigureCommonServices(IServiceCollection services)
-    {
-        // Common service registrations that both apps use
-        services.Add...;
-    }
+    services.Add...;
 }
 ```
 
-In the server app's `Startup.ConfigureServices`, register the following additional services and call `ConfigureCommonServices`:
+`Program.cs`:
+
+```csharp
+var builder = WebAssemblyHostBuilder.CreateDefault(args);
+...
+
+builder.Services.AddScoped( ... );
+
+ConfigureCommonServices(builder.Services);
+
+await builder.Build().RunAsync();
+```
+
+In the server app's `Program.cs` file, register the following additional services and call `ConfigureCommonServices`:
 
 ```csharp
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Server;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
-public void ConfigureServices(IServiceCollection services)
-{
-    ...
+...
 
-    services.AddRazorPages();
-    services.AddScoped<AuthenticationStateProvider, 
-        ServerAuthenticationStateProvider>();
-    services.AddScoped<SignOutSessionStateManager>();
+builder.Services.AddRazorPages();
+builder.Services.AddScoped<AuthenticationStateProvider, 
+    ServerAuthenticationStateProvider>();
+builder.Services.AddScoped<SignOutSessionStateManager>();
 
-    Client.Program.ConfigureCommonServices(services);
-}
+Client.Program.ConfigureCommonServices(services);
 ```
 
-In the server app's `Startup.Configure` method, replace [`endpoints.MapFallbackToFile("index.html")`](xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A) with [`endpoints.MapFallbackToPage("/_Host")`](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A):
+In the server app's `Program.cs`, replace [`app.MapFallbackToFile("index.html")`](xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A) with [`app.MapFallbackToPage("/_Host")`](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A):
 
 ```csharp
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllers();
-    endpoints.MapFallbackToPage("/_Host");
-});
+app.MapControllers();
+app.MapFallbackToPage("/_Host");
 ```
 
 In the server app, create a `Pages` folder if it doesn't exist. Create a `_Host.cshtml` page inside the server app's `Pages` folder. Paste the contents from the client app's `wwwroot/index.html` file into the `Pages/_Host.cshtml` file. Update the file's contents:
@@ -963,7 +955,7 @@ The list of claims in the ID token changes for v2.0 endpoints. For more informat
 To configure a Blazor WebAssembly app to use the [ASP.NET Core gRPC framework](xref:grpc/index):
 
 * Enable gRPC-Web on the server. For more information, see <xref:grpc/browser>.
-* Register gRPC services for the app's message handler. The following example configures the app's authorization message handler to use the [`GreeterClient` service from the gRPC tutorial](xref:tutorials/grpc/grpc-start#create-a-grpc-service) (`Program.Main`):
+* Register gRPC services for the app's message handler. The following example configures the app's authorization message handler to use the [`GreeterClient` service from the gRPC tutorial](xref:tutorials/grpc/grpc-start#create-a-grpc-service) (`Program.cs`):
 
 ```csharp
 using System.Net.Http;
@@ -1038,9 +1030,9 @@ For more information, see <xref:grpc/browser>.
 
 If an app requires a custom version of the [Microsoft Authentication Library for JavaScript (MSAL.js)](https://www.npmjs.com/package/@azure/msal-browser), perform the following steps:
 
-1. Confirm the the system has the latest developer .NET SDK or obtain and install the latest developer SDK from [.NET Core SDK: Installers and Binaries](https://github.com/dotnet/installer#installers-and-binaries). Configuration of internal NuGet feeds isn't required for this scenario.
+1. Confirm the system has the latest developer .NET SDK or obtain and install the latest developer SDK from [.NET Core SDK: Installers and Binaries](https://github.com/dotnet/installer#installers-and-binaries). Configuration of internal NuGet feeds isn't required for this scenario.
 1. Set up the `dotnet/aspnetcore` GitHub repository for development per the docs at [Build ASP.NET Core from Source](https://github.com/dotnet/aspnetcore/blob/main/docs/BuildFromSource.md). Fork and clone or download a ZIP archive of the [dotnet/aspnetcore GitHub repository](https://github.com/dotnet/aspnetcore).
-1. Open the the `src/Components/WebAssembly/Authentication.Msal/src/Interop/package.json` file and set the desired version of `@azure/msal-browser`. For a list of released versions, visit the [`@azure/msal-browser` npm website](https://www.npmjs.com/package/@azure/msal-browser) and select the **Versions** tab.
+1. Open the `src/Components/WebAssembly/Authentication.Msal/src/Interop/package.json` file and set the desired version of `@azure/msal-browser`. For a list of released versions, visit the [`@azure/msal-browser` npm website](https://www.npmjs.com/package/@azure/msal-browser) and select the **Versions** tab.
 1. Build the `Authentication.Msal` project in the `src/Components/WebAssembly/Authentication.Msal/src` folder with the `yarn build` command in a command shell.
 1. If the app uses [compressed assets (Brotli/Gzip)](xref:blazor/host-and-deploy/webassembly#compression), compress the `Interop/dist/Release/AuthenticationService.js` file.
 1. Copy the `AuthenticationService.js` file and compressed versions (`.br`/`.gz`) of the file, if produced, from the `Interop/dist/Release` folder into the app's `publish/wwwroot/_content/Microsoft.Authentication.WebAssembly.Msal` folder in the app's published assets.
@@ -1134,7 +1126,7 @@ public class CustomAuthorizationMessageHandler : AuthorizationMessageHandler
 }
 ```
 
-In `Program.Main` (`Program.cs`), `CustomAuthorizationMessageHandler` is registered as a scoped service and is configured as the <xref:System.Net.Http.DelegatingHandler> for outgoing <xref:System.Net.Http.HttpResponseMessage> instances made by a named <xref:System.Net.Http.HttpClient>:
+In `Program.cs`, `CustomAuthorizationMessageHandler` is registered as a scoped service and is configured as the <xref:System.Net.Http.DelegatingHandler> for outgoing <xref:System.Net.Http.HttpResponseMessage> instances made by a named <xref:System.Net.Http.HttpClient>:
 
 ```csharp
 builder.Services.AddScoped<CustomAuthorizationMessageHandler>();
@@ -1177,7 +1169,7 @@ The configured <xref:System.Net.Http.HttpClient> is used to make authorized requ
 
 <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler> can be configured with authorized URLs, scopes, and a return URL using the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler.ConfigureHandler%2A> method. <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler.ConfigureHandler%2A> configures the handler to authorize outbound HTTP requests using an access token. The access token is only attached if at least one of the authorized URLs is a base of the request URI (<xref:System.Net.Http.HttpRequestMessage.RequestUri?displayProperty=nameWithType>). If the request URI is a relative URI, it's combined with the <xref:System.Net.Http.HttpClient.BaseAddress>.
 
-In the following example, <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler> configures an <xref:System.Net.Http.HttpClient> in `Program.Main` (`Program.cs`):
+In the following example, <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler> configures an <xref:System.Net.Http.HttpClient> in `Program.cs`:
 
 ```csharp
 using System.Net.Http;
@@ -1243,7 +1235,7 @@ public class WeatherForecastClient
 
 The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `using static BlazorSample.Data;`).
 
-`Program.Main` (`Program.cs`):
+In `Program.cs`:
 
 ```csharp
 using System.Net.Http;
@@ -1275,7 +1267,7 @@ protected override async Task OnInitializedAsync()
 
 The handler can be further configured with <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler.ConfigureHandler%2A> for outbound HTTP requests.
 
-`Program.Main` (`Program.cs`):
+In `Program.cs`:
 
 ```csharp
 builder.Services.AddHttpClient<WeatherForecastClient>(
@@ -1295,7 +1287,7 @@ For a hosted Blazor solution based on the [Blazor WebAssembly project template](
 
 If the Blazor WebAssembly app ordinarily uses a secure default <xref:System.Net.Http.HttpClient>, the app can also make unauthenticated or unauthorized web API requests by configuring a named <xref:System.Net.Http.HttpClient>:
 
-`Program.Main` (`Program.cs`):
+In `Program.cs`:
 
 ```csharp
 builder.Services.AddHttpClient("WebAPI.NoAuthenticationClient", 
@@ -1337,7 +1329,7 @@ An alternative approach to using the <xref:System.Net.Http.IHttpClientFactory> i
 
 Access tokens can be manually obtained by calling `IAccessTokenProvider.RequestAccessToken`. In the following example, an additional scope is required by an app for the default <xref:System.Net.Http.HttpClient>. The Microsoft Authentication Library (MSAL) example configures the scope with `MsalProviderOptions`:
 
-`Program.Main` (`Program.cs`):
+In `Program.cs`:
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
@@ -1622,7 +1614,7 @@ The `Authentication` component (`Pages/Authentication.razor`) saves and restores
 }
 ```
 
-This example uses Azure Active Directory (AAD) for authentication. In `Program.Main` (`Program.cs`):
+This example uses Azure Active Directory (AAD) for authentication. In `Program.cs`:
 
 * The `ApplicationAuthenticationState` is configured as the Microsoft Autentication Library (MSAL) `RemoteAuthenticationState` type.
 * The state container is registered in the service container.
@@ -1670,7 +1662,7 @@ In the following example, all the paths are prefixed with `/security`.
 }
 ```
 
-`Program.Main` (`Program.cs`):
+In `Program.cs`:
 
 ```csharp
 builder.Services.AddApiAuthorization(options => { 
@@ -2004,7 +1996,7 @@ The list of claims in the ID token changes for v2.0 endpoints. For more informat
 To configure a Blazor WebAssembly app to use the [ASP.NET Core gRPC framework](xref:grpc/index):
 
 * Enable gRPC-Web on the server. For more information, see <xref:grpc/browser>.
-* Register gRPC services for the app's message handler. The following example configures the app's authorization message handler to use the [`GreeterClient` service from the gRPC tutorial](xref:tutorials/grpc/grpc-start#create-a-grpc-service) (`Program.Main`):
+* Register gRPC services for the app's message handler. The following example configures the app's authorization message handler to use the [`GreeterClient` service from the gRPC tutorial](xref:tutorials/grpc/grpc-start#create-a-grpc-service) (`Program.cs`):
 
 ```csharp
 using System.Net.Http;
@@ -2079,9 +2071,9 @@ For more information, see <xref:grpc/browser>.
 
 If an app requires a custom version of the [Microsoft Authentication Library for JavaScript (MSAL.js)](https://www.npmjs.com/package/@azure/msal-browser), perform the following steps:
 
-1. Confirm the the system has the latest developer .NET SDK or obtain and install the latest developer SDK from [.NET Core SDK: Installers and Binaries](https://github.com/dotnet/installer#installers-and-binaries). Configuration of internal NuGet feeds isn't required for this scenario.
+1. Confirm the system has the latest developer .NET SDK or obtain and install the latest developer SDK from [.NET Core SDK: Installers and Binaries](https://github.com/dotnet/installer#installers-and-binaries). Configuration of internal NuGet feeds isn't required for this scenario.
 1. Set up the `dotnet/aspnetcore` GitHub repository for development per the docs at [Build ASP.NET Core from Source](https://github.com/dotnet/aspnetcore/blob/main/docs/BuildFromSource.md). Fork and clone or download a ZIP archive of the [dotnet/aspnetcore GitHub repository](https://github.com/dotnet/aspnetcore).
-1. Open the the `src/Components/WebAssembly/Authentication.Msal/src/Interop/package.json` file and set the desired version of `@azure/msal-browser`. For a list of released versions, visit the [`@azure/msal-browser` npm website](https://www.npmjs.com/package/@azure/msal-browser) and select the **Versions** tab.
+1. Open the `src/Components/WebAssembly/Authentication.Msal/src/Interop/package.json` file and set the desired version of `@azure/msal-browser`. For a list of released versions, visit the [`@azure/msal-browser` npm website](https://www.npmjs.com/package/@azure/msal-browser) and select the **Versions** tab.
 1. Build the `Authentication.Msal` project in the `src/Components/WebAssembly/Authentication.Msal/src` folder with the `yarn build` command in a command shell.
 1. If the app uses [compressed assets (Brotli/Gzip)](xref:blazor/host-and-deploy/webassembly#compression), compress the `Interop/dist/Release/AuthenticationService.js` file.
 1. Copy the `AuthenticationService.js` file and compressed versions (`.br`/`.gz`) of the file, if produced, from the `Interop/dist/Release` folder into the app's `publish/wwwroot/_content/Microsoft.Authentication.WebAssembly.Msal` folder in the app's published assets.
@@ -2175,7 +2167,7 @@ public class CustomAuthorizationMessageHandler : AuthorizationMessageHandler
 }
 ```
 
-In `Program.Main` (`Program.cs`), `CustomAuthorizationMessageHandler` is registered as a scoped service and is configured as the <xref:System.Net.Http.DelegatingHandler> for outgoing <xref:System.Net.Http.HttpResponseMessage> instances made by a named <xref:System.Net.Http.HttpClient>:
+In `Program.cs`, `CustomAuthorizationMessageHandler` is registered as a scoped service and is configured as the <xref:System.Net.Http.DelegatingHandler> for outgoing <xref:System.Net.Http.HttpResponseMessage> instances made by a named <xref:System.Net.Http.HttpClient>:
 
 ```csharp
 builder.Services.AddScoped<CustomAuthorizationMessageHandler>();
@@ -2218,7 +2210,7 @@ The configured <xref:System.Net.Http.HttpClient> is used to make authorized requ
 
 <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler> can be configured with authorized URLs, scopes, and a return URL using the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler.ConfigureHandler%2A> method. <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler.ConfigureHandler%2A> configures the handler to authorize outbound HTTP requests using an access token. The access token is only attached if at least one of the authorized URLs is a base of the request URI (<xref:System.Net.Http.HttpRequestMessage.RequestUri?displayProperty=nameWithType>). If the request URI is a relative URI, it's combined with the <xref:System.Net.Http.HttpClient.BaseAddress>.
 
-In the following example, <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler> configures an <xref:System.Net.Http.HttpClient> in `Program.Main` (`Program.cs`):
+In the following example, <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler> configures an <xref:System.Net.Http.HttpClient> in `Program.cs`:
 
 ```csharp
 using System.Net.Http;
@@ -2284,7 +2276,7 @@ public class WeatherForecastClient
 
 The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `using static BlazorSample.Data;`).
 
-`Program.Main` (`Program.cs`):
+In `Program.cs`:
 
 ```csharp
 using System.Net.Http;
@@ -2316,7 +2308,7 @@ protected override async Task OnInitializedAsync()
 
 The handler can be further configured with <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler.ConfigureHandler%2A> for outbound HTTP requests.
 
-`Program.Main` (`Program.cs`):
+In `Program.cs`:
 
 ```csharp
 builder.Services.AddHttpClient<WeatherForecastClient>(
@@ -2336,7 +2328,7 @@ For a hosted Blazor solution based on the [Blazor WebAssembly project template](
 
 If the Blazor WebAssembly app ordinarily uses a secure default <xref:System.Net.Http.HttpClient>, the app can also make unauthenticated or unauthorized web API requests by configuring a named <xref:System.Net.Http.HttpClient>:
 
-`Program.Main` (`Program.cs`):
+In `Program.cs`:
 
 ```csharp
 builder.Services.AddHttpClient("WebAPI.NoAuthenticationClient", 
@@ -2378,7 +2370,7 @@ An alternative approach to using the <xref:System.Net.Http.IHttpClientFactory> i
 
 Access tokens can be manually obtained by calling `IAccessTokenProvider.RequestAccessToken`. In the following example, an additional scope is required by an app for the default <xref:System.Net.Http.HttpClient>. The Microsoft Authentication Library (MSAL) example configures the scope with `MsalProviderOptions`:
 
-`Program.Main` (`Program.cs`):
+In `Program.cs`:
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
@@ -2663,7 +2655,7 @@ The `Authentication` component (`Pages/Authentication.razor`) saves and restores
 }
 ```
 
-This example uses Azure Active Directory (AAD) for authentication. In `Program.Main` (`Program.cs`):
+This example uses Azure Active Directory (AAD) for authentication. In `Program.cs`:
 
 * The `ApplicationAuthenticationState` is configured as the Microsoft Autentication Library (MSAL) `RemoteAuthenticationState` type.
 * The state container is registered in the service container.
@@ -2711,7 +2703,7 @@ In the following example, all the paths are prefixed with `/security`.
 }
 ```
 
-`Program.Main` (`Program.cs`):
+In `Program.cs`:
 
 ```csharp
 builder.Services.AddApiAuthorization(options => { 
@@ -3045,7 +3037,7 @@ The list of claims in the ID token changes for v2.0 endpoints. For more informat
 To configure a Blazor WebAssembly app to use the [ASP.NET Core gRPC framework](xref:grpc/index):
 
 * Enable gRPC-Web on the server. For more information, see <xref:grpc/browser>.
-* Register gRPC services for the app's message handler. The following example configures the app's authorization message handler to use the [`GreeterClient` service from the gRPC tutorial](xref:tutorials/grpc/grpc-start#create-a-grpc-service) (`Program.Main`):
+* Register gRPC services for the app's message handler. The following example configures the app's authorization message handler to use the [`GreeterClient` service from the gRPC tutorial](xref:tutorials/grpc/grpc-start#create-a-grpc-service) (`Program.cs`):
 
 ```csharp
 using System.Net.Http;
@@ -3120,9 +3112,9 @@ For more information, see <xref:grpc/browser>.
 
 If an app requires a custom version of the [Microsoft Authentication Library for JavaScript (MSAL.js)](https://www.npmjs.com/package/@azure/msal-browser), perform the following steps:
 
-1. Confirm the the system has the latest developer .NET SDK or obtain and install the latest developer SDK from [.NET Core SDK: Installers and Binaries](https://github.com/dotnet/installer#installers-and-binaries). Configuration of internal NuGet feeds isn't required for this scenario.
+1. Confirm the system has the latest developer .NET SDK or obtain and install the latest developer SDK from [.NET Core SDK: Installers and Binaries](https://github.com/dotnet/installer#installers-and-binaries). Configuration of internal NuGet feeds isn't required for this scenario.
 1. Set up the `dotnet/aspnetcore` GitHub repository for development per the docs at [Build ASP.NET Core from Source](https://github.com/dotnet/aspnetcore/blob/main/docs/BuildFromSource.md). Fork and clone or download a ZIP archive of the [dotnet/aspnetcore GitHub repository](https://github.com/dotnet/aspnetcore).
-1. Open the the `src/Components/WebAssembly/Authentication.Msal/src/Interop/package.json` file and set the desired version of `@azure/msal-browser`. For a list of released versions, visit the [`@azure/msal-browser` npm website](https://www.npmjs.com/package/@azure/msal-browser) and select the **Versions** tab.
+1. Open the `src/Components/WebAssembly/Authentication.Msal/src/Interop/package.json` file and set the desired version of `@azure/msal-browser`. For a list of released versions, visit the [`@azure/msal-browser` npm website](https://www.npmjs.com/package/@azure/msal-browser) and select the **Versions** tab.
 1. Build the `Authentication.Msal` project in the `src/Components/WebAssembly/Authentication.Msal/src` folder with the `yarn build` command in a command shell.
 1. If the app uses [compressed assets (Brotli/Gzip)](xref:blazor/host-and-deploy/webassembly#compression), compress the `Interop/dist/Release/AuthenticationService.js` file.
 1. Copy the `AuthenticationService.js` file and compressed versions (`.br`/`.gz`) of the file, if produced, from the `Interop/dist/Release` folder into the app's `publish/wwwroot/_content/Microsoft.Authentication.WebAssembly.Msal` folder in the app's published assets.

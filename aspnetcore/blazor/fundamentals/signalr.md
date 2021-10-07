@@ -96,12 +96,12 @@ Configure the Blazor Server circuit with the <xref:Microsoft.AspNetCore.Componen
 | <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.JSInteropDefaultCallTimeout> | 1 minute | Maximum amount of time the server waits before timing out an asynchronous JavaScript function invocation. |
 | <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.MaxBufferedUnacknowledgedRenderBatches> | 10 | Maximum number of unacknowledged render batches the server keeps in memory per circuit at a given time to support robust reconnection. After reaching the limit, the server stops producing new render batches until one or more batches are acknowledged by the client. |
 
-Configure the options in `Startup.ConfigureServices` with an options delegate to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A>. The following example assigns the default option values shown in the preceding table. Confirm that `Startup.cs` uses the <xref:System> namespace (`using System;`).
+Configure the options in `Program.cs` with an options delegate to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A>. The following example assigns the default option values shown in the preceding table. Confirm that `Program.cs` uses the <xref:System> namespace (`using System;`).
 
-`Startup.ConfigureServices`:
+In `Program.cs`:
 
 ```csharp
-services.AddServerSideBlazor(options =>
+builder.Services.AddServerSideBlazor(options =>
 {
     options.DetailedErrors = false;
     options.DisconnectedCircuitMaxRetained = 100;
@@ -111,12 +111,12 @@ services.AddServerSideBlazor(options =>
 });
 ```
 
-To configure the <xref:Microsoft.AspNetCore.SignalR.HubConnectionContext>, use <xref:Microsoft.AspNetCore.SignalR.HubConnectionContextOptions> with <xref:Microsoft.Extensions.DependencyInjection.ServerSideBlazorBuilderExtensions.AddHubOptions%2A>. For option descriptions, see <xref:signalr/configuration#configure-server-options>. The following example assigns the default option values. Confirm that `Startup.cs` uses the <xref:System> namespace (`using System;`).
+To configure the <xref:Microsoft.AspNetCore.SignalR.HubConnectionContext>, use <xref:Microsoft.AspNetCore.SignalR.HubConnectionContextOptions> with <xref:Microsoft.Extensions.DependencyInjection.ServerSideBlazorBuilderExtensions.AddHubOptions%2A>. For option descriptions, see <xref:signalr/configuration#configure-server-options>. The following example assigns the default option values. Confirm that `Program.cs` uses the <xref:System> namespace (`using System;`).
 
-`Startup.ConfigureServices`:
+In `Program.cs`:
 
 ```csharp
-services.AddServerSideBlazor()
+builder.Services.AddServerSideBlazor()
     .AddHubOptions(options =>
     {
         options.ClientTimeoutInterval = TimeSpan.FromSeconds(30);
@@ -131,7 +131,7 @@ services.AddServerSideBlazor()
 
 ## Blazor Hub endpoint route configuration
 
-In `Startup.Configure`, Blazor Server apps call <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> on the <xref:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder> of <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> to map the Blazor <xref:Microsoft.AspNetCore.SignalR.Hub> to the app's default path. The Blazor Server script (`blazor.server.js`) automatically points to the endpoint created by <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A>.
+In `Program.cs`, Blazor Server apps call <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> to map the Blazor <xref:Microsoft.AspNetCore.SignalR.Hub> to the app's default path. The Blazor Server script (`blazor.server.js`) automatically points to the endpoint created by <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A>.
 
 ## Reflect the connection state in the UI
 
@@ -332,14 +332,10 @@ Blazor Server allows code to define a *circuit handler*, which allows running co
 
 Circuit handlers are registered using DI. Scoped instances are created per instance of a circuit. Using the `TrackingCircuitHandler` in the preceding example, a singleton service is created because the state of all circuits must be tracked.
 
-`Startup.cs`:
+`Program.cs`:
 
 ```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    ...
-    services.AddSingleton<CircuitHandler, TrackingCircuitHandler>();
-}
+builder.Services.AddSingleton<CircuitHandler, TrackingCircuitHandler>();
 ```
 
 If a custom circuit handler's methods throw an unhandled exception, the exception is fatal to the Blazor Server circuit. To tolerate exceptions in a handler's code or called methods, wrap the code in one or more [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statements with error handling and logging.

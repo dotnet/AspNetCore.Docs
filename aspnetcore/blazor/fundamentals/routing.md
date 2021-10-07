@@ -177,20 +177,16 @@ Consider the following `Example` component that can receive a route parameter fr
 
 [!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/routing/Example.razor?highlight=1)]
 
-To permit the **`Server`** app of a hosted Blazor WebAssembly solution to route the request with a dot in the `param` route parameter, add a fallback file route template with the optional parameter in `Startup.Configure`.
-
-`Startup.cs`:
+To permit the **`Server`** app of a hosted Blazor WebAssembly solution to route the request with a dot in the `param` route parameter, add a fallback file route template with the optional parameter in `Program.cs`:
 
 ```csharp
-endpoints.MapFallbackToFile("/example/{param?}", "index.html");
+app.MapFallbackToFile("/example/{param?}", "index.html");
 ```
 
-To configure a Blazor Server app to route the request with a dot in the `param` route parameter, add a fallback page route template with the optional parameter in `Startup.Configure`.
-
-`Startup.cs`:
+To configure a Blazor Server app to route the request with a dot in the `param` route parameter, add a fallback page route template with the optional parameter in `Program.cs`:
 
 ```csharp
-endpoints.MapFallbackToPage("/example/{param?}", "/_Host");
+app.MapFallbackToPage("/example/{param?}", "/_Host");
 ```
 
 For more information, see <xref:fundamentals/routing>.
@@ -645,11 +641,9 @@ The following HTML markup is rendered:
 
 *This section only applies to Blazor Server apps.*
 
-Blazor Server is integrated into [ASP.NET Core Endpoint Routing](xref:fundamentals/routing). An ASP.NET Core app is configured to accept incoming connections for interactive components with <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> in `Startup.Configure`.
+Blazor Server is integrated into [ASP.NET Core Endpoint Routing](xref:fundamentals/routing). An ASP.NET Core app is configured to accept incoming connections for interactive components with <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> in `Program.cs`:
 
-`Startup.cs`:
-
-[!code-csharp[](~/blazor/samples/6.0/BlazorSample_Server/routing/Startup.cs?highlight=11)]
+[!code-csharp[](~/blazor/samples/6.0/BlazorSample_Server/routing/Program.cs)]
 
 The typical configuration is to route all requests to a Razor page, which acts as the host for the server-side part of the Blazor Server app. By convention, the *host* page is usually named `_Host.cshtml` in the `Pages` folder of the app.
 
