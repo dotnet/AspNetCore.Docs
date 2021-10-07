@@ -10,8 +10,7 @@ uid: razor-pages/index
 ---
 # Introduction to Razor Pages in ASP.NET Core
 
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Ryan Nowak](https://github.com/rynowak)
+By [Rick Anderson](https://twitter.com/RickAndMSFT), [Ryan Nowak](https://github.com/rynowak), and [Dave Brock](https://twitter.com/daveabrock)
 
 Razor Pages can make coding page-focused scenarios easier and more productive than using controllers and views.
 
@@ -341,6 +340,18 @@ For more information, see:
 
 * [Add validation to the Movie app](xref:tutorials/razor-pages/validation)
 * [Model validation in ASP.NET Core](xref:mvc/models/validation).
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-6.0"
+
+## CSS isolation
+
+[!INCLUDE[](~/includes/css-isolation.md)]
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
 
 ## Handle HEAD requests with an OnGet handler fallback
 

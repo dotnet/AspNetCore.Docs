@@ -13,6 +13,8 @@ uid: security/authentication/scaffold-identity
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
+<!-- VS add Microsoft.EntityFrameworkCore.Design -->
+
 ::: moniker range=">= aspnetcore-3.0"
 
 ASP.NET Core provides [ASP.NET Core Identity](xref:security/authentication/identity) as a [Razor Class Library](xref:razor-pages/ui-class). Applications that include Identity can apply the scaffolder to selectively add the source code contained in the Identity Razor Class Library (RCL). You might want to generate source code so you can modify the code and change the behavior. For example, you could instruct the scaffolder to generate the code used in registration. Generated code takes precedence over the same code in the Identity RCL. To gain full control of the UI and not use the default RCL, see the section [Create full Identity UI source](#full).
@@ -366,7 +368,7 @@ For more information, see the [Blazor Security and Identity articles](xref:blazo
 <a name="full"></a>
 
 ## Create full Identity UI source
-
+<!-- remove AllowAreas  #23280 -->
 To maintain full control of the Identity UI, run the Identity scaffolder and select **Override all files**.
 
 The following highlighted code shows the changes to replace the default Identity UI with Identity in an ASP.NET Core 2.1 web app. You might want to do this to have full control of the Identity UI.

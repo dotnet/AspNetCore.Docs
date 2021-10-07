@@ -27,7 +27,7 @@
     /// <summary>
     /// New <see cref="Contact"/>.
     /// </summary>
-    private Contact Contact { get; set; }
+    private Contact? Contact { get; set; }
 
     /// <summary>
     /// <c>True</c> when an asynchronous operation is running.
@@ -83,7 +83,10 @@
         using var context = DbFactory.CreateDbContext();
 
         // this just attaches
-        context.Contacts.Add(Contact);
+        if (Contact is not null)
+        {
+            context.Contacts?.Add(Contact);
+        }
 
         try
         {

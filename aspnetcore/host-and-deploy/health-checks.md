@@ -2026,7 +2026,7 @@ dotnet run --scenario writer
 
 Calling <xref:Microsoft.AspNetCore.Builder.HealthCheckApplicationBuilderExtensions.UseHealthChecks%2A> with a port restricts health check requests to the port specified. This is typically used in a container environment to expose a port for monitoring services.
 
-The sample app configures the port using the [Environment Variable Configuration Provider](xref:fundamentals/configuration/index#environment-variables-configuration-provider). The port is set in the *launchSettings.json* file and passed to the configuration provider via an environment variable. You must also configure the server to listen to requests on the management port.
+The sample app configures the port using the [Environment Variable Configuration Provider](xref:fundamentals/configuration/index#evcp). The port is set in the *launchSettings.json* file and passed to the configuration provider via an environment variable. You must also configure the server to listen to requests on the management port.
 
 To use the sample app to demonstrate management port configuration, create the *launchSettings.json* file in a *Properties* folder.
 

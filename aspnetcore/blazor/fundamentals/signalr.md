@@ -141,7 +141,7 @@ builder.Services.AddServerSideBlazor()
 
 ## Blazor Hub endpoint route configuration
 
-Blazor Server apps call <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> on the <xref:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder> of <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> to map the Blazor <xref:Microsoft.AspNetCore.SignalR.Hub> to the app's default path. The Blazor Server script (`blazor.server.js`) automatically points to the endpoint created by <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A>.
+In `Program.cs`, Blazor Server apps call <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> to map the Blazor <xref:Microsoft.AspNetCore.SignalR.Hub> to the app's default path. The Blazor Server script (`blazor.server.js`) automatically points to the endpoint created by <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A>.
 
 ## Reflect the connection state in the UI
 
@@ -354,7 +354,7 @@ When a circuit ends because a user has disconnected and the framework is cleanin
 
 ## Long Polling
 
-Long Polling was enabled in releases prior to ASP.NET Core 6.0 as a fallback transport for situations in which the WebSockets transport wasn't available. If an app targeting ASP.NET Core 6.0 or later must use Long Polling, make the following changes:
+In earlier versions of ASP.NET Core, Long Polling was enabled as a fallback transport for situations in which the WebSockets transport wasn't available. If an app must use Long Polling, make the following changes:
 
 In the app's `Program.cs` file, replace `app.MapBlazorHub()` with the following code:
 
@@ -366,7 +366,13 @@ app.MapBlazorHub(configureOptions: options =>
 });
 ```
 
-Add the following script to the `Shared/_Layout.cshtml` file immediately inside the closing `</body>` tag. WebSockets (`1`) and Long Polling (`4`) are the supported `HTTPTransportTypes`. The following example:
+Locate the Blazor script tag in the `Pages/_Layout.cshtml` file. Add the `autostart="false"` attribute to the tag:
+
+```html
+<script src="_framework/blazor.server.js" autostart="false"></script>
+```
+
+Add the following script to the `Pages/_Layout.cshtml` file immediately inside the closing `</body>` tag. WebSockets (`1`) and Long Polling (`4`) are the supported `HTTPTransportTypes`. The following example:
 
 * Specifies support for both WebSockets and Long Polling transports (`1 | 4`).
 * Defaults to the WebSockets transport when a WebSockets connection can be established.

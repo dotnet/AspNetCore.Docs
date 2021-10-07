@@ -83,7 +83,7 @@ The recommended solution to create a new <xref:Microsoft.EntityFrameworkCore.DbC
 
 The following example configures [SQLite](https://www.sqlite.org/index.html) and enables data logging. The code uses an extension method (`AddDbContextFactory`) to configure the database factory for DI and provide default options:
 
-[!code-csharp[](~/blazor/samples/6.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Startup.cs?name=snippet1)]
+[!code-csharp[](~/blazor/samples/6.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Program.cs?name=snippet1)]
 
 The factory is injected into components and used to create new instances. For example, in `Pages/Index.razor`:
 
@@ -92,18 +92,7 @@ The factory is injected into components and used to create new instances. For ex
 > [!NOTE]
 > `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/blazor/samples/6.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor).
 
-New <xref:Microsoft.EntityFrameworkCore.DbContext> instances can be created with a factory that allows you to configure the connection string per `DbContext`, such as when you use [ASP.NET Core's Identity model](xref:security/authentication/customize_identity_model):
-
-```csharp
-services.AddDbContextFactory<ApplicationDbContext>(options =>
-{
-    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
-});
-
-services.AddScoped<ApplicationDbContext>(p => 
-    p.GetRequiredService<IDbContextFactory<ApplicationDbContext>>()
-    .CreateDbContext());
-```
+New <xref:Microsoft.EntityFrameworkCore.DbContext> instances can be created with a factory that allows you to configure the connection string per `DbContext`, such as when you use [ASP.NET Core's Identity model](xref:security/authentication/customize_identity_model). For more information, see [Multi-tenancy with EF Core in Blazor Server Apps](https://blog.jeremylikness.com/blog/multitenancy-with-ef-core-in-blazor-server-apps/).
 
 ### Scope to the component lifetime
 
@@ -227,18 +216,7 @@ The factory is injected into components and used to create new instances. For ex
 > [!NOTE]
 > `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/blazor/samples/5.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor).
 
-New <xref:Microsoft.EntityFrameworkCore.DbContext> instances can be created with a factory that allows you to configure the connection string per `DbContext`, such as when you use [ASP.NET Core's Identity model](xref:security/authentication/customize_identity_model):
-
-```csharp
-services.AddDbContextFactory<ApplicationDbContext>(options =>
-{
-    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
-});
-
-services.AddScoped<ApplicationDbContext>(p => 
-    p.GetRequiredService<IDbContextFactory<ApplicationDbContext>>()
-    .CreateDbContext());
-```
+New <xref:Microsoft.EntityFrameworkCore.DbContext> instances can be created with a factory that allows you to configure the connection string per `DbContext`, such as when you use [ASP.NET Core's Identity model](xref:security/authentication/customize_identity_model). For more information, see [Multi-tenancy with EF Core in Blazor Server Apps](https://blog.jeremylikness.com/blog/multitenancy-with-ef-core-in-blazor-server-apps/).
 
 ### Scope to the component lifetime
 
@@ -369,18 +347,7 @@ The factory is injected into components and used to create new instances. For ex
 > [!NOTE]
 > `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/blazor/samples/3.1/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor).
 
-New <xref:Microsoft.EntityFrameworkCore.DbContext> instances can be created with a factory that allows you to configure the connection string per `DbContext`, such as when you use [ASP.NET Core's Identity model])(xref:security/authentication/customize_identity_model):
-
-```csharp
-services.AddDbContextFactory<ApplicationDbContext>(options =>
-{
-    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
-});
-
-services.AddScoped<ApplicationDbContext>(p => 
-    p.GetRequiredService<IDbContextFactory<ApplicationDbContext>>()
-    .CreateDbContext());
-```
+New <xref:Microsoft.EntityFrameworkCore.DbContext> instances can be created with a factory that allows you to configure the connection string per `DbContext`, such as when you use [ASP.NET Core's Identity model])(xref:security/authentication/customize_identity_model). For more information, see [Multi-tenancy with EF Core in Blazor Server Apps](https://blog.jeremylikness.com/blog/multitenancy-with-ef-core-in-blazor-server-apps/).
 
 ### Scope to the component lifetime
 

@@ -176,7 +176,7 @@ App configuration is created by calling <xref:Microsoft.Extensions.Hosting.HostB
 
 The configuration created by `ConfigureAppConfiguration` is available at [HostBuilderContext.Configuration](xref:Microsoft.Extensions.Hosting.HostBuilderContext.Configuration*) for subsequent operations and as a service from DI. The host configuration is also added to the app configuration.
 
-For more information, see [Configuration in ASP.NET Core](xref:fundamentals/configuration/index#configureappconfiguration).
+For more information, see [Configuration in ASP.NET Core](xref:fundamentals/configuration/index).
 
 ## Settings for all app types
 
@@ -679,7 +679,7 @@ App configuration is created by calling <xref:Microsoft.Extensions.Hosting.HostB
 
 The configuration created by `ConfigureAppConfiguration` is available at [HostBuilderContext.Configuration](xref:Microsoft.Extensions.Hosting.HostBuilderContext.Configuration*) for subsequent operations and as a service from DI. The host configuration is also added to the app configuration.
 
-For more information, see [Configuration in ASP.NET Core](xref:fundamentals/configuration/index#configureappconfiguration).
+For more information, see [Configuration in ASP.NET Core](xref:fundamentals/configuration/index).
 
 ## Settings for all app types
 
@@ -1132,11 +1132,11 @@ No providers are included by default. You must explicitly specify whatever confi
 
 File configuration of the host is enabled by specifying the app's base path with `SetBasePath` followed by a call to one of the [file configuration providers](xref:fundamentals/configuration/index#file-configuration-provider). The sample app uses a JSON file, *hostsettings.json*, and calls <xref:Microsoft.Extensions.Configuration.JsonConfigurationExtensions.AddJsonFile*> to consume the file's host configuration settings.
 
-To add [environment variable configuration](xref:fundamentals/configuration/index#environment-variables-configuration-provider) of the host, call <xref:Microsoft.Extensions.Configuration.EnvironmentVariablesExtensions.AddEnvironmentVariables*> on the host builder. `AddEnvironmentVariables` accepts an optional user-defined prefix. The sample app uses a prefix of `PREFIX_`. The prefix is removed when the environment variables are read. When the sample app's host is configured, the environment variable value for `PREFIX_ENVIRONMENT` becomes the host configuration value for the `environment` key.
+To add [environment variable configuration](xref:fundamentals/configuration/index#evcp) of the host, call <xref:Microsoft.Extensions.Configuration.EnvironmentVariablesExtensions.AddEnvironmentVariables*> on the host builder. `AddEnvironmentVariables` accepts an optional user-defined prefix. The sample app uses a prefix of `PREFIX_`. The prefix is removed when the environment variables are read. When the sample app's host is configured, the environment variable value for `PREFIX_ENVIRONMENT` becomes the host configuration value for the `environment` key.
 
 During development when using [Visual Studio](https://visualstudio.microsoft.com) or running an app with `dotnet run`, environment variables may be set in the *Properties/launchSettings.json* file. In [Visual Studio Code](https://code.visualstudio.com/), environment variables may be set in the *.vscode/launch.json* file during development. For more information, see <xref:fundamentals/environments>.
 
-[Command-line configuration](xref:fundamentals/configuration/index#command-line-configuration-provider) is added by calling <xref:Microsoft.Extensions.Configuration.CommandLineConfigurationExtensions.AddCommandLine*>. Command-line configuration is added last to permit command-line arguments to override configuration provided by the earlier configuration providers.
+[Command-line configuration](xref:fundamentals/configuration/index#clcp) is added by calling <xref:Microsoft.Extensions.Configuration.CommandLineConfigurationExtensions.AddCommandLine*>. Command-line configuration is added last to permit command-line arguments to override configuration provided by the earlier configuration providers.
 
 *hostsettings.json*:
 
@@ -1494,3 +1494,5 @@ public class MyClass
 ## Additional resources
 
 * <xref:fundamentals/host/hosted-services>
+* GitHub link to [Generic Host source](https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Hosting/src/Host.cs)
+  [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]

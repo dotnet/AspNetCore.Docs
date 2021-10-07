@@ -47,7 +47,7 @@ These scopes are required in addition to the scopes required in AAD deployment s
 
 ## Group Membership Claims attribute
 
-In the app's manifest in the the Azure portal for **CLIENT** and **SERVER** apps, set the [`groupMembershipClaims` attribute](/azure/active-directory/develop/reference-app-manifest#groupmembershipclaims-attribute) to `All`. A value of `All` results in obtaining all of the security groups, distribution groups, and roles that the signed-in user is a member of.
+In the app's manifest in the Azure portal for **CLIENT** and **SERVER** apps, set the [`groupMembershipClaims` attribute](/azure/active-directory/develop/reference-app-manifest#groupmembershipclaims-attribute) to `All`. A value of `All` results in obtaining all of the security groups, distribution groups, and roles that the signed-in user is a member of.
 
 1. Open the app's Azure portal registration.
 1. Select **Manage** > **Manifest** in the sidebar.
@@ -141,7 +141,7 @@ public class CustomAccountFactory
         this.serviceProvider = serviceProvider;
         this.logger = logger;
     }
-    public async override ValueTask<ClaimsPrincipal> CreateUserAsync(
+    public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
         CustomUserAccount account,
         RemoteAuthenticationUserOptions options)
     {
@@ -206,7 +206,7 @@ The preceding code doesn't include transitive memberships. If the app requires d
 
 The preceding code ignores group membership claims (`groups`) that are AAD Administrator Roles (`#microsoft.graph.directoryRole` type) because the GUID values returned by the Microsoft Identity Platform 2.0 are AAD Administrator Role **entity IDs** and not [**Role Template IDs**](/azure/active-directory/roles/permissions-reference#role-template-ids). Entity IDs aren't stable across tenants in Microsoft Identity Platform 2.0 and shouldn't be used to create authorization policies for users in apps. Always use **Role Template IDs** for AAD Administrator Roles **provided by `wids` claims**.
 
-In `Program.Main` of the **CLIENT** app, configure the MSAL authentication to use the custom user account factory.
+In `Program.cs` of the **CLIENT** app, configure the MSAL authentication to use the custom user account factory.
 
 `Program.cs`:
 
@@ -231,7 +231,7 @@ builder.Services.AddGraphClient();
 
 ## Authorization configuration
 
-In the **CLIENT** app, create a [policy](xref:security/authorization/policies) for each [App Role](#app-roles), AAD Administrator Role, or security group in `Program.Main`. The following example creates a policy for the AAD *Billing Administrator* role:
+In the **CLIENT** app, create a [policy](xref:security/authorization/policies) for each [App Role](#app-roles), AAD Administrator Role, or security group in `Program.cs`. The following example creates a policy for the AAD *Billing Administrator* role:
 
 ```csharp
 builder.Services.AddAuthorizationCore(options =>
@@ -317,10 +317,10 @@ A policy check can also be [performed in code with procedural logic](xref:blazor
 
 ## Authorize server API/web API access
 
-A **SERVER** API app can authorize users to access secure API endpoints with [authorization policies](xref:security/authorization/policies) for security groups, AAD Administrator Roles, and App Roles when an access token contains `groups`, `wids`, and `http://schemas.microsoft.com/ws/2008/06/identity/claims/role` claims. The following example creates a policy for the AAD *Billing Administrator* role in `Startup.ConfigureServices` using the `wids` (well-known IDs/Role Template IDs) claims:
+A **SERVER** API app can authorize users to access secure API endpoints with [authorization policies](xref:security/authorization/policies) for security groups, AAD Administrator Roles, and App Roles when an access token contains `groups`, `wids`, and `http://schemas.microsoft.com/ws/2008/06/identity/claims/role` claims. The following example creates a policy for the AAD *Billing Administrator* role in `Program.cs` using the `wids` (well-known IDs/Role Template IDs) claims:
 
 ```csharp
-services.AddAuthorization(options =>
+builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("BillingAdministrator", policy => 
         policy.RequireClaim("wids", "b0f54661-2d74-4c50-afa3-1ec803f12efe"));
@@ -367,7 +367,7 @@ The following example assumes that the **CLIENT** and **SERVER** apps are config
 
 The `CustomAccountFactory` shown in the [Custom user account](#custom-user-account) section is set up to act on a `roles` claim with a JSON array value. Add and register the `CustomAccountFactory` in the **CLIENT** app as shown in the [Custom user account](#custom-user-account) section. There's no need to provide code to remove the original `roles` claim because it's automatically removed by the framework.
 
-In `Program.Main` of a **CLIENT** app, specify the claim named "`appRole`" as the role claim for <xref:System.Security.Claims.ClaimsPrincipal.IsInRole%2A?displayProperty=nameWithType> checks:
+In `Program.cs` of a **CLIENT** app, specify the claim named "`appRole`" as the role claim for <xref:System.Security.Claims.ClaimsPrincipal.IsInRole%2A?displayProperty=nameWithType> checks:
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
@@ -381,10 +381,10 @@ builder.Services.AddMsalAuthentication(options =>
 > [!NOTE]
 > If you prefer to use the `directoryRoles` claim (ADD Administrator Roles), assign "`directoryRoles`" to the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationUserOptions.RoleClaim?displayProperty=nameWithType>.
 
-In `Startup.ConfigureServices` of a **SERVER** app, specify the claim named "`http://schemas.microsoft.com/ws/2008/06/identity/claims/role`" as the role claim for <xref:System.Security.Claims.ClaimsPrincipal.IsInRole%2A?displayProperty=nameWithType> checks:
+In `Program.cs` of a **SERVER** app, specify the claim named "`http://schemas.microsoft.com/ws/2008/06/identity/claims/role`" as the role claim for <xref:System.Security.Claims.ClaimsPrincipal.IsInRole%2A?displayProperty=nameWithType> checks:
 
 ```csharp
-services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddMicrosoftIdentityWebApi(options =>
     {
         Configuration.Bind("AzureAd", options);
@@ -589,7 +589,7 @@ These scopes are required in addition to the scopes required in AAD deployment s
 
 ## Group Membership Claims attribute
 
-In the app's manifest in the the Azure portal for **CLIENT** and **SERVER** apps, set the [`groupMembershipClaims` attribute](/azure/active-directory/develop/reference-app-manifest#groupmembershipclaims-attribute) to `All`. A value of `All` results in obtaining all of the security groups, distribution groups, and roles that the signed-in user is a member of.
+In the app's manifest in the Azure portal for **CLIENT** and **SERVER** apps, set the [`groupMembershipClaims` attribute](/azure/active-directory/develop/reference-app-manifest#groupmembershipclaims-attribute) to `All`. A value of `All` results in obtaining all of the security groups, distribution groups, and roles that the signed-in user is a member of.
 
 1. Open the app's Azure portal registration.
 1. Select **Manage** > **Manifest** in the sidebar.
@@ -683,7 +683,7 @@ public class CustomAccountFactory
         this.serviceProvider = serviceProvider;
         this.logger = logger;
     }
-    public async override ValueTask<ClaimsPrincipal> CreateUserAsync(
+    public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
         CustomUserAccount account,
         RemoteAuthenticationUserOptions options)
     {
@@ -748,7 +748,7 @@ The preceding code doesn't include transitive memberships. If the app requires d
 
 The preceding code ignores group membership claims (`groups`) that are AAD Administrator Roles (`#microsoft.graph.directoryRole` type) because the GUID values returned by the Microsoft Identity Platform 2.0 are AAD Administrator Role **entity IDs** and not [**Role Template IDs**](/azure/active-directory/roles/permissions-reference#role-template-ids). Entity IDs aren't stable across tenants in Microsoft Identity Platform 2.0 and shouldn't be used to create authorization policies for users in apps. Always use **Role Template IDs** for AAD Administrator Roles **provided by `wids` claims**.
 
-In `Program.Main` of the **CLIENT** app, configure the MSAL authentication to use the custom user account factory.
+In `Program.cs` of the **CLIENT** app, configure the MSAL authentication to use the custom user account factory.
 
 `Program.cs`:
 
@@ -773,7 +773,7 @@ builder.Services.AddGraphClient();
 
 ## Authorization configuration
 
-In the **CLIENT** app, create a [policy](xref:security/authorization/policies) for each [App Role](#app-roles), AAD Administrator Role, or security group in `Program.Main`. The following example creates a policy for the AAD *Billing Administrator* role:
+In the **CLIENT** app, create a [policy](xref:security/authorization/policies) for each [App Role](#app-roles), AAD Administrator Role, or security group in `Program.cs`. The following example creates a policy for the AAD *Billing Administrator* role:
 
 ```csharp
 builder.Services.AddAuthorizationCore(options =>
@@ -909,7 +909,7 @@ The following example assumes that the **CLIENT** and **SERVER** apps are config
 
 The `CustomAccountFactory` shown in the [Custom user account](#custom-user-account) section is set up to act on a `roles` claim with a JSON array value. Add and register the `CustomAccountFactory` in the **CLIENT** app as shown in the [Custom user account](#custom-user-account) section. There's no need to provide code to remove the original `roles` claim because it's automatically removed by the framework.
 
-In `Program.Main` of a **CLIENT** app, specify the claim named "`appRole`" as the role claim for <xref:System.Security.Claims.ClaimsPrincipal.IsInRole%2A?displayProperty=nameWithType> checks:
+In `Program.cs` of a **CLIENT** app, specify the claim named "`appRole`" as the role claim for <xref:System.Security.Claims.ClaimsPrincipal.IsInRole%2A?displayProperty=nameWithType> checks:
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>

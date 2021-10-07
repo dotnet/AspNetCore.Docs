@@ -9,7 +9,7 @@ uid: mvc/views/overview
 ---
 # Views in ASP.NET Core MVC
 
-By [Steve Smith](https://ardalis.com/)
+By [Steve Smith](https://ardalis.com/) and [Dave Brock](https://twitter.com/daveabrock)
 
 This document explains views used in ASP.NET Core MVC applications. For information on Razor Pages, see [Introduction to Razor Pages](xref:razor-pages/index).
 
@@ -389,3 +389,11 @@ This feature offers flexibility but doesn't offer compilation protection or Inte
 Generating custom HTML markup can be achieved with many built-in HTML Helpers. More complex user interface logic can be handled by [View Components](xref:mvc/views/view-components). View components provide the same SoC that controllers and views offer. They can eliminate the need for actions and views that deal with data used by common user interface elements.
 
 Like many other aspects of ASP.NET Core, views support [dependency injection](xref:fundamentals/dependency-injection), allowing services to be [injected into views](xref:mvc/views/dependency-injection).
+
+::: moniker range=">= aspnetcore-6.0"
+
+## CSS isolation
+
+[!INCLUDE[](~/includes/css-isolation.md)]
+
+::: moniker-end

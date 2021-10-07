@@ -30,13 +30,22 @@ In a few documentation examples, JS interop is used to mutate an element *purely
 
 For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#capture-references-to-elements>.
 
+## Asynchronous JavaScript calls
+
+JS interop calls are asynchronous by default, regardless of whether the called code is synchronous or asynchronous. Calls are asynchronous by default to ensure that components are compatible across both Blazor hosting models, Blazor Server and Blazor WebAssembly. On Blazor Server, JS interop calls must be asynchronous because they're sent over a network connection. For apps that exclusively adopt the Blazor WebAssembly hosting model, synchronous JS interop calls are supported. For more information, see <xref:blazor/performance?pivots=webassembly#consider-the-use-of-synchronous-calls>.
+
+## JavaScript initializers
+
+[!INCLUDE[](~/blazor/includes/js-initializers.md)]
+
 ## Location of JavaScipt
 
 Load JavaScript (JS) code using any of the following approaches:
 
 * [Load a script in `<head>` markup](#load-a-script-in-head-markup) (*Not generally recommended*)
 * [Load a script in `<body>` markup](#load-a-script-in-body-markup)
-* [Load a script from an external JS file (`.js`)](#load-a-script-from-an-external-js-file-js)
+* [Load a script from an external JavaScript file (`.js`) collocated with a component](#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component)
+* [Load a script from an external JavaScript file (`.js`)](#load-a-script-from-an-external-javascript-file-js)
 * [Inject a script after Blazor starts](#inject-a-script-after-blazor-starts)
 
 > [!WARNING]
@@ -49,7 +58,7 @@ Load JavaScript (JS) code using any of the following approaches:
 
 *The approach in this section isn't generally recommended.*
 
-Place the script  (`<script>...</script>`) in the `<head>` element markup of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server):
+Place the JavaScript (JS) tags (`<script>...</script>`) in the `<head>` element markup of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server):
 
 ```html
 <head>
@@ -70,7 +79,7 @@ Loading JS from the `<head>` isn't the best approach for the following reasons:
 
 ### Load a script in `<body>` markup
 
-Place the script  (`<script>...</script>`) inside the closing `</body>` element markup of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server):
+Place the JavaScript (JS) tags (`<script>...</script>`) inside the closing `</body>` element markup of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server):
 
 ```html
 <body>
@@ -87,9 +96,15 @@ Place the script  (`<script>...</script>`) inside the closing `</body>` element 
 
 The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or `server` for a Blazor Server app (`blazor.server.js`).
 
-### Load a script from an external JS file (`.js`)
+### Load a script from an external JavaScript file (`.js`) collocated with a component
 
-Place the script  (`<script>...</script>`) with a script `src` path inside the closing `</body>` tag after the Blazor script reference.
+[!INCLUDE[](~/includes/js-collocation.md)]
+
+For more information on RCLs, see <xref:blazor/components/class-libraries>.
+
+### Load a script from an external JavaScript file (`.js`)
+
+Place the JavaScript (JS) tags (`<script>...</script>`) with a script source (`src`) path inside the closing `</body>` tag after the Blazor script reference.
 
 In `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server):
 
@@ -176,6 +191,25 @@ JS isolation provides the following benefits:
 
 For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules>.
 
+## Cached JavaScript files
+
+JavaScript (JS) files and other static assets aren't generally cached on clients during development in the [`Development` environment](xref:fundamentals/index#environments). During development, static asset requests include the [`Cache-Control` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control) with a value of [`no-cache`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control#cacheability) or [`max-age`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control#expiration) with a value of zero (`0`).
+
+During production in the [`Production` environment](xref:fundamentals/index#environments), JS files are usually cached by clients.
+
+To disable client-side caching in browsers, developers usually adopt one of the following approaches:
+
+* Disable caching when the browser's developer tools console is open. Guidance can be found in the developer tools documentation of each browser maintainer:
+  * [Chrome DevTools](https://developer.chrome.com/docs/devtools/)
+  * [Firefox Developer Tools](https://developer.mozilla.org/docs/Tools)
+  * [Microsoft Edge Developer Tools overview](/microsoft-edge/devtools-guide-chromium/)
+* Perform a manual browser refresh of any webpage of the Blazor app to reload JS files from the server. ASP.NET Core's HTTP Caching Middleware always honors a valid no-cache [`Cache-Control` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control) sent by a client.
+
+For more information, see:
+
+* <xref:blazor/fundamentals/environments>
+* <xref:performance/caching/response>
+
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
@@ -196,6 +230,10 @@ This guidance not only applies to your own JS interop code but also to any JS li
 In a few documentation examples, JS interop is used to mutate an element *purely for demonstration purposes* as part of an example. In those cases, a warning appears in the text.
 
 For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#capture-references-to-elements>.
+
+## Asynchronous JavaScript calls
+
+JS interop calls are asynchronous by default, regardless of whether the called code is synchronous or asynchronous. Calls are asynchronous by default to ensure that components are compatible across both Blazor hosting models, Blazor Server and Blazor WebAssembly. On Blazor Server, JS interop calls must be asynchronous because they're sent over a network connection. For apps that exclusively adopt the Blazor WebAssembly hosting model, synchronous JS interop calls are supported. For more information, see <xref:blazor/performance?pivots=webassembly#consider-the-use-of-synchronous-calls>.
 
 ## Location of JavaScipt
 
@@ -343,6 +381,25 @@ JS isolation provides the following benefits:
 
 For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules>.
 
+## Cached JavaScript files
+
+JavaScript (JS) files and other static assets aren't generally cached on clients during development in the [`Development` environment](xref:fundamentals/index#environments). During development, static asset requests include the [`Cache-Control` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control) with a value of [`no-cache`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control#cacheability) or [`max-age`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control#expiration) with a value of zero (`0`).
+
+During production in the [`Production` environment](xref:fundamentals/index#environments), JS files are usually cached by clients.
+
+To disable client-side caching in browsers, developers usually adopt one of the following approaches:
+
+* Disable caching when the browser's developer tools console is open. Guidance can be found in the developer tools documentation of each browser maintainer:
+  * [Chrome DevTools](https://developer.chrome.com/docs/devtools/)
+  * [Firefox Developer Tools](https://developer.mozilla.org/docs/Tools)
+  * [Microsoft Edge Developer Tools overview](/microsoft-edge/devtools-guide-chromium/)
+* Perform a manual browser refresh of any webpage of the Blazor app to reload JS files from the server. ASP.NET Core's HTTP Caching Middleware always honors a valid no-cache [`Cache-Control` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control) sent by a client.
+
+For more information, see:
+
+* <xref:blazor/fundamentals/environments>
+* <xref:performance/caching/response>
+
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
@@ -363,6 +420,10 @@ This guidance not only applies to your own JS interop code but also to any JS li
 In a few documentation examples, JS interop is used to mutate an element *purely for demonstration purposes* as part of an example. In those cases, a warning appears in the text.
 
 For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#capture-references-to-elements>.
+
+## Asynchronous JavaScript calls
+
+JS interop calls are asynchronous by default, regardless of whether the called code is synchronous or asynchronous. Calls are asynchronous by default to ensure that components are compatible across both Blazor hosting models, Blazor Server and Blazor WebAssembly. On Blazor Server, JS interop calls must be asynchronous because they're sent over a network connection. For apps that exclusively adopt the Blazor WebAssembly hosting model, synchronous JS interop calls are supported. For more information, see <xref:blazor/performance?pivots=webassembly#consider-the-use-of-synchronous-calls>.
 
 ## Location of JavaScipt
 
@@ -498,5 +559,25 @@ The following example injects the `wwwroot/scripts.js` file after Blazor starts:
 The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or `server` for a Blazor Server app (`blazor.server.js`).
 
 For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
+
+
+## Cached JavaScript files
+
+JavaScript (JS) files and other static assets aren't generally cached on clients during development in the [`Development` environment](xref:fundamentals/index#environments). During development, static asset requests include the [`Cache-Control` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control) with a value of [`no-cache`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control#cacheability) or [`max-age`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control#expiration) with a value of zero (`0`).
+
+During production in the [`Production` environment](xref:fundamentals/index#environments), JS files are usually cached by clients.
+
+To disable client-side caching in browsers, developers usually adopt one of the following approaches:
+
+* Disable caching when the browser's developer tools console is open. Guidance can be found in the developer tools documentation of each browser maintainer:
+  * [Chrome DevTools](https://developer.chrome.com/docs/devtools/)
+  * [Firefox Developer Tools](https://developer.mozilla.org/docs/Tools)
+  * [Microsoft Edge Developer Tools overview](/microsoft-edge/devtools-guide-chromium/)
+* Perform a manual browser refresh of any webpage of the Blazor app to reload JS files from the server. ASP.NET Core's HTTP Caching Middleware always honors a valid no-cache [`Cache-Control` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control) sent by a client.
+
+For more information, see:
+
+* <xref:blazor/fundamentals/environments>
+* <xref:performance/caching/response>
 
 ::: moniker-end

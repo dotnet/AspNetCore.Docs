@@ -25,8 +25,6 @@ The following deployment strategies are supported:
 
 ## Ahead-of-time (AOT) compilation
 
-*The following guidance on Blazor WebAssembly ahead-of-time (AOT) compilation is a preview release feature of ASP.NET Core 6.0. ASP.NET Core 6.0 is scheduled for release later this year.*
-
 Blazor WebAssembly supports [ahead-of-time (AOT) compilation](/dotnet/standard/glossary#aot), where you can compile your .NET code directly into WebAssembly. AOT compilation results in runtime performance improvements at the expense of a larger app size.
 
 Without enabling AOT compilation, Blazor WebAssembly apps run on the browser using a .NET Intermediate Language (IL) interpreter implemented in WebAssembly. Because the .NET code is interpreted, apps typically run slower than they would on a server-side [.NET just-in-time (JIT) runtime](/dotnet/standard/glossary#jit). AOT compilation addresses this performance issue by compiling an app's .NET code directly into WebAssembly for native WebAssembly execution by the browser. The AOT performance improvement can yield dramatic improvements for apps that execute CPU intensive tasks. The drawback to using AOT compilation is that AOT-compiled apps are generally larger than their IL-interpreted counterparts, so they usually take longer to download to the client when first requested.
@@ -45,13 +43,11 @@ To compile the app to WebAssembly, publish the app. Publishing the `Release` con
 dotnet publish -c Release
 ```
 
-WebAssembly AOT compilation is only performed when the the project is published. AOT compilation isn't used when the project is run during development (`Development` environment) because AOT compilation usually takes several minutes on small projects and potentially much longer for larger projects. Reducing the build time for AOT compilation is under development for future releases of ASP.NET Core.
+WebAssembly AOT compilation is only performed when the project is published. AOT compilation isn't used when the project is run during development (`Development` environment) because AOT compilation usually takes several minutes on small projects and potentially much longer for larger projects. Reducing the build time for AOT compilation is under development for future releases of ASP.NET Core.
 
 The size of an AOT-compiled Blazor WebAssembly app is generally larger than the size of the app if compiled into .NET IL. Although the size difference depends on the app, most AOT-compiled apps are about twice the size of their IL-compiled versions. This means that using AOT compilation trades off load time performance for runtime performance. Whether this tradeoff is worth using AOT compilation depends on your app. Blazor WebAssembly apps that are CPU intensive generally benefit the most from AOT compilation.
 
 ## Runtime relinking
-
-*The following guidance on runtime relinking is a preview release feature of ASP.NET Core 6.0. ASP.NET Core 6.0 is scheduled for release later this year.*
 
 One of the largest parts of a Blazor WebAssembly app is the WebAssembly-based .NET runtime (`dotnet.wasm`) that the browser must download when the app is first accessed by a user's browser. Relinking the .NET WebAssembly runtime trims unused runtime code and thus improves download speed.
 
@@ -175,7 +171,7 @@ Hosted Blazor solutions can serve multiple Blazor WebAssembly apps.
 In the following example:
 
 * The initial (first) client app is the default client project of a solution created from the Blazor WebAssembly project template. The first client app is accessible in a browser from the URL `/FirstApp` on either port 5001 or with a host of `firstapp.com`.
-* A second client app is added to the solution, `SecondBlazorApp.Client`. The second client app is accessible in a browser from the the URL `/SecondApp` on either port 5002 or with a host of `secondapp.com`.
+* A second client app is added to the solution, `SecondBlazorApp.Client`. The second client app is accessible in a browser from the URL `/SecondApp` on either port 5002 or with a host of `secondapp.com`.
 
 Use an existing hosted Blazor solution or create a new solution from the Blazor Hosted project template:
 
@@ -241,7 +237,7 @@ Use an existing hosted Blazor solution or create a new solution from the Blazor 
   "applicationUrl": "https://localhost:5001;https://localhost:5002",
   ```
 
-* In the server app's `Startup.Configure` method (`Startup.cs`), remove the following lines, which appear after the call to <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A>:
+* In the server app's `Program.cs` file, remove the following lines, which appear after the call to <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A>:
 
   ```csharp
   app.UseBlazorFrameworkFiles();
@@ -249,12 +245,9 @@ Use an existing hosted Blazor solution or create a new solution from the Blazor 
 
   app.UseRouting();
 
-  app.UseEndpoints(endpoints =>
-  {
-      endpoints.MapRazorPages();
-      endpoints.MapControllers();
-      endpoints.MapFallbackToFile("index.html");
-  });
+  app.MapRazorPages();
+  app.MapControllers();
+  app.MapFallbackToFile("index.html");
   ```
 
   Add middleware that maps requests to the client apps. The following example configures the middleware to run when:
@@ -325,7 +318,7 @@ Use an existing hosted Blazor solution or create a new solution from the Blazor 
   [Route("SecondApp/[controller]")]
   ```
 
-  The middleware added to the server app's `Startup.Configure` method earlier modifies incoming requests to `/WeatherForecast` to either `/FirstApp/WeatherForecast` or `/SecondApp/WeatherForecast` depending on the port (5001/5002) or domain (`firstapp.com`/`secondapp.com`). The preceding controller routes are required in order to return weather data from the server app to the client apps.
+  The middleware added to the server app's request processing pipeline earlier modifies incoming requests to `/WeatherForecast` to either `/FirstApp/WeatherForecast` or `/SecondApp/WeatherForecast` depending on the port (5001/5002) or domain (`firstapp.com`/`secondapp.com`). The preceding controller routes are required in order to return weather data from the server app to the client apps.
 
 ### Static assets and class libraries for multiple Blazor WebAssembly apps
 
@@ -800,9 +793,9 @@ Placeholders:
 > C:\Users\{USER}\Documents\GitHub\AspNetCore.Docs\aspnetcore\blazor\host-and-deploy\webassembly\_samples\integrity.ps1
 > ```
 >
-> **Warning**: *Creating virus scanner exeptions is dangerous and should only be performed when you're certain that the file is safe.*
+> **Warning**: *Creating virus scanner exceptions is dangerous and should only be performed when you're certain that the file is safe.*
 >
-> Comparing the checksum of a file to a valid checksum value doesn't guaratee file safety, but modifying a file in a way that maintains a checksum value isn't trivial for malicious users. Therefore, checksums are useful as a general security approach. Compare the checksum of the local `integrity.ps1` file to one of the following values:
+> Comparing the checksum of a file to a valid checksum value doesn't guarantee file safety, but modifying a file in a way that maintains a checksum value isn't trivial for malicious users. Therefore, checksums are useful as a general security approach. Compare the checksum of the local `integrity.ps1` file to one of the following values:
 >
 > * SHA256: `6b0dc7aba5d8489136bb2969036432597615b11b4e432535e173ca077a0449c4`
 > * MD5: `f0c800a4c72604bd47f3c19f5f0bb4f4`
@@ -982,7 +975,7 @@ Hosted Blazor solutions can serve multiple Blazor WebAssembly apps.
 In the following example:
 
 * The initial (first) client app is the default client project of a solution created from the Blazor WebAssembly project template. The first client app is accessible in a browser from the URL `/FirstApp` on either port 5001 or with a host of `firstapp.com`.
-* A second client app is added to the solution, `SecondBlazorApp.Client`. The second client app is accessible in a browser from the the URL `/SecondApp` on either port 5002 or with a host of `secondapp.com`.
+* A second client app is added to the solution, `SecondBlazorApp.Client`. The second client app is accessible in a browser from the URL `/SecondApp` on either port 5002 or with a host of `secondapp.com`.
 
 Use an existing hosted Blazor solution or create a new solution from the Blazor Hosted project template:
 
@@ -1607,9 +1600,9 @@ Placeholders:
 > C:\Users\{USER}\Documents\GitHub\AspNetCore.Docs\aspnetcore\blazor\host-and-deploy\webassembly\_samples\integrity.ps1
 > ```
 >
-> **Warning**: *Creating virus scanner exeptions is dangerous and should only be performed when you're certain that the file is safe.*
+> **Warning**: *Creating virus scanner exceptions is dangerous and should only be performed when you're certain that the file is safe.*
 >
-> Comparing the checksum of a file to a valid checksum value doesn't guaratee file safety, but modifying a file in a way that maintains a checksum value isn't trivial for malicious users. Therefore, checksums are useful as a general security approach. Compare the checksum of the local `integrity.ps1` file to one of the following values:
+> Comparing the checksum of a file to a valid checksum value doesn't guarantee file safety, but modifying a file in a way that maintains a checksum value isn't trivial for malicious users. Therefore, checksums are useful as a general security approach. Compare the checksum of the local `integrity.ps1` file to one of the following values:
 >
 > * SHA256: `6b0dc7aba5d8489136bb2969036432597615b11b4e432535e173ca077a0449c4`
 > * MD5: `f0c800a4c72604bd47f3c19f5f0bb4f4`
@@ -1789,7 +1782,7 @@ Hosted Blazor solutions can serve multiple Blazor WebAssembly apps.
 In the following example:
 
 * The initial (first) client app is the default client project of a solution created from the Blazor WebAssembly project template. The first client app is accessible in a browser from the URL `/FirstApp` on either port 5001 or with a host of `firstapp.com`.
-* A second client app is added to the solution, `SecondBlazorApp.Client`. The second client app is accessible in a browser from the the URL `/SecondApp` on either port 5002 or with a host of `secondapp.com`.
+* A second client app is added to the solution, `SecondBlazorApp.Client`. The second client app is accessible in a browser from the URL `/SecondApp` on either port 5002 or with a host of `secondapp.com`.
 
 Use an existing hosted Blazor solution or create a new solution from the Blazor Hosted project template:
 
@@ -2414,9 +2407,9 @@ Placeholders:
 > C:\Users\{USER}\Documents\GitHub\AspNetCore.Docs\aspnetcore\blazor\host-and-deploy\webassembly\_samples\integrity.ps1
 > ```
 >
-> **Warning**: *Creating virus scanner exeptions is dangerous and should only be performed when you're certain that the file is safe.*
+> **Warning**: *Creating virus scanner exceptions is dangerous and should only be performed when you're certain that the file is safe.*
 >
-> Comparing the checksum of a file to a valid checksum value doesn't guaratee file safety, but modifying a file in a way that maintains a checksum value isn't trivial for malicious users. Therefore, checksums are useful as a general security approach. Compare the checksum of the local `integrity.ps1` file to one of the following values:
+> Comparing the checksum of a file to a valid checksum value doesn't guarantee file safety, but modifying a file in a way that maintains a checksum value isn't trivial for malicious users. Therefore, checksums are useful as a general security approach. Compare the checksum of the local `integrity.ps1` file to one of the following values:
 >
 > * SHA256: `6b0dc7aba5d8489136bb2969036432597615b11b4e432535e173ca077a0449c4`
 > * MD5: `f0c800a4c72604bd47f3c19f5f0bb4f4`

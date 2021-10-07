@@ -25,18 +25,19 @@ namespace BlazorServerDbContextExample.Grid
         private readonly Dictionary<ContactFilterColumns, Expression<Func<Contact, string>>> _expressions
             = new()
             {
-                { ContactFilterColumns.City, c => c.City },
-                { ContactFilterColumns.Phone, c => c.Phone },
-                { ContactFilterColumns.Name, c => c.LastName },
-                { ContactFilterColumns.State, c => c.State },
-                { ContactFilterColumns.Street, c => c.Street },
-                { ContactFilterColumns.ZipCode, c => c.ZipCode }
+                { ContactFilterColumns.City, c => c != null && c.City != null ? c.City : string.Empty },
+                { ContactFilterColumns.Phone, c => c != null && c.Phone != null ? c.Phone : string.Empty },
+                { ContactFilterColumns.Name, c => c != null && c.LastName != null ? c.LastName : string.Empty },
+                { ContactFilterColumns.State, c => c != null && c.State != null ? c.State : string.Empty },
+                { ContactFilterColumns.Street, c => c != null && c.Street != null ? c.Street : string.Empty },
+                { ContactFilterColumns.ZipCode, c => c != null && c.ZipCode != null ? c.ZipCode : string.Empty }
             };
 
         /// <summary>
         /// Queryables for filtering.
         /// </summary>
-        private readonly Dictionary<ContactFilterColumns, Func<IQueryable<Contact>, IQueryable<Contact>>> _filterQueries;
+        private readonly Dictionary<ContactFilterColumns, Func<IQueryable<Contact>, IQueryable<Contact>>> _filterQueries = 
+            new Dictionary<ContactFilterColumns, Func<IQueryable<Contact>, IQueryable<Contact>>>();
 
         /// <summary>
         /// Creates a new instance of the <see cref="GridQueryAdapter"/> class.
@@ -49,12 +50,12 @@ namespace BlazorServerDbContextExample.Grid
             // set up queries
             _filterQueries = new()
             {
-                { ContactFilterColumns.City, cs => cs.Where(c => c.City.Contains(_controls.FilterText)) },
-                { ContactFilterColumns.Phone, cs => cs.Where(c => c.Phone.Contains(_controls.FilterText)) },
-                { ContactFilterColumns.Name, cs => cs.Where(c => c.FirstName.Contains(_controls.FilterText) || c.LastName.Contains(_controls.FilterText)) },
-                { ContactFilterColumns.State, cs => cs.Where(c => c.State.Contains(_controls.FilterText)) },
-                { ContactFilterColumns.Street, cs => cs.Where(c => c.Street.Contains(_controls.FilterText)) },
-                { ContactFilterColumns.ZipCode, cs => cs.Where(c => c.ZipCode.Contains(_controls.FilterText)) }
+                { ContactFilterColumns.City, cs => cs.Where(c => c != null && c.City != null && _controls.FilterText != null ? c.City.Contains(_controls.FilterText) : false ) },
+                { ContactFilterColumns.Phone, cs => cs.Where(c => c != null && c.Phone != null && _controls.FilterText != null ? c.Phone.Contains(_controls.FilterText) : false ) },
+                { ContactFilterColumns.Name, cs => cs.Where(c => c != null && c.FirstName != null && _controls.FilterText != null ? c.FirstName.Contains(_controls.FilterText) : false ) },
+                { ContactFilterColumns.State, cs => cs.Where(c => c != null && c.State != null && _controls.FilterText != null ? c.State.Contains(_controls.FilterText) : false ) },
+                { ContactFilterColumns.Street, cs => cs.Where(c => c != null && c.Street != null && _controls.FilterText != null ? c.Street.Contains(_controls.FilterText) : false ) },
+                { ContactFilterColumns.ZipCode, cs => cs.Where(c => c != null && c.ZipCode != null && _controls.FilterText != null ? c.ZipCode.Contains(_controls.FilterText) : false ) }
             };
         }
 
@@ -124,7 +125,7 @@ namespace BlazorServerDbContextExample.Grid
             if (_controls.SortColumn == ContactFilterColumns.Name && _controls.ShowFirstNameFirst)
             {
                 sb.Append($"(first name first) ");
-                expression = c => c.FirstName;
+                expression = c => c.FirstName != null ? c.FirstName : string.Empty;
             }
 
             var sortDir = _controls.SortAscending ? "ASC" : "DESC";

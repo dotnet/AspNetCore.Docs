@@ -29,7 +29,7 @@ namespace BlazorSample
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
-            services.AddScoped<Notifier>();
+            services.AddScoped<NotifierService>();
             services.AddHttpClient();
         }
 

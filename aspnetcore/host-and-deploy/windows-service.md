@@ -306,7 +306,7 @@ A functioning app may fail immediately after upgrading either the .NET Core SDK 
 1. Restore and rebuild the project.
 1. Delete all of the files in the deployment folder on the server prior to redeploying the app.
 
-### Slow or hanging app
+### Slow or unresponsive app
 
 A *crash dump* is a snapshot of the system's memory and can help determine the cause of an app crash, startup failure, or slow app.
 
@@ -333,7 +333,7 @@ After an app crashes and dump collection is complete, the app is allowed to term
 > [!WARNING]
 > Crash dumps might take up a large amount of disk space (up to several gigabytes each).
 
-#### App hangs, fails during startup, or runs normally
+#### App is unresponsive, fails during startup, or runs normally
 
 When an app *hangs* (stops responding but doesn't crash), fails during startup, or runs normally, see [User-Mode Dump Files: Choosing the Best Tool](/windows-hardware/drivers/debugger/user-mode-dump-files#choosing-the-best-tool) to select an appropriate tool to produce the dump.
 
@@ -378,7 +378,7 @@ To test and debug when running outside of a service, add code to determine if th
 * Call <xref:System.IO.Directory.SetCurrentDirectory*> and use a path to the app's published location. Don't call <xref:System.IO.Directory.GetCurrentDirectory*> to obtain the path because a Windows Service app returns the *C:\\WINDOWS\\system32* folder when <xref:System.IO.Directory.GetCurrentDirectory*> is called. For more information, see the [Current directory and content root](#current-directory-and-content-root) section. This step is performed before the app is configured in `CreateWebHostBuilder`.
 * Call <xref:Microsoft.AspNetCore.Hosting.WindowsServices.WebHostWindowsServiceExtensions.RunAsService*> to run the app as a service.
 
-Because the [Command-line Configuration Provider](xref:fundamentals/configuration/index#command-line-configuration-provider) requires name-value pairs for command-line arguments, the `--console` switch is removed from the arguments before <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> receives the arguments.
+Because the [Command-line Configuration Provider](xref:fundamentals/configuration/index#clcp) requires name-value pairs for command-line arguments, the `--console` switch is removed from the arguments before <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> receives the arguments.
 
 To write to the Windows Event Log, add the EventLog provider to <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder.ConfigureLogging*>. Set the logging level with the `Logging:LogLevel:Default` key in the *appsettings.Production.json* file.
 
@@ -649,7 +649,7 @@ A functioning app may fail immediately after upgrading either the .NET Core SDK 
 1. Restore and rebuild the project.
 1. Delete all of the files in the deployment folder on the server prior to redeploying the app.
 
-### Slow or hanging app
+### Slow or unresponsive app
 
 A *crash dump* is a snapshot of the system's memory and can help determine the cause of an app crash, startup failure, or slow app.
 
@@ -676,7 +676,7 @@ After an app crashes and dump collection is complete, the app is allowed to term
 > [!WARNING]
 > Crash dumps might take up a large amount of disk space (up to several gigabytes each).
 
-#### App hangs, fails during startup, or runs normally
+#### App unresponsive, fails during startup, or runs normally
 
 When an app *hangs* (stops responding but doesn't crash), fails during startup, or runs normally, see [User-Mode Dump Files: Choosing the Best Tool](/windows-hardware/drivers/debugger/user-mode-dump-files#choosing-the-best-tool) to select an appropriate tool to produce the dump.
 
@@ -712,7 +712,7 @@ To test and debug when running outside of a service, add code to determine if th
 * Call <xref:System.IO.Directory.SetCurrentDirectory*> and use a path to the app's published location. Don't call <xref:System.IO.Directory.GetCurrentDirectory*> to obtain the path because a Windows Service app returns the *C:\\WINDOWS\\system32* folder when <xref:System.IO.Directory.GetCurrentDirectory*> is called. For more information, see the [Current directory and content root](#current-directory-and-content-root) section. This step is performed before the app is configured in `CreateWebHostBuilder`.
 * Call <xref:Microsoft.AspNetCore.Hosting.WindowsServices.WebHostWindowsServiceExtensions.RunAsService*> to run the app as a service.
 
-Because the [Command-line Configuration Provider](xref:fundamentals/configuration/index#command-line-configuration-provider) requires name-value pairs for command-line arguments, the `--console` switch is removed from the arguments before <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> receives the arguments.
+Because the [Command-line Configuration Provider](xref:fundamentals/configuration/index#clcp) requires name-value pairs for command-line arguments, the `--console` switch is removed from the arguments before <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> receives the arguments.
 
 To write to the Windows Event Log, add the EventLog provider to <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder.ConfigureLogging*>. Set the logging level with the `Logging:LogLevel:Default` key in the *appsettings.Production.json* file.
 
@@ -986,7 +986,7 @@ A functioning app may fail immediately after upgrading either the .NET Core SDK 
 1. Restore and rebuild the project.
 1. Delete all of the files in the deployment folder on the server prior to redeploying the app.
 
-### Slow or hanging app
+### Slow or unresponsive app
 
 A *crash dump* is a snapshot of the system's memory and can help determine the cause of an app crash, startup failure, or slow app.
 
@@ -1013,7 +1013,7 @@ After an app crashes and dump collection is complete, the app is allowed to term
 > [!WARNING]
 > Crash dumps might take up a large amount of disk space (up to several gigabytes each).
 
-#### App hangs, fails during startup, or runs normally
+#### App unresponsive, fails during startup, or runs normally
 
 When an app *hangs* (stops responding but doesn't crash), fails during startup, or runs normally, see [User-Mode Dump Files: Choosing the Best Tool](/windows-hardware/drivers/debugger/user-mode-dump-files#choosing-the-best-tool) to select an appropriate tool to produce the dump.
 

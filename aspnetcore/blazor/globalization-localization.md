@@ -63,6 +63,37 @@ The following field types have specific formatting requirements and aren't curre
 
 For current browser support of the preceding types, see [Can I use](https://caniuse.com).
 
+## Invariant globalization
+
+If the app doesn't require localization, configure the app to support the invariant culture, which is generally based on United States English (`en-US`). Set the `InvariantGlobalization` property to `true` in the app's project file (`.csproj`):
+
+```xml
+<PropertyGroup>
+  <InvariantGlobalization>true</InvariantGlobalization>
+</PropertyGroup>
+```
+
+Alternatively, configure invariant globalization with the following approaches:
+
+* In `runtimeconfig.json`:
+
+  ```json
+  {
+    "runtimeOptions": {
+      "configProperties": {
+        "System.Globalization.Invariant": true
+      }
+    }
+  }
+  ```
+
+* With an environment variable:
+
+  * Key: `DOTNET_SYSTEM_GLOBALIZATION_INVARIANT`
+  * Value: `true` or `1`
+
+For more information, see [Runtime configuration options for globalization (.NET documentation)](/dotnet/core/run-time-config/globalization).
+
 ## Demonstration component
 
 The following `CultureExample1` component can be used to demonstrate Blazor globalization and localization concepts covered by this article.
@@ -152,13 +183,13 @@ Set the `BlazorWebAssemblyLoadAllGlobalizationData` property to `true` in the ap
 
 Blazor Server apps are localized using [Localization Middleware](xref:fundamentals/localization#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>.
 
-In `Startup.ConfigureServices` (`Startup.cs`):
+In `Program.cs`:
 
 ```csharp
-services.AddLocalization();
+builder.Services.AddLocalization();
 ```
 
-Specify the app's supported cultures in `Startup.Configure` (`Startup.cs`) immediately after Routing Middleware is added to the processing pipeline. The following example configures supported cultures for United States English and Chilean Spanish:
+Specify the app's supported cultures in `Program.cs` immediately after Routing Middleware is added to the processing pipeline. The following example configures supported cultures for United States English and Chilean Spanish:
 
 ```csharp
 app.UseRequestLocalization(new RequestLocalizationOptions()
@@ -166,7 +197,7 @@ app.UseRequestLocalization(new RequestLocalizationOptions()
     .AddSupportedUICultures(new[] { "en-US", "es-CL" }));
 ```
 
-For information on ordering the Localization Middleware in the middleware pipeline of `Startup.Configure`, see <xref:fundamentals/middleware/index#middleware-order>.
+For information on ordering the Localization Middleware in the middleware pipeline of `Program.cs`, see <xref:fundamentals/middleware/index#middleware-order>.
 
 ::: zone-end
 
@@ -217,7 +248,7 @@ The app's culture can be set in JavaScript when Blazor starts with the `applicat
 
 The value for `applicationCulture` must conform to the [BCP-47 language tag format](https://www.rfc-editor.org/info/bcp47). For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 
-An alternative to setting the culture Blazor's start option is to set the culture in C# code. Set <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture?displayProperty=nameWithType> and <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture?displayProperty=nameWithType> in `Program.Main` (`Program.cs`).
+An alternative to setting the culture Blazor's start option is to set the culture in C# code. Set <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture?displayProperty=nameWithType> and <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture?displayProperty=nameWithType> in `Program.cs`.
 
 Add the <xref:System.Globalization?displayProperty=fullName> namespace to `Program.cs`:
 
@@ -238,13 +269,13 @@ CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("en-US");
 
 Blazor Server apps are localized using [Localization Middleware](xref:fundamentals/localization#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>.
 
-In `Startup.ConfigureServices` (`Startup.cs`):
+In `Program.cs`:
 
 ```csharp
-services.AddLocalization();
+builder.Services.AddLocalization();
 ```
 
-Specify the static culture in `Startup.Configure` (`Startup.cs`) immediately after Routing Middleware is added to the processing pipeline. The following example configures United States English:
+Specify the static culture in `Program.cs` immediately after Routing Middleware is added to the processing pipeline. The following example configures United States English:
 
 ```csharp
 app.UseRequestLocalization("en-US");
@@ -252,19 +283,11 @@ app.UseRequestLocalization("en-US");
 
 The culture value for <xref:Microsoft.AspNetCore.Builder.ApplicationBuilderExtensions.UseRequestLocalization%2A> must conform to the [BCP-47 language tag format](https://www.rfc-editor.org/info/bcp47).
 
-For information on ordering the Localization Middleware in the middleware pipeline of `Startup.Configure`, see <xref:fundamentals/middleware/index#middleware-order>.
+For information on ordering the Localization Middleware in the middleware pipeline of `Program.cs`, see <xref:fundamentals/middleware/index#middleware-order>.
 
 ::: zone-end
 
 Use the `CultureExample1` component shown in the [Demonstration component](#demonstration-component) section to study how globalization works. Issue a request with United States English (`en-US`). Switch to Chilean Spanish (`es-CL`) in the browser's language settings. Request the webpage again. When the requested language is Chilean Spanish, the app's culture remains United States English (`en-US`).
-
-If the app doesn't require localization, configure the app to support the invariant culture, which is generally based on United States English (`en-US`). Set the `InvariantGlobalization` property to `true` in the app's project file (`.csproj`):
-
-```xml
-<PropertyGroup>
-  <InvariantGlobalization>true</InvariantGlobalization>
-</PropertyGroup>
-```
 
 ## Dynamically set the culture by user preference
 
@@ -324,10 +347,10 @@ using System.Globalization;
 using Microsoft.JSInterop;
 ```
 
-Remove the following line from `Program.Main`:
+Remove the following line from `Program.cs`:
 
 ```diff
--await builder.Build().RunAsync();
+- await builder.Build().RunAsync();
 ```
 
 Replace the preceding line with the following code. The code adds Blazor's localization service to the app's service collection with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A> and uses [JS interop](xref:blazor/js-interop/call-javascript-from-dotnet) to call into JS and retrieve the user's culture selection from local storage. If local storage doesn't contain a culture for the user, the code sets a default value of United States English (`en-US`).
@@ -429,15 +452,15 @@ The `{VERSION}` placeholder in the preceding package reference is the version of
 
 Blazor Server apps are localized using [Localization Middleware](xref:fundamentals/localization#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>.
 
-In `Startup.ConfigureServices` (`Startup.cs`):
+In `Program.cs`:
 
 ```csharp
-services.AddLocalization();
+builder.Services.AddLocalization();
 ```
 
 Set the app's default and supported cultures with <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.SetDefaultCulture%2A?displayProperty=nameWithType>.
 
-In `Startup.Configure` immediately after Routing Middleware is added to the processing pipeline:
+In `Program.cs` immediately after Routing Middleware is added to the processing pipeline:
 
 ```csharp
 var supportedCultures = new[] { "en-US", "es-CL" };
@@ -449,7 +472,7 @@ var localizationOptions = new RequestLocalizationOptions()
 app.UseRequestLocalization(localizationOptions);
 ```
 
-For information on ordering the Localization Middleware in the middleware pipeline of `Startup.Configure`, see <xref:fundamentals/middleware/index#middleware-order>.
+For information on ordering the Localization Middleware in the middleware pipeline of `Program.cs`, see <xref:fundamentals/middleware/index#middleware-order>.
 
 The following example shows how to set the current culture in a cookie that can be read by the Localization Middleware.
 
@@ -473,31 +496,28 @@ Immediately after the opening `<body>` tag of `Pages/_Layout.cshtml`, add the fo
 }
 ```
 
-For information on ordering the Localization Middleware in the middleware pipeline of `Startup.Configure`, see <xref:fundamentals/middleware/index#middleware-order>.
+For information on ordering the Localization Middleware in the middleware pipeline of `Program.cs`, see <xref:fundamentals/middleware/index#middleware-order>.
 
 If the app isn't configured to process controller actions:
 
-* Add MVC services by calling <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllers%2A> on the service collection in `Startup.ConfigureServices`:
+* Add MVC services by calling <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllers%2A> on the service collection in `Program.cs`:
 
   ```csharp
-  services.AddControllers();
+  builder.Services.AddControllers();
   ```
 
-* Add controller endpoint routing in `Startup.Configure` by calling <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers%2A> on the <xref:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder>:
+* Add controller endpoint routing in `Program.cs` by calling <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers%2A> on the <xref:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder>:
 
   ```csharp
-  endpoints.MapControllers();
+  app.MapControllers();
   ```
 
   The following example shows the call to <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> after the line is added:
 
-  ```diff
-  app.UseEndpoints(endpoints =>
-  {
-  +   endpoints.MapControllers();
-      endpoints.MapBlazorHub();
-      endpoints.MapFallbackToPage("/_Host");
-  });
+  ```csharp
+  app.MapControllers();
+  app.MapBlazorHub();
+  app.MapFallbackToPage("/_Host");
   ```
 
 To provide UI to allow a user to select a culture, use a *redirect-based approach* with a localization cookie. The app persists the user's selected culture via a redirect to a controller. The controller sets the user's selected culture into a cookie and redirects the user back to the original URI. The process is similar to what happens in a web app when a user attempts to access a secure resource, where the user is redirected to a sign-in page and then redirected back to the original resource.
@@ -615,13 +635,13 @@ Set the `BlazorWebAssemblyLoadAllGlobalizationData` property to `true` in the ap
 </PropertyGroup>
 ```
 
-In `Program.Main` (`Program.cs`), add namespace the namespace for <xref:System.Globalization?displayProperty=fullName> to the top of the file:
+In `Program.cs`, add namespace the namespace for <xref:System.Globalization?displayProperty=fullName> to the top of the file:
 
 ```csharp
 using System.Globalization;
 ```
 
-Add Blazor's localization service to the app's service collection with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A> in `Program.Main`:
+Add Blazor's localization service to the app's service collection with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A> in `Program.cs`:
 
 ```csharp
 builder.Services.AddLocalization();
@@ -636,15 +656,15 @@ Use [Localization Middleware](xref:fundamentals/localization#localization-middle
 If the app doesn't already support culture selection per the [Dynamically set the culture by user preference](#dynamically-set-the-culture-by-user-preference) section of this article:
 
 * Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>.
-* Specify the app's default and supported cultures in `Startup.Configure` (`Startup.cs`). The following example configures supported cultures for United States English and Chilean Spanish.
+* Specify the app's default and supported cultures in `Program.cs`. The following example configures supported cultures for United States English and Chilean Spanish.
 
-In `Startup.ConfigureServices` (`Startup.cs`):
+In `Program.cs`:
 
 ```csharp
-services.AddLocalization();
+builder.Services.AddLocalization();
 ```
 
-In `Startup.Configure` immediately after Routing Middleware is added to the processing pipeline:
+In `Program.cs` immediately after Routing Middleware is added to the processing pipeline:
 
 ```csharp
 var supportedCultures = new[] { "en-US", "es-CL" };
@@ -656,7 +676,7 @@ var localizationOptions = new RequestLocalizationOptions()
 app.UseRequestLocalization(localizationOptions);
 ```
 
-For information on ordering the Localization Middleware in the middleware pipeline of `Startup.Configure`, see <xref:fundamentals/middleware/index#middleware-order>.
+For information on ordering the Localization Middleware in the middleware pipeline of `Program.cs`, see <xref:fundamentals/middleware/index#middleware-order>.
 
 If the app should localize resources based on storing a user's culture setting, use a localization culture cookie. Use of a cookie ensures that the WebSocket connection can correctly propagate the culture. If localization schemes are based on the URL path or query string, the scheme might not be able to work with [WebSockets](xref:fundamentals/websockets), thus fail to persist the culture. Therefore, the recommended approach is to use a localization culture cookie. See the [Dynamically set the culture by user preference](#dynamically-set-the-culture-by-user-preference) section of this article to see an example Razor expression for the `Pages/_Layout.cshtml` file that persists the user's culture selection.
 
@@ -926,6 +946,37 @@ The following field types have specific formatting requirements and aren't curre
 
 For current browser support of the preceding types, see [Can I use](https://caniuse.com).
 
+## Invariant globalization
+
+If the app doesn't require localization, configure the app to support the invariant culture, which is generally based on United States English (`en-US`). Set the `InvariantGlobalization` property to `true` in the app's project file (`.csproj`):
+
+```xml
+<PropertyGroup>
+  <InvariantGlobalization>true</InvariantGlobalization>
+</PropertyGroup>
+```
+
+Alternatively, configure invariant globalization with the following approaches:
+
+* In `runtimeconfig.json`:
+
+  ```json
+  {
+    "runtimeOptions": {
+      "configProperties": {
+        "System.Globalization.Invariant": true
+      }
+    }
+  }
+  ```
+
+* With an environment variable:
+
+  * Key: `DOTNET_SYSTEM_GLOBALIZATION_INVARIANT`
+  * Value: `true` or `1`
+
+For more information, see [Runtime configuration options for globalization (.NET documentation)](/dotnet/core/run-time-config/globalization).
+
 ## Demonstration component
 
 The following `CultureExample1` component can be used to demonstrate Blazor globalization and localization concepts covered by this article.
@@ -1080,7 +1131,7 @@ The app's culture can be set in JavaScript when Blazor starts with the `applicat
 
 The value for `applicationCulture` must conform to the [BCP-47 language tag format](https://www.rfc-editor.org/info/bcp47). For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 
-An alternative to setting the culture Blazor's start option is to set the culture in C# code. Set <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture?displayProperty=nameWithType> and <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture?displayProperty=nameWithType> in `Program.Main` (`Program.cs`).
+An alternative to setting the culture Blazor's start option is to set the culture in C# code. Set <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture?displayProperty=nameWithType> and <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture?displayProperty=nameWithType> in `Program.cs`.
 
 Add the <xref:System.Globalization?displayProperty=fullName> namespace to `Program.cs`:
 
@@ -1120,14 +1171,6 @@ For information on ordering the Localization Middleware in the middleware pipeli
 ::: zone-end
 
 Use the `CultureExample1` component shown in the [Demonstration component](#demonstration-component) section to study how globalization works. Issue a request with United States English (`en-US`). Switch to Chilean Spanish (`es-CL`) in the browser's language settings. Request the webpage again. When the requested language is Chilean Spanish, the app's culture remains United States English (`en-US`).
-
-If the app doesn't require localization, configure the app to support the invariant culture, which is generally based on United States English (`en-US`). Set the `InvariantGlobalization` property to `true` in the app's project file (`.csproj`):
-
-```xml
-<PropertyGroup>
-  <InvariantGlobalization>true</InvariantGlobalization>
-</PropertyGroup>
-```
 
 ## Dynamically set the culture by user preference
 
@@ -1187,10 +1230,10 @@ using System.Globalization;
 using Microsoft.JSInterop;
 ```
 
-Remove the following line from `Program.Main`:
+Remove the following line from `Program.cs`:
 
 ```diff
--await builder.Build().RunAsync();
+- await builder.Build().RunAsync();
 ```
 
 Replace the preceding line with the following code. The code adds Blazor's localization service to the app's service collection with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A> and uses [JS interop](xref:blazor/js-interop/call-javascript-from-dotnet) to call into JS and retrieve the user's culture selection from local storage. If local storage doesn't contain a culture for the user, the code sets a default value of United States English (`en-US`).
@@ -1478,13 +1521,13 @@ Set the `BlazorWebAssemblyLoadAllGlobalizationData` property to `true` in the ap
 </PropertyGroup>
 ```
 
-In `Program.Main` (`Program.cs`), add namespace the namespace for <xref:System.Globalization?displayProperty=fullName> to the top of the file:
+In `Program.cs`, add namespace the namespace for <xref:System.Globalization?displayProperty=fullName> to the top of the file:
 
 ```csharp
 using System.Globalization;
 ```
 
-Add Blazor's localization service to the app's service collection with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A> in `Program.Main`:
+Add Blazor's localization service to the app's service collection with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A> in `Program.cs`:
 
 ```csharp
 builder.Services.AddLocalization();
@@ -1789,6 +1832,37 @@ The following field types have specific formatting requirements and aren't curre
 
 For current browser support of the preceding types, see [Can I use](https://caniuse.com).
 
+## Invariant globalization
+
+If the app doesn't require localization, configure the app to support the invariant culture, which is generally based on United States English (`en-US`). Set the `InvariantGlobalization` property to `true` in the app's project file (`.csproj`):
+
+```xml
+<PropertyGroup>
+  <InvariantGlobalization>true</InvariantGlobalization>
+</PropertyGroup>
+```
+
+Alternatively, configure invariant globalization with the following approaches:
+
+* In `runtimeconfig.json`:
+
+  ```json
+  {
+    "runtimeOptions": {
+      "configProperties": {
+        "System.Globalization.Invariant": true
+      }
+    }
+  }
+  ```
+
+* With an environment variable:
+
+  * Key: `DOTNET_SYSTEM_GLOBALIZATION_INVARIANT`
+  * Value: `true` or `1`
+
+For more information, see [Runtime configuration options for globalization (.NET documentation)](/dotnet/core/run-time-config/globalization).
+
 ## Demonstration component
 
 The following `CultureExample1` component can be used to demonstrate Blazor globalization and localization concepts covered by this article.
@@ -1931,14 +2005,6 @@ For information on ordering the Localization Middleware in the middleware pipeli
 
 Use the `CultureExample1` component shown in the [Demonstration component](#demonstration-component) section to study how globalization works. Issue a request with United States English (`en-US`). Switch to Chilean Spanish (`es-CL`) in the browser's language settings. Request the webpage again. When the requested language is Chilean Spanish, the app's culture remains United States English (`en-US`).
 
-If the app doesn't require localization, configure the app to support the invariant culture, which is generally based on United States English (`en-US`). Set the `InvariantGlobalization` property to `true` in the app's project file (`.csproj`):
-
-```xml
-<PropertyGroup>
-  <InvariantGlobalization>true</InvariantGlobalization>
-</PropertyGroup>
-```
-
 ## Dynamically set the culture by user preference
 
 ::: zone pivot="webassembly"
@@ -1973,7 +2039,7 @@ using System.Globalization;
 using Microsoft.JSInterop;
 ```
 
-Remove the following line from `Program.Main`:
+Remove the following line from `Program.cs`:
 
 ```diff
 -await builder.Build().RunAsync();
@@ -2258,13 +2324,13 @@ The `{VERSION}` placeholder in the preceding package reference is the version of
 
 By default, the Intermediate Language (IL) Linker configuration for Blazor WebAssembly apps strips out internationalization information except for locales explicitly requested. For more information, see <xref:blazor/host-and-deploy/configure-linker#configure-the-linker-for-internationalization>.
 
-In `Program.Main` (`Program.cs`), add namespace the namespace for <xref:System.Globalization?displayProperty=fullName> to the top of the file:
+In `Program.cs`, add namespace the namespace for <xref:System.Globalization?displayProperty=fullName> to the top of the file:
 
 ```csharp
 using System.Globalization;
 ```
 
-Add Blazor's localization service to the app's service collection with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A> in `Program.Main`:
+Add Blazor's localization service to the app's service collection with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A> in `Program.cs`:
 
 ```csharp
 builder.Services.AddLocalization();

@@ -37,92 +37,68 @@ A custom service provider doesn't automatically provide the default services lis
 
 ::: zone pivot="webassembly"
 
-Configure services for the app's service collection in the `Program.Main` method of `Program.cs`. In the following example, the `MyDependency` implementation is registered for `IMyDependency`:
+Configure services for the app's service collection in `Program.cs`. In the following example, the `MyDependency` implementation is registered for `IMyDependency`:
 
 ```csharp
-public class Program
-{
-    public static async Task Main(string[] args)
-    {
-        var builder = WebAssemblyHostBuilder.CreateDefault(args);
-        ...
-        builder.Services.AddSingleton<IMyDependency, MyDependency>();
-        ...
+var builder = WebAssemblyHostBuilder.CreateDefault(args);
+...
+builder.Services.AddSingleton<IMyDependency, MyDependency>();
+...
 
-        await builder.Build().RunAsync();
-    }
-}
+await builder.Build().RunAsync();
 ```
 
 After the host is built, services are available from the root DI scope before any components are rendered. This can be useful for running initialization logic before rendering content:
 
 ```csharp
-public class Program
-{
-    public static async Task Main(string[] args)
-    {
-        var builder = WebAssemblyHostBuilder.CreateDefault(args);
-        ...
-        builder.Services.AddSingleton<WeatherService>();
-        ...
+var builder = WebAssemblyHostBuilder.CreateDefault(args);
+...
+builder.Services.AddSingleton<WeatherService>();
+...
 
-        var host = builder.Build();
+var host = builder.Build();
 
-        var weatherService = host.Services.GetRequiredService<WeatherService>();
-        await weatherService.InitializeWeatherAsync();
+var weatherService = host.Services.GetRequiredService<WeatherService>();
+await weatherService.InitializeWeatherAsync();
 
-        await host.RunAsync();
-    }
-}
+await host.RunAsync();
 ```
 
 The host provides a central configuration instance for the app. Building on the preceding example, the weather service's URL is passed from a default configuration source (for example, `appsettings.json`) to `InitializeWeatherAsync`:
 
 ```csharp
-public class Program
-{
-    public static async Task Main(string[] args)
-    {
-        var builder = WebAssemblyHostBuilder.CreateDefault(args);
-        ...
-        builder.Services.AddSingleton<WeatherService>();
-        ...
+var builder = WebAssemblyHostBuilder.CreateDefault(args);
+...
+builder.Services.AddSingleton<WeatherService>();
+...
 
-        var host = builder.Build();
+var host = builder.Build();
 
-        var weatherService = host.Services.GetRequiredService<WeatherService>();
-        await weatherService.InitializeWeatherAsync(
-            host.Configuration["WeatherServiceUrl"]);
+var weatherService = host.Services.GetRequiredService<WeatherService>();
+await weatherService.InitializeWeatherAsync(
+    host.Configuration["WeatherServiceUrl"]);
 
-        await host.RunAsync();
-    }
-}
+await host.RunAsync();
 ```
 
 ::: zone-end
 
 ::: zone pivot="server"
 
-After creating a new app, examine the `Startup.ConfigureServices` method in `Startup.cs`:
+After creating a new app, examine part of the `Program.cs` file:
 
 ```csharp
-using Microsoft.Extensions.DependencyInjection;
+var builder = WebApplication.CreateBuilder(args);
 
-...
-
-public void ConfigureServices(IServiceCollection services)
-{
-    ...
-}
+builder.Services.AddRazorPages();
+builder.Services.AddServerSideBlazor();
+builder.Services.AddSingleton<WeatherForecastService>();
 ```
 
-The <xref:Microsoft.Extensions.Hosting.IHostBuilder.ConfigureServices%2A> method is passed an <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>, which is a list of [service descriptor](xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor) objects. Services are added in the `ConfigureServices` method by providing service descriptors to the service collection. The following example demonstrates the concept with the `IDataAccess` interface and its concrete implementation `DataAccess`:
+The `builder` variable represents a `Microsoft.AspNetCore.Builder.WebApplicationBuilder` with an <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>, which is a list of [service descriptor](xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor) objects. Services are added by providing service descriptors to the service collection. The following example demonstrates the concept with the `IDataAccess` interface and its concrete implementation `DataAccess`:
 
 ```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddSingleton<IDataAccess, DataAccess>();
-}
+builder.Services.AddSingleton<IDataAccess, DataAccess>();
 ```
 
 ::: zone-end
@@ -253,27 +229,25 @@ The following examples show how to detect disposable transient services in an ap
 The `TransientDisposable` in the following example is detected (`Program.cs`):
 
 ```csharp
-public class Program
-{
-    public static async Task Main(string[] args)
+var builder = WebAssemblyHostBuilder.CreateDefault(args);
+builder.DetectIncorrectUsageOfTransients();
+builder.RootComponents.Add<App>("#app");
+
+builder.Services.AddTransient<TransientDisposable>();
+builder.Services.AddScoped(sp =>
+    new HttpClient
     {
-        var builder = WebAssemblyHostBuilder.CreateDefault(args);
-        builder.DetectIncorrectUsageOfTransients();
-        builder.RootComponents.Add<App>("#app");
+        BaseAddress = new(builder.HostEnvironment.BaseAddress)
+    });
 
-        builder.Services.AddTransient<TransientDisposable>();
-        builder.Services.AddScoped(sp =>
-            new HttpClient
-            {
-                BaseAddress = new(builder.HostEnvironment.BaseAddress)
-            });
+var host = builder.Build();
+host.EnableTransientDisposableDetection();
+await host.RunAsync();
+```
 
-        var host = builder.Build();
-        host.EnableTransientDisposableDetection();
-        await host.RunAsync();
-    }
-}
+`TransientDisposable.cs`:
 
+```csharp
 public class TransientDisposable : IDisposable
 {
     public void Dispose() => throw new NotImplementedException();
@@ -288,37 +262,15 @@ public class TransientDisposable : IDisposable
 
 [!code-csharp[](~/blazor/samples/6.0/BlazorSample_Server/dependency-injection/DetectIncorrectUsagesOfTransientDisposables.cs)]
 
-Add the namespace for <xref:Microsoft.Extensions.DependencyInjection?displayProperty=fullName> to `Program.cs`:
+In `Program.cs`:
 
 ```csharp
-using Microsoft.Extensions.DependencyInjection;
+app.DetectIncorrectUsageOfTransients();
 ```
 
-In `Program.CreateHostBuilder` of `Program.cs`:
+`TransitiveTransientDisposableDependency.cs`:
 
 ```csharp
-public static IHostBuilder CreateHostBuilder(string[] args) =>
-    Host.CreateDefaultBuilder(args)
-        .DetectIncorrectUsageOfTransients()
-        .ConfigureWebHostDefaults(webBuilder =>
-        {
-            webBuilder.UseStartup<Startup>();
-        });
-```
-
-The `TransientDependency` in the following example is detected (`Startup.cs`):
-
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddRazorPages();
-    services.AddServerSideBlazor();
-    services.AddSingleton<WeatherForecastService>();
-    services.AddTransient<TransientDependency>();
-    services.AddTransient<ITransitiveTransientDisposableDependency, 
-        TransitiveTransientDisposableDependency>();
-}
-
 public class TransitiveTransientDisposableDependency 
     : ITransitiveTransientDisposableDependency, IDisposable
 {
@@ -341,6 +293,17 @@ public class TransientDependency
             transitiveTransientDisposableDependency;
     }
 }
+```
+
+The `TransientDependency` in the following example is detected (`Program.cs`):
+
+```csharp
+builder.Services.AddRazorPages();
+builder.Services.AddServerSideBlazor();
+builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddTransient<TransientDependency>();
+builder.Services.AddTransient<ITransitiveTransientDisposableDependency, 
+    TransitiveTransientDisposableDependency>();
 ```
 
 ::: zone-end
@@ -391,7 +354,7 @@ A custom service provider doesn't automatically provide the default services lis
 
 ::: zone pivot="webassembly"
 
-Configure services for the app's service collection in the `Program.Main` method of `Program.cs`. In the following example, the `MyDependency` implementation is registered for `IMyDependency`:
+Configure services for the app's service collection in `Program.cs`. In the following example, the `MyDependency` implementation is registered for `IMyDependency`:
 
 ```csharp
 public class Program
@@ -745,7 +708,7 @@ A custom service provider doesn't automatically provide the default services lis
 
 ::: zone pivot="webassembly"
 
-Configure services for the app's service collection in the `Program.Main` method of `Program.cs`. In the following example, the `MyDependency` implementation is registered for `IMyDependency`:
+Configure services for the app's service collection in `Program.cs`. In the following example, the `MyDependency` implementation is registered for `IMyDependency`:
 
 ```csharp
 public class Program

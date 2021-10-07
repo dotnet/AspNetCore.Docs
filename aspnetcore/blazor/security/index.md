@@ -151,14 +151,14 @@ using Microsoft.AspNetCore.Components.Authorization;
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
 ```
 
-In a Blazor Server app, the `CustomAuthStateProvider` service is registered in `Startup.ConfigureServices`:
+In a Blazor Server app, the `CustomAuthStateProvider` service is registered in `Program.cs`:
 
 ```csharp
 using Microsoft.AspNetCore.Components.Authorization;
 
 ...
 
-services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
+builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
 ```
 
 Using the `CustomAuthStateProvider` in the preceding example, all users are authenticated with the username `mrfibuli`.
@@ -217,7 +217,7 @@ Set up the `Task<`<xref:Microsoft.AspNetCore.Components.Authorization.Authentica
 </CascadingAuthenticationState>
 ```
 
-In a Blazor WebAssembly App, add services for options and authorization to `Program.Main`:
+In a Blazor WebAssembly App, add services for options and authorization to `Program.cs`:
 
 ```csharp
 builder.Services.AddOptions();
@@ -539,7 +539,12 @@ The <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationS
 
 ## Additional resources
 
-* [Microsoft identity platform documentation](/azure/active-directory/develop/)
+* Microsoft identity platform documentation
+  * [Overview](/azure/active-directory/develop/)
+  * [OAuth 2.0 and OpenID Connect protocols on the Microsoft identity platform](/azure/active-directory/develop/active-directory-v2-protocols)
+  * [Microsoft identity platform and OAuth 2.0 authorization code flow](/azure/active-directory/develop/v2-oauth2-auth-code-flow)
+  * [Microsoft identity platform ID tokens](/azure/active-directory/develop/id-tokens)
+  * [Microsoft identity platform access tokens](/azure/active-directory/develop/access-tokens)
 * <xref:security/index>
 * <xref:security/authentication/windowsauth>
 * [Build a custom version of the Authentication.MSAL JavaScript library](xref:blazor/security/webassembly/additional-scenarios#build-a-custom-version-of-the-authenticationmsal-javascript-library)
@@ -755,7 +760,7 @@ Set up the `Task<`<xref:Microsoft.AspNetCore.Components.Authorization.Authentica
 
 [!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
 
-In a Blazor WebAssembly App, add services for options and authorization to `Program.Main`:
+In a Blazor WebAssembly App, add services for options and authorization to `Program.cs`:
 
 ```csharp
 builder.Services.AddOptions();
@@ -1081,7 +1086,12 @@ The <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationS
 
 ## Additional resources
 
-* [Microsoft identity platform documentation](/azure/active-directory/develop/)
+* Microsoft identity platform documentation
+  * [Overview](/azure/active-directory/develop/)
+  * [OAuth 2.0 and OpenID Connect protocols on the Microsoft identity platform](/azure/active-directory/develop/active-directory-v2-protocols)
+  * [Microsoft identity platform and OAuth 2.0 authorization code flow](/azure/active-directory/develop/v2-oauth2-auth-code-flow)
+  * [Microsoft identity platform ID tokens](/azure/active-directory/develop/id-tokens)
+  * [Microsoft identity platform access tokens](/azure/active-directory/develop/access-tokens)
 * <xref:security/index>
 * <xref:security/authentication/windowsauth>
 * [Build a custom version of the Authentication.MSAL JavaScript library](xref:blazor/security/webassembly/additional-scenarios#build-a-custom-version-of-the-authenticationmsal-javascript-library)
@@ -1295,7 +1305,7 @@ Set up the `Task<`<xref:Microsoft.AspNetCore.Components.Authorization.Authentica
 </CascadingAuthenticationState>
 ```
 
-In a Blazor WebAssembly App, add services for options and authorization to `Program.Main`:
+In a Blazor WebAssembly App, add services for options and authorization to `Program.cs`:
 
 ```csharp
 builder.Services.AddOptions();

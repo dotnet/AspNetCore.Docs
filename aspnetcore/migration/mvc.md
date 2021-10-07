@@ -379,7 +379,7 @@ For migrating configuration and Identity code, see [Migrate configuration to ASP
 
 ## Create the starter ASP.NET MVC project
 
-To demonstrate the upgrade, we'll start by creating a ASP.NET MVC app. Create it with the name *WebApp1* so the namespace matches the ASP.NET Core project created in the next step.
+To demonstrate the upgrade, we'll start by creating an ASP.NET MVC app. Create it with the name *WebApp1* so the namespace matches the ASP.NET Core project created in the next step.
 
 ![Visual Studio New Project dialog](mvc/_static/new-project.png)
 

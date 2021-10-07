@@ -31,13 +31,19 @@ public class StateContainer
 }
 ```
 
-In `Program.Main` (Blazor WebAssembly):
+In `Program.cs` (Blazor WebAssembly):
 
 ```csharp
 builder.Services.AddSingleton<StateContainer>();
 ```
 
-In `Startup.ConfigureServices` (Blazor Server):
+In `Program.cs` (Blazor Server) in ASP.NET Core 6.0 or later:
+
+```csharp
+builder.Services.AddScoped<StateContainer>();
+```
+
+In `Startup.ConfigureServices` (Blazor Server) in versions of ASP.NET Core earlier than 6.0:
 
 ```csharp
 services.AddScoped<StateContainer>();

@@ -18,7 +18,7 @@
         /// <summary>
         /// The text of the filter.
         /// </summary>
-        string FilterText { get; set; }
+        string? FilterText { get; set; }
 
         /// <summary>
         /// Paging state in <see cref="PageHelper"/>.

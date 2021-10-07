@@ -1,16 +1,14 @@
 ---
 title: Migrating gRPC services from C-core to ASP.NET Core
-author: juntaoluo
+author: jamesnk
 description: Learn how to move an existing C-core based gRPC app to run on top of ASP.NET Core stack.
 monikerRange: '>= aspnetcore-3.0'
-ms.author: johluo
+ms.author: jamesnk
 ms.date: 09/25/2019
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/migration
 ---
 # Migrating gRPC services from C-core to ASP.NET Core
-
-By [John Luo](https://github.com/juntaoluo)
 
 Due to the implementation of the underlying stack, not all features work in the same way between [C-core-based gRPC](https://grpc.io/blog/grpc-stacks) apps and ASP.NET Core-based apps. This document highlights the key differences for migrating between the two stacks.
 

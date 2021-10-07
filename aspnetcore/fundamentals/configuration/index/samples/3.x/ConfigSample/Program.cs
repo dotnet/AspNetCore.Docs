@@ -1,4 +1,4 @@
-#define MAINcolor
+//#define MAINcolor
 //#define MAIN
 //#define MAIN2
 //#define MyCusomPrefix_

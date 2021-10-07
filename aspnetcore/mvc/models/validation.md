@@ -78,7 +78,7 @@ To find out which parameters are passed to `String.Format` for a particular attr
 
 ## Non-nullable reference types and [Required] attribute
 
-The validation system treats non-nullable parameters or bound properties as if they had a `[Required]` attribute. By [enabling `Nullable` contexts](/dotnet/csharp/nullable-references#nullable-contexts), MVC implicitly starts validating non-nullable properties or parameters as if they had been attributed with the `[Required]` attribute. Consider the following code:
+The validation system treats non-nullable parameters or bound properties as if they had a `[Required(AllowEmptyStrings = true)]` attribute. By [enabling `Nullable` contexts](/dotnet/csharp/nullable-references#nullable-contexts), MVC implicitly starts validating non-nullable properties or parameters as if they had been attributed with the `[Required(AllowEmptyStrings = true)]` attribute. Consider the following code:
 
 ```csharp
 public class Person
@@ -122,7 +122,7 @@ Non-nullable types and strings are handled differently on the client compared to
 * A value is considered present only if input is entered for it. Therefore, client-side validation handles non-nullable types the same as nullable types.
 * Whitespace in a string field is considered valid input by the jQuery Validation [required](https://jqueryvalidation.org/required-method/) method. Server-side validation considers a required string field invalid if only whitespace is entered.
 
-As noted earlier, non-nullable types are treated as though they had a `[Required]` attribute. That means you get client-side validation even if you don't apply the `[Required]` attribute. But if you don't use the attribute, you get a default error message. To specify a custom error message, use the attribute.
+As noted earlier, non-nullable types are treated as though they had a `[Required(AllowEmptyStrings = true)]` attribute. That means you get client-side validation even if you don't apply the `[Required(AllowEmptyStrings = true)]` attribute. But if you don't use the attribute, you get a default error message. To specify a custom error message, use the attribute.
 
 ## [Remote] attribute
 
@@ -231,20 +231,6 @@ Validation stops when the maximum number of errors is reached (200 by default). 
 ## Automatic short-circuit
 
 Validation is automatically short-circuited (skipped) if the model graph doesn't require validation. Objects that the runtime skips validation for include collections of primitives (such as `byte[]`, `string[]`, `Dictionary<string, string>`) and complex object graphs that don't have any validators.
-
-## Disable validation
-
-To disable validation:
-
-1. Create an implementation of `IObjectModelValidator` that doesn't mark any fields as invalid.
-
-   [!code-csharp[](validation/samples/3.x/ValidationSample/Validation/NullObjectModelValidator.cs?name=snippet_Class)]
-
-1. Add the following code to `Startup.ConfigureServices` to replace the default `IObjectModelValidator` implementation in the dependency injection container.
-
-   [!code-csharp[](validation/samples/3.x/ValidationSample/Startup.cs?name=snippet_DisableValidation)]
-
-You might still see model state errors that originate from model binding.
 
 ## Client-side validation
 
@@ -466,7 +452,7 @@ To find out which parameters are passed to `String.Format` for a particular attr
 
 ## [Required] attribute
 
-By default, the validation system treats non-nullable parameters or properties as if they had a `[Required]` attribute. [Value types](/dotnet/csharp/language-reference/keywords/value-types) such as `decimal` and `int` are non-nullable.
+By default, the validation system treats non-nullable parameters or properties as if they had a `[Required(AllowEmptyStrings = true)]` attribute. [Value types](/dotnet/csharp/language-reference/keywords/value-types) such as `decimal` and `int` are non-nullable.
 
 ### [Required] validation on the server
 
@@ -488,7 +474,7 @@ Non-nullable types and strings are handled differently on the client compared to
 * A value is considered present only if input is entered for it. Therefore, client-side validation handles non-nullable types the same as nullable types.
 * Whitespace in a string field is considered valid input by the jQuery Validation [required](https://jqueryvalidation.org/required-method/) method. Server-side validation considers a required string field invalid if only whitespace is entered.
 
-As noted earlier, non-nullable types are treated as though they had a `[Required]` attribute. That means you get client-side validation even if you don't apply the `[Required]` attribute. But if you don't use the attribute, you get a default error message. To specify a custom error message, use the attribute.
+As noted earlier, non-nullable types are treated as though they had a `[Required(AllowEmptyStrings = true)]` attribute. That means you get client-side validation even if you don't apply the `[Required(AllowEmptyStrings = true)]` attribute. But if you don't use the attribute, you get a default error message. To specify a custom error message, use the attribute.
 
 ## [Remote] attribute
 
