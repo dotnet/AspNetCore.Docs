@@ -46,14 +46,14 @@ public class TokenProvider
 }
 ```
 
-In `Startup.ConfigureServices`, add services for:
+In `Program.cs`, add services for:
 
 * `IHttpClientFactory`
 * `TokenProvider`
 
 ```csharp
-services.AddHttpClient();
-services.AddScoped<TokenProvider>();
+builder.Services.AddHttpClient();
+builder.Services.AddScoped<TokenProvider>();
 ```
 
 Define a class to pass in the initial app state with the access and refresh tokens:
@@ -143,10 +143,10 @@ public class WeatherForecastService
 
 ## Set the authentication scheme
 
-For an app that uses more than one Authentication Middleware and thus has more than one authentication scheme, the scheme that Blazor uses can be explicitly set in the endpoint configuration of `Startup.Configure`. The following example sets the Azure Active Directory scheme:
+For an app that uses more than one Authentication Middleware and thus has more than one authentication scheme, the scheme that Blazor uses can be explicitly set in the endpoint configuration of `Program.cs`. The following example sets the Azure Active Directory scheme:
 
 ```csharp
-endpoints.MapBlazorHub().RequireAuthorization(
+app.MapBlazorHub().RequireAuthorization(
     new AuthorizeAttribute 
     {
         AuthenticationSchemes = AzureADDefaults.AuthenticationScheme

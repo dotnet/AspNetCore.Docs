@@ -45,7 +45,7 @@ Reference the [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net
 
 ## Add the `HttpClient` service
 
-In `Program.Main`, add an <xref:System.Net.Http.HttpClient> service if it isn't already present from a Blazor project template used to create the app:
+In `Program.cs`, add an <xref:System.Net.Http.HttpClient> service if it isn't already present from a Blazor project template used to create the app:
 
 ```csharp
 builder.Services.AddScoped(sp => 
@@ -210,7 +210,7 @@ Reference the [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Micro
 
 In the preceding example, the `{VERSION}` placeholder is the version of the package.
 
-In `Program.Main` of the `Program.cs` file:
+In `Program.cs`:
 
 ```csharp
 builder.Services.AddHttpClient("WebAPI", client => 
@@ -303,7 +303,7 @@ public class WeatherForecastHttpClient
 }
 ```
 
-In `Program.Main` of the `Program.cs` file:
+In `Program.cs`:
 
 ```csharp
 builder.Services.AddHttpClient<WeatherForecastHttpClient>(client => 
@@ -389,7 +389,7 @@ For more information on Fetch API options, see [MDN web docs: WindowOrWorkerGlob
 
 The following example calls a web API. The example requires a running web API based on the sample app described by the <xref:tutorials/first-web-api> article. This example makes requests to the web API at `https://localhost:10000/api/TodoItems`. If a different web API address is used, update the `ServiceEndpoint` constant value in the component's `@code` block.
 
-The following example makes a [cross-origin resource sharing (CORS)](xref:security/cors) request from `http://localhost:5000` or `https://localhost:5001` to the web API. Add the following CORS middleware configuration to the web API's service's `Startup.Configure` method:
+The following example makes a [cross-origin resource sharing (CORS)](xref:security/cors) request from `http://localhost:5000` or `https://localhost:5001` to the web API. Add the following CORS middleware configuration to the web API's service's `Program.cs` file:
 
 ```csharp
 app.UseCors(policy => 
@@ -484,10 +484,10 @@ For more information, see <xref:blazor/fundamentals/handle-errors>.
 
 A Blazor Server app doesn't include an <xref:System.Net.Http.HttpClient> service by default. Provide an <xref:System.Net.Http.HttpClient> to the app using the [`HttpClient` factory infrastructure](xref:fundamentals/http-requests).
 
-In `Startup.`ConfigureServices` of `Startup.cs`:
+In `Program.cs`:
 
 ```csharp
-services.AddHttpClient();
+builder.Services.AddHttpClient();
 ```
 
 The following Blazor Server Razor component makes a request to a web API for GitHub branches similar to the *Basic Usage* example in the <xref:fundamentals/http-requests> article.
@@ -641,7 +641,7 @@ Reference the [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net
 
 ## Add the `HttpClient` service
 
-In `Program.Main`, add an <xref:System.Net.Http.HttpClient> service if it isn't already present from a Blazor project template used to create the app:
+In `Program.cs`, add an <xref:System.Net.Http.HttpClient> service if it isn't already present from a Blazor project template used to create the app:
 
 ```csharp
 builder.Services.AddScoped(sp => 
@@ -806,7 +806,7 @@ Reference the [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Micro
 
 In the preceding example, the `{VERSION}` placeholder is the version of the package.
 
-In `Program.Main` of the `Program.cs` file:
+In `Program.cs`:
 
 ```csharp
 builder.Services.AddHttpClient("WebAPI", client => 
@@ -899,7 +899,7 @@ public class WeatherForecastHttpClient
 }
 ```
 
-In `Program.Main` of the `Program.cs` file:
+In `Program.cs`:
 
 ```csharp
 builder.Services.AddHttpClient<WeatherForecastHttpClient>(client => 
@@ -1239,7 +1239,7 @@ Reference the [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net
 
 ## Add the `HttpClient` service
 
-In `Program.Main`, add an <xref:System.Net.Http.HttpClient> service if it isn't already present from a Blazor project template used to create the app:
+In `Program.cs`, add an <xref:System.Net.Http.HttpClient> service if it isn't already present from a Blazor project template used to create the app:
 
 ```csharp
 builder.Services.AddScoped(sp => 
@@ -1404,7 +1404,7 @@ Reference the [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Micro
 
 In the preceding example, the `{VERSION}` placeholder is the version of the package.
 
-In `Program.Main` of the `Program.cs` file:
+In `Program.cs`:
 
 ```csharp
 builder.Services.AddHttpClient("WebAPI", client => 
@@ -1497,7 +1497,7 @@ public class WeatherForecastHttpClient
 }
 ```
 
-In `Program.Main` of the `Program.cs` file:
+In `Program.cs`:
 
 ```csharp
 builder.Services.AddHttpClient<WeatherForecastHttpClient>(client => 
