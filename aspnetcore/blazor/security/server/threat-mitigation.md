@@ -354,7 +354,7 @@ For more information, see <xref:security/anti-request-forgery>.
 
 ### Click-jacking
 
-Click-jacking involves rendering a site as an `<iframe>` inside a site from a different origin order to trick the user into performing actions on the site under attack.
+Click-jacking involves rendering a site as an `<iframe>` inside a site from a different origin in order to trick the user into performing actions on the site under attack.
 
 To protect an app from rendering inside of an `<iframe>`, use [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/CSP) and the `X-Frame-Options` header. For more information, see [MDN web docs: X-Frame-Options](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Frame-Options).
 
@@ -745,7 +745,7 @@ For more information, see <xref:security/anti-request-forgery>.
 
 ### Click-jacking
 
-Click-jacking involves rendering a site as an `<iframe>` inside a site from a different origin order to trick the user into performing actions on the site under attack.
+Click-jacking involves rendering a site as an `<iframe>` inside a site from a different origin in order to trick the user into performing actions on the site under attack.
 
 To protect an app from rendering inside of an `<iframe>`, use [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/CSP) and the `X-Frame-Options` header. For more information, see [MDN web docs: X-Frame-Options](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Frame-Options).
 
@@ -1136,7 +1136,7 @@ For more information, see <xref:security/anti-request-forgery>.
 
 ### Click-jacking
 
-Click-jacking involves rendering a site as an `<iframe>` inside a site from a different origin order to trick the user into performing actions on the site under attack.
+Click-jacking involves rendering a site as an `<iframe>` inside a site from a different origin in order to trick the user into performing actions on the site under attack.
 
 To protect an app from rendering inside of an `<iframe>`, use [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/CSP) and the `X-Frame-Options` header. For more information, see [MDN web docs: X-Frame-Options](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Frame-Options).
 

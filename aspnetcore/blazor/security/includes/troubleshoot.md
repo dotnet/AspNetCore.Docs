@@ -64,16 +64,16 @@ One approach to prevent lingering cookies and site data from interfering with te
 * Configure a browser
   * Use a browser for testing that you can configure to delete all cookie and site data each time the browser is closed.
   * Make sure that the browser is closed manually or by the IDE for any change to the app, test user, or provider configuration.
-* Use a custom command to open a browser incognito or private mode in Visual Studio:
+* Use a custom command to open a browser in incognito or private mode in Visual Studio:
   * Open **Browse With** dialog box from Visual Studio's **Run** button.
   * Select the **Add** button.
   * Provide the path to your browser in the **Program** field. The following executable paths are typical installation locations for Windows 10. If your browser is installed in a different location or you aren't using Windows 10, provide the path to the browser's executable.
     * Microsoft Edge: `C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe`
     * Google Chrome: `C:\Program Files (x86)\Google\Chrome\Application\chrome.exe`
     * Mozilla Firefox: `C:\Program Files\Mozilla Firefox\firefox.exe`
-  * In the **Arguments** field, provide the command-line option that the browser uses to open incognito or private mode. Some browsers require the URL of the app.
+  * In the **Arguments** field, provide the command-line option that the browser uses to open in incognito or private mode. Some browsers require the URL of the app.
     * Microsoft Edge: Use `-inprivate`.
-    * Google Chrome: Use `--incognito --new-window {URL}`, where the placeholder `{URL}` is the URL to open (for example, `https://localhost:5001`).
+    * Google Chrome: Use `--in incognito --new-window {URL}`, where the placeholder `{URL}` is the URL to open (for example, `https://localhost:5001`).
     * Mozilla Firefox: Use `-private -url {URL}`, where the placeholder `{URL}` is the URL to open (for example, `https://localhost:5001`).
   * Provide a name in the **Friendly name** field. For example, `Firefox Auth Testing`.
   * Select the **OK** button.

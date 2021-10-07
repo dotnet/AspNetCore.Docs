@@ -202,7 +202,7 @@ public class WeatherForecastClient
 
 The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `using static BlazorSample.Data;`).
 
-in `Program.cs`:
+In `Program.cs`:
 
 ```csharp
 using System.Net.Http;
@@ -234,7 +234,7 @@ protected override async Task OnInitializedAsync()
 
 The handler can be further configured with <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler.ConfigureHandler%2A> for outbound HTTP requests.
 
-in `Program.cs`:
+In `Program.cs`:
 
 ```csharp
 builder.Services.AddHttpClient<WeatherForecastClient>(
@@ -254,7 +254,7 @@ For a hosted Blazor solution based on the [Blazor WebAssembly project template](
 
 If the Blazor WebAssembly app ordinarily uses a secure default <xref:System.Net.Http.HttpClient>, the app can also make unauthenticated or unauthorized web API requests by configuring a named <xref:System.Net.Http.HttpClient>:
 
-in `Program.cs`:
+In `Program.cs`:
 
 ```csharp
 builder.Services.AddHttpClient("WebAPI.NoAuthenticationClient", 
@@ -296,7 +296,7 @@ An alternative approach to using the <xref:System.Net.Http.IHttpClientFactory> i
 
 Access tokens can be manually obtained by calling `IAccessTokenProvider.RequestAccessToken`. In the following example, an additional scope is required by an app for the default <xref:System.Net.Http.HttpClient>. The Microsoft Authentication Library (MSAL) example configures the scope with `MsalProviderOptions`:
 
-in `Program.cs`:
+In `Program.cs`:
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
@@ -629,7 +629,7 @@ In the following example, all the paths are prefixed with `/security`.
 }
 ```
 
-in `Program.cs`:
+In `Program.cs`:
 
 ```csharp
 builder.Services.AddApiAuthorization(options => { 
@@ -1235,7 +1235,7 @@ public class WeatherForecastClient
 
 The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `using static BlazorSample.Data;`).
 
-in `Program.cs`:
+In `Program.cs`:
 
 ```csharp
 using System.Net.Http;
@@ -1267,7 +1267,7 @@ protected override async Task OnInitializedAsync()
 
 The handler can be further configured with <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler.ConfigureHandler%2A> for outbound HTTP requests.
 
-in `Program.cs`:
+In `Program.cs`:
 
 ```csharp
 builder.Services.AddHttpClient<WeatherForecastClient>(
@@ -1287,7 +1287,7 @@ For a hosted Blazor solution based on the [Blazor WebAssembly project template](
 
 If the Blazor WebAssembly app ordinarily uses a secure default <xref:System.Net.Http.HttpClient>, the app can also make unauthenticated or unauthorized web API requests by configuring a named <xref:System.Net.Http.HttpClient>:
 
-in `Program.cs`:
+In `Program.cs`:
 
 ```csharp
 builder.Services.AddHttpClient("WebAPI.NoAuthenticationClient", 
@@ -1329,7 +1329,7 @@ An alternative approach to using the <xref:System.Net.Http.IHttpClientFactory> i
 
 Access tokens can be manually obtained by calling `IAccessTokenProvider.RequestAccessToken`. In the following example, an additional scope is required by an app for the default <xref:System.Net.Http.HttpClient>. The Microsoft Authentication Library (MSAL) example configures the scope with `MsalProviderOptions`:
 
-in `Program.cs`:
+In `Program.cs`:
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
@@ -1662,7 +1662,7 @@ In the following example, all the paths are prefixed with `/security`.
 }
 ```
 
-in `Program.cs`:
+In `Program.cs`:
 
 ```csharp
 builder.Services.AddApiAuthorization(options => { 
@@ -2276,7 +2276,7 @@ public class WeatherForecastClient
 
 The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `using static BlazorSample.Data;`).
 
-in `Program.cs`:
+In `Program.cs`:
 
 ```csharp
 using System.Net.Http;
@@ -2308,7 +2308,7 @@ protected override async Task OnInitializedAsync()
 
 The handler can be further configured with <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler.ConfigureHandler%2A> for outbound HTTP requests.
 
-in `Program.cs`:
+In `Program.cs`:
 
 ```csharp
 builder.Services.AddHttpClient<WeatherForecastClient>(
@@ -2328,7 +2328,7 @@ For a hosted Blazor solution based on the [Blazor WebAssembly project template](
 
 If the Blazor WebAssembly app ordinarily uses a secure default <xref:System.Net.Http.HttpClient>, the app can also make unauthenticated or unauthorized web API requests by configuring a named <xref:System.Net.Http.HttpClient>:
 
-in `Program.cs`:
+In `Program.cs`:
 
 ```csharp
 builder.Services.AddHttpClient("WebAPI.NoAuthenticationClient", 
@@ -2370,7 +2370,7 @@ An alternative approach to using the <xref:System.Net.Http.IHttpClientFactory> i
 
 Access tokens can be manually obtained by calling `IAccessTokenProvider.RequestAccessToken`. In the following example, an additional scope is required by an app for the default <xref:System.Net.Http.HttpClient>. The Microsoft Authentication Library (MSAL) example configures the scope with `MsalProviderOptions`:
 
-in `Program.cs`:
+In `Program.cs`:
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
@@ -2703,7 +2703,7 @@ In the following example, all the paths are prefixed with `/security`.
 }
 ```
 
-in `Program.cs`:
+In `Program.cs`:
 
 ```csharp
 builder.Services.AddApiAuthorization(options => { 

@@ -177,7 +177,7 @@ For more information, see the following articles:
 
 Components can be nested recursively. This is useful for representing recursive data structures. For example, a `TreeNode` component can render more `TreeNode` components for each of the node's children.
 
-When rendering recursively, avoid coding patterns that result infinite recursion:
+When rendering recursively, avoid coding patterns that result in infinite recursion:
 
 * Don't recursively render a data structure that contains a cycle. For example, don't render a tree node whose children includes itself.
 * Don't create a chain of layouts that contain a cycle. For example, don't create a layout whose layout is itself.
@@ -455,7 +455,7 @@ To tolerate errors that may occur during prerendering, error handling logic must
 
 Components can be nested recursively. This is useful for representing recursive data structures. For example, a `TreeNode` component can render more `TreeNode` components for each of the node's children.
 
-When rendering recursively, avoid coding patterns that result infinite recursion:
+When rendering recursively, avoid coding patterns that result in infinite recursion:
 
 * Don't recursively render a data structure that contains a cycle. For example, don't render a tree node whose children includes itself.
 * Don't create a chain of layouts that contain a cycle. For example, don't create a layout whose layout is itself.
@@ -663,7 +663,7 @@ For more information, see the following articles:
 
 Components can be nested recursively. This is useful for representing recursive data structures. For example, a `TreeNode` component can render more `TreeNode` components for each of the node's children.
 
-When rendering recursively, avoid coding patterns that result infinite recursion:
+When rendering recursively, avoid coding patterns that result in infinite recursion:
 
 * Don't recursively render a data structure that contains a cycle. For example, don't render a tree node whose children includes itself.
 * Don't create a chain of layouts that contain a cycle. For example, don't create a layout whose layout is itself.
@@ -939,7 +939,7 @@ To tolerate errors that may occur during prerendering, error handling logic must
 
 Components can be nested recursively. This is useful for representing recursive data structures. For example, a `TreeNode` component can render more `TreeNode` components for each of the node's children.
 
-When rendering recursively, avoid coding patterns that result infinite recursion:
+When rendering recursively, avoid coding patterns that result in infinite recursion:
 
 * Don't recursively render a data structure that contains a cycle. For example, don't render a tree node whose children includes itself.
 * Don't create a chain of layouts that contain a cycle. For example, don't create a layout whose layout is itself.
@@ -1147,7 +1147,7 @@ For more information, see the following articles:
 
 Components can be nested recursively. This is useful for representing recursive data structures. For example, a `TreeNode` component can render more `TreeNode` components for each of the node's children.
 
-When rendering recursively, avoid coding patterns that result infinite recursion:
+When rendering recursively, avoid coding patterns that result in infinite recursion:
 
 * Don't recursively render a data structure that contains a cycle. For example, don't render a tree node whose children includes itself.
 * Don't create a chain of layouts that contain a cycle. For example, don't create a layout whose layout is itself.
@@ -1423,7 +1423,7 @@ To tolerate errors that may occur during prerendering, error handling logic must
 
 Components can be nested recursively. This is useful for representing recursive data structures. For example, a `TreeNode` component can render more `TreeNode` components for each of the node's children.
 
-When rendering recursively, avoid coding patterns that result infinite recursion:
+When rendering recursively, avoid coding patterns that result in infinite recursion:
 
 * Don't recursively render a data structure that contains a cycle. For example, don't render a tree node whose children includes itself.
 * Don't create a chain of layouts that contain a cycle. For example, don't create a layout whose layout is itself.
