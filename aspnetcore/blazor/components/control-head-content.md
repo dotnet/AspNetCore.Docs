@@ -48,7 +48,7 @@ Specify the page's title with the `PageTitle` component. Specify `<head>` elemen
 
 The `HeadOutlet` component renders content provided by `HeadContent` components.
 
-In an app created from the Blazor WebAssembly project template, the `HeadOutlet` component is added to the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.RootComponents> collection of the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder> in `Program.Main`:
+In an app created from the Blazor WebAssembly project template, the `HeadOutlet` component is added to the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.RootComponents> collection of the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder> in `Program.cs`:
 
 ```csharp
 builder.RootComponents.Add<HeadOutlet>("head::after");

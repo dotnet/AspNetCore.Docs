@@ -81,7 +81,7 @@ Obtain the app's environment in a component by injecting <xref:Microsoft.AspNetC
 
 During startup, the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder> exposes the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> through the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.HostEnvironment> property, which enables environment-specific logic in host builder code.
 
-In `Program.Main` of `Program.cs`:
+In `Program.cs`:
 
 ```csharp
 if (builder.HostEnvironment.Environment == "Custom")
@@ -97,7 +97,7 @@ The following convenience extension methods provided through <xref:Microsoft.Asp
 * <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostEnvironmentExtensions.IsStaging%2A>
 * <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostEnvironmentExtensions.IsEnvironment%2A>
 
-In `Program.Main` of `Program.cs`:
+In `Program.cs`:
 
 ```csharp
 if (builder.HostEnvironment.IsStaging())
@@ -190,7 +190,7 @@ Obtain the app's environment in a component by injecting <xref:Microsoft.AspNetC
 
 During startup, the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder> exposes the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> through the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.HostEnvironment> property, which enables environment-specific logic in host builder code.
 
-In `Program.Main` of `Program.cs`:
+In `Program.cs`:
 
 ```csharp
 if (builder.HostEnvironment.Environment == "Custom")
@@ -206,7 +206,7 @@ The following convenience extension methods provided through <xref:Microsoft.Asp
 * <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostEnvironmentExtensions.IsStaging%2A>
 * <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostEnvironmentExtensions.IsEnvironment%2A>
 
-In `Program.Main` of `Program.cs`:
+In `Program.cs`:
 
 ```csharp
 if (builder.HostEnvironment.IsStaging())
@@ -273,7 +273,7 @@ Obtain the app's environment in a component by injecting <xref:Microsoft.AspNetC
 
 During startup, the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder> exposes the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> through the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.HostEnvironment> property, which enables environment-specific logic in host builder code.
 
-In `Program.Main` of `Program.cs`:
+In `Program.cs`:
 
 ```csharp
 if (builder.HostEnvironment.Environment == "Custom")
@@ -289,7 +289,7 @@ The following convenience extension methods provided through <xref:Microsoft.Asp
 * <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostEnvironmentExtensions.IsStaging%2A>
 * <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostEnvironmentExtensions.IsEnvironment%2A>
 
-In `Program.Main` of `Program.cs`:
+In `Program.cs`:
 
 ```csharp
 if (builder.HostEnvironment.IsStaging())

@@ -732,7 +732,7 @@ For more information, see <xref:blazor/components/index#namespaces>.
 
 ## Preserve prerendered state
 
-Without preserving prerendered state, any state that used during prerendering is lost and must be recreated when the app is fully loaded. If any state is setup asynchronously, the UI may flicker as the the prerendered UI is replaced with temporary placeholders and then fully rendered again.
+Without preserving prerendered state, any state that used during prerendering is lost and must be recreated when the app is fully loaded. If any state is setup asynchronously, the UI may flicker as the prerendered UI is replaced with temporary placeholders and then fully rendered again.
 
 To solve these problems, Blazor supports persisting state in a prerendered page using the [Preserve Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/preserve-component-state-tag-helper) (`<preserve-component-state />`). Add the `<preserve-component-state />` tag inside the closing `</body>` tag of `_Layout.cshtml`.
 
@@ -866,7 +866,7 @@ To set up prerendering for a hosted Blazor WebAssembly app:
 
 1. **Delete** the `wwwroot/index.html` file from the Blazor WebAssembly **`Client`** project.
 
-1. In the **`Client`** project, **delete** the following line in `Program.Main` (`Program.cs`):
+1. In the **`Client`** project, **delete** the following line in `Program.cs`:
 
    ```diff
    - builder.RootComponents.Add<App>("#app");
@@ -1052,7 +1052,7 @@ Additional work might be required depending on the static resources that compone
 
 ## Render components in a page or view with a CSS selector
 
-After [configuring the solution](#solution-configuration), including the [additional configuration](#configuration-for-embedding-razor-components-into-pages-and-views), add root components to the **`Client`** project of a hosted Blazor WebAssembly solution in `Program.Main`. In the following example, the `Counter` component is declared as a root component with a CSS selector that selects the element with the `id` that matches `counter-component`. In the following example, the **`Client`** project's namespace is `BlazorHosted.Client`.
+After [configuring the solution](#solution-configuration), including the [additional configuration](#configuration-for-embedding-razor-components-into-pages-and-views), add root components to the **`Client`** project of a hosted Blazor WebAssembly solution in `Program.cs`. In the following example, the `Counter` component is declared as a root component with a CSS selector that selects the element with the `id` that matches `counter-component`. In the following example, the **`Client`** project's namespace is `BlazorHosted.Client`.
 
 In `Program.cs` of the **`Client`** project, add the namespace for the project's Razor components to the top of the file:
 
@@ -1060,7 +1060,7 @@ In `Program.cs` of the **`Client`** project, add the namespace for the project's
 + using BlazorHosted.Client.Pages;
 ```
 
-After the `builder` is established in `Program.Main`, add the `Counter` component as a root component:
+After the `builder` is established in `Program.cs`, add the `Counter` component as a root component:
 
 ```diff
 + builder.RootComponents.Add<Counter>("#counter-component");

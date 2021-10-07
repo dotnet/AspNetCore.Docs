@@ -164,16 +164,16 @@ By default, the **`Server`** app API populates `User.Identity.Name` with the val
 
 To configure the app to receive the value from the `name` claim type:
 
-* Add a namespace for <xref:Microsoft.AspNetCore.Authentication.JwtBearer?displayProperty=fullName> to `Startup.cs`:
+* Add a namespace for <xref:Microsoft.AspNetCore.Authentication.JwtBearer?displayProperty=fullName> to `Program.cs`:
 
   ```csharp
   using Microsoft.AspNetCore.Authentication.JwtBearer;
   ```
 
-* Configure the <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.NameClaimType?displayProperty=nameWithType> of the <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions> in `Startup.ConfigureServices`:
+* Configure the <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.NameClaimType?displayProperty=nameWithType> of the <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions> in `Program.cs`:
 
   ```csharp
-  services.Configure<JwtBearerOptions>(
+  builder.Services.Configure<JwtBearerOptions>(
       JwtBearerDefaults.AuthenticationScheme, options =>
       {
           options.TokenValidationParameters.NameClaimType = "name";

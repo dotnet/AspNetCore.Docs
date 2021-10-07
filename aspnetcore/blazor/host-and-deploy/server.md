@@ -66,10 +66,10 @@ We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-
 
 To configure an app for the Azure SignalR Service, the app must support *sticky sessions*, where clients are [redirected back to the same server when prerendering](xref:blazor/hosting-models#connection-to-the-server). The `ServerStickyMode` option or configuration value is set to `Required`. Typically, an app creates the configuration using **_ONE_** of the following approaches:
 
-* `Startup.ConfigureServices`:
+* `Program.cs`:
 
   ```csharp
-  services.AddSignalR().AddAzureSignalR(options =>
+  builder.Services.AddSignalR().AddAzureSignalR(options =>
   {
       options.ServerStickyMode = 
       Microsoft.Azure.SignalR.ServerStickyMode.Required;

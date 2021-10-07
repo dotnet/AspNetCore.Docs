@@ -412,10 +412,10 @@ In the preceding example, the namespace of the app is `BlazorSample` with shared
 
 In Blazor Server apps, JavaScript (JS) interop may fail due to networking errors and should be treated as unreliable. By default, Blazor Server apps use a one minute timeout for JS interop calls. If an app can tolerate a more aggressive timeout, set the timeout using one of the following approaches.
 
-Set a global timeout in the `Startup.ConfigureServices` method of `Startup.cs` with <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.JSInteropDefaultCallTimeout?displayProperty=nameWithType>:
+Set a global timeout in the `Program.cs` with <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.JSInteropDefaultCallTimeout?displayProperty=nameWithType>:
 
 ```csharp
-services.AddServerSideBlazor(
+builder.Services.AddServerSideBlazor(
     options => options.JSInteropDefaultCallTimeout = {TIMEOUT});
 ```
 
