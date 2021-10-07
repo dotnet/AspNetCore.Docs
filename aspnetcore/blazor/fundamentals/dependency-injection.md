@@ -95,7 +95,7 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 ```
 
-The `builder` variable represents an <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> with an <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>, which is a list of [service descriptor](xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor) objects. Services are added by providing service descriptors to the service collection. The following example demonstrates the concept with the `IDataAccess` interface and its concrete implementation `DataAccess`:
+The `builder` variable represents a `Microsoft.AspNetCore.Builder.WebApplicationBuilder` with an <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>, which is a list of [service descriptor](xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor) objects. Services are added by providing service descriptors to the service collection. The following example demonstrates the concept with the `IDataAccess` interface and its concrete implementation `DataAccess`:
 
 ```csharp
 builder.Services.AddSingleton<IDataAccess, DataAccess>();
