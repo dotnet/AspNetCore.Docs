@@ -7,6 +7,7 @@
 
     public class SpeakerController : Controller
     {
+        #region snippet_SpeakerDetailAction
         private List<Speaker> Speakers =
             new List<Speaker>
             {
@@ -18,6 +19,7 @@
         [Route("Speaker/{id:int}")]
         public IActionResult Detail(int id) =>
             View(Speakers.FirstOrDefault(a => a.SpeakerId == id));
+        #endregion
 
         [Route("/Speaker/Evaluations", 
                Name = "speakerevals")]
