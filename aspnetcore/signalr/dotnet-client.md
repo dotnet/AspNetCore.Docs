@@ -244,6 +244,9 @@ The preceding code in `connection.On` runs when server-side code calls it using 
 
 [!code-csharp[Call client method](dotnet-client/sample/signalrchat/hubs/chathub.cs?name=snippet_SendMessage)]
 
+> [!NOTE]
+> While the hub side of the connection supports strongly-typed messaging, the client must register using the generic method <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.On%2A?displayProperty=nameWithType> with the method name. For an example, see <xref:signalr/background-services#call-a-signalr-hub-from-a-background-service>.
+
 ## Error handling and logging
 
 Handle errors with a try-catch statement. Inspect the `Exception` object to determine the proper action to take after an error occurs.

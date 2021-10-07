@@ -76,7 +76,7 @@ Blazor Server (`Pages/_Layout.cshtml`):
 <base href="~/CoolApp/">
 ```
 
-Blazor Server apps additionally set the server-side base path by calling <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> in the app's request pipeline of `Startup.Configure`:
+Blazor Server apps additionally set the server-side base path by calling <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> in the app's request pipeline of `Program.cs`:
 
 ```csharp
 app.UsePathBase("/CoolApp");
@@ -104,16 +104,16 @@ The Blazor WebAssembly app responds locally at `http://localhost:port/CoolApp`.
 
 ### Blazor Server `MapFallbackToPage` configuration
 
-Pass the following path to <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A> in `Startup.Configure`:
+Pass the following path to <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A> in `Program.cs`:
 
 ```csharp
-endpoints.MapFallbackToPage("/{RELATIVE PATH}/{**path:nonfile}");
+app.MapFallbackToPage("/{RELATIVE PATH}/{**path:nonfile}");
 ```
 
 The placeholder `{RELATIVE PATH}` is the non-root path on the server. For example, `CoolApp` is the placeholder segment if the non-root URL to the app is `https://{HOST}:{PORT}/CoolApp/`):
 
 ```csharp
-endpoints.MapFallbackToPage("/CoolApp/{**path:nonfile}");
+app.MapFallbackToPage("/CoolApp/{**path:nonfile}");
 ```
 
 ### Host multiple Blazor WebAssembly apps

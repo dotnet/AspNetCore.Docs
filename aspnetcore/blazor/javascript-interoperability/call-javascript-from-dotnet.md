@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to invoke JavaScript functions from .NET methods in Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
-ms.custom: mvc, devx-track-js
+ms.custom: mvc
 ms.date: 05/12/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, JS, Promise]
 uid: blazor/js-interop/call-javascript-from-dotnet
@@ -412,10 +412,10 @@ In the preceding example, the namespace of the app is `BlazorSample` with shared
 
 In Blazor Server apps, JavaScript (JS) interop may fail due to networking errors and should be treated as unreliable. By default, Blazor Server apps use a one minute timeout for JS interop calls. If an app can tolerate a more aggressive timeout, set the timeout using one of the following approaches.
 
-Set a global timeout in the `Startup.ConfigureServices` method of `Startup.cs` with <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.JSInteropDefaultCallTimeout?displayProperty=nameWithType>:
+Set a global timeout in the `Program.cs` with <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.JSInteropDefaultCallTimeout?displayProperty=nameWithType>:
 
 ```csharp
-services.AddServerSideBlazor(
+builder.Services.AddServerSideBlazor(
     options => options.JSInteropDefaultCallTimeout = {TIMEOUT});
 ```
 
