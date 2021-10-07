@@ -25,7 +25,7 @@ In the preceding configuration, the end of the `Audience` value does **not** inc
 
 Example:
 
-in `Program.cs` of the **`Client`** app:
+In `Program.cs` of the **`Client`** app:
 
 ```csharp
 options.ProviderOptions.DefaultAccessTokenScopes

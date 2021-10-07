@@ -73,7 +73,7 @@ One approach to prevent lingering cookies and site data from interfering with te
     * Mozilla Firefox: `C:\Program Files\Mozilla Firefox\firefox.exe`
   * In the **Arguments** field, provide the command-line option that the browser uses to open in incognito or private mode. Some browsers require the URL of the app.
     * Microsoft Edge: Use `-inprivate`.
-    * Google Chrome: Use `--in incognito --new-window {URL}`, where the placeholder `{URL}` is the URL to open (for example, `https://localhost:5001`).
+    * Google Chrome: Use `--incognito --new-window {URL}`, where the placeholder `{URL}` is the URL to open (for example, `https://localhost:5001`).
     * Mozilla Firefox: Use `-private -url {URL}`, where the placeholder `{URL}` is the URL to open (for example, `https://localhost:5001`).
   * Provide a name in the **Friendly name** field. For example, `Firefox Auth Testing`.
   * Select the **OK** button.
