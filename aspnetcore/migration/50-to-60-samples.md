@@ -28,3 +28,5 @@ public class Startup
 The following example adds static file middleware to an ASP.NET Core 6 app:
 
 [!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_mid)]
+
+For more information, see <xref:fundamentals/middleware/index?view=aspnetcore-6.0>
