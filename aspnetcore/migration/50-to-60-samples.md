@@ -110,7 +110,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 [!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_conf)]
 
-For more information, see [File configuration providers](xref:fundamentals/configuration/index?view=aspnetcore-6.0#file-configuration-provider).
+For detailed information, see [File configuration providers](xref:fundamentals/configuration/index?view=aspnetcore-6.0#file-configuration-provider) in <xref:fundamentals/configuration/index?view=aspnetcore-6.0>.
 
 ## Add logging providers
 
@@ -219,7 +219,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 ### ASP.NET Core 6
 
-[!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_hb)]
+[!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_wr)]
 
 <a name="cdi"></a>
 
@@ -228,6 +228,8 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 The following .NET 5 and .NET 6 samples use [Autofac](https://autofac.readthedocs.io/latest/integration/aspnetcore.html)
 
 ### ASP.NET Core 5
+
+**Program class**
 
 ```csharp
 public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -238,6 +240,8 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
             webBuilder.UseStartup<Startup>();
         });
 ```
+
+**Startup**
 
 ```csharp
 public class Startup
@@ -271,7 +275,8 @@ var app = builder.Build();
 ```csharp
 public class Startup
 {
-    // This method gets called by the runtime. Use this method to add services to the container.
+    // This method gets called by the runtime. Use this method to add services
+    // to the container.
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddSingleton<IService, Service>();
@@ -285,7 +290,8 @@ public class Startup
                           ILogger<Startup> logger)
     {
         lifetime.ApplicationStarted.Register(() =>
-            logger.LogInformation($"The application {env.ApplicationName} started in we injected {service}"));
+            logger.LogInformation($"The application {env.ApplicationName} started" +
+                                  $" in the injected {service}"));
     }
 }
 ```
@@ -429,7 +435,7 @@ The project file can contain one of the following:
         <InternalsVisibleTo Include="MyTestProject" />
     </ItemGroup>
     ```
-Or `[assembly: InternalsVisibleTo("MyTestProject")]
+Or `[assembly: InternalsVisibleTo("MyTestProject")]`
 
 An alternative solution is to make the `Program` class public. `Program` can be made public with  [Top-level statements](/dotnet/csharp/fundamentals/program-structure/top-level-statements) by defining a `public partial Program` class in the project or in *Program.cs*:
 
