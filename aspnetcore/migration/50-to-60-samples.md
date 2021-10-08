@@ -7,13 +7,16 @@ ms.date: 10/15/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: migration/50-to-60-samples
 ---
+
 # Code samples migrated from ASP.NET Core 5.0 to 6.0
+
+<!-- TODO: Add this article to TOC after merging PR, not added now to avoid TOC merge conflicts -->
 
 This article provides samples of code migrated from ASP.NET Core 5.0  to ASP.NET Core 6.0.
 
 ## Middleware
 
-The following example adds static file middleware to an ASP.NET Core 5 app:
+The following code adds static file middleware to an ASP.NET Core 5 app:
 
 ```csharp
 public class Startup
@@ -25,7 +28,7 @@ public class Startup
 }
 ```
 
-The following example adds static file middleware to an ASP.NET Core 6 app:
+The following code adds static file middleware to an ASP.NET Core 6 app:
 
 [!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_mid)]
 
@@ -33,7 +36,7 @@ For more information, see <xref:fundamentals/middleware/index?view=aspnetcore-6.
 
 ## Routing
 
-The following example adds an endpoint to an ASP.NET Core 5 app:
+The following code adds an endpoint to an ASP.NET Core 5 app:
 
 ```csharp
 public class Startup
@@ -49,15 +52,17 @@ public class Startup
 }
 ```
 
-In .NET 6, routes can be added directly to the `WebApplication` without an explicit call to `UseEndpoints`. The following example adds an endpoint to an ASP.NET Core 6 app:
+In .NET 6, routes can be added directly to the `WebApplication` without an explicit call to `UseEndpoints`. The following code adds an endpoint to an ASP.NET Core 6 app:
 
 [!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_rt)]
 
-Routes added directly to the `WebApplication` execute at the ***end*** of the pipeline.
+**Note:** Routes added directly to the `WebApplication` execute at the ***end*** of the pipeline.
 
 <!-- TODO, uncomment when article is updated for .NET 6
 For more information, see <xref:fundamentals/routing?view=aspnetcore-6.0>
 -->
+
+<a name="ccr"></a>
 
 ## Change the content root, app name, and environment
 
@@ -71,7 +76,8 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
         .ConfigureWebHostDefaults(webBuilder =>
         {
             webBuilder.UseStartup<Startup>()
-                      .UseSetting(WebHostDefaults.ApplicationKey, typeof(Program).Assembly.FullName);
+                      .UseSetting(WebHostDefaults.ApplicationKey,
+                                  typeof(Program).Assembly.FullName);
         });
 ```
 
@@ -153,9 +159,13 @@ public class Startup
 
 For more information, see  <xref:fundamentals/dependency-injection?view=aspnetcore-6.0#>.
 
-## Customize IHostBuilder
+<a name="cii"></a>
 
-### ASP.NET Core 5
+## Customize IHostBuilder or IWebHostBuilder
+
+### Customize IHostBuilder
+
+#### ASP.NET Core 5
 
 ```csharp
 public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -167,11 +177,11 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
         });
 ```
 
-### ASP.NET Core 6
+#### ASP.NET Core 6
 
 [!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_hb)]
 
-## Customize IWebHostBuilder
+### Customize IWebHostBuilder
 
 ### ASP.NET Core 5
 
@@ -210,6 +220,8 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 ### ASP.NET Core 6
 
 [!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_hb)]
+
+<a name="cdi"></a>
 
 ## Custom dependency injection (DI) container
 
@@ -286,6 +298,8 @@ In ASP.NET Core 6:
 * Additional services need to be manually resolved from the `IServiceProvider` via `WebApplication.Services`.
 
 [!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_af)]
+
+<a name="twa"></a>
 
 ## Test with WebApplicationFactory or TestServer
 
