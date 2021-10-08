@@ -119,7 +119,7 @@ Specifying a layout in `_Imports.razor` overrides a layout specified as the rout
 
 ### Apply a default layout to an app
 
-Specify the default app layout in the in the `App` component's <xref:Microsoft.AspNetCore.Components.Routing.Router> component. The following example from an app based on a [Blazor project template](xref:blazor/project-structure) sets the default layout to the `MainLayout` component.
+Specify the default app layout in the `App` component's <xref:Microsoft.AspNetCore.Components.Routing.Router> component. The following example from an app based on a [Blazor project template](xref:blazor/project-structure) sets the default layout to the `MainLayout` component.
 
 `App.razor`:
 
@@ -332,7 +332,7 @@ Specifying a layout in `_Imports.razor` overrides a layout specified as the rout
 
 ### Apply a default layout to an app
 
-Specify the default app layout in the in the `App` component's <xref:Microsoft.AspNetCore.Components.Routing.Router> component. The following example from an app based on a [Blazor project template](xref:blazor/project-structure) sets the default layout to the `MainLayout` component.
+Specify the default app layout in the `App` component's <xref:Microsoft.AspNetCore.Components.Routing.Router> component. The following example from an app based on a [Blazor project template](xref:blazor/project-structure) sets the default layout to the `MainLayout` component.
 
 `App.razor`:
 
@@ -544,7 +544,7 @@ The [`@layout`](xref:mvc/views/razor#layout) Razor directive only applies a layo
 
 ### Apply a default layout to an app
 
-Specify the default app layout in the in the `App` component's <xref:Microsoft.AspNetCore.Components.Routing.Router> component. The following example from an app based on a [Blazor project template](xref:blazor/project-structure) sets the default layout to the `MainLayout` component.
+Specify the default app layout in the `App` component's <xref:Microsoft.AspNetCore.Components.Routing.Router> component. The following example from an app based on a [Blazor project template](xref:blazor/project-structure) sets the default layout to the `MainLayout` component.
 
 `App.razor`:
 
