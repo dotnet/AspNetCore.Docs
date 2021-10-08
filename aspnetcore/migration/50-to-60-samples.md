@@ -1,7 +1,7 @@
 ---
 title: Code samples migrated from ASP.NET Core 5.0 to 6.0
 author: rick-anderson
-description: Learn how to migrate an ASP.NET Core 5.0 project to ASP.NET Core 6.0.
+description:  Shows how to migrate ASP.NET Core 5.0 samples to ASP.NET Core 6.0.
 ms.author: riande
 ms.date: 10/15/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
@@ -104,7 +104,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 [!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_conf)]
 
-For more information, see [File configuration providers](xref:fundamentals/configuration/?view=aspnetcore-6.0#file-configuration-provider).
+For more information, see [File configuration providers](xref:fundamentals/configuration/index?view=aspnetcore-6.0#file-configuration-provider).
 
 ## Add logging providers
 
@@ -266,13 +266,13 @@ public class Startup
     }
 
     // Anything added to the service collection can be injected into Configure.
-    public void Configure(IApplicationBuilder app, 
+    public void Configure(IApplicationBuilder app,
                           IWebHostEnvironment env,
                           IHostApplicationLifetime lifetime,
                           IService service,
                           ILogger<Startup> logger)
     {
-        lifetime.ApplicationStarted.Register(() => 
+        lifetime.ApplicationStarted.Register(() =>
             logger.LogInformation($"The application {env.ApplicationName} started in we injected {service}"));
     }
 }
