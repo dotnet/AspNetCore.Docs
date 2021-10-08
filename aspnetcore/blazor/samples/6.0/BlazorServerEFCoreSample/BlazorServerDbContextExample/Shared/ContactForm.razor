@@ -101,14 +101,14 @@
     /// The <see cref="Contact"/> to upsert.
     /// </summary>
     [Parameter]
-    public Contact Contact { get; set; }
+    public Contact? Contact { get; set; }
 
     /// <summary>
     /// The database version of <see cref="Contact"/> if a concurrency issue
     /// exists.
     /// </summary>
     [Parameter]
-    public Contact DbContact { get; set; }
+    public Contact? DbContact { get; set; }
 
     /// <summary>
     /// Prevent multiple asynchronous operations at the same time.

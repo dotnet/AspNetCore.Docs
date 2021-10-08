@@ -3,6 +3,8 @@
 @inject NavigationManager NavigationManager
 @implements IAsyncDisposable
 
+<PageTitle>Index</PageTitle>
+
 <div class="form-group">
     <label>
         User:
@@ -27,10 +29,10 @@
 </ul>
 
 @code {
-    private HubConnection hubConnection;
+    private HubConnection? hubConnection;
     private List<string> messages = new List<string>();
-    private string userInput;
-    private string messageInput;
+    private string? userInput;
+    private string? messageInput;
 
     protected override async Task OnInitializedAsync()
     {
@@ -48,11 +50,16 @@
         await hubConnection.StartAsync();
     }
 
-    async Task Send() =>
-        await hubConnection.SendAsync("SendMessage", userInput, messageInput);
+    private async Task Send()
+	{
+	    if (hubConnection is not null)
+		{
+            await hubConnection.SendAsync("SendMessage", userInput, messageInput);
+		}
+	}
 
     public bool IsConnected =>
-        hubConnection.State == HubConnectionState.Connected;
+        hubConnection?.State == HubConnectionState.Connected;
 
     public async ValueTask DisposeAsync()
     {

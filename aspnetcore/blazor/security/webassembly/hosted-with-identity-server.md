@@ -74,16 +74,16 @@ The following sections describe additions to the project when authentication sup
 
 The `Startup` class has the following additions.
 
-* In `Startup.ConfigureServices`:
+* In `Program.cs`:
 
   * ASP.NET Core Identity:
 
     ```csharp
-    services.AddDbContext<ApplicationDbContext>(options =>
+    builder.Services.AddDbContext<ApplicationDbContext>(options =>
         options.UseSqlite(
             Configuration.GetConnectionString("DefaultConnection")));
 
-    services.AddDefaultIdentity<ApplicationUser>(options => 
+    builder.Services.AddDefaultIdentity<ApplicationUser>(options => 
             options.SignIn.RequireConfirmedAccount = true)
         .AddEntityFrameworkStores<ApplicationDbContext>();
     ```
@@ -91,18 +91,18 @@ The `Startup` class has the following additions.
   * IdentityServer with an additional <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> helper method that sets up default ASP.NET Core conventions on top of IdentityServer:
 
     ```csharp
-    services.AddIdentityServer()
+    builder.Services.AddIdentityServer()
         .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
     ```
 
   * Authentication with an additional <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> helper method that configures the app to validate JWT tokens produced by IdentityServer:
 
     ```csharp
-    services.AddAuthentication()
+    builder.Services.AddAuthentication()
         .AddIdentityServerJwt();
     ```
 
-* In `Startup.Configure`:
+* In `Program.cs`:
 
   * The IdentityServer middleware exposes the OpenID Connect (OIDC) endpoints:
 
@@ -185,7 +185,7 @@ For the placeholder `{VERSION}`, the latest stable version of the package that m
 
 ### `HttpClient` configuration
 
-In `Program.Main` (`Program.cs`), a named <xref:System.Net.Http.HttpClient> (`{APP ASSEMBLY}.ServerAPI`) is configured to supply <xref:System.Net.Http.HttpClient> instances that include access tokens when making requests to the server API:
+In `Program.cs`, a named <xref:System.Net.Http.HttpClient> (`{APP ASSEMBLY}.ServerAPI`) is configured to supply <xref:System.Net.Http.HttpClient> instances that include access tokens when making requests to the server API:
 
 ```csharp
 builder.Services.AddHttpClient("{APP ASSEMBLY}.ServerAPI", 
@@ -306,7 +306,7 @@ public class CustomUserFactory
     {
     }
 
-    public async override ValueTask<ClaimsPrincipal> CreateUserAsync(
+    public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
         RemoteUserAccount account,
         RemoteAuthenticationUserOptions options)
     {
@@ -348,7 +348,7 @@ public class CustomUserFactory
 }
 ```
 
-In the **`Client`** app, register the factory in `Program.Main` (`Program.cs`):
+In the **`Client`** app, register the factory in `Program.cs`:
 
 ```csharp
 builder.Services.AddApiAuthorization()
@@ -435,14 +435,14 @@ public class ProfileService : IProfileService
 }
 ```
 
-In the **`Server`** app, register the Profile Service in `Startup.ConfigureServices`:
+In the **`Server`** app, register the Profile Service in `Program.cs`:
 
 ```csharp
 using Duende.IdentityServer.Services;
 
 ...
 
-services.AddTransient<IProfileService, ProfileService>();
+builder.Services.AddTransient<IProfileService, ProfileService>();
 
 JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove("role");
 ```
@@ -756,7 +756,7 @@ For the placeholder `{VERSION}`, the latest stable version of the package that m
 
 ### `HttpClient` configuration
 
-In `Program.Main` (`Program.cs`), a named <xref:System.Net.Http.HttpClient> (`{APP ASSEMBLY}.ServerAPI`) is configured to supply <xref:System.Net.Http.HttpClient> instances that include access tokens when making requests to the server API:
+In `Program.cs`, a named <xref:System.Net.Http.HttpClient> (`{APP ASSEMBLY}.ServerAPI`) is configured to supply <xref:System.Net.Http.HttpClient> instances that include access tokens when making requests to the server API:
 
 ```csharp
 builder.Services.AddHttpClient("{APP ASSEMBLY}.ServerAPI", 
@@ -877,7 +877,7 @@ public class CustomUserFactory
     {
     }
 
-    public async override ValueTask<ClaimsPrincipal> CreateUserAsync(
+    public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
         RemoteUserAccount account,
         RemoteAuthenticationUserOptions options)
     {
@@ -919,7 +919,7 @@ public class CustomUserFactory
 }
 ```
 
-In the **`Client`** app, register the factory in `Program.Main` (`Program.cs`):
+In the **`Client`** app, register the factory in `Program.cs`:
 
 ```csharp
 builder.Services.AddApiAuthorization()
@@ -1497,7 +1497,7 @@ For the placeholder `{VERSION}`, the latest stable version of the package that m
 
 ### `HttpClient` configuration
 
-In `Program.Main` (`Program.cs`), a named <xref:System.Net.Http.HttpClient> (`{APP ASSEMBLY}.ServerAPI`) is configured to supply <xref:System.Net.Http.HttpClient> instances that include access tokens when making requests to the server API:
+In `Program.cs`, a named <xref:System.Net.Http.HttpClient> (`{APP ASSEMBLY}.ServerAPI`) is configured to supply <xref:System.Net.Http.HttpClient> instances that include access tokens when making requests to the server API:
 
 ```csharp
 builder.Services.AddHttpClient("{APP ASSEMBLY}.ServerAPI", 
@@ -1618,7 +1618,7 @@ public class CustomUserFactory
     {
     }
 
-    public async override ValueTask<ClaimsPrincipal> CreateUserAsync(
+    public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
         RemoteUserAccount account,
         RemoteAuthenticationUserOptions options)
     {
@@ -1660,7 +1660,7 @@ public class CustomUserFactory
 }
 ```
 
-In the **`Client`** app, register the factory in `Program.Main` (`Program.cs`):
+In the **`Client`** app, register the factory in `Program.cs`:
 
 ```csharp
 builder.Services.AddApiAuthorization()

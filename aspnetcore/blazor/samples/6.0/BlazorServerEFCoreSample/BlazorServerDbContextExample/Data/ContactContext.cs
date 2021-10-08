@@ -35,7 +35,7 @@ namespace BlazorServerDbContextExample.Data
         /// <summary>
         /// List of <see cref="Contact"/>.
         /// </summary>
-        public DbSet<Contact> Contacts { get; set; }
+        public DbSet<Contact>? Contacts { get; set; }
 
         /// <summary>
         /// Define the model.

@@ -2875,7 +2875,7 @@ If possible, it's better for clients to utilize the [Expect: 100-continue](https
 
 ## Additional resources
 
-* When using UNIX sockets on Linux, the socket is not automatically deleted on app shut down. For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/14134).
+* When using UNIX sockets on Linux in .NET 5 and lower, the socket is not automatically deleted on app shut down. For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/14134).
 * <xref:test/troubleshoot>
 * <xref:security/enforcing-ssl>
 * <xref:host-and-deploy/proxy-load-balancer>

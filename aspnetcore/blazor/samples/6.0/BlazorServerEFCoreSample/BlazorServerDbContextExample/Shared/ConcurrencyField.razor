@@ -4,31 +4,32 @@
 {
     @if (IsDelta)
     {
-        <span class="alert alert-warning"><strong>@Property(DbModel)</strong></span>
+        <span class="alert alert-warning"><strong>@property</strong></span>
     }
     else
     {
         <span class="alert alert-success">(same)</span>
     }
 }
+
 @code {
     /// <summary>
     /// The <see cref="TModel"/> being edited.
     /// </summary>
     [Parameter]
-    public TModel Model { get; set; }
+    public TModel? Model { get; set; }
 
     /// <summary>
     /// The <see cref="TModel"/> in the database.
     /// </summary>
     [Parameter]
-    public TModel DbModel { get; set; }
+    public TModel? DbModel { get; set; }
 
     /// <summary>
     /// Returns the property to inspect.
     /// </summary>
     [Parameter]
-    public Func<TModel, IComparable> Property { get; set; }
+    public Func<TModel, IComparable>? Property { get; set; }
 
     /// <summary>
     /// Only show if concurrency conflict exists.
@@ -38,5 +39,20 @@
     /// <summary>
     /// Highlight properties with different values.
     /// </summary>
-    private bool IsDelta => !Property(Model).Equals(Property(DbModel));
+    private bool IsDelta;
+
+    private IComparable? property;
+
+    protected override void OnInitialized()
+    {
+        if (Property is not null && DbModel is not null)
+        {
+            property = Property(DbModel);
+
+            if (Model is not null)
+            {
+                IsDelta = !Property(Model).Equals(Property(DbModel));
+            }
+        }
+    }
 }

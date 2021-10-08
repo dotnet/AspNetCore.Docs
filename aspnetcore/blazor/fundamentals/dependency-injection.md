@@ -37,92 +37,68 @@ A custom service provider doesn't automatically provide the default services lis
 
 ::: zone pivot="webassembly"
 
-Configure services for the app's service collection in the `Program.Main` method of `Program.cs`. In the following example, the `MyDependency` implementation is registered for `IMyDependency`:
+Configure services for the app's service collection in `Program.cs`. In the following example, the `MyDependency` implementation is registered for `IMyDependency`:
 
 ```csharp
-public class Program
-{
-    public static async Task Main(string[] args)
-    {
-        var builder = WebAssemblyHostBuilder.CreateDefault(args);
-        ...
-        builder.Services.AddSingleton<IMyDependency, MyDependency>();
-        ...
+var builder = WebAssemblyHostBuilder.CreateDefault(args);
+...
+builder.Services.AddSingleton<IMyDependency, MyDependency>();
+...
 
-        await builder.Build().RunAsync();
-    }
-}
+await builder.Build().RunAsync();
 ```
 
 After the host is built, services are available from the root DI scope before any components are rendered. This can be useful for running initialization logic before rendering content:
 
 ```csharp
-public class Program
-{
-    public static async Task Main(string[] args)
-    {
-        var builder = WebAssemblyHostBuilder.CreateDefault(args);
-        ...
-        builder.Services.AddSingleton<WeatherService>();
-        ...
+var builder = WebAssemblyHostBuilder.CreateDefault(args);
+...
+builder.Services.AddSingleton<WeatherService>();
+...
 
-        var host = builder.Build();
+var host = builder.Build();
 
-        var weatherService = host.Services.GetRequiredService<WeatherService>();
-        await weatherService.InitializeWeatherAsync();
+var weatherService = host.Services.GetRequiredService<WeatherService>();
+await weatherService.InitializeWeatherAsync();
 
-        await host.RunAsync();
-    }
-}
+await host.RunAsync();
 ```
 
 The host provides a central configuration instance for the app. Building on the preceding example, the weather service's URL is passed from a default configuration source (for example, `appsettings.json`) to `InitializeWeatherAsync`:
 
 ```csharp
-public class Program
-{
-    public static async Task Main(string[] args)
-    {
-        var builder = WebAssemblyHostBuilder.CreateDefault(args);
-        ...
-        builder.Services.AddSingleton<WeatherService>();
-        ...
+var builder = WebAssemblyHostBuilder.CreateDefault(args);
+...
+builder.Services.AddSingleton<WeatherService>();
+...
 
-        var host = builder.Build();
+var host = builder.Build();
 
-        var weatherService = host.Services.GetRequiredService<WeatherService>();
-        await weatherService.InitializeWeatherAsync(
-            host.Configuration["WeatherServiceUrl"]);
+var weatherService = host.Services.GetRequiredService<WeatherService>();
+await weatherService.InitializeWeatherAsync(
+    host.Configuration["WeatherServiceUrl"]);
 
-        await host.RunAsync();
-    }
-}
+await host.RunAsync();
 ```
 
 ::: zone-end
 
 ::: zone pivot="server"
 
-After creating a new app, examine the `Startup.ConfigureServices` method in `Startup.cs`:
+After creating a new app, examine part of the `Program.cs` file:
 
 ```csharp
-using Microsoft.Extensions.DependencyInjection;
+var builder = WebApplication.CreateBuilder(args);
 
-...
-
-public void ConfigureServices(IServiceCollection services)
-{
-    ...
-}
+builder.Services.AddRazorPages();
+builder.Services.AddServerSideBlazor();
+builder.Services.AddSingleton<WeatherForecastService>();
 ```
 
-The <xref:Microsoft.Extensions.Hosting.IHostBuilder.ConfigureServices%2A> method is passed an <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>, which is a list of [service descriptor](xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor) objects. Services are added in the `ConfigureServices` method by providing service descriptors to the service collection. The following example demonstrates the concept with the `IDataAccess` interface and its concrete implementation `DataAccess`:
+The `builder` variable represents a `Microsoft.AspNetCore.Builder.WebApplicationBuilder` with an <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>, which is a list of [service descriptor](xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor) objects. Services are added by providing service descriptors to the service collection. The following example demonstrates the concept with the `IDataAccess` interface and its concrete implementation `DataAccess`:
 
 ```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddSingleton<IDataAccess, DataAccess>();
-}
+builder.Services.AddSingleton<IDataAccess, DataAccess>();
 ```
 
 ::: zone-end
@@ -242,7 +218,7 @@ For more information, see <xref:blazor/blazor-server-ef-core>.
 
 ## Detect transient disposables
 
-The following examples show how to detect disposable transient services in an app that should use <xref:Microsoft.AspNetCore.Components.OwningComponentBase>. For more information, see the [Utility base component classes to manage a DI scope](#utility-base-component-classes-to-manage-a-di-scope) section.
+The following example shows how to detect disposable transient services in an app that should use <xref:Microsoft.AspNetCore.Components.OwningComponentBase>. For more information, see the [Utility base component classes to manage a DI scope](#utility-base-component-classes-to-manage-a-di-scope) section.
 
 ::: zone pivot="webassembly"
 
@@ -250,35 +226,55 @@ The following examples show how to detect disposable transient services in an ap
 
 [!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/dependency-injection/DetectIncorrectUsagesOfTransientDisposables.cs)]
 
-The `TransientDisposable` in the following example is detected (`Program.cs`):
+`TransientDisposable.cs`:
 
 ```csharp
-public class Program
-{
-    public static async Task Main(string[] args)
-    {
-        var builder = WebAssemblyHostBuilder.CreateDefault(args);
-        builder.DetectIncorrectUsageOfTransients();
-        builder.RootComponents.Add<App>("#app");
-
-        builder.Services.AddTransient<TransientDisposable>();
-        builder.Services.AddScoped(sp =>
-            new HttpClient
-            {
-                BaseAddress = new(builder.HostEnvironment.BaseAddress)
-            });
-
-        var host = builder.Build();
-        host.EnableTransientDisposableDetection();
-        await host.RunAsync();
-    }
-}
-
 public class TransientDisposable : IDisposable
 {
     public void Dispose() => throw new NotImplementedException();
 }
 ```
+
+The `TransientDisposable` in the following example is detected.
+
+`Program.cs`:
+
+```csharp
+using Microsoft.AspNetCore.Components.Web;
+using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using BlazorWebAssemblyTransientDisposable;
+
+var builder = WebAssemblyHostBuilder.CreateDefault(args);
+builder.DetectIncorrectUsageOfTransients();
+builder.RootComponents.Add<App>("#app");
+builder.RootComponents.Add<HeadOutlet>("head::after");
+
+builder.Services.AddTransient<TransientDisposable>();
+builder.Services.AddScoped(sp => 
+    new HttpClient
+    { 
+        BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
+    });
+
+var host = builder.Build();
+host.EnableTransientDisposableDetection();
+await host.RunAsync();
+```
+
+The app can register transient disposables without throwing an exception. However, attempting to resolve a transient disposable results in an <xref:System.InvalidOperationException>, as the following example shows.
+
+`Pages/TransientExample.razor`:
+
+```razor
+@page "/transient-example"
+@inject TransientDisposable TransientDisposable
+
+<h1>Transient Disposable Detection</h1>
+```
+
+Navigate to the `TransientExample` component at `/transient-example` and an <xref:System.InvalidOperationException> is thrown when the framework attempts to construct an instance of `TransientDisposable`:
+
+> System.InvalidOperationException: Trying to resolve transient disposable service TransientDisposable in the wrong scope. Use an 'OwningComponentBase\<T>' component base class for the service 'T' you are trying to resolve.
 
 ::: zone-end
 
@@ -288,37 +284,9 @@ public class TransientDisposable : IDisposable
 
 [!code-csharp[](~/blazor/samples/6.0/BlazorSample_Server/dependency-injection/DetectIncorrectUsagesOfTransientDisposables.cs)]
 
-Add the namespace for <xref:Microsoft.Extensions.DependencyInjection?displayProperty=fullName> to `Program.cs`:
+`TransitiveTransientDisposableDependency.cs`:
 
 ```csharp
-using Microsoft.Extensions.DependencyInjection;
-```
-
-In `Program.CreateHostBuilder` of `Program.cs`:
-
-```csharp
-public static IHostBuilder CreateHostBuilder(string[] args) =>
-    Host.CreateDefaultBuilder(args)
-        .DetectIncorrectUsageOfTransients()
-        .ConfigureWebHostDefaults(webBuilder =>
-        {
-            webBuilder.UseStartup<Startup>();
-        });
-```
-
-The `TransientDependency` in the following example is detected (`Startup.cs`):
-
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddRazorPages();
-    services.AddServerSideBlazor();
-    services.AddSingleton<WeatherForecastService>();
-    services.AddTransient<TransientDependency>();
-    services.AddTransient<ITransitiveTransientDisposableDependency, 
-        TransitiveTransientDisposableDependency>();
-}
-
 public class TransitiveTransientDisposableDependency 
     : ITransitiveTransientDisposableDependency, IDisposable
 {
@@ -343,22 +311,33 @@ public class TransientDependency
 }
 ```
 
-::: zone-end
+The `TransientDependency` in the following example is detected.
+
+In `Program.cs`:
+
+```csharp
+builder.DetectIncorrectUsageOfTransients();
+builder.Services.AddTransient<TransientDependency>();
+builder.Services.AddTransient<ITransitiveTransientDisposableDependency, 
+    TransitiveTransientDisposableDependency>();
+```
 
 The app can register transient disposables without throwing an exception. However, attempting to resolve a transient disposable results in an <xref:System.InvalidOperationException>, as the following example shows.
 
-`Pages/TransientDisposable.razor`:
+`Pages/TransientExample.razor`:
 
 ```razor
-@page "/transient-disposable"
-@inject TransientDisposable TransientDisposable
+@page "/transient-example"
+@inject TransientDependency TransientDependency
 
 <h1>Transient Disposable Detection</h1>
 ```
 
-Navigate to the `TransientDisposable` component at `/transient-disposable` and an <xref:System.InvalidOperationException> is thrown when the framework attempts to construct an instance of `TransientDisposable`:
+Navigate to the `TransientExample` component at `/transient-example` and an <xref:System.InvalidOperationException> is thrown when the framework attempts to construct an instance of `TransientDependency`:
 
-> System.InvalidOperationException: Trying to resolve transient disposable service TransientDisposable in the wrong scope. Use an 'OwningComponentBase\<T>' component base class for the service 'T' you are trying to resolve.
+> System.InvalidOperationException: Trying to resolve transient disposable service TransientDependency in the wrong scope. Use an 'OwningComponentBase\<T>' component base class for the service 'T' you are trying to resolve.
+
+::: zone-end
 
 ## Additional resources
 
@@ -391,7 +370,7 @@ A custom service provider doesn't automatically provide the default services lis
 
 ::: zone pivot="webassembly"
 
-Configure services for the app's service collection in the `Program.Main` method of `Program.cs`. In the following example, the `MyDependency` implementation is registered for `IMyDependency`:
+Configure services for the app's service collection in `Program.cs`. In the following example, the `MyDependency` implementation is registered for `IMyDependency`:
 
 ```csharp
 public class Program
@@ -596,7 +575,7 @@ For more information, see <xref:blazor/blazor-server-ef-core>.
 
 ## Detect transient disposables
 
-The following examples show how to detect disposable transient services in an app that should use <xref:Microsoft.AspNetCore.Components.OwningComponentBase>. For more information, see the [Utility base component classes to manage a DI scope](#utility-base-component-classes-to-manage-a-di-scope) section.
+The following example shows how to detect disposable transient services in an app that should use <xref:Microsoft.AspNetCore.Components.OwningComponentBase>. For more information, see the [Utility base component classes to manage a DI scope](#utility-base-component-classes-to-manage-a-di-scope) section.
 
 ::: zone pivot="webassembly"
 
@@ -633,6 +612,21 @@ public class TransientDisposable : IDisposable
     public void Dispose() => throw new NotImplementedException();
 }
 ```
+
+The app can register transient disposables without throwing an exception. However, attempting to resolve a transient disposable results in an <xref:System.InvalidOperationException>, as the following example shows.
+
+`Pages/TransientExample.razor`:
+
+```razor
+@page "/transient-example"
+@inject TransientDisposable TransientDisposable
+
+<h1>Transient Disposable Detection</h1>
+```
+
+Navigate to the `TransientExample` component at `/transient-example` and an <xref:System.InvalidOperationException> is thrown when the framework attempts to construct an instance of `TransientDisposable`:
+
+> System.InvalidOperationException: Trying to resolve transient disposable service TransientDisposable in the wrong scope. Use an 'OwningComponentBase\<T>' component base class for the service 'T' you are trying to resolve.
 
 ::: zone-end
 
@@ -697,22 +691,22 @@ public class TransientDependency
 }
 ```
 
-::: zone-end
-
 The app can register transient disposables without throwing an exception. However, attempting to resolve a transient disposable results in an <xref:System.InvalidOperationException>, as the following example shows.
 
-`Pages/TransientDisposable.razor`:
+`Pages/TransientExample.razor`:
 
 ```razor
-@page "/transient-disposable"
-@inject TransientDisposable TransientDisposable
+@page "/transient-example"
+@inject TransientDependency TransientDependency
 
 <h1>Transient Disposable Detection</h1>
 ```
 
-Navigate to the `TransientDisposable` component at `/transient-disposable` and an <xref:System.InvalidOperationException> is thrown when the framework attempts to construct an instance of `TransientDisposable`:
+Navigate to the `TransientExample` component at `/transient-example` and an <xref:System.InvalidOperationException> is thrown when the framework attempts to construct an instance of `TransientDependency`:
 
-> System.InvalidOperationException: Trying to resolve transient disposable service TransientDisposable in the wrong scope. Use an 'OwningComponentBase\<T>' component base class for the service 'T' you are trying to resolve.
+> System.InvalidOperationException: Trying to resolve transient disposable service TransientDependency in the wrong scope. Use an 'OwningComponentBase\<T>' component base class for the service 'T' you are trying to resolve.
+
+::: zone-end
 
 ## Additional resources
 
@@ -745,7 +739,7 @@ A custom service provider doesn't automatically provide the default services lis
 
 ::: zone pivot="webassembly"
 
-Configure services for the app's service collection in the `Program.Main` method of `Program.cs`. In the following example, the `MyDependency` implementation is registered for `IMyDependency`:
+Configure services for the app's service collection in `Program.cs`. In the following example, the `MyDependency` implementation is registered for `IMyDependency`:
 
 ```csharp
 public class Program
@@ -950,7 +944,7 @@ For more information, see <xref:blazor/blazor-server-ef-core>.
 
 ## Detect transient disposables
 
-The following examples show how to detect disposable transient services in an app that should use <xref:Microsoft.AspNetCore.Components.OwningComponentBase>. For more information, see the [Utility base component classes to manage a DI scope](#utility-base-component-classes-to-manage-a-di-scope) section.
+The following example shows how to detect disposable transient services in an app that should use <xref:Microsoft.AspNetCore.Components.OwningComponentBase>. For more information, see the [Utility base component classes to manage a DI scope](#utility-base-component-classes-to-manage-a-di-scope) section.
 
 ::: zone pivot="webassembly"
 
@@ -987,6 +981,21 @@ public class TransientDisposable : IDisposable
     public void Dispose() => throw new NotImplementedException();
 }
 ```
+
+The app can register transient disposables without throwing an exception. However, attempting to resolve a transient disposable results in an <xref:System.InvalidOperationException>, as the following example shows.
+
+`Pages/TransientExample.razor`:
+
+```razor
+@page "/transient-example"
+@inject TransientDisposable TransientDisposable
+
+<h1>Transient Disposable Detection</h1>
+```
+
+Navigate to the `TransientExample` component at `/transient-example` and an <xref:System.InvalidOperationException> is thrown when the framework attempts to construct an instance of `TransientDisposable`:
+
+> System.InvalidOperationException: Trying to resolve transient disposable service TransientDisposable in the wrong scope. Use an 'OwningComponentBase\<T>' component base class for the service 'T' you are trying to resolve.
 
 ::: zone-end
 
@@ -1051,22 +1060,22 @@ public class TransientDependency
 }
 ```
 
-::: zone-end
-
 The app can register transient disposables without throwing an exception. However, attempting to resolve a transient disposable results in an <xref:System.InvalidOperationException>, as the following example shows.
 
-`Pages/TransientDisposable.razor`:
+`Pages/TransientExample.razor`:
 
 ```razor
-@page "/transient-disposable"
-@inject TransientDisposable TransientDisposable
+@page "/transient-example"
+@inject TransientDependency TransientDependency
 
 <h1>Transient Disposable Detection</h1>
 ```
 
-Navigate to the `TransientDisposable` component at `/transient-disposable` and an <xref:System.InvalidOperationException> is thrown when the framework attempts to construct an instance of `TransientDisposable`:
+Navigate to the `TransientExample` component at `/transient-example` and an <xref:System.InvalidOperationException> is thrown when the framework attempts to construct an instance of `TransientDependency`:
 
-> System.InvalidOperationException: Trying to resolve transient disposable service TransientDisposable in the wrong scope. Use an 'OwningComponentBase\<T>' component base class for the service 'T' you are trying to resolve.
+> System.InvalidOperationException: Trying to resolve transient disposable service TransientDependency in the wrong scope. Use an 'OwningComponentBase\<T>' component base class for the service 'T' you are trying to resolve.
+
+::: zone-end
 
 ## Additional resources
 

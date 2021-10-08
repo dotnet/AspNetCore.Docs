@@ -14,6 +14,8 @@ landingContent:
     linkLists:
       - linkListType: whats-new
         links:
+          - text: September 2021
+            url: 21-09.md
           - text: August 2021
             url: 21-08.md
           - text: July 2021
@@ -24,8 +26,6 @@ landingContent:
             url: 2021-05.md
           - text: April 2021
             url: 2021-04-01.md
-          - text: March 2021
-            url: 2021-03.md
 
   - title: "Get involved - contribute to ASP.NET Core docs"
     linkLists:

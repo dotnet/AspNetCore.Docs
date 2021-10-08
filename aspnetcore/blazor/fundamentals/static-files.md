@@ -17,7 +17,7 @@ uid: blazor/fundamentals/static-files
 
 To create additional file mappings with a <xref:Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider> or configure other <xref:Microsoft.AspNetCore.Builder.StaticFileOptions>, use **one** of the following approaches. In the following examples, the `{EXTENSION}` placeholder is the file extension, and the `{CONTENT TYPE}` placeholder is the content type.
 
-* Configure options through [dependency injection (DI)](xref:blazor/fundamentals/dependency-injection) in `Startup.ConfigureServices` (`Startup.cs`) using <xref:Microsoft.AspNetCore.Builder.StaticFileOptions>:
+* Configure options through [dependency injection (DI)](xref:blazor/fundamentals/dependency-injection) in `Program.cs` using <xref:Microsoft.AspNetCore.Builder.StaticFileOptions>:
 
   ```csharp
   using Microsoft.AspNetCore.StaticFiles;
@@ -27,7 +27,7 @@ To create additional file mappings with a <xref:Microsoft.AspNetCore.StaticFiles
   var provider = new FileExtensionContentTypeProvider();
   provider.Mappings["{EXTENSION}"] = "{CONTENT TYPE}";
 
-  services.Configure<StaticFileOptions>(options =>
+  builder.Services.Configure<StaticFileOptions>(options =>
   {
       options.ContentTypeProvider = provider;
   });
@@ -35,7 +35,7 @@ To create additional file mappings with a <xref:Microsoft.AspNetCore.StaticFiles
 
   Because this approach configures the same file provider used to serve `blazor.server.js`, make sure that your custom configuration doesn't interfere with serving `blazor.server.js`. For example, don't remove the mapping for JavaScript files by configuring the provider with `provider.Mappings.Remove(".js")`.
 
-* Use two calls to <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> in `Startup.Configure` (`Startup.cs`):
+* Use two calls to <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> in `Program.cs`:
   * Configure the custom file provider in the first call with <xref:Microsoft.AspNetCore.Builder.StaticFileOptions>.
   * The second middleware serves `blazor.server.js`, which uses the default static files configuration provided by the Blazor framework.
 

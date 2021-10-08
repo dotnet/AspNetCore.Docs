@@ -231,6 +231,8 @@
       uid: fundamentals/logging/index
     - name: HTTP Logging
       uid: fundamentals/http-logging/index
+    - name: W3C Logger
+      uid: fundamentals/w3c-logger/index
     - name: Routing
       uid: fundamentals/routing
     - name: Handle errors
@@ -452,6 +454,8 @@
             uid: blazor/host-and-deploy/configure-linker
           - name: Configure the Trimmer
             uid: blazor/host-and-deploy/configure-trimmer
+          - name: WebAssembly deployment layout
+            uid: blazor/host-and-deploy/webassembly-deployment-layout
       - name: Blazor Server and EF Core
         uid: blazor/blazor-server-ef-core
       - name: Advanced scenarios
@@ -977,6 +981,9 @@
         - name: Options
           displayName: deploy, publish, server, Kestrel
           uid: fundamentals/servers/kestrel/options
+        - name: Diagnostics
+          displayName: diagnostics
+          uid: fundamentals/servers/kestrel/diagnostics
         - name: HTTP/2
           displayName: deploy, publish, server, Kestrel
           uid: fundamentals/servers/kestrel/http2
