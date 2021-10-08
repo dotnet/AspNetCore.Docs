@@ -11,10 +11,10 @@ namespace Microsoft.Extensions.DependencyInjection
 
     public static class WebHostBuilderTransientDisposableExtensions
     {
-        public static IHostBuilder DetectIncorrectUsageOfTransients(
-            this IHostBuilder builder)
+        public static WebApplicationBuilder DetectIncorrectUsageOfTransients(
+            this WebApplicationBuilder builder)
         {
-            builder
+            builder.Host
                 .UseServiceProviderFactory(
                     new DetectIncorrectUsageOfTransientDisposablesServiceFactory())
                 .ConfigureServices(
@@ -81,6 +81,13 @@ namespace BlazorServerTransientDisposable
                 (sp) =>
                 {
                     var originalFactory = original.ImplementationFactory;
+
+                    if (originalFactory is null)
+                    {
+                        throw new InvalidOperationException(
+                            "originalFactory is null.");
+                    }
+
                     var originalResult = originalFactory(sp);
 
                     var throwOnTransientDisposable = 
@@ -114,10 +121,16 @@ namespace BlazorServerTransientDisposable
                     {
                         throw new InvalidOperationException("Trying to resolve " +
                             "transient disposable service " +
-                            $"{original.ImplementationType.Name} in the wrong " +
+                            $"{original.ImplementationType?.Name} in the wrong " +
                             "scope. Use an 'OwningComponentBase<T>' component " +
                             "base class for the service 'T' you are trying to " +
                             "resolve.");
+                    }
+
+                    if (original.ImplementationType is null)
+                    {
+                        throw new InvalidOperationException(
+                            "ImplementationType is null.");
                     }
 
                     return ActivatorUtilities.CreateInstance(sp, 
