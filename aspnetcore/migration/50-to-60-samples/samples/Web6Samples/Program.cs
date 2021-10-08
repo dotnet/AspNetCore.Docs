@@ -1,4 +1,4 @@
-#define LOGG // MID RT ROOT CONF LOGG
+#define WHB // MID RT ROOT CONF LOGG SVC HB WHB
 #if MID
 #region snippet_mid
 var builder = WebApplication.CreateBuilder(args);
@@ -54,6 +54,48 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Configure JSON logging to the console.
 builder.Logging.AddJsonConsole();
+
+var app = builder.Build();
+#endregion
+
+app.MapGet("/", () => "Hello World!");
+
+app.Run();
+#elif SVC
+#region snippet_svc
+var builder = WebApplication.CreateBuilder(args);
+
+// Add the memory cache services.
+builder.Services.AddMemoryCache();
+
+// Add a custom scoped service.
+builder.Services.AddScoped<ITodoRepository, TodoRepository>();
+var app = builder.Build();
+#endregion
+
+app.MapGet("/", () => "Hello World!");
+
+app.Run();
+#elif HB
+#region snippet_hb
+var builder = WebApplication.CreateBuilder(args);
+
+// Wait 30 seconds for graceful shutdown.
+builder.Host.ConfigureHostOptions(o => o.ShutdownTimeout = TimeSpan.FromSeconds(30));
+
+var app = builder.Build();
+#endregion
+
+app.MapGet("/", () => "Hello World!");
+
+app.Run();
+#elif WHB
+#region snippet_whb
+var builder = WebApplication.CreateBuilder(args);
+
+// Change the HTTP server implemenation to be HTTP.sys based.
+// Windows only.
+builder.WebHost.UseHttpSys();
 
 var app = builder.Build();
 #endregion

@@ -128,3 +128,156 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 [!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_log)]
 
 For more information, see  <xref:fundamentals/logging/index?view=aspnetcore-6.0#>.
+
+## Add services
+
+### ASP.NET Core 5
+
+```csharp
+public class Startup
+{
+    public void ConfigureServices(IServiceCollection services)
+    {
+        // Add the memory cache services
+        services.AddMemoryCache();
+
+        // Add a custom scoped service
+        services.AddScoped<ITodoRepository, TodoRepository>();
+    }
+}
+```
+
+### ASP.NET Core 6
+
+[!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_svc)]
+
+For more information, see  <xref:fundamentals/dependency-injection?view=aspnetcore-6.0#>.
+
+## Customize IHostBuilder
+
+### ASP.NET Core 5
+
+```csharp
+public static IHostBuilder CreateHostBuilder(string[] args) =>
+    Host.CreateDefaultBuilder(args)
+        .ConfigureHostOptions(o => o.ShutdownTimeout = TimeSpan.FromSeconds(30));
+        .ConfigureWebHostDefaults(webBuilder =>
+        {
+            webBuilder.UseStartup<Startup>();
+        });
+```
+
+### ASP.NET Core 6
+
+[!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_hb)]
+
+## Customize IWebHostBuilder
+
+### ASP.NET Core 5
+
+```csharp
+public static IHostBuilder CreateHostBuilder(string[] args) =>
+    Host.CreateDefaultBuilder(args)
+        .ConfigureWebHostDefaults(webBuilder =>
+        {
+            // Change the HTTP server implementation to be HTTP.sys based.
+            webBuilder.UseHttpSys()
+                      .UseStartup<Startup>();
+        });
+```
+
+### ASP.NET Core 6
+
+[!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_hb)]
+
+## Change the web root
+
+By default, the web root is relative to the content root in the `wwwroot` folder. Web root is where the static files middleware looks for static files. Web root can be changed by using the <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseWebRoot%2A> method on the `WebHost` property:
+
+### ASP.NET Core 5
+
+```csharp
+public static IHostBuilder CreateHostBuilder(string[] args) =>
+    Host.CreateDefaultBuilder(args)
+        .ConfigureWebHostDefaults(webBuilder =>
+        {
+            // Look for static files in webroot.
+            webBuilder.UseWebRoot("webroot")
+                      .UseStartup<Startup>();
+        });
+```
+
+### ASP.NET Core 6
+
+[!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_hb)]
+
+## Custom dependency injection (DI) container
+
+The following .NET 5 and .NET 6 samples use [Autofac](https://autofac.readthedocs.io/latest/integration/aspnetcore.html)
+
+### ASP.NET Core 5
+
+```csharp
+public static IHostBuilder CreateHostBuilder(string[] args) =>
+    Host.CreateDefaultBuilder(args)
+        .UseServiceProviderFactory(new AutofacServiceProviderFactory())
+        .ConfigureWebHostDefaults(webBuilder =>
+        {
+            webBuilder.UseStartup<Startup>();
+        });
+```
+
+```csharp
+public class Startup
+{
+    public void ConfigureContainer(ContainerBuilder containerBuilder)
+    {
+    }
+}
+```
+
+### ASP.NET Core 6
+
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+
+// Register services directly with Autofac here. Don't
+// call builder.Populate(), that happens in AutofacServiceProviderFactory.
+builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterModule(new MyApplicationModule()));
+
+var app = builder.Build();
+```
+
+## Access additional services
+
+`Startup.Configure`  can inject any service added via the <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>.
+
+### ASP.NET Core 5
+
+```csharp
+public class Startup
+{
+    // This method gets called by the runtime. Use this method to add services to the container.
+    public void ConfigureServices(IServiceCollection services)
+    {
+        services.AddSingleton<IService, Service>();
+    }
+
+    // Anything added to the service collection can be injected into Configure.
+    public void Configure(IApplicationBuilder app, 
+                          IWebHostEnvironment env,
+                          IHostApplicationLifetime lifetime,
+                          IService service,
+                          ILogger<Startup> logger)
+    {
+        lifetime.ApplicationStarted.Register(() => 
+            logger.LogInformation($"The application {env.ApplicationName} started in we injected {service}"));
+    }
+}
+```
+
+### ASP.NET Core 6
+
+[!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_hb)]
