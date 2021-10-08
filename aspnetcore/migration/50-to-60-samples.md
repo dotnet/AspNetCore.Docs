@@ -280,4 +280,182 @@ public class Startup
 
 ### ASP.NET Core 6
 
-[!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_hb)]
+In ASP.NET Core 6:
+
+* There are a few common services available as top level properties on `WebApplication`.
+* Additional services need to be manually resolved from the `IServiceProvider` via `WebApplication.Services`.
+
+[!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_af)]
+
+## Test with WebApplicationFactory or TestServer
+
+### ASP.NET Core 5
+
+In the following samples, the test project uses `TestServer` and `WebApplicationFactory`. These ship as separate packages that require explicit reference:
+
+#### WebApplicationFactory
+
+```xml
+<ItemGroup>
+  <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="{Version}" />
+</ItemGroup>
+```
+
+#### TestServer
+
+```xml
+<ItemGroup>
+  <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="{Version}" />
+</ItemGroup>
+```
+
+#### ASP.NET Core 5 code
+
+```csharp
+public class Startup
+{
+    public void ConfigureServices(IServiceCollection services)
+    {
+        services.AddSingleton<IHelloService, HelloService>();
+    }
+
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IHelloService helloService)
+    {
+        if (env.IsDevelopment())
+        {
+            app.UseDeveloperExceptionPage();
+        }
+
+        app.UseRouting();
+
+        app.UseEndpoints(endpoints =>
+        {
+            endpoints.MapGet("/", async context =>
+            {
+                await context.Response.WriteAsync(helloService.HelloMessage);
+            });
+        });
+    }
+}
+```
+
+#### With TestServer
+
+```csharp
+[Fact]
+public async Task HelloWorld()
+{
+    using var host = Host.CreateDefaultBuilder()
+        .ConfigureWebHostDefaults(builder =>
+        {
+            // Use the test server and point to the application's startup
+            builder.UseTestServer()
+                    .UseStartup<WebApplication1.Startup>();
+        })
+        .ConfigureServices(services =>
+        {
+            // Replace the service
+            services.AddSingleton<IHelloService, MockHelloService>();
+        })
+        .Build();
+
+    await host.StartAsync();
+
+    var client = host.GetTestClient();
+
+    var response = await client.GetStringAsync("/");
+
+    Assert.Equal("Test Hello", response);
+}
+
+class MockHelloService : IHelloService
+{
+    public string HelloMessage => "Test Hello";
+}
+```
+
+#### With WebApplicationFactory
+
+```csharp
+[Fact]
+public async Task HelloWorld()
+{
+    var application = new WebApplicationFactory<Program>()
+        .WithWebHostBuilder(builder =>
+        {
+            builder.ConfigureServices(services =>
+            {
+                services.AddSingleton<IHelloService, MockHelloService>();
+            });
+        });
+
+    var client = application.CreateClient();
+
+    var response = await client.GetStringAsync("/");
+
+    Assert.Equal("Test Hello", response);
+}
+
+class MockHelloService : IHelloService
+{
+    public string HelloMessage => "Test Hello";
+}
+```
+
+### ASP.NET Core 6
+
+[!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_test)]
+
+#### Project file (.csproj)
+
+The project file can contain one of the following:
+
+    ```xml
+    <ItemGroup>
+        <InternalsVisibleTo Include="MyTestProject" />
+    </ItemGroup>
+    ```
+Or `[assembly: InternalsVisibleTo("MyTestProject")]
+
+An alternative solution is to make the `Program` class public. `Program` can be made public with  [Top-level statements](/dotnet/csharp/fundamentals/program-structure/top-level-statements) by defining a `public partial Program` class in the project or in *Program.cs*:
+
+##### Program.cs
+
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+
+// ... Configure services, routes, etc.
+
+app.Run();
+
+public partial class Program { }
+```
+
+```csharp
+[Fact]
+public async Task HelloWorld()
+{
+    var application = new WebApplicationFactory<Program>()
+        .WithWebHostBuilder(builder =>
+        {
+            builder.ConfigureServices(services =>
+            {
+                services.AddSingleton<IHelloService, MockHelloService>();
+            });
+        });
+
+    var client = application.CreateClient();
+
+    var response = await client.GetStringAsync("/");
+
+    Assert.Equal("Test Hello", response);
+}
+
+class MockHelloService : IHelloService
+{
+    public string HelloMessage => "Test Hello";
+}
+
+```
+
+The .NET 5 version and .NET 6 version with the `WebApplicationFactory` by design.

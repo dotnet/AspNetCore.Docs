@@ -1,4 +1,4 @@
-#define WHB // MID RT ROOT CONF LOGG SVC HB WHB
+#define TEST // MID RT ROOT CONF LOGG SVC HB WHB WR AF TEST 
 #if MID
 #region snippet_mid
 var builder = WebApplication.CreateBuilder(args);
@@ -103,4 +103,57 @@ var app = builder.Build();
 app.MapGet("/", () => "Hello World!");
 
 app.Run();
+#elif WR
+#region snippet_wr
+var builder = WebApplication.CreateBuilder(args);
+
+// Look for static files in webroot
+builder.WebHost.UseWebRoot("webroot");
+
+var app = builder.Build();
+#endregion
+
+app.MapGet("/", () => "Hello World!");
+
+app.Run();
+#elif AF
+#region snippet_af
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddSingleton<IService, Service>();
+
+var app = builder.Build();
+
+IService service = app.Services.GetRequiredService<IService>();
+ILogger logger = app.Logger;
+IHostApplicationLifetime lifetime = app.Lifetime;
+IWebHostEnvironment env = app.Environment;
+
+lifetime.ApplicationStarted.Register(() =>
+    logger.LogInformation(
+        $"The application {env.ApplicationName} started" +
+        $" with injected {service}"));
+#endregion
+
+app.MapGet("/", () => "Hello World!");
+
+app.Run();
+#elif TEST
+#region snippet_test
+using Microsoft.AspNetCore.Http;
+
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddSingleton<IHelloService, HelloService>();
+
+var app = builder.Build();
+
+var helloService = app.Services.GetRequiredService<IHelloService>();
+
+app.MapGet("/", async context =>
+{
+    await context.Response.WriteAsync(helloService.HelloMessage!);
+});
+
+app.Run();
+#endregion
 #endif
