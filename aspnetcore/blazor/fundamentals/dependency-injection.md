@@ -179,12 +179,8 @@ Prerequisites for constructor injection:
 
 In ASP.NET Core apps, scoped services are typically scoped to the current request. After the request completes, any scoped or transient services are disposed by the DI system. In Blazor Server apps, the request scope lasts for the duration of the client connection, which can result in transient and scoped services living much longer than expected. In Blazor WebAssembly apps, services registered with a scoped lifetime are treated as singletons, so they live longer than scoped services in typical ASP.NET Core apps.
 
-<!--
-
 > [!NOTE]
 > To detect disposable transient services in an app, see the [Detect transient disposables](#detect-transient-disposables) section.
-
--->
 
 An approach that limits a service lifetime in Blazor apps is use of the <xref:Microsoft.AspNetCore.Components.OwningComponentBase> type. <xref:Microsoft.AspNetCore.Components.OwningComponentBase> is an abstract type derived from <xref:Microsoft.AspNetCore.Components.ComponentBase> that creates a DI scope corresponding to the lifetime of the component. Using this scope, it's possible to use DI services with a scoped lifetime and have them live as long as the component. When the component is destroyed, services from the component's scoped service provider are disposed as well. This can be useful for services that:
 
@@ -219,8 +215,6 @@ Two versions of the <xref:Microsoft.AspNetCore.Components.OwningComponentBase> t
 ## Use of an Entity Framework Core (EF Core) DbContext from DI
 
 For more information, see <xref:blazor/blazor-server-ef-core>.
-
-<!--
 
 ## Detect transient disposables
 
@@ -267,6 +261,21 @@ host.EnableTransientDisposableDetection();
 await host.RunAsync();
 ```
 
+The app can register transient disposables without throwing an exception. However, attempting to resolve a transient disposable results in an <xref:System.InvalidOperationException>, as the following example shows.
+
+`Pages/TransientExample.razor`:
+
+```razor
+@page "/transient-example"
+@inject TransientDisposable TransientDisposable
+
+<h1>Transient Disposable Detection</h1>
+```
+
+Navigate to the `TransientExample` component at `/transient-example` and an <xref:System.InvalidOperationException> is thrown when the framework attempts to construct an instance of `TransientDisposable`:
+
+> System.InvalidOperationException: Trying to resolve transient disposable service TransientDisposable in the wrong scope. Use an 'OwningComponentBase\<T>' component base class for the service 'T' you are trying to resolve.
+
 ::: zone-end
 
 ::: zone pivot="server"
@@ -307,20 +316,11 @@ The `TransientDependency` in the following example is detected.
 In `Program.cs`:
 
 ```csharp
-...
-
+builder.DetectIncorrectUsageOfTransients();
 builder.Services.AddTransient<TransientDependency>();
 builder.Services.AddTransient<ITransitiveTransientDisposableDependency, 
     TransitiveTransientDisposableDependency>();
-
-...
-
-app.DetectIncorrectUsageOfTransients();
-
-...
 ```
-
-::: zone-end
 
 The app can register transient disposables without throwing an exception. However, attempting to resolve a transient disposable results in an <xref:System.InvalidOperationException>, as the following example shows.
 
@@ -328,16 +328,16 @@ The app can register transient disposables without throwing an exception. Howeve
 
 ```razor
 @page "/transient-example"
-@inject TransientDisposable TransientDisposable
+@inject TransientDependency TransientDependency
 
 <h1>Transient Disposable Detection</h1>
 ```
 
-Navigate to the `TransientExample` component at `/transient-example` and an <xref:System.InvalidOperationException> is thrown when the framework attempts to construct an instance of `TransientDisposable`:
+Navigate to the `TransientExample` component at `/transient-example` and an <xref:System.InvalidOperationException> is thrown when the framework attempts to construct an instance of `TransientDependency`:
 
-> System.InvalidOperationException: Trying to resolve transient disposable service TransientDisposable in the wrong scope. Use an 'OwningComponentBase\<T>' component base class for the service 'T' you are trying to resolve.
+> System.InvalidOperationException: Trying to resolve transient disposable service TransientDependency in the wrong scope. Use an 'OwningComponentBase\<T>' component base class for the service 'T' you are trying to resolve.
 
--->
+::: zone-end
 
 ## Additional resources
 
@@ -613,6 +613,21 @@ public class TransientDisposable : IDisposable
 }
 ```
 
+The app can register transient disposables without throwing an exception. However, attempting to resolve a transient disposable results in an <xref:System.InvalidOperationException>, as the following example shows.
+
+`Pages/TransientExample.razor`:
+
+```razor
+@page "/transient-example"
+@inject TransientDisposable TransientDisposable
+
+<h1>Transient Disposable Detection</h1>
+```
+
+Navigate to the `TransientExample` component at `/transient-example` and an <xref:System.InvalidOperationException> is thrown when the framework attempts to construct an instance of `TransientDisposable`:
+
+> System.InvalidOperationException: Trying to resolve transient disposable service TransientDisposable in the wrong scope. Use an 'OwningComponentBase\<T>' component base class for the service 'T' you are trying to resolve.
+
 ::: zone-end
 
 ::: zone pivot="server"
@@ -676,22 +691,22 @@ public class TransientDependency
 }
 ```
 
-::: zone-end
-
 The app can register transient disposables without throwing an exception. However, attempting to resolve a transient disposable results in an <xref:System.InvalidOperationException>, as the following example shows.
 
 `Pages/TransientExample.razor`:
 
 ```razor
 @page "/transient-example"
-@inject TransientDisposable TransientDisposable
+@inject TransientDependency TransientDependency
 
 <h1>Transient Disposable Detection</h1>
 ```
 
-Navigate to the `TransientExample` component at `/transient-example` and an <xref:System.InvalidOperationException> is thrown when the framework attempts to construct an instance of `TransientDisposable`:
+Navigate to the `TransientExample` component at `/transient-example` and an <xref:System.InvalidOperationException> is thrown when the framework attempts to construct an instance of `TransientDependency`:
 
-> System.InvalidOperationException: Trying to resolve transient disposable service TransientDisposable in the wrong scope. Use an 'OwningComponentBase\<T>' component base class for the service 'T' you are trying to resolve.
+> System.InvalidOperationException: Trying to resolve transient disposable service TransientDependency in the wrong scope. Use an 'OwningComponentBase\<T>' component base class for the service 'T' you are trying to resolve.
+
+::: zone-end
 
 ## Additional resources
 
@@ -967,6 +982,21 @@ public class TransientDisposable : IDisposable
 }
 ```
 
+The app can register transient disposables without throwing an exception. However, attempting to resolve a transient disposable results in an <xref:System.InvalidOperationException>, as the following example shows.
+
+`Pages/TransientExample.razor`:
+
+```razor
+@page "/transient-example"
+@inject TransientDisposable TransientDisposable
+
+<h1>Transient Disposable Detection</h1>
+```
+
+Navigate to the `TransientExample` component at `/transient-example` and an <xref:System.InvalidOperationException> is thrown when the framework attempts to construct an instance of `TransientDisposable`:
+
+> System.InvalidOperationException: Trying to resolve transient disposable service TransientDisposable in the wrong scope. Use an 'OwningComponentBase\<T>' component base class for the service 'T' you are trying to resolve.
+
 ::: zone-end
 
 ::: zone pivot="server"
@@ -1030,22 +1060,22 @@ public class TransientDependency
 }
 ```
 
-::: zone-end
-
 The app can register transient disposables without throwing an exception. However, attempting to resolve a transient disposable results in an <xref:System.InvalidOperationException>, as the following example shows.
 
 `Pages/TransientExample.razor`:
 
 ```razor
 @page "/transient-example"
-@inject TransientDisposable TransientDisposable
+@inject TransientDependency TransientDependency
 
 <h1>Transient Disposable Detection</h1>
 ```
 
-Navigate to the `TransientExample` component at `/transient-example` and an <xref:System.InvalidOperationException> is thrown when the framework attempts to construct an instance of `TransientDisposable`:
+Navigate to the `TransientExample` component at `/transient-example` and an <xref:System.InvalidOperationException> is thrown when the framework attempts to construct an instance of `TransientDependency`:
 
-> System.InvalidOperationException: Trying to resolve transient disposable service TransientDisposable in the wrong scope. Use an 'OwningComponentBase\<T>' component base class for the service 'T' you are trying to resolve.
+> System.InvalidOperationException: Trying to resolve transient disposable service TransientDependency in the wrong scope. Use an 'OwningComponentBase\<T>' component base class for the service 'T' you are trying to resolve.
+
+::: zone-end
 
 ## Additional resources
 
