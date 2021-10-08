@@ -17,8 +17,6 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://tw
 
 ASP.NET Core configures app behavior based on the runtime environment using an environment variable.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/environments/6.0sample) ([how to download](xref:index#how-to-download-a-sample))
-
 ## Environments
 
 To determine the runtime environment, ASP.NET Core reads from the following environment variables:
@@ -298,6 +296,7 @@ Use the [UseStartup(IWebHostBuilder, String)](/dotnet/api/microsoft.aspnetcore.h
 
 ## Additional resources
 
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/environments/6.0sample) ([how to download](xref:index#how-to-download-a-sample))
 * <xref:fundamentals/startup>
 * <xref:fundamentals/configuration/index>
 * <xref:blazor/fundamentals/environments>
@@ -309,8 +308,6 @@ Use the [UseStartup(IWebHostBuilder, String)](/dotnet/api/microsoft.aspnetcore.h
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://twitter.com/serpent5)
 
 ASP.NET Core configures app behavior based on the runtime environment using an environment variable.
-
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/environments/3.1sample) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Environments
 
@@ -597,6 +594,7 @@ Use the [UseStartup(IWebHostBuilder, String)](/dotnet/api/microsoft.aspnetcore.h
 
 ## Additional resources
 
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/environments/3.1sample) ([how to download](xref:index#how-to-download-a-sample))
 * <xref:fundamentals/startup>
 * <xref:fundamentals/configuration/index>
 * <xref:blazor/fundamentals/environments>
