@@ -10,7 +10,9 @@ uid: migration/50-to-60-samples
 
 # Code samples migrated from ASP.NET Core 5.0 to 6.0
 
-<!-- TODO: Add this article to TOC after merging PR, not added now to avoid TOC merge conflicts -->
+<!-- TODO: Add this article to TOC after merging PR, not added now to avoid TOC merge conflicts
+This content from https://gist.github.com/davidfowl/0e0372c3c1d895c3ce195ba983b1e03d#differences-in-the-hosting-model
+ -->
 
 This article provides samples of code migrated from ASP.NET Core 5.0  to ASP.NET Core 6.0.
 
@@ -430,17 +432,17 @@ class MockHelloService : IHelloService
 
 The project file can contain one of the following:
 
-    ```xml
-    <ItemGroup>
-        <InternalsVisibleTo Include="MyTestProject" />
-    </ItemGroup>
-    ```
+```xml
+<ItemGroup>
+    <InternalsVisibleTo Include="MyTestProject" />
+</ItemGroup>
+```
 
 Or
 
-    ```
-    [assembly: InternalsVisibleTo("MyTestProject")]
-    ```
+```
+[assembly: InternalsVisibleTo("MyTestProject")]
+```
 
 An alternative solution is to make the `Program` class public. `Program` can be made public with  [Top-level statements](/dotnet/csharp/fundamentals/program-structure/top-level-statements) by defining a `public partial Program` class in the project or in *Program.cs*:
 
