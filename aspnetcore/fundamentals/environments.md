@@ -173,7 +173,7 @@ Azure App Service automatically restarts the app after an app setting is added, 
 
 Environment values in *launchSettings.json* override values set in the system environment.
 
-To set the `ASPNETCORE_ENVIRONMENT` for the current session when the app is started using [dotnet run](/dotnet/core/tools/dotnet-run), use the following commands at a command prompt or a PowerShell command prompt:
+To set the `ASPNETCORE_ENVIRONMENT` for the current session when the app is started using [dotnet run](/dotnet/core/tools/dotnet-run), use the following commands at a command prompt or in PowerShell:
 
 ```console
 set ASPNETCORE_ENVIRONMENT=Staging
@@ -256,11 +256,11 @@ export ASPNETCORE_ENVIRONMENT=Staging
 
 ### Linux
 
-For Linux distributions, use the `export` command at a command prompt for session-based variable settings and *bash_profile* file for machine-level environment settings.
+For Linux distributions, use the `export` command at a command prompt for session-based variable settings and the *bash_profile* file for machine-level environment settings.
 
 ## Set the environment in code
 
-To set the environment in code, set `WebApplicationOptions.EnvironmentName` when creating `WebApplicationBuilder`, as shown in the following example:
+To set the environment in code, use `WebApplicationOptions.EnvironmentName` when creating `WebApplicationBuilder`, as shown in the following example:
 
 [!code-csharp[](environments/6.0sample/EnvironmentsSample/Program.cs?name=SetInCode&highlight=1-4)]
 
@@ -270,7 +270,7 @@ For more information, see <xref:fundamentals/host/generic-host#environmentname>.
 
 To load configuration by environment, see <xref:fundamentals/configuration/index#json-configuration-provider>.
 
-## Environment-specific services and middleware
+## Configure services and middleware by environment
 
 Use `WebApplicationBuilder.Environment` to conditionally add services or middleware depending on the current environment. The project template includes an example of code that adds middleware only when the current environment isn't Development:
 
