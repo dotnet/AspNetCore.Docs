@@ -435,7 +435,12 @@ The project file can contain one of the following:
         <InternalsVisibleTo Include="MyTestProject" />
     </ItemGroup>
     ```
-Or `[assembly: InternalsVisibleTo("MyTestProject")]`
+
+Or
+
+    ```
+    [assembly: InternalsVisibleTo("MyTestProject")]
+    ```
 
 An alternative solution is to make the `Program` class public. `Program` can be made public with  [Top-level statements](/dotnet/csharp/fundamentals/program-structure/top-level-statements) by defining a `public partial Program` class in the project or in *Program.cs*:
 
