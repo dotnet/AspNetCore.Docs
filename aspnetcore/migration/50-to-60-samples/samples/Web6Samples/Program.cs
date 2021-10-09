@@ -140,7 +140,6 @@ app.MapGet("/", () => "Hello World!");
 app.Run();
 #elif TEST
 #region snippet_test
-using Microsoft.AspNetCore.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSingleton<IHelloService, HelloService>();
