@@ -49,9 +49,9 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace NewMvcProject.Models
 {
-  public class ApplicationUser : IdentityUser
-  {
-  }
+    public class ApplicationUser : IdentityUser
+    {
+    }
 }
 ```
 
