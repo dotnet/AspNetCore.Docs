@@ -15,7 +15,7 @@ uid: migration/50-to-60-samples
 This content from https://gist.github.com/davidfowl/0e0372c3c1d895c3ce195ba983b1e03d#differences-in-the-hosting-model
  -->
 
-This article provides samples of code migrated from ASP.NET Core 5.0  to ASP.NET Core 6.0.
+This article provides samples of code migrated from ASP.NET Core 5.0 to ASP.NET Core 6.0. ASP.NET Core 6.0 uses a new minimal hosting model, for more information, see [New hosting model](xref:migration/50-to-60#nhm)
 
 ## Middleware
 
