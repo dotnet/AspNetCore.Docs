@@ -96,6 +96,20 @@ The Blazor Server template creates the initial files and directory structure for
     * <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> is called to set up an endpoint for the real-time connection with the browser. The connection is created with [SignalR](xref:signalr/introduction), which is a framework for adding real-time web functionality to apps.
     * [`MapFallbackToPage("/_Host")`](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A) is called to set up the root page of the app (`Pages/_Host.cshtml`) and enable navigation.
 
+## Nullable reference types (NRTs) and .NET compiler null-state static analysis
+
+Blazor project templates embrace the use of nullable reference types (NRTs) and the .NET compiler's null-state static analysis. These features were first available with the release of C# 8 and are enabled by default for apps generated using ASP.NET Core 6.0 (C# 10) or later.
+
+.NET compiler null-state warnings can either be ignored or serve as a guide for the developer to update an example or sample app locally. You can also disable the compiler's null-state static analysis by setting `Nullable` to `disable` in the app's project file, which we only recommend for documentation examples. **_We don't recommended disabling null-state checking in production projects._**
+
+For more information on NRTs, the MSBuild `Nullable` property, and updating apps (including `#pragma` guidance), see the following resources in the C# documentation:
+
+* [Nullable reference types](/dotnet/csharp/nullable-references)
+* [Nullable reference types (C# reference)](/dotnet/csharp/language-reference/builtin-types/nullable-reference-types)
+* [Learn techniques to resolve nullable warnings](/dotnet/csharp/nullable-warnings)
+* [Update a codebase with nullable reference types to improve null diagnostic warnings](/dotnet/csharp/nullable-migration-strategies)
+* [Attributes for null-state static analysis](/dotnet/csharp/language-reference/attributes/nullable-analysis)
+
 ## Additional resources
 
 * <xref:blazor/tooling>
