@@ -98,9 +98,9 @@ The Blazor Server template creates the initial files and directory structure for
 
 ## Nullable reference types (NRTs) and .NET compiler null-state static analysis
 
-Blazor project templates embrace the use of nullable reference types (NRTs) and the .NET compiler's null-state static analysis. These features were first available with the release of C# 8 and are enabled by default for apps generated using ASP.NET Core 6.0 (C# 10) or later.
+Blazor project templates embrace the use of nullable reference types (NRTs) and the .NET compiler's null-state static analysis. These features were released with C# 8 and are enabled by default for apps generated using ASP.NET Core 6.0 (C# 10) or later.
 
-The .NET compiler's null-state static analysis warnings can either be ignored or serve as a guide for updating a documentation example or sample app locally. Null-state static analysis can be disabled by [setting `Nullable` to `disable`](/dotnet/csharp/language-reference/builtin-types/nullable-reference-types#setting-the-nullable-context) in the app's project file, which we only recommend for documentation examples and sample apps. **_We don't recommended disabling null-state checking in production projects._**
+The .NET compiler's null-state static analysis warnings can either be ignored or serve as a guide for updating a documentation example or sample app locally. Null-state static analysis can be disabled by [setting `Nullable` to `disable`](/dotnet/csharp/language-reference/builtin-types/nullable-reference-types#setting-the-nullable-context) in the app's project file, which we only recommend for documentation examples and sample apps if the compiler warnings are distracting while learning about .NET. **_We don't recommended disabling null-state checking in production projects._**
 
 For more information on NRTs, the MSBuild `Nullable` property, and updating apps (including `#pragma` guidance), see the following resources in the C# documentation:
 
