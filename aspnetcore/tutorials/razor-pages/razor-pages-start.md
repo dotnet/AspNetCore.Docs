@@ -391,7 +391,7 @@ We hope to have Visual Studio for Mac instructions soon.
 
 1. Select **File** > **New Solution**.
 
-	![macOS New solution](../first-mvc-app/start-mvc/_static/6/new_project_vsmac6.png)
+	![macOS New solution](razor-pages-start/_static/6/new_project_vsmac6.png)
 
 1. In Visual Studio 2022 for Mac select **Web and Console** > **App** > **Web Application** > **Continue**.
 
@@ -405,7 +405,7 @@ We hope to have Visual Studio for Mac instructions soon.
 
 1. Name the project *RazorPagesMovie* and select **Create**.
 
-	![macOS name the project](razor-pages-start/_static/6/RazorPagesMovieVSmac6.png)
+	![macOS name the project](razor-pages-start/_static/6/razorpagesmovievsmac6.png)
 
 ---
 
