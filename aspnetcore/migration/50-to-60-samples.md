@@ -88,9 +88,19 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 [!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_root)]
 
-<!-- TODO, uncomment when article is updated for .NET 6
-For more information, see <xref:fundamentals/view=aspnetcore-6.0>
+<!-- TODO, uncomment the following link when article is updated for .NET 6
+For more information, see <xref:fundamentals/index/?view=aspnetcore-6.0>
 -->
+
+#### Change the content root, app name, and environment by environment variables or command line
+
+The following table shows the environment variable and command line argument used to change the content root, app name, and environment:
+
+| feature   | Environment variable | Command line argument |
+| ------------- | ------------- | -- |
+| Application name | ASPNETCORE_APPLICATIONNAME  | --applicationName |
+| Environment name |  ASPNETCORE_ENVIRONMENT | --environment |
+| Content root  | ASPNETCORE_CONTENTROOT  | --contentRoot |
 
 ## Add configuration providers
 
