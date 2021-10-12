@@ -7,8 +7,8 @@
 <ReferenceChild @ref="childComponent" />
 
 @code {
-    private ReferenceChild childComponent;
-    private Action callChildMethod;
+    private ReferenceChild? childComponent;
+    private Action callChildMethod = new(() => {});
 
     protected override void OnAfterRender(bool firstRender)
     {
@@ -20,6 +20,6 @@
 
     private void CallChildMethod()
     {
-        childComponent.ChildMethod(5);
+        childComponent?.ChildMethod(5);
     }
 }
