@@ -33,3 +33,62 @@ The following code creates an app without explicitly creating a `WebApplicationB
 
 ### Working with ports
 
+When a web app is created with Visual Studio or `dotnet new`, a *Properties/launchSettings.json* is created that specifies the ports the app responds to. In the samples that follow, running the app from Visual Studio returns an error dialog "Unable to connect to web server `App name`". Run the following samples from the command line.
+
+The following sections set the port the app responds to.
+
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_p1)]
+
+In the preceding code, the app responds to port `3000`.
+
+#### Multiple ports
+
+In the following code, the app responds to port `3000` and `4000`.
+
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_pm)]
+
+#### Read the port from environment
+
+The following code reads the port from the environment:
+
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_pe)]
+
+The preferred way to set the port from the environment is to use the `ASPNETCORE_URLS` environment variable, which is shown in the following section.
+
+#### Set the ports via the ASPNETCORE_URLS environment variable
+
+The `ASPNETCORE_URLS` environment variable is available to set the port:
+
+```
+ASPNETCORE_URLS=http://localhost:3000
+```
+
+`ASPNETCORE_URLS` supports multiple URLs:
+
+```
+ASPNETCORE_URLS=http://localhost:3000;https://localhost:5000
+```
+
+### Listen on all interfaces
+
+The following samples demonstrate listening on all interfaces
+
+#### http://*:3000
+
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_i1)]
+
+#### http://+:3000
+
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_ip)]
+
+#### http://0.0.0.0:3000
+
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_i0)]
+
+### Listen on all interfaces using ASPNETCORE_URLS
+
+The preceding samples can use `ASPNETCORE_URLS`
+
+```
+ASPNETCORE_URLS=http://*:3000;https://+:5000;http://0.0.0.0:5005
+```
