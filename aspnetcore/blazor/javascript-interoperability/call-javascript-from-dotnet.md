@@ -193,7 +193,7 @@ In the preceding example:
 * Specify the module's external JS file using its stable static web asset path: `./{SCRIPT PATH AND FILENAME (.js)}`, where:
   * The path segment for the current directory (`./`) is required in order to create the correct static asset path to the JS file.
   * The `{SCRIPT PATH AND FILENAME (.js)}` placeholder is the path and file name under `wwwroot`.
-* Dispose the <xref:Microsoft.JSInterop.IJSObjectReference> for [efficient garbage collection](xref:blazor/components/lifecycle#asynchronous-iasyncdisposable) in <xref:System.IAsyncDisposable.DisposeAsync%2A?displayProperty=nameWithType>.
+* Disposes the <xref:Microsoft.JSInterop.IJSObjectReference> for [garbage collection](xref:blazor/components/lifecycle#asynchronous-iasyncdisposable) in <xref:System.IAsyncDisposable.DisposeAsync%2A?displayProperty=nameWithType>.
 
 Dynamically importing a module requires a network request, so it can only be achieved asynchronously by calling <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A>.
 
