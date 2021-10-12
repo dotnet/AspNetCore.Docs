@@ -3,7 +3,7 @@ title: Part 2, add a model
 author: rick-anderson
 description: Part 2 of tutorial series on Razor Pages. In this section, model classes are added.
 ms.author: riande
-ms.date: 03/10/2021
+ms.date: 10/12/2021
 ms.custom: contperf-fy21q2
 no-loc: [Home, Privacy, Index, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/razor-pages/model
@@ -722,14 +722,12 @@ The `Movie` class contains:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-We hope to have Visual Studio for Mac instructions soon.
-<!-- 
-1. In the **Solution Tool Window**, control-click the *RazorPagesMovie* project, and then select **Add** > **New Folder...**. Name the folder *Models*.
-1. Control-click the *Models* folder, and then select **Add** > **New File...**.
+1. In the **Solution Tool Window**, right-click the *RazorPagesMovie* project, and then select **Add** > **New Folder...**. Name the folder *Models*.
+1. Right-click the *Models* folder, and then select **Add** > **New File...**.
 1. In the **New File** dialog:
    1. Select **General** in the left pane.
    1. Select **Empty Class** in the center pane.
-   1. Name the class **Movie** and select **New**.
+   1. Name the class **Movie** and select **Create**.
 
 1. Add the following properties to the `Movie` class:
 
@@ -742,7 +740,7 @@ The `Movie` class contains:
 
   * The user is not required to enter time information in the date field.
   * Only the date is displayed, not time information.
--->
+
 ---
 
 [DataAnnotations](xref:System.ComponentModel.DataAnnotations) are covered in a later tutorial.
@@ -820,9 +818,6 @@ For more information, see [dotnet-aspnet-codegenerator](xref:fundamentals/tools/
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-We hope to have Visual Studio for Mac instructions soon.
-<!-- 
-
 1. Create a *Pages/Movies* folder:
    1. Control-click on the *Pages* folder > **Add** > **New Folder**.
    1. Name the folder *Movies*.
@@ -844,7 +839,7 @@ We hope to have Visual Studio for Mac instructions soon.
 The *appsettings.json* file is updated with the connection string used to connect to a local database.
 
 [!INCLUDE[](~/includes/RP/sqlitedev.md)]
--->
+
 ---
 
 ### Files created and updated
