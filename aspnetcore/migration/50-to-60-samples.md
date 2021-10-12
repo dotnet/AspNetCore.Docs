@@ -94,9 +94,9 @@ For more information, see <xref:fundamentals/index/?view=aspnetcore-6.0>
 
 #### Change the content root, app name, and environment by environment variables or command line
 
-The following table shows the environment variable and command line argument used to change the content root, app name, and environment:
+The following table shows the environment variable and command-line argument used to change the content root, app name, and environment:
 
-| feature   | Environment variable | Command line argument |
+| feature   | Environment variable | Command-line argument |
 | ------------- | ------------- | -- |
 | Application name | ASPNETCORE_APPLICATIONNAME  | --applicationName |
 | Environment name |  ASPNETCORE_ENVIRONMENT | --environment |
