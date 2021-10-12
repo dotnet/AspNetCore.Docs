@@ -55,11 +55,11 @@ public class Startup
 }
 ```
 
-In .NET 6, routes can be added directly to the `WebApplication` without an explicit call to `UseEndpoints`. The following code adds an endpoint to an ASP.NET Core 6 app:
+In .NET 6, routes can be added directly to the <xref:Microsoft.AspNetCore.Builder.WebApplication> without an explicit call to `UseEndpoints`. The following code adds an endpoint to an ASP.NET Core 6 app:
 
 [!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_rt)]
 
-**Note:** Routes added directly to the `WebApplication` execute at the ***end*** of the pipeline.
+**Note:** Routes added directly to the <xref:Microsoft.AspNetCore.Builder.WebApplication> execute at the ***end*** of the pipeline.
 
 <!-- TODO, uncomment when article is updated for .NET 6
 For more information, see <xref:fundamentals/routing?view=aspnetcore-6.0>
@@ -313,8 +313,8 @@ public class Startup
 
 In ASP.NET Core 6:
 
-* There are a few common services available as top level properties on `WebApplication`.
-* Additional services need to be manually resolved from the `IServiceProvider` via `WebApplication.Services`.
+* There are a few common services available as top level properties on <xref:Microsoft.AspNetCore.Builder.WebApplication>.
+* Additional services need to be manually resolved from the `IServiceProvider` via [WebApplication.Services](xref:Microsoft.AspNetCore.Builder.WebApplication.Services).
 
 [!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_af)]
 
@@ -324,7 +324,7 @@ In ASP.NET Core 6:
 
 ### ASP.NET Core 5
 
-In the following samples, the test project uses `TestServer` and `WebApplicationFactory`. These ship as separate packages that require explicit reference:
+In the following samples, the test project uses `TestServer` and <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601>. These ship as separate packages that require explicit reference:
 
 #### WebApplicationFactory
 
