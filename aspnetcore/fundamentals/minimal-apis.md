@@ -31,6 +31,7 @@ The following code creates an app without explicitly creating a <xref:Microsoft.
 
 [!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_create)]
 
+[`WebApplication.Create`](xref:Microsoft.AspNetCore.Builder.WebApplication.Create%2A) Initializes a new instance of the WebApplication class with preconfigured defaults.
 ### Working with ports
 
 When a web app is created with Visual Studio or `dotnet new`, a *Properties/launchSettings.json* file is created that specifies the ports the app responds to. In the samples that follow, running the app from Visual Studio returns an error dialog `Unable to connect to web server 'AppName'`. Run the following samples from the command line.
@@ -141,9 +142,28 @@ For more information, see <xref:fundamentals/logging/index?view=aspnetcore-6.0>
 
 This section contains sample code using <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder>.
 
-### Change the content root, application name and environment
+### Change the content root, application name, and environment
 
-<!-- Duplicate sample in 50-to-60-samples doc. Once PR #23461 merges, remove this comment 
+The following code sets the content root, application name, and environment:
+
+```csharp
+var builder = WebApplication.CreateBuilder(new WebApplicationOptions
+{
+    ApplicationName = typeof(Program).Assembly.FullName,
+    ContentRootPath = Directory.GetCurrentDirectory(),
+    EnvironmentName = Environments.Staging
+});
+
+Console.WriteLine($"Application Name: {builder.Environment.ApplicationName}");
+Console.WriteLine($"Environment Name: {builder.Environment.EnvironmentName}");
+Console.WriteLine($"ContentRoot Path: {builder.Environment.ContentRootPath}");
+
+var app = builder.Build();
+```
+
+<!--TODO: Snippet will be displayed when [PR #23461](https://github.com/dotnet/AspNetCore.Docs/pull/23461) merges.
+ Duplicate sample in 50-to-60-samples doc. Once PR #23461 merges, remove this comment AND delete the inline snippet above.
+
 [!code-csharp[](~/migration/50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_root)]
 
 -->
@@ -164,9 +184,28 @@ The following table shows the environment variable and command-line argument use
 
 ### Add configuration providers
 
-<!-- Duplicate sample in 50-to-60-samples doc. Once PR #23461 merges, remove this comment 
-[!code-csharp[](~/migration/50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_conf)]
+The following sample adds the INI configuration provider:
 
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Configuration.AddIniFile("appsettings.ini");
+
+var app = builder.Build();
+```
+<!-- Duplicate sample in 50-to-60-samples doc. Once PR #23461 (Migrate to .NET 6 ) merges, remove this comment so the snippet is displayed 
+[!code-csharp[](~/migration/50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_conf)]
 -->
 
 For detailed information, see [File configuration providers](xref:fundamentals/configuration/index?view=aspnetcore-6.0#file-configuration-provider) in <xref:fundamentals/configuration/index?view=aspnetcore-6.0>.
+
+### Read configuration
+
+By default the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> reads configuration from:
+
+appSettings.json
+appSettings.{environment}.json
+environment variables
+The command line
+
+For more information, see <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder>.
