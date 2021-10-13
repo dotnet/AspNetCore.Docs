@@ -125,7 +125,7 @@ For more information using the environment, see <xref:fundamentals/environments?
 
 The following code reads from the configuration system:
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_re)]
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_CONFIG)]
 
 For more information, see <xref:fundamentals/configuration/index?view=aspnetcore-6.0>
 
