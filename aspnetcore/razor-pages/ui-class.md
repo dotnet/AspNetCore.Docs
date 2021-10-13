@@ -25,7 +25,7 @@ Razor views, pages, controllers, page models, [Razor components](xref:blazor/com
 * From Visual Studio select **Create a new project**.
 * Select **Razor Class Library** > **Next**.
 * Name the library (for example, "RazorClassLib"), > **Create** > **Next**. To avoid a file name collision with the generated view library, ensure the library name doesn't end in `.Views`.
-* Select the **Target Framework**. Check **☑ Support pages and views** to support views. By default, only Razor Pages are supported. Select **Create**.
+* Select the **Target Framework**. Check **☑ Support pages and views** to support views. By default, only Razor components are supported. Select **Create**.
 
 The Razor class library (RCL) template defaults to Razor component development by default. The **Support pages and views** option supports pages and views.
 
