@@ -84,11 +84,11 @@ else
 
     private void EditItem(long id)
     {
-	    if (todoItems is not null)
-		{
+        if (todoItems is not null)
+        {
             editItem = todoItems.Single(i => i.Id == id);
             editRowStyle = "table-row";
-	    }
+        }
     }
 
     private async Task AddItem()
@@ -102,11 +102,11 @@ else
 
     private async Task SaveItem()
     {
-	    if (editItem is not null)
-		{
+        if (editItem is not null)
+        {
             await Http.PutAsJsonAsync($"{ServiceEndpoint}/{editItem.Id}", 
-			    editItem);
-		}
+                editItem);
+        }
         await GetTodoItems();
         editRowStyle = "none";
     }

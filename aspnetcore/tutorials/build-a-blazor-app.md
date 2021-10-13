@@ -128,10 +128,10 @@ cd TodoList
 
    ```razor
    @code {
-    private List<TodoItem> todos = new();
-    private string? newTodo;
+       private List<TodoItem> todos = new();
+       private string? newTodo;
 
-    // ... code continues ...
+       // ... code continues ...
    }
 
    Modify the text `<input>` element to bind `newTodo` with the `@bind` attribute:
@@ -309,10 +309,10 @@ cd TodoList
 
    ```razor
    @code {
-    private List<TodoItem> todos = new();
-    private string? newTodo;
+       private List<TodoItem> todos = new();
+       private string? newTodo;
 
-    // ... code continues ...
+       // ... code continues ...
    }
    ```
 
@@ -491,10 +491,10 @@ cd TodoList
 
    ```razor
    @code {
-    private List<TodoItem> todos = new();
-    private string? newTodo;
+       private List<TodoItem> todos = new();
+       private string? newTodo;
 
-    // ... code continues ...
+       // ... code continues ...
    }
    ```
 
