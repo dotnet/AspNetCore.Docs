@@ -3,7 +3,7 @@ no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cook
 ---
 <a name="csc"></a>
 
-Consider the following `ConfigureServices` method, which registers services and configures options:
+Consider the following which registers services and configures options:
 
 [!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/program.cs?name=snippet2)]
 
@@ -11,7 +11,7 @@ Related groups of registrations can be moved to an extension method to register 
 
 [!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Options/MyConfigServiceCollectionExtensions.cs)]
 
-The remaining services are registered in a similar class. The following `ConfigureServices` method uses the new extension methods to register the services:
+The remaining services are registered in a similar class. The following code uses the new extension methods to register the services:
 
 [!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/program.cs?name=snippet3)]
 
