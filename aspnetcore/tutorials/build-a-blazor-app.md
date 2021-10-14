@@ -126,13 +126,9 @@ cd TodoList
 
 1. To get the title of the new todo item, add a `newTodo` string field at the top of the `@code` block:
 
-   ```razor
-   @code {
-       private List<TodoItem> todos = new();
-       private string? newTodo;
-
-       // ... code continues ...
-   }
+   ```csharp
+   private string? newTodo;
+   ```
 
    Modify the text `<input>` element to bind `newTodo` with the `@bind` attribute:
 
@@ -307,13 +303,8 @@ cd TodoList
 
 1. To get the title of the new todo item, add a `newTodo` string field at the top of the `@code` block:
 
-   ```razor
-   @code {
-       private List<TodoItem> todos = new();
-       private string? newTodo;
-
-       // ... code continues ...
-   }
+   ```csharp
+   private string newTodo;
    ```
 
    Modify the text `<input>` element to bind `newTodo` with the `@bind` attribute:
@@ -489,13 +480,8 @@ cd TodoList
 
 1. To get the title of the new todo item, add a `newTodo` string field at the top of the `@code` block:
 
-   ```razor
-   @code {
-       private List<TodoItem> todos = new();
-       private string? newTodo;
-
-       // ... code continues ...
-   }
+   ```csharp
+   private string newTodo;
    ```
 
    Modify the text `<input>` element to bind `newTodo` with the `@bind` attribute:
