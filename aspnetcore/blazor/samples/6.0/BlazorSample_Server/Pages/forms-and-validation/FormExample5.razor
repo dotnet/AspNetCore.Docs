@@ -38,12 +38,12 @@
 </EditForm>
 
 @code {
-    private CustomValidation customValidation;
+    private CustomValidation? customValidation;
     private Starship starship = new() { ProductionDate = DateTime.UtcNow };
 
     private void HandleValidSubmit()
     {
-        customValidation.ClearErrors();
+        customValidation?.ClearErrors();
 
         var errors = new Dictionary<string, List<string>>();
 
@@ -57,7 +57,7 @@
 
         if (errors.Any())
         {
-            customValidation.DisplayErrors(errors);
+            customValidation?.DisplayErrors(errors);
         }
         else
         {

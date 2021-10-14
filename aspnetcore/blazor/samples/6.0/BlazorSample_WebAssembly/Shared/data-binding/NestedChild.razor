@@ -12,14 +12,14 @@
 
 @code {
     [Parameter]
-    public string ChildMessage { get; set; }
+    public string? ChildMessage { get; set; }
 
     [Parameter]
     public EventCallback<string> ChildMessageChanged { get; set; }
 
     private string BoundValue
     {
-        get => ChildMessage;
+        get => ChildMessage ?? string.Empty;
         set => ChildMessageChanged.InvokeAsync(value);
     }
 

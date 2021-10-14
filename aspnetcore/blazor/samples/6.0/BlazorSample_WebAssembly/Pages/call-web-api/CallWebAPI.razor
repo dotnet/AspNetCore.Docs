@@ -72,10 +72,10 @@ else
 
 @code {
     private const string ServiceEndpoint = "https://localhost:10000/api/TodoItems";
-    private TodoItem[] todoItems;
+    private TodoItem[]? todoItems;
     private TodoItem editItem = new();
     private string editRowStyle = "none";
-    private string newItemName;
+    private string? newItemName;
 
     protected override async Task OnInitializedAsync() => await GetTodoItems();
 
@@ -84,8 +84,11 @@ else
 
     private void EditItem(long id)
     {
-        editItem = todoItems.Single(i => i.Id == id);
-        editRowStyle = "table-row";
+        if (todoItems is not null)
+        {
+            editItem = todoItems.Single(i => i.Id == id);
+            editRowStyle = "table-row";
+        }
     }
 
     private async Task AddItem()
@@ -99,7 +102,11 @@ else
 
     private async Task SaveItem()
     {
-        await Http.PutAsJsonAsync($"{ServiceEndpoint}/{editItem.Id}", editItem);
+        if (editItem is not null)
+        {
+            await Http.PutAsJsonAsync($"{ServiceEndpoint}/{editItem.Id}", 
+                editItem);
+        }
         await GetTodoItems();
         editRowStyle = "none";
     }
@@ -114,7 +121,7 @@ else
     private class TodoItem
     {
         public long Id { get; set; }
-        public string Name { get; set; }
+        public string? Name { get; set; }
         public bool IsComplete { get; set; }
     }
 }
