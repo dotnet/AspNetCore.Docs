@@ -18,7 +18,7 @@ namespace BlazorSample
             builder.RootComponents.Add<App>("app");
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-			builder.Services.AddSingleton<NotifierService>();
+            builder.Services.AddSingleton<NotifierService>();
 
             await builder.Build().RunAsync();
         }

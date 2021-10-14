@@ -6,7 +6,7 @@
     private string message = "Not set";
 
     [Parameter]
-    public string Param { get; set; }
+    public string? Param { get; set; }
 
     public override async Task SetParametersAsync(ParameterView parameters)
     {

@@ -1,14 +1,14 @@
 ﻿@page "/reference-parent-2"
 
-<button @onclick="callChildMethod">
+<button @onclick="@(() => callChildMethod?.Invoke())">
     Call <code>ReferenceChild.ChildMethod</code> with an argument of 5
 </button>
 
 <ReferenceChild @ref="childComponent" />
 
 @code {
-    private ReferenceChild childComponent;
-    private Action callChildMethod;
+    private ReferenceChild? childComponent;
+    private Action? callChildMethod;
 
     protected override void OnAfterRender(bool firstRender)
     {
@@ -20,6 +20,6 @@
 
     private void CallChildMethod()
     {
-        childComponent.ChildMethod(5);
+        childComponent?.ChildMethod(5);
     }
 }
