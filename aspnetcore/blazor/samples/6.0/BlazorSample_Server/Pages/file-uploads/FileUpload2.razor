@@ -123,9 +123,9 @@
                     .DeserializeAsync<IList<UploadResult>>(responseStream, options);
 
                 if (newUploadResults is not null)
-				{
+                {
                     uploadResults = uploadResults.Concat(newUploadResults).ToList();
-				}
+                }
             }
         }
 

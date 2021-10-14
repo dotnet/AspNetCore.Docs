@@ -67,9 +67,9 @@
 
     public void Dispose()
     {
-	    if (editContext is not null)
-		{
+        if (editContext is not null)
+        {
             editContext.OnValidationRequested -= HandleValidationRequested;
-	    }
+        }
     }
 }

@@ -108,9 +108,9 @@
                 .ReadFromJsonAsync<IList<UploadResult>>();
 
             if (newUploadResults is not null)
-			{
+            {
                 uploadResults = uploadResults.Concat(newUploadResults).ToList();
-			}
+            }
         }
 
         shouldRender = true;

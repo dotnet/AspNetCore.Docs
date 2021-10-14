@@ -9,7 +9,7 @@ public class TimerService : IDisposable
     private System.Timers.Timer timer;
 
     public TimerService(NotifierService notifier, 
-	    ILogger<TimerService> logger)
+        ILogger<TimerService> logger)
     {
         this.notifier = notifier;
         this.logger = logger;
@@ -29,7 +29,7 @@ public class TimerService : IDisposable
     }
 
     private async void HandleTimer(object source, 
-	    System.Timers.ElapsedEventArgs e)
+        System.Timers.ElapsedEventArgs e)
     {
         elapsedCount += 1;
         await notifier.Update("elapsedCount", elapsedCount);
