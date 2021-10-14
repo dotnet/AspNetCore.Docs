@@ -107,9 +107,9 @@ The value of `commandName` can specify the web server to launch. `commandName` c
 * `IIS` : No web server launched. IIS is expected to be available.
 * `Project` : Launches Kestrel.
 
-The Visual Studio project properties **Debug** tab provides a GUI to edit the *launchSettings.json* file. Changes made to project profiles may not take effect until the web server is restarted. Kestrel must be restarted before it can detect changes made to its environment.
+The Visual Studio 2022 project properties **Debug / General** tab provides an **Open debug launch profiles UI** link. This link opens a **Launch Profiles** dialog that lets you edit the environment variable settings in the *launchSettings.json* file. You can also open the **Launch Profiles** dialog from the **Debug** menu by selecting **\<project name> Debug Properties**. Changes made to project profiles may not take effect until the web server is restarted. Kestrel must be restarted before it can detect changes made to its environment.
 
-![Project Properties Setting Environment variables](environments/_static/project-properties-debug.png)
+![Project Properties Setting Environment variables](environments/_static/launch-profiles.png)
 
 The following *launchSettings.json* file contains multiple profiles:
 
