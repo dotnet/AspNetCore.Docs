@@ -3,7 +3,7 @@ title: Part 6, add search
 author: rick-anderson
 description: Part 6 of tutorial series on Razor Pages.
 ms.author: riande
-ms.date: 12/05/2019
+ms.date: 10/13/2021
 ms.custom: contperf-fy21q2
 no-loc: [Home, Privacy, Index, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/razor-pages/search
@@ -111,7 +111,7 @@ Genres = new SelectList(await genreQuery.Distinct().ToListAsync());
 
 Update the *Index.cshtml* [`<form>` element](https://developer.mozilla.org/docs/Web/HTML/Element/form) as highlighted in the following markup:
 
-[!code-cshtml[](razor-pages-start/snapshot_sample6/Pages/Movies/IndexFormGenreNoRating.cshtml?highlight=14-19&range=1-22)]
+[!code-cshtml[](razor-pages-start/snapshot_sample6/Pages/Movies/IndexFormGenreNoRating.cshtml?highlight=16-18&range=1-22)]
 
 Test the app by searching by genre, by movie title, and by both.
 
