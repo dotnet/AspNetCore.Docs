@@ -735,10 +735,10 @@ The `Movie` class contains:
 
 The `Movie` class contains:
 
-* The `ID` field is required by the database for the primary key.
+* An `ID` field to provide a primary key for the database.
 * A [[DataType]](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute to specify the type of data in the `ReleaseDate` field. With this attribute:
 
-  * The user is not required to enter time information in the date field.
+  * The user isn't required to enter time information in the date field.
   * Only the date is displayed, not time information.
 
 ---
@@ -819,10 +819,10 @@ For more information, see [dotnet-aspnet-codegenerator](xref:fundamentals/tools/
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 1. Create a *Pages/Movies* folder:
-   1. Control-click on the *Pages* folder > **Add** > **New Folder**.
+   1. Right-click on the *Pages* folder > **Add** > **New Folder**.
    1. Name the folder *Movies*.
 
-1. Control-click on the *Pages/Movies* folder > **Add** > **New Scaffolding...**.
+1. Right-click on the *Pages/Movies* folder > **Add** > **New Scaffolding...**.
 
    ![New Scaffolding on Mac](model/_static/scaMac.png)
 
@@ -831,6 +831,7 @@ For more information, see [dotnet-aspnet-codegenerator](xref:fundamentals/tools/
    ![Add Scaffolding on Mac](model/_static/add_scaffoldMac.png)
 
 1. Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
+   1. In the **Model class to use:** row, enter `Movie`.
    1. In the **DbContext Class to use:** row, name the class `RazorPagesMovie.Data.RazorPagesMovieContext`.
    1. Select **Finish**.
 
