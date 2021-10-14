@@ -10,7 +10,7 @@ app.Run(async context =>
 
 app.Run();
 
-static void HandleMultiSec(WebApplication app)
+static void HandleMultiSeg(IApplicationBuilder app)
 {
     app.Run(async context =>
     {

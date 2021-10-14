@@ -2,17 +2,24 @@ var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
 app.UseWhen(context => context.Request.Query.ContainsKey("branch"),
-    appBuilder => HandleBranchAndRejoin(appBuilder, logger));
+    appBuilder => HandleBranchAndRejoin(appBuilder));
 
 app.Run(async context =>
 {
     await context.Response.WriteAsync("Hello from non-Map delegate. <p>");
 });
 
+//app.MapGet("/", (ILogger<WebApplication> logger) =>
+//{
+    //logger.LogInformation("Hello from Map delegate.");
+//});
+
 app.Run();
 
-void HandleBranchAndRejoin(IApplicationBuilder app, ILogger<WebApplication> logger)
+void HandleBranchAndRejoin(IApplicationBuilder app)
 {
+    var logger = app.ApplicationServices.GetRequiredService<ILogger<Program>>(); 
+
     app.Use(async (context, next) =>
     {
         var branchVer = context.Request.Query["branch"];
