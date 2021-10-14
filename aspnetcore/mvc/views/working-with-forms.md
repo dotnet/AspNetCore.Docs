@@ -238,6 +238,29 @@ The code above generates the following HTML:
 
 The data annotations applied to the `Email` and `Password` properties generate metadata on the model. The Input Tag Helper consumes the model metadata and produces [HTML5](https://developer.mozilla.org/docs/Web/Guide/HTML/HTML5) `data-val-*` attributes (see [Model Validation](../models/validation.md)). These attributes describe the validators to attach to the input fields. This provides unobtrusive HTML5 and [jQuery](https://jquery.com/) validation. The unobtrusive attributes have the format `data-val-rule="Error Message"`, where rule is the name of the validation rule (such as `data-val-required`, `data-val-email`, `data-val-maxlength`, etc.) If an error message is provided in the attribute, it's displayed as the value for the `data-val-rule` attribute. There are also attributes of the form `data-val-ruleName-argumentName="argumentValue"` that provide additional details about the rule, for example, `data-val-maxlength-max="1024"` .
 
+### Checkbox option of InputTagHelper
+In [HTML5](https://developer.mozilla.org/docs/Web/Guide/HTML/HTML5), checkboxes have a unique input behavior in that they submit nothing if not checked. This can be problemmatic because model binding will fail with nothing being passed, or if a form needs to submit a boolean false value, rather than submitting nothing at all. To solve this issue, MVC in particular creates a checkbox hidden input for every checkbox (which is an input for a boolean value), plus an input (set to true) for when the checkbox is checked. When a tag like `<input asp-for="@Model.IsCorrect" />` is rendered, it produces  
+
+```html
+<form id="evalForm" asp-action="createOrUpdate">   
+   <input id="IsCorrect" name="IsCorrect" type="checkbox" value="true" />
+   <input name="IsCorrect" type="hidden" value="false" /> 
+</form>
+```
+If the checkbox is checked, the model binder can discern that the desired value to be passed is "true", rather than "false". 
+The hidden input is also rendered directly above the closing form tag, away from the rest of the form elements. 
+
+#### Adjust the rendering
+The checkbox rendering behavior can be modified on a global level by adding the following to the `ConfigureServices` method of `Startup.cs`:
+```C#
+    services.Configure<MvcViewOptions>(options =>
+				options.HtmlHelperOptions.CheckBoxHiddenInputRenderMode = CheckBoxHiddenInputRenderMode.None);
+```
+The `CheckBoxHiddenInputRenderMode` enum has three options: the `EndOfForm`, `InLine`, and `None`. 
+`EndOfForm` is the default; 
+`Inline` will render just below the visible checkbox input tag; 
+`None` will prevent the hidden input from rendering at all. 
+
 ### HTML Helper alternatives to Input Tag Helper
 
 `Html.TextBox`, `Html.TextBoxFor`, `Html.Editor` and `Html.EditorFor` have overlapping features with the Input Tag Helper. The Input Tag Helper will automatically set the `type` attribute; `Html.TextBox` and `Html.TextBoxFor` won't. `Html.Editor` and `Html.EditorFor` handle collections, complex objects and templates; the Input Tag Helper doesn't. The Input Tag Helper, `Html.EditorFor`  and  `Html.TextBoxFor` are strongly typed (they use lambda expressions); `Html.TextBox` and `Html.Editor` are not (they use expression names).
