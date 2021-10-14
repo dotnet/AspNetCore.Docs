@@ -1,7 +1,7 @@
 ---
-title: Minimal APIs overview
+title: Minimal APIs quick overview
 author: rick-anderson
-description: Provides an overview of minimal APIs in ASP.NET Core 6.0.
+description: Provides a quick overview of minimal APIs in ASP.NET Core 6.0.
 ms.author: riande
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 10/15/2021
@@ -11,7 +11,7 @@ uid: fundamentals/minimal-apis.md
 
 <!-- TODO - add to TOC, not doing that until this merges to prevent merge conflicts -->
 
-# Minimal APIs overview
+# Minimal APIs quick overview
 
 This document provides an overview of minimal APIs. The minimal APIs consist of:
 
@@ -193,6 +193,7 @@ builder.Configuration.AddIniFile("appsettings.ini");
 
 var app = builder.Build();
 ```
+
 <!-- Duplicate sample in 50-to-60-samples doc. Once PR #23461 (Migrate to .NET 6 ) merges, remove this comment so the snippet is displayed 
 [!code-csharp[](~/migration/50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_conf)]
 -->
@@ -201,11 +202,103 @@ For detailed information, see [File configuration providers](xref:fundamentals/c
 
 ### Read configuration
 
-By default the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> reads configuration from:
+By default the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> reads configuration from multiple sources, including:
 
-appSettings.json
-appSettings.{environment}.json
-environment variables
-The command line
+* `appSettings.json` and `appSettings.{environment}.json`
+* Environment variables
+* The command line
 
-For more information, see <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder>.
+For a complete list of configuration sources read, see [Default configuration](xref:fundamentals/configuration/index?view=aspnetcore-6.0#default-configuration) in <xref:fundamentals/configuration/index?view=aspnetcore-6.0>
+
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_configb)]
+
+<!-- In fowlers doc:
+ Reading the environment 
+-->
+
+### Read the environment
+
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_reb)]
+
+### Add logging providers
+
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_logb)]
+
+### Add services
+
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+
+// Add the memory cache services.
+builder.Services.AddMemoryCache();
+
+// Add a custom scoped service.
+builder.Services.AddScoped<ITodoRepository, TodoRepository>();
+var app = builder.Build();
+```
+
+<!-- Duplicate sample in 50-to-60-samples doc. Once PR #23461 (Migrate to .NET 6 ) merges, remove this comment so the snippet is displayed 
+[!code-csharp[](~/migration/50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_svc)]
+
+-->
+
+### Customize the IWebHostBuilder
+
+Extension methods on <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> can be accessed using the [WebApplicationBuilder.WebHost](xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.WebHost) property.
+
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_iwhb)]
+
+### Change the web root
+
+By default, the web root is relative to the content root in the `wwwroot` folder. Web root is where the static files middleware looks for static files. Web root can be changed by using the <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseWebRoot%2A> method on the [`WebApplicationBuilder.WebHost`](xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.WebHost) property:
+
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+
+// Look for static files in webroot
+builder.WebHost.UseWebRoot("webroot");
+
+var app = builder.Build();
+```
+
+<!-- Duplicate sample in 50-to-60-samples doc. Once PR #23461 (Migrate to .NET 6 ) merges, remove this comment so the snippet is displayed 
+[!code-csharp[](~/migration/50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_wr)]
+
+-->
+
+### Custom dependency injection (DI) container
+
+The following sample use [Autofac](https://autofac.readthedocs.io/latest/integration/aspnetcore.html)
+
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+
+// Register services directly with Autofac here. Don't
+// call builder.Populate(), that happens in AutofacServiceProviderFactory.
+builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterModule(new MyApplicationModule()));
+
+var app = builder.Build();
+```
+
+### Add Middleware
+
+The following code adds static file middleware to an ASP.NET Core 6 app:
+
+<!-- Duplicate sample in 50-to-60-samples doc. Once PR #23461 (Migrate to .NET 6 ) merges, remove this comment so the snippet is displayed 
+[!code-csharp[](~/migration/50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_mid)]
+
+-->
+
+For more information, see <xref:fundamentals/middleware/index?view=aspnetcore-6.0>
+
+### Developer exception page
+
+[WebApplication.CreateBuilder](xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A) initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults. The developer exception page is enabled in the  preconfigured defaults. When the following code is run in the [development environment](xref:fundamentals/environments), navigating to `/` renders a friendly page that shows the exception.
+
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_dep)]
+
+
+
+

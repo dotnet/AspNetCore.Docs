@@ -1,4 +1,5 @@
-#define LOG // Default CREATE P1 PM PE I1 I0 IP CERT CERT2 CERT3 RE CONFIG LOG
+#define DEP // Default CREATE P1 PM PE I1 I0 IP CERT CERT2 CERT3 RE CONFIG LOG REB 
+// CONFIGB LOGB IWHB DEP 
 #if Default
 #region snippet_default
 var builder = WebApplication.CreateBuilder(args);
@@ -88,7 +89,9 @@ app.Run();
 #elif CERT2
 // Warning. The following code writes to the configuration system and
 // sets the Cert path and key. If those values are invalid, Kestrel won't run
-// for that project, even if you remove the following code.
+// for that project, even if you remove the following code. Kestrel returns
+// Unhandled exception. Internal.Cryptography.CryptoThrowHelper+WindowsCryptographicException:
+// The system cannot find the file specified.
 #region snippet_cert2
 var builder = WebApplication.CreateBuilder(args);
 
@@ -145,9 +148,9 @@ app.MapGet("/oops", () => "Oops! An error happened.");
 app.Run();
 #endregion
 #elif CONFIG
-#region snippet_log
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
+#region snippet_config 
+var app = WebApplication.Create(args);
+
 var message = app.Configuration["HelloKey"] ?? "Hello";
 
 app.MapGet("/", () => message);
@@ -155,12 +158,78 @@ app.MapGet("/", () => message);
 app.Run();
 #endregion
 #elif LOG
-#region snippet_config
+#region snippet_log
 var app = WebApplication.Create(args);
 
 app.Logger.LogInformation("The app started");
 
 app.MapGet("/", () => "Hello World");
+
+app.Run();
+#endregion
+#elif REB  // Read Env Builder
+#region snippet_reb
+var builder = WebApplication.CreateBuilder(args);
+
+if (builder.Environment.IsDevelopment())
+{
+    Console.WriteLine($"Running in development.");
+}
+
+var app = builder.Build();
+
+app.MapGet("/", () => "Hello World!");
+
+app.Run();
+#endregion
+#elif CONFIGB
+#region snippet_configb
+var builder = WebApplication.CreateBuilder(args);
+
+var message = builder.Configuration["HelloKey"] ?? "Hello";
+
+var app = builder.Build();
+
+app.MapGet("/", () => message);
+
+app.Run();
+#endregion
+#elif LOGB
+#region snippet_logb
+var builder = WebApplication.CreateBuilder(args);
+
+// Configure JSON logging to the console.
+builder.Logging.AddJsonConsole();
+
+var app = builder.Build();
+
+app.MapGet("/", () => "Hello JSON console!");
+
+app.Run();
+#endregion
+#elif IWHB
+#region snippet_iwhb
+var builder = WebApplication.CreateBuilder(args);
+
+// Change the HTTP server implemenation to be HTTP.sys based
+builder.WebHost.UseHttpSys();
+
+var app = builder.Build();
+
+app.MapGet("/", () => "Hello HTTP.sys");
+
+app.Run();
+#endregion
+#elif DEP
+#region snippet_dep
+var builder = WebApplication.CreateBuilder(args);
+
+var app = builder.Build();
+
+app.MapGet("/", () =>
+{
+    throw new InvalidOperationException("Oops, the '/' route has thrown an exception.");
+});
 
 app.Run();
 #endregion
