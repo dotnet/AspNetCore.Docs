@@ -55,7 +55,7 @@ public class Startup
 }
 ```
 
-In .NET 6, routes can be added directly to the <xref:Microsoft.AspNetCore.Builder.WebApplication> without an explicit call to `UseEndpoints`. The following code adds an endpoint to an ASP.NET Core 6 app:
+In .NET 6, routes can be added directly to the <xref:Microsoft.AspNetCore.Builder.WebApplication> without an explicit call to <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> or <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>. The following code adds an endpoint to an ASP.NET Core 6 app:
 
 [!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_rt)]
 
