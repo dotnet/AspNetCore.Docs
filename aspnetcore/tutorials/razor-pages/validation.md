@@ -210,7 +210,7 @@ Update-Database
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 Use the following commands to add a migration for the rating field:
-<-! This migrations cli command for adding data annotations is not correct, verify correct version>
+<!-- This migrations cli command for adding data annotations is not correct, verify correct version -->
 
 ```dotnetcli
 dotnet ef migrations add --data-annotations
