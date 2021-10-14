@@ -824,18 +824,18 @@ For more information, see [dotnet-aspnet-codegenerator](xref:fundamentals/tools/
 
 1. Right-click on the *Pages/Movies* folder > **Add** > **New Scaffolding...**.
 
-   ![New Scaffolding on Mac](model/_static/scaMac.png)
+   ![New Scaffolding on Mac](model/_static/6/scaMac6.png)
 
 1. In the **New Scaffolding** dialog, select **Razor Pages using Entity Framework (CRUD)** > **Next**.
 
-   ![Add Scaffolding on Mac](model/_static/add_scaffoldMac.png)
+   ![Add Scaffolding on Mac](model/_static/6/add_scaffoldMac6.png)
 
 1. Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
    1. In the **Model class to use:** row, enter `Movie`.
    1. In the **DbContext Class to use:** row, name the class `RazorPagesMovie.Data.RazorPagesMovieContext`.
    1. Select **Finish**.
 
-   ![Add Razor Pages on Mac](model/_static/5/arpMac.png)
+   ![Add Razor Pages on Mac](model/_static/arpMac.png)
 
 The *appsettings.json* file is updated with the connection string used to connect to a local database.
 
