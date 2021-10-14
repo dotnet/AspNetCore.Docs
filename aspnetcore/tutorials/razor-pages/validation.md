@@ -213,8 +213,9 @@ Use the following commands to add a migration for the rating field:
 <!-- This migrations cli command for adding data annotations is not correct, verify correct version -->
 
 ```dotnetcli
-dotnet ef migrations add --data-annotations
+dotnet ef migrations add New_DataAnnotations
 dotnet ef database update
+
 ```
 
 ---

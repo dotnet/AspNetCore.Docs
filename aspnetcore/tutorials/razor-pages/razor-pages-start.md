@@ -403,7 +403,7 @@ We hope to have Visual Studio for Mac instructions soon.
 	1. Confirm that **Target framework** is set to the latest .NET 6.x version.
   1. Select **Continue**.
 
-1. Name the project *RazorPagesMovie* and select **Create**.
+1. Name the project *RazorPagesMovie* and select **Continue**.
 
 	![macOS name the project](razor-pages-start/_static/6/razorpagesmovievsmac6.png)
 
