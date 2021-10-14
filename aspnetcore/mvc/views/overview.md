@@ -1,7 +1,8 @@
 ---
 title: Views in ASP.NET Core MVC
-author: ardalis
+author: rick-anderson
 description: Learn how views handle the app's data presentation and user interaction in ASP.NET Core MVC.
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.date: 12/05/2019
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
@@ -11,15 +12,15 @@ uid: mvc/views/overview
 
 By [Steve Smith](https://ardalis.com/) and [Dave Brock](https://twitter.com/daveabrock)
 
-This document explains views used in ASP.NET Core MVC applications. For information on Razor Pages, see [Introduction to Razor Pages](xref:razor-pages/index).
+This document explains views used in ASP.NET Core MVC applications. For information on Razor Pages, see <xref:razor-pages/index>.
 
 In the Model-View-Controller (MVC) pattern, the *view* handles the app's data presentation and user interaction. A view is an HTML template with embedded [Razor markup](xref:mvc/views/razor). Razor markup is code that interacts with HTML markup to produce a webpage that's sent to the client.
 
-In ASP.NET Core MVC, views are *.cshtml* files that use the [C# programming language](/dotnet/csharp/) in Razor markup. Usually, view files are grouped into folders named for each of the app's [controllers](xref:mvc/controllers/actions). The folders are stored in a *Views* folder at the root of the app:
+In ASP.NET Core MVC, views are `.cshtml` files that use the [C# programming language](/dotnet/csharp/) in Razor markup. Usually, view files are grouped into folders named for each of the app's [controllers](xref:mvc/controllers/actions). The folders are stored in a `Views` folder at the root of the app:
 
 ![Views folder in Solution Explorer of Visual Studio is open with the Home folder open to show About.cshtml, Contact.cshtml, and Index.cshtml files](overview/_static/views_solution_explorer.png)
 
-The *Home* controller is represented by a *Home* folder inside the *Views* folder. The *Home* folder contains the views for the *About*, *Contact*, and *Index* (homepage) webpages. When a user requests one of these three webpages, controller actions in the *Home* controller determine which of the three views is used to build and return a webpage to the user.
+The `Home` controller is represented by a `Home` folder inside the `Views` folder. The `Home` folder contains the views for the `About`, `Contact`, and `Index` (homepage) webpages. When a user requests one of these three webpages, controller actions in the `Home` controller determine which of the three views is used to build and return a webpage to the user.
 
 Use [layouts](xref:mvc/views/layout) to provide consistent webpage sections and reduce code repetition. Layouts often contain the header, navigation and menu elements, and the footer. The header and footer usually contain boilerplate markup for many metadata elements and links to script and style assets. Layouts help you avoid this boilerplate markup in your views.
 
@@ -38,23 +39,23 @@ Views help to establish [separation of concerns](/dotnet/standard/modern-web-app
 
 ## Creating a view
 
-Views that are specific to a controller are created in the *Views/[ControllerName]* folder. Views that are shared among controllers are placed in the *Views/Shared* folder. To create a view, add a new file and give it the same name as its associated controller action with the *.cshtml* file extension. To create a view that corresponds with the *About* action in the *Home* controller, create an *About.cshtml* file in the *Views/Home* folder:
+Views that are specific to a controller are created in the `Views/[ControllerName]` folder. Views that are shared among controllers are placed in the `Views/Shared` folder. To create a view, add a new file and give it the same name as its associated controller action with the `.cshtml` file extension. To create a view that corresponds with the `About` action in the `Home` controller, create an `About.cshtml` file in the `Views/Home` folder:
 
 [!code-cshtml[](../../common/samples/WebApplication1/Views/Home/About.cshtml)]
 
-*Razor* markup starts with the `@` symbol. Run C# statements by placing C# code within [Razor code blocks](xref:mvc/views/razor#razor-code-blocks) set off by curly braces (`{ ... }`). For example, see the assignment of "About" to `ViewData["Title"]` shown above. You can display values within HTML by simply referencing the value with the `@` symbol. See the contents of the `<h2>` and `<h3>` elements above.
+[Razor markup](xref:mvc/views/razor) starts with the `@` symbol. Run C# statements by placing C# code within [Razor code blocks](xref:mvc/views/razor#razor-code-blocks) set off by curly braces (`{ ... }`). For example, see the assignment of "About" to `ViewData["Title"]` shown above. You can display values within HTML by simply referencing the value with the `@` symbol. See the contents of the `<h2>` and `<h3>` elements above.
 
 The view content shown above is only part of the entire webpage that's rendered to the user. The rest of the page's layout and other common aspects of the view are specified in other view files. To learn more, see the [Layout topic](xref:mvc/views/layout).
 
 ## How controllers specify views
 
-Views are typically returned from actions as a [ViewResult](/dotnet/api/microsoft.aspnetcore.mvc.viewresult), which is a type of [ActionResult](/dotnet/api/microsoft.aspnetcore.mvc.actionresult). Your action method can create and return a `ViewResult` directly, but that isn't commonly done. Since most controllers inherit from [Controller](/dotnet/api/microsoft.aspnetcore.mvc.controller), you simply use the `View` helper method to return the `ViewResult`:
+Views are typically returned from actions as a <xref:Microsoft.AspNetCore.Mvc.ViewResult>, which is a type of <xref:Microsoft.AspNetCore.Mvc.ActionResult>. Your action method can create and return a `ViewResult` directly, but that isn't commonly done. Since most controllers inherit from <xref:Microsoft.AspNetCore.Mvc.Controller>, you simply use the `View` helper method to return the `ViewResult`:
 
-*HomeController.cs*
+`HomeController.cs`:
 
 [!code-csharp[](../../common/samples/WebApplication1/Controllers/HomeController.cs?highlight=5&range=16-21)]
 
-When this action returns, the *About.cshtml* view shown in the last section is rendered as the following webpage:
+When this action returns, the `About.cshtml` view shown in the last section is rendered as the following webpage:
 
 ![About page rendered in the Edge browser](overview/_static/about-page.png)
 
@@ -82,20 +83,20 @@ The `View` helper method has several overloads. You can optionally specify:
 
 When an action returns a view, a process called *view discovery* takes place. This process determines which view file is used based on the view name. 
 
-The default behavior of the `View` method (`return View();`) is to return a view with the same name as the action method from which it's called. For example, the *About* `ActionResult` method name of the controller is used to search for a view file named *About.cshtml*. First, the runtime looks in the *Views/[ControllerName]* folder for the view. If it doesn't find a matching view there, it searches the *Shared* folder for the view.
+The default behavior of the `View` method (`return View();`) is to return a view with the same name as the action method from which it's called. For example, the `About` `ActionResult` method name of the controller is used to search for a view file named `About.cshtml`. First, the runtime looks in the `Views/[ControllerName]` folder for the view. If it doesn't find a matching view there, it searches the `Shared` folder for the view.
 
 It doesn't matter if you implicitly return the `ViewResult` with `return View();` or explicitly pass the view name to the `View` method with `return View("<ViewName>");`. In both cases, view discovery searches for a matching view file in this order:
 
-   1. *Views/\[ControllerName]/\[ViewName].cshtml*
-   1. *Views/Shared/\[ViewName].cshtml*
+   1. `Views/\[ControllerName]/\[ViewName].cshtml`
+   1. `Views/Shared/\[ViewName].cshtml`
 
-A view file path can be provided instead of a view name. If using an absolute path starting at the app root (optionally starting with "/" or "~/"), the *.cshtml* extension must be specified:
+A view file path can be provided instead of a view name. If using an absolute path starting at the app root (optionally starting with "/" or "~/"), the `.cshtml` extension must be specified:
 
 ```csharp
 return View("Views/Home/About.cshtml");
 ```
 
-You can also use a relative path to specify views in different directories without the *.cshtml* extension. Inside the `HomeController`, you can return the *Index* view of your *Manage* views with a relative path:
+You can also use a relative path to specify views in different directories without the `.cshtml` extension. Inside the `HomeController`, you can return the `Index` view of your `Manage` views with a relative path:
 
 ```csharp
 return View("../Manage/Index");
@@ -109,13 +110,13 @@ return View("./About");
 
 [Partial views](xref:mvc/views/partial) and [view components](xref:mvc/views/view-components) use similar (but not identical) discovery mechanisms.
 
-You can customize the default convention for how views are located within the app by using a custom [IViewLocationExpander](/dotnet/api/microsoft.aspnetcore.mvc.razor.iviewlocationexpander).
+You can customize the default convention for how views are located within the app by using a custom <xref:Microsoft.AspNetCore.Mvc.Razor.IViewLocationExpander>.
 
 View discovery relies on finding view files by file name. If the underlying file system is case sensitive, view names are probably case sensitive. For compatibility across operating systems, match case between controller and action names and associated view folders and file names. If you encounter an error that a view file can't be found while working with a case-sensitive file system, confirm that the casing matches between the requested view file and the actual view file name.
 
 Follow the best practice of organizing the file structure for your views to reflect the relationships among controllers, actions, and views for maintainability and clarity.
 
-## Passing data to views
+## Pass data to views
 
 Pass data to views using several approaches:
 
@@ -124,7 +125,7 @@ Pass data to views using several approaches:
   * `ViewData` (`ViewDataAttribute`)
   * `ViewBag`
 
-### Strongly typed data (viewmodel)
+### Strongly-typed data (viewmodel)
 
 The most robust approach is to specify a [model](xref:mvc/models/model-binding) type in the view. This model is commonly referred to as a *viewmodel*. You pass an instance of the viewmodel type to the view from the action.
 
@@ -165,7 +166,7 @@ public IActionResult Contact()
 }
 ```
 
-There are no restrictions on the model types that you can provide to a view. We recommend using Plain Old CLR Object (POCO) viewmodels with little or no behavior (methods) defined. Usually, viewmodel classes are either stored in the *Models* folder or a separate *ViewModels* folder at the root of the app. The *Address* viewmodel used in the example above is a POCO viewmodel stored in a file named *Address.cs*:
+There are no restrictions on the model types that you can provide to a view. We recommend using Plain Old CLR Object (POCO) viewmodels with little or no behavior (methods) defined. Usually, viewmodel classes are either stored in the `Models` folder or a separate `ViewModels` folder at the root of the app. The `Address` viewmodel used in the example above is a POCO viewmodel stored in a file named `Address.cs`:
 
 ```csharp
 namespace WebApplication1.ViewModels
@@ -185,17 +186,17 @@ Nothing prevents you from using the same classes for both your viewmodel types a
 
 <a name="VD_VB"></a>
 
-### Weakly typed data (ViewData, ViewData attribute, and ViewBag)
+### Weakly typed data (`ViewData`, `[ViewData]` attribute, and `ViewBag`)
 
-`ViewBag` *isn't available in Razor Pages.*
+`ViewBag` *isn't available by default for use in Razor Pages* `PageModel` *classes.*
 
 In addition to strongly typed views, views have access to a *weakly typed* (also called *loosely typed*) collection of data. Unlike strong types, *weak types* (or *loose types*) means that you don't explicitly declare the type of data you're using. You can use the collection of weakly typed data for passing small amounts of data in and out of controllers and views.
 
-| Passing data between a ...                        | Example                                                                        |
-| ------------------------------------------------- | ------------------------------------------------------------------------------ |
-| Controller and a view                             | Populating a dropdown list with data.                                          |
-| View and a [layout view](xref:mvc/views/layout)   | Setting the **\<title>** element content in the layout view from a view file.  |
-| [Partial view](xref:mvc/views/partial) and a view | A widget that displays data based on the webpage that the user requested.      |
+| Passing data between a ...                        | Example                                                                     |
+| ------------------------------------------------- | --------------------------------------------------------------------------- |
+| Controller and a view                             | Populating a dropdown list with data.                                       |
+| View and a [layout view](xref:mvc/views/layout)   | Setting the `<title>` element content in the layout view from a view file.  |
+| [Partial view](xref:mvc/views/partial) and a view | A widget that displays data based on the webpage that the user requested.   |
 
 This collection can be referenced through either the `ViewData` or `ViewBag` properties on controllers and views. The `ViewData` property is a dictionary of weakly typed objects. The `ViewBag` property is a wrapper around `ViewData` that provides dynamic properties for the underlying `ViewData` collection. Note: Key lookups are case-insensitive for both `ViewData` and `ViewBag`.
 
@@ -203,9 +204,9 @@ This collection can be referenced through either the `ViewData` or `ViewBag` pro
 
 <a name="VD"></a>
 
-**ViewData**
+#### `ViewData`
 
-`ViewData` is a [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary) object accessed through `string` keys. String data can be stored and used directly without the need for a cast, but you must cast other `ViewData` object values to specific types when you extract them. You can use `ViewData` to pass data from controllers to views and within views, including [partial views](xref:mvc/views/partial) and [layouts](xref:mvc/views/layout).
+`ViewData` is a <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary> object accessed through `string` keys. String data can be stored and used directly without the need for a cast, but you must cast other `ViewData` object values to specific types when you extract them. You can use `ViewData` to pass data from controllers to views and within views, including [partial views](xref:mvc/views/partial) and [layouts](xref:mvc/views/layout).
 
 The following is an example that sets values for a greeting and an address using `ViewData` in an action:
 
@@ -243,11 +244,9 @@ Work with the data in a view:
 </address>
 ```
 
-::: moniker range=">= aspnetcore-2.1"
+#### `[ViewData]` attribute
 
-**ViewData attribute**
-
-Another approach that uses the [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary) is [ViewDataAttribute](/dotnet/api/microsoft.aspnetcore.mvc.viewdataattribute). Properties on controllers or Razor Page models marked with the `[ViewData]` attribute have their values stored and loaded from the dictionary.
+Another approach that uses the <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary> is <xref:Microsoft.AspNetCore.Mvc.ViewDataAttribute>. Properties on controllers or Razor Page models marked with the `[ViewData]` attribute have their values stored and loaded from the dictionary.
 
 In the following example, the Home controller contains a `Title` property marked with `[ViewData]`. The `About` method sets the title for the About view:
 
@@ -277,13 +276,11 @@ In the layout, the title is read from the ViewData dictionary:
     ...
 ```
 
-::: moniker-end
+#### `ViewBag`
 
-**ViewBag**
+`ViewBag` *isn't available by default for use in Razor Pages* `PageModel` *classes.*
 
-`ViewBag` *isn't available in Razor Pages.*
-
-`ViewBag` is a [DynamicViewData](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.internal.dynamicviewdata) object that provides dynamic access to the objects stored in `ViewData`. `ViewBag` can be more convenient to work with, since it doesn't require casting. The following example shows how to use `ViewBag` with the same result as using `ViewData` above:
+`ViewBag` is a `Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.DynamicViewData` object that provides dynamic access to the objects stored in `ViewData`. `ViewBag` can be more convenient to work with, since it doesn't require casting. The following example shows how to use `ViewBag` with the same result as using `ViewData` above:
 
 ```csharp
 public IActionResult SomeAction()
@@ -312,13 +309,13 @@ public IActionResult SomeAction()
 </address>
 ```
 
-**Using ViewData and ViewBag simultaneously**
+#### Using `ViewData` and `ViewBag` simultaneously
 
-`ViewBag` *isn't available in Razor Pages.*
+`ViewBag` *isn't available by default for use in Razor Pages* `PageModel` *classes.*
 
 Since `ViewData` and `ViewBag` refer to the same underlying `ViewData` collection, you can use both `ViewData` and `ViewBag` and mix and match between them when reading and writing values.
 
-Set the title using `ViewBag` and the description using `ViewData` at the top of an *About.cshtml* view:
+Set the title using `ViewBag` and the description using `ViewData` at the top of an `About.cshtml` view:
 
 ```cshtml
 @{
@@ -328,7 +325,7 @@ Set the title using `ViewBag` and the description using `ViewData` at the top of
 }
 ```
 
-Read the properties but reverse the use of `ViewData` and `ViewBag`. In the *_Layout.cshtml* file, obtain the title using `ViewData` and obtain the description using `ViewBag`:
+Read the properties but reverse the use of `ViewData` and `ViewBag`. In the `_Layout.cshtml` file, obtain the title using `ViewData` and obtain the description using `ViewBag`:
 
 ```cshtml
 <!DOCTYPE html>
@@ -352,19 +349,19 @@ Using both `ViewData` and `ViewBag` at the same time works, as does mixing and m
     ...
 ```
 
-**Summary of the differences between ViewData and ViewBag**
+#### Summary of the differences between `ViewData` and `ViewBag`
 
- `ViewBag` isn't available in the Razor Pages.
+`ViewBag` *isn't available by default for use in Razor Pages* `PageModel` *classes.*
 
 * `ViewData`
-  * Derives from [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary), so it has dictionary properties that can be useful, such as `ContainsKey`, `Add`, `Remove`, and `Clear`.
+  * Derives from <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary>, so it has dictionary properties that can be useful, such as `ContainsKey`, `Add`, `Remove`, and `Clear`.
   * Keys in the dictionary are strings, so whitespace is allowed. Example: `ViewData["Some Key With Whitespace"]`
   * Any type other than a `string` must be cast in the view to use `ViewData`.
 * `ViewBag`
-  * Derives from [DynamicViewData](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.internal.dynamicviewdata), so it allows the creation of dynamic properties using dot notation (`@ViewBag.SomeKey = <value or object>`), and no casting is required. The syntax of `ViewBag` makes it quicker to add to controllers and views.
+  * Derives from `Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.DynamicViewData`, so it allows the creation of dynamic properties using dot notation (`@ViewBag.SomeKey = <value or object>`), and no casting is required. The syntax of `ViewBag` makes it quicker to add to controllers and views.
   * Simpler to check for null values. Example: `@ViewBag.Person?.Name`
 
-**When to use ViewData or ViewBag**
+#### When to use `ViewData` or `ViewBag`
 
 Both `ViewData` and `ViewBag` are equally valid approaches for passing small amounts of data among controllers and views. The choice of which one to use is based on preference. You can mix and match `ViewData` and `ViewBag` objects, however, the code is easier to read and maintain with one approach used consistently. Both approaches are dynamically resolved at runtime and thus prone to causing runtime errors. Some development teams avoid them.
 
