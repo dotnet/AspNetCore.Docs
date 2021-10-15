@@ -168,6 +168,7 @@ var app = builder.Build();
 
 -->
 
+[WebApplication.CreateBuilder](xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A) initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults.
 <!-- TODO, uncomment the following link when article is updated for .NET 6
 For more information, see <xref:fundamentals/index/?view=aspnetcore-6.0>
 -->
@@ -295,10 +296,33 @@ For more information, see <xref:fundamentals/middleware/index?view=aspnetcore-6.
 
 ### Developer exception page
 
-[WebApplication.CreateBuilder](xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A) initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults. The developer exception page is enabled in the  preconfigured defaults. When the following code is run in the [development environment](xref:fundamentals/environments), navigating to `/` renders a friendly page that shows the exception.
+<xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A?displayProperty=nameWithType> initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults. The developer exception page is enabled in the  preconfigured defaults. When the following code is run in the [development environment](xref:fundamentals/environments), navigating to `/` renders a friendly page that shows the exception.
 
 [!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_dep)]
 
+## ASP.NET Core Middleware
 
+The following table lists some of the middleware frequently used with minimal APIs.
+
+| Middleware   | Description | API |
+| ------------- | ------------- | -- |
+| [Authentication](xref:security/authentication/index/?) | Provides authentication support.  | <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> |
+| [Authorization](xref:security/authorization/introduction/) | Provides authorization support. | <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> |
+|[CORS](xref:security/cors/?)| Configures Cross-Origin Resource Sharing. | <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A> |
+| [Exception Handler](xref:web-api/handle-errors/?) | Globally handles exceptions thrown by the middleware pipeline. | <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A> |
+| [Forwarded Headers](xref:fundamentals/middleware/index/?view=aspnetcore-6.0#fhmo) | Forwards proxied headers onto the current request. | <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders%2A> |
+| [HTTPS Redirection](xref:security/enforcing-ssl?view=aspnetcore-6.0) | Redirects all HTTP requests to HTTPS. | <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A> |
+| [HTTP Strict Transport Security (HSTS)](xref:fundamentals/middleware/index/?view=aspnetcore-6.0#middleware-order) | Security enhancement middleware that adds a special response header. | <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts%2A> |
+| | |  |
+| | |  |
+| | |  |
+| | |  |
+| | |  |
+| | |  |
+| | |  |
+| | |  |
+| | |  |
+| | |  |
+| | |  |
 
 
