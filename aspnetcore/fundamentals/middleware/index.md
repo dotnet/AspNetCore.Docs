@@ -278,7 +278,7 @@ ASP.NET Core ships with the following middleware components. The *Order* column 
 | [Session](xref:fundamentals/app-state) | Provides support for managing user sessions. | Before components that require Session. | 
 | [Static Files](xref:fundamentals/static-files) | Provides support for serving static files and directory browsing. | Terminal if a request matches a file. |
 | [URL Rewrite](xref:fundamentals/url-rewriting) | Provides support for rewriting URLs and redirecting requests. | Before components that consume the URL. |
-| [WebSockets](xref:fundamentals/websockets) | Enables the WebSockets protocol. | Before components that are required to accept WebSocket requests. |
+| [WebSockets](xref:fundamentals/websockets) | Enables the WebSocket protocol. | Before components that are required to accept WebSocket requests. |
 
 ## Additional resources
 
@@ -559,7 +559,7 @@ ASP.NET Core ships with the following middleware components. The *Order* column 
 | [Session](xref:fundamentals/app-state) | Provides support for managing user sessions. | Before components that require Session. | 
 | [Static Files](xref:fundamentals/static-files) | Provides support for serving static files and directory browsing. | Terminal if a request matches a file. |
 | [URL Rewrite](xref:fundamentals/url-rewriting) | Provides support for rewriting URLs and redirecting requests. | Before components that consume the URL. |
-| [WebSockets](xref:fundamentals/websockets) | Enables the WebSockets protocol. | Before components that are required to accept WebSocket requests. |
+| [WebSockets](xref:fundamentals/websockets) | Enables the WebSocket protocol. | Before components that are required to accept WebSocket requests. |
 
 ## Additional resources
 
