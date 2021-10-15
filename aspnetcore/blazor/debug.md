@@ -76,7 +76,7 @@ The `inspectUri` property:
 * Enables the IDE to detect that the app is a Blazor WebAssembly app.
 * Instructs the script debugging infrastructure to connect to the browser through Blazor's debugging proxy.
 
-The placeholder values for the WebSockets protocol (`wsProtocol`), host (`url.hostname`), port (`url.port`), and inspector URI on the launched browser (`browserInspectUri`) are provided by the framework.
+The placeholder values for the WebSocket protocol (`wsProtocol`), host (`url.hostname`), port (`url.port`), and inspector URI on the launched browser (`browserInspectUri`) are provided by the framework.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -451,7 +451,7 @@ The `inspectUri` property:
 * Enables the IDE to detect that the app is a Blazor WebAssembly app.
 * Instructs the script debugging infrastructure to connect to the browser through Blazor's debugging proxy.
 
-The placeholder values for the WebSockets protocol (`wsProtocol`), host (`url.hostname`), port (`url.port`), and inspector URI on the launched browser (`browserInspectUri`) are provided by the framework.
+The placeholder values for the WebSocket protocol (`wsProtocol`), host (`url.hostname`), port (`url.port`), and inspector URI on the launched browser (`browserInspectUri`) are provided by the framework.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -874,7 +874,7 @@ The `inspectUri` property:
 * Enables the IDE to detect that the app is a Blazor WebAssembly app.
 * Instructs the script debugging infrastructure to connect to the browser through Blazor's debugging proxy.
 
-The placeholder values for the WebSockets protocol (`wsProtocol`), host (`url.hostname`), port (`url.port`), and inspector URI on the launched browser (`browserInspectUri`) are provided by the framework.
+The placeholder values for the WebSocket protocol (`wsProtocol`), host (`url.hostname`), port (`url.port`), and inspector URI on the launched browser (`browserInspectUri`) are provided by the framework.
 
 # [Visual Studio](#tab/visual-studio)
 
