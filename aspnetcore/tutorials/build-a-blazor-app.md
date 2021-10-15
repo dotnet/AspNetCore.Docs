@@ -126,7 +126,9 @@ cd TodoList
 
 1. To get the title of the new todo item, add a `newTodo` string field at the top of the `@code` block:
 
-   [!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo5.razor?highlight=3)]
+   ```csharp
+   private string? newTodo;
+   ```
 
    Modify the text `<input>` element to bind `newTodo` with the `@bind` attribute:
 
@@ -301,7 +303,9 @@ cd TodoList
 
 1. To get the title of the new todo item, add a `newTodo` string field at the top of the `@code` block:
 
-   [!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo5.razor?highlight=3)]
+   ```csharp
+   private string newTodo;
+   ```
 
    Modify the text `<input>` element to bind `newTodo` with the `@bind` attribute:
 
@@ -476,7 +480,9 @@ cd TodoList
 
 1. To get the title of the new todo item, add a `newTodo` string field at the top of the `@code` block:
 
-   [!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo5.razor?highlight=3)]
+   ```csharp
+   private string newTodo;
+   ```
 
    Modify the text `<input>` element to bind `newTodo` with the `@bind` attribute:
 

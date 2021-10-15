@@ -1080,7 +1080,7 @@ For more information, see <xref:blazor/fundamentals/handle-errors>.
 
 A Blazor Server app doesn't include an <xref:System.Net.Http.HttpClient> service by default. Provide an <xref:System.Net.Http.HttpClient> to the app using the [`HttpClient` factory infrastructure](xref:fundamentals/http-requests).
 
-In `Startup.`ConfigureServices` of `Startup.cs`:
+In `Startup.ConfigureServices` of `Startup.cs`:
 
 ```csharp
 services.AddHttpClient();
@@ -1678,7 +1678,7 @@ For more information, see <xref:blazor/fundamentals/handle-errors>.
 
 A Blazor Server app doesn't include an <xref:System.Net.Http.HttpClient> service by default. Provide an <xref:System.Net.Http.HttpClient> to the app using the [`HttpClient` factory infrastructure](xref:fundamentals/http-requests).
 
-In `Startup.`ConfigureServices` of `Startup.cs`:
+In `Startup.ConfigureServices` of `Startup.cs`:
 
 ```csharp
 services.AddHttpClient();

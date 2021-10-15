@@ -28,9 +28,9 @@
 </EditForm>
 
 @code {
-    private EditContext editContext;
+    private EditContext? editContext;
     private Holodeck holodeck = new();
-    private ValidationMessageStore messageStore;
+    private ValidationMessageStore? messageStore;
 
     protected override void OnInitialized()
     {
@@ -39,15 +39,15 @@
         messageStore = new(editContext);
     }
 
-    private void HandleValidationRequested(object sender, 
+    private void HandleValidationRequested(object? sender, 
         ValidationRequestedEventArgs args)
     {
-        messageStore.Clear();
+        messageStore?.Clear();
 
         // Custom validation logic
         if (!holodeck.Options)
         {
-            messageStore.Add(() => holodeck.Options, "Select at least one.");
+            messageStore?.Add(() => holodeck.Options, "Select at least one.");
         }
     }
 
@@ -67,6 +67,9 @@
 
     public void Dispose()
     {
-        editContext.OnValidationRequested -= HandleValidationRequested;
+        if (editContext is not null)
+        {
+            editContext.OnValidationRequested -= HandleValidationRequested;
+        }
     }
 }

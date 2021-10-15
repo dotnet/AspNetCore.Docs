@@ -194,6 +194,7 @@ For Single Page Applications (SPAs), the SPA middleware <xref:Microsoft.Extensio
 * To allow SPAs with client-side routing to run for all routes that are unrecognized by the server app.
 
 For more details on SPAs, see the guides for the [React](xref:spa/react) and [Angular](xref:spa/angular) project templates.
+<a name="fhmo"></a>
 
 ### Forwarded Headers Middleware order
 

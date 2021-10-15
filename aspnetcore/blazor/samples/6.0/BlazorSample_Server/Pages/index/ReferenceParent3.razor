@@ -8,7 +8,7 @@
 
         <li>
             <ReferenceChild @ref="childComponent" />
-            <button @onclick="@(() => callChildMethod(index, v))">
+            <button @onclick="@(() => callChildMethod?.Invoke(index, v))">
                 Component index @index: Call <code>ReferenceChild.ChildMethod(@v)</code>
             </button>
         </li>
@@ -18,7 +18,7 @@
 @code {
     private Random r = new();
     private List<ReferenceChild> components = new();
-    private Action<int, int> callChildMethod;
+    private Action<int, int>? callChildMethod;
 
     private ReferenceChild childComponent
     {

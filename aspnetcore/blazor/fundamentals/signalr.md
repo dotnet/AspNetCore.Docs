@@ -352,42 +352,9 @@ If a custom circuit handler's methods throw an unhandled exception, the exceptio
 
 When a circuit ends because a user has disconnected and the framework is cleaning up the circuit state, the framework disposes of the circuit's DI scope. Disposing the scope disposes any circuit-scoped DI services that implement <xref:System.IDisposable?displayProperty=fullName>. If any DI service throws an unhandled exception during disposal, the framework logs the exception.
 
-## Long Polling
+## Azure SignalR Service
 
-In earlier versions of ASP.NET Core, Long Polling was enabled as a fallback transport for situations in which the WebSockets transport wasn't available. If an app must use Long Polling, make the following changes:
-
-In the app's `Program.cs` file, replace `app.MapBlazorHub()` with the following code:
-
-```csharp
-app.MapBlazorHub(configureOptions: options => 
-{ 
-    options.Transports = 
-        HttpTransportType.WebSockets | HttpTransportType.LongPolling;
-});
-```
-
-Locate the Blazor script tag in the `Pages/_Layout.cshtml` file. Add the `autostart="false"` attribute to the tag:
-
-```html
-<script src="_framework/blazor.server.js" autostart="false"></script>
-```
-
-Add the following script to the `Pages/_Layout.cshtml` file immediately inside the closing `</body>` tag. WebSockets (`1`) and Long Polling (`4`) are the supported `HTTPTransportTypes`. The following example:
-
-* Specifies support for both WebSockets and Long Polling transports (`1 | 4`).
-* Defaults to the WebSockets transport when a WebSockets connection can be established.
-
-```html
-<script>
-  (function start() {
-    Blazor.start({
-      configureSignalR: builder => builder.withUrl('_blazor', 1 | 4)
-    });
-  })()
-</script>
-```
-
-For more information, see [Disable Long Polling Fallback Transport for Blazor Server (ASP.NET Announcements)](https://github.com/aspnet/Announcements/issues/470).
+We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) for Blazor Server apps hosted in Microsoft Azure. The service works in conjunction with the app's Blazor Hub for scaling up a Blazor Server app to a large number of concurrent SignalR connections. In addition, the SignalR Service's global reach and high-performance data centers significantly aid in reducing latency due to geography. For prerendering support with the Azure SignalR Service, configure the app to use *sticky sessions*. For more information, see <xref:blazor/host-and-deploy/server>.
 
 ## Additional resources
 

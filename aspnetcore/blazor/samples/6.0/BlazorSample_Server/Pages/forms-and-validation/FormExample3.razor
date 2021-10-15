@@ -32,7 +32,7 @@
             IsValidatedDesign = true,
             ProductionDate = new DateTime(2245, 4, 11)
         };
-    private EditContext editContext;
+    private EditContext? editContext;
 
     protected override void OnInitialized()
     {
@@ -41,12 +41,13 @@
 
     private async Task HandleSubmit()
     {
-        if (editContext.Validate())
+        if (editContext != null && editContext.Validate())
         {
             Logger.LogInformation("HandleSubmit called: Form is valid");
 
             // Process the valid form
             // await ...
+            await Task.CompletedTask;
         }
         else
         {

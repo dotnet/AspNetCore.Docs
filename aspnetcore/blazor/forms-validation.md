@@ -299,7 +299,7 @@ In the following `FormExample4` component, the `HandleValidationRequested` handl
 
 `Pages/FormExample4.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample4.razor?highlight=38,42-53,70)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample4.razor?highlight=38,42-52,72)]
 
 ## Data Annotations Validator component and custom validation
 

@@ -28,7 +28,7 @@
             ProductionDate = new DateTime(2245, 4, 11)
         };
     private bool formInvalid = false;
-    private EditContext editContext;
+    private EditContext? editContext;
 
     protected override void OnInitialized()
     {
@@ -36,10 +36,13 @@
         editContext.OnFieldChanged += HandleFieldChanged;
     }
 
-    private void HandleFieldChanged(object sender, FieldChangedEventArgs e)
+    private void HandleFieldChanged(object? sender, FieldChangedEventArgs e)
     {
-        formInvalid = !editContext.Validate();
-        StateHasChanged();
+        if (editContext is not null)
+        {
+            formInvalid = !editContext.Validate();
+            StateHasChanged();
+        }
     }
 
     private void HandleValidSubmit()
@@ -51,6 +54,9 @@
 
     public void Dispose()
     {
-        editContext.OnFieldChanged -= HandleFieldChanged;
+        if (editContext is not null)
+        {
+            editContext.OnFieldChanged -= HandleFieldChanged;
+        }
     }
 }

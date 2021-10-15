@@ -50,7 +50,7 @@ await DatabaseUtility.EnsureDbCreatedAndSeedWithCountOfAsync(options, 500);
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-	app.UseDeveloperExceptionPage();
+    app.UseDeveloperExceptionPage();
 }
 else
 {

@@ -3,7 +3,7 @@ title: Part 4, work with a database
 author: rick-anderson
 description: Part 4 of tutorial series on Razor Pages.
 ms.author: riande
-ms.date: 01/05/2021
+ms.date: 10/13/2021
 ms.custom: contperf-fy21q2
 no-loc: [Home, Privacy, Index, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/razor-pages/sql
@@ -329,7 +329,7 @@ The `RazorPagesMovieContext` object handles the task of connecting to the databa
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program.cs?name=snippet_di&highlight=6-7)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program.cs?name=snippet_di_sl&highlight=6-7)]
 
 ---
 
@@ -425,17 +425,11 @@ Update the *Program.cs* with the following highlighted code:
 
 # [Visual Studio](#tab/visual-studio)
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/ProgramSeed.cs?name=snippet_all&highlight=14-19)]
-
-Add a `using` directive to the top of the file:
-
-```csharp
-using RazorPagesMovie.Models;
-```
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/ProgramSeed.cs?name=snippet_all&highlight=3,14-19)]
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/ProgramSeed.cs?name=snippet_all_sl&highlight=14-19)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/ProgramSeed.cs?name=snippet_all_sl&highlight=3,14-19)]
 
 ---
 
