@@ -48,6 +48,17 @@ In the following code, the app responds to port `3000` and `4000`.
 
 [!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_pm)]
 
+#### Set the port from the command line
+
+The following command makes the app respond to port `7777`:
+
+```dotnetcli
+dotnet run --urls="https://localhost:7777"
+```
+
+If the Kestrel endpoint is also configured in the *appsettings.json* file, the *appsettings.json* file specified URL is used. For more information, see [Kestrel endpoint configuration]
+(xref:fundamentals/configuration?view=aspnetcore-6.0#kestrel)
+
 #### Read the port from environment
 
 The following code reads the port from the environment:
@@ -321,4 +332,76 @@ The following table lists some of the middleware frequently used with minimal AP
 | [Static Files](xref:fundamentals/static-files)| Provides support for serving static files and directory browsing. | <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>, <xref:Microsoft.AspNetCore.Builder.FileServerExtensions.UseFileServer%2A> |
 | [WebSockets](xref:fundamentals/websockets) | Enables the WebSockets protocol.	| <xref:Microsoft.AspNetCore.Builder.WebSocketMiddlewareExtensions.UseWebSockets%2A> |
 
+## Request handling
+
+The following sections cover routing, parameter binding, and responses.
+
+### Routing
+
+A configured `WebApplication` supports `Map{Verb}` and <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapMethods%2A>:
+
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_r1)]
+
+### Route Handlers
+
+Route handlers are methods that execute when the a route matches. Route handlers can be a function or any shape, including synchronous or asynchronous. Route handlers can be a lambda expression, a local function, an instance method or a static method.
+
+#### Lambda expression
+
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_le)]
+
+#### Local function
+
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_lf)]
+
+#### Instance method
+
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_im)]
+
+#### Static method
+
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_sm)]
+
+### Name routes and link generation
+
+Routes can be given names in order to generate URLs to the route. Using a named route avoids having to hard code paths in an app:
+
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_nr)]
+
+The preceding code displays `The link to the hello route is /hello` from the `/` endpoint.
+
+Route names are inferred from method names if specified:
+
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_nr2)]
+
+**REVIEW**: `{linker.GetPathByName("Hi", values: null)}` is null in the preceding code.
+
+**NOTE**: Route names are case sensitive.
+
+Route names:
+
+* Must be globally unique.
+* Are used as the OpenAPI operation id when OpenAPI support is enabled. See the [OpenAPI/Swagger section}(#openapi) for more details.
+
+### Route Parameters
+
+Route parameters can be captured as part of the route pattern definition:
+
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_rp)]
+
+The preceding code returns `The user id is 3 and book id is 7` from `/users/3/books/7`.
+
+The route handler can declare the parameters to capture, when a request is made to this route, the parameters are parsed and passed to the handler. This makes it easy to capture the values in a type safe way. In the preceding code, `userId` and `bookId` are both `int`.
+
+In the preceding code, if either route value cannot be converted to an `int`, an exception is thrown. The GET request `/users/hello/books/3` throws the following exception:
+
+**`BadHttpRequestException: Failed to bind parameter "int userId" from "hello".`**
+
+
+If the route values are not valid ints then an exception will be thrown. The following request will result in the exception below:
+
+
+## OpenAPI
+
+It's possible to describe the OpenAPI specification for route handlers using [Swashbuckle](https://www.nuget.org/packages/Swashbuckle.AspNetCore/).
 

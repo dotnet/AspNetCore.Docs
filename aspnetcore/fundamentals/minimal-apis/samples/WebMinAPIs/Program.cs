@@ -1,6 +1,7 @@
-#define DEP // Default CREATE P1 PM PE I1 I0 IP CERT CERT2 CERT3 RE CONFIG LOG REB 
-// CONFIGB LOGB IWHB DEP 
-#if Default
+#define RP // Default CREATE P1 PM PE I1 I0 IP CERT CERT2 CERT3 RE CONFIG LOG REB 
+// CONFIGB LOGB IWHB DEP R1 LE LF IM SM NR NR2 RP
+#if NEVER
+#elif Default
 #region snippet_default
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
@@ -230,6 +231,124 @@ app.MapGet("/", () =>
 {
     throw new InvalidOperationException("Oops, the '/' route has thrown an exception.");
 });
+
+app.Run();
+#endregion
+#elif R1 // Routing
+#region snippet_r1
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.MapGet("/", () => "This is a GET");
+app.MapPost("/", () => "This is a POST");
+app.MapPut("/", () => "This is a PUT");
+app.MapDelete("/", () => "This is a DELETE");
+
+app.MapMethods("/options-or-head", new[] { "OPTIONS", "HEAD" }, 
+                          () => "This is an options or head request ");
+
+app.Run();
+#endregion
+#elif LE
+#region snippet_le
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.MapGet("/inline", () => "This is an inline lambda");
+
+var handler = () => "This is a lambda variable";
+
+app.MapGet("/", handler);
+
+app.Run();
+#endregion
+#elif LF
+#region snippet_lf
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+string LocalFunction() => "This is local function";
+
+app.MapGet("/", LocalFunction);
+
+app.Run();
+#endregion
+
+#elif IM
+#region snippet_im
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+var handler = new HelloHandler();
+
+app.MapGet("/", handler.Hello);
+
+app.Run();
+
+class HelloHandler
+{
+    public string Hello()
+    {
+        return "Hello Instance method";
+    }
+}
+#endregion
+
+#elif SM
+#region snippet_sm
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.MapGet("/", HelloHandler.Hello);
+
+app.Run();
+
+class HelloHandler
+{
+    public static string Hello()
+    {
+        return "Hello static method";
+    }
+}
+#endregion
+
+#elif NR
+#region snippet_nr
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.MapGet("/hello", () => "Hello named route")
+   .WithName("hi");
+
+app.MapGet("/", (LinkGenerator linker) => 
+        $"The link to the hello route is {linker.GetPathByName("hi", values: null)}");
+
+app.Run();
+#endregion
+
+#elif NR2
+#region snippet_nr2
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+static string Hi() => "Hello there";
+
+app.MapGet("/hello", Hi);
+
+app.MapGet("/", (LinkGenerator linker) => 
+        $"The link to the hello route is {linker.GetPathByName("Hi", values: null)}");
+
+app.Run();
+#endregion
+
+
+#elif RP
+#region snippet_rp
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.MapGet("/users/{userId}/books/{bookId}", 
+    (int userId, int bookId) => $"The user id is {userId} and book id is {bookId}");
 
 app.Run();
 #endregion
