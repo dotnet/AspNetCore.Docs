@@ -35,7 +35,7 @@ The following code adds static file middleware to an ASP.NET Core 6 app:
 
 [!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_mid)]
 
-For more information, see <xref:fundamentals/middleware/index?view=aspnetcore-6.0>
+[WebApplication.CreateBuilder](xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A) initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults. For more information, see <xref:fundamentals/middleware/index?view=aspnetcore-6.0>
 
 ## Routing
 
@@ -215,7 +215,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 ## Change the web root
 
-By default, the web root is relative to the content root in the `wwwroot` folder. Web root is where the static files middleware looks for static files. Web root can be changed by using the <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseWebRoot%2A> method on the `WebHost` property:
+By default, the web root is relative to the content root in the `wwwroot` folder. Web root is where the static files middleware looks for static files. Web root can be changed by using the <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseWebRoot%2A> method on the [`WebApplicationBuilder.WebHost`](xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.WebHost) property:
 
 ### ASP.NET Core 5
 
