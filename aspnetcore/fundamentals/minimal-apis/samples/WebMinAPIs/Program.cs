@@ -1,5 +1,6 @@
-#define RP // Default CREATE P1 PM PE I1 I0 IP CERT CERT2 CERT3 RE CONFIG LOG REB 
-// CONFIGB LOGB IWHB DEP R1 LE LF IM SM NR NR2 RP
+#define OP4 // Default CREATE P1 PM PE I1 I0 IP CERT CERT2 CERT3 RE CONFIG LOG REB 
+// CONFIGB LOGB IWHB DEP R1 LE LF IM SM NR NR2 RP WILD CON OV EPB OP1 OP2 OP3 OP4
+// 
 #if NEVER
 #elif Default
 #region snippet_default
@@ -341,7 +342,6 @@ app.MapGet("/", (LinkGenerator linker) =>
 app.Run();
 #endregion
 
-
 #elif RP
 #region snippet_rp
 var builder = WebApplication.CreateBuilder(args);
@@ -351,5 +351,121 @@ app.MapGet("/users/{userId}/books/{bookId}",
     (int userId, int bookId) => $"The user id is {userId} and book id is {bookId}");
 
 app.Run();
+#endregion
+
+#elif WILD
+#region snippet_wild
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.MapGet("/posts/{*rest}", (string rest) => $"Routing to {rest}");
+
+
+app.Run();
+#endregion
+
+#elif CON
+#region snippet_con
+var builder = WebApplication.CreateBuilder(args);
+
+// Added as service
+builder.Services.AddSingleton<Service>();
+
+var app = builder.Build();
+
+app.MapGet("/{id}", (int id, int page, Service service) => { });
+
+class Service { }
+#endregion
+
+#elif OV
+#region snippet_ov
+var builder = WebApplication.CreateBuilder(args);
+
+// Added as service
+builder.Services.AddSingleton<Service>();
+
+var app = builder.Build();
+
+app.MapPost("/", (Person person, Service service) => { });
+
+class Service { }
+
+record Person(string Name, int Age);
+#endregion
+
+#elif EPB
+#region snippet_epb
+using Microsoft.AspNetCore.Mvc;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Added as service
+builder.Services.AddSingleton<Service>();
+
+var app = builder.Build();
+
+
+app.MapGet("/{id}", ([FromRoute] int id,
+                     [FromQuery(Name = "p")] int page,
+                     [FromServices] Service service,
+                     [FromHeader(Name = "Content-Type")] string contentType) 
+                     => {});
+
+
+class Service { }
+
+record Person(string Name, int Age);
+#endregion
+
+#elif OP1
+// GET /products?pageNumber=3
+#region snippet_op1
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.MapGet("/products", (int pageNumber) => $"Requesting page {pageNumber}");
+
+
+app.Run();
+#endregion
+
+#elif OP2
+#region snippet_op2
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.MapGet("/products", (int? pageNumber) => $"Requesting page {pageNumber ?? 1}");
+
+string ListProducts(int pageNumber = 1) => $"Requesting page {pageNumber}";
+
+app.MapGet("/products2", ListProducts);
+
+app.Run();
+#endregion
+
+#elif OP3
+#region snippet_op3
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.MapPost("/products", (Product? product) => () => { });
+
+app.Run();
+
+#endregion
+internal class Product
+{
+}
+
+#elif OP4
+#region snippet_op4
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.MapGet("/products", (int? pageNumber) => $"Requesting page {pageNumber ?? 1}");
+
+app.Run();
+
 #endregion
 #endif

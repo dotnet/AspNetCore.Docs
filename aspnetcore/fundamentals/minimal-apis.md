@@ -381,7 +381,7 @@ Route names are inferred from method names if specified:
 Route names:
 
 * Must be globally unique.
-* Are used as the OpenAPI operation id when OpenAPI support is enabled. See the [OpenAPI/Swagger section}(#openapi) for more details.
+* Are used as the OpenAPI operation id when OpenAPI support is enabled. See the [OpenAPI/Swagger section](#openapi) for more details.
 
 ### Route Parameters
 
@@ -391,14 +391,139 @@ Route parameters can be captured as part of the route pattern definition:
 
 The preceding code returns `The user id is 3 and book id is 7` from `/users/3/books/7`.
 
-The route handler can declare the parameters to capture, when a request is made to this route, the parameters are parsed and passed to the handler. This makes it easy to capture the values in a type safe way. In the preceding code, `userId` and `bookId` are both `int`.
+The route handler can declare the parameters to capture. When a request is made a route with parameters declared to capture, the parameters are parsed and passed to the handler. This makes it easy to capture the values in a type safe way. In the preceding code, `userId` and `bookId` are both `int`.
 
 In the preceding code, if either route value cannot be converted to an `int`, an exception is thrown. The GET request `/users/hello/books/3` throws the following exception:
 
 **`BadHttpRequestException: Failed to bind parameter "int userId" from "hello".`**
 
+### Wildcard and catch all routes
 
-If the route values are not valid ints then an exception will be thrown. The following request will result in the exception below:
+The following catch all route returns `Routing to hello` from the `/posts/hello' endpoint:
+
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_rp)]
+
+### Route constraints
+
+Route constraints constrain the matching behavior of a route.
+
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.MapGet("/todos/{id:int}", (int id) => db.Todos.Find(id));
+app.MapGet("/todos/{text}", (string text) => db.Todos.Where(t => t.Text.Contains(text));
+app.MapGet("/posts/{slug:regex(^[a-z0-9_-]+$)}", (string slug) => $"Post {slug}");
+
+app.Run();
+```
+
+The following table demonstrates example route templates and their behavior:
+
+| Route Template | Example Matching URI |
+| -------------- | -------------------- |
+| `/todos/{id:int} ` | `/todos/1` |
+| `/todos/{text}` | `/todos/something` |
+
+For more information, see [Route constraint reference](xref:fundamentals/routing) in <xref:fundamentals/routing>.
+
+### Parameter Binding
+
+Parameter binding is the process of converting request data into strongly typed parameters that are expressed by route handlers. A binding source determines where parameters are bound from. Binding sources can be explicit or inferred based HTTP method and parameter type.
+
+Supported binding sources:
+
+* Route values
+* Query string
+* Header
+* Body (as JSON)
+* Services provided by dependency injection
+* Custom
+
+**NOTE**: Binding from forms is ***not*** natively supported in .NET 6.
+
+### GET, HEAD, OPTIONS, DELETE
+
+The HTTP methods `GET`, `HEAD`, `OPTIONS`, and `DELETE` don't bind from body. All other binding sources are supported.
+
+**NOTE**: To support the case of `GET` with a body, directly read it from the <xref:Microsoft.AspNetCore.Http.HttpRequest>.
+
+<!-- TODO - finish Service so app displays id and page -->
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_con)]
+
+| Parameter | Binding Source |
+| --------- | -------------- |
+| `id`      | route value |
+| `page`    | query string |
+| service   | Provided by dependency injection |
+
+### POST, PUT, PATCH, etc
+
+<!-- TODO - finish Service so post works with person -->
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_ov)]
+
+| Parameter | Binding Source |
+| --------- | -------------- |
+| `person`      | body (as JSON) |
+| service   | Provided by dependency injection |
+
+### Explicit Parameter Binding
+
+Attributes can be used to explicitly declare where parameters are bound from.
+
+<!-- TODO - finish Service  -->
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_epb)]
+
+| Parameter | Binding Source |
+| --------- | -------------- |
+| `id`      | route value with the name `id` |
+| `page`    | query string with the name `"p"`|
+| service   | Provided by dependency injection |
+| contentType | header with the name` "Content-Type"` |
+
+Binding from form values is ***not*** supported in .NET 6.
+
+### Optional parameters
+
+Parameters declared in route handlers are treated as required. This means if a request matches the route, the route handler only execute if all required parameters are provided in the request. Failure to provide all required parameters results in an error.
+
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_op1)]
+
+| URI | result |
+| --------- | -------------- |
+| `/products?pageNumber=3` | 3 returned |
+| `/products` | `BadHttpRequestException`: Required parameter "int pageNumber" was not provided from query string. |
+| `/products/1` | HTTP 404 error, no matching route |
+
+To make `pageNumber` optional, define the type as optional or provide a default value:
+
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_op2)]
+
+| URI | result |
+| --------- | -------------- |
+| `/products?pageNumber=3` | 3 returned |
+| `/products` | 1 returned |
+| `/products2` | 1 returned |
+
+The preceding nullable and default value applies to all sources:
+
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_op3)]
+
+The preceding code calls the method with a null product if no request body is sent.
+
+**NOTE**: If invalid data is provided and the parameter is nullable, the route handler is ***not*** run.
+
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_op4)]
+
+| URI | result |
+| --------- | -------------- |
+| `/products?pageNumber=3` | `3` returned |
+| `/products` | `1` returned |
+| `/products/two` | `BadHttpRequestException`: Failed to bind parameter `"Nullable<int> pageNumber"` from "two".|
+
+See the [Binding Failures](#bf) section for more information.
+
+
 
 
 ## OpenAPI
