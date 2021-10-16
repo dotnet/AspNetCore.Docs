@@ -530,3 +530,6 @@ See the [Binding Failures](#bf) section for more information.
 
 It's possible to describe the OpenAPI specification for route handlers using [Swashbuckle](https://www.nuget.org/packages/Swashbuckle.AspNetCore/).
 
+<a name="bf"></a>
+
+## Binding Failures
