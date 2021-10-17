@@ -352,10 +352,6 @@ If a custom circuit handler's methods throw an unhandled exception, the exceptio
 
 When a circuit ends because a user has disconnected and the framework is cleaning up the circuit state, the framework disposes of the circuit's DI scope. Disposing the scope disposes any circuit-scoped DI services that implement <xref:System.IDisposable?displayProperty=fullName>. If any DI service throws an unhandled exception during disposal, the framework logs the exception.
 
-## Azure SignalR Service
-
-We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) for Blazor Server apps hosted in Microsoft Azure. The service works in conjunction with the app's Blazor Hub for scaling up a Blazor Server app to a large number of concurrent SignalR connections. In addition, the SignalR Service's global reach and high-performance data centers significantly aid in reducing latency due to geography. For prerendering support with the Azure SignalR Service, configure the app to use *sticky sessions*. For more information, see <xref:blazor/host-and-deploy/server>.
-
 ## Additional resources
 
 * <xref:signalr/introduction>
@@ -448,7 +444,9 @@ A Blazor Server app prerenders in response to the first client request, which cr
 
 ## Azure SignalR Service
 
-We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) for Blazor Server apps hosted in Microsoft Azure. The service works in conjunction with the app's Blazor Hub for scaling up a Blazor Server app to a large number of concurrent SignalR connections. In addition, the SignalR Service's global reach and high-performance data centers significantly aid in reducing latency due to geography. For prerendering support with the Azure SignalR Service, configure the app to use *sticky sessions*. For more information, see <xref:blazor/host-and-deploy/server#azure-signalr-service>.
+We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) for Blazor Server apps hosted in Microsoft Azure. The service works in conjunction with the app's Blazor Hub for scaling up a Blazor Server app to a large number of concurrent SignalR connections. In addition, the SignalR Service's global reach and high-performance data centers significantly aid in reducing latency due to geography.
+
+For prerendering support with the Azure SignalR Service, configure the app to use *sticky sessions*. For more information, see <xref:blazor/host-and-deploy/server#azure-signalr-service>.
 
 ## Circuit handler options
 
@@ -797,7 +795,9 @@ A Blazor Server app prerenders in response to the first client request, which cr
 
 ## Azure SignalR Service
 
-We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) for Blazor Server apps hosted in Microsoft Azure. The service works in conjunction with the app's Blazor Hub for scaling up a Blazor Server app to a large number of concurrent SignalR connections. In addition, the SignalR Service's global reach and high-performance data centers significantly aid in reducing latency due to geography. For prerendering support with the Azure SignalR Service, configure the app to use *sticky sessions*. For more information, see <xref:blazor/host-and-deploy/server#azure-signalr-service>.
+We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) for Blazor Server apps hosted in Microsoft Azure. The service works in conjunction with the app's Blazor Hub for scaling up a Blazor Server app to a large number of concurrent SignalR connections. In addition, the SignalR Service's global reach and high-performance data centers significantly aid in reducing latency due to geography.
+
+For prerendering support with the Azure SignalR Service, configure the app to use *sticky sessions*. For more information, see <xref:blazor/host-and-deploy/server#azure-signalr-service>.
 
 ## Circuit handler options
 
