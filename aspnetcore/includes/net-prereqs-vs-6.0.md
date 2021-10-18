@@ -3,4 +3,4 @@ no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cook
 ---
 * [Visual Studio 2022 latest preview](https://visualstudio.microsoft.com/vs/preview/#download-preview) with the **ASP.NET and web development** workload.
 
-![VS22 installer workloads](~/includes/net-prereqs/6/asp.net-web-dev.png)
+![VS22 installer workloads](~/includes/net-prereqs/6/asp-net-web-dev.png)
