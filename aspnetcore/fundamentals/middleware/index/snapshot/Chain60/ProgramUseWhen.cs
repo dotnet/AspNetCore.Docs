@@ -9,11 +9,6 @@ app.Run(async context =>
     await context.Response.WriteAsync("Hello from non-Map delegate. <p>");
 });
 
-//app.MapGet("/", (ILogger<WebApplication> logger) =>
-//{
-    //logger.LogInformation("Hello from Map delegate.");
-//});
-
 app.Run();
 
 void HandleBranchAndRejoin(IApplicationBuilder app)
