@@ -334,8 +334,6 @@ If you need to transform *web.config* on publish (for example, set environment v
 ## Additional resources
 
 * [App Service overview](/azure/app-service/app-service-web-overview)
-* [Azure App Service: The Best Place to Host your .NET Apps (55-minute overview video)](https://channel9.msdn.com/events/dotnetConf/2017/T222)
-* [Azure Friday: Azure App Service Diagnostic and Troubleshooting Experience (12-minute video)](https://channel9.msdn.com/Shows/Azure-Friday/Azure-App-Service-Diagnostic-and-Troubleshooting-Experience)
 * [Azure App Service diagnostics overview](/azure/app-service/app-service-diagnostics)
 * <xref:host-and-deploy/web-farm>
 
