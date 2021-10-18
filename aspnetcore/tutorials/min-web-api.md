@@ -38,6 +38,8 @@ This tutorial creates the following API:
 
 [!INCLUDE[](~/includes/net-prereqs-vs-6.0.md)]
 
+![VS22 installer workloads](~/includes/net-prereqs/6/asp.net-web-dev.png)
+
 # [Visual Studio Code](#tab/visual-studio-code)
 
 [!INCLUDE[](~/includes/net-prereqs-vsc-6.0.md)]
@@ -60,8 +62,15 @@ This tutorial creates the following API:
   * Select the **ASP.NET Core Empty** template and select **Next**.
   ![Visual Studio Create a new project](min-web-api/_static/empty.png)
 * Name the project *TodoApi* and select **Next**.
-* In the **Additional information** dialog, select **.NET 6.0 (Preview)** and select **Create**.
- 
+* In the **Additional information** dialog:
+
+  * Select **.NET 6.0 (Preview)**
+  * Remove **Use controllers (uncheck to use minimal APIs)**
+  * Remove **Enable OpenAPI support**
+  * Select **Create**
+
+ ![Additional information](min-web-api/_static/add-info2.png)
+
 <!-- 
 ![VS new project dialog](min-web-api/_static/5/vs.png)
 -->
