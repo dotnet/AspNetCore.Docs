@@ -38,7 +38,7 @@ This tutorial creates the following API:
 
 [!INCLUDE[](~/includes/net-prereqs-vs-6.0.md)]
 
-![VS22 installer workloads](~/includes/net-prereqs/6/asp-net-web-dev.png)
+![VS22 installer workloads](min-web-api/_static/asp-net-web-dev.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
