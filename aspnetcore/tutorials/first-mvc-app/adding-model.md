@@ -3,7 +3,7 @@ title: Part 4, add a model to an ASP.NET Core MVC app
 author: rick-anderson
 description: Part 4 of tutorial series on ASP.NET Core MVC.
 ms.author: riande
-ms.date: 09/21/2021
+ms.date: 10/06/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/adding-model
 ms.custom: contperf-fy21q3
@@ -72,6 +72,7 @@ In the PMC, run the following command:
 
 ```powershell
 Install-Package Microsoft.EntityFrameworkCore.Design -IncludePrerelease
+Install-Package Microsoft.EntityFrameworkCore.SqlServer -IncludePrerelease
 ```
 
 The preceding commands add:
@@ -153,12 +154,12 @@ If you get an error message, select **Add** a second time to try it again.
 Scaffolding updates the following:
 
 * Inserts required package references in the *MvcMovie.csproj* project file.
-* Registers the database context in `Startup.ConfigureServices` of the *Startup.cs* file.
+* Registers the database context in the *Program.cs* file.
 * Adds a database connection string to the *appsettings.json* file.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Open a command window in the project directory. The project directory is the directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files.
+Open a command window in the project directory. The project directory is the directory that contains the *Program.cs* and *.csproj* files.
 
 On Linux, export the scaffold tool path:
 
@@ -186,7 +187,7 @@ The following highlighted code in `Program.cs` shows how to use SQLite in develo
 
 Scaffolding updates the following:
 
-* Registers the database context in `Startup.ConfigureServices` of the *Startup.cs* file.
+* Registers the database context in the *Program.cs* file
 * Adds a database connection string to the *appsettings.json* file.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)

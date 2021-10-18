@@ -1,5 +1,7 @@
 @page "/todo"
 
+<PageTitle>Todo</PageTitle>
+
 <h1>Todo (@todos.Count(todo => !todo.IsDone))</h1>
 
 <ul>
@@ -17,7 +19,7 @@
 
 @code {
     private List<TodoItem> todos = new();
-    private string newTodo;
+    private string? newTodo;
 
     private void AddTodo()
     {

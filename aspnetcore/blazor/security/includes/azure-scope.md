@@ -1,7 +1,7 @@
 ---
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 ---
-When working with a server API registered with AAD and the app's AAD registration is in an tenant that relies on an [unverified publisher domain](/azure/active-directory/develop/howto-configure-publisher-domain), the App ID URI of your server API app isn't `api://{SERVER API APP CLIENT ID OR CUSTOM VALUE}` but instead is in the format `https://{TENANT}.onmicrosoft.com/{SERVER API APP CLIENT ID OR CUSTOM VALUE}`. If that's the case, the default access token scope in `Program.Main` (`Program.cs`) of the **`Client`** app appears similar to the following:
+When working with a server API registered with AAD and the app's AAD registration is in an tenant that relies on an [unverified publisher domain](/azure/active-directory/develop/howto-configure-publisher-domain), the App ID URI of your server API app isn't `api://{SERVER API APP CLIENT ID OR CUSTOM VALUE}` but instead is in the format `https://{TENANT}.onmicrosoft.com/{SERVER API APP CLIENT ID OR CUSTOM VALUE}`. If that's the case, the default access token scope in `Program.cs` of the **`Client`** app appears similar to the following:
 
 ```csharp
 options.ProviderOptions.DefaultAccessTokenScopes
@@ -25,7 +25,7 @@ In the preceding configuration, the end of the `Audience` value does **not** inc
 
 Example:
 
-`Program.Main` (`Program.cs`) of the **`Client`** app:
+In `Program.cs` of the **`Client`** app:
 
 ```csharp
 options.ProviderOptions.DefaultAccessTokenScopes

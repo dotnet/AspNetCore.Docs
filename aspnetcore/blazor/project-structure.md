@@ -89,14 +89,26 @@ The Blazor Server template creates the initial files and directory structure for
 
 * `appsettings.json` and environmental app settings files: Provide [configuration settings](xref:blazor/fundamentals/configuration) for the app.
 
-* `Program.cs`: The app's entry point that sets up the ASP.NET Core [host](xref:fundamentals/host/generic-host).
+* `Program.cs`: The app's entry point that sets up the ASP.NET Core [host](xref:fundamentals/host/generic-host) and contains the app's startup logic, including service registrations and request processing pipeline configuration:
 
-* `Startup.cs`: Contains the app's startup logic. The `Startup` class defines two methods:
-
-  * `ConfigureServices`: Configures the app's [dependency injection (DI)](xref:fundamentals/dependency-injection) services. Services are added by calling <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A>, and the `WeatherForecastService` is added to the service container for use by the example `FetchData` component.
-  * `Configure`: Configures the app's request handling pipeline:
+  * Specifies the app's [dependency injection (DI)](xref:fundamentals/dependency-injection) services. Services are added by calling <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A>, and the `WeatherForecastService` is added to the service container for use by the example `FetchData` component.
+  * Configures the app's request handling pipeline:
     * <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> is called to set up an endpoint for the real-time connection with the browser. The connection is created with [SignalR](xref:signalr/introduction), which is a framework for adding real-time web functionality to apps.
     * [`MapFallbackToPage("/_Host")`](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A) is called to set up the root page of the app (`Pages/_Host.cshtml`) and enable navigation.
+
+## Nullable reference types (NRTs) and .NET compiler null-state static analysis
+
+Blazor project templates embrace the use of nullable reference types (NRTs) and the .NET compiler's null-state static analysis. These features were released with C# 8 and are enabled by default for apps generated using ASP.NET Core 6.0 (C# 10) or later.
+
+The .NET compiler's null-state static analysis warnings can either be ignored or serve as a guide for updating a documentation example or sample app locally. Null-state static analysis can be disabled by [setting `Nullable` to `disable`](/dotnet/csharp/language-reference/builtin-types/nullable-reference-types#setting-the-nullable-context) in the app's project file, which we only recommend for documentation examples and sample apps if the compiler warnings are distracting while learning about .NET. **_We don't recommended disabling null-state checking in production projects._**
+
+For more information on NRTs, the MSBuild `Nullable` property, and updating apps (including `#pragma` guidance), see the following resources in the C# documentation:
+
+* [Nullable reference types](/dotnet/csharp/nullable-references)
+* [Nullable reference types (C# reference)](/dotnet/csharp/language-reference/builtin-types/nullable-reference-types)
+* [Learn techniques to resolve nullable warnings](/dotnet/csharp/nullable-warnings)
+* [Update a codebase with nullable reference types to improve null diagnostic warnings](/dotnet/csharp/nullable-migration-strategies)
+* [Attributes for null-state static analysis](/dotnet/csharp/language-reference/attributes/nullable-analysis)
 
 ## Additional resources
 

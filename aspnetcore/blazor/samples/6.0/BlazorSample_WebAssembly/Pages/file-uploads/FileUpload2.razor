@@ -107,21 +107,23 @@
             var newUploadResults = await response.Content
                 .ReadFromJsonAsync<IList<UploadResult>>();
 
-            uploadResults = uploadResults.Concat(newUploadResults).ToList();
+            if (newUploadResults is not null)
+            {
+                uploadResults = uploadResults.Concat(newUploadResults).ToList();
+            }
         }
 
         shouldRender = true;
     }
 
     private static bool FileUpload(IList<UploadResult> uploadResults,
-        string fileName, ILogger<FileUpload2> logger, out UploadResult result)
+        string? fileName, ILogger<FileUpload2> logger, out UploadResult result)
     {
-        result = uploadResults.SingleOrDefault(f => f.FileName == fileName);
+        result = uploadResults.SingleOrDefault(f => f.FileName == fileName) ?? new();
 
-        if (result is null)
+        if (!result.Uploaded)
         {
             logger.LogInformation("{FileName} not uploaded (Err: 5)", fileName);
-            result = new();
             result.ErrorCode = 5;
         }
 
@@ -130,6 +132,6 @@
 
     private class File
     {
-        public string Name { get; set; }
+        public string? Name { get; set; }
     }
 }

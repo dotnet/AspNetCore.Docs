@@ -20,10 +20,10 @@
 
 @code {
     private Random r = new();
-    private string stockSymbol;
+    private string? stockSymbol;
     private decimal price;
-    private JsInteropClasses2 jsClass;
-    private string result;
+    private JsInteropClasses2? jsClass;
+    private string? result;
 
     protected override void OnInitialized()
     {
@@ -32,12 +32,15 @@
 
     private async Task SetStock()
     {
-        stockSymbol = 
-            $"{(char)('A' + r.Next(0, 26))}{(char)('A' + r.Next(0, 26))}";
-        price = r.Next(1, 101);
-        var interopResult = await jsClass.TickerChanged(stockSymbol, price);
-        result = $"Result of TickerChanged call for {stockSymbol} at " +
-            $"{price.ToString("c")}: {interopResult}";
+        if (jsClass is not null)
+        {
+            stockSymbol = 
+                $"{(char)('A' + r.Next(0, 26))}{(char)('A' + r.Next(0, 26))}";
+            price = r.Next(1, 101);
+            var interopResult = await jsClass.TickerChanged(stockSymbol, price);
+            result = $"Result of TickerChanged call for {stockSymbol} at " +
+                $"{price.ToString("c")}: {interopResult}";
+        }
     }
 
     public void Dispose() => jsClass?.Dispose();

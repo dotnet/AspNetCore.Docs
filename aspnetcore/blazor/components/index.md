@@ -665,18 +665,18 @@ In the event a component must be updated based on an external event, such as a t
 
 Register the services:
 
-* In a Blazor WebAssembly app, register the services as singletons in `Program.Main`:
+* In a Blazor WebAssembly app, register the services as singletons in `Program.cs`:
 
   ```csharp
   builder.Services.AddSingleton<NotifierService>();
   builder.Services.AddSingleton<TimerService>();
   ```
 
-* In a Blazor Server app, register the services as scoped in `Startup.ConfigureServices`:
+* In a Blazor Server app, register the services as scoped in `Program.cs`:
 
   ```csharp
-  services.AddScoped<NotifierService>();
-  services.AddScoped<TimerService>();
+  builder.Services.AddScoped<NotifierService>();
+  builder.Services.AddScoped<TimerService>();
   ```
 
 Use the `NotifierService` to update a component.
@@ -1057,7 +1057,7 @@ await Blazor.rootComponents.add(containerElement, 'counter', { incrementAmount: 
 
 ## Blazor custom elements
 
-Experimental support is available for building custom elements using the the [`Microsoft.AspNetCore.Components.CustomElements` NuGet package](https://www.nuget.org/packages/microsoft.aspnetcore.components.customelements). Custom elements use standard HTML interfaces to implement custom HTML elements.
+Experimental support is available for building custom elements using the [`Microsoft.AspNetCore.Components.CustomElements` NuGet package](https://www.nuget.org/packages/microsoft.aspnetcore.components.customelements). Custom elements use standard HTML interfaces to implement custom HTML elements.
 
 Register a root component as a custom element:
 
@@ -1741,7 +1741,7 @@ In the event a component must be updated based on an external event, such as a t
 
 Register the services:
 
-* In a Blazor WebAssembly app, register the services as singletons in `Program.Main`:
+* In a Blazor WebAssembly app, register the services as singletons in `Program.cs`:
 
   ```csharp
   builder.Services.AddSingleton<NotifierService>();
@@ -2686,7 +2686,7 @@ In the event a component must be updated based on an external event, such as a t
 
 Register the services:
 
-* In a Blazor WebAssembly app, register the services as singletons in `Program.Main`:
+* In a Blazor WebAssembly app, register the services as singletons in `Program.cs`:
 
   ```csharp
   builder.Services.AddSingleton<NotifierService>();

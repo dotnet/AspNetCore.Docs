@@ -78,7 +78,7 @@ Add the namespace for <xref:Microsoft.Extensions.Configuration?displayProperty=f
 using Microsoft.Extensions.Configuration;
 ```
 
-In `Program.Main` of `Program.cs`, modify the existing <xref:System.Net.Http.HttpClient> service registration to use the client to read the file:
+In `Program.cs`, modify the existing <xref:System.Net.Http.HttpClient> service registration to use the client to read the file:
 
 ```csharp
 var http = new HttpClient()
@@ -96,7 +96,7 @@ builder.Configuration.AddJsonStream(stream);
 
 ## Memory Configuration Source
 
-The following example uses a <xref:Microsoft.Extensions.Configuration.Memory.MemoryConfigurationSource> in `Program.Main` to supply additional configuration.
+The following example uses a <xref:Microsoft.Extensions.Configuration.Memory.MemoryConfigurationSource> in `Program.cs` to supply additional configuration.
 
 Add the namespace for <xref:Microsoft.Extensions.Configuration.Memory?displayProperty=fullName> to `Program.cs`:
 
@@ -104,7 +104,7 @@ Add the namespace for <xref:Microsoft.Extensions.Configuration.Memory?displayPro
 using Microsoft.Extensions.Configuration.Memory;
 ```
 
-In `Program.Main` of `Program.cs`:
+In `Program.cs`:
 
 ```csharp
 var vehicleData = new Dictionary<string, string>()
@@ -178,7 +178,7 @@ Provide authentication configuration in an app settings file.
 }
 ```
 
-Load the configuration for an Identity provider with <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind%2A?displayProperty=nameWithType> in `Program.Main`. The following example loads configuration for an [OIDC provider](xref:blazor/security/webassembly/standalone-with-authentication-library).
+Load the configuration for an Identity provider with <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind%2A?displayProperty=nameWithType> in `Program.cs`. The following example loads configuration for an [OIDC provider](xref:blazor/security/webassembly/standalone-with-authentication-library).
 
 `Program.cs`:
 
@@ -197,7 +197,7 @@ Add a package reference for [`Microsoft.Extensions.Logging.Configuration`](https
 
 In the preceding example, the `{VERSION}` placeholder is the package's version. Package versions are found at [NuGet.org](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration).
 
-In the app settings file, provide logging configuration. The logging configuration is loaded in `Program.Main`.
+In the app settings file, provide logging configuration. The logging configuration is loaded in `Program.cs`.
 
 `wwwroot/appsettings.json`:
 
@@ -219,7 +219,7 @@ Add the namespace for <xref:Microsoft.Extensions.Logging?displayProperty=fullNam
 using Microsoft.Extensions.Logging;
 ```
 
-In `Program.Main` of `Program.cs`:
+In `Program.cs`:
 
 ```csharp
 builder.Logging.AddConfiguration(
@@ -228,9 +228,9 @@ builder.Logging.AddConfiguration(
 
 ## Host builder configuration
 
-Read host builder configuration from <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.Configuration?displayProperty=nameWithType> in `Program.Main`.
+Read host builder configuration from <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.Configuration?displayProperty=nameWithType> in `Program.cs`.
 
-In `Program.Main` of `Program.cs`:
+In `Program.cs`:
 
 ```csharp
 var hostname = builder.Configuration["HostName"];
@@ -314,7 +314,7 @@ Add the namespace for <xref:Microsoft.Extensions.Configuration?displayProperty=f
 using Microsoft.Extensions.Configuration;
 ```
 
-In `Program.Main` of `Program.cs`, modify the existing <xref:System.Net.Http.HttpClient> service registration to use the client to read the file:
+In `Program.cs`, modify the existing <xref:System.Net.Http.HttpClient> service registration to use the client to read the file:
 
 ```csharp
 var http = new HttpClient()
@@ -332,7 +332,7 @@ builder.Configuration.AddJsonStream(stream);
 
 ## Memory Configuration Source
 
-The following example uses a <xref:Microsoft.Extensions.Configuration.Memory.MemoryConfigurationSource> in `Program.Main` to supply additional configuration.
+The following example uses a <xref:Microsoft.Extensions.Configuration.Memory.MemoryConfigurationSource> in `Program.cs` to supply additional configuration.
 
 Add the namespace for <xref:Microsoft.Extensions.Configuration.Memory?displayProperty=fullName> to `Program.cs`:
 
@@ -340,7 +340,7 @@ Add the namespace for <xref:Microsoft.Extensions.Configuration.Memory?displayPro
 using Microsoft.Extensions.Configuration.Memory;
 ```
 
-In `Program.Main` of `Program.cs`:
+In `Program.cs`:
 
 ```csharp
 var vehicleData = new Dictionary<string, string>()
@@ -414,7 +414,7 @@ Provide authentication configuration in an app settings file.
 }
 ```
 
-Load the configuration for an Identity provider with <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind%2A?displayProperty=nameWithType> in `Program.Main`. The following example loads configuration for an [OIDC provider](xref:blazor/security/webassembly/standalone-with-authentication-library).
+Load the configuration for an Identity provider with <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind%2A?displayProperty=nameWithType> in `Program.cs`. The following example loads configuration for an [OIDC provider](xref:blazor/security/webassembly/standalone-with-authentication-library).
 
 `Program.cs`:
 
@@ -433,7 +433,7 @@ Add a package reference for [`Microsoft.Extensions.Logging.Configuration`](https
 
 In the preceding example, the `{VERSION}` placeholder is the package's version. Package versions are found at [NuGet.org](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration).
 
-In the app settings file, provide logging configuration. The logging configuration is loaded in `Program.Main`.
+In the app settings file, provide logging configuration. The logging configuration is loaded in `Program.cs`.
 
 `wwwroot/appsettings.json`:
 
@@ -455,7 +455,7 @@ Add the namespace for <xref:Microsoft.Extensions.Logging?displayProperty=fullNam
 using Microsoft.Extensions.Logging;
 ```
 
-In `Program.Main` of `Program.cs`:
+In `Program.cs`:
 
 ```csharp
 builder.Logging.AddConfiguration(
@@ -464,9 +464,9 @@ builder.Logging.AddConfiguration(
 
 ## Host builder configuration
 
-Read host builder configuration from <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.Configuration?displayProperty=nameWithType> in `Program.Main`.
+Read host builder configuration from <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.Configuration?displayProperty=nameWithType> in `Program.cs`.
 
-In `Program.Main` of `Program.cs`:
+In `Program.cs`:
 
 ```csharp
 var hostname = builder.Configuration["HostName"];
@@ -550,7 +550,7 @@ Add the namespace for <xref:Microsoft.Extensions.Configuration?displayProperty=f
 using Microsoft.Extensions.Configuration;
 ```
 
-In `Program.Main` of `Program.cs`, modify the existing <xref:System.Net.Http.HttpClient> service registration to use the client to read the file:
+In `Program.cs`, modify the existing <xref:System.Net.Http.HttpClient> service registration to use the client to read the file:
 
 ```csharp
 var http = new HttpClient()
@@ -568,7 +568,7 @@ builder.Configuration.AddJsonStream(stream);
 
 ## Memory Configuration Source
 
-The following example uses a <xref:Microsoft.Extensions.Configuration.Memory.MemoryConfigurationSource> in `Program.Main` to supply additional configuration.
+The following example uses a <xref:Microsoft.Extensions.Configuration.Memory.MemoryConfigurationSource> in `Program.cs` to supply additional configuration.
 
 Add the namespace for <xref:Microsoft.Extensions.Configuration.Memory?displayProperty=fullName> to `Program.cs`:
 
@@ -576,7 +576,7 @@ Add the namespace for <xref:Microsoft.Extensions.Configuration.Memory?displayPro
 using Microsoft.Extensions.Configuration.Memory;
 ```
 
-In `Program.Main` of `Program.cs`:
+In `Program.cs`:
 
 ```csharp
 var vehicleData = new Dictionary<string, string>()
@@ -650,7 +650,7 @@ Provide authentication configuration in an app settings file.
 }
 ```
 
-Load the configuration for an Identity provider with <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind%2A?displayProperty=nameWithType> in `Program.Main`. The following example loads configuration for an [OIDC provider](xref:blazor/security/webassembly/standalone-with-authentication-library).
+Load the configuration for an Identity provider with <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind%2A?displayProperty=nameWithType> in `Program.cs`. The following example loads configuration for an [OIDC provider](xref:blazor/security/webassembly/standalone-with-authentication-library).
 
 `Program.cs`:
 
@@ -669,7 +669,7 @@ Add a package reference for [`Microsoft.Extensions.Logging.Configuration`](https
 
 In the preceding example, the `{VERSION}` placeholder is the package's version. Package versions are found at [NuGet.org](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration).
 
-In the app settings file, provide logging configuration. The logging configuration is loaded in `Program.Main`.
+In the app settings file, provide logging configuration. The logging configuration is loaded in `Program.cs`.
 
 `wwwroot/appsettings.json`:
 
@@ -691,7 +691,7 @@ Add the namespace for <xref:Microsoft.Extensions.Logging?displayProperty=fullNam
 using Microsoft.Extensions.Logging;
 ```
 
-In `Program.Main` of `Program.cs`:
+In `Program.cs`:
 
 ```csharp
 builder.Logging.AddConfiguration(
@@ -700,9 +700,9 @@ builder.Logging.AddConfiguration(
 
 ## Host builder configuration
 
-Read host builder configuration from <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.Configuration?displayProperty=nameWithType> in `Program.Main`.
+Read host builder configuration from <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.Configuration?displayProperty=nameWithType> in `Program.cs`.
 
-In `Program.Main` of `Program.cs`:
+In `Program.cs`:
 
 ```csharp
 var hostname = builder.Configuration["HostName"];

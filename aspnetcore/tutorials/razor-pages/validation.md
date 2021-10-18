@@ -4,7 +4,7 @@ author: rick-anderson
 description: Part 8 of tutorial series on Razor Pages.
 ms.author: riande
 ms.custom: mvc, contperf-fy21q2
-ms.date: 09/29/2020
+ms.date: 10/13/2021
 no-loc: [Home, Privacy, Index, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/razor-pages/validation
 ---
@@ -197,6 +197,8 @@ CREATE TABLE [dbo].[Movie] (
 
 The preceding schema changes don't cause EF to throw an exception. However, create a migration so the schema is consistent with the model.
 
+# [Visual Studio](#tab/visual-studio)
+
 From the **Tools** menu, select **NuGet Package Manager > Package Manager Console**.
 In the PMC, enter the following commands:
 
@@ -204,6 +206,18 @@ In the PMC, enter the following commands:
 Add-Migration New_DataAnnotations
 Update-Database
 ```
+
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+
+Use the following commands to add a migration for the new DataAnnotations:
+
+```dotnetcli
+dotnet ef migrations add New_DataAnnotations
+dotnet ef database update
+
+```
+
+---
 
 `Update-Database` runs the `Up` methods of the `New_DataAnnotations` class. Examine the `Up` method:
 

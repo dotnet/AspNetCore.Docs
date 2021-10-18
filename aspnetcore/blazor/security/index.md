@@ -151,14 +151,14 @@ using Microsoft.AspNetCore.Components.Authorization;
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
 ```
 
-In a Blazor Server app, the `CustomAuthStateProvider` service is registered in `Startup.ConfigureServices`:
+In a Blazor Server app, the `CustomAuthStateProvider` service is registered in `Program.cs`:
 
 ```csharp
 using Microsoft.AspNetCore.Components.Authorization;
 
 ...
 
-services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
+builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
 ```
 
 Using the `CustomAuthStateProvider` in the preceding example, all users are authenticated with the username `mrfibuli`.
@@ -217,7 +217,7 @@ Set up the `Task<`<xref:Microsoft.AspNetCore.Components.Authorization.Authentica
 </CascadingAuthenticationState>
 ```
 
-In a Blazor WebAssembly App, add services for options and authorization to `Program.Main`:
+In a Blazor WebAssembly App, add services for options and authorization to `Program.cs`:
 
 ```csharp
 builder.Services.AddOptions();
@@ -760,7 +760,7 @@ Set up the `Task<`<xref:Microsoft.AspNetCore.Components.Authorization.Authentica
 
 [!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
 
-In a Blazor WebAssembly App, add services for options and authorization to `Program.Main`:
+In a Blazor WebAssembly App, add services for options and authorization to `Program.cs`:
 
 ```csharp
 builder.Services.AddOptions();
@@ -1305,7 +1305,7 @@ Set up the `Task<`<xref:Microsoft.AspNetCore.Components.Authorization.Authentica
 </CascadingAuthenticationState>
 ```
 
-In a Blazor WebAssembly App, add services for options and authorization to `Program.Main`:
+In a Blazor WebAssembly App, add services for options and authorization to `Program.cs`:
 
 ```csharp
 builder.Services.AddOptions();

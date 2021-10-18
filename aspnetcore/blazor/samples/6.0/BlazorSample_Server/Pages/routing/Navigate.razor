@@ -21,7 +21,7 @@
         NavigationManager.LocationChanged += HandleLocationChanged;
     }
 
-    private void HandleLocationChanged(object sender, LocationChangedEventArgs e)
+    private void HandleLocationChanged(object? sender, LocationChangedEventArgs e)
     {
         Logger.LogInformation("URL of new location: {Location}", e.Location);
     }
