@@ -194,6 +194,7 @@ For Single Page Applications (SPAs), the SPA middleware <xref:Microsoft.Extensio
 * To allow SPAs with client-side routing to run for all routes that are unrecognized by the server app.
 
 For more details on SPAs, see the guides for the [React](xref:spa/react) and [Angular](xref:spa/angular) project templates.
+<a name="fhmo"></a>
 
 ### Forwarded Headers Middleware order
 
@@ -277,7 +278,7 @@ ASP.NET Core ships with the following middleware components. The *Order* column 
 | [Session](xref:fundamentals/app-state) | Provides support for managing user sessions. | Before components that require Session. | 
 | [Static Files](xref:fundamentals/static-files) | Provides support for serving static files and directory browsing. | Terminal if a request matches a file. |
 | [URL Rewrite](xref:fundamentals/url-rewriting) | Provides support for rewriting URLs and redirecting requests. | Before components that consume the URL. |
-| [WebSockets](xref:fundamentals/websockets) | Enables the WebSockets protocol. | Before components that are required to accept WebSocket requests. |
+| [WebSockets](xref:fundamentals/websockets) | Enables the WebSocket protocol. | Before components that are required to accept WebSocket requests. |
 
 ## Additional resources
 
@@ -558,7 +559,7 @@ ASP.NET Core ships with the following middleware components. The *Order* column 
 | [Session](xref:fundamentals/app-state) | Provides support for managing user sessions. | Before components that require Session. | 
 | [Static Files](xref:fundamentals/static-files) | Provides support for serving static files and directory browsing. | Terminal if a request matches a file. |
 | [URL Rewrite](xref:fundamentals/url-rewriting) | Provides support for rewriting URLs and redirecting requests. | Before components that consume the URL. |
-| [WebSockets](xref:fundamentals/websockets) | Enables the WebSockets protocol. | Before components that are required to accept WebSocket requests. |
+| [WebSockets](xref:fundamentals/websockets) | Enables the WebSocket protocol. | Before components that are required to accept WebSocket requests. |
 
 ## Additional resources
 
