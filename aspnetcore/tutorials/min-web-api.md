@@ -51,25 +51,24 @@ This tutorial creates the following API:
 -->
 ---
 
-## Create an empty web project
+## Create a Web API project
 
 # [Visual Studio](#tab/visual-studio)
 
 * Start Visual Studio 2022 and select **Create a new project**.
   ![Visual Studio new project start page](min-web-api/_static/create.png)
 * In the **Create a new project** dialog:
-  * Enter `Empty` in the **Search for templates** search box.
-  * Select the **ASP.NET Core Empty** template and select **Next**.
+  * Enter `API` in the **Search for templates** search box.
+  * Select the **ASP.NET Core Web API** template and select **Next**.
   ![Visual Studio Create a new project](min-web-api/_static/empty.png)
 * Name the project *TodoApi* and select **Next**.
 * In the **Additional information** dialog:
 
   * Select **.NET 6.0 (Preview)**
   * Remove **Use controllers (uncheck to use minimal APIs)**
-  * Remove **Enable OpenAPI support**
   * Select **Create**
 
- ![Additional information](min-web-api/_static/add-info2.png)
+ ![Additional information](min-web-api/_static/add-info.png)
 
 <!-- 
 ![VS new project dialog](min-web-api/_static/5/vs.png)
@@ -83,14 +82,15 @@ This tutorial creates the following API:
 * Run the following commands:
 
    ```dotnetcli
-   dotnet new web -o TodoApi
+   dotnet new webapi -minimal -o TodoApi
    cd TodoApi
    code -r ../TodoApi
    ```
 
+* When a dialogy asks if you want to trust the authors, select **Yes**.
 * When a dialog box asks if you want to add required assets to the project, select **Yes**.
 
-  The preceding command creates a new web API project and opens it in Visual Studio Code. 
+  The preceding command creates a new web minimal API project and opens it in Visual Studio Code.
 
 <!-- add VS Mac later 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
@@ -117,18 +117,13 @@ This tutorial creates the following API:
 
 The *Program.cs* file contains the following code:
 
-[!code-csharp[](min-web-api/samples/6.x/Program.cs)]
+[!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_default)]
 
-The following code creates a `WebApplicationBuilder` with preconfigured defaults, and builds the web app:
+The project template creates a `WeatherForecast` API with support for [Swagger](xref:tutorials/web-api-help-pages-using-swagger). Swagger is used to generate useful documentation and help pages for web APIs.
 
-  ```csharp
-  var builder = WebApplication.CreateBuilder(args);
-  var app = builder.Build();
-  ```
+The following highlighted code supports swagger:
 
-`app.MapGet("/", () => "Hello World!");` maps the `/` endpoint to a method that returns `Hello World!`. `app.Run();` runs the app.
-
-The preceding code is a complete web app with one endpoint.
+[!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_swagger&highlight=5-6)]
 
 ### Run the app
 
@@ -140,16 +135,13 @@ Press Ctrl+F5 to run without the debugger.
 
 [!INCLUDE[](~/includes/trustCertVS22.md)]
 
-Visual Studio launches:
-
-* The [Kestrel web server](xref:fundamentals/servers/kestrel).
-* The default browser and navigates to `https://localhost:5001`.
+Visual Studio launches the [Kestrel web server](xref:fundamentals/servers/kestrel).
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
 [!INCLUDE[](~/includes/trustCertVSC.md)]
 
-Press Ctrl+F5 to run the app. In a browser, go to following URL: [https://localhost:5001](https://localhost:5001)
+Press Ctrl+F5 to run the app. A browser window is opened. Append `/swagger` to the URL in the browser, for example `https://localhost:7122/swagger`.
 
 <!-- add VS Mac later 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
@@ -159,7 +151,73 @@ Select **Run** > **Start Debugging** to launch the app. Visual Studio for Mac la
 
 ---
 
-`Hello World!` is displayed in the browser.
+The Swagger page `/swagger/index.html` is displayed. Select **GET** > **Try it out** > **Execute**. The page displays:
+
+* The [Curl](https://curl.haxx.se/) command to test the WeatherForecast API.
+* The URL to test the WeatherForecast API.
+* The response code, body, and headers.
+* A drop down list box with media types and the example value and schema.
+
+Copy and paste the **Request URL** in the browser:  `https://localhost:<port>/WeatherForecast`
+
+JSON similar to the following is returned:
+
+```json
+[
+  {
+    "date": "2021-10-19T14:12:50.3079024-10:00",
+    "temperatureC": 13,
+    "summary": "Bracing",
+    "temperatureF": 55
+  },
+  {
+    "date": "2021-10-20T14:12:50.3080559-10:00",
+    "temperatureC": -8,
+    "summary": "Bracing",
+    "temperatureF": 18
+  },
+  {
+    "date": "2021-10-21T14:12:50.3080601-10:00",
+    "temperatureC": 12,
+    "summary": "Hot",
+    "temperatureF": 53
+  },
+  {
+    "date": "2021-10-22T14:12:50.3080603-10:00",
+    "temperatureC": 10,
+    "summary": "Sweltering",
+    "temperatureF": 49
+  },
+  {
+    "date": "2021-10-23T14:12:50.3080604-10:00",
+    "temperatureC": 36,
+    "summary": "Warm",
+    "temperatureF": 96
+  }
+]
+```
+
+## Update the generated code
+
+This tutorial focuses on creating a web API, so we'll delete the Swagger code and the `WeatherForecast` code. Replace the contents of the *program.cs* file with the following sample app code:
+
+[!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_min)]
+
+The following highlighted code creates a <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> and a <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> with preconfigured defaults:
+
+[!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_min&highlight=1-2)]
+
+The following code creates an endpoint `/` which returns `Hello World!`:
+
+```csharp
+app.MapGet("/", () => "Hello World!");
+```
+
+`app.Run();` runs the app.
+
+Remove the two `"launchUrl": "swagger",` lines from the *Properties/launchSettings.json* file. When the `launchUrl` isn't specified, the web browser requests the `/` endpoint.
+
+Run the app, `Hello World!` is displayed. The updated *Program.cs* file contains a complete app.
 
 ## Add NuGet packages
 
@@ -337,7 +395,6 @@ The following image shows the Postman update:
 Examine the `MapDelete` method:
 
 [!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_delete)]
-
 
 Use Postman to delete a to-do item:
 
