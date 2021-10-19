@@ -68,11 +68,6 @@ builder.Services.AddDbContext<TodoDb>(opt => opt.UseInMemoryDatabase("TodoList")
 var app = builder.Build();
 #endregion
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseDeveloperExceptionPage();
-}
-
 #region snippet_get
 app.MapGet("/", () => "Hello World!");
 
@@ -89,6 +84,7 @@ app.MapGet("/todoitems/{id}", async (int id, TodoDb db) =>
             : Results.NotFound());
 #endregion
 
+#region snippet_post
 app.MapPost("/todoitems", async (Todo todo, TodoDb db) =>
 {
     db.Todos.Add(todo);
@@ -96,7 +92,7 @@ app.MapPost("/todoitems", async (Todo todo, TodoDb db) =>
 
     return Results.Created($"/todoitems/{todo.Id}", todo);
 });
-
+#endregion
 #region snippet_put
 app.MapPut("/todoitems/{id}", async (int id, Todo inputTodo, TodoDb db) =>
 {

@@ -7,11 +7,6 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDbContext<TodoDb>(opt => opt.UseInMemoryDatabase("TodoList"));
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseDeveloperExceptionPage();
-}
-
 #region snippet_get
 app.MapGet("/todoitems", async (TodoDb db) =>
     await db.Todos.Select(x => new TodoItemDTO(x)).ToListAsync());

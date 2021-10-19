@@ -123,7 +123,7 @@ The project template creates a `WeatherForecast` API with support for [Swagger](
 
 The following highlighted code supports swagger:
 
-[!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_swagger&highlight=5-6)]
+[!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_swagger&highlight=5-6,13-14)]
 
 ### Run the app
 
@@ -199,7 +199,7 @@ JSON similar to the following is returned:
 
 ## Update the generated code
 
-This tutorial focuses on creating a web API, so we'll delete the Swagger code and the `WeatherForecast` code. Replace the contents of the *program.cs* file with the following sample app code:
+This tutorial focuses on creating a web API, so we'll delete the Swagger code and the `WeatherForecast` code. Replace the contents of the *program.cs* file with the following:
 
 [!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_min)]
 
@@ -271,11 +271,15 @@ The sample app also contains the following database context class:
 
 The *database context* is the main class that coordinates [Entity Framework](/ef/core/) functionality for a data model. This class is created by deriving from the <xref:Microsoft.EntityFrameworkCore.DbContext?displayProperty=fullName> class.
 
-The following highlighted code adds the database context to the [dependency injection (DI)](xref:fundamentals/dependency-injection) container:
+The following highlighted code adds the database context to the [dependency injection (DI)](xref:fundamentals/dependency-injection) container and enables displaying database-related exceptions that can be resolved by using Entity Framework migrations:
 
-[!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_DI&highlight=3)]
+[!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_DI&highlight=2-3)]
 
  The DI container provides access to the database context and other services.
+
+The following code creates an HTTP POST endpoint to create data:
+
+[!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_post)]
 
 ## Install Postman to test the app
 
