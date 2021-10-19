@@ -2,7 +2,7 @@
 title: Configuration in ASP.NET Core
 author: rick-anderson
 description: Learn how to use the Configuration API to configure an ASP.NET Core app.
-monikerRange: '>= aspnetcore-2.1'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 1/29/2021
@@ -854,7 +854,7 @@ An <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> implementation allows add
 
 ::: moniker-end
 
-::: moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
+::: moniker range=">= aspnetcore-3.1 < aspnetcore-6.0"
 
 Configuration in ASP.NET Core is performed using one or more [configuration providers](#cp). Configuration providers read configuration data from key-value pairs using a variety of configuration sources:
 
