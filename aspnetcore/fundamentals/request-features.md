@@ -4,7 +4,7 @@ author: ardalis
 description: Learn about web server implementation details related to HTTP requests and responses that are defined in interfaces for ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/20/2020
+ms.date: 10/11/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/request-features
 ---
@@ -45,7 +45,13 @@ The following feature interfaces are from <xref:Microsoft.AspNetCore.Http.Featur
 <xref:Microsoft.AspNetCore.Http.Features.IHttpBodyControlFeature>: Used to control if synchronous IO operations are allowed for the request or response bodies.
 
 ::: moniker-end
-   
+
+::: moniker range=">= aspnetcore-6.0"
+
+`IHttpActivityFeature`: Used to add `Activity` information for diagnostic listeners.
+
+::: moniker-end
+
 ::: moniker range="< aspnetcore-3.0"
 
 <xref:Microsoft.AspNetCore.Http.Features.IHttpBufferingFeature>: Defines methods for disabling buffering of requests and/or responses.
