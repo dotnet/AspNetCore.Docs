@@ -58,7 +58,6 @@ app.Run();
 #endregion
 #elif FINAL
 #region snippet_all
-using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 
 #region snippet_DI
@@ -93,6 +92,7 @@ app.MapPost("/todoitems", async (Todo todo, TodoDb db) =>
     return Results.Created($"/todoitems/{todo.Id}", todo);
 });
 #endregion
+
 #region snippet_put
 app.MapPut("/todoitems/{id}", async (int id, Todo inputTodo, TodoDb db) =>
 {
