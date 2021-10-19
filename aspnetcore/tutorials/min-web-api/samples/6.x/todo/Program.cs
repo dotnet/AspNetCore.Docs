@@ -1,4 +1,4 @@
-#define MINIMAL // DEFAULT MINIMAL
+#define FINAL // DEFAULT MINIMAL FINAL
 #if DEFAULT
 #region snippet_default
 #region snippet_swagger
@@ -56,7 +56,7 @@ app.MapGet("/", () => "Hello World!");
 
 app.Run();
 #endregion
-#else
+#elif FINAL
 #region snippet_all
 using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
