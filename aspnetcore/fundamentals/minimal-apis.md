@@ -262,16 +262,7 @@ Extension methods on <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> can be 
 
 ### Change the web root
 
-By default, the web root is relative to the content root in the `wwwroot` folder. Web root is where the static files middleware looks for static files. Web root can be changed by using the <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseWebRoot%2A> method on the [`WebApplicationBuilder.WebHost`](xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.WebHost) property:
-
-```csharp
-var builder = WebApplication.CreateBuilder(args);
-
-// Look for static files in webroot
-builder.WebHost.UseWebRoot("webroot");
-
-var app = builder.Build();
-```
+By default, the web root is relative to the content root in the `wwwroot` folder. Web root is where the static files middleware looks for static files. Web root can be changed with `WebHostOptions` or using the command line.
 
 <!-- Duplicate sample in 50-to-60-samples doc. Once PR #23461 (Migrate to .NET 6 ) merges, remove this comment so the snippet is displayed 
 [!code-csharp[](~/migration/50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_wr)]
