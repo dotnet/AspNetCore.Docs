@@ -203,7 +203,7 @@ This tutorial focuses on creating a web API, so we'll delete the Swagger code an
 
 [!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_min)]
 
-The following highlighted code creates a <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> and a <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> with preconfigured defaults:
+The following highlighted code creates a <xref:Microsoft.AspNetCore.Builder.WebApplication> and a <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> with preconfigured defaults:
 
 [!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_min&highlight=1-2)]
 
@@ -277,7 +277,7 @@ The following highlighted code adds the database context to the [dependency inje
 
  The DI container provides access to the database context and other services.
 
-The following code creates an HTTP POST endpoint to create data:
+The following code creates an HTTP POST endpoint `/todoitems` to add data to the in-memory database:
 
 [!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_post)]
 
