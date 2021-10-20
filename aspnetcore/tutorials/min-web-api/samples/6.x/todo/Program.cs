@@ -76,11 +76,13 @@ app.MapGet("/todoitems", async (TodoDb db) =>
 app.MapGet("/todoitems/complete", async (TodoDb db) =>
     await db.Todos.Where(t => t.IsComplete).ToListAsync());
 
+#region snippet_getCustom
 app.MapGet("/todoitems/{id}", async (int id, TodoDb db) =>
     await db.Todos.FindAsync(id)
         is Todo todo
             ? Results.Ok(todo)
             : Results.NotFound());
+#endregion
 #endregion
 
 #region snippet_post
