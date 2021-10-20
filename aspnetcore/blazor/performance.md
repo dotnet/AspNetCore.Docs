@@ -596,6 +596,18 @@ If a large number of buttons are rendered using the preceding approach, renderin
 }
 ```
 
+If the <xref:System.Action> includes parameters, pass them in a lambda expression. For the following example:
+
+* The method signature of the `UpdateHeading` method is `UpdateHeading(Button, MouseEventArgs, string, string)`, where two additional strings are passed to the method.
+* Two parameters, `param1` and `param2`, pass arguments to a button's <xref:System.Action> delegate: `@onclick="@(e => button.Action(e, param1, param2))">`.
+
+```csharp
+button.Action = (e, param1, param2) =>
+{
+    UpdateHeading(button, e, param1, param2);
+};
+```
+
 For more information, see [Blazor Binary message size send from server to client increases (dotnet/aspnetcore #17886)](https://github.com/dotnet/aspnetcore/issues/17886).
 
 ## Optimize JavaScript interop speed
@@ -1325,6 +1337,18 @@ If a large number of buttons are rendered using the preceding approach, renderin
 }
 ```
 
+If the <xref:System.Action> includes parameters, pass them in a lambda expression. For the following example:
+
+* The method signature of the `UpdateHeading` method is `UpdateHeading(Button, MouseEventArgs, string, string)`, where two additional strings are passed to the method.
+* Two parameters, `param1` and `param2`, pass arguments to a button's <xref:System.Action> delegate: `@onclick="@(e => button.Action(e, param1, param2))">`.
+
+```csharp
+button.Action = (e, param1, param2) =>
+{
+    UpdateHeading(button, e, param1, param2);
+};
+```
+
 For more information, see [Blazor Binary message size send from server to client increases (dotnet/aspnetcore #17886)](https://github.com/dotnet/aspnetcore/issues/17886).
 
 ## Optimize JavaScript interop speed
@@ -2044,6 +2068,18 @@ If a large number of buttons are rendered using the preceding approach, renderin
         public Action<MouseEventArgs> Action { get; set; }
     }
 }
+```
+
+If the <xref:System.Action> includes parameters, pass them in a lambda expression. For the following example:
+
+* The method signature of the `UpdateHeading` method is `UpdateHeading(Button, MouseEventArgs, string, string)`, where two additional strings are passed to the method.
+* Two parameters, `param1` and `param2`, pass arguments to a button's <xref:System.Action> delegate: `@onclick="@(e => button.Action(e, param1, param2))">`.
+
+```csharp
+button.Action = (e, param1, param2) =>
+{
+    UpdateHeading(button, e, param1, param2);
+};
 ```
 
 For more information, see [Blazor Binary message size send from server to client increases (dotnet/aspnetcore #17886)](https://github.com/dotnet/aspnetcore/issues/17886).
