@@ -862,7 +862,7 @@ In the server app, create a `Pages` folder if it doesn't exist. Create a `_Host.
 
   ```cshtml
   <div id="app">
-      @if (!HttpContext.Request.Path.StartsWithSegments("/authentication"))
+      @if (HttpContext.Request.Path.StartsWithSegments("/authentication"))
       {
           <component type="typeof({CLIENT APP ASSEMBLY NAME}.App)" 
               render-mode="Static" />
@@ -1903,7 +1903,7 @@ In the server app, create a `Pages` folder if it doesn't exist. Create a `_Host.
 
   ```cshtml
   <div id="app">
-      @if (!HttpContext.Request.Path.StartsWithSegments("/authentication"))
+      @if (HttpContext.Request.Path.StartsWithSegments("/authentication"))
       {
           <component type="typeof({CLIENT APP ASSEMBLY NAME}.App)" 
               render-mode="Static" />
@@ -2944,7 +2944,7 @@ In the server app, create a `Pages` folder if it doesn't exist. Create a `_Host.
 
   ```cshtml
   <app>
-      @if (!HttpContext.Request.Path.StartsWithSegments("/authentication"))
+      @if (HttpContext.Request.Path.StartsWithSegments("/authentication"))
       {
           <component type="typeof({CLIENT APP ASSEMBLY NAME}.App)" 
               render-mode="Static" />
