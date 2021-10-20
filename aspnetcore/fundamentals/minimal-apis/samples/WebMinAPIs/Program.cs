@@ -1,6 +1,6 @@
-#define BA // Default CREATE P1 PM PE I1 I0 IP CERT CERT2 CERT3 RE CONFIG LOG REB 
+#define STREAM // Default CREATE P1 PM PE I1 I0 IP CERT CERT2 CERT3 RE CONFIG LOG REB 
 // CONFIGB LOGB IWHB DEP R1 LE LF IM SM NR NR2 RP WILD CON OV EPB OP1 OP2 OP3 OP4
-// CB BA
+// CB BA CJSON MULTI STREAM
 #if NEVER
 #elif Default
 #region snippet_default
@@ -549,6 +549,65 @@ public enum SortDirection
     Asc,
     Desc
 }
+#endregion
+
+#elif CJSON
+#region snippet_cjson
+using Microsoft.AspNetCore.Http.Json;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Configure JSON options.
+builder.Services.Configure<JsonOptions>(options =>
+{
+    options.SerializerOptions.IncludeFields = true;
+});
+
+var app = builder.Build();
+
+app.MapPost("/products", (Product product) => product);
+
+app.Run();
+
+class Product
+{
+    // These are public fields, not properties.
+    public int Id;
+    public string? Name;
+}
+#endregion
+
+#elif MULTI
+#region snippet_666  // never rendered, just for testing.
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.MapGet("/hello", () => Results.Json(new { Message = "Hello World" }));
+// Return HTTP 405 error
+app.MapGet("/405", () => Results.StatusCode(405));
+app.MapGet("/text", () => Results.Text("This is some text"));
+app.MapGet("/old-path", () => Results.Redirect("/new-path"));
+app.MapGet("/new-path", () => "This is the new path.");
+// Returns /wwwroot/TextFile.txt
+app.MapGet("/download", () => Results.File("TextFile.txt"));
+
+app.Run();
+#endregion
+
+#elif STREAM
+#region snippet_stream
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+var proxyClient = new HttpClient();
+app.MapGet("/pokemon", async () => 
+{
+    var stream = await proxyClient.GetStreamAsync("http://consoto/pokedex.json");
+    // Proxy the response as JSON
+    return Results.Stream(stream, "application/json");
+});
+
+app.Run();
 #endregion
 
 #endif

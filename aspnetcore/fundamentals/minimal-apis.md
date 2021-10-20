@@ -556,6 +556,168 @@ The following code displays `SortBy:xyz,SortDirection:Desc, CurrentPage:99` with
 
 [!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_cb)]
 
+### Binding failures
+
+When binding fails, the framework logs a debug message and returns various status codes to the client depending on the failure mode.
+
+|Failure mode|Nullable Parameter Type|Binding Source|Status code|
+|--|--|--|--|
+|`{ParameterType}.TryParse` returns `false` |yes|route`|`query`|`header|400|
+|`{ParameterType}.BindAsync` returns `null` |yes|custom|400|
+|`{ParameterType}.BindAsync` throws |does not matter|custom|500|
+| Failure to read JSON body |does not matter|body|400|
+| Wrong content type (not `application/json`) |does not matter|body|415|
+
+### Binding Precedence
+
+The rules for determining a binding source from a parameter:
+
+1. Explicit attribute defined on parameter (From* attributes) in the following order:
+    1. Route values (`FromRoute`)
+    1. Query string (`FromQuery`)
+    1. Header (`FromHeader`)
+    1. Body (`FromBody`)
+    1. Service (`FromServices`)
+1. Special types
+    1. `HttpContext`
+    1. `HttpRequest`
+    1. `HttpResponse`
+    1. `ClaimsPrincipal`
+    1. `CancellationToken`
+1. Parameter type has a valid `BindAsync` method.
+1. Parameter type is a string or has a valid `TryParse` method.
+   1. If the parameter name exists in the route template e.g. `app.Map("/todo/{id}", (int id) => {});`, then it's bound from the route.
+   1. Bound from the query string.
+1. If the parameter type is a service provided by dependency injection, it uses that service as the source.
+1. The parameter is from the body.
+
+### Customize JSON binding
+
+The body binding source uses <xref:System.Text.Json?displayProperty=fullName> for de-serialization. It is ***not*** possible to change this default, but the binding can be customized using other techniques described previously. To customize JSON serializer options, use code similar to the following:
+
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_cjson)]
+
+The preceding code:
+
+* Configures both the input and output default JSON options.
+* Returns the following JSON
+  ```json
+  {
+    "id": 1,
+    "name": "Joe Smith"
+  }
+  ```
+  When posting 
+  ```json
+  {
+    "Id": 1,
+    "Name": "Joe Smith"
+  }
+  ```
+
+## Responses
+
+Route handlers support two types of return values:
+
+1. `IResult` based - This includes `Task<IResult>` and `ValueTask<IResult>`
+1. `string` - This includes `Task<string>` and `ValueTask<string>`
+1. `T` (Any other type) - This includes `Task<T>` and `ValueTask<T>`
+
+|Return value|Behavior|Content-Type|
+|--|--|--|
+|`IResult` | The framework calls [IResult.ExecuteAsync](xref:Microsoft.AspNetCore.Http.IResult.ExecuteAsync%2A)| Decided by the `IResult` implementation
+|`string` | The framework writes the string directly to the response | `text/plain`
+| `T` (Any other type) | The framework will JSON serialize the response| `application/json`
+
+### Example return values
+
+#### string return values
+
+```csharp
+app.MapGet("/hello", () => "Hello World");
+```
+
+#### JSON return values
+
+```csharp
+app.MapGet("/hello", () => new { Message = "Hello World" });
+```
+
+#### IResult return values
+
+```csharp
+app.MapGet("/hello", () => Results.Ok(new { Message = "Hello World" }));
+```
+
+The following example uses the built-in result types to customize the response:
+
+```csharp
+app.MapGet("/todoitems/{id}", async (int id, TodoDb db) =>
+    await db.Todos.FindAsync(id)
+        is Todo todo
+            ? Results.Ok(todo)
+            : Results.NotFound());
+```
+
+<!--TODO: Snippet will be displayed when [PR #22941](https://github.com/dotnet/AspNetCore.Docs/pull/23461) merges.
+
+[!code-csharp[](~/tutorials/min-web-api/samples/6.x/todo/Program.cs?name=snippet_getCustom)]
+-->
+
+### JSON
+
+```csharp
+app.MapGet("/hello", () => Results.Json(new { Message = "Hello World" }));
+```
+
+### Custom Status Code
+
+```csharp
+app.MapGet("/405", () => Results.StatusCode(405));
+```
+
+### Text
+
+```csharp
+app.MapGet("/text", () => Results.Text("This is some text"));
+```
+
+### Stream
+
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_stream)]
+
+### Redirect
+
+```csharp
+app.MapGet("/old-path", () => Results.Redirect("/new-path"));
+```
+
+### File
+
+```csharp
+app.MapGet("/download", () => Results.File("myfile.text"));
+```
+
+### Built-in results
+
+Common result helpers exist in the `Microsoft.AspNetCore.Http.Results` static class.
+
+|Description|Response type|Status Code|API|
+|--|--|--|--|
+Write a JSON response with advanced options |application/json |200|[Results.Json](xref:Microsoft.AspNetCore.Http.Results.Json%2A)|
+|Write a JSON response |application/json |200|[Results.Ok](xref:Microsoft.AspNetCore.Http.Results.Ok%2A)|
+|Write a text response |text/plain (default), configurable |200|[Results.Text](xref:Microsoft.AspNetCore.Http.Results.Text%2A)|
+|Write the response as bytes |application/octet-stream (default), configurable |200|[Results.Bytes](xref:Microsoft.AspNetCore.Http.Results.Bytes%2A)|
+|Write a stream of bytes to the response |application/octet-stream (default), configurable |200|[Results.Stream](xref:Microsoft.AspNetCore.Http.Results.Stream%2A)|
+|Stream a file to the response for download with the content-disposition header |application/octet-stream (default), configurable |200|[Results.File](xref:Microsoft.AspNetCore.Http.Results.File%2A)|
+|Set the status code to 404, with an optional JSON response | N/A |404|[Results.NotFound](xref:Microsoft.AspNetCore.Http.Results.NotFound%2A)|
+|Set the status code to 204 | N/A |204|[Results.NoContent](xref:Microsoft.AspNetCore.Http.Results.NoContent%2A)|
+|Set the status code to 422, with an optional JSON response | N/A |422|[Results.UnprocessableEntity](xref:Microsoft.AspNetCore.Http.Results.UnprocessableEntity%2A)|
+|Set the status code to 400, with an optional JSON response | N/A |400|[Results.BadRequest](xref:Microsoft.AspNetCore.Http.Results.BadRequest%2A)|
+|Set the status code to 409, with an optional JSON response | N/A |409|[Results.Conflict](xref:Microsoft.AspNetCore.Http.Results.Conflict%2A)|
+|Write a problem details JSON object to the response | N/A |500 (default), configurable|[Results.Problem](xref:Microsoft.AspNetCore.Http.Results.Problem%2A)|
+|Write a problem details JSON object to the response with validation errors | N/A | N/A, configurable|[Results.ValidationProblem](xref:Microsoft.AspNetCore.Http.Results.ValidationProblem%2A)|
+
 
 
 ## OpenAPI
