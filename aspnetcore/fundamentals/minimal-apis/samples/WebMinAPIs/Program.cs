@@ -1,6 +1,6 @@
-#define OP4 // Default CREATE P1 PM PE I1 I0 IP CERT CERT2 CERT3 RE CONFIG LOG REB 
+#define BA // Default CREATE P1 PM PE I1 I0 IP CERT CERT2 CERT3 RE CONFIG LOG REB 
 // CONFIGB LOGB IWHB DEP R1 LE LF IM SM NR NR2 RP WILD CON OV EPB OP1 OP2 OP3 OP4
-// 
+// CB BA
 #if NEVER
 #elif Default
 #region snippet_default
@@ -466,6 +466,89 @@ var app = builder.Build();
 app.MapGet("/products", (int? pageNumber) => $"Requesting page {pageNumber ?? 1}");
 
 app.Run();
-
 #endregion
+
+#elif CB
+#region snippet_cb
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+// GET /map?Point=12.3,10.1
+app.MapGet("/map", (Point point) => $"Point: {point.X}, {point.Y}");
+
+app.Run();
+
+public class Point
+{
+    public double X { get; set; }
+    public double Y { get; set; }
+
+    public static bool TryParse(string? value, IFormatProvider? provider, out Point? point)
+    {
+        // Format is "(12.3,10.1)"
+        var trimmedValue = value?.TrimStart('(').TrimEnd(')');
+        var segments = trimmedValue?.Split(',',
+                      StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+        if (segments?.Length == 2
+            && double.TryParse(segments[0], out var x)
+            && double.TryParse(segments[1], out var y))
+        {
+            point = new Point { X = x, Y = y };
+            return true;
+        }
+
+        point = null;
+        return false;
+    }
+}
+#endregion
+
+#elif BA
+#region snippet_ba
+using System.Reflection;
+
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+// GET /products?SortBy=xyz&SortDir=Desc&Page=99
+app.MapGet("/products", (PagingData pageData) => $"SortBy:{pageData.SortBy}," +
+                            $"SortDirection:{pageData.SortDirection}, CurrentPage:{pageData.CurrentPage}");
+
+app.Run();
+public class PagingData
+{
+    public string? SortBy { get; init; }
+    public SortDirection SortDirection { get; init; }
+    public int CurrentPage { get; init; } = 1;
+
+    public static ValueTask<PagingData?> BindAsync(HttpContext context, ParameterInfo parameter)
+    {
+        const string sortByKey = "sortBy";
+        const string sortDirectionKey = "sortDir";
+        const string currentPageKey = "page";
+
+        Enum.TryParse<SortDirection>(context.Request.Query[sortDirectionKey], ignoreCase: true,
+                                     out var sortDirection);
+        int.TryParse(context.Request.Query[currentPageKey], out var page);
+        page = page == 0 ? 1 : page;
+
+        var result = new PagingData
+        {
+            SortBy = context.Request.Query[sortByKey],
+            SortDirection = sortDirection,
+            CurrentPage = page
+        };
+
+        return ValueTask.FromResult<PagingData?>(result);
+    }
+}
+
+public enum SortDirection
+{
+    Default,
+    Asc,
+    Desc
+}
+#endregion
+
 #endif

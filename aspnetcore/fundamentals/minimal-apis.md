@@ -514,6 +514,47 @@ The preceding code calls the method with a null product if no request body is se
 
 See the [Binding Failures](#bf) section for more information.
 
+### Special types
+
+The following types are bound without explicit attributes:
+
+* `HttpContext` : The context which holds all the information about the current HTTP request or response.
+* `HttpRequest` : The HTTP request
+* `HttpResponse` : The HTTP response
+* <xref:System.Threading.CancellationToken> : The cancellation token associated with the current http request.
+* <xref:System.Security.Claims.ClaimsPrincipal> :  The user associated with the request (`HttpContext.User`).
+
+### Custom Binding
+
+There are two ways to customize parameter binding:
+
+1. For route, query, and header binding sources, bind custom types by adding a static `TryParse` method for the type.
+1. Control the binding process by implementing a `BindAsync` method on a type.
+
+#### TryParse
+
+`TryParse` has two APIs:
+
+```csharp
+public static bool TryParse(string value, T out result);
+public static bool TryParse(string value, IFormatProvider provider, T out result);
+```
+
+The following code displays `Point: 12.3, 10.1` with the URI `/map?Point=12.3,10.1`:
+
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_cb)]
+
+#### BindAsync
+
+`BindAsync` has the following API:
+
+```csharp
+public static ValueTask<T?> BindAsync(HttpContext context, ParameterInfo parameter);
+```
+
+The following code displays `SortBy:xyz,SortDirection:Desc, CurrentPage:99` with the URI `/products?SortBy=xyz&SortDir=Desc&Page=99`:
+
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_cb)]
 
 
 
