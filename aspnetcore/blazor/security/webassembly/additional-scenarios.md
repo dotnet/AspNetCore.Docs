@@ -869,7 +869,8 @@ In the server app, create a `Pages` folder if it doesn't exist. Create a `_Host.
       }
       else
       {
-          <text>Loading...</text>
+          <component type="typeof({CLIENT APP ASSEMBLY NAME}.App)" 
+              render-mode="WebAssemblyPrerendered" />
       }
   </div>
   ```
@@ -1910,7 +1911,8 @@ In the server app, create a `Pages` folder if it doesn't exist. Create a `_Host.
       }
       else
       {
-          <text>Loading...</text>
+          <component type="typeof({CLIENT APP ASSEMBLY NAME}.App)" 
+              render-mode="WebAssemblyPrerendered" />
       }
   </div>
   ```
@@ -2951,7 +2953,8 @@ In the server app, create a `Pages` folder if it doesn't exist. Create a `_Host.
       }
       else
       {
-          <text>Loading...</text>
+          <component type="typeof({CLIENT APP ASSEMBLY NAME}.App)" 
+              render-mode="WebAssemblyPrerendered" />
       }
   </app>
   ```
