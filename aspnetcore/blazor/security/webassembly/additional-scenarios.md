@@ -811,8 +811,6 @@ Prerendering content that requires authentication and authorization isn't curren
 
 For the client (**`Client`**) app's `Program.cs`, factor common service registrations into a separate method (for example, `ConfigureCommonServices`). Common services are those that the developer registers for use by both the client and server (**`Server`**) apps.
 
-``:
-
 ```csharp
 public static void ConfigureCommonServices(IServiceCollection services)
 {
