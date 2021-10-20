@@ -7,18 +7,21 @@
     <tbody>
         @foreach (var item in Items)
         {
-            <tr>@RowTemplate(item)</tr>
+            if (RowTemplate is not null)
+            {
+                <tr>@RowTemplate(item)</tr>
+            }
         }
     </tbody>
 </table>
 
 @code {
     [Parameter]
-    public RenderFragment TableHeader { get; set; }
+    public RenderFragment? TableHeader { get; set; }
 
     [Parameter]
-    public RenderFragment<TItem> RowTemplate { get; set; }
+    public RenderFragment<TItem>? RowTemplate { get; set; }
 
     [Parameter]
-    public IReadOnlyList<TItem> Items { get; set; }
+    public IReadOnlyList<TItem>? Items { get; set; }
 }

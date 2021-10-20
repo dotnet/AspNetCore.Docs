@@ -1,6 +1,7 @@
 @page "/preferences"
 @using Microsoft.Extensions.DependencyInjection
 @inherits OwningComponentBase
+@using System.Diagnostics.CodeAnalysis
 
 <h1>User (@UserService.Name)</h1>
 
@@ -12,7 +13,10 @@
 </ul>
 
 @code {
+    [AllowNull]
     private IUserService UserService { get; set; }
+    
+    [AllowNull]
     private ISettingService SettingService { get; set; }
 
     protected override void OnInitialized()
@@ -23,13 +27,13 @@
 
     private class Setting
     {
-        public string SettingName { get; set; }
-        public string SettingValue { get; set; }
+        public string? SettingName { get; set; }
+        public string? SettingValue { get; set; }
     }
 
     private interface IUserService
     {
-        public string Name { get; set; }
+        public string? Name { get; set; }
     }
 
     private interface ISettingService

@@ -1,5 +1,6 @@
 @page "/customer-list"
 @inject IDataAccess DataRepository
+@using System.Diagnostics.CodeAnalysis
 
 @if (customers != null)
 {
@@ -12,6 +13,7 @@
 }
 
 @code {
+    [AllowNull]
     private IReadOnlyList<Customer> customers;
 
     protected override async Task OnInitializedAsync()
@@ -21,8 +23,8 @@
 
     private class Customer
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
     }
 
     private interface IDataAccess

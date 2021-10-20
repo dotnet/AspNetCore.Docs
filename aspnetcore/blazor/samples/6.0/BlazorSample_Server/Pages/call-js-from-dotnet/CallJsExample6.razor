@@ -1,6 +1,7 @@
 @page "/call-js-example-6"
 @implements IAsyncDisposable
 @inject IJSRuntime JS
+@using System.Diagnostics.CodeAnalysis
 
 <h1>Call JS Example 6</h1>
 
@@ -13,8 +14,10 @@
 </p>
 
 @code {
+    [AllowNull]
     private IJSObjectReference module;
-    private string result;
+
+    private string? result;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {

@@ -5,14 +5,14 @@ using Microsoft.JSInterop;
 public class JsInteropClasses3 : IDisposable
 {
     private readonly IJSRuntime js;
-    private DotNetObjectReference<HelloHelper> objRef;
+    private DotNetObjectReference<HelloHelper>? objRef;
 
     public JsInteropClasses3(IJSRuntime js)
     {
         this.js = js;
     }
 
-    public ValueTask<string> CallHelloHelperGetHelloMessage(string name)
+    public ValueTask<string> CallHelloHelperGetHelloMessage(string? name)
     {
         objRef = DotNetObjectReference.Create(new HelloHelper(name));
 
