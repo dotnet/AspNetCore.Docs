@@ -22,8 +22,6 @@ LibMan offers the following benefits:
 * Additional tooling, such as [Node.js](https://nodejs.org), [npm](https://www.npmjs.com), and [WebPack](https://webpack.js.org), isn't necessary to acquire a subset of files in a library.
 * Files can be placed in a specific location without resorting to build tasks or manual file copying.
 
-For more information about LibMan's benefits, watch [Modern front-end web development in Visual Studio 2017: LibMan segment](https://channel9.msdn.com/Events/Build/2017/B8073#time=43m34s).
-
 LibMan isn't a package management system. If you're already using a package manager, such as npm or [yarn](https://yarnpkg.com), continue doing so. LibMan wasn't developed to replace those tools.
 
 ## Additional resources
