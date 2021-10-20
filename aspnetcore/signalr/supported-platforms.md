@@ -2,10 +2,10 @@
 title: ASP.NET Core SignalR supported platforms
 author: bradygaster
 description: Learn about the supported platforms for ASP.NET Core SignalR.
-monikerRange: '>= aspnetcore-2.1'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: bradyg
 ms.custom: mvc, devx-track-js
-ms.date: 01/21/2021
+ms.date: 09/15/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: signalr/supported-platforms
 ---
@@ -17,7 +17,7 @@ SignalR for ASP.NET Core supports any server platform that ASP.NET Core supports
 
 ## JavaScript client
 
-The [JavaScript client](xref:signalr/javascript-client) runs on NodeJS 8 and later versions and the following browsers:
+The [JavaScript client](xref:signalr/javascript-client) runs on the current [Node.js long-term support (LTS) release](https://nodejs.org/about/releases/) and the following browsers:
 
 | Browser                          | Version         |
 | -------------------------------- | --------------- |
@@ -42,8 +42,7 @@ The [Java client](xref:signalr/java-client) supports Java 8 and later versions.
 
 ## Unsupported clients
 
-The following clients are available but are experimental or unofficial. They aren't currently supported and may never be.
+The following clients are available but are experimental or unofficial. The following clients aren't currently supported and may never be supported:
 
 * [C++ client](https://github.com/aspnet/SignalR-Client-Cpp)
-
 * [Swift client](https://github.com/moozzyk/SignalR-Client-Swift)

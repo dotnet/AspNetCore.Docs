@@ -177,7 +177,6 @@ Some features may not work well with `System.Text.Json`-based formatters and req
 * Customizes the serialization settings.
 * Relies on features that `Newtonsoft.Json` provides.
 * Configures `Microsoft.AspNetCore.Mvc.JsonResult.SerializerSettings`. Prior to ASP.NET Core 3.0, `JsonResult.SerializerSettings` accepts an instance of `JsonSerializerSettings` that is specific to `Newtonsoft.Json`.
-* Generates [OpenAPI](<xref:tutorials/web-api-help-pages-using-swagger>) documentation.
 
 Features for the `Newtonsoft.Json`-based formatters can be configured using `Microsoft.AspNetCore.Mvc.MvcNewtonsoftJsonOptions.SerializerSettings`:
 

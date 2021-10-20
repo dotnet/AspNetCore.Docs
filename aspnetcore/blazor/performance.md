@@ -555,7 +555,7 @@ If a large number of buttons are rendered using the preceding approach, renderin
 @foreach (var button in Buttons)
 {
     <p>
-        <button @key="button.Id" @onclick="@(e => button.Action(e))">
+        <button @key="button.Id" @onclick="button.Action">
             Button #@button.Id
         </button>
     </p>
@@ -1284,7 +1284,7 @@ If a large number of buttons are rendered using the preceding approach, renderin
 @foreach (var button in Buttons)
 {
     <p>
-        <button @key="button.Id" @onclick="@(e => button.Action(e))">
+        <button @key="button.Id" @onclick="button.Action">
             Button #@button.Id
         </button>
     </p>
@@ -2005,7 +2005,7 @@ If a large number of buttons are rendered using the preceding approach, renderin
 @foreach (var button in Buttons)
 {
     <p>
-        <button @key="button.Id" @onclick="@(e => button.Action(e))">
+        <button @key="button.Id" @onclick="button.Action">
             Button #@button.Id
         </button>
     </p>
