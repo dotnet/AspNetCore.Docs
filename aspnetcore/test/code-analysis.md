@@ -16,3 +16,4 @@ uid: test/code-analysis
 | - | - | - |
 | [MVC1000](xref:test/code-analysis/mvc1000) | Non-breaking | Use of IHtmlHelper.Partial should be avoided |
 | [MVC1001](xref:test/code-analysis/mvc1001) | Non-breaking | Filters cannot be applied to page handler methods |
+ 
