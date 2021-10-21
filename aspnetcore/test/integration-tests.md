@@ -26,7 +26,7 @@ The sample app is a Razor Pages app and assumes a basic understanding of Razor P
 * [Razor Pages unit tests](xref:test/razor-pages-tests)
 
 > [!NOTE]
-> For testing SPAs, we recommended a tool such as [Selenium](https://www.seleniumhq.org/), which can automate a browser.
+> For testing SPAs, we recommended a tool such as [Playwright Sharp](https://playwright.dev/dotnet/), which can automate a browser.
 
 ## Introduction to integration tests
 
