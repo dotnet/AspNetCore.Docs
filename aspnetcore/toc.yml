@@ -809,8 +809,9 @@
     - name: Azure and IIS errors reference
       uid: host-and-deploy/azure-iis-errors-reference
     - name: Code analysis
-      uid: diagnostics/code-analysis
       items:
+       - name: Code analysis
+        - uid: diagnostics/code-analysis
         - name: MVC1000
         - uid: diagnostics/mvc1000
         - name: MVC1001
