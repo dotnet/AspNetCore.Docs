@@ -15,11 +15,11 @@ uid: migration/50-to-60-samples
 This content from https://gist.github.com/davidfowl/0e0372c3c1d895c3ce195ba983b1e03d#differences-in-the-hosting-model
  -->
 
-This article provides samples of code migrated from ASP.NET Core 5.0 to ASP.NET Core 6.0. ASP.NET Core 6.0 uses a new minimal hosting model, for more information, see [New hosting model](xref:migration/50-to-60#nhm)
+This article provides samples of code migrated from ASP.NET Core 5.0 to ASP.NET Core 6.0. ASP.NET Core 6.0 uses a new minimal hosting model. For more information, see [New hosting model](xref:migration/50-to-60#nhm)
 
 ## Middleware
 
-The following code adds static file middleware to an ASP.NET Core 5 app:
+The following code adds the Static File Middleware to an ASP.NET Core 5 app:
 
 ```csharp
 public class Startup
@@ -31,7 +31,7 @@ public class Startup
 }
 ```
 
-The following code adds static file middleware to an ASP.NET Core 6 app:
+The following code adds the Static File Middleware to an ASP.NET Core 6 app:
 
 [!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_mid)]
 
