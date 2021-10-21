@@ -811,11 +811,11 @@
     - name: Code analysis
       items:
         - name: Compiler Codes
-        - uid: diagnostics/code-analysis
+          uid: diagnostics/code-analysis
         - name: MVC1000
-        - uid: diagnostics/mvc1000
+          uid: diagnostics/mvc1000
         - name: MVC1001
-        - uid: diagnostics/mvc1001
+          uid: diagnostics/mvc1001
 - name: Data access
   items:
     - name: Tutorials
