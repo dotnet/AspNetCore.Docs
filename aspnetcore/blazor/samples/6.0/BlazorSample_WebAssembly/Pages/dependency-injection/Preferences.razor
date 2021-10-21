@@ -1,23 +1,22 @@
 @page "/preferences"
 @using Microsoft.Extensions.DependencyInjection
 @inherits OwningComponentBase
-@using System.Diagnostics.CodeAnalysis
 
-<h1>User (@UserService.Name)</h1>
+<h1>User @(UserService is not null ? $"({UserService.Name})" : string.Empty))</h1>
 
 <ul>
-    @foreach (var setting in SettingService.GetSettings())
+    @if (SettingService is not null)
     {
-        <li>@setting.SettingName: @setting.SettingValue</li>
+        foreach (var setting in SettingService.GetSettings())
+        {
+            <li>@setting.SettingName: @setting.SettingValue</li>
+        }
     }
 </ul>
 
 @code {
-    [AllowNull]
-    private IUserService UserService { get; set; }
-    
-    [AllowNull]
-    private ISettingService SettingService { get; set; }
+    private IUserService? UserService { get; set; }
+    private ISettingService? SettingService { get; set; }
 
     protected override void OnInitialized()
     {
