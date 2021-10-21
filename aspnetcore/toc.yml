@@ -810,7 +810,7 @@
       uid: host-and-deploy/azure-iis-errors-reference
     - name: Code analysis
       items:
-        - name: Code analysis
+        - name: Compiler Codes
         - uid: diagnostics/code-analysis
         - name: MVC1000
         - uid: diagnostics/mvc1000
