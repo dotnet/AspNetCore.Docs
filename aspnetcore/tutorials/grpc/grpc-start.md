@@ -3,7 +3,7 @@ title: Create a .NET Core gRPC client and server in ASP.NET Core
 author: jamesnk
 description: This tutorial shows how to create a gRPC Service and gRPC client on ASP.NET Core. Learn how to create a gRPC Service project, edit a proto file, and add a duplex streaming call.
 ms.author: jamesnk
-ms.date: 09/27/2021
+ms.date: 10/19/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/grpc/grpc-start
 ---
@@ -31,11 +31,7 @@ In this tutorial, you:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-We hope to have Visual Studio for Mac instructions soon.
-
-<!--  Visual Studio for Mac tab to be updated and available once 2022 is available.
 [!INCLUDE[](~/includes/net-prereqs-mac-6.0.md)]
--->
 
 ---
 
@@ -68,15 +64,11 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-We hope to have Visual Studio for Mac instructions soon.
-
-<!--  Visual Studio for Mac tab to be updated and available once 2022 is available.
-* Start Visual Studio for Mac and select **New**. Alternatively, from the Visual Studio **File** menu, select **New Solution**.
-* In the **Choose a template for your new project** dialog, select **Web and Console** > **App** > **gRPC Service** and select **Next**.
-* Select **.NET 5.0** for the target framework and select **Next**.
+* Start Visual Studio for Mac and **File** > **New Project**.
+* In the **Choose a template for your new project** dialog, select **Web and Console** > **App** > **gRPC Service** and select **Continue**.
+* Select **.NET 6.0** for the target framework and select **Continue**.
 * Name the project **GrpcGreeter**. It's important to name the project *GrpcGreeter* so the namespaces match when you copy and paste code.
-* Select **Create**.
--->
+* Select **Continue**.
 
 ---
 
