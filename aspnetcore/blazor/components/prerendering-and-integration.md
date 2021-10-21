@@ -129,6 +129,9 @@ To set up prerendering for a hosted Blazor WebAssembly app:
      <component type="typeof(App)" render-mode="WebAssemblyPrerendered" />
      ```
 
+     > [!IMPORTANT]
+     > Prerendering isn't supported for authentication endpoints (`/authentication/` path segment). For more information, see <xref:blazor/security/webassembly/additional-scenarios#support-prerendering-with-authentication>.
+
 1. In endpoint mapping of the **`Server`** project in `Program.cs`, change the fallback from the `index.html` file to the `_Host.cshtml` page:
 
    Delete:

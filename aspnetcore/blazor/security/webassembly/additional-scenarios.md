@@ -809,7 +809,7 @@ Prerendering content that requires authentication and authorization isn't curren
 * Prerenders paths for which authorization isn't required.
 * Doesn't prerender paths for which authorization is required.
 
-For the client (**`Client`**) app's `Program.cs`, factor common service registrations into a separate method (for example, `ConfigureCommonServices`). Common services are those that the developer registers for use by both the client and server (**`Server`**) apps.
+For the client (**`Client`**) app's `Program.cs`, factor common service registrations into a separate method (for example, create a `ConfigureCommonServices` method in the **`Client`** project). Common services are those that the developer registers for use by both the client and server (**`Server`**) apps.
 
 ```csharp
 public static void ConfigureCommonServices(IServiceCollection services)
@@ -831,7 +831,7 @@ ConfigureCommonServices(builder.Services);
 await builder.Build().RunAsync();
 ```
 
-In the server app's `Program.cs` file, register the following additional services and call `ConfigureCommonServices`:
+In the **`Server`** app's `Program.cs` file, register the following additional services and call `ConfigureCommonServices`:
 
 ```csharp
 using Microsoft.AspNetCore.Components.Authorization;
@@ -848,14 +848,14 @@ builder.Services.AddScoped<SignOutSessionStateManager>();
 Client.Program.ConfigureCommonServices(services);
 ```
 
-In the server app's `Program.cs`, replace [`app.MapFallbackToFile("index.html")`](xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A) with [`app.MapFallbackToPage("/_Host")`](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A):
+In the **`Server`** app's `Program.cs` file, replace [`app.MapFallbackToFile("index.html")`](xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A) with [`app.MapFallbackToPage("/_Host")`](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A):
 
 ```csharp
 app.MapControllers();
 app.MapFallbackToPage("/_Host");
 ```
 
-In the server app, create a `Pages` folder if it doesn't exist. Create a `_Host.cshtml` page inside the server app's `Pages` folder. Paste the contents from the client app's `wwwroot/index.html` file into the `Pages/_Host.cshtml` file. Update the file's contents:
+In the **`Server`** app, create a `Pages` folder if it doesn't exist. Create a `_Host.cshtml` page inside the **`Server`** app's `Pages` folder. Paste the contents from the client app's `wwwroot/index.html` file into the `Pages/_Host.cshtml` file. Update the file's contents:
 
 * Add `@page "_Host"` to the top of the file.
 * Replace the `<div id="app">Loading...</div>` tag with the following:
@@ -865,7 +865,7 @@ In the server app, create a `Pages` folder if it doesn't exist. Create a `_Host.
       @if (!HttpContext.Request.Path.StartsWithSegments("/authentication"))
       {
           <component type="typeof({CLIENT APP ASSEMBLY NAME}.App)" 
-              render-mode="Static" />
+              render-mode="WebAssemblyPrerendered" />
       }
       else
       {
@@ -1906,7 +1906,7 @@ In the server app, create a `Pages` folder if it doesn't exist. Create a `_Host.
       @if (!HttpContext.Request.Path.StartsWithSegments("/authentication"))
       {
           <component type="typeof({CLIENT APP ASSEMBLY NAME}.App)" 
-              render-mode="Static" />
+              render-mode="WebAssemblyPrerendered" />
       }
       else
       {
@@ -2947,7 +2947,7 @@ In the server app, create a `Pages` folder if it doesn't exist. Create a `_Host.
       @if (!HttpContext.Request.Path.StartsWithSegments("/authentication"))
       {
           <component type="typeof({CLIENT APP ASSEMBLY NAME}.App)" 
-              render-mode="Static" />
+              render-mode="WebAssemblyPrerendered" />
       }
       else
       {
