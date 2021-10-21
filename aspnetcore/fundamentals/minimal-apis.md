@@ -749,10 +749,14 @@ allows unauthenticated users to access endpoints:
 
 [!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_auth4)]
 
+## CORS
 
+Routes can be [CORS](xref:security/cors?view=aspnetcore-6.0) enabled using [CORS policies](xref:security/cors?view=aspnetcore-6.0#cors-policy-options). CORS can be declared via the [`[EnableCors]`](xref:Microsoft.AspNetCore.Cors.EnableCorsAttribute) attribute or by using the
+`RequireCors` method. The following samples enable CORS:
 
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_cors)]
 
-
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_cors2)]
 
 ## OpenAPI
 

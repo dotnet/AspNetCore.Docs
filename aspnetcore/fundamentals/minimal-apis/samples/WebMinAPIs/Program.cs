@@ -1,6 +1,6 @@
-#define AUTH4 // Default CREATE P1 PM PE I1 I0 IP CERT CERT2 CERT3 RE CONFIG LOG REB 
+#define CORS2 // Default CREATE P1 PM PE I1 I0 IP CERT CERT2 CERT3 RE CONFIG LOG REB 
 // CONFIGB LOGB IWHB DEP R1 LE LF IM SM NR NR2 RP WILD CON OV EPB OP1 OP2 OP3 OP4
-// CB BA CJSON MULTI STREAM XTN AUTH1 AUTH2 AUTH3 AUTH4 
+// CB BA CJSON MULTI STREAM XTN AUTH1 AUTH2 AUTH3 AUTH4 CORS CORS2 
 #if NEVER
 #elif Default
 #region snippet_default
@@ -669,7 +669,8 @@ var app = builder.Build();
 
 app.UseAuthorization();
 
-app.MapGet("/admin", [Authorize("AdminsOnly")] () => "The /admin endpoint is for admins only.");
+app.MapGet("/admin", [Authorize("AdminsOnly")] () => 
+                             "The /admin endpoint is for admins only.");
 
 app.MapGet("/admin2", () => "The /admin2 endpoint is for admins only.")
    .RequireAuthorization("AdminsOnly");
@@ -686,11 +687,61 @@ var app = builder.Build();
 
 app.UseAuthorization();
 
-app.MapGet("/admin", [Authorize("AdminsOnly")] () => "The /admin endpoint is for admins only.");
+app.MapGet("/admin", [Authorize("AdminsOnly")] () => 
+                            "The /admin endpoint is for admins only.");
 
 app.MapGet("/admin2", () => "The /admin2 endpoint is for admins only.")
    .RequireAuthorization("AdminsOnly");
 
+app.Run();
+#endregion
+
+#elif CORS
+#region snippet_cors
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      builder =>
+                      {
+                          builder.WithOrigins("http://example.com",
+                                              "http://www.contoso.com");
+                      });
+});
+
+var app = builder.Build();
+app.UseCors(MyAllowSpecificOrigins);
+
+app.MapGet("/",() => "Hello CORS!");
+
+app.Run();
+#endregion
+
+#elif CORS2
+#region snippet_cors2
+using Microsoft.AspNetCore.Cors;
+
+const string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      builder =>
+                      {
+                          builder.WithOrigins("http://example.com",
+                                              "http://www.contoso.com");
+                      });
+});
+
+var app = builder.Build();
+
+app.MapGet("/cors", [EnableCors(MyAllowSpecificOrigins)] () => 
+                              "This endpoint allows cross origin requests!");
 app.Run();
 #endregion
 
