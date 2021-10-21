@@ -718,6 +718,40 @@ Write a JSON response with advanced options |application/json |200|[Results.Json
 |Write a problem details JSON object to the response | N/A |500 (default), configurable|[Results.Problem](xref:Microsoft.AspNetCore.Http.Results.Problem%2A)|
 |Write a problem details JSON object to the response with validation errors | N/A | N/A, configurable|[Results.ValidationProblem](xref:Microsoft.AspNetCore.Http.Results.ValidationProblem%2A)|
 
+### Customizing results
+
+Applications can control responses by implementing a custom <xref:Microsoft.AspNetCore.Http.IResult> type. The following code is an example of an HTML result type:
+
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/ResultsExtensions.cs)]
+
+We recommend adding an extension method to <xref:Microsoft.AspNetCore.Http.IResultExtensions?displayProperty=fullName> to make these custom results more discoverable.
+
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_xtn)]
+
+## Authorization
+
+Routes can be protected using authorization policies. These can be declared via the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute or by using the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> method.
+
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_auth1)]
+
+The preceding code can be written with <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A>:
+
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_auth2)]
+
+The following sample uses [policy-based authorization](xref:security/authorization/policies):
+
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_auth3)]
+
+### Allow unauthenticated users to access an endpoint
+
+The [`[AllowAnonymous]`](xref:System.Web.Mvc.AllowAnonymousAttribute)
+allows unauthenticated users to access endpoints:
+
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_auth4)]
+
+
+
+
 
 
 ## OpenAPI

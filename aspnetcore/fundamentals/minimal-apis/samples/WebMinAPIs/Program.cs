@@ -1,6 +1,6 @@
-#define STREAM // Default CREATE P1 PM PE I1 I0 IP CERT CERT2 CERT3 RE CONFIG LOG REB 
+#define AUTH4 // Default CREATE P1 PM PE I1 I0 IP CERT CERT2 CERT3 RE CONFIG LOG REB 
 // CONFIGB LOGB IWHB DEP R1 LE LF IM SM NR NR2 RP WILD CON OV EPB OP1 OP2 OP3 OP4
-// CB BA CJSON MULTI STREAM
+// CB BA CJSON MULTI STREAM XTN AUTH1 AUTH2 AUTH3 AUTH4 
 #if NEVER
 #elif Default
 #region snippet_default
@@ -606,6 +606,90 @@ app.MapGet("/pokemon", async () =>
     // Proxy the response as JSON
     return Results.Stream(stream, "application/json");
 });
+
+app.Run();
+#endregion
+
+#elif XTN
+#region snippet_xtn
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.MapGet("/html", () => Results.Extensions.Html(@$"<!doctype html>
+<html>
+    <head><title>miniHTML</title></head>
+    <body>
+        <h1>Hello World</h1>
+        <p>The time on the server is {DateTime.Now:O}</p>
+    </body>
+</html>"));
+
+app.Run();
+#endregion
+
+#elif AUTH1
+#region snippet_auth1
+using Microsoft.AspNetCore.Authorization;
+
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddAuthorization(o => o.AddPolicy("AdminsOnly", 
+                                  b => b.RequireClaim("admin", "true")));
+
+var app = builder.Build();
+
+app.UseAuthorization();
+
+app.MapGet("/auth", [Authorize] () => "This endpoint requires authorization.");
+
+app.Run();
+#endregion
+
+#elif AUTH2
+#region snippet_auth2
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.UseAuthorization();
+
+app.MapGet("/auth", () => "This endpoint requires authorization")
+   .RequireAuthorization();
+
+app.Run();
+#endregion
+
+#elif AUTH3
+#region snippet_auth3
+using Microsoft.AspNetCore.Authorization;
+
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddAuthorization(o => o.AddPolicy("AdminsOnly", 
+                                  b => b.RequireClaim("admin", "true")));
+
+var app = builder.Build();
+
+app.UseAuthorization();
+
+app.MapGet("/admin", [Authorize("AdminsOnly")] () => "The /admin endpoint is for admins only.");
+
+app.MapGet("/admin2", () => "The /admin2 endpoint is for admins only.")
+   .RequireAuthorization("AdminsOnly");
+
+app.Run();
+#endregion
+
+#elif AUTH4
+#region snippet_auth4
+using Microsoft.AspNetCore.Authorization;
+
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.UseAuthorization();
+
+app.MapGet("/admin", [Authorize("AdminsOnly")] () => "The /admin endpoint is for admins only.");
+
+app.MapGet("/admin2", () => "The /admin2 endpoint is for admins only.")
+   .RequireAuthorization("AdminsOnly");
 
 app.Run();
 #endregion
