@@ -556,6 +556,8 @@ The following code displays `SortBy:xyz,SortDirection:Desc, CurrentPage:99` with
 
 [!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_cb)]
 
+<a name="bf"></a>
+
 ### Binding failures
 
 When binding fails, the framework logs a debug message and returns various status codes to the client depending on the failure mode.
@@ -771,20 +773,18 @@ The following example uses the built-in result types to customize the response:
 
 [!code-csharp[](minimal-apis/samples/todo/Program.cs?name=snippet_name)]
 
-
 ### Add tags to the Open API description
 
 The following code uses an [OpenAPI grouping tag](https://swagger.io/docs/specification/grouping-operations-with-tags/):
 
 [!code-csharp[](minimal-apis/samples/todo/Program.cs?name=snippet_grp)]
 
+### Describe request body
 
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_fil2)]
 
+<!-- 
+# Differences between minimal APIs and APIs with controllers
 
-
-
-
-
-
-<a name="bf"></a>
-## Binding Failures
+Moved to uid: tutorials/min-web-api
+-->

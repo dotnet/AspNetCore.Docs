@@ -17,8 +17,17 @@ if (app.Environment.IsDevelopment())
 
 app.MapGet("/", () => "Hello World!");
 
+#region snippet_grp
 app.MapGet("/todoitems", async (TodoDb db) =>
-    await db.Todos.ToListAsync());
+    await db.Todos.ToListAsync())
+    .WithTags("TodoGroup");
+#endregion
+
+#region snippet_name
+app.MapGet("/todoitems2", async (TodoDb db) =>
+    await db.Todos.ToListAsync())
+    .WithName("GetToDoItems");
+#endregion
 
 app.MapGet("/todoitems/complete", async (TodoDb db) =>
     await db.Todos.Where(t => t.IsComplete).ToListAsync());
