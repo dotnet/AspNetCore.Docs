@@ -682,18 +682,18 @@ app.MapGet("/auth", [Authorize] () => "This endpoint requires authorization.");
 app.Run();
 #endregion
 
-#elif AUTH2
-#region snippet_auth2
+#elif AUTH2  // This is not a complete/valid sample
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
 app.UseAuthorization();
 
+#region snippet_auth2
 app.MapGet("/auth", () => "This endpoint requires authorization")
    .RequireAuthorization();
+#endregion
 
 app.Run();
-#endregion
 
 #elif AUTH3
 #region snippet_auth3
@@ -717,7 +717,6 @@ app.Run();
 #endregion
 
 #elif AUTH4
-#region snippet_auth4
 using Microsoft.AspNetCore.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -725,14 +724,15 @@ var app = builder.Build();
 
 app.UseAuthorization();
 
+#region snippet_auth4
 app.MapGet("/admin", [Authorize("AdminsOnly")] () => 
                             "The /admin endpoint is for admins only.");
 
 app.MapGet("/admin2", () => "The /admin2 endpoint is for admins only.")
    .RequireAuthorization("AdminsOnly");
+#endregion
 
 app.Run();
-#endregion
 
 #elif CORS
 #region snippet_cors

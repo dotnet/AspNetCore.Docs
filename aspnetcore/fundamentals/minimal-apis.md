@@ -57,7 +57,7 @@ The following command makes the app respond to port `7777`:
 dotnet run --urls="https://localhost:7777"
 ```
 
-If the Kestrel endpoint is also configured in the *appsettings.json* file, the *appsettings.json* file specified URL is used. For more information, see [Kestrel endpoint configuration](xref:fundamentals/configuration?view=aspnetcore-6.0#kestrel)
+If the Kestrel endpoint is also configured in the *appsettings.json* file, the *appsettings.json* file specified URL is used. For more information, see [Kestrel endpoint configuration](xref:fundamentals/configuration/index?view=aspnetcore-6.0#kestrel)
 
 #### Read the port from environment
 
