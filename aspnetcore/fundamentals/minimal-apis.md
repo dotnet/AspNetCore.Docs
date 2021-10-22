@@ -651,18 +651,7 @@ app.MapGet("/hello", () => Results.Ok(new { Message = "Hello World" }));
 
 The following example uses the built-in result types to customize the response:
 
-```csharp
-app.MapGet("/todoitems/{id}", async (int id, TodoDb db) =>
-    await db.Todos.FindAsync(id)
-        is Todo todo
-            ? Results.Ok(todo)
-            : Results.NotFound());
-```
-
-<!--TODO: Snippet will be displayed when [PR #22941](https://github.com/dotnet/AspNetCore.Docs/pull/23461) merges.
-
-[!code-csharp[](~/tutorials/min-web-api/samples/6.x/todo/Program.cs?name=snippet_getCustom)]
--->
+[!code-csharp[](minimal-apis/samples/todo/Program.cs?name=snippet_getCustom)]
 
 ### JSON
 
@@ -760,8 +749,24 @@ Routes can be [CORS](xref:security/cors?view=aspnetcore-6.0) enabled using [CORS
 
 ## OpenAPI
 
-It's possible to describe the OpenAPI specification for route handlers using [Swashbuckle](https://www.nuget.org/packages/Swashbuckle.AspNetCore/).
+An app can describe the [OpenAPI specification](https://swagger.io/specification/) for route handlers using [Swashbuckle](https://www.nuget.org/packages/Swashbuckle.AspNetCore/).
+
+The following code is a typical ASP.NET Core app with OpenAPI support:
+
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_swag)]
+
+### Exclude Open API description
+
+In the following sample, `/skipme` is excluded from generating an OpenAPI description:
+
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_swag2)]
+
+### Describe response types
+
+The following example uses the built-in result types to customize the response:
+
+[!code-csharp[](minimal-apis/samples/todo/Program.cs?name=snippet_getCustom)]
+
 
 <a name="bf"></a>
-
 ## Binding Failures

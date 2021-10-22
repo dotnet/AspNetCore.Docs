@@ -1,6 +1,7 @@
-#define CORS2 // Default CREATE P1 PM PE I1 I0 IP CERT CERT2 CERT3 RE CONFIG LOG REB 
+#define SWAG2 // Default CREATE P1 PM PE I1 I0 IP CERT CERT2 CERT3 RE CONFIG LOG REB 
 // CONFIGB LOGB IWHB DEP R1 LE LF IM SM NR NR2 RP WILD CON OV EPB OP1 OP2 OP3 OP4
-// CB BA CJSON MULTI STREAM XTN AUTH1 AUTH2 AUTH3 AUTH4 CORS CORS2 
+// CB BA CJSON MULTI STREAM XTN AUTH1 AUTH2 AUTH3 AUTH4 CORS CORS2 SWAG SWAG2 
+//
 #if NEVER
 #elif Default
 #region snippet_default
@@ -741,7 +742,50 @@ builder.Services.AddCors(options =>
 var app = builder.Build();
 
 app.MapGet("/cors", [EnableCors(MyAllowSpecificOrigins)] () => 
-                              "This endpoint allows cross origin requests!");
+                           "This endpoint allows cross origin requests!");
+app.MapGet("/cors2", () => "This endpoint allows cross origin requests!")
+                     .RequireCors(MyAllowSpecificOrigins);
+
+app.Run();
+#endregion
+
+#elif SWAG
+#region snippet_swag
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+app.MapGet("/swag", () => "Hello Swagger!");
+
+app.Run();
+#endregion
+
+#elif SWAG2
+#region snippet_swag2
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+app.MapGet("/swag", () => "Hello Swagger!");
+app.MapGet("/skipme", () => "Skipping Swagger.")
+                    .ExcludeFromDescription();
+
 app.Run();
 #endregion
 
