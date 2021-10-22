@@ -14,6 +14,8 @@ uid: diagnostics/code-analysis
 
 | Diagnostic ID | Breaking or non-breaking | Description |
 | - | - | - |
+| [ASP0004](xref:diagnostics/asp0004) | Non-breaking | Do not use action results with route handlers |
+| [ASP0005](xref:diagnostics/asp0005) | Non-breaking | Do not place attribute on method called by route handler lambda |
+| [ASP0007](xref:diagnostics/asp0007) | Non-breaking |Route parameter and argument optionality is mismatched |
 | [MVC1000](xref:diagnostics/mvc1000) | Non-breaking | Use of IHtmlHelper.Partial should be avoided |
 | [MVC1001](xref:diagnostics/mvc1001) | Non-breaking | Filters cannot be applied to page handler methods |
- 
