@@ -18,7 +18,7 @@ else
 }
 
 @code {
-    private ProductDetail details;
+    private ProductDetail? details;
     private bool loadFailed;
 
     [Parameter]
@@ -40,8 +40,8 @@ else
 
     private class ProductDetail
     {
-        public string ProductName { get; set; }
-        public string Description { get; set; }
+        public string? ProductName { get; set; }
+        public string? Description { get; set; }
     }
 
     private interface IProductRepository

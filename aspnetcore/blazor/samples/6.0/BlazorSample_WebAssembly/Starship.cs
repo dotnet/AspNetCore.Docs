@@ -5,12 +5,12 @@ public class Starship
 {
     [Required]
     [StringLength(16, ErrorMessage = "Identifier too long (16 character limit).")]
-    public string Identifier { get; set; }
+    public string? Identifier { get; set; }
 
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     [Required]
-    public string Classification { get; set; }
+    public string? Classification { get; set; }
 
     [Range(1, 100000, ErrorMessage = "Accommodation invalid (1-100000).")]
     public int MaximumAccommodation { get; set; }

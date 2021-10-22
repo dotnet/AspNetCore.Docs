@@ -24,7 +24,7 @@
 
 @code {
     private bool stopPropagation = false;
-    private string message; 
+    private string? message; 
 
     private void OnSelectParentDiv() =>
         message = $"The parent div was selected. {DateTime.Now}";

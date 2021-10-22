@@ -264,7 +264,7 @@ When a `ListItem` component's **`InteropCall`** button is selected, `updateMessa
 
 `Shared/ListItem.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Shared/call-dotnet-from-js/ListItem.razor?highlight=1,5,11,15,18-22,24)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Shared/call-dotnet-from-js/ListItem.razor)]
 
 [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) is called to update the UI when `message` is set in `UpdateMessage`. If `StateHasChanged` isn't called, Blazor has no way of knowing that the UI should be updated when the <xref:System.Action> is invoked.
 

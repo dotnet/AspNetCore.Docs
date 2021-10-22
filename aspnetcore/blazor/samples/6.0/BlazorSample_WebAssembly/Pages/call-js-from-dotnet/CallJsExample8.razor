@@ -12,8 +12,8 @@
 @code
 {
     private ElementReference mapElement;
-    private IJSObjectReference mapModule;
-    private IJSObjectReference mapInstance;
+    private IJSObjectReference? mapModule;
+    private IJSObjectReference? mapInstance;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -27,8 +27,13 @@
     }
 
     private async Task ShowAsync(double latitude, double longitude)
-        => await mapModule.InvokeVoidAsync("setMapCenter", mapInstance, latitude, 
-            longitude).AsTask();
+    {
+        if (mapModule is not null && mapInstance is not null)
+        {
+            await mapModule.InvokeVoidAsync("setMapCenter", mapInstance, 
+                latitude, longitude).AsTask();
+        }
+    }
 
     async ValueTask IAsyncDisposable.DisposeAsync()
     {

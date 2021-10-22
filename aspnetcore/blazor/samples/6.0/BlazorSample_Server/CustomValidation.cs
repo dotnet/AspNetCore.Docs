@@ -7,14 +7,14 @@ namespace BlazorSample
 {
     public class CustomValidation : ComponentBase
     {
-        private ValidationMessageStore messageStore;
+        private ValidationMessageStore? messageStore;
     
         [CascadingParameter]
-        private EditContext CurrentEditContext { get; set; }
+        private EditContext? CurrentEditContext { get; set; }
     
         protected override void OnInitialized()
         {
-            if (CurrentEditContext == null)
+            if (CurrentEditContext is null)
             {
                 throw new InvalidOperationException(
                     $"{nameof(CustomValidation)} requires a cascading " +
@@ -26,25 +26,28 @@ namespace BlazorSample
             messageStore = new(CurrentEditContext);
     
             CurrentEditContext.OnValidationRequested += (s, e) => 
-                messageStore.Clear();
+                messageStore?.Clear();
             CurrentEditContext.OnFieldChanged += (s, e) => 
-                messageStore.Clear(e.FieldIdentifier);
+                messageStore?.Clear(e.FieldIdentifier);
         }
     
         public void DisplayErrors(Dictionary<string, List<string>> errors)
         {
-            foreach (var err in errors)
+            if (CurrentEditContext is not null)
             {
-                messageStore.Add(CurrentEditContext.Field(err.Key), err.Value);
-            }
+                foreach (var err in errors)
+                {
+                    messageStore?.Add(CurrentEditContext.Field(err.Key), err.Value);
+                }
     
-            CurrentEditContext.NotifyValidationStateChanged();
+                CurrentEditContext.NotifyValidationStateChanged();
+            }
         }
     
         public void ClearErrors()
         {
-            messageStore.Clear();
-            CurrentEditContext.NotifyValidationStateChanged();
+            messageStore?.Clear();
+            CurrentEditContext?.NotifyValidationStateChanged();
         }
     }
 }
