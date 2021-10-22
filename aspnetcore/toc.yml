@@ -811,6 +811,12 @@
     - name: Code analysis
       uid: diagnostics/code-analysis
       items:
+        - name: ASP0004
+          uid: diagnostics/asp0004
+        - name: ASP0005
+          uid: diagnostics/asp0005
+        - name: ASP0007
+          uid: diagnostics/asp0007
         - name: MVC1000
           uid: diagnostics/mvc1000
         - name: MVC1001
