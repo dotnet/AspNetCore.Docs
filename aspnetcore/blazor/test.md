@@ -35,7 +35,7 @@ Two common approaches for testing Blazor components are end-to-end (E2E) testing
 
   [bUnit](https://github.com/egil/bUnit) is an example of a library that enables Razor component unit testing.
 
-* **E2E testing**: A test runner runs a Blazor app containing the CUT and automates a browser instance. The testing tool inspects and interacts with the CUT through the browser. [Playwright Sharp](https://playwright.dev/dotnet/) is an example of an E2E testing framework that can be used with Blazor apps.
+* **E2E testing**: A test runner runs a Blazor app containing the CUT and automates a browser instance. The testing tool inspects and interacts with the CUT through the browser. [Playwright for .NET](https://playwright.dev/dotnet/) is an example of an E2E testing framework that can be used with Blazor apps.
 
 In unit testing, only the Blazor component (Razor/C#) is involved. External dependencies, such as services and JS interop, must be mocked. In E2E testing, the Blazor component and all of its auxiliary infrastructure are part of the test, including CSS, JS, and the DOM and browser APIs.
 
@@ -165,7 +165,7 @@ Two common approaches for testing Blazor components are end-to-end (E2E) testing
 
   [bUnit](https://github.com/egil/bUnit) is an example of a library that enables Razor component unit testing.
 
-* **E2E testing**: A test runner runs a Blazor app containing the CUT and automates a browser instance. The testing tool inspects and interacts with the CUT through the browser. [Playwright Sharp](https://playwright.dev/dotnet/) is an example of an E2E testing framework that can be used with Blazor apps.
+* **E2E testing**: A test runner runs a Blazor app containing the CUT and automates a browser instance. The testing tool inspects and interacts with the CUT through the browser. [Playwright for .NET](https://playwright.dev/dotnet/) is an example of an E2E testing framework that can be used with Blazor apps.
 
 In unit testing, only the Blazor component (Razor/C#) is involved. External dependencies, such as services and JS interop, must be mocked. In E2E testing, the Blazor component and all of its auxiliary infrastructure are part of the test, including CSS, JS, and the DOM and browser APIs.
 
@@ -295,7 +295,7 @@ Two common approaches for testing Blazor components are end-to-end (E2E) testing
 
   [bUnit](https://github.com/egil/bUnit) is an example of a library that enables Razor component unit testing.
 
-* **E2E testing**: A test runner runs a Blazor app containing the CUT and automates a browser instance. The testing tool inspects and interacts with the CUT through the browser. [Playwright Sharp](https://playwright.dev/dotnet/) is an example of an E2E testing framework that can be used with Blazor apps.
+* **E2E testing**: A test runner runs a Blazor app containing the CUT and automates a browser instance. The testing tool inspects and interacts with the CUT through the browser. [Playwright for .NET](https://playwright.dev/dotnet/) is an example of an E2E testing framework that can be used with Blazor apps.
 
 In unit testing, only the Blazor component (Razor/C#) is involved. External dependencies, such as services and JS interop, must be mocked. In E2E testing, the Blazor component and all of its auxiliary infrastructure are part of the test, including CSS, JS, and the DOM and browser APIs.
 
