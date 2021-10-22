@@ -767,6 +767,24 @@ The following example uses the built-in result types to customize the response:
 
 [!code-csharp[](minimal-apis/samples/todo/Program.cs?name=snippet_getCustom)]
 
+### Add operation ids to Open API
+
+[!code-csharp[](minimal-apis/samples/todo/Program.cs?name=snippet_name)]
+
+
+### Add tags to the Open API description
+
+The following code uses an [OpenAPI grouping tag](https://swagger.io/docs/specification/grouping-operations-with-tags/):
+
+[!code-csharp[](minimal-apis/samples/todo/Program.cs?name=snippet_grp)]
+
+
+
+
+
+
+
+
 
 <a name="bf"></a>
 ## Binding Failures
