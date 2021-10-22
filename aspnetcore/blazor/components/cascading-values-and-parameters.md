@@ -52,7 +52,7 @@ The following component binds the `ThemeInfo` cascading value to a cascading par
 
 `Pages/ThemedCounter.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/ThemedCounter.razor?highlight=2,15-17,23-24)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/ThemedCounter.razor)]
 
 ## Cascade multiple values
 
