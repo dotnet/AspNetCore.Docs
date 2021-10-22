@@ -8,7 +8,7 @@
 @code {
     private string message = "Select one of these list item buttons.";
     private string display = "inline-block";
-    private MessageUpdateInvokeHelper messageUpdateInvokeHelper;
+    private MessageUpdateInvokeHelper? messageUpdateInvokeHelper;
 
     protected override void OnInitialized()
     {
@@ -17,8 +17,11 @@
 
     protected async Task InteropCall()
     {
-        await JS.InvokeVoidAsync("updateMessageCaller",
-            DotNetObjectReference.Create(messageUpdateInvokeHelper));
+        if (messageUpdateInvokeHelper is not null)
+        {
+            await JS.InvokeVoidAsync("updateMessageCaller",
+                DotNetObjectReference.Create(messageUpdateInvokeHelper));
+        }
     }
 
     private void UpdateMessage()

@@ -6,10 +6,10 @@
 
 @code {
     [Parameter]
-    public string Title { get; set; }
+    public string? Title { get; set; }
 
     [Parameter]
-    public RenderFragment ChildContent { get; set; }
+    public RenderFragment? ChildContent { get; set; }
 
     [Parameter]
     public EventCallback<MouseEventArgs> OnClickCallback { get; set; }

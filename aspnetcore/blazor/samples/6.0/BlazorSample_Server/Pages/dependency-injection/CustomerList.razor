@@ -12,7 +12,7 @@
 }
 
 @code {
-    private IReadOnlyList<Customer> customers;
+    private IReadOnlyList<Customer>? customers;
 
     protected override async Task OnInitializedAsync()
     {
@@ -21,8 +21,8 @@
 
     private class Customer
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
     }
 
     private interface IDataAccess
