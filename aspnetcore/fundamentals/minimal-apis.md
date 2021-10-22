@@ -370,7 +370,7 @@ Route names are inferred from method names if specified:
 Route names:
 
 * Must be globally unique.
-* Are used as the OpenAPI operation id when OpenAPI support is enabled. See the [OpenAPI/Swagger section](#openapi) for more details.
+* Are used as the OpenAPI operation id when OpenAPI support is enabled. See the [OpenAPI section](#openapi) for more details.
 
 ### Route Parameters
 
@@ -378,7 +378,7 @@ Route parameters can be captured as part of the route pattern definition:
 
 [!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_rp)]
 
-The preceding code returns `The user id is 3 and book id is 7` from `/users/3/books/7`.
+The preceding code returns `The user id is 3 and book id is 7` from the URI `/users/3/books/7`.
 
 The route handler can declare the parameters to capture. When a request is made a route with parameters declared to capture, the parameters are parsed and passed to the handler. This makes it easy to capture the values in a type safe way. In the preceding code, `userId` and `bookId` are both `int`.
 
@@ -390,7 +390,7 @@ In the preceding code, if either route value cannot be converted to an `int`, an
 
 The following catch all route returns `Routing to hello` from the `/posts/hello' endpoint:
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_rp)]
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_wild)]
 
 ### Route constraints
 
@@ -407,18 +407,19 @@ app.MapGet("/posts/{slug:regex(^[a-z0-9_-]+$)}", (string slug) => $"Post {slug}"
 app.Run();
 ```
 
-The following table demonstrates example route templates and their behavior:
+The following table demonstrates the preceding route templates and their behavior:
 
 | Route Template | Example Matching URI |
 | -------------- | -------------------- |
 | `/todos/{id:int} ` | `/todos/1` |
 | `/todos/{text}` | `/todos/something` |
+| `/posts/{slug:regex(^[a-z0-9_-]+$)}` |  `/posts/mypost` |
 
 For more information, see [Route constraint reference](xref:fundamentals/routing) in <xref:fundamentals/routing>.
 
 ### Parameter Binding
 
-Parameter binding is the process of converting request data into strongly typed parameters that are expressed by route handlers. A binding source determines where parameters are bound from. Binding sources can be explicit or inferred based HTTP method and parameter type.
+Parameter binding is the process of converting request data into strongly typed parameters that are expressed by route handlers. A binding source determines where parameters are bound from. Binding sources can be explicit or inferred based on HTTP method and parameter type.
 
 Supported binding sources:
 
@@ -444,7 +445,7 @@ The HTTP methods `GET`, `HEAD`, `OPTIONS`, and `DELETE` don't bind from body. Al
 | --------- | -------------- |
 | `id`      | route value |
 | `page`    | query string |
-| service   | Provided by dependency injection |
+| `service`   | Provided by dependency injection |
 
 ### POST, PUT, PATCH, etc
 
@@ -454,7 +455,7 @@ The HTTP methods `GET`, `HEAD`, `OPTIONS`, and `DELETE` don't bind from body. Al
 | Parameter | Binding Source |
 | --------- | -------------- |
 | `person`      | body (as JSON) |
-| service   | Provided by dependency injection |
+| `service`   | Provided by dependency injection |
 
 ### Explicit Parameter Binding
 
@@ -467,14 +468,17 @@ Attributes can be used to explicitly declare where parameters are bound from.
 | --------- | -------------- |
 | `id`      | route value with the name `id` |
 | `page`    | query string with the name `"p"`|
-| service   | Provided by dependency injection |
-| contentType | header with the name` "Content-Type"` |
+| `service`   | Provided by dependency injection |
+| `contentType` | header with the name`"Content-Type"` |
 
 Binding from form values is ***not*** supported in .NET 6.
 
 ### Optional parameters
 
-Parameters declared in route handlers are treated as required. This means if a request matches the route, the route handler only execute if all required parameters are provided in the request. Failure to provide all required parameters results in an error.
+Parameters declared in route handlers are treated as required:
+
+* If a request matches the route, the route handler only runs if all required parameters are provided in the request.
+* Failure to provide all required parameters results in an error.
 
 [!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_op1)]
 
@@ -552,7 +556,7 @@ public static ValueTask<T?> BindAsync(HttpContext context, ParameterInfo paramet
 
 The following code displays `SortBy:xyz,SortDirection:Desc, CurrentPage:99` with the URI `/products?SortBy=xyz&SortDir=Desc&Page=99`:
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_cb)]
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_ba)]
 
 <a name="bf"></a>
 

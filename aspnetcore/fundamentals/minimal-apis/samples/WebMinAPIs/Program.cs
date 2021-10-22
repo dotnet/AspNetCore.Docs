@@ -371,7 +371,6 @@ var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
 string Hi() => "Hello there";
-
 app.MapGet("/hello", Hi);
 
 app.MapGet("/", (LinkGenerator linker) => 
@@ -521,12 +520,13 @@ public class Point
     public double X { get; set; }
     public double Y { get; set; }
 
-    public static bool TryParse(string? value, IFormatProvider? provider, out Point? point)
+    public static bool TryParse(string? value, IFormatProvider? provider,
+                                out Point? point)
     {
         // Format is "(12.3,10.1)"
         var trimmedValue = value?.TrimStart('(').TrimEnd(')');
         var segments = trimmedValue?.Split(',',
-                      StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+                StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
         if (segments?.Length == 2
             && double.TryParse(segments[0], out var x)
             && double.TryParse(segments[1], out var y))
@@ -550,7 +550,7 @@ var app = builder.Build();
 
 // GET /products?SortBy=xyz&SortDir=Desc&Page=99
 app.MapGet("/products", (PagingData pageData) => $"SortBy:{pageData.SortBy}," +
-                            $"SortDirection:{pageData.SortDirection}, CurrentPage:{pageData.CurrentPage}");
+       $"SortDirection:{pageData.SortDirection}, CurrentPage:{pageData.CurrentPage}");
 
 app.Run();
 public class PagingData
@@ -559,14 +559,15 @@ public class PagingData
     public SortDirection SortDirection { get; init; }
     public int CurrentPage { get; init; } = 1;
 
-    public static ValueTask<PagingData?> BindAsync(HttpContext context, ParameterInfo parameter)
+    public static ValueTask<PagingData?> BindAsync(HttpContext context,
+                                                   ParameterInfo parameter)
     {
         const string sortByKey = "sortBy";
         const string sortDirectionKey = "sortDir";
         const string currentPageKey = "page";
 
-        Enum.TryParse<SortDirection>(context.Request.Query[sortDirectionKey], ignoreCase: true,
-                                     out var sortDirection);
+        Enum.TryParse<SortDirection>(context.Request.Query[sortDirectionKey],
+                                     ignoreCase: true, out var sortDirection);
         int.TryParse(context.Request.Query[currentPageKey], out var page);
         page = page == 0 ? 1 : page;
 
