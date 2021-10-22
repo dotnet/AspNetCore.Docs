@@ -8,6 +8,7 @@ no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cook
   [!INCLUDE[](~/includes/trustCertVS.md)]
 
   Visual Studio:
+
   * Starts [Kestrel](xref:fundamentals/servers/index#kestrel) server.
   * Launches a browser.
   * Navigates to `http://localhost:port`, such as `http://localhost:7042`.

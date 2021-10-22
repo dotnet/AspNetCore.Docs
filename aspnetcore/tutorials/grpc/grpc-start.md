@@ -61,10 +61,9 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
   * The `dotnet new` command creates a new gRPC service in the *GrpcGreeter* folder.
   * The `code` command opens the *GrpcGreeter* folder in a new instance of Visual Studio Code.
 
-
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* Start Visual Studio for Mac and **File** > **New Project**.
+* Start Visual Studio for Mac and select **File** > **New Solution**.
 * In the **Choose a template for your new project** dialog, select **Web and Console** > **App** > **gRPC Service** and select **Continue**.
 * Select **.NET 6.0** for the target framework and select **Continue**.
 * Name the project **GrpcGreeter**. It's important to name the project *GrpcGreeter* so the namespaces match when you copy and paste code.
@@ -73,48 +72,8 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 ---
 
 ### Run the service
-
-<!--  
-Add run-the-app include back in replacing the partial section below once run-the-app.md is updated for VS 2022 for Mac and accounts for randomly assigned ports as in this case for the service app.
-[!INCLUDE[](~/includes/run-the-app.md)]
--->
-
-# [Visual Studio](#tab/visual-studio)
-
-* Press Ctrl+F5 to run without the debugger.
-
-Visual Studio displays the following dialog when a project is not yet configured to use SSL:
-
-![This project is configured to use SSL. To avoid SSL warnings in the browser you can choose to trust the self-signed certificate that IIS Express has generated. Would you like to trust the IIS Express SSL certificate?](~/getting-started/_static/trustCertVS22.png)
-
-Select **Yes** if you trust the IIS Express SSL certificate.
-
-The following dialog is displayed:
-
-![Security warning dialog](~/getting-started/_static/cert.png)
-
-Select **Yes** if you agree to trust the development certificate.
-
-[!INCLUDE[trust FF](~/includes/trust-ff.md)]
-
-Visual Studio:
-
-  Visual Studio starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and navigates to a port that was randomly assigned for the service, such as `http://localhost:7042`. The address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for  local computer. Localhost only serves web requests from the local computer.
  
-# [Visual Studio Code](#tab/visual-studio-code)
-
-  [!INCLUDE[](~/includes/trustCertVSC.md)]
-
-* Press **Ctrl-F5** to run without the debugger.
-
-  Visual Studio Code starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and navigates to a port that was randomly assigned for the service, such as `http://localhost:7042`. The address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for  local computer. Localhost only serves web requests from the local computer.
-<!-- Replace the above section with the run the app include once it can be updated for VS 2022 for Mac  -->
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-We hope to have Visual Studio for Mac instructions soon.
-
----
+[!INCLUDE[](~/includes/run-the-app6.0.md)]
 
 The logs show the service listening on `https://localhost:7042`.
 
@@ -165,12 +124,7 @@ info: Microsoft.Hosting.Lifetime[0]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-We hope to have Visual Studio for Mac instructions soon.
-
-<!--  Visual Studio for Mac tab to be updated and available once 2022 is available.
-
 Follow the instructions in [Building a complete .NET Core solution on macOS using Visual Studio for Mac](/dotnet/core/tutorials/using-on-mac-vs-full-solution) to create a console app with the name *GrpcGreeterClient*.
--->
 
 ---
 
@@ -215,18 +169,15 @@ dotnet add GrpcGreeterClient.csproj package Grpc.Net.Client
 dotnet add GrpcGreeterClient.csproj package Google.Protobuf
 dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 ```
+
 # [Visual Studio for Mac](#tab/visual-studio-mac)
-
-We hope to have Visual Studio for Mac instructions soon.
-
-<!--  Visual Studio for Mac tab to be updated and available once 2022 is available.
 
 * Right-click **GrpcGreeterClient** project in the **Solution Pad** and select **Manage NuGet Packages**.
 * Enter **Grpc.Net.Client** in the search box.
 * Select the **Grpc.Net.Client** package from the results pane and select **Add Package**.
-* Select the **Accept** button on the **Accept License** dialog.
+* In **Select Projects** select **OK**.
+* If the **Accept License** dialog appears, select **Accept**.
 * Repeat for `Google.Protobuf` and `Grpc.Tools`.
--->
 
 ---
 
