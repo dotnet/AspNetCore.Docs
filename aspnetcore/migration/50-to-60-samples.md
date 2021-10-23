@@ -2,16 +2,16 @@
 title: Code samples migrated from ASP.NET Core 5.0 to 6.0
 author: rick-anderson
 description:  Shows how to migrate ASP.NET Core 5.0 samples to ASP.NET Core 6.0.
-monikerRange: '>= aspnetcore-6.0'
+monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
-ms.date: 10/15/2021
+ms.date: 10/22/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: migration/50-to-60-samples
 ---
 
 # Code samples migrated from ASP.NET Core 5.0 to 6.0
 
-<!-- TODO: Add this article to TOC after merging PR, not added now to avoid TOC merge conflicts
+<!-- 
 This content from https://gist.github.com/davidfowl/0e0372c3c1d895c3ce195ba983b1e03d#differences-in-the-hosting-model
  -->
 
