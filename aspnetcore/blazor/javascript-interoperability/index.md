@@ -42,11 +42,11 @@ JS interop calls are asynchronous by default, regardless of whether the called c
 
 Load JavaScript (JS) code using any of the following approaches:
 
-* [Load a script in `<head>` markup](#load-a-script-in-head-markup) (*Not generally recommended*)
-* [Load a script in `<body>` markup](#load-a-script-in-body-markup)
+* [Load a script in `<head>` markup](#load-a-script-in-head-markup-1) (*Not generally recommended*)
+* [Load a script in `<body>` markup](#load-a-script-in-body-markup-1)
 * [Load a script from an external JavaScript file (`.js`) collocated with a component](#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component)
 * [Load a script from an external JavaScript file (`.js`)](#load-a-script-from-an-external-javascript-file-js)
-* [Inject a script after Blazor starts](#inject-a-script-after-blazor-starts)
+* [Inject a script after Blazor starts](#inject-a-script-after-blazor-starts-1)
 
 > [!WARNING]
 > Don't place a `<script>` tag in a Razor component file (`.razor`) because the `<script>` tag can't be updated dynamically by Blazor.
