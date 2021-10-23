@@ -621,7 +621,7 @@ The preceding code:
 
 ## Responses
 
-Route handlers support two types of return values:
+Route handlers support the following types of return values:
 
 1. `IResult` based - This includes `Task<IResult>` and `ValueTask<IResult>`
 1. `string` - This includes `Task<string>` and `ValueTask<string>`
@@ -745,11 +745,13 @@ allows unauthenticated users to access endpoints:
 ## CORS
 
 Routes can be [CORS](xref:security/cors?view=aspnetcore-6.0) enabled using [CORS policies](xref:security/cors?view=aspnetcore-6.0#cors-policy-options). CORS can be declared via the [`[EnableCors]`](xref:Microsoft.AspNetCore.Cors.EnableCorsAttribute) attribute or by using the
-`RequireCors` method. The following samples enable CORS:
+<xref:Microsoft.AspNetCore.Builder.CorsEndpointConventionBuilderExtensions.RequireCors%2A> method. The following samples enable CORS:
 
 [!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_cors)]
 
 [!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_cors2)]
+
+For more information, see <xref:security/cors?view=aspnetcore-6.0>
 
 ## OpenAPI
 
@@ -761,7 +763,7 @@ The following code is a typical ASP.NET Core app with OpenAPI support:
 
 ### Exclude Open API description
 
-In the following sample, `/skipme` is excluded from generating an OpenAPI description:
+In the following sample, the `/skipme` endpoint is excluded from generating an OpenAPI description:
 
 [!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_swag2)]
 

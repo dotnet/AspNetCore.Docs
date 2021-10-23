@@ -1,4 +1,4 @@
-#define NR2 // Default CREATE P1 PM PE I1 I0 IP CERT CERT2 CERT3 RE CONFIG LOG REB 
+#define SWAG // Default CREATE P1 PM PE I1 I0 IP CERT CERT2 CERT3 RE CONFIG LOG REB 
 // CONFIGB LOGB IWHB DEP R1 LE LF IM SM NR NR2 RP WILD CON OV EPB OP1 OP2 OP3 OP4
 // CB BA CJSON MULTI STREAM XTN AUTH1 AUTH2 AUTH3 AUTH4 CORS CORS2 SWAG SWAG2 
 // FIL2 IHB CHNGR ADDMID
@@ -553,6 +553,7 @@ app.MapGet("/products", (PagingData pageData) => $"SortBy:{pageData.SortBy}," +
        $"SortDirection:{pageData.SortDirection}, CurrentPage:{pageData.CurrentPage}");
 
 app.Run();
+
 public class PagingData
 {
     public string? SortBy { get; init; }
@@ -723,21 +724,19 @@ using Microsoft.AspNetCore.Authorization;
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
-app.UseAuthorization();
-
 #region snippet_auth4
-app.MapGet("/admin", [Authorize("AdminsOnly")] () => 
-                            "The /admin endpoint is for admins only.");
+app.MapGet("/login", [AllowAnonymous] () => "This endpoint is for admins only.");
 
-app.MapGet("/admin2", () => "The /admin2 endpoint is for admins only.")
-   .RequireAuthorization("AdminsOnly");
+
+app.MapGet("/login2", () => "This endpoint also for admins only.")
+   .AllowAnonymous();
 #endregion
 
 app.Run();
 
 #elif CORS
 #region snippet_cors
-var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+const string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -788,17 +787,24 @@ app.Run();
 #endregion
 
 #elif SWAG
+// GET /swagger
 #region snippet_swag
 var builder = WebApplication.CreateBuilder(args);
+
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new() { Title = builder.Environment.ApplicationName,
+                               Version = "v1" });
+});
 
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json",
+                                    $"{builder.Environment.ApplicationName} v1"));
 }
 
 app.MapGet("/swag", () => "Hello Swagger!");
