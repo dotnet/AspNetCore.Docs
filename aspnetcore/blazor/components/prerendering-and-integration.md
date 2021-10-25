@@ -732,11 +732,9 @@ For more information, see <xref:blazor/components/index#namespaces>.
 
 ## Preserve prerendered state
 
-Without preserving prerendered state, any state that used during prerendering is lost and must be recreated when the app is fully loaded. If any state is setup asynchronously, the UI may flicker as the prerendered UI is replaced with temporary placeholders and then fully rendered again.
+Without preserving prerendered state, state used during prerendering is lost and must be recreated when the app is fully loaded. If any state is setup asynchronously, the UI may flicker as the prerendered UI is replaced with temporary placeholders and then fully rendered again.
 
-To solve these problems, Blazor supports persisting state in a prerendered page using the [Preserve Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/preserve-component-state-tag-helper) (`<preserve-component-state />`). Add the `<preserve-component-state />` tag inside the closing `</body>` tag of `_Layout.cshtml`.
-
-::: zone pivot="webassembly"
+To solve these problems, Blazor supports persisting state in a prerendered page using the [Preserve Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/preserve-component-state-tag-helper) (`<preserve-component-state />`). Add the `<preserve-component-state />` tag inside the closing `</body>` tag.
 
 `Pages/_Layout.cshtml`:
 
@@ -748,46 +746,67 @@ To solve these problems, Blazor supports persisting state in a prerendered page 
 </body>
 ```
 
-::: zone-end
+In the app, decide what state to persist using the `PersistentComponentState` service. The `PersistentComponentState.RegisterOnPersisting` event is fired just before the state is persisted into the prerendered page, which allows a component to retrieve the state when initializing the component.
 
-::: zone pivot="server"
-
-`Pages/_Layout.cshtml`:
-
-```cshtml
-<body>
-    ...
-
-    <persist-component-state />
-</body>
-```
-
-::: zone-end
-
-In the app, decide what state to persist using the `ComponentApplicationState` service. The `ComponentApplicationState.OnPersisting` event is fired just before the state is persisted into the prerendered page, which allows a component to retrieve the state when initializing the component.
-
-The following example shows how the weather forecast in the `FetchData` component from an app based on the Blazor project template is persisted during prerendering and then retrieved to initialize the component. The Persist Component State Tag Helper persists the component state after all component invocations.
+The following example shows how the weather forecast in the `FetchData` component from a hosted Blazor WebAssembly app based on the Blazor project template is persisted during prerendering and then retrieved to initialize the component. The Persist Component State Tag Helper persists the component state after all component invocations.
 
 `Pages/FetchData.razor`:
 
 ```razor
 @page "/fetchdata"
 @implements IDisposable
-@inject ComponentApplicationState ApplicationState
+@using BlazorSample.Shared
+@inject IWeatherForecastService WeatherForecastService
+@inject PersistentComponentState ApplicationState
 
-...
+<h1>Weather forecast</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+@if (forecasts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Temp. (C)</th>
+                <th>Temp. (F)</th>
+                <th>Summary</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var forecast in forecasts)
+            {
+                <tr>
+                    <td>@forecast.Date.ToShortDateString()</td>
+                    <td>@forecast.TemperatureC</td>
+                    <td>@forecast.TemperatureF</td>
+                    <td>@forecast.Summary</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
 
 @code {
-    private WeatherForecast[] forecasts;
+    private WeatherForecast[] forecasts = Array.Empty<WeatherForecast>();
+    private PersistingComponentStateSubscription _persistingSubscription;
 
     protected override async Task OnInitializedAsync()
     {
-        ApplicationState.OnPersisting += PersistForecasts;
+        _persistingSubscription = ApplicationState.RegisterOnPersisting(PersistForecasts);
 
-        if (!ApplicationState
-            .TryTakeAsJson<WeatherForecast[]>("fetchdata", out forecasts))
+        if (!ApplicationState.TryTakeFromJson<WeatherForecast[]>("fetchdata", out var restored))
         {
-            forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+            forecasts = await WeatherForecastService.GetForecastAsync(DateTime.Now);
+        }
+        else
+        {
+            forecasts = restored!;
         }
     }
 
@@ -800,7 +819,7 @@ The following example shows how the weather forecast in the `FetchData` componen
 
     void IDisposable.Dispose()
     {
-        ApplicationState.OnPersisting -= PersistForecasts;
+        _persistingSubscription.Dispose();
     }
 }
 ```
