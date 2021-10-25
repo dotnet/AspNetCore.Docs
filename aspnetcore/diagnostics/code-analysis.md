@@ -14,6 +14,8 @@ uid: diagnostics/code-analysis
 
 | Diagnostic ID | Breaking or non-breaking | Description |
 | - | - | - |
+| [ASP0000](xref:diagnostics/asp0000) | Non-breaking | Do not call 'IServiceCollection.BuildServiceProvider' in 'ConfigureServices' |
+| [ASP0001](xref:diagnostics/asp0001) | Non-breaking | Authorization middleware is incorrectly configured |
 | [ASP0004](xref:diagnostics/asp0004) | Non-breaking | Do not use action results with route handlers |
 | [ASP0005](xref:diagnostics/asp0005) | Non-breaking | Do not place attribute on method called by route handler lambda |
 | [ASP0007](xref:diagnostics/asp0007) | Non-breaking |Route parameter and argument optionality is mismatched |
@@ -21,4 +23,6 @@ uid: diagnostics/code-analysis
 | [MVC1001](xref:diagnostics/mvc1001) | Non-breaking | Filters cannot be applied to page handler methods |
 | [MVC1002](xref:diagnostics/mvc1002) | Non-breaking | Route attributes cannot be applied to page handler methods |
 | [MVC1003](xref:diagnostics/mvc1003) | Non-breaking | Route attributes cannot be applied to page models |
-| [MVC1004](xref:diagnostics/mvc1004) | Non-breaking | Rename model bound parameter |
+| [MVC1004](xref:diagnostics/mvc1004) | Breaking | Rename model bound parameter |
+| [MVC1005](xref:diagnostics/mvc1005) | Non-breaking | Cannot use UseMvc with Endpoint Routing |
+| [MVC1006](xref:diagnostics/mvc1006) | Breaking | Methods containing TagHelpers must be async and return Task |
