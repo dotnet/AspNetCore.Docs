@@ -437,10 +437,10 @@ Verify you can't post or get the secret field.
 
 ## Differences between minimal APIs and APIs with controllers
 
-- No support for filters: For example, no support for  <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncAuthorizationFilter>, <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncActionFilter>, <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncExceptionFilter>, <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncResultFilter>,  and <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncResourceFilter>
-- No support for model binding. i.e. <xref:Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinderProvider>, <xref:Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinder>. Support can be added with a custom binding shim.
+- No support for filters: For example, no support for  <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncAuthorizationFilter>, <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncActionFilter>, <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncExceptionFilter>, <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncResultFilter>,  and <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncResourceFilter>.
+- No support for model binding, i.e. <xref:Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinderProvider>, <xref:Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinder>. Support can be added with a custom binding shim.
   - No support for binding from forms. This includes binding <xref:Microsoft.AspNetCore.Http.IFormFile>. We plan to add support for `IFormFile` in the future.
-- No built-in support for validation. i.e. <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IModelValidator>
+- No built-in support for validation, i.e. <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IModelValidator>
 - No support for [application parts](xref:mvc/extensibility/app-parts) or the [application model](xref:mvc/controllers/application-model). There's no way to apply or build your own conventions.
 - No built-in view rendering support. We recommend using [Razor Pages](xref:tutorials/razor-pages/razor-pages-start) for rendering views.
 - No support for [JsonPatch](https://www.nuget.org/packages/Microsoft.AspNetCore.JsonPatch/)
