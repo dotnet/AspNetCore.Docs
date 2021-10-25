@@ -53,6 +53,124 @@ One of the largest parts of a Blazor WebAssembly app is the WebAssembly-based .N
 
 Runtime relinking is performed automatically when you publish an app. The size reduction is particularly dramatic when disabling globalization. For more information, see <xref:blazor/globalization-localization>.
 
+## Native dependencies support
+
+Blazor WebAssembly apps can use native dependencies built to run on WebAssembly. You can statically link native dependencies into the .NET WebAssembly runtime using the .NET WebAssembly build tools, the same tools used to [ahead-of-time (AOT) compile](#ahead-of-time-aot-compilation) a Blazor app to WebAssembly or to [relink the runtime to remove unused features](#runtime-relinking).
+
+The .NET WebAssembly build tools are based on [Emscripten](https://emscripten.org/), a compiler toolchain for the web platform. To install the .NET WebAssembly build tools, use either of the following approaches:
+
+* Select the optional component in the Visual Studio installer.
+* Run `dotnet workload install wasm-tools` from an administrative command prompt.
+
+Add native dependencies to a Blazor WebAssembly app by adding `NativeFileReference` items in the app's project file. When the project is built, each `NativeFileReference` is passed to Emscripten by the .NET WebAssembly build tools so that they are compiled and linked into the runtime. Next, [`p/invoke`](/dotnet/standard/native-interop/pinvoke) into the native code from the app's .NET code.
+
+Generally, any portable native code can be used as a native dependency with Blazor WebAssembly. You can add native dependencies to C/C++ code or code previously compiled using Emscripten:
+
+* Object files (`.o`)
+* Archive files (`.a`)
+* Bitcode (`.bc`)
+* Standalone WebAssembly modules (`.wasm`)
+
+Prebuilt dependencies typically must be built using the same version of Emscripten used to build the .NET WebAssembly runtime.
+
+### Use native code
+
+Add a simple native C function to a Blazor WebAssembly app:
+
+1. Create a new Blazor WebAssembly project.
+1. Add a `Test.c` file to the project.
+1. Add a C function in `Test.c` for computing factorials:
+
+   ```c
+   int fact(int n)
+   {
+       if (n == 0) return 1;
+       return n * fact(n - 1);
+   }
+   ```
+
+1. Add a `NativeFileReference` for `Test.c` in the app's project file:
+
+   ```xml
+   <ItemGroup>
+     <NativeFileReference Include="Test.c" />
+   </ItemGroup>
+   ```
+
+1. In a Razor component (`.razor`), add a <xref:System.Runtime.InteropServices.DllImportAttribute> for the `fact` function in the generated `Test` library and call the `fact` method from .NET code in the component:
+
+   ```razor
+   @using System.Runtime.InteropServices
+
+   <p>@fact(3)</p>
+
+   @code {
+       [DllImport("Test")]
+       static extern int fact(int n);
+   }
+   ```
+
+When you build the app with the .NET WebAssembly build tools installed, the native C code is compiled and linked into the .NET WebAssembly runtime (`dotnet.wasm`). Compiling and linking may take a few minutes. After the app is built, run the app to see the rendered factorial value.
+
+> [!NOTE]
+> During the 6.0 preview release period, you may receive a build error on subsequent builds saying that the output assembly is being used by another process. This is a known issue that will be addressed for the .NET 6 general release. To workaround the issue, rebuild the project a second time.
+
+### Use libraries
+
+NuGet packages can contain native dependencies for use on WebAssembly. These libraries and their native functionality are then available to any Blazor WebAssembly app. The files for the native dependencies should be built for WebAssembly and packaged in the `browser-wasm` [architecture-specific folder](/nuget/create-packages/supporting-multiple-target-frameworks#architecture-specific-folders). WebAssembly-specific dependencies aren't referenced automatically and must be referenced manually as `NativeFileReference`s. Package authors can choose to add the native references by including a `.props` file in the package with the references.
+
+[SkiaSharp](https://github.com/mono/SkiaSharp) is a cross-platform 2D graphics library for .NET based on the native [Skia graphics library](https://skia.org/), and it now has preview support for Blazor WebAssembly.
+
+> [!WARNING]
+> [SkiaSharp](https://github.com/mono/SkiaSharp) and the [Skia graphics library](https://skia.org/) aren't owned or maintained by Microsoft. The demonstration example in this section is unsupported by Microsoft and shouldn't be used in production.
+
+To use SkiaSharp in a Blazor WebAssembly app:
+
+1. Add a package reference to the [`SkiaSharp.Views.Blazor`](https://www.nuget.org/packages/SkiaSharp.Views.Blazor) package in a Blazor WebAssembly project. Use Visual Studio's process for adding packages to an app (**Manage NuGet Packages**) or execute the [`dotnet add package`](/dotnet/core/tools/dotnet-add-package) command in a command shell:
+
+   ```dotnetcli
+   dotnet add package –-prerelease SkiaSharp.Views.Blazor
+   ```
+
+   > [!NOTE]
+   > At the time of writing, the [`SkiaSharp.Views.Blazor`](https://www.nuget.org/packages/SkiaSharp.Views.Blazor) package is a prerelease NuGet package not intended for production use.
+
+1. Add a `SKCanvasView` component to the app with the following:
+
+   * `SkiaSharp` and `SkiaSharp.Views.Blazor` namespaces.
+   * Logic to draw in the SkiaSharp Canvas View component (`SKCanvasView`).
+
+   `Pages/NativeDependencyExample.razor`:
+
+   ```razor
+   @page "/native-dependency-example"
+   @using SkiaSharp
+   @using SkiaSharp.Views.Blazor
+
+   <PageTitle>Native dependency</PageTitle>
+
+   <h1>Native dependency example with SkiaSharp</h1>
+
+   <SKCanvasView OnPaintSurface="OnPaintSurface" />
+
+   @code {
+       private void OnPaintSurface(SKPaintSurfaceEventArgs e)
+       {
+           var canvas = e.Surface.Canvas;
+           canvas.Clear(SKColors.White);
+           using var paint = new SKPaint
+           {
+               Color = SKColors.Black,
+               IsAntialias = true,
+               TextSize = 24
+           };
+           canvas.DrawText("SkiaSharp", 0, 24, paint);
+       }
+   }
+   ```
+
+1. Build the app, which might take several minutes. Run the app and navigate to the `NativeDependencyExample` component at `/native-dependency-example`.
+
 ## Customize how boot resources are loaded
 
 Customize how boot resources are loaded using the `loadBootResource` API. For more information, see <xref:blazor/fundamentals/startup#load-boot-resources>.
