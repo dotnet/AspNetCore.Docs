@@ -95,7 +95,7 @@
           uid: tutorials/first-web-api
         - name: Create a minimal web API
           displayName: API tutorial
-          uid: tutorials/first-web-api
+          uid: tutorials/min-web-api
         - name: Web API with MongoDB
           displayName: API tutorial
           uid: tutorials/first-mongo-app
