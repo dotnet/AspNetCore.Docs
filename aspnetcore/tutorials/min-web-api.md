@@ -364,7 +364,7 @@ The return types can represent a wide range of HTTP status codes. For example, `
 * If no item matches the requested ID, the method returns a [404 status](https://developer.mozilla.org/docs/Web/HTTP/Status/404) <xref:Microsoft.AspNetCore.Mvc.ControllerBase.NotFound%2A> error code.
 * Otherwise, the method returns 200 with a JSON response body. Returning `item` results in an HTTP 200 response.
 
-## Examine the Put endpoint
+## Examine the PUT endpoint
 
 The sample app implements a single PUT endpoint using `MapPut`:
 
