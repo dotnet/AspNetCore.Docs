@@ -9,12 +9,12 @@ no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cook
 uid: tutorials/min-web-api
 ---
 
-# Tutorial: Create a web minimal API with ASP.NET Core
+# Tutorial: Create a minimal web API with ASP.NET Core
 
 <!-- TODO: Remove aspnetcore\tutorials\min-web-api\samples\6.x -->
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-Minimal APIs are architected to create REST APIs with minimal dependencies. They are ideal for microservices and apps that want to include only the minimum files, features, and dependencies in ASP.NET Core.
+Minimal APIs are architected to create HTTP APIs with minimal dependencies. They are ideal for microservices and apps that want to include only the minimum files, features, and dependencies in ASP.NET Core.
 
 This tutorial teaches the basics of building a miminal web API with ASP.NET Core. For a tutorial on creating a web API project based on [controllers](xref:web-api/index) that contains more features, see [Create a web API](xref:tutorials/first-web-api).
 
@@ -121,7 +121,7 @@ The *Program.cs* file contains the following code:
 
 The project template creates a `WeatherForecast` API with support for [Swagger](xref:tutorials/web-api-help-pages-using-swagger). Swagger is used to generate useful documentation and help pages for web APIs.
 
-The following highlighted code supports swagger:
+The following highlighted code adds support for Swagger:
 
 [!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_swagger&highlight=5-6,13-14)]
 
@@ -158,9 +158,7 @@ The Swagger page `/swagger/index.html` is displayed. Select **GET** > **Try it o
 * The response code, body, and headers.
 * A drop down list box with media types and the example value and schema.
 
-Copy and paste the **Request URL** in the browser:  `https://localhost:<port>/WeatherForecast`
-
-JSON similar to the following is returned:
+Copy and paste the **Request URL** in the browser: `https://localhost:<port>/WeatherForecast`. JSON similar to the following is returned:
 
 ```json
 [
@@ -203,11 +201,11 @@ This tutorial focuses on creating a web API, so we'll delete the Swagger code an
 
 [!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_min)]
 
-The following highlighted code creates a <xref:Microsoft.AspNetCore.Builder.WebApplication> and a <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> with preconfigured defaults:
+The following highlighted code creates a <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> and a <xref:Microsoft.AspNetCore.Builder.WebApplication> with preconfigured defaults:
 
 [!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_min&highlight=1-2)]
 
-The following code creates an endpoint `/` which returns `Hello World!`:
+The following code creates an HTTP GET endpoint `/` which returns `Hello World!`:
 
 ```csharp
 app.MapGet("/", () => "Hello World!");
@@ -217,7 +215,7 @@ app.MapGet("/", () => "Hello World!");
 
 Remove the two `"launchUrl": "swagger",` lines from the *Properties/launchSettings.json* file. When the `launchUrl` isn't specified, the web browser requests the `/` endpoint.
 
-Run the app, `Hello World!` is displayed. The updated *Program.cs* file contains a complete app.
+Run the app. `Hello World!` is displayed. The updated *Program.cs* file contains a minimal but complete app.
 
 ## Add NuGet packages
 
@@ -253,7 +251,7 @@ Open a command terminal in the project folder and run the following command:
 
 ## Add the API code
 
-Replace the contents of the *program.cs* file with the following sample app code:
+Replace the contents of the *Program.cs* file with the following code:
 
 [!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_all)]
 
@@ -271,11 +269,11 @@ The sample app also contains the following database context class:
 
 The *database context* is the main class that coordinates [Entity Framework](/ef/core/) functionality for a data model. This class is created by deriving from the <xref:Microsoft.EntityFrameworkCore.DbContext?displayProperty=fullName> class.
 
-The following highlighted code adds the database context to the [dependency injection (DI)](xref:fundamentals/dependency-injection) container and enables displaying database-related exceptions that can be resolved by using Entity Framework migrations:
+The following highlighted code adds the database context to the [dependency injection (DI)](xref:fundamentals/dependency-injection) container and enables displaying database-related exceptions:
 
 [!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_DI&highlight=2-3)]
 
- The DI container provides access to the database context and other services.
+The DI container provides access to the database context and other services.
 
 The following code creates an HTTP POST endpoint `/todoitems` to add data to the in-memory database:
 
@@ -317,9 +315,9 @@ The following instructions post data to the app:
   * Select **Send**.
     ![Postman with Post request details](min-web-api/_static/post2.png)
 
-## Examine the GET methods
+## Examine the GET endpoints
 
-Several GET endpoints are implemented:
+The sample app implements several GET endpoints using calls to `MapGet`:
 
 |API | Description | Request body | Response body |
 |--- | ---- | ---- | ---- |
@@ -329,14 +327,14 @@ Several GET endpoints are implemented:
 
 [!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_get)]
 
-## Test Get
+## Test the GET endpoints
 
 Test the app by calling the two endpoints from a browser or Postman. For example:
 
 * `GET https://localhost:5001/todoitems`
 * `GET https://localhost:5001/todoitems/1`
 
-A response similar to the following is produced by the call to `GET /todoitems`:
+The call to `GET /todoitems` produces a response similar to the following:
 
 ```json
 [
@@ -348,14 +346,14 @@ A response similar to the following is produced by the call to `GET /todoitems`:
 ]
 ```
 
-### Test Get with Postman
+### Test the GET endpoints with Postman
 
 * Create a new request.
 * Set the HTTP method to **GET**.
 * Set the request URI to `https://localhost:<port>/todoitems`. For example, `https://localhost:5001/todoitems`.
 * Select **Send**.
 
-This app uses an in-memory database. If the app is stopped and started, the GET request will not return any data. If no data is returned, [POST](#post) data to the app.
+This app uses an in-memory database. If the app is restarted, the GET request doesn't return any data. If no data is returned, first [POST](#post) data to the app.
 
 ## Return values
 
@@ -366,26 +364,26 @@ The return types can represent a wide range of HTTP status codes. For example, `
 * If no item matches the requested ID, the method returns a [404 status](https://developer.mozilla.org/docs/Web/HTTP/Status/404) <xref:Microsoft.AspNetCore.Mvc.ControllerBase.NotFound%2A> error code.
 * Otherwise, the method returns 200 with a JSON response body. Returning `item` results in an HTTP 200 response.
 
-## Put methods
+## Examine the Put endpoint
 
-Examine the `MapPut` method:
+The sample app implements a single PUT endpoint using `MapPut`:
 
 [!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_put)]
 
-This method is similar to the `MapPost`, except it uses HTTP PUT. The response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html). According to the HTTP specification, a PUT request requires the client to send the entire updated entity, not just the changes. To support partial updates, use [HTTP PATCH](xref:Microsoft.AspNetCore.Mvc.HttpPatchAttribute).
+This method is similar to the `MapPost` method, except it uses HTTP PUT. A successful response returns [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html). According to the HTTP specification, a PUT request requires the client to send the entire updated entity, not just the changes. To support partial updates, use [HTTP PATCH](xref:Microsoft.AspNetCore.Mvc.HttpPatchAttribute).
 
-### Test MapPut
+### Test the PUT endpoint
 
 This sample uses an in-memory database that must be initialized each time the app is started. There must be an item in the database before you make a PUT call. Call GET to ensure there's an item in the database before making a PUT call.
 
 Update the to-do item that has Id = 1 and set its name to `"feed fish"`:
 
 ```json
-  {
-    "Id":1,
-    "name":"feed fish",
-    "isComplete":false
-  }
+{
+  "Id": 1,
+  "name": "feed fish",
+  "isComplete": false
+}
 ```
 
 <!--
@@ -394,9 +392,9 @@ The following image shows the Postman update:
 `![Postman console showing 204 (No Content) response](min-web-api/_static/3/pmcput.png)`
 -->
 
-## The MapDelete method
+## Examine the DELETE endpoint
 
-Examine the `MapDelete` method:
+The sample app implements a single DELETE endpoint using `MapDelete`:
 
 [!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_delete)]
 
@@ -447,8 +445,7 @@ Verify you can't post or get the secret field.
 - No built-in view rendering support. We recommend using [Razor Pages](xref:tutorials/razor-pages/razor-pages-start) for rendering views.
 - No support for [JsonPatch](https://www.nuget.org/packages/Microsoft.AspNetCore.JsonPatch/)
 - No support for [OData](https://www.nuget.org/packages/Microsoft.AspNetCore.OData/)
-- No support for [ApiVersioning](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Versioning/), see [this issue](https://github.com/dotnet/aspnet-api-versioning/issues/751) for more details.
-- 
+- No support for [ApiVersioning](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Versioning/). See [this issue](https://github.com/dotnet/aspnet-api-versioning/issues/751) for more details.
 ## Use JsonOptions
 
 The following code uses <xref:Microsoft.AspNetCore.Http.Json.JsonOptions>:
@@ -463,4 +460,4 @@ The preceding code uses [web defaults](/dotnet/standard/serialization/system-tex
 
 ## Test minimal API
 
-For an example of testing a minimal API app, see [this GitHub sample](https://github.com/davidfowl/CommunityStandUpMinimalAPI/blob/davidfowl/rc1/TodoApi.Tests/TodoTests.cs).
+For an example of testing a minimal API app, see [this GitHub sample](https://github.com/davidfowl/CommunityStandUpMinimalAPI/blob/main/TodoApi.Tests/TodoTests.cs).

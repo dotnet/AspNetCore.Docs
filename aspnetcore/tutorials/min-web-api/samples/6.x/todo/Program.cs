@@ -62,8 +62,8 @@ using Microsoft.EntityFrameworkCore;
 
 #region snippet_DI
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDbContext<TodoDb>(opt => opt.UseInMemoryDatabase("TodoList"));
+builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 var app = builder.Build();
 #endregion
 
