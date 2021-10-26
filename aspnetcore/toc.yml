@@ -574,6 +574,10 @@
       uid: web-api/index
     - name: Tutorials
       items:
+        - name: Create a web API with controllers
+          uid: tutorials/first-web-api
+        - name: Create a minimal web API
+          uid: tutorials/min-web-api
         - name: Create a web API
           uid: tutorials/first-web-api
         - name: Web API with MongoDB
