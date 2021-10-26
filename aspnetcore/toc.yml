@@ -90,11 +90,14 @@
               uid: tutorials/signalr-blazor
     - name: Web API apps
       items:
-        - name: Create a web API
-          displayName: tutorial
+        - name: Create a web API with controllers
+          displayName: API tutorial
           uid: tutorials/first-web-api
+        - name: Create a minimal web API
+          displayName: API tutorial
+          uid: tutorials/min-web-api
         - name: Web API with MongoDB
-          displayName: tutorial
+          displayName: API tutorial
           uid: tutorials/first-mongo-app
         - name: Web API with JavaScript
           displayName: tutorial
@@ -571,6 +574,10 @@
       uid: web-api/index
     - name: Tutorials
       items:
+        - name: Create a web API with controllers
+          uid: tutorials/first-web-api
+        - name: Create a minimal web API
+          uid: tutorials/min-web-api
         - name: Create a web API
           uid: tutorials/first-web-api
         - name: Web API with MongoDB
