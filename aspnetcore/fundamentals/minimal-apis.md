@@ -434,7 +434,7 @@ Supported binding sources:
 
 ### GET, HEAD, OPTIONS, DELETE
 
-The HTTP methods `GET`, `HEAD`, `OPTIONS`, and `DELETE` don't bind from body. All other binding sources are supported.
+The HTTP methods `GET`, `HEAD`, `OPTIONS`, and `DELETE` don't implicitly bind from body. Bind explicitly with  [`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) or read from the request body. All other binding sources are supported.
 
 **NOTE**: To support the case of `GET` with a body, directly read it from the <xref:Microsoft.AspNetCore.Http.HttpRequest>.
 
@@ -577,11 +577,11 @@ When binding fails, the framework logs a debug message and returns various statu
 The rules for determining a binding source from a parameter:
 
 1. Explicit attribute defined on parameter (From* attributes) in the following order:
-    1. Route values (`FromRoute`)
-    1. Query string (`FromQuery`)
-    1. Header (`FromHeader`)
-    1. Body (`FromBody`)
-    1. Service (`FromServices`)
+    1. Route values: [`[FromRoute]`](xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute)
+    1. Query string: [`[FromQuery]`](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute)
+    1. Header: [`[FromHeader]`](xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute)
+    1. Body: [`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute)
+    1. Service: [`[FromServices]`](xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute)
 1. Special types
     1. `HttpContext`
     1. `HttpRequest`
