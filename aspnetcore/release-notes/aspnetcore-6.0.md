@@ -65,3 +65,7 @@ To enable nullable reference types, add the following property to project files:
 ```
 
  For more information, see [Nullable reference types](/dotnet/csharp/nullable-references).
+
+### Source Code Analysis
+
+Several .NET compiler platform analyzers were added that inspect application code for code for problems such as incorrect middleware configuration or order, routing conflicts, and more. For more information, see <xref:diagnostics/code-analysis>
