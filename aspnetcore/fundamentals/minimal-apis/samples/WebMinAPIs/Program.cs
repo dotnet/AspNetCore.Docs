@@ -549,7 +549,7 @@ app.MapGet("/products", (PagingData pageData) => $"SortBy:{pageData.SortBy}," +
        $"SortDirection:{pageData.SortDirection}, CurrentPage:{pageData.CurrentPage}");
 
 app.Run();
-
+app.MapGet("/products", (PagingData pageData) => $"SortBy:{pageData.SortBy}, " +
 public class PagingData
 {
     public string? SortBy { get; init; }
