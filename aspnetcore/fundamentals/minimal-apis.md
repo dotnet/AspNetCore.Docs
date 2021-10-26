@@ -469,7 +469,7 @@ Attributes can be used to explicitly declare where parameters are bound from.
 | `id`      | route value with the name `id` |
 | `page`    | query string with the name `"p"`|
 | `service`   | Provided by dependency injection |
-| `contentType` | header with the name`"Content-Type"` |
+| `contentType` | header with the name` "Content-Type"` |
 
 Binding from form values is ***not*** supported in .NET 6.
 
@@ -548,13 +548,14 @@ The following code displays `Point: 12.3, 10.1` with the URI `/map?Point=12.3,10
 
 #### BindAsync
 
-`BindAsync` has the following API:
+`BindAsync` has the following APIs:
 
 ```csharp
 public static ValueTask<T?> BindAsync(HttpContext context, ParameterInfo parameter);
+public static ValueTask<T?> BindAsync(HttpContext context);
 ```
 
-The following code displays `SortBy:xyz,SortDirection:Desc, CurrentPage:99` with the URI `/products?SortBy=xyz&SortDir=Desc&Page=99`:
+The following code displays `SortBy:xyz, SortDirection:Desc, CurrentPage:99` with the URI `/products?SortBy=xyz&SortDir=Desc&Page=99`:
 
 [!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_ba)]
 
@@ -569,7 +570,7 @@ When binding fails, the framework logs a debug message and returns various statu
 |`{ParameterType}.TryParse` returns `false` |yes|route`|`query`|`header|400|
 |`{ParameterType}.BindAsync` returns `null` |yes|custom|400|
 |`{ParameterType}.BindAsync` throws |does not matter|custom|500|
-| Failure to read JSON body |does not matter|body|400|
+| Failure to deserialize JSON body |does not matter|body|400|
 | Wrong content type (not `application/json`) |does not matter|body|415|
 
 ### Binding Precedence
