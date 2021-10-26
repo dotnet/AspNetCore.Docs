@@ -1,7 +1,7 @@
 ---
 title: Code analysis in ASP.NET Core apps
 author: rick-anderson
-description: Learn about source code analysis in ASP.NET Core 
+description: Learn about source code analysis in ASP.NET Core
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.date: 10/15/2021
@@ -19,3 +19,6 @@ uid: diagnostics/code-analysis
 | [ASP0007](xref:diagnostics/asp0007) | Non-breaking |Route parameter and argument optionality is mismatched |
 | [MVC1000](xref:diagnostics/mvc1000) | Non-breaking | Use of IHtmlHelper.Partial should be avoided |
 | [MVC1001](xref:diagnostics/mvc1001) | Non-breaking | Filters cannot be applied to page handler methods |
+| [MVC1002](xref:diagnostics/mvc1002) | Non-breaking | Route attributes cannot be applied to page handler methods |
+| [MVC1003](xref:diagnostics/mvc1003) | Non-breaking | Route attributes cannot be applied to page models |
+| [MVC1004](xref:diagnostics/mvc1004) | Non-breaking | Rename model bound parameter |
