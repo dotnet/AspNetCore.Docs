@@ -63,7 +63,7 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* Start Visual Studio for Mac and select **File** > **New Solution**.
+* Start Visual Studio for Mac and select **File** > **New Project**.
 * In the **Choose a template for your new project** dialog, select **Web and Console** > **App** > **gRPC Service** and select **Continue**.
 * Select **.NET 6.0** for the target framework and select **Continue**.
 * Name the project **GrpcGreeter**. It's important to name the project *GrpcGreeter* so the namespaces match when you copy and paste code.
@@ -176,7 +176,7 @@ dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 * Enter **Grpc.Net.Client** in the search box.
 * Select the **Grpc.Net.Client** package from the results pane and select **Add Package**.
 * In **Select Projects** select **OK**.
-* If the **Accept License** dialog appears, select **Accept**.
+* If the **License Acceptance** dialog appears, select **Accept** if you agree to the license terms.
 * Repeat for `Google.Protobuf` and `Grpc.Tools`.
 
 ---
@@ -203,12 +203,7 @@ dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-We hope to have Visual Studio for Mac instructions soon.
-
-<!--  Visual Studio for Mac tab to be updated and available once 2022 is available.
-
   Right-click the project and select **Edit Project File**.
--->
 
   ---
 
@@ -255,17 +250,13 @@ The Greeter client calls the asynchronous `SayHello` method. The result of the `
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-We hope to have Visual Studio for Mac instructions soon.
-
-<!--  Visual Studio for Mac tab to be updated and available once 2022 is available.
-
-* Due to the previously mentioned [HTTP/2 TLS issue on macOS workaround](xref:grpc/troubleshoot#unable-to-start-aspnet-core-grpc-app-on-macos), you'll need to update the channel address in the client to "http://localhost:5000". Update line 13 of **GrpcGreeterClient/Program.cs** to read:
+* Due to the previously mentioned [HTTP/2 TLS issue on macOS workaround](xref:grpc/troubleshoot#unable-to-start-aspnet-core-grpc-app-on-macos), you'll need to update the channel address in the client to match port in launchSetting.json of the GrpcGreeter service "http://localhost:5000". Update line 13 of **GrpcGreeterClient/Program.cs** to read:
   ```csharp
   using var channel = GrpcChannel.ForAddress("http://localhost:5000");
-  ``` 
+  ```
+
 * Start the Greeter service.
 * Start the client.
--->
 
 ---
 

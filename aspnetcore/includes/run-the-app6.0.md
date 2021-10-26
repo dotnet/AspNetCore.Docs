@@ -31,7 +31,7 @@ no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cook
   
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* Select **Run** > **Start Without Debugging** to launch the app.
+* Select **Debug** > **Start Without Debugging** to launch the app.
 
   Visual Studio for Mac:
 
@@ -41,7 +41,7 @@ no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cook
     * *port*: A randomly assigned port number for the app.
     * `localhost`: The standard hostname for the local computer. Localhost only serves web requests from the local computer.
 
-  [!INCLUDE[](~/includes/trustCertMac.md)]
+  [!INCLUDE[](~/includes/trustCertMac6.md)]
 
 * From Visual Studio, press **Opt-Cmd-Return** to run without the debugger. Alternatively, navigate to the menu bar and go to **Run>Start Without Debugging**.
 
