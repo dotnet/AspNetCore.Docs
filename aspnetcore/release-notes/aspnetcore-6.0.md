@@ -44,7 +44,9 @@ Moved to .NET 7 https://github.com/dotnet/aspnetcore/issues/27888#event-54871477
 ### Single-page app (SPA) support
 <!-- TODO @LadyNaggaga to provide this section-->
 
-### HTTP/3 support in .NET 6
+### Draft HTTP/3 support in .NET 6
+
+[HTTP/3](https://datatracker.ietf.org/doc/html/draft-ietf-quic-http-34) is currently in draft and therefore subject to change. HTTP/3 support in ASP.NET Core is not released, it's a preview feature included in .NET 6.
 
 See the blog entry [HTTP/3 support in .NET 6](https://devblogs.microsoft.com/dotnet/http-3-support-in-dotnet-6/).
 
