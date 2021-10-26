@@ -567,7 +567,7 @@ When binding fails, the framework logs a debug message and returns various statu
 
 |Failure mode|Nullable Parameter Type|Binding Source|Status code|
 |--|--|--|--|
-|`{ParameterType}.TryParse` returns `false` |yes|route`|`query`|`header|400|
+|`{ParameterType}.TryParse` returns `false` |yes|route/query/header|400|
 |`{ParameterType}.BindAsync` returns `null` |yes|custom|400|
 |`{ParameterType}.BindAsync` throws |does not matter|custom|500|
 | Failure to deserialize JSON body |does not matter|body|400|
