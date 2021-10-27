@@ -44,9 +44,10 @@ The [`<foreignObject>` element](https://developer.mozilla.org/docs/Web/SVG/Eleme
 
 Blazor supports optimized byte array JS interop that avoids encoding and decoding byte arrays into Base64. For more information, see the following resources:
 
+<!--
 * <xref:blazor/javascript-interoperability/call-javascript-from-dotnet?view=aspnetcore-6.0#byte-array-support>
 * <xref:blazor/javascript-interoperability/call-dotnet-from-javascript?view=aspnetcore-6.0#byte-array-support>
-
+-->
 ### SignalR message size
 
 Size limitations on SignalR message size for Blazor Server apps have been removed.
@@ -64,7 +65,7 @@ Binding supports multiple option selection with `<input>` elements. For more inf
 
 ### Head (`<head>`) content control
 
-Razor components can modify the HTML `<head>` element content of a page, including setting the page's title (`<title>` element) and modifying metadata (`<meta>` elements). For more information, see <xref:blazor/components/control-head-content?view=aspnetcore-6.0>.
+Razor components can modify the HTML `<head>` element content of a page, including setting the page's title (`<title>` element) and modifying metadata (`<meta>` elements). For more information, see <!-- <xref:blazor/components/control-head-content?view=aspnetcore-6.0>. -->
 
 ### Generate Angular and React components
 
