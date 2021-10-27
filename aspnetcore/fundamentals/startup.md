@@ -22,7 +22,7 @@ The following app startup code supports:
 * [Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
 * [MVC controllers with views](xref:tutorials/first-mvc-app/start-mvc)
 * [Web API with controllers](xref:tutorials/first-web-api)
-* [Minimal APIs](xref:migration/50-to-60#new-hosting-model) <!-- TODO replace with with Minimal API tutorial when #22941 merges> -->
+* [Minimal APIs](xref:tutorials/min-web-api)
 
 [!code-csharp[](startup/6.0_samples/WebAll/Program.cs)]
 
