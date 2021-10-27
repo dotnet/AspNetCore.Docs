@@ -44,8 +44,8 @@ The [`<foreignObject>` element](https://developer.mozilla.org/docs/Web/SVG/Eleme
 
 Blazor supports optimized byte array JS interop that avoids encoding and decoding byte arrays into Base64. For more information, see the following resources:
 
-* <xref:blazor/javascript-interoperability/call-javascript-from-dotnet?view=aspnetcore-6.0#byte-array-support>
-* <xref:blazor/javascript-interoperability/call-dotnet-from-javascript?view=aspnetcore-6.0#byte-array-support>
+* <xref:blazor/js-interop/call-javascript-from-dotnet?view=aspnetcore-6.0#byte-array-support>
+* <xref:blazor/js-interop/call-dotnet-from-javascript?view=aspnetcore-6.0#byte-array-support>
 
 ### SignalR message size
 
@@ -100,18 +100,18 @@ Apply the new `[EditorRequired]` attribute to specify a required component param
 
 ### Collocation of JavaScript files with pages, views, and components
 
-Collocate JavaScript (JS) files for pages, views, and Razor components as a convenient way to organize scripts in an app. For more information, see <xref:blazor/javascript-interoperability/index?view=aspnetcore-6.0#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component>.
+Collocate JavaScript (JS) files for pages, views, and Razor components as a convenient way to organize scripts in an app. For more information, see <xref:blazor/js-interop/index?view=aspnetcore-6.0#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component>.
 
 ### JavaScript initializers
 
-JavaScript initializers execute logic before and after a Blazor app loads. For more information, see <xref:blazor/javascript-interoperability/index?view=aspnetcore-6.0# javascript-initializers>.
+JavaScript initializers execute logic before and after a Blazor app loads. For more information, see <xref:blazor/js-interop/index?view=aspnetcore-6.0# javascript-initializers>.
 
 ### Streaming JavaScript interop
 
 Blazor now supports streaming data directly between .NET and JavaScript. For more information, see the following resources:
 
-* [Stream from .NET to JavaScript](xref:blazor/javascript-interoperability/call-javascript-from-dotnet?view=aspnetcore-6.0#stream-from-net-to-javascript)
-* [Stream from JavaScript to .NET](xref:blazor/javascript-interoperability/call-javascript-from-dotnet?view=aspnetcore-6.0#stream-from-javascript-to-net)
+* [Stream from .NET to JavaScript](xref:blazor/js-interop/call-javascript-from-dotnet?view=aspnetcore-6.0#stream-from-net-to-javascript)
+* [Stream from JavaScript to .NET](xref:blazor/js-interop/call-javascript-from-dotnet?view=aspnetcore-6.0#stream-from-javascript-to-net)
 
 ### Generic type constraints
 
