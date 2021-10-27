@@ -20,6 +20,122 @@ Minimal APIs are architected to create HTTP APIs with minimal dependencies. They
 
 ## Blazor
 
+### Blazor WebAssembly native dependencies support
+
+Blazor WebAssembly apps can use native dependencies built to run on WebAssembly. For more information, see <xref:blazor/host-and-deploy/webassembly?view=aspnetcore-6.0#native-dependencies-support>.
+
+### WebAssembly Ahead-of-time (AOT) compilation and runtime relinking
+
+Blazor WebAssembly supports ahead-of-time (AOT) compilation, where you can compile your .NET code directly into WebAssembly. AOT compilation results in runtime performance improvements at the expense of a larger app size. Relinking the .NET WebAssembly runtime trims unused runtime code and thus improves download speed. For more information, see [Ahead-of-time (AOT) compilation](xref:blazor/host-and-deploy/webassembly?view=aspnetcore-6.0#ahead-of-time-aot-compilation) and [Runtime Relinking](xref:blazor/host-and-deploy/webassembly?view=aspnetcore-6.0#runtime-relinking).
+
+### Persist prerendering state
+
+Blazor supports persisting state in a prerendered page so that the state doesn’t need to be recreated when the app is fully loaded. For more information, see <xref:blazor/components/prerendering-and-integration?view=aspnetcore-6.0&pivots=server#preserve-prerendered-state>.
+
+### Error boundaries
+
+Error boundaries provide a convenient approach for handling exceptions. For more information, see <xref:blazor/fundamentals/handle-errors?view=aspnetcore-6.0&pivots=server#error-boundaries>.
+
+### SVG support
+
+The [`<foreignObject>` element](https://developer.mozilla.org/docs/Web/SVG/Element/foreignObject) element is supported to display arbitrary HTML within an SVG. For more information, see <xref:blazor/components/index?view=aspnetcore-6.0#scalable-vector-graphics-svg-images>.
+
+### Blazor Server support for byte-array transfer in JS Interop
+
+Blazor supports optimized byte array JS interop that avoids encoding and decoding byte arrays into Base64. For more information, see the following resources:
+
+* <xref:blazor/javascript-interoperability/call-javascript-from-dotnet?view=aspnetcore-6.0#byte-array-support>
+* <xref:blazor/javascript-interoperability/call-dotnet-from-javascript?view=aspnetcore-6.0#byte-array-support>
+
+### SignalR message size
+
+Size limitations on SignalR message size for Blazor Server apps have been removed.
+
+### Query string enhancements
+
+Support for working with query strings is improved. For more information, see <xref:blazor/fundamentals/routing?view=aspnetcore-6.0#query-strings>.
+
+### Binding to select multiple
+
+Binding supports multiple option selection with `<input>` elements. For more information, see the following resources:
+
+* <xref:blazor/components/data-binding?view=aspnetcore-6.0#multiple-option-selection-with-input-elements>
+* <xref:blazor/forms-validation?view=aspnetcore-6.0#multiple-option-selection-with-the-inputselect-component>
+
+### Head (`<head>`) content control
+
+Razor components can modify the HTML `<head>` element content of a page, including setting the page's title (`<title>` element) and modifying metadata (`<meta>` elements). For more information, see <xref:blazor/components/control-head-content?view=aspnetcore-6.0>.
+
+### Generate Angular and React components
+
+Generate framework-specific JavaScript components from Razor components for web frameworks, such as Angular or React. For more information, see <xref:blazor/components/index?view=aspnetcore-6.0#generate-angular-and-react-components>.
+
+### Render components from JavaScript
+
+Razor components can be dynamically-rendered from JavaScript for existing JavaScript apps. For more information, see <xref:blazor/components/index?view=aspnetcore-6.0#render-razor-components-from-javascript>.
+
+### Custom elements
+
+Experimental support is available for building custom elements, which use standard HTML interfaces. For more information, see <xref:blazor/components/index?view=aspnetcore-6.0#blazor-custom-elements>.
+
+### Infer component generic types from ancestor components
+
+An ancestor component can cascade a type parameter by name to descendants using the new `[CascadingTypeParameter]` attribute. For more information, see <xref:blazor/components/templated-components?view=aspnetcore-6.0#infer-generic-types-based-on-ancestor-components>.
+
+### Dynamically rendered components
+
+Use the new built-in `DynamicComponent` component to render components by type. For more information, see <xref:blazor/components/dynamiccomponent?view=aspnetcore-6.0>.
+
+### Improved Blazor accessibility
+
+Use the new `FocusOnNavigate` component to set the UI focus to an element based on a CSS selector after navigating from one page to another. For more information, see <xref:blazor/fundamentals/routing?view=aspnetcore-6.0#focus-an-element-on-navigation>.
+
+### Custom event argument support
+
+Blazor supports custom event arguments, which enable you to pass arbitrary data to .NET event handlers with custom events. For more information, see <xref:blazor/components/event-handling?view=aspnetcore-6.0#custom-event-arguments>.
+
+### Required parameters
+
+Apply the new `[EditorRequired]` attribute to specify a required component parameter. For more information, see <xref:blazor/components/index?view=aspnetcore-6.0#component-parameters>.
+
+### Collocation of JavaScript files with pages, views, and components
+
+Collocate JavaScript (JS) files for pages, views, and Razor components as a convenient way to organize scripts in an app. For more information, see <xref:blazor/javascript-interoperability/index?view=aspnetcore-6.0#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component>.
+
+### JavaScript initializers
+
+JavaScript initializers execute logic before and after a Blazor app loads. For more information, see <xref:blazor/javascript-interoperability/index?view=aspnetcore-6.0# javascript-initializers>.
+
+### Streaming JavaScript interop
+
+Blazor now supports streaming data directly between .NET and JavaScript. For more information, see the following resources:
+
+* [Stream from .NET to JavaScript](xref:blazor/javascript-interoperability/call-javascript-from-dotnet?view=aspnetcore-6.0#stream-from-net-to-javascript)
+* [Stream from JavaScript to .NET](xref:blazor/javascript-interoperability/call-javascript-from-dotnet?view=aspnetcore-6.0#stream-from-javascript-to-net)
+
+### Generic type constraints
+
+Generic type parameters are now supported. For more information, see <xref:blazor/components/index?view=aspnetcore-6.0#generic-type-parameter-support>.
+
+### WebAssembly deployment layout
+
+Use a deployment layout to enable Blazor WebAssembly app downloads in restricted security environments. For more information, see <xref:blazor/host-and-deploy/webassembly-deployment-layout?view=aspnetcore-6.0>.
+
+<!-- HOLD
+
+### Blazor WebAssembly packaging
+
+HOLD
+
+### Dynamically added root components
+
+HOLD
+
+### Blazor hybrid desktop apps (.NET MAUI)
+
+HOLD
+-->
+
 ## SignalR
 
 ## Kestrel
@@ -161,13 +277,21 @@ Several .NET compiler platform analyzers were added that inspect application cod
 
 ### Web app template improvements
 
-The web app templates enable [implicit `global using` directives](/dotnet/core/compatibility/sdk/6.0/implicit-namespaces).
+The web app templates:
+
+* Use the new [minimal hosting model](xref:migration/50-to-60#new-hosting-model).
+* Significantly reduces the number of files and lines of code required to create an app. Only one file is needed with four lines of code.
+* Unifies `Startup.cs` and `Program.cs` into a single `Program.cs` file.
+* Uses [top-level statements](/dotnet/csharp/fundamentals/program-structure/top-level-statements) to minimize the code required for an app.
+* Uses [global `using` directives](/dotnet/csharp/whats-new/csharp-10#global-using-directives) to eliminate or minimize the number of [`using` statement](/dotnet/csharp/language-reference/keywords/using-statement) lines required.
+
+### Template generated ports
 
 Random ports are assigned during project creation for use by the Kestrel web server. Random ports help minimize a port conflict when multiple projects are run on the same machine.
 
 When a project is created, a random HTTP port between 5000-5300 and a random HTTPS port between 7000-7300 is specified in the generated *Properties/launchSettings.json* file. The ports can be changed in the *Properties/launchSettings.json* file. If no port is specified, Kestrel  defaults to the HTTP 5000 and HTTPS 5001 ports. For more information, see <xref:fundamentals/servers/kestrel/endpoints>.
 
-#### New logging defaults
+### New logging defaults
 
 The following changes were made to both `appsettings.json` and `appsettings.Development.json`:
 
