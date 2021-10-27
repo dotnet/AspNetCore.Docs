@@ -1,5 +1,4 @@
 #region snippet_all
-using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -66,7 +65,6 @@ app.Run();
 public class Todo
 {
     public int Id { get; set; }
-    [Required]
     public string? Name { get; set; }
     public bool IsComplete { get; set; }
     public string? Secret { get; set; }
@@ -76,7 +74,6 @@ public class Todo
 #region snippet_DTO
 public class TodoItemDTO
 {
-    public long Id { get; set; }
     public string? Name { get; set; }
     public bool IsComplete { get; set; }
 
