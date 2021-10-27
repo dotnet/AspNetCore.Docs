@@ -9,7 +9,7 @@ ms.date: 10/27/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: test/hot-reload
 ---
-## .NET Hot Reload support for ASP.NET Core
+# .NET Hot Reload support for ASP.NET Core
 
 .NET Hot Reload applies code changes, including changes to stylesheets, to a running app without restarting the app and without losing app state. Hot Reload is supported for all ASP.NET Core projects.
 
