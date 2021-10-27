@@ -210,7 +210,7 @@
   items:
     - name: Overview
       uid: fundamentals/index
-    - name: The Startup class
+    - name: App startup
       uid: fundamentals/startup
     - name: Dependency injection (services)
       uid: fundamentals/dependency-injection
