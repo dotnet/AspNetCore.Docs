@@ -79,29 +79,22 @@ public async Task<AuthorizationResult> AuthorizeAsync(ClaimsPrincipal user,
 }
 ```
 
-The following code shows a typical `ConfigureServices`:
+The following code shows a typical authorization service configuration:
 
 ```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    // Add all of your handlers to DI.
-    services.AddSingleton<IAuthorizationHandler, MyHandler1>();
-    // MyHandler2, ...
+// Add all of your handlers to DI.
+builder.Services.AddSingleton<IAuthorizationHandler, MyHandler1>();
+// MyHandler2, ...
 
-    services.AddSingleton<IAuthorizationHandler, MyHandlerN>();
+builder.Services.AddSingleton<IAuthorizationHandler, MyHandlerN>();
 
-    // Configure your policies
-    services.AddAuthorization(options =>
-          options.AddPolicy("Something",
-          policy => policy.RequireClaim("Permission", "CanViewPage", "CanViewAnything")));
-
-
-    services.AddControllersWithViews();
-    services.AddRazorPages();
-}
+// Configure your policies
+builder.Services.AddAuthorization(options =>
+      options.AddPolicy("Something",
+      policy => policy.RequireClaim("Permission", "CanViewPage", "CanViewAnything")));
 ```
 
-Use <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> or `[Authorize(Policy = "Something")]` for authorization.
+Use <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService>, `[Authorize(Policy = "Something")]`, or `RequireAuthorization("Something")` for authorization.
 
 <a name="apply-policies-to-mvc-controllers"></a>
 
@@ -111,13 +104,13 @@ For apps that use Razor Pages, see the [Apply policies to Razor Pages](#apply-po
 
 Apply policies to controllers by using the `[Authorize]` attribute with the policy name. For example:
 
-[!code-csharp[](policies/samples/6.0/AuthorizationPoliciesSample/Controllers/AgeRestrictedController.cs?name=snippet_noNamespace&highlight=4)]
+[!code-csharp[](policies/samples/6.0/AuthorizationPoliciesSample/Controllers/AtLeast21Controller.cs?name=snippet_noNamespace&highlight=4)]
 
 ## Apply policies to Razor Pages
 
 Apply policies to Razor Pages by using the `[Authorize]` attribute with the policy name. For example:
 
-[!code-csharp[](policies/samples/6.0/AuthorizationPoliciesSample/Pages/AgeRestricted.cshtml.cs?name=snippet_noNamespace&highlight=4)]
+[!code-csharp[](policies/samples/6.0/AuthorizationPoliciesSample/Pages/AtLeast21.cshtml.cs?name=snippet_noNamespace&highlight=4)]
 
 Policies can ***not*** be applied at the Razor Page handler level, they must be applied to the Page.
 
