@@ -16,9 +16,9 @@ uid: test/hot-reload
 Generally, updated code is rerun to take effect with the following conditions:
 
 * Some startup logic is only run once:
-  * Middleware, unless the code is for an inline middleware delegate.
+  * Middleware, unless the code update is to an inline middleware delegate.
   * Configured services.
-  * Route creation and configuration, unless the code is a route handler delegate.
+  * Route creation and configuration, unless the code update is to a route handler delegate.
 * In [Blazor apps](xref:blazor/index), the framework triggers a [Razor component](xref:blazor/components/index) render automatically.
 * In MVC and Razor Pages apps, Hot Reload triggers a browser refresh automatically.
 * Removing a Razor [component parameter](xref:blazor/components/index#component-parameters) attribute doesn't cause the component to rerender. The app must be restarted.
