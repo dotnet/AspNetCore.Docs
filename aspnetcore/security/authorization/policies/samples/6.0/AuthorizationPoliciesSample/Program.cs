@@ -55,6 +55,11 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
+#region snippet_requireAuthorization
+app.MapGet("/helloworld", () => "Hello World!")
+    .RequireAuthorization("AtLeast21");
+#endregion
+
 app.MapDefaultControllerRoute();
 app.MapRazorPages();
 

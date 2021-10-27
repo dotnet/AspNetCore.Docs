@@ -123,6 +123,12 @@ Policies can ***not*** be applied at the Razor Page handler level, they must be 
 
 Policies can also be applied to Razor Pages by using an [authorization convention](xref:security/authorization/razor-pages-authorization).
 
+## Apply policies to endpoints
+
+Apply policies to endpoints by using <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> with the policy name. For example:
+
+[!code-csharp[](policies/samples/6.0/AuthorizationPoliciesSample/Program.cs?name=snippet_requireAuthorization)]
+
 <a name="requirements"></a>
 
 ## Requirements
