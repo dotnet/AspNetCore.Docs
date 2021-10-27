@@ -170,7 +170,7 @@ Register handlers in the services collection during configuration. For example:
 
 [!code-csharp[](policies/samples/6.0/AuthorizationPoliciesSample/Program.cs?name=snippet_minimumAgeHandlerRegistration)]
 
-The preceding code registers `MinimumAgeHandler` as a singleton by invoking `builder.Services.AddSingleton<IAuthorizationHandler, MinimumAgeHandler>();`. Handlers can be registered using any of the built-in [service lifetimes](xref:fundamentals/dependency-injection#service-lifetimes).
+The preceding code registers `MinimumAgeHandler` as a singleton. Handlers can be registered using any of the built-in [service lifetimes](xref:fundamentals/dependency-injection#service-lifetimes).
 
 It's possible to bundle both a requirement and a handler into a single class implementing both <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement> and <xref:Microsoft.AspNetCore.Authorization.IAuthorizationHandler>. This creates a tight coupling between the handler and requirement and is only recommended for simple requirements and handlers. Creating a class which implements both interfaces removes the need to register the handler in DI due to the built-in [PassThroughAuthorizationHandler](https://github.com/dotnet/aspnetcore/blob/release/6.0/src/Security/Authorization/Core/src/PassThroughAuthorizationHandler.cs) that allows requirements to handle themselves.
 
