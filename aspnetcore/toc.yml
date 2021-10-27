@@ -791,6 +791,8 @@
       uid: grpc/troubleshoot
 - name: Test, debug, and troubleshoot
   items:
+    - name: .NET Hot Reload
+      uid: test/hot-reload
     - name: Razor Pages unit tests
       uid: test/razor-pages-tests
     - name: Test controllers
