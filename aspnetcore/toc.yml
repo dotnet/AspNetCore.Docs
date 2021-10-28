@@ -439,6 +439,8 @@
         uid: blazor/debug
       - name: Lazy load assemblies with WebAssembly
         uid: blazor/webassembly-lazy-load-assemblies
+      - name: WebAssembly native dependencies
+        uid: blazor/webassembly-native-dependencies
       - name: Performance
         uid: blazor/performance
       - name: Test components
