@@ -1,7 +1,7 @@
 ---
-title: Minimal APIs quick overview
+title: Minimal APIs overview
 author: rick-anderson
-description: Provides a quick overview of minimal APIs in ASP.NET Core 6.0.
+description: Provides an overview of minimal APIs in ASP.NET Core 6.0.
 ms.author: riande
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 10/15/2021
@@ -11,7 +11,7 @@ uid: fundamentals/minimal-apis.md
 
 <!-- TODO - add to TOC, not doing that until this merges to prevent merge conflicts -->
 
-# Minimal APIs quick overview
+# Minimal APIs overview
 
 This document provides an overview of minimal APIs. The minimal APIs consist of:
 
