@@ -157,10 +157,9 @@ The following code sets the content root, application name, and environment:
 
 [!code-csharp[](~/migration/50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_root)]
 
-
 [WebApplication.CreateBuilder](xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A) initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults.
 
-For more information, see <xref:fundamentals/index/?view=aspnetcore-6.0>
+For more information, see <xref:fundamentals/index?view=aspnetcore-6.0>
 
 ### Change the content root, app name, and environment by environment variables or command line
 
