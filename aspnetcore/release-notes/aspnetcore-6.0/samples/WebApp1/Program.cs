@@ -1,5 +1,7 @@
-#define DCRT // DEF LATIN DIAG DCRT
+#define JSONB // DEF LATIN DIAG DCRT
 #if DEF
+#elif NEVER
+#region snippet_1
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
@@ -22,6 +24,7 @@ app.UseAuthorization();
 app.MapRazorPages();
 
 app.Run();
+#endregion
 #elif LATIN
 #region snippet_latin
 var builder = WebApplication.CreateBuilder(args);
@@ -128,4 +131,33 @@ bool GetDesiredState()
 {
     throw new NotImplementedException();
 }
+#elif JSONB
+#region snippet_jsonb
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddRazorPages()
+            .AddNewtonsoftJson(options =>
+            { 
+                options.InputFormatterMemoryBufferThreshold = 48 * 1024;
+            });
+
+var app = builder.Build();
+#endregion
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthorization();
+
+app.MapRazorPages();
+
+app.Run();
 #endif

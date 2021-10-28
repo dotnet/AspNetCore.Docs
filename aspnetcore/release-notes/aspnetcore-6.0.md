@@ -366,4 +366,11 @@ With ASP.NET Core 6, the tag helper can be invoked without having to specify a v
 ```
 
 ### Angular template updated to Angular 12
+
 The ASP.NET Core 6.0 template for Angular now uses [Angular 12](https://blog.angular.io/angular-v12-is-now-available-32ed51fbfd49).
+
+### Configurable buffer threshold before writing to disk in Json.NET input formatter
+
+**Note**: We recommend using the <xref:System.Text.Json?displayProperty=fullName> input formatter the `Newtonsoft.Json` serializer is required for compatibility reasons. The `System.Text.Json` serializer is fully `async` and will work efficiently for larger payloads.
+
+The `Newtonsoft.Json` input formatter by default buffers responses up to 32 KiB in memory before buffering to disk. This is to avoid performing synchronous IO, which can result in other side-effects such as thread starvation and application deadlocks. However, if the response is larger than 32 KiB, considerable disk I/O occurs. The memory threshold is now configurable before buffering to disk.
