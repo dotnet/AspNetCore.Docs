@@ -9,8 +9,6 @@ no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cook
 uid: fundamentals/minimal-apis.md
 ---
 
-<!-- TODO - add to TOC, not doing that until this merges to prevent merge conflicts -->
-
 # Minimal APIs overview
 
 This document provides an overview of minimal APIs. The minimal APIs consist of:
@@ -157,32 +155,12 @@ This section contains sample code using <xref:Microsoft.AspNetCore.Builder.WebAp
 
 The following code sets the content root, application name, and environment:
 
-```csharp
-var builder = WebApplication.CreateBuilder(new WebApplicationOptions
-{
-    ApplicationName = typeof(Program).Assembly.FullName,
-    ContentRootPath = Directory.GetCurrentDirectory(),
-    EnvironmentName = Environments.Staging
-});
-
-Console.WriteLine($"Application Name: {builder.Environment.ApplicationName}");
-Console.WriteLine($"Environment Name: {builder.Environment.EnvironmentName}");
-Console.WriteLine($"ContentRoot Path: {builder.Environment.ContentRootPath}");
-
-var app = builder.Build();
-```
-
-<!--TODO: Snippet will be displayed when [PR #23461](https://github.com/dotnet/AspNetCore.Docs/pull/23461) merges.
- Duplicate sample in 50-to-60-samples doc. Once PR #23461 merges, remove this comment AND delete the inline snippet above.
-
 [!code-csharp[](~/migration/50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_root)]
 
--->
 
 [WebApplication.CreateBuilder](xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A) initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults.
-<!-- TODO, uncomment the following link when article is updated for .NET 6
+
 For more information, see <xref:fundamentals/index/?view=aspnetcore-6.0>
--->
 
 ### Change the content root, app name, and environment by environment variables or command line
 
@@ -236,21 +214,8 @@ The following code reads `HelloKey` from configuration and displays the value at
 
 ### Add services
 
-```csharp
-var builder = WebApplication.CreateBuilder(args);
-
-// Add the memory cache services.
-builder.Services.AddMemoryCache();
-
-// Add a custom scoped service.
-builder.Services.AddScoped<ITodoRepository, TodoRepository>();
-var app = builder.Build();
-```
-
-<!-- Duplicate sample in 50-to-60-samples doc. Once PR #23461 (Migrate to .NET 6 ) merges, remove this comment so the snippet is displayed 
 [!code-csharp[](~/migration/50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_svc)]
 
--->
 
 ### Customize the IHostBuilder
 
