@@ -26,7 +26,7 @@ Size limitations on SignalR message size for Blazor Server apps have been remove
 
 ### Long running activity tag for SignalR connections
 
-SignalR uses the new <xref:Microsoft.AspNetCore.Http.Features.IHttpActivityFeature.Activity?displayProperty=fullName> to add an `http.long_running` tag to the request activity. This will be used by [APM services](https://wikipedia.org/wiki/Application_performance_management) like [Azure Monitor Application Insights](https://docs.microsoft.com/en-us/azure/azure-monitor/azure-monitor-app-hub) to filter SignalR requests from creating long running request alerts.
+SignalR uses the new <xref:Microsoft.AspNetCore.Http.Features.IHttpActivityFeature.Activity?displayProperty=fullName> to add an `http.long_running` tag to the request activity. This will be used by [APM services](https://wikipedia.org/wiki/Application_performance_management) like [Azure Monitor Application Insights](/azure/azure-monitor/azure-monitor-app-hub) to filter SignalR requests from creating long running request alerts.
 
 ## Blazor
 
@@ -142,7 +142,6 @@ HOLD
 HOLD
 -->
 
-## SignalR
 
 ## Kestrel
 
