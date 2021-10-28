@@ -101,7 +101,7 @@ builder.WebHost.UseKestrel(options =>
 var app = builder.Build();
 app.Use(async (context, next) =>
 {
-    bool desiredState = MyClass.GetDesiredState();
+    bool desiredState = GetDesiredState();
     // Check if your desired criteria is met
     if (desiredState == true)
     {
@@ -118,15 +118,14 @@ app.Use(async (context, next) =>
     }
     return next(context);
 });
+
+
 app.MapGet("/", () => "Hello World!");
 app.Run();
 #endregion
 
-public static class MyClass
+bool GetDesiredState()
 {
-    public static bool GetDesiredState()
-    {
-        return true;
-    }
+    throw new NotImplementedException();
 }
 #endif
