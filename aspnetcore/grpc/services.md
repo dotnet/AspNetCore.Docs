@@ -139,8 +139,8 @@ Unary calls are the most similar to [actions on web API controllers](xref:web-ap
 
 ```protobuf
 message ExampleRequest {
-    int pageIndex = 1;
-    int pageSize = 2;
+    int32 pageIndex = 1;
+    int32 pageSize = 2;
     bool isDescending = 3;
 }
 ```
