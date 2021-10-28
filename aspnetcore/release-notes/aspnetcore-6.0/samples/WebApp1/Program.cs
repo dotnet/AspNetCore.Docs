@@ -1,4 +1,4 @@
-#define JSONB // DEF LATIN DIAG DCRT
+#define FDRS  // DEF LATIN DIAG DCRT JSONB FDRS
 #if DEF
 #elif NEVER
 #region snippet_1
@@ -160,4 +160,24 @@ app.UseAuthorization();
 app.MapRazorPages();
 
 app.Run();
+#elif FDRS
+#region snippet_hdrs
+var builder = WebApplication.CreateBuilder(args);
+
+var app = builder.Build();
+
+app.MapGet("/", () => "Hello World!");
+
+app.Use(async (context, next) =>
+{
+    var hostHeader = context.Request.Headers.Host;
+    app.Logger.LogInformation("Host header: {host}", hostHeader);
+    context.Response.Headers.XPoweredBy = "ASP.NET Core 6.0";
+    await next.Invoke(context);
+    var dateHeader = context.Response.Headers.Date;
+    app.Logger.LogInformation("Response date: {date}", dateHeader);
+});
+
+app.Run();
+#endregion
 #endif

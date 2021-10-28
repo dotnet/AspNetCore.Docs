@@ -158,7 +158,9 @@ Prior to this change, enabling verbose logging for Kestrel was prohibitively exp
 
 Existing rules continue to work, but you can now be more selective on which rules you enable. For example, the observability overhead of enabling `Debug` logging for just bad requests is greatly reduced and can be enabled with the following configuration:
 
-[!code-xml[](aspnetcore-6.0/samples/WebApp1/appsettings.Test.json&highlight=6)]
+[!code-xml[](aspnetcore-6.0/samples/WebApp1/appsettings.Test.json?highlight=6)]
+
+Log filtering applies rules with the longest matching category prefix. For more information, see [How filtering rules are applied](xref:fundamentals/logging/index?view=aspnetcore-6.0#how-filtering-rules-are-applied)
 
 ### Emit KestrelServerOptions via EventSource event
 
@@ -386,3 +388,9 @@ The ASP.NET Core 6.0 template for Angular now uses [Angular 12](https://blog.ang
 **Note**: We recommend using the <xref:System.Text.Json?displayProperty=fullName> input formatter the `Newtonsoft.Json` serializer is required for compatibility reasons. The `System.Text.Json` serializer is fully `async` and will work efficiently for larger payloads.
 
 The `Newtonsoft.Json` input formatter by default buffers responses up to 32 KiB in memory before buffering to disk. This is to avoid performing synchronous IO, which can result in other side-effects such as thread starvation and application deadlocks. However, if the response is larger than 32 KiB, considerable disk I/O occurs. The memory threshold is now configurable before buffering to disk.
+
+### Faster get and set for HTTP headers
+
+New APIs were added to expose all common headers available on <!--System.Net.Http.HeaderNames changed to --> <xref:Microsoft.Net.Http.Headers.HeaderNames?displayProperty=fullName> as properties on the <xref:Microsoft.AspNetCore.Http.IHeaderDictionary> resulting in an easier to use API. For example, the in-line middleware in the following code gets and sets both request and response headers using the new APIs:
+
+[!code-csharp[](aspnetcore-6.0/samples/WebApp1/Program.cs?name=snippet_hdrs)]
