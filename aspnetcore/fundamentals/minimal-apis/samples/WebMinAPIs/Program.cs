@@ -545,11 +545,11 @@ var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
 // GET /products?SortBy=xyz&SortDir=Desc&Page=99
-app.MapGet("/products", (PagingData pageData) => $"SortBy:{pageData.SortBy}," +
+app.MapGet("/products", (PagingData pageData) => $"SortBy:{pageData.SortBy}, " +
        $"SortDirection:{pageData.SortDirection}, CurrentPage:{pageData.CurrentPage}");
 
 app.Run();
-app.MapGet("/products", (PagingData pageData) => $"SortBy:{pageData.SortBy}, " +
+
 public class PagingData
 {
     public string? SortBy { get; init; }
