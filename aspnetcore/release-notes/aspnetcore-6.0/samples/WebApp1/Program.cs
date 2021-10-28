@@ -1,4 +1,4 @@
-#define DIAG // DEF LATIN DIAG
+#define DCRT // DEF LATIN DIAG DCRT
 #if DEF
 var builder = WebApplication.CreateBuilder(args);
 
@@ -84,4 +84,49 @@ class BadRequestEventListener : IObserver<KeyValuePair<string, object>>, IDispos
 }
 
 #endregion
+#elif DCRT
+#region snippert_dcrt
+using Microsoft.AspNetCore.Server.Kestrel.Https;
+using Microsoft.AspNetCore.WebUtilities;
+
+var builder = WebApplication.CreateBuilder(args);
+builder.WebHost.UseKestrel(options =>
+{
+    options.ConfigureHttpsDefaults(adapterOptions =>
+    {
+        adapterOptions.ClientCertificateMode = ClientCertificateMode.DelayCertificate;
+    });
+});
+
+var app = builder.Build();
+app.Use(async (context, next) =>
+{
+    bool desiredState = MyClass.GetDesiredState();
+    // Check if your desired criteria is met
+    if (desiredState == true)
+    {
+        // Buffer the request body
+        context.Request.EnableBuffering();
+        var body = context.Request.Body;
+        await body.DrainAsync(context.RequestAborted);
+        body.Position = 0;
+
+        // Request client certificate
+        var cert = await context.Connection.GetClientCertificateAsync();
+
+        //  Disable buffering on future requests if the client doesn't provide a cert
+    }
+    return next(context);
+});
+app.MapGet("/", () => "Hello World!");
+app.Run();
+#endregion
+
+public static class MyClass
+{
+    public static bool GetDesiredState()
+    {
+        return true;
+    }
+}
 #endif

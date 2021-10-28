@@ -18,6 +18,16 @@ This article highlights the most significant changes in ASP.NET Core 6.0 with li
 
 Minimal APIs are architected to create HTTP APIs with minimal dependencies. They are ideal for microservices and apps that want to include only the minimum files, features, and dependencies in ASP.NET Core. See <xref:tutorials/min-web-api> for more information.
 
+## SignalR
+
+### SignalR message size
+
+Size limitations on SignalR message size for Blazor Server apps have been removed.
+
+### Long running activity tag for SignalR connections
+
+SignalR uses the new <xref:Microsoft.AspNetCore.Http.Features.IHttpActivityFeature.Activity?displayProperty=fullName> to add an `http.long_running` tag to the request activity. This will be used by [APM services](https://wikipedia.org/wiki/Application_performance_management) like [Azure Monitor Application Insights](https://docs.microsoft.com/en-us/azure/azure-monitor/azure-monitor-app-hub) to filter SignalR requests from creating long running request alerts.
+
 ## Blazor
 
 ### Blazor WebAssembly native dependencies support
@@ -46,10 +56,6 @@ Blazor supports optimized byte array JS interop that avoids encoding and decodin
 
 * <xref:blazor/js-interop/call-javascript-from-dotnet?view=aspnetcore-6.0#byte-array-support>
 * <xref:blazor/js-interop/call-dotnet-from-javascript?view=aspnetcore-6.0#byte-array-support>
-
-### SignalR message size
-
-Size limitations on SignalR message size for Blazor Server apps have been removed.
 
 ### Query string enhancements
 
@@ -233,6 +239,16 @@ If you are extending the identity models and are updating existing projects you 
 
 The license model for Duende Identity Server has changed to a reciprocal license, which may require license fees when it's used commercially in production. See the [Duende license page](https://duendesoftware.com/products/identityserver#pricing) for more details.
 
+### Delayed client certificate negotiation
+
+Developers can now opt-in to using delayed client certificate negotiation by specifying [ClientCertificateMode.DelayCertificate](xref:Microsoft.AspNetCore.Server.Kestrel.Https.ClientCertificateMode.DelayCertificate) on the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions>. This only works with HTTP/1.1 connections because HTTP/2 strictly forbids delayed certificate renegotiation. The caller of this API must buffer the request body before requesting the client certificate.
+
+[!code-csharp[](aspnetcore-6.0/samples/WebApp1/Program.cs?name=snippert_dcrt)]
+
+### `OnCheckSlidingExpiration` event for controlling cookie renewal
+
+Cookie authentication sliding expiration can now be customized or suppressed using the new <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.OnCheckSlidingExpiration>. For example, this event can be used by a single-page app that needs to periodically ping the server without affecting the authentication session.
+
 ## API improvements
 
 ## Miscellaneous
@@ -331,3 +347,23 @@ The resulting logs now resemble the sample output show below:
 [2021-07-28T19:23:44.079Z, PID: 11020] [aspnetcorev2.dll] Resolving hostfxr parameters for application: '.\InProcessWebSite.exe' arguments: '' path: 'C:\Temp\e86ac4e9ced24bb6bacf1a9415e70753\'
 [2021-07-28T19:23:44.080Z, PID: 11020] [aspnetcorev2.dll] Known dotnet.exe location: ''
 ```
+
+### View Components Tag Helpers
+
+Consider a view component with an optional parameter, as shown in the following code:
+
+```csharp
+class MyViewComponent
+{
+    IViewComponentResult Invoke(bool showSomething = false) { ... }
+}
+```
+
+With ASP.NET Core 6, the tag helper can be invoked without having to specify a value for the `showSomething` parameter:
+
+```razor
+<vc:my />
+```
+
+### Angular template updated to Angular 12
+The ASP.NET Core 6.0 template for Angular now uses [Angular 12](https://blog.angular.io/angular-v12-is-now-available-32ed51fbfd49).
