@@ -774,7 +774,7 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
-app.UseCors();
+app.UseCors(); 
 
 app.MapGet("/cors", [EnableCors(MyAllowSpecificOrigins)] () => 
                            "This endpoint allows cross origin requests!");
