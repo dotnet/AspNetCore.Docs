@@ -15,6 +15,8 @@ uid: tutorials/get-started-with-swashbuckle
 
 ::: moniker range=">= aspnetcore-6.0"
 
+<!-- Pending update to 6.0 -->
+
 There are three main components to Swashbuckle:
 
 * [Swashbuckle.AspNetCore.Swagger](https://www.nuget.org/packages/Swashbuckle.AspNetCore.Swagger/): a Swagger object model and middleware to expose `SwaggerDocument` objects as JSON endpoints.
