@@ -469,7 +469,7 @@ Attributes can be used to explicitly declare where parameters are bound from.
 | `id`      | route value with the name `id` |
 | `page`    | query string with the name `"p"`|
 | `service`   | Provided by dependency injection |
-| `contentType` | header with the name` "Content-Type"` |
+| `contentType` | header with the name `"Content-Type"` |
 
 Binding from form values is ***not*** supported in .NET 6.
 
