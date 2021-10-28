@@ -1,8 +1,7 @@
-﻿namespace AuthorizationPoliciesSample.Policies.Handlers;
-
-#region snippet_noNamespace
-using AuthorizationPoliciesSample.Policies.Requirements;
+﻿using AuthorizationPoliciesSample.Policies.Requirements;
 using Microsoft.AspNetCore.Authorization;
+
+namespace AuthorizationPoliciesSample.Policies.Handlers;
 
 public class TemporaryStickerHandler : AuthorizationHandler<BuildingEntryRequirement>
 {
@@ -19,4 +18,3 @@ public class TemporaryStickerHandler : AuthorizationHandler<BuildingEntryRequire
         return Task.CompletedTask;
     }
 }
-#endregion

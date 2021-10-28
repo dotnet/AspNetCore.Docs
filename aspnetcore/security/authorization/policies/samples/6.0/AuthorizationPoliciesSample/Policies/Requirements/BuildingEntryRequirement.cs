@@ -1,7 +1,5 @@
-﻿namespace AuthorizationPoliciesSample.Policies.Requirements;
+﻿using Microsoft.AspNetCore.Authorization;
 
-#region snippet_noNamespace
-using Microsoft.AspNetCore.Authorization;
+namespace AuthorizationPoliciesSample.Policies.Requirements;
 
 public class BuildingEntryRequirement : IAuthorizationRequirement { }
-#endregion

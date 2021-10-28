@@ -1,9 +1,8 @@
-﻿namespace AuthorizationPoliciesSample.Policies.Handlers;
-
-#region snippet_noNamespace
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using AuthorizationPoliciesSample.Policies.Requirements;
 using Microsoft.AspNetCore.Authorization;
+
+namespace AuthorizationPoliciesSample.Policies.Handlers;
 
 public class PermissionHandler : IAuthorizationHandler
 {
@@ -45,4 +44,3 @@ public class PermissionHandler : IAuthorizationHandler
         return true;
     }
 }
-#endregion

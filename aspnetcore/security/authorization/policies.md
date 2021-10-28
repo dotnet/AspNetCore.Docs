@@ -104,13 +104,13 @@ For apps that use Razor Pages, see the [Apply policies to Razor Pages](#apply-po
 
 Apply policies to controllers by using the `[Authorize]` attribute with the policy name. For example:
 
-[!code-csharp[](policies/samples/6.0/AuthorizationPoliciesSample/Controllers/AtLeast21Controller.cs?name=snippet_noNamespace&highlight=4)]
+[!code-csharp[](policies/samples/6.0/AuthorizationPoliciesSample/Controllers/AtLeast21Controller.cs?highlight=6)]
 
 ## Apply policies to Razor Pages
 
 Apply policies to Razor Pages by using the `[Authorize]` attribute with the policy name. For example:
 
-[!code-csharp[](policies/samples/6.0/AuthorizationPoliciesSample/Pages/AtLeast21.cshtml.cs?name=snippet_noNamespace&highlight=4)]
+[!code-csharp[](policies/samples/6.0/AuthorizationPoliciesSample/Pages/AtLeast21.cshtml.cs?highlight=6)]
 
 Policies can ***not*** be applied at the Razor Page handler level, they must be applied to the Page.
 
@@ -128,7 +128,7 @@ Apply policies to endpoints by using <xref:Microsoft.AspNetCore.Builder.Authoriz
 
 An authorization requirement is a collection of data parameters that a policy can use to evaluate the current user principal. In our "AtLeast21" policy, the requirement is a single parameter&mdash;the minimum age. A requirement implements [IAuthorizationRequirement](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationrequirement), which is an empty marker interface. A parameterized minimum age requirement could be implemented as follows:
 
-[!code-csharp[](policies/samples/6.0/AuthorizationPoliciesSample/Policies/Requirements/MinimumAgeRequirement.cs?name=snippet_noNamespace)]
+[!code-csharp[](policies/samples/6.0/AuthorizationPoliciesSample/Policies/Requirements/MinimumAgeRequirement.cs)]
 
 If an authorization policy contains multiple authorization requirements, all requirements must pass in order for the policy evaluation to succeed. In other words, multiple authorization requirements added to a single authorization policy are treated on an **AND** basis.
 
@@ -149,7 +149,7 @@ A requirement can have [multiple handlers](#security-authorization-policies-base
 
 The following example shows a one-to-one relationship in which a minimum age handler handles a single requirement:
 
-[!code-csharp[](policies/samples/6.0/AuthorizationPoliciesSample/Policies/Handlers/MinimumAgeHandler.cs?name=snippet_noNamespace)]
+[!code-csharp[](policies/samples/6.0/AuthorizationPoliciesSample/Policies/Handlers/MinimumAgeHandler.cs)]
 
 The preceding code determines if the current user principal has a date of birth claim which has been issued by a known and trusted Issuer. Authorization can't occur when the claim is missing, in which case a completed task is returned. When a claim is present, the user's age is calculated. If the user meets the minimum age defined by the requirement, authorization is deemed successful. When authorization is successful, `context.Succeed` is invoked with the satisfied requirement as its sole parameter.
 
@@ -157,7 +157,7 @@ The preceding code determines if the current user principal has a date of birth 
 
 The following example shows a one-to-many relationship in which a permission handler can handle three different types of requirements:
 
-[!code-csharp[](policies/samples/6.0/AuthorizationPoliciesSample/Policies/Handlers/PermissionHandler.cs?name=snippet_noNamespace)]
+[!code-csharp[](policies/samples/6.0/AuthorizationPoliciesSample/Policies/Handlers/PermissionHandler.cs)]
 
 The preceding code traverses [PendingRequirements](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.pendingrequirements#Microsoft_AspNetCore_Authorization_AuthorizationHandlerContext_PendingRequirements)&mdash;a property containing requirements not marked as successful. For a `ReadPermission` requirement, the user must be either an owner or a sponsor to access the requested resource. In the case of an `EditPermission` or `DeletePermission` requirement, they must be an owner to access the requested resource.
 
@@ -198,15 +198,15 @@ In cases where you want evaluation to be on an **OR** basis, implement multiple 
 
 *BuildingEntryRequirement.cs*
 
-[!code-csharp[](policies/samples/6.0/AuthorizationPoliciesSample/Policies/Requirements/BuildingEntryRequirement.cs?name=snippet_noNamespace)]
+[!code-csharp[](policies/samples/6.0/AuthorizationPoliciesSample/Policies/Requirements/BuildingEntryRequirement.cs)]
 
 *BadgeEntryHandler.cs*
 
-[!code-csharp[](policies/samples/6.0/AuthorizationPoliciesSample/Policies/Handlers/BadgeEntryHandler.cs?name=snippet_noNamespace)]
+[!code-csharp[](policies/samples/6.0/AuthorizationPoliciesSample/Policies/Handlers/BadgeEntryHandler.cs)]
 
 *TemporaryStickerHandler.cs*
 
-[!code-csharp[](policies/samples/6.0/AuthorizationPoliciesSample/Policies/Handlers/TemporaryStickerHandler.cs?name=snippet_noNamespace)]
+[!code-csharp[](policies/samples/6.0/AuthorizationPoliciesSample/Policies/Handlers/TemporaryStickerHandler.cs)]
 
 Ensure that both handlers are [registered](xref:security/authorization/policies#security-authorization-policies-based-handler-registration). If either handler succeeds when a policy evaluates the `BuildingEntryRequirement`, the policy evaluation succeeds.
 

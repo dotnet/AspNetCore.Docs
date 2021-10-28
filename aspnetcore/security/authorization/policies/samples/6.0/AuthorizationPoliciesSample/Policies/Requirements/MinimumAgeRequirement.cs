@@ -1,8 +1,6 @@
-﻿
-namespace AuthorizationPoliciesSample.Policies.Requirements;
+﻿using Microsoft.AspNetCore.Authorization;
 
-#region snippet_noNamespace
-using Microsoft.AspNetCore.Authorization;
+namespace AuthorizationPoliciesSample.Policies.Requirements;
 
 public class MinimumAgeRequirement : IAuthorizationRequirement
 {
@@ -11,4 +9,3 @@ public class MinimumAgeRequirement : IAuthorizationRequirement
 
     public int MinimumAge { get; }
 }
-#endregion

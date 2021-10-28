@@ -1,8 +1,7 @@
-﻿namespace AuthorizationPoliciesSample.Policies.Handlers;
-
-#region snippet_noNamespace
-using AuthorizationPoliciesSample.Policies.Requirements;
+﻿using AuthorizationPoliciesSample.Policies.Requirements;
 using Microsoft.AspNetCore.Authorization;
+
+namespace AuthorizationPoliciesSample.Policies.Handlers;
 
 public class BadgeEntryHandler : AuthorizationHandler<BuildingEntryRequirement>
 {
@@ -10,7 +9,7 @@ public class BadgeEntryHandler : AuthorizationHandler<BuildingEntryRequirement>
         AuthorizationHandlerContext context, BuildingEntryRequirement requirement)
     {
         if (context.User.HasClaim(
-            c => c.Type == "BadgeId" && c.Issuer == "http://microsoftsecurity"))
+            c => c.Type == "BadgeId" && c.Issuer == "https://microsoftsecurity"))
         {
             context.Succeed(requirement);
         }
@@ -18,4 +17,3 @@ public class BadgeEntryHandler : AuthorizationHandler<BuildingEntryRequirement>
         return Task.CompletedTask;
     }
 }
-#endregion
