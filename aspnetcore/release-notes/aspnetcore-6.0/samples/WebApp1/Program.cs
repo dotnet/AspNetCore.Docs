@@ -1,4 +1,4 @@
-#define FDRS  // DEF LATIN DIAG DCRT JSONB FDRS
+#define DCRT  // DEF LATIN DIAG DCRT JSONB FDRS
 #if DEF
 #elif NEVER
 #region snippet_1
@@ -119,7 +119,7 @@ app.Use(async (context, next) =>
 
         //  Disable buffering on future requests if the client doesn't provide a cert
     }
-    return next(context);
+    await next(context);
 });
 
 
