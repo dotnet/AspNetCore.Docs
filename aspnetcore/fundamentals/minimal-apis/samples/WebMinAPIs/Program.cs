@@ -755,6 +755,7 @@ app.Run();
 #endregion
 
 #elif CORS2
+
 #region snippet_cors2
 using Microsoft.AspNetCore.Cors;
 
