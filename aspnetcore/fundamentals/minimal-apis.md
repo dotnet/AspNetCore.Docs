@@ -6,7 +6,7 @@ ms.author: riande
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 10/15/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
-uid: fundamentals/minimal-apis.md
+uid: fundamentals/minimal-apis
 ---
 
 # Minimal APIs overview
