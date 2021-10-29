@@ -333,6 +333,7 @@ The following changes were made to both `appsettings.json` and `appsettings.Deve
 
 The change from `"Microsoft": "Warning"` to `"Microsoft.AspNetCore": "Warning"` results in logging all informational messages from the `Microsoft` namespace ***except*** `Microsoft.AspNetCore`. For example, `Microsoft.EntityFrameworkCore` is now logged at the informational level.
 
+<!-- TODO add and routing -->
 ### Developer exception page Middleware added automatically
 
 In the [develoment environment](xref:fundamentals/environments), the <xref:Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware> is added by default. It's no longer necessary to add the following code to web UI apps:
@@ -406,13 +407,70 @@ For implemented headers the get and set accessors are implemented by going direc
 ### Async streaming
 
 <!-- from: https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-net-6-preview-4/#async-streaming -->
+<!-- TODO Review: removed all the way down to the : what does that mean? WHat else? -->
 
-ASP.NET Core now supports async streaming from controller actions all the way down to the response JSON formatter. Returning an IAsyncEnumerable from an action no longer buffers the response content in memory before it gets sent. This helps reduce memory usage when returning large datasets that can be asynchronously enumerated.
+ASP.NET Core now supports asynchronous streaming from controller actions and responses from the JSON formatter. Returning an `IAsyncEnumerable` from an action no longer buffers the response content in memory before it gets sent. This helps reduce memory usage when returning large datasets that can be asynchronously enumerated.
 
-Note that Entity Framework Core provides implementations of IAsyncEnumerable for querying the database. The improved support for IAsyncEnumerable in ASP.NET Core in .NET 6 can make using EF Core with ASP.NET Core more efficient. For example, the following code will no longer buffer the product data into memory before sending the response:
+Note that Entity Framework Core provides implementations of `IAsyncEnumerable` for querying the database. The improved support for `IAsyncEnumerable` in ASP.NET Core in .NET 6 can make using EF Core with ASP.NET Core more efficient. For example, the following code will no longer buffer the product data into memory before sending the response:
 
 [!code-csharp[](aspnetcore-6.0/samples/WebMvcEF/Controllers/MoviesController.cs?name=snippet1)]
 
-However, if you have setup EF Core to use lazy loading, this new behavior may result in errors due to concurrent query execution while the data is being enumerated. You can revert back to the previous behavior by buffering the data yourself:
+However, when using lazy loading in EF Core, this new behavior may result in errors due to concurrent query execution while the data is being enumerated. Apps can revert back to the previous behavior by buffering the data:
 
 [!code-csharp[](aspnetcore-6.0/samples/WebMvcEF/Controllers/MoviesController.cs?name=snippet2)]
+
+See the related [announcement](https://github.com/aspnet/Announcements/issues/463) for additional details about this change in behavior.
+
+### HTTP logging middleware
+
+HTTP logging is a new built-in middleware that logs information about HTTP requests and HTTP responses including the headers and entire body:
+
+[!code-csharp[](aspnetcore-6.0/samples/WebApp1/Program.cs?name=snippet_httplg&highlight=4)]
+
+Navigating to `/` with the previous code logs infomation similar to the following:
+
+```dotnetcli
+info: Microsoft.AspNetCore.HttpLogging.HttpLoggingMiddleware[1]
+      Request:
+      Protocol: HTTP/2
+      Method: GET
+      Scheme: https
+      PathBase: 
+      Path: /
+      Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+      Accept-Encoding: gzip, deflate, br
+      Accept-Language: en-US,en;q=0.9
+      Cache-Control: max-age=0
+      Connection: close
+      Cookie: [Redacted]
+      Host: localhost:44372
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36 Edg/95.0.1020.30
+      sec-ch-ua: [Redacted]
+      sec-ch-ua-mobile: [Redacted]
+      sec-ch-ua-platform: [Redacted]
+      upgrade-insecure-requests: [Redacted]
+      sec-fetch-site: [Redacted]
+      sec-fetch-mode: [Redacted]
+      sec-fetch-user: [Redacted]
+      sec-fetch-dest: [Redacted]
+info: Microsoft.AspNetCore.HttpLogging.HttpLoggingMiddleware[2]
+      Response:
+      StatusCode: 200
+      Content-Type: text/plain; charset=utf-8
+```
+
+The preceding output was enabled with the following *appsettings.json* file:
+
+[!code-json[](aspnetcore-6.0/samples/WebApp1/appsettings.json?highlight=6)]
+
+HTTP logging provides logs of:
+
+* HTTP Request information
+* Common properties
+* Headers
+* Body
+* HTTP Response information
+
+To configure the HTTP logging middleware, specify <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions>:
+
+[!code-csharp[](aspnetcore-6.0/samples/WebApp1/Program.cs?name=snippet_httplg&highlight=1,4-13)]

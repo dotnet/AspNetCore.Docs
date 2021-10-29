@@ -1,4 +1,4 @@
-#define IIS2  // DEF LATIN DIAG DCRT JSONB FDRS IIS2
+#define HTTPLG  // DEF LATIN DIAG DCRT JSONB FDRS IIS2 HTTPLG
 #if DEF
 #elif NEVER
 #region snippet_1
@@ -191,6 +191,40 @@ builder.Services.Configure<IISServerOptions>(
     );
 
 var app = builder.Build();
+
+app.MapGet("/", () => "Hello World!");
+
+app.Run();
+#endregion
+#elif HTTPLG
+#region snippet_httplg
+var builder = WebApplication.CreateBuilder(args);
+
+var app = builder.Build();
+app.UseHttpLogging();
+
+app.MapGet("/", () => "Hello World!");
+
+app.Run();
+#endregion
+#elif HTTPLG2
+#region snippet_httplg2
+using Microsoft.AspNetCore.HttpLogging;
+
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddHttpLogging(logging =>
+{
+    // Customize HTTP logging here.
+    logging.LoggingFields = HttpLoggingFields.All;
+    logging.RequestHeaders.Add("My-Request-Header");
+    logging.ResponseHeaders.Add("My-Response-Header");
+    logging.MediaTypeOptions.AddText("application/javascript");
+    logging.RequestBodyLogLimit = 4096;
+    logging.ResponseBodyLogLimit = 4096;
+});
+
+var app = builder.Build();
+app.UseHttpLogging();
 
 app.MapGet("/", () => "Hello World!");
 
