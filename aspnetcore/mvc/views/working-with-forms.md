@@ -238,6 +238,47 @@ The code above generates the following HTML:
 
 The data annotations applied to the `Email` and `Password` properties generate metadata on the model. The Input Tag Helper consumes the model metadata and produces [HTML5](https://developer.mozilla.org/docs/Web/Guide/HTML/HTML5) `data-val-*` attributes (see [Model Validation](../models/validation.md)). These attributes describe the validators to attach to the input fields. This provides unobtrusive HTML5 and [jQuery](https://jquery.com/) validation. The unobtrusive attributes have the format `data-val-rule="Error Message"`, where rule is the name of the validation rule (such as `data-val-required`, `data-val-email`, `data-val-maxlength`, etc.) If an error message is provided in the attribute, it's displayed as the value for the `data-val-rule` attribute. There are also attributes of the form `data-val-ruleName-argumentName="argumentValue"` that provide additional details about the rule, for example, `data-val-maxlength-max="1024"` .
 
+### Checkbox hidden input rendering
+
+Checkboxes in HTML5 don't submit a value when they're unchecked. To enable a default value to be sent for an unchecked checkbox, the Input Tag Helper generates an additional hidden input for checkboxes.
+
+For example, consider the following Razor markup that uses the Input Tag Helper for a boolean model property `IsChecked`:
+
+```cshtml
+<form method="post">
+    <input asp-for="@Model.IsChecked" />
+    <button type="submit">Submit</button>
+</form>
+```
+
+The preceding Razor markup generates HTML markup similar to the following:
+
+```html
+<form method="post">
+    <input name="IsChecked" type="checkbox" value="true" />
+    <button type="submit">Submit</button>
+
+    <input name="IsChecked" type="hidden" value="false" /> 
+</form>
+```
+
+The preceding HTML markup shows an additional hidden input with a name of `IsChecked` and a value of `false`. By default, this hidden input is rendered at the end of the form. When the form is submitted:
+
+* If the `IsChecked` checkbox input is checked, both `true` and `false` are submitted as values.
+* If the `IsChecked` checkbox input is unchecked, only the hidden input value `false` is submitted.
+
+The ASP.NET Core model-binding process reads only the first value when binding to a `bool` value, which results in `true` for checked checkboxes and `false` for unchecked checkboxes.
+
+To configure the behavior of the hidden input rendering, set the <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelperOptions.CheckBoxHiddenInputRenderMode> property on <xref:Microsoft.AspNetCore.Mvc.MvcViewOptions.HtmlHelperOptions?displayProperty=nameWithType>. For example:
+
+```csharp
+services.Configure<MvcViewOptions>(options =>
+    options.HtmlHelperOptions.CheckBoxHiddenInputRenderMode =
+        CheckBoxHiddenInputRenderMode.None);
+```
+
+The preceding code disables hidden input rendering for checkboxes by setting `CheckBoxHiddenInputRenderMode` to <xref:Microsoft.AspNetCore.Mvc.Rendering.CheckBoxHiddenInputRenderMode.None?displayProperty=nameWithType>. For all available rendering modes, see the <xref:Microsoft.AspNetCore.Mvc.Rendering.CheckBoxHiddenInputRenderMode> enum.
+
 ### HTML Helper alternatives to Input Tag Helper
 
 `Html.TextBox`, `Html.TextBoxFor`, `Html.Editor` and `Html.EditorFor` have overlapping features with the Input Tag Helper. The Input Tag Helper will automatically set the `type` attribute; `Html.TextBox` and `Html.TextBoxFor` won't. `Html.Editor` and `Html.EditorFor` handle collections, complex objects and templates; the Input Tag Helper doesn't. The Input Tag Helper, `Html.EditorFor`  and  `Html.TextBoxFor` are strongly typed (they use lambda expressions); `Html.TextBox` and `Html.Editor` are not (they use expression names).
