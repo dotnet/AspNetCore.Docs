@@ -43,9 +43,13 @@ Each circuit uses approximately 250 KB of memory for a minimal *Hello World*-sty
 
 ### SignalR configuration
 
-Blazor Server apps use ASP.NET Core SignalR to communicate with the browser. [SignalR's hosting and scaling conditions](xref:signalr/publish-to-azure-web-app) apply to Blazor Server apps.
+Blazor Server apps use [ASP.NET Core SignalR](<xref:signalr/introduction>) to communicate with the browser. [SignalR's hosting and scaling conditions](xref:signalr/publish-to-azure-web-app) apply to Blazor Server apps.
 
-Blazor works best when using WebSockets as the SignalR transport due to lower latency, reliability, and [security](xref:signalr/security). Long Polling is used by SignalR when WebSockets isn't available or when the app is explicitly configured to use Long Polling. When deploying to Azure App Service, configure the app to use WebSockets in the Azure portal settings for the service. For details on configuring the app for Azure App Service, see the [SignalR publishing guidelines](xref:signalr/publish-to-azure-web-app).
+Blazor works best when using [WebSockets](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md#websockets-full-duplex) as the SignalR transport due to lower latency, reliability, and [security](xref:signalr/security) concerns. [Long Polling](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md#long-polling-server-to-client-only) is used by SignalR when WebSockets isn't available or when the app is explicitly configured to use Long Polling. When deploying to Azure App Service, configure the app to use WebSockets in the Azure portal settings for the service. For details on configuring the app for Azure App Service, see the [SignalR publishing guidelines](xref:signalr/publish-to-azure-web-app).
+
+With .NET 6, Blazor Server will emit a console warning if it detects Long Polling is being utilized. The warning will be of the format:
+
+> Failed to connect via WebSockets, using the Long Polling fallback transport. This may be due to a VPN or proxy blocking the connection. To troubleshoot this, visit https://aka.ms/blazor-server-using-fallback-long-polling.
 
 #### Azure SignalR Service
 
@@ -62,7 +66,7 @@ We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-
 > * [Performance guide for Azure SignalR Service](/azure/azure-signalr/signalr-concept-performance#performance-factors)
 > * <xref:signalr/publish-to-azure-web-app>
 
-### Configuration
+##### Configuration
 
 To configure an app for the Azure SignalR Service, the app must support *sticky sessions*, where clients are [redirected back to the same server when prerendering](xref:blazor/hosting-models#connection-to-the-server). The `ServerStickyMode` option or configuration value is set to `Required`. Typically, an app creates the configuration using **_ONE_** of the following approaches:
 
@@ -86,7 +90,7 @@ To configure an app for the Azure SignalR Service, the app must support *sticky 
 
   * The app service's **Configuration** > **Application settings** in the Azure portal (**Name**: `Azure__SignalR__StickyServerMode`, **Value**: `Required`). This approach is adopted for the app automatically if you [provision the Azure SignalR Service](#provision-the-azure-signalr-service).
 
-### Provision the Azure SignalR Service
+##### Provision the Azure SignalR Service
 
 To provision the Azure SignalR Service for an app in Visual Studio:
 
@@ -95,6 +99,17 @@ To provision the Azure SignalR Service for an app in Visual Studio:
 1. Publish the app to Azure.
 
 Provisioning the Azure SignalR Service in Visual Studio automatically [enables *sticky sessions*](#configuration) and adds the SignalR connection string to the app service's configuration.
+
+#### Azure App Service
+
+> [!NOTE]
+> *This section only applies to apps not using the Azure SignalR Service.*
+>
+> If the app uses the Azure SignalR Service, the App Service doesn't require the configuration of Application Request Routing (ARR) Affinity and Web Sockets described in this section. Clients connect their Web Sockets to the Azure SignalR Service, not directly to the app.
+
+* [Configure the app in Azure App Service](xref:signalr/publish-to-azure-web-app#configure-the-app-in-azure-app-service).
+
+* [Review App Service Plan Limits](xref:signalr/publish-to-azure-web-app#app-service-plan-limits).
 
 #### IIS
 
@@ -279,7 +294,7 @@ We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-
 > * [Performance guide for Azure SignalR Service](/azure/azure-signalr/signalr-concept-performance#performance-factors)
 > * <xref:signalr/publish-to-azure-web-app>
 
-### Configuration
+##### Configuration
 
 To configure an app for the Azure SignalR Service, the app must support *sticky sessions*, where clients are [redirected back to the same server when prerendering](xref:blazor/hosting-models#connection-to-the-server). The `ServerStickyMode` option or configuration value is set to `Required`. Typically, an app creates the configuration using **_ONE_** of the following approaches:
 
@@ -303,7 +318,7 @@ To configure an app for the Azure SignalR Service, the app must support *sticky 
 
   * The app service's **Configuration** > **Application settings** in the Azure portal (**Name**: `Azure__SignalR__StickyServerMode`, **Value**: `Required`). This approach is adopted for the app automatically if you [provision the Azure SignalR Service](#provision-the-azure-signalr-service).
 
-### Provision the Azure SignalR Service
+##### Provision the Azure SignalR Service
 
 To provision the Azure SignalR Service for an app in Visual Studio:
 
@@ -312,6 +327,17 @@ To provision the Azure SignalR Service for an app in Visual Studio:
 1. Publish the app to Azure.
 
 Provisioning the Azure SignalR Service in Visual Studio automatically [enables *sticky sessions*](#configuration) and adds the SignalR connection string to the app service's configuration.
+
+#### Azure App Service
+
+> [!NOTE]
+> *This section only applies to apps not using the Azure SignalR Service.*
+>
+> If the app uses the Azure SignalR Service, the App Service doesn't require the configuration of Application Request Routing (ARR) Affinity and Web Sockets described in this section. Clients connect their Web Sockets to the Azure SignalR Service, not directly to the app.
+
+* [Configure the app in Azure App Service](xref:signalr/publish-to-azure-web-app#configure-the-app-in-azure-app-service).
+
+* [Review App Service Plan Limits](xref:signalr/publish-to-azure-web-app#app-service-plan-limits).
 
 #### IIS
 
@@ -496,7 +522,7 @@ We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-
 > * [Performance guide for Azure SignalR Service](/azure/azure-signalr/signalr-concept-performance#performance-factors)
 > * <xref:signalr/publish-to-azure-web-app>
 
-### Configuration
+##### Configuration
 
 To configure an app for the Azure SignalR Service, the app must support *sticky sessions*, where clients are [redirected back to the same server when prerendering](xref:blazor/hosting-models#connection-to-the-server). The `ServerStickyMode` option or configuration value is set to `Required`. Typically, an app creates the configuration using **_ONE_** of the following approaches:
 
@@ -520,7 +546,7 @@ To configure an app for the Azure SignalR Service, the app must support *sticky 
 
   * The app service's **Configuration** > **Application settings** in the Azure portal (**Name**: `Azure__SignalR__StickyServerMode`, **Value**: `Required`). This approach is adopted for the app automatically if you [provision the Azure SignalR Service](#provision-the-azure-signalr-service).
 
-### Provision the Azure SignalR Service
+##### Provision the Azure SignalR Service
 
 To provision the Azure SignalR Service for an app in Visual Studio:
 
@@ -529,6 +555,17 @@ To provision the Azure SignalR Service for an app in Visual Studio:
 1. Publish the app to Azure.
 
 Provisioning the Azure SignalR Service in Visual Studio automatically [enables *sticky sessions*](#configuration) and adds the SignalR connection string to the app service's configuration.
+
+#### Azure App Service
+
+> [!NOTE]
+> *This section only applies to apps not using the Azure SignalR Service.*
+>
+> If the app uses the Azure SignalR Service, the App Service doesn't require the configuration of Application Request Routing (ARR) Affinity and Web Sockets described in this section. Clients connect their Web Sockets to the Azure SignalR Service, not directly to the app.
+
+* [Configure the app in Azure App Service](xref:signalr/publish-to-azure-web-app#configure-the-app-in-azure-app-service).
+
+* [Review App Service Plan Limits](xref:signalr/publish-to-azure-web-app#app-service-plan-limits).
 
 #### IIS
 
