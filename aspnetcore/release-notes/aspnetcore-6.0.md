@@ -411,8 +411,8 @@ ASP.NET Core now supports async streaming from controller actions all the way do
 
 Note that Entity Framework Core provides implementations of IAsyncEnumerable for querying the database. The improved support for IAsyncEnumerable in ASP.NET Core in .NET 6 can make using EF Core with ASP.NET Core more efficient. For example, the following code will no longer buffer the product data into memory before sending the response:
 
-[!code-csharp[](aspnetcore-6.0/samples/WebMvcEF/Program.cs?name=snippet1)]
+[!code-csharp[](aspnetcore-6.0/samples/WebMvcEF/Controllers/MoviesController.cs?name=snippet1)]
 
 However, if you have setup EF Core to use lazy loading, this new behavior may result in errors due to concurrent query execution while the data is being enumerated. You can revert back to the previous behavior by buffering the data yourself:
 
-[!code-csharp[](aspnetcore-6.0/samples/WebMvcEF/Program.cs?name=snippet2)]
+[!code-csharp[](aspnetcore-6.0/samples/WebMvcEF/Controllers/MoviesController.cs?name=snippet2)]
