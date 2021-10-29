@@ -108,8 +108,6 @@
         - name: Publish to Azure API Management
           displayName: tutorial
           uid: tutorials/publish-to-azure-api-management-using-vs
-    - name: Minimal APIs
-      uid: fundamentals/minimal-apis
     - name: Real-time web apps
       items:
         - name: SignalR with JavaScript
@@ -614,6 +612,8 @@
         uid: web-api/http-repl
       - name: Telemetry
         uid: web-api/http-repl/telemetry
+- name: Minimal APIs
+  uid: fundamentals/minimal-apis
 - name: Real-time apps
   displayName: signalr
   items:
