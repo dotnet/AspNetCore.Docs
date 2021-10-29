@@ -59,6 +59,17 @@ When a delegate doesn't pass a request to the next delegate, it's called *short-
 
 In the preceding example, the `Run` delegate writes `"Hello from 2nd delegate."` to the response and then terminates the pipeline. If another `Use` or `Run` delegate is added after the `Run` delegate, it's not called.
 
+### Prefer app.Use that requires passing the context to next
+
+<!-- TODO, a minimum, provide a sample usage. Better, use this overload in the 6.0 version -->
+
+The non-allocating [app.Use](xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.Use%2A) extension method:
+
+* Requires passing the context to `next`.
+* Saves two internal per-request allocations that are required when using the other overload.
+
+For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/pull/31784).
+
 <a name="order"></a>
 
 ## Middleware order
