@@ -387,6 +387,8 @@
         uid: blazor/forms-validation
       - name: File uploads
         uid: blazor/file-uploads
+      - name: File downloads
+        uid: blazor/file-downloads
       - name: JavaScript interop
         items:
           - name: Overview

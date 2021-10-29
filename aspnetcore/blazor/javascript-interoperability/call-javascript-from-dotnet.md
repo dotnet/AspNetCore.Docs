@@ -693,9 +693,9 @@ In the preceding example:
 
 ## Stream from .NET to JavaScript
 
-Blazor supports streaming data directly from .NET to JavaScript. Streams are created using a `Microsoft.JSInterop.DotNetStreamReference`.
+Blazor supports streaming data directly from .NET to JavaScript. Streams are created using a <xref:Microsoft.JSInterop.DotNetStreamReference>.
 
-`Microsoft.JSInterop.DotNetStreamReference` represents a .NET stream and uses the following parameters:
+<xref:Microsoft.JSInterop.DotNetStreamReference> represents a .NET stream and uses the following parameters:
 
 * `stream`: The stream sent to JavaScript.
 * `leaveOpen`: Determines if the stream is left open after transmission. If a value isn't provided, `leaveOpen` defaults to `false`.
