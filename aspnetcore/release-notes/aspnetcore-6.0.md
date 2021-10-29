@@ -510,5 +510,5 @@ For example, the following app sets the <xref:System.Net.Sockets.Socket.LingerSt
 
 ### .NET Hot Reload
 
-<!--TODO @LyalinDotCom to provide this section -->
+<!--TODO @LyalinDotCom this should probably be removed and left to the .NET 6 what's new doc -->
 Hot Reload minimizes the number of app restarts after code changes. For more information, see [Update on .NET Hot Reload progress and Visual Studio 2022 Highlights](https://devblogs.microsoft.com/dotnet/update-on-net-hot-reload-progress-and-visual-studio-2022-highlights/)
