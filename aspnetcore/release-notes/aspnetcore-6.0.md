@@ -243,6 +243,16 @@ The new <xref:Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnec
 
 See [this example of a custom IConnectionListenerFactory](https://github.com/davidfowl/TcpProxy/blob/main/Backend/DelegatedConnectionListenerFactory.cs) which shows how to use this `SocketConnectionContextFactory`.
 
+### Kestrel is the default launch profile for Visual Studio
+
+The default launch profile for all new dotnet web projects is Kestrel. tarting Kestrel is significantly faster and results in a more responsive experience while developing apps.
+
+IIS Express is still available as a launch profile for scenarios such as Windows Authentication or port sharing.
+
+### Localhost ports for Kestrel are random
+
+See [Template generated ports for Kestrel](#tgp) in this document for more information.
+
 ## Authentication and authorization
 
 ### Authentication servers
@@ -315,7 +325,8 @@ The web app templates:
 * Uses [top-level statements](/dotnet/csharp/fundamentals/program-structure/top-level-statements) to minimize the code required for an app.
 * Uses [global `using` directives](/dotnet/csharp/whats-new/csharp-10#global-using-directives) to eliminate or minimize the number of [`using` statement](/dotnet/csharp/language-reference/keywords/using-statement) lines required.
 
-### Template generated ports
+<a name="tgp"></a>
+### Template generated ports for Kestrel
 
 Random ports are assigned during project creation for use by the Kestrel web server. Random ports help minimize a port conflict when multiple projects are run on the same machine.
 
@@ -474,3 +485,11 @@ HTTP logging provides logs of:
 To configure the HTTP logging middleware, specify <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions>:
 
 [!code-csharp[](aspnetcore-6.0/samples/WebApp1/Program.cs?name=snippet_httplg2&highlight=1,4-13)]
+
+### IConnectionSocketFeature
+
+The <xref:Microsoft.AspNetCore.Connections.Features.IConnectionSocketFeature> request feature provides access to the underlying accept socket associated with the current request. It can be accessed via the <xref:Microsoft.AspNetCore.Http.Features.FeatureCollection> on `HttpContext`.
+
+For example, the following app sets the <xref:System.Net.Sockets.Socket.LingerState> property on the accepted socket:
+
+[!code-csharp[](aspnetcore-6.0/samples/WebApp1/Program.cs?name=snippet_icsf)]

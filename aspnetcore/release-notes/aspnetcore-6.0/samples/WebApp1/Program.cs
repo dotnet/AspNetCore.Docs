@@ -1,4 +1,4 @@
-#define HTTPLG  // DEF LATIN DIAG DCRT JSONB FDRS IIS2 HTTPLG
+#define ICSF  // DEF LATIN DIAG DCRT JSONB FDRS IIS2 HTTPLG ICSF
 #if DEF
 #elif NEVER
 #region snippet_1
@@ -214,7 +214,7 @@ using Microsoft.AspNetCore.HttpLogging;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddHttpLogging(logging =>
 {
-    // Customize HTTP logging here.
+    // Customize HTTP logging.
     logging.LoggingFields = HttpLoggingFields.All;
     logging.RequestHeaders.Add("My-Request-Header");
     logging.ResponseHeaders.Add("My-Response-Header");
@@ -229,5 +229,21 @@ app.UseHttpLogging();
 app.MapGet("/", () => "Hello World!");
 
 app.Run();
+#endregion
+#elif ICSF
+#region snippet_icsf
+var builder = WebApplication.CreateBuilder(args);
+builder.WebHost.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.ConfigureEndpointDefaults(listenOptions => listenOptions.Use((connection, next) =>
+    {
+        var socketFeature = connection.Features.Get<IConnectionSocketFeature>();
+        socketFeature.Socket.LingerState = new LingerOption(true, seconds: 10);
+        return next();
+    }));
+});
+var app = builder.Build();
+app.MapGet("/", (Func<string>)(() => "Hello world"));
+await app.RunAsync();
 #endregion
 #endif
