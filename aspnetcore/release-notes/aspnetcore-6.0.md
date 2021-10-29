@@ -286,6 +286,18 @@ Quickly make UI and code updates to running apps without losing app state for fa
 Moved to .NET 7 https://github.com/dotnet/aspnetcore/issues/27888#event-5487147790
 -->
 
+### Improved single-page app (SPA) templates
+
+The ASP.NET Core project templates have been updated for Angular and React to use a improved pattern for single-page apps that is more flexible and more closely aligns with common patterns for modern front-end web development.
+
+Previously, the ASP.NET Core template for Angular and React used specialized middleware during development to launch the development server for the front-end framework and then proxy requests from ASP.NET Core to the development server. The logic for launching the front-end development server was specific to the command-line interface for the corresponding front-end framework. Supporting additional front-end frameworks using this pattern meant adding additional logic to ASP.NET Core.
+
+The updated ASP.NET Core templates for Angular and React in .NET 6 flips this arrangement around and take advantage of the built-in proxying support in the development servers of most modern front-end frameworks. When the ASP.NET Core app is launched, the front-end development server is launched just as before, but the development server is configured to proxy requests to the backend ASP.NET Core process. All of the front-end specific configuration to setup proxying is part of the app, not ASP.NET Core. Setting up ASP.NET Core projects to work with other front-end frameworks is now straight-forward: setup the front-end development server for the chosen framework to proxy to the ASP.NET Core backend using the pattern established in the Angular and React templates.
+
+The startup code for the ASP.NET Core app no longer needs any single-page app specific logic. The logic for starting the front-end development server during development is injecting into the app at runtime by the new [Microsoft.AspNetCore.SpaProxy](https://www.nuget.org/packages/microsoft.aspnetcore.spaproxy) package. Fallback routing is handled using endpoint routing instead of SPA specific middleware.
+
+Templates that follow this pattern can still be run as a single project in Visual Studio or using `dotnet run` from the command-line. When the app is published, the front-end code in the *ClientApp* folder is built and collected as before into the web root of the host ASP.NET Core app and served as static files. Scripts included in the template configure the front-end development server to use HTTPS using the ASP.NET Core development certificate.
+
 ### Single-page app (SPA) support
 <!-- TODO @LadyNaggaga to provide this section-->
 
@@ -492,4 +504,11 @@ The <xref:Microsoft.AspNetCore.Connections.Features.IConnectionSocketFeature> re
 
 For example, the following app sets the <xref:System.Net.Sockets.Socket.LingerState> property on the accepted socket:
 
+<!-- TODO FIX code -->
+
 [!code-csharp[](aspnetcore-6.0/samples/WebApp1/Program.cs?name=snippet_icsf)]
+
+### .NET Hot Reload
+
+<!--TODO @LyalinDotCom to provide this section -->
+Hot Reload minimizes the number of app restarts after code changes. For more information, see [Update on .NET Hot Reload progress and Visual Studio 2022 Highlights](https://devblogs.microsoft.com/dotnet/update-on-net-hot-reload-progress-and-visual-studio-2022-highlights/)
