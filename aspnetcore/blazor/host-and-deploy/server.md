@@ -102,14 +102,14 @@ Provisioning the Azure SignalR Service in Visual Studio automatically [enables *
 
 #### Azure App Service
 
-> [!NOTE]
-> *This section only applies to apps not using the Azure SignalR Service.*
->
-> If the app uses the Azure SignalR Service, the App Service doesn't require the configuration of Application Request Routing (ARR) Affinity and Web Sockets described in this section. Clients connect their Web Sockets to the Azure SignalR Service, not directly to the app.
+*This section only applies to apps not using the [Azure SignalR Service](#azure-signalr-service).*
+
+When the Azure SignalR Service is ***not*** used, the App Service requires configuration for Application Request Routing (ARR) affinity and WebSockets. Clients connect their WebSockets directly to the app, not to the Azure SignalR Service.
+
+Use the following guidance to configure the app:
 
 * [Configure the app in Azure App Service](xref:signalr/publish-to-azure-web-app#configure-the-app-in-azure-app-service).
-
-* [Review App Service Plan Limits](xref:signalr/publish-to-azure-web-app#app-service-plan-limits).
+* [App Service Plan Limits](xref:signalr/publish-to-azure-web-app#app-service-plan-limits).
 
 #### IIS
 
@@ -330,14 +330,14 @@ Provisioning the Azure SignalR Service in Visual Studio automatically [enables *
 
 #### Azure App Service
 
-> [!NOTE]
-> *This section only applies to apps not using the Azure SignalR Service.*
->
-> If the app uses the Azure SignalR Service, the App Service doesn't require the configuration of Application Request Routing (ARR) Affinity and Web Sockets described in this section. Clients connect their Web Sockets to the Azure SignalR Service, not directly to the app.
+*This section only applies to apps not using the [Azure SignalR Service](#azure-signalr-service).*
+
+When the Azure SignalR Service is ***not*** used, the App Service requires configuration for Application Request Routing (ARR) affinity and WebSockets. Clients connect their WebSockets directly to the app, not to the Azure SignalR Service.
+
+Use the following guidance to configure the app:
 
 * [Configure the app in Azure App Service](xref:signalr/publish-to-azure-web-app#configure-the-app-in-azure-app-service).
-
-* [Review App Service Plan Limits](xref:signalr/publish-to-azure-web-app#app-service-plan-limits).
+* [App Service Plan Limits](xref:signalr/publish-to-azure-web-app#app-service-plan-limits).
 
 #### IIS
 
@@ -558,14 +558,14 @@ Provisioning the Azure SignalR Service in Visual Studio automatically [enables *
 
 #### Azure App Service
 
-> [!NOTE]
-> *This section only applies to apps not using the Azure SignalR Service.*
->
-> If the app uses the Azure SignalR Service, the App Service doesn't require the configuration of Application Request Routing (ARR) Affinity and Web Sockets described in this section. Clients connect their Web Sockets to the Azure SignalR Service, not directly to the app.
+*This section only applies to apps not using the [Azure SignalR Service](#azure-signalr-service).*
+
+When the Azure SignalR Service is ***not*** used, the App Service requires configuration for Application Request Routing (ARR) affinity and WebSockets. Clients connect their WebSockets directly to the app, not to the Azure SignalR Service.
+
+Use the following guidance to configure the app:
 
 * [Configure the app in Azure App Service](xref:signalr/publish-to-azure-web-app#configure-the-app-in-azure-app-service).
-
-* [Review App Service Plan Limits](xref:signalr/publish-to-azure-web-app#app-service-plan-limits).
+* [App Service Plan Limits](xref:signalr/publish-to-azure-web-app#app-service-plan-limits).
 
 #### IIS
 
