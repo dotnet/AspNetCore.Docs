@@ -459,9 +459,9 @@ info: Microsoft.AspNetCore.HttpLogging.HttpLoggingMiddleware[2]
       Content-Type: text/plain; charset=utf-8
 ```
 
-The preceding output was enabled with the following *appsettings.json* file:
+The preceding output was enabled with the following *appsettings.development.json* file:
 
-[!code-json[](aspnetcore-6.0/samples/WebApp1/appsettings.json?highlight=6)]
+[!code-json[](aspnetcore-6.0/samples/WebApp1/appsettings.development.json?highlight=6)]
 
 HTTP logging provides logs of:
 
@@ -473,4 +473,4 @@ HTTP logging provides logs of:
 
 To configure the HTTP logging middleware, specify <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions>:
 
-[!code-csharp[](aspnetcore-6.0/samples/WebApp1/Program.cs?name=snippet_httplg&highlight=1,4-13)]
+[!code-csharp[](aspnetcore-6.0/samples/WebApp1/Program.cs?name=snippet_httplg2&highlight=1,4-13)]
