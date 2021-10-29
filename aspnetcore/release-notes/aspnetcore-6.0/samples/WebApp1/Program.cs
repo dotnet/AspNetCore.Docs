@@ -1,4 +1,4 @@
-#define DCRT  // DEF LATIN DIAG DCRT JSONB FDRS
+#define IIS2  // DEF LATIN DIAG DCRT JSONB FDRS IIS2
 #if DEF
 #elif NEVER
 #region snippet_1
@@ -177,6 +177,22 @@ app.Use(async (context, next) =>
     var dateHeader = context.Response.Headers.Date;
     app.Logger.LogInformation("Response date: {date}", dateHeader);
 });
+
+app.Run();
+#endregion
+#elif IIS2
+#region snippet_iis2
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.Configure<IISServerOptions>(
+        options =>
+        {
+            options.MaxRequestBodySize = 64 * 1024;
+        }
+    );
+
+var app = builder.Build();
+
+app.MapGet("/", () => "Hello World!");
 
 app.Run();
 #endregion

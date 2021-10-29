@@ -362,6 +362,12 @@ The resulting logs now resemble the sample output show below:
 [2021-07-28T19:23:44.080Z, PID: 11020] [aspnetcorev2.dll] Known dotnet.exe location: ''
 ```
 
+### Configurable unconsumed incoming buffer size for IIS
+
+the IIS server only buffered 64 KiB of unconsumed request bodies. This resulted in reads being constrained to that maximum size, which impacts the performance when large incoming bodies such as large uploads. In .NET 6 Preview 5, we’ve changed the default buffer size from 64 KiB to 1 MiB which should result in improved throughput for large uploads. In our tests, a 700 MiB upload that used to take 9 seconds now only takes 2.5 seconds.
+
+The downside of a larger buffer size is an increased per-request memory consumption when the app isn’t quickly reading from the request body. So, in addition to changing the default buffer size, we’ve also made the buffer size configurable, allowing you to tune it based on your workload.
+
 ### View Components Tag Helpers
 
 Consider a view component with an optional parameter, as shown in the following code:
@@ -391,6 +397,22 @@ The `Newtonsoft.Json` input formatter by default buffers responses up to 32 KiB 
 
 ### Faster get and set for HTTP headers
 
-New APIs were added to expose all common headers available on <!--System.Net.Http.HeaderNames changed to --> <xref:Microsoft.Net.Http.Headers.HeaderNames?displayProperty=fullName> as properties on the <xref:Microsoft.AspNetCore.Http.IHeaderDictionary> resulting in an easier to use API. For example, the in-line middleware in the following code gets and sets both request and response headers using the new APIs:
+New APIs were added to expose all common headers available on <!--REVIEW: System.Net.Http.HeaderNames changed to --> <xref:Microsoft.Net.Http.Headers.HeaderNames?displayProperty=fullName> as properties on the <xref:Microsoft.AspNetCore.Http.IHeaderDictionary> resulting in an easier to use API. For example, the in-line middleware in the following code gets and sets both request and response headers using the new APIs:
 
 [!code-csharp[](aspnetcore-6.0/samples/WebApp1/Program.cs?name=snippet_hdrs)]
+
+For implemented headers the get and set accessors are implemented by going directly to the field and bypassing the lookup. For non-implemented headers, the accessors can bypass the initial lookup against implemented headers and directly perform the `Dictionary<string, StringValues>` lookup. Avoiding the lookup results in faster access for both scenarios.
+
+### Async streaming
+
+<!-- from: https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-net-6-preview-4/#async-streaming -->
+
+ASP.NET Core now supports async streaming from controller actions all the way down to the response JSON formatter. Returning an IAsyncEnumerable from an action no longer buffers the response content in memory before it gets sent. This helps reduce memory usage when returning large datasets that can be asynchronously enumerated.
+
+Note that Entity Framework Core provides implementations of IAsyncEnumerable for querying the database. The improved support for IAsyncEnumerable in ASP.NET Core in .NET 6 can make using EF Core with ASP.NET Core more efficient. For example, the following code will no longer buffer the product data into memory before sending the response:
+
+[!code-csharp[](aspnetcore-6.0/samples/WebMvcEF/Program.cs?name=snippet1)]
+
+However, if you have setup EF Core to use lazy loading, this new behavior may result in errors due to concurrent query execution while the data is being enumerated. You can revert back to the previous behavior by buffering the data yourself:
+
+[!code-csharp[](aspnetcore-6.0/samples/WebMvcEF/Program.cs?name=snippet2)]
