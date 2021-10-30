@@ -1,6 +1,6 @@
 ---
 title: ASP.NET Core Blazor file downloads
-author: taparik
+author: TanayParikh
 description: Learn how to download files using Blazor.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: taparik
@@ -10,7 +10,7 @@ ms.date: 10/29/2021
 uid: blazor/file-downloads
 zone_pivot_groups: blazor-hosting-models
 ---
-# ASP.NET Core Blazor file uploads
+# ASP.NET Core Blazor file download
 
 ::: moniker range=">= aspnetcore-6.0"
 
