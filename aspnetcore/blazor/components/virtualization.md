@@ -38,7 +38,7 @@ Without virtualization, a typical list might use a C# [`foreach`](/dotnet/csharp
 </div>
 ```
 
-If the collection contains thousands of flights, rendering the flights takes a long time and users experience a noticeable UI lag. Most of the flights aren't rendered because they fall outside of the height of the `<div>` element.
+If the collection contains thousands of flights, rendering the flights takes a long time and users experience a noticeable UI lag. Most of the flights aren't seen because they fall outside of the height of the `<div>` element.
 
 Instead of rendering the entire list of flights at once, replace the [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop in the preceding example with the `Virtualize` component:
 
@@ -186,7 +186,7 @@ Without virtualization, a typical list might use a C# [`foreach`](/dotnet/csharp
 </div>
 ```
 
-If the collection contains thousands of flights, rendering the flights takes a long time and users experience a noticeable UI lag. Most of the flights aren't rendered because they fall outside of the height of the `<div>` element.
+If the collection contains thousands of flights, rendering the flights takes a long time and users experience a noticeable UI lag. Most of the flights aren't seen because they fall outside of the height of the `<div>` element.
 
 Instead of rendering the entire list of flights at once, replace the [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop in the preceding example with the `Virtualize` component:
 
