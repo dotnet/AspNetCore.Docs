@@ -28,6 +28,26 @@ Size limitations on SignalR message size for Blazor Server apps have been remove
 
 SignalR uses the new <xref:Microsoft.AspNetCore.Http.Features.IHttpActivityFeature.Activity?displayProperty=fullName> to add an `http.long_running` tag to the request activity. This will be used by [APM services](https://wikipedia.org/wiki/Application_performance_management) like [Azure Monitor Application Insights](/azure/azure-monitor/azure-monitor-app-hub) to filter SignalR requests from creating long running request alerts.
 
+## ASP.NET Core performance improvements
+
+Many changes were made to reduce allocations and improve performance across the stack:
+
+* Non-allocating [app.Use](xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.Use%2A) extension method. The new overload of `app.Use` requires passing the context to `next`, this saves two internal per-request allocations that are required when using the other overload.
+* Reduced memory allocations for when accessing the [HttpRequest.Cookies](xref:System.Web.HttpRequest.Cookies). For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/10030).
+* Use [LoggerMessage.Define](xref:Microsoft.Extensions.Logging.LoggerMessage.Define%2A) for the windows only [HTTP.sys web server](xref:fundamentals/servers/httpsys). The <xref:Microsoft.Extensions.Logging.ILogger> extension methods calls have been replaced with calls to `LoggerMessage.Define`.
+* Reduce the per connection overhead in [SocketConnection](https://github.com/dotnet/aspnetcore/blob/main/src/Servers/Kestrel/Transport.Sockets/src/Internal/SocketConnection.cs) by ~30%. For more information, see [this GitHub PR](https://github.com/dotnet/aspnetcore/pull/31308).
+* Reduce allocations by removing logging delegates in generic types. For more information, see [this GitHub PR](https://github.com/dotnet/aspnetcore/issues/31340).
+* Faster GET access (about 50%) to commonly-used features such as  <xref:Microsoft.AspNetCore.Http.Features.IHttpRequestFeature>, <xref:Microsoft.AspNetCore.Http.Features.IHttpResponseFeature>, <xref:Microsoft.AspNetCore.Http.Features.IHttpResponseBodyFeature>, <xref:Microsoft.AspNetCore.Http.Features.IRouteValuesFeature>, and <xref:Microsoft.AspNetCore.Http.Features.IEndpointFeature>. For more information, see [this GitHub PR](https://github.com/dotnet/aspnetcore/pull/31322).
+* Use single instance strings for known header names, even if they aren't in the preserved header block. Using single instance string helps prevent multiple duplicates of the same string in long lived connections, for example, in <xref:Microsoft.AspNetCore.WebSockets>. For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/31305).
+* Reuse [HttpProtocol CancellationTokenSource](https://github.com/dotnet/aspnetcore/blob/v6.0.0-rc.2.21480.10/src/Servers/Kestrel/Core/src/Internal/Http/HttpProtocol.cs#L401-L409) in Kestrel. Use the new [CancellationTokenSource.TryReset](xref:System.Threading.CancellationTokenSource.TryReset%2A) method on `CancellationTokenSource` to reuse tokens if they haven’t been canceled. For more information, see [this GitHub issue](https://github.com/dotnet/runtime/issues/48492) and this [video](https://www.youtube.com/watch?v=vNPybpatlUU&t=1h38m28s).
+* Implement and use an [AdaptiveCapacityDictionary](https://github.com/dotnet/aspnetcore/blob/v6.0.0-rc.2.21480.10/src/Http/Http/src/Internal/RequestCookieCollection.cs#L24) in <xref:Microsoft.AspNetCore.Http> [RequestCookieCollection](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http/src/Internal/RequestCookieCollection.cs) for more efficient access to dictionaries. For more information, see [this GitHub PR](https://github.com/dotnet/aspnetcore/pull/31360).
+
+### SignalR performance improvements
+
+* Allocate [HubCallerClients](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/server/Core/src/Internal/HubCallerClients.cs) once per connection instead of every hub method call.
+* Avoid closure allocation in SignalR `DefaultHubDispatcher.Invoke`. State is passed to a local static function via parameters to avoid a closure allocation. For more information, see [this GitHub PR](https://github.com/dotnet/aspnetcore/pull/31641).
+* Allocate a single <xref:Microsoft.AspNetCore.SignalR.Protocol.StreamItemMessage> per stream instead of per stream item in server-to-client streaming. For more information, see [this GitHub PR](https://github.com/dotnet/aspnetcore/pull/31660).
+
 ## Blazor
 
 ### Blazor WebAssembly native dependencies support
@@ -512,3 +532,10 @@ For example, the following app sets the <xref:System.Net.Sockets.Socket.LingerSt
 
 <!--TODO @LyalinDotCom this should probably be removed and left to the .NET 6 what's new doc -->
 Hot Reload minimizes the number of app restarts after code changes. For more information, see [Update on .NET Hot Reload progress and Visual Studio 2022 Highlights](https://devblogs.microsoft.com/dotnet/update-on-net-hot-reload-progress-and-visual-studio-2022-highlights/)
+
+### Generic type constraints in Razor
+
+When defining generic type parameters in Razor using the `@typeparam` directive, generic type constraints can now be specified using the standard C# syntax:
+
+
+
