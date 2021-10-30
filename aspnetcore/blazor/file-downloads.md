@@ -15,7 +15,7 @@ zone_pivot_groups: blazor-hosting-models
 ::: moniker range=">= aspnetcore-6.0"
 
 > [!WARNING]
-> Always follow security best practices when allowing users to download files. For more information, see <xref:#security-considerations>.
+> Always follow security best practices when allowing users to download files. For more information, see [Security Considerations](#security-considerations).
 
 ## How to Download a File Using Streaming
 

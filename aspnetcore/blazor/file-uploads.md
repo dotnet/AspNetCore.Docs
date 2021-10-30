@@ -15,7 +15,7 @@ zone_pivot_groups: blazor-hosting-models
 ::: moniker range=">= aspnetcore-6.0"
 
 > [!WARNING]
-> Always follow security best practices when permitting users to upload files. For more information, see [Security Considerations](#security-considerations).
+> Always follow security best practices when permitting users to upload files. For more information, see (<xref:mvc/models/file-uploads)#security-considerations>.
 
 Use the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component to read browser file data into .NET code. The <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component renders an HTML `<input>` element of type `file`. By default, the user selects single files. Add the `multiple` attribute to permit the user to upload multiple files at once.
 
