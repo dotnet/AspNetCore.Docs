@@ -378,6 +378,8 @@ dotnet run --pathbase=/CoolApp
 
 The Blazor WebAssembly app responds locally at `http://localhost:port/CoolApp`.
 
+<!-- HOLD
+
 ### Blazor Server `MapFallbackToPage` configuration
 
 Pass the following path to <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A> in `Startup.Configure` of the host Razor Pages app:
@@ -391,6 +393,8 @@ The placeholder `{RELATIVE PATH}` is the non-root path on the server. For exampl
 ```csharp
 endpoints.MapFallbackToPage("/CoolApp/{**path:nonfile}");
 ```
+
+-->
 
 ### Host multiple Blazor WebAssembly apps
 
