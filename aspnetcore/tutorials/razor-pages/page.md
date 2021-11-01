@@ -15,7 +15,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 This tutorial examines the Razor Pages created by scaffolding in the [previous tutorial](xref:tutorials/razor-pages/model).
 
-::: moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
+::: moniker range="< aspnetcore-6.0"
 
 ## The Create, Delete, Details, and Edit pages
 
@@ -206,7 +206,7 @@ For more information on Tag Helpers such as `<form method="post">`, see [Tag Hel
 
 ::: moniker-end
 
-::: moniker range=">=  aspnetcore-6.0"
+::: moniker range=">= aspnetcore-6.0"
 <!-- Make a copy of the current project at tutorials/razor-pages/razor-pages-start/snapshot_v6 -->
 ## The Create, Delete, Details, and Edit pages
 

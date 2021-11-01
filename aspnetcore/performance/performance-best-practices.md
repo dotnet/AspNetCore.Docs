@@ -235,7 +235,7 @@ Naively storing a large request or response body into a single `byte[]` or `stri
 
 ## Working with a synchronous data processing API
 
-When using a serializer/de-serializer that only supports synchronous reads and writes (for example,  [JSON.NET](https://www.newtonsoft.com/json/help/html/Introduction.htm)):
+When using a serializer/de-serializer that only supports synchronous reads and writes (for example,  [Json.NET](https://www.newtonsoft.com/json/help/html/Introduction.htm)):
 
 * Buffer the data into memory asynchronously before passing it into the serializer/de-serializer.
 

@@ -18,7 +18,13 @@ uid: diagnostics/code-analysis
 | [ASP0001](xref:diagnostics/asp0001) | Non-breaking | Authorization middleware is incorrectly configured |
 | [ASP0004](xref:diagnostics/asp0004) | Non-breaking | Do not use action results with route handlers |
 | [ASP0005](xref:diagnostics/asp0005) | Non-breaking | Do not place attribute on method called by route handler lambda |
-| [ASP0007](xref:diagnostics/asp0007) | Non-breaking |Route parameter and argument optionality is mismatched |
+| [ASP0007](xref:diagnostics/asp0007) | Non-breaking | Route parameter and argument optionality is mismatched |
+| [BL0001](xref:diagnostics/bl0001) | Breaking | Component parameter should have public setters |
+| [BL0002](xref:diagnostics/bl0002) | Non-breaking | Component has multiple CaptureUnmatchedValues parameters |
+| [BL0003](xref:diagnostics/bl0003) | Breaking | Component parameter with CaptureUnmatchedValues has the wrong type |
+| [BL0004](xref:diagnostics/bl0004) | Breaking | Component parameter should be public |
+| [BL0005](xref:diagnostics/bl0005) | Non-breaking | Component parameter should not be set outside of its component |
+| [BL0006](xref:diagnostics/bl0006) | Non-breaking | Do not use RenderTree types |
 | [MVC1000](xref:diagnostics/mvc1000) | Non-breaking | Use of IHtmlHelper.Partial should be avoided |
 | [MVC1001](xref:diagnostics/mvc1001) | Non-breaking | Filters cannot be applied to page handler methods |
 | [MVC1002](xref:diagnostics/mvc1002) | Non-breaking | Route attributes cannot be applied to page handler methods |
