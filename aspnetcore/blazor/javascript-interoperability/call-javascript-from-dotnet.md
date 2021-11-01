@@ -691,11 +691,13 @@ In the preceding example:
 * `JS` is an injected <xref:Microsoft.JSInterop.IJSRuntime> instance.
 * The `dataReferenceStream` is written to disk (`file.txt`) at the current user's temporary folder path (<xref:System.IO.Path.GetTempPath%2A>).
 
+<xref:blazor/file-uploads> covers how to upload a file in Blazor.
+
 ## Stream from .NET to JavaScript
 
-Blazor supports streaming data directly from .NET to JavaScript. Streams are created using a `Microsoft.JSInterop.DotNetStreamReference`.
+Blazor supports streaming data directly from .NET to JavaScript. Streams are created using a <xref:Microsoft.JSInterop.DotNetStreamReference>.
 
-`Microsoft.JSInterop.DotNetStreamReference` represents a .NET stream and uses the following parameters:
+<xref:Microsoft.JSInterop.DotNetStreamReference> represents a .NET stream and uses the following parameters:
 
 * `stream`: The stream sent to JavaScript.
 * `leaveOpen`: Determines if the stream is left open after transmission. If a value isn't provided, `leaveOpen` defaults to `false`.
@@ -729,6 +731,8 @@ In the preceding example:
 
 * The `{STREAM}` placeholder represents the <xref:System.IO.Stream> sent to JavaScript.
 * `JS` is an injected <xref:Microsoft.JSInterop.IJSRuntime> instance.
+
+<xref:blazor/file-downloads> covers how to download a file in Blazor.
 
 ## Catch JavaScript exceptions
 
@@ -1755,5 +1759,7 @@ In the following example, the `nonFunction` JS function doesn't exist. When the 
 
 * <xref:blazor/js-interop/call-dotnet-from-javascript>
 * [`InteropComponent.razor` example (dotnet/AspNetCore GitHub repository `main` branch)](https://github.com/dotnet/AspNetCore/blob/main/src/Components/test/testassets/BasicTestApp/InteropComponent.razor): The `main` branch represents the product unit's current development for the next release of ASP.NET Core. To select the branch for a different release (for example, `release/5.0`), use the **Switch branches or tags** dropdown list to select the branch.
+* <xref:blazor/file-downloads>
+* <xref:blazor/file-uploads>
 
 ::: moniker-end
