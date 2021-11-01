@@ -87,6 +87,26 @@ In a Blazor Server app, use ***either*** of the following approaches:
   ```csharp
   app.UsePathBase("/CoolApp");
   ```
+  
+  This approach (Option 2) is recommended when you also wish to run the Blazor Server app locally at the sub-app path. For example, supply the launch URL in `launchSettings.json`:
+  
+  ```xml
+  "launchUrl": "https://localhost:{PORT}/CoolApp",
+  ```
+  
+  The `{PORT}` placeholder in the preceding example is the port that matches the secure port in the `applicationUrl` configuration path. The following example shows the full launch profile for an app at port 7279:
+  
+  ```xml
+  "BlazorSample": {
+    "commandName": "Project",
+    "dotnetRunMessages": true,
+    "launchBrowser": true,
+    "applicationUrl": "https://localhost:7279;http://localhost:5279",
+    "launchUrl": "https://localhost:7279/CoolApp",
+    "environmentVariables": {
+      "ASPNETCORE_ENVIRONMENT": "Development"
+  }
+  ```
 
 By providing the relative URL path, a component that isn't in the root directory can construct URLs relative to the app's root path. Components at different levels of the directory structure can build links to other resources at locations throughout the app. The app base path is also used to intercept selected hyperlinks where the `href` target of the link is within the app base path URI space. The Blazor router handles the internal navigation.
 
