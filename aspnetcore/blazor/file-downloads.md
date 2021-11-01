@@ -84,7 +84,7 @@ The `fileName` and object `url` are passed to `triggerFileDownload`, which perfo
 * Trigger the download via `click`.
 * Remove the anchor (`<a>`) element.
 
-At this point the file download has been triggered, and it should be safe to revoke the temporary object URL by calling [`revokeObjectURL`](https://developer.mozilla.org/docs/Web/API/URL/revokeObjectURL) on the URL. **This is an important step to ensure memory isn't leaked on the client.**
+At this point, the file download is triggered. It should be safe to revoke the temporary object URL by calling [`revokeObjectURL`](https://developer.mozilla.org/docs/Web/API/URL/revokeObjectURL) on the URL. **This is an important step to ensure memory isn't leaked on the client.**
 
 
 ```javascript
