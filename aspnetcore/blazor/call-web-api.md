@@ -364,7 +364,7 @@ else
 
 [!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/call-web-api/TodoRequest.razor)]
 
-Blazor WebAssembly's implementation of <xref:System.Net.Http.HttpClient> uses [Fetch API](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch). Fetch API allows the configuration of several [request-specific options](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters). Options can be configured with <xref:System.Net.Http.HttpRequestMessage> extension methods shown in the following table.
+Blazor WebAssembly's implementation of <xref:System.Net.Http.HttpClient> uses [Fetch API](https://developer.mozilla.org/docs/Web/API/fetch). Fetch API allows the configuration of several [request-specific options](https://developer.mozilla.org/docs/Web/API/fetch#Parameters). Options can be configured with <xref:System.Net.Http.HttpRequestMessage> extension methods shown in the following table.
 
 | Extension method | Fetch API request property |
 | --- | --- |
@@ -383,7 +383,7 @@ To include credentials in a cross-origin request, use the <xref:Microsoft.AspNet
 requestMessage.SetBrowserRequestCredentials(BrowserRequestCredentials.Include);
 ```
 
-For more information on Fetch API options, see [MDN web docs: WindowOrWorkerGlobalScope.fetch(): Parameters](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters).
+For more information on Fetch API options, see [MDN web docs: WindowOrWorkerGlobalScope.fetch(): Parameters](https://developer.mozilla.org/docs/Web/API/fetch#Parameters).
 
 ## Call web API example
 
@@ -591,7 +591,7 @@ Various network tools are publicly available for testing web API backend apps di
 * <xref:blazor/security/webassembly/additional-scenarios>: Includes coverage on using <xref:System.Net.Http.HttpClient> to make secure web API requests.
 * <xref:security/cors>: Although the content applies to ASP.NET Core apps, not Blazor WebAssembly apps, the article covers general CORS concepts.
 * [Cross Origin Resource Sharing (CORS) at W3C](https://www.w3.org/TR/cors/)
-* [Fetch API](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch)
+* [Fetch API](https://developer.mozilla.org/docs/Web/API/fetch)
 
 ::: zone-end
 
@@ -960,7 +960,7 @@ else
 
 [!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/call-web-api/TodoRequest.razor)]
 
-Blazor WebAssembly's implementation of <xref:System.Net.Http.HttpClient> uses [Fetch API](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch). Fetch API allows the configuration of several [request-specific options](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters). Options can be configured with <xref:System.Net.Http.HttpRequestMessage> extension methods shown in the following table.
+Blazor WebAssembly's implementation of <xref:System.Net.Http.HttpClient> uses [Fetch API](https://developer.mozilla.org/docs/Web/API/fetch). Fetch API allows the configuration of several [request-specific options](https://developer.mozilla.org/docs/Web/API/fetch#Parameters). Options can be configured with <xref:System.Net.Http.HttpRequestMessage> extension methods shown in the following table.
 
 | Extension method | Fetch API request property |
 | --- | --- |
@@ -979,7 +979,7 @@ To include credentials in a cross-origin request, use the <xref:Microsoft.AspNet
 requestMessage.SetBrowserRequestCredentials(BrowserRequestCredentials.Include);
 ```
 
-For more information on Fetch API options, see [MDN web docs: WindowOrWorkerGlobalScope.fetch(): Parameters](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters).
+For more information on Fetch API options, see [MDN web docs: WindowOrWorkerGlobalScope.fetch(): Parameters](https://developer.mozilla.org/docs/Web/API/fetch#Parameters).
 
 ## Call web API example
 
@@ -1189,7 +1189,7 @@ Various network tools are publicly available for testing web API backend apps di
 * <xref:blazor/security/webassembly/additional-scenarios>: Includes coverage on using <xref:System.Net.Http.HttpClient> to make secure web API requests.
 * <xref:security/cors>: Although the content applies to ASP.NET Core apps, not Blazor WebAssembly apps, the article covers general CORS concepts.
 * [Cross Origin Resource Sharing (CORS) at W3C](https://www.w3.org/TR/cors/)
-* [Fetch API](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch)
+* [Fetch API](https://developer.mozilla.org/docs/Web/API/fetch)
 
 ::: zone-end
 
@@ -1558,7 +1558,7 @@ else
 
 [!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/call-web-api/TodoRequest.razor)]
 
-Blazor WebAssembly's implementation of <xref:System.Net.Http.HttpClient> uses [Fetch API](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch). Fetch API allows the configuration of several [request-specific options](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters). Options can be configured with <xref:System.Net.Http.HttpRequestMessage> extension methods shown in the following table.
+Blazor WebAssembly's implementation of <xref:System.Net.Http.HttpClient> uses [Fetch API](https://developer.mozilla.org/docs/Web/API/fetch). Fetch API allows the configuration of several [request-specific options](https://developer.mozilla.org/docs/Web/API/fetch#Parameters). Options can be configured with <xref:System.Net.Http.HttpRequestMessage> extension methods shown in the following table.
 
 | Extension method | Fetch API request property |
 | --- | --- |
@@ -1577,7 +1577,7 @@ To include credentials in a cross-origin request, use the <xref:Microsoft.AspNet
 requestMessage.SetBrowserRequestCredentials(BrowserRequestCredentials.Include);
 ```
 
-For more information on Fetch API options, see [MDN web docs: WindowOrWorkerGlobalScope.fetch(): Parameters](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters).
+For more information on Fetch API options, see [MDN web docs: WindowOrWorkerGlobalScope.fetch(): Parameters](https://developer.mozilla.org/docs/Web/API/fetch#Parameters).
 
 ## Call web API example
 
@@ -1787,7 +1787,7 @@ Various network tools are publicly available for testing web API backend apps di
 * <xref:blazor/security/webassembly/additional-scenarios>: Includes coverage on using <xref:System.Net.Http.HttpClient> to make secure web API requests.
 * <xref:security/cors>: Although the content applies to ASP.NET Core apps, not Blazor WebAssembly apps, the article covers general CORS concepts.
 * [Cross Origin Resource Sharing (CORS) at W3C](https://www.w3.org/TR/cors/)
-* [Fetch API](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch)
+* [Fetch API](https://developer.mozilla.org/docs/Web/API/fetch)
 
 ::: zone-end
 

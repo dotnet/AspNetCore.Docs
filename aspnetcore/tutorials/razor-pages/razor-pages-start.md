@@ -162,7 +162,7 @@ If you run into a problem you can't resolve, compare your code to the completed 
 
 ::: moniker-end
 
-::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
+::: moniker range="< aspnetcore-5.0"
 
 This is the first tutorial of a series that teaches the basics of building an ASP.NET Core Razor Pages web app.
 

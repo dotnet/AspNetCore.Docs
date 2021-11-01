@@ -387,6 +387,8 @@
         uid: blazor/forms-validation
       - name: File uploads
         uid: blazor/file-uploads
+      - name: File downloads
+        uid: blazor/file-downloads
       - name: JavaScript interop
         items:
           - name: Overview
@@ -612,6 +614,8 @@
         uid: web-api/http-repl
       - name: Telemetry
         uid: web-api/http-repl/telemetry
+- name: Minimal APIs
+  uid: fundamentals/minimal-apis
 - name: Real-time apps
   displayName: signalr
   items:
