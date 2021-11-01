@@ -461,3 +461,7 @@ The preceding code uses [web defaults](/dotnet/standard/serialization/system-tex
 ## Test minimal API
 
 For an example of testing a minimal API app, see [this GitHub sample](https://github.com/davidfowl/CommunityStandUpMinimalAPI/blob/main/TodoApi.Tests/TodoTests.cs).
+
+## Additional resources
+
+* <xref:fundamentals/minimal-apis>
