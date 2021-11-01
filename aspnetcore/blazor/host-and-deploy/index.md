@@ -88,7 +88,7 @@ In a Blazor Server app, use ***either*** of the following approaches:
   app.UsePathBase("/CoolApp");
   ```
   
-  This approach (Option 2) is recommended when you also wish to run the Blazor Server app locally at the sub-app path. For example, supply the launch URL in `launchSettings.json`:
+  This approach (Option 2) is recommended when you also wish to run the Blazor Server app locally at the sub-app path. For example, supply the launch URL in `Properties/launchSettings.json`:
   
   ```xml
   "launchUrl": "https://localhost:{PORT}/CoolApp",
