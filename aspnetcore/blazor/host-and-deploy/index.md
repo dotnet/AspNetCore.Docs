@@ -241,6 +241,13 @@ In a Blazor Server app, use ***either*** of the following approaches:
   app.UsePathBase("/CoolApp");
   ```
 
+> [!NOTE]
+> For some non-IIS hosts and reverse proxy hosting scenarios, additional configuration might be required to serve static files correctly at an app base path different from the root path (for example, `app.UseStaticFiles("/CoolApp");`). The required configuration might require further configuration to serve the Blazor script (`_framework/blazor.server.js` or `_framework/blazor.webassembly.js`). In typical configurations for Azure/IIS hosting, these configurations usually aren't required.
+> 
+> For more information, see <xref:blazor/fundamentals/static-files>.
+> 
+> For third-party host support, check the host provider's documentation and interact with developers on public support forums to implement the correct configuration. Common general support forums include: [Stack Overflow (tag: `blazor`)](https://stackoverflow.com/questions/tagged/blazor), [ASP.NET Core Slack Team](http://tattoocoder.com/aspnet-slack-sign-up/), and [Blazor Gitter](https://gitter.im/aspnet/Blazor). *The preceding forums are not owned or controlled by Microsoft.*
+
 By providing the relative URL path, a component that isn't in the root directory can construct URLs relative to the app's root path. Components at different levels of the directory structure can build links to other resources at locations throughout the app. The app base path is also used to intercept selected hyperlinks where the `href` target of the link is within the app base path URI space. The Blazor router handles the internal navigation.
 
 In many hosting scenarios, the relative URL path to the app is the root of the app. In these cases, the app's relative URL base path is a forward slash (`<base href="/" />` for Blazor WebAssembly or `<base href="~/" />` for Blazor Server), which is the default configuration for a Blazor app. In other hosting scenarios, such as GitHub Pages and IIS sub-apps, the app base path must be set to the server's relative URL path of the app.
@@ -366,6 +373,13 @@ In a Blazor Server app, use ***either*** of the following approaches:
   ```csharp
   app.UsePathBase("/CoolApp");
   ```
+
+> [!NOTE]
+> For some non-IIS hosts and reverse proxy hosting scenarios, additional configuration might be required to serve static files correctly at an app base path different from the root path (for example, `app.UseStaticFiles("/CoolApp");`). The required configuration might require further configuration to serve the Blazor script (`_framework/blazor.server.js` or `_framework/blazor.webassembly.js`). In typical configurations for Azure/IIS hosting, these configurations usually aren't required.
+> 
+> For more information, see <xref:blazor/fundamentals/static-files>.
+> 
+> For third-party host support, check the host provider's documentation and interact with developers on public support forums to implement the correct configuration. Common general support forums include: [Stack Overflow (tag: `blazor`)](https://stackoverflow.com/questions/tagged/blazor), [ASP.NET Core Slack Team](http://tattoocoder.com/aspnet-slack-sign-up/), and [Blazor Gitter](https://gitter.im/aspnet/Blazor). *The preceding forums are not owned or controlled by Microsoft.*
 
 By providing the relative URL path, a component that isn't in the root directory can construct URLs relative to the app's root path. Components at different levels of the directory structure can build links to other resources at locations throughout the app. The app base path is also used to intercept selected hyperlinks where the `href` target of the link is within the app base path URI space. The Blazor router handles the internal navigation.
 
