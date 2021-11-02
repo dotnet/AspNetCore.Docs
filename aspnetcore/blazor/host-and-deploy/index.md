@@ -109,9 +109,7 @@ In a Blazor Server app, use ***either*** of the following approaches:
   ```
   
 > [!NOTE]
-> For some non-IIS hosts and reverse proxy hosting scenarios, additional configuration might be required to serve static files correctly at an app base path different from the root path (for example, `app.UseStaticFiles("/CoolApp");`). The required configuration might require further configuration to serve the Blazor script (`_framework/blazor.server.js` or `_framework/blazor.webassembly.js`). In typical configurations for Azure/IIS hosting, these configurations usually aren't required.
-> 
-> For more information, see <xref:blazor/fundamentals/static-files>.
+> In typical configurations for Azure/IIS hosting, additional configuration usually isn't required. In some non-IIS hosting and reverse proxy hosting scenarios, additional Static File Middleware configuration might be required to serve static files correctly (for example, `app.UseStaticFiles("/CoolApp");`). The required configuration might require further configuration to serve the Blazor script (`_framework/blazor.server.js` or `_framework/blazor.webassembly.js`). For more information, see <xref:blazor/fundamentals/static-files>.
 > 
 > For third-party host support, check the host provider's documentation and interact with developers on public support forums to implement the correct configuration. Common general support forums include: [Stack Overflow (tag: `blazor`)](https://stackoverflow.com/questions/tagged/blazor), [ASP.NET Core Slack Team](http://tattoocoder.com/aspnet-slack-sign-up/), and [Blazor Gitter](https://gitter.im/aspnet/Blazor). *The preceding forums are not owned or controlled by Microsoft.*
 
@@ -242,9 +240,7 @@ In a Blazor Server app, use ***either*** of the following approaches:
   ```
 
 > [!NOTE]
-> For some non-IIS hosts and reverse proxy hosting scenarios, additional configuration might be required to serve static files correctly at an app base path different from the root path (for example, `app.UseStaticFiles("/CoolApp");`). The required configuration might require further configuration to serve the Blazor script (`_framework/blazor.server.js` or `_framework/blazor.webassembly.js`). In typical configurations for Azure/IIS hosting, these configurations usually aren't required.
-> 
-> For more information, see <xref:blazor/fundamentals/static-files>.
+> In typical configurations for Azure/IIS hosting, additional configuration usually isn't required. In some non-IIS hosting and reverse proxy hosting scenarios, additional Static File Middleware configuration might be required to serve static files correctly (for example, `app.UseStaticFiles("/CoolApp");`). The required configuration might require further configuration to serve the Blazor script (`_framework/blazor.server.js` or `_framework/blazor.webassembly.js`). For more information, see <xref:blazor/fundamentals/static-files>.
 > 
 > For third-party host support, check the host provider's documentation and interact with developers on public support forums to implement the correct configuration. Common general support forums include: [Stack Overflow (tag: `blazor`)](https://stackoverflow.com/questions/tagged/blazor), [ASP.NET Core Slack Team](http://tattoocoder.com/aspnet-slack-sign-up/), and [Blazor Gitter](https://gitter.im/aspnet/Blazor). *The preceding forums are not owned or controlled by Microsoft.*
 
@@ -375,9 +371,7 @@ In a Blazor Server app, use ***either*** of the following approaches:
   ```
 
 > [!NOTE]
-> For some non-IIS hosts and reverse proxy hosting scenarios, additional configuration might be required to serve static files correctly at an app base path different from the root path (for example, `app.UseStaticFiles("/CoolApp");`). The required configuration might require further configuration to serve the Blazor script (`_framework/blazor.server.js` or `_framework/blazor.webassembly.js`). In typical configurations for Azure/IIS hosting, these configurations usually aren't required.
-> 
-> For more information, see <xref:blazor/fundamentals/static-files>.
+> In typical configurations for Azure/IIS hosting, additional configuration usually isn't required. In some non-IIS hosting and reverse proxy hosting scenarios, additional Static File Middleware configuration might be required to serve static files correctly (for example, `app.UseStaticFiles("/CoolApp");`). The required configuration might require further configuration to serve the Blazor script (`_framework/blazor.server.js` or `_framework/blazor.webassembly.js`). For more information, see <xref:blazor/fundamentals/static-files>.
 > 
 > For third-party host support, check the host provider's documentation and interact with developers on public support forums to implement the correct configuration. Common general support forums include: [Stack Overflow (tag: `blazor`)](https://stackoverflow.com/questions/tagged/blazor), [ASP.NET Core Slack Team](http://tattoocoder.com/aspnet-slack-sign-up/), and [Blazor Gitter](https://gitter.im/aspnet/Blazor). *The preceding forums are not owned or controlled by Microsoft.*
 
