@@ -107,7 +107,7 @@ Swagger provides options for documenting the object model and customizing the UI
 
 The configuration action passed to the `AddSwaggerGen` method adds information such as the author, license, and description.
 
-In *Program.cs", import the following namespace to use the `OpenApiInfo` class:
+In *Program.cs*, import the following namespace to use the `OpenApiInfo` class:
 
 [!code-csharp[](web-api-help-pages-using-swagger/samples/6.0/SwashbuckleSample/Program.cs?name=snippet_UsingOpenApiModels)]
 
