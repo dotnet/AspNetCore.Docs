@@ -90,11 +90,14 @@
               uid: tutorials/signalr-blazor
     - name: Web API apps
       items:
-        - name: Create a web API
-          displayName: tutorial
+        - name: Create a web API with controllers
+          displayName: API tutorial
           uid: tutorials/first-web-api
+        - name: Create a minimal web API
+          displayName: API tutorial
+          uid: tutorials/min-web-api
         - name: Web API with MongoDB
-          displayName: tutorial
+          displayName: API tutorial
           uid: tutorials/first-mongo-app
         - name: Web API with JavaScript
           displayName: tutorial
@@ -207,7 +210,7 @@
   items:
     - name: Overview
       uid: fundamentals/index
-    - name: The Startup class
+    - name: App startup
       uid: fundamentals/startup
     - name: Dependency injection (services)
       uid: fundamentals/dependency-injection
@@ -384,6 +387,8 @@
         uid: blazor/forms-validation
       - name: File uploads
         uid: blazor/file-uploads
+      - name: File downloads
+        uid: blazor/file-downloads
       - name: JavaScript interop
         items:
           - name: Overview
@@ -571,6 +576,10 @@
       uid: web-api/index
     - name: Tutorials
       items:
+        - name: Create a web API with controllers
+          uid: tutorials/first-web-api
+        - name: Create a minimal web API
+          uid: tutorials/min-web-api
         - name: Create a web API
           uid: tutorials/first-web-api
         - name: Web API with MongoDB
@@ -605,6 +614,8 @@
         uid: web-api/http-repl
       - name: Telemetry
         uid: web-api/http-repl/telemetry
+- name: Minimal APIs
+  uid: fundamentals/minimal-apis
 - name: Real-time apps
   displayName: signalr
   items:
@@ -808,6 +819,19 @@
       uid: test/troubleshoot-azure-iis
     - name: Azure and IIS errors reference
       uid: host-and-deploy/azure-iis-errors-reference
+    - name: Code analysis
+      uid: diagnostics/code-analysis
+      items:
+        - name: ASP0004
+          uid: diagnostics/asp0004
+        - name: ASP0005
+          uid: diagnostics/asp0005
+        - name: ASP0007
+          uid: diagnostics/asp0007
+        - name: MVC1000
+          uid: diagnostics/mvc1000
+        - name: MVC1001
+          uid: diagnostics/mvc1001
 - name: Data access
   items:
     - name: Tutorials
@@ -1375,6 +1399,9 @@
     - name: 5.0 to 6.0
       displayName: migrate, migration
       uid: migration/50-to-60
+    - name: 5.0 Code to 6.0
+      displayName: migrate, migration
+      uid: migration/50-to-60-samples
     - name: 3.1 to 5.0
       displayName: migrate, migration
       uid: migration/31-to-50

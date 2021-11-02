@@ -386,8 +386,6 @@ endpoints.MapGet("/weather/{city:alpha}", async context =>
 });
 ```
 
-For more information on the new JSON extension methods and route to code, see [this .NET show](https://channel9.msdn.com/Shows/On-NET/ASPNET-Core-Series-Route-to-Code).
-
 ### System.Diagnostics.Activity
 
 The default format for <xref:System.Diagnostics.Activity?displayProperty=fullName> now defaults to the W3C format. This makes distributed tracing support in ASP.NET Core interoperable with more frameworks by default.

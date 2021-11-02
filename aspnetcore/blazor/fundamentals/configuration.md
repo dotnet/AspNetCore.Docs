@@ -206,8 +206,7 @@ In the app settings file, provide logging configuration. The logging configurati
   "Logging": {
     "LogLevel": {
       "Default": "Information",
-      "Microsoft": "Warning",
-      "Microsoft.Hosting.Lifetime": "Information"
+      "Microsoft.AspNetCore": "Warning"
     }
   }
 }

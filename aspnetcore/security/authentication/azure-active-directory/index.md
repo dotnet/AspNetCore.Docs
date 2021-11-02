@@ -23,6 +23,4 @@ These tutorials and samples demonstrate authentication in ASP.NET Core using Mic
 
 ## Samples
 
-* [Enable your ASP.NET Core app to sign-in users and call web APIs using Azure AD V2](/samples/azure-samples/active-directory-aspnetcore-webapp-openidconnect-v2/enable-webapp-signin/): 
-  * See [this associated video](https://channel9.msdn.com/Events/Build/2018/THR5001)
-
+* [Enable your ASP.NET Core app to sign-in users and call web APIs using Azure AD V2](/samples/azure-samples/active-directory-aspnetcore-webapp-openidconnect-v2/enable-webapp-signin/)

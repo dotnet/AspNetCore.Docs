@@ -28,15 +28,7 @@ The following `ThemeInfo` C# class is placed in a folder named `UIThemeClasses` 
 
 `UIThemeClasses/ThemeInfo.cs`:
 
-```csharp
-namespace BlazorSample.UIThemeClasses
-{
-    public class ThemeInfo
-    {
-        public string ButtonClass { get; set; }
-    }
-}
-```
+[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/UIThemeClasses/ThemeInfo.cs)]
 
 The following [layout component](xref:blazor/components/layouts) specifies theme information (`ThemeInfo`) as a cascading value for all components that make up the layout body of the <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body> property. `ButtonClass` is assigned a value of [`btn-success`](https://getbootstrap.com/docs/5.0/components/buttons/), which is a Bootstrap button style. Any descendent component in the component hierarchy can use the `ButtonClass` property through the `ThemeInfo` cascading value.
 
@@ -52,7 +44,7 @@ The following component binds the `ThemeInfo` cascading value to a cascading par
 
 `Pages/ThemedCounter.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/ThemedCounter.razor?highlight=2,15-17,23-24)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/ThemedCounter.razor)]
 
 ## Cascade multiple values
 
@@ -85,7 +77,7 @@ In a descendant component, the cascaded parameters receive their cascaded values
 @code {
     [CascadingParameter(Name = "CascadeParam1")]
     protected CascadingType ChildCascadeParameter1 { get; set; }
-    
+
     [CascadingParameter(Name = "CascadeParam2")]
     protected CascadingType ChildCascadeParameter2 { get; set; }
 }
@@ -255,15 +247,7 @@ The following `ThemeInfo` C# class is placed in a folder named `UIThemeClasses` 
 
 `UIThemeClasses/ThemeInfo.cs`:
 
-```csharp
-namespace BlazorSample.UIThemeClasses
-{
-    public class ThemeInfo
-    {
-        public string ButtonClass { get; set; }
-    }
-}
-```
+[!code-csharp[](~/blazor/samples/5.0/BlazorSample_WebAssembly/UIThemeClasses/ThemeInfo.cs)]
 
 The following [layout component](xref:blazor/components/layouts) specifies theme information (`ThemeInfo`) as a cascading value for all components that make up the layout body of the <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body> property. `ButtonClass` is assigned a value of [`btn-success`](https://getbootstrap.com/docs/5.0/components/buttons/), which is a Bootstrap button style. Any descendent component in the component hierarchy can use the `ButtonClass` property through the `ThemeInfo` cascading value.
 
@@ -482,15 +466,7 @@ The following `ThemeInfo` C# class is placed in a folder named `UIThemeClasses` 
 
 `UIThemeClasses/ThemeInfo.cs`:
 
-```csharp
-namespace BlazorSample.UIThemeClasses
-{
-    public class ThemeInfo
-    {
-        public string ButtonClass { get; set; }
-    }
-}
-```
+[!code-csharp[](~/blazor/samples/3.1/BlazorSample_WebAssembly/UIThemeClasses/ThemeInfo.cs)]
 
 The following [layout component](xref:blazor/components/layouts) specifies theme information (`ThemeInfo`) as a cascading value for all components that make up the layout body of the <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body> property. `ButtonClass` is assigned a value of [`btn-success`](https://getbootstrap.com/docs/5.0/components/buttons/), which is a Bootstrap button style. Any descendent component in the component hierarchy can use the `ButtonClass` property through the `ThemeInfo` cascading value.
 

@@ -34,6 +34,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
 ...
 
+// AddHttpClient is an extension in Microsoft.Http.Extensions
 builder.Services.AddHttpClient("WebAPI", 
         client => client.BaseAddress = new Uri("https://www.example.com/base"))
     .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
@@ -98,6 +99,7 @@ In `Program.cs`, `CustomAuthorizationMessageHandler` is registered as a scoped s
 ```csharp
 builder.Services.AddScoped<CustomAuthorizationMessageHandler>();
 
+// AddHttpClient is an extension in Microsoft.Http.Extensions
 builder.Services.AddHttpClient("WebAPI",
         client => client.BaseAddress = new Uri("https://www.example.com/base"))
     .AddHttpMessageHandler<CustomAuthorizationMessageHandler>();
@@ -210,6 +212,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
 ...
 
+// AddHttpClient is an extension in Microsoft.Http.Extensions
 builder.Services.AddHttpClient<WeatherForecastClient>(
         client => client.BaseAddress = new Uri("https://www.example.com/base"))
     .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
@@ -237,6 +240,7 @@ The handler can be further configured with <xref:Microsoft.AspNetCore.Components
 In `Program.cs`:
 
 ```csharp
+// AddHttpClient is an extension in Microsoft.Http.Extensions
 builder.Services.AddHttpClient<WeatherForecastClient>(
         client => client.BaseAddress = new Uri("https://www.example.com/base"))
     .AddHttpMessageHandler(sp => sp.GetRequiredService<AuthorizationMessageHandler>()
@@ -257,6 +261,7 @@ If the Blazor WebAssembly app ordinarily uses a secure default <xref:System.Net.
 In `Program.cs`:
 
 ```csharp
+// AddHttpClient is an extension in Microsoft.Http.Extensions
 builder.Services.AddHttpClient("WebAPI.NoAuthenticationClient", 
     client => client.BaseAddress = new Uri("https://www.example.com/base"));
 ```
@@ -810,8 +815,6 @@ Prerendering content that requires authentication and authorization isn't curren
 * Doesn't prerender paths for which authorization is required.
 
 For the client (**`Client`**) app's `Program.cs`, factor common service registrations into a separate method (for example, `ConfigureCommonServices`). Common services are those that the developer registers for use by both the client and server (**`Server`**) apps.
-
-``:
 
 ```csharp
 public static void ConfigureCommonServices(IServiceCollection services)

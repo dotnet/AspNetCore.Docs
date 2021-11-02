@@ -166,7 +166,7 @@ The app shows the seeded data:
 
 ::: moniker-end
 
-::: moniker range="< aspnetcore-5.0 >= aspnetcore-3.0"
+::: moniker range="< aspnetcore-5.0"
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30) ([how to download](xref:index#how-to-download-a-sample)).
 

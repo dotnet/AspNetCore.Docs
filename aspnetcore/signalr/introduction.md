@@ -37,7 +37,7 @@ The source is hosted in a [SignalR repository on GitHub](https://github.com/dotn
 
 SignalR supports the following techniques for handling real-time communication (in order of graceful fallback):
 
-* [WebSockets](https://tools.ietf.org/html/rfc7118)
+* [WebSockets](xref:fundamentals/websockets)
 * Server-Sent Events
 * Long Polling
 
@@ -53,6 +53,7 @@ Hubs call client-side code by sending messages that contain the name and paramet
 
 ## Additional resources
 
+* [Microsoft Learn: Introduction to ASP.NET Core SignalR](/learn/modules/aspnet-core-signalr)
 * [Get started with SignalR for ASP.NET Core](xref:tutorials/signalr)
 * [Supported Platforms](xref:signalr/supported-platforms)
 * [Hubs](xref:signalr/hubs)

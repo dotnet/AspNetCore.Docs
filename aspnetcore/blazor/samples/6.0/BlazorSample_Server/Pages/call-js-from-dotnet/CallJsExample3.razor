@@ -15,9 +15,9 @@
 
 @code {
     private Random r = new();
-    private string stockSymbol;
+    private string? stockSymbol;
     private decimal price;
-    private JsInteropClasses1 jsClass;
+    private JsInteropClasses1? jsClass;
 
     protected override void OnInitialized()
     {
@@ -26,10 +26,13 @@
 
     private async Task SetStock()
     {
-        stockSymbol = 
-            $"{(char)('A' + r.Next(0, 26))}{(char)('A' + r.Next(0, 26))}";
-        price = r.Next(1, 101);
-        await jsClass.TickerChanged(stockSymbol, price);
+        if (jsClass is not null)
+        {
+            stockSymbol = 
+                $"{(char)('A' + r.Next(0, 26))}{(char)('A' + r.Next(0, 26))}";
+            price = r.Next(1, 101);
+            await jsClass.TickerChanged(stockSymbol, price);
+        }
     }
 
     public void Dispose() => jsClass?.Dispose();
