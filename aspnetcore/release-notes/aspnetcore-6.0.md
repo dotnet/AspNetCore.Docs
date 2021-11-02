@@ -28,6 +28,14 @@ Size limitations on SignalR message size for Blazor Server apps have been remove
 
 SignalR uses the new <xref:Microsoft.AspNetCore.Http.Features.IHttpActivityFeature.Activity?displayProperty=fullName> to add an `http.long_running` tag to the request activity. This will be used by [APM services](https://wikipedia.org/wiki/Application_performance_management) like [Azure Monitor Application Insights](/azure/azure-monitor/azure-monitor-app-hub) to filter SignalR requests from creating long running request alerts.
 
+### SignalR performance improvements
+
+* Allocate [HubCallerClients](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/server/Core/src/Internal/HubCallerClients.cs) once per connection instead of every hub method call.
+* Avoid closure allocation in SignalR `DefaultHubDispatcher.Invoke`. State is passed to a local static function via parameters to avoid a closure allocation. For more information, see [this GitHub PR](https://github.com/dotnet/aspnetcore/pull/31641).
+* Allocate a single <xref:Microsoft.AspNetCore.SignalR.Protocol.StreamItemMessage> per stream instead of per stream item in server-to-client streaming. For more information, see [this GitHub PR](https://github.com/dotnet/aspnetcore/pull/31660).
+
+<a name="api"></a>
+
 ## ASP.NET Core performance improvements
 
 Many changes were made to reduce allocations and improve performance across the stack:
@@ -42,11 +50,55 @@ Many changes were made to reduce allocations and improve performance across the 
 * Reuse [HttpProtocol CancellationTokenSource](https://github.com/dotnet/aspnetcore/blob/v6.0.0-rc.2.21480.10/src/Servers/Kestrel/Core/src/Internal/Http/HttpProtocol.cs#L401-L409) in Kestrel. Use the new [CancellationTokenSource.TryReset](xref:System.Threading.CancellationTokenSource.TryReset%2A) method on `CancellationTokenSource` to reuse tokens if they haven’t been canceled. For more information, see [this GitHub issue](https://github.com/dotnet/runtime/issues/48492) and this [video](https://www.youtube.com/watch?v=vNPybpatlUU&t=1h38m28s).
 * Implement and use an [AdaptiveCapacityDictionary](https://github.com/dotnet/aspnetcore/blob/v6.0.0-rc.2.21480.10/src/Http/Http/src/Internal/RequestCookieCollection.cs#L24) in <xref:Microsoft.AspNetCore.Http> [RequestCookieCollection](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http/src/Internal/RequestCookieCollection.cs) for more efficient access to dictionaries. For more information, see [this GitHub PR](https://github.com/dotnet/aspnetcore/pull/31360).
 
-### SignalR performance improvements
+### Reduced memory footprint for idle TLS connections
 
-* Allocate [HubCallerClients](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/server/Core/src/Internal/HubCallerClients.cs) once per connection instead of every hub method call.
-* Avoid closure allocation in SignalR `DefaultHubDispatcher.Invoke`. State is passed to a local static function via parameters to avoid a closure allocation. For more information, see [this GitHub PR](https://github.com/dotnet/aspnetcore/pull/31641).
-* Allocate a single <xref:Microsoft.AspNetCore.SignalR.Protocol.StreamItemMessage> per stream instead of per stream item in server-to-client streaming. For more information, see [this GitHub PR](https://github.com/dotnet/aspnetcore/pull/31660).
+For long running TLS connections where data is only occasionally sent back and forth, we’ve significantly reduced the memory footprint of ASP.NET Core apps in .NET 6. This should help improve the scalability of scenarios such as WebSocket servers. This was possible due to numerous improvements in `System.IO.Pipelines`, `SslStream`, and Kestrel. The following sections detail some of the improvements that have contributed to the reduced memory footprint:
+
+#### Reduce the size of `System.IO.Pipelines.Pipe`
+
+For every connection that is establish, two pipes are allocated in Kestrel:
+
+* The transport layer to the app for the request.
+* The application layer to the transport for the response.
+
+By shrinking the size of <xref:System.IO.Pipelines.Pipe?displayProperty=fullName> from 368 bytes to 264 bytes (about a 28.2% reduction), 208 bytes per connection are saved (104 bytes per Pipe).
+
+#### Pool SocketSender
+
+`SocketSender` objects (that subclass <xref:System.Net.Sockets.SocketAsyncEventArgs>) are around 350 bytes at runtime. Instead of allocating a new `SocketSender` object per connection, they can be pooled. `SocketSender` objects can be pooled because sends are usually very fast. Pooling reduces the per connection overhead. Instead of allocating 350 bytes per connection, only pay 350 bytes per `IOQueue` are allocated. Allocation is done per queue to avoid contention. Our WebSocket server with 5000 idle connections went from allocating ~1.75 MB (350 bytes * 5000) to allocating ~2.8kb (350 bytes * 8) for `SocketSender` objects.
+
+#### Zero bytes reads with SslStream
+
+Bufferless reads are a technique employed in ASP.NET Core to avoid renting memory from the memory pool if there’s no data available on the socket. Prior to this change, our WebSocket server with 5000 idle connections required ~200 MB without TLS compared to ~800 MB with TLS. Some of these allocations (4k per connection) were from Kestrel having to hold on to an <xref:System.Buffers.ArrayPool%601> buffer while waiting for the reads on <xref:System.Net.Security.SslStream> to complete. Given that these connections were idle, none of reads completed and returned their buffers to the `ArrayPool`, forcing the `ArrayPool` to allocate more memory. The remaining allocations were in `SslStream` itself: 4k buffer for TLS handshakes and 32k buffer for normal reads. In .NET 6, when the user performs a zero byte read on `SslStream` and it has no data available, `SslStream` internally performs a zero-byte read on the underlying wrapped stream. In the best case (idle connection), these changes result in a savings of 40 Kb per connection while still allowing the consumer (Kestrel) to be notified when data is available without holding on to any unused buffers.
+
+#### Zero byte reads with PipeReader
+
+With bufferless reads supported on `SslStream`, an option was added to perform zero byte reads to `StreamPipeReader`, the internal type that adapts a `Stream` into a `PipeReader`. In Kestrel, a`StreamPipeReader` is used to adapt the underlying `SslStream` into a `PipeReader`. Therefore it was necessary to expose these zero byte read semantics on the `PipeReader`.
+
+A `PipeReader` can now be created that supports zero bytes reads over any underlying `Stream` that supports zero byte read semantics (e.g,. `SslStream`, `NetworkStream`, etc) using the following API:
+
+```dotnetcli
+var reader = PipeReader.Create(stream, new StreamPipeReaderOptions(useZeroByteReads: true));
+```
+
+#### Remove slabs from the `SlabMemoryPool`
+
+To reduce fragmentation of the heap, Kestrel employed a technique where it allocated slabs of memory of 128 KB as part of it’s memory pool. The slabs were then further divided into 4 KB blocks that were used by Kestrel internally. The slabs had to be larger than 85 KB to force allocation on the large object heap to try and prevent the GC from relocating this array. However, with the introduction of the new GC generation, Pinned Object Heap (POH), it no longer makes sense to allocate blocks on slab. In preview3, we now directly allocate blocks on the POH, reducing the complexity involved in managing our own memory pool. This change should make easier to perform future improvements such as making it easier to shrink the memory pool used by Kestrel.
+
+### Vcpkg port for SignalR C++ client
+
+[Vcpkg](https://github.com/microsoft/vcpkg) is a cross-platform command-line package manager for C and C++ libraries. We’ve recently added a port to `vcpkg` to add `CMake` native support for the SignalR C++ client. `vcpkg` also works with MSBuild.
+
+The SignalR client can be added to a CMake project with the following snippet when the vcpkg is included in the toolchain file:
+
+```dotnetcli
+find_package(microsoft-signalr CONFIG REQUIRED)
+link_libraries(microsoft-signalr::microsoft-signalr)
+```
+
+With the preceding snippet, the SignalR C++ client is ready to use [`#include`](https://github.com/halter73/SignalR-Client-Cpp-Sample/blob/main/sample.cpp#L3-L5) and used in a project without any additional configuration. For a complete example of a C++ application that utilizes the SignalR C++ client, see the [halter73/SignalR-Client-Cpp-Sample](https://github.com/halter73/SignalR-Client-Cpp-Sample) repository.
+
+<!-- end of # signalR -->
 
 ## Blazor
 
@@ -293,13 +345,13 @@ Developers can now opt-in to using delayed client certificate negotiation by spe
 
 Cookie authentication sliding expiration can now be customized or suppressed using the new <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.OnCheckSlidingExpiration>. For example, this event can be used by a single-page app that needs to periodically ping the server without affecting the authentication session.
 
-## API improvements
-
 ## Miscellaneous
 
+<!--
 ### Hot reload
 
 Quickly make UI and code updates to running apps without losing app state for faster and more productive developer experience using [Hot reload](https://devblogs.microsoft.com/dotnet/introducing-net-hot-reload/). For more information, see [Update on .NET Hot Reload progress and Visual Studio 2022 Highlights](https://devblogs.microsoft.com/dotnet/update-on-net-hot-reload-progress-and-visual-studio-2022-highlights/).
+-->
 
 <!-- Notes:
 ### Single-file publishing
@@ -537,5 +589,61 @@ Hot Reload minimizes the number of app restarts after code changes. For more inf
 
 When defining generic type parameters in Razor using the `@typeparam` directive, generic type constraints can now be specified using the standard C# syntax:
 
+### Razor compiler no longer produces a separate Views assembly
 
+The Razor compiler previously utilized a two-step compilation process that produced a separate Views assembly that contained the generated views and pages (`.cshtml` files) defined in the app. The generated types were public and under the `AspNetCore` namespace.
 
+The updated Razor compiler builds the views and pages types into the main project assembly. These types are now generated by default as internal sealed in the `AspNetCoreGeneratedDocument` namespace. This change improves build performance, enables single file deployment, and enables these types to participate in .NET Hot Reload.
+
+For additional details about this change, see [the related announcement issue](https://github.com/aspnet/Announcements/issues/459) on GitHub.
+
+### Smaller SignalR, Blazor Server, and MessagePack scripts
+
+ The SignalR, MessagePack, and Blazor Server scripts are now significantly smaller, enabling smaller downloads, less JavaScript parsing and compiling by the browser, and faster start-up. The size reductions:
+
+* `signalr.min.js`: 70%
+* `blazor.server.js`: 45%
+
+The smaller scripts are a result of a community contribution from [Ben Adams](https://twitter.com/ben_a_adams). For more information on the details of the size reduction, see [Ben's GitHub pull request](https://github.com/dotnet/aspnetcore/pull/30320).
+
+### Enable Redis profiling sessions
+
+A community contribution from [Gabriel Lucaci](https://twitter.com/_glucaci) enables Redis profiling session with [Microsoft.Extensions.Caching.StackExchangeRedis](https://www.nuget.org/packages/Microsoft.Extensions.Caching.StackExchangeRedis):
+
+[!code-csharp[](aspnetcore-6.0/samples/WebApp1/Program.cs?name=snippet_red)]
+
+For more information, see [StackExchange.Redis Profiling](https://stackexchange.github.io/StackExchange.Redis/Profiling_v2.html).
+
+### Shadow-copying in IIS
+
+A new feature has been added to the <xref:host-and-deploy/aspnet-core-module> to add support for shadow-copying application assemblies. Currently .NET locks application binaries when running on Windows making it impossible to replace binaries when the app is running. While our recommendation remains to use an [app offline file](xref:host-and-deploy/iis/app-offline), we recognize there are certain scenarios (for example FTP deployments) where it isn’t possible to do so.
+
+In such scenarios, enable shadow copying by customizing the ASP.NET Core module handler settings. In most cases, ASP.NET Core apps do not have a `web.config` checked into source control that you can modify. In ASP.NET COre, `web.config` is ordinarily generated by the SDK. The following sample `web.config` can be used to get started:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <!-- To customize the asp.net core module uncomment and edit the following section. 
+  For more info see https://go.microsoft.com/fwlink/?linkid=838655 -->
+
+  <system.webServer>
+    <handlers>
+      <remove name="aspNetCore"/>
+      <add name="aspNetCore" path="*" verb="*" modules="AspNetCoreModulev2" resourceType="Unspecified"/>
+    </handlers>
+    <aspNetCore processPath="%LAUNCHER_PATH%" arguments="%LAUNCHER_ARGS%" stdoutLogEnabled="false" stdoutLogFile=".\logs\stdout">
+      <handlerSettings>
+        <handlerSetting name="experimentalEnableShadowCopy" value="true" />
+        <handlerSetting name="shadowCopyDirectory" value="../ShadowCopyDirectory/" />
+        <!-- Only enable handler logging if you encounter issues-->
+        <!--<handlerSetting name="debugFile" value=".\logs\aspnetcore-debug.log" />-->
+        <!--<handlerSetting name="debugLevel" value="FILE,TRACE" />-->
+      </handlerSettings>
+    </aspNetCore>
+  </system.webServer>
+</configuration>
+```
+
+A new version of the ASP.NET Core module is required to use shadow-copying. On a self-hosted IIS server, this requires a new version of the hosting bundle. On Azure App Services, install a new ASP.NET Core runtime site extension:
+
+![Azure Extensions on portal](aspnetcore-6.0/_static/x.png)

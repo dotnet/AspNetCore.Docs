@@ -1,4 +1,4 @@
-#define ICSF  // DEF LATIN DIAG DCRT JSONB FDRS IIS2 HTTPLG ICSF
+#define RED  // DEF LATIN DIAG DCRT JSONB FDRS IIS2 HTTPLG ICSF RED
 #if DEF
 #elif NEVER
 #region snippet_1
@@ -246,4 +246,22 @@ var app = builder.Build();
 app.MapGet("/", (Func<string>)(() => "Hello world"));
 await app.RunAsync();
 #endregion
+#elif RED
+#region snippet_red
+using StackExchange.Redis.Profiling;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.ProfilingSession = () => new ProfilingSession();
+});
+#endregion
+
+var app = builder.Build();
+
+app.MapGet("/", () => "Hello World!");
+
+app.Run();
+
 #endif
