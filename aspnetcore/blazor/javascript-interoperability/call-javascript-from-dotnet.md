@@ -695,7 +695,7 @@ In the preceding example:
 * The `{STREAM}` placeholder represents the <xref:System.IO.Stream> sent to JavaScript.
 * `JS` is an injected <xref:Microsoft.JSInterop.IJSRuntime> instance.
 
-<xref:blazor/js-interop/call-dotnet-from-javascript#stream-from-javascript-to-dotnet> covers the reverse operation, streaming from .NET to JavaScript.
+<xref:blazor/js-interop/call-dotnet-from-javascript#stream-from-javascript-to-dotnet> covers the reverse operation, streaming from JavaScript to .NET.
 
 <xref:blazor/file-downloads> covers how to download a file in Blazor.
 
