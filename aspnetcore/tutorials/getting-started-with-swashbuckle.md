@@ -128,7 +128,7 @@ Using the `OpenApiInfo` class, modify the information displayed in the UI:
 
 The Swagger UI displays the version's information:
 
-![Swagger UI with version information: description, author, and license](web-api-help-pages-using-swagger/_static/6.0/swagger-info.png)
+![Swagger UI with version information: description, author, and license](web-api-help-pages-using-swagger/_static/v6-swagger-info.png)
 
 ### XML comments
 
@@ -188,11 +188,11 @@ Adding triple-slash comments to an action enhances the Swagger UI by adding the 
 
 The Swagger UI displays the inner text of the preceding code's `<summary>` element:
 
-![Swagger UI showing XML comment 'Deletes a specific TodoItem.' for the DELETE method](web-api-help-pages-using-swagger/_static/6.0/swagger-delete-summary.png)
+![Swagger UI showing XML comment 'Deletes a specific TodoItem.' for the DELETE method](web-api-help-pages-using-swagger/_static/v6-swagger-delete-summary.png)
 
 The UI is driven by the generated JSON schema:
 
-[!code-json[](web-api-help-pages-using-swagger/_static/6.0/swagger-delete.json?range=2-24)]
+[!code-json[](web-api-help-pages-using-swagger/_static/v6-swagger-delete.json?range=2-24)]
 
 Add a [\<remarks>](/dotnet/csharp/programming-guide/xmldoc/remarks) element to the `Create` action method documentation. It supplements information specified in the `<summary>` element and provides a more robust Swagger UI. The `<remarks>` element content can consist of text, JSON, or XML.
 
@@ -200,7 +200,7 @@ Add a [\<remarks>](/dotnet/csharp/programming-guide/xmldoc/remarks) element to t
 
 Notice the UI enhancements with these additional comments:
 
-![Swagger UI with additional comments shown](web-api-help-pages-using-swagger/_static/6.0/swagger-post-remarks.png)
+![Swagger UI with additional comments shown](web-api-help-pages-using-swagger/_static/v6-swagger-post-remarks.png)
 
 ### Data annotations
 
@@ -212,7 +212,7 @@ Add the `[Required]` attribute to the `Name` property of the `TodoItem` class:
 
 The presence of this attribute changes the UI behavior and alters the underlying JSON schema:
 
-[!code-json[](web-api-help-pages-using-swagger/_static/6.0/swagger-schemas-todoitem.json?range=2-23&highlight=3-5)]
+[!code-json[](web-api-help-pages-using-swagger/_static/v6-swagger-schemas-todoitem.json?range=2-23&highlight=3-5)]
 
 Add the `[Produces("application/json")]` attribute to the API controller. Its purpose is to declare that the controller's actions support a response content type of *application/json*:
 
@@ -220,7 +220,7 @@ Add the `[Produces("application/json")]` attribute to the API controller. Its pu
 
 The **Response Content Type** drop-down selects this content type as the default for the controller's GET actions:
 
-![Swagger UI with default response content type](web-api-help-pages-using-swagger/_static/6.0/swagger-get-media-type.png)
+![Swagger UI with default response content type](web-api-help-pages-using-swagger/_static/v6-swagger-get-media-type.png)
 
 As the usage of data annotations in the web API increases, the UI and API help pages become more descriptive and useful.
 
@@ -234,7 +234,7 @@ The `Create` action returns an HTTP 201 status code on success. An HTTP 400 stat
 
 The Swagger UI now clearly documents the expected HTTP response codes:
 
-![Swagger UI showing POST Response Class description 'Returns the newly created Todo item' and '400 - If the item is null' for status code and reason under Response Messages](web-api-help-pages-using-swagger/_static/6.0/swagger-post-responses.png)
+![Swagger UI showing POST Response Class description 'Returns the newly created Todo item' and '400 - If the item is null' for status code and reason under Response Messages](web-api-help-pages-using-swagger/_static/v6-swagger-post-responses.png)
 
 In ASP.NET Core 2.2 or later, conventions can be used as an alternative to explicitly decorating individual actions with `[ProducesResponseType]`. For more information, see <xref:web-api/advanced/conventions>.
 
