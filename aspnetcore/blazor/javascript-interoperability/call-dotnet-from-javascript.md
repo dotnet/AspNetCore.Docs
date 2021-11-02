@@ -353,6 +353,45 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 
 For information on using a byte array when calling JavaScript from .NET, see <xref:blazor/js-interop/call-javascript-from-dotnet#byte-array-support>.
 
+## Stream from JavaScript to .NET
+
+Blazor supports streaming data directly from JavaScript to .NET. Streams are requested using the `Microsoft.JSInterop.IJSStreamReference` interface.
+
+`Microsoft.JSInterop.IJSStreamReference.OpenReadStreamAsync` returns a <xref:System.IO.Stream> and uses the following parameters:
+
+* `maxAllowedSize`: Maximum number of bytes permitted for the read operation from JavaScript, which defaults to 512,000 bytes if not specified.
+* `cancellationToken`: A <xref:System.Threading.CancellationToken> for cancelling the read.
+
+In JavaScript:
+
+```javascript
+function streamToDotNet() {
+  return new Uint8Array(10000000);
+}
+```
+
+In C# code:
+
+```csharp
+var dataReference = 
+    await JS.InvokeAsync<IJSStreamReference>("streamToDotNet");
+using var dataReferenceStream = 
+    await dataReference.OpenReadStreamAsync(maxAllowedSize: 10_000_000);
+
+var outputPath = Path.Combine(Path.GetTempPath(), "file.txt");
+using var outputFileStream = File.OpenWrite(outputPath);
+await dataReferenceStream.CopyToAsync(outputFileStream);
+```
+
+In the preceding example:
+
+* `JS` is an injected <xref:Microsoft.JSInterop.IJSRuntime> instance.
+* The `dataReferenceStream` is written to disk (`file.txt`) at the current user's temporary folder path (<xref:System.IO.Path.GetTempPath%2A>).
+
+<xref:blazor/js-interop/call-javascript-from-dotnet#stream-from-net-to-javascript> covers the reverse operation, streaming from .NET to JavaScript using a <xref:Microsoft.JSInterop.DotNetStreamReference>.
+
+<xref:blazor/file-uploads> covers how to upload a file in Blazor.
+
 ## Size limits on JavaScript interop calls
 
 [!INCLUDE[](~/blazor/includes/js-interop/size-limits.md)]
