@@ -52,10 +52,10 @@ For this demonstration, the app creates a 50 KB file of random data from a new b
 
 Create a `DownloadFileFromStream` method that performs the following steps:
 
-* Retrieve the <xref:System.IO.Stream> from `GetFileStream`.
+* Retrieves the <xref:System.IO.Stream> from `GetFileStream`.
 * Specify a file name when file is saved on the user's machine. The following example names the file `log.bin`.
-* Wrap the <xref:System.IO.Stream> in a <xref:Microsoft.JSInterop.DotNetStreamReference>, which allows streaming the file data to the client.
-* Invoke `downloadFileFromStream`, which is a JavaScript function that accepts the data on the client. The `downloadFileFromStream` function is shown later in this article.
+* Wraps the <xref:System.IO.Stream> in a <xref:Microsoft.JSInterop.DotNetStreamReference>, which allows streaming the file data to the client.
+* Invokes `downloadFileFromStream`, which is a JavaScript function that accepts the data on the client. The `downloadFileFromStream` function is shown later in this article.
 
 ```razor
 @code {
