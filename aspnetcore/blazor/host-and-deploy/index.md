@@ -60,7 +60,7 @@ The *app base path* is the app's root URL path. Consider the following ASP.NET C
   * The sub-app physically resides at `d:/MyApp/CoolApp`.
   * Requests are received at `https://www.contoso.com/CoolApp/{COOLAPP RESOURCE}`.
 
-Without specifying additional configuration for `CoolApp`, the sub-app in this scenario has no knowledge of where it resides on the server. For example, the app can't construct correct relative URLs to its resources without knowing that it resides at the relative URL path `/CoolApp/`.
+Without specifying additional configuration for `CoolApp`, the sub-app in this scenario has no knowledge of where it resides on the server. For example, the app can't construct correct relative URLs to its resources without knowing that it resides at the relative URL path `/CoolApp/`. This scenario also applies in various hosting and reverse proxy scenarios when an app isn't hosted at a root URL path.
 
 To provide configuration for the Blazor app's base path of `https://www.contoso.com/CoolApp/`, set the relative root path.
 
@@ -88,7 +88,7 @@ In a Blazor Server app, use ***either*** of the following approaches:
   app.UsePathBase("/CoolApp");
   ```
   
-  This approach (Option 2) is recommended when you also wish to run the Blazor Server app locally at the sub-app path. For example, supply the launch URL in `Properties/launchSettings.json`:
+  This approach (Option 2) is recommended when you also wish to run the Blazor Server app locally. For example, supply the launch URL in `Properties/launchSettings.json`:
   
   ```xml
   "launchUrl": "https://localhost:{PORT}/CoolApp",
@@ -131,8 +131,6 @@ dotnet run --pathbase=/CoolApp
 
 The Blazor WebAssembly app responds locally at `http://localhost:port/CoolApp`.
 
-<!-- HOLD
-
 ### Blazor Server `MapFallbackToPage` configuration
 
 Pass the following path to <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A> in `Program.cs` of the host Razor Pages app:
@@ -146,8 +144,6 @@ The placeholder `{RELATIVE PATH}` is the non-root path on the server. For exampl
 ```csharp
 app.MapFallbackToPage("/CoolApp/{**path:nonfile}");
 ```
-
--->
 
 ### Host multiple Blazor WebAssembly apps
 
@@ -211,7 +207,7 @@ The *app base path* is the app's root URL path. Consider the following ASP.NET C
   * The sub-app physically resides at `d:/MyApp/CoolApp`.
   * Requests are received at `https://www.contoso.com/CoolApp/{COOLAPP RESOURCE}`.
 
-Without specifying additional configuration for `CoolApp`, the sub-app in this scenario has no knowledge of where it resides on the server. For example, the app can't construct correct relative URLs to its resources without knowing that it resides at the relative URL path `/CoolApp/`.
+Without specifying additional configuration for `CoolApp`, the sub-app in this scenario has no knowledge of where it resides on the server. For example, the app can't construct correct relative URLs to its resources without knowing that it resides at the relative URL path `/CoolApp/`. This scenario also applies in various hosting and reverse proxy scenarios when an app isn't hosted at a root URL path.
 
 To provide configuration for the Blazor app's base path of `https://www.contoso.com/CoolApp/`, set the relative root path.
 
@@ -262,8 +258,6 @@ dotnet run --pathbase=/CoolApp
 
 The Blazor WebAssembly app responds locally at `http://localhost:port/CoolApp`.
 
-<!-- HOLD
-
 ### Blazor Server `MapFallbackToPage` configuration
 
 Pass the following path to <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A> in `Startup.Configure` of the host Razor Pages app:
@@ -277,8 +271,6 @@ The placeholder `{RELATIVE PATH}` is the non-root path on the server. For exampl
 ```csharp
 endpoints.MapFallbackToPage("/CoolApp/{**path:nonfile}");
 ```
-
--->
 
 ### Host multiple Blazor WebAssembly apps
 
@@ -342,7 +334,7 @@ The *app base path* is the app's root URL path. Consider the following ASP.NET C
   * The sub-app physically resides at `d:/MyApp/CoolApp`.
   * Requests are received at `https://www.contoso.com/CoolApp/{COOLAPP RESOURCE}`.
 
-Without specifying additional configuration for `CoolApp`, the sub-app in this scenario has no knowledge of where it resides on the server. For example, the app can't construct correct relative URLs to its resources without knowing that it resides at the relative URL path `/CoolApp/`.
+Without specifying additional configuration for `CoolApp`, the sub-app in this scenario has no knowledge of where it resides on the server. For example, the app can't construct correct relative URLs to its resources without knowing that it resides at the relative URL path `/CoolApp/`. This scenario also applies in various hosting and reverse proxy scenarios when an app isn't hosted at a root URL path.
 
 To provide configuration for the Blazor app's base path of `https://www.contoso.com/CoolApp/`, set the relative root path.
 
@@ -393,8 +385,6 @@ dotnet run --pathbase=/CoolApp
 
 The Blazor WebAssembly app responds locally at `http://localhost:port/CoolApp`.
 
-<!-- HOLD
-
 ### Blazor Server `MapFallbackToPage` configuration
 
 Pass the following path to <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A> in `Startup.Configure` of the host Razor Pages app:
@@ -408,8 +398,6 @@ The placeholder `{RELATIVE PATH}` is the non-root path on the server. For exampl
 ```csharp
 endpoints.MapFallbackToPage("/CoolApp/{**path:nonfile}");
 ```
-
--->
 
 ### Host multiple Blazor WebAssembly apps
 
