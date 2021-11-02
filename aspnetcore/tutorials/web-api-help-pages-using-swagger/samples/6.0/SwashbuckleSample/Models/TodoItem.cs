@@ -8,7 +8,7 @@ namespace SwashbuckleSample.Models
         public long Id { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public string Name { get; set; } = null!;
 
         [DefaultValue(false)]
         public bool IsComplete { get; set; }
