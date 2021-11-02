@@ -103,7 +103,7 @@ To reduce fragmentation of the heap, Kestrel employed a technique where it alloc
 
 ### IAsyncDisposable supported
 
-<xref:System.IAsyncDisposable> is now available for controllers and Razor Pages. Asynchronous versions have been added to the relevant interfaces in factories and activators:
+<xref:System.IAsyncDisposable> is now available for controllers, Razor Pages, and View Components. Asynchronous versions have been added to the relevant interfaces in factories and activators:
 
 * The new methods offer a default interface implementation that delegates to the synchronous version and calls <xref:System.IDisposable.Dispose%2A>.
 * The implementations override the default implementation and handle
@@ -113,7 +113,7 @@ both interfaces are implemented.
 * Extenders must override the new methods included to support
 `IAsyncDisposable` instances.
 
-<!-- TODO add ask @sharpcms to suggest When should I use IAsyncDisposable? and down  -->
+<!-- TODO add ask @sharpcms to suggest When should I use IAsyncDisposable? and down  or copy contents from https://github.com/dotnet/AspNetCore.Docs/pull/23718 -->
 
 ### Vcpkg port for SignalR C++ client
 
