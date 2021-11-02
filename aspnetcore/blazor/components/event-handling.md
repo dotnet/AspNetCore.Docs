@@ -315,7 +315,9 @@ An expression is also a permitted value of the attribute. In the following examp
 
 ## Stop event propagation
 
-Use the [`@on{DOM EVENT}:stopPropagation`](xref:mvc/views/razor#oneventstoppropagation) directive attribute to stop event propagation, where the `{DOM EVENT}` placeholder is a [Document Object Model (DOM) event](https://developer.mozilla.org/docs/Web/Events).
+Use the [`@on{DOM EVENT}:stopPropagation`](xref:mvc/views/razor#oneventstoppropagation) directive attribute to stop event propagation within the Blazor scope. `{DOM EVENT}` is a placeholder for [Document Object Model (DOM) event](https://developer.mozilla.org/docs/Web/Events).
+
+The `stopPropagation` directive attribute is limited to the Blazor scope and will not work with the HTML DOM. This is because Blazor uses event delegation internally, and events have to propagate to the root before Blazor can act upon them. If you're interested in a _stop propogation like_ mechanism for HTML, you may wish to examine the [`Event.composedPath()`](https://developer.mozilla.org/docs/Web/API/Event/composedPath) and filter events based on the composed [`EventTarget`s](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget). 
 
 In the following example, selecting the checkbox prevents click events from the second child `<div>` from propagating to the parent `<div>`. Since propagated click events normally fire the `OnSelectParentDiv` method, selecting the second child `<div>` results in the parent div message appearing unless the checkbox is selected.
 
@@ -486,7 +488,10 @@ An expression is also a permitted value of the attribute. In the following examp
 
 ## Stop event propagation
 
-Use the [`@on{DOM EVENT}:stopPropagation`](xref:mvc/views/razor#oneventstoppropagation) directive attribute to stop event propagation, where the `{DOM EVENT}` placeholder is a [Document Object Model (DOM) event](https://developer.mozilla.org/docs/Web/Events).
+
+Use the [`@on{DOM EVENT}:stopPropagation`](xref:mvc/views/razor#oneventstoppropagation) directive attribute to stop event propagation within the Blazor scope. `{DOM EVENT}` is a placeholder for [Document Object Model (DOM) event](https://developer.mozilla.org/docs/Web/Events).
+
+The `stopPropagation` directive attribute is limited to the Blazor scope and will not work with the HTML DOM. This is because Blazor uses event delegation internally, and events have to propagate to the root before Blazor can act upon them. If you're interested in a _stop propogation like_ mechanism for HTML, you may wish to examine the [`Event.composedPath()`](https://developer.mozilla.org/docs/Web/API/Event/composedPath) and filter events based on the composed [`EventTarget`s](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget). 
 
 In the following example, selecting the checkbox prevents click events from the second child `<div>` from propagating to the parent `<div>`. Since propagated click events normally fire the `OnSelectParentDiv` method, selecting the second child `<div>` results in the parent div message appearing unless the checkbox is selected.
 
@@ -657,7 +662,10 @@ An expression is also a permitted value of the attribute. In the following examp
 
 ## Stop event propagation
 
-Use the [`@on{DOM EVENT}:stopPropagation`](xref:mvc/views/razor#oneventstoppropagation) directive attribute to stop event propagation, where the `{DOM EVENT}` placeholder is a [Document Object Model (DOM) event](https://developer.mozilla.org/docs/Web/Events).
+
+Use the [`@on{DOM EVENT}:stopPropagation`](xref:mvc/views/razor#oneventstoppropagation) directive attribute to stop event propagation within the Blazor scope. `{DOM EVENT}` is a placeholder for [Document Object Model (DOM) event](https://developer.mozilla.org/docs/Web/Events).
+
+The `stopPropagation` directive attribute is limited to the Blazor scope and will not work with the HTML DOM. This is because Blazor uses event delegation internally, and events have to propagate to the root before Blazor can act upon them. If you're interested in a _stop propogation like_ mechanism for HTML, you may wish to examine the [`Event.composedPath()`](https://developer.mozilla.org/docs/Web/API/Event/composedPath) and filter events based on the composed [`EventTarget`s](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget).
 
 In the following example, selecting the checkbox prevents click events from the second child `<div>` from propagating to the parent `<div>`. Since propagated click events normally fire the `OnSelectParentDiv` method, selecting the second child `<div>` results in the parent div message appearing unless the checkbox is selected.
 
