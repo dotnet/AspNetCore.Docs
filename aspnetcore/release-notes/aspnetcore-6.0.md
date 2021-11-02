@@ -52,7 +52,7 @@ For additional details about this change, see [the related announcement issue](h
 
 <a name="api"></a>
 
-## ASP.NET Core performance improvements
+## ASP.NET Core performance and API improvements
 
 Many changes were made to reduce allocations and improve performance across the stack:
 
@@ -100,6 +100,20 @@ var reader = PipeReader.Create(stream, new StreamPipeReaderOptions(useZeroByteRe
 #### Remove slabs from the `SlabMemoryPool`
 
 To reduce fragmentation of the heap, Kestrel employed a technique where it allocated slabs of memory of 128 KB as part of it’s memory pool. The slabs were then further divided into 4 KB blocks that were used by Kestrel internally. The slabs had to be larger than 85 KB to force allocation on the large object heap to try and prevent the GC from relocating this array. However, with the introduction of the new GC generation, Pinned Object Heap (POH), it no longer makes sense to allocate blocks on slab. In preview3, we now directly allocate blocks on the POH, reducing the complexity involved in managing our own memory pool. This change should make easier to perform future improvements such as making it easier to shrink the memory pool used by Kestrel.
+
+### IAsyncDisposable supported
+
+<xref:System.IAsyncDisposable> is now available for controllers and Razor Pages. Asynchronous versions have been added to the relevant interfaces in factories and activators:
+
+* The new methods offer a default interface implementation that delegates to the synchronous version and calls <xref:System.IDisposable.Dispose%2A>.
+* The implementations override the default implementation and handle
+disposing `IAsyncDisposable` implementations.
+* The implementations favor `IAsyncDisposable` over `IDisposable` when
+both interfaces are implemented.
+* Extenders must override the new methods included to support
+`IAsyncDisposable` instances.
+
+<!-- TODO add ask @sharpcms to suggest When should I use IAsyncDisposable? and down  -->
 
 ### Vcpkg port for SignalR C++ client
 
