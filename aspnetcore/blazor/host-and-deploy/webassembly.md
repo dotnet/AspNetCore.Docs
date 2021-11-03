@@ -489,12 +489,7 @@ Published assets are created in the `/bin/Release/{TARGET FRAMEWORK}/publish` fo
 
 When a Blazor project is published, a `web.config` file is created with the following IIS configuration:
 
-* MIME types are set for the following file extensions:
-  * `.dll`: `application/octet-stream`
-  * `.json`: `application/json`
-  * `.wasm`: `application/wasm`
-  * `.woff`: `application/font-woff`
-  * `.woff2`: `application/font-woff`
+* MIME types
 * HTTP compression is enabled for the following MIME types:
   * `application/octet-stream`
   * `application/wasm`
@@ -532,7 +527,7 @@ If a standalone app is hosted as an IIS sub-app, perform either of the following
 
 * Disable the inherited ASP.NET Core Module handler.
 
-  Remove the handler in the Blazor app's published `web.config` file by adding a `<handlers>` section to the file:
+  Remove the handler in the Blazor app's published `web.config` file by adding a `<handlers>` section to the `<system.webServer>` section of the file:
 
   ```xml
   <handlers>
@@ -555,6 +550,9 @@ If a standalone app is hosted as an IIS sub-app, perform either of the following
     </location>
   </configuration>
   ```
+  
+  > [!NOTE]
+  > Disabling inheritance of the root (parent) app's `<system.webServer>` section is the default configuration for published apps using the .NET SDK.
 
 Removing the handler or disabling inheritance is performed in addition to [configuring the app's base path](xref:blazor/host-and-deploy/index#app-base-path). Set the app base path in the app's `index.html` file to the IIS alias used when configuring the sub-app in IIS.
 
@@ -1296,12 +1294,7 @@ Published assets are created in the `/bin/Release/{TARGET FRAMEWORK}/publish` fo
 
 When a Blazor project is published, a `web.config` file is created with the following IIS configuration:
 
-* MIME types are set for the following file extensions:
-  * `.dll`: `application/octet-stream`
-  * `.json`: `application/json`
-  * `.wasm`: `application/wasm`
-  * `.woff`: `application/font-woff`
-  * `.woff2`: `application/font-woff`
+* MIME types
 * HTTP compression is enabled for the following MIME types:
   * `application/octet-stream`
   * `application/wasm`
@@ -1339,7 +1332,7 @@ If a standalone app is hosted as an IIS sub-app, perform either of the following
 
 * Disable the inherited ASP.NET Core Module handler.
 
-  Remove the handler in the Blazor app's published `web.config` file by adding a `<handlers>` section to the file:
+  Remove the handler in the Blazor app's published `web.config` file by adding a `<handlers>` section to the `<system.webServer>` section of the file:
 
   ```xml
   <handlers>
@@ -1362,6 +1355,9 @@ If a standalone app is hosted as an IIS sub-app, perform either of the following
     </location>
   </configuration>
   ```
+  
+  > [!NOTE]
+  > Disabling inheritance of the root (parent) app's `<system.webServer>` section is the default configuration for published apps using the .NET SDK.
 
 Removing the handler or disabling inheritance is performed in addition to [configuring the app's base path](xref:blazor/host-and-deploy/index#app-base-path). Set the app base path in the app's `index.html` file to the IIS alias used when configuring the sub-app in IIS.
 
@@ -2103,12 +2099,7 @@ Published assets are created in the `/bin/Release/{TARGET FRAMEWORK}/publish` fo
 
 When a Blazor project is published, a `web.config` file is created with the following IIS configuration:
 
-* MIME types are set for the following file extensions:
-  * `.dll`: `application/octet-stream`
-  * `.json`: `application/json`
-  * `.wasm`: `application/wasm`
-  * `.woff`: `application/font-woff`
-  * `.woff2`: `application/font-woff`
+* MIME types
 * HTTP compression is enabled for the following MIME types:
   * `application/octet-stream`
   * `application/wasm`
@@ -2146,7 +2137,7 @@ If a standalone app is hosted as an IIS sub-app, perform either of the following
 
 * Disable the inherited ASP.NET Core Module handler.
 
-  Remove the handler in the Blazor app's published `web.config` file by adding a `<handlers>` section to the file:
+  Remove the handler in the Blazor app's published `web.config` file by adding a `<handlers>` section to the `<system.webServer>` section of the file:
 
   ```xml
   <handlers>
@@ -2169,6 +2160,9 @@ If a standalone app is hosted as an IIS sub-app, perform either of the following
     </location>
   </configuration>
   ```
+  
+  > [!NOTE]
+  > Disabling inheritance of the root (parent) app's `<system.webServer>` section is the default configuration for published apps using the .NET SDK.
 
 Removing the handler or disabling inheritance is performed in addition to [configuring the app's base path](xref:blazor/host-and-deploy/index#app-base-path). Set the app base path in the app's `index.html` file to the IIS alias used when configuring the sub-app in IIS.
 
