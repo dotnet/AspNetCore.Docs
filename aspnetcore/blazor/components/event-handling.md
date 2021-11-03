@@ -317,7 +317,7 @@ An expression is also a permitted value of the attribute. In the following examp
 
 Use the [`@on{DOM EVENT}:stopPropagation`](xref:mvc/views/razor#oneventstoppropagation) directive attribute to stop event propagation within the Blazor scope. `{DOM EVENT}` is a placeholder for a [Document Object Model (DOM) event](https://developer.mozilla.org/docs/Web/Events).
 
-The `stopPropagation` directive attribute's effect is limited to the Blazor scope and doesn't extend to the HTML DOM. This is because Blazor uses event delegation internally, and events must propagate to the root before Blazor can act upon them. For a mechanism to prevent HTML DOM event propagation, consider the following approach:
+The `stopPropagation` directive attribute's effect is limited to the Blazor scope and doesn't extend to the HTML DOM. This is because Blazor handles event delegation internally, and events must propagate to the root before Blazor can act upon them. For a mechanism to prevent HTML DOM event propagation, consider the following approach:
 
 * Obtain the event's path by calling [`Event.composedPath()`](https://developer.mozilla.org/docs/Web/API/Event/composedPath).
 * Filter events based on the composed [event targets (`EventTarget`)](https://developer.mozilla.org/docs/Web/API/EventTarget). 
@@ -493,7 +493,7 @@ An expression is also a permitted value of the attribute. In the following examp
 
 Use the [`@on{DOM EVENT}:stopPropagation`](xref:mvc/views/razor#oneventstoppropagation) directive attribute to stop event propagation within the Blazor scope. `{DOM EVENT}` is a placeholder for a [Document Object Model (DOM) event](https://developer.mozilla.org/docs/Web/Events).
 
-The `stopPropagation` directive attribute's effect is limited to the Blazor scope and doesn't extend to the HTML DOM. This is because Blazor uses event delegation internally, and events must propagate to the root before Blazor can act upon them. For a mechanism to prevent HTML DOM event propagation, consider the following approach:
+The `stopPropagation` directive attribute's effect is limited to the Blazor scope and doesn't extend to the HTML DOM. This is because Blazor handles event delegation internally, and events must propagate to the root before Blazor can act upon them. For a mechanism to prevent HTML DOM event propagation, consider the following approach:
 
 * Obtain the event's path by calling [`Event.composedPath()`](https://developer.mozilla.org/docs/Web/API/Event/composedPath).
 * Filter events based on the composed [event targets (`EventTarget`)](https://developer.mozilla.org/docs/Web/API/EventTarget). 
@@ -669,7 +669,7 @@ An expression is also a permitted value of the attribute. In the following examp
 
 Use the [`@on{DOM EVENT}:stopPropagation`](xref:mvc/views/razor#oneventstoppropagation) directive attribute to stop event propagation within the Blazor scope. `{DOM EVENT}` is a placeholder for a [Document Object Model (DOM) event](https://developer.mozilla.org/docs/Web/Events).
 
-The `stopPropagation` directive attribute's effect is limited to the Blazor scope and doesn't extend to the HTML DOM. This is because Blazor uses event delegation internally, and events must propagate to the root before Blazor can act upon them. For a mechanism to prevent HTML DOM event propagation, consider the following approach:
+The `stopPropagation` directive attribute's effect is limited to the Blazor scope and doesn't extend to the HTML DOM. This is because Blazor handles event delegation internally, and events must propagate to the root before Blazor can act upon them. For a mechanism to prevent HTML DOM event propagation, consider the following approach:
 
 * Obtain the event's path by calling [`Event.composedPath()`](https://developer.mozilla.org/docs/Web/API/Event/composedPath).
 * Filter events based on the composed [event targets (`EventTarget`)](https://developer.mozilla.org/docs/Web/API/EventTarget). 
