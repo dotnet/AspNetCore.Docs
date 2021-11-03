@@ -115,8 +115,8 @@ both interfaces are implemented.
 
 `IAsyncDisposable` is beneficial when working with:
 
-* Asynchronous enumerators like in asynchronous streams.
-* Unmanaged resources that have resource-intensive I/O operation to release.
+* Asynchronous enumerators, for example, in asynchronous streams.
+* Unmanaged resources that have resource-intensive I/O operations to release.
 
 When implementing this interface, use the `DisposeAsync` method to release resources.
 
