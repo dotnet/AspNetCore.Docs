@@ -81,7 +81,7 @@ By shrinking the size of <xref:System.IO.Pipelines.Pipe?displayProperty=fullName
 
 #### Pool SocketSender
 
-`SocketSender` objects (that subclass <xref:System.Net.Sockets.SocketAsyncEventArgs>) are around 350 bytes at runtime. Instead of allocating a new `SocketSender` object per connection, they can be pooled. `SocketSender` objects can be pooled because sends are usually very fast. Pooling reduces the per connection overhead. Instead of allocating 350 bytes per connection, only pay 350 bytes per `IOQueue` are allocated. Allocation is done per queue to avoid contention. Our WebSocket server with 5000 idle connections went from allocating ~1.75 MB (350 bytes * 5000) to allocating ~2.8kb (350 bytes * 8) for `SocketSender` objects.
+`SocketSender` objects (that subclass <xref:System.Net.Sockets.SocketAsyncEventArgs>) are around 350 bytes at runtime. Instead of allocating a new `SocketSender` object per connection, they can be pooled. `SocketSender` objects can be pooled because sends are usually very fast. Pooling reduces the per connection overhead. Instead of allocating 350 bytes per connection, only pay 350 bytes per `IOQueue` are allocated. Allocation is done per queue to avoid contention. Our WebSocket server with 5000 idle connections went from allocating ~1.75 MB (350 bytes * 5000) to allocating ~2.8 kb (350 bytes * 8) for `SocketSender` objects.
 
 #### Zero bytes reads with SslStream
 
@@ -113,7 +113,28 @@ both interfaces are implemented.
 * Extenders must override the new methods included to support
 `IAsyncDisposable` instances.
 
-<!-- TODO add ask @sharpcms to suggest When should I use IAsyncDisposable? and down  or copy contents from https://github.com/dotnet/AspNetCore.Docs/pull/23718 -->
+`IAsyncDisposable` is beneficial when working with:
+
+* Asynchronous enumerators like in asynchronous streams.
+* Unmanaged resources that have resource-intensive I/O operation to release.
+
+When implementing this interface, use the `DisposeAsync` method to release resources.
+
+Consider a controller that creates and uses a <xref:System.Text.Json.Utf8JsonWriter>. `Utf8JsonWriter` is an `IAsyncDisposable` resource:
+
+[!code-csharp[](aspnetcore-6.0/samples/HomeController.cs?name=snippet&highlight=1,9)]
+
+`IAsyncDisposable` must implement `DisposeAsync`:
+
+[!code-csharp[](aspnetcore-6.0/samples/HomeController.cs?name=snippet2)]
+
+The preceding code:
+
+* Calls `Dispose` to release other unmanaged resources.
+* Tells the garbage collector not to run.
+* Awaits `DisposeAsyncCore`, shown in the following code:
+
+[!code-csharp[](aspnetcore-6.0/samples/HomeController.cs?name=snippet3)]
 
 ### Vcpkg port for SignalR C++ client
 
@@ -347,7 +368,7 @@ See [this example of a custom IConnectionListenerFactory](https://github.com/dav
 
 ### Kestrel is the default launch profile for Visual Studio
 
-The default launch profile for all new dotnet web projects is Kestrel. tarting Kestrel is significantly faster and results in a more responsive experience while developing apps.
+The default launch profile for all new dotnet web projects is Kestrel. Starting Kestrel is significantly faster and results in a more responsive experience while developing apps.
 
 IIS Express is still available as a launch profile for scenarios such as Windows Authentication or port sharing.
 
@@ -496,7 +517,7 @@ The resulting logs now resemble the sample output show below:
 
 ### Configurable unconsumed incoming buffer size for IIS
 
-the IIS server only buffered 64 KiB of unconsumed request bodies. This resulted in reads being constrained to that maximum size, which impacts the performance when large incoming bodies such as large uploads. In .NET 6 Preview 5, we’ve changed the default buffer size from 64 KiB to 1 MiB which should result in improved throughput for large uploads. In our tests, a 700 MiB upload that used to take 9 seconds now only takes 2.5 seconds.
+The IIS server only buffered 64 KiB of unconsumed request bodies. This resulted in reads being constrained to that maximum size, which impacts the performance when large incoming bodies such as large uploads. In .NET 6 Preview 5, we’ve changed the default buffer size from 64 KiB to 1 MiB which should result in improved throughput for large uploads. In our tests, a 700 MiB upload that used to take 9 seconds now only takes 2.5 seconds.
 
 The downside of a larger buffer size is an increased per-request memory consumption when the app isn’t quickly reading from the request body. So, in addition to changing the default buffer size, we’ve also made the buffer size configurable, allowing you to tune it based on your workload.
 
@@ -647,7 +668,7 @@ For more information, see [StackExchange.Redis Profiling](https://stackexchange.
 
 A new feature has been added to the <xref:host-and-deploy/aspnet-core-module> to add support for shadow-copying application assemblies. Currently .NET locks application binaries when running on Windows making it impossible to replace binaries when the app is running. While our recommendation remains to use an [app offline file](xref:host-and-deploy/iis/app-offline), we recognize there are certain scenarios (for example FTP deployments) where it isn’t possible to do so.
 
-In such scenarios, enable shadow copying by customizing the ASP.NET Core module handler settings. In most cases, ASP.NET Core apps do not have a `web.config` checked into source control that you can modify. In ASP.NET COre, `web.config` is ordinarily generated by the SDK. The following sample `web.config` can be used to get started:
+In such scenarios, enable shadow copying by customizing the ASP.NET Core module handler settings. In most cases, ASP.NET Core apps do not have a `web.config` checked into source control that you can modify. In ASP.NET Core, `web.config` is ordinarily generated by the SDK. The following sample `web.config` can be used to get started:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
