@@ -184,6 +184,7 @@ When a file is selected, the `ResizeAndDisplayImageUsingStreaming` method is cal
 * Wrap the `resizedImage` <xref:System.IO.Stream> in a <xref:Microsoft.JSInterop.DotNetStreamReference>, which allows streaming the image data to the client.
 * Invokes `setImageUsingStreaming`, which is a JavaScript function that accepts the data on the client. The `setImageUsingStreaming` function is shown in the prior section.
 
+Note this technique involves round-tripping the image data from the client to the server, and back. In a future version of .NET this area may be optimized to better facilitate image previews. In the meantime, you may elect to create an event listener for the `InputFile` component which captures the [`FileList`](https://developer.mozilla.org/docs/Web/API/FileList) and displays a preview using JavaScript. This is left as an exercise for the reader.
 
 ## Additional resources
 
