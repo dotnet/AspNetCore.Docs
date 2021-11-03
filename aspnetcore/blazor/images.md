@@ -145,7 +145,7 @@ async function setImageUsingStreaming(imageElementId, imageStream) {
 }
 ```
 
-Call [`URL.revokeObjectURL()`](https://developer.mozilla.org/en-US/docs/Web/API/URL/revokeObjectURL) to dispose of the object URL when done working with an image to prevent memory leaks:
+Call [`URL.revokeObjectURL()`](https://developer.mozilla.org/docs/Web/API/URL/revokeObjectURL) to dispose of the object URL when done working with an image to prevent memory leaks:
 
 ```javascript
 URL.revokeObjectURL(url);
