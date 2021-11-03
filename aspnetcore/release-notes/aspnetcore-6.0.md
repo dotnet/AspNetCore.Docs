@@ -382,7 +382,7 @@ See [Template generated ports for Kestrel](#tgp) in this document for more infor
 
 .NET 3 to .NET 5 used [IdentityServer4](https://identityserver4.readthedocs.io/latest/) as part of our template to support the issuing of JWT tokens for SPA and Blazor applications. The templates now use the [Duende Identity Server](https://docs.duendesoftware.com/identityserver/v5).
 
-If you are extending the identity models and are updating existing projects you will need to update the namespaces in your code from `IdentityServer4.IdentityServer` to `Duende.IdentityServer` and follow their [migration instructions](https://docs.duendesoftware.com/identityserver/v5/upgrades/).
+If you are extending the identity models and are updating existing projects you need to update the namespaces in your code from `IdentityServer4.IdentityServer` to `Duende.IdentityServer` and follow their [migration instructions](https://docs.duendesoftware.com/identityserver/v5/upgrades/).
 
 The license model for Duende Identity Server has changed to a reciprocal license, which may require license fees when it's used commercially in production. See the [Duende license page](https://duendesoftware.com/products/identityserver#pricing) for more details.
 
@@ -544,7 +544,7 @@ The ASP.NET Core 6.0 template for Angular now uses [Angular 12](https://blog.ang
 
 ### Configurable buffer threshold before writing to disk in Json.NET output formatter
 
-**Note**: We recommend using the <xref:System.Text.Json?displayProperty=fullName> output formatter except when  the `Newtonsoft.Json` serializer is required for compatibility reasons. The `System.Text.Json` serializer is fully `async` and will work efficiently for larger payloads.
+**Note**: We recommend using the <xref:System.Text.Json?displayProperty=fullName> output formatter except when  the `Newtonsoft.Json` serializer is required for compatibility reasons. The `System.Text.Json` serializer is fully `async` and works efficiently for larger payloads.
 
 The `Newtonsoft.Json` output formatter by default buffers responses up to 32 KiB in memory before buffering to disk. This is to avoid performing synchronous IO, which can result in other side-effects such as thread starvation and application deadlocks. However, if the response is larger than 32 KiB, considerable disk I/O occurs. The memory threshold is now configurable via the [MvcNewtonsoftJsonOptions.OutputFormatterMemoryBufferThreshold](xref:Microsoft.AspNetCore.Mvc.MvcNewtonsoftJsonOptions.OutputFormatterMemoryBufferThreshold) property before buffering to disk:
 
@@ -556,18 +556,23 @@ For more information, see [this GitHub pull request](https://github.com/dotnet/a
 
 New APIs were added to expose all common headers available on <!--REVIEW: System.Net.Http.HeaderNames changed to --> <xref:Microsoft.Net.Http.Headers.HeaderNames?displayProperty=fullName> as properties on the <xref:Microsoft.AspNetCore.Http.IHeaderDictionary> resulting in an easier to use API. For example, the in-line middleware in the following code gets and sets both request and response headers using the new APIs:
 
-[!code-csharp[](aspnetcore-6.0/samples/WebApp1/Program.cs?name=snippet_hdrs)]
+[!code-csharp[](aspnetcore-6.0/samples/WebApp1/Program.cs?name=snippet_jsonb)]
 
 For implemented headers the get and set accessors are implemented by going directly to the field and bypassing the lookup. For non-implemented headers, the accessors can bypass the initial lookup against implemented headers and directly perform the `Dictionary<string, StringValues>` lookup. Avoiding the lookup results in faster access for both scenarios.
 
 ### Async streaming
 
-<!-- from: https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-net-6-preview-4/#async-streaming -->
-<!-- TODO Review: removed all the way down to the : what does that mean? WHat else? -->
+<!-- TODO Review  from: https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-net-6-preview-4/#async-streaming 
 
-ASP.NET Core now supports asynchronous streaming from controller actions and responses from the JSON formatter. Returning an `IAsyncEnumerable` from an action no longer buffers the response content in memory before it gets sent. This helps reduce memory usage when returning large datasets that can be asynchronously enumerated.
+- Blog writes
+ASP.NET Core now supports async streaming from controller actions all the way down to the response JSON formatter.
 
-Note that Entity Framework Core provides implementations of `IAsyncEnumerable` for querying the database. The improved support for `IAsyncEnumerable` in ASP.NET Core in .NET 6 can make using EF Core with ASP.NET Core more efficient. For example, the following code will no longer buffer the product data into memory before sending the response:
+What does "all the way down to the" mean? That won't machine translate. What else is new in async streaming beside controller actions and responses?
+ -->
+
+ASP.NET Core now supports asynchronous streaming from controller actions and responses from the JSON formatter. Returning an `IAsyncEnumerable` from an action no longer buffers the response content in memory before it gets sent. Not buffering helps reduce memory usage when returning large datasets that can be asynchronously enumerated.
+
+Note that Entity Framework Core provides implementations of `IAsyncEnumerable` for querying the database. The improved support for `IAsyncEnumerable` in ASP.NET Core in .NET 6 can make using EF Core with ASP.NET Core more efficient. For example, the following code no longer buffers the product data into memory before sending the response:
 
 [!code-csharp[](aspnetcore-6.0/samples/WebMvcEF/Controllers/MoviesController.cs?name=snippet1)]
 
@@ -637,14 +642,12 @@ The <xref:Microsoft.AspNetCore.Connections.Features.IConnectionSocketFeature> re
 
 For example, the following app sets the <xref:System.Net.Sockets.Socket.LingerState> property on the accepted socket:
 
-<!-- TODO FIX code -->
-
 [!code-csharp[](aspnetcore-6.0/samples/WebApp1/Program.cs?name=snippet_icsf)]
 
 ### .NET Hot Reload
 
-<!--TODO @LyalinDotCom this should probably be removed and left to the .NET 6 what's new doc -->
-Hot Reload minimizes the number of app restarts after code changes. For more information, see [Update on .NET Hot Reload progress and Visual Studio 2022 Highlights](https://devblogs.microsoft.com/dotnet/update-on-net-hot-reload-progress-and-visual-studio-2022-highlights/)
+Hot Reload minimizes the number of app restarts after code changes. For more information, see [.NET Hot Reload support for ASP.NET Core](https://docs.microsoft.com/aspnet/core/test/hot-reload)
+<!--TODO change above link to <xref:test/hot-reload> when https://github.com/dotnet/AspNetCore.Docs/pull/23659 merges-->
 
 ### Generic type constraints in Razor
 
