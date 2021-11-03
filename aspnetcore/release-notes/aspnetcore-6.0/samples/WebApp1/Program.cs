@@ -1,4 +1,4 @@
-#define RED  // DEF LATIN DIAG DCRT JSONB FDRS IIS2 HTTPLG ICSF RED
+#define LATIN  // DEF LATIN DIAG DCRT JSONB FDRS IIS2 HTTPLG ICSF RED
 #if DEF
 #elif NEVER
 #region snippet_1
@@ -132,13 +132,14 @@ bool GetDesiredState()
     throw new NotImplementedException();
 }
 #elif JSONB
+// Doesn't compile with RC2
 #region snippet_jsonb
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages()
             .AddNewtonsoftJson(options =>
             { 
-                options.InputFormatterMemoryBufferThreshold = 48 * 1024;
+                options.OutputFormatterMemoryBufferThreshold = 48 * 1024;
             });
 
 var app = builder.Build();
