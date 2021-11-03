@@ -50,7 +50,7 @@ For this demonstration, the app creates a 50 KB file of random data from a new b
 }
 ```
 
-Create a `DownloadFileFromStream` method that performs the following steps:
+The following `DownloadFileFromStream` method performs the following steps:
 
 * Retrieves the <xref:System.IO.Stream> from `GetFileStream`.
 * Specify a file name when file is saved on the user's machine. The following example names the file `log.bin`.
