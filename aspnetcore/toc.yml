@@ -8,7 +8,7 @@
       uid: index
     - name: Compare ASP.NET Core and ASP.NET
       uid: fundamentals/choose-between-aspnet-and-aspnetcore
-    - name: Compare .NET Core and .NET Framework
+    - name: Compare .NET and .NET Framework
       href: /dotnet/standard/choosing-core-framework-server?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
 - name: Get started
   uid: getting-started
