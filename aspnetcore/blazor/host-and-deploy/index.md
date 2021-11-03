@@ -133,7 +133,7 @@ The Blazor WebAssembly app responds locally at `http://localhost:port/CoolApp`.
 
 ### Blazor Server `MapFallbackToPage` configuration
 
-Pass the following path to <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A> in `Program.cs` of the host Razor Pages app:
+Pass the following path to <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A> in `Program.cs` of the host ASP.NET Core app:
 
 ```csharp
 app.MapFallbackToPage("/{RELATIVE PATH}/{**path:nonfile}");
@@ -260,7 +260,7 @@ The Blazor WebAssembly app responds locally at `http://localhost:port/CoolApp`.
 
 ### Blazor Server `MapFallbackToPage` configuration
 
-Pass the following path to <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A> in `Startup.Configure` of the host Razor Pages app:
+Pass the following path to <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A> in `Startup.Configure` of the host ASP.NET Core app:
 
 ```csharp
 endpoints.MapFallbackToPage("/{RELATIVE PATH}/{**path:nonfile}");
@@ -387,7 +387,7 @@ The Blazor WebAssembly app responds locally at `http://localhost:port/CoolApp`.
 
 ### Blazor Server `MapFallbackToPage` configuration
 
-Pass the following path to <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A> in `Startup.Configure` of the host Razor Pages app:
+Pass the following path to <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A> in `Startup.Configure` of the host ASP.NET Core app:
 
 ```csharp
 endpoints.MapFallbackToPage("/{RELATIVE PATH}/{**path:nonfile}");
