@@ -55,8 +55,8 @@ To create additional file mappings with a <xref:Microsoft.AspNetCore.StaticFiles
 
   ```csharp
   app.MapWhen(ctx => !ctx.Request.Path
-      .StartsWithSegments("_framework/blazor.server.js", 
-          subApp => subApp.UseStaticFiles(new StaticFileOptions(){ ... })));
+      .StartsWithSegments("_framework/blazor.server.js"),
+          subApp => subApp.UseStaticFiles(new StaticFileOptions() { ... }));
   ```
 
 ::: moniker-end
@@ -105,8 +105,8 @@ To create additional file mappings with a <xref:Microsoft.AspNetCore.StaticFiles
 
   ```csharp
   app.MapWhen(ctx => !ctx.Request.Path
-      .StartsWithSegments("_framework/blazor.server.js", 
-          subApp => subApp.UseStaticFiles(new StaticFileOptions(){ ... })));
+      .StartsWithSegments("_framework/blazor.server.js"),
+          subApp => subApp.UseStaticFiles(new StaticFileOptions() { ... }));
   ```
 
 ::: moniker-end
@@ -155,8 +155,8 @@ To create additional file mappings with a <xref:Microsoft.AspNetCore.StaticFiles
 
   ```csharp
   app.MapWhen(ctx => !ctx.Request.Path
-      .StartsWithSegments("_framework/blazor.server.js", 
-          subApp => subApp.UseStaticFiles(new StaticFileOptions(){ ... })));
+      .StartsWithSegments("_framework/blazor.server.js"),
+          subApp => subApp.UseStaticFiles(new StaticFileOptions() { ... }));
   ```
 
 ::: moniker-end
