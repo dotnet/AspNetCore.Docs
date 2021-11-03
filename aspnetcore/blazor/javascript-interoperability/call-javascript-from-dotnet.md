@@ -656,43 +656,6 @@ Other data types, such as string arrays, can be converted but require creating a
 > [!WARNING]
 > JS functions provided by the Blazor framework, such as `js_typed_array_to_array`, `mono_obj_array_new`, and `mono_obj_array_set`, are subject to name changes, behavioral changes, or removal in future releases of .NET.
 
-## Stream from JavaScript to .NET
-
-Blazor supports streaming data directly from JavaScript to .NET. Streams are requested using the `Microsoft.JSInterop.IJSStreamReference` interface.
-
-`Microsoft.JSInterop.IJSStreamReference.OpenReadStreamAsync` returns a <xref:System.IO.Stream> and uses the following parameters:
-
-* `maxAllowedSize`: Maximum number of bytes permitted for the read operation from JavaScript, which defaults to 512,000 bytes if not specified.
-* `cancellationToken`: A <xref:System.Threading.CancellationToken> for cancelling the read.
-
-In JavaScript:
-
-```javascript
-function streamToDotNet() {
-  return new Uint8Array(10000000);
-}
-```
-
-In C# code:
-
-```csharp
-var dataReference = 
-    await JS.InvokeAsync<IJSStreamReference>("streamToDotNet");
-using var dataReferenceStream = 
-    await dataReference.OpenReadStreamAsync(maxAllowedSize: 10_000_000);
-
-var outputPath = Path.Combine(Path.GetTempPath(), "file.txt");
-using var outputFileStream = File.OpenWrite(outputPath);
-await dataReferenceStream.CopyToAsync(outputFileStream);
-```
-
-In the preceding example:
-
-* `JS` is an injected <xref:Microsoft.JSInterop.IJSRuntime> instance.
-* The `dataReferenceStream` is written to disk (`file.txt`) at the current user's temporary folder path (<xref:System.IO.Path.GetTempPath%2A>).
-
-<xref:blazor/file-uploads> covers how to upload a file in Blazor.
-
 ## Stream from .NET to JavaScript
 
 Blazor supports streaming data directly from .NET to JavaScript. Streams are created using a <xref:Microsoft.JSInterop.DotNetStreamReference>.
@@ -731,6 +694,8 @@ In the preceding example:
 
 * The `{STREAM}` placeholder represents the <xref:System.IO.Stream> sent to JavaScript.
 * `JS` is an injected <xref:Microsoft.JSInterop.IJSRuntime> instance.
+
+<xref:blazor/js-interop/call-dotnet-from-javascript#stream-from-javascript-to-dotnet> covers the reverse operation, streaming from JavaScript to .NET.
 
 <xref:blazor/file-downloads> covers how to download a file in Blazor.
 
