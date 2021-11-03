@@ -131,19 +131,21 @@ dotnet run --pathbase=/CoolApp
 
 The Blazor WebAssembly app responds locally at `http://localhost:port/CoolApp`.
 
+<!-- HOLD
 ### Blazor Server `MapFallbackToPage` configuration
 
-Pass the following path to <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A> in `Program.cs` of the host ASP.NET Core app:
+In scenarios where an app requires a separate area with custom resources and Razor components:
 
-```csharp
-app.MapFallbackToPage("/{RELATIVE PATH}/{**path:nonfile}");
-```
+* Create a folder within the app's `Pages` folder to hold the resources. For example, an administator section of an app is created in a new folder named `Admin` (`Pages/Admin`).
+* Create a root page (`_Host.razor`) for the area. For example, create a `Pages/Admin/_Host.razor` file from the app's main root page. Set the route of the new page for the area. For example, set the route of the new page to `@page "/Admin"`.
+* Add a layout to the area's folder (`Pages/Admin/_Layout.razor`). In the layout for the separate area, set the `<base>` tag `href` to match the area's folder. For example, `<base href="/Admin/" />`. For demonstration purposes, add `~/` to the static resources in the page (for example, `~/css/site.css`).
+* Razor components are added to the area's folder. For example, `Pages/Admin/Component1.razor` with an `@page` directive and route template of `@page "/admin/component1`.
+* In `Program.cs`, call <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A> for the area's request path. For example:
 
-The placeholder `{RELATIVE PATH}` is the non-root path on the server. For example, `CoolApp` is the placeholder segment if the non-root URL to the app is `https://{HOST}:{PORT}/CoolApp/`):
-
-```csharp
-app.MapFallbackToPage("/CoolApp/{**path:nonfile}");
-```
+  ```csharp
+  app.MapFallbackToPage("~/Admin/{*clientroutes:nonfile}", "/Admin/_Host");
+  ```
+-->
 
 ### Host multiple Blazor WebAssembly apps
 
@@ -258,19 +260,21 @@ dotnet run --pathbase=/CoolApp
 
 The Blazor WebAssembly app responds locally at `http://localhost:port/CoolApp`.
 
+<!-- HOLD
 ### Blazor Server `MapFallbackToPage` configuration
 
-Pass the following path to <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A> in `Startup.Configure` of the host ASP.NET Core app:
+In scenarios where an app requires a separate area with custom resources and Razor components:
 
-```csharp
-endpoints.MapFallbackToPage("/{RELATIVE PATH}/{**path:nonfile}");
-```
+* Create a folder within the app's `Pages` folder to hold the resources. For example, an administator section of an app is created in a new folder named `Admin` (`Pages/Admin`).
+* Create a root page (`_Host.razor`) for the area. For example, create a `Pages/Admin/_Host.razor` file from the app's main root page. Set the route of the new page for the area. For example, set the route of the new page to `@page "/Admin"`.
+* Add a layout to the area's folder (`Pages/Admin/_Layout.razor`). In the layout for the separate area, set the `<base>` tag `href` to match the area's folder. For example, `<base href="/Admin/" />`. For demonstration purposes, add `~/` to the static resources in the page (for example, `~/css/site.css`).
+* Razor components are added to the area's folder. For example, `Pages/Admin/Component1.razor` with an `@page` directive and route template of `@page "/admin/component1`.
+* In `Program.cs`, call <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A> for the area's request path. For example:
 
-The placeholder `{RELATIVE PATH}` is the non-root path on the server. For example, `CoolApp` is the placeholder segment if the non-root URL to the app is `https://{HOST}:{PORT}/CoolApp/`):
-
-```csharp
-endpoints.MapFallbackToPage("/CoolApp/{**path:nonfile}");
-```
+  ```csharp
+  app.MapFallbackToPage("~/Admin/{*clientroutes:nonfile}", "/Admin/_Host");
+  ```
+-->
 
 ### Host multiple Blazor WebAssembly apps
 
@@ -385,19 +389,21 @@ dotnet run --pathbase=/CoolApp
 
 The Blazor WebAssembly app responds locally at `http://localhost:port/CoolApp`.
 
+<!-- HOLD
 ### Blazor Server `MapFallbackToPage` configuration
 
-Pass the following path to <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A> in `Startup.Configure` of the host ASP.NET Core app:
+In scenarios where an app requires a separate area with custom resources and Razor components:
 
-```csharp
-endpoints.MapFallbackToPage("/{RELATIVE PATH}/{**path:nonfile}");
-```
+* Create a folder within the app's `Pages` folder to hold the resources. For example, an administator section of an app is created in a new folder named `Admin` (`Pages/Admin`).
+* Create a root page (`_Host.razor`) for the area. For example, create a `Pages/Admin/_Host.razor` file from the app's main root page. Set the route of the new page for the area. For example, set the route of the new page to `@page "/Admin"`.
+* Add a layout to the area's folder (`Pages/Admin/_Layout.razor`). In the layout for the separate area, set the `<base>` tag `href` to match the area's folder. For example, `<base href="/Admin/" />`. For demonstration purposes, add `~/` to the static resources in the page (for example, `~/css/site.css`).
+* Razor components are added to the area's folder. For example, `Pages/Admin/Component1.razor` with an `@page` directive and route template of `@page "/admin/component1`.
+* In `Program.cs`, call <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A> for the area's request path. For example:
 
-The placeholder `{RELATIVE PATH}` is the non-root path on the server. For example, `CoolApp` is the placeholder segment if the non-root URL to the app is `https://{HOST}:{PORT}/CoolApp/`):
-
-```csharp
-endpoints.MapFallbackToPage("/CoolApp/{**path:nonfile}");
-```
+  ```csharp
+  app.MapFallbackToPage("~/Admin/{*clientroutes:nonfile}", "/Admin/_Host");
+  ```
+-->
 
 ### Host multiple Blazor WebAssembly apps
 
