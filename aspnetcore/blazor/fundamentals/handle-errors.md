@@ -8,7 +8,6 @@ ms.custom: mvc
 ms.date: 02/25/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/fundamentals/handle-errors
-zone_pivot_groups: blazor-hosting-models
 ---
 # Handle errors in ASP.NET Core Blazor apps
 
@@ -16,9 +15,7 @@ zone_pivot_groups: blazor-hosting-models
 
 This article describes how Blazor manages unhandled exceptions and how to develop apps that detect and handle errors.
 
-::: zone pivot="webassembly"
-
-## Detailed errors during development
+## Detailed errors during development for Blazor WebAssembly apps
 
 When a Blazor app isn't functioning properly during development, receiving detailed error information from the app assists in troubleshooting and fixing the issue. When an error occurs, Blazor apps display a light yellow bar at the bottom of the screen:
 
@@ -39,7 +36,7 @@ In a Blazor WebAssembly app, customize the experience in the `wwwroot/index.html
 
 The `blazor-error-ui` element is normally hidden due the presence of the `display: none` style of the `blazor-error-ui` CSS class in the app's stylesheet (`wwwroot/css/app.css`). When an error occurs, the framework applies `display: block` to the element.
 
-## Manage unhandled exceptions in developer code
+## Manage unhandled exceptions in developer code (Blazor WebAssembly)
 
 For an app to continue after an error, the app must have error handling logic. Later sections of this article describe potential sources of unhandled exceptions.
 
@@ -48,11 +45,15 @@ In production, don't render framework exception messages or stack traces in the 
 * Disclose sensitive information to end users.
 * Help a malicious user discover weaknesses in an app that can compromise the security of the app, server, or network.
 
+## Global exception handling (Blazor WebAssembly)
+
 [!INCLUDE[](~/blazor/fundamentals/includes/handle-errors/global-exception-handling.md)]
+
+## Error boundaries (Blazor WebAssembly)
 
 [!INCLUDE[](~/blazor/fundamentals/includes/handle-errors/error-boundaries.md)]
 
-## Log errors with a persistent provider
+## Log errors with a persistent provider (Blazor WebAssembly)
 
 If an unhandled exception occurs, the exception is logged to <xref:Microsoft.Extensions.Logging.ILogger> instances configured in the service container. By default, Blazor apps log to console output with the Console Logging Provider. Consider logging to a more permanent location on the server by sending error information to a backend web API that uses a logging provider with log size management and log rotation. Alternatively, the backend web API app can use an Application Performance Management (APM) service, such as [Azure Application Insights (Azure Monitor)&dagger;](/azure/azure-monitor/app/app-insights-overview), to record error information that it receives from clients.
 
@@ -68,18 +69,18 @@ For more information, see the following articles:
 
 &Dagger;Applies to server-side ASP.NET Core apps that are web API backend apps for Blazor apps. Client-side apps trap and send error information to a web API, which logs the error information to a persistent logging provider.
 
-## Places where errors may occur
+## Places where errors may occur (Blazor WebAssembly)
 
 Framework and app code may trigger unhandled exceptions in any of the following locations, which are described further in the following sections of this article:
 
-* [Component instantiation](#component-instantiation-webassembly)
-* [Lifecycle methods](#lifecycle-methods-webassembly)
-* [Rendering logic](#rendering-logic-webassembly)
-* [Event handlers](#event-handlers-webassembly)
-* [Component disposal](#component-disposal-webassembly)
-* [JavaScript interop](#javascript-interop-webassembly)
+* [Component instantiation](#component-instantiation-blazor-webassembly)
+* [Lifecycle methods](#lifecycle-methods-blazor-webassembly)
+* [Rendering logic](#rendering-logic-blazor-webassembly)
+* [Event handlers](#event-handlers-blazor-webassembly)
+* [Component disposal](#component-disposal-blazor-webassembly)
+* [JavaScript interop](#javascript-interop-blazor-webassembly)
 
-<h3 id="component-instantiation-webassembly">Component instantiation</h3>
+### Component instantiation (Blazor WebAssembly)
 
 When Blazor creates an instance of a component:
 
@@ -88,7 +89,7 @@ When Blazor creates an instance of a component:
 
 An error in an executed constructor or a setter for any `[Inject]` property results in an unhandled exception and stops the framework from instantiating the component. If constructor logic may throw exceptions, the app should trap the exceptions using a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement with error handling and logging.
 
-<h3 id="lifecycle-methods-webassembly">Lifecycle methods</h3>
+### Lifecycle methods (Blazor WebAssembly)
 
 During the lifetime of a component, Blazor invokes [lifecycle methods](xref:blazor/components/lifecycle). For components to deal with errors in lifecycle methods, add error handling logic.
 
@@ -101,7 +102,7 @@ In the following example where <xref:Microsoft.AspNetCore.Components.ComponentBa
 
 [!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/handle-errors/ProductDetails.razor?highlight=11,27-39)]
 
-<h3 id="rendering-logic-webassembly">Rendering logic</h3>
+### Rendering logic (Blazor WebAssembly)
 
 The declarative markup in a Razor component file (`.razor`) is compiled into a C# method called <xref:Microsoft.AspNetCore.Components.ComponentBase.BuildRenderTree%2A>. When a component renders, <xref:Microsoft.AspNetCore.Components.ComponentBase.BuildRenderTree%2A> executes and builds up a data structure describing the elements, text, and child components of the rendered component.
 
@@ -129,7 +130,7 @@ The preceding code assumes that `person` isn't `null`. Often, the structure of t
 }
 ```
 
-<h3 id="event-handlers-webassembly">Event handlers</h3>
+### Event handlers (Blazor WebAssembly)
 
 Client-side code triggers invocations of C# code when event handlers are created using:
 
@@ -144,7 +145,7 @@ If the app calls code that could fail for external reasons, trap exceptions usin
 
 If user code doesn't trap and handle the exception, the framework logs the exception.
 
-<h3 id="component-disposal-webassembly">Component disposal</h3>
+### Component disposal (Blazor WebAssembly)
 
 A component may be removed from the UI, for example, because the user has navigated to another page. When a component that implements <xref:System.IDisposable?displayProperty=fullName> is removed from the UI, the framework calls the component's <xref:System.IDisposable.Dispose%2A> method.
 
@@ -152,7 +153,7 @@ If disposal logic may throw exceptions, the app should trap the exceptions using
 
 For more information on component disposal, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
 
-<h3 id="javascript-interop-webassembly">JavaScript interop</h3>
+### JavaScript interop (Blazor WebAssembly)
 
 <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> allows .NET code to make asynchronous calls to the JavaScript runtime in the user's browser.
 
@@ -171,9 +172,9 @@ For more information, see the following articles:
 * <xref:blazor/js-interop/call-javascript-from-dotnet>
 * <xref:blazor/js-interop/call-dotnet-from-javascript>
 
-## Advanced scenarios
+## Advanced scenarios for Blazor WebAssembly apps
 
-### Recursive rendering
+### Recursive rendering (Blazor WebAssembly)
 
 Components can be nested recursively. This is useful for representing recursive data structures. For example, a `TreeNode` component can render more `TreeNode` components for each of the node's children.
 
@@ -195,7 +196,7 @@ In these scenarios, the thread usually attempts to:
 
 To avoid infinite recursion patterns, ensure that recursive rendering code contains suitable stopping conditions.
 
-### Custom render tree logic
+### Custom render tree logic (Blazor WebAssembly)
 
 Most Blazor components are implemented as Razor component files (`.razor`) and are compiled by the framework to produce logic that operates on a <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> to render their output. However, a developer may manually implement <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> logic using procedural C# code. For more information, see <xref:blazor/advanced-scenarios#manual-rendertreebuilder-logic>.
 
@@ -211,7 +212,7 @@ Incorrect manual render tree builder logic can cause arbitrary undefined behavio
 
 Consider manual render tree builder logic on the same level of complexity and with the same level of *danger* as writing assembly code or [Microsoft Intermediate Language (MSIL)](/dotnet/standard/managed-code) instructions by hand.
 
-## Additional resources
+## Additional resources for Blazor WebAssembly apps
 
 * <xref:blazor/fundamentals/logging>
 * <xref:fundamentals/error-handling>&dagger;
@@ -219,11 +220,7 @@ Consider manual render tree builder logic on the same level of complexity and wi
 
 &dagger;Applies to backend ASP.NET Core web API apps that client-side Blazor WebAssembly apps use for logging.
 
-::: zone-end
-
-::: zone pivot="server"
-
-## Detailed errors during development
+## Detailed errors during development for Blazor Server apps
 
 When a Blazor app isn't functioning properly during development, receiving detailed error information from the app assists in troubleshooting and fixing the issue. When an error occurs, Blazor apps display a light yellow bar at the bottom of the screen:
 
@@ -253,7 +250,7 @@ The `blazor-error-ui` element is normally hidden due the presence of the `displa
 
 Client-side errors don't include the call stack and don't provide detail on the cause of the error, but server logs do contain such information. For development purposes, sensitive circuit error information can be made available to the client by enabling detailed errors.
 
-Set <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DetailedErrors?displayProperty=nameWithType> to `true`. For more information and an example, see <xref:blazor/fundamentals/signalr#circuit-handler-options>.
+Set <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DetailedErrors?displayProperty=nameWithType> to `true`. For more information and an example, see <xref:blazor/fundamentals/signalr#circuit-handler-options-for-blazor-server-apps>.
 
 An alternative to setting <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DetailedErrors?displayProperty=nameWithType> is to set the `DetailedErrors` configuration key to `true` in the app's Development environment settings file (`appsettings.Development.json`).  Additionally, set [SignalR server-side logging](xref:signalr/diagnostics#server-side-logging) (`Microsoft.AspNetCore.SignalR`) to [Debug](xref:Microsoft.Extensions.Logging.LogLevel) or [Trace](xref:Microsoft.Extensions.Logging.LogLevel) for detailed SignalR logging.
 
@@ -295,7 +292,7 @@ The framework terminates a circuit when an unhandled exception occurs for the fo
 * The app's normal operation can't be guaranteed after an unhandled exception.
 * Security vulnerabilities may appear in the app if the circuit continues in an undefined state.
 
-## Manage unhandled exceptions in developer code
+## Manage unhandled exceptions in developer code (Blazor Server)
 
 For an app to continue after an error, the app must have error handling logic. Later sections of this article describe potential sources of unhandled exceptions.
 
@@ -304,13 +301,17 @@ In production, don't render framework exception messages or stack traces in the 
 * Disclose sensitive information to end users.
 * Help a malicious user discover weaknesses in an app that can compromise the security of the app, server, or network.
 
+## Global exception handling (Blazor Server)
+
 [!INCLUDE[](~/blazor/fundamentals/includes/handle-errors/global-exception-handling.md)]
 
 Because the approaches in this section handle errors with a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement, the SignalR connection between the client and server isn't broken when an error occurs and the circuit remains alive. Any unhandled exception is fatal to a circuit. For more information, see the preceding section on [how a Blazor Server app reacts to unhandled exceptions](#how-a-blazor-server-app-reacts-to-unhandled-exceptions).
 
+## Error boundaries (Blazor Server)
+
 [!INCLUDE[](~/blazor/fundamentals/includes/handle-errors/error-boundaries.md)]
 
-## Log errors with a persistent provider
+## Log errors with a persistent provider (Blazor Server)
 
 If an unhandled exception occurs, the exception is logged to <xref:Microsoft.Extensions.Logging.ILogger> instances configured in the service container. By default, Blazor apps log to console output with the Console Logging Provider. Consider logging to a more permanent location on the server with a provider that manages log size and log rotation. Alternatively, the app can use an Application Performance Management (APM) service, such as [Azure Application Insights (Azure Monitor)](/azure/azure-monitor/app/app-insights-overview).
 
@@ -325,19 +326,19 @@ For more information, see the following articles:
 
 &dagger;Applies to server-side ASP.NET Core apps that are web API backend apps for Blazor apps.
 
-## Places where errors may occur
+## Places where errors may occur in Blazor Server apps
 
 Framework and app code may trigger unhandled exceptions in any of the following locations, which are described further in the following sections of this article:
 
-* [Component instantiation](#component-instantiation-server)
-* [Lifecycle methods](#lifecycle-methods-server)
-* [Rendering logic](#rendering-logic-server)
-* [Event handlers](#event-handlers-server)
-* [Component disposal](#component-disposal-server)
-* [JavaScript interop](#javascript-interop-server)
-* [Blazor Server rerendering](#blazor-server-prerendering-server)
+* [Component instantiation](#component-instantiation-blazor-server)
+* [Lifecycle methods](#lifecycle-methods-blazor-server)
+* [Rendering logic](#rendering-logic-blazor-server)
+* [Event handlers](#event-handlers-blazor-server)
+* [Component disposal](#component-disposal-blazor-server)
+* [JavaScript interop](#javascript-interop-blazor-server)
+* [Prerendering](#prerendering-blazor-server)
 
-<h3 id="component-instantiation-server">Component instantiation</h3>
+### Component instantiation (Blazor Server)
 
 When Blazor creates an instance of a component:
 
@@ -346,7 +347,7 @@ When Blazor creates an instance of a component:
 
 A Blazor Server circuit fails when any executed constructor or a setter for any `[Inject]` property throws an unhandled exception. The exception is fatal because the framework can't instantiate the component. If constructor logic may throw exceptions, the app should trap the exceptions using a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement with error handling and logging.
 
-<h3 id="lifecycle-methods-server">Lifecycle methods</h3>
+### Lifecycle methods (Blazor Server)
 
 During the lifetime of a component, Blazor invokes [lifecycle methods](xref:blazor/components/lifecycle). If any lifecycle method throws an exception, synchronously or asynchronously, the exception is fatal to a Blazor Server circuit. For components to deal with errors in lifecycle methods, add error handling logic.
 
@@ -359,7 +360,7 @@ In the following example where <xref:Microsoft.AspNetCore.Components.ComponentBa
 
 [!code-razor[](~/blazor/samples/6.0/BlazorSample_Server/Pages/handle-errors/ProductDetails.razor?highlight=11,27-39)]
 
-<h3 id="rendering-logic-server">Rendering logic</h3>
+### Rendering logic (Blazor Server)
 
 The declarative markup in a Razor component file (`.razor`) is compiled into a C# method called <xref:Microsoft.AspNetCore.Components.ComponentBase.BuildRenderTree%2A>. When a component renders, <xref:Microsoft.AspNetCore.Components.ComponentBase.BuildRenderTree%2A> executes and builds up a data structure describing the elements, text, and child components of the rendered component.
 
@@ -387,7 +388,7 @@ The preceding code assumes that `person` isn't `null`. Often, the structure of t
 }
 ```
 
-<h3 id="event-handlers-server">Event handlers</h3>
+### Event handlers (Blazor Server)
 
 Client-side code triggers invocations of C# code when event handlers are created using:
 
@@ -402,7 +403,7 @@ If an event handler throws an unhandled exception (for example, a database query
 
 If user code doesn't trap and handle the exception, the framework logs the exception and terminates the circuit.
 
-<h3 id="component-disposal-server">Component disposal</h3>
+### Component disposal (Blazor Server)
 
 A component may be removed from the UI, for example, because the user has navigated to another page. When a component that implements <xref:System.IDisposable?displayProperty=fullName> is removed from the UI, the framework calls the component's <xref:System.IDisposable.Dispose%2A> method.
 
@@ -410,7 +411,7 @@ If the component's `Dispose` method throws an unhandled exception, the exception
 
 For more information on component disposal, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
 
-<h3 id="javascript-interop-server">JavaScript interop</h3>
+### JavaScript interop (Blazor Server)
 
 <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> allows .NET code to make asynchronous calls to the JavaScript runtime in the user's browser.
 
@@ -432,7 +433,7 @@ For more information, see the following articles:
 * <xref:blazor/js-interop/call-javascript-from-dotnet>
 * <xref:blazor/js-interop/call-dotnet-from-javascript>
 
-<h3 id="blazor-server-prerendering-server">Blazor Server prerendering</h3>
+### Prerendering (Blazor Server)
 
 Blazor components can be prerendered using the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) so that their rendered HTML markup is returned as part of the user's initial HTTP request. This works by:
 
@@ -449,9 +450,9 @@ Under normal circumstances when prerendering fails, continuing to build and rend
 
 To tolerate errors that may occur during prerendering, error handling logic must be placed inside a component that may throw exceptions. Use [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statements with error handling and logging. Instead of wrapping the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper> Tag Helper in a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement, place error handling logic in the component rendered by the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper> Tag Helper.
 
-## Advanced scenarios
+## Advanced scenarios for Blazor Server apps
 
-### Recursive rendering
+### Recursive rendering (Blazor Server)
 
 Components can be nested recursively. This is useful for representing recursive data structures. For example, a `TreeNode` component can render more `TreeNode` components for each of the node's children.
 
@@ -473,7 +474,7 @@ In these scenarios, an affected Blazor Server circuit fails, and the thread usua
 
 To avoid infinite recursion patterns, ensure that recursive rendering code contains suitable stopping conditions.
 
-### Custom render tree logic
+### Custom render tree logic (Blazor Server)
 
 Most Blazor components are implemented as Razor component files (`.razor`) and are compiled by the framework to produce logic that operates on a <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> to render their output. However, a developer may manually implement <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> logic using procedural C# code. For more information, see <xref:blazor/advanced-scenarios#manual-rendertreebuilder-logic>.
 
@@ -489,14 +490,12 @@ Incorrect manual render tree builder logic can cause arbitrary undefined behavio
 
 Consider manual render tree builder logic on the same level of complexity and with the same level of *danger* as writing assembly code or [Microsoft Intermediate Language (MSIL)](/dotnet/standard/managed-code) instructions by hand.
 
-## Additional resources
+## Additional resources for Blazor Server apps
 
 * <xref:blazor/fundamentals/logging>
 * <xref:fundamentals/error-handling>&dagger;
 
 &dagger;Applies to server-side ASP.NET Core apps that are web API backend apps for Blazor apps.
-
-::: zone-end
 
 ::: moniker-end
 
@@ -504,9 +503,7 @@ Consider manual render tree builder logic on the same level of complexity and wi
 
 This article describes how Blazor manages unhandled exceptions and how to develop apps that detect and handle errors.
 
-::: zone pivot="webassembly"
-
-## Detailed errors during development
+## Detailed errors during development for Blazor WebAssembly apps
 
 When a Blazor app isn't functioning properly during development, receiving detailed error information from the app assists in troubleshooting and fixing the issue. When an error occurs, Blazor apps display a light yellow bar at the bottom of the screen:
 
@@ -527,7 +524,7 @@ In a Blazor WebAssembly app, customize the experience in the `wwwroot/index.html
 
 The `blazor-error-ui` element is normally hidden due the presence of the `display: none` style of the `blazor-error-ui` CSS class in the app's stylesheet (`wwwroot/css/app.css`). When an error occurs, the framework applies `display: block` to the element.
 
-## Manage unhandled exceptions in developer code
+## Manage unhandled exceptions in developer code (Blazor WebAssembly)
 
 For an app to continue after an error, the app must have error handling logic. Later sections of this article describe potential sources of unhandled exceptions.
 
@@ -536,9 +533,11 @@ In production, don't render framework exception messages or stack traces in the 
 * Disclose sensitive information to end users.
 * Help a malicious user discover weaknesses in an app that can compromise the security of the app, server, or network.
 
+## Global exception handling (Blazor WebAssembly)
+
 [!INCLUDE[](~/blazor/fundamentals/includes/handle-errors/global-exception-handling.md)]
 
-## Log errors with a persistent provider
+## Log errors with a persistent provider (Blazor WebAssembly)
 
 If an unhandled exception occurs, the exception is logged to <xref:Microsoft.Extensions.Logging.ILogger> instances configured in the service container. By default, Blazor apps log to console output with the Console Logging Provider. Consider logging to a more permanent location on the server by sending error information to a backend web API that uses a logging provider with log size management and log rotation. Alternatively, the backend web API app can use an Application Performance Management (APM) service, such as [Azure Application Insights (Azure Monitor)&dagger;](/azure/azure-monitor/app/app-insights-overview), to record error information that it receives from clients.
 
@@ -554,18 +553,18 @@ For more information, see the following articles:
 
 &Dagger;Applies to server-side ASP.NET Core apps that are web API backend apps for Blazor apps. Client-side apps trap and send error information to a web API, which logs the error information to a persistent logging provider.
 
-## Places where errors may occur
+## Places where errors may occur in Blazor WebAssembly apps
 
 Framework and app code may trigger unhandled exceptions in any of the following locations, which are described further in the following sections of this article:
 
-* [Component instantiation](#component-instantiation-webassembly)
-* [Lifecycle methods](#lifecycle-methods-webassembly)
-* [Rendering logic](#rendering-logic-webassembly)
-* [Event handlers](#event-handlers-webassembly)
-* [Component disposal](#component-disposal-webassembly)
-* [JavaScript interop](#javascript-interop-webassembly)
+* [Component instantiation](#component-instantiation-blazor-webassembly)
+* [Lifecycle methods](#lifecycle-methods-blazor-webassembly)
+* [Rendering logic](#rendering-logic-blazor-webassembly)
+* [Event handlers](#event-handlers-blazor-webassembly)
+* [Component disposal](#component-disposal-blazor-webassembly)
+* [JavaScript interop](#javascript-interop-blazor-webassembly)
 
-<h3 id="component-instantiation-webassembly">Component instantiation</h3>
+### Component instantiation (Blazor WebAssembly)
 
 When Blazor creates an instance of a component:
 
@@ -574,7 +573,7 @@ When Blazor creates an instance of a component:
 
 An error in an executed constructor or a setter for any `[Inject]` property results in an unhandled exception and stops the framework from instantiating the component. If constructor logic may throw exceptions, the app should trap the exceptions using a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement with error handling and logging.
 
-<h3 id="lifecycle-methods-webassembly">Lifecycle methods</h3>
+### Lifecycle methods (Blazor WebAssembly)
 
 During the lifetime of a component, Blazor invokes [lifecycle methods](xref:blazor/components/lifecycle). For components to deal with errors in lifecycle methods, add error handling logic.
 
@@ -587,7 +586,7 @@ In the following example where <xref:Microsoft.AspNetCore.Components.ComponentBa
 
 [!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/handle-errors/ProductDetails.razor?highlight=11,27-39)]
 
-<h3 id="rendering-logic-webassembly">Rendering logic</h3>
+### Rendering logic (Blazor WebAssembly)
 
 The declarative markup in a Razor component file (`.razor`) is compiled into a C# method called <xref:Microsoft.AspNetCore.Components.ComponentBase.BuildRenderTree%2A>. When a component renders, <xref:Microsoft.AspNetCore.Components.ComponentBase.BuildRenderTree%2A> executes and builds up a data structure describing the elements, text, and child components of the rendered component.
 
@@ -615,7 +614,7 @@ The preceding code assumes that `person` isn't `null`. Often, the structure of t
 }
 ```
 
-<h3 id="event-handlers-webassembly">Event handlers</h3>
+### Event handlers (Blazor WebAssembly)
 
 Client-side code triggers invocations of C# code when event handlers are created using:
 
@@ -630,7 +629,7 @@ If the app calls code that could fail for external reasons, trap exceptions usin
 
 If user code doesn't trap and handle the exception, the framework logs the exception.
 
-<h3 id="component-disposal-webassembly">Component disposal</h3>
+### Component disposal (Blazor WebAssembly)
 
 A component may be removed from the UI, for example, because the user has navigated to another page. When a component that implements <xref:System.IDisposable?displayProperty=fullName> is removed from the UI, the framework calls the component's <xref:System.IDisposable.Dispose%2A> method.
 
@@ -638,7 +637,7 @@ If disposal logic may throw exceptions, the app should trap the exceptions using
 
 For more information on component disposal, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
 
-<h3 id="javascript-interop-webassembly">JavaScript interop</h3>
+### JavaScript interop (Blazor WebAssembly)
 
 <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> allows .NET code to make asynchronous calls to the JavaScript runtime in the user's browser.
 
@@ -657,9 +656,9 @@ For more information, see the following articles:
 * <xref:blazor/js-interop/call-javascript-from-dotnet>
 * <xref:blazor/js-interop/call-dotnet-from-javascript>
 
-## Advanced scenarios
+## Advanced scenarios for Blazor WebAssembly apps
 
-### Recursive rendering
+### Recursive rendering (Blazor WebAssembly)
 
 Components can be nested recursively. This is useful for representing recursive data structures. For example, a `TreeNode` component can render more `TreeNode` components for each of the node's children.
 
@@ -681,7 +680,7 @@ In these scenarios, the thread usually attempts to:
 
 To avoid infinite recursion patterns, ensure that recursive rendering code contains suitable stopping conditions.
 
-### Custom render tree logic
+### Custom render tree logic (Blazor WebAssembly)
 
 Most Blazor components are implemented as Razor component files (`.razor`) and are compiled by the framework to produce logic that operates on a <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> to render their output. However, a developer may manually implement <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> logic using procedural C# code. For more information, see <xref:blazor/advanced-scenarios#manual-rendertreebuilder-logic>.
 
@@ -697,7 +696,7 @@ Incorrect manual render tree builder logic can cause arbitrary undefined behavio
 
 Consider manual render tree builder logic on the same level of complexity and with the same level of *danger* as writing assembly code or [Microsoft Intermediate Language (MSIL)](/dotnet/standard/managed-code) instructions by hand.
 
-## Additional resources
+## Additional resources for Blazor WebAssembly apps
 
 * <xref:blazor/fundamentals/logging>
 * <xref:fundamentals/error-handling>&dagger;
@@ -705,11 +704,7 @@ Consider manual render tree builder logic on the same level of complexity and wi
 
 &dagger;Applies to backend ASP.NET Core web API apps that client-side Blazor WebAssembly apps use for logging.
 
-::: zone-end
-
-::: zone pivot="server"
-
-## Detailed errors during development
+## Detailed errors during development for Blazor Server apps
 
 When a Blazor app isn't functioning properly during development, receiving detailed error information from the app assists in troubleshooting and fixing the issue. When an error occurs, Blazor apps display a light yellow bar at the bottom of the screen:
 
@@ -739,7 +734,7 @@ The `blazor-error-ui` element is normally hidden due the presence of the `displa
 
 Client-side errors don't include the call stack and don't provide detail on the cause of the error, but server logs do contain such information. For development purposes, sensitive circuit error information can be made available to the client by enabling detailed errors.
 
-Set <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DetailedErrors?displayProperty=nameWithType> to `true`. For more information and an example, see <xref:blazor/fundamentals/signalr#circuit-handler-options>.
+Set <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DetailedErrors?displayProperty=nameWithType> to `true`. For more information and an example, see <xref:blazor/fundamentals/signalr#circuit-handler-options-for-blazor-server-apps>.
 
 An alternative to setting <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DetailedErrors?displayProperty=nameWithType> is to set the `DetailedErrors` configuration key to `true` in the app's Development environment settings file (`appsettings.Development.json`).  Additionally, set [SignalR server-side logging](xref:signalr/diagnostics#server-side-logging) (`Microsoft.AspNetCore.SignalR`) to [Debug](xref:Microsoft.Extensions.Logging.LogLevel) or [Trace](xref:Microsoft.Extensions.Logging.LogLevel) for detailed SignalR logging.
 
@@ -781,7 +776,7 @@ The framework terminates a circuit when an unhandled exception occurs for the fo
 * The app's normal operation can't be guaranteed after an unhandled exception.
 * Security vulnerabilities may appear in the app if the circuit continues in an undefined state.
 
-## Manage unhandled exceptions in developer code
+## Manage unhandled exceptions in developer code (Blazor Server)
 
 For an app to continue after an error, the app must have error handling logic. Later sections of this article describe potential sources of unhandled exceptions.
 
@@ -790,11 +785,13 @@ In production, don't render framework exception messages or stack traces in the 
 * Disclose sensitive information to end users.
 * Help a malicious user discover weaknesses in an app that can compromise the security of the app, server, or network.
 
+## Global exception handling (Blazor Server)
+
 [!INCLUDE[](~/blazor/fundamentals/includes/handle-errors/global-exception-handling.md)]
 
 Because the approaches in this section handle errors with a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement, the SignalR connection between the client and server isn't broken when an error occurs and the circuit remains alive. Any unhandled exception is fatal to a circuit. For more information, see the preceding section on [how a Blazor Server app reacts to unhandled exceptions](#how-a-blazor-server-app-reacts-to-unhandled-exceptions).
 
-## Log errors with a persistent provider
+## Log errors with a persistent provider (Blazor Server)
 
 If an unhandled exception occurs, the exception is logged to <xref:Microsoft.Extensions.Logging.ILogger> instances configured in the service container. By default, Blazor apps log to console output with the Console Logging Provider. Consider logging to a more permanent location on the server with a provider that manages log size and log rotation. Alternatively, the app can use an Application Performance Management (APM) service, such as [Azure Application Insights (Azure Monitor)](/azure/azure-monitor/app/app-insights-overview).
 
@@ -809,19 +806,19 @@ For more information, see the following articles:
 
 &dagger;Applies to server-side ASP.NET Core apps that are web API backend apps for Blazor apps.
 
-## Places where errors may occur
+## Places where errors may occur in Blazor Server apps
 
 Framework and app code may trigger unhandled exceptions in any of the following locations, which are described further in the following sections of this article:
 
-* [Component instantiation](#component-instantiation-server)
-* [Lifecycle methods](#lifecycle-methods-server)
-* [Rendering logic](#rendering-logic-server)
-* [Event handlers](#event-handlers-server)
-* [Component disposal](#component-disposal-server)
-* [JavaScript interop](#javascript-interop-server)
-* [Blazor Server rerendering](#blazor-server-prerendering-server)
+* [Component instantiation](#component-instantiation-blazor-server)
+* [Lifecycle methods](#lifecycle-methods-blazor-server)
+* [Rendering logic](#rendering-logic-blazor-server)
+* [Event handlers](#event-handlers-blazor-server)
+* [Component disposal](#component-disposal-blazor-server)
+* [JavaScript interop](#javascript-interop-blazor-server)
+* [Prerendering](#prerendering-blazor-server)
 
-<h3 id="component-instantiation-server">Component instantiation</h3>
+### Component instantiation (Blazor Server)
 
 When Blazor creates an instance of a component:
 
@@ -830,7 +827,7 @@ When Blazor creates an instance of a component:
 
 A Blazor Server circuit fails when any executed constructor or a setter for any `[Inject]` property throws an unhandled exception. The exception is fatal because the framework can't instantiate the component. If constructor logic may throw exceptions, the app should trap the exceptions using a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement with error handling and logging.
 
-<h3 id="lifecycle-methods-server">Lifecycle methods</h3>
+### Lifecycle methods (Blazor Server)
 
 During the lifetime of a component, Blazor invokes [lifecycle methods](xref:blazor/components/lifecycle). If any lifecycle method throws an exception, synchronously or asynchronously, the exception is fatal to a Blazor Server circuit. For components to deal with errors in lifecycle methods, add error handling logic.
 
@@ -843,7 +840,7 @@ In the following example where <xref:Microsoft.AspNetCore.Components.ComponentBa
 
 [!code-razor[](~/blazor/samples/5.0/BlazorSample_Server/Pages/handle-errors/ProductDetails.razor?highlight=11,27-39)]
 
-<h3 id="rendering-logic-server">Rendering logic</h3>
+### Rendering logic (Blazor Server)
 
 The declarative markup in a Razor component file (`.razor`) is compiled into a C# method called <xref:Microsoft.AspNetCore.Components.ComponentBase.BuildRenderTree%2A>. When a component renders, <xref:Microsoft.AspNetCore.Components.ComponentBase.BuildRenderTree%2A> executes and builds up a data structure describing the elements, text, and child components of the rendered component.
 
@@ -871,7 +868,7 @@ The preceding code assumes that `person` isn't `null`. Often, the structure of t
 }
 ```
 
-<h3 id="event-handlers-server">Event handlers</h3>
+### Event handlers (Blazor Server)
 
 Client-side code triggers invocations of C# code when event handlers are created using:
 
@@ -886,7 +883,7 @@ If an event handler throws an unhandled exception (for example, a database query
 
 If user code doesn't trap and handle the exception, the framework logs the exception and terminates the circuit.
 
-<h3 id="component-disposal-server">Component disposal</h3>
+### Component disposal (Blazor Server)
 
 A component may be removed from the UI, for example, because the user has navigated to another page. When a component that implements <xref:System.IDisposable?displayProperty=fullName> is removed from the UI, the framework calls the component's <xref:System.IDisposable.Dispose%2A> method.
 
@@ -894,7 +891,7 @@ If the component's `Dispose` method throws an unhandled exception, the exception
 
 For more information on component disposal, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
 
-<h3 id="javascript-interop-server">JavaScript interop</h3>
+### JavaScript interop (Blazor Server)
 
 <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> allows .NET code to make asynchronous calls to the JavaScript runtime in the user's browser.
 
@@ -916,7 +913,7 @@ For more information, see the following articles:
 * <xref:blazor/js-interop/call-javascript-from-dotnet>
 * <xref:blazor/js-interop/call-dotnet-from-javascript>
 
-<h3 id="blazor-server-prerendering-server">Blazor Server prerendering</h3>
+### Prerendering (Blazor Server)
 
 Blazor components can be prerendered using the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) so that their rendered HTML markup is returned as part of the user's initial HTTP request. This works by:
 
@@ -933,9 +930,9 @@ Under normal circumstances when prerendering fails, continuing to build and rend
 
 To tolerate errors that may occur during prerendering, error handling logic must be placed inside a component that may throw exceptions. Use [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statements with error handling and logging. Instead of wrapping the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper> Tag Helper in a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement, place error handling logic in the component rendered by the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper> Tag Helper.
 
-## Advanced scenarios
+## Advanced scenarios for Blazor Server apps
 
-### Recursive rendering
+### Recursive rendering (Blazor Server)
 
 Components can be nested recursively. This is useful for representing recursive data structures. For example, a `TreeNode` component can render more `TreeNode` components for each of the node's children.
 
@@ -957,7 +954,7 @@ In these scenarios, an affected Blazor Server circuit fails, and the thread usua
 
 To avoid infinite recursion patterns, ensure that recursive rendering code contains suitable stopping conditions.
 
-### Custom render tree logic
+### Custom render tree logic (Blazor Server)
 
 Most Blazor components are implemented as Razor component files (`.razor`) and are compiled by the framework to produce logic that operates on a <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> to render their output. However, a developer may manually implement <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> logic using procedural C# code. For more information, see <xref:blazor/advanced-scenarios#manual-rendertreebuilder-logic>.
 
@@ -973,14 +970,12 @@ Incorrect manual render tree builder logic can cause arbitrary undefined behavio
 
 Consider manual render tree builder logic on the same level of complexity and with the same level of *danger* as writing assembly code or [Microsoft Intermediate Language (MSIL)](/dotnet/standard/managed-code) instructions by hand.
 
-## Additional resources
+## Additional resources for Blazor Server apps
 
 * <xref:blazor/fundamentals/logging>
 * <xref:fundamentals/error-handling>&dagger;
 
 &dagger;Applies to server-side ASP.NET Core apps that are web API backend apps for Blazor apps.
-
-::: zone-end
 
 ::: moniker-end
 
@@ -988,9 +983,7 @@ Consider manual render tree builder logic on the same level of complexity and wi
 
 This article describes how Blazor manages unhandled exceptions and how to develop apps that detect and handle errors.
 
-::: zone pivot="webassembly"
-
-## Detailed errors during development
+## Detailed errors during development for Blazor WebAssembly apps
 
 When a Blazor app isn't functioning properly during development, receiving detailed error information from the app assists in troubleshooting and fixing the issue. When an error occurs, Blazor apps display a light yellow bar at the bottom of the screen:
 
@@ -1011,7 +1004,7 @@ In a Blazor WebAssembly app, customize the experience in the `wwwroot/index.html
 
 The `blazor-error-ui` element is normally hidden due the presence of the `display: none` style of the `blazor-error-ui` CSS class in the app's stylesheet (`wwwroot/css/app.css`). When an error occurs, the framework applies `display: block` to the element.
 
-## Manage unhandled exceptions in developer code
+## Manage unhandled exceptions in developer code (Blazor WebAssembly)
 
 For an app to continue after an error, the app must have error handling logic. Later sections of this article describe potential sources of unhandled exceptions.
 
@@ -1020,9 +1013,11 @@ In production, don't render framework exception messages or stack traces in the 
 * Disclose sensitive information to end users.
 * Help a malicious user discover weaknesses in an app that can compromise the security of the app, server, or network.
 
+## Global exception handling (Blazor WebAssembly)
+
 [!INCLUDE[](~/blazor/fundamentals/includes/handle-errors/global-exception-handling.md)]
 
-## Log errors with a persistent provider
+## Log errors with a persistent provider (Blazor WebAssembly)
 
 If an unhandled exception occurs, the exception is logged to <xref:Microsoft.Extensions.Logging.ILogger> instances configured in the service container. By default, Blazor apps log to console output with the Console Logging Provider. Consider logging to a more permanent location on the server by sending error information to a backend web API that uses a logging provider with log size management and log rotation. Alternatively, the backend web API app can use an Application Performance Management (APM) service, such as [Azure Application Insights (Azure Monitor)&dagger;](/azure/azure-monitor/app/app-insights-overview), to record error information that it receives from clients.
 
@@ -1038,18 +1033,18 @@ For more information, see the following articles:
 
 &Dagger;Applies to server-side ASP.NET Core apps that are web API backend apps for Blazor apps. Client-side apps trap and send error information to a web API, which logs the error information to a persistent logging provider.
 
-## Places where errors may occur
+## Places where errors may occur in Blazor WebAssembly apps
 
 Framework and app code may trigger unhandled exceptions in any of the following locations, which are described further in the following sections of this article:
 
-* [Component instantiation](#component-instantiation-webassembly)
-* [Lifecycle methods](#lifecycle-methods-webassembly)
-* [Rendering logic](#rendering-logic-webassembly)
-* [Event handlers](#event-handlers-webassembly)
-* [Component disposal](#component-disposal-webassembly)
-* [JavaScript interop](#javascript-interop-webassembly)
+* [Component instantiation](#component-instantiation-blazor-webassembly)
+* [Lifecycle methods](#lifecycle-methods-blazor-webassembly)
+* [Rendering logic](#rendering-logic-blazor-webassembly)
+* [Event handlers](#event-handlers-blazor-webassembly)
+* [Component disposal](#component-disposal-blazor-webassembly)
+* [JavaScript interop](#javascript-interop-blazor-webassembly)
 
-<h3 id="component-instantiation-webassembly">Component instantiation</h3>
+### Component instantiation (Blazor WebAssembly)
 
 When Blazor creates an instance of a component:
 
@@ -1058,7 +1053,7 @@ When Blazor creates an instance of a component:
 
 An error in an executed constructor or a setter for any `[Inject]` property results in an unhandled exception and stops the framework from instantiating the component. If constructor logic may throw exceptions, the app should trap the exceptions using a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement with error handling and logging.
 
-<h3 id="lifecycle-methods-webassembly">Lifecycle methods</h3>
+### Lifecycle methods (Blazor WebAssembly)
 
 During the lifetime of a component, Blazor invokes [lifecycle methods](xref:blazor/components/lifecycle). For components to deal with errors in lifecycle methods, add error handling logic.
 
@@ -1071,7 +1066,7 @@ In the following example where <xref:Microsoft.AspNetCore.Components.ComponentBa
 
 [!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/handle-errors/ProductDetails.razor?highlight=11,27-39)]
 
-<h3 id="rendering-logic-webassembly">Rendering logic</h3>
+### Rendering logic (Blazor WebAssembly)
 
 The declarative markup in a Razor component file (`.razor`) is compiled into a C# method called <xref:Microsoft.AspNetCore.Components.ComponentBase.BuildRenderTree%2A>. When a component renders, <xref:Microsoft.AspNetCore.Components.ComponentBase.BuildRenderTree%2A> executes and builds up a data structure describing the elements, text, and child components of the rendered component.
 
@@ -1099,7 +1094,7 @@ The preceding code assumes that `person` isn't `null`. Often, the structure of t
 }
 ```
 
-<h3 id="event-handlers-webassembly">Event handlers</h3>
+### Event handlers (Blazor WebAssembly)
 
 Client-side code triggers invocations of C# code when event handlers are created using:
 
@@ -1114,7 +1109,7 @@ If the app calls code that could fail for external reasons, trap exceptions usin
 
 If user code doesn't trap and handle the exception, the framework logs the exception.
 
-<h3 id="component-disposal-webassembly">Component disposal</h3>
+### Component disposal (Blazor WebAssembly)
 
 A component may be removed from the UI, for example, because the user has navigated to another page. When a component that implements <xref:System.IDisposable?displayProperty=fullName> is removed from the UI, the framework calls the component's <xref:System.IDisposable.Dispose%2A> method.
 
@@ -1122,7 +1117,7 @@ If disposal logic may throw exceptions, the app should trap the exceptions using
 
 For more information on component disposal, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
 
-<h3 id="javascript-interop-webassembly">JavaScript interop</h3>
+### JavaScript interop (Blazor WebAssembly)
 
 <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> allows .NET code to make asynchronous calls to the JavaScript runtime in the user's browser.
 
@@ -1141,9 +1136,9 @@ For more information, see the following articles:
 * <xref:blazor/js-interop/call-javascript-from-dotnet>
 * <xref:blazor/js-interop/call-dotnet-from-javascript>
 
-## Advanced scenarios
+## Advanced scenarios for Blazor WebAssembly apps
 
-### Recursive rendering
+### Recursive rendering (Blazor WebAssembly)
 
 Components can be nested recursively. This is useful for representing recursive data structures. For example, a `TreeNode` component can render more `TreeNode` components for each of the node's children.
 
@@ -1165,7 +1160,7 @@ In these scenarios, the thread usually attempts to:
 
 To avoid infinite recursion patterns, ensure that recursive rendering code contains suitable stopping conditions.
 
-### Custom render tree logic
+### Custom render tree logic (Blazor WebAssembly)
 
 Most Blazor components are implemented as Razor component files (`.razor`) and are compiled by the framework to produce logic that operates on a <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> to render their output. However, a developer may manually implement <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> logic using procedural C# code. For more information, see <xref:blazor/advanced-scenarios#manual-rendertreebuilder-logic>.
 
@@ -1181,7 +1176,7 @@ Incorrect manual render tree builder logic can cause arbitrary undefined behavio
 
 Consider manual render tree builder logic on the same level of complexity and with the same level of *danger* as writing assembly code or [Microsoft Intermediate Language (MSIL)](/dotnet/standard/managed-code) instructions by hand.
 
-## Additional resources
+## Additional resources for Blazor WebAssembly apps
 
 * <xref:blazor/fundamentals/logging>
 * <xref:fundamentals/error-handling>&dagger;
@@ -1189,11 +1184,7 @@ Consider manual render tree builder logic on the same level of complexity and wi
 
 &dagger;Applies to backend ASP.NET Core web API apps that client-side Blazor WebAssembly apps use for logging.
 
-::: zone-end
-
-::: zone pivot="server"
-
-## Detailed errors during development
+## Detailed errors during development for Blazor Server apps
 
 When a Blazor app isn't functioning properly during development, receiving detailed error information from the app assists in troubleshooting and fixing the issue. When an error occurs, Blazor apps display a light yellow bar at the bottom of the screen:
 
@@ -1223,7 +1214,7 @@ The `blazor-error-ui` element is normally hidden due the presence of the `displa
 
 Client-side errors don't include the call stack and don't provide detail on the cause of the error, but server logs do contain such information. For development purposes, sensitive circuit error information can be made available to the client by enabling detailed errors.
 
-Set <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DetailedErrors?displayProperty=nameWithType> to `true`. For more information and an example, see <xref:blazor/fundamentals/signalr#circuit-handler-options>.
+Set <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DetailedErrors?displayProperty=nameWithType> to `true`. For more information and an example, see <xref:blazor/fundamentals/signalr#circuit-handler-options-for-blazor-server-apps>.
 
 An alternative to setting <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DetailedErrors?displayProperty=nameWithType> is to set the `DetailedErrors` configuration key to `true` in the app's Development environment settings file (`appsettings.Development.json`).  Additionally, set [SignalR server-side logging](xref:signalr/diagnostics#server-side-logging) (`Microsoft.AspNetCore.SignalR`) to [Debug](xref:Microsoft.Extensions.Logging.LogLevel) or [Trace](xref:Microsoft.Extensions.Logging.LogLevel) for detailed SignalR logging.
 
@@ -1265,7 +1256,7 @@ The framework terminates a circuit when an unhandled exception occurs for the fo
 * The app's normal operation can't be guaranteed after an unhandled exception.
 * Security vulnerabilities may appear in the app if the circuit continues in an undefined state.
 
-## Manage unhandled exceptions in developer code
+## Manage unhandled exceptions in developer code (Blazor Server)
 
 For an app to continue after an error, the app must have error handling logic. Later sections of this article describe potential sources of unhandled exceptions.
 
@@ -1274,11 +1265,13 @@ In production, don't render framework exception messages or stack traces in the 
 * Disclose sensitive information to end users.
 * Help a malicious user discover weaknesses in an app that can compromise the security of the app, server, or network.
 
+## Global exception handling (Blazor Server)
+
 [!INCLUDE[](~/blazor/fundamentals/includes/handle-errors/global-exception-handling.md)]
 
 Because the approaches in this section handle errors with a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement, the SignalR connection between the client and server isn't broken when an error occurs and the circuit remains alive. Any unhandled exception is fatal to a circuit. For more information, see the preceding section on [how a Blazor Server app reacts to unhandled exceptions](#how-a-blazor-server-app-reacts-to-unhandled-exceptions).
 
-## Log errors with a persistent provider
+## Log errors with a persistent provider (Blazor Server)
 
 If an unhandled exception occurs, the exception is logged to <xref:Microsoft.Extensions.Logging.ILogger> instances configured in the service container. By default, Blazor apps log to console output with the Console Logging Provider. Consider logging to a more permanent location on the server with a provider that manages log size and log rotation. Alternatively, the app can use an Application Performance Management (APM) service, such as [Azure Application Insights (Azure Monitor)](/azure/azure-monitor/app/app-insights-overview).
 
@@ -1293,19 +1286,19 @@ For more information, see the following articles:
 
 &dagger;Applies to server-side ASP.NET Core apps that are web API backend apps for Blazor apps.
 
-## Places where errors may occur
+## Places where errors may occur in Blazor Server apps
 
 Framework and app code may trigger unhandled exceptions in any of the following locations, which are described further in the following sections of this article:
 
-* [Component instantiation](#component-instantiation-server)
-* [Lifecycle methods](#lifecycle-methods-server)
-* [Rendering logic](#rendering-logic-server)
-* [Event handlers](#event-handlers-server)
-* [Component disposal](#component-disposal-server)
-* [JavaScript interop](#javascript-interop-server)
-* [Blazor Server rerendering](#blazor-server-prerendering-server)
+* [Component instantiation](#component-instantiation-blazor-server)
+* [Lifecycle methods](#lifecycle-methods-blazor-server)
+* [Rendering logic](#rendering-logic-blazor-server)
+* [Event handlers](#event-handlers-blazor-server)
+* [Component disposal](#component-disposal-blazor-server)
+* [JavaScript interop](#javascript-interop-blazor-server)
+* [Prerendering](#prerendering-blazor-server)
 
-<h3 id="component-instantiation-server">Component instantiation</h3>
+### Component instantiation (Blazor Server)
 
 When Blazor creates an instance of a component:
 
@@ -1314,7 +1307,7 @@ When Blazor creates an instance of a component:
 
 A Blazor Server circuit fails when any executed constructor or a setter for any `[Inject]` property throws an unhandled exception. The exception is fatal because the framework can't instantiate the component. If constructor logic may throw exceptions, the app should trap the exceptions using a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement with error handling and logging.
 
-<h3 id="lifecycle-methods-server">Lifecycle methods</h3>
+### Lifecycle methods (Blazor Server)
 
 During the lifetime of a component, Blazor invokes [lifecycle methods](xref:blazor/components/lifecycle). If any lifecycle method throws an exception, synchronously or asynchronously, the exception is fatal to a Blazor Server circuit. For components to deal with errors in lifecycle methods, add error handling logic.
 
@@ -1327,7 +1320,7 @@ In the following example where <xref:Microsoft.AspNetCore.Components.ComponentBa
 
 [!code-razor[](~/blazor/samples/3.1/BlazorSample_Server/Pages/handle-errors/ProductDetails.razor?highlight=11,27-39)]
 
-<h3 id="rendering-logic-server">Rendering logic</h3>
+### Rendering logic (Blazor Server)
 
 The declarative markup in a Razor component file (`.razor`) is compiled into a C# method called <xref:Microsoft.AspNetCore.Components.ComponentBase.BuildRenderTree%2A>. When a component renders, <xref:Microsoft.AspNetCore.Components.ComponentBase.BuildRenderTree%2A> executes and builds up a data structure describing the elements, text, and child components of the rendered component.
 
@@ -1355,7 +1348,7 @@ The preceding code assumes that `person` isn't `null`. Often, the structure of t
 }
 ```
 
-<h3 id="event-handlers-server">Event handlers</h3>
+### Event handlers (Blazor Server)
 
 Client-side code triggers invocations of C# code when event handlers are created using:
 
@@ -1370,7 +1363,7 @@ If an event handler throws an unhandled exception (for example, a database query
 
 If user code doesn't trap and handle the exception, the framework logs the exception and terminates the circuit.
 
-<h3 id="component-disposal-server">Component disposal</h3>
+### Component disposal (Blazor Server)
 
 A component may be removed from the UI, for example, because the user has navigated to another page. When a component that implements <xref:System.IDisposable?displayProperty=fullName> is removed from the UI, the framework calls the component's <xref:System.IDisposable.Dispose%2A> method.
 
@@ -1378,7 +1371,7 @@ If the component's `Dispose` method throws an unhandled exception, the exception
 
 For more information on component disposal, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
 
-<h3 id="javascript-interop-server">JavaScript interop</h3>
+### JavaScript interop (Blazor Server)
 
 <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> allows .NET code to make asynchronous calls to the JavaScript runtime in the user's browser.
 
@@ -1400,7 +1393,7 @@ For more information, see the following articles:
 * <xref:blazor/js-interop/call-javascript-from-dotnet>
 * <xref:blazor/js-interop/call-dotnet-from-javascript>
 
-<h3 id="blazor-server-prerendering-server">Blazor Server prerendering</h3>
+### Prerendering (Blazor Server)
 
 Blazor components can be prerendered using the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) so that their rendered HTML markup is returned as part of the user's initial HTTP request. This works by:
 
@@ -1417,9 +1410,9 @@ Under normal circumstances when prerendering fails, continuing to build and rend
 
 To tolerate errors that may occur during prerendering, error handling logic must be placed inside a component that may throw exceptions. Use [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statements with error handling and logging. Instead of wrapping the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper> Tag Helper in a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement, place error handling logic in the component rendered by the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper> Tag Helper.
 
-## Advanced scenarios
+## Advanced scenarios for Blazor Server apps
 
-### Recursive rendering
+### Recursive rendering (Blazor Server)
 
 Components can be nested recursively. This is useful for representing recursive data structures. For example, a `TreeNode` component can render more `TreeNode` components for each of the node's children.
 
@@ -1441,7 +1434,7 @@ In these scenarios, an affected Blazor Server circuit fails, and the thread usua
 
 To avoid infinite recursion patterns, ensure that recursive rendering code contains suitable stopping conditions.
 
-### Custom render tree logic
+### Custom render tree logic (Blazor Server)
 
 Most Blazor components are implemented as Razor component files (`.razor`) and are compiled by the framework to produce logic that operates on a <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> to render their output. However, a developer may manually implement <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> logic using procedural C# code. For more information, see <xref:blazor/advanced-scenarios#manual-rendertreebuilder-logic>.
 
@@ -1457,13 +1450,11 @@ Incorrect manual render tree builder logic can cause arbitrary undefined behavio
 
 Consider manual render tree builder logic on the same level of complexity and with the same level of *danger* as writing assembly code or [Microsoft Intermediate Language (MSIL)](/dotnet/standard/managed-code) instructions by hand.
 
-## Additional resources
+## Additional resources for Blazor Server apps
 
 * <xref:blazor/fundamentals/logging>
 * <xref:fundamentals/error-handling>&dagger;
 
 &dagger;Applies to server-side ASP.NET Core apps that are web API backend apps for Blazor apps.
-
-::: zone-end
 
 ::: moniker-end

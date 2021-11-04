@@ -1,8 +1,6 @@
 ---
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 ---
-## Error boundaries
-
 Error boundaries provide a convenient approach for handling exceptions. The `ErrorBoundary` component:
 
 * Renders its child content when an error hasn't occurred.

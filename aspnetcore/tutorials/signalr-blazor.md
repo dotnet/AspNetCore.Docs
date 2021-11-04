@@ -498,7 +498,7 @@ To learn more about building Blazor apps, see the Blazor documentation:
 ## Additional resources
 
 * <xref:signalr/introduction>
-* [SignalR cross-origin negotiation for authentication](xref:blazor/fundamentals/signalr#signalr-cross-origin-negotiation-for-authentication)
+* [SignalR cross-origin negotiation for authentication](xref:blazor/fundamentals/signalr#signalr-cross-origin-negotiation-for-authentication-blazor-webassembly)
 * [SignalR configuration](xref:blazor/host-and-deploy/server#signalr-configuration)
 * <xref:blazor/debug>
 * <xref:blazor/security/server/threat-mitigation>
@@ -991,7 +991,7 @@ To learn more about building Blazor apps, see the Blazor documentation:
 ## Additional resources
 
 * <xref:signalr/introduction>
-* [SignalR cross-origin negotiation for authentication](xref:blazor/fundamentals/signalr#signalr-cross-origin-negotiation-for-authentication)
+* [SignalR cross-origin negotiation for authentication](xref:blazor/fundamentals/signalr#signalr-cross-origin-negotiation-for-authentication-blazor-webassembly)
 * [SignalR configuration](xref:blazor/host-and-deploy/server#signalr-configuration)
 * <xref:blazor/debug>
 * <xref:blazor/security/server/threat-mitigation>
@@ -1540,7 +1540,7 @@ To learn more about building Blazor apps, see the Blazor documentation:
 ## Additional resources
 
 * <xref:signalr/introduction>
-* [SignalR cross-origin negotiation for authentication](xref:blazor/fundamentals/signalr#signalr-cross-origin-negotiation-for-authentication)
+* [SignalR cross-origin negotiation for authentication](xref:blazor/fundamentals/signalr#signalr-cross-origin-negotiation-for-authentication-blazor-webassembly)
 * [SignalR configuration](xref:blazor/host-and-deploy/server#signalr-configuration)
 * <xref:blazor/debug>
 * <xref:blazor/security/server/threat-mitigation>

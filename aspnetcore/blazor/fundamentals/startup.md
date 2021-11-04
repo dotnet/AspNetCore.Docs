@@ -141,12 +141,12 @@ The `loadBootResource` function can also return:
 
 * [Environments: Set the app's environment](xref:blazor/fundamentals/environments)
 * SignalR
-  * [Blazor startup](xref:blazor/fundamentals/signalr#blazor-startup)
-  * [Configure SignalR client logging](xref:blazor/fundamentals/signalr#configure-signalr-client-logging)
-  * [Modify the reconnection handler](xref:blazor/fundamentals/signalr#modify-the-reconnection-handler)
-  * [Adjust the reconnection retry count and interval](xref:blazor/fundamentals/signalr#adjust-the-reconnection-retry-count-and-interval)
-  * [Hide or replace the reconnection display](xref:blazor/fundamentals/signalr#hide-or-replace-the-reconnection-display)
-  * [Disconnect the Blazor circuit from the client](xref:blazor/fundamentals/signalr#disconnect-the-blazor-circuit-from-the-client)
+  * [Blazor startup](xref:blazor/fundamentals/signalr#blazor-startup-blazor-server)
+  * [Configure SignalR client logging](xref:blazor/fundamentals/signalr#configure-signalr-client-logging-blazor-server)
+  * [Modify the reconnection handler](xref:blazor/fundamentals/signalr#modify-the-reconnection-handler-blazor-server)
+  * [Adjust the reconnection retry count and interval](xref:blazor/fundamentals/signalr#adjust-the-reconnection-retry-count-and-interval-blazor-server)
+  * [Hide or replace the reconnection display](xref:blazor/fundamentals/signalr#hide-or-replace-the-reconnection-display-blazor-server)
+  * [Disconnect the Blazor circuit from the client](xref:blazor/fundamentals/signalr#disconnect-the-blazor-circuit-from-the-client-blazor-server)
 * [Globalization and localization: Statically set the culture with `Blazor.start` (*Blazor WebAssembly only*)](xref:blazor/globalization-localization?pivots=webassembly#statically-set-the-culture)
 * [JS interop: Inject a script after Blazor starts](xref:blazor/js-interop/index#inject-a-script-after-blazor-starts)
 * [Host and deploy: Blazor WebAssembly: Compression](xref:blazor/host-and-deploy/webassembly#compression)
@@ -279,12 +279,12 @@ The `loadBootResource` function can also return:
 
 * [Environments: Set the app's environment](xref:blazor/fundamentals/environments)
 * SignalR
-  * [Blazor startup](xref:blazor/fundamentals/signalr#blazor-startup)
-  * [Configure SignalR client logging](xref:blazor/fundamentals/signalr#configure-signalr-client-logging)
-  * [Modify the reconnection handler](xref:blazor/fundamentals/signalr#modify-the-reconnection-handler)
-  * [Adjust the reconnection retry count and interval](xref:blazor/fundamentals/signalr#adjust-the-reconnection-retry-count-and-interval)
-  * [Hide or replace the reconnection display](xref:blazor/fundamentals/signalr#hide-or-replace-the-reconnection-display)
-  * [Disconnect the Blazor circuit from the client](xref:blazor/fundamentals/signalr#disconnect-the-blazor-circuit-from-the-client)
+  * [Blazor startup](xref:blazor/fundamentals/signalr#blazor-startup-blazor-server)
+  * [Configure SignalR client logging](xref:blazor/fundamentals/signalr#configure-signalr-client-logging-blazor-server)
+  * [Modify the reconnection handler](xref:blazor/fundamentals/signalr#modify-the-reconnection-handler-blazor-server)
+  * [Adjust the reconnection retry count and interval](xref:blazor/fundamentals/signalr#adjust-the-reconnection-retry-count-and-interval-blazor-server)
+  * [Hide or replace the reconnection display](xref:blazor/fundamentals/signalr#hide-or-replace-the-reconnection-display-blazor-server)
+  * [Disconnect the Blazor circuit from the client](xref:blazor/fundamentals/signalr#disconnect-the-blazor-circuit-from-the-client-blazor-server)
 * [Globalization and localization: Statically set the culture with `Blazor.start` (*Blazor WebAssembly only*)](xref:blazor/globalization-localization?pivots=webassembly#statically-set-the-culture)
 * [JS interop: Inject a script after Blazor starts](xref:blazor/js-interop/index#inject-a-script-after-blazor-starts)
 * [Host and deploy: Blazor WebAssembly: Compression](xref:blazor/host-and-deploy/webassembly#compression)
@@ -416,11 +416,11 @@ The `loadBootResource` function can also return:
 ## Additional resources
 
 * SignalR
-  * [Blazor startup](xref:blazor/fundamentals/signalr#blazor-startup)
-  * [Configure SignalR client logging](xref:blazor/fundamentals/signalr#configure-signalr-client-logging)
-  * [Modify the reconnection handler](xref:blazor/fundamentals/signalr#modify-the-reconnection-handler)
-  * [Adjust the reconnection retry count and interval](xref:blazor/fundamentals/signalr#adjust-the-reconnection-retry-count-and-interval)
-  * [Hide or replace the reconnection display](xref:blazor/fundamentals/signalr#hide-or-replace-the-reconnection-display)
+  * [Blazor startup](xref:blazor/fundamentals/signalr#blazor-startup-blazor-server)
+  * [Configure SignalR client logging](xref:blazor/fundamentals/signalr#configure-signalr-client-logging-blazor-server)
+  * [Modify the reconnection handler](xref:blazor/fundamentals/signalr#modify-the-reconnection-handler-blazor-server)
+  * [Adjust the reconnection retry count and interval](xref:blazor/fundamentals/signalr#adjust-the-reconnection-retry-count-and-interval-blazor-server)
+  * [Hide or replace the reconnection display](xref:blazor/fundamentals/signalr#hide-or-replace-the-reconnection-display-blazor-server)
 * [JS interop: Inject a script after Blazor starts](xref:blazor/js-interop/index#inject-a-script-after-blazor-starts)
 * [Host and deploy: Blazor WebAssembly: Compression](xref:blazor/host-and-deploy/webassembly#compression)
 
