@@ -2,7 +2,7 @@
 title: Options pattern in ASP.NET Core
 author: rick-anderson
 description: Discover how to use the options pattern to represent groups of related settings in ASP.NET Core apps.
-monikerRange: '>= aspnetcore-2.1'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/20/2020
@@ -55,7 +55,7 @@ This topic provides information on the options pattern in ASP.NET Core. For info
 * Is registered as a [Singleton](xref:fundamentals/dependency-injection#singleton) and can be injected into any [service lifetime](xref:fundamentals/dependency-injection#service-lifetimes).
 * Supports:
   * Change notifications
-  * [Named options](#named-options-support-with-iconfigurenamedoptions)
+  * [named options](#named)
   * [Reloadable configuration](#ios)
   * Selective options invalidation (<xref:Microsoft.Extensions.Options.IOptionsMonitorCache%601>)
   
@@ -305,7 +305,7 @@ This topic provides information on the options pattern in ASP.NET Core. For info
 
 * Is useful in scenarios where options should be recomputed on every request. For more information, see [Use IOptionsSnapshot to read updated data](#ios).
 * Is registered as [Scoped](xref:fundamentals/dependency-injection#scoped) and therefore cannot be injected into a Singleton service.
-* Supports [named options](#named)
+* Supports [named options](#named5)
 
 <xref:Microsoft.Extensions.Options.IOptionsMonitor%601>:
 
@@ -313,7 +313,7 @@ This topic provides information on the options pattern in ASP.NET Core. For info
 * Is registered as a [Singleton](xref:fundamentals/dependency-injection#singleton) and can be injected into any [service lifetime](xref:fundamentals/dependency-injection#service-lifetimes).
 * Supports:
   * Change notifications
-  * [Named options](#named-options-support-with-iconfigurenamedoptions)
+  * [Named options](#named5)
   * [Reloadable configuration](#ios)
   * Selective options invalidation (<xref:Microsoft.Extensions.Options.IOptionsMonitorCache%601>)
   
@@ -356,7 +356,7 @@ The following example uses <xref:Microsoft.Extensions.Options.IOptionsMonitor%60
 
 In the preceding code, by default, changes to the JSON configuration file after the app has started are read.
 
-<a name="named"></a>
+<a name="named5"></a>
 
 ## Named options support using IConfigureNamedOptions
 
