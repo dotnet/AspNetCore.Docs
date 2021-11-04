@@ -145,7 +145,7 @@ async function setImageUsingStreaming(imageElementId, imageStream) {
 }
 ```
 
-Call [`URL.revokeObjectURL()`](https://developer.mozilla.org/docs/Web/API/URL/revokeObjectURL) to dispose of the object URL when done working with an image to prevent memory leaks:
+Call [`URL.revokeObjectURL()`](https://developer.mozilla.org/docs/Web/API/URL/revokeObjectURL) to dispose of the object URL when done working with an image to prevent memory leaks. In a form, the object URL is typically revoked after the user submits the form for processing, as the object URL is no longer required at that point.
 
 ```javascript
 URL.revokeObjectURL(url);
