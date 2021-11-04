@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to store and retrieve sensitive information during the development of an ASP.NET Core app.
 ms.author: riande
 monikerRange: '>= aspnetcore-3.0'
-ms.custom: mvc, contperf-fy21q2
+ms.custom: mvc
 ms.date: 11/11/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/app-secrets
