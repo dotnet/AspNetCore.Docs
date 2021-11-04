@@ -16,7 +16,11 @@ This article highlights the most significant changes in ASP.NET Core 6.0 with li
 
 ## Minimal APIs
 
-Minimal APIs are architected to create HTTP APIs with minimal dependencies. They are ideal for microservices and apps that want to include only the minimum files, features, and dependencies in ASP.NET Core. For more information, see <xref:tutorials/min-web-api>.
+Minimal APIs are architected to create HTTP APIs with minimal dependencies. They are ideal for microservices and apps that want to include only the minimum files, features, and dependencies in ASP.NET Core. For more information, see:
+
+* <xref:tutorials/min-web-api>
+* [Differences between minimal APIs and APIs with controllers](xref:tutorials/min-web-api?view=aspnetcore-6.0#differences-between-minimal-apis-and-apis-with-controllers)
+* <xref:fundamentals/minimal-apis>
 
 ## SignalR
 
