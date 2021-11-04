@@ -394,7 +394,7 @@ In the preceding example:
 
 ## Size limits on JavaScript interop calls
 
-[!INCLUDE[](~/blazor/includes/js-interop/size-limits.md)]
+[!INCLUDE[](~/blazor/includes/js-interop/6.0/size-limits.md)]
 
 ## JavaScript isolation in JavaScript modules
 
@@ -708,7 +708,7 @@ Objects that contain circular references can't be serialized on the client for e
 
 ## Size limits on JavaScript interop calls
 
-[!INCLUDE[](~/blazor/includes/js-interop/size-limits.md)]
+[!INCLUDE[](~/blazor/includes/js-interop/5.0/size-limits.md)]
 
 ## JavaScript isolation in JavaScript modules
 
@@ -1020,7 +1020,7 @@ Objects that contain circular references can't be serialized on the client for e
 
 ## Size limits on JavaScript interop calls
 
-[!INCLUDE[](~/blazor/includes/js-interop/size-limits.md)]
+[!INCLUDE[](~/blazor/includes/js-interop/3.1/size-limits.md)]
 
 ## Additional resources
 

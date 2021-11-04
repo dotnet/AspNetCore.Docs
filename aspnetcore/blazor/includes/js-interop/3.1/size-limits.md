@@ -31,40 +31,28 @@ Error:
 
 > System.IO.InvalidDataException: The maximum message size of 32768B was exceeded. The message size can be configured in AddHubOptions.
 
-Increase the limit by setting <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> in `Program.cs`. The following example sets the maximum receive message size to 64 KB (64 * 1024) in ASP.NET Core 6.0 or later:
-
-```csharp
-builder.Services.AddServerSideBlazor()
-   .AddHubOptions(options => options.MaximumReceiveMessageSize = 64 * 1024);
-```
-
-In `Startup.ConfigureServices` for versions of ASP.NET Core earlier than 6.0:
+Increase the limit by setting <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> in `Startup.ConfigureServices`:
 
 ```csharp
 services.AddServerSideBlazor()
-   .AddHubOptions(options => options.MaximumReceiveMessageSize = 64 * 1024);
+    .AddHubOptions(options => options.MaximumReceiveMessageSize = 64 * 1024);
 ```
 
 Increasing the SignalR incoming message size limit comes at the cost of requiring more server resources, and it exposes the server to increased risks from a malicious user. Additionally, reading a large amount of content in to memory as strings or byte arrays can also result in allocations that work poorly with the garbage collector, resulting in additional performance penalties.
+
+One option for reading large payloads is to send the content in smaller chunks and process the payload as a <xref:System.IO.Stream>. This can be used when reading large JSON payloads or if data is available in JS as raw bytes. For an example that demonstrates sending large binary payloads in Blazor Server that uses techniques similar to the [`InputFile` component](xref:blazor/file-uploads), see the [Binary Submit sample app](https://github.com/aspnet/samples/tree/main/samples/aspnetcore/blazor/BinarySubmit).
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 Consider the following guidance when developing code that transfers a large amount of data between JS and Blazor in Blazor Server apps:
 
-* For ASP.NET Core 6.0 and newer:
-  * Leverage the native streaming interop support to transfer data larger than the SignalR incoming message size limit.
-    * <xref:blazor/js-interop/call-javascript-from-dotnet#stream-from-net-to-javascript>
-    * <xref:blazor/js-interop/call-dotnet-from-javascript#stream-from-javascript-to-dotnet>
-* For versions of ASP.NET Core earlier than 6.0:
-  * Slice the data into smaller pieces, and send the data segments sequentially as a <xref:System.IO.Stream> until all of the data is received by the server.
-  * Don't block the main UI thread for long periods when sending or receiving data.
-  * For an example that demonstrates sending large binary payloads in Blazor Server, see the [Binary Submit sample app](https://github.com/aspnet/samples/tree/main/samples/aspnetcore/blazor/BinarySubmit).
-* General tips:
-  * Don't allocate large objects in JS and C# code.
-  * Free consumed memory when the process is completed or cancelled.
-  * Enforce the following additional requirements for security purposes:
-    * Declare the maximum file or data size that can be passed.
-    * Declare the minimum upload rate from the client to the server.
-  * After the data is received by the server, the data can be:
-    * Temporarily stored in a memory buffer until all of the segments are collected.
-    * Consumed immediately. For example, the data can be stored immediately in a database or written to disk as each segment is received.
+* Slice the data into smaller pieces, and send the data segments sequentially until all of the data is received by the server.
+* Don't allocate large objects in JS and C# code.
+* Don't block the main UI thread for long periods when sending or receiving data.
+* Free consumed memory when the process is completed or cancelled.
+* Enforce the following additional requirements for security purposes:
+  * Declare the maximum file or data size that can be passed.
+  * Declare the minimum upload rate from the client to the server.
+* After the data is received by the server, the data can be:
+  * Temporarily stored in a memory buffer until all of the segments are collected.
+  * Consumed immediately. For example, the data can be stored immediately in a database or written to disk as each segment is received.

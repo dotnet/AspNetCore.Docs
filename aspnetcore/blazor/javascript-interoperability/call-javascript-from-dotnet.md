@@ -581,7 +581,7 @@ For information on using a byte array when calling .NET from JavaScript, see <xr
 
 ## Size limits on JavaScript interop calls
 
-[!INCLUDE[](~/blazor/includes/js-interop/size-limits.md)]
+[!INCLUDE[](~/blazor/includes/js-interop/6.0/size-limits.md)]
 
 ## Unmarshalled JavaScript interop
 
@@ -1232,7 +1232,7 @@ In the preceding example:
 
 ## Size limits on JavaScript interop calls
 
-[!INCLUDE[](~/blazor/includes/js-interop/size-limits.md)]
+[!INCLUDE[](~/blazor/includes/js-interop/5.0/size-limits.md)]
 
 ## Unmarshalled JavaScript interop
 
@@ -1706,7 +1706,7 @@ Objects that contain circular references can't be serialized on the client for e
 
 ## Size limits on JavaScript interop calls
 
-[!INCLUDE[](~/blazor/includes/js-interop/size-limits.md)]
+[!INCLUDE[](~/blazor/includes/js-interop/3.1/size-limits.md)]
 
 ## Catch JavaScript exceptions
 
