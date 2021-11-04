@@ -156,7 +156,7 @@ If the user secrets configuration source is registered, the .NET Configuration A
 
 **Program.cs file:**
 
-[!code-csharp[](app-secrets/samples/6.x/UserSecrets/Program.cs?name=snippet2&highlight=1)]
+[!code-csharp[](app-secrets/samples/6.x/UserSecrets/Program.cs?name=snippet_s2&highlight=1)]
 
 **Razor Pages page model:**
 
