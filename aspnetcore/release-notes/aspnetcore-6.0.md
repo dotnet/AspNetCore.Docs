@@ -20,9 +20,11 @@ Minimal APIs are architected to create HTTP APIs with minimal dependencies. They
 
 ## SignalR
 
+<!--  TODO: Delete these comments or the SignalR team can doc size changes.
 ### SignalR message size
 
 Size limitations on SignalR message size for Blazor Server apps have been removed.
+-->
 
 ### Long running activity tag for SignalR connections
 
