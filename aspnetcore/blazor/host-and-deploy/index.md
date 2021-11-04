@@ -131,21 +131,31 @@ dotnet run --pathbase=/CoolApp
 
 The Blazor WebAssembly app responds locally at `http://localhost:port/CoolApp`.
 
-<!-- HOLD
 ### Blazor Server `MapFallbackToPage` configuration
 
 In scenarios where an app requires a separate area with custom resources and Razor components:
 
 * Create a folder within the app's `Pages` folder to hold the resources. For example, an administator section of an app is created in a new folder named `Admin` (`Pages/Admin`).
-* Create a root page (`_Host.razor`) for the area. For example, create a `Pages/Admin/_Host.razor` file from the app's main root page. Set the route of the new page for the area. For example, set the route of the new page to `@page "/Admin"`.
-* Add a layout to the area's folder (`Pages/Admin/_Layout.razor`). In the layout for the separate area, set the `<base>` tag `href` to match the area's folder. For example, `<base href="/Admin/" />`. For demonstration purposes, add `~/` to the static resources in the page (for example, `~/css/site.css`).
-* Razor components are added to the area's folder. For example, `Pages/Admin/Component1.razor` with an `@page` directive and route template of `@page "/admin/component1`.
-* In `Program.cs`, call <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A> for the area's request path. For example:
+* Create a root page (`_Host.razor`) for the area. For example, create a `Pages/Admin/_Host.razor` file from the app's main root page (`Pages/_Host.razor`). Don't provide an `@page` directive in the Admin `_Host` page.
+* Add a layout to the area's folder (for example, `Pages/Admin/_Layout.razor`). In the layout for the separate area, set the `<base>` tag `href` to match the area's folder (for example, `<base href="/Admin/" />`). For demonstration purposes, add `~/` to the static resources in the page. For example:
+  * `~/css/bootstrap/bootstrap.min.css`
+  * `~/css/site.css`
+  * `~/BlazorSample.styles.css` (the example app's namespace is `BlazorSample`)
+  * `~/_framework/blazor.server.js` for the Blazor script
+* If the area should have its own static asset folder, add the folder and specify its location to Static File Middleware in `Program.cs` (for example, `app.UseStaticFiles("/Admin/wwwroot")`).
+* Razor components are added to the area's folder. At a minimum, add an `Index` component to the area folder with the correct `@page` directive for the area. For example, add a `Pages/Admin/Index.razor` file based on the app's default `Pages/Index.razor` file. Indicate the Admin area as the route template at the top of the file (`@page "/admin"`). Add additional components as needed. For example, `Pages/Admin/Component1.razor` with an `@page` directive and route template of `@page "/admin/component1`.
+* In `Program.cs`, call <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A> for the area's request path immediately before the fallback root page path to the `_Host` page:
 
   ```csharp
+  ...
+  app.UseRouting();
+
+  app.MapBlazorHub();
   app.MapFallbackToPage("~/Admin/{*clientroutes:nonfile}", "/Admin/_Host");
+  app.MapFallbackToPage("/_Host");
+
+  app.Run();
   ```
--->
 
 ### Host multiple Blazor WebAssembly apps
 
@@ -260,21 +270,31 @@ dotnet run --pathbase=/CoolApp
 
 The Blazor WebAssembly app responds locally at `http://localhost:port/CoolApp`.
 
-<!-- HOLD
 ### Blazor Server `MapFallbackToPage` configuration
 
 In scenarios where an app requires a separate area with custom resources and Razor components:
 
 * Create a folder within the app's `Pages` folder to hold the resources. For example, an administator section of an app is created in a new folder named `Admin` (`Pages/Admin`).
-* Create a root page (`_Host.razor`) for the area. For example, create a `Pages/Admin/_Host.razor` file from the app's main root page. Set the route of the new page for the area. For example, set the route of the new page to `@page "/Admin"`.
-* Add a layout to the area's folder (`Pages/Admin/_Layout.razor`). In the layout for the separate area, set the `<base>` tag `href` to match the area's folder. For example, `<base href="/Admin/" />`. For demonstration purposes, add `~/` to the static resources in the page (for example, `~/css/site.css`).
-* Razor components are added to the area's folder. For example, `Pages/Admin/Component1.razor` with an `@page` directive and route template of `@page "/admin/component1`.
-* In `Program.cs`, call <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A> for the area's request path. For example:
+* Create a root page (`_Host.razor`) for the area. For example, create a `Pages/Admin/_Host.razor` file from the app's main root page (`Pages/_Host.razor`). Don't provide an `@page` directive in the Admin `_Host` page.
+* Add a layout to the area's folder (for example, `Pages/Admin/_Layout.razor`). In the layout for the separate area, set the `<base>` tag `href` to match the area's folder (for example, `<base href="/Admin/" />`). For demonstration purposes, add `~/` to the static resources in the page. For example:
+  * `~/css/bootstrap/bootstrap.min.css`
+  * `~/css/site.css`
+  * `~/BlazorSample.styles.css` (the example app's namespace is `BlazorSample`)
+  * `~/_framework/blazor.server.js` for the Blazor script
+* If the area should have its own static asset folder, add the folder and specify its location to Static File Middleware in `Program.cs` (for example, `app.UseStaticFiles("/Admin/wwwroot")`).
+* Razor components are added to the area's folder. At a minimum, add an `Index` component to the area folder with the correct `@page` directive for the area. For example, add a `Pages/Admin/Index.razor` file based on the app's default `Pages/Index.razor` file. Indicate the Admin area as the route template at the top of the file (`@page "/admin"`). Add additional components as needed. For example, `Pages/Admin/Component1.razor` with an `@page` directive and route template of `@page "/admin/component1`.
+* In `Program.cs`, call <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A> for the area's request path immediately before the fallback root page path to the `_Host` page:
 
   ```csharp
+  ...
+  app.UseRouting();
+
+  app.MapBlazorHub();
   app.MapFallbackToPage("~/Admin/{*clientroutes:nonfile}", "/Admin/_Host");
+  app.MapFallbackToPage("/_Host");
+
+  app.Run();
   ```
--->
 
 ### Host multiple Blazor WebAssembly apps
 
@@ -389,21 +409,31 @@ dotnet run --pathbase=/CoolApp
 
 The Blazor WebAssembly app responds locally at `http://localhost:port/CoolApp`.
 
-<!-- HOLD
 ### Blazor Server `MapFallbackToPage` configuration
 
 In scenarios where an app requires a separate area with custom resources and Razor components:
 
 * Create a folder within the app's `Pages` folder to hold the resources. For example, an administator section of an app is created in a new folder named `Admin` (`Pages/Admin`).
-* Create a root page (`_Host.razor`) for the area. For example, create a `Pages/Admin/_Host.razor` file from the app's main root page. Set the route of the new page for the area. For example, set the route of the new page to `@page "/Admin"`.
-* Add a layout to the area's folder (`Pages/Admin/_Layout.razor`). In the layout for the separate area, set the `<base>` tag `href` to match the area's folder. For example, `<base href="/Admin/" />`. For demonstration purposes, add `~/` to the static resources in the page (for example, `~/css/site.css`).
-* Razor components are added to the area's folder. For example, `Pages/Admin/Component1.razor` with an `@page` directive and route template of `@page "/admin/component1`.
-* In `Program.cs`, call <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A> for the area's request path. For example:
+* Create a root page (`_Host.razor`) for the area. For example, create a `Pages/Admin/_Host.razor` file from the app's main root page (`Pages/_Host.razor`). Don't provide an `@page` directive in the Admin `_Host` page.
+* Add a layout to the area's folder (for example, `Pages/Admin/_Layout.razor`). In the layout for the separate area, set the `<base>` tag `href` to match the area's folder (for example, `<base href="/Admin/" />`). For demonstration purposes, add `~/` to the static resources in the page. For example:
+  * `~/css/bootstrap/bootstrap.min.css`
+  * `~/css/site.css`
+  * `~/BlazorSample.styles.css` (the example app's namespace is `BlazorSample`)
+  * `~/_framework/blazor.server.js` for the Blazor script
+* If the area should have its own static asset folder, add the folder and specify its location to Static File Middleware in `Program.cs` (for example, `app.UseStaticFiles("/Admin/wwwroot")`).
+* Razor components are added to the area's folder. At a minimum, add an `Index` component to the area folder with the correct `@page` directive for the area. For example, add a `Pages/Admin/Index.razor` file based on the app's default `Pages/Index.razor` file. Indicate the Admin area as the route template at the top of the file (`@page "/admin"`). Add additional components as needed. For example, `Pages/Admin/Component1.razor` with an `@page` directive and route template of `@page "/admin/component1`.
+* In `Program.cs`, call <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A> for the area's request path immediately before the fallback root page path to the `_Host` page:
 
   ```csharp
+  ...
+  app.UseRouting();
+
+  app.MapBlazorHub();
   app.MapFallbackToPage("~/Admin/{*clientroutes:nonfile}", "/Admin/_Host");
+  app.MapFallbackToPage("/_Host");
+
+  app.Run();
   ```
--->
 
 ### Host multiple Blazor WebAssembly apps
 
