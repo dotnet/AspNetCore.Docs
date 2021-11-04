@@ -2,7 +2,6 @@
 #if DEFAULT
 #elif RP
 #region snippet
-using Microsoft.AspNetCore.Builder;
 using SampleApp.Models;
 
 var builder = WebApplication.CreateBuilder(args);
