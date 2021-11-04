@@ -1,7 +1,7 @@
 ---
 title: Work with images in ASP.NET Core Blazor apps
 author: TanayParikh
-description: Learn how to work with images using Blazor.
+description: Learn how to work with images in ASP.NET Core Blazor apps.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: taparik
 ms.custom: mvc
@@ -15,12 +15,12 @@ This article describes common scenarios for working with images in Blazor apps.
 
 ## Dynamically set an image source
 
-The following example demonstrates how to dynamically set the image source using Blazor. Start by creating a `images` folder in `wwwroot` and adding three (random) images.
+The following example demonstrates how to dynamically set an image's source with a C# field.
 
 For the example in this section:
 
-* Obtain three JPEG images from any source.
-* Name the images `image1.jpg`, `image2.jpg`, and `image3.jpg`.
+* Obtain three small PNG images from any source.
+* Name the images `image1.png`, `image2.png`, and `image3.png`.
 * Place the images in a new folder (`images`) in the app's static assets folder (`wwwroot`).
 
 The following directory tree shows the images in the `wwwroot/images` folder:
@@ -28,36 +28,28 @@ The following directory tree shows the images in the `wwwroot/images` folder:
 * `wwwroot`
   * ...
   * `images`
-    * `image1.jpg`
-    * `image2.jpg`
-    * `image3.jpg`
+    * `image1.png`
+    * `image2.png`
+    * `image3.png`
 
-Add the following markup to a Razor component (`.razor`):
+In the following `ShowImage` component:
+
+* The image's source (`src`) is dynamically set to the value of `imageSource` in C#.
+* The `ShowImage` method updates the `imageSource` field based on an image `id` argument passed to the method.
+* Rendered buttons call the `ShowImage` method with an image ID argument for each of the three available images in the `images` folder.
+
+`Pages/ShowImage.razor`:
 
 ```razor
-<img src="@ImageSource" />
+@page "/show-image"
 
-@code {
-    private string ImageSource { get; set; } = string.Empty;
+@if (imageSource is not null)
+{
+    <div>
+        <img src="@imageSource" />
+    </div>
 }
-```
 
-The image's source (`src`) is dynamically set to the `ImageSource` property's value in C#.
-
-Add a `ShowImage` method to the component that updates the `ImageSource` based on an image `id` argument passed to the method:
-
-```razor
-@code {
-    private void ShowImage(int id)
-    {
-        ImageSource = $"images/image{id}.jpg";
-    }
-}
-```
-
-Add buttons to the component to show the images:
-
-```razor
 @for (var i = 1; i <= 3; i++)
 {
     var imageId = i;
@@ -65,9 +57,18 @@ Add buttons to the component to show the images:
         Image @imageId
     </button>
 }
+
+@code {
+    private string? imageSource;
+
+    private void ShowImage(int id)
+    {
+        imageSource = $"images/image{id}.png";
+    }
+}
 ```
 
-Each button calls `ShowImage` with the associated `imageId`.
+The preceding example uses a C# field to hold the image's source data, but you can also use a C# property to hold the data.
 
 > [!NOTE]
 > Do **not** use a loop variable directly in a lambda expression, such as `i` in the preceding `for` loop example. Otherwise, the same variable is used by all lambda expressions, which results in use of the same value in all lambdas. Always capture the variable's value in a local variable and then use the local variable. In the preceding example:
@@ -75,9 +76,27 @@ Each button calls `ShowImage` with the associated `imageId`.
 > * The loop variable `i` is assigned to `imageId`.
 > * `imageId` is used in the lambda expression.
 
-## Stream image data to a client
+## Streaming examples
 
-Sometimes, it's necessary to send the image directly to the client instead of hosting the image in a public directory. The following guidance explains how how to accomplish this goal using Blazor's streaming interop features.
+The examples in this section stream image source data using JS interop. The following JavaScript `setImageUsingStreaming` function accepts the `<img>` tag `id` and data stream for the image. The function performs the following steps:
+
+* Reads the provided stream into an [`ArrayBuffer`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer).
+* Creates a [`Blob`](https://developer.mozilla.org/docs/Web/API/Blob) to wrap the `ArrayBuffer`.
+* Creates an object URL to serve as the address for the image to be shown.
+* Updates the `<img>` element with the specified `imageElementId` with the object URL just created.
+
+```javascript
+async function setImageUsingStreaming(imageElementId, imageStream) {
+  const arrayBuffer = await imageStream.arrayBuffer();
+  const blob = new Blob([arrayBuffer]);
+  const url = URL.createObjectURL(blob);
+  document.getElementById(imageElementId).src = url;
+}
+```
+
+### Stream image data to a client
+
+Sometimes, it's necessary to send an image directly to the client instead of hosting the image in a public directory. The following guidance explains how how to accomplish this goal using Blazor's streaming interop features.
 
 Add [`@inject`](xref:mvc/views/razor#inject) directives for the following services to a Razor component (`.razor`):
 
@@ -90,7 +109,7 @@ Add [`@inject`](xref:mvc/views/razor#inject) directives for the following servic
 Add an `<img>` tag to display the image. Also, add a button to trigger .NET to send the image to the client with a click event handler that calls a `SetImageUsingStreamingAsync` method:
 
 ```razor
-<img id="imageUsingImageStream" />
+<img id="image1" />
 
 <button @onclick="SetImageUsingStreamingAsync">
     Set Image Using Image Stream
@@ -113,7 +132,7 @@ Add the following `SetImageUsingStreamingAsync` method, which is triggered on th
 
 * Retrieves the <xref:System.IO.Stream> from `GetImageStreamAsync`.
 * Wraps the <xref:System.IO.Stream> in a <xref:Microsoft.JSInterop.DotNetStreamReference>, which allows streaming the image data to the client.
-* Invokes `setImageUsingStreaming`, which is a JavaScript function that accepts the data on the client. The `setImageUsingStreaming` function is shown later in this article.
+* Invokes `setImageUsingStreaming` ([shown earlier](#streaming-examples)), which is a JavaScript function that accepts the data on the client. The `setImageUsingStreaming` function is shown later in this article.
 
 ```razor
 @code {
@@ -122,26 +141,8 @@ Add the following `SetImageUsingStreamingAsync` method, which is triggered on th
         var imageStream = await GetImageStreamAsync();
         var dotnetImageStream = new DotNetStreamReference(imageStream);
         await JSRuntime.InvokeVoidAsync("setImageUsingStreaming", 
-            "imageUsingImageStream", dotnetImageStream);
+            "image1", dotnetImageStream);
     }
-}
-```
-
-The following JavaScript `setImageUsingStreaming` function accepts the `<img>` tag `id` and data stream for the image. The function performs the following steps:
-
-* Reads the provided stream into an [`ArrayBuffer`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer).
-* Creates a [`Blob`](https://developer.mozilla.org/docs/Web/API/Blob) to wrap the `ArrayBuffer`.
-* Creates an object URL to serve as the address for the image to be shown.
-* Updates the `<img>` element with the specified `imageElementId` with the object URL just created.
-
-```javascript
-async function setImageUsingStreaming(imageElementId, imageStream) {
-  const arrayBuffer = await imageStream.arrayBuffer();
-  const blob = new Blob([arrayBuffer]);
-  
-  const url = URL.createObjectURL(blob);
-
-  document.getElementById(imageElementId).src = url;
 }
 ```
 
@@ -153,7 +154,7 @@ URL.revokeObjectURL(url);
 
 ### Preview an image provided by the `InputFile` component
 
-Use the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component to read browser file data into .NET code. In some apps, you may wish to allow previewing of the selected image.
+Use the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component to read browser file data into .NET code. In some apps, you may wish to show a preview of a selected image.
 
 Add an `<img>` tag for displaying the image preview in a Razor component (`.razor`):
 
@@ -190,7 +191,7 @@ The preceding `ResizeAndDisplayImageUsingStreaming` method performs the followin
 * Requests an image file from the specified <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile> and resizes it to 250 pixels by 250 pixels.
 * Opens a <xref:System.IO.Stream> to read the `resizedImage`.
 * Wraps the `resizedImage` <xref:System.IO.Stream> in a <xref:Microsoft.JSInterop.DotNetStreamReference>, which allows streaming the image data to the client.
-* Invokes `setImageUsingStreaming`, which is a JavaScript function that accepts the data on the client. The `setImageUsingStreaming` function is shown in the [Stream image data to a client](#stream-image-data-to-a-client) section.
+* Invokes `setImageUsingStreaming` ([shown earlier](#streaming-examples)), which is a JavaScript function that accepts the data on the client.
 
 > [!NOTE]
 > The image preview technique described in this section involves round-tripping the image data from the client to the server and back. In a future release, this aspect might be optimized to better facilitate image previews. In the meantime, you may elect to create an event listener for the `InputFile` component that captures the [`FileList`](https://developer.mozilla.org/docs/Web/API/FileList) and displays a preview using JavaScript.
