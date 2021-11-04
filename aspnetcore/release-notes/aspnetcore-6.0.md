@@ -20,12 +20,6 @@ Minimal APIs are architected to create HTTP APIs with minimal dependencies. They
 
 ## SignalR
 
-<!--  TODO: Delete these comments or the SignalR team can doc size changes.
-### SignalR message size
-
-Size limitations on SignalR message size for Blazor Server apps have been removed.
--->
-
 ### Long running activity tag for SignalR connections
 
 SignalR uses the new <xref:Microsoft.AspNetCore.Http.Features.IHttpActivityFeature.Activity?displayProperty=fullName> to add an `http.long_running` tag to the request activity. `IHttpActivityFeature.Activity` is used by [APM services](https://wikipedia.org/wiki/Application_performance_management) like [Azure Monitor Application Insights](/azure/azure-monitor/azure-monitor-app-hub) to filter SignalR requests from creating long running request alerts.
