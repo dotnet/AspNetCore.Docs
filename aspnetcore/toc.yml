@@ -399,6 +399,8 @@
             uid: blazor/js-interop/call-dotnet-from-javascript
       - name: Call a web API
         uid: blazor/call-web-api
+      - name: Images
+        uid: blazor/images
       - name: Security and Identity
         items:
           - name: Overview
