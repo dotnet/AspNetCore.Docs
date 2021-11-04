@@ -2,7 +2,8 @@
 title: Safe storage of app secrets in development in ASP.NET Core
 author: rick-anderson
 description: Learn how to store and retrieve sensitive information during the development of an ASP.NET Core app.
-ms.author: scaddie
+ms.author: riande
+monikerRange: '>= aspnetcore-3.0'
 ms.custom: mvc, contperf-fy21q2
 ms.date: 11/11/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
@@ -152,7 +153,7 @@ ASP.NET Core web apps created with [dotnet new](/dotnet/core/tools/dotnet-new) o
 
 ### Read the secret via the Configuration API
 
-If the user secrets configuration source is registered, the .NET Configuration API can read the secrets. [Constructor injection](/dotnet/core/extensions/dependency-injection#constructor-injection-behavior) can be used to gain access to the .NET Configuration API. Consider the following examples of reading the `Movies:ServiceApiKey` key:
+Consider the following examples of reading the `Movies:ServiceApiKey` key:
 
 **Program.cs file:**
 
@@ -162,7 +163,7 @@ If the user secrets configuration source is registered, the .NET Configuration A
 
 [!code-csharp[](app-secrets/samples/6.x/UserSecrets/Pages/Index.cshtml.cs?name=snippet_PageModel&highlight=12)]
 
-For more information, see [Access configuration in Startup](xref:fundamentals/configuration/index#access-configuration-in-startup) and [Access configuration in Razor Pages](xref:fundamentals/configuration/index#access-configuration-in-razor-pages).
+For more information, see <xref:fundamentals/configuration/index>.
 
 ## Map secrets to a POCO
 
