@@ -421,9 +421,6 @@ The startup code for the ASP.NET Core app no longer needs any single-page app-sp
 
 Templates that follow this pattern can still be run as a single project in Visual Studio or using `dotnet run` from the command-line. When the app is published, the front-end code in the *ClientApp* folder is built and collected as before into the web root of the host ASP.NET Core app and served as static files. Scripts included in the template configure the front-end development server to use HTTPS using the ASP.NET Core development certificate.
 
-### Single-page app (SPA) support
-<!-- TODO @LadyNaggaga to provide this section-->
-
 ### Draft HTTP/3 support in .NET 6
 
 [HTTP/3](https://datatracker.ietf.org/doc/html/draft-ietf-quic-http-34) is currently in draft and therefore subject to change. HTTP/3 support in ASP.NET Core is not released, it's a preview feature included in .NET 6.
