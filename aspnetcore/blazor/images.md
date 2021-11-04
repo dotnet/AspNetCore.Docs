@@ -94,6 +94,12 @@ async function setImageUsingStreaming(imageElementId, imageStream) {
 }
 ```
 
+To prevent memory leaks, call [`URL.revokeObjectURL()`](https://developer.mozilla.org/docs/Web/API/URL/revokeObjectURL) to dispose of the object URL (`url` in the preceding example) when the component is finished working with an image. In a form, the object URL is typically revoked after the user submits the form for processing, as the object URL is no longer required at that point.
+
+```javascript
+URL.revokeObjectURL(url);
+```
+
 ### Stream image data to a client
 
 Sometimes, it's necessary to send an image directly to the client instead of hosting the image in a public directory. The following guidance explains how how to accomplish this goal using Blazor's streaming interop features.
@@ -144,12 +150,6 @@ Add the following `SetImageUsingStreamingAsync` method, which is triggered on th
             "image1", dotnetImageStream);
     }
 }
-```
-
-Call [`URL.revokeObjectURL()`](https://developer.mozilla.org/docs/Web/API/URL/revokeObjectURL) to dispose of the object URL when done working with an image to prevent memory leaks. In a form, the object URL is typically revoked after the user submits the form for processing, as the object URL is no longer required at that point.
-
-```javascript
-URL.revokeObjectURL(url);
 ```
 
 ### Preview an image provided by the `InputFile` component
