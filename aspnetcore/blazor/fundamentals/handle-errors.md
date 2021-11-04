@@ -45,7 +45,11 @@ In production, don't render framework exception messages or stack traces in the 
 * Disclose sensitive information to end users.
 * Help a malicious user discover weaknesses in an app that can compromise the security of the app, server, or network.
 
+## Global exception handling (Blazor WebAssembly)
+
 [!INCLUDE[](~/blazor/fundamentals/includes/handle-errors/global-exception-handling.md)]
+
+## Error boundaries (Blazor WebAssembly)
 
 [!INCLUDE[](~/blazor/fundamentals/includes/handle-errors/error-boundaries.md)]
 
@@ -297,9 +301,13 @@ In production, don't render framework exception messages or stack traces in the 
 * Disclose sensitive information to end users.
 * Help a malicious user discover weaknesses in an app that can compromise the security of the app, server, or network.
 
+## Global exception handling (Blazor Server)
+
 [!INCLUDE[](~/blazor/fundamentals/includes/handle-errors/global-exception-handling.md)]
 
 Because the approaches in this section handle errors with a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement, the SignalR connection between the client and server isn't broken when an error occurs and the circuit remains alive. Any unhandled exception is fatal to a circuit. For more information, see the preceding section on [how a Blazor Server app reacts to unhandled exceptions](#how-a-blazor-server-app-reacts-to-unhandled-exceptions).
+
+## Error boundaries (Blazor Server)
 
 [!INCLUDE[](~/blazor/fundamentals/includes/handle-errors/error-boundaries.md)]
 
@@ -524,6 +532,8 @@ In production, don't render framework exception messages or stack traces in the 
 
 * Disclose sensitive information to end users.
 * Help a malicious user discover weaknesses in an app that can compromise the security of the app, server, or network.
+
+## Global exception handling (Blazor WebAssembly)
 
 [!INCLUDE[](~/blazor/fundamentals/includes/handle-errors/global-exception-handling.md)]
 
@@ -775,6 +785,8 @@ In production, don't render framework exception messages or stack traces in the 
 * Disclose sensitive information to end users.
 * Help a malicious user discover weaknesses in an app that can compromise the security of the app, server, or network.
 
+## Global exception handling (Blazor Server)
+
 [!INCLUDE[](~/blazor/fundamentals/includes/handle-errors/global-exception-handling.md)]
 
 Because the approaches in this section handle errors with a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement, the SignalR connection between the client and server isn't broken when an error occurs and the circuit remains alive. Any unhandled exception is fatal to a circuit. For more information, see the preceding section on [how a Blazor Server app reacts to unhandled exceptions](#how-a-blazor-server-app-reacts-to-unhandled-exceptions).
@@ -1000,6 +1012,8 @@ In production, don't render framework exception messages or stack traces in the 
 
 * Disclose sensitive information to end users.
 * Help a malicious user discover weaknesses in an app that can compromise the security of the app, server, or network.
+
+## Global exception handling (Blazor WebAssembly)
 
 [!INCLUDE[](~/blazor/fundamentals/includes/handle-errors/global-exception-handling.md)]
 
@@ -1250,6 +1264,8 @@ In production, don't render framework exception messages or stack traces in the 
 
 * Disclose sensitive information to end users.
 * Help a malicious user discover weaknesses in an app that can compromise the security of the app, server, or network.
+
+## Global exception handling (Blazor Server)
 
 [!INCLUDE[](~/blazor/fundamentals/includes/handle-errors/global-exception-handling.md)]
 
