@@ -21,6 +21,7 @@ Minimal APIs are architected to create HTTP APIs with minimal dependencies. They
 * <xref:tutorials/min-web-api>
 * [Differences between minimal APIs and APIs with controllers](xref:tutorials/min-web-api?view=aspnetcore-6.0#differences-between-minimal-apis-and-apis-with-controllers)
 * <xref:fundamentals/minimal-apis>
+* <xref:migration/50-to-60-samples>
 
 ## SignalR
 
@@ -701,3 +702,7 @@ In such scenarios, enable shadow copying by customizing the ASP.NET Core module 
 ```
 
 Shadow copying in IIS is an experimental feature that is not guaranteed to be part of ASP.NET Core. Please leave feedback on IIS Shadow copying in [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/23733).
+
+## Additional resources
+
+* <xref:migration/50-to-60-samples>
