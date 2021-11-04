@@ -157,7 +157,7 @@ Consider the following examples of reading the `Movies:ServiceApiKey` key:
 
 **Program.cs file:**
 
-[!code-csharp[](app-secrets/samples/6.x/UserSecrets/Program.cs?name=snippet_s2&highlight=1)]
+[!code-csharp[](app-secrets/samples/6.x/UserSecrets/Program.cs?name=snippet_s2&highlight=2)]
 
 **Razor Pages page model:**
 
@@ -197,7 +197,7 @@ Remove the `Password` key-value pair from the connection string in *appsettings.
 
 The secret's value can be set on a <xref:System.Data.SqlClient.SqlConnectionStringBuilder> object's <xref:System.Data.SqlClient.SqlConnectionStringBuilder.Password%2A> property to complete the connection string:
 
-[!code-csharp[](app-secrets/samples/6.x/UserSecrets/Program.cs?name=snippet_sql)]
+[!code-csharp[](app-secrets/samples/6.x/UserSecrets/Program.cs?name=snippet_sql&highlight=5-8)]
 
 ## List the secrets
 
