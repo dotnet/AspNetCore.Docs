@@ -172,7 +172,6 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
    * Confirm that the latest [C# for Visual Studio Code Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) is installed. To inspect the installed extensions, open **View** > **Extensions** from the menu bar or select the **Extensions** icon in the **Activity** sidebar.
    * When using the [C# for Visual Studio Code Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) **version 1.23.9 or later**, confirm that the latest [Blazor WASM Debugging Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.blazorwasm-companion) is installed. To inspect the installed extensions, open **View** > **Extensions** from the menu bar or select the **Extensions** icon in the **Activity** sidebar.
-   * Confirm that JavaScript preview debugging is enabled. Open the settings from the menu bar (**File** > **Preferences** > **Settings**). Search using the keywords `debug preview`. In the search results, set or confirm that the checkbox for **Debug > JavaScript: Use Preview** is checked. If the option to enable preview debugging isn't present, either upgrade to the latest version of VS Code or install the [JavaScript Debugger Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug-nightly) (VS Code versions 1.46 or earlier).
    * Reload the window.
 
 1. Start debugging using the <kbd>F5</kbd> keyboard shortcut or the menu item.
@@ -553,7 +552,6 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
    * Confirm that the latest [C# for Visual Studio Code Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) is installed. To inspect the installed extensions, open **View** > **Extensions** from the menu bar or select the **Extensions** icon in the **Activity** sidebar.
    * When using the [C# for Visual Studio Code Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) **version 1.23.9 or later**, confirm that the latest [Blazor WASM Debugging Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.blazorwasm-companion) is installed. To inspect the installed extensions, open **View** > **Extensions** from the menu bar or select the **Extensions** icon in the **Activity** sidebar.
-   * Confirm that JavaScript preview debugging is enabled. Open the settings from the menu bar (**File** > **Preferences** > **Settings**). Search using the keywords `debug preview`. In the search results, set or confirm that the checkbox for **Debug > JavaScript: Use Preview** is checked. If the option to enable preview debugging isn't present, either upgrade to the latest version of VS Code or install the [JavaScript Debugger Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug-nightly) (VS Code versions 1.46 or earlier).
    * Reload the window.
 
 1. Start debugging using the <kbd>F5</kbd> keyboard shortcut or the menu item.
@@ -982,7 +980,6 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
    * Confirm that the latest [C# for Visual Studio Code Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) is installed. To inspect the installed extensions, open **View** > **Extensions** from the menu bar or select the **Extensions** icon in the **Activity** sidebar.
    * When using the [C# for Visual Studio Code Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) **version 1.23.9 or later**, confirm that the latest [Blazor WASM Debugging Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.blazorwasm-companion) is installed. To inspect the installed extensions, open **View** > **Extensions** from the menu bar or select the **Extensions** icon in the **Activity** sidebar.
-   * Confirm that JavaScript preview debugging is enabled. Open the settings from the menu bar (**File** > **Preferences** > **Settings**). Search using the keywords `debug preview`. In the search results, set or confirm that the checkbox for **Debug > JavaScript: Use Preview** is checked. If the option to enable preview debugging isn't present, either upgrade to the latest version of VS Code or install the [JavaScript Debugger Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug-nightly) (VS Code versions 1.46 or earlier).
    * Reload the window.
 
 1. Start debugging using the <kbd>F5</kbd> keyboard shortcut or the menu item.

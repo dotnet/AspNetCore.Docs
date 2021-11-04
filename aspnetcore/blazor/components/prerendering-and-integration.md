@@ -856,7 +856,7 @@ By initializing components with the same state used during prerendering, any exp
   * [Stateful reconnection after prerendering](xref:blazor/components/lifecycle#stateful-reconnection-after-prerendering)
   * [Detect when the app is prerendering](xref:blazor/components/lifecycle#detect-when-the-app-is-prerendering)
 * [Authentication and authorization: General aspects](xref:blazor/security/index#aspnet-core-blazor-authentication-and-authorization)
-* [Blazor Server rerendering](xref:blazor/fundamentals/handle-errors#blazor-server-prerendering-server)
+* [Handle Errors: Blazor Server Prerendering](xref:blazor/fundamentals/handle-errors#prerendering-blazor-server)
 * [Host and deploy: Blazor Server](xref:blazor/host-and-deploy/server)
 * [Threat mitigation: Cross-site scripting (XSS)](xref:blazor/security/server/threat-mitigation#cross-site-scripting-xss)
 
@@ -1537,7 +1537,7 @@ For more information, see <xref:blazor/components/index#namespaces>.
   * [Stateful reconnection after prerendering](xref:blazor/components/lifecycle#stateful-reconnection-after-prerendering)
   * [Detect when the app is prerendering](xref:blazor/components/lifecycle#detect-when-the-app-is-prerendering)
 * [Authentication and authorization: General aspects](xref:blazor/security/index#aspnet-core-blazor-authentication-and-authorization)
-* [Blazor Server rerendering](xref:blazor/fundamentals/handle-errors#blazor-server-prerendering-server)
+* [Handle Errors: Blazor Server Prerendering](xref:blazor/fundamentals/handle-errors#prerendering-blazor-server)
 * [Host and deploy: Blazor Server](xref:blazor/host-and-deploy/server)
 * [Threat mitigation: Cross-site scripting (XSS)](xref:blazor/security/server/threat-mitigation#cross-site-scripting-xss)
 
@@ -1951,7 +1951,7 @@ For more information, see <xref:blazor/components/index#namespaces>.
   * [Stateful reconnection after prerendering](xref:blazor/components/lifecycle#stateful-reconnection-after-prerendering)
   * [Detect when the app is prerendering](xref:blazor/components/lifecycle#detect-when-the-app-is-prerendering)
 * [Authentication and authorization: General aspects](xref:blazor/security/index#aspnet-core-blazor-authentication-and-authorization)
-* [Blazor Server rerendering](xref:blazor/fundamentals/handle-errors#blazor-server-prerendering-server)
+* [Handle Errors: Blazor Server Prerendering](xref:blazor/fundamentals/handle-errors#prerendering-blazor-server)
 * [Host and deploy: Blazor Server](xref:blazor/host-and-deploy/server)
 * [Threat mitigation: Cross-site scripting (XSS)](xref:blazor/security/server/threat-mitigation#cross-site-scripting-xss)
 
