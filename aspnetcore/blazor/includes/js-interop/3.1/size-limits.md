@@ -31,18 +31,11 @@ Error:
 
 > System.IO.InvalidDataException: The maximum message size of 32768B was exceeded. The message size can be configured in AddHubOptions.
 
-Increase the limit by setting <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> in `Program.cs`. The following example sets the maximum receive message size to 64 KB (64 * 1024) in ASP.NET Core 6.0 or later:
-
-```csharp
-builder.Services.AddServerSideBlazor()
-   .AddHubOptions(options => options.MaximumReceiveMessageSize = 64 * 1024);
-```
-
-In `Startup.ConfigureServices` for versions of ASP.NET Core earlier than 6.0:
+Increase the limit by setting <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> in `Startup.ConfigureServices`:
 
 ```csharp
 services.AddServerSideBlazor()
-   .AddHubOptions(options => options.MaximumReceiveMessageSize = 64 * 1024);
+    .AddHubOptions(options => options.MaximumReceiveMessageSize = 64 * 1024);
 ```
 
 Increasing the SignalR incoming message size limit comes at the cost of requiring more server resources, and it exposes the server to increased risks from a malicious user. Additionally, reading a large amount of content in to memory as strings or byte arrays can also result in allocations that work poorly with the garbage collector, resulting in additional performance penalties.

@@ -396,23 +396,31 @@ For more information, see [Setting Up Certificate Authorities (CAs) in Firefox](
 
 See [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/6199).
 
-## Ubuntu trust the certificate for service-to-service communication
+## Trust HTTPS certificate on Linux
+
+Establishing trust is distribution and browser specific. The following sections provide instructions for some popular distributions and the Chromium browsers (Edge and Chrome) and for Firefox.
+
+### Ubuntu trust the certificate for service-to-service communication
 
 1. Install [OpenSSL](https://www.openssl.org/) 1.1.1h or later. See your distribution for instructions on how to update OpenSSL.
 1. Run the following commands:
 
     ```cli
-    sudo dotnet dev-certs https -ep /usr/local/share/ca-certificates/aspnet/https.crt --format PEM
+    dotnet dev-certs https
+    sudo -E dotnet dev-certs https -ep /usr/local/share/ca-certificates/aspnet/https.crt --format PEM
     sudo update-ca-certificates
     ```
+
+The preceding commands:
+
+* Ensure the current user's developer certificate is created.
+* Exports the certificate with elevated permissions needed for the `ca-certificates` folder, using the current user's environment.
+* Removing the `-E`  flag exports the root user certificate, generating it if necessary. Each newly generated certificate has a different thumbprint. When running as root, `sudo`  and  `-E` are not needed.
+
 
 The path in the preceding command is specific for Ubuntu. For other distributions, select an appropriate path or use the path for the Certificate Authorities (CAs).
 
 <a name="ssl-linux"></a>
-
-## Trust HTTPS certificate on Linux
-
-Establishing trust is browser specific. The following sections provide instructions for the Chromium browsers Edge and Chrome and for Firefox.
 
 ### Trust HTTPS certificate on Linux using Edge or Chrome
 
@@ -423,10 +431,11 @@ For chromium browsers on Linux:
   * Export the certificate with the following command:
   
     ```cli
-    dotnet dev-certs https -ep /usr/local/share/ca-certificates/aspnet/https.crt --format PEM
+    dotnet dev-certs https
+    sudo -E dotnet dev-certs https -ep /usr/local/share/ca-certificates/aspnet/https.crt --format PEM
     ```
 
-    The path in the preceding command is specific for Ubuntu. For other distributions, select an appropriate path or use the path for the Certificate Authorities (CAs). **You may need elevated permissions to export the certificate to the `ca-certificates` folder.**
+    The path in the preceding command is specific for Ubuntu. For other distributions, select an appropriate path or use the path for the Certificate Authorities (CAs).
 
   * Run the following commands:
   
@@ -444,24 +453,27 @@ For chromium browsers on Linux:
 * Export the certificate with the following command:
 
   ```vstscli
-  dotnet dev-certs https -ep /usr/local/share/ca-certificates/aspnet/https.crt --format PEM
+  dotnet dev-certs https
+  sudo -E dotnet dev-certs https -ep /usr/local/share/ca-certificates/aspnet/https.crt --format PEM
   ```
 
   The path in the preceding command is specific for Ubuntu. For other distributions, select an appropriate path or use the path for the Certificate Authorities (CAs).
 
 * Create a JSON file at `/usr/lib/firefox/distribution/policies.json` with the following contents:
 
-  ```json
-  {
-      "policies": {
-          "Certificates": {
-              "Install": [
-                  "/usr/local/share/ca-certificates/aspnet/https.crt"
-              ]
-          }
-      }
-  }
-  ```
+```sh
+cat <<EOF | sudo tee /usr/lib/firefox/distribution/policies.json
+{
+    "policies": {
+        "Certificates": {
+            "Install": [
+                "/usr/local/share/ca-certificates/aspnet/https.crt"
+            ]
+        }
+    }
+}
+EOF
+```
   
 See [Configure trust of HTTPS certificate using Firefox browser](#trust-ff-ba) in this document for an alternative way to configure the policy file using the browser.
 
@@ -553,6 +565,34 @@ dotnet dev-certs https --trust
 Close any browser instances open. Open a new browser window to app.
 
 See [HTTPS Error using IIS Express (dotnet/AspNetCore #16892)](https://github.com/dotnet/AspNetCore/issues/16892) for troubleshooting certificate issues with Visual Studio.
+
+### Linux certificate not trusted
+
+Check that the certificate being configured for trust is the user HTTPS developer certificate that will be used by the Kestrel server.
+
+Check the current user default HTTPS developer Kestrel certificate at the following location:
+
+```
+ls -la ~/.dotnet/corefx/cryptography/x509stores/my
+```
+
+The HTTPS developer Kestrel certificate file is the SHA1 thumbprint. When the file is deleted via `dotnet dev-certs https --clean`, it's regenerated when needed with a different thumbprint.
+Check the thumbprint of the exported certificate matches with the following command:
+
+```
+openssl x509 -noout -fingerprint -sha1 -inform pem -in /usr/local/share/ca-certificates/aspnet/https.crt
+```
+
+If the certificate doesn't match, it could be one of the following:
+
+* An old certificate.
+* An exported a developer certificate for the root user. For this case, export the  certificate.
+
+The root user certificate can be checked at:
+
+```
+ls -la /root/.dotnet/corefx/cryptography/x509stores/my
+```
 
 ### IIS Express SSL certificate used with Visual Studio
 
