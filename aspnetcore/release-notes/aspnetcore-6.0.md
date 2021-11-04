@@ -157,11 +157,11 @@ Blazor WebAssembly apps can use native dependencies built to run on WebAssembly.
 
 ### WebAssembly Ahead-of-time (AOT) compilation and runtime relinking
 
-Blazor WebAssembly supports ahead-of-time (AOT) compilation, where you can compile your .NET code directly into WebAssembly. AOT compilation results in runtime performance improvements at the expense of a larger app size. Relinking the .NET WebAssembly runtime trims unused runtime code and thus improves download speed. For more information, see [Ahead-of-time (AOT) compilation](xref:blazor/host-and-deploy/webassembly?view=aspnetcore-6.0#ahead-of-time-aot-compilation) and [Runtime Relinking](xref:blazor/host-and-deploy/webassembly?view=aspnetcore-6.0#runtime-relinking).
+Blazor WebAssembly supports ahead-of-time (AOT) compilation, where you can compile your .NET code directly into WebAssembly. AOT compilation results in runtime performance improvements at the expense of a larger app size. Relinking the .NET WebAssembly runtime trims unused runtime code and thus improves download speed. For more information, see [Ahead-of-time (AOT) compilation](xref:blazor/host-and-deploy/webassembly?view=aspnetcore-6.0#ahead-of-time-aot-compilation) and [Runtime relinking](xref:blazor/host-and-deploy/webassembly?view=aspnetcore-6.0#runtime-relinking).
 
 ### Persist prerendering state
 
-Blazor supports persisting state in a prerendered page so that the state doesn’t need to be recreated when the app is fully loaded. For more information, see <xref:blazor/components/prerendering-and-integration?view=aspnetcore-6.0&pivots=server#preserve-prerendered-state>.
+Blazor supports persisting state in a prerendered page so that the state doesn't need to be recreated when the app is fully loaded. For more information, see <xref:blazor/components/prerendering-and-integration?view=aspnetcore-6.0&pivots=server#preserve-prerendered-state>.
 
 ### Error boundaries
 
@@ -171,7 +171,7 @@ Error boundaries provide a convenient approach for handling exceptions. For more
 
 The [`<foreignObject>` element](https://developer.mozilla.org/docs/Web/SVG/Element/foreignObject) element is supported to display arbitrary HTML within an SVG. For more information, see <xref:blazor/components/index?view=aspnetcore-6.0#scalable-vector-graphics-svg-images>.
 
-### Blazor Server support for byte-array transfer in JS Interop
+### Blazor Server support for byte array transfer in JS Interop
 
 Blazor supports optimized byte array JS interop that avoids encoding and decoding byte arrays into Base64. For more information, see the following resources:
 
@@ -199,7 +199,7 @@ Generate framework-specific JavaScript components from Razor components for web 
 
 ### Render components from JavaScript
 
-Razor components can be dynamically-rendered from JavaScript for existing JavaScript apps. For more information, see <xref:blazor/components/index?view=aspnetcore-6.0#render-razor-components-from-javascript>.
+Render Razor components dynamically from JavaScript for existing JavaScript apps. For more information, see <xref:blazor/components/index?view=aspnetcore-6.0#render-razor-components-from-javascript>.
 
 ### Custom elements
 
@@ -227,7 +227,7 @@ Apply the new `[EditorRequired]` attribute to specify a required component param
 
 ### Collocation of JavaScript files with pages, views, and components
 
-Collocate JavaScript (JS) files for pages, views, and Razor components as a convenient way to organize scripts in an app. For more information, see <xref:blazor/js-interop/index?view=aspnetcore-6.0#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component>.
+Collocate JavaScript files for pages, views, and Razor components as a convenient way to organize scripts in an app. For more information, see <xref:blazor/js-interop/index?view=aspnetcore-6.0#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component>.
 
 ### JavaScript initializers
 
@@ -238,7 +238,7 @@ JavaScript initializers execute logic before and after a Blazor app loads. For m
 Blazor now supports streaming data directly between .NET and JavaScript. For more information, see the following resources:
 
 * [Stream from .NET to JavaScript](xref:blazor/js-interop/call-javascript-from-dotnet?view=aspnetcore-6.0#stream-from-net-to-javascript)
-* [Stream from JavaScript to .NET](xref:blazor/js-interop/call-javascript-from-dotnet?view=aspnetcore-6.0#stream-from-javascript-to-net)
+* [Stream from JavaScript to .NET](xref:blazor/js-interop/call-dotnet-from-javascript?view=aspnetcore-6.0#stream-from-javascript-to-net)
 
 ### Generic type constraints
 
@@ -249,7 +249,6 @@ Generic type parameters are now supported. For more information, see <xref:blazo
 Use a deployment layout to enable Blazor WebAssembly app downloads in restricted security environments. For more information, see <xref:blazor/host-and-deploy/webassembly-deployment-layout?view=aspnetcore-6.0>.
 
 <!-- HOLD
-
 ### Blazor WebAssembly packaging
 
 HOLD
