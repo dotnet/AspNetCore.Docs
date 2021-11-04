@@ -73,7 +73,7 @@
     "dest": "_site",
     "markdownEngineName": "markdig",
     "groups": {
-      "group1": { "dest": "group1-dest", "moniker_range": ">= aspnetcore-1.0" }
+      "group1": { "dest": "group1-dest", "moniker_range": ">= aspnetcore-3.1" }
     }
   }
 }
