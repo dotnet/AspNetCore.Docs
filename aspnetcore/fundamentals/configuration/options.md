@@ -269,7 +269,7 @@ The [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org
 
 ::: moniker-end
 
-::: moniker range="<= aspnetcore-6.0"
+::: moniker range="< aspnetcore-6.0"
 
 By [Kirk Larkin](https://twitter.com/serpent5) and [Rick Anderson](https://twitter.com/RickAndMSFT).
 
