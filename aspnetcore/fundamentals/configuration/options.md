@@ -141,7 +141,7 @@ Services can be accessed from dependency injection while configuring options in 
 * Pass a configuration delegate to [Configure](xref:Microsoft.Extensions.Options.OptionsBuilder`1.Configure*) on [OptionsBuilder\<TOptions>](xref:Microsoft.Extensions.Options.OptionsBuilder`1). `OptionsBuilder<TOptions>` provides overloads of [Configure](xref:Microsoft.Extensions.Options.OptionsBuilder`1.Configure*) that allow use of up to five services to configure options:
 
   ```csharp
-  services.AddOptions<MyOptions>("optionalName")
+  builder.Services.AddOptions<MyOptions>("optionalName")
       .Configure<Service1, Service2, Service3, Service4, Service5>(
           (o, s, s2, s3, s4, s5) => 
               o.Property = DoSomethingWith(s, s2, s3, s4, s5));
@@ -224,7 +224,7 @@ Data Annotation-based validation is available from the [Microsoft.Extensions.Opt
 
 Set post-configuration with <xref:Microsoft.Extensions.Options.IPostConfigureOptions%601>. Post-configuration runs after all <xref:Microsoft.Extensions.Options.IConfigureOptions%601> configuration occurs:
 
-[!code-csharp[](options/samples/6.x/OptionsValidationSample/Program.cs?name=snippet_p1?highlight=10-99)]
+[!code-csharp[](options/samples/6.x/OptionsValidationSample/Program.cs?name=snippet_p1&highlight=10-99)]
 
 <xref:Microsoft.Extensions.Options.IPostConfigureOptions`1.PostConfigure*> is available to post-configure named options:
 
@@ -232,7 +232,7 @@ Set post-configuration with <xref:Microsoft.Extensions.Options.IPostConfigureOpt
 
 Use <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.PostConfigureAll*> to post-configure all configuration instances:
 
-[!code-csharp[](options/samples/6.x/OptionsValidationSample/Program.cs?name=snippet_p3?highlight=10-99)]
+[!code-csharp[](options/samples/6.x/OptionsValidationSample/Program.cs?name=snippet_p3&highlight=10-99)]
 
 <!--
 ## Accessing options at application startup
