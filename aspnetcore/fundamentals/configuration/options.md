@@ -30,7 +30,7 @@ This topic provides information on the options pattern in ASP.NET Core. For info
 
 ## Bind hierarchical configuration
 
-[!INCLUDE[](~/includes/bind.md)]
+[!INCLUDE[](~/includes/bind6.md)]
 
 <a name="oi"></a>
 
@@ -78,11 +78,11 @@ The difference between `IOptionsMonitor` and `IOptionsSnapshot` is that:
 
 The following code uses <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>.
 
-[!code-csharp[](options/samples/3.x/OptionsSample/Pages/TestSnap.cshtml.cs?name=snippet)]
+[!code-csharp[](options/samples/6.x/OptionsSample/Pages/TestSnap.cshtml.cs?name=snippet)]
 
 The following code registers a configuration instance which `MyOptions` binds against:
 
-[!code-csharp[](~/fundamentals/configuration/options/samples/3.x/OptionsSample/Startup3.cs?name=snippet_Example2)]
+[!code-csharp[](~/fundamentals/configuration/options/samples/6.x/OptionsSample/program.cs?name=snippet)]
 
 In the preceding code, changes to the JSON configuration file after the app has started are read.
 
@@ -90,11 +90,11 @@ In the preceding code, changes to the JSON configuration file after the app has 
 
 The following code registers a configuration instance which `MyOptions` binds against.
 
-[!code-csharp[](~/fundamentals/configuration/options/samples/3.x/OptionsSample/Startup3.cs?name=snippet_Example2)]
+[!code-csharp[](~/fundamentals/configuration/options/samples/6.x/OptionsSample/program.cs?name=snippet)]
 
 The following example uses <xref:Microsoft.Extensions.Options.IOptionsMonitor%601>:
 
-[!code-csharp[](options/samples/3.x/OptionsSample/Pages/TestMonitor.cshtml.cs?name=snippet)]
+[!code-csharp[](options/samples/6.x/OptionsSample/Pages/TestMonitor.cshtml.cs?name=snippet)]
 
 In the preceding code, by default, changes to the JSON configuration file after the app has started are read.
 
@@ -109,20 +109,20 @@ Named options:
 
 Consider the following *appsettings.json* file:
 
-[!code-json[](~/fundamentals/configuration/options/samples/3.x/OptionsSample/appsettings.NO.json)]
+[!code-json[](~/fundamentals/configuration/options/samples/6.x/OptionsSample/appsettings.NO.json)]
 
 Rather than creating two classes to bind `TopItem:Month` and `TopItem:Year`,
 the following class is used for each section:
 
-[!code-csharp[](~/fundamentals/configuration/options/samples/3.x/OptionsSample/Models/TopItemSettings.cs)]
+[!code-csharp[](~/fundamentals/configuration/options/samples/6.x/OptionsSample/Models/TopItemSettings.cs)]
 
 The following code configures the named options:
 
-[!code-csharp[](~/fundamentals/configuration/options/samples/3.x/OptionsSample/StartupNO.cs?name=snippet_Example2)]
+[!code-csharp[](~/fundamentals/configuration/options/samples/6.x/OptionsSample/program.cs?name=snippet_om)]
 
 The following code displays the named options:
 
-[!code-csharp[](options/samples/3.x/OptionsSample/Pages/TestNO.cshtml.cs?name=snippet)]
+[!code-csharp[](options/samples/6.x/OptionsSample/Pages/TestNO.cshtml.cs?name=snippet)]
 
 All options are named instances. <xref:Microsoft.Extensions.Options.IConfigureOptions%601> instances are treated as targeting the `Options.DefaultName` instance, which is `string.Empty`. <xref:Microsoft.Extensions.Options.IConfigureNamedOptions%601> also implements <xref:Microsoft.Extensions.Options.IConfigureOptions%601>. The default implementation of the <xref:Microsoft.Extensions.Options.IOptionsFactory%601> has logic to use each appropriately. The `null` named option is used to target all of the named instances instead of a specific named instance. <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.ConfigureAll*> and <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.PostConfigureAll*> use this convention.
 
@@ -141,7 +141,7 @@ Services can be accessed from dependency injection while configuring options in 
 * Pass a configuration delegate to [Configure](xref:Microsoft.Extensions.Options.OptionsBuilder`1.Configure*) on [OptionsBuilder\<TOptions>](xref:Microsoft.Extensions.Options.OptionsBuilder`1). `OptionsBuilder<TOptions>` provides overloads of [Configure](xref:Microsoft.Extensions.Options.OptionsBuilder`1.Configure*) that allow use of up to five services to configure options:
 
   ```csharp
-  services.AddOptions<MyOptions>("optionalName")
+  builder.Services.AddOptions<MyOptions>("optionalName")
       .Configure<Service1, Service2, Service3, Service4, Service5>(
           (o, s, s2, s3, s4, s5) => 
               o.Property = DoSomethingWith(s, s2, s3, s4, s5));
@@ -161,7 +161,7 @@ Consider the following *appsettings.json* file:
 
 [!code-json[](~/fundamentals/configuration/options/samples/3.x/OptionsValidationSample/appsettings.Dev2.json)]
 
-The following class binds to the `"MyConfig"` configuration section and applies a couple of `DataAnnotations` rules:
+The following class is used to bind to the `"MyConfig"` configuration section and applies a couple of `DataAnnotations` rules:
 
 [!code-csharp[](options/samples/3.x/OptionsValidationSample/Configuration/MyConfigOptions.cs?name=snippet)]
 
@@ -170,29 +170,29 @@ The following code:
 * Calls <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.AddOptions%2A> to get an [OptionsBuilder\<TOptions>](xref:Microsoft.Extensions.Options.OptionsBuilder`1) that binds to the `MyConfigOptions` class.
 * Calls <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotationsExtensions.ValidateDataAnnotations%2A> to enable validation using `DataAnnotations`.
 
-[!code-csharp[](options/samples/3.x/OptionsValidationSample/Startup.cs?name=snippet)]
+[!code-csharp[](options/samples/6.x/OptionsValidationSample/Program.cs?name=snippet)]
 
 The `ValidateDataAnnotations` extension method is defined in the [Microsoft.Extensions.Options.DataAnnotations](https://www.nuget.org/packages/Microsoft.Extensions.Options.DataAnnotations) NuGet package. For web apps that use the `Microsoft.NET.Sdk.Web` SDK, this package is referenced implicitly from the shared framework.
 
 The following code displays the configuration values or the validation errors:
 
-[!code-csharp[](options/samples/3.x/OptionsValidationSample/Controllers/HomeController.cs?name=snippet)]
+[!code-csharp[](options/samples/6.x/OptionsValidationSample/Controllers/HomeController.cs?name=snippet)]
 
 The following code applies a more complex validation rule using a delegate:
 
-[!code-csharp[](options/samples/3.x/OptionsValidationSample/Startup2.cs?name=snippet)]
+[!code-csharp[](options/samples/6.x/OptionsValidationSample/Program.cs?name=snippet_mc)]
 
 ### IValidateOptions for complex validation
 
 The following class implements <xref:Microsoft.Extensions.Options.IValidateOptions`1>:
 
-[!code-csharp[](options/samples/3.x/OptionsValidationSample/Configuration/MyConfigValidation.cs?name=snippet)]
+[!code-csharp[](options/samples/6.x/OptionsValidationSample/Configuration/MyConfigValidation.cs?name=snippet)]
 
 `IValidateOptions` enables moving the validation code out of `StartUp` and into a class.
 
 Using the preceding code, validation is enabled in `Startup.ConfigureServices` with the following code:
 
-[!code-csharp[](options/samples/3.x/OptionsValidationSample/StartupValidation.cs?name=snippet)]
+[!code-csharp[](options/samples/6.x/OptionsValidationSample/Program.cs?name=snippet_xm)]
 
 <!-- The following comment doesn't seem that useful 
 Options validation doesn't guard against options modifications after the options instance is created. For example, `IOptionsSnapshot` options are created and validated once per request when the options are first accessed. The `IOptionsSnapshot` options aren't validated again on subsequent access attempts *for the same request*.
@@ -224,48 +224,30 @@ Data Annotation-based validation is available from the [Microsoft.Extensions.Opt
 
 Set post-configuration with <xref:Microsoft.Extensions.Options.IPostConfigureOptions%601>. Post-configuration runs after all <xref:Microsoft.Extensions.Options.IConfigureOptions%601> configuration occurs:
 
-```csharp
-services.PostConfigure<MyOptions>(myOptions =>
-{
-    myOptions.Option1 = "post_configured_option1_value";
-});
-```
+[!code-csharp[](options/samples/6.x/OptionsValidationSample/Program.cs?name=snippet_p1&highlight=10-99)]
 
 <xref:Microsoft.Extensions.Options.IPostConfigureOptions`1.PostConfigure*> is available to post-configure named options:
 
-```csharp
-services.PostConfigure<MyOptions>("named_options_1", myOptions =>
-{
-    myOptions.Option1 = "post_configured_option1_value";
-});
-```
+[!code-csharp[](~/fundamentals/configuration/options/samples/6.x/OptionsSample/program.cs?name=snippet_nmo&highlight=10-14)]
 
 Use <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.PostConfigureAll*> to post-configure all configuration instances:
 
-```csharp
-services.PostConfigureAll<MyOptions>(myOptions =>
-{
-    myOptions.Option1 = "post_configured_option1_value";
-});
-```
+[!code-csharp[](options/samples/6.x/OptionsValidationSample/Program.cs?name=snippet_p3&highlight=10-99)]
 
-## Accessing options during startup
+<!--
+## Accessing options at application startup
 
 <xref:Microsoft.Extensions.Options.IOptions%601> and <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> can be used in `Startup.Configure`, since services are built before the `Configure` method executes.
 
-```csharp
-public void Configure(IApplicationBuilder app, 
-    IOptionsMonitor<MyOptions> optionsAccessor)
-{
-    var option1 = optionsAccessor.CurrentValue.Option1;
-}
-```
+[!code-csharp[](~/fundamentals/configuration/options/samples/6.x/OptionsSample/program.cs?name=snippet_rp2)]
 
 Don't use <xref:Microsoft.Extensions.Options.IOptions%601> or <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> in `Startup.ConfigureServices`. An inconsistent options state may exist due to the ordering of service registrations.
 
 ## Options.ConfigurationExtensions NuGet package
 
 The [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/) package is implicitly referenced in ASP.NET Core apps.
+
+-->
 
 ::: moniker-end
 
