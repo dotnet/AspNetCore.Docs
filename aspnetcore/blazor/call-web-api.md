@@ -19,7 +19,7 @@ zone_pivot_groups: blazor-hosting-models
 > [!NOTE]
 > This article has loaded **Blazor WebAssembly** coverage for calling web APIs. The [Blazor Server coverage](?pivots=server) addresses the following subjects:
 >
-> * Use of the `HttpClient` factory infrastructure to provide an <xref:System.Net.Http.HttpClient> to the app.
+> * Use of the `HttpClient` factory infrastructure to provide an `HttpClient` to the app.
 > * Cross-origin resource sharing (CORS) pertaining to Blazor Server apps.
 > * Blazor framework component examples for testing web API access.
 > * Additional resources for developing Blazor Server apps that call a web API.
@@ -638,7 +638,7 @@ Various network tools are publicly available for testing web API backend apps di
 > [!NOTE]
 > This article has loaded **Blazor WebAssembly** coverage for calling web APIs. The [Blazor Server coverage](?pivots=server) addresses the following subjects:
 >
-> * Use of the `HttpClient` factory infrastructure to provide an <xref:System.Net.Http.HttpClient> to the app.
+> * Use of the `HttpClient` factory infrastructure to provide an `HttpClient` to the app.
 > * Cross-origin resource sharing (CORS) pertaining to Blazor Server apps.
 > * Blazor framework component examples for testing web API access.
 > * Additional resources for developing Blazor Server apps that call a web API.
@@ -1259,7 +1259,7 @@ Various network tools are publicly available for testing web API backend apps di
 > [!NOTE]
 > This article has loaded **Blazor WebAssembly** coverage for calling web APIs. The [Blazor Server coverage](?pivots=server) addresses the following subjects:
 >
-> * Use of the `HttpClient` factory infrastructure to provide an <xref:System.Net.Http.HttpClient> to the app.
+> * Use of the `HttpClient` factory infrastructure to provide an `HttpClient` to the app.
 > * Cross-origin resource sharing (CORS) pertaining to Blazor Server apps.
 > * Blazor framework component examples for testing web API access.
 > * Additional resources for developing Blazor Server apps that call a web API.
