@@ -293,7 +293,7 @@ In the following example:
 
 Use an existing hosted Blazor solution or create a new solution from the Blazor Hosted project template:
 
-* In the client app's project file, add a `<StaticWebAssetBasePath>` property to the `<PropertyGroup>` with a value of `FirstApp` to set the base path for the project's static assets:
+* In the client app's project file, add a [`<StaticWebAssetBasePath>` property](xref:blazor/fundamentals/static-files#static-web-asset-base-path) to the `<PropertyGroup>` with a value of `FirstApp` to set the base path for the project's static assets:
 
   ```xml
   <PropertyGroup>
@@ -357,15 +357,15 @@ Use an existing hosted Blazor solution or create a new solution from the Blazor 
 
 * In the server app's `Program.cs` file, remove the following lines, which appear after the call to <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A>:
 
-  ```csharp
-  app.UseBlazorFrameworkFiles();
-  app.UseStaticFiles();
+  ```diff
+  -app.UseBlazorFrameworkFiles();
+  -app.UseStaticFiles();
 
-  app.UseRouting();
+  -app.UseRouting();
 
-  app.MapRazorPages();
-  app.MapControllers();
-  app.MapFallbackToFile("index.html");
+  -app.MapRazorPages();
+  -app.MapControllers();
+  -app.MapFallbackToFile("index.html");
   ```
 
   Add middleware that maps requests to the client apps. The following example configures the middleware to run when:
@@ -428,6 +428,15 @@ Use an existing hosted Blazor solution or create a new solution from the Blazor 
       });
   });
   ```
+
+  For more information on <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>, see <xref:blazor/fundamentals/static-files#static-file-middleware>.
+
+  For more information on `UseBlazorFrameworkFiles` and `MapFallbackToFile`, see the following resources:
+
+  * <xref:Microsoft.AspNetCore.Builder.ComponentsWebAssemblyApplicationBuilderExtensions.UseBlazorFrameworkFiles%2A?displayProperty=fullName> ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/WebAssembly/Server/src/ComponentsWebAssemblyApplicationBuilderExtensions.cs))
+  * <xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A?displayProperty=fullName> ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/StaticFiles/src/StaticFilesEndpointRouteBuilderExtensions.cs))
+
+  [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 * In the server app's weather forecast controller (`Controllers/WeatherForecastController.cs`), replace the existing route (`[Route("[controller]")]`) to `WeatherForecastController` with the following routes:
 
@@ -1095,7 +1104,7 @@ In the following example:
 
 Use an existing hosted Blazor solution or create a new solution from the Blazor Hosted project template:
 
-* In the client app's project file, add a `<StaticWebAssetBasePath>` property to the `<PropertyGroup>` with a value of `FirstApp` to set the base path for the project's static assets:
+* In the client app's project file, add a [`<StaticWebAssetBasePath>` property](xref:blazor/fundamentals/static-files#static-web-asset-base-path) to the `<PropertyGroup>` with a value of `FirstApp` to set the base path for the project's static assets:
 
   ```xml
   <PropertyGroup>
@@ -1159,18 +1168,18 @@ Use an existing hosted Blazor solution or create a new solution from the Blazor 
 
 * In the server app's `Startup.Configure` method (`Startup.cs`), remove the following lines, which appear after the call to <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A>:
 
-  ```csharp
-  app.UseBlazorFrameworkFiles();
-  app.UseStaticFiles();
+  ```diff
+  -app.UseBlazorFrameworkFiles();
+  -app.UseStaticFiles();
 
-  app.UseRouting();
+  -app.UseRouting();
 
-  app.UseEndpoints(endpoints =>
-  {
-      endpoints.MapRazorPages();
-      endpoints.MapControllers();
-      endpoints.MapFallbackToFile("index.html");
-  });
+  -app.UseEndpoints(endpoints =>
+  -{
+  -    endpoints.MapRazorPages();
+  -    endpoints.MapControllers();
+  -    endpoints.MapFallbackToFile("index.html");
+  -});
   ```
 
   Add middleware that maps requests to the client apps. The following example configures the middleware to run when:
@@ -1233,6 +1242,15 @@ Use an existing hosted Blazor solution or create a new solution from the Blazor 
       });
   });
   ```
+
+  For more information on <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>, see <xref:blazor/fundamentals/static-files#static-file-middleware>.
+
+  For more information on `UseBlazorFrameworkFiles` and `MapFallbackToFile`, see the following resources:
+
+  * <xref:Microsoft.AspNetCore.Builder.ComponentsWebAssemblyApplicationBuilderExtensions.UseBlazorFrameworkFiles%2A?displayProperty=fullName> ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/WebAssembly/Server/src/ComponentsWebAssemblyApplicationBuilderExtensions.cs))
+  * <xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A?displayProperty=fullName> ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/StaticFiles/src/StaticFilesEndpointRouteBuilderExtensions.cs))
+
+  [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 * In the server app's weather forecast controller (`Controllers/WeatherForecastController.cs`), replace the existing route (`[Route("[controller]")]`) to `WeatherForecastController` with the following routes:
 
@@ -1900,7 +1918,7 @@ In the following example:
 
 Use an existing hosted Blazor solution or create a new solution from the Blazor Hosted project template:
 
-* In the client app's project file, add a `<StaticWebAssetBasePath>` property to the `<PropertyGroup>` with a value of `FirstApp` to set the base path for the project's static assets:
+* In the client app's project file, add a [`<StaticWebAssetBasePath>` property](xref:blazor/fundamentals/static-files#static-web-asset-base-path) to the `<PropertyGroup>` with a value of `FirstApp` to set the base path for the project's static assets:
 
   ```xml
   <PropertyGroup>
@@ -1964,18 +1982,18 @@ Use an existing hosted Blazor solution or create a new solution from the Blazor 
 
 * In the server app's `Startup.Configure` method (`Startup.cs`), remove the following lines, which appear after the call to <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A>:
 
-  ```csharp
-  app.UseBlazorFrameworkFiles();
-  app.UseStaticFiles();
+  ```diff
+  -app.UseBlazorFrameworkFiles();
+  -app.UseStaticFiles();
 
-  app.UseRouting();
+  -app.UseRouting();
 
-  app.UseEndpoints(endpoints =>
-  {
-      endpoints.MapRazorPages();
-      endpoints.MapControllers();
-      endpoints.MapFallbackToFile("index.html");
-  });
+  -app.UseEndpoints(endpoints =>
+  -{
+  -    endpoints.MapRazorPages();
+  -    endpoints.MapControllers();
+  -    endpoints.MapFallbackToFile("index.html");
+  -});
   ```
 
   Add middleware that maps requests to the client apps. The following example configures the middleware to run when:
@@ -2038,6 +2056,15 @@ Use an existing hosted Blazor solution or create a new solution from the Blazor 
       });
   });
   ```
+
+  For more information on <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>, see <xref:blazor/fundamentals/static-files#static-file-middleware>.
+
+  For more information on `UseBlazorFrameworkFiles` and `MapFallbackToFile`, see the following resources:
+
+  * <xref:Microsoft.AspNetCore.Builder.ComponentsWebAssemblyApplicationBuilderExtensions.UseBlazorFrameworkFiles%2A?displayProperty=fullName> ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/WebAssembly/Server/src/ComponentsWebAssemblyApplicationBuilderExtensions.cs))
+  * <xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A?displayProperty=fullName> ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/StaticFiles/src/StaticFilesEndpointRouteBuilderExtensions.cs))
+
+  [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 * In the server app's weather forecast controller (`Controllers/WeatherForecastController.cs`), replace the existing route (`[Route("[controller]")]`) to `WeatherForecastController` with the following routes:
 

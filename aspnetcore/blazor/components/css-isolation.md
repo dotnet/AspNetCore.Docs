@@ -183,7 +183,7 @@ Use the wildcard (`*`) operator to share scope identifiers across multiple files
 
 ### Change base path for static web assets
 
-The `scoped.styles.css` file is generated at the root of the app. In the project file, use the `StaticWebAssetBasePath` property to change the default path. The following example places the `scoped.styles.css` file, and the rest of the app's assets, at the `_content` path:
+The `scoped.styles.css` file is generated at the root of the app. In the project file, use the [`<StaticWebAssetBasePath>` property](xref:blazor/fundamentals/static-files#static-web-asset-base-path) to change the default path. The following example places the `scoped.styles.css` file, and the rest of the app's assets, at the `_content` path:
 
 ```xml
 <PropertyGroup>
@@ -398,7 +398,7 @@ Use the wildcard (`*`) operator to share scope identifiers across multiple files
 
 ### Change base path for static web assets
 
-The `scoped.styles.css` file is generated at the root of the app. In the project file, use the `StaticWebAssetBasePath` property to change the default path. The following example places the `scoped.styles.css` file, and the rest of the app's assets, at the `_content` path:
+The `scoped.styles.css` file is generated at the root of the app. In the project file, use the [`<StaticWebAssetBasePath>` property](xref:blazor/fundamentals/static-files#static-web-asset-base-path) to change the default path. The following example places the `scoped.styles.css` file, and the rest of the app's assets, at the `_content` path:
 
 ```xml
 <PropertyGroup>
