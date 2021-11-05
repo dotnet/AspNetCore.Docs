@@ -1,4 +1,4 @@
-#define DELEGATE //  RP DELEGATE
+#define RP //  RP DELEGATE
 #if DEFAULT
 #elif RP
 #region snippet
