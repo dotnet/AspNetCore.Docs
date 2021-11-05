@@ -30,7 +30,7 @@ This topic provides information on the options pattern in ASP.NET Core. For info
 
 ## Bind hierarchical configuration
 
-[!INCLUDE[](~/includes/bind.md)]
+[!INCLUDE[](~/includes/bind6.md)]
 
 <a name="oi"></a>
 
@@ -234,6 +234,7 @@ Use <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExten
 
 [!code-csharp[](options/samples/6.x/OptionsValidationSample/Program.cs?name=snippet_p3?highlight=10-99)]
 
+<!--
 ## Accessing options at application startup
 
 <xref:Microsoft.Extensions.Options.IOptions%601> and <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> can be used in `Startup.Configure`, since services are built before the `Configure` method executes.
@@ -245,6 +246,8 @@ Don't use <xref:Microsoft.Extensions.Options.IOptions%601> or <xref:Microsoft.Ex
 ## Options.ConfigurationExtensions NuGet package
 
 The [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/) package is implicitly referenced in ASP.NET Core apps.
+
+-->
 
 ::: moniker-end
 
