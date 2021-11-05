@@ -161,7 +161,7 @@ Consider the following *appsettings.json* file:
 
 [!code-json[](~/fundamentals/configuration/options/samples/3.x/OptionsValidationSample/appsettings.Dev2.json)]
 
-The following class binds to the `"MyConfig"` configuration section and applies a couple of `DataAnnotations` rules:
+The following class is used to bind to the `"MyConfig"` configuration section and applies a couple of `DataAnnotations` rules:
 
 [!code-csharp[](options/samples/3.x/OptionsValidationSample/Configuration/MyConfigOptions.cs?name=snippet)]
 
