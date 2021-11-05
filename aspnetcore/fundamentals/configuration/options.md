@@ -78,11 +78,11 @@ The difference between `IOptionsMonitor` and `IOptionsSnapshot` is that:
 
 The following code uses <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>.
 
-[!code-csharp[](options/samples/3.x/OptionsSample/Pages/TestSnap.cshtml.cs?name=snippet)]
+[!code-csharp[](options/samples/6.x/OptionsSample/Pages/TestSnap.cshtml.cs?name=snippet)]
 
 The following code registers a configuration instance which `MyOptions` binds against:
 
-[!code-csharp[](~/fundamentals/configuration/options/samples/3.x/OptionsSample/Startup3.cs?name=snippet_Example2)]
+[!code-csharp[](~/fundamentals/configuration/options/samples/6.x/OptionsSample/Startup3.cs?name=snippet_Example2)]
 
 In the preceding code, changes to the JSON configuration file after the app has started are read.
 
@@ -90,11 +90,11 @@ In the preceding code, changes to the JSON configuration file after the app has 
 
 The following code registers a configuration instance which `MyOptions` binds against.
 
-[!code-csharp[](~/fundamentals/configuration/options/samples/3.x/OptionsSample/Startup3.cs?name=snippet_Example2)]
+[!code-csharp[](~/fundamentals/configuration/options/samples/6.x/OptionsSample/Startup3.cs?name=snippet_Example2)]
 
 The following example uses <xref:Microsoft.Extensions.Options.IOptionsMonitor%601>:
 
-[!code-csharp[](options/samples/3.x/OptionsSample/Pages/TestMonitor.cshtml.cs?name=snippet)]
+[!code-csharp[](options/samples/6.x/OptionsSample/Pages/TestMonitor.cshtml.cs?name=snippet)]
 
 In the preceding code, by default, changes to the JSON configuration file after the app has started are read.
 
@@ -109,20 +109,20 @@ Named options:
 
 Consider the following *appsettings.json* file:
 
-[!code-json[](~/fundamentals/configuration/options/samples/3.x/OptionsSample/appsettings.NO.json)]
+[!code-json[](~/fundamentals/configuration/options/samples/6.x/OptionsSample/appsettings.NO.json)]
 
 Rather than creating two classes to bind `TopItem:Month` and `TopItem:Year`,
 the following class is used for each section:
 
-[!code-csharp[](~/fundamentals/configuration/options/samples/3.x/OptionsSample/Models/TopItemSettings.cs)]
+[!code-csharp[](~/fundamentals/configuration/options/samples/6.x/OptionsSample/Models/TopItemSettings.cs)]
 
 The following code configures the named options:
 
-[!code-csharp[](~/fundamentals/configuration/options/samples/3.x/OptionsSample/StartupNO.cs?name=snippet_Example2)]
+[!code-csharp[](~/fundamentals/configuration/options/samples/6.x/OptionsSample/StartupNO.cs?name=snippet_Example2)]
 
 The following code displays the named options:
 
-[!code-csharp[](options/samples/3.x/OptionsSample/Pages/TestNO.cshtml.cs?name=snippet)]
+[!code-csharp[](options/samples/6.x/OptionsSample/Pages/TestNO.cshtml.cs?name=snippet)]
 
 All options are named instances. <xref:Microsoft.Extensions.Options.IConfigureOptions%601> instances are treated as targeting the `Options.DefaultName` instance, which is `string.Empty`. <xref:Microsoft.Extensions.Options.IConfigureNamedOptions%601> also implements <xref:Microsoft.Extensions.Options.IConfigureOptions%601>. The default implementation of the <xref:Microsoft.Extensions.Options.IOptionsFactory%601> has logic to use each appropriately. The `null` named option is used to target all of the named instances instead of a specific named instance. <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.ConfigureAll*> and <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.PostConfigureAll*> use this convention.
 
