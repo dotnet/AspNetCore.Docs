@@ -19,8 +19,8 @@ zone_pivot_groups: blazor-hosting-models
 > [!NOTE]
 > This article has loaded **Blazor WebAssembly** coverage for calling web APIs. The [Blazor Server coverage](?pivots=server) addresses the following subjects:
 >
-> * Use of the [`HttpClient` factory infrastructure](xref:fundamentals/http-requests) to provide an <xref:System.Net.Http.HttpClient> to the app.
-> * [Cross-origin resource sharing (CORS)](xref:security/cors) pertaining to Blazor Server apps.
+> * Use of the `HttpClient` factory infrastructure to provide an <xref:System.Net.Http.HttpClient> to the app.
+> * Cross-origin resource sharing (CORS) pertaining to Blazor Server apps.
 > * Blazor framework component examples for testing web API access.
 > * Additional resources for developing Blazor Server apps that call a web API.
 
@@ -492,19 +492,14 @@ For more information, see <xref:blazor/fundamentals/handle-errors>.
 > This article has loaded **Blazor Server** coverage for calling web APIs. The [Blazor WebAssembly coverage](?pivots=webassembly) addresses the following subjects:
 >
 > * Blazor WebAssembly examples based on an client-side WebAssembly app that calls a web API to create, read, update, and delete todo list items.
-> * [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json) package.
-> * <xref:System.Net.Http.HttpClient> service configuration
-> * <xref:System.Net.Http.HttpClient> and JSON helpers (<xref:System.Net.Http.Json.HttpClientJsonExtensions?displayProperty=nameWithType>) with example use:
->   * <xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync%2A>
->   * <xref:System.Net.Http.Json.HttpClientJsonExtensions.PostAsJsonAsync%2A>
->   * <xref:System.Net.Http.Json.HttpClientJsonExtensions.PutAsJsonAsync%2A>
->   * Additional extension methods (for example, <xref:System.Net.Http.HttpClient.DeleteAsync%2A?displayProperty=nameWithType>)
-> * <xref:System.Net.Http.IHttpClientFactory> services and the configuration of a named <xref:System.Net.Http.HttpClient>.
-> * Typed <xref:System.Net.Http.HttpClient>.
-> * [`HttpClient`](xref:fundamentals/http-requests) ([API documentation](xref:System.Net.Http.HttpClient)) and <xref:System.Net.Http.HttpRequestMessage> to customize requests.
-> * Call web API example with [cross-origin resource sharing (CORS)](xref:security/cors).
+> * `System.Net.Http.Json` package.
+> * `HttpClient` service configuration.
+> * `HttpClient` and JSON helpers (`GetFromJsonAsync`, `PostAsJsonAsync`, `PutAsJsonAsync`, `DeleteAsync`).
+> * `IHttpClientFactory` services and the configuration of a named `HttpClient`.
+> * Typed `HttpClient`.
+> * `HttpClient` and `HttpRequestMessage` to customize requests.
+> * Call web API example with cross-origin resource sharing (CORS) and how CORS pertains to Blazor WebAssembly apps.
 > * How to handle web API response errors in developer code.
-> * [Cross-origin resource sharing (CORS)](xref:security/cors) pertaining to Blazor WebAssembly apps.
 > * Blazor framework component examples for testing web API access.
 > * Additional resources for developing Blazor WebAssembly apps that call a web API.
 
@@ -643,8 +638,8 @@ Various network tools are publicly available for testing web API backend apps di
 > [!NOTE]
 > This article has loaded **Blazor WebAssembly** coverage for calling web APIs. The [Blazor Server coverage](?pivots=server) addresses the following subjects:
 >
-> * Use of the [`HttpClient` factory infrastructure](xref:fundamentals/http-requests) to provide an <xref:System.Net.Http.HttpClient> to the app.
-> * [Cross-origin resource sharing (CORS)](xref:security/cors) pertaining to Blazor Server apps.
+> * Use of the `HttpClient` factory infrastructure to provide an <xref:System.Net.Http.HttpClient> to the app.
+> * Cross-origin resource sharing (CORS) pertaining to Blazor Server apps.
 > * Blazor framework component examples for testing web API access.
 > * Additional resources for developing Blazor Server apps that call a web API.
 
@@ -1116,19 +1111,14 @@ For more information, see <xref:blazor/fundamentals/handle-errors>.
 > This article has loaded **Blazor Server** coverage for calling web APIs. The [Blazor WebAssembly coverage](?pivots=webassembly) addresses the following subjects:
 >
 > * Blazor WebAssembly examples based on an client-side WebAssembly app that calls a web API to create, read, update, and delete todo list items.
-> * [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json) package.
-> * <xref:System.Net.Http.HttpClient> service configuration
-> * <xref:System.Net.Http.HttpClient> and JSON helpers (<xref:System.Net.Http.Json.HttpClientJsonExtensions?displayProperty=nameWithType>) with example use:
->   * <xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync%2A>
->   * <xref:System.Net.Http.Json.HttpClientJsonExtensions.PostAsJsonAsync%2A>
->   * <xref:System.Net.Http.Json.HttpClientJsonExtensions.PutAsJsonAsync%2A>
->   * Additional extension methods (for example, <xref:System.Net.Http.HttpClient.DeleteAsync%2A?displayProperty=nameWithType>)
-> * <xref:System.Net.Http.IHttpClientFactory> services and the configuration of a named <xref:System.Net.Http.HttpClient>.
-> * Typed <xref:System.Net.Http.HttpClient>.
-> * [`HttpClient`](xref:fundamentals/http-requests) ([API documentation](xref:System.Net.Http.HttpClient)) and <xref:System.Net.Http.HttpRequestMessage> to customize requests.
-> * Call web API example with [cross-origin resource sharing (CORS)](xref:security/cors).
+> * `System.Net.Http.Json` package.
+> * `HttpClient` service configuration.
+> * `HttpClient` and JSON helpers (`GetFromJsonAsync`, `PostAsJsonAsync`, `PutAsJsonAsync`, `DeleteAsync`).
+> * `IHttpClientFactory` services and the configuration of a named `HttpClient`.
+> * Typed `HttpClient`.
+> * `HttpClient` and `HttpRequestMessage` to customize requests.
+> * Call web API example with cross-origin resource sharing (CORS) and how CORS pertains to Blazor WebAssembly apps.
 > * How to handle web API response errors in developer code.
-> * [Cross-origin resource sharing (CORS)](xref:security/cors) pertaining to Blazor WebAssembly apps.
 > * Blazor framework component examples for testing web API access.
 > * Additional resources for developing Blazor WebAssembly apps that call a web API.
 
@@ -1269,8 +1259,8 @@ Various network tools are publicly available for testing web API backend apps di
 > [!NOTE]
 > This article has loaded **Blazor WebAssembly** coverage for calling web APIs. The [Blazor Server coverage](?pivots=server) addresses the following subjects:
 >
-> * Use of the [`HttpClient` factory infrastructure](xref:fundamentals/http-requests) to provide an <xref:System.Net.Http.HttpClient> to the app.
-> * [Cross-origin resource sharing (CORS)](xref:security/cors) pertaining to Blazor Server apps.
+> * Use of the `HttpClient` factory infrastructure to provide an <xref:System.Net.Http.HttpClient> to the app.
+> * Cross-origin resource sharing (CORS) pertaining to Blazor Server apps.
 > * Blazor framework component examples for testing web API access.
 > * Additional resources for developing Blazor Server apps that call a web API.
 
@@ -1742,19 +1732,14 @@ For more information, see <xref:blazor/fundamentals/handle-errors>.
 > This article has loaded **Blazor Server** coverage for calling web APIs. The [Blazor WebAssembly coverage](?pivots=webassembly) addresses the following subjects:
 >
 > * Blazor WebAssembly examples based on an client-side WebAssembly app that calls a web API to create, read, update, and delete todo list items.
-> * [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json) package.
-> * <xref:System.Net.Http.HttpClient> service configuration
-> * <xref:System.Net.Http.HttpClient> and JSON helpers (<xref:System.Net.Http.Json.HttpClientJsonExtensions?displayProperty=nameWithType>) with example use:
->   * <xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync%2A>
->   * <xref:System.Net.Http.Json.HttpClientJsonExtensions.PostAsJsonAsync%2A>
->   * <xref:System.Net.Http.Json.HttpClientJsonExtensions.PutAsJsonAsync%2A>
->   * Additional extension methods (for example, <xref:System.Net.Http.HttpClient.DeleteAsync%2A?displayProperty=nameWithType>)
-> * <xref:System.Net.Http.IHttpClientFactory> services and the configuration of a named <xref:System.Net.Http.HttpClient>.
-> * Typed <xref:System.Net.Http.HttpClient>.
-> * [`HttpClient`](xref:fundamentals/http-requests) ([API documentation](xref:System.Net.Http.HttpClient)) and <xref:System.Net.Http.HttpRequestMessage> to customize requests.
-> * Call web API example with [cross-origin resource sharing (CORS)](xref:security/cors).
+> * `System.Net.Http.Json` package.
+> * `HttpClient` service configuration.
+> * `HttpClient` and JSON helpers (`GetFromJsonAsync`, `PostAsJsonAsync`, `PutAsJsonAsync`, `DeleteAsync`).
+> * `IHttpClientFactory` services and the configuration of a named `HttpClient`.
+> * Typed `HttpClient`.
+> * `HttpClient` and `HttpRequestMessage` to customize requests.
+> * Call web API example with cross-origin resource sharing (CORS) and how CORS pertains to Blazor WebAssembly apps.
 > * How to handle web API response errors in developer code.
-> * [Cross-origin resource sharing (CORS)](xref:security/cors) pertaining to Blazor WebAssembly apps.
 > * Blazor framework component examples for testing web API access.
 > * Additional resources for developing Blazor WebAssembly apps that call a web API.
 
