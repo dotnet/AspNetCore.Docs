@@ -64,7 +64,7 @@ This tutorial creates the following API:
 * Name the project *TodoApi* and select **Next**.
 * In the **Additional information** dialog:
 
-  * Select **.NET 6.0 (Preview)**
+  * Select **.NET 6.0**
   * Remove **Use controllers (uncheck to use minimal APIs)**
   * Select **Create**
 
