@@ -190,7 +190,7 @@ The following class implements <xref:Microsoft.Extensions.Options.IValidateOptio
 
 `IValidateOptions` enables moving the validation code out of `StartUp` and into a class.
 
-Using the preceding code, validation is enabled in `Startup.ConfigureServices` with the following code:
+Using the preceding code, validation is enabled in *Program.cs* with the following code:
 
 [!code-csharp[](options/samples/6.x/OptionsValidationSample/Program.cs?name=snippet_xm)]
 
