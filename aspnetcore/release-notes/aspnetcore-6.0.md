@@ -39,7 +39,7 @@ SignalR uses the new <xref:Microsoft.AspNetCore.Http.Features.IHttpActivityFeatu
 
 ### Razor compiler updated to use source generators
 
-The Razor compiler now uses [C# source generators](/dotnet/csharp/roslyn-sdk/source-generators-overview). Source generators run during compilation and inspect what is being compiled to produce additional files that are compiled along with the rest of the project. Using source generators simplifies the Razor compiler and significantly speeds up build times.
+The Razor compiler is now based on [C# source generators](/dotnet/csharp/roslyn-sdk/source-generators-overview). Source generators run during compilation and inspect what is being compiled to produce additional files that are compiled along with the rest of the project. Using source generators simplifies the Razor compiler and significantly speeds up build times.
 
 ### Razor compiler no longer produces a separate Views assembly
 
@@ -56,7 +56,7 @@ For more information about this change, see [the related announcement issue](htt
 Many changes were made to reduce allocations and improve performance across the stack:
 
 * Non-allocating [app.Use](xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.Use%2A) extension method. The new overload of `app.Use` requires passing the context to `next` which saves two internal per-request allocations that are required when using the other overload.
-* Reduced memory allocations for when accessing the [HttpRequest.Cookies](xref:System.Web.HttpRequest.Cookies). For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/10030).
+* Reduced memory allocations when accessing the [HttpRequest.Cookies](xref:System.Web.HttpRequest.Cookies). For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/10030).
 * Use [LoggerMessage.Define](xref:Microsoft.Extensions.Logging.LoggerMessage.Define%2A) for the windows only [HTTP.sys web server](xref:fundamentals/servers/httpsys). The <xref:Microsoft.Extensions.Logging.ILogger> extension methods calls have been replaced with calls to `LoggerMessage.Define`.
 * Reduce the per connection overhead in [SocketConnection](https://github.com/dotnet/aspnetcore/blob/main/src/Servers/Kestrel/Transport.Sockets/src/Internal/SocketConnection.cs) by ~30%. For more information, see [this GitHub pull request](https://github.com/dotnet/aspnetcore/pull/31308).
 * Reduce allocations by removing logging delegates in generic types. For more information, see [this GitHub pull request](https://github.com/dotnet/aspnetcore/issues/31340).
@@ -166,7 +166,7 @@ Blazor supports persisting state in a prerendered page so that the state doesn't
 
 ### Error boundaries
 
-Error boundaries provide a convenient approach for handling exceptions. For more information, see <xref:blazor/fundamentals/handle-errors?view=aspnetcore-6.0&pivots=server#error-boundaries>.
+Error boundaries provide a convenient approach for handling exceptions on the UI level. For more information, see <xref:blazor/fundamentals/handle-errors?view=aspnetcore-6.0&pivots=server#error-boundaries>.
 
 ### SVG support
 

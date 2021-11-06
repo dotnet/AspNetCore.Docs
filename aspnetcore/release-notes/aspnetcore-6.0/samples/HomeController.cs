@@ -37,18 +37,6 @@ namespace WebAsync.Controllers
         #region snippet2
         public async ValueTask DisposeAsync()
         {
-            // Perform async cleanup.
-            await DisposeAsyncCore();
-            // Dispose of unmanaged resources.
-            Dispose(false);
-            // Suppress GC to call the finalizer.
-            GC.SuppressFinalize(this);
-        }
-        #endregion
-
-        #region snippet3
-        protected async virtual ValueTask DisposeAsyncCore()
-        {
             if (_jsonWriter is not null)
             {
                 await _jsonWriter.DisposeAsync();
@@ -57,5 +45,6 @@ namespace WebAsync.Controllers
             _jsonWriter = null;
         }
         #endregion
+
     }
 }
