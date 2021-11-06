@@ -192,7 +192,7 @@ Binding supports multiple option selection with `<input>` elements. For more inf
 
 ### Head (`<head>`) content control
 
-Razor components can modify the HTML `<head>` element content of a page, including setting the page's title (`<title>` element) and modifying metadata (`<meta>` elements). For more information, see <xref:blazor/components/control-head-content?view=aspnetcore-6.0>.
+Razor components can modify the HTML `<head>` element content of a page, including setting the page's title (`<title>` element) and modifying metadata (`<meta>` elements). For more information, see [Control `<head>` content in ASP.NET Core Blazor apps](xref:blazor/components/control-head-content?view=aspnetcore-6.0).
 
 ### Generate Angular and React components
 
@@ -232,7 +232,7 @@ Collocate JavaScript files for pages, views, and Razor components as a convenien
 
 ### JavaScript initializers
 
-JavaScript initializers execute logic before and after a Blazor app loads. For more information, see <xref:blazor/js-interop/index?view=aspnetcore-6.0# javascript-initializers>.
+JavaScript initializers execute logic before and after a Blazor app loads. For more information, see <xref:blazor/js-interop/index?view=aspnetcore-6.0#javascript-initializers>.
 
 ### Streaming JavaScript interop
 
