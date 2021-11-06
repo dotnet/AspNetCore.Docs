@@ -539,6 +539,8 @@ With ASP.NET Core 6, the tag helper can be invoked without having to specify a v
 
 The ASP.NET Core 6.0 template for Angular now uses [Angular 12](https://blog.angular.io/angular-v12-is-now-available-32ed51fbfd49).
 
+The React template has been updated to [React 17](https://reactjs.org/blog/2020/10/20/react-v17.html).
+
 ### Configurable buffer threshold before writing to disk in Json.NET output formatter
 
 **Note**: We recommend using the <xref:System.Text.Json?displayProperty=fullName> output formatter except when  the `Newtonsoft.Json` serializer is required for compatibility reasons. The `System.Text.Json` serializer is fully `async` and works efficiently for larger payloads.
