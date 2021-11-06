@@ -34,7 +34,7 @@ No API can prevent a client from sending sensitive data on the first request.
 >
 > ## HSTS and API projects
 >
-> The default API projects don't include [HSTS](#hsts) because HSTS is generally a browser only instruction. Other callers, such as phone or desktop apps, do **not** obey the instruction. Even within browsers, a single authenticated call to an API over HTTP has risks on insecure networks. The secure approach is to configure API projects to only listen to and respond over HTTPS.
+> The default API projects don't include [HSTS](#hsts) because [HSTS](https://developer.mozilla.org/docs/Web/HTTP/Headers/Strict-Transport-Security) is generally a browser only instruction. Other callers, such as phone or desktop apps, do **not** obey the instruction. Even within browsers, a single authenticated call to an API over HTTP has risks on insecure networks. The secure approach is to configure API projects to only listen to and respond over HTTPS.
 
 ## Require HTTPS
 
@@ -75,19 +75,18 @@ Specify the HTTPS port using any of the following approaches:
   * By setting the `ASPNETCORE_HTTPS_PORT` environment variable.
   * By adding a top-level entry in *appsettings.json*:
 
-    [!code-json[](enforcing-ssl/sample-snapshot/3.x/appsettings.json?highlight=2)]
+    [!code-json[](enforcing-ssl/sample-snapshot/6.x/appsettings.json?highlight=2)]
 
 * Indicate a port with the secure scheme using the [ASPNETCORE_URLS environment variable](xref:fundamentals/host/generic-host#urls). The environment variable configures the server. The middleware indirectly discovers the HTTPS port via <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>. This approach doesn't work in reverse proxy deployments.
-* In development, set an HTTPS URL in *launchsettings.json*. Enable HTTPS when IIS Express is used.
-
+* The ASP.NET Core web templates set an HTTPS URL in *Properties/launchsettings.json* for both Kestrel and IIS Express. *launchsettings.json* is only used on the local machine.
 * Configure an HTTPS URL endpoint for a public-facing edge deployment of [Kestrel](xref:fundamentals/servers/kestrel) server or [HTTP.sys](xref:fundamentals/servers/httpsys) server. Only **one HTTPS port** is used by the app. The middleware discovers the port via <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>.
 
 > [!NOTE]
 > When an app is run in a reverse proxy configuration, <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature> isn't available. Set the port using one of the other approaches described in this section.
 
-### Edge deployments 
+### Edge deployments
 
-When Kestrel or HTTP.sys is used as a public-facing edge server, Kestrel or HTTP.sys must be configured to listen on both:
+When [Kestrel](xref:fundamentals/servers/kestrel) or [HTTP.sys](xref:fundamentals/servers/httpsys) is used as a public-facing edge server, Kestrel or HTTP.sys must be configured to listen on both:
 
 * The secure port where the client is redirected (typically, 443 in production and 5001 in development).
 * The insecure port (typically, 80 in production and 5000 in development).
@@ -108,7 +107,7 @@ When deploying to Azure App Service, follow the guidance in [Tutorial: Bind an e
 
 The following highlighted code calls [AddHttpsRedirection](/dotnet/api/microsoft.aspnetcore.builder.httpsredirectionservicesextensions.addhttpsredirection) to configure middleware options:
 
-[!code-csharp[](enforcing-ssl/sample-snapshot/3.x/Startup.cs?name=snippet2&highlight=14-18)]
+[!code-csharp[](enforcing-ssl/sample-snapshot/6.x/Program2.cs?highlight=16-20)]
 
 Calling `AddHttpsRedirection` is only necessary to change the values of `HttpsPort` or `RedirectStatusCode`.
 
@@ -121,22 +120,9 @@ The preceding highlighted code:
 
 The middleware defaults to sending a [Status307TemporaryRedirect](/dotnet/api/microsoft.aspnetcore.http.statuscodes.status307temporaryredirect) with all redirects. If you prefer to send a permanent redirect status code when the app is in a non-Development environment, wrap the middleware options configuration in a conditional check for a non-Development environment.
 
-When configuring services in *Startup.cs*:
+When configuring services in *Program.cs*:
 
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    // IWebHostEnvironment (stored in _env) is injected into the Startup class.
-    if (!_env.IsDevelopment())
-    {
-        services.AddHttpsRedirection(options =>
-        {
-            options.RedirectStatusCode = (int) HttpStatusCode.PermanentRedirect;
-            options.HttpsPort = 443;
-        });
-    }
-}
-```
+[!code-csharp[](enforcing-ssl/sample-snapshot/6.x/Program3.cs?highlight=7-14)]
 
 ## HTTPS Redirection Middleware alternative approach
 
@@ -153,23 +139,23 @@ Per [OWASP](https://www.owasp.org/index.php/About_The_Open_Web_Application_Secur
 * The browser stores configuration for the domain that prevents sending any communication over HTTP. The browser forces all communication over HTTPS.
 * The browser prevents the user from using untrusted or invalid certificates. The browser disables prompts that allow a user to temporarily trust such a certificate.
 
-Because HSTS is enforced by the client, it has some limitations:
+Because [HSTS](https://developer.mozilla.org/docs/Web/HTTP/Headers/Strict-Transport-Security) is enforced by the client, it has some limitations:
 
 * The client must support HSTS.
 * HSTS requires at least one successful HTTPS request to establish the HSTS policy.
 * The application must check every HTTP request and redirect or reject the HTTP request.
 
-ASP.NET Core implements HSTS with the `UseHsts` extension method. The following code calls `UseHsts` when the app isn't in [development mode](xref:fundamentals/environments):
+ASP.NET Core implements HSTS with the <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts%2A> extension method. The following code calls `UseHsts` when the app isn't in [development mode](xref:fundamentals/environments):
 
-[!code-csharp[](enforcing-ssl/sample-snapshot/3.x/Startup.cs?name=snippet1&highlight=11)]
+[!code-csharp[](enforcing-ssl/sample-snapshot/6.x/Program.cs?highlight=10)]
 
 `UseHsts` isn't recommended in development because the HSTS settings are highly cacheable by browsers. By default, `UseHsts` excludes the local loopback address.
 
 For production environments that are implementing HTTPS for the first time, set the initial [HstsOptions.MaxAge](xref:Microsoft.AspNetCore.HttpsPolicy.HstsOptions.MaxAge*) to a small value using one of the <xref:System.TimeSpan> methods. Set the value from hours to no more than a single day in case you need to revert the HTTPS infrastructure to HTTP. After you're confident in the sustainability of the HTTPS configuration, increase the HSTS `max-age` value; a commonly used value is one year.
 
-The following code:
+The following highlighted code:
 
-[!code-csharp[](enforcing-ssl/sample-snapshot/3.x/Startup.cs?name=snippet2&highlight=5-12)]
+[!code-csharp[](enforcing-ssl/sample-snapshot/6.x/Program2.cs?highlight=7-14)]
 
 * Sets the preload parameter of the `Strict-Transport-Security` header. Preload isn't part of the [RFC HSTS specification](https://tools.ietf.org/html/rfc6797), but is supported by web browsers to preload HSTS sites on fresh install. For more information, see [https://hstspreload.org/](https://hstspreload.org/).
 * Enables [includeSubDomain](https://tools.ietf.org/html/rfc6797#section-6.1.2), which applies the HSTS policy to Host subdomains.
