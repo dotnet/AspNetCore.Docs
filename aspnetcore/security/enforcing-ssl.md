@@ -48,9 +48,9 @@ We recommend that production ASP.NET Core web apps use:
 
 ### UseHttpsRedirection
 
-The following code calls `UseHttpsRedirection` in the `Startup` class:
+The following code calls <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A> in the *Program.cs* file:
 
-[!code-csharp[](enforcing-ssl/sample-snapshot/3.x/Startup.cs?name=snippet1&highlight=14)]
+[!code-csharp[](enforcing-ssl/sample-snapshot/6.x/Program.cs?highlight=13)]
 
 The preceding highlighted code:
 
