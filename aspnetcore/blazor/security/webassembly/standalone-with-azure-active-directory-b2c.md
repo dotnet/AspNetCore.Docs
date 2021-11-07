@@ -54,13 +54,13 @@ In an empty folder, replace the placeholders in the following command with the i
 dotnet new blazorwasm -au IndividualB2C --aad-b2c-instance "{AAD B2C INSTANCE}" --client-id "{CLIENT ID}" --domain "{TENANT DOMAIN}" -o {APP NAME} -ssp "{SIGN UP OR SIGN IN POLICY}"
 ```
 
-| Placeholder                   | Azure portal name               | Example                                |
-| ----------------------------- | ------------------------------- | -------------------------------------- |
-| `{AAD B2C INSTANCE}`          | Instance                        | `https://contoso.b2clogin.com/`        |
-| `{APP NAME}`                  | &mdash;                         | `BlazorSample`                         |
-| `{CLIENT ID}`                 | Application (client) ID         | `41451fa7-82d9-4673-8fa5-69eff5a761fd` |
-| `{SIGN UP OR SIGN IN POLICY}` | Sign-up/sign-in user flow       | `B2C_1_signupsignin1`                  |
-| `{TENANT DOMAIN}`             | Primary/Publisher/Tenant domain | `contoso.onmicrosoft.com`              |
+| Placeholder                   | Azure portal name               | Example                                                       |
+| ----------------------------- | ------------------------------- | ------------------------------------------------------------- |
+| `{AAD B2C INSTANCE}`          | Instance                        | `https://contoso.b2clogin.com/` (includes the trailing slash) |
+| `{APP NAME}`                  | &mdash;                         | `BlazorSample`                                                |
+| `{CLIENT ID}`                 | Application (client) ID         | `41451fa7-82d9-4673-8fa5-69eff5a761fd`                        |
+| `{SIGN UP OR SIGN IN POLICY}` | Sign-up/sign-in user flow       | `B2C_1_signupsignin1`                                         |
+| `{TENANT DOMAIN}`             | Primary/Publisher/Tenant domain | `contoso.onmicrosoft.com`                                     |
 
 The output location specified with the `-o|--output` option creates a project folder if it doesn't exist and becomes part of the app's name.
 
@@ -121,6 +121,8 @@ Configuration is supplied by the `wwwroot/appsettings.json` file:
   }
 }
 ```
+
+In the preceding configuration, the `{AAD B2C INSTANCE}` includes a trailing slash.
 
 Example:
 
