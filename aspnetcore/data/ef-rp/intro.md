@@ -26,7 +26,7 @@ This is the first in a series of tutorials that show how to use Entity Framework
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[VS prereqs](~/includes/net-core-prereqs-vs-5.0.md)]
+[!INCLUDE[VS prereqs](~/includes/net-prereqs-vs-6.0.md)]
 
 ### Database engines
 
@@ -34,7 +34,7 @@ The Visual Studio instructions use [SQL Server LocalDB](/sql/database-engine/con
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[VS Code prereqs](~/includes/net-core-prereqs-vsc-5.0.md)]
+[!INCLUDE[VS prereqs](~/includes/net-prereqs-vs-6.0.md)]
 
 Consider downloading and installing a third-party tool for managing and viewing a SQLite database, such as [DB Browser for SQLite](https://sqlitebrowser.org/).
 
@@ -107,16 +107,24 @@ Run the project to seed the database.
 
 # [Visual Studio](#tab/visual-studio)
 
-1. Start Visual Studio and select **Create a new project**.
-1. In the **Create a new project** dialog, select **ASP.NET Core Web Application** > **Next**.
-1. In the **Configure your new project** dialog, enter `ContosoUniversity` for **Project name**. It's important to use this exact name including capitalization, so each `namespace` matches when code is copied.
-1. Select **Create**.
-1. In the **Create a new ASP.NET Core web application** dialog, select:
-    1. **.NET Core** and **ASP.NET Core 5.0** in the dropdowns.
-    1. **ASP.NET Core Web App**.
-    1. **Create**
-      ![New ASP.NET Core Project dialog](~/data/ef-rp/intro/_static/new-aspnet5.png)
-    
+<!-->      ![New ASP.NET Core Project dialog](~/data/ef-rp/intro/_static/new-aspnet5.png) -->
+
+1. Start Visual Studio 2022 and select **Create a new project**.
+
+   ![Create a new project from the start window](~/tutorials/razor-pages/razor-pages-start/_static/6/start-window-create-new-project.png)
+
+1. In the **Create a new project** dialog, select **ASP.NET Core Web App**, and then select **Next**.
+
+	![Create an ASP.NET Core Web App](~/tutorials/razor-pages/razor-pages-start/_static/6/np.png)
+	
+1. In the **Configure your new project** dialog, enter `ContosoUniversity` for **Project name**. It's important to name the project *ContosoUniversity*, including matching the capitalization, so the namespaces will match when you copy and paste example code.
+
+1. Select **Next**.
+
+1. In the **Additional information** dialog, select **.NET 6.0 (Long-term support)** and then select **Create**.
+
+	 ![Additional information](~/tutorials/razor-pages/razor-pages-start/_static/6/additional-info.png)
+
 # [Visual Studio Code](#tab/visual-studio-code)
 
 * In a terminal, navigate to the folder in which the project folder should be created.
@@ -133,7 +141,7 @@ Run the project to seed the database.
 
 Copy and paste the following code into the *Pages/Shared/_Layout.cshtml* file:
 
-[!code-cshtml[Main](intro/samples/cu50/Pages/Shared/_Layout.cshtml?highlight=6,14,21-35,49)]
+[!code-cshtml[Main](intro/samples/cu60/Pages/Shared/_Layout.cshtml?highlight=6,14,21-35,49)]
 
 The layout file sets the site header, footer, and menu. The preceding code makes the following changes:
 
@@ -143,7 +151,7 @@ The layout file sets the site header, footer, and menu. The preceding code makes
 
 In *Pages/Index.cshtml*, replace the contents of the file with the following code:
 
-[!code-cshtml[Main](intro/samples/cu50/Pages/Index.cshtml)]
+[!code-cshtml[Main](intro/samples/cu60/Pages/Index.cshtml)]
 
 The preceding code replaces the text about ASP.NET Core with text about this app.
 
@@ -162,10 +170,8 @@ A student can enroll in any number of courses, and a course can have any number 
 ![Student entity diagram](intro/_static/student-entity.png)
 
 * Create a *Models* folder in the project folder. 
-
 * Create *Models/Student.cs* with the following code:
-
-  [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Models/Student.cs)]
+  [!code-csharp[Main](intro/samples/cu60/ContosoUniversity/Models/Student.cs?name=snippet_first)]
 
 The `ID` property becomes the primary key column of the database table that corresponds to this class. By default, EF Core interprets a property that's named `ID` or `classnameID` as the primary key. So the alternative automatically recognized name for the `Student` class primary key is `StudentID`. For more information, see [EF Core - Keys](/ef/core/modeling/keys?tabs=data-annotations).
 
@@ -181,7 +187,7 @@ The `Enrollments` property is defined as `ICollection<Enrollment>` because there
 
 Create *Models/Enrollment.cs* with the following code:
 
-[!code-csharp[](intro/samples/cu50/Models/Enrollment.cs)]
+[!code-csharp[](intro/samples/cu60/Models/Enrollment.cs)]
 
 The `EnrollmentID` property is the primary key; this entity uses the `classnameID` pattern instead of `ID` by itself. For a production data model, many developers choose one pattern and use it consistently. This tutorial uses both just to illustrate that both work. Using `ID` without `classname` makes it easier to implement some kinds of data model changes.
 
@@ -199,7 +205,7 @@ EF Core interprets a property as a foreign key if it's named `<navigation proper
 
 Create *Models/Course.cs* with the following code:
 
-[!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Models/Course.cs)]
+  [!code-csharp[Main](intro/samples/cu60/ContosoUniversity/Models/Course.cs?name=snippet_first)]
 
 The `Enrollments` property is a navigation property. A `Course` entity can be related to any number of `Enrollment` entities.
 
