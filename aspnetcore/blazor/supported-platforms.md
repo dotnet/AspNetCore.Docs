@@ -53,16 +53,31 @@ Blazor WebAssembly and Blazor Server are supported in the browsers shown in the 
 
 ::: moniker range="< aspnetcore-5.0"
 
-Blazor WebAssembly and Blazor Server are supported in the browsers shown in the following table.
+## Blazor WebAssembly
+
+| Browser                          | Version               |
+| -------------------------------- | --------------------- |
+| Apple Safari, including iOS      | Current&dagger;       |
+| Google Chrome, including Android | Current&dagger;       |
+| Microsoft Edge                   | Current&dagger;       |
+| Microsoft Internet Explorer      | Not Supported&Dagger; |
+| Mozilla Firefox                  | Current&dagger;       |  
+
+&dagger;*Current* refers to the latest version of the browser.  
+&Dagger;Microsoft Internet Explorer doesn't support [WebAssembly](https://webassembly.org).
+
+## Blazor Server
 
 | Browser                          | Version         |
 | -------------------------------- | --------------- |
 | Apple Safari, including iOS      | Current&dagger; |
 | Google Chrome, including Android | Current&dagger; |
 | Microsoft Edge                   | Current&dagger; |
-| Mozilla Firefox                  | Current&dagger; |  
+| Microsoft Internet Explorer      | 11&Dagger;      |
+| Mozilla Firefox                  | Current&dagger; |
 
 &dagger;*Current* refers to the latest version of the browser.  
+&Dagger;Additional polyfills are required. For example, promises can be added via a [`Polyfill.io`](https://polyfill.io/v3/) bundle.
 
 ## Additional resources
 
