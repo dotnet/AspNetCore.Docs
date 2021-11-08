@@ -526,6 +526,46 @@ Under normal circumstances when prerendering fails, continuing to build and rend
 
 To tolerate errors that may occur during prerendering, error handling logic must be placed inside a component that may throw exceptions. Use [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statements with error handling and logging. Instead of wrapping the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper> Tag Helper in a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement, place error handling logic in the component rendered by the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper> Tag Helper.
 
+## Advanced scenarios
+
+### Recursive rendering
+
+Components can be nested recursively. This is useful for representing recursive data structures. For example, a `TreeNode` component can render more `TreeNode` components for each of the node's children.
+
+When rendering recursively, avoid coding patterns that result in infinite recursion:
+
+* Don't recursively render a data structure that contains a cycle. For example, don't render a tree node whose children includes itself.
+* Don't create a chain of layouts that contain a cycle. For example, don't create a layout whose layout is itself.
+* Don't allow an end user to violate recursion invariants (rules) through malicious data entry or JavaScript interop calls.
+
+Infinite loops during rendering:
+
+* Causes the rendering process to continue forever.
+* Is equivalent to creating an unterminated loop.
+
+In these scenarios, the Blazor WebAssembly thread or Blazor Server circuit fails and usually attempts to:
+
+* Consume as much CPU time as permitted by the operating system, indefinitely.
+* Consume an unlimited amount of memory. Consuming unlimited memory is equivalent to the scenario where an unterminated loop adds entries to a collection on every iteration.
+
+To avoid infinite recursion patterns, ensure that recursive rendering code contains suitable stopping conditions.
+
+### Custom render tree logic
+
+Most Blazor components are implemented as Razor component files (`.razor`) and are compiled by the framework to produce logic that operates on a <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> to render their output. However, a developer may manually implement <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> logic using procedural C# code. For more information, see <xref:blazor/advanced-scenarios#manual-rendertreebuilder-logic>.
+
+> [!WARNING]
+> Use of manual render tree builder logic is considered an advanced and unsafe scenario, not recommended for general component development.
+
+If <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> code is written, the developer must guarantee the correctness of the code. For example, the developer must ensure that:
+
+* Calls to <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.OpenElement%2A> and <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.CloseElement%2A> are correctly balanced.
+* Attributes are only added in the correct places.
+
+Incorrect manual render tree builder logic can cause arbitrary undefined behavior, including crashes, app (Blazor WebAssembly) or server (Blazor Server) hangs, and security vulnerabilities.
+
+Consider manual render tree builder logic on the same level of complexity and with the same level of *danger* as writing assembly code or [Microsoft Intermediate Language (MSIL)](/dotnet/standard/managed-code) instructions by hand.
+
 ## Additional resources
 
 ### Blazor WebAssembly
@@ -979,46 +1019,6 @@ If any component throws an unhandled exception during prerendering, for example,
 Under normal circumstances when prerendering fails, continuing to build and render the component doesn't make sense because a working component can't be rendered.
 
 To tolerate errors that may occur during prerendering, error handling logic must be placed inside a component that may throw exceptions. Use [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statements with error handling and logging. Instead of wrapping the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper> Tag Helper in a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement, place error handling logic in the component rendered by the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper> Tag Helper.
-
-## Advanced scenarios
-
-### Recursive rendering
-
-Components can be nested recursively. This is useful for representing recursive data structures. For example, a `TreeNode` component can render more `TreeNode` components for each of the node's children.
-
-When rendering recursively, avoid coding patterns that result in infinite recursion:
-
-* Don't recursively render a data structure that contains a cycle. For example, don't render a tree node whose children includes itself.
-* Don't create a chain of layouts that contain a cycle. For example, don't create a layout whose layout is itself.
-* Don't allow an end user to violate recursion invariants (rules) through malicious data entry or JavaScript interop calls.
-
-Infinite loops during rendering:
-
-* Causes the rendering process to continue forever.
-* Is equivalent to creating an unterminated loop.
-
-In these scenarios, the Blazor WebAssembly thread or Blazor Server circuit fails and usually attempts to:
-
-* Consume as much CPU time as permitted by the operating system, indefinitely.
-* Consume an unlimited amount of memory. Consuming unlimited memory is equivalent to the scenario where an unterminated loop adds entries to a collection on every iteration.
-
-To avoid infinite recursion patterns, ensure that recursive rendering code contains suitable stopping conditions.
-
-### Custom render tree logic
-
-Most Blazor components are implemented as Razor component files (`.razor`) and are compiled by the framework to produce logic that operates on a <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> to render their output. However, a developer may manually implement <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> logic using procedural C# code. For more information, see <xref:blazor/advanced-scenarios#manual-rendertreebuilder-logic>.
-
-> [!WARNING]
-> Use of manual render tree builder logic is considered an advanced and unsafe scenario, not recommended for general component development.
-
-If <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> code is written, the developer must guarantee the correctness of the code. For example, the developer must ensure that:
-
-* Calls to <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.OpenElement%2A> and <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.CloseElement%2A> are correctly balanced.
-* Attributes are only added in the correct places.
-
-Incorrect manual render tree builder logic can cause arbitrary undefined behavior, including crashes, app (Blazor WebAssembly) or server (Blazor Server) hangs, and security vulnerabilities.
-
-Consider manual render tree builder logic on the same level of complexity and with the same level of *danger* as writing assembly code or [Microsoft Intermediate Language (MSIL)](/dotnet/standard/managed-code) instructions by hand.
 
 ## Advanced scenarios
 
