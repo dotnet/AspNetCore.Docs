@@ -90,7 +90,7 @@ Choice of the Blazor hosting model is an early consideration for Blazor app deve
 | Wide 3rd party .NET tooling support           | ✔️ | ❌ |
 | Small payload size with fast initial download | ✔️ | ❌ |
 | App code secure and private on the server     | ✔️ | ❌&dagger; |
-| Serverless deployment                         | ❌ | ✔️ |
+| Run apps without a backing server             | ❌ | ✔️ |
 | Offloads processing to clients                | ❌ | ✔️ |
 
 &dagger;Blazor WebAssembly apps can use web API with ASP.NET Core Identity to keep C# code private and secure.
