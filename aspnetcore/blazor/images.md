@@ -200,5 +200,5 @@ The preceding `ResizeAndDisplayImageUsingStreaming` method performs the followin
 
 * <xref:blazor/file-uploads>
 * <xref:blazor/file-downloads>
-* <xref:blazor/js-interop/call-dotnet-from-javascript#stream-from-javascript-to-dotnet>
-* <xref:blazor/js-interop/call-javascript-from-dotnet#stream-from-dotnet-to-javascript>
+* <xref:blazor/js-interop/call-dotnet-from-javascript#stream-from-javascript-to-net>
+* <xref:blazor/js-interop/call-javascript-from-dotnet#stream-from-net-to-javascript>

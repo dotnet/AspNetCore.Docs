@@ -44,7 +44,7 @@ Consider the following guidance when developing code that transfers a large amou
 
 * Leverage the native streaming interop support to transfer data larger than the SignalR incoming message size limit:
   * <xref:blazor/js-interop/call-javascript-from-dotnet#stream-from-net-to-javascript>
-  * <xref:blazor/js-interop/call-dotnet-from-javascript#stream-from-javascript-to-dotnet>
+  * <xref:blazor/js-interop/call-dotnet-from-javascript#stream-from-javascript-to-net>
 * General tips:
   * Don't allocate large objects in JS and C# code.
   * Free consumed memory when the process is completed or cancelled.
