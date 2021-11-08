@@ -41,12 +41,12 @@ Minimally, specify the following directives and sources for Blazor apps. Add add
   * Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
   * In a Blazor WebAssembly app:
     * Specify hashes to permit required scripts to load.
-    * Specify `unsafe-eval` to use `eval()` and methods for creating code from strings.
+    * Specify `unsafe-eval` to permit the Blazor WebAssembly mono runtime to function.
   * In a Blazor Server app, specify hashes to permit required scripts to load.
 * [style-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/style-src): Indicates valid sources for stylesheets.
   * Specify the `https://stackpath.bootstrapcdn.com/` host source for Bootstrap stylesheets.
   * Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
-  * Specify `unsafe-inline` to allow the use of inline styles. The inline declaration is required for the UI in Blazor Server apps for reconnecting the client and server after the initial request. In a future release, inline styling might be removed so that `unsafe-inline` is no longer required.
+  * Specify `unsafe-inline` to allow the use of inline styles.
 * [upgrade-insecure-requests](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/upgrade-insecure-requests): Indicates that content URLs from insecure (HTTP) sources should be acquired securely over HTTPS.
 
 The preceding directives are supported by all browsers except Microsoft Internet Explorer.
@@ -80,15 +80,15 @@ In the `<head>` content of the `wwwroot/index.html` host page, apply the directi
                default-src 'self';
                img-src data: https:;
                object-src 'none';
-               script-src https://stackpath.bootstrapcdn.com/ 
-                          'self' 
+               script-src 'self' 
                           'sha256-v8v3RKRPmN4odZ1CWM5gw80QKPCCWMcpNeOmimNL2AA=' 
                           'unsafe-eval';
-               style-src https://stackpath.bootstrapcdn.com/
-                         'self'
-                         'unsafe-inline';
+               style-src 'self';
                upgrade-insecure-requests;">
 ```
+
+> [!NOTE]
+> The `sha256-v8v3RKRPmN4odZ1CWM5gw80QKPCCWMcpNeOmimNL2AA=` hash represents the [inline](https://github.com/dotnet/aspnetcore/blob/57501251222b199597b9ac16888f362a69eb13c1/src/Components/Web.JS/src/Platform/Mono/MonoPlatform.ts#L212) script that's used for Blazor WebAssembly. This may be removed in the future.
 
 Add additional `script-src` and `style-src` hashes as required by the app. During development, use an online tool or browser developer tools to have the hashes calculated for you. For example, the following browser tools console error reports the hash for a required script not covered by the policy:
 
@@ -107,11 +107,8 @@ In the `<head>` content of the `Pages/_Layout.cshtml` host page, apply the direc
                default-src 'self';
                img-src data: https:;
                object-src 'none';
-               script-src https://stackpath.bootstrapcdn.com/ 
-                          'self';
-               style-src https://stackpath.bootstrapcdn.com/
-                         'self' 
-                         'unsafe-inline';
+               script-src 'self';
+               style-src 'self';
                upgrade-insecure-requests;">
 ```
 

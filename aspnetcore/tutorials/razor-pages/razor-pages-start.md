@@ -360,7 +360,7 @@ We hope to have Visual Studio for Mac instructions soon.
 
 1. Select **Next**.
 
-1. In the **Additional information** dialog, select **.NET 6.0 (Preview)** and then select **Create**.
+1. In the **Additional information** dialog, select **.NET 6.0 (Long-term support)** and then select **Create**.
 
 	 ![Additional information](razor-pages-start/_static/6/additional-info.png)
 
