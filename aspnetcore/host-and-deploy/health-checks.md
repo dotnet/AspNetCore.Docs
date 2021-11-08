@@ -445,7 +445,7 @@ The sample app contains a health check to report the completion of long-running 
 
 The long-running background task is started by a [Hosted Service](xref:fundamentals/host/hosted-services) (`Services/StartupHostedService`). At the conclusion of the task, `StartupHostedServiceHealthCheck.StartupTaskCompleted` is set to `true`:
 
-[!code-csharp[](health-checks/samples/5.x/HealthChecksSample/Services/StartupHostedService.cs?name=snippet1&highlight=22-24)]
+[!code-csharp[](health-checks/samples/5.x/HealthChecksSample/Services/StartupHostedService.cs?name=snippet1&highlight=23)]
 
 The health check is registered with <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck%2A> in `Startup.ConfigureServices` along with the hosted service. Because the hosted service must set the property on the health check, the health check is also registered in the service container (`LivenessProbeStartup.cs`):
 
@@ -1214,7 +1214,7 @@ The sample app contains a health check to report the completion of long-running 
 
 The long-running background task is started by a [Hosted Service](xref:fundamentals/host/hosted-services) (`Services/StartupHostedService`). At the conclusion of the task, `StartupHostedServiceHealthCheck.StartupTaskCompleted` is set to `true`:
 
-[!code-csharp[](health-checks/samples/3.x/HealthChecksSample/Services/StartupHostedService.cs?name=snippet1&highlight=22-24)]
+[!code-csharp[](health-checks/samples/3.x/HealthChecksSample/Services/StartupHostedService.cs?name=snippet1&highlight=23)]
 
 The health check is registered with <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck%2A> in `Startup.ConfigureServices` along with the hosted service. Because the hosted service must set the property on the health check, the health check is also registered in the service container (`LivenessProbeStartup.cs`):
 
@@ -1927,7 +1927,7 @@ The sample app contains a health check to report the completion of long-running 
 
 The long-running background task is started by a [Hosted Service](xref:fundamentals/host/hosted-services) (*Services/StartupHostedService*). At the conclusion of the task, `StartupHostedServiceHealthCheck.StartupTaskCompleted` is set to `true`:
 
-[!code-csharp[](health-checks/samples/2.x/HealthChecksSample/Services/StartupHostedService.cs?name=snippet1&highlight=22-24)]
+[!code-csharp[](health-checks/samples/2.x/HealthChecksSample/Services/StartupHostedService.cs?name=snippet1&highlight=23)]
 
 The health check is registered with <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck%2A> in `Startup.ConfigureServices` along with the hosted service. Because the hosted service must set the property on the health check, the health check is also registered in the service container (*LivenessProbeStartup.cs*):
 
