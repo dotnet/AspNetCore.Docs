@@ -1,0 +1,25 @@
+@page
+@model HttpRequestsSample.Pages.NamedClientModel
+
+@{
+	ViewData["Title"] = "Consumption - Named";
+}
+
+<h1>Consumption patterns - Named client</h1>
+
+@if (@Model.GitHubBranches is null)
+{
+	<div class="alert alert-danger" role="alert">
+		Unable to load branches from GitHub. Please try again later.
+	</div>
+}
+else
+{
+	<p>@Model.GitHubBranches.Count() GitHub Branches</p>
+	<ul class="list-group">
+		@foreach (var gitHubBranch in @Model.GitHubBranches)
+		{
+			<li class="list-group-item">@gitHubBranch.Name</li>
+		}
+	</ul>
+}

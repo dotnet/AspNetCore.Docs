@@ -24,8 +24,6 @@ An <xref:System.Net.Http.IHttpClientFactory> can be registered and used to confi
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/http-requests/samples) ([how to download](xref:index#how-to-download-a-sample)).
 
-The sample code in this topic version uses <xref:System.Text.Json> to deserialize JSON content returned in HTTP responses. For samples that use `Json.NET` and `ReadAsAsync<T>`, use the version selector to select a 2.x version of this topic.
-
 ## Consumption patterns
 
 There are several ways `IHttpClientFactory` can be used in an app:
@@ -39,13 +37,13 @@ The best approach depends upon the app's requirements.
 
 ### Basic usage
 
-`IHttpClientFactory` can be registered by calling `AddHttpClient`:
+Register `IHttpClientFactory` by calling `AddHttpClient` in *Program.cs*:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet1&highlight=13)]
+[!code-csharp[](http-requests/samples/6.0/HttpRequestsSample/Program.cs?name=snippet_AddHttpClientBasic&highlight=4)]
 
 An `IHttpClientFactory` can be requested using [dependency injection (DI)](xref:fundamentals/dependency-injection). The following code uses `IHttpClientFactory` to create an `HttpClient` instance:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Pages/BasicUsage.cshtml.cs?name=snippet1&highlight=9-12,21)]
+[!code-csharp[](http-requests/samples/6.0/HttpRequestsSample/Pages/Consumption/Basic.cshtml.cs?name=snippet_Class&highlight=5-6,23)]
 
 Using `IHttpClientFactory` like in the preceding example is a good way to refactor an existing app. It has no impact on how `HttpClient` is used. In places where `HttpClient` instances are created in an existing app, replace those occurrences with calls to <xref:System.Net.Http.IHttpClientFactory.CreateClient%2A>.
 
@@ -56,9 +54,9 @@ Named clients are a good choice when:
 * The app requires many distinct uses of `HttpClient`.
 * Many `HttpClient`s have different configuration.
 
-Configuration for a named `HttpClient` can be specified during registration in `Startup.ConfigureServices`:
+Specify configuration for a named `HttpClient` during its registration in *Program.cs*:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet2)]
+[!code-csharp[](http-requests/samples/6.0/HttpRequestsSample/Program.cs?name=snippet_AddHttpClientNamed)]
 
 In the preceding code the client is configured with:
 
@@ -74,7 +72,7 @@ Each time <xref:System.Net.Http.IHttpClientFactory.CreateClient%2A> is called:
 
 To create a named client, pass its name into `CreateClient`:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Pages/NamedClient.cshtml.cs?name=snippet1&highlight=21)]
+[!code-csharp[](http-requests/samples/6.0/HttpRequestsSample/Pages/Consumption/NamedClient.cshtml.cs?name=snippet_Class&highlight=12)]
 
 In the preceding code, the request doesn't need to specify a hostname. The code can pass just the path, since the base address configured for the client is used.
 
@@ -91,22 +89,18 @@ Typed clients:
 
 A typed client accepts an `HttpClient` parameter in its constructor:
 
-[!code-csharp[](http-requests/samples/5.x/HttpClientFactorySample/GitHub/GitHubService.cs?name=snippet1&highlight=5)]
+[!code-csharp[](http-requests/samples/6.0/HttpRequestsSample/GitHub/GitHubService.cs?name=snippet_Class&highlight=5)]
 
 In the preceding code:
 
 * The configuration is moved into the typed client.
-* The `HttpClient` object is exposed as a public property.
+* The provided `HttpClient` instance is stored as a private field.
 
-<!-- 
-The preceding code can be written as: 
-[!code-csharp[](http-requests/samples/5.x/HttpClientFactorySample/GitHub/GitHubService.cs?name=snippet2)]
--->
-API-specific methods can be created that expose `HttpClient` functionality. For example, the `GetAspNetDocsIssues` method encapsulates code to retrieve open issues.
+API-specific methods can be created that expose `HttpClient` functionality. For example, the `GetAspNetCoreDocsBranches` method encapsulates code to retrieve docs GitHub branches.
 
-The following code calls <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions.AddHttpClient%2A> in `Startup.ConfigureServices` to register a typed client class:
+The following code calls <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions.AddHttpClient%2A> in *Program.cs* to register the `GitHubService` typed client class:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet3)]
+[!code-csharp[](http-requests/samples/6.0/HttpRequestsSample/Program.cs?name=snippet_AddHttpClientTyped)]
 
 The typed client is registered as transient with DI. In the preceding code, `AddHttpClient` registers `GitHubService` as a transient service. This registration uses a factory method to:
 
@@ -115,18 +109,14 @@ The typed client is registered as transient with DI. In the preceding code, `Add
 
 The typed client can be injected and consumed directly:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Pages/TypedClient.cshtml.cs?name=snippet1&highlight=11-14,20)]
+[!code-csharp[](http-requests/samples/6.0/HttpRequestsSample/Pages/Consumption/TypedClient.cshtml.cs?name=snippet_Class&highlight=5-6,14)]
 
-The configuration for a typed client can be specified during registration in `Startup.ConfigureServices`, rather than in the typed client's constructor:
+The configuration for a typed client can also be specified during its registration in *Program.cs*, rather than in the typed client's constructor:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet4)]
+[!code-csharp[](http-requests/samples/6.0/HttpRequestsSample/Snippets/Program.cs?name=snippet_AddHttpClientTypedInline)]
 
-The `HttpClient` can be encapsulated within a typed client. Rather than exposing it as a property, define a method which calls the `HttpClient` instance internally:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/GitHub/RepoService.cs?name=snippet1&highlight=4)]
-
-In the preceding code, the `HttpClient` is stored in a private field. Access to the `HttpClient` is by the public `GetRepos` method.
-
+<!-- TODO: Review and Update -->
 ### Generated clients
 
 `IHttpClientFactory` can be used in combination with third-party libraries such as [Refit](https://github.com/paulcbetts/refit). Refit is a REST library for .NET. It converts REST APIs into live interfaces. An implementation of the interface is generated dynamically by the `RestService`, using `HttpClient` to make the external HTTP calls.
@@ -182,6 +172,7 @@ public class ValuesController : ControllerBase
 }
 ```
 
+<!-- TODO: Review and Update -->
 ## Make POST, PUT, and DELETE requests
 
 In the preceding examples, all HTTP requests use the GET HTTP verb. `HttpClient` also supports other HTTP verbs, including:
@@ -220,6 +211,7 @@ In the preceding code, the `DeleteItemAsync` method calls <xref:System.Net.Http.
 
 To learn more about using different HTTP verbs with `HttpClient`, see <xref:System.Net.Http.HttpClient>.
 
+<!-- TODO: Review and Update -->
 ## Outgoing request middleware
 
 `HttpClient` has the concept of delegating handlers that can be linked together for outgoing HTTP requests. `IHttpClientFactory`:
@@ -252,6 +244,7 @@ Multiple handlers can be registered in the order that they should execute. Each 
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet6)]
 
+<!-- TODO: Review and Update -->
 ### Use DI in outgoing request middleware
 
 When `IHttpClientFactory` creates a new delegating handler, it uses DI to fulfill the handler's constructor parameters. `IHttpClientFactory` creates a **separate** DI scope for each handler, which can lead to surprising behavior when a handler consumes a *scoped* service.
@@ -268,7 +261,7 @@ The following delegating handler consumes and uses `IOperationScoped` to set the
 
 [!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Handlers/OperationHandler.cs?name=snippet_Class&highlight=13)]
 
-In the [`HttpRequestsSample` download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/http-requests/samples/3.x/HttpRequestsSample)], navigate to `/Operation` and refresh the page. The request scope value changes for each request, but the handler scope value only changes every 5 seconds.
+In the [`HttpRequestsSample` download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/http-requests/samples/6.0/HttpRequestsSample), navigate to `/Operation` and refresh the page. The request scope value changes for each request, but the handler scope value only changes every 5 seconds.
 
 Handlers can depend upon services of any scope. Services that handlers depend upon are disposed when the handler is disposed.
 
@@ -278,6 +271,7 @@ Use one of the following approaches to share per-request state with message hand
 * Use <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> to access the current request.
 * Create a custom <xref:System.Threading.AsyncLocal%601> storage object to pass the data.
 
+<!-- TODO: Review and Update -->
 ## Use Polly-based handlers
 
 `IHttpClientFactory` integrates with the third-party library [Polly](https://github.com/App-vNext/Polly). Polly is a comprehensive resilience and transient fault-handling library for .NET. It allows developers to express policies such as Retry, Circuit Breaker, Timeout, Bulkhead Isolation, and Fallback in a fluent and thread-safe manner.
@@ -341,7 +335,7 @@ Pooling of handlers is desirable as each handler typically manages its own under
 
 The default handler lifetime is two minutes. The default value can be overridden on a per named client basis:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup5.cs?name=snippet1)]
+[!code-csharp[](http-requests/samples/6.0/HttpRequestsSample/Program.cs?name=snippet_AddHttpClientHandlerLifetime)]
 
 `HttpClient` instances can generally be treated as .NET objects **not** requiring disposal. Disposal cancels outgoing requests and guarantees the given `HttpClient` instance can't be used after calling <xref:System.IDisposable.Dispose%2A>. `IHttpClientFactory` tracks and disposes resources used by `HttpClient` instances.
 
@@ -365,17 +359,6 @@ The preceding approaches solve the resource management problems that `IHttpClien
 * The `SocketsHttpHandler` shares connections across `HttpClient` instances. This sharing prevents socket exhaustion.
 * The `SocketsHttpHandler` cycles connections according to `PooledConnectionLifetime` to avoid stale DNS problems.
 
-### Cookies
-
-The pooled `HttpMessageHandler` instances results in `CookieContainer` objects being shared. Unanticipated `CookieContainer` object sharing often results in incorrect code. For apps that require cookies, consider either:
-
-* Disabling automatic cookie handling
-* Avoiding `IHttpClientFactory`
-
-Call <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> to disable automatic cookie handling:
-
-[!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet13)]
-
 ## Logging
 
 Clients created via `IHttpClientFactory` record log messages for all requests. Enable the appropriate information level in the logging configuration to see the default log messages. Additional logging, such as the logging of request headers, is only included at trace level.
@@ -394,7 +377,18 @@ It may be necessary to control the configuration of the inner `HttpMessageHandle
 
 An `IHttpClientBuilder` is returned when adding named or typed clients. The <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> extension method can be used to define a delegate. The delegate is used to create and configure the primary `HttpMessageHandler` used by that client:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup6.cs?name=snippet1)]
+[!code-csharp[](http-requests/samples/6.0/HttpRequestsSample/Program.cs?name=snippet_AddHttpClientConfigureHttpMessageHandler)]
+
+## Cookies
+
+The pooled `HttpMessageHandler` instances results in `CookieContainer` objects being shared. Unanticipated `CookieContainer` object sharing often results in incorrect code. For apps that require cookies, consider either:
+
+* Disabling automatic cookie handling
+* Avoiding `IHttpClientFactory`
+
+Call <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> to disable automatic cookie handling:
+
+[!code-csharp[](http-requests/samples/6.0/HttpRequestsSample/Program.cs?name=snippet_AddHttpClientNoAutomaticCookies)]
 
 ## Use IHttpClientFactory in a console app
 
@@ -410,22 +404,18 @@ In the following example:
 * `Main` creates a scope to execute the service's `GetPage` method and write the first 500 characters of the webpage content to the console.
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactoryConsoleSample/Program.cs?highlight=14-15,20,26-27,59-62)]
+[!code-csharp[](http-requests/samples/3.x/HttpClientFactoryConsoleSample/Program.cs?highlight=14-15,20,26-27,59-62)]
 
 ## Header propagation middleware
 
-Header propagation is an ASP.NET Core middleware to propagate HTTP headers from the incoming request to the outgoing HTTP Client requests. To use header propagation:
+Header propagation is an ASP.NET Core middleware to propagate HTTP headers from the incoming request to the outgoing `HttpClient` requests. To use header propagation:
 
-* Reference the [Microsoft.AspNetCore.HeaderPropagation](https://www.nuget.org/packages/Microsoft.AspNetCore.HeaderPropagation) package.
-* Configure the middleware and `HttpClient` in `Startup`:
+* Install the [Microsoft.AspNetCore.HeaderPropagation](https://www.nuget.org/packages/Microsoft.AspNetCore.HeaderPropagation) package.
+* Configure the `HttpClient` and middleware pipeline in *Program.cs*:
 
-  [!code-csharp[](http-requests/samples/3.x/Startup.cs?highlight=5-9,21&name=snippet)]
+  [!code-csharp[](http-requests/samples/6.0/HttpRequestsSample/Snippets/Program.cs?name=snippet_AddHttpClientHeaderPropagation&highlight=4-10,17)]
 
-* The client includes the configured headers on outbound requests:
-
-  ```csharp
-  var client = clientFactory.CreateClient("MyForwardingClient");
-  var response = client.GetAsync(...);
-  ```
+* Make outbound requests using the configured `HttpClient` instance, which includes the added headers.
 
 ## Additional resources
 
