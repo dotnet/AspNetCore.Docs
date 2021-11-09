@@ -5,7 +5,7 @@ description: Learn how to configure Blazor WebAssembly to use Azure Active Direc
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: "devx-track-csharp, mvc"
-ms.date: 01/24/2021
+ms.date: 11/09/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/security/webassembly/aad-groups-roles
 ---

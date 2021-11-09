@@ -5,7 +5,7 @@ description: Create a chat app that uses ASP.NET Core SignalR with Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/25/2021
+ms.date: 11/09/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/signalr-blazor
 zone_pivot_groups: blazor-hosting-models
@@ -40,7 +40,7 @@ At the end of this tutorial, you'll have a working chat app.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* [Visual Studio for Mac 2022 or later](https://visualstudio.microsoft.com/vs/mac/)
+* [Visual Studio for Mac 2022 or later](https://visualstudio.microsoft.com/vs/mac/): Select the *Preview* channel from within Visual Studio. For more information, see [Install a preview version of Visual Studio for Mac](/visualstudio/mac/install-preview).
 * [!INCLUDE [.NET Core 6.0 SDK](~/includes/6.0-SDK.md)]
 
 # [.NET Core CLI](#tab/netcore-cli/)
@@ -91,7 +91,9 @@ To configure Visual Studio Code assets in the `.vscode` folder for debugging, se
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-1. Install the latest version of [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/) and perform the following steps:
+1. Install the latest version of [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/) and perform the following steps.
+
+   Select the *Preview* channel from within Visual Studio. For more information, see [Install a preview version of Visual Studio for Mac](/visualstudio/mac/install-preview).
 
 1. Select **File** > **New Solution** or create a **New** project from the **Start Window**.
 

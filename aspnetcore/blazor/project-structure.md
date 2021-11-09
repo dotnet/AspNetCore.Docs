@@ -5,7 +5,7 @@ description: Learn about ASP.NET Core Blazor app project structure.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/19/2021
+ms.date: 11/09/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/project-structure
 ---
@@ -13,7 +13,7 @@ uid: blazor/project-structure
 
 ::: moniker range=">= aspnetcore-6.0"
 
-This article describes the files and folders that make up a Blazor app generated from one of the Blazor framework's project templates. For information on how to use tooling to create a Blazor app from a Blazor project template, see <xref:blazor/tooling>. For information on Blazor's hosting models, Blazor WebAssembly and Blazor Server, see <xref:blazor/hosting-models>.
+This article describes the files and folders that make up a Blazor app generated from one of the Blazor framework's project templates.
 
 ## Blazor WebAssembly
 
@@ -100,6 +100,7 @@ The Blazor Server template creates the initial files and directory structure for
 
 * <xref:blazor/tooling>
 * <xref:blazor/hosting-models>
+* <xref:fundamentals/minimal-apis>
 
 ::: moniker-end
 
