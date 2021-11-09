@@ -28,7 +28,7 @@ app.MapPost("/todoitems", async (TodoItemDTO todoItemDTO, TodoDb db) =>
     db.Todos.Add(todoItem);
     await db.SaveChangesAsync();
 
-    return Results.Created($"/todoitems/{todoItem.Id}", todoItem);
+    return Results.Created($"/todoitems/{todoItem.Id}", new TodoItemDTO(todoItem));
 });
 
 #region snippet_put
@@ -74,6 +74,7 @@ public class Todo
 #region snippet_DTO
 public class TodoItemDTO
 {
+    public int Id { get; set; }
     public string? Name { get; set; }
     public bool IsComplete { get; set; }
 

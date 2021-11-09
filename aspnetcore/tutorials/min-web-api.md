@@ -419,7 +419,7 @@ A DTO may be used to:
 
 To demonstrate the DTO approach, update the `Todo` class to include a secret field:
 
-[!code-csharp[](min-web-api/samples/6.x/todoDTO/Program.cs?name=snippet_secret&highlight=7)]
+[!code-csharp[](min-web-api/samples/6.x/todoDTO/Program.cs?name=snippet_secret&highlight=6)]
 
 The secret field needs to be hidden from this app, but an administrative app could choose to expose it.
 
