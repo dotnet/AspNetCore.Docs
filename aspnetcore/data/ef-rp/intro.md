@@ -139,7 +139,7 @@ Run the project to seed the database.
 
 Copy and paste the following code into the *Pages/Shared/_Layout.cshtml* file:
 
-[!code-cshtml[Main](intro/samples/cu60/Pages/Shared/_Layout.cshtml?highlight=6,14,21-35,49)]
+[!code-cshtml[Main](intro/samples/cu60/Pages/Shared/_Layout.cshtml?highlight=6,15,22-36,50)]
 
 The layout file sets the site header, footer, and menu. The preceding code makes the following changes:
 
@@ -291,7 +291,7 @@ The scaffolding process:
   * *Edit.cshtml* and *Edit.cshtml.cs*
   * *Index.cshtml* and *Index.cshtml.cs*
 * Creates *Data/SchoolContext.cs*.
-* Adds the context to dependency injection in *Startup.cs*.
+* Adds the context to dependency injection in *Program.cs*.
 * Adds a database connection string to *appsettings.json*.
 
 ## Database connection string
@@ -302,7 +302,7 @@ The scaffolding tool generates a connection string in the *appsettings.json* fil
 
 The connection string specifies [SQL Server LocalDB](/sql/database-engine/configure-windows/sql-server-2016-express-localdb):
 
-[!code-json[Main](intro/samples/cu50/appsettings1.json?highlight=11)]
+[!code-json[Main](intro/samples/cu60/appsettings.json?highlight=10)]
 
 LocalDB is a lightweight version of the SQL Server Express Database Engine and is intended for app development, not production use. By default, LocalDB creates *.mdf* files in the `C:/Users/<user>` directory.
 
@@ -343,9 +343,17 @@ The highlighted code:
   * Is required because later in the tutorial the `Student` entity will have references to the other entities.
   <!-- Review, OnModelCreating needs review -->
 
-Build the project to verify there are no compiler errors.
+Build the app. The compiler generates several warnings about how `null` values are handled. See [this GitHub issue](https://github.com/dotnet/Scaffolding/issues/1594) and [Nullable reference types](/dotnet/csharp/nullable-references) for more information.
 
-## Startup.cs
+To eliminate the warnings from nullable reference types, remove the following line from the *ContosoUniversity.csproj* file:
+
+```xml
+<Nullable>enable</Nullable>
+```
+
+We hope to fix this issue in a future release.
+
+## Program.cs
 
 ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-injection). Services such as the `SchoolContext` are registered with dependency injection during app startup. Components that require these services, such as Razor Pages, are provided these services via constructor parameters. The constructor code that gets a database context instance is shown later in the tutorial.
 
