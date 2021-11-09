@@ -45,6 +45,5 @@ namespace WebAsync.Controllers
             _jsonWriter = null;
         }
         #endregion
-
     }
 }

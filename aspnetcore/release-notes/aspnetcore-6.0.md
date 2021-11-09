@@ -127,14 +127,6 @@ Consider a controller that creates and uses a <xref:System.Text.Json.Utf8JsonWri
 
 [!code-csharp[](aspnetcore-6.0/samples/HomeController.cs?name=snippet2)]
 
-The preceding code:
-
-* Calls `Dispose` to release other unmanaged resources.
-* Tells the garbage collector not to run.
-* Awaits `DisposeAsyncCore`, shown in the following code:
-
-[!code-csharp[](aspnetcore-6.0/samples/HomeController.cs?name=snippet3)]
-
 ### Vcpkg port for SignalR C++ client
 
 [Vcpkg](https://github.com/microsoft/vcpkg) is a cross-platform command-line package manager for C and C++ libraries. We’ve recently added a port to `vcpkg` to add `CMake` native support for the SignalR C++ client. `vcpkg` also works with MSBuild.
