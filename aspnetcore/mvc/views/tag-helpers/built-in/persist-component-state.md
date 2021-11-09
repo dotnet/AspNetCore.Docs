@@ -1,16 +1,16 @@
 ---
-title: Preserve Component State Tag Helper in ASP.NET Core
+title: Persist Component State Tag Helper in ASP.NET Core
 author: guardrex
 ms.author: riande
-description: Learn how to use the ASP.NET Core Preserve Component State Tag Helper to preserve state when prerendering components.
+description: Learn how to use the ASP.NET Core Persist Component State Tag Helper to persist state when prerendering components.
 monikerRange: '>= aspnetcore-6.0'
 ms.custom: mvc
 ms.date: 07/16/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
-uid: mvc/views/tag-helpers/builtin-th/preserve-component-state-tag-helper
+uid: mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper
 zone_pivot_groups: blazor-hosting-models
 ---
-# Preserve Component State Tag Helper in ASP.NET Core
+# Persist Component State Tag Helper in ASP.NET Core
 
 ## Prerequisites
 
@@ -19,9 +19,9 @@ Follow the guidance in the *Configuration* section for either:
 * [Blazor WebAssembly](xref:blazor/components/prerendering-and-integration?pivots=webassembly)
 * [Blazor Server](xref:blazor/components/prerendering-and-integration?pivots=server)
 
-## Preserve Component State Tag Helper
+## Persist Component State Tag Helper
 
-To preserve state for prerendered components, use the Preserve Component State Tag Helper (`<persist-component-state />`). Add the `<preserve-component-state />` tag inside the closing `</body>` tag of the `_Host` page in an app that prerenders components:
+To persist state for prerendered components, use the Persist Component State Tag Helper (`<persist-component-state />`). Add the `<persist-component-state />` tag inside the closing `</body>` tag of the `_Host` page in an app that prerenders components:
 
 ::: zone pivot="webassembly"
 
@@ -94,7 +94,7 @@ In the following example:
 }
 ```
 
-For more information and a complete example, see <xref:blazor/components/prerendering-and-integration#preserve-prerendered-state>.
+For more information and a complete example, see <xref:blazor/components/prerendering-and-integration#persist-prerendered-state>.
 
 ## Additional resources
 

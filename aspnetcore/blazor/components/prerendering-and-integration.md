@@ -730,11 +730,11 @@ For more information, see <xref:blazor/components/index#namespaces>.
 
 ::: zone-end
 
-## Preserve prerendered state
+## Persist prerendered state
 
-Without preserving prerendered state, state used during prerendering is lost and must be recreated when the app is fully loaded. If any state is setup asynchronously, the UI may flicker as the prerendered UI is replaced with temporary placeholders and then fully rendered again.
+Without persisting prerendered state, state used during prerendering is lost and must be recreated when the app is fully loaded. If any state is setup asynchronously, the UI may flicker as the prerendered UI is replaced with temporary placeholders and then fully rendered again.
 
-To solve these problems, Blazor supports persisting state in a prerendered page using the [Preserve Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/preserve-component-state-tag-helper) (`<preserve-component-state />`). Add the `<preserve-component-state />` tag inside the closing `</body>` tag.
+To solve these problems, Blazor supports persisting state in a prerendered page using the [Persist Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper) (`<persist-component-state />`). Add the `<persist-component-state />` tag inside the closing `</body>` tag.
 
 `Pages/_Layout.cshtml`:
 
