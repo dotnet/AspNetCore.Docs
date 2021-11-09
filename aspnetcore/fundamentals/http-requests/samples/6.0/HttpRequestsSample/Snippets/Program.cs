@@ -1,4 +1,5 @@
 using HttpRequestsSample.GitHub;
+using Polly;
 
 namespace HttpRequestsSample.Snippets
 {
@@ -17,6 +18,25 @@ namespace HttpRequestsSample.Snippets
         }
 
         private static void Snippet2(WebApplicationBuilder builder)
+        {
+            #region snippet_AddHttpClientPollyRegistry
+            var timeoutPolicy = Policy.TimeoutAsync<HttpResponseMessage>(TimeSpan.FromSeconds(10));
+            var longTimeoutPolicy = Policy.TimeoutAsync<HttpResponseMessage>(TimeSpan.FromSeconds(30));
+
+            var policyRegistry = builder.Services.AddPolicyRegistry();
+
+            policyRegistry.Add("Regular", timeoutPolicy);
+            policyRegistry.Add("Long", longTimeoutPolicy);
+
+            builder.Services.AddHttpClient("PollyRegistryRegular")
+                .AddPolicyHandlerFromRegistry("Regular");
+
+            builder.Services.AddHttpClient("PollyRegistryLong")
+                .AddPolicyHandlerFromRegistry("Long");
+            #endregion
+        }
+
+        private static void Snippet3(WebApplicationBuilder builder)
         {
             #region snippet_AddHttpClientHeaderPropagation
             // Add services to the container.

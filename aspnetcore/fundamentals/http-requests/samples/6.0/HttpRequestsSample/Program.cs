@@ -2,6 +2,7 @@ using HttpRequestsSample.GitHub;
 using HttpRequestsSample.Handlers;
 using HttpRequestsSample.Models;
 using Microsoft.Net.Http.Headers;
+using Polly;
 using Refit;
 
 #region snippet_AddHttpClientBasic
@@ -74,6 +75,29 @@ builder.Services.AddHttpClient("Operation")
 builder.Services.AddHttpClient<GitHubService>();
 #endregion
 
+#region snippet_AddHttpClientPollyWaitAndRetry
+builder.Services.AddHttpClient("PollyWaitAndRetry")
+    .AddTransientHttpErrorPolicy(policyBuilder =>
+        policyBuilder.WaitAndRetryAsync(3, retryNumber => TimeSpan.FromMilliseconds(600)));
+#endregion
+
+#region snippet_AddHttpClientPollyDynamic
+var timeoutPolicy = Policy.TimeoutAsync<HttpResponseMessage>(TimeSpan.FromSeconds(10));
+var longTimeoutPolicy = Policy.TimeoutAsync<HttpResponseMessage>(TimeSpan.FromSeconds(30));
+
+builder.Services.AddHttpClient("PollyDynamic")
+    .AddPolicyHandler(httpRequestMessage =>
+        httpRequestMessage.Method == HttpMethod.Get ? timeoutPolicy : longTimeoutPolicy);
+#endregion
+
+#region snippet_AddHttpClientPollyMultiple
+builder.Services.AddHttpClient("PollyMultiple")
+    .AddTransientHttpErrorPolicy(policyBuilder =>
+        policyBuilder.RetryAsync(3))
+    .AddTransientHttpErrorPolicy(policyBuilder =>
+        policyBuilder.CircuitBreakerAsync(5, TimeSpan.FromSeconds(30)));
+#endregion
+
 #region snippet_AddHttpClientHandlerLifetime
 builder.Services.AddHttpClient("HandlerLifetime")
     .SetHandlerLifetime(TimeSpan.FromMinutes(5));
@@ -118,4 +142,3 @@ app.UseAuthorization();
 app.MapRazorPages();
 
 app.Run();
-

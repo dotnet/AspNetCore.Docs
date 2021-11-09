@@ -229,7 +229,6 @@ Use one of the following approaches to share per-request state with message hand
 * Use <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> to access the current request.
 * Create a custom <xref:System.Threading.AsyncLocal%601> storage object to pass the data.
 
-<!-- TODO: Review and Update -->
 ## Use Polly-based handlers
 
 `IHttpClientFactory` integrates with the third-party library [Polly](https://github.com/App-vNext/Polly). Polly is a comprehensive resilience and transient fault-handling library for .NET. It allows developers to express policies such as Retry, Circuit Breaker, Timeout, Bulkhead Isolation, and Fallback in a fluent and thread-safe manner.
@@ -246,7 +245,7 @@ Faults typically occur when external HTTP calls are transient. <xref:Microsoft.E
 
 `AddTransientHttpErrorPolicy` provides access to a `PolicyBuilder` object configured to handle errors representing a possible transient fault:
 
-:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup3.cs" id="snippet1":::
+:::code language="csharp" source="http-requests/samples/6.0/HttpRequestsSample/Program.cs" id="snippet_AddHttpClientPollyWaitAndRetry":::
 
 In the preceding code, a `WaitAndRetryAsync` policy is defined. Failed requests are retried up to three times with a delay of 600 ms between attempts.
 
@@ -254,7 +253,7 @@ In the preceding code, a `WaitAndRetryAsync` policy is defined. Failed requests 
 
 Extension methods are provided to add Polly-based handlers, for example, <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddPolicyHandler%2A>. The following `AddPolicyHandler` overload inspects the request to decide which policy to apply:
 
-:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup.cs" id="snippet8":::
+:::code language="csharp" source="http-requests/samples/6.0/HttpRequestsSample/Program.cs" id="snippet_AddHttpClientPollyDynamic":::
 
 In the preceding code, if the outgoing request is an HTTP GET, a 10-second timeout is applied. For any other HTTP method, a 30-second timeout is used.
 
@@ -262,7 +261,7 @@ In the preceding code, if the outgoing request is an HTTP GET, a 10-second timeo
 
 It's common to nest Polly policies:
 
-:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup.cs" id="snippet9":::
+:::code language="csharp" source="http-requests/samples/6.0/HttpRequestsSample/Program.cs" id="snippet_AddHttpClientPollyMultiple":::
 
 In the preceding example:
 
@@ -272,14 +271,14 @@ In the preceding example:
 
 ### Add policies from the Polly registry
 
-An approach to managing regularly used policies is to define them once and register them with a `PolicyRegistry`.
+An approach to managing regularly used policies is to define them once and register them with a `PolicyRegistry`. For example:
 
-In the following code:
+:::code language="csharp" source="http-requests/samples/6.0/HttpRequestsSample/Snippets/Program.cs" id="snippet_AddHttpClientPollyRegistry":::
 
-* The "regular" and "long" policies are added.
-* <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddPolicyHandlerFromRegistry%2A> adds the "regular" and "long" policies from the registry.
+In the preceding code:
 
-:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup4.cs" id="snippet1":::
+* Two policies, `Regular` and `Short`, are added to the Polly registry.
+* <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddPolicyHandlerFromRegistry%2A> configures individual named clients to use these policies from the Polly registry.
 
 For more information on `IHttpClientFactory` and Polly integrations, see the [Polly wiki](https://github.com/App-vNext/Polly/wiki/Polly-and-HttpClientFactory).
 
