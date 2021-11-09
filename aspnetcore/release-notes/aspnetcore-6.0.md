@@ -637,7 +637,7 @@ For example, the following app sets the <xref:System.Net.Sockets.Socket.LingerSt
 
 ### .NET Hot Reload
 
-Hot Reload minimizes the number of app restarts after code changes. For more information, see [.NET Hot Reload support for ASP.NET Core](https://docs.microsoft.com/aspnet/core/test/hot-reload)
+Hot Reload minimizes the number of app restarts after code changes. For more information, see [.NET Hot Reload support for ASP.NET Core](https://devblogs.microsoft.com/dotnet/introducing-net-hot-reload/).
 <!--TODO change above link to <xref:test/hot-reload> when https://github.com/dotnet/AspNetCore.Docs/pull/23659 merges-->
 
 ### Generic type constraints in Razor
