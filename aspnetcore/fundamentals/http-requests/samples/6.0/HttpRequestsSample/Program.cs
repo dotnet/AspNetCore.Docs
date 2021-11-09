@@ -1,4 +1,6 @@
 using HttpRequestsSample.GitHub;
+using HttpRequestsSample.Handlers;
+using HttpRequestsSample.Models;
 using Microsoft.Net.Http.Headers;
 
 #region snippet_AddHttpClientBasic
@@ -24,9 +26,37 @@ builder.Services.AddHttpClient("GitHub", httpClient =>
 });
 #endregion
 
-// <snippet_AddHttpClientTyped>
+#region snippet_AddHttpMessageHandler
+builder.Services.AddTransient<ValidateHeaderHandler>();
+
+builder.Services.AddHttpClient("HttpMessageHandler")
+    .AddHttpMessageHandler<ValidateHeaderHandler>();
+#endregion
+
+#region snippet_AddHttpMessageHandlerMultiple
+builder.Services.AddTransient<SampleHandler1>();
+builder.Services.AddTransient<SampleHandler2>();
+
+builder.Services.AddHttpClient("MultipleHttpMessageHandlers")
+    .AddHttpMessageHandler<SampleHandler1>()
+    .AddHttpMessageHandler<SampleHandler2>();
+#endregion
+
+#region snippet_OperationScoped
+builder.Services.AddScoped<IOperationScoped, OperationScoped>();
+#endregion
+
+builder.Services.AddTransient<OperationHandler>();
+builder.Services.AddTransient<OperationResponseHandler>();
+
+builder.Services.AddHttpClient("Operation")
+    .AddHttpMessageHandler<OperationHandler>()
+    .AddHttpMessageHandler<OperationResponseHandler>()
+    .SetHandlerLifetime(TimeSpan.FromSeconds(5));
+
+#region snippet_AddHttpClientTyped
 builder.Services.AddHttpClient<GitHubService>();
-// </snippet_AddHttpClientTyped>
+#endregion
 
 #region snippet_AddHttpClientHandlerLifetime
 builder.Services.AddHttpClient("HandlerLifetime")
