@@ -107,8 +107,6 @@ Run the project to seed the database.
 
 # [Visual Studio](#tab/visual-studio)
 
-<!-->      ![New ASP.NET Core Project dialog](~/data/ef-rp/intro/_static/new-aspnet5.png) -->
-
 1. Start Visual Studio 2022 and select **Create a new project**.
 
    ![Create a new project from the start window](~/tutorials/razor-pages/razor-pages-start/_static/6/start-window-create-new-project.png)
@@ -140,7 +138,7 @@ Run the project to seed the database.
 ## Set up the site style
 
 Copy and paste the following code into the *Pages/Shared/_Layout.cshtml* file:
-C:\GH\aspnet\docs\3\AspNetCore.Docs\aspnetcore\data\ef-rp\intro\samples\cu60\ContosoUniversity\Pages\Shared\_Layout.cshtml
+
 [!code-cshtml[Main](intro/samples/cu60/Pages/Shared/_Layout.cshtml?highlight=6,14,21-35,49)]
 
 The layout file sets the site header, footer, and menu. The preceding code makes the following changes:
@@ -171,7 +169,7 @@ A student can enroll in any number of courses, and a course can have any number 
 
 * Create a *Models* folder in the project folder. 
 * Create *Models/Student.cs* with the following code:
-  [!code-csharp[Main](intro/samples/cu60/ContosoUniversity/Models/Student.cs?name=snippet_first)]
+  [!code-csharp[Main](intro/samples/cu60/Models/Student.cs?name=snippet_first)]
 
 The `ID` property becomes the primary key column of the database table that corresponds to this class. By default, EF Core interprets a property that's named `ID` or `classnameID` as the primary key. So the alternative automatically recognized name for the `Student` class primary key is `StudentID`. For more information, see [EF Core - Keys](/ef/core/modeling/keys?tabs=data-annotations).
 
@@ -205,7 +203,7 @@ EF Core interprets a property as a foreign key if it's named `<navigation proper
 
 Create *Models/Course.cs* with the following code:
 
-  [!code-csharp[Main](intro/samples/cu60/ContosoUniversity/Models/Course.cs?name=snippet_first)]
+  [!code-csharp[Main](intro/samples/cu60/Models/Course.cs?name=snippet_first)]
 
 The `Enrollments` property is a navigation property. A `Course` entity can be related to any number of `Enrollment` entities.
 
