@@ -540,8 +540,8 @@
               uid: mvc/views/tag-helpers/builtin-th/link-tag-helper
             - name: Partial
               uid: mvc/views/tag-helpers/builtin-th/partial-tag-helper
-            - name: Preserve Component State
-              uid: mvc/views/tag-helpers/builtin-th/preserve-component-state-tag-helper
+            - name: Persist Component State
+              uid: mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper
             - name: Script
               uid: mvc/views/tag-helpers/builtin-th/script-tag-helper
             - name: Select

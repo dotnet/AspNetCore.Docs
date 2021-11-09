@@ -5,7 +5,7 @@ description: Learn how to host and deploy a Blazor app using ASP.NET Core, Conte
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/12/2021
+ms.date: 11/09/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/host-and-deploy/webassembly
 ---
@@ -111,9 +111,6 @@ Add a simple native C function to a Blazor WebAssembly app:
    ```
 
 When you build the app with the .NET WebAssembly build tools installed, the native C code is compiled and linked into the .NET WebAssembly runtime (`dotnet.wasm`). Compiling and linking may take a few minutes. After the app is built, run the app to see the rendered factorial value.
-
-> [!NOTE]
-> During the 6.0 preview release period, you may receive a build error on subsequent builds saying that the output assembly is being used by another process. This is a known issue that will be addressed for the .NET 6 general release. To workaround the issue, rebuild the project a second time.
 
 ### Use libraries
 
