@@ -125,7 +125,7 @@ A custom interface represents the external API:
 
 Call `AddRefitClient` to generate the dynamic implementation and then call `ConfigureHttpClient` to configure the underlying `HttpClient`:
 
-:::code language="csharp" source="http-requests/samples/6.0/HttpRequestsSample/Program.cs" id="snippet_AddRefitClient":::
+:::code language="csharp" source="http-requests/samples/6.0/HttpRequestsSample/Program.cs" id="snippet_AddRefitClient" highlight="1-2":::
 
 Use DI to access the dynamic implementation of `IGitHubClient`:
 
@@ -217,7 +217,7 @@ As its name suggests, `IOperationScoped` is registered with DI using a *scoped* 
 
 The following delegating handler consumes and uses `IOperationScoped` to set the `X-OPERATION-ID` header for the outgoing request:
 
-:::code language="csharp" source="http-requests/samples/6.0/HttpRequestsSample/Handlers/OperationHandler.cs" id="snippet_Class" highlight="11":::
+:::code language="csharp" source="http-requests/samples/6.0/HttpRequestsSample/Handlers/OperationHandler.cs" id="snippet_Class" highlight="5-6,11":::
 
 In the [`HttpRequestsSample` download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/http-requests/samples/6.0/HttpRequestsSample), navigate to `/Operation` and refresh the page. The request scope value changes for each request, but the handler scope value only changes every 5 seconds.
 
@@ -348,7 +348,6 @@ Call <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.
 
 :::code language="csharp" source="http-requests/samples/6.0/HttpRequestsSample/Program.cs" id="snippet_AddHttpClientNoAutomaticCookies":::
 
-<!-- TODO: Review and Update -->
 ## Use IHttpClientFactory in a console app
 
 In a console app, add the following package references to the project:
@@ -358,11 +357,11 @@ In a console app, add the following package references to the project:
 
 In the following example:
 
-* <xref:System.Net.Http.IHttpClientFactory> is registered in the [Generic Host's](xref:fundamentals/host/generic-host) service container.
-* `MyService` creates a client factory instance from the service, which is used to create an `HttpClient`. `HttpClient` is used to retrieve a webpage.
-* `Main` creates a scope to execute the service's `GetPage` method and write the first 500 characters of the webpage content to the console.
+* <xref:System.Net.Http.IHttpClientFactory> and `GitHubService` are registered in the [Generic Host's](xref:fundamentals/host/generic-host) service container.
+* `GitHubService` is requested from DI, which in-turn requests an instance of `IHttpClientFactory`.
+* `GitHubService` uses `IHttpClientFactory` to create an instance of `HttpClient`, which it uses to retrieve docs GitHub branches.
 
-:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactoryConsoleSample/Program.cs" highlight="14-15,20,26-27,59-62":::
+:::code language="csharp" source="http-requests/samples/6.0/HttpRequestsConsoleSample/Program.cs" highlight="10-11,17-18,40-41,56":::
 
 ## Header propagation middleware
 
