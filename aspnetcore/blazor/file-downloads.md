@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-6.0'
 ms.author: taparik
 ms.custom: mvc
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
-ms.date: 11/01/2021
+ms.date: 11/09/2021
 uid: blazor/file-downloads
 ---
 # ASP.NET Core Blazor file downloads

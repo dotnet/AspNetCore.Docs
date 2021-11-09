@@ -5,7 +5,7 @@ description: Learn about the tooling available to build Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/24/2021
+ms.date: 11/09/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/tooling
 zone_pivot_groups: operating-systems
@@ -16,7 +16,7 @@ zone_pivot_groups: operating-systems
 
 ::: zone pivot="windows"
 
-1. Install the latest version of [Visual Studio 2022](https://visualstudio.microsoft.com/vs/preview/) with the **ASP.NET and web development** workload.
+1. Install the latest version of [Visual Studio 2022](https://visualstudio.microsoft.com) with the **ASP.NET and web development** workload.
 
 1. Create a new project.
 
@@ -319,7 +319,7 @@ For Blazor WebAssembly apps, only method body replacement is currently supported
 
 ::: zone pivot="windows"
 
-1. Install the latest version of [Visual Studio 2022](https://visualstudio.microsoft.com/vs/preview/) with the **ASP.NET and web development** workload.
+1. Install the latest version of [Visual Studio 2022](https://visualstudio.microsoft.com) with the **ASP.NET and web development** workload.
 
 1. Create a new project.
 
@@ -549,7 +549,7 @@ dotnet new blazorserver -h
 
 ::: zone pivot="windows"
 
-1. Install the latest version of [Visual Studio 2022](https://visualstudio.microsoft.com/vs/preview/) with the **ASP.NET and web development** workload.
+1. Install the latest version of [Visual Studio 2022](https://visualstudio.microsoft.com) with the **ASP.NET and web development** workload.
 
 1. Create a new project.
 
