@@ -34,7 +34,7 @@ The Visual Studio instructions use [SQL Server LocalDB](/sql/database-engine/con
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[VS prereqs](~/includes/net-prereqs-vs-6.0.md)]
+[!INCLUDE[VS prereqs](~/includes/net-prereqs-vsc-6.0.md)]
 
 Consider downloading and installing a third-party tool for managing and viewing a SQLite database, such as [DB Browser for SQLite](https://sqlitebrowser.org/).
 
@@ -140,7 +140,7 @@ Run the project to seed the database.
 ## Set up the site style
 
 Copy and paste the following code into the *Pages/Shared/_Layout.cshtml* file:
-
+C:\GH\aspnet\docs\3\AspNetCore.Docs\aspnetcore\data\ef-rp\intro\samples\cu60\ContosoUniversity\Pages\Shared\_Layout.cshtml
 [!code-cshtml[Main](intro/samples/cu60/Pages/Shared/_Layout.cshtml?highlight=6,14,21-35,49)]
 
 The layout file sets the site header, footer, and menu. The preceding code makes the following changes:
