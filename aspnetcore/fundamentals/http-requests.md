@@ -39,11 +39,11 @@ The best approach depends upon the app's requirements.
 
 Register `IHttpClientFactory` by calling `AddHttpClient` in *Program.cs*:
 
-[!code-csharp[](http-requests/samples/6.0/HttpRequestsSample/Program.cs?name=snippet_AddHttpClientBasic&highlight=4)]
+:::code language="csharp" source="http-requests/samples/6.0/HttpRequestsSample/Program.cs" id="snippet_AddHttpClientBasic" highlight="4":::
 
 An `IHttpClientFactory` can be requested using [dependency injection (DI)](xref:fundamentals/dependency-injection). The following code uses `IHttpClientFactory` to create an `HttpClient` instance:
 
-[!code-csharp[](http-requests/samples/6.0/HttpRequestsSample/Pages/Consumption/Basic.cshtml.cs?name=snippet_Class&highlight=5-6,23)]
+:::code language="csharp" source="http-requests/samples/6.0/HttpRequestsSample/Pages/Consumption/Basic.cshtml.cs" id="snippet_Class" highlight="5-6,23":::
 
 Using `IHttpClientFactory` like in the preceding example is a good way to refactor an existing app. It has no impact on how `HttpClient` is used. In places where `HttpClient` instances are created in an existing app, replace those occurrences with calls to <xref:System.Net.Http.IHttpClientFactory.CreateClient%2A>.
 
@@ -56,7 +56,7 @@ Named clients are a good choice when:
 
 Specify configuration for a named `HttpClient` during its registration in *Program.cs*:
 
-[!code-csharp[](http-requests/samples/6.0/HttpRequestsSample/Program.cs?name=snippet_AddHttpClientNamed)]
+:::code language="csharp" source="http-requests/samples/6.0/HttpRequestsSample/Program.cs" id="snippet_AddHttpClientNamed":::
 
 In the preceding code the client is configured with:
 
@@ -72,7 +72,7 @@ Each time <xref:System.Net.Http.IHttpClientFactory.CreateClient%2A> is called:
 
 To create a named client, pass its name into `CreateClient`:
 
-[!code-csharp[](http-requests/samples/6.0/HttpRequestsSample/Pages/Consumption/NamedClient.cshtml.cs?name=snippet_Class&highlight=12)]
+:::code language="csharp" source="http-requests/samples/6.0/HttpRequestsSample/Pages/Consumption/NamedClient.cshtml.cs" id="snippet_Class" highlight="12":::
 
 In the preceding code, the request doesn't need to specify a hostname. The code can pass just the path, since the base address configured for the client is used.
 
@@ -89,7 +89,7 @@ Typed clients:
 
 A typed client accepts an `HttpClient` parameter in its constructor:
 
-[!code-csharp[](http-requests/samples/6.0/HttpRequestsSample/GitHub/GitHubService.cs?name=snippet_Class&highlight=5)]
+:::code language="csharp" source="http-requests/samples/6.0/HttpRequestsSample/GitHub/GitHubService.cs" id="snippet_Class" highlight="5":::
 
 In the preceding code:
 
@@ -100,7 +100,7 @@ API-specific methods can be created that expose `HttpClient` functionality. For 
 
 The following code calls <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions.AddHttpClient%2A> in *Program.cs* to register the `GitHubService` typed client class:
 
-[!code-csharp[](http-requests/samples/6.0/HttpRequestsSample/Program.cs?name=snippet_AddHttpClientTyped)]
+:::code language="csharp" source="http-requests/samples/6.0/HttpRequestsSample/Program.cs" id="snippet_AddHttpClientTyped":::
 
 The typed client is registered as transient with DI. In the preceding code, `AddHttpClient` registers `GitHubService` as a transient service. This registration uses a factory method to:
 
@@ -109,12 +109,11 @@ The typed client is registered as transient with DI. In the preceding code, `Add
 
 The typed client can be injected and consumed directly:
 
-[!code-csharp[](http-requests/samples/6.0/HttpRequestsSample/Pages/Consumption/TypedClient.cshtml.cs?name=snippet_Class&highlight=5-6,14)]
+:::code language="csharp" source="http-requests/samples/6.0/HttpRequestsSample/Pages/Consumption/TypedClient.cshtml.cs" id="snippet_Class" highlight="5-6,14":::
 
 The configuration for a typed client can also be specified during its registration in *Program.cs*, rather than in the typed client's constructor:
 
-[!code-csharp[](http-requests/samples/6.0/HttpRequestsSample/Snippets/Program.cs?name=snippet_AddHttpClientTypedInline)]
-
+:::code language="csharp" source="http-requests/samples/6.0/HttpRequestsSample/Snippets/Program.cs" id="snippet_AddHttpClientTypedInline":::
 
 <!-- TODO: Review and Update -->
 ### Generated clients
@@ -186,7 +185,7 @@ For a complete list of supported HTTP verbs, see <xref:System.Net.Http.HttpMetho
 
 The following example shows how to make an HTTP POST request:
 
-[!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Models/TodoClient.cs?name=snippet_POST)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpRequestsSample/Models/TodoClient.cs" id="snippet_POST":::
 
 In the preceding code, the `CreateItemAsync` method:
 
@@ -199,13 +198,13 @@ In the preceding code, the `CreateItemAsync` method:
 
 The following example shows an HTTP PUT request:
 
-[!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Models/TodoClient.cs?name=snippet_PUT)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpRequestsSample/Models/TodoClient.cs" id="snippet_PUT":::
 
 The preceding code is very similar to the POST example. The `SaveItemAsync` method calls <xref:System.Net.Http.HttpClient.PutAsync%2A> instead of `PostAsync`.
 
 The following example shows an HTTP DELETE request:
 
-[!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Models/TodoClient.cs?name=snippet_DELETE)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpRequestsSample/Models/TodoClient.cs" id="snippet_DELETE":::
 
 In the preceding code, the `DeleteItemAsync` method calls <xref:System.Net.Http.HttpClient.DeleteAsync%2A>. Because HTTP DELETE requests typically contain no body, the `DeleteAsync` method doesn't provide an overload that accepts an instance of `HttpContent`.
 
@@ -230,19 +229,19 @@ To create a delegating handler:
 * Derive from <xref:System.Net.Http.DelegatingHandler>.
 * Override <xref:System.Net.Http.DelegatingHandler.SendAsync%2A>. Execute code before passing the request to the next handler in the pipeline:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Handlers/ValidateHeaderHandler.cs?name=snippet1)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Handlers/ValidateHeaderHandler.cs" id="snippet1":::
 
 The preceding code checks if the `X-API-KEY` header is in the request. If `X-API-KEY` is missing, <xref:System.Net.HttpStatusCode.BadRequest> is returned.
 
 More than one handler can be added to the configuration for an `HttpClient` with <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A?displayProperty=fullName>:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup2.cs?name=snippet1)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup2.cs" id="snippet1":::
 
 In the preceding code, the `ValidateHeaderHandler` is registered with DI. Once registered, <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A> can be called, passing in the type for the handler.
 
 Multiple handlers can be registered in the order that they should execute. Each handler wraps the next handler until the final `HttpClientHandler` executes the request:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet6)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup.cs" id="snippet6":::
 
 <!-- TODO: Review and Update -->
 ### Use DI in outgoing request middleware
@@ -251,15 +250,15 @@ When `IHttpClientFactory` creates a new delegating handler, it uses DI to fulfil
 
 For example, consider the following interface and its implementation, which represents a task as an operation with an identifier, `OperationId`:
 
-[!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Models/OperationScoped.cs?name=snippet_Types)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpRequestsSample/Models/OperationScoped.cs" id="snippet_Types":::
 
 As its name suggests, `IOperationScoped` is registered with DI using a *scoped* lifetime:
 
-[!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Startup.cs?name=snippet_IOperationScoped&highlight=18,26)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpRequestsSample/Startup.cs" id="snippet_IOperationScoped" highlight="18,26":::
 
 The following delegating handler consumes and uses `IOperationScoped` to set the `X-OPERATION-ID` header for the outgoing request:
 
-[!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Handlers/OperationHandler.cs?name=snippet_Class&highlight=13)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpRequestsSample/Handlers/OperationHandler.cs" id="snippet_Class" highlight="13":::
 
 In the [`HttpRequestsSample` download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/http-requests/samples/6.0/HttpRequestsSample), navigate to `/Operation` and refresh the page. The request scope value changes for each request, but the handler scope value only changes every 5 seconds.
 
@@ -288,7 +287,7 @@ Faults typically occur when external HTTP calls are transient. <xref:Microsoft.E
 
 `AddTransientHttpErrorPolicy` provides access to a `PolicyBuilder` object configured to handle errors representing a possible transient fault:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup3.cs?name=snippet1)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup3.cs" id="snippet1":::
 
 In the preceding code, a `WaitAndRetryAsync` policy is defined. Failed requests are retried up to three times with a delay of 600 ms between attempts.
 
@@ -296,7 +295,7 @@ In the preceding code, a `WaitAndRetryAsync` policy is defined. Failed requests 
 
 Extension methods are provided to add Polly-based handlers, for example, <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddPolicyHandler%2A>. The following `AddPolicyHandler` overload inspects the request to decide which policy to apply:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet8)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup.cs" id="snippet8":::
 
 In the preceding code, if the outgoing request is an HTTP GET, a 10-second timeout is applied. For any other HTTP method, a 30-second timeout is used.
 
@@ -304,7 +303,7 @@ In the preceding code, if the outgoing request is an HTTP GET, a 10-second timeo
 
 It's common to nest Polly policies:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet9)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup.cs" id="snippet9":::
 
 In the preceding example:
 
@@ -321,7 +320,7 @@ In the following code:
 * The "regular" and "long" policies are added.
 * <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddPolicyHandlerFromRegistry%2A> adds the "regular" and "long" policies from the registry.
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup4.cs?name=snippet1)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup4.cs" id="snippet1":::
 
 For more information on `IHttpClientFactory` and Polly integrations, see the [Polly wiki](https://github.com/App-vNext/Polly/wiki/Polly-and-HttpClientFactory).
 
@@ -335,7 +334,7 @@ Pooling of handlers is desirable as each handler typically manages its own under
 
 The default handler lifetime is two minutes. The default value can be overridden on a per named client basis:
 
-[!code-csharp[](http-requests/samples/6.0/HttpRequestsSample/Program.cs?name=snippet_AddHttpClientHandlerLifetime)]
+:::code language="csharp" source="http-requests/samples/6.0/HttpRequestsSample/Program.cs" id="snippet_AddHttpClientHandlerLifetime":::
 
 `HttpClient` instances can generally be treated as .NET objects **not** requiring disposal. Disposal cancels outgoing requests and guarantees the given `HttpClient` instance can't be used after calling <xref:System.IDisposable.Dispose%2A>. `IHttpClientFactory` tracks and disposes resources used by `HttpClient` instances.
 
@@ -377,7 +376,7 @@ It may be necessary to control the configuration of the inner `HttpMessageHandle
 
 An `IHttpClientBuilder` is returned when adding named or typed clients. The <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> extension method can be used to define a delegate. The delegate is used to create and configure the primary `HttpMessageHandler` used by that client:
 
-[!code-csharp[](http-requests/samples/6.0/HttpRequestsSample/Program.cs?name=snippet_AddHttpClientConfigureHttpMessageHandler)]
+:::code language="csharp" source="http-requests/samples/6.0/HttpRequestsSample/Program.cs" id="snippet_AddHttpClientConfigureHttpMessageHandler":::
 
 ## Cookies
 
@@ -388,7 +387,7 @@ The pooled `HttpMessageHandler` instances results in `CookieContainer` objects b
 
 Call <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> to disable automatic cookie handling:
 
-[!code-csharp[](http-requests/samples/6.0/HttpRequestsSample/Program.cs?name=snippet_AddHttpClientNoAutomaticCookies)]
+:::code language="csharp" source="http-requests/samples/6.0/HttpRequestsSample/Program.cs" id="snippet_AddHttpClientNoAutomaticCookies":::
 
 ## Use IHttpClientFactory in a console app
 
@@ -403,8 +402,7 @@ In the following example:
 * `MyService` creates a client factory instance from the service, which is used to create an `HttpClient`. `HttpClient` is used to retrieve a webpage.
 * `Main` creates a scope to execute the service's `GetPage` method and write the first 500 characters of the webpage content to the console.
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactoryConsoleSample/Program.cs?highlight=14-15,20,26-27,59-62)]
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactoryConsoleSample/Program.cs?highlight=14-15,20,26-27,59-62)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactoryConsoleSample/Program.cs" highlight="14-15,20,26-27,59-62":::
 
 ## Header propagation middleware
 
@@ -413,7 +411,7 @@ Header propagation is an ASP.NET Core middleware to propagate HTTP headers from 
 * Install the [Microsoft.AspNetCore.HeaderPropagation](https://www.nuget.org/packages/Microsoft.AspNetCore.HeaderPropagation) package.
 * Configure the `HttpClient` and middleware pipeline in *Program.cs*:
 
-  [!code-csharp[](http-requests/samples/6.0/HttpRequestsSample/Snippets/Program.cs?name=snippet_AddHttpClientHeaderPropagation&highlight=4-10,17)]
+  :::code language="csharp" source="http-requests/samples/6.0/HttpRequestsSample/Snippets/Program.cs" id="snippet_AddHttpClientHeaderPropagation" highlight="4-10,17":::
 
 * Make outbound requests using the configured `HttpClient` instance, which includes the added headers.
 
@@ -456,11 +454,11 @@ The best approach depends upon the app's requirements.
 
 `IHttpClientFactory` can be registered by calling `AddHttpClient`:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet1&highlight=13)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup.cs" id="snippet1" highlight="13":::
 
 An `IHttpClientFactory` can be requested using [dependency injection (DI)](xref:fundamentals/dependency-injection). The following code uses `IHttpClientFactory` to create an `HttpClient` instance:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Pages/BasicUsage.cshtml.cs?name=snippet1&highlight=9-12,21)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Pages/BasicUsage.cshtml.cs" id="snippet1" highlight="9-12,21":::
 
 Using `IHttpClientFactory` like in the preceding example is a good way to refactor an existing app. It has no impact on how `HttpClient` is used. In places where `HttpClient` instances are created in an existing app, replace those occurrences with calls to <xref:System.Net.Http.IHttpClientFactory.CreateClient%2A>.
 
@@ -473,7 +471,7 @@ Named clients are a good choice when:
 
 Configuration for a named `HttpClient` can be specified during registration in `Startup.ConfigureServices`:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet2)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup.cs" id="snippet2":::
 
 In the preceding code the client is configured with:
 
@@ -489,7 +487,7 @@ Each time <xref:System.Net.Http.IHttpClientFactory.CreateClient%2A> is called:
 
 To create a named client, pass its name into `CreateClient`:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Pages/NamedClient.cshtml.cs?name=snippet1&highlight=21)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Pages/NamedClient.cshtml.cs" id="snippet1" highlight="21":::
 
 In the preceding code, the request doesn't need to specify a hostname. The code can pass just the path, since the base address configured for the client is used.
 
@@ -506,7 +504,7 @@ Typed clients:
 
 A typed client accepts an `HttpClient` parameter in its constructor:
 
-[!code-csharp[](http-requests/samples/5.x/HttpClientFactorySample/GitHub/GitHubService.cs?name=snippet1&highlight=5)]
+:::code language="csharp" source="http-requests/samples/5.x/HttpClientFactorySample/GitHub/GitHubService.cs" id="snippet1" highlight="5":::
 
 In the preceding code:
 
@@ -515,13 +513,13 @@ In the preceding code:
 
 <!-- 
 The preceding code can be written as: 
-[!code-csharp[](http-requests/samples/5.x/HttpClientFactorySample/GitHub/GitHubService.cs?name=snippet2)]
+:::code language="csharp" source="http-requests/samples/5.x/HttpClientFactorySample/GitHub/GitHubService.cs" id="snippet2":::
 -->
 API-specific methods can be created that expose `HttpClient` functionality. For example, the `GetAspNetDocsIssues` method encapsulates code to retrieve open issues.
 
 The following code calls <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions.AddHttpClient%2A> in `Startup.ConfigureServices` to register a typed client class:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet3)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup.cs" id="snippet3":::
 
 The typed client is registered as transient with DI. In the preceding code, `AddHttpClient` registers `GitHubService` as a transient service. This registration uses a factory method to:
 
@@ -530,15 +528,15 @@ The typed client is registered as transient with DI. In the preceding code, `Add
 
 The typed client can be injected and consumed directly:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Pages/TypedClient.cshtml.cs?name=snippet1&highlight=11-14,20)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Pages/TypedClient.cshtml.cs" id="snippet1" highlight="11-14,20":::
 
 The configuration for a typed client can be specified during registration in `Startup.ConfigureServices`, rather than in the typed client's constructor:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet4)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup.cs" id="snippet4":::
 
 The `HttpClient` can be encapsulated within a typed client. Rather than exposing it as a property, define a method which calls the `HttpClient` instance internally:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/GitHub/RepoService.cs?name=snippet1&highlight=4)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/GitHub/RepoService.cs" id="snippet1" highlight="4":::
 
 In the preceding code, the `HttpClient` is stored in a private field. Access to the `HttpClient` is by the public `GetRepos` method.
 
@@ -610,7 +608,7 @@ For a complete list of supported HTTP verbs, see <xref:System.Net.Http.HttpMetho
 
 The following example shows how to make an HTTP POST request:
 
-[!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Models/TodoClient.cs?name=snippet_POST)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpRequestsSample/Models/TodoClient.cs" id="snippet_POST":::
 
 In the preceding code, the `CreateItemAsync` method:
 
@@ -623,13 +621,13 @@ In the preceding code, the `CreateItemAsync` method:
 
 The following example shows an HTTP PUT request:
 
-[!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Models/TodoClient.cs?name=snippet_PUT)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpRequestsSample/Models/TodoClient.cs" id="snippet_PUT":::
 
 The preceding code is very similar to the POST example. The `SaveItemAsync` method calls <xref:System.Net.Http.HttpClient.PutAsync%2A> instead of `PostAsync`.
 
 The following example shows an HTTP DELETE request:
 
-[!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Models/TodoClient.cs?name=snippet_DELETE)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpRequestsSample/Models/TodoClient.cs" id="snippet_DELETE":::
 
 In the preceding code, the `DeleteItemAsync` method calls <xref:System.Net.Http.HttpClient.DeleteAsync%2A>. Because HTTP DELETE requests typically contain no body, the `DeleteAsync` method doesn't provide an overload that accepts an instance of `HttpContent`.
 
@@ -653,19 +651,19 @@ To create a delegating handler:
 * Derive from <xref:System.Net.Http.DelegatingHandler>.
 * Override <xref:System.Net.Http.DelegatingHandler.SendAsync%2A>. Execute code before passing the request to the next handler in the pipeline:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Handlers/ValidateHeaderHandler.cs?name=snippet1)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Handlers/ValidateHeaderHandler.cs" id="snippet1":::
 
 The preceding code checks if the `X-API-KEY` header is in the request. If `X-API-KEY` is missing, <xref:System.Net.HttpStatusCode.BadRequest> is returned.
 
 More than one handler can be added to the configuration for an `HttpClient` with <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A?displayProperty=fullName>:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup2.cs?name=snippet1)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup2.cs" id="snippet1":::
 
 In the preceding code, the `ValidateHeaderHandler` is registered with DI. Once registered, <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A> can be called, passing in the type for the handler.
 
 Multiple handlers can be registered in the order that they should execute. Each handler wraps the next handler until the final `HttpClientHandler` executes the request:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet6)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup.cs" id="snippet6":::
 
 ### Use DI in outgoing request middleware
 
@@ -673,15 +671,15 @@ When `IHttpClientFactory` creates a new delegating handler, it uses DI to fulfil
 
 For example, consider the following interface and its implementation, which represents a task as an operation with an identifier, `OperationId`:
 
-[!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Models/OperationScoped.cs?name=snippet_Types)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpRequestsSample/Models/OperationScoped.cs" id="snippet_Types":::
 
 As its name suggests, `IOperationScoped` is registered with DI using a *scoped* lifetime:
 
-[!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Startup.cs?name=snippet_IOperationScoped&highlight=18,26)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpRequestsSample/Startup.cs" id="snippet_IOperationScoped" highlight="18,26":::
 
 The following delegating handler consumes and uses `IOperationScoped` to set the `X-OPERATION-ID` header for the outgoing request:
 
-[!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Handlers/OperationHandler.cs?name=snippet_Class&highlight=13)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpRequestsSample/Handlers/OperationHandler.cs" id="snippet_Class" highlight="13":::
 
 In the [`HttpRequestsSample` download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/http-requests/samples/3.x/HttpRequestsSample)], navigate to `/Operation` and refresh the page. The request scope value changes for each request, but the handler scope value only changes every 5 seconds.
 
@@ -709,7 +707,7 @@ Faults typically occur when external HTTP calls are transient. <xref:Microsoft.E
 
 `AddTransientHttpErrorPolicy` provides access to a `PolicyBuilder` object configured to handle errors representing a possible transient fault:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup3.cs?name=snippet1)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup3.cs" id="snippet1":::
 
 In the preceding code, a `WaitAndRetryAsync` policy is defined. Failed requests are retried up to three times with a delay of 600 ms between attempts.
 
@@ -717,7 +715,7 @@ In the preceding code, a `WaitAndRetryAsync` policy is defined. Failed requests 
 
 Extension methods are provided to add Polly-based handlers, for example, <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddPolicyHandler%2A>. The following `AddPolicyHandler` overload inspects the request to decide which policy to apply:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet8)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup.cs" id="snippet8":::
 
 In the preceding code, if the outgoing request is an HTTP GET, a 10-second timeout is applied. For any other HTTP method, a 30-second timeout is used.
 
@@ -725,7 +723,7 @@ In the preceding code, if the outgoing request is an HTTP GET, a 10-second timeo
 
 It's common to nest Polly policies:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet9)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup.cs" id="snippet9":::
 
 In the preceding example:
 
@@ -742,7 +740,7 @@ In the following code:
 * The "regular" and "long" policies are added.
 * <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddPolicyHandlerFromRegistry%2A> adds the "regular" and "long" policies from the registry.
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup4.cs?name=snippet1)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup4.cs" id="snippet1":::
 
 For more information on `IHttpClientFactory` and Polly integrations, see the [Polly wiki](https://github.com/App-vNext/Polly/wiki/Polly-and-HttpClientFactory).
 
@@ -756,7 +754,7 @@ Pooling of handlers is desirable as each handler typically manages its own under
 
 The default handler lifetime is two minutes. The default value can be overridden on a per named client basis:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup5.cs?name=snippet1)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup5.cs" id="snippet1":::
 
 `HttpClient` instances can generally be treated as .NET objects **not** requiring disposal. Disposal cancels outgoing requests and guarantees the given `HttpClient` instance can't be used after calling <xref:System.IDisposable.Dispose%2A>. `IHttpClientFactory` tracks and disposes resources used by `HttpClient` instances.
 
@@ -789,7 +787,7 @@ The pooled `HttpMessageHandler` instances results in `CookieContainer` objects b
 
 Call <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> to disable automatic cookie handling:
 
-[!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet13)]
+:::code language="csharp" source="http-requests/samples/2.x/HttpClientFactorySample/Startup.cs" id="snippet13":::
 
 ## Logging
 
@@ -809,7 +807,7 @@ It may be necessary to control the configuration of the inner `HttpMessageHandle
 
 An `IHttpClientBuilder` is returned when adding named or typed clients. The <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> extension method can be used to define a delegate. The delegate is used to create and configure the primary `HttpMessageHandler` used by that client:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup6.cs?name=snippet1)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup6.cs" id="snippet1":::
 
 ## Use IHttpClientFactory in a console app
 
@@ -824,7 +822,7 @@ In the following example:
 * `MyService` creates a client factory instance from the service, which is used to create an `HttpClient`. `HttpClient` is used to retrieve a webpage.
 * `Main` creates a scope to execute the service's `GetPage` method and write the first 500 characters of the webpage content to the console.
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactoryConsoleSample/Program.cs?highlight=14-15,20,26-27,59-62)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactoryConsoleSample/Program.cs" highlight="14-15,20,26-27,59-62":::
 
 ## Header propagation middleware
 
@@ -833,7 +831,7 @@ Header propagation is an ASP.NET Core middleware to propagate HTTP headers from 
 * Reference the [Microsoft.AspNetCore.HeaderPropagation](https://www.nuget.org/packages/Microsoft.AspNetCore.HeaderPropagation) package.
 * Configure the middleware and `HttpClient` in `Startup`:
 
-  [!code-csharp[](http-requests/samples/3.x/Startup.cs?highlight=5-9,21&name=snippet)]
+  :::code language="csharp" source="http-requests/samples/3.x/Startup.cs" highlight="5-9,21&name=snippet":::
 
 * The client includes the configured headers on outbound requests:
 
@@ -881,11 +879,11 @@ The best approach depends upon the app's requirements.
 
 `IHttpClientFactory` can be registered by calling `AddHttpClient`:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet1&highlight=13)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup.cs" id="snippet1" highlight="13":::
 
 An `IHttpClientFactory` can be requested using [dependency injection (DI)](xref:fundamentals/dependency-injection). The following code uses `IHttpClientFactory` to create an `HttpClient` instance:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Pages/BasicUsage.cshtml.cs?name=snippet1&highlight=9-12,21)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Pages/BasicUsage.cshtml.cs" id="snippet1" highlight="9-12,21":::
 
 Using `IHttpClientFactory` like in the preceding example is a good way to refactor an existing app. It has no impact on how `HttpClient` is used. In places where `HttpClient` instances are created in an existing app, replace those occurrences with calls to <xref:System.Net.Http.IHttpClientFactory.CreateClient%2A>.
 
@@ -898,7 +896,7 @@ Named clients are a good choice when:
 
 Configuration for a named `HttpClient` can be specified during registration in `Startup.ConfigureServices`:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet2)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup.cs" id="snippet2":::
 
 In the preceding code the client is configured with:
 
@@ -914,7 +912,7 @@ Each time <xref:System.Net.Http.IHttpClientFactory.CreateClient%2A> is called:
 
 To create a named client, pass its name into `CreateClient`:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Pages/NamedClient.cshtml.cs?name=snippet1&highlight=21)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Pages/NamedClient.cshtml.cs" id="snippet1" highlight="21":::
 
 In the preceding code, the request doesn't need to specify a hostname. The code can pass just the path, since the base address configured for the client is used.
 
@@ -931,7 +929,7 @@ Typed clients:
 
 A typed client accepts an `HttpClient` parameter in its constructor:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/GitHub/GitHubService.cs?name=snippet1&highlight=5)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/GitHub/GitHubService.cs" id="snippet1" highlight="5":::
 [!INCLUDE[about the series](~/includes/code-comments-loc.md)]
 
 In the preceding code:
@@ -943,7 +941,7 @@ API-specific methods can be created that expose `HttpClient` functionality. For 
 
 The following code calls <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions.AddHttpClient%2A> in `Startup.ConfigureServices` to register a typed client class:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet3)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup.cs" id="snippet3":::
 
 The typed client is registered as transient with DI. In the preceding code, `AddHttpClient` registers `GitHubService` as a transient service. This registration uses a factory method to:
 
@@ -952,15 +950,15 @@ The typed client is registered as transient with DI. In the preceding code, `Add
 
 The typed client can be injected and consumed directly:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Pages/TypedClient.cshtml.cs?name=snippet1&highlight=11-14,20)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Pages/TypedClient.cshtml.cs" id="snippet1" highlight="11-14,20":::
 
 The configuration for a typed client can be specified during registration in `Startup.ConfigureServices`, rather than in the typed client's constructor:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet4)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup.cs" id="snippet4":::
 
 The `HttpClient` can be encapsulated within a typed client. Rather than exposing it as a property, define a method which calls the `HttpClient` instance internally:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/GitHub/RepoService.cs?name=snippet1&highlight=4)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/GitHub/RepoService.cs" id="snippet1" highlight="4":::
 
 In the preceding code, the `HttpClient` is stored in a private field. Access to the `HttpClient` is by the public `GetRepos` method.
 
@@ -1032,7 +1030,7 @@ For a complete list of supported HTTP verbs, see <xref:System.Net.Http.HttpMetho
 
 The following example shows how to make an HTTP POST request:
 
-[!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Models/TodoClient.cs?name=snippet_POST)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpRequestsSample/Models/TodoClient.cs" id="snippet_POST":::
 
 In the preceding code, the `CreateItemAsync` method:
 
@@ -1045,13 +1043,13 @@ In the preceding code, the `CreateItemAsync` method:
 
 The following example shows an HTTP PUT request:
 
-[!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Models/TodoClient.cs?name=snippet_PUT)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpRequestsSample/Models/TodoClient.cs" id="snippet_PUT":::
 
 The preceding code is very similar to the POST example. The `SaveItemAsync` method calls <xref:System.Net.Http.HttpClient.PutAsync%2A> instead of `PostAsync`.
 
 The following example shows an HTTP DELETE request:
 
-[!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Models/TodoClient.cs?name=snippet_DELETE)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpRequestsSample/Models/TodoClient.cs" id="snippet_DELETE":::
 
 In the preceding code, the `DeleteItemAsync` method calls <xref:System.Net.Http.HttpClient.DeleteAsync%2A>. Because HTTP DELETE requests typically contain no body, the `DeleteAsync` method doesn't provide an overload that accepts an instance of `HttpContent`.
 
@@ -1075,19 +1073,19 @@ To create a delegating handler:
 * Derive from <xref:System.Net.Http.DelegatingHandler>.
 * Override <xref:System.Net.Http.DelegatingHandler.SendAsync%2A>. Execute code before passing the request to the next handler in the pipeline:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Handlers/ValidateHeaderHandler.cs?name=snippet1)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Handlers/ValidateHeaderHandler.cs" id="snippet1":::
 
 The preceding code checks if the `X-API-KEY` header is in the request. If `X-API-KEY` is missing, <xref:System.Net.HttpStatusCode.BadRequest> is returned.
 
 More than one handler can be added to the configuration for an `HttpClient` with <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A?displayProperty=fullName>:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup2.cs?name=snippet1)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup2.cs" id="snippet1":::
 
 In the preceding code, the `ValidateHeaderHandler` is registered with DI. Once registered, <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A> can be called, passing in the type for the handler.
 
 Multiple handlers can be registered in the order that they should execute. Each handler wraps the next handler until the final `HttpClientHandler` executes the request:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet6)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup.cs" id="snippet6":::
 
 ### Use DI in outgoing request middleware
 
@@ -1095,15 +1093,15 @@ When `IHttpClientFactory` creates a new delegating handler, it uses DI to fulfil
 
 For example, consider the following interface and its implementation, which represents a task as an operation with an identifier, `OperationId`:
 
-[!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Models/OperationScoped.cs?name=snippet_Types)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpRequestsSample/Models/OperationScoped.cs" id="snippet_Types":::
 
 As its name suggests, `IOperationScoped` is registered with DI using a *scoped* lifetime:
 
-[!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Startup.cs?name=snippet_IOperationScoped&highlight=18,26)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpRequestsSample/Startup.cs" id="snippet_IOperationScoped" highlight="18,26":::
 
 The following delegating handler consumes and uses `IOperationScoped` to set the `X-OPERATION-ID` header for the outgoing request:
 
-[!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Handlers/OperationHandler.cs?name=snippet_Class&highlight=13)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpRequestsSample/Handlers/OperationHandler.cs" id="snippet_Class" highlight="13":::
 
 In the [`HttpRequestsSample` download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/http-requests/samples/3.x/HttpRequestsSample)], navigate to `/Operation` and refresh the page. The request scope value changes for each request, but the handler scope value only changes every 5 seconds.
 
@@ -1131,7 +1129,7 @@ Faults typically occur when external HTTP calls are transient. <xref:Microsoft.E
 
 `AddTransientHttpErrorPolicy` provides access to a `PolicyBuilder` object configured to handle errors representing a possible transient fault:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup3.cs?name=snippet1)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup3.cs" id="snippet1":::
 
 In the preceding code, a `WaitAndRetryAsync` policy is defined. Failed requests are retried up to three times with a delay of 600 ms between attempts.
 
@@ -1139,7 +1137,7 @@ In the preceding code, a `WaitAndRetryAsync` policy is defined. Failed requests 
 
 Extension methods are provided to add Polly-based handlers, for example, <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddPolicyHandler%2A>. The following `AddPolicyHandler` overload inspects the request to decide which policy to apply:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet8)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup.cs" id="snippet8":::
 
 In the preceding code, if the outgoing request is an HTTP GET, a 10-second timeout is applied. For any other HTTP method, a 30-second timeout is used.
 
@@ -1147,7 +1145,7 @@ In the preceding code, if the outgoing request is an HTTP GET, a 10-second timeo
 
 It's common to nest Polly policies:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet9)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup.cs" id="snippet9":::
 
 In the preceding example:
 
@@ -1164,7 +1162,7 @@ In the following code:
 * The "regular" and "long" policies are added.
 * <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddPolicyHandlerFromRegistry%2A> adds the "regular" and "long" policies from the registry.
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup4.cs?name=snippet1)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup4.cs" id="snippet1":::
 
 For more information on `IHttpClientFactory` and Polly integrations, see the [Polly wiki](https://github.com/App-vNext/Polly/wiki/Polly-and-HttpClientFactory).
 
@@ -1178,7 +1176,7 @@ Pooling of handlers is desirable as each handler typically manages its own under
 
 The default handler lifetime is two minutes. The default value can be overridden on a per named client basis:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup5.cs?name=snippet1)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup5.cs" id="snippet1":::
 
 `HttpClient` instances can generally be treated as .NET objects **not** requiring disposal. Disposal cancels outgoing requests and guarantees the given `HttpClient` instance can't be used after calling <xref:System.IDisposable.Dispose%2A>. `IHttpClientFactory` tracks and disposes resources used by `HttpClient` instances.
 
@@ -1211,7 +1209,7 @@ The pooled `HttpMessageHandler` instances results in `CookieContainer` objects b
 
 Call <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> to disable automatic cookie handling:
 
-[!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet13)]
+:::code language="csharp" source="http-requests/samples/2.x/HttpClientFactorySample/Startup.cs" id="snippet13":::
 
 ## Logging
 
@@ -1231,7 +1229,7 @@ It may be necessary to control the configuration of the inner `HttpMessageHandle
 
 An `IHttpClientBuilder` is returned when adding named or typed clients. The <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> extension method can be used to define a delegate. The delegate is used to create and configure the primary `HttpMessageHandler` used by that client:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup6.cs?name=snippet1)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup6.cs" id="snippet1":::
 
 ## Use IHttpClientFactory in a console app
 
@@ -1246,7 +1244,7 @@ In the following example:
 * `MyService` creates a client factory instance from the service, which is used to create an `HttpClient`. `HttpClient` is used to retrieve a webpage.
 * `Main` creates a scope to execute the service's `GetPage` method and write the first 500 characters of the webpage content to the console.
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactoryConsoleSample/Program.cs?highlight=14-15,20,26-27,59-62)]
+:::code language="csharp" source="http-requests/samples/3.x/HttpClientFactoryConsoleSample/Program.cs" highlight="14-15,20,26-27,59-62":::
 
 ## Header propagation middleware
 
@@ -1255,7 +1253,7 @@ Header propagation is an ASP.NET Core middleware to propagate HTTP headers from 
 * Reference the [Microsoft.AspNetCore.HeaderPropagation](https://www.nuget.org/packages/Microsoft.AspNetCore.HeaderPropagation) package.
 * Configure the middleware and `HttpClient` in `Startup`:
 
-  [!code-csharp[](http-requests/samples/3.x/Startup.cs?highlight=5-9,21&name=snippet)]
+  :::code language="csharp" source="http-requests/samples/3.x/Startup.cs" highlight="5-9,21&name=snippet":::
 
 * The client includes the configured headers on outbound requests:
 
