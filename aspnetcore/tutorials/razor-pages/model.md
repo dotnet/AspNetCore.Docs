@@ -950,7 +950,7 @@ Build the app. The compiler generates several `nullable` warnings. See [this Git
 
 ### Fix the warning messages
 
-In this section, you can either disable nullable warnings or fix the scaffolded code. To eliminate the warnings from nullable reference types, remove the following line from the *MvcMovie.csproj* file:
+In this section, you can either disable nullable warnings or fix the scaffolded code. To eliminate the warnings from nullable reference types, remove the following line from the *RazorPagesMovie .csproj* file:
 
 ```xml
 <Nullable>enable</Nullable>
