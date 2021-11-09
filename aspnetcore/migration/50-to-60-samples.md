@@ -211,7 +211,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 ### ASP.NET Core 6
 
-[!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_hb)]
+[!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_whb)]
 
 ## Change the web root
 
