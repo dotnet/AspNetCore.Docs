@@ -41,7 +41,7 @@ highlightedContent:
     # Card
     - title: "Create your first web API"
       itemType: get-started
-      url: tutorials/first-web-api.md
+      url: tutorials/min-web-api.md
     # Card
     - title: "Create your first real-time web app"
       itemType: get-started
