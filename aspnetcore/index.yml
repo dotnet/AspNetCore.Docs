@@ -77,12 +77,12 @@ conceptualContent:
     - title: RESTful web API apps
       summary: Develop RESTful HTTP services with ASP.NET Core web API
       links:
-        - url: tutorials/first-web-api.md
+        - url: tutorials/min-web-api.md
           itemType: get-started
-          text: "Create a web API with ASP.NET Core"
+          text: "Create a minimal web API with ASP.NET Core"
         - url: /learn/modules/build-web-api-net-core/
           itemType: learn
-          text: "Create web APIs with ASP.NET Core"
+          text: "Create a web API with ASP.NET Core Controllers"
         - url: tutorials/web-api-help-pages-using-swagger.md
           itemType: tutorial
           text: "Generate web API help pages with Swagger / OpenAPI"
