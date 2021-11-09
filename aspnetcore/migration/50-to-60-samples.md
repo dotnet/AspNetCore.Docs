@@ -4,7 +4,7 @@ author: rick-anderson
 description:  Shows how to migrate ASP.NET Core 5.0 samples to the the new minimal hosting model in 6.0
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
-ms.date: 10/22/2021
+ms.date: 11/9/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: migration/50-to-60-samples
 ---
