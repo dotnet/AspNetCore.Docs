@@ -1,0 +1,10 @@
+@page
+@model HttpRequestsSample.Pages.RefitModel
+
+@{
+	ViewData["Title"] = "Refit";
+}
+
+<h1>Refit</h1>
+
+@await Component.InvokeAsync("GitHubBranches", new { gitHubBranches = Model.GitHubBranches })

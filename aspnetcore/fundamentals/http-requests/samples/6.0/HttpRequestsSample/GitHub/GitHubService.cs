@@ -21,7 +21,7 @@ namespace HttpRequestsSample.GitHub
                 HeaderNames.UserAgent, "HttpRequestsSample");
         }
 
-        public async Task<IEnumerable<GitHubBranch>?> GetAspNetCoreDocsBranches() =>
+        public async Task<IEnumerable<GitHubBranch>?> GetAspNetCoreDocsBranchesAsync() =>
             await _httpClient.GetFromJsonAsync<IEnumerable<GitHubBranch>>(
                 "repos/dotnet/AspNetCore.Docs/branches");
     }

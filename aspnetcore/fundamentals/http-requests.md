@@ -115,61 +115,21 @@ The configuration for a typed client can also be specified during its registrati
 
 :::code language="csharp" source="http-requests/samples/6.0/HttpRequestsSample/Snippets/Program.cs" id="snippet_AddHttpClientTypedInline":::
 
-<!-- TODO: Review and Update -->
 ### Generated clients
 
-`IHttpClientFactory` can be used in combination with third-party libraries such as [Refit](https://github.com/paulcbetts/refit). Refit is a REST library for .NET. It converts REST APIs into live interfaces. An implementation of the interface is generated dynamically by the `RestService`, using `HttpClient` to make the external HTTP calls.
+`IHttpClientFactory` can be used in combination with third-party libraries such as [Refit](https://github.com/reactiveui/refit). Refit is a REST library for .NET. It converts REST APIs into live interfaces. Call `AddRefitClient` to generate a dynamic implementation of an interface, which uses `HttpClient` to make the external HTTP calls.
 
-An interface and a reply are defined to represent the external API and its response:
+A custom interface represents the external API:
 
-```csharp
-public interface IHelloClient
-{
-    [Get("/helloworld")]
-    Task<Reply> GetMessageAsync();
-}
+:::code language="csharp" source="http-requests/samples/6.0/HttpRequestsSample/GitHub/IGitHubClient.cs" id="snippet_Interface":::
 
-public class Reply
-{
-    public string Message { get; set; }
-}
-```
+Call `AddRefitClient` to generate the dynamic implementation and then call `ConfigureHttpClient` to configure the underlying `HttpClient`:
 
-A typed client can be added, using Refit to generate the implementation:
+:::code language="csharp" source="http-requests/samples/6.0/HttpRequestsSample/Program.cs" id="snippet_AddRefitClient":::
 
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddHttpClient("hello", c =>
-    {
-        c.BaseAddress = new Uri("http://localhost:5000");
-    })
-    .AddTypedClient(c => Refit.RestService.For<IHelloClient>(c));
+Use DI to access the dynamic implementation of `IGitHubClient`:
 
-    services.AddControllers();
-}
-```
-
-The defined interface can be consumed where necessary, with the implementation provided by DI and Refit:
-
-```csharp
-[ApiController]
-public class ValuesController : ControllerBase
-{
-    private readonly IHelloClient _client;
-
-    public ValuesController(IHelloClient client)
-    {
-        _client = client;
-    }
-
-    [HttpGet("/")]
-    public async Task<ActionResult<Reply>> Index()
-    {
-        return await _client.GetMessageAsync();
-    }
-}
-```
+:::code language="csharp" source="http-requests/samples/6.0/HttpRequestsSample/Pages/Refit.cshtml.cs" id="snippet_Class" highlight="5-6,14":::
 
 ## Make POST, PUT, and DELETE requests
 
@@ -209,7 +169,6 @@ In the preceding code, the `DeleteItemAsync` method calls <xref:System.Net.Http.
 
 To learn more about using different HTTP verbs with `HttpClient`, see <xref:System.Net.Http.HttpClient>.
 
-<!-- TODO: Review and Update -->
 ## Outgoing request middleware
 
 `HttpClient` has the concept of delegating handlers that can be linked together for outgoing HTTP requests. `IHttpClientFactory`:
@@ -389,6 +348,7 @@ Call <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.
 
 :::code language="csharp" source="http-requests/samples/6.0/HttpRequestsSample/Program.cs" id="snippet_AddHttpClientNoAutomaticCookies":::
 
+<!-- TODO: Review and Update -->
 ## Use IHttpClientFactory in a console app
 
 In a console app, add the following package references to the project:

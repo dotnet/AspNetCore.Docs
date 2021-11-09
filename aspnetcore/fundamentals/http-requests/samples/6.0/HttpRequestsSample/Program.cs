@@ -2,6 +2,7 @@ using HttpRequestsSample.GitHub;
 using HttpRequestsSample.Handlers;
 using HttpRequestsSample.Models;
 using Microsoft.Net.Http.Headers;
+using Refit;
 
 #region snippet_AddHttpClientBasic
 var builder = WebApplication.CreateBuilder(args);
@@ -24,6 +25,21 @@ builder.Services.AddHttpClient("GitHub", httpClient =>
     httpClient.DefaultRequestHeaders.Add(
         HeaderNames.UserAgent, "HttpRequestsSample");
 });
+#endregion
+
+#region snippet_AddRefitClient
+builder.Services.AddRefitClient<IGitHubClient>()
+    .ConfigureHttpClient(httpClient =>
+    {
+        httpClient.BaseAddress = new Uri("https://api.github.com/");
+
+        // using Microsoft.Net.Http.Headers;
+        // The GitHub API requires two headers.
+        httpClient.DefaultRequestHeaders.Add(
+            HeaderNames.Accept, "application/vnd.github.v3+json");
+        httpClient.DefaultRequestHeaders.Add(
+            HeaderNames.UserAgent, "HttpRequestsSample");
+    });
 #endregion
 
 #region snippet_AddHttpMessageHandler

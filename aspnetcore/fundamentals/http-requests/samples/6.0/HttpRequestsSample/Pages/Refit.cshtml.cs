@@ -1,15 +1,16 @@
 using HttpRequestsSample.GitHub;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Refit;
 
 namespace HttpRequestsSample.Pages
 {
     #region snippet_Class
-    public class TypedClientModel : PageModel
+    public class RefitModel : PageModel
     {
-        private readonly GitHubService _gitHubService;
+        private readonly IGitHubClient _gitHubClient;
 
-        public TypedClientModel(GitHubService gitHubService) =>
-            _gitHubService = gitHubService;
+        public RefitModel(IGitHubClient gitHubClient) =>
+            _gitHubClient = gitHubClient;
 
         public IEnumerable<GitHubBranch>? GitHubBranches { get; set; }
 
@@ -17,9 +18,9 @@ namespace HttpRequestsSample.Pages
         {
             try
             {
-                GitHubBranches = await _gitHubService.GetAspNetCoreDocsBranchesAsync();
+                GitHubBranches = await _gitHubClient.GetAspNetCoreDocsBranchesAsync();
             }
-            catch (HttpRequestException)
+            catch (ApiException)
             {
                 // ...
             }
