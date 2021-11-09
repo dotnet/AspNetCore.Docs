@@ -946,13 +946,17 @@ The name of the connection string is passed in to the context by calling a metho
 
 ## Build the app
 
-Build the app. The compiler generates several `nullable` warnings. The released version of .NET 6 will scaffold code without these warnings. See [this GitHub issue](https://github.com/dotnet/Scaffolding/issues/1594) and [Nullable reference types](/dotnet/csharp/nullable-references) for more information.
+Build the app. The compiler generates several `nullable` warnings. See [this GitHub issue](https://github.com/dotnet/Scaffolding/issues/1594) and [Nullable reference types](/dotnet/csharp/nullable-references) for more information.
 
 ### Fix the warning messages
 
-You can skip this section and ignore the warnings. When .NET 6 is released, the generated code will not contain complier warnings.
+In this section, you can either disable nullable warnings or fix the scaffolded code. To eliminate the warnings from nullable reference types, remove the following line from the *RazorPagesMovie .csproj* file:
 
-The `RazorPagesMovieContext` generates the following warning:
+```xml
+<Nullable>enable</Nullable>
+```
+
+Alternatively, fix the scaffolded code. The `RazorPagesMovieContext` generates the following warning:
 
 > Warning CS8618 Non-nullable property 'Movie' must contain a non-null value when exiting constructor. Consider declaring the property as nullable.
 
