@@ -75,7 +75,7 @@ conceptualContent:
           text: "Blazor hosting models"
     # Card
     - title: HTTP API apps
-      summary: Develop HTTP services with ASP.NET Core web API
+      summary: Develop HTTP services with ASP.NET Core
       links:
         - url: tutorials/min-web-api.md
           itemType: get-started
