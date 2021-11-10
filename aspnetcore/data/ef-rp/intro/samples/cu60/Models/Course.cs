@@ -1,9 +1,28 @@
-﻿using System.Collections.Generic;
+﻿#define FIRST
+#if FIRST
+#region snippet1
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace ContosoUniversity.Models
+{
+    public class Course
+    {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int CourseID { get; set; }
+        public string Title { get; set; }
+        public int Credits { get; set; }
+
+        public ICollection<Enrollment> Enrollments { get; set; }
+    }
+}
+#endregion
+#elif LAST
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ContosoUniversity.Models
 {
+#region snippet_last
     public class Course
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
@@ -23,3 +42,5 @@ namespace ContosoUniversity.Models
         public ICollection<Instructor> Instructors { get; set; }
     }
 }
+#endregion
+#endif
