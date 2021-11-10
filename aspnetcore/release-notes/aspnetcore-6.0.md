@@ -390,9 +390,9 @@ Cookie authentication sliding expiration can now be customized or suppressed usi
 
 ## Miscellaneous
 
-### Hot reload
+### Hot Reload
 
-Quickly make UI and code updates to running apps without losing app state for faster and more productive developer experience using [Hot reload](xref:test/hot-reload). For more information, see [Update on .NET Hot Reload progress and Visual Studio 2022 Highlights](https://devblogs.microsoft.com/dotnet/update-on-net-hot-reload-progress-and-visual-studio-2022-highlights/).
+Quickly make UI and code updates to running apps without losing app state for faster and more productive developer experience using [Hot Reload](xref:test/hot-reload). For more information, see [Update on .NET Hot Reload progress and Visual Studio 2022 Highlights](https://devblogs.microsoft.com/dotnet/update-on-net-hot-reload-progress-and-visual-studio-2022-highlights/).
 
 <!-- Notes:
 ### Single-file publishing
