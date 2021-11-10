@@ -74,8 +74,8 @@ conceptualContent:
           itemType: concept
           text: "Blazor hosting models"
     # Card
-    - title: RESTful web API apps
-      summary: Develop RESTful HTTP services with ASP.NET Core web API
+    - title: HTTP API apps
+      summary: Develop HTTP services with ASP.NET Core web API
       links:
         - url: tutorials/min-web-api.md
           itemType: get-started
