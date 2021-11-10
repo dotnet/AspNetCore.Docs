@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Options;
-using SampleApp.Models;
-
-// Requires StartupNO in Main
 
 namespace SampleApp.Pages
 {

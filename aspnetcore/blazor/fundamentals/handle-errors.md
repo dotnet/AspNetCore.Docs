@@ -5,7 +5,7 @@ description: Discover how ASP.NET Core Blazor how Blazor manages unhandled excep
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/25/2021
+ms.date: 11/09/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/fundamentals/handle-errors
 ---
@@ -36,7 +36,7 @@ In a Blazor WebAssembly app, customize the experience in the `wwwroot/index.html
 
 The `blazor-error-ui` element is normally hidden due the presence of the `display: none` style of the `blazor-error-ui` CSS class in the app's stylesheet (`wwwroot/css/app.css`). When an error occurs, the framework applies `display: block` to the element.
 
-## Manage unhandled exceptions in developer code (Blazor WebAssembly)
+## Manage unhandled exceptions in developer code
 
 For an app to continue after an error, the app must have error handling logic. Later sections of this article describe potential sources of unhandled exceptions.
 
@@ -45,13 +45,156 @@ In production, don't render framework exception messages or stack traces in the 
 * Disclose sensitive information to end users.
 * Help a malicious user discover weaknesses in an app that can compromise the security of the app, server, or network.
 
-## Global exception handling (Blazor WebAssembly)
+## Global exception handling
 
-[!INCLUDE[](~/blazor/fundamentals/includes/handle-errors/global-exception-handling.md)]
+Blazor is a single-page application (SPA) client-side framework. The browser serves as the app's host and thus acts as the processing pipeline for individual Razor components based on URI requests for navigation and static assets. Unlike ASP.NET Core apps that run on the server with a middleware processing pipeline, there is no middleware pipeline that processes requests for Razor components that can be leveraged for global error handling. However, an app can use an error processing component as a cascading value to process errors in a centralized way.
 
-## Error boundaries (Blazor WebAssembly)
+The following `Error` component passes itself as a [`CascadingValue`](xref:blazor/components/cascading-values-and-parameters#cascadingvalue-component) to child components. The following example merely logs the error, but methods of the component can process errors in any way required by the app, including through the use of multiple error processing methods. An advantage of using a component over using an [injected service](xref:blazor/fundamentals/dependency-injection) or a custom logger implementation is that a cascaded component can render content and apply CSS styles when an error occurs.
 
-[!INCLUDE[](~/blazor/fundamentals/includes/handle-errors/error-boundaries.md)]
+`Shared/Error.razor`:
+
+```razor
+@using Microsoft.Extensions.Logging
+@inject ILogger<Error> Logger
+
+<CascadingValue Value=this>
+    @ChildContent
+</CascadingValue>
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    public void ProcessError(Exception ex)
+    {
+        Logger.LogError("Error:ProcessError - Type: {Type} Message: {Message}", 
+            ex.GetType(), ex.Message);
+    }
+}
+```
+
+In the `App` component, wrap the `Router` component with the `Error` component. This permits the `Error` component to cascade down to any component of the app where the `Error` component is received as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute).
+
+`App.razor`:
+
+```razor
+<Error>
+    <Router ...>
+        ...
+    </Router>
+</Error>
+```
+
+To process errors in a component:
+
+* Designate the `Error` component as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute) in the [`@code`](xref:mvc/views/razor#code) block:
+
+  ```razor
+  [CascadingParameter]
+  public Error Error { get; set; }
+  ```
+
+* Call an error processing method in any `catch` block with an appropriate exception type. The example `Error` component only offers a single `ProcessError` method, but the error processing component can provide any number of error processing methods to address alternative error processing requirements throughout the app.
+
+  ```csharp
+  try
+  {
+      ...
+  }
+  catch (Exception ex)
+  {
+      Error.ProcessError(ex);
+  }
+  ```
+
+Using the preceding example `Error` component and `ProcessError` method, the browser's developer tools console indicates the trapped, logged error:
+
+> fail: BlazorSample.Shared.Error[0]
+> Error:ProcessError - Type: System.NullReferenceException Message: Object reference not set to an instance of an object.
+
+If the `ProcessError` method directly participates in rendering, such as showing a custom error message bar or changing the CSS styles of the rendered elements, call [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) at the end of the `ProcessErrors` method to rerender the UI.
+
+Because the approaches in this section handle errors with a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement, a Blazor Server app's SignalR connection between the client and server isn't broken when an error occurs and the circuit remains alive. Any unhandled exception is fatal to a circuit. For more information, see the preceding section on [how a Blazor Server app reacts to unhandled exceptions](#how-a-blazor-server-app-reacts-to-unhandled-exceptions).
+
+## Error boundaries
+
+Error boundaries provide a convenient approach for handling exceptions. The `ErrorBoundary` component:
+
+* Renders its child content when an error hasn't occurred.
+* Renders error UI when an unhandled exception is thrown.
+
+To define an error boundary, use the `ErrorBoundary` component to wrap existing content. For example, an error boundary can be added around the body content of the app's main layout.
+
+`Shared/MainLayout.razor`:
+
+```razor
+<div class="main">
+    <div class="content px-4">
+        <ErrorBoundary>
+            @Body
+        </ErrorBoundary>
+    </div>
+</div>
+```
+
+The app continues to function normally, but the error boundary handles unhandled exceptions.
+
+Consider the following example, where the `Counter` component throws an exception if the count increments past five.
+
+In `Pages/Counter.razor`:
+
+```csharp
+private void IncrementCount()
+{
+    currentCount++;
+
+    if (currentCount > 5)
+    {
+        throw new InvalidOperationException("Current count is too big!");
+    }
+}
+```
+
+If the unhandled exception is thrown for a `currentCount` over five:
+
+* The exception is handled by the error boundary.
+* Error UI is rendered (`An error has occurred!`).
+
+By default, the `ErrorBoundary` component renders an empty `<div>` element with the `blazor-error-boundary` CSS class for its error content. The colors, text, and icon for the default UI are defined using CSS in the app's stylesheet in the `wwwroot` folder, so you're free to customize the error UI.
+
+You can also change the default error content by setting the `ErrorContent` property:
+
+```razor
+<ErrorBoundary>
+    <ChildContent>
+        @Body
+    </ChildContent>
+    <ErrorContent>
+        <p class="errorUI">Nothing to see here right now. Sorry!</p>
+    </ErrorContent>
+</ErrorBoundary>
+```
+
+Because the error boundary is defined in the layout in the preceding examples, the error UI is seen regardless of which page the user navigated to. We recommend narrowly scoping error boundaries in most scenarios. If you do broadly scope an error boundary, you can reset it to a non-error state on subsequent page navigation events by calling the error boundary's `Recover` method:
+
+```razor
+...
+
+<ErrorBoundary @ref="errorBoundary">
+    @Body
+</ErrorBoundary>
+
+...
+
+@code {
+    private ErrorBoundary errorBoundary;
+
+    protected override void OnParametersSet()
+    {
+        errorBoundary?.Recover();
+    }
+}
+```
 
 ## Log errors with a persistent provider (Blazor WebAssembly)
 
@@ -172,54 +315,6 @@ For more information, see the following articles:
 * <xref:blazor/js-interop/call-javascript-from-dotnet>
 * <xref:blazor/js-interop/call-dotnet-from-javascript>
 
-## Advanced scenarios for Blazor WebAssembly apps
-
-### Recursive rendering (Blazor WebAssembly)
-
-Components can be nested recursively. This is useful for representing recursive data structures. For example, a `TreeNode` component can render more `TreeNode` components for each of the node's children.
-
-When rendering recursively, avoid coding patterns that result in infinite recursion:
-
-* Don't recursively render a data structure that contains a cycle. For example, don't render a tree node whose children includes itself.
-* Don't create a chain of layouts that contain a cycle. For example, don't create a layout whose layout is itself.
-* Don't allow an end user to violate recursion invariants (rules) through malicious data entry or JavaScript interop calls.
-
-Infinite loops during rendering:
-
-* Causes the rendering process to continue forever.
-* Is equivalent to creating an unterminated loop.
-
-In these scenarios, the thread usually attempts to:
-
-* Consume as much CPU time as permitted by the operating system, indefinitely.
-* Consume an unlimited amount of client memory. Consuming unlimited memory is equivalent to the scenario where an unterminated loop adds entries to a collection on every iteration.
-
-To avoid infinite recursion patterns, ensure that recursive rendering code contains suitable stopping conditions.
-
-### Custom render tree logic (Blazor WebAssembly)
-
-Most Blazor components are implemented as Razor component files (`.razor`) and are compiled by the framework to produce logic that operates on a <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> to render their output. However, a developer may manually implement <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> logic using procedural C# code. For more information, see <xref:blazor/advanced-scenarios#manual-rendertreebuilder-logic>.
-
-> [!WARNING]
-> Use of manual render tree builder logic is considered an advanced and unsafe scenario, not recommended for general component development.
-
-If <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> code is written, the developer must guarantee the correctness of the code. For example, the developer must ensure that:
-
-* Calls to <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.OpenElement%2A> and <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.CloseElement%2A> are correctly balanced.
-* Attributes are only added in the correct places.
-
-Incorrect manual render tree builder logic can cause arbitrary undefined behavior, including crashes, app hangs, and security vulnerabilities.
-
-Consider manual render tree builder logic on the same level of complexity and with the same level of *danger* as writing assembly code or [Microsoft Intermediate Language (MSIL)](/dotnet/standard/managed-code) instructions by hand.
-
-## Additional resources for Blazor WebAssembly apps
-
-* <xref:blazor/fundamentals/logging>
-* <xref:fundamentals/error-handling>&dagger;
-* <xref:web-api/index>
-
-&dagger;Applies to backend ASP.NET Core web API apps that client-side Blazor WebAssembly apps use for logging.
-
 ## Detailed errors during development for Blazor Server apps
 
 When a Blazor app isn't functioning properly during development, receiving detailed error information from the app assists in troubleshooting and fixing the issue. When an error occurs, Blazor apps display a light yellow bar at the bottom of the screen:
@@ -291,25 +386,6 @@ The framework terminates a circuit when an unhandled exception occurs for the fo
 * An unhandled exception often leaves the circuit in an undefined state.
 * The app's normal operation can't be guaranteed after an unhandled exception.
 * Security vulnerabilities may appear in the app if the circuit continues in an undefined state.
-
-## Manage unhandled exceptions in developer code (Blazor Server)
-
-For an app to continue after an error, the app must have error handling logic. Later sections of this article describe potential sources of unhandled exceptions.
-
-In production, don't render framework exception messages or stack traces in the UI. Rendering exception messages or stack traces could:
-
-* Disclose sensitive information to end users.
-* Help a malicious user discover weaknesses in an app that can compromise the security of the app, server, or network.
-
-## Global exception handling (Blazor Server)
-
-[!INCLUDE[](~/blazor/fundamentals/includes/handle-errors/global-exception-handling.md)]
-
-Because the approaches in this section handle errors with a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement, the SignalR connection between the client and server isn't broken when an error occurs and the circuit remains alive. Any unhandled exception is fatal to a circuit. For more information, see the preceding section on [how a Blazor Server app reacts to unhandled exceptions](#how-a-blazor-server-app-reacts-to-unhandled-exceptions).
-
-## Error boundaries (Blazor Server)
-
-[!INCLUDE[](~/blazor/fundamentals/includes/handle-errors/error-boundaries.md)]
 
 ## Log errors with a persistent provider (Blazor Server)
 
@@ -450,9 +526,9 @@ Under normal circumstances when prerendering fails, continuing to build and rend
 
 To tolerate errors that may occur during prerendering, error handling logic must be placed inside a component that may throw exceptions. Use [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statements with error handling and logging. Instead of wrapping the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper> Tag Helper in a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement, place error handling logic in the component rendered by the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper> Tag Helper.
 
-## Advanced scenarios for Blazor Server apps
+## Advanced scenarios
 
-### Recursive rendering (Blazor Server)
+### Recursive rendering
 
 Components can be nested recursively. This is useful for representing recursive data structures. For example, a `TreeNode` component can render more `TreeNode` components for each of the node's children.
 
@@ -467,14 +543,14 @@ Infinite loops during rendering:
 * Causes the rendering process to continue forever.
 * Is equivalent to creating an unterminated loop.
 
-In these scenarios, an affected Blazor Server circuit fails, and the thread usually attempts to:
+In these scenarios, the Blazor WebAssembly thread or Blazor Server circuit fails and usually attempts to:
 
 * Consume as much CPU time as permitted by the operating system, indefinitely.
-* Consume an unlimited amount of server memory. Consuming unlimited memory is equivalent to the scenario where an unterminated loop adds entries to a collection on every iteration.
+* Consume an unlimited amount of memory. Consuming unlimited memory is equivalent to the scenario where an unterminated loop adds entries to a collection on every iteration.
 
 To avoid infinite recursion patterns, ensure that recursive rendering code contains suitable stopping conditions.
 
-### Custom render tree logic (Blazor Server)
+### Custom render tree logic
 
 Most Blazor components are implemented as Razor component files (`.razor`) and are compiled by the framework to produce logic that operates on a <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> to render their output. However, a developer may manually implement <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> logic using procedural C# code. For more information, see <xref:blazor/advanced-scenarios#manual-rendertreebuilder-logic>.
 
@@ -486,11 +562,21 @@ If <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> code is wr
 * Calls to <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.OpenElement%2A> and <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.CloseElement%2A> are correctly balanced.
 * Attributes are only added in the correct places.
 
-Incorrect manual render tree builder logic can cause arbitrary undefined behavior, including crashes, server hangs, and security vulnerabilities.
+Incorrect manual render tree builder logic can cause arbitrary undefined behavior, including crashes, app (Blazor WebAssembly) or server (Blazor Server) hangs, and security vulnerabilities.
 
 Consider manual render tree builder logic on the same level of complexity and with the same level of *danger* as writing assembly code or [Microsoft Intermediate Language (MSIL)](/dotnet/standard/managed-code) instructions by hand.
 
-## Additional resources for Blazor Server apps
+## Additional resources
+
+### Blazor WebAssembly
+
+* <xref:blazor/fundamentals/logging>
+* <xref:fundamentals/error-handling>&dagger;
+* <xref:web-api/index>
+
+&dagger;Applies to backend ASP.NET Core web API apps that client-side Blazor WebAssembly apps use for logging.
+
+### Blazor Server
 
 * <xref:blazor/fundamentals/logging>
 * <xref:fundamentals/error-handling>&dagger;
@@ -524,7 +610,7 @@ In a Blazor WebAssembly app, customize the experience in the `wwwroot/index.html
 
 The `blazor-error-ui` element is normally hidden due the presence of the `display: none` style of the `blazor-error-ui` CSS class in the app's stylesheet (`wwwroot/css/app.css`). When an error occurs, the framework applies `display: block` to the element.
 
-## Manage unhandled exceptions in developer code (Blazor WebAssembly)
+## Manage unhandled exceptions in developer code
 
 For an app to continue after an error, the app must have error handling logic. Later sections of this article describe potential sources of unhandled exceptions.
 
@@ -533,9 +619,76 @@ In production, don't render framework exception messages or stack traces in the 
 * Disclose sensitive information to end users.
 * Help a malicious user discover weaknesses in an app that can compromise the security of the app, server, or network.
 
-## Global exception handling (Blazor WebAssembly)
+## Global exception handling
 
-[!INCLUDE[](~/blazor/fundamentals/includes/handle-errors/global-exception-handling.md)]
+Blazor is a single-page application (SPA) client-side framework. The browser serves as the app's host and thus acts as the processing pipeline for individual Razor components based on URI requests for navigation and static assets. Unlike ASP.NET Core apps that run on the server with a middleware processing pipeline, there is no middleware pipeline that processes requests for Razor components that can be leveraged for global error handling. However, an app can use an error processing component as a cascading value to process errors in a centralized way.
+
+The following `Error` component passes itself as a [`CascadingValue`](xref:blazor/components/cascading-values-and-parameters#cascadingvalue-component) to child components. The following example merely logs the error, but methods of the component can process errors in any way required by the app, including through the use of multiple error processing methods. An advantage of using a component over using an [injected service](xref:blazor/fundamentals/dependency-injection) or a custom logger implementation is that a cascaded component can render content and apply CSS styles when an error occurs.
+
+`Shared/Error.razor`:
+
+```razor
+@using Microsoft.Extensions.Logging
+@inject ILogger<Error> Logger
+
+<CascadingValue Value=this>
+    @ChildContent
+</CascadingValue>
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    public void ProcessError(Exception ex)
+    {
+        Logger.LogError("Error:ProcessError - Type: {Type} Message: {Message}", 
+            ex.GetType(), ex.Message);
+    }
+}
+```
+
+In the `App` component, wrap the `Router` component with the `Error` component. This permits the `Error` component to cascade down to any component of the app where the `Error` component is received as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute).
+
+`App.razor`:
+
+```razor
+<Error>
+    <Router ...>
+        ...
+    </Router>
+</Error>
+```
+
+To process errors in a component:
+
+* Designate the `Error` component as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute) in the [`@code`](xref:mvc/views/razor#code) block:
+
+  ```razor
+  [CascadingParameter]
+  public Error Error { get; set; }
+  ```
+
+* Call an error processing method in any `catch` block with an appropriate exception type. The example `Error` component only offers a single `ProcessError` method, but the error processing component can provide any number of error processing methods to address alternative error processing requirements throughout the app.
+
+  ```csharp
+  try
+  {
+      ...
+  }
+  catch (Exception ex)
+  {
+      Error.ProcessError(ex);
+  }
+  ```
+
+Using the preceding example `Error` component and `ProcessError` method, the browser's developer tools console indicates the trapped, logged error:
+
+> fail: BlazorSample.Shared.Error[0]
+> Error:ProcessError - Type: System.NullReferenceException Message: Object reference not set to an instance of an object.
+
+If the `ProcessError` method directly participates in rendering, such as showing a custom error message bar or changing the CSS styles of the rendered elements, call [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) at the end of the `ProcessErrors` method to rerender the UI.
+
+Because the approaches in this section handle errors with a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement, a Blazor Server app's SignalR connection between the client and server isn't broken when an error occurs and the circuit remains alive. Any unhandled exception is fatal to a circuit. For more information, see the preceding section on [how a Blazor Server app reacts to unhandled exceptions](#how-a-blazor-server-app-reacts-to-unhandled-exceptions).
 
 ## Log errors with a persistent provider (Blazor WebAssembly)
 
@@ -656,54 +809,6 @@ For more information, see the following articles:
 * <xref:blazor/js-interop/call-javascript-from-dotnet>
 * <xref:blazor/js-interop/call-dotnet-from-javascript>
 
-## Advanced scenarios for Blazor WebAssembly apps
-
-### Recursive rendering (Blazor WebAssembly)
-
-Components can be nested recursively. This is useful for representing recursive data structures. For example, a `TreeNode` component can render more `TreeNode` components for each of the node's children.
-
-When rendering recursively, avoid coding patterns that result in infinite recursion:
-
-* Don't recursively render a data structure that contains a cycle. For example, don't render a tree node whose children includes itself.
-* Don't create a chain of layouts that contain a cycle. For example, don't create a layout whose layout is itself.
-* Don't allow an end user to violate recursion invariants (rules) through malicious data entry or JavaScript interop calls.
-
-Infinite loops during rendering:
-
-* Causes the rendering process to continue forever.
-* Is equivalent to creating an unterminated loop.
-
-In these scenarios, the thread usually attempts to:
-
-* Consume as much CPU time as permitted by the operating system, indefinitely.
-* Consume an unlimited amount of client memory. Consuming unlimited memory is equivalent to the scenario where an unterminated loop adds entries to a collection on every iteration.
-
-To avoid infinite recursion patterns, ensure that recursive rendering code contains suitable stopping conditions.
-
-### Custom render tree logic (Blazor WebAssembly)
-
-Most Blazor components are implemented as Razor component files (`.razor`) and are compiled by the framework to produce logic that operates on a <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> to render their output. However, a developer may manually implement <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> logic using procedural C# code. For more information, see <xref:blazor/advanced-scenarios#manual-rendertreebuilder-logic>.
-
-> [!WARNING]
-> Use of manual render tree builder logic is considered an advanced and unsafe scenario, not recommended for general component development.
-
-If <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> code is written, the developer must guarantee the correctness of the code. For example, the developer must ensure that:
-
-* Calls to <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.OpenElement%2A> and <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.CloseElement%2A> are correctly balanced.
-* Attributes are only added in the correct places.
-
-Incorrect manual render tree builder logic can cause arbitrary undefined behavior, including crashes, app hangs, and security vulnerabilities.
-
-Consider manual render tree builder logic on the same level of complexity and with the same level of *danger* as writing assembly code or [Microsoft Intermediate Language (MSIL)](/dotnet/standard/managed-code) instructions by hand.
-
-## Additional resources for Blazor WebAssembly apps
-
-* <xref:blazor/fundamentals/logging>
-* <xref:fundamentals/error-handling>&dagger;
-* <xref:web-api/index>
-
-&dagger;Applies to backend ASP.NET Core web API apps that client-side Blazor WebAssembly apps use for logging.
-
 ## Detailed errors during development for Blazor Server apps
 
 When a Blazor app isn't functioning properly during development, receiving detailed error information from the app assists in troubleshooting and fixing the issue. When an error occurs, Blazor apps display a light yellow bar at the bottom of the screen:
@@ -775,21 +880,6 @@ The framework terminates a circuit when an unhandled exception occurs for the fo
 * An unhandled exception often leaves the circuit in an undefined state.
 * The app's normal operation can't be guaranteed after an unhandled exception.
 * Security vulnerabilities may appear in the app if the circuit continues in an undefined state.
-
-## Manage unhandled exceptions in developer code (Blazor Server)
-
-For an app to continue after an error, the app must have error handling logic. Later sections of this article describe potential sources of unhandled exceptions.
-
-In production, don't render framework exception messages or stack traces in the UI. Rendering exception messages or stack traces could:
-
-* Disclose sensitive information to end users.
-* Help a malicious user discover weaknesses in an app that can compromise the security of the app, server, or network.
-
-## Global exception handling (Blazor Server)
-
-[!INCLUDE[](~/blazor/fundamentals/includes/handle-errors/global-exception-handling.md)]
-
-Because the approaches in this section handle errors with a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement, the SignalR connection between the client and server isn't broken when an error occurs and the circuit remains alive. Any unhandled exception is fatal to a circuit. For more information, see the preceding section on [how a Blazor Server app reacts to unhandled exceptions](#how-a-blazor-server-app-reacts-to-unhandled-exceptions).
 
 ## Log errors with a persistent provider (Blazor Server)
 
@@ -930,9 +1020,9 @@ Under normal circumstances when prerendering fails, continuing to build and rend
 
 To tolerate errors that may occur during prerendering, error handling logic must be placed inside a component that may throw exceptions. Use [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statements with error handling and logging. Instead of wrapping the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper> Tag Helper in a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement, place error handling logic in the component rendered by the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper> Tag Helper.
 
-## Advanced scenarios for Blazor Server apps
+## Advanced scenarios
 
-### Recursive rendering (Blazor Server)
+### Recursive rendering
 
 Components can be nested recursively. This is useful for representing recursive data structures. For example, a `TreeNode` component can render more `TreeNode` components for each of the node's children.
 
@@ -947,14 +1037,14 @@ Infinite loops during rendering:
 * Causes the rendering process to continue forever.
 * Is equivalent to creating an unterminated loop.
 
-In these scenarios, an affected Blazor Server circuit fails, and the thread usually attempts to:
+In these scenarios, the Blazor WebAssembly thread or Blazor Server circuit fails and usually attempts to:
 
 * Consume as much CPU time as permitted by the operating system, indefinitely.
-* Consume an unlimited amount of server memory. Consuming unlimited memory is equivalent to the scenario where an unterminated loop adds entries to a collection on every iteration.
+* Consume an unlimited amount of memory. Consuming unlimited memory is equivalent to the scenario where an unterminated loop adds entries to a collection on every iteration.
 
 To avoid infinite recursion patterns, ensure that recursive rendering code contains suitable stopping conditions.
 
-### Custom render tree logic (Blazor Server)
+### Custom render tree logic
 
 Most Blazor components are implemented as Razor component files (`.razor`) and are compiled by the framework to produce logic that operates on a <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> to render their output. However, a developer may manually implement <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> logic using procedural C# code. For more information, see <xref:blazor/advanced-scenarios#manual-rendertreebuilder-logic>.
 
@@ -966,11 +1056,21 @@ If <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> code is wr
 * Calls to <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.OpenElement%2A> and <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.CloseElement%2A> are correctly balanced.
 * Attributes are only added in the correct places.
 
-Incorrect manual render tree builder logic can cause arbitrary undefined behavior, including crashes, server hangs, and security vulnerabilities.
+Incorrect manual render tree builder logic can cause arbitrary undefined behavior, including crashes, app (Blazor WebAssembly) or server (Blazor Server) hangs, and security vulnerabilities.
 
 Consider manual render tree builder logic on the same level of complexity and with the same level of *danger* as writing assembly code or [Microsoft Intermediate Language (MSIL)](/dotnet/standard/managed-code) instructions by hand.
 
-## Additional resources for Blazor Server apps
+## Additional resources
+
+### Blazor WebAssembly
+
+* <xref:blazor/fundamentals/logging>
+* <xref:fundamentals/error-handling>&dagger;
+* <xref:web-api/index>
+
+&dagger;Applies to backend ASP.NET Core web API apps that client-side Blazor WebAssembly apps use for logging.
+
+### Blazor Server
 
 * <xref:blazor/fundamentals/logging>
 * <xref:fundamentals/error-handling>&dagger;
@@ -1004,7 +1104,7 @@ In a Blazor WebAssembly app, customize the experience in the `wwwroot/index.html
 
 The `blazor-error-ui` element is normally hidden due the presence of the `display: none` style of the `blazor-error-ui` CSS class in the app's stylesheet (`wwwroot/css/app.css`). When an error occurs, the framework applies `display: block` to the element.
 
-## Manage unhandled exceptions in developer code (Blazor WebAssembly)
+## Manage unhandled exceptions in developer code
 
 For an app to continue after an error, the app must have error handling logic. Later sections of this article describe potential sources of unhandled exceptions.
 
@@ -1013,9 +1113,76 @@ In production, don't render framework exception messages or stack traces in the 
 * Disclose sensitive information to end users.
 * Help a malicious user discover weaknesses in an app that can compromise the security of the app, server, or network.
 
-## Global exception handling (Blazor WebAssembly)
+## Global exception handling
 
-[!INCLUDE[](~/blazor/fundamentals/includes/handle-errors/global-exception-handling.md)]
+Blazor is a single-page application (SPA) client-side framework. The browser serves as the app's host and thus acts as the processing pipeline for individual Razor components based on URI requests for navigation and static assets. Unlike ASP.NET Core apps that run on the server with a middleware processing pipeline, there is no middleware pipeline that processes requests for Razor components that can be leveraged for global error handling. However, an app can use an error processing component as a cascading value to process errors in a centralized way.
+
+The following `Error` component passes itself as a [`CascadingValue`](xref:blazor/components/cascading-values-and-parameters#cascadingvalue-component) to child components. The following example merely logs the error, but methods of the component can process errors in any way required by the app, including through the use of multiple error processing methods. An advantage of using a component over using an [injected service](xref:blazor/fundamentals/dependency-injection) or a custom logger implementation is that a cascaded component can render content and apply CSS styles when an error occurs.
+
+`Shared/Error.razor`:
+
+```razor
+@using Microsoft.Extensions.Logging
+@inject ILogger<Error> Logger
+
+<CascadingValue Value=this>
+    @ChildContent
+</CascadingValue>
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    public void ProcessError(Exception ex)
+    {
+        Logger.LogError("Error:ProcessError - Type: {Type} Message: {Message}", 
+            ex.GetType(), ex.Message);
+    }
+}
+```
+
+In the `App` component, wrap the `Router` component with the `Error` component. This permits the `Error` component to cascade down to any component of the app where the `Error` component is received as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute).
+
+`App.razor`:
+
+```razor
+<Error>
+    <Router ...>
+        ...
+    </Router>
+</Error>
+```
+
+To process errors in a component:
+
+* Designate the `Error` component as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute) in the [`@code`](xref:mvc/views/razor#code) block:
+
+  ```razor
+  [CascadingParameter]
+  public Error Error { get; set; }
+  ```
+
+* Call an error processing method in any `catch` block with an appropriate exception type. The example `Error` component only offers a single `ProcessError` method, but the error processing component can provide any number of error processing methods to address alternative error processing requirements throughout the app.
+
+  ```csharp
+  try
+  {
+      ...
+  }
+  catch (Exception ex)
+  {
+      Error.ProcessError(ex);
+  }
+  ```
+
+Using the preceding example `Error` component and `ProcessError` method, the browser's developer tools console indicates the trapped, logged error:
+
+> fail: BlazorSample.Shared.Error[0]
+> Error:ProcessError - Type: System.NullReferenceException Message: Object reference not set to an instance of an object.
+
+If the `ProcessError` method directly participates in rendering, such as showing a custom error message bar or changing the CSS styles of the rendered elements, call [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) at the end of the `ProcessErrors` method to rerender the UI.
+
+Because the approaches in this section handle errors with a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement, a Blazor Server app's SignalR connection between the client and server isn't broken when an error occurs and the circuit remains alive. Any unhandled exception is fatal to a circuit. For more information, see the preceding section on [how a Blazor Server app reacts to unhandled exceptions](#how-a-blazor-server-app-reacts-to-unhandled-exceptions).
 
 ## Log errors with a persistent provider (Blazor WebAssembly)
 
@@ -1136,54 +1303,6 @@ For more information, see the following articles:
 * <xref:blazor/js-interop/call-javascript-from-dotnet>
 * <xref:blazor/js-interop/call-dotnet-from-javascript>
 
-## Advanced scenarios for Blazor WebAssembly apps
-
-### Recursive rendering (Blazor WebAssembly)
-
-Components can be nested recursively. This is useful for representing recursive data structures. For example, a `TreeNode` component can render more `TreeNode` components for each of the node's children.
-
-When rendering recursively, avoid coding patterns that result in infinite recursion:
-
-* Don't recursively render a data structure that contains a cycle. For example, don't render a tree node whose children includes itself.
-* Don't create a chain of layouts that contain a cycle. For example, don't create a layout whose layout is itself.
-* Don't allow an end user to violate recursion invariants (rules) through malicious data entry or JavaScript interop calls.
-
-Infinite loops during rendering:
-
-* Causes the rendering process to continue forever.
-* Is equivalent to creating an unterminated loop.
-
-In these scenarios, the thread usually attempts to:
-
-* Consume as much CPU time as permitted by the operating system, indefinitely.
-* Consume an unlimited amount of client memory. Consuming unlimited memory is equivalent to the scenario where an unterminated loop adds entries to a collection on every iteration.
-
-To avoid infinite recursion patterns, ensure that recursive rendering code contains suitable stopping conditions.
-
-### Custom render tree logic (Blazor WebAssembly)
-
-Most Blazor components are implemented as Razor component files (`.razor`) and are compiled by the framework to produce logic that operates on a <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> to render their output. However, a developer may manually implement <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> logic using procedural C# code. For more information, see <xref:blazor/advanced-scenarios#manual-rendertreebuilder-logic>.
-
-> [!WARNING]
-> Use of manual render tree builder logic is considered an advanced and unsafe scenario, not recommended for general component development.
-
-If <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> code is written, the developer must guarantee the correctness of the code. For example, the developer must ensure that:
-
-* Calls to <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.OpenElement%2A> and <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.CloseElement%2A> are correctly balanced.
-* Attributes are only added in the correct places.
-
-Incorrect manual render tree builder logic can cause arbitrary undefined behavior, including crashes, app hangs, and security vulnerabilities.
-
-Consider manual render tree builder logic on the same level of complexity and with the same level of *danger* as writing assembly code or [Microsoft Intermediate Language (MSIL)](/dotnet/standard/managed-code) instructions by hand.
-
-## Additional resources for Blazor WebAssembly apps
-
-* <xref:blazor/fundamentals/logging>
-* <xref:fundamentals/error-handling>&dagger;
-* <xref:web-api/index>
-
-&dagger;Applies to backend ASP.NET Core web API apps that client-side Blazor WebAssembly apps use for logging.
-
 ## Detailed errors during development for Blazor Server apps
 
 When a Blazor app isn't functioning properly during development, receiving detailed error information from the app assists in troubleshooting and fixing the issue. When an error occurs, Blazor apps display a light yellow bar at the bottom of the screen:
@@ -1255,21 +1374,6 @@ The framework terminates a circuit when an unhandled exception occurs for the fo
 * An unhandled exception often leaves the circuit in an undefined state.
 * The app's normal operation can't be guaranteed after an unhandled exception.
 * Security vulnerabilities may appear in the app if the circuit continues in an undefined state.
-
-## Manage unhandled exceptions in developer code (Blazor Server)
-
-For an app to continue after an error, the app must have error handling logic. Later sections of this article describe potential sources of unhandled exceptions.
-
-In production, don't render framework exception messages or stack traces in the UI. Rendering exception messages or stack traces could:
-
-* Disclose sensitive information to end users.
-* Help a malicious user discover weaknesses in an app that can compromise the security of the app, server, or network.
-
-## Global exception handling (Blazor Server)
-
-[!INCLUDE[](~/blazor/fundamentals/includes/handle-errors/global-exception-handling.md)]
-
-Because the approaches in this section handle errors with a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement, the SignalR connection between the client and server isn't broken when an error occurs and the circuit remains alive. Any unhandled exception is fatal to a circuit. For more information, see the preceding section on [how a Blazor Server app reacts to unhandled exceptions](#how-a-blazor-server-app-reacts-to-unhandled-exceptions).
 
 ## Log errors with a persistent provider (Blazor Server)
 
@@ -1410,9 +1514,9 @@ Under normal circumstances when prerendering fails, continuing to build and rend
 
 To tolerate errors that may occur during prerendering, error handling logic must be placed inside a component that may throw exceptions. Use [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statements with error handling and logging. Instead of wrapping the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper> Tag Helper in a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement, place error handling logic in the component rendered by the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper> Tag Helper.
 
-## Advanced scenarios for Blazor Server apps
+## Advanced scenarios
 
-### Recursive rendering (Blazor Server)
+### Recursive rendering
 
 Components can be nested recursively. This is useful for representing recursive data structures. For example, a `TreeNode` component can render more `TreeNode` components for each of the node's children.
 
@@ -1427,14 +1531,14 @@ Infinite loops during rendering:
 * Causes the rendering process to continue forever.
 * Is equivalent to creating an unterminated loop.
 
-In these scenarios, an affected Blazor Server circuit fails, and the thread usually attempts to:
+In these scenarios, the Blazor WebAssembly thread or Blazor Server circuit fails and usually attempts to:
 
 * Consume as much CPU time as permitted by the operating system, indefinitely.
-* Consume an unlimited amount of server memory. Consuming unlimited memory is equivalent to the scenario where an unterminated loop adds entries to a collection on every iteration.
+* Consume an unlimited amount of memory. Consuming unlimited memory is equivalent to the scenario where an unterminated loop adds entries to a collection on every iteration.
 
 To avoid infinite recursion patterns, ensure that recursive rendering code contains suitable stopping conditions.
 
-### Custom render tree logic (Blazor Server)
+### Custom render tree logic
 
 Most Blazor components are implemented as Razor component files (`.razor`) and are compiled by the framework to produce logic that operates on a <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> to render their output. However, a developer may manually implement <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> logic using procedural C# code. For more information, see <xref:blazor/advanced-scenarios#manual-rendertreebuilder-logic>.
 
@@ -1446,11 +1550,21 @@ If <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> code is wr
 * Calls to <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.OpenElement%2A> and <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.CloseElement%2A> are correctly balanced.
 * Attributes are only added in the correct places.
 
-Incorrect manual render tree builder logic can cause arbitrary undefined behavior, including crashes, server hangs, and security vulnerabilities.
+Incorrect manual render tree builder logic can cause arbitrary undefined behavior, including crashes, app (Blazor WebAssembly) or server (Blazor Server) hangs, and security vulnerabilities.
 
 Consider manual render tree builder logic on the same level of complexity and with the same level of *danger* as writing assembly code or [Microsoft Intermediate Language (MSIL)](/dotnet/standard/managed-code) instructions by hand.
 
-## Additional resources for Blazor Server apps
+## Additional resources
+
+### Blazor WebAssembly
+
+* <xref:blazor/fundamentals/logging>
+* <xref:fundamentals/error-handling>&dagger;
+* <xref:web-api/index>
+
+&dagger;Applies to backend ASP.NET Core web API apps that client-side Blazor WebAssembly apps use for logging.
+
+### Blazor Server
 
 * <xref:blazor/fundamentals/logging>
 * <xref:fundamentals/error-handling>&dagger;

@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-6.0'
 ms.author: taparik
 ms.custom: mvc
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
-ms.date: 11/02/2021
+ms.date: 11/09/2021
 uid: blazor/images
 ---
 # Work with images in ASP.NET Core Blazor apps
@@ -200,5 +200,5 @@ The preceding `ResizeAndDisplayImageUsingStreaming` method performs the followin
 
 * <xref:blazor/file-uploads>
 * <xref:blazor/file-downloads>
-* <xref:blazor/js-interop/call-dotnet-from-javascript#stream-from-javascript-to-dotnet>
-* <xref:blazor/js-interop/call-javascript-from-dotnet#stream-from-dotnet-to-javascript>
+* <xref:blazor/js-interop/call-dotnet-from-javascript#stream-from-javascript-to-net>
+* <xref:blazor/js-interop/call-javascript-from-dotnet#stream-from-net-to-javascript>

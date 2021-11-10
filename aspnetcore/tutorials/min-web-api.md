@@ -16,7 +16,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 Minimal APIs are architected to create HTTP APIs with minimal dependencies. They are ideal for microservices and apps that want to include only the minimum files, features, and dependencies in ASP.NET Core.
 
-This tutorial teaches the basics of building a miminal web API with ASP.NET Core. For a tutorial on creating a web API project based on [controllers](xref:web-api/index) that contains more features, see [Create a web API](xref:tutorials/first-web-api).
+This tutorial teaches the basics of building a minimal web API with ASP.NET Core. For a tutorial on creating a web API project based on [controllers](xref:web-api/index) that contains more features, see [Create a web API](xref:tutorials/first-web-api).
 
 ## Overview
 
@@ -64,7 +64,7 @@ This tutorial creates the following API:
 * Name the project *TodoApi* and select **Next**.
 * In the **Additional information** dialog:
 
-  * Select **.NET 6.0 (Preview)**
+  * Select **.NET 6.0 (Long-term support)**
   * Remove **Use controllers (uncheck to use minimal APIs)**
   * Select **Create**
 
@@ -87,7 +87,7 @@ This tutorial creates the following API:
    code -r ../TodoApi
    ```
 
-* When a dialogy asks if you want to trust the authors, select **Yes**.
+* When a dialog box asks if you want to trust the authors, select **Yes**.
 * When a dialog box asks if you want to add required assets to the project, select **Yes**.
 
   The preceding command creates a new web minimal API project and opens it in Visual Studio Code.
@@ -197,7 +197,7 @@ Copy and paste the **Request URL** in the browser: `https://localhost:<port>/Wea
 
 ## Update the generated code
 
-This tutorial focuses on creating a web API, so we'll delete the Swagger code and the `WeatherForecast` code. Replace the contents of the *program.cs* file with the following:
+This tutorial focuses on creating a web API, so we'll delete the Swagger code and the `WeatherForecast` code. Replace the contents of the *Program.cs* file with the following:
 
 [!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_min)]
 
@@ -261,7 +261,7 @@ The sample app contains the following model:
 
 [!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_model)]
 
-A *model* is a class that represent data that the app manages. The model for this app is the `Todo` class.
+A *model* is a class that represents data that the app manages. The model for this app is the `Todo` class.
 
 The sample app also contains the following database context class:
 
@@ -419,7 +419,7 @@ A DTO may be used to:
 
 To demonstrate the DTO approach, update the `Todo` class to include a secret field:
 
-[!code-csharp[](min-web-api/samples/6.x/todoDTO/Program.cs?name=snippet_secret&highlight=7)]
+[!code-csharp[](min-web-api/samples/6.x/todoDTO/Program.cs?name=snippet_secret&highlight=6)]
 
 The secret field needs to be hidden from this app, but an administrative app could choose to expose it.
 
