@@ -1,4 +1,4 @@
-#define CORS // Default CREATE P1 PM PE I1 I0 IP CERT CERT2 CERT3 RE CONFIG LOG REB 
+#define AUTH1 // Default CREATE P1 PM PE I1 I0 IP CERT CERT2 CERT3 RE CONFIG LOG REB 
 // CONFIGB LOGB IWHB DEP R1 LE LF IM SM NR NR2 RP WILD CON OV EPB OP1 OP2 OP3 OP4
 // CB BA CJSON MULTI STREAM XTN AUTH1 AUTH2 AUTH3 AUTH4 CORS CORS2 SWAG SWAG2 
 // FIL2 IHB CHNGR ADDMID
@@ -663,23 +663,6 @@ app.MapGet("/html", () => Results.Extensions.Html(@$"<!doctype html>
 app.Run();
 #endregion
 
-#elif AUTH1
-#region snippet_auth1
-using Microsoft.AspNetCore.Authorization;
-
-var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddAuthorization(o => o.AddPolicy("AdminsOnly", 
-                                  b => b.RequireClaim("admin", "true")));
-
-var app = builder.Build();
-
-app.UseAuthorization();
-
-app.MapGet("/auth", [Authorize] () => "This endpoint requires authorization.");
-
-app.Run();
-#endregion
-
 #elif AUTH2  // This is not a complete/valid sample
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
@@ -692,28 +675,6 @@ app.MapGet("/auth", () => "This endpoint requires authorization")
 #endregion
 
 app.Run();
-
-#elif AUTH3
-#region snippet_auth3
-using Microsoft.AspNetCore.Authorization;
-
-var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddAuthorization(o => o.AddPolicy("AdminsOnly", 
-                                  b => b.RequireClaim("admin", "true")));
-
-var app = builder.Build();
-
-app.UseAuthorization();
-
-app.MapGet("/admin", [Authorize("AdminsOnly")] () => 
-                             "The /admin endpoint is for admins only.");
-
-app.MapGet("/admin2", () => "The /admin2 endpoint is for admins only.")
-   .RequireAuthorization("AdminsOnly");
-
-app.Run();
-#endregion
-
 #elif AUTH4
 using Microsoft.AspNetCore.Authorization;
 
