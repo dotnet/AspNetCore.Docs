@@ -3,7 +3,7 @@ title: Part 2, add a model
 author: rick-anderson
 description: Part 2 of tutorial series on Razor Pages. In this section, model classes are added.
 ms.author: riande
-ms.date: 10/12/2021
+ms.date: 11/12/2021
 ms.custom: contperf-fy21q2
 no-loc: [Home, Privacy, Index, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/razor-pages/model
@@ -11,7 +11,6 @@ uid: tutorials/razor-pages/model
 # Part 2, add a model to a Razor Pages app in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
 
 ::: moniker range=">= aspnetcore-6.0"
 
@@ -353,8 +352,6 @@ Ignore NU1603 package mismatch warnings, they will be fixed when .NET 6 is relea
    > You may not be able to enter decimal commas in the `Price` field. To support [jQuery validation](https://jqueryvalidation.org/) for non-English locales that use a comma (",") for a decimal point and for non US-English date formats, the app must be globalized. For globalization instructions, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).
 
 1. Test the **Edit**, **Details**, and **Delete** links.
-
-[!INCLUDE[s](~/includes/sql-log.md)]
 
 The next tutorial explains the files created by scaffolding.
 
