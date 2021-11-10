@@ -78,12 +78,15 @@ builder.Services.AddHttpClient<GitHubService>();
 #region snippet_AddHttpClientPollyWaitAndRetry
 builder.Services.AddHttpClient("PollyWaitAndRetry")
     .AddTransientHttpErrorPolicy(policyBuilder =>
-        policyBuilder.WaitAndRetryAsync(3, retryNumber => TimeSpan.FromMilliseconds(600)));
+        policyBuilder.WaitAndRetryAsync(
+            3, retryNumber => TimeSpan.FromMilliseconds(600)));
 #endregion
 
 #region snippet_AddHttpClientPollyDynamic
-var timeoutPolicy = Policy.TimeoutAsync<HttpResponseMessage>(TimeSpan.FromSeconds(10));
-var longTimeoutPolicy = Policy.TimeoutAsync<HttpResponseMessage>(TimeSpan.FromSeconds(30));
+var timeoutPolicy = Policy.TimeoutAsync<HttpResponseMessage>(
+    TimeSpan.FromSeconds(10));
+var longTimeoutPolicy = Policy.TimeoutAsync<HttpResponseMessage>(
+    TimeSpan.FromSeconds(30));
 
 builder.Services.AddHttpClient("PollyDynamic")
     .AddPolicyHandler(httpRequestMessage =>

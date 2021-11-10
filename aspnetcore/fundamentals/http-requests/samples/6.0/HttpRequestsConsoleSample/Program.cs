@@ -58,7 +58,9 @@ public class GitHubService
 
         httpResponseMessage.EnsureSuccessStatusCode();
 
-        using var contentStream = await httpResponseMessage.Content.ReadAsStreamAsync();
+        using var contentStream =
+            await httpResponseMessage.Content.ReadAsStreamAsync();
+        
         return await JsonSerializer.DeserializeAsync
             <IEnumerable<GitHubBranch>>(contentStream);
     }

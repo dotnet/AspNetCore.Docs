@@ -20,8 +20,10 @@ namespace HttpRequestsSample.Snippets
         private static void Snippet2(WebApplicationBuilder builder)
         {
             #region snippet_AddHttpClientPollyRegistry
-            var timeoutPolicy = Policy.TimeoutAsync<HttpResponseMessage>(TimeSpan.FromSeconds(10));
-            var longTimeoutPolicy = Policy.TimeoutAsync<HttpResponseMessage>(TimeSpan.FromSeconds(30));
+            var timeoutPolicy = Policy.TimeoutAsync<HttpResponseMessage>(
+                TimeSpan.FromSeconds(10));
+            var longTimeoutPolicy = Policy.TimeoutAsync<HttpResponseMessage>(
+                TimeSpan.FromSeconds(30));
 
             var policyRegistry = builder.Services.AddPolicyRegistry();
 
