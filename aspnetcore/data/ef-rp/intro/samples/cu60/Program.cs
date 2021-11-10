@@ -1,3 +1,4 @@
+//#if NEVER
 #if !SQLiteVersion
 #region snippet_sx_all
 #region snippet_sx_filter
@@ -101,3 +102,4 @@ app.MapRazorPages();
 app.Run();
 #endregion
 #endif
+//#endif

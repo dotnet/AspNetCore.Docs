@@ -207,7 +207,17 @@ The `Enrollments` property is a navigation property. A `Course` entity can be re
 
 The `DatabaseGenerated` attribute allows the app to specify the primary key rather than having the database generate it.
 
-Build the project to validate that there are no compiler errors.
+Build the app. The compiler generates several warnings about how `null` values are handled. See [this GitHub issue](https://github.com/dotnet/Scaffolding/issues/1594), [Nullable reference types](/dotnet/csharp/nullable-references), and [Tutorial: Express your design intent more clearly with nullable and non-nullable reference types](/dotnet/csharp/whats-new/tutorials/nullable-reference-types) for more information.
+
+To eliminate the warnings from nullable reference types, remove the following line from the *ContosoUniversity.csproj* file:
+
+```xml
+<Nullable>enable</Nullable>
+```
+
+The scaffolding engine currently does not support [nullable reference types](/dotnet/csharp/nullable-references), therefore the models used in scaffold can't either.
+
+Remove the `?` nullable reference type annotation from `public string? RequestId { get; set; }` in *Pages/Error.cshtml.cs* so the project builds without compiler warnings.
 
 ## Scaffold Student pages
 
@@ -228,9 +238,9 @@ In this section, the ASP.NET Core scaffolding tool is used to generate:
   * In the **Data context class** row, select the **+** (plus) sign.
     * Change the data context name to end in `SchoolContext` rather than `ContosoUniversityContext`. The updated context name: `ContosoUniversity.Data.SchoolContext`
     * Select **Add** to finish adding the data context class.
-   * Select **Add** to finish the **Add Razor Pages** dialog.
+    * Select **Add** to finish the **Add Razor Pages** dialog.
 
-If scaffolding fails with the error `'Install the package Microsoft.VisualStudio.Web.CodeGeneration.Design and try again.'`, run the scaffold tool again or see [this GitHub issue](https://github.com/dotnet/Scaffolding/issues/1540).
+<!-- If scaffolding fails with the error `'Install the package Microsoft.VisualStudio.Web.CodeGeneration.Design and try again.'`, run the scaffold tool again or see [this GitHub issue](https://github.com/dotnet/Scaffolding/issues/1540). -->
 
 The following packages are automatically installed:
 
@@ -343,14 +353,6 @@ The highlighted code:
   * Is required because later in the tutorial the `Student` entity will have references to the other entities.
   <!-- Review, OnModelCreating needs review -->
 
-Build the app. The compiler generates several warnings about how `null` values are handled. See [this GitHub issue](https://github.com/dotnet/Scaffolding/issues/1594) and [Nullable reference types](/dotnet/csharp/nullable-references) for more information.
-
-To eliminate the warnings from nullable reference types, remove the following line from the *ContosoUniversity.csproj* file:
-
-```xml
-<Nullable>enable</Nullable>
-```
-
 We hope to [fix this issue](https://github.com/dotnet/Scaffolding/issues/1594) in a future release.
 
 ## Program.cs
@@ -448,7 +450,7 @@ The code checks if there are any students in the database. If there are no stude
 
 * In *Program.cs*, remove `//` from the `DbInitializer.Initialize` line:
 
- [!code-csharp[Main](intro/samples/cu60/ProgramEnsure.cs?name=snippet_ensure&highlight=6)]
+ [!code-csharp[Main](intro/samples/cu60/Program.cs?name=snippet_ensure&highlight=6)]
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -486,7 +488,7 @@ Use a SQLite tool to view the database schema and seeded data. The database file
 
 ---
 
-## Asynchronous code
+## Asynchronous EF methods in ASP.NET Core web apps
 
 Asynchronous programming is the default mode for ASP.NET Core and EF Core.
 
@@ -529,15 +531,14 @@ Enumerating a large table in a view could return a partially constructed HTTP 20
 
 <xref:Microsoft.AspNetCore.Mvc.MvcOptions.MaxModelBindingCollectionSize> defaults to 1024. The following code sets `MaxModelBindingCollectionSize`:
 
-[!code-csharp[Main](intro/samples/cu50/StartupMaxMBsize.cs?name=snippet_ConfigureServices)]
+<!-- Review: If I set MaxModelBindingCollectionSize to 3, it still returns all the rows. Is there a minimum? -->
+ [!code-csharp[Main](intro/samples/cu60/ProgramEnsure.cs?name=snippet&highlight=16-20)]
 
 See [Configuration](xref:fundamentals/configuration/index) for information on configuration settings like `MyMaxModelBindingCollectionSize`.
 
 Paging is covered later in the tutorial.
 
 For more information, see [Performance considerations (EF)](/dotnet/framework/data/adonet/ef/performance-considerations).
-
-[!INCLUDE[s](~/includes/sql-log.md)]
 
 ## Next steps
 
