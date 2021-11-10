@@ -385,7 +385,7 @@ Add <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptio
 
 # [Visual Studio](#tab/visual-studio)
 
-[!code-csharp[Main](intro/samples/cu60/Program.cs?name=snippet_sx_all&highlight=10,18-23)]
+[!code-csharp[Main](intro/samples/cu60/Program.cs?name=snippet_sx_filter&highlight=10,18-23)]
 
 Add the [Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) NuGet package.
 
@@ -397,7 +397,7 @@ Install-Package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!code-csharp[Main](intro/samples/cu60/Program.cs?name=snippet_sqlite_all&highlight=10,18-23)]
+[!code-csharp[Main](intro/samples/cu60/Program.cs?name=snippet_sqlite_filter&highlight=10,18-23)]
 ---
 
 The `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` NuGet package provides ASP.NET Core middleware for Entity Framework Core error pages. This middleware helps to detect and diagnose errors with Entity Framework Core migrations.
@@ -408,7 +408,15 @@ The `AddDatabaseDeveloperPageExceptionFilter` provides helpful error information
 
 Update *Program.cs* to create the database if it doesn't exist:
 
-[!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Program.cs?highlight=1-2,14-18,21-38)]
+# [Visual Studio](#tab/visual-studio)
+
+[!code-csharp[Main](intro/samples/cu60/ProgramEnsure.cs?name=snippet_sx_all&highlight=10,18-23)]
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+[!code-csharp[Main](intro/samples/cu60/ProgramEnsure.cs?name=snippet_sx_all&highlight=10,18-23)]
+
+---
 
 The [EnsureCreated](/dotnet/api/microsoft.entityframeworkcore.infrastructure.databasefacade.ensurecreated#Microsoft_EntityFrameworkCore_Infrastructure_DatabaseFacade_EnsureCreated) method takes no action if a database for the context exists. If no database exists, it creates the database and schema. `EnsureCreated` enables the following workflow for handling data model changes:
 

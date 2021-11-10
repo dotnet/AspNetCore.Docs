@@ -1,3 +1,6 @@
+#if NEVER   // This is just a snapshot of
+   context.Database.EnsureCreated();
+// DbInitializer.Initialize(context);
 #if !SQLiteVersion
 #region snippet_sx_all
 #region snippet_sx_filter
@@ -98,4 +101,5 @@ app.MapRazorPages();
 
 app.Run();
 #endregion
+#endif
 #endif
