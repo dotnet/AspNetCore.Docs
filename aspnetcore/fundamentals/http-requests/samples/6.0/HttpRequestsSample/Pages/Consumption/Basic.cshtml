@@ -1,0 +1,10 @@
+@page
+@model HttpRequestsSample.Pages.BasicModel
+
+@{
+	ViewData["Title"] = "Consumption - Basic";
+}
+
+<h1>Consumption patterns - Basic usage</h1>
+
+@await Component.InvokeAsync("GitHubBranches", new { gitHubBranches = Model.GitHubBranches })
