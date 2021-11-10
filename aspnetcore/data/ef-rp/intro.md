@@ -165,7 +165,7 @@ A student can enroll in any number of courses, and a course can have any number 
 
 ![Student entity diagram](intro/_static/student-entity.png)
 
-* Create a *Models* folder in the project folder. 
+* Create a *Models* folder in the project folder.
 * Create *Models/Student.cs* with the following code:
   [!code-csharp[Main](intro/samples/cu60/Models/Student.cs?name=snippet_first)]
 
