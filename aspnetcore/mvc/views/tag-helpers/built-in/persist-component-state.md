@@ -8,7 +8,6 @@ ms.custom: mvc
 ms.date: 07/16/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper
-zone_pivot_groups: blazor-hosting-models
 ---
 # Persist Component State Tag Helper in ASP.NET Core
 
@@ -19,13 +18,13 @@ Follow the guidance in the *Configuration* section for either:
 * [Blazor WebAssembly](xref:blazor/components/prerendering-and-integration?pivots=webassembly)
 * [Blazor Server](xref:blazor/components/prerendering-and-integration?pivots=server)
 
-## Persist Component State Tag Helper
+## Persist state for prerendered components
 
-To persist state for prerendered components, use the Persist Component State Tag Helper (`<persist-component-state />`). Add the `<persist-component-state />` tag inside the closing `</body>` tag of the `_Host` page in an app that prerenders components:
+To persist state for prerendered components, use the Persist Component State Tag Helper ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Mvc/Mvc.TagHelpers/src/PersistComponentStateTagHelper.cs)). Add the Tag Helper's tag, `<persist-component-state />`, inside the closing `</body>` tag of the `_Host` page in an app that prerenders components.
 
-::: zone pivot="webassembly"
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-`Pages/_Host.cshtml`:
+In Blazor WebAssembly apps (`Pages/_Host.cshtml`):
 
 ```cshtml
 <body>
@@ -37,11 +36,7 @@ To persist state for prerendered components, use the Persist Component State Tag
 </body>
 ```
 
-::: zone-end
-
-::: zone pivot="server"
-
-`Pages/_Host.cshtml`:
+In Blazor Server apps (`Pages/_Host.cshtml`):
 
 ```cshtml
 <body>
@@ -53,9 +48,7 @@ To persist state for prerendered components, use the Persist Component State Tag
 </body>
 ```
 
-::: zone-end
-
-Decide what state to persist using the `ComponentApplicationState` service. The `ComponentApplicationState.OnPersisting` event is fired just before the state is persisted into the prerendered page, which allows you to retrieve any persisted state when initializing a component.
+Decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. The [`PersistentComponentState.RegisterOnPersisting`](xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A) event is fired just before the state is persisted into the prerendered page, which allows you to retrieve any persisted state when initializing a component.
 
 In the following example:
 
