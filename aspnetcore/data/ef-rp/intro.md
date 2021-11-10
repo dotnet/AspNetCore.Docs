@@ -308,11 +308,13 @@ LocalDB is a lightweight version of the SQL Server Express Database Engine and i
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Shorten the SQLite connection string to *CU.db*:
+Rename the connection string key to `SchoolContextSQLite` and shorten value to *CU.db*:
 
-[!code-json[Main](intro/samples/cu50/appsettingsSQLite.json?highlight=11)]
+[!code-json[Main](intro/samples/cu60/appsettings.Development.json?highlight=10)]
 
 Don't change the directory without making sure it's valid.
+
+Renaming the connection string key to `SchoolContextSQLite` helps the author maintain one sample that supports both the SQLlite and SQL Server.
 
 ---
 
@@ -351,7 +353,7 @@ To eliminate the warnings from nullable reference types, remove the following li
 <Nullable>enable</Nullable>
 ```
 
-We hope to fix this issue in a future release.
+We hope to [fix this issue](https://github.com/dotnet/Scaffolding/issues/1594) in a future release.
 
 ## Program.cs
 
@@ -363,19 +365,19 @@ The scaffolding tool automatically registered the context class with the depende
 
 The following highlighted lines were added by the scaffolder:
 
-[!code-csharp[Main](intro/samples/cu30/Startup.cs?name=snippet_ConfigureServices&highlight=5-6)]
+[!code-csharp[Main](intro/samples/cu60/Program.cs?snippet_sx&highlight=1-2,7-8)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Verify the code added by the scaffolder calls `UseSqlite`.
+Verify the code added by the scaffolder calls <xref:Microsoft.EntityFrameworkCore.SqliteDbContextOptionsBuilderExtensions.UseSqlite%2A>.
 
-[!code-csharp[Main](intro/samples/cu30/StartupSQLite.cs?name=snippet_ConfigureServices&highlight=5-6)]
+[!code-csharp[Main](intro/samples/cu60/Program.cs?snippet_sqlite&highlight=1-2,7-8)]
 
-See [Use SQLite for development, SQL Server for production](xref:tutorials/razor-pages/model?tabs=visual-studio-code#use-sqlite-for-development-sql-server-for-production) for information on using a production database.
+See [Use SQLite for development, SQL Server for production](xref:tutorials/razor-pages/model?tabs=visual-studio-code#sqlite-ss-6) for information on using a production database.
 
 ---
 
-The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
+The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* or the *appsettings.Developement.json* file.
 
 <a name="dbx"></a>
 
@@ -1042,9 +1044,7 @@ Select *ContosoUniversity.csproj* to open the project.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Remove the comments from the *appsettings.Development.json* file so the SQLite connections string is used:
-  [!code-json[Main](intro/samples/cu50/appsettings.Development.json?highlight=10-13)]
-* Remove the comments from the *ContosoUniversity.csproj* file so `SQLiteVersion`   is defined:
+* Remove the comments from the *ContosoUniversity.csproj* file so `SQLiteVersion` is defined:
 
   ```xml
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
