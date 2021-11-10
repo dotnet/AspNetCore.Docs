@@ -152,7 +152,7 @@ Blazor WebAssembly apps can use native dependencies built to run on WebAssembly.
 
 Blazor WebAssembly supports ahead-of-time (AOT) compilation, where you can compile your .NET code directly into WebAssembly. AOT compilation results in runtime performance improvements at the expense of a larger app size. Relinking the .NET WebAssembly runtime trims unused runtime code and thus improves download speed. For more information, see [Ahead-of-time (AOT) compilation](xref:blazor/host-and-deploy/webassembly?view=aspnetcore-6.0#ahead-of-time-aot-compilation) and [Runtime relinking](xref:blazor/host-and-deploy/webassembly?view=aspnetcore-6.0#runtime-relinking).
 
-### Persist prerendering state
+### Persist prerendered state
 
 Blazor supports persisting state in a prerendered page so that the state doesn't need to be recreated when the app is fully loaded. For more information, see <xref:blazor/components/prerendering-and-integration?view=aspnetcore-6.0&pivots=server#persist-prerendered-state>.
 
@@ -254,6 +254,13 @@ HOLD
 
 HOLD
 -->
+
+### New Blazor articles
+
+In addition to the Blazor features described in the preceding sections, new Blazor articles are available on the following subjects:
+
+* <xref:blazor/file-downloads>: Learn how to download a file using native `byte[]` streaming interop to ensure efficient transfer to the client.
+* <xref:blazor/images>: Discover how to work with images in Blazor apps, including how to stream image data and preview an image.
 
 ## Kestrel
 
