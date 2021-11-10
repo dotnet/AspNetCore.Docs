@@ -5,9 +5,10 @@
       <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-<!--<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+<!-- -->
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 	  <DefineConstants>$(DefineConstants)TRACE;SQLiteVersion</DefineConstants>
-	</PropertyGroup>-->
+	</PropertyGroup>
 	
   <ItemGroup>
 	  <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.0" />

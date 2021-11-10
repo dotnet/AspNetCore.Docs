@@ -410,11 +410,12 @@ Update *Program.cs* to create the database if it doesn't exist:
 
 # [Visual Studio](#tab/visual-studio)
 
-[!code-csharp[Main](intro/samples/cu60/ProgramEnsure.cs?name=snippet_sx_all&highlight=10,18-23)]
+<!-- make a copy of Program.cs to ProgramEnsure.cs with // DbInitializer.Initialize(context); commented out -->
+[!code-csharp[Main](intro/samples/cu60/ProgramEnsure.cs?name=snippet_sx_all&highlight=25-32)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!code-csharp[Main](intro/samples/cu60/ProgramEnsure.cs?name=snippet_sx_all&highlight=10,18-23)]
+[!code-csharp[Main](intro/samples/cu60/ProgramEnsure.cs?name=snippet_sqlite_all&highlight=25-32)]
 
 ---
 
@@ -441,16 +442,13 @@ The `EnsureCreated` method creates an empty database. This section adds code tha
 
 Create *Data/DbInitializer.cs* with the following code:
 
-[!code-csharp[Main](intro/samples/cu50/Data/DbInitializer1.cs?name=snippet)]
+[!code-csharp[Main](intro/samples/cu60/Data/DbInitializer1.cs?name=snippet)]
 
 The code checks if there are any students in the database. If there are no students, it adds test data to the database. It creates the test data in arrays rather than `List<T>` collections to optimize performance.
 
 * In *Program.cs*, remove `//` from the `DbInitializer.Initialize` line:
 
-  ```csharp
-    context.Database.EnsureCreated();
-    DbInitializer.Initialize(context);
-  ```
+ [!code-csharp[Main](intro/samples/cu60/ProgramEnsure.cs?name=snippet_ensure&highlight=6)]
 
 # [Visual Studio](#tab/visual-studio)
 
