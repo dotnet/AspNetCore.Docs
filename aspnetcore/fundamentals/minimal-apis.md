@@ -698,7 +698,7 @@ The preceding code can be written with <xref:Microsoft.AspNetCore.Builder.Author
 
 The following sample uses [policy-based authorization](xref:security/authorization/policies):
 
-[!code-csharp[](minimal-apis/samples/WebRPauth/Program.cs?name=snippet_auth3)]
+[!code-csharp[](minimal-apis/samples/WebRPauth/Program.cs?name=snippet_auth3&range=7-8,22-26)]
 
 ### Allow unauthenticated users to access an endpoint
 
