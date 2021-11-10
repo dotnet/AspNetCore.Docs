@@ -688,7 +688,7 @@ We recommend adding an extension method to <xref:Microsoft.AspNetCore.Http.IResu
 
 ## Authorization
 
-Routes can be protected using authorization policies. These can be declared via the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute or by using the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> method.
+Routes can be protected using authorization policies. These can be declared via the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute or by using the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> method:
 
 [!code-csharp[](minimal-apis/samples/WebRPauth/Program.cs?name=snippet_auth1&highlight=7-8,22)]
 
