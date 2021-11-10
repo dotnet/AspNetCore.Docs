@@ -1,6 +1,6 @@
 ﻿#define FIRST
 #if FIRST
-#region snippet1
+#region snippet_first
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ContosoUniversity.Models
