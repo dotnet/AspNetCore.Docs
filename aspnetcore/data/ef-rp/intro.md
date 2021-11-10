@@ -363,13 +363,13 @@ The scaffolding tool automatically registered the context class with the depende
 
 The following highlighted lines were added by the scaffolder:
 
-[!code-csharp[Main](intro/samples/cu60/Program.cs?snippet_sx&highlight=1-2,7-8)]
+[!code-csharp[Main](intro/samples/cu60/Program.cs?name=snippet_sx&highlight=1-2,7-8)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
 Verify the code added by the scaffolder calls <xref:Microsoft.EntityFrameworkCore.SqliteDbContextOptionsBuilderExtensions.UseSqlite%2A>.
 
-[!code-csharp[Main](intro/samples/cu60/Program.cs?snippet_sqlite&highlight=1-2,7-8)]
+[!code-csharp[Main](intro/samples/cu60/Program.cs?name=snippet_sqlite&highlight=1-2,7-8)]
 
 See [Use SQLite for development, SQL Server for production](xref:tutorials/razor-pages/model?tabs=visual-studio-code#sqlite-ss-6) for information on using a production database.
 
