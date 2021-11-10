@@ -135,19 +135,22 @@ To use SkiaSharp in a Blazor WebAssembly app:
 
    <h1>Native dependency example with SkiaSharp</h1>
 
-   <SKCanvasView OnPaintSurface="OnPaintSurface" />
+   <SKCanvasView OnPaintSurface="@OnPaintSurface" />
 
    @code {
        private void OnPaintSurface(SKPaintSurfaceEventArgs e)
        {
            var canvas = e.Surface.Canvas;
+
            canvas.Clear(SKColors.White);
+
            using var paint = new SKPaint
            {
                Color = SKColors.Black,
                IsAntialias = true,
                TextSize = 24
            };
+
            canvas.DrawText("SkiaSharp", 0, 24, paint);
        }
    }
