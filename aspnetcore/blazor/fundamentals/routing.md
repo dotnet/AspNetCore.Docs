@@ -45,7 +45,7 @@ Components support multiple route templates using multiple [`@page` directives](
 
 ## Focus an element on navigation
 
-Use the `FocusOnNavigate` component to set the UI focus to an element based on a CSS selector after navigating from one page to another. You can see the `FocusOnNavigate` component in use by the `App` component of an app generated from a Blazor project template.
+Use the <xref:Microsoft.AspNetCore.Components.Routing.FocusOnNavigate> component to set the UI focus to an element based on a CSS selector after navigating from one page to another. You can see the <xref:Microsoft.AspNetCore.Components.Routing.FocusOnNavigate> component in use by the `App` component of an app generated from a Blazor project template.
 
 `App.razor`:
 
@@ -63,7 +63,7 @@ Use the `FocusOnNavigate` component to set the UI focus to an element based on a
 </Router>
 ```
 
-When the preceding `Router` component navigates to a new page, the `FocusOnNavigate` component sets the focus to the page's top-level header (`<h1>`). This is a common strategy for ensuring that page navigations are announced when using a screen reader.
+When the preceding <xref:Microsoft.AspNetCore.Components.Routing.Router> component navigates to a new page, the <xref:Microsoft.AspNetCore.Components.Routing.FocusOnNavigate> component sets the focus to the page's top-level header (`<h1>`). This is a common strategy for ensuring that page navigations are announced when using a screen reader.
 
 ## Provide custom content when content isn't found
 
@@ -169,7 +169,7 @@ Route constraints also work with [optional parameters](#route-parameters). In th
 
 ## Routing with URLs that contain dots
 
-For hosted Blazor WebAssembly and Blazor Server apps, the server-side default route template assumes that if the last segment of a request URL contains a dot (`.`) that a file is requested. For example, the URL `https://localhost.com:5001/example/some.thing` is interpreted by the router as a request for a file named `some.thing`. Without additional configuration, an app returns a *404 - Not Found* response if `some.thing` was meant to route to a component with an [`@page` directive](xref:mvc/views/razor#page) and `some.thing` is a route parameter value. To use a route with one or more parameters that contain a dot, the app must configure the route with a custom template.
+For hosted Blazor WebAssembly and Blazor Server apps, the server-side default route template assumes that if the last segment of a request URL contains a dot (`.`) that a file is requested. For example, the URL `https://localhost.com:5001/example/some.thing` is interpreted by the router as a request for a file named `some.thing`. Without additional configuration, an app returns a *404 - Not Found* response if `some.thing` was meant to route to a component with an [`@page`](xref:mvc/views/razor#page) directive and `some.thing` is a route parameter value. To use a route with one or more parameters that contain a dot, the app must configure the route with a custom template.
 
 Consider the following `Example` component that can receive a route parameter from the last segment of the URL.
 
@@ -247,10 +247,10 @@ For more information on component disposal, see <xref:blazor/components/lifecycl
 
 ## Query strings
 
-Use the `[SupplyParameterFromQuery]` attribute with the `[Parameter]` attribute to specify that a component parameter of a routable component can come from the query string.
+Use the [`[SupplyParameterFromQuery]` attribute](xref:Microsoft.AspNetCore.Components.SupplyParameterFromQueryAttribute) with the [`[Parameter]` attribute](xref:Microsoft.AspNetCore.Components.ParameterAttribute) to specify that a component parameter of a routable component can come from the query string.
 
 > [!NOTE]
-> Component parameters can only receive query parameter values in routable components with an `@page` directive.
+> Component parameters can only receive query parameter values in routable components with an [`@page`](xref:mvc/views/razor#page) directive.
 
 Component parameters supplied from the query string support the following types:
 
@@ -260,7 +260,7 @@ Component parameters supplied from the query string support the following types:
 
 The correct culture-invariant formatting is applied for the given type (<xref:System.Globalization.CultureInfo.InvariantCulture?displayProperty=nameWithType>).
 
-Specify the `[SupplyParameterFromQuery]` attribute's `Name` property to use a query parameter name different from the component parameter name. In the following example, the C# name of the component parameter is `{COMPONENT PARAMETER NAME}`. A different query parameter name is specified for the `{QUERY PARAMETER NAME}` placeholder:
+Specify the `[SupplyParameterFromQuery]` attribute's <xref:Microsoft.AspNetCore.Components.SupplyParameterFromQueryAttribute.Name> property to use a query parameter name different from the component parameter name. In the following example, the C# name of the component parameter is `{COMPONENT PARAMETER NAME}`. A different query parameter name is specified for the `{QUERY PARAMETER NAME}` placeholder:
 
 ```csharp
 [Parameter]
@@ -309,7 +309,7 @@ In the following example with a URL of `/search?filter=scifi%20stars&page=3&star
 }
 ```
 
-Use `NavigationManager.GetUriWithQueryParameter` to add, change, or remove one or more query parameters on the current URL:
+Use [`NavigationManager.GetUriWithQueryParameter`](xref:Microsoft.AspNetCore.Components.NavigationManagerExtensions.GetUriWithQueryParameter%2A) to add, change, or remove one or more query parameters on the current URL:
 
 ```razor
 @inject NavigationManager NavigationManager
@@ -330,7 +330,7 @@ For the preceding example:
 * The query parameter name and value are URL-encoded.
 * All of the values with the matching query parameter name are replaced if there are multiple instances of the type.
 
-Call `NavigationManager.GetUriWithQueryParameters` to create a URI constructed from <xref:Microsoft.AspNetCore.Components.NavigationManager.Uri> with multiple parameters added, updated, or removed. For each value, the framework uses `value?.GetType()` to determine the runtime type for each query parameter and selects the correct culture-invariant formatting. The framework throws an error for unsupported types.
+Call [`NavigationManager.GetUriWithQueryParameters`](xref:Microsoft.AspNetCore.Components.NavigationManagerExtensions.GetUriWithQueryParameters%2A) to create a URI constructed from <xref:Microsoft.AspNetCore.Components.NavigationManager.Uri> with multiple parameters added, updated, or removed. For each value, the framework uses `value?.GetType()` to determine the runtime type for each query parameter and selects the correct culture-invariant formatting. The framework throws an error for unsupported types.
 
 ```razor
 @inject NavigationManager NavigationManager
@@ -342,7 +342,7 @@ NavigationManager.GetUriWithQueryParameters({PARAMETERS})
 
 The `{PARAMETERS}` placeholder is an `IReadOnlyDictionary<string, object>`.
 
-Pass a URI string to `GetUriWithQueryParameters` to generate a new URI from a provided URI with multiple parameters added, updated, or removed. For each value, the framework uses `value?.GetType()` to determine the runtime type for each query parameter and selects the correct culture-invariant formatting. The framework throws an error for unsupported types. Supported types are listed later in this section.
+Pass a URI string to <xref:Microsoft.AspNetCore.Components.NavigationManagerExtensions.GetUriWithQueryParameters%2A> to generate a new URI from a provided URI with multiple parameters added, updated, or removed. For each value, the framework uses `value?.GetType()` to determine the runtime type for each query parameter and selects the correct culture-invariant formatting. The framework throws an error for unsupported types. Supported types are listed later in this section.
 
 ```razor
 @inject NavigationManager NavigationManager
@@ -467,7 +467,7 @@ To navigate with an added or modified query string, pass a generated URL to <xre
 
 The following example calls:
 
-* `GetUriWithQueryParameter` to add or replace the `name` query parameter using a value of `Morena Baccarin`.
+* <xref:Microsoft.AspNetCore.Components.NavigationManagerExtensions.GetUriWithQueryParameter%2A> to add or replace the `name` query parameter using a value of `Morena Baccarin`.
 * Calls <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> to trigger navigation to the new URL.
 
 ```csharp

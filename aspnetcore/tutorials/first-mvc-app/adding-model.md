@@ -472,8 +472,6 @@ The `@model` directive allows access to the list of movies that the controller p
 
 Because the `Model` object is strongly typed as an `IEnumerable<Movie>` object, each item in the loop is typed as `Movie`. Among other benefits, the compiler validates the types used in the code.
 
-[!INCLUDE[s](~/includes/sql-log.md)]
-
 ## Additional resources
 
 * [Tag Helpers](xref:mvc/views/tag-helpers/intro)
