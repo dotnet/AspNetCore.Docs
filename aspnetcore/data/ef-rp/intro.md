@@ -34,7 +34,7 @@ The Visual Studio instructions use [SQL Server LocalDB](/sql/database-engine/con
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[VS prereqs](~/includes/net-prereqs-vsc-6.0.md)]
+[!INCLUDE[VSC prereqs](~/includes/net-prereqs-vsc-6.0.md)]
 
 Consider downloading and installing a third-party tool for managing and viewing a SQLite database, such as [DB Browser for SQLite](https://sqlitebrowser.org/).
 
@@ -78,9 +78,7 @@ Select *ContosoUniversity.csproj* to open the project.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Remove the comments from the *appsettings.Development.json* file so the SQLite connections string is used:
-  [!code-json[Main](intro/samples/cu50/appsettings.Development.json?highlight=10-13)]
-* Remove the comments from the *ContosoUniversity.csproj* file so `SQLiteVersion`   is defined:
+* Remove the comments from the *ContosoUniversity.csproj* file so `SQLiteVersion` is defined:
 
   ```xml
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
