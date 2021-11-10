@@ -3,7 +3,7 @@ title: Create a .NET Core gRPC client and server in ASP.NET Core
 author: jamesnk
 description: This tutorial shows how to create a gRPC Service and gRPC client on ASP.NET Core. Learn how to create a gRPC Service project, edit a proto file, and add a duplex streaming call.
 ms.author: jamesnk
-ms.date: 09/27/2021
+ms.date: 10/19/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/grpc/grpc-start
 ---
@@ -31,11 +31,7 @@ In this tutorial, you:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-We hope to have Visual Studio for Mac instructions soon.
-
-<!--  Visual Studio for Mac tab to be updated and available once 2022 is available.
 [!INCLUDE[](~/includes/net-prereqs-mac-6.0.md)]
--->
 
 ---
 
@@ -47,7 +43,7 @@ We hope to have Visual Studio for Mac instructions soon.
 * In the **Create a new project** dialog, search for `gRPC`. Select **ASP.NET Core gRPC Service** and select **Next**.
 * In the **Configure your new project** dialog, enter `GrpcGreeter` for **Project name**. It's important to name the project *GrpcGreeter* so the namespaces match when you copy and paste code.
 * Select **Next**.
-* In the **Additional information** dialog, select **.NET 6.0 (Preview)** and then select **Create**.
+* In the **Additional information** dialog, select **.NET 6.0 (Long-term support)** and then select **Create**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -65,64 +61,19 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
   * The `dotnet new` command creates a new gRPC service in the *GrpcGreeter* folder.
   * The `code` command opens the *GrpcGreeter* folder in a new instance of Visual Studio Code.
 
-
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-We hope to have Visual Studio for Mac instructions soon.
-
-<!--  Visual Studio for Mac tab to be updated and available once 2022 is available.
-* Start Visual Studio for Mac and select **New**. Alternatively, from the Visual Studio **File** menu, select **New Solution**.
-* In the **Choose a template for your new project** dialog, select **Web and Console** > **App** > **gRPC Service** and select **Next**.
-* Select **.NET 5.0** for the target framework and select **Next**.
+* Start Visual Studio for Mac and select **File** > **New Project**.
+* In the **Choose a template for your new project** dialog, select **Web and Console** > **App** > **gRPC Service** and select **Continue**.
+* Select **.NET 6.0** for the target framework and select **Continue**.
 * Name the project **GrpcGreeter**. It's important to name the project *GrpcGreeter* so the namespaces match when you copy and paste code.
-* Select **Create**.
--->
+* Select **Continue**.
 
 ---
 
 ### Run the service
-
-<!--  
-Add run-the-app include back in replacing the partial section below once run-the-app.md is updated for VS 2022 for Mac and accounts for randomly assigned ports as in this case for the service app.
-[!INCLUDE[](~/includes/run-the-app.md)]
--->
-
-# [Visual Studio](#tab/visual-studio)
-
-* Press Ctrl+F5 to run without the debugger.
-
-Visual Studio displays the following dialog when a project is not yet configured to use SSL:
-
-![This project is configured to use SSL. To avoid SSL warnings in the browser you can choose to trust the self-signed certificate that IIS Express has generated. Would you like to trust the IIS Express SSL certificate?](~/getting-started/_static/trustCertVS22.png)
-
-Select **Yes** if you trust the IIS Express SSL certificate.
-
-The following dialog is displayed:
-
-![Security warning dialog](~/getting-started/_static/cert.png)
-
-Select **Yes** if you agree to trust the development certificate.
-
-[!INCLUDE[trust FF](~/includes/trust-ff.md)]
-
-Visual Studio:
-
-  Visual Studio starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and navigates to a port that was randomly assigned for the service, such as `http://localhost:7042`. The address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for  local computer. Localhost only serves web requests from the local computer.
  
-# [Visual Studio Code](#tab/visual-studio-code)
-
-  [!INCLUDE[](~/includes/trustCertVSC.md)]
-
-* Press **Ctrl-F5** to run without the debugger.
-
-  Visual Studio Code starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and navigates to a port that was randomly assigned for the service, such as `http://localhost:7042`. The address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for  local computer. Localhost only serves web requests from the local computer.
-<!-- Replace the above section with the run the app include once it can be updated for VS 2022 for Mac  -->
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-We hope to have Visual Studio for Mac instructions soon.
-
----
+[!INCLUDE[](~/includes/run-the-app6.0.md)]
 
 The logs show the service listening on `https://localhost:7042`.
 
@@ -158,7 +109,7 @@ info: Microsoft.Hosting.Lifetime[0]
 * Open a second instance of Visual Studio and select **Create a new project**.
 * In the **Create a new project** dialog, select **Console Application**, and select **Next**.
 * In the **Project name** text box, enter **GrpcGreeterClient** and select **Next**.
-* In the **Additional information** dialog, select **.NET 6.0 (Preview)** and then select **Create**.
+* In the **Additional information** dialog, select **.NET 6.0 (Long-term support)** and then select **Create**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -173,12 +124,7 @@ info: Microsoft.Hosting.Lifetime[0]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-We hope to have Visual Studio for Mac instructions soon.
-
-<!--  Visual Studio for Mac tab to be updated and available once 2022 is available.
-
 Follow the instructions in [Building a complete .NET Core solution on macOS using Visual Studio for Mac](/dotnet/core/tutorials/using-on-mac-vs-full-solution) to create a console app with the name *GrpcGreeterClient*.
--->
 
 ---
 
@@ -223,18 +169,15 @@ dotnet add GrpcGreeterClient.csproj package Grpc.Net.Client
 dotnet add GrpcGreeterClient.csproj package Google.Protobuf
 dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 ```
+
 # [Visual Studio for Mac](#tab/visual-studio-mac)
-
-We hope to have Visual Studio for Mac instructions soon.
-
-<!--  Visual Studio for Mac tab to be updated and available once 2022 is available.
 
 * Right-click **GrpcGreeterClient** project in the **Solution Pad** and select **Manage NuGet Packages**.
 * Enter **Grpc.Net.Client** in the search box.
 * Select the **Grpc.Net.Client** package from the results pane and select **Add Package**.
-* Select the **Accept** button on the **Accept License** dialog.
+* In **Select Projects** select **OK**.
+* If the **License Acceptance** dialog appears, select **Accept** if you agree to the license terms.
 * Repeat for `Google.Protobuf` and `Grpc.Tools`.
--->
 
 ---
 
@@ -260,12 +203,7 @@ We hope to have Visual Studio for Mac instructions soon.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-We hope to have Visual Studio for Mac instructions soon.
-
-<!--  Visual Studio for Mac tab to be updated and available once 2022 is available.
-
   Right-click the project and select **Edit Project File**.
--->
 
   ---
 
@@ -312,17 +250,14 @@ The Greeter client calls the asynchronous `SayHello` method. The result of the `
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-We hope to have Visual Studio for Mac instructions soon.
+* Due to the previously mentioned [HTTP/2 TLS issue on macOS workaround](xref:grpc/troubleshoot#unable-to-start-aspnet-core-grpc-app-on-macos), you'll need to update the channel address in the client to match port in launchSetting.json of the GrpcGreeter service "http://localhost:5000". Update line 13 of **GrpcGreeterClient/Program.cs** to read:
 
-<!--  Visual Studio for Mac tab to be updated and available once 2022 is available.
-
-* Due to the previously mentioned [HTTP/2 TLS issue on macOS workaround](xref:grpc/troubleshoot#unable-to-start-aspnet-core-grpc-app-on-macos), you'll need to update the channel address in the client to "http://localhost:5000". Update line 13 of **GrpcGreeterClient/Program.cs** to read:
   ```csharp
   using var channel = GrpcChannel.ForAddress("http://localhost:5000");
-  ``` 
+  ```
+
 * Start the Greeter service.
 * Start the client.
--->
 
 ---
 

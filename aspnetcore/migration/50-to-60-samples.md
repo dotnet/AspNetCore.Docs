@@ -1,7 +1,7 @@
 ---
-title: Code samples migrated from ASP.NET Core 5.0 to 6.0
+title: Code samples migrated from ASP.NET Core 5.0 to the the new minimal hosting model in 6.0
 author: rick-anderson
-description:  Shows how to migrate ASP.NET Core 5.0 samples to ASP.NET Core 6.0.
+description:  Shows how to migrate ASP.NET Core 5.0 samples to the the new minimal hosting model in 6.0
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.date: 10/22/2021
@@ -9,7 +9,7 @@ no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cook
 uid: migration/50-to-60-samples
 ---
 
-# Code samples migrated from ASP.NET Core 5.0 to 6.0
+# Code samples migrated from ASP.NET Core 5.0 to the the new minimal hosting model in 6.0
 
 <!-- 
 This content from https://gist.github.com/davidfowl/0e0372c3c1d895c3ce195ba983b1e03d#differences-in-the-hosting-model
@@ -211,7 +211,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 ### ASP.NET Core 6
 
-[!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_hb)]
+[!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_whb)]
 
 ## Change the web root
 

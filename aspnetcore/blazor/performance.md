@@ -5,18 +5,11 @@ description: Tips for increasing performance in ASP.NET Core Blazor apps and avo
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/02/2021
+ms.date: 11/09/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/performance
-zone_pivot_groups: blazor-hosting-models
 ---
 # ASP.NET Core Blazor performance best practices
-
-::: zone pivot="server"
-
-<!-- DO NOT DELETE: The presence of this empty Blazor Server pivot avoids a doc build system error. -->
-
-::: zone-end
 
 ::: moniker range=">= aspnetcore-6.0"
 
@@ -643,9 +636,9 @@ function storeAllInLocalStorage(items) {
 
 For Blazor WebAssembly apps, rolling individual JS interop calls into a single call usually only improves performance significantly if the component makes a large number of JS interop calls.
 
-::: zone pivot="webassembly"
-
 ### Consider the use of synchronous calls
+
+*This section only applies to Blazor WebAssembly apps.*
 
 JS interop calls are asynchronous by default, regardless of whether the called code is synchronous or asynchronous. Calls are asynchronous by default to ensure that components are compatible across both Blazor hosting models, Blazor Server and Blazor WebAssembly. On Blazor Server, all JS interop calls must be asynchronous because they're sent over a network connection.
 
@@ -680,6 +673,8 @@ For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet>.
 
 ### Consider the use of unmarshalled calls
 
+*This section only applies to Blazor WebAssembly apps.*
+
 When running on Blazor WebAssembly, it's possible to make unmarshalled calls from .NET to JavaScript. These are synchronous calls that don't perform JSON serialization of arguments or return values. All aspects of memory management and translations between .NET and JavaScript representations are left up to the developer.
 
 > [!WARNING]
@@ -703,8 +698,6 @@ function jsInteropCall() {
 }
 ```
 
-::: zone-end
-
 ## Minimize app download size
 
 ### Use `System.Text.Json`
@@ -713,23 +706,29 @@ Blazor's JS interop implementation relies on <xref:System.Text.Json>, which is a
 
 For migration guidance, see [How to migrate from `Newtonsoft.Json` to `System.Text.Json`](/dotnet/standard/serialization/system-text-json-migrate-from-newtonsoft-how-to).
 
-::: zone pivot="webassembly"
-
 ### Intermediate Language (IL) trimming
+
+*This section only applies to Blazor WebAssembly apps.*
 
 Trimming unused assemblies from a Blazor WebAssembly app reduces the app's size by removing unused code in the app's binaries. For more information, see <xref:blazor/host-and-deploy/configure-trimmer>.
 
 ### Lazy load assemblies
 
+*This section only applies to Blazor WebAssembly apps.*
+
 Load assemblies at runtime when the assemblies are required by a route. For more information, see <xref:blazor/webassembly-lazy-load-assemblies>.
 
 ### Compression
+
+*This section only applies to Blazor WebAssembly apps.*
 
 When a Blazor WebAssembly app is published, the output is statically compressed during publish to reduce the app's size and remove the overhead for runtime compression. Blazor relies on the server to perform content negotiation and serve statically-compressed files.
 
 After an app is deployed, verify that the app serves compressed files. Inspect the **Network** tab in a browser's [Developer Tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) and verify that the files are served with `Content-Encoding: br` (Brotli compression) or `Content-Encoding: gz` (Gzip compression). If the host isn't serving compressed files, follow the instructions in <xref:blazor/host-and-deploy/webassembly#compression>.
 
 ### Disable unused features
+
+*This section only applies to Blazor WebAssembly apps.*
 
 Blazor WebAssembly's runtime includes the following .NET features that can be disabled for a smaller payload size:
 
@@ -742,8 +741,6 @@ Blazor WebAssembly's runtime includes the following .NET features that can be di
   ```
 
 * By default, Blazor WebAssembly carries globalization resources required to display values, such as dates and currency, in the user's culture. If the app doesn't require localization, you may [configure the app to support the invariant culture](xref:blazor/globalization-localization#invariant-globalization), which is based on the `en-US` culture.
-
-::: zone-end
 
 ::: moniker-end
 
@@ -1372,9 +1369,9 @@ function storeAllInLocalStorage(items) {
 
 For Blazor WebAssembly apps, rolling individual JS interop calls into a single call usually only improves performance significantly if the component makes a large number of JS interop calls.
 
-::: zone pivot="webassembly"
-
 ### Consider the use of synchronous calls
+
+*This section only applies to Blazor WebAssembly apps.*
 
 JS interop calls are asynchronous by default, regardless of whether the called code is synchronous or asynchronous. Calls are asynchronous by default to ensure that components are compatible across both Blazor hosting models, Blazor Server and Blazor WebAssembly. On Blazor Server, all JS interop calls must be asynchronous because they're sent over a network connection.
 
@@ -1409,6 +1406,8 @@ For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet>.
 
 ### Consider the use of unmarshalled calls
 
+*This section only applies to Blazor WebAssembly apps.*
+
 When running on Blazor WebAssembly, it's possible to make unmarshalled calls from .NET to JavaScript. These are synchronous calls that don't perform JSON serialization of arguments or return values. All aspects of memory management and translations between .NET and JavaScript representations are left up to the developer.
 
 > [!WARNING]
@@ -1432,8 +1431,6 @@ function jsInteropCall() {
 }
 ```
 
-::: zone-end
-
 ## Minimize app download size
 
 ### Use `System.Text.Json`
@@ -1442,23 +1439,29 @@ Blazor's JS interop implementation relies on <xref:System.Text.Json>, which is a
 
 For migration guidance, see [How to migrate from `Newtonsoft.Json` to `System.Text.Json`](/dotnet/standard/serialization/system-text-json-migrate-from-newtonsoft-how-to).
 
-::: zone pivot="webassembly"
-
 ### Intermediate Language (IL) trimming
+
+*This section only applies to Blazor WebAssembly apps.*
 
 Trimming unused assemblies from a Blazor WebAssembly app reduces the app's size by removing unused code in the app's binaries. For more information, see <xref:blazor/host-and-deploy/configure-trimmer>.
 
 ### Lazy load assemblies
 
+*This section only applies to Blazor WebAssembly apps.*
+
 Load assemblies at runtime when the assemblies are required by a route. For more information, see <xref:blazor/webassembly-lazy-load-assemblies>.
 
 ### Compression
+
+*This section only applies to Blazor WebAssembly apps.*
 
 When a Blazor WebAssembly app is published, the output is statically compressed during publish to reduce the app's size and remove the overhead for runtime compression. Blazor relies on the server to perform content negotation and serve statically-compressed files.
 
 After an app is deployed, verify that the app serves compressed files. Inspect the **Network** tab in a browser's [Developer Tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) and verify that the files are served with `Content-Encoding: br` (Brotli compression) or `Content-Encoding: gz` (Gzip compression). If the host isn't serving compressed files, follow the instructions in <xref:blazor/host-and-deploy/webassembly#compression>.
 
 ### Disable unused features
+
+*This section only applies to Blazor WebAssembly apps.*
 
 Blazor WebAssembly's runtime includes the following .NET features that can be disabled for a smaller payload size:
 
@@ -1471,8 +1474,6 @@ Blazor WebAssembly's runtime includes the following .NET features that can be di
   ```
 
 * By default, Blazor WebAssembly carries globalization resources required to display values, such as dates and currency, in the user's culture. If the app doesn't require localization, you may [configure the app to support the invariant culture](xref:blazor/globalization-localization#invariant-globalization), which is based on the `en-US` culture.
-
-::: zone-end
 
 ::: moniker-end
 
@@ -2093,9 +2094,9 @@ function storeAllInLocalStorage(items) {
 
 For Blazor WebAssembly apps, rolling individual JS interop calls into a single call usually only improves performance significantly if the component makes a large number of JS interop calls.
 
-::: zone pivot="webassembly"
-
 ### Consider the use of synchronous calls
+
+*This section only applies to Blazor WebAssembly apps.*
 
 JS interop calls are asynchronous by default, regardless of whether the called code is synchronous or asynchronous. Calls are asynchronous by default to ensure that components are compatible across both Blazor hosting models, Blazor Server and Blazor WebAssembly. On Blazor Server, all JS interop calls must be asynchronous because they're sent over a network connection.
 
@@ -2126,8 +2127,6 @@ Synchronous calls work if:
 
 For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet>.
 
-::: zone-end
-
 ## Minimize app download size
 
 ### Use `System.Text.Json`
@@ -2136,9 +2135,9 @@ Blazor's JS interop implementation relies on <xref:System.Text.Json>, which is a
 
 For migration guidance, see [How to migrate from `Newtonsoft.Json` to `System.Text.Json`](/dotnet/standard/serialization/system-text-json-migrate-from-newtonsoft-how-to).
 
-::: zone pivot="webassembly"
-
 ### Intermediate Language (IL) linking
+
+*This section only applies to Blazor WebAssembly apps.*
 
 [Linking a Blazor WebAssembly app](xref:blazor/host-and-deploy/configure-linker) reduces the app's size by trimming unused code in the app's binaries. By default, the Intermediate Language (IL) Linker is only enabled when building in `Release` configuration. To benefit from this, publish the app for deployment using the [`dotnet publish`](/dotnet/core/tools/dotnet-publish) command with the [-c|--configuration](/dotnet/core/tools/dotnet-publish#options) option set to `Release`:
 
@@ -2148,15 +2147,21 @@ dotnet publish -c Release
 
 ### Lazy load assemblies
 
+*This section only applies to Blazor WebAssembly apps.*
+
 Load assemblies at runtime when the assemblies are required by a route. For more information, see <xref:blazor/webassembly-lazy-load-assemblies>.
 
 ### Compression
+
+*This section only applies to Blazor WebAssembly apps.*
 
 When a Blazor WebAssembly app is published, the output is statically compressed during publish to reduce the app's size and remove the overhead for runtime compression. Blazor relies on the server to perform content negotiation and serve statically-compressed files.
 
 After an app is deployed, verify that the app serves compressed files. Inspect the **Network** tab in a browser's [Developer Tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) and verify that the files are served with `Content-Encoding: br` (Brotli compression) or `Content-Encoding: gz` (Gzip compression). If the host isn't serving compressed files, follow the instructions in <xref:blazor/host-and-deploy/webassembly#compression>.
 
 ### Disable unused features
+
+*This section only applies to Blazor WebAssembly apps.*
 
 Blazor WebAssembly's runtime includes the following .NET features that can be disabled for a smaller payload size:
 
@@ -2177,7 +2182,5 @@ Blazor WebAssembly's runtime includes the following .NET features that can be di
   ```
 
 * By default, Blazor WebAssembly carries globalization resources required to display values, such as dates and currency, in the user's culture. If the app doesn't require localization, you may [configure the app to support the invariant culture](xref:blazor/globalization-localization#invariant-globalization), which is based on the `en-US` culture.
-
-::: zone-end
 
 ::: moniker-end

@@ -5,7 +5,7 @@ description: Learn how to mitigate security threats to Blazor Server apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/09/2020
+ms.date: 11/09/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/security/server/threat-mitigation
 ---
@@ -124,7 +124,7 @@ For calls from .NET methods to JavaScript:
 
 Take the following precautions to guard against the preceding scenarios:
 
-* Wrap JS interop calls within [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statements to account for errors that might occur during the invocations. For more information, see <xref:blazor/fundamentals/handle-errors?pivots=server#javascript-interop-server>.
+* Wrap JS interop calls within [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statements to account for errors that might occur during the invocations. For more information, see <xref:blazor/fundamentals/handle-errors#javascript-interop-blazor-server>.
 * Validate data returned from JS interop invocations, including error messages, before taking any action.
 
 ### .NET methods invoked from the browser
@@ -515,7 +515,7 @@ For calls from .NET methods to JavaScript:
 
 Take the following precautions to guard against the preceding scenarios:
 
-* Wrap JS interop calls within [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statements to account for errors that might occur during the invocations. For more information, see <xref:blazor/fundamentals/handle-errors?pivots=server#javascript-interop-server>.
+* Wrap JS interop calls within [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statements to account for errors that might occur during the invocations. For more information, see <xref:blazor/fundamentals/handle-errors#javascript-interop-blazor-server>.
 * Validate data returned from JS interop invocations, including error messages, before taking any action.
 
 ### .NET methods invoked from the browser
@@ -906,7 +906,7 @@ For calls from .NET methods to JavaScript:
 
 Take the following precautions to guard against the preceding scenarios:
 
-* Wrap JS interop calls within [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statements to account for errors that might occur during the invocations. For more information, see <xref:blazor/fundamentals/handle-errors?pivots=server#javascript-interop-server>.
+* Wrap JS interop calls within [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statements to account for errors that might occur during the invocations. For more information, see <xref:blazor/fundamentals/handle-errors#javascript-interop-blazor-server>.
 * Validate data returned from JS interop invocations, including error messages, before taking any action.
 
 ### .NET methods invoked from the browser

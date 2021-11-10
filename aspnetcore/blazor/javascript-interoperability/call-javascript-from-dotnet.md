@@ -5,7 +5,7 @@ description: Learn how to invoke JavaScript functions from .NET methods in Blazo
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/12/2021
+ms.date: 11/09/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, JS, Promise]
 uid: blazor/js-interop/call-javascript-from-dotnet
 ---
@@ -581,7 +581,7 @@ For information on using a byte array when calling .NET from JavaScript, see <xr
 
 ## Size limits on JavaScript interop calls
 
-[!INCLUDE[](~/blazor/includes/js-interop/size-limits.md)]
+[!INCLUDE[](~/blazor/includes/js-interop/6.0/size-limits.md)]
 
 ## Unmarshalled JavaScript interop
 
@@ -656,46 +656,11 @@ Other data types, such as string arrays, can be converted but require creating a
 > [!WARNING]
 > JS functions provided by the Blazor framework, such as `js_typed_array_to_array`, `mono_obj_array_new`, and `mono_obj_array_set`, are subject to name changes, behavioral changes, or removal in future releases of .NET.
 
-## Stream from JavaScript to .NET
-
-Blazor supports streaming data directly from JavaScript to .NET. Streams are requested using the `Microsoft.JSInterop.IJSStreamReference` interface.
-
-`Microsoft.JSInterop.IJSStreamReference.OpenReadStreamAsync` returns a <xref:System.IO.Stream> and uses the following parameters:
-
-* `maxAllowedSize`: Maximum number of bytes permitted for the read operation from JavaScript, which defaults to 512,000 bytes if not specified.
-* `cancellationToken`: A <xref:System.Threading.CancellationToken> for cancelling the read.
-
-In JavaScript:
-
-```javascript
-function streamToDotNet() {
-  return new Uint8Array(10000000);
-}
-```
-
-In C# code:
-
-```csharp
-var dataReference = 
-    await JS.InvokeAsync<IJSStreamReference>("streamToDotNet");
-using var dataReferenceStream = 
-    await dataReference.OpenReadStreamAsync(maxAllowedSize: 10_000_000);
-
-var outputPath = Path.Combine(Path.GetTempPath(), "file.txt");
-using var outputFileStream = File.OpenWrite(outputPath);
-await dataReferenceStream.CopyToAsync(outputFileStream);
-```
-
-In the preceding example:
-
-* `JS` is an injected <xref:Microsoft.JSInterop.IJSRuntime> instance.
-* The `dataReferenceStream` is written to disk (`file.txt`) at the current user's temporary folder path (<xref:System.IO.Path.GetTempPath%2A>).
-
 ## Stream from .NET to JavaScript
 
-Blazor supports streaming data directly from .NET to JavaScript. Streams are created using a `Microsoft.JSInterop.DotNetStreamReference`.
+Blazor supports streaming data directly from .NET to JavaScript. Streams are created using a <xref:Microsoft.JSInterop.DotNetStreamReference>.
 
-`Microsoft.JSInterop.DotNetStreamReference` represents a .NET stream and uses the following parameters:
+<xref:Microsoft.JSInterop.DotNetStreamReference> represents a .NET stream and uses the following parameters:
 
 * `stream`: The stream sent to JavaScript.
 * `leaveOpen`: Determines if the stream is left open after transmission. If a value isn't provided, `leaveOpen` defaults to `false`.
@@ -729,6 +694,10 @@ In the preceding example:
 
 * The `{STREAM}` placeholder represents the <xref:System.IO.Stream> sent to JavaScript.
 * `JS` is an injected <xref:Microsoft.JSInterop.IJSRuntime> instance.
+
+<xref:blazor/js-interop/call-dotnet-from-javascript#stream-from-javascript-to-net> covers the reverse operation, streaming from JavaScript to .NET.
+
+<xref:blazor/file-downloads> covers how to download a file in Blazor.
 
 ## Catch JavaScript exceptions
 
@@ -1263,7 +1232,7 @@ In the preceding example:
 
 ## Size limits on JavaScript interop calls
 
-[!INCLUDE[](~/blazor/includes/js-interop/size-limits.md)]
+[!INCLUDE[](~/blazor/includes/js-interop/5.0/size-limits.md)]
 
 ## Unmarshalled JavaScript interop
 
@@ -1737,7 +1706,7 @@ Objects that contain circular references can't be serialized on the client for e
 
 ## Size limits on JavaScript interop calls
 
-[!INCLUDE[](~/blazor/includes/js-interop/size-limits.md)]
+[!INCLUDE[](~/blazor/includes/js-interop/3.1/size-limits.md)]
 
 ## Catch JavaScript exceptions
 
@@ -1755,5 +1724,7 @@ In the following example, the `nonFunction` JS function doesn't exist. When the 
 
 * <xref:blazor/js-interop/call-dotnet-from-javascript>
 * [`InteropComponent.razor` example (dotnet/AspNetCore GitHub repository `main` branch)](https://github.com/dotnet/AspNetCore/blob/main/src/Components/test/testassets/BasicTestApp/InteropComponent.razor): The `main` branch represents the product unit's current development for the next release of ASP.NET Core. To select the branch for a different release (for example, `release/5.0`), use the **Switch branches or tags** dropdown list to select the branch.
+* <xref:blazor/file-downloads>
+* <xref:blazor/file-uploads>
 
 ::: moniker-end

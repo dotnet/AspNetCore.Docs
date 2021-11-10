@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
-ms.date: 05/09/2021
+ms.date: 11/09/2021
 uid: blazor/file-uploads
 zone_pivot_groups: blazor-hosting-models
 ---
@@ -743,6 +743,8 @@ In Blazor Server, file data is streamed over the SignalR connection into .NET co
 
 ## Additional resources
 
+* <xref:blazor/file-downloads>
+* <xref:blazor/images>
 * <xref:mvc/models/file-uploads#security-considerations>
 * <xref:blazor/forms-validation>
 

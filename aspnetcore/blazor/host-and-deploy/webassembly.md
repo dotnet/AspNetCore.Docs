@@ -5,7 +5,7 @@ description: Learn how to host and deploy a Blazor app using ASP.NET Core, Conte
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/12/2021
+ms.date: 11/09/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/host-and-deploy/webassembly
 ---
@@ -175,7 +175,7 @@ In the following example:
 
 Use an existing hosted Blazor solution or create a new solution from the Blazor Hosted project template:
 
-* In the client app's project file, add a `<StaticWebAssetBasePath>` property to the `<PropertyGroup>` with a value of `FirstApp` to set the base path for the project's static assets:
+* In the client app's project file, add a [`<StaticWebAssetBasePath>` property](xref:blazor/fundamentals/static-files#static-web-asset-base-path) to the `<PropertyGroup>` with a value of `FirstApp` to set the base path for the project's static assets:
 
   ```xml
   <PropertyGroup>
@@ -239,15 +239,15 @@ Use an existing hosted Blazor solution or create a new solution from the Blazor 
 
 * In the server app's `Program.cs` file, remove the following lines, which appear after the call to <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A>:
 
-  ```csharp
-  app.UseBlazorFrameworkFiles();
-  app.UseStaticFiles();
+  ```diff
+  -app.UseBlazorFrameworkFiles();
+  -app.UseStaticFiles();
 
-  app.UseRouting();
+  -app.UseRouting();
 
-  app.MapRazorPages();
-  app.MapControllers();
-  app.MapFallbackToFile("index.html");
+  -app.MapRazorPages();
+  -app.MapControllers();
+  -app.MapFallbackToFile("index.html");
   ```
 
   Add middleware that maps requests to the client apps. The following example configures the middleware to run when:
@@ -311,6 +311,15 @@ Use an existing hosted Blazor solution or create a new solution from the Blazor 
   });
   ```
 
+  For more information on <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>, see <xref:blazor/fundamentals/static-files#static-file-middleware>.
+
+  For more information on `UseBlazorFrameworkFiles` and `MapFallbackToFile`, see the following resources:
+
+  * <xref:Microsoft.AspNetCore.Builder.ComponentsWebAssemblyApplicationBuilderExtensions.UseBlazorFrameworkFiles%2A?displayProperty=fullName> ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/WebAssembly/Server/src/ComponentsWebAssemblyApplicationBuilderExtensions.cs))
+  * <xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A?displayProperty=fullName> ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/StaticFiles/src/StaticFilesEndpointRouteBuilderExtensions.cs))
+
+  [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
 * In the server app's weather forecast controller (`Controllers/WeatherForecastController.cs`), replace the existing route (`[Route("[controller]")]`) to `WeatherForecastController` with the following routes:
 
   ```csharp
@@ -371,12 +380,7 @@ Published assets are created in the `/bin/Release/{TARGET FRAMEWORK}/publish` fo
 
 When a Blazor project is published, a `web.config` file is created with the following IIS configuration:
 
-* MIME types are set for the following file extensions:
-  * `.dll`: `application/octet-stream`
-  * `.json`: `application/json`
-  * `.wasm`: `application/wasm`
-  * `.woff`: `application/font-woff`
-  * `.woff2`: `application/font-woff`
+* MIME types
 * HTTP compression is enabled for the following MIME types:
   * `application/octet-stream`
   * `application/wasm`
@@ -414,7 +418,7 @@ If a standalone app is hosted as an IIS sub-app, perform either of the following
 
 * Disable the inherited ASP.NET Core Module handler.
 
-  Remove the handler in the Blazor app's published `web.config` file by adding a `<handlers>` section to the file:
+  Remove the handler in the Blazor app's published `web.config` file by adding a `<handlers>` section to the `<system.webServer>` section of the file:
 
   ```xml
   <handlers>
@@ -437,6 +441,9 @@ If a standalone app is hosted as an IIS sub-app, perform either of the following
     </location>
   </configuration>
   ```
+  
+  > [!NOTE]
+  > Disabling inheritance of the root (parent) app's `<system.webServer>` section is the default configuration for published apps using the .NET SDK.
 
 Removing the handler or disabling inheritance is performed in addition to [configuring the app's base path](xref:blazor/host-and-deploy/index#app-base-path). Set the app base path in the app's `index.html` file to the IIS alias used when configuring the sub-app in IIS.
 
@@ -979,7 +986,7 @@ In the following example:
 
 Use an existing hosted Blazor solution or create a new solution from the Blazor Hosted project template:
 
-* In the client app's project file, add a `<StaticWebAssetBasePath>` property to the `<PropertyGroup>` with a value of `FirstApp` to set the base path for the project's static assets:
+* In the client app's project file, add a [`<StaticWebAssetBasePath>` property](xref:blazor/fundamentals/static-files#static-web-asset-base-path) to the `<PropertyGroup>` with a value of `FirstApp` to set the base path for the project's static assets:
 
   ```xml
   <PropertyGroup>
@@ -1043,18 +1050,18 @@ Use an existing hosted Blazor solution or create a new solution from the Blazor 
 
 * In the server app's `Startup.Configure` method (`Startup.cs`), remove the following lines, which appear after the call to <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A>:
 
-  ```csharp
-  app.UseBlazorFrameworkFiles();
-  app.UseStaticFiles();
+  ```diff
+  -app.UseBlazorFrameworkFiles();
+  -app.UseStaticFiles();
 
-  app.UseRouting();
+  -app.UseRouting();
 
-  app.UseEndpoints(endpoints =>
-  {
-      endpoints.MapRazorPages();
-      endpoints.MapControllers();
-      endpoints.MapFallbackToFile("index.html");
-  });
+  -app.UseEndpoints(endpoints =>
+  -{
+  -    endpoints.MapRazorPages();
+  -    endpoints.MapControllers();
+  -    endpoints.MapFallbackToFile("index.html");
+  -});
   ```
 
   Add middleware that maps requests to the client apps. The following example configures the middleware to run when:
@@ -1118,6 +1125,15 @@ Use an existing hosted Blazor solution or create a new solution from the Blazor 
   });
   ```
 
+  For more information on <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>, see <xref:blazor/fundamentals/static-files#static-file-middleware>.
+
+  For more information on `UseBlazorFrameworkFiles` and `MapFallbackToFile`, see the following resources:
+
+  * <xref:Microsoft.AspNetCore.Builder.ComponentsWebAssemblyApplicationBuilderExtensions.UseBlazorFrameworkFiles%2A?displayProperty=fullName> ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/WebAssembly/Server/src/ComponentsWebAssemblyApplicationBuilderExtensions.cs))
+  * <xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A?displayProperty=fullName> ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/StaticFiles/src/StaticFilesEndpointRouteBuilderExtensions.cs))
+
+  [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
 * In the server app's weather forecast controller (`Controllers/WeatherForecastController.cs`), replace the existing route (`[Route("[controller]")]`) to `WeatherForecastController` with the following routes:
 
   ```csharp
@@ -1178,12 +1194,7 @@ Published assets are created in the `/bin/Release/{TARGET FRAMEWORK}/publish` fo
 
 When a Blazor project is published, a `web.config` file is created with the following IIS configuration:
 
-* MIME types are set for the following file extensions:
-  * `.dll`: `application/octet-stream`
-  * `.json`: `application/json`
-  * `.wasm`: `application/wasm`
-  * `.woff`: `application/font-woff`
-  * `.woff2`: `application/font-woff`
+* MIME types
 * HTTP compression is enabled for the following MIME types:
   * `application/octet-stream`
   * `application/wasm`
@@ -1221,7 +1232,7 @@ If a standalone app is hosted as an IIS sub-app, perform either of the following
 
 * Disable the inherited ASP.NET Core Module handler.
 
-  Remove the handler in the Blazor app's published `web.config` file by adding a `<handlers>` section to the file:
+  Remove the handler in the Blazor app's published `web.config` file by adding a `<handlers>` section to the `<system.webServer>` section of the file:
 
   ```xml
   <handlers>
@@ -1244,6 +1255,9 @@ If a standalone app is hosted as an IIS sub-app, perform either of the following
     </location>
   </configuration>
   ```
+  
+  > [!NOTE]
+  > Disabling inheritance of the root (parent) app's `<system.webServer>` section is the default configuration for published apps using the .NET SDK.
 
 Removing the handler or disabling inheritance is performed in addition to [configuring the app's base path](xref:blazor/host-and-deploy/index#app-base-path). Set the app base path in the app's `index.html` file to the IIS alias used when configuring the sub-app in IIS.
 
@@ -1786,7 +1800,7 @@ In the following example:
 
 Use an existing hosted Blazor solution or create a new solution from the Blazor Hosted project template:
 
-* In the client app's project file, add a `<StaticWebAssetBasePath>` property to the `<PropertyGroup>` with a value of `FirstApp` to set the base path for the project's static assets:
+* In the client app's project file, add a [`<StaticWebAssetBasePath>` property](xref:blazor/fundamentals/static-files#static-web-asset-base-path) to the `<PropertyGroup>` with a value of `FirstApp` to set the base path for the project's static assets:
 
   ```xml
   <PropertyGroup>
@@ -1850,18 +1864,18 @@ Use an existing hosted Blazor solution or create a new solution from the Blazor 
 
 * In the server app's `Startup.Configure` method (`Startup.cs`), remove the following lines, which appear after the call to <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A>:
 
-  ```csharp
-  app.UseBlazorFrameworkFiles();
-  app.UseStaticFiles();
+  ```diff
+  -app.UseBlazorFrameworkFiles();
+  -app.UseStaticFiles();
 
-  app.UseRouting();
+  -app.UseRouting();
 
-  app.UseEndpoints(endpoints =>
-  {
-      endpoints.MapRazorPages();
-      endpoints.MapControllers();
-      endpoints.MapFallbackToFile("index.html");
-  });
+  -app.UseEndpoints(endpoints =>
+  -{
+  -    endpoints.MapRazorPages();
+  -    endpoints.MapControllers();
+  -    endpoints.MapFallbackToFile("index.html");
+  -});
   ```
 
   Add middleware that maps requests to the client apps. The following example configures the middleware to run when:
@@ -1925,6 +1939,15 @@ Use an existing hosted Blazor solution or create a new solution from the Blazor 
   });
   ```
 
+  For more information on <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>, see <xref:blazor/fundamentals/static-files#static-file-middleware>.
+
+  For more information on `UseBlazorFrameworkFiles` and `MapFallbackToFile`, see the following resources:
+
+  * <xref:Microsoft.AspNetCore.Builder.ComponentsWebAssemblyApplicationBuilderExtensions.UseBlazorFrameworkFiles%2A?displayProperty=fullName> ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/WebAssembly/Server/src/ComponentsWebAssemblyApplicationBuilderExtensions.cs))
+  * <xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A?displayProperty=fullName> ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/StaticFiles/src/StaticFilesEndpointRouteBuilderExtensions.cs))
+
+  [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
 * In the server app's weather forecast controller (`Controllers/WeatherForecastController.cs`), replace the existing route (`[Route("[controller]")]`) to `WeatherForecastController` with the following routes:
 
   ```csharp
@@ -1985,12 +2008,7 @@ Published assets are created in the `/bin/Release/{TARGET FRAMEWORK}/publish` fo
 
 When a Blazor project is published, a `web.config` file is created with the following IIS configuration:
 
-* MIME types are set for the following file extensions:
-  * `.dll`: `application/octet-stream`
-  * `.json`: `application/json`
-  * `.wasm`: `application/wasm`
-  * `.woff`: `application/font-woff`
-  * `.woff2`: `application/font-woff`
+* MIME types
 * HTTP compression is enabled for the following MIME types:
   * `application/octet-stream`
   * `application/wasm`
@@ -2028,7 +2046,7 @@ If a standalone app is hosted as an IIS sub-app, perform either of the following
 
 * Disable the inherited ASP.NET Core Module handler.
 
-  Remove the handler in the Blazor app's published `web.config` file by adding a `<handlers>` section to the file:
+  Remove the handler in the Blazor app's published `web.config` file by adding a `<handlers>` section to the `<system.webServer>` section of the file:
 
   ```xml
   <handlers>
@@ -2051,6 +2069,9 @@ If a standalone app is hosted as an IIS sub-app, perform either of the following
     </location>
   </configuration>
   ```
+  
+  > [!NOTE]
+  > Disabling inheritance of the root (parent) app's `<system.webServer>` section is the default configuration for published apps using the .NET SDK.
 
 Removing the handler or disabling inheritance is performed in addition to [configuring the app's base path](xref:blazor/host-and-deploy/index#app-base-path). Set the app base path in the app's `index.html` file to the IIS alias used when configuring the sub-app in IIS.
 

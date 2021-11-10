@@ -45,7 +45,7 @@ ASP.NET Core apps use a `Startup` class, which is named `Startup` by convention.
 
 The preceding sample is for [Razor Pages](xref:razor-pages/index); the MVC version is similar.
 
-The `Startup` class is specified when the app's [host](xref:fundamentals/index#host) is built. The `Startup` class is typically specified by calling the [WebHostBuilderExtensions.UseStartup/<TStartup>](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*) method on the host builder:
+The `Startup` class is specified when the app's [host](xref:fundamentals/index#host) is built. The `Startup` class is typically specified by calling the [`WebHostBuilderExtensions.UseStartup`/`<TStartup>`](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*) method on the host builder:
 
 [!code-csharp[](startup/3.0_samples/Program3.cs?name=snippet_Program&highlight=12)]
 

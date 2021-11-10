@@ -162,7 +162,7 @@ If you run into a problem you can't resolve, compare your code to the completed 
 
 ::: moniker-end
 
-::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
+::: moniker range="< aspnetcore-5.0"
 
 This is the first tutorial of a series that teaches the basics of building an ASP.NET Core Razor Pages web app.
 
@@ -360,7 +360,7 @@ We hope to have Visual Studio for Mac instructions soon.
 
 1. Select **Next**.
 
-1. In the **Additional information** dialog, select **.NET 6.0 (Preview)** and then select **Create**.
+1. In the **Additional information** dialog, select **.NET 6.0 (Long-term support)** and then select **Create**.
 
 	 ![Additional information](razor-pages-start/_static/6/additional-info.png)
 

@@ -5,10 +5,9 @@ description: Learn how Blazor apps can inject services into components.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/19/2020
+ms.date: 11/09/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/fundamentals/dependency-injection
-zone_pivot_groups: blazor-hosting-models
 ---
 # ASP.NET Core Blazor dependency injection
 
@@ -33,9 +32,7 @@ The services shown in the following table are commonly used in Blazor apps.
 
 A custom service provider doesn't automatically provide the default services listed in the table. If you use a custom service provider and require any of the services shown in the table, add the required services to the new service provider.
 
-## Add services to an app
-
-::: zone pivot="webassembly"
+## Add services to a Blazor WebAssembly app
 
 Configure services for the app's service collection in `Program.cs`. In the following example, the `MyDependency` implementation is registered for `IMyDependency`:
 
@@ -81,9 +78,7 @@ await weatherService.InitializeWeatherAsync(
 await host.RunAsync();
 ```
 
-::: zone-end
-
-::: zone pivot="server"
+## Add services to a Blazor Server app
 
 After creating a new app, examine part of the `Program.cs` file:
 
@@ -100,8 +95,6 @@ The `builder` variable represents a `Microsoft.AspNetCore.Builder.WebApplication
 ```csharp
 builder.Services.AddSingleton<IDataAccess, DataAccess>();
 ```
-
-::: zone-end
 
 ### Service lifetime
 
@@ -180,7 +173,10 @@ Prerequisites for constructor injection:
 In ASP.NET Core apps, scoped services are typically scoped to the current request. After the request completes, any scoped or transient services are disposed by the DI system. In Blazor Server apps, the request scope lasts for the duration of the client connection, which can result in transient and scoped services living much longer than expected. In Blazor WebAssembly apps, services registered with a scoped lifetime are treated as singletons, so they live longer than scoped services in typical ASP.NET Core apps.
 
 > [!NOTE]
-> To detect disposable transient services in an app, see the [Detect transient disposables](#detect-transient-disposables) section.
+> To detect disposable transient services in an app, see the following sections:
+>
+> [Detect transient disposables in Blazor WebAssembly apps](#detect-transient-disposables-in-blazor-webassembly-apps)
+> [Detect transient disposables in Blazor Server apps](#detect-transient-disposables-in-blazor-server-apps)
 
 An approach that limits a service lifetime in Blazor apps is use of the <xref:Microsoft.AspNetCore.Components.OwningComponentBase> type. <xref:Microsoft.AspNetCore.Components.OwningComponentBase> is an abstract type derived from <xref:Microsoft.AspNetCore.Components.ComponentBase> that creates a DI scope corresponding to the lifetime of the component. Using this scope, it's possible to use DI services with a scoped lifetime and have them live as long as the component. When the component is destroyed, services from the component's scoped service provider are disposed as well. This can be useful for services that:
 
@@ -216,13 +212,11 @@ Two versions of the <xref:Microsoft.AspNetCore.Components.OwningComponentBase> t
 
 For more information, see <xref:blazor/blazor-server-ef-core>.
 
-## Detect transient disposables
+## Detect transient disposables in Blazor WebAssembly apps
 
 The following example shows how to detect disposable transient services in an app that should use <xref:Microsoft.AspNetCore.Components.OwningComponentBase>. For more information, see the [Utility base component classes to manage a DI scope](#utility-base-component-classes-to-manage-a-di-scope) section.
 
-::: zone pivot="webassembly"
-
-`DetectIncorrectUsagesOfTransientDisposables.cs`:
+`DetectIncorrectUsagesOfTransientDisposables.cs` for Blazor WebAssembly apps:
 
 [!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/dependency-injection/DetectIncorrectUsagesOfTransientDisposables.cs)]
 
@@ -276,9 +270,9 @@ Navigate to the `TransientExample` component at `/transient-example` and an <xre
 
 > System.InvalidOperationException: Trying to resolve transient disposable service TransientDisposable in the wrong scope. Use an 'OwningComponentBase\<T>' component base class for the service 'T' you are trying to resolve.
 
-::: zone-end
+## Detect transient disposables in Blazor Server apps
 
-::: zone pivot="server"
+The following example shows how to detect disposable transient services in an app that should use <xref:Microsoft.AspNetCore.Components.OwningComponentBase>. For more information, see the [Utility base component classes to manage a DI scope](#utility-base-component-classes-to-manage-a-di-scope) section.
 
 `DetectIncorrectUsagesOfTransientDisposables.cs`:
 
@@ -337,8 +331,6 @@ Navigate to the `TransientExample` component at `/transient-example` and an <xre
 
 > System.InvalidOperationException: Trying to resolve transient disposable service TransientDependency in the wrong scope. Use an 'OwningComponentBase\<T>' component base class for the service 'T' you are trying to resolve.
 
-::: zone-end
-
 ## Additional resources
 
 * <xref:fundamentals/dependency-injection>
@@ -366,9 +358,7 @@ The services shown in the following table are commonly used in Blazor apps.
 
 A custom service provider doesn't automatically provide the default services listed in the table. If you use a custom service provider and require any of the services shown in the table, add the required services to the new service provider.
 
-## Add services to an app
-
-::: zone pivot="webassembly"
+## Add services to a Blazor WebAssembly app
 
 Configure services for the app's service collection in `Program.cs`. In the following example, the `MyDependency` implementation is registered for `IMyDependency`:
 
@@ -432,9 +422,7 @@ public class Program
 }
 ```
 
-::: zone-end
-
-::: zone pivot="server"
+## Add services to a Blazor Server app
 
 After creating a new app, examine the `Startup.ConfigureServices` method in `Startup.cs`:
 
@@ -457,8 +445,6 @@ public void ConfigureServices(IServiceCollection services)
     services.AddSingleton<IDataAccess, DataAccess>();
 }
 ```
-
-::: zone-end
 
 ### Service lifetime
 
@@ -537,7 +523,10 @@ Prerequisites for constructor injection:
 In ASP.NET Core apps, scoped services are typically scoped to the current request. After the request completes, any scoped or transient services are disposed by the DI system. In Blazor Server apps, the request scope lasts for the duration of the client connection, which can result in transient and scoped services living much longer than expected. In Blazor WebAssembly apps, services registered with a scoped lifetime are treated as singletons, so they live longer than scoped services in typical ASP.NET Core apps.
 
 > [!NOTE]
-> To detect disposable transient services in an app, see the [Detect transient disposables](#detect-transient-disposables) section.
+> To detect disposable transient services in an app, see the following sections:
+>
+> [Detect transient disposables in Blazor WebAssembly apps](#detect-transient-disposables-in-blazor-webassembly-apps)
+> [Detect transient disposables in Blazor Server apps](#detect-transient-disposables-in-blazor-server-apps)
 
 An approach that limits a service lifetime in Blazor apps is use of the <xref:Microsoft.AspNetCore.Components.OwningComponentBase> type. <xref:Microsoft.AspNetCore.Components.OwningComponentBase> is an abstract type derived from <xref:Microsoft.AspNetCore.Components.ComponentBase> that creates a DI scope corresponding to the lifetime of the component. Using this scope, it's possible to use DI services with a scoped lifetime and have them live as long as the component. When the component is destroyed, services from the component's scoped service provider are disposed as well. This can be useful for services that:
 
@@ -573,11 +562,9 @@ Two versions of the <xref:Microsoft.AspNetCore.Components.OwningComponentBase> t
 
 For more information, see <xref:blazor/blazor-server-ef-core>.
 
-## Detect transient disposables
+## Detect transient disposables in Blazor WebAssembly apps
 
 The following example shows how to detect disposable transient services in an app that should use <xref:Microsoft.AspNetCore.Components.OwningComponentBase>. For more information, see the [Utility base component classes to manage a DI scope](#utility-base-component-classes-to-manage-a-di-scope) section.
-
-::: zone pivot="webassembly"
 
 `DetectIncorrectUsagesOfTransientDisposables.cs`:
 
@@ -628,9 +615,9 @@ Navigate to the `TransientExample` component at `/transient-example` and an <xre
 
 > System.InvalidOperationException: Trying to resolve transient disposable service TransientDisposable in the wrong scope. Use an 'OwningComponentBase\<T>' component base class for the service 'T' you are trying to resolve.
 
-::: zone-end
+## Detect transient disposables in Blazor Server apps
 
-::: zone pivot="server"
+The following example shows how to detect disposable transient services in an app that should use <xref:Microsoft.AspNetCore.Components.OwningComponentBase>. For more information, see the [Utility base component classes to manage a DI scope](#utility-base-component-classes-to-manage-a-di-scope) section.
 
 `DetectIncorrectUsagesOfTransientDisposables.cs`:
 
@@ -706,8 +693,6 @@ Navigate to the `TransientExample` component at `/transient-example` and an <xre
 
 > System.InvalidOperationException: Trying to resolve transient disposable service TransientDependency in the wrong scope. Use an 'OwningComponentBase\<T>' component base class for the service 'T' you are trying to resolve.
 
-::: zone-end
-
 ## Additional resources
 
 * <xref:fundamentals/dependency-injection>
@@ -735,9 +720,7 @@ The services shown in the following table are commonly used in Blazor apps.
 
 A custom service provider doesn't automatically provide the default services listed in the table. If you use a custom service provider and require any of the services shown in the table, add the required services to the new service provider.
 
-## Add services to an app
-
-::: zone pivot="webassembly"
+## Add services to a Blazor WebAssembly app
 
 Configure services for the app's service collection in `Program.cs`. In the following example, the `MyDependency` implementation is registered for `IMyDependency`:
 
@@ -801,9 +784,7 @@ public class Program
 }
 ```
 
-::: zone-end
-
-::: zone pivot="server"
+## Add services to a Blazor Server app
 
 After creating a new app, examine the `Startup.ConfigureServices` method in `Startup.cs`:
 
@@ -826,8 +807,6 @@ public void ConfigureServices(IServiceCollection services)
     services.AddSingleton<IDataAccess, DataAccess>();
 }
 ```
-
-::: zone-end
 
 ### Service lifetime
 
@@ -906,7 +885,10 @@ Prerequisites for constructor injection:
 In ASP.NET Core apps, scoped services are typically scoped to the current request. After the request completes, any scoped or transient services are disposed by the DI system. In Blazor Server apps, the request scope lasts for the duration of the client connection, which can result in transient and scoped services living much longer than expected. In Blazor WebAssembly apps, services registered with a scoped lifetime are treated as singletons, so they live longer than scoped services in typical ASP.NET Core apps.
 
 > [!NOTE]
-> To detect disposable transient services in an app, see the [Detect transient disposables](#detect-transient-disposables) section.
+> To detect disposable transient services in an app, see the following sections:
+>
+> [Detect transient disposables in Blazor WebAssembly apps](#detect-transient-disposables-in-blazor-webassembly-apps)
+> [Detect transient disposables in Blazor Server apps](#detect-transient-disposables-in-blazor-server-apps)
 
 An approach that limits a service lifetime in Blazor apps is use of the <xref:Microsoft.AspNetCore.Components.OwningComponentBase> type. <xref:Microsoft.AspNetCore.Components.OwningComponentBase> is an abstract type derived from <xref:Microsoft.AspNetCore.Components.ComponentBase> that creates a DI scope corresponding to the lifetime of the component. Using this scope, it's possible to use DI services with a scoped lifetime and have them live as long as the component. When the component is destroyed, services from the component's scoped service provider are disposed as well. This can be useful for services that:
 
@@ -942,11 +924,9 @@ Two versions of the <xref:Microsoft.AspNetCore.Components.OwningComponentBase> t
 
 For more information, see <xref:blazor/blazor-server-ef-core>.
 
-## Detect transient disposables
+## Detect transient disposables in Blazor WebAssembly apps
 
 The following example shows how to detect disposable transient services in an app that should use <xref:Microsoft.AspNetCore.Components.OwningComponentBase>. For more information, see the [Utility base component classes to manage a DI scope](#utility-base-component-classes-to-manage-a-di-scope) section.
-
-::: zone pivot="webassembly"
 
 `DetectIncorrectUsagesOfTransientDisposables.cs`:
 
@@ -997,9 +977,9 @@ Navigate to the `TransientExample` component at `/transient-example` and an <xre
 
 > System.InvalidOperationException: Trying to resolve transient disposable service TransientDisposable in the wrong scope. Use an 'OwningComponentBase\<T>' component base class for the service 'T' you are trying to resolve.
 
-::: zone-end
+## Detect transient disposables in Blazor Server apps
 
-::: zone pivot="server"
+The following example shows how to detect disposable transient services in an app that should use <xref:Microsoft.AspNetCore.Components.OwningComponentBase>. For more information, see the [Utility base component classes to manage a DI scope](#utility-base-component-classes-to-manage-a-di-scope) section.
 
 `DetectIncorrectUsagesOfTransientDisposables.cs`:
 
@@ -1074,8 +1054,6 @@ The app can register transient disposables without throwing an exception. Howeve
 Navigate to the `TransientExample` component at `/transient-example` and an <xref:System.InvalidOperationException> is thrown when the framework attempts to construct an instance of `TransientDependency`:
 
 > System.InvalidOperationException: Trying to resolve transient disposable service TransientDependency in the wrong scope. Use an 'OwningComponentBase\<T>' component base class for the service 'T' you are trying to resolve.
-
-::: zone-end
 
 ## Additional resources
 
