@@ -245,12 +245,12 @@ The following packages are automatically installed:
 * Run the following .NET Core CLI commands to install required NuGet packages:
 
   ```dotnetcli
-  dotnet add package Microsoft.EntityFrameworkCore.SQLite -v 5.0.0-*
-  dotnet add package Microsoft.EntityFrameworkCore.SqlServer -v 5.0.0-*
-  dotnet add package Microsoft.EntityFrameworkCore.Design -v 5.0.0-*
-  dotnet add package Microsoft.EntityFrameworkCore.Tools -v 5.0.0-*
-  dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design -v 5.0.0-*
-  dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore -v 5.0.0-*  
+  dotnet add package Microsoft.EntityFrameworkCore.SQLite
+  dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+  dotnet add package Microsoft.EntityFrameworkCore.Design
+  dotnet add package Microsoft.EntityFrameworkCore.Tools
+  dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+  dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
   ```
 
    The `Microsoft.VisualStudio.Web.CodeGeneration.Design` package is required for scaffolding. Although the app won't use SQL Server, the scaffolding tool needs the SQL Server package.
