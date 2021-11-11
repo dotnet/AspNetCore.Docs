@@ -77,7 +77,11 @@ h1[b-3xxtam6d07] {
 }
 ```
 
-At build time, a project bundle is created with the convention `{STATIC WEB ASSETS BASE PATH}/Project.lib.scp.css`, where the placeholder `{STATIC WEB ASSETS BASE PATH}` is the static web assets base path.
+At build time, a project bundle is created with the convention `obj/{CONFIGURATION}/{TARGET FRAMEWORK}/scopedcss/projectbundle/{ASSEMBLY NAME}.bundle.scp.css`, where the placeholders are:
+
+* `{CONFIGURATION}`: The app's build configuration (for example, `Debug`, `Release`).
+* `{TARGET FRAMEWORK}`: The target framework (for example, `net6.0`).
+* `{ASSEMBLY NAME}`: The app's assembly name (for example, `BlazorSample`).
 
 If other projects are utilized, such as NuGet packages or [Razor class libraries](xref:blazor/components/class-libraries), the bundled file:
 
@@ -203,21 +207,7 @@ To opt out of how Blazor publishes and loads scoped files at runtime, use the `D
 
 ## Razor class library (RCL) support
 
-When a [Razor class library (RCL)](xref:razor-pages/ui-class) provides isolated styles, the `<link>` tag's `href` attribute points to `{STATIC WEB ASSET BASE PATH}/{PACKAGE ID}.bundle.scp.css`, where the placeholders are:
-
-* `{STATIC WEB ASSET BASE PATH}`: The static web asset base path.
-* `{PACKAGE ID}`: The library's [package ID](/nuget/create-packages/creating-a-package-msbuild#set-properties). The package ID defaults to the project's assembly name if `<PackageId>` isn't specified in the project file.
-
-In the following example:
-
-* The static web asset base path is `_content/ClassLib`.
-* The class library's assembly name is `ClassLib`.
-
-`wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server):
-
-```html
-<link href="_content/ClassLib/ClassLib.bundle.scp.css" rel="stylesheet">
-```
+Isolated styles for components in a [Razor class library (RCL)](xref:razor-pages/ui-class) are automatically bundled and linked for the consuming app.
 
 For more information on RCLs, see the following articles:
 
@@ -292,7 +282,11 @@ h1[b-3xxtam6d07] {
 }
 ```
 
-At build time, a project bundle is created with the convention `{STATIC WEB ASSETS BASE PATH}/Project.lib.scp.css`, where the placeholder `{STATIC WEB ASSETS BASE PATH}` is the static web assets base path.
+At build time, a project bundle is created with the convention `obj/{CONFIGURATION}/{TARGET FRAMEWORK}/scopedcss/projectbundle/{ASSEMBLY NAME}.bundle.scp.css`, where the placeholders are:
+
+* `{CONFIGURATION}`: The app's build configuration (for example, `Debug`, `Release`).
+* `{TARGET FRAMEWORK}`: The target framework (for example, `net6.0`).
+* `{ASSEMBLY NAME}`: The app's assembly name (for example, `BlazorSample`).
 
 If other projects are utilized, such as NuGet packages or [Razor class libraries](xref:blazor/components/class-libraries), the bundled file:
 
@@ -418,21 +412,7 @@ To opt out of how Blazor publishes and loads scoped files at runtime, use the `D
 
 ## Razor class library (RCL) support
 
-When a [Razor class library (RCL)](xref:razor-pages/ui-class) provides isolated styles, the `<link>` tag's `href` attribute points to `{STATIC WEB ASSET BASE PATH}/{PACKAGE ID}.bundle.scp.css`, where the placeholders are:
-
-* `{STATIC WEB ASSET BASE PATH}`: The static web asset base path.
-* `{PACKAGE ID}`: The class library's [package ID](/nuget/create-packages/creating-a-package-msbuild#set-properties). The package ID defaults to the project's assembly name if `<PackageId>` isn't specified in the library's project file.
-
-In the following example:
-
-* The static web asset base path is `_content/ClassLib`.
-* The class library's package ID is `ClassLib`.
-
-`wwwroot/index.html` (Blazor WebAssembly) or `Pages_Host.cshtml` (Blazor Server):
-
-```html
-<link href="_content/ClassLib/ClassLib.bundle.scp.css" rel="stylesheet">
-```
+Isolated styles for components in a [Razor class library (RCL)](xref:razor-pages/ui-class) are automatically bundled and linked for the consuming app.
 
 For more information on RCLs, see the following articles:
 
