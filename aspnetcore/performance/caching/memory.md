@@ -143,7 +143,7 @@ In the preceding code, the two highlighted lines achieve the same result of sett
 * Items with the earliest absolute expiration.
 * Items with the earliest sliding expiration.
 
-Pinned items with priority <xref:Microsoft.Extensions.Caching.Memory.CacheItemPriority.NeverRemove> are never removed. The following code removes a cache item and calls `Compact` to remove 25% of cached entries:
+Pinned items with priority <xref:Microsoft.Extensions.Caching.Memory.CacheItemPriority.NeverRemove> are [never removed](https://github.com/dotnet/runtime/blob/release/6.0/src/libraries/Microsoft.Extensions.Caching.Memory/src/MemoryCache.cs#L415-L430). The following code removes a cache item and calls `Compact` to remove 25% of cached entries:
 
 :::code language="csharp" source="memory/samples/6.0/CachingMemorySample/Snippets/Pages/MyMemoryCache.cshtml.cs" id="snippet_OnGetCacheCompact":::
 
