@@ -136,7 +136,7 @@ The Blazor WebAssembly app responds locally at `http://localhost:port/CoolApp`.
 In scenarios where an app requires a separate area with custom resources and Razor components:
 
 * Create a folder within the app's `Pages` folder to hold the resources. For example, an administator section of an app is created in a new folder named `Admin` (`Pages/Admin`).
-* Create a root page (`_Host.razor`) for the area. For example, create a `Pages/Admin/_Host.razor` file from the app's main root page (`Pages/_Host.razor`). Don't provide an `@page` directive in the Admin `_Host` page.
+* Create a root page (`_Host.cshtml`) for the area. For example, create a `Pages/Admin/_Host.cshtml` file from the app's main root page (`Pages/_Host.cshtml`). Don't provide an `@page` directive in the Admin `_Host` page.
 * Add a layout to the area's folder (for example, `Pages/Admin/_Layout.razor`). In the layout for the separate area, set the `<base>` tag `href` to match the area's folder (for example, `<base href="/Admin/" />`). For demonstration purposes, add `~/` to the static resources in the page. For example:
   * `~/css/bootstrap/bootstrap.min.css`
   * `~/css/site.css`
@@ -275,7 +275,7 @@ The Blazor WebAssembly app responds locally at `http://localhost:port/CoolApp`.
 In scenarios where an app requires a separate area with custom resources and Razor components:
 
 * Create a folder within the app's `Pages` folder to hold the resources. For example, an administator section of an app is created in a new folder named `Admin` (`Pages/Admin`).
-* Create a root page (`_Host.razor`) for the area. For example, create a `Pages/Admin/_Host.razor` file from the app's main root page (`Pages/_Host.razor`). Don't provide an `@page` directive in the Admin `_Host` page.
+* Create a root page (`_Host.cshtml`) for the area. For example, create a `Pages/Admin/_Host.cshtml` file from the app's main root page (`Pages/_Host.cshtml`). Don't provide an `@page` directive in the Admin `_Host` page.
 * Add a layout to the area's folder (for example, `Pages/Admin/_Layout.razor`). In the layout for the separate area, set the `<base>` tag `href` to match the area's folder (for example, `<base href="/Admin/" />`). For demonstration purposes, add `~/` to the static resources in the page. For example:
   * `~/css/bootstrap/bootstrap.min.css`
   * `~/css/site.css`
@@ -414,7 +414,7 @@ The Blazor WebAssembly app responds locally at `http://localhost:port/CoolApp`.
 In scenarios where an app requires a separate area with custom resources and Razor components:
 
 * Create a folder within the app's `Pages` folder to hold the resources. For example, an administator section of an app is created in a new folder named `Admin` (`Pages/Admin`).
-* Create a root page (`_Host.razor`) for the area. For example, create a `Pages/Admin/_Host.razor` file from the app's main root page (`Pages/_Host.razor`). Don't provide an `@page` directive in the Admin `_Host` page.
+* Create a root page (`_Host.cshtml`) for the area. For example, create a `Pages/Admin/_Host.cshtml` file from the app's main root page (`Pages/_Host.cshtml`). Don't provide an `@page` directive in the Admin `_Host` page.
 * Add a layout to the area's folder (for example, `Pages/Admin/_Layout.razor`). In the layout for the separate area, set the `<base>` tag `href` to match the area's folder (for example, `<base href="/Admin/" />`). For demonstration purposes, add `~/` to the static resources in the page. For example:
   * `~/css/bootstrap/bootstrap.min.css`
   * `~/css/site.css`
