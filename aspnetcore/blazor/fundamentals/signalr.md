@@ -267,39 +267,6 @@ To adjust the reconnection retry count and interval, set the number of retries (
 
 For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 
-## Hide or replace the reconnection display (Blazor Server)
-
-To hide the reconnection display, set the reconnection handler's `_reconnectionDisplay` to an empty object (`{}` or `new Object()`).
-
-`Pages/_Layout.cshtml`:
-
-```cshtml
-<body>
-    ...
-
-    <script src="_framework/blazor.server.js" autostart="false"></script>
-    <script>
-      window.addEventListener('beforeunload', function () {
-        Blazor.defaultReconnectionHandler._reconnectionDisplay = {};
-      });
-
-      Blazor.start();
-    </script>
-</body>
-```
-
-To replace the reconnection display, set `_reconnectionDisplay` in the preceding example to the element for display:
-
-```javascript
-Blazor.defaultReconnectionHandler._reconnectionDisplay = 
-  document.getElementById("{ELEMENT ID}");
-```
-
-The placeholder `{ELEMENT ID}` is the ID of the HTML element to display.
-
-For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
-
-
 ## Disconnect the Blazor circuit from the client (Blazor Server)
 
 By default, a Blazor circuit is disconnected when the [`unload` page event](https://developer.mozilla.org/docs/Web/API/Window/unload_event) is triggered. To disconnect the circuit for other scenarios on the client, invoke `Blazor.disconnect` in the appropriate event handler. In the following example, the circuit is disconnected when the page is hidden ([`pagehide` event](https://developer.mozilla.org/docs/Web/API/Window/pagehide_event)):
