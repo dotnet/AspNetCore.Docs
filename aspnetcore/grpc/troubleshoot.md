@@ -222,4 +222,59 @@ The preceding code:
 * Configures a channel to use `SubdirectoryHandler`.
 * Calls the gRPC service with `SayHelloAsync`. The gRPC call is sent to `https://localhost:5001/MyApp/greet.Greeter/SayHello`.
 
+Alternatively, a client factory can be configured with `SubdirectoryHandler` by using <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A>.
+
+::: moniker range="< aspnetcore-6.0"
+
+## Configure gRPC client to use HTTP/3
+
+The .NET gRPC client supports HTTP/3 with .NET 6 or later. If the server sends an `alt-svc` response header to the client that indicates the server supports HTTP/3, the client will automatically upgrade its connection to HTTP/3. For information about how to enable HTTP/3 on the server, see [Use HTTP/3 with the ASP.NET Core Kestrel web server](xref:fundamentals/servers/kestrel/http3).
+
+HTTP/3 support is in preview in .NET 6, and needs to be enabled via a configuration flag:
+
+```xml
+<ItemGroup>
+  <RuntimeHostConfigurationOption Include="System.Net.SocketsHttpHandler.Http3Support" Value="true" />
+</ItemGroup>
+```
+
+`System.Net.SocketsHttpHandler.Http3Support` can also be set using [AppContext.SetSwitch](xref:System.AppContext.SetSwitch%2A).
+
+It is also possible to force a gRPC client to use HTTP/3. Forcing HTTP/3 avoids the overhead of upgrading the request. This can be done using the `Http3Handler` specified below:
+
+```csharp
+/// <summary>
+/// A delegating handler that changes the request HTTP version to HTTP/3.
+/// </summary>
+public class Http3Handler : DelegatingHandler
+{
+    public Http3Handler() { }
+    public Http3Handler(HttpMessageHandler innerHandler) : base(innerHandler) { }
+
+    protected override Task<HttpResponseMessage> SendAsync(
+        HttpRequestMessage request, CancellationToken cancellationToken)
+    {
+        request.Version = HttpVersion.Version30;
+        request.VersionPolicy = HttpVersionPolicy.RequestVersionExact;
+
+        return base.SendAsync(request, cancellationToken);
+    }
+}
+```
+
+`Http3Handler` is used when the gRPC channel is created. The following code creates a channel configured to use `Http3Handler`.
+
+```csharp
+var handler = new Http3Handler(new HttpClientHandler());
+
+var channel = GrpcChannel.ForAddress("https://localhost:5001", new GrpcChannelOptions { HttpHandler = handler });
+var client = new Greet.GreeterClient(channel);
+
+var reply = await client.SayHelloAsync(new HelloRequest { Name = ".NET" });
+```
+
+Alternatively, a client factory can be configured with `Http3Handler` by using <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A>.
+
+::: moniker-end
+
 [!INCLUDE[](~/includes/gRPCazure.md)]
