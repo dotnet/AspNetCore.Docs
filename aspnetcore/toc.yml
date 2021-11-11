@@ -1408,6 +1408,9 @@
     - name: 5.0 Code to 6.0
       displayName: migrate, migration
       uid: migration/50-to-60-samples
+    - name: 3.1 to 6.0
+      displayName: migrate, migration, LTS
+      uid: migration/31-to-60
     - name: 3.1 to 5.0
       displayName: migrate, migration
       uid: migration/31-to-50
