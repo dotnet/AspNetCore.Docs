@@ -224,7 +224,7 @@ The preceding code:
 
 Alternatively, a client factory can be configured with `SubdirectoryHandler` by using <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A>.
 
-::: moniker range="< aspnetcore-6.0"
+::: moniker range=">= aspnetcore-6.0"
 
 ## Configure gRPC client to use HTTP/3
 
