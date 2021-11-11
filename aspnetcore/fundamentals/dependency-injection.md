@@ -94,7 +94,7 @@ The framework provides a robust [logging](xref:fundamentals/logging/index) syste
 
 Using the preceding code, there is no need to update *Program.cs*, because [logging](xref:fundamentals/logging/index) is provided by the framework.
 
-## Services injected into Program.c
+## Services injected into Program.cs
 
 Any service registered with the DI container can be resolved from `app.Services` in *Program.cs*:
 
