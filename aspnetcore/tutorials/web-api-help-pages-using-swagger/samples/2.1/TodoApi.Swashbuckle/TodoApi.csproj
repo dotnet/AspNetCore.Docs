@@ -5,12 +5,10 @@
     <ProjectUISubcaption>Swashbuckle - ASP.NET Core 2.1</ProjectUISubcaption>
   </PropertyGroup>
 
-  <!-- <snippet_SuppressWarnings> -->
   <PropertyGroup>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <NoWarn>$(NoWarn);1591</NoWarn>
   </PropertyGroup>
-  <!-- </snippet_SuppressWarnings> -->
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />

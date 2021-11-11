@@ -126,26 +126,26 @@ XML comments can be enabled with the following approaches:
 * Right-click the project in **Solution Explorer** and select **Edit <project_name>.csproj**.
 * Manually add the highlighted lines to the *.csproj* file:
 
-:::code language="xml" source="web-api-help-pages-using-swagger/samples/6.0/SwashbuckleSample/SwashbuckleSample.csproj" id="snippet_Documentation" highlight="1-2,4":::
+:::code language="xml" source="web-api-help-pages-using-swagger/samples/6.0/SwashbuckleSample/SwashbuckleSample.csproj" range="9-12" highlight="1-2,4":::
 
 #### [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * From the *Solution Pad*, press **control** and click the project name. Navigate to **Tools** > **Edit File**.
 * Manually add the highlighted lines to the *.csproj* file:
 
-:::code language="xml" source="web-api-help-pages-using-swagger/samples/6.0/SwashbuckleSample/SwashbuckleSample.csproj" id="snippet_Documentation" highlight="1-2,4":::
+:::code language="xml" source="web-api-help-pages-using-swagger/samples/6.0/SwashbuckleSample/SwashbuckleSample.csproj" range="9-12" highlight="1-2,4":::
 
 #### [Visual Studio Code](#tab/visual-studio-code)
 
 Manually add the highlighted lines to the *.csproj* file:
 
-:::code language="xml" source="web-api-help-pages-using-swagger/samples/6.0/SwashbuckleSample/SwashbuckleSample.csproj" id="snippet_Documentation" highlight="1-2,4":::
+:::code language="xml" source="web-api-help-pages-using-swagger/samples/6.0/SwashbuckleSample/SwashbuckleSample.csproj" range="9-12" highlight="1-2,4":::
 
 #### [.NET Core CLI](#tab/netcore-cli)
 
 Manually add the highlighted lines to the *.csproj* file:
 
-:::code language="xml" source="web-api-help-pages-using-swagger/samples/6.0/SwashbuckleSample/SwashbuckleSample.csproj" id="snippet_Documentation" highlight="1-2,4":::
+:::code language="xml" source="web-api-help-pages-using-swagger/samples/6.0/SwashbuckleSample/SwashbuckleSample.csproj" range="9-12" highlight="1-2,4":::
 
 ---
 
@@ -157,7 +157,7 @@ warning CS1591: Missing XML comment for publicly visible type or member 'TodoCon
 
 To suppress warnings project-wide, define a semicolon-delimited list of warning codes to ignore in the project file. Appending the warning codes to `$(NoWarn);` applies the [C# default values](https://github.com/dotnet/sdk/blob/2eb6c546931b5bcb92cd3128b93932a980553ea1/src/Tasks/Microsoft.NET.Build.Tasks/targets/Microsoft.NET.Sdk.CSharp.props#L16) too.
 
-:::code language="xml" source="web-api-help-pages-using-swagger/samples/6.0/SwashbuckleSample/SwashbuckleSample.csproj" id="snippet_Documentation" highlight="3":::
+:::code language="xml" source="web-api-help-pages-using-swagger/samples/6.0/SwashbuckleSample/SwashbuckleSample.csproj" range="9-12" highlight="3":::
 
 To suppress warnings only for specific members, enclose the code in [#pragma warning](/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-pragma-warning) preprocessor directives. This approach is useful for code that shouldn't be exposed via the API docs. In the following example, warning code CS1591 is ignored for the entire `TodoContext` class. Enforcement of the warning code is restored at the close of the class definition. Specify multiple warning codes with a comma-delimited list.
 
@@ -195,7 +195,7 @@ Mark the model with attributes, found in the [System.ComponentModel.DataAnnotati
 
 Add the `[Required]` attribute to the `Name` property of the `TodoItem` class:
 
-:::code language="csharp" source="web-api-help-pages-using-swagger/samples/6.0/SwashbuckleSample/Models/TodoItem.cs?highlight=10":::
+:::code language="csharp" source="web-api-help-pages-using-swagger/samples/6.0/SwashbuckleSample/Models/TodoItem.cs" highlight="10":::
 
 The presence of this attribute changes the UI behavior and alters the underlying JSON schema:
 
@@ -372,26 +372,26 @@ XML comments can be enabled with the following approaches:
 * Right-click the project in **Solution Explorer** and select **Edit <project_name>.csproj**.
 * Manually add the highlighted lines to the *.csproj* file:
 
-:::code language="xml" source="web-api-help-pages-using-swagger/samples/2.1/TodoApi.Swashbuckle/TodoApi.csproj" id="snippet_SuppressWarnings" highlight="1-2,4":::
+:::code language="xml" source="web-api-help-pages-using-swagger/samples/2.1/TodoApi.Swashbuckle/TodoApi.csproj" range="8-11" highlight="1-2,4":::
 
 #### [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * From the *Solution Pad*, press **control** and click the project name. Navigate to **Tools** > **Edit File**.
 * Manually add the highlighted lines to the *.csproj* file:
 
-:::code language="xml" source="web-api-help-pages-using-swagger/samples/2.1/TodoApi.Swashbuckle/TodoApi.csproj" id="snippet_SuppressWarnings" highlight="1-2,4":::
+:::code language="xml" source="web-api-help-pages-using-swagger/samples/2.1/TodoApi.Swashbuckle/TodoApi.csproj" range="8-11" highlight="1-2,4":::
 
 #### [Visual Studio Code](#tab/visual-studio-code)
 
 Manually add the highlighted lines to the *.csproj* file:
 
-:::code language="xml" source="web-api-help-pages-using-swagger/samples/2.1/TodoApi.Swashbuckle/TodoApi.csproj" id="snippet_SuppressWarnings" highlight="1-2,4":::
+:::code language="xml" source="web-api-help-pages-using-swagger/samples/2.1/TodoApi.Swashbuckle/TodoApi.csproj" range="8-11" highlight="1-2,4":::
 
 #### [.NET Core CLI](#tab/netcore-cli)
 
 Manually add the highlighted lines to the *.csproj* file:
 
-:::code language="xml" source="web-api-help-pages-using-swagger/samples/2.1/TodoApi.Swashbuckle/TodoApi.csproj" id="snippet_SuppressWarnings" highlight="1-2,4":::
+:::code language="xml" source="web-api-help-pages-using-swagger/samples/2.1/TodoApi.Swashbuckle/TodoApi.csproj" range="8-11" highlight="1-2,4":::
 
 ---
 
@@ -403,7 +403,7 @@ warning CS1591: Missing XML comment for publicly visible type or member 'TodoCon
 
 To suppress warnings project-wide, define a semicolon-delimited list of warning codes to ignore in the project file. Appending the warning codes to `$(NoWarn);` applies the [C# default values](https://github.com/dotnet/sdk/blob/2eb6c546931b5bcb92cd3128b93932a980553ea1/src/Tasks/Microsoft.NET.Build.Tasks/targets/Microsoft.NET.Sdk.CSharp.props#L16) too.
 
-:::code language="xml" source="web-api-help-pages-using-swagger/samples/2.1/TodoApi.Swashbuckle/TodoApi.csproj" id="snippet_SuppressWarnings" highlight="3":::
+:::code language="xml" source="web-api-help-pages-using-swagger/samples/2.1/TodoApi.Swashbuckle/TodoApi.csproj" range="8-11" highlight="3":::
 
 To suppress warnings only for specific members, enclose the code in [#pragma warning](/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-pragma-warning) preprocessor directives. This approach is useful for code that shouldn't be exposed via the API docs. In the following example, warning code CS1591 is ignored for the entire `Program` class. Enforcement of the warning code is restored at the close of the class definition. Specify multiple warning codes with a comma-delimited list.
 
@@ -482,7 +482,7 @@ Mark the model with attributes, found in the [System.ComponentModel.DataAnnotati
 
 Add the `[Required]` attribute to the `Name` property of the `TodoItem` class:
 
-:::code language="csharp" source="web-api-help-pages-using-swagger/samples/2.0/TodoApi.Swashbuckle/Models/TodoItem.cs?highlight=10":::
+:::code language="csharp" source="web-api-help-pages-using-swagger/samples/2.0/TodoApi.Swashbuckle/Models/TodoItem.cs" highlight="10":::
 
 The presence of this attribute changes the UI behavior and alters the underlying JSON schema:
 
