@@ -5,22 +5,22 @@ namespace CachingMemorySample.Snippets.Pages
 {
     public class MyMemoryCacheModel : PageModel
     {
-        private readonly MemoryCache _memoryCache;
+        private readonly MyMemoryCache _myMemoryCache;
 
         public MyMemoryCacheModel(MyMemoryCache myMemoryCache) =>
-            _memoryCache = myMemoryCache.Cache;
+            _myMemoryCache = myMemoryCache;
 
         public void OnGetCacheSizeSetSize()
         {
             #region snippet_OnGetCacheSizeSetSize
-            if (!_memoryCache.TryGetValue(CacheKeys.Entry, out DateTime cacheValue))
+            if (!_myMemoryCache.Cache.TryGetValue(CacheKeys.Entry, out DateTime cacheValue))
             {
                 var cacheEntryOptions = new MemoryCacheEntryOptions()
                     .SetSize(1);
 
                 // cacheEntryOptions.Size = 1;
 
-                _memoryCache.Set(CacheKeys.Entry, cacheValue, cacheEntryOptions);
+                _myMemoryCache.Cache.Set(CacheKeys.Entry, cacheValue, cacheEntryOptions);
             }
             #endregion
         }
@@ -28,8 +28,8 @@ namespace CachingMemorySample.Snippets.Pages
         public void OnGetCacheCompact()
         {
             #region snippet_OnGetCacheCompact
-            _memoryCache.Remove(CacheKeys.Entry);
-            _memoryCache.Compact(.25);
+            _myMemoryCache.Cache.Remove(CacheKeys.Entry);
+            _myMemoryCache.Cache.Compact(.25);
             #endregion
         }
     }
