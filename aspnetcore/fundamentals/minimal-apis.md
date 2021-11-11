@@ -748,10 +748,6 @@ The following code uses an [OpenAPI grouping tag](https://swagger.io/docs/specif
 
 [!code-csharp[](minimal-apis/samples/todo/Program.cs?name=snippet_grp)]
 
-### Describe request body
-
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_fil2)]
-
 <!-- 
 # Differences between minimal APIs and APIs with controllers
 
