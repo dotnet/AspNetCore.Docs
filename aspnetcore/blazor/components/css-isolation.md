@@ -83,11 +83,6 @@ At build time, a project bundle is created with the convention `obj/{CONFIGURATI
 * `{TARGET FRAMEWORK}`: The target framework (for example, `net6.0`).
 * `{ASSEMBLY NAME}`: The app's assembly name (for example, `BlazorSample`).
 
-If other projects are utilized, such as NuGet packages or [Razor class libraries](xref:blazor/components/class-libraries), the bundled file:
-
-* References the styles using CSS imports.
-* Isn't published as a static web asset of the app that consumes the styles.
-
 ## Child component support
 
 By default, CSS isolation only applies to the component you associate with the format `{COMPONENT NAME}.razor.css`, where the placeholder `{COMPONENT NAME}` is usually the component name. To apply changes to a child component, use the `::deep` combinator to any descendant elements in the parent component's `.razor.css` file. The `::deep` combinator selects elements that are *descendants* of an element's generated scope identifier. 
@@ -207,7 +202,10 @@ To opt out of how Blazor publishes and loads scoped files at runtime, use the `D
 
 ## Razor class library (RCL) support
 
-Isolated styles for components in a [Razor class library (RCL)](xref:razor-pages/ui-class) are automatically bundled and linked for the consuming app.
+Isolated styles for components in a NuGet package or [Razor class library (RCL)](xref:razor-pages/ui-class) are automatically bundled. The bundled file:
+
+* References the styles using CSS imports.
+* Isn't published as a static web asset of the app that consumes the styles.
 
 For more information on RCLs, see the following articles:
 
@@ -287,11 +285,6 @@ At build time, a project bundle is created with the convention `obj/{CONFIGURATI
 * `{CONFIGURATION}`: The app's build configuration (for example, `Debug`, `Release`).
 * `{TARGET FRAMEWORK}`: The target framework (for example, `net6.0`).
 * `{ASSEMBLY NAME}`: The app's assembly name (for example, `BlazorSample`).
-
-If other projects are utilized, such as NuGet packages or [Razor class libraries](xref:blazor/components/class-libraries), the bundled file:
-
-* References the styles using CSS imports.
-* Isn't published as a static web asset of the app that consumes the styles.
 
 ## Child component support
 
@@ -412,7 +405,10 @@ To opt out of how Blazor publishes and loads scoped files at runtime, use the `D
 
 ## Razor class library (RCL) support
 
-Isolated styles for components in a [Razor class library (RCL)](xref:razor-pages/ui-class) are automatically bundled and linked for the consuming app.
+Isolated styles for components in a NuGet package or [Razor class library (RCL)](xref:razor-pages/ui-class) are automatically bundled. The bundled file:
+
+* References the styles using CSS imports.
+* Isn't published as a static web asset of the app that consumes the styles.
 
 For more information on RCLs, see the following articles:
 
