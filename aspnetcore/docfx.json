@@ -74,6 +74,9 @@
     "markdownEngineName": "markdig",
     "groups": {
       "group1": { "dest": "group1-dest", "moniker_range": ">= aspnetcore-1.0" }
-    }
+    },
+    "xrefservice": [
+      "https://xref.docs.microsoft.com/query?uid={uid}"
+    ]
   }
 }

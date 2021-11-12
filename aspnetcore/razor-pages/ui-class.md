@@ -579,7 +579,7 @@ When the app is published, the companion assets from all referenced projects and
 
 ## Additional resources
 
-* <xref:blazor/components/class-libraries
+* <xref:blazor/components/class-libraries>
 * <xref:blazor/components/css-isolation#razor-class-library-rcl-support>
 
 ::: moniker-end

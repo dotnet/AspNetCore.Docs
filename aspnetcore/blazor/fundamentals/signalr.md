@@ -159,6 +159,16 @@ The following table describes the CSS classes applied to the `components-reconne
 | `components-reconnect-failed`   | Reconnection failed, probably due to a network failure. To attempt reconnection, call `window.Blazor.reconnect()` in JavaScript. |
 | `components-reconnect-rejected` | Reconnection rejected. The server was reached but refused the connection, and the user's state on the server is lost. To reload the app, call `location.reload()` in JavaScript. This connection state may result when:<ul><li>A crash in the server-side circuit occurs.</li><li>The client is disconnected long enough for the server to drop the user's state. Instances of the user's components are disposed.</li><li>The server is restarted, or the app's worker process is recycled.</li></ul> |
 
+Customize the delay before the reconnection display appears by setting the `transition-delay` property in the site's CSS for the modal element. The following example sets the transition delay from 500 ms (default) to 1,000 ms (1 second).
+
+`wwwroot/css/site.css`:
+
+```css
+#components-reconnect-modal {
+    transition: visibility 0s linear 1000ms;
+}
+```
+
 ## Render mode (Blazor Server)
 
 By default, Blazor Server apps prerender the UI on the server before the client connection to the server is established. For more information, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
@@ -256,48 +266,6 @@ To adjust the reconnection retry count and interval, set the number of retries (
 ```
 
 For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
-
-## Hide or replace the reconnection display (Blazor Server)
-
-To hide the reconnection display, set the reconnection handler's `_reconnectionDisplay` to an empty object (`{}` or `new Object()`).
-
-`Pages/_Layout.cshtml`:
-
-```cshtml
-<body>
-    ...
-
-    <script src="_framework/blazor.server.js" autostart="false"></script>
-    <script>
-      window.addEventListener('beforeunload', function () {
-        Blazor.defaultReconnectionHandler._reconnectionDisplay = {};
-      });
-
-      Blazor.start();
-    </script>
-</body>
-```
-
-To replace the reconnection display, set `_reconnectionDisplay` in the preceding example to the element for display:
-
-```javascript
-Blazor.defaultReconnectionHandler._reconnectionDisplay = 
-  document.getElementById("{ELEMENT ID}");
-```
-
-The placeholder `{ELEMENT ID}` is the ID of the HTML element to display.
-
-For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
-
-Customize the delay before the reconnection display appears by setting the `transition-delay` property in the site's CSS for the modal element. The following example sets the transition delay from 500 ms (default) to 1,000 ms (1 second).
-
-`wwwroot/css/site.css`:
-
-```css
-#components-reconnect-modal {
-    transition: visibility 0s linear 1000ms;
-}
-```
 
 ## Disconnect the Blazor circuit from the client (Blazor Server)
 
@@ -495,6 +463,16 @@ The following table describes the CSS classes applied to the `components-reconne
 | `components-reconnect-failed`   | Reconnection failed, probably due to a network failure. To attempt reconnection, call `window.Blazor.reconnect()` in JavaScript. |
 | `components-reconnect-rejected` | Reconnection rejected. The server was reached but refused the connection, and the user's state on the server is lost. To reload the app, call `location.reload()` in JavaScript. This connection state may result when:<ul><li>A crash in the server-side circuit occurs.</li><li>The client is disconnected long enough for the server to drop the user's state. Instances of the user's components are disposed.</li><li>The server is restarted, or the app's worker process is recycled.</li></ul> |
 
+Customize the delay before the reconnection display appears by setting the `transition-delay` property in the site's CSS for the modal element. The following example sets the transition delay from 500 ms (default) to 1,000 ms (1 second).
+
+`wwwroot/css/site.css`:
+
+```css
+#components-reconnect-modal {
+    transition: visibility 0s linear 1000ms;
+}
+```
+
 ## Render mode (Blazor Server)
 
 By default, Blazor Server apps prerender the UI on the server before the client connection to the server is established. For more information, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
@@ -592,48 +570,6 @@ To adjust the reconnection retry count and interval, set the number of retries (
 ```
 
 For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
-
-## Hide or replace the reconnection display (Blazor Server)
-
-To hide the reconnection display, set the reconnection handler's `_reconnectionDisplay` to an empty object (`{}` or `new Object()`).
-
-`Pages/_Host.cshtml`:
-
-```cshtml
-<body>
-    ...
-
-    <script src="_framework/blazor.server.js" autostart="false"></script>
-    <script>
-      window.addEventListener('beforeunload', function () {
-        Blazor.defaultReconnectionHandler._reconnectionDisplay = {};
-      });
-
-      Blazor.start();
-    </script>
-</body>
-```
-
-To replace the reconnection display, set `_reconnectionDisplay` in the preceding example to the element for display:
-
-```javascript
-Blazor.defaultReconnectionHandler._reconnectionDisplay = 
-  document.getElementById("{ELEMENT ID}");
-```
-
-The placeholder `{ELEMENT ID}` is the ID of the HTML element to display.
-
-For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
-
-Customize the delay before the reconnection display appears by setting the `transition-delay` property in the site's CSS for the modal element. The following example sets the transition delay from 500 ms (default) to 1,000 ms (1 second).
-
-`wwwroot/css/site.css`:
-
-```css
-#components-reconnect-modal {
-    transition: visibility 0s linear 1000ms;
-}
-```
 
 ## Disconnect the Blazor circuit from the client (Blazor Server)
 
@@ -923,38 +859,6 @@ To adjust the reconnection retry count and interval, set the number of retries (
     </script>
 </body>
 ```
-
-For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
-
-## Hide or replace the reconnection display (Blazor Server)
-
-To hide the reconnection display, set the reconnection handler's `_reconnectionDisplay` to an empty object (`{}` or `new Object()`).
-
-`Pages/_Host.cshtml`:
-
-```cshtml
-<body>
-    ...
-
-    <script src="_framework/blazor.server.js" autostart="false"></script>
-    <script>
-      window.addEventListener('beforeunload', function () {
-        Blazor.defaultReconnectionHandler._reconnectionDisplay = {};
-      });
-
-      Blazor.start();
-    </script>
-</body>
-```
-
-To replace the reconnection display, set `_reconnectionDisplay` in the preceding example to the element for display:
-
-```javascript
-Blazor.defaultReconnectionHandler._reconnectionDisplay = 
-  document.getElementById("{ELEMENT ID}");
-```
-
-The placeholder `{ELEMENT ID}` is the ID of the HTML element to display.
 
 For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 

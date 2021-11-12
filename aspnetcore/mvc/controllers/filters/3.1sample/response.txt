@@ -1,9 +1,0 @@
-author: Rick Anderson
-content-length: 31
-content-type: text/plain; charset=utf-8
-date: Mon, 23 Dec 2019 22:43:31 GMT
-editor: Joe Smith
-globaladdheader: Result filter added to MvcOptions.Filters
-server: Microsoft-IIS/10.0
-status: 200
-x-powered-by: ASP.NET

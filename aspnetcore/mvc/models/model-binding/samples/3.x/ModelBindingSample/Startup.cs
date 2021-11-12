@@ -11,7 +11,7 @@ namespace ModelBindingSample
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            #region snippet_ValueProvider
+            // <snippet_ValueProvider>
             services.AddRazorPages()
                 .AddMvcOptions(options =>
             {
@@ -22,7 +22,7 @@ namespace ModelBindingSample
                     new SuppressChildValidationMetadataProvider(typeof(System.Guid)));
             })
             .AddXmlSerializerFormatters();
-            #endregion
+            // </snippet_ValueProvider>
 
         }
 

@@ -36,7 +36,7 @@ namespace ModelBindingSample.Pages.InstructorsWithCollection
                 }
             }
 
-            #region snippet_TryUpdate
+            // <snippet_TryUpdate>
             if (await TryUpdateModelAsync<InstructorWithCollection>(
                 newInstructor,
                 "Instructor",
@@ -47,7 +47,7 @@ namespace ModelBindingSample.Pages.InstructorsWithCollection
             }
             PopulateAssignedCourseData(newInstructor);
             return Page();
-            #endregion
+            // </snippet_TryUpdate>
         }
     }
 }
