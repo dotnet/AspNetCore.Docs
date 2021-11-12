@@ -1,9 +1,9 @@
 ﻿public interface IHelloService
 {
-    public string? HelloMessage {  get; set; }
+    public string HelloMessage { get; }
 }
 
 public class HelloService : IHelloService
 {
-    public string? HelloMessage { get; set; } = "Hello World";
+    public string HelloMessage => "Hello World";
 }
