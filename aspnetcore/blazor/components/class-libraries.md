@@ -176,7 +176,7 @@ For library components that use [CSS isolation](xref:blazor/components/css-isola
 @import '_content/ClassLib/ClassLib.bundle.scp.css';
 ```
 
-For the preceding examples, `Component1`'s stylesheet (`Component1.razor.css`) is included automatically.
+For the preceding examples, `Component1`'s stylesheet (`Component1.razor.css`) is bundled automatically.
 
 `Component1.razor.css` in the `ComponentLibrary` RCL:
 
@@ -533,7 +533,7 @@ For library components that use [CSS isolation](xref:blazor/components/css-isola
 @import '_content/ClassLib/ClassLib.bundle.scp.css';
 ```
 
-For the preceding examples, `Component1`'s stylesheet (`Component1.razor.css`) is included automatically.
+For the preceding examples, `Component1`'s stylesheet (`Component1.razor.css`) is bundled automatically.
 
 `Component1.razor.css` in the `ComponentLibrary` RCL:
 
