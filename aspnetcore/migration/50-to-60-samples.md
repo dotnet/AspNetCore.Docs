@@ -215,7 +215,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 ## Change the web root
 
-By default, the web root is relative to the content root in the `wwwroot` folder. Web root is where the static files middleware looks for static files. Web root can be changed by using the <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseWebRoot%2A> method on the [`WebApplicationBuilder.WebHost`](xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.WebHost) property:
+By default, the web root is relative to the content root in the `wwwroot` folder. Web root is where the static files middleware looks for static files. Web root can be changed by setting the <xref:Microsoft.AspNetCore.Builder.WebApplicationOptions.WebRootPath> property on <xref:Microsoft.AspNetCore.Builder.WebApplicationOptions>:
 
 ### ASP.NET Core 5
 
