@@ -27,10 +27,10 @@ namespace WebApiSample.Controllers
             return _petsInMemoryStore;
         }
 
-        #region snippet_DogsOnly
+        // <snippet_DogsOnly>
         [HttpGet("{id}")]
         public ActionResult<Pet> GetById(int id, bool dogsOnly)
-        #endregion
+        // </snippet_DogsOnly>
         {
             var pet = _petsInMemoryStore.FirstOrDefault(
                 p => p.Id == id &&

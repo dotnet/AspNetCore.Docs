@@ -4,14 +4,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ModelBindingSample.Models
 {
-    #region snippet_FromQuery
+    // <snippet_FromQuery>
     public class Instructor
     {
         public int ID { get; set; }
 
         [FromQuery(Name = "Note")]
         public string NoteFromQueryString { get; set; }
-        #endregion
+        // </snippet_FromQuery>
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
