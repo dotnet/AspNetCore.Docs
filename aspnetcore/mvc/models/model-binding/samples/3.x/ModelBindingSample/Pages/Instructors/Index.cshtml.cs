@@ -6,16 +6,16 @@ namespace ModelBindingSample.Pages.Instructors
 {
     public class IndexModel : InstructorsPageModel
     {
-        #region snippet_SupportsGet
+        // <snippet_SupportsGet>
         [BindProperty(Name = "ai_user", SupportsGet = true)]
         public string ApplicationInsightsCookie { get; set; }
-        #endregion
+        // </snippet_SupportsGet>
 
         public List<Instructor> Instructors { get; set; }
 
-        #region snippet_FromHeader
+        // <snippet_FromHeader>
         public void OnGet([FromHeader(Name = "Accept-Language")] string language)
-        #endregion
+        // </snippet_FromHeader>
         {
             Instructors = _instructorsInMemoryStore;
             ViewData["Language"] = language;

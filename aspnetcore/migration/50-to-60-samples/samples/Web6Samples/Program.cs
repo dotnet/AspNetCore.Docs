@@ -107,10 +107,12 @@ app.MapGet("/", () => "Hello World!");
 app.Run();
 #elif WR
 #region snippet_wr
-var builder = WebApplication.CreateBuilder(args);
-
-// Look for static files in webroot
-builder.WebHost.UseWebRoot("webroot");
+var builder = WebApplication.CreateBuilder(new WebApplicationOptions
+{
+    Args = args,
+    // Look for static files in webroot
+    WebRootPath = "webroot"
+});
 
 var app = builder.Build();
 #endregion
@@ -152,7 +154,7 @@ var helloService = app.Services.GetRequiredService<IHelloService>();
 
 app.MapGet("/", async context =>
 {
-    await context.Response.WriteAsync(helloService.HelloMessage!);
+    await context.Response.WriteAsync(helloService.HelloMessage);
 });
 
 app.Run();

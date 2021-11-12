@@ -287,7 +287,7 @@ The name of the connection string is passed in to the context by calling a metho
 
 ## Build the app
 
-Build the app. The compiler generates several `nullable` warnings. See [this GitHub issue](https://github.com/dotnet/Scaffolding/issues/1594) and [Nullable reference types](/dotnet/csharp/nullable-references) for more information.
+Build the app. The compiler generates several `nullable` warnings. See [this GitHub issue](https://github.com/dotnet/Scaffolding/issues/1594),  [Nullable reference types (NRTs) and .NET compiler null-state static analysis](xref:migration/50-to-60#review-breaking-changes), and [Nullable reference types](/dotnet/csharp/nullable-references) for more information.
 
 ### Fix the warning messages
 

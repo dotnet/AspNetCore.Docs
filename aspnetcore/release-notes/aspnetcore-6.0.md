@@ -701,3 +701,4 @@ Shadow copying in IIS is an experimental feature that is not guaranteed to be pa
 ## Additional resources
 
 * <xref:migration/50-to-60-samples>
+* [What's new in .NET 6](/dotnet/core/whats-new/dotnet-6)

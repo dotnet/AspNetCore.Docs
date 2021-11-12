@@ -3,7 +3,7 @@ using ModelBindingSample.Converters;
 
 namespace ModelBindingSample.Models
 {
-    #region snippet_Class
+    // <snippet_Class>
     [JsonConverter(typeof(ObjectIdConverter))]
     public struct ObjectId
     {
@@ -12,5 +12,5 @@ namespace ModelBindingSample.Models
 
         public int Id { get; }
     }
-    #endregion
+    // </snippet_Class>
 }
