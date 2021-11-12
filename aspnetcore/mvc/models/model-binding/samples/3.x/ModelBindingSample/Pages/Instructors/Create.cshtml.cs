@@ -3,14 +3,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ModelBindingSample.Pages.Instructors
 {
-    #region snippet_BindProperties
+    // <snippet_BindProperties>
     [BindProperties(SupportsGet = true)]
     public class CreateModel : InstructorsPageModel
     {
         public Instructor Instructor { get; set; }
-        #endregion
+        // </snippet_BindProperties>
 
-        #region snippet_HandleMBError
+        // <snippet_HandleMBError>
         public IActionResult OnPost()
         {
             if (!ModelState.IsValid)
@@ -21,6 +21,6 @@ namespace ModelBindingSample.Pages.Instructors
             _instructorsInMemoryStore.Add(Instructor);
             return RedirectToPage("./Index");
         }
-        #endregion
+        // </snippet_HandleMBError>
     }
 }
