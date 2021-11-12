@@ -154,7 +154,7 @@ var helloService = app.Services.GetRequiredService<IHelloService>();
 
 app.MapGet("/", async context =>
 {
-    await context.Response.WriteAsync(helloService.HelloMessage!);
+    await context.Response.WriteAsync(helloService.HelloMessage);
 });
 
 app.Run();
