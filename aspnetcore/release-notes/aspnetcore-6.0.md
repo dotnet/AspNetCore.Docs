@@ -544,7 +544,7 @@ The React template has been updated to [React 17](https://reactjs.org/blog/2020/
 
 The `Newtonsoft.Json` output formatter by default buffers responses up to 32 KiB in memory before buffering to disk. This is to avoid performing synchronous IO, which can result in other side-effects such as thread starvation and application deadlocks. However, if the response is larger than 32 KiB, considerable disk I/O occurs. The memory threshold is now configurable via the [MvcNewtonsoftJsonOptions.OutputFormatterMemoryBufferThreshold](xref:Microsoft.AspNetCore.Mvc.MvcNewtonsoftJsonOptions.OutputFormatterMemoryBufferThreshold) property before buffering to disk:
 
-[!code-csharp[](aspnetcore-6.0/samples/WebApp1/Program.cs?name=snippet_hdrs)]
+[!code-csharp[](aspnetcore-6.0/samples/WebApp1/Program.cs?name=snippet_jsonb)]
 
 For more information, see [this GitHub pull request](https://github.com/dotnet/aspnetcore/pull/32747) and the [NewtonsoftJsonOutputFormatterTest.cs](https://github.com/dotnet/aspnetcore/blob/v6.0.0/src/Mvc/Mvc.NewtonsoftJson/test/NewtonsoftJsonOutputFormatterTest.cs) file.
 
@@ -552,7 +552,7 @@ For more information, see [this GitHub pull request](https://github.com/dotnet/a
 
 New APIs were added to expose all common headers available on <!--REVIEW: System.Net.Http.HeaderNames changed to --> <xref:Microsoft.Net.Http.Headers.HeaderNames?displayProperty=fullName> as properties on the <xref:Microsoft.AspNetCore.Http.IHeaderDictionary> resulting in an easier to use API. For example, the in-line middleware in the following code gets and sets both request and response headers using the new APIs:
 
-[!code-csharp[](aspnetcore-6.0/samples/WebApp1/Program.cs?name=snippet_jsonb)]
+[!code-csharp[](aspnetcore-6.0/samples/WebApp1/Program.cs?name=snippet_hdrs)]
 
 For implemented headers the get and set accessors are implemented by going directly to the field and bypassing the lookup. For non-implemented headers, the accessors can bypass the initial lookup against implemented headers and directly perform the `Dictionary<string, StringValues>` lookup. Avoiding the lookup results in faster access for both scenarios.
 
