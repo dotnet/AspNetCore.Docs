@@ -202,10 +202,15 @@ To opt out of how Blazor publishes and loads scoped files at runtime, use the `D
 
 ## Razor class library (RCL) support
 
-Isolated styles for components in a NuGet package or [Razor class library (RCL)](xref:razor-pages/ui-class) are automatically bundled. The bundled file:
+Isolated styles for components in a NuGet package or [Razor class library (RCL)](xref:razor-pages/ui-class) are automatically bundled:
 
-* References the styles using CSS imports.
-* Isn't published as a static web asset of the app that consumes the styles.
+* The app uses CSS imports to reference the RCL's bundled styles. For a class library named `ClassLib` and a Blazor app with a `BlazorSample.styles.css` stylesheet, the RCL's stylesheet is imported at the top of the app's stylesheet:
+  
+  ```css
+  @import '_content/ClassLib/ClassLib.bundle.scp.css';
+  ```
+
+* The RCL's bundled styles aren't published as a static web asset of the app that consumes the styles.
 
 For more information on RCLs, see the following articles:
 
@@ -405,10 +410,15 @@ To opt out of how Blazor publishes and loads scoped files at runtime, use the `D
 
 ## Razor class library (RCL) support
 
-Isolated styles for components in a NuGet package or [Razor class library (RCL)](xref:razor-pages/ui-class) are automatically bundled. The bundled file:
+Isolated styles for components in a NuGet package or [Razor class library (RCL)](xref:razor-pages/ui-class) are automatically bundled:
 
-* References the styles using CSS imports.
-* Isn't published as a static web asset of the app that consumes the styles.
+* The app uses CSS imports to reference the RCL's bundled styles. For a class library named `ClassLib` and a Blazor app with a `BlazorSample.styles.css` stylesheet, the RCL's stylesheet is imported at the top of the app's stylesheet:
+  
+  ```css
+  @import '_content/ClassLib/ClassLib.bundle.scp.css';
+  ```
+
+* The RCL's bundled styles aren't published as a static web asset of the app that consumes the styles.
 
 For more information on RCLs, see the following articles:
 
