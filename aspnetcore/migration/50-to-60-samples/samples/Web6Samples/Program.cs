@@ -111,7 +111,7 @@ var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 {
     Args = args,
     // Look for static files in webroot
-    WebRootPath = "webRoot"
+    WebRootPath = "webroot"
 });
 
 var app = builder.Build();
