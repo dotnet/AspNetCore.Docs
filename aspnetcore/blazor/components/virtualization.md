@@ -106,7 +106,24 @@ private async ValueTask<ItemsProviderResult<Employee>> LoadEmployees(
 }
 ```
 
-<xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.RefreshDataAsync%2A?displayProperty=nameWithType> instructs the component to rerequest data from its <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemsProvider%2A>. This is useful when external data changes. There's no need to call <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.RefreshDataAsync%2A> when using <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.Items%2A>.
+<xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.RefreshDataAsync%2A?displayProperty=nameWithType> instructs the component to rerequest data from its <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemsProvider%2A>. This is useful when external data changes. There's no need to call <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.RefreshDataAsync%2A> when using <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.Items%2A>. 
+
+Note that `RefreshDataAsync` only updates the virtualize component's data content, without causing a re-render. In the event `RefreshDataAsync` is invoked from a Blazor event handler or component lifecycle method, this is not an issue since a render is automatically triggered at the event of the method. However, if `RefreshDataAsync` is triggered separately from a background task or event, a call to `StateHasChanged` should also be made to update the UI.
+
+```csharp
+Virtualize virtualizeComponent;
+protected override void OnInitialized()
+{
+   WeatherForecastSource.ForcecastUpdated += async () => 
+   {
+        await InvokeAsync(() =>
+        {
+           await virtualizeComponent.RefreshDataAsync();
+           StateHasChanged();
+        });
+   });
+}
+```
 
 ## Placeholder
 
