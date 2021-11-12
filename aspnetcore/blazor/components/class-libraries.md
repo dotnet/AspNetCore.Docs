@@ -170,7 +170,13 @@ Alternatively, add a [`@using`](xref:mvc/views/razor#using) directive and use th
 <Component1 />
 ```
 
-For library components that use [CSS isolation](xref:blazor/components/css-isolation), the component styles are automatically made available to the consuming app. There's no need to link the library's individual component stylesheets in the app that consumes the library. For the preceding examples, `Component1`'s stylesheet (`Component1.razor.css`) is included automatically.
+For library components that use [CSS isolation](xref:blazor/components/css-isolation), the component styles are automatically made available to the consuming app. There's no need to manually link or import the library's individual component stylesheets or it's bundled CSS file in the app that consumes the library. The app uses CSS imports to reference the RCL's bundled styles. The bundled styles aren't published as a static web asset of the app that consumes the library. For a class library named `ClassLib` and a Blazor app with a `BlazorSample.styles.css` stylesheet, the RCL's stylesheet is imported at the top of the app's stylesheet automatically at build time:
+  
+```css
+@import '_content/ClassLib/ClassLib.bundle.scp.css';
+```
+
+For the preceding examples, `Component1`'s stylesheet (`Component1.razor.css`) is included automatically.
 
 `Component1.razor.css` in the `ComponentLibrary` RCL:
 
