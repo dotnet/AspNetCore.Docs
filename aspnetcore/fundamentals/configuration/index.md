@@ -670,7 +670,7 @@ The following code reads the configuration and displays the values:
 
 [!code-csharp[](index/samples/6.x/ConfigSample/Pages/Array.cshtml.cs?name=snippet)]
 
-[!code-csharp[](index/samples/6.x/ConfigurationSample/Models/ArrayExample.cs?name=snippet1)]
+[!code-csharp[](index/samples/6.x/ConfigSample/Models/ArrayExample.cs?name=snippet)]
 
 The preceding code returns the following output:
 
