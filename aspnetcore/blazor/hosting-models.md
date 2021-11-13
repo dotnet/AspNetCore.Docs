@@ -76,9 +76,7 @@ The same .NET WebAssembly build tools used for AOT compilation also [relink the 
 
 Blazor WebAssembly includes support for trimming unused code from .NET Core framework libraries. For more information, see <xref:blazor/globalization-localization>. The .NET compiler further precompresses a Blazor WebAssembly app for a smaller app payload.
 
-Blazor WebAssembly apps can use [native dependencies](xref:blazor/host-and-deploy/webassembly#native-dependencies-support) built to run on WebAssembly.
-
-<!-- Change the cross-link to 'xref:blazor/webassembly-native-dependencies' after https://github.com/dotnet/AspNetCore.Docs/pull/23668 merges. -->
+Blazor WebAssembly apps can use [native dependencies](xref:blazor/webassembly-native-dependencies) built to run on WebAssembly.
 
 ::: moniker-end
 
