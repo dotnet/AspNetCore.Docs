@@ -3,7 +3,7 @@ title: "Tutorial: Create a minimal web API with ASP.NET Core"
 author: rick-anderson
 description: Learn how to build a minimal web API with ASP.NET Core.
 ms.author: riande
-ms.date: 10/24/2021
+ms.date: 11/12/2021
 monikerRange: '>= aspnetcore-6.0'
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, Models]
 uid: tutorials/min-web-api
@@ -56,7 +56,6 @@ This tutorial creates the following API:
 # [Visual Studio](#tab/visual-studio)
 
 * Start Visual Studio 2022 and select **Create a new project**.
-  ![Visual Studio new project start page](min-web-api/_static/create.png)
 * In the **Create a new project** dialog:
   * Enter `API` in the **Search for templates** search box.
   * Select the **ASP.NET Core Web API** template and select **Next**.
@@ -68,7 +67,7 @@ This tutorial creates the following API:
   * Remove **Use controllers (uncheck to use minimal APIs)**
   * Select **Create**
 
- ![Additional information](min-web-api/_static/add-info.png)
+ ![Additional information](min-web-api/_static/add-info2.png)
 
 <!-- 
 ![VS new project dialog](min-web-api/_static/5/vs.png)

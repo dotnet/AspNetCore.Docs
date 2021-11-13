@@ -4,12 +4,12 @@ using System.Linq;
 
 namespace ModelBindingSample.Pages.Instructors
 {
-    #region snippet_BindProperty
+    // <snippet_BindProperty>
     public class EditModel : InstructorsPageModel
     {
         [BindProperty]
         public Instructor Instructor { get; set; }
-        #endregion
+        // </snippet_BindProperty>
 
         public IActionResult OnGet(int? id)
         {

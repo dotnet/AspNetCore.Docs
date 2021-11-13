@@ -404,6 +404,7 @@ There are many third-party tools you can download to manage and view a SQLite da
 
 ## Seed the database
 
+<!-- Next version put it in the Data folder -->
 Create a new class named `SeedData` in the *Models* folder with the following code:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie60/Models/SeedData.cs?name=snippet_1)]

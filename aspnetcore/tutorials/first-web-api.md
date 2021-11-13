@@ -151,7 +151,7 @@ Run the app:
 * Select the **.NET Core** task template.
 * Press Ctrl+F5.
 
-In a browser, go to following URL: [https://localhost:5001/swagger](https://localhost:5001/swagger)
+In a browser, navigate to `https://localhost:<port>/swagger`, where `<port>` is the randomly chosen port number displayed in the output.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 

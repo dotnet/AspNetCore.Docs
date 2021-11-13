@@ -236,7 +236,7 @@ By default, the web root is relative to the content root in the `wwwroot` folder
 
 ### Custom dependency injection (DI) container
 
-The following sample use [Autofac](https://autofac.readthedocs.io/latest/integration/aspnetcore.html)
+The following example uses [Autofac](https://autofac.readthedocs.io/en/latest/integration/aspnetcore.html):
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -688,9 +688,9 @@ We recommend adding an extension method to <xref:Microsoft.AspNetCore.Http.IResu
 
 ## Authorization
 
-Routes can be protected using authorization policies. These can be declared via the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute or by using the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> method.
+Routes can be protected using authorization policies. These can be declared via the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute or by using the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> method:
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_auth1)]
+[!code-csharp[](minimal-apis/samples/WebRPauth/Program.cs?name=snippet_auth1&highlight=7-8,22)]
 
 The preceding code can be written with <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A>:
 
@@ -698,7 +698,7 @@ The preceding code can be written with <xref:Microsoft.AspNetCore.Builder.Author
 
 The following sample uses [policy-based authorization](xref:security/authorization/policies):
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_auth3)]
+[!code-csharp[](minimal-apis/samples/WebRPauth/Program.cs?name=snippet_auth3&range=7-8,22-26)]
 
 ### Allow unauthenticated users to access an endpoint
 
@@ -747,10 +747,6 @@ The following example uses the built-in result types to customize the response:
 The following code uses an [OpenAPI grouping tag](https://swagger.io/docs/specification/grouping-operations-with-tags/):
 
 [!code-csharp[](minimal-apis/samples/todo/Program.cs?name=snippet_grp)]
-
-### Describe request body
-
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_fil2)]
 
 <!-- 
 # Differences between minimal APIs and APIs with controllers

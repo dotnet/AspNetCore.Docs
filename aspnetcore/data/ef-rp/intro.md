@@ -26,7 +26,7 @@ This is the first in a series of tutorials that show how to use Entity Framework
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[VS prereqs](~/includes/net-core-prereqs-vs-5.0.md)]
+[!INCLUDE[VS prereqs](~/includes/net-prereqs-vs-6.0.md)]
 
 ### Database engines
 
@@ -34,7 +34,7 @@ The Visual Studio instructions use [SQL Server LocalDB](/sql/database-engine/con
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[VS Code prereqs](~/includes/net-core-prereqs-vsc-5.0.md)]
+[!INCLUDE[VSC prereqs](~/includes/net-prereqs-vsc-6.0.md)]
 
 Consider downloading and installing a third-party tool for managing and viewing a SQLite database, such as [DB Browser for SQLite](https://sqlitebrowser.org/).
 
@@ -78,9 +78,7 @@ Select *ContosoUniversity.csproj* to open the project.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Remove the comments from the *appsettings.Development.json* file so the SQLite connections string is used:
-  [!code-json[Main](intro/samples/cu50/appsettings.Development.json?highlight=10-13)]
-* Remove the comments from the *ContosoUniversity.csproj* file so `SQLiteVersion`   is defined:
+* Remove the comments from the *ContosoUniversity.csproj* file so `SQLiteVersion` is defined:
 
   ```xml
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -107,16 +105,22 @@ Run the project to seed the database.
 
 # [Visual Studio](#tab/visual-studio)
 
-1. Start Visual Studio and select **Create a new project**.
-1. In the **Create a new project** dialog, select **ASP.NET Core Web Application** > **Next**.
-1. In the **Configure your new project** dialog, enter `ContosoUniversity` for **Project name**. It's important to use this exact name including capitalization, so each `namespace` matches when code is copied.
-1. Select **Create**.
-1. In the **Create a new ASP.NET Core web application** dialog, select:
-    1. **.NET Core** and **ASP.NET Core 5.0** in the dropdowns.
-    1. **ASP.NET Core Web App**.
-    1. **Create**
-      ![New ASP.NET Core Project dialog](~/data/ef-rp/intro/_static/new-aspnet5.png)
-    
+1. Start Visual Studio 2022 and select **Create a new project**.
+
+   ![Create a new project from the start window](~/tutorials/razor-pages/razor-pages-start/_static/6/start-window-create-new-project.png)
+
+1. In the **Create a new project** dialog, select **ASP.NET Core Web App**, and then select **Next**.
+
+	![Create an ASP.NET Core Web App](~/tutorials/razor-pages/razor-pages-start/_static/6/np.png)
+	
+1. In the **Configure your new project** dialog, enter `ContosoUniversity` for **Project name**. It's important to name the project *ContosoUniversity*, including matching the capitalization, so the namespaces will match when you copy and paste example code.
+
+1. Select **Next**.
+
+1. In the **Additional information** dialog, select **.NET 6.0 (Long-term support)** and then select **Create**.
+
+	 ![Additional information](~/tutorials/razor-pages/razor-pages-start/_static/6/additional-info.png)
+
 # [Visual Studio Code](#tab/visual-studio-code)
 
 * In a terminal, navigate to the folder in which the project folder should be created.
@@ -133,7 +137,7 @@ Run the project to seed the database.
 
 Copy and paste the following code into the *Pages/Shared/_Layout.cshtml* file:
 
-[!code-cshtml[Main](intro/samples/cu50/Pages/Shared/_Layout.cshtml?highlight=6,14,21-35,49)]
+[!code-cshtml[Main](intro/samples/cu60/Pages/Shared/_Layout.cshtml?highlight=6,15,22-36,50)]
 
 The layout file sets the site header, footer, and menu. The preceding code makes the following changes:
 
@@ -143,7 +147,7 @@ The layout file sets the site header, footer, and menu. The preceding code makes
 
 In *Pages/Index.cshtml*, replace the contents of the file with the following code:
 
-[!code-cshtml[Main](intro/samples/cu50/Pages/Index.cshtml)]
+[!code-cshtml[Main](intro/samples/cu60/Pages/Index.cshtml)]
 
 The preceding code replaces the text about ASP.NET Core with text about this app.
 
@@ -161,11 +165,9 @@ A student can enroll in any number of courses, and a course can have any number 
 
 ![Student entity diagram](intro/_static/student-entity.png)
 
-* Create a *Models* folder in the project folder. 
-
+* Create a *Models* folder in the project folder.
 * Create *Models/Student.cs* with the following code:
-
-  [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Models/Student.cs)]
+  [!code-csharp[Main](intro/samples/cu60/Models/Student.cs?name=snippet_first)]
 
 The `ID` property becomes the primary key column of the database table that corresponds to this class. By default, EF Core interprets a property that's named `ID` or `classnameID` as the primary key. So the alternative automatically recognized name for the `Student` class primary key is `StudentID`. For more information, see [EF Core - Keys](/ef/core/modeling/keys?tabs=data-annotations).
 
@@ -181,7 +183,7 @@ The `Enrollments` property is defined as `ICollection<Enrollment>` because there
 
 Create *Models/Enrollment.cs* with the following code:
 
-[!code-csharp[](intro/samples/cu50/Models/Enrollment.cs)]
+[!code-csharp[](intro/samples/cu60/Models/Enrollment.cs)]
 
 The `EnrollmentID` property is the primary key; this entity uses the `classnameID` pattern instead of `ID` by itself. For a production data model, many developers choose one pattern and use it consistently. This tutorial uses both just to illustrate that both work. Using `ID` without `classname` makes it easier to implement some kinds of data model changes.
 
@@ -199,13 +201,23 @@ EF Core interprets a property as a foreign key if it's named `<navigation proper
 
 Create *Models/Course.cs* with the following code:
 
-[!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Models/Course.cs)]
+  [!code-csharp[Main](intro/samples/cu60/Models/Course.cs?name=snippet_first)]
 
 The `Enrollments` property is a navigation property. A `Course` entity can be related to any number of `Enrollment` entities.
 
 The `DatabaseGenerated` attribute allows the app to specify the primary key rather than having the database generate it.
 
-Build the project to validate that there are no compiler errors.
+Build the app. The compiler generates several warnings about how `null` values are handled. See [this GitHub issue](https://github.com/dotnet/Scaffolding/issues/1594), [Nullable reference types](/dotnet/csharp/nullable-references), and [Tutorial: Express your design intent more clearly with nullable and non-nullable reference types](/dotnet/csharp/whats-new/tutorials/nullable-reference-types) for more information.
+
+To eliminate the warnings from nullable reference types, remove the following line from the *ContosoUniversity.csproj* file:
+
+```xml
+<Nullable>enable</Nullable>
+```
+
+The scaffolding engine currently does not support [nullable reference types](/dotnet/csharp/nullable-references), therefore the models used in scaffold can't either.
+
+Remove the `?` nullable reference type annotation from `public string? RequestId { get; set; }` in *Pages/Error.cshtml.cs* so the project builds without compiler warnings.
 
 ## Scaffold Student pages
 
@@ -226,9 +238,9 @@ In this section, the ASP.NET Core scaffolding tool is used to generate:
   * In the **Data context class** row, select the **+** (plus) sign.
     * Change the data context name to end in `SchoolContext` rather than `ContosoUniversityContext`. The updated context name: `ContosoUniversity.Data.SchoolContext`
     * Select **Add** to finish adding the data context class.
-   * Select **Add** to finish the **Add Razor Pages** dialog.
+    * Select **Add** to finish the **Add Razor Pages** dialog.
 
-If scaffolding fails with the error `'Install the package Microsoft.VisualStudio.Web.CodeGeneration.Design and try again.'`, run the scaffold tool again or see [this GitHub issue](https://github.com/dotnet/Scaffolding/issues/1540).
+<!-- If scaffolding fails with the error `'Install the package Microsoft.VisualStudio.Web.CodeGeneration.Design and try again.'`, run the scaffold tool again or see [this GitHub issue](https://github.com/dotnet/Scaffolding/issues/1540). -->
 
 The following packages are automatically installed:
 
@@ -241,12 +253,12 @@ The following packages are automatically installed:
 * Run the following .NET Core CLI commands to install required NuGet packages:
 
   ```dotnetcli
-  dotnet add package Microsoft.EntityFrameworkCore.SQLite -v 5.0.0-*
-  dotnet add package Microsoft.EntityFrameworkCore.SqlServer -v 5.0.0-*
-  dotnet add package Microsoft.EntityFrameworkCore.Design -v 5.0.0-*
-  dotnet add package Microsoft.EntityFrameworkCore.Tools -v 5.0.0-*
-  dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design -v 5.0.0-*
-  dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore -v 5.0.0-*  
+  dotnet add package Microsoft.EntityFrameworkCore.SQLite
+  dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+  dotnet add package Microsoft.EntityFrameworkCore.Design
+  dotnet add package Microsoft.EntityFrameworkCore.Tools
+  dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+  dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
   ```
 
    The `Microsoft.VisualStudio.Web.CodeGeneration.Design` package is required for scaffolding. Although the app won't use SQL Server, the scaffolding tool needs the SQL Server package.
@@ -287,7 +299,7 @@ The scaffolding process:
   * *Edit.cshtml* and *Edit.cshtml.cs*
   * *Index.cshtml* and *Index.cshtml.cs*
 * Creates *Data/SchoolContext.cs*.
-* Adds the context to dependency injection in *Startup.cs*.
+* Adds the context to dependency injection in *Program.cs*.
 * Adds a database connection string to *appsettings.json*.
 
 ## Database connection string
@@ -298,17 +310,19 @@ The scaffolding tool generates a connection string in the *appsettings.json* fil
 
 The connection string specifies [SQL Server LocalDB](/sql/database-engine/configure-windows/sql-server-2016-express-localdb):
 
-[!code-json[Main](intro/samples/cu50/appsettings1.json?highlight=11)]
+[!code-json[Main](intro/samples/cu60/appsettings.json?highlight=10)]
 
 LocalDB is a lightweight version of the SQL Server Express Database Engine and is intended for app development, not production use. By default, LocalDB creates *.mdf* files in the `C:/Users/<user>` directory.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Shorten the SQLite connection string to *CU.db*:
+Rename the connection string key to `SchoolContextSQLite` and shorten value to *CU.db*:
 
-[!code-json[Main](intro/samples/cu50/appsettingsSQLite.json?highlight=11)]
+[!code-json[Main](intro/samples/cu60/appsettings.Development.json?highlight=10)]
 
 Don't change the directory without making sure it's valid.
+
+Renaming the connection string key to `SchoolContextSQLite` helps the author maintain one sample that supports both the SQLlite and SQL Server.
 
 ---
 
@@ -339,9 +353,9 @@ The highlighted code:
   * Is required because later in the tutorial the `Student` entity will have references to the other entities.
   <!-- Review, OnModelCreating needs review -->
 
-Build the project to verify there are no compiler errors.
+We hope to [fix this issue](https://github.com/dotnet/Scaffolding/issues/1594) in a future release.
 
-## Startup.cs
+## Program.cs
 
 ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-injection). Services such as the `SchoolContext` are registered with dependency injection during app startup. Components that require these services, such as Razor Pages, are provided these services via constructor parameters. The constructor code that gets a database context instance is shown later in the tutorial.
 
@@ -351,19 +365,19 @@ The scaffolding tool automatically registered the context class with the depende
 
 The following highlighted lines were added by the scaffolder:
 
-[!code-csharp[Main](intro/samples/cu30/Startup.cs?name=snippet_ConfigureServices&highlight=5-6)]
+[!code-csharp[Main](intro/samples/cu60/Program.cs?name=snippet_sx&highlight=1-2,7-8)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Verify the code added by the scaffolder calls `UseSqlite`.
+Verify the code added by the scaffolder calls <xref:Microsoft.EntityFrameworkCore.SqliteDbContextOptionsBuilderExtensions.UseSqlite%2A>.
 
-[!code-csharp[Main](intro/samples/cu30/StartupSQLite.cs?name=snippet_ConfigureServices&highlight=5-6)]
+[!code-csharp[Main](intro/samples/cu60/Program.cs?name=snippet_sqlite&highlight=1-2,7-8)]
 
-See [Use SQLite for development, SQL Server for production](xref:tutorials/razor-pages/model?tabs=visual-studio-code#use-sqlite-for-development-sql-server-for-production) for information on using a production database.
+See [Use SQLite for development, SQL Server for production](xref:tutorials/razor-pages/model?tabs=visual-studio-code#sqlite-ss-6) for information on using a production database.
 
 ---
 
-The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
+The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* or the *appsettings.Developement.json* file.
 
 <a name="dbx"></a>
 
@@ -373,7 +387,7 @@ Add <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptio
 
 # [Visual Studio](#tab/visual-studio)
 
-[!code-csharp[Main](intro/samples/cu50/Startup.cs?name=snippet&highlight=8,15-16)]
+[!code-csharp[Main](intro/samples/cu60/Program.cs?name=snippet_sx_filter&highlight=10,18-23)]
 
 Add the [Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) NuGet package.
 
@@ -385,8 +399,7 @@ Install-Package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!code-csharp[Main](intro/samples/cu50/StartupSQLite.cs?name=snippet_ConfigureServices&highlight=8,16)]
-
+[!code-csharp[Main](intro/samples/cu60/Program.cs?name=snippet_sqlite_filter&highlight=10,18-23)]
 ---
 
 The `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` NuGet package provides ASP.NET Core middleware for Entity Framework Core error pages. This middleware helps to detect and diagnose errors with Entity Framework Core migrations.
@@ -397,7 +410,16 @@ The `AddDatabaseDeveloperPageExceptionFilter` provides helpful error information
 
 Update *Program.cs* to create the database if it doesn't exist:
 
-[!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Program.cs?highlight=1-2,14-18,21-38)]
+# [Visual Studio](#tab/visual-studio)
+
+<!-- make a copy of Program.cs to ProgramEnsure.cs with // DbInitializer.Initialize(context); commented out -->
+[!code-csharp[Main](intro/samples/cu60/ProgramEnsure.cs?name=snippet_sx_all&highlight=25-32)]
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+[!code-csharp[Main](intro/samples/cu60/ProgramEnsure.cs?name=snippet_sqlite_all&highlight=25-32)]
+
+---
 
 The [EnsureCreated](/dotnet/api/microsoft.entityframeworkcore.infrastructure.databasefacade.ensurecreated#Microsoft_EntityFrameworkCore_Infrastructure_DatabaseFacade_EnsureCreated) method takes no action if a database for the context exists. If no database exists, it creates the database and schema. `EnsureCreated` enables the following workflow for handling data model changes:
 
@@ -422,16 +444,13 @@ The `EnsureCreated` method creates an empty database. This section adds code tha
 
 Create *Data/DbInitializer.cs* with the following code:
 
-[!code-csharp[Main](intro/samples/cu50/Data/DbInitializer1.cs?name=snippet)]
+[!code-csharp[Main](intro/samples/cu60/Data/DbInitializer1.cs?name=snippet)]
 
 The code checks if there are any students in the database. If there are no students, it adds test data to the database. It creates the test data in arrays rather than `List<T>` collections to optimize performance.
 
 * In *Program.cs*, remove `//` from the `DbInitializer.Initialize` line:
 
-  ```csharp
-    context.Database.EnsureCreated();
-    DbInitializer.Initialize(context);
-  ```
+ [!code-csharp[Main](intro/samples/cu60/Program.cs?name=snippet_ensure&highlight=6)]
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -469,7 +488,7 @@ Use a SQLite tool to view the database schema and seeded data. The database file
 
 ---
 
-## Asynchronous code
+## Asynchronous EF methods in ASP.NET Core web apps
 
 Asynchronous programming is the default mode for ASP.NET Core and EF Core.
 
@@ -512,15 +531,14 @@ Enumerating a large table in a view could return a partially constructed HTTP 20
 
 <xref:Microsoft.AspNetCore.Mvc.MvcOptions.MaxModelBindingCollectionSize> defaults to 1024. The following code sets `MaxModelBindingCollectionSize`:
 
-[!code-csharp[Main](intro/samples/cu50/StartupMaxMBsize.cs?name=snippet_ConfigureServices)]
+<!-- Review: If I set MaxModelBindingCollectionSize to 3, it still returns all the rows. Is there a minimum? -->
+ [!code-csharp[Main](intro/samples/cu60/ProgramEnsure.cs?name=snippet&highlight=16-20)]
 
 See [Configuration](xref:fundamentals/configuration/index) for information on configuration settings like `MyMaxModelBindingCollectionSize`.
 
 Paging is covered later in the tutorial.
 
 For more information, see [Performance considerations (EF)](/dotnet/framework/data/adonet/ef/performance-considerations).
-
-[!INCLUDE[s](~/includes/sql-log.md)]
 
 ## Next steps
 
@@ -1030,9 +1048,7 @@ Select *ContosoUniversity.csproj* to open the project.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Remove the comments from the *appsettings.Development.json* file so the SQLite connections string is used:
-  [!code-json[Main](intro/samples/cu50/appsettings.Development.json?highlight=10-13)]
-* Remove the comments from the *ContosoUniversity.csproj* file so `SQLiteVersion`   is defined:
+* Remove the comments from the *ContosoUniversity.csproj* file so `SQLiteVersion` is defined:
 
   ```xml
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
