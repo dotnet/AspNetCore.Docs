@@ -84,7 +84,6 @@ public class Startup
 #elif V60A
 #region snippet_60a
 using Autofac;
-
 public class Startup
 {
     public Startup(IConfiguration configuration)
