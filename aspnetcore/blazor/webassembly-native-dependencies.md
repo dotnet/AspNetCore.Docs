@@ -103,7 +103,7 @@ NuGet packages can contain native dependencies for use on WebAssembly. These lib
 [SkiaSharp](https://github.com/mono/SkiaSharp) is a cross-platform 2D graphics library for .NET based on the native [Skia graphics library](https://skia.org/), and it now has preview support for Blazor WebAssembly.
 
 > [!WARNING]
-> [SkiaSharp](https://github.com/mono/SkiaSharp) and the [Skia graphics library](https://skia.org/) aren't owned or maintained by Microsoft. The demonstration example in this section is unsupported by Microsoft and shouldn't be used in production.
+> Experimental and preview features are provided for the purpose of collecting feedback and aren't supported for production use.
 
 To use SkiaSharp in a Blazor WebAssembly app:
 
@@ -113,8 +113,8 @@ To use SkiaSharp in a Blazor WebAssembly app:
    dotnet add package –-prerelease SkiaSharp.Views.Blazor
    ```
 
-   > [!NOTE]
-   > At the time of writing, the [`SkiaSharp.Views.Blazor`](https://www.nuget.org/packages/SkiaSharp.Views.Blazor) package is a prerelease NuGet package not intended for production use.
+   > [!WARNING]
+   > The [`SkiaSharp.Views.Blazor`](https://www.nuget.org/packages/SkiaSharp.Views.Blazor) package is a prerelease NuGet package not supported for production use.
 
 1. Add a `SKCanvasView` component to the app with the following:
 
