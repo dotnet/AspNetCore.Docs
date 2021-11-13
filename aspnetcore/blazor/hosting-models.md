@@ -15,7 +15,7 @@ Blazor is a web framework designed to run server-side in ASP.NET Core (*Blazor S
 
 ## Blazor Server
 
-With the Blazor Server hosting model, the app is executed on the server from within an ASP.NET Core app. UI updates, event handling, and JavaScript calls are handled over a [SignalR](xref:signalr/introduction) connection called a *circuit*. A circuit can tolerate temporary network interruptions and attempts to reconnect to the server when the connection is lost.
+With the Blazor Server hosting model, the app is executed on the server from within an ASP.NET Core app. UI updates, event handling, and JavaScript calls are handled over a [SignalR](xref:signalr/introduction) connection. The state on the server associated with each connected client is called a *circuit*. A circuit can tolerate temporary network interruptions and attempts by the client to reconnect to the server when the connection is lost.
 
 In a traditional server-rendered app, opening the same app in multiple browser screens (tabs or iframes) typically doesn't translate into additional resource demands on the server. In a Blazor Server app, each browser screen requires a separate circuit and separate instances of server-managed component state. Blazor considers closing a browser tab or navigating to an external URL a *graceful* termination. In the event of a graceful termination, the circuit and associated resources are immediately released. A client may also disconnect non-gracefully, for instance due to a network interruption. Blazor Server stores disconnected circuits for a configurable interval to allow the client to reconnect.
 
@@ -35,7 +35,7 @@ The Blazor Server hosting model has the following limitations:
 
 * Higher latency usually exists. Every user interaction involves a network hop.
 * There's no offline support. If the client connection fails, the app stops working.
-* Scalability for apps with many users requires server resources to handle multiple client connections and client state.
+* Scaling apps with many users requires server resources to handle multiple client connections and client state.
 * An ASP.NET Core server is required to serve the app. Serverless deployment scenarios aren't possible, such as serving the app from a Content Delivery Network (CDN).
 
 We recommend using the [Azure SignalR Service](/azure/azure-signalr) for Blazor Server apps. The service allows for scaling up a Blazor Server app to a large number of concurrent SignalR connections.
@@ -68,7 +68,7 @@ The Blazor WebAssembly hosting model has the following limitations:
 
 ::: moniker range=">= aspnetcore-6.0"
 
-Blazor WebAssembly includes support for trimming unused code from .NET Core framework libraries and the Blazor runtime. For more information, see <xref:blazor/globalization-localization> and <xref:blazor/host-and-deploy/webassembly#runtime-relinking>.
+Blazor WebAssembly includes support for trimming unused code from .NET Core framework libraries and the .NET runtime. For more information, see <xref:blazor/globalization-localization> and <xref:blazor/host-and-deploy/webassembly#runtime-relinking>.
 
 Blazor WebAssembly supports [ahead-of-time (AOT) compilation](/dotnet/standard/glossary#aot), where you can compile your .NET code directly into WebAssembly. AOT compilation results in runtime performance improvements at the expense of a larger app size. For more information, see <xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation>.
 
@@ -87,13 +87,14 @@ Choice of the Blazor hosting model is an early consideration for Blazor app deve
 | &nbsp; | Blazor Server | Blazor WebAssembly |
 | --- | :---: | :---: |
 | Complete .NET Core API compatibility          | ✔️ | ❌ |
-| Wide 3rd party .NET tooling support           | ✔️ | ❌ |
-| Small payload size with fast initial download | ✔️ | ❌ |
+| Direct access to server sources               | ✔️ | ❌ |
+| Small payload size with fast initial load time | ✔️ | ❌ |
 | App code secure and private on the server     | ✔️ | ❌&dagger; |
-| Run apps without a backing server             | ❌ | ✔️ |
+| Run apps offline once downloaded             | ❌ | ✔️ |
+| Static site hosting                          | ❌ | ✔️ |
 | Offloads processing to clients                | ❌ | ✔️ |
 
-&dagger;Blazor WebAssembly apps can use web API with ASP.NET Core Identity to keep C# code private and secure.
+&dagger;Blazor WebAssembly apps can use server-hosted APIs to access functionality that must be kept private and secure.
 
 ## Additional resources
 
