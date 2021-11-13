@@ -46,7 +46,9 @@ Blazor WebAssembly apps run client-side in the browser on a WebAssembly-based .N
 
 ![Blazor WebAssembly: The Blazor app runs on a UI thread inside the browser.](~/blazor/hosting-models/_static/blazor-webassembly.png)
 
-When the Blazor WebAssembly app is created for deployment without a backend ASP.NET Core app to serve its files, the app is called a *standalone* Blazor WebAssembly app. When the app is created for deployment with a backend app to serve its files, the app is called a *hosted* Blazor WebAssembly app. A hosted Blazor WebAssembly **`Client`** app typically interacts with the backend **`Server`** app over the network using web API calls or [SignalR](xref:signalr/introduction) (<xref:tutorials/signalr-blazor>).
+When the Blazor WebAssembly app is created for deployment without a backend ASP.NET Core app to serve its files, the app is called a *standalone* Blazor WebAssembly app. When the app is created for deployment with a backend app to serve its files, the app is called a *hosted* Blazor WebAssembly app.
+
+Using hosted Blazor WebAssembly, you get a full-stack web development experience with .NET, including the ability to share code between the client and server apps, support for prerendering, and integration with MVC and Razor Pages. A hosted client app can interact with its backend server app over the network using a variety of messaging frameworks and protocols, such as [web API](xref:web-api/index), [gRPC-web](xref:grpc/index), and [SignalR](xref:signalr/introduction) (<xref:tutorials/signalr-blazor>).
 
 The `blazor.webassembly.js` script is provided by the framework and handles:
 
@@ -55,7 +57,7 @@ The `blazor.webassembly.js` script is provided by the framework and handles:
 
 The Blazor WebAssembly hosting model offers several benefits:
 
-* There's no .NET server-side dependency. The app is fully functioning after it's downloaded to the client.
+* There's no .NET server-side dependency after the app is downloaded from the server, so the app remains functional if the client goes offline.
 * Client resources and capabilities are fully leveraged.
 * Work is offloaded from the server to the client.
 * An ASP.NET Core web server isn't required to host the app. Serverless deployment scenarios are possible, such as serving the app from a Content Delivery Network (CDN).
@@ -68,9 +70,15 @@ The Blazor WebAssembly hosting model has the following limitations:
 
 ::: moniker range=">= aspnetcore-6.0"
 
-Blazor WebAssembly includes support for trimming unused code from .NET Core framework libraries and the .NET runtime. For more information, see <xref:blazor/globalization-localization> and <xref:blazor/host-and-deploy/webassembly#runtime-relinking>.
+Blazor WebAssembly supports [ahead-of-time (AOT) compilation](/dotnet/standard/glossary#aot), where you can compile your .NET code directly into WebAssembly. AOT compilation results in runtime performance improvements at the expense of a larger app size. For more information, see <xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation>. 
 
-Blazor WebAssembly supports [ahead-of-time (AOT) compilation](/dotnet/standard/glossary#aot), where you can compile your .NET code directly into WebAssembly. AOT compilation results in runtime performance improvements at the expense of a larger app size. For more information, see <xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation>.
+The same .NET WebAssembly build tools used for AOT compilation also [relink the .NET WebAssembly runtime](xref:blazor/host-and-deploy/webassembly#runtime-relinking) to trim unused runtime code resulting in a smaller app size and thus improved download speed. 
+
+Blazor WebAssembly includes support for trimming unused code from .NET Core framework libraries. For more information, see <xref:blazor/globalization-localization>. The .NET compiler further precompresses a Blazor WebAssembly app for a smaller app payload.
+
+Blazor WebAssembly apps can use [native dependencies](xref:blazor/host-and-deploy/webassembly#native-dependencies-support) built to run on WebAssembly.
+
+<!-- Change the cross-link to 'xref:blazor/webassembly-native-dependencies' after https://github.com/dotnet/AspNetCore.Docs/pull/23668 merges. -->
 
 ::: moniker-end
 
@@ -86,13 +94,13 @@ Choice of the Blazor hosting model is an early consideration for Blazor app deve
 
 | &nbsp; | Blazor Server | Blazor WebAssembly |
 | --- | :---: | :---: |
-| Complete .NET Core API compatibility          | ✔️ | ❌ |
-| Direct access to server sources               | ✔️ | ❌ |
+| Complete .NET Core API compatibility           | ✔️ | ❌ |
+| Direct access to server sources                | ✔️ | ❌ |
 | Small payload size with fast initial load time | ✔️ | ❌ |
-| App code secure and private on the server     | ✔️ | ❌&dagger; |
-| Run apps offline once downloaded             | ❌ | ✔️ |
-| Static site hosting                          | ❌ | ✔️ |
-| Offloads processing to clients                | ❌ | ✔️ |
+| App code secure and private on the server      | ✔️ | ❌&dagger; |
+| Run apps offline once downloaded               | ❌ | ✔️ |
+| Static site hosting                            | ❌ | ✔️ |
+| Offloads processing to clients                 | ❌ | ✔️ |
 
 &dagger;Blazor WebAssembly apps can use server-hosted APIs to access functionality that must be kept private and secure.
 
