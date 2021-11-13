@@ -1060,7 +1060,7 @@ await Blazor.rootComponents.add(containerElement, 'counter', { incrementAmount: 
 *Experimental* support is available for building custom elements using the [`Microsoft.AspNetCore.Components.CustomElements` NuGet package](https://www.nuget.org/packages/microsoft.aspnetcore.components.customelements). Custom elements use standard HTML interfaces to implement custom HTML elements.
 
 > [!WARNING]
-> Experimental features are provided for the purpose of exploring feature viability and may not ship a stable version.
+> Experimental features are provided for the purpose of exploring feature viability and may not ship in a stable version.
 
 Register a root component as a custom element:
 
