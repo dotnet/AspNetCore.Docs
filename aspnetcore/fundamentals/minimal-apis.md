@@ -236,7 +236,7 @@ By default, the web root is relative to the content root in the `wwwroot` folder
 
 ### Custom dependency injection (DI) container
 
-The following sample use [Autofac](https://autofac.readthedocs.io/latest/integration/aspnetcore.html)
+The following sample use [Autofac](https://autofac.readthedocs.io/en/latest/integration/aspnetcore.html)
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
