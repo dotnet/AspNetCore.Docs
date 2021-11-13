@@ -146,7 +146,7 @@ With the preceding snippet, the SignalR C++ client is ready to use [`#include`](
 
 ### Blazor WebAssembly native dependencies support
 
-Blazor WebAssembly apps can use native dependencies built to run on WebAssembly. For more information, see <xref:blazor/host-and-deploy/webassembly?view=aspnetcore-6.0#native-dependencies-support>.
+Blazor WebAssembly apps can use native dependencies built to run on WebAssembly. For more information, see <xref:blazor/webassembly-native-dependencies>.
 
 ### WebAssembly Ahead-of-time (AOT) compilation and runtime relinking
 
