@@ -29,12 +29,12 @@ The approach demonstrated in this article serves as a starting point for develop
 
 ## Experimental NuGet package and sample app
 
-The approach described in this article is used by the experimental [`Microsoft.AspNetCore.Components.WebAssembly.MultipartBundle` package (NuGet.org)](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.MultipartBundle). The package contains MSBuild targets to customize the Blazor publish output and a [JavaScript initializer](xref:blazor/js-interop/index#javascript-initializers) to use a custom [boot resource loader](xref:blazor/fundamentals/startup#load-boot-resources), each of which are described in detail later in this article.
+The approach described in this article is used by the *experimental* [`Microsoft.AspNetCore.Components.WebAssembly.MultipartBundle` package (NuGet.org)](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.MultipartBundle). The package contains MSBuild targets to customize the Blazor publish output and a [JavaScript initializer](xref:blazor/js-interop/index#javascript-initializers) to use a custom [boot resource loader](xref:blazor/fundamentals/startup#load-boot-resources), each of which are described in detail later in this article.
 
 [Experimental code (includes the NuGet package reference source and `CustomPackagedApp` sample app)](https://github.com/aspnet/AspLabs/tree/main/src/BlazorWebAssemblyCustomInitialization)
 
 > [!WARNING]
-> **The `Microsoft.AspNetCore.Components.WebAssembly.MultipartBundle` NuGet package and the `CustomPackagedApp` sample app are unsupported, experimental demonstration resources not intended for production use.** For more information and to provide feedback to the ASP.NET Core product unit, see [Consider releasing a supported version of `Microsoft.AspNetCore.Components.WebAssembly.MultipartBundle` (dotnet/aspnetcore #36978)](https://github.com/dotnet/aspnetcore/issues/36978).
+> Experimental and preview features are provided for the purpose of collecting feedback and aren't supported for production use. For more information and to provide feedback to the ASP.NET Core product unit, see [Consider releasing a supported version of `Microsoft.AspNetCore.Components.WebAssembly.MultipartBundle` (dotnet/aspnetcore #36978)](https://github.com/dotnet/aspnetcore/issues/36978).
 
 Later in this article, the [Customize the Blazor WebAssembly loading process via a NuGet package](#customize-the-blazor-webassembly-loading-process-via-a-nuget-package) section with its three subsections provide detailed explanations on the configuration and code in the `Microsoft.AspNetCore.Components.WebAssembly.MultipartBundle` package. The detailed explanations are important to understand when you create your own strategy and custom loading process for Blazor WebAssembly apps. To use the published, experimental, unsupported NuGet package without customization as a **local demonstration**, perform the following steps:
 
@@ -56,8 +56,8 @@ Later in this article, the [Customize the Blazor WebAssembly loading process via
 
 ## Customize the Blazor WebAssembly loading process via a NuGet package
 
-> [!NOTE]
-> The guidance in this section with its three subsections pertains to building a NuGet package from scratch to implement your own strategy and custom loading process. The experimental [`Microsoft.AspNetCore.Components.WebAssembly.MultipartBundle` package (NuGet.org)](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.MultipartBundle) is based on the guidance in this section. When using the provided package in a **local demonstration** of the multipart bundle download approach, you don't need to follow the guidance in this section. For guidance on how to use the provided package, see the [Experimental NuGet package and sample app](#experimental-nuget-package-and-sample-app) section.
+> [!WARNING]
+> The guidance in this section with its three subsections pertains to building a NuGet package from scratch to implement your own strategy and custom loading process. The *experimental* [`Microsoft.AspNetCore.Components.WebAssembly.MultipartBundle` package (NuGet.org)](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.MultipartBundle) is based on the guidance in this section. When using the provided package in a **local demonstration** of the multipart bundle download approach, you don't need to follow the guidance in this section. For guidance on how to use the provided package, see the [Experimental NuGet package and sample app](#experimental-nuget-package-and-sample-app) section.
 
 Blazor app resources are packed into a multipart bundle file and loaded by the browser via a custom [JavaScript (JS) initializer](xref:blazor/js-interop/index#javascript-initializers). For an app consuming the package with the JS initializer, the app only requires that the bundle file is served when requested. All of the other aspects of this approach are handled transparently.
 
