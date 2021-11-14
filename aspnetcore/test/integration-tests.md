@@ -196,6 +196,45 @@ Because another test in the `IndexPageTests` class performs an operation that de
 
 [!code-csharp[](integration-tests/samples/3.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs?name=snippet3)]
 
+## Test app with minimal hosting model
+
+ASP.NET Core 6 introduced the minimal hosting model which is a more simple way to set up a web application and integrates the `Startup.cs` file in the `Program.cs` file. It also uses [top-level statements](/dotnet/csharp/fundamentals/program-structure/top-level-statements) and [global `using` directives](/dotnet/csharp/whats-new/csharp-10#global-using-directives). 
+
+To test with `WebApplicationFactory` or `TestServer`, the user needs to make changes in the ASP.NET Core 6 application in **one** of the following ways:
+
+* Project file (.csproj), the project file should contain:
+
+  ```xml
+  <ItemGroup>
+       <InternalsVisibleTo Include="MyTestProject" />
+  </ItemGroup>
+  ```
+* A public partial Program class
+
+  ```diff
+  var builder = WebApplication.CreateBuilder(args);
+  // ... Configure services, routes, etc.
+  app.Run();
+  + public partial class Program { }
+  ```
+
+After making the changes in the Web application. The test project now can use the `Program` class for the `WebApplicationFactory`.
+
+```csharp
+[Fact]
+public async Task HelloWorldTest()
+{
+    var application = new WebApplicationFactory<Program>()
+        .WithWebHostBuilder(builder =>
+        {
+            // ... Configure test services
+        });
+        
+    var client = application.CreateClient();
+    ...
+    }
+```
+
 ## Client options
 
 The following table shows the default [`WebApplicationFactoryClientOptions`](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions) available when creating `HttpClient` instances.
