@@ -390,7 +390,7 @@ When a Blazor project is published, a `web.config` file is created with the foll
   
 #### Use a custom `web.config`
 
-To use a custom `web.config` file, place the custom file in the root folder of the project. For a hosted Blazor WebAssembly solution, place the file in the **`Server`** project's folder. Configure the project to publish IIS-specific assets using `PublishIISAssets` in the project file (`.csproj`) and publish the project:
+To use a custom `web.config` file, place the custom file in the project's root folder. For a hosted Blazor WebAssembly solution, place the file in the **`Server`** project's folder. Configure the project to publish IIS-specific assets using `PublishIISAssets` in the project file (`.csproj`) and publish the project:
 
 ```xml
 <PropertyGroup>
@@ -1204,7 +1204,7 @@ When a Blazor project is published, a `web.config` file is created with the foll
   
 #### Use a custom `web.config`
 
-To use a custom `web.config` file, place the custom file in the root folder of the project. For a hosted Blazor WebAssembly solution, place the file in the **`Server`** project's folder. Configure the project to publish IIS-specific assets using `PublishIISAssets` in the project file (`.csproj`) and publish the project:
+To use a custom `web.config` file, place the custom file in the project's root folder. For a hosted Blazor WebAssembly solution, place the file in the **`Server`** project's folder. Configure the project to publish IIS-specific assets using `PublishIISAssets` in the project file (`.csproj`) and publish the project:
 
 ```xml
 <PropertyGroup>
@@ -2018,7 +2018,7 @@ When a Blazor project is published, a `web.config` file is created with the foll
   
 #### Use a custom `web.config`
 
-To use a custom `web.config` file, place the custom file in the root folder of the project. For a hosted Blazor WebAssembly solution, place the file in the **`Server`** project's folder. Configure the project to publish IIS-specific assets using `PublishIISAssets` in the project file (`.csproj`) and publish the project:
+To use a custom `web.config` file, place the custom file in the project's root folder. For a hosted Blazor WebAssembly solution, place the file in the **`Server`** project's folder. Configure the project to publish IIS-specific assets using `PublishIISAssets` in the project file (`.csproj`) and publish the project:
 
 ```xml
 <PropertyGroup>
