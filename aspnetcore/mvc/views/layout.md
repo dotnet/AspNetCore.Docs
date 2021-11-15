@@ -113,6 +113,7 @@ Views and pages can use Razor directives to import namespaces and use [dependenc
 * `@model`
 * `@inherits`
 * `@inject`
+* `@namespace`
 
 The file doesn't support other Razor features, such as functions and section definitions.
 
