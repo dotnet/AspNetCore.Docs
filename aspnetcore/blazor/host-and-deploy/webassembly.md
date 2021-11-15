@@ -388,9 +388,9 @@ When a Blazor project is published, a `web.config` file is created with the foll
   * Serve the sub-directory where the app's static assets reside (`wwwroot/{PATH REQUESTED}`).
   * Create SPA fallback routing so that requests for non-file assets are redirected to the app's default document in its static assets folder (`wwwroot/index.html`).
   
-#### Use a custom web.config
+#### Use a custom `web.config`
 
-To use a custom `web.config` file, place the custom `web.config` file at the root of the project folder. Configure the project to publish IIS-specific assets using `PublishIISAssets` in the app's project file and publish the project:
+To use a custom `web.config` file, place the custom file in the root folder of the project. For a hosted Blazor WebAssembly solution, place the file in the **`Server`** project's folder. Configure the project to publish IIS-specific assets using `PublishIISAssets` in the project file (`.csproj`) and publish the project:
 
 ```xml
 <PropertyGroup>
@@ -1202,9 +1202,9 @@ When a Blazor project is published, a `web.config` file is created with the foll
   * Serve the sub-directory where the app's static assets reside (`wwwroot/{PATH REQUESTED}`).
   * Create SPA fallback routing so that requests for non-file assets are redirected to the app's default document in its static assets folder (`wwwroot/index.html`).
   
-#### Use a custom web.config
+#### Use a custom `web.config`
 
-To use a custom `web.config` file, place the custom `web.config` file at the root of the project folder. Configure the project to publish IIS-specific assets using `PublishIISAssets` in the app's project file and publish the project:
+To use a custom `web.config` file, place the custom file in the root folder of the project. For a hosted Blazor WebAssembly solution, place the file in the **`Server`** project's folder. Configure the project to publish IIS-specific assets using `PublishIISAssets` in the project file (`.csproj`) and publish the project:
 
 ```xml
 <PropertyGroup>
@@ -2016,9 +2016,9 @@ When a Blazor project is published, a `web.config` file is created with the foll
   * Serve the sub-directory where the app's static assets reside (`wwwroot/{PATH REQUESTED}`).
   * Create SPA fallback routing so that requests for non-file assets are redirected to the app's default document in its static assets folder (`wwwroot/index.html`).
   
-#### Use a custom web.config
+#### Use a custom `web.config`
 
-To use a custom `web.config` file, place the custom `web.config` file at the root of the project folder. Configure the project to publish IIS-specific assets using `PublishIISAssets` in the app's project file and publish the project:
+To use a custom `web.config` file, place the custom file in the root folder of the project. For a hosted Blazor WebAssembly solution, place the file in the **`Server`** project's folder. Configure the project to publish IIS-specific assets using `PublishIISAssets` in the project file (`.csproj`) and publish the project:
 
 ```xml
 <PropertyGroup>
