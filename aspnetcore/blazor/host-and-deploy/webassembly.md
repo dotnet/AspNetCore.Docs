@@ -393,7 +393,7 @@ When a Blazor project is published, a `web.config` file is created with the foll
 To use a custom `web.config` file:
 
 1. Place the custom `web.config` file in the project's root folder. For a hosted Blazor WebAssembly solution, place the file in the **`Server`** project's folder.
-1. Publish the project. For a hosted Blazor WebAssembly solution, publish the solution from the **`Server`** project.
+1. Publish the project. For a hosted Blazor WebAssembly solution, publish the solution from the **`Server`** project. For more information, see <xref:blazor/host-and-deploy/index>.
 
 #### Install the URL Rewrite Module
 
@@ -1212,7 +1212,7 @@ To use a custom `web.config` file:
    </PropertyGroup>
    ```
 
-1. Publish the project. For a hosted Blazor WebAssembly solution, publish the solution from the **`Server`** project.
+1. Publish the project. For a hosted Blazor WebAssembly solution, publish the solution from the **`Server`** project. For more information, see <xref:blazor/host-and-deploy/index>.
 
 #### Install the URL Rewrite Module
 
@@ -2031,7 +2031,7 @@ To use a custom `web.config` file:
    </PropertyGroup>
    ```
 
-1. Publish the project. For a hosted Blazor WebAssembly solution, publish the solution from the **`Server`** project.
+1. Publish the project. For a hosted Blazor WebAssembly solution, publish the solution from the **`Server`** project. For more information, see <xref:blazor/host-and-deploy/index>.
 
 #### Install the URL Rewrite Module
 
