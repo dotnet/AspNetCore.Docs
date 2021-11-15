@@ -390,13 +390,18 @@ When a Blazor project is published, a `web.config` file is created with the foll
   
 #### Use a custom `web.config`
 
-To use a custom `web.config` file, place the custom file in the project's root folder. For a hosted Blazor WebAssembly solution, place the file in the **`Server`** project's folder. Configure the project to publish IIS-specific assets using `PublishIISAssets` in the project file (`.csproj`) and publish the project:
+To use a custom `web.config` file:
 
-```xml
-<PropertyGroup>
-  <PublishIISAssets>true</PublishIISAssets>
-</PropertyGroup>
-```
+1. Place the custom `web.config` file in the project's root folder. For a hosted Blazor WebAssembly solution, place the file in the **`Server`** project's folder.
+1. Set the `<PublishIISAssets>` property to `true` in the project file (`.csproj`). For a hosted Blazor WebAssembly solution, set the property in the **`Server`** project's project file.
+
+   ```xml
+   <PropertyGroup>
+     <PublishIISAssets>true</PublishIISAssets>
+   </PropertyGroup>
+   ```
+
+1. Publish the project. For a hosted Blazor WebAssembly solution, publish the solution from the **`Server`** project.
 
 #### Install the URL Rewrite Module
 
@@ -1204,13 +1209,18 @@ When a Blazor project is published, a `web.config` file is created with the foll
   
 #### Use a custom `web.config`
 
-To use a custom `web.config` file, place the custom file in the project's root folder. For a hosted Blazor WebAssembly solution, place the file in the **`Server`** project's folder. Configure the project to publish IIS-specific assets using `PublishIISAssets` in the project file (`.csproj`) and publish the project:
+To use a custom `web.config` file:
 
-```xml
-<PropertyGroup>
-  <PublishIISAssets>true</PublishIISAssets>
-</PropertyGroup>
-```
+1. Place the custom `web.config` file in the project's root folder. For a hosted Blazor WebAssembly solution, place the file in the **`Server`** project's folder.
+1. Set the `<PublishIISAssets>` property to `true` in the project file (`.csproj`). For a hosted Blazor WebAssembly solution, set the property in the **`Server`** project's project file.
+
+   ```xml
+   <PropertyGroup>
+     <PublishIISAssets>true</PublishIISAssets>
+   </PropertyGroup>
+   ```
+
+1. Publish the project. For a hosted Blazor WebAssembly solution, publish the solution from the **`Server`** project.
 
 #### Install the URL Rewrite Module
 
@@ -2018,13 +2028,18 @@ When a Blazor project is published, a `web.config` file is created with the foll
   
 #### Use a custom `web.config`
 
-To use a custom `web.config` file, place the custom file in the project's root folder. For a hosted Blazor WebAssembly solution, place the file in the **`Server`** project's folder. Configure the project to publish IIS-specific assets using `PublishIISAssets` in the project file (`.csproj`) and publish the project:
+To use a custom `web.config` file:
 
-```xml
-<PropertyGroup>
-  <PublishIISAssets>true</PublishIISAssets>
-</PropertyGroup>
-```
+1. Place the custom `web.config` file in the project's root folder. For a hosted Blazor WebAssembly solution, place the file in the **`Server`** project's folder.
+1. Set the `<PublishIISAssets>` property to `true` in the project file (`.csproj`). For a hosted Blazor WebAssembly solution, set the property in the **`Server`** project's project file.
+
+   ```xml
+   <PropertyGroup>
+     <PublishIISAssets>true</PublishIISAssets>
+   </PropertyGroup>
+   ```
+
+1. Publish the project. For a hosted Blazor WebAssembly solution, publish the solution from the **`Server`** project.
 
 #### Install the URL Rewrite Module
 
