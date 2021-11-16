@@ -56,7 +56,7 @@ The <xref:System.ComponentModel.DataAnnotations.DataType> attribute on `ReleaseD
 
 [DataAnnotations](/dotnet/api/system.componentmodel.dataannotations) are covered in a later tutorial.
 
-he question mark after `string` indicates that the property is nullable. For more information, see [Nullable reference types](/dotnet/csharp/nullable-references). 
+The question mark after `string` indicates that the property is nullable. For more information, see [Nullable reference types](/dotnet/csharp/nullable-references). 
 
 ## Add NuGet packages
 
