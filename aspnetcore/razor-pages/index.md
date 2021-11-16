@@ -104,7 +104,7 @@ For the samples in this document, the `DbContext` is initialized in the [Startup
 
 The in memory database requires the `Microsoft.EntityFrameworkCore.InMemory` NuGet package.
 
-[!code-csharp[](index/6.0sample/RazorPagesContacts/Program.cs?name=snippet)]
+[!code-csharp[](index/6.0sample/RazorPagesContacts/Program.cs?name=snippet1)]
 
 The data model:
 
@@ -580,8 +580,7 @@ The `?` following `handler` means the route parameter is optional.
 The configuration and settings in following sections is not required by most apps.
 
 To configure advanced options, use the <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddRazorPages%2A> overload that configures <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions>:
-
-[!code-csharp[](index/3.0sample/RazorPagesContacts/StartupRPoptions.cs?name=snippet)]
+[!code-csharp[](index/6.0sample/RazorPagesContacts/Program.cs?name=snippet_ac&highlight=5-9)]
 
 Use the <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions> to set the root directory for pages, or add application model conventions for pages. For more information on conventions, see [Razor Pages authorization conventions](xref:security/authorization/razor-pages-authorization).
 
@@ -591,13 +590,13 @@ To precompile views, see [Razor view compilation](xref:mvc/views/view-compilatio
 
 By default, Razor Pages are rooted in the */Pages* directory. Add <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcBuilderExtensions.WithRazorPagesAtContentRoot*> to specify that your Razor Pages are at the [content root](xref:fundamentals/index#content-root) (<xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.ContentRootPath>) of the app:
 
-[!code-csharp[](index/3.0sample/RazorPagesContacts/StartupWithRazorPagesAtContentRoot.cs?name=snippet)]
+[!code-csharp[](index/6.0sample/RazorPagesContacts/Program.cs?name=snippet_cr&highlight=5-9)]
 
 ### Specify that Razor Pages are at a custom root directory
 
 Add <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcCoreBuilderExtensions.WithRazorPagesRoot*> to specify that Razor Pages are at a custom root directory in the app (provide a relative path):
 
-[!code-csharp[](index/3.0sample/RazorPagesContacts/StartupWithRazorPagesRoot.cs?name=snippet)]
+[!code-csharp[](index/6.0sample/RazorPagesContacts/Program.cs?name=snippet_crd&highlight=5-9)]
 
 ## Additional resources
 
