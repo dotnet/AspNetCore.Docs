@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Routing;
 
 namespace RoutingSample.Middleware
 {
-    #region snippet
+    // <snippet>
     public class ProductsLinkMiddleware
     {
         private readonly LinkGenerator _linkGenerator;
@@ -23,5 +23,5 @@ namespace RoutingSample.Middleware
             await httpContext.Response.WriteAsync($"Go to {url} to see our products.");
         }
     }
-    #endregion
+    // </snippet>
 }

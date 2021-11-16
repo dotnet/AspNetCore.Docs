@@ -5,7 +5,7 @@ using Microsoft.Docs.Samples;
 namespace RoutingSample.Controllers
 {
     // webBuilder.UseStartup<StartupMVC>();
-    #region snippet
+    // <snippet>
     public class WidgetController : Controller
     {
         private readonly LinkGenerator _linkGenerator;
@@ -22,26 +22,26 @@ namespace RoutingSample.Controllers
                                                      new { id = 17, });
             return Content(url);
         }
-        #endregion
+        // </snippet>
 
         public IActionResult Subscribe(int id) =>
             ControllerContext.MyDisplayRouteInfo(id);
 
-        #region snippet2
+        // <snippet2>
         public IActionResult Index2()
         {
             var url = _linkGenerator.GetPathByAction("Subscribe", "Home",
                                                      new { id = 17, });
             return Content(url);
         }
-        #endregion
+        // </snippet2>
 
         public IActionResult Index3()
         {
-            #region snippet3
+            // <snippet3>
             var url = _linkGenerator.GetPathByAction("Subscribe", null,
                                                      new { id = 17, });
-            #endregion
+            // </snippet3>
             return Content(url);
         }
     }

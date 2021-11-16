@@ -21,22 +21,6 @@ public class Program
             });
 }
 #endregion
-#elif V60
-#region snippet_60
-using Microsoft.AspNetCore.Builder;
-
-var builder = WebApplication.CreateBuilder(args);
-
-var startup = new Startup(builder.Configuration);
-
-startup.ConfigureServices(builder.Services);
-
-var app = builder.Build();
-
-startup.Configure(app, app.Environment);
-
-app.Run();
-#endregion
 #elif V60A
 #region snippet_60a
 using Autofac;
@@ -57,6 +41,40 @@ builder.Host.ConfigureContainer<ContainerBuilder>(startup.ConfigureContainer);
 var app = builder.Build();
 
 startup.Configure(app, app.Environment);
+
+app.Run();
+#endregion
+#elif V60
+#region snippet_60
+using Microsoft.AspNetCore.Builder;
+
+var builder = WebApplication.CreateBuilder(args);
+
+var startup = new Startup(builder.Configuration);
+
+startup.ConfigureServices(builder.Services);
+
+var app = builder.Build();
+
+startup.Configure(app, app.Environment);
+
+app.Run();
+#endregion
+#elif V60E
+#region snippet_60e
+using Microsoft.AspNetCore.Builder;
+
+var builder = WebApplication.CreateBuilder(args);
+
+var startup = new Startup(builder.Configuration);
+
+startup.ConfigureServices(builder.Services);
+
+var app = builder.Build();
+
+startup.Configure(app, app.Environment);
+
+app.MapRazorPages();
 
 app.Run();
 #endregion

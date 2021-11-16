@@ -200,6 +200,14 @@ To opt out of how Blazor publishes and loads scoped files at runtime, use the `D
 </PropertyGroup>
 ```
 
+### Disable CSS isolation
+
+Disable CSS isolation for a project by setting the `<ScopedCssEnabled>` property to `false` in the app's project file:
+
+```xml
+<ScopedCssEnabled>false</ScopedCssEnabled>
+```
+
 ## Razor class library (RCL) support
 
 Isolated styles for components in a NuGet package or [Razor class library (RCL)](xref:razor-pages/ui-class) are automatically bundled:
@@ -406,6 +414,14 @@ To opt out of how Blazor publishes and loads scoped files at runtime, use the `D
 <PropertyGroup>
   <DisableScopedCssBundling>true</DisableScopedCssBundling>
 </PropertyGroup>
+```
+
+### Disable CSS isolation
+
+Disable CSS isolation for a project by setting the `<ScopedCssEnabled>` property to `false` in the app's project file:
+
+```xml
+<ScopedCssEnabled>false</ScopedCssEnabled>
 ```
 
 ## Razor class library (RCL) support

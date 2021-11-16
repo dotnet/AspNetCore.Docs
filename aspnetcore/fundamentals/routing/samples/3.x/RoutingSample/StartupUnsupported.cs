@@ -39,7 +39,7 @@ namespace RoutingSample
 
             app.UseAuthorization();
 
-            #region snippet
+            // <snippet>
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute("default", 
@@ -47,7 +47,7 @@ namespace RoutingSample
                 endpoints.MapControllerRoute("blog", "{culture}/{**slug}", 
                                                   new { controller = "Blog", action = "ReadPost", });
             });
-            #endregion
+            // </snippet>
         }
     }
 }

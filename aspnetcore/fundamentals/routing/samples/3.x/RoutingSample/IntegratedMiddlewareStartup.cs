@@ -10,7 +10,7 @@ using Microsoft.Extensions.Hosting;
 
 namespace RoutingSample
 {
-    #region snippet
+    // <snippet>
     public class IntegratedMiddlewareStartup
     { 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -65,5 +65,5 @@ namespace RoutingSample
 
         public bool NeedsAudit { get; }
     }
-    #endregion
+    // </snippet>
 }

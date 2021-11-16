@@ -14,7 +14,7 @@ namespace RoutingSample
             services.AddAuthorization();
         }
 
-        #region snippet
+        // <snippet>
         public void Configure(IApplicationBuilder app, ILogger<Startup> logger)
         {
             int count = 0;
@@ -55,10 +55,10 @@ namespace RoutingSample
                 });
             });
         }
-        #endregion
+        // </snippet>
     }
 
-    #region snippetSW
+    // <snippetSW>
     public sealed class MyStopwatch : IDisposable
     {
         ILogger<Startup> _logger;
@@ -86,5 +86,5 @@ namespace RoutingSample
             }
         }
     }
-    #endregion
+    // </snippetSW>
 }

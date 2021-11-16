@@ -17,6 +17,9 @@ uid: blazor/host-and-deploy/index
 
 Apps are published for deployment in Release configuration.
 
+> [!NOTE]
+> Publish hosted Blazor WebAssembly solutions from the **`Server`** project.
+
 # [Visual Studio](#tab/visual-studio)
 
 1. Select **Build** > **Publish {APPLICATION}** from the navigation bar.
