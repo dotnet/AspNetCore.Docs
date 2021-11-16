@@ -19,7 +19,7 @@ namespace RoutingSample
             {
                 app.UseDeveloperExceptionPage();
             }
-            #region snippet
+            // <snippet>
             // Location 1: before routing runs, endpoint is always null here
             app.Use(next => context =>
             {
@@ -53,7 +53,7 @@ namespace RoutingSample
                 Console.WriteLine($"4. Endpoint: {context.GetEndpoint()?.DisplayName ?? "(null)"}");
                 return next(context);
             });
-            #endregion
+            // </snippet>
         }
     }
 }

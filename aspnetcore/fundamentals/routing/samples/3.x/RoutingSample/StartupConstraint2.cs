@@ -18,7 +18,7 @@ namespace RoutingSample
 
         public IConfiguration Configuration { get; }
 
-        #region snippet
+        // <snippet>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
@@ -28,7 +28,7 @@ namespace RoutingSample
                 options.ConstraintMap["slugify"] = typeof(SlugifyParameterTransformer);
             });
         }
-        #endregion
+        // </snippet>
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -50,7 +50,7 @@ namespace RoutingSample
         }
     }
 
-    #region snippet2
+    // <snippet2>
     public class SlugifyParameterTransformer : IOutboundParameterTransformer
     {
         public string TransformOutbound(object value)
@@ -64,5 +64,5 @@ namespace RoutingSample
                                  TimeSpan.FromMilliseconds(100)).ToLowerInvariant();
         }
     }
-    #endregion
+    // </snippet2>
 }

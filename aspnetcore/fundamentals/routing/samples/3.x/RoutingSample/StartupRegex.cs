@@ -19,7 +19,7 @@ namespace RoutingSample
             
            // Using an inline-constraint to specify a regex constraint.
 
-            #region snippet
+            // <snippet>
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGet("{message:regex(^\\d{{3}}-\\d{{2}}-\\d{{4}}$)}",
@@ -28,7 +28,7 @@ namespace RoutingSample
                         return context.Response.WriteAsync("inline-constraint match");
                     });
              });
-            #endregion
+            // </snippet>
          
 
         }

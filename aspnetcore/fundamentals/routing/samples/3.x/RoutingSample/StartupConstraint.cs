@@ -20,7 +20,7 @@ namespace RoutingSample
 
         public IConfiguration Configuration { get; }
 
-        #region snippet
+        // <snippet>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
@@ -30,7 +30,7 @@ namespace RoutingSample
                 options.ConstraintMap.Add("customName", typeof(MyCustomConstraint));
             });
         }
-        #endregion
+        // </snippet>
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -52,7 +52,7 @@ namespace RoutingSample
         }
     }
 
-    #region snippet2
+    // <snippet2>
     class MyCustomConstraint : IRouteConstraint
     {
         private Regex _regex;
@@ -81,5 +81,5 @@ namespace RoutingSample
             return false;
         }
     }
-    #endregion
+    // </snippet2>
 }

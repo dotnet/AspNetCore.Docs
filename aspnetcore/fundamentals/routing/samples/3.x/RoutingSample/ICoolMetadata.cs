@@ -3,8 +3,8 @@ using System;
 
 namespace RoutingSample
 {
-    #region snippet
-    #region snippet2
+    // <snippet>
+    // <snippet2>
     public interface ICoolMetadata
     {
         bool IsCool { get; }
@@ -15,7 +15,7 @@ namespace RoutingSample
     {
         public bool IsCool => true;
     }
-    #endregion
+    // </snippet2>
 
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class SuppressCoolMetadataAttribute : Attribute, ICoolMetadata
@@ -31,5 +31,5 @@ namespace RoutingSample
         [SuppressCoolMetadata]
         public void Uncool() { }
     }
-    #endregion
+    // </snippet>
 }

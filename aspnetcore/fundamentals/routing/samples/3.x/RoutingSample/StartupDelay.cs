@@ -13,7 +13,7 @@ namespace RoutingSample
             services.AddAuthorization();
         }
 
-        #region snippet
+        // <snippet>
         public void Configure(IApplicationBuilder app, ILogger<Startup> logger)
         {
             app.Use(next => async context =>
@@ -55,6 +55,6 @@ namespace RoutingSample
                 });
             });
         }
-        #endregion
+        // </snippet>
     }
 }

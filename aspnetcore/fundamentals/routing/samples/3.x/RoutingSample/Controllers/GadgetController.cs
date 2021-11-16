@@ -3,7 +3,7 @@ using Microsoft.Docs.Samples;
 
 namespace RoutingSample.Controllers
 {
-    #region snippet
+    // <snippet>
     public class GadgetController : Controller
     {
         public IActionResult Index()
@@ -11,7 +11,7 @@ namespace RoutingSample.Controllers
             var url = Url.Action("Edit", new { id = 17, });
             return Content(url);
         }
-        #endregion
+        // </snippet>
 
         public IActionResult Edit(int id)
         {

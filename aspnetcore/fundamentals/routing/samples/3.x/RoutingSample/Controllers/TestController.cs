@@ -4,7 +4,7 @@ using Microsoft.Docs.Samples;
 
 namespace RoutingSample.Controllers
 {
-    #region snippet
+    // <snippet>
     [Route("api/[controller]")]
     [ApiController]
     public class TestController : ControllerBase
@@ -23,14 +23,14 @@ namespace RoutingSample.Controllers
             return ControllerContext.MyDisplayRouteInfo(id);
         }
     }
-    #endregion
+    // </snippet>
 
     [Route("api/[controller]")]
     [ApiController]
     public class Test2Controller : ControllerBase
     {
         // GET /api/test2/3
-        #region snippet2
+        // <snippet2>
         [HttpGet("{id}")]
         public IActionResult Get(string id)
         {
@@ -41,6 +41,6 @@ namespace RoutingSample.Controllers
 
             return ControllerContext.MyDisplayRouteInfo(id);
         }
-        #endregion
+        // </snippet2>
     }
 }

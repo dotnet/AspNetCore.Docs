@@ -22,7 +22,7 @@ namespace RoutingSample
 
             app.UseRouting();
 
-            #region snippet
+            // <snippet>
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGet("/hello/{name:alpha}", async context =>
@@ -31,7 +31,7 @@ namespace RoutingSample
                     await context.Response.WriteAsync($"Hello {name}!");
                 });
             });
-            #endregion
+            // </snippet>
         }      
     }
 }
