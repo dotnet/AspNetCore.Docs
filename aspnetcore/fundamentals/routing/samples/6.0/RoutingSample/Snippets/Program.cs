@@ -2,6 +2,15 @@
 {
     public static class Program
     {
+        public static void MapControllerRoute(WebApplication app)
+        {
+            // <snippet_MapControllerRoute>
+            app.MapControllerRoute(
+                name: "default",
+                pattern: "{controller:slugify=Home}/{action:slugify=Index}/{id?}");
+            // </snippet_MapControllerRoute>
+        }
+
         public static void RequireHost(WebApplication app)
         {
             // <snippet_RequireHost>

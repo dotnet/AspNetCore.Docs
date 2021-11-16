@@ -597,8 +597,6 @@ The preceding code has the following advantages over the `MyCustomConstraint` ap
 * It doesn't require a custom constraint.
 * It returns a more descriptive error when the route parameter includes `0`.
 
-<!-- TODO -->
-
 ## Parameter transformer reference
 
 Parameter transformers:
@@ -613,19 +611,15 @@ For example, a custom `slugify` parameter transformer in route pattern `blog\{ar
 
 Consider the following `IOutboundParameterTransformer` implementation:
 
-:::code language="csharp" source="routing/samples/3.x/RoutingSample/StartupConstraint2.cs" id="snippet2":::
+:::code language="csharp" source="routing/samples/6.0/RoutingSample/Routing/SlugifyParameterTransformer.cs" id="snippet_Class":::
 
-To use a parameter transformer in a route pattern, configure it using <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> in `Startup.ConfigureServices`:
+To use a parameter transformer in a route pattern, configure it using <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> in *Program.cs*:
 
-:::code language="csharp" source="routing/samples/3.x/RoutingSample/StartupConstraint2.cs" id="snippet":::
+:::code language="csharp" source="routing/samples/6.0/RoutingSample/Program.cs" id="snippet_AddRouting":::
 
-The ASP.NET Core framework uses parameter transformers to transform the URI where an endpoint resolves. For example, parameter transformers transform the route values used to match an `area`, `controller`, `action`, and `page`.
+The ASP.NET Core framework uses parameter transformers to transform the URI where an endpoint resolves. For example, parameter transformers transform the route values used to match an `area`, `controller`, `action`, and `page`:
 
-```csharp
-routes.MapControllerRoute(
-    name: "default",
-    template: "{controller:slugify=Home}/{action:slugify=Index}/{id?}");
-```
+:::code language="csharp" source="routing/samples/6.0/RoutingSample/Snippets/Program.cs" id="snippet_MapControllerRoute":::
 
 With the preceding route template, the action `SubscriptionManagementController.GetAll` is matched with the URI `/subscription-management/get-all`. A parameter transformer doesn't change the route values used to generate a link. For example, `Url.Action("GetAll", "SubscriptionManagement")` outputs `/subscription-management/get-all`.
 
