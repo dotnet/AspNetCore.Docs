@@ -13,7 +13,7 @@ uid: fundamentals/routing
 
 By [Ryan Nowak](https://github.com/rynowak), [Kirk Larkin](https://twitter.com/serpent5), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 Routing is responsible for matching incoming HTTP requests and dispatching those requests to the app's executable endpoints. [Endpoints](#endpoint) are the app's units of executable request-handling code. Endpoints are defined in the app and configured when the app starts. The endpoint matching process can extract values from the request's URL and provide those values for request processing. Using endpoint information from the app, routing is also able to generate URLs that map to endpoints.
 
@@ -31,6 +31,7 @@ This article covers low-level details of ASP.NET Core routing. For information o
 * For controllers, see <xref:mvc/controllers/routing>.
 * For Razor Pages conventions, see <xref:razor-pages/razor-pages-conventions>.
 
+<!-- TODO -->
 ## Routing basics
 
 All ASP.NET Core templates include routing in the generated code. Routing is registered in the [middleware](xref:fundamentals/middleware/index) pipeline in `Startup.Configure`.
@@ -109,6 +110,8 @@ In the preceding example, there are two endpoints, but only the health check end
 
 * The metadata can be processed by routing-aware middleware.
 * The metadata can be of any .NET type.
+
+<!-- TODO -->
 
 ## Routing concepts
 
@@ -594,6 +597,8 @@ The preceding code has the following advantages over the `MyCustomConstraint` ap
 * It doesn't require a custom constraint.
 * It returns a more descriptive error when the route parameter includes `0`.
 
+<!-- TODO -->
+
 ## Parameter transformer reference
 
 Parameter transformers:
@@ -803,9 +808,9 @@ In the preceding code, the `culture` route parameter is used for localization. T
 * In the `"default"` route template, the `culture` route parameter is to the left of `controller`, so changes to `controller` won't invalidate `culture`.
 * In the `"blog"` route template, the `culture` route parameter is considered to be to the right of `controller`, which appears in the required values.
 
-## Configuring endpoint metadata
+## Configure endpoint metadata
 
-The following links provide information on configuring endpoint metadata:
+The following links provide information on how to configure endpoint metadata:
 
 * [Enable Cors with endpoint routing](xref:security/cors#enable-cors-with-endpoint-routing)
 * [IAuthorizationPolicyProvider sample](https://github.com/dotnet/AspNetCore/tree/release/3.1/src/Security/samples/CustomPolicyProvider) using a custom `[MinimumAgeAuthorize]` attribute
@@ -819,7 +824,7 @@ The following links provide information on configuring endpoint metadata:
 
 ## Host matching in routes with RequireHost
 
-<xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.RequireHost%2A> applies a constraint to the route which requires the specified host. The `RequireHost` or [[Host]](xref:Microsoft.AspNetCore.Routing.HostAttribute) parameter can be:
+<xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.RequireHost%2A> applies a constraint to the route which requires the specified host. The `RequireHost` or [[Host]](xref:Microsoft.AspNetCore.Routing.HostAttribute) parameter can be a:
 
 * Host: `www.domain.com`, matches `www.domain.com` with any port.
 * Host with wildcard: `*.domain.com`, matches `www.domain.com`, `subdomain.domain.com`, or `www.subdomain.domain.com` on any port.
@@ -830,16 +835,18 @@ Multiple parameters can be specified using `RequireHost` or `[Host]`. The constr
 
 The following code uses `RequireHost` to require the specified host on the route:
 
-:::code language="csharp" source="routing/samples/3.x/RoutingSample/StartupRequireHost.cs" id="snippet":::
+:::code language="csharp" source="routing/samples/6.0/RoutingSample/Snippets/Program.cs" id="snippet_RequireHost":::
 
 The following code uses the `[Host]` attribute on the controller to require any of the specified hosts:
 
-:::code language="csharp" source="routing/samples/3.x/RoutingSample/Controllers/ProductController.cs" id="snippet":::
+:::code language="csharp" source="routing/samples/6.0/RoutingSample/Snippets/Controllers/ProductsController.cs" id="snippet_Host":::
 
 When the `[Host]` attribute is applied to both the controller and action method:
 
 * The attribute on the action is used.
 * The controller attribute is ignored.
+
+<!-- TODO -->
 
 ## Performance guidance for routing
 
@@ -907,6 +914,8 @@ There are several techniques and optimizations can be applied to routes that wil
   * This reduces the number of possible "paths" to match an endpoint given a path.
 * Use a dynamic route and perform the mapping to a controller/page dynamically.
   * This can be achieved using `MapDynamicControllerRoute` and `MapDynamicPageRoute`.
+
+<!-- TODO -->
 
 ## Guidance for library authors
 
@@ -1008,9 +1017,9 @@ This makes the authorization middleware useful outside of the context of routing
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/routing/samples/3.x) ([how to download](xref:index#how-to-download-a-sample))
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 Routing is responsible for matching incoming HTTP requests and dispatching those requests to the app's executable endpoints. [Endpoints](#endpoint) are the app's units of executable request-handling code. Endpoints are defined in the app and configured when the app starts. The endpoint matching process can extract values from the request's URL and provide those values for request processing. Using endpoint information from the app, routing is also able to generate URLs that map to endpoints.
 
@@ -1982,4 +1991,4 @@ This makes the authorization middleware useful outside of the context of routing
 
 [!INCLUDE[](~/includes/dbg-route.md)]
 
-::: moniker-end
+:::moniker-end
