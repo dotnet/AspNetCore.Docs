@@ -15,7 +15,11 @@ Razor components can modify the HTML `<head>` element content of a page, includi
 
 ## Control `<head>` content in a Razor component
 
-Specify the page's title with the <xref:Microsoft.AspNetCore.Components.Web.PageTitle> component. Specify `<head>` element content with the <xref:Microsoft.AspNetCore.Components.Web.HeadContent> component. The following example sets the page's title and description using Razor.
+Specify the page's title with the <xref:Microsoft.AspNetCore.Components.Web.PageTitle> component, which enables rendering an HTML `<title>` element to a [`HeadOutlet` component](#headoutlet-component).
+    
+Specify `<head>` element content with the <xref:Microsoft.AspNetCore.Components.Web.HeadContent> component, which provides content to a [`HeadOutlet` component](#headoutlet-component).
+
+The following example sets the page's title and description using Razor.
 
 `Pages/ControlHeadContent.razor`:
 
@@ -46,7 +50,7 @@ Specify the page's title with the <xref:Microsoft.AspNetCore.Components.Web.Page
 
 ## `HeadOutlet` component
 
-The <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component renders content provided by <xref:Microsoft.AspNetCore.Components.Web.HeadContent> components.
+The <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component renders content provided by <xref:Microsoft.AspNetCore.Components.Web.PageTitle> and <xref:Microsoft.AspNetCore.Components.Web.HeadContent> components.
 
 In an app created from the Blazor WebAssembly project template, the <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is added to the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.RootComponents> collection of the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder> in `Program.cs`:
 
