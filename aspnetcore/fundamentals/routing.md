@@ -15,7 +15,7 @@ By [Ryan Nowak](https://github.com/rynowak), [Kirk Larkin](https://twitter.com/s
 
 :::moniker range=">= aspnetcore-6.0"
 
-Routing is responsible for matching incoming HTTP requests and dispatching those requests to the app's executable endpoints. [Endpoints](#endpoint) are the app's units of executable request-handling code. Endpoints are defined in the app and configured when the app starts. The endpoint matching process can extract values from the request's URL and provide those values for request processing. Using endpoint information from the app, routing is also able to generate URLs that map to endpoints.
+Routing is responsible for matching incoming HTTP requests and dispatching those requests to the app's executable endpoints. [Endpoints](#endpoints) are the app's units of executable request-handling code. Endpoints are defined in the app and configured when the app starts. The endpoint matching process can extract values from the request's URL and provide those values for request processing. Using endpoint information from the app, routing is also able to generate URLs that map to endpoints.
 
 Apps can configure routing using:
 
@@ -52,7 +52,7 @@ The preceding example includes a single *route to code* endpoint using the [MapG
   * `Hello World!` is written to the HTTP response. By default, the root URL `/` is `https://localhost:5001/`.
 * If the request method is not `GET` or the root URL is not `/`, no route matches and an HTTP 404 is returned.
 
-### Endpoint
+### Endpoints
 
 <a name="endpoint"></a>
 
@@ -75,7 +75,7 @@ The following example shows routing with a more sophisticated route template:
 The string `/hello/{name:alpha}` is a **route template**. It is used to configure how the endpoint is matched. In this case, the template matches:
 
 * A URL like `/hello/Ryan`
-* Any URL path that begins with `/hello/` followed by a sequence of alphabetic characters.  `:alpha` applies a route constraint that matches only alphabetic characters. [Route constraints](#route-constraint-reference) are explained later in this article.
+* Any URL path that begins with `/hello/` followed by a sequence of alphabetic characters.  `:alpha` applies a route constraint that matches only alphabetic characters. [Route constraints](#route-constraints) are explained later in this article.
 
 The second segment of the URL path, `{name:alpha}`:
 
@@ -227,7 +227,7 @@ Comparing a terminal middleware and routing:
 * Endpoints interface with middleware such as `UseAuthorization` and `UseCors`.
   * Using a terminal middleware with `UseAuthorization` or `UseCors` requires manual interfacing with the authorization system.
 
-An [endpoint](#endpoint) defines both:
+An [endpoint](#endpoints) defines both:
 
 * A delegate to process requests.
 * A collection of arbitrary metadata. The metadata is used to implement cross-cutting concerns based on policies and configuration attached to each endpoint.
@@ -260,7 +260,7 @@ The metadata system was created in response to the problems encountered by exten
 
 ### URL matching
 
-* Is the process by which routing matches an incoming request to an [endpoint](#endpoint).
+* Is the process by which routing matches an incoming request to an [endpoint](#endpoints).
 * Is based on data in the URL path and headers.
 * Can be extended to consider any data in the request.
 
@@ -337,7 +337,7 @@ The details of how precedence works are coupled to how route templates are defin
 * A segment with literal text is considered more specific than a parameter segment.
 * A parameter segment with a constraint is considered more specific than one without.
 * A complex segment is considered as specific as a parameter segment with a constraint.
-* Catch-all parameters are the least specific. See **catch-all** in the [Route template reference](#rtr) for important information on catch-all routes.
+* Catch-all parameters are the least specific. See **catch-all** in the [Route templates](#rtr) section for important information on catch-all routes.
 
 See the [source code on GitHub](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Routing/src/Template/RoutePrecedence.cs#L189) for a reference of exact values.
 
@@ -392,7 +392,7 @@ In the following example, a middleware uses the <xref:Microsoft.AspNetCore.Routi
 
 <a name="rtr"></a>
 
-## Route template reference
+## Route templates
 
 Tokens within `{}` define route parameters that are bound if the route is matched. More than one route parameter can be defined in a route segment, but route parameters  must be separated by a literal value. For example, `{controller=Home}{action=Index}` isn't a valid route, since there's no literal value between `{controller}` and `{action}`.  Route parameters must have a name and may have additional attributes specified.
 
@@ -423,7 +423,7 @@ Route parameters may have **default values** designated by specifying the defaul
 
 Route parameters may have constraints that must match the route value bound from the URL. Adding `:` and constraint name after the route parameter name specifies an inline constraint on a route parameter. If the constraint requires arguments, they're enclosed in parentheses `(...)` after the constraint name. Multiple *inline constraints* can be specified by appending another `:` and constraint name.
 
-The constraint name and arguments are passed to the <xref:Microsoft.AspNetCore.Routing.IInlineConstraintResolver> service to create an instance of <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> to use in URL processing. For example, the route template `blog/{article:minlength(10)}` specifies a `minlength` constraint with the argument `10`. For more information on route constraints and a list of the constraints provided by the framework, see the [Route constraint reference](#route-constraint-reference) section.
+The constraint name and arguments are passed to the <xref:Microsoft.AspNetCore.Routing.IInlineConstraintResolver> service to create an instance of <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> to use in URL processing. For example, the route template `blog/{article:minlength(10)}` specifies a `minlength` constraint with the argument `10`. For more information on route constraints and a list of the constraints provided by the framework, see the [Route constraints](#route-constraints) section.
 
 Route parameters may also have parameter transformers. Parameter transformers transform a parameter's value when generating links and matching actions and pages to URLs. Like constraints, parameter transformers can be added inline to a route parameter by adding a `:` and transformer name after the route parameter name. For example, the route template `blog/{article:slugify}` specifies a `slugify` transformer. For more information on parameter transformers, see the [Parameter transformers](#parameter-transformers) section.
 
@@ -474,7 +474,7 @@ Regular expressions provide much more control over their matching behavior.
 
 Greedy matching, also know as [lazy matching](https://wikipedia.org/wiki/Regular_expression#Lazy_matching), matches the largest possible string. Non-greedy matches the smallest possible string.
 
-## Route constraint reference
+## Route constraints
 
 Route constraints execute when a match has occurred to the incoming URL and the URL path is tokenized into route values. Route constraints generally inspect the route value associated via the route template and make a true or false decision about whether the value is acceptable. Some route constraints use data outside the route value to consider whether the request can be routed. For example, the <xref:Microsoft.AspNetCore.Routing.Constraints.HttpMethodRouteConstraint> can accept or reject a request based on its HTTP verb. Constraints are used in routing requests and link generation.
 
@@ -524,11 +524,11 @@ Regular expressions can be specified as inline constraints using the `regex(...)
 
 The following code uses an inline regex constraint:
 
-:::code language="csharp" source="routing/samples/3.x/RoutingSample/StartupRegex.cs" id="snippet":::
+:::code language="csharp" source="routing/samples/6.0/RoutingSample/Snippets/Program.cs" id="snippet_RegexMapGet":::
 
 The following code uses an object literal to specify a regex constraint:
 
-:::code language="csharp" source="routing/samples/3.x/RoutingSample/StartupRegex2.cs" id="snippet":::
+:::code language="csharp" source="routing/samples/6.0/RoutingSample/Snippets/Program.cs" id="snippet_RegExMapControllerRoute" highlight="4":::
 
 The ASP.NET Core framework adds `RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.CultureInvariant` to the regular expression constructor. See <xref:System.Text.RegularExpressions.RegexOptions> for a description of these members.
 
@@ -567,19 +567,17 @@ Custom route constraints are rarely needed. Before implementing a custom route c
 
 The ASP.NET Core [Constraints](https://github.com/dotnet/aspnetcore/tree/main/src/Http/Routing/src/Constraints) folder provides good examples of creating a constraints. For example, [GuidRouteConstraint](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Routing/src/Constraints/GuidRouteConstraint.cs#L18).
 
-To use a custom `IRouteConstraint`, the route constraint type must be registered with the app's <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> in the service container. A `ConstraintMap` is a dictionary that maps route constraint keys to `IRouteConstraint` implementations that validate those constraints. An app's `ConstraintMap` can be updated in `Startup.ConfigureServices` either as part of a [services.AddRouting](xref:Microsoft.Extensions.DependencyInjection.RoutingServiceCollectionExtensions.AddRouting%2A) call or by configuring <xref:Microsoft.AspNetCore.Routing.RouteOptions> directly with `services.Configure<RouteOptions>`. For example:
+To use a custom `IRouteConstraint`, the route constraint type must be registered with the app's <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> in the service container. A `ConstraintMap` is a dictionary that maps route constraint keys to `IRouteConstraint` implementations that validate those constraints. An app's `ConstraintMap` can be updated in *Program.cs* either as part of an <xref:Microsoft.Extensions.DependencyInjection.RoutingServiceCollectionExtensions.AddRouting%2A> call or by configuring <xref:Microsoft.AspNetCore.Routing.RouteOptions> directly with `builder.Services.Configure<RouteOptions>`. For example:
 
-:::code language="csharp" source="routing/samples/3.x/RoutingSample/StartupConstraint.cs" id="snippet":::
+:::code language="csharp" source="routing/samples/6.0/RoutingSample/Snippets/Program.cs" id="snippet_AddRoutingConstraintMap":::
 
 The preceding constraint is applied in the following code:
 
-:::code language="csharp" source="routing/samples/3.x/RoutingSample/Controllers/TestController.cs" id="snippet" highlight="6,13":::
+:::code language="csharp" source="routing/samples/6.0/RoutingSample/Snippets/Controllers/NoZeroesController.cs" id="snippet_Class" highlight="5":::
 
-[!INCLUDE[](~/includes/MyDisplayRouteInfo.md)]
+The implementation of `NoZeroesRouteConstraint` prevents `0` being used in a route parameter:
 
-The implementation of `MyCustomConstraint` prevents `0` being applied to a route parameter:
-
-:::code language="csharp" source="routing/samples/3.x/RoutingSample/StartupConstraint.cs" id="snippet2":::
+:::code language="csharp" source="routing/samples/6.0/RoutingSample/Routing/NoZeroesRouteConstraint.cs" id="snippet_Class":::
 
 [!INCLUDE[](~/includes/regex.md)]
 
@@ -590,9 +588,9 @@ The preceding code:
 
 The following code is a better approach to preventing an `id` containing a `0` from being processed:
 
-:::code language="csharp" source="routing/samples/3.x/RoutingSample/Controllers/TestController.cs" id="snippet2":::
+:::code language="csharp" source="routing/samples/6.0/RoutingSample/Snippets/Controllers/BetterNoZeroesController.cs" id="snippet_Action":::
 
-The preceding code has the following advantages over the `MyCustomConstraint` approach:
+The preceding code has the following advantages over the `NoZeroesRouteConstraint` approach:
 
 * It doesn't require a custom constraint.
 * It returns a more descriptive error when the route parameter includes `0`.
@@ -844,8 +842,6 @@ When the `[Host]` attribute is applied to both the controller and action method:
 
 ## Performance guidance for routing
 
-Most of routing was updated in ASP.NET Core 3.0 to increase performance.
-
 When an app has performance problems, routing is often suspected as the problem. The reason routing is suspected is that frameworks like controllers and Razor Pages report the amount of time spent inside the framework in their logging messages. When there's a significant difference between the time reported by controllers and the total time of the request:
 
 * Developers eliminate their app code as the source of the problem.
@@ -908,8 +904,6 @@ There are several techniques and optimizations can be applied to routes that wil
   * This reduces the number of possible "paths" to match an endpoint given a path.
 * Use a dynamic route and perform the mapping to a controller/page dynamically.
   * This can be achieved using `MapDynamicControllerRoute` and `MapDynamicPageRoute`.
-
-<!-- TODO -->
 
 ## Guidance for library authors
 
