@@ -8,7 +8,9 @@ namespace RoutingSample.Routing
         public string? TransformOutbound(object? value)
         {
             if (value is null)
+            {
                 return null;
+            }
 
             return Regex.Replace(
                 value.ToString()!,

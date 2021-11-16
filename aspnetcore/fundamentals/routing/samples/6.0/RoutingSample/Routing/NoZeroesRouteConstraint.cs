@@ -16,13 +16,16 @@ namespace RoutingSample.Routing
             RouteValueDictionary values, RouteDirection routeDirection)
         {
             if (!values.TryGetValue(routeKey, out var routeValue))
+            {
                 return false;
+            }
 
-            var routeValueString = Convert.ToString(
-                routeValue, CultureInfo.InvariantCulture);
+            var routeValueString = Convert.ToString(routeValue, CultureInfo.InvariantCulture);
 
             if (routeValueString is null)
+            {
                 return false;
+            }
 
             return _regex.IsMatch(routeValueString);
         }

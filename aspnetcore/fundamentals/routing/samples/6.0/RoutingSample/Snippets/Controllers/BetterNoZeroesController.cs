@@ -2,7 +2,6 @@
 
 namespace RoutingSample.Snippets.Controllers
 {
-
     [ApiController]
     [Route("api/[controller]")]
     public class BetterNoZeroesController : ControllerBase
@@ -12,7 +11,9 @@ namespace RoutingSample.Snippets.Controllers
         public IActionResult Get(string id)
         {
             if (id.Contains('0'))
+            {
                 return StatusCode(StatusCodes.Status406NotAcceptable);
+            }
 
             return Content(id);
         }
