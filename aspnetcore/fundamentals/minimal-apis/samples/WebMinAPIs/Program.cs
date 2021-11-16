@@ -1,4 +1,4 @@
-#define AUTH1 // Default CREATE P1 PM PE I1 I0 IP CERT CERT2 CERT3 RE CONFIG LOG REB 
+#define Default // Default CREATE P1 PM PE I1 I0 IP CERT CERT2 CERT3 RE CONFIG LOG REB 
 // CONFIGB LOGB IWHB DEP R1 LE LF IM SM NR NR2 RP WILD CON OV EPB OP1 OP2 OP3 OP4
 // CB BA CJSON MULTI STREAM XTN AUTH1 AUTH2 AUTH3 AUTH4 CORS CORS2 SWAG SWAG2 
 // FIL2 IHB CHNGR ADDMID
@@ -788,38 +788,6 @@ if (app.Environment.IsDevelopment())
 app.MapGet("/swag", () => "Hello Swagger!");
 app.MapGet("/skipme", () => "Skipping Swagger.")
                     .ExcludeFromDescription();
-
-app.Run();
-#endregion
-
-#elif FIL2
-#region snippet_fil2
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
-
-app.MapGet("/upload", async (HttpRequest req) =>
-{
-    if (!req.HasFormContentType)
-    {
-        return Results.BadRequest();
-    }
-
-    var form = await req.ReadFormAsync();
-    var file = form.Files["file"];
-
-    if (file is null)
-    {
-        return Results.BadRequest();
-    }
-
-    var uploads = Path.Combine("uploads", file.FileName);
-    await using var fileStream = File.OpenWrite(uploads);
-    await using var uploadStream = file.OpenReadStream();
-    await uploadStream.CopyToAsync(fileStream);
-
-    return Results.NoContent();
-})
-.Accepts<IFormFile>("multipart/form-data");
 
 app.Run();
 #endregion
