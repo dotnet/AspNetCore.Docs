@@ -21,18 +21,18 @@
         SettingService = ScopedServices.GetRequiredService<ISettingService>();
     }
 
-    private class Setting
+    public class Setting
     {
         public string SettingName { get; set; }
         public string SettingValue { get; set; }
     }
 
-    private interface IUserService
+    public interface IUserService
     {
         public string Name { get; set; }
     }
 
-    private interface ISettingService
+    public interface ISettingService
     {
         public IList<Setting> GetSettings();
     }
