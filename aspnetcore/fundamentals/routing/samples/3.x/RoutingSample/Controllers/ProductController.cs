@@ -4,7 +4,7 @@ using Microsoft.Docs.Samples;
 
 namespace RoutingSample.Controllers
 {
-    #region snippet
+    // <snippet>
     [Host("contoso.com", "adventure-works.com")]
     public class ProductController : Controller
     {
@@ -19,5 +19,5 @@ namespace RoutingSample.Controllers
             return ControllerContext.MyDisplayRouteInfo();
         }
     }
-    #endregion
+    // </snippet>
 }

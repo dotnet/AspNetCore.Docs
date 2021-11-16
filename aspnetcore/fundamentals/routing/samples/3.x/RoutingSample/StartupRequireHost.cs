@@ -5,7 +5,7 @@ namespace RoutingSample
 {
     public class StartupRequireHost
     {
-        #region snippet
+        // <snippet>
         public void Configure(IApplicationBuilder app)
         {
             app.UseRouting();
@@ -19,6 +19,6 @@ namespace RoutingSample
                 endpoints.MapHealthChecks("/healthz").RequireHost("*:8080");
             });
         }
-        #endregion
+        // </snippet>
     }
 }

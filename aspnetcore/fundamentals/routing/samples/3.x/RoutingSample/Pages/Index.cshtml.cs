@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace RoutingSample.Pages
 {
-    #region snippet
+    // <snippet>
     public class IndexModel : PageModel
     {
         public void OnGet()
@@ -12,5 +12,5 @@ namespace RoutingSample.Pages
             ViewData["URL"] = url;
         }
     }
-    #endregion
+    // </snippet>
 }
