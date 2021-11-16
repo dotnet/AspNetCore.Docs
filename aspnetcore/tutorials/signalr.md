@@ -230,6 +230,7 @@ The SignalR server must be configured to pass SignalR requests to SignalR.
 >   dotnet dev-certs https --clean
 >   dotnet dev-certs https --trust
 >   ```
+::: moniker-end
 
 ::: moniker range="< aspnetcore-6.0"
 
