@@ -63,7 +63,7 @@ Razor Pages is enabled in *program.cs*:
 In the preceding code:
 
 * <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddRazorPages%2A> adds services for Razor Pages to the app.
-* <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages%2A> adds endpoints for Razor Pages.
+* <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages%2A> adds endpoints for Razor Pages to the <xref:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder>. 
 
 Consider a basic page:
 <a name="OnGet"></a>
@@ -104,7 +104,7 @@ For the samples in this document, the `DbContext` is initialized in the [Startup
 
 The in memory database requires the `Microsoft.EntityFrameworkCore.InMemory` NuGet package.
 
-[!code-csharp[](index/6.0sample/RazorPagesContacts/Program.cs?name=snippet1)]
+[!code-csharp[](index/6.0sample/RazorPagesContacts/Program.cs?name=snippet1&highlight=7-8)]
 
 The data model:
 
@@ -116,11 +116,11 @@ The db context:
 
 The *Pages/Create.cshtml* view file:
 
-[!code-cshtml[](index/6.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml?name=snippet)]
+[!code-cshtml[](index/6.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml)]
 
 The *Pages/Create.cshtml.cs* page model:
 
-[!code-csharp[](index/6.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet_ALL)]
+[!code-csharp[](index/6.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet)]
 
 By convention, the `PageModel` class is called `<PageName>Model` and is in the same namespace as the page.
 

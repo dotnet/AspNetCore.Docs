@@ -20,6 +20,7 @@ namespace RazorPagesContacts.Pages.Customers
         {
             return Page();
         }
+
         #region snippet_OnPostAsync
         [BindProperty]
         public Customer Customer { get; set; }
