@@ -922,31 +922,26 @@ To create a framework that uses routing for URL matching, start by defining a us
 **DO** build on top of <xref:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder>. This allows users to compose your framework with other ASP.NET Core features without confusion. Every ASP.NET Core template includes routing. Assume routing is present and familiar for users.
 
 ```csharp
-app.UseEndpoints(endpoints =>
-{
-    // Your framework
-    endpoints.MapMyFramework(...);
+// Your framework
+app.MapMyFramework(...);
 
-    endpoints.MapHealthChecks("/healthz");
-});
+app.MapHealthChecks("/healthz");
 ```
 
 **DO** return a sealed concrete type from a call to `MapMyFramework(...)` that implements <xref:Microsoft.AspNetCore.Builder.IEndpointConventionBuilder>. Most framework `Map...` methods follow this pattern. The `IEndpointConventionBuilder` interface:
 
-* Allows composability of metadata.
+* Allows for metadata to be composed.
 * Is targeted by a variety of extension methods.
 
 Declaring your own type allows you to add your own framework-specific functionality to the builder. It's ok to wrap a framework-declared builder and forward calls to it.
 
 ```csharp
-app.UseEndpoints(endpoints =>
-{
-    // Your framework
-    endpoints.MapMyFramework(...).RequireAuthorization()
-                                 .WithMyFrameworkFeature(awesome: true);
+// Your framework
+app.MapMyFramework(...)
+    .RequireAuthorization()
+    .WithMyFrameworkFeature(awesome: true);
 
-    endpoints.MapHealthChecks("/healthz");
-});
+app.MapHealthChecks("/healthz");
 ```
 
 **CONSIDER** writing your own <xref:Microsoft.AspNetCore.Routing.EndpointDataSource>. `EndpointDataSource` is the low-level primitive for declaring and updating a collection of endpoints. `EndpointDataSource` is a powerful API used by controllers and Razor Pages.
@@ -961,7 +956,7 @@ The routing tests have a [basic example](https://github.com/dotnet/AspNetCore/bl
 
 **DO** make it possible to use metadata types as an attribute on classes and methods.
 
-:::code language="csharp" source="routing/samples/3.x/RoutingSample/ICoolMetadata.cs" id="snippet2":::
+:::code language="csharp" source="routing/samples/6.0/RoutingSample/Routing/ICoolMetadata.cs" id="snippet_InterfaceAttribute":::
 
 Frameworks like controllers and Razor Pages support applying metadata attributes to types and methods. If you declare metadata types:
 
@@ -975,7 +970,7 @@ Declaring a metadata type as an interface adds another layer of flexibility:
 
 **DO** make it possible to override metadata, as shown in the following example:
 
-:::code language="csharp" source="routing/samples/3.x/RoutingSample/ICoolMetadata.cs" id="snippet":::
+:::code language="csharp" source="routing/samples/6.0/RoutingSample/Routing/ICoolMetadata.cs" id="snippet_SuppressController":::
 
 The best way to follow these guidelines is to avoid defining **marker metadata**:
 
@@ -984,18 +979,13 @@ The best way to follow these guidelines is to avoid defining **marker metadata**
 
 The metadata collection is ordered and supports overriding by priority. In the case of controllers, metadata on the action method is most specific.
 
-**DO** make middleware useful with and without routing.
+**DO** make middleware useful with and without routing:
 
 ```csharp
-app.UseRouting();
-
 app.UseAuthorization(new AuthorizationPolicy() { ... });
 
-app.UseEndpoints(endpoints =>
-{
-    // Your framework
-    endpoints.MapMyFramework(...).RequireAuthorization();
-});
+// Your framework
+app.MapMyFramework(...).RequireAuthorization();
 ```
 
 As an example of this guideline, consider the `UseAuthorization` middleware. The authorization middleware allows you to pass in a fallback policy. <!-- shown where?  (shown here) --> The fallback policy, if specified, applies to both:
@@ -1009,7 +999,7 @@ This makes the authorization middleware useful outside of the context of routing
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/routing/samples/3.x) ([how to download](xref:index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/routing/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 :::moniker-end
 
