@@ -26,19 +26,10 @@ Apps can configure routing using:
 * Endpoint-enabled [middleware](xref:fundamentals/middleware/index) such as [Health Checks](xref:host-and-deploy/health-checks).
 * Delegates and lambdas registered with routing.
 
-This document covers low-level details of ASP.NET Core routing. For information on configuring routing:
+This article covers low-level details of ASP.NET Core routing. For information on configuring routing:
 
 * For controllers, see <xref:mvc/controllers/routing>.
 * For Razor Pages conventions, see <xref:razor-pages/razor-pages-conventions>.
-
-The endpoint routing system described in this document applies to ASP.NET Core 3.0 and later. For information on the previous routing system based on <xref:Microsoft.AspNetCore.Routing.IRouter>, select the ASP.NET Core 2.1 version using one of the following approaches:
-
-* The version selector for a previous version.
-* Select [ASP.NET Core 2.1 routing](?preserve-view=true&view=aspnetcore-2.1).
-
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/routing/samples/3.x) ([how to download](xref:index#how-to-download-a-sample))
-
-The download samples for this document are enabled by a specific `Startup` class. To run a specific sample, modify *Program.cs* to call the desired `Startup` class.
 
 ## Routing basics
 
@@ -83,14 +74,14 @@ The following example shows routing with a more sophisticated route template:
 The string `/hello/{name:alpha}` is a **route template**. It is used to configure how the endpoint is matched. In this case, the template matches:
 
 * A URL like `/hello/Ryan`
-* Any URL path that begins with `/hello/` followed by a sequence of alphabetic characters.  `:alpha` applies a route constraint that matches only alphabetic characters. [Route constraints](#route-constraint-reference) are explained later in this document.
+* Any URL path that begins with `/hello/` followed by a sequence of alphabetic characters.  `:alpha` applies a route constraint that matches only alphabetic characters. [Route constraints](#route-constraint-reference) are explained later in this article.
 
 The second segment of the URL path, `{name:alpha}`:
 
 * Is bound to the `name` parameter.
 * Is captured and stored in [HttpRequest.RouteValues](xref:Microsoft.AspNetCore.Http.HttpRequest.RouteValues%2A).
 
-The endpoint routing system described in this document is new as of ASP.NET Core 3.0. However, all versions of ASP.NET Core support the same set of route template features and route constraints.
+The endpoint routing system described in this article is new as of ASP.NET Core 3.0. However, all versions of ASP.NET Core support the same set of route template features and route constraints.
 
 The following example shows routing with [health checks](xref:host-and-deploy/health-checks) and authorization:
 
@@ -170,7 +161,7 @@ This output demonstrates that:
 
 * The endpoint is always null before `UseRouting` is called.
 * If a match is found, the endpoint is non-null between `UseRouting` and <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A>.
-* The `UseEndpoints` middleware is **terminal** when a match is found. [Terminal middleware](#tm) is defined later in this document.
+* The `UseEndpoints` middleware is **terminal** when a match is found. [Terminal middleware](#tm) is defined later in this article.
 * The middleware after `UseEndpoints` execute only when no match is found.
 
 The `UseRouting` middleware uses the [SetEndpoint](xref:Microsoft.AspNetCore.Http.EndpointHttpContextExtensions.SetEndpoint%2A) method to attach the endpoint to the current context. It's possible to replace the `UseRouting` middleware with custom logic and still get the benefits of using endpoints. Endpoints are a low-level primitive like middleware, and aren't coupled to the routing implementation. Most apps don't need to replace `UseRouting` with custom logic.
@@ -1012,6 +1003,10 @@ As an example of this guideline, consider the `UseAuthorization` middleware. The
 This makes the authorization middleware useful outside of the context of routing. The authorization middleware can be used for traditional middleware programming.
 
 [!INCLUDE[](~/includes/dbg-route.md)]
+
+## Additional resources
+
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/routing/samples/3.x) ([how to download](xref:index#how-to-download-a-sample))
 
 ::: moniker-end
 
