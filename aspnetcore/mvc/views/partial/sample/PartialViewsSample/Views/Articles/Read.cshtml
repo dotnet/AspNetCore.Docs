@@ -13,12 +13,12 @@
 
     foreach (var section in Model.Sections)
     {
-        await Html.PartialAsync("_ArticleSection", 
+        @(await Html.PartialAsync("_ArticleSection", 
                                 section,
                                 new ViewDataDictionary(ViewData)
                                 {
                                     { "index", index }
-                                });
+                                }))
 
         index++;
     }

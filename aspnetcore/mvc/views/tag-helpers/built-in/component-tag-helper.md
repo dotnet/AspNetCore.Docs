@@ -17,8 +17,8 @@ uid: mvc/views/tag-helpers/builtin-th/component-tag-helper
 
 Follow the guidance in the *Configuration* section for either:
 
-* [Blazor WebAssembly](xref:blazor/components/prerendering-and-integration?pivots=webassembly)
-* [Blazor Server](xref:blazor/components/prerendering-and-integration?pivots=server)
+* [Blazor Server](xref:blazor/components/prerendering-and-integration?pivots=server): Integrate routable and non-routable Razor components into Razor Pages and MVC apps.
+* [Blazor WebAssembly](xref:blazor/components/prerendering-and-integration?pivots=webassembly): Integrate Razor components from a hosted Blazor WebAssembly solution into Razor Pages and MVC apps.
 
 ::: moniker-end
 
