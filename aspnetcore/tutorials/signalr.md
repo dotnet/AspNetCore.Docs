@@ -32,47 +32,74 @@ At the end, you'll have a working chat app:
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-core-prereqs-vs-3.1.md)]
+[!INCLUDE[](~/includes/net-prereqs-vs-6.0.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-core-prereqs-vsc-3.1.md)]
+[!INCLUDE[](~/includes/net-prereqs-vsc-6.0.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-[!INCLUDE[](~/includes/net-core-prereqs-mac-3.1.md)]
+[!INCLUDE[](~/includes/net-prereqs-mac-6.0.md)]
 
 ---
 
 ## Create a web app project
 
-# [Visual Studio](#tab/visual-studio/)
+# [Visual Studio](#tab/visual-studio)
 
-  * From the menu, select **File > New Project**.
-  * In the **Create a new project** dialog, select **ASP.NET Core Web Application**, and then select **Next**.
-  * In the **Configure your new project** dialog, name the project *SignalRChat*, and then select **Create**.
-  * In the **Create a new ASP.NET Core web Application** dialog, select **.NET Core** and **ASP.NET Core 3.1**.
-  * Select **Web Application** to create a project that uses Razor Pages, and then select **Create**.
+1. Start Visual Studio 2022 and select **Create a new project**.
 
-  ![New Project dialog in Visual Studio](signalr/_static/3.x/signalr-new-project-dialog.png)
+   ![Create a new project from the start window](~/tutorials/razor-pages/razor-pages-start/_static/6/start-window-create-new-project.png)
 
-# [Visual Studio Code](#tab/visual-studio-code/)
+1. In the **Create a new project** dialog, select **ASP.NET Core Web App**, and then select **Next**.
 
-  * Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal) to the folder in which the new project folder will be created.
-  * Run the following commands:
+	![Create an ASP.NET Core Web App](~/tutorials/razor-pages/razor-pages-start/_static/6/np.png)
+	
+1. In the **Configure your new project** dialog, enter `SignalRChat` for **Project name**. It's important to name the project *SignalRChat*, including matching the capitalization, so the namespaces will match when you copy and paste example code.
+
+1. Select **Next**.
+
+1. In the **Additional information** dialog, select **.NET 6.0 (Long-term support)** and then select **Create**.
+
+	 ![Additional information](~/tutorials/razor-pages/razor-pages-start/_static/6/additional-info.png)
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+1. Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
+
+1. Change to the directory (`cd`) that will contain the project.
+1. Run the following commands:
 
    ```dotnetcli
    dotnet new webapp -o SignalRChat
-   cd SignalRChat
-   code -r .
+   code -r SignalRChat
    ```
+   Visual Studio Code displays a dialog box that asks **Do you trust the authors of the files in this folder**.  Select:
+    * The checkbox **trust the authors of all files in the parent folder**
+   * **Yes, I trust the authors** (because dotnet generated the files).
+
+   The `dotnet new` command creates a new Razor Pages project in the *RazorPagesMovie* folder.
+
+   The `code` command opens the *RazorPagesMovie* folder in the current instance of Visual Studio Code.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-  * From the menu, select **File > New Solution**.
-  * Select **.NET Core > App > Web Application** (Don't select **Web Application (Model-View-Controller)**), and then select **Next**.
-  * Make sure the **Target Framework** is set to **.NET Core 3.1**, and then select **Next**.
-  * Name the project *SignalRChat*, and then select **Create**.
+1. Select **File** > **New Solution**.
+
+	![macOS New solution](~/tutorials/razor-pages/razor-pages-start/_static/6/new_project_vsmac6.png)
+
+1. In Visual Studio 2022 for Mac select **Web and Console** > **App** > **Web Application** > **Continue**.
+
+	![macOS web app template selection](~/tutorials/razor-pages/razor-pages-start/_static/6/web_app_template_vsmac6.png)
+
+1. In the **Configure your new Web Application** dialog:
+
+	1. Confirm that **Authentication** is set to **No Authentication**.
+	1. Confirm that **Target framework** is set to the latest .NET 6.x version.
+  1. Select **Continue**.
+
+1. Name the project *SignalRChat* and select **Continue**.
 
 ---
 
@@ -175,7 +202,7 @@ The SignalR server must be configured to pass SignalR requests to SignalR.
 
 ## Add SignalR client code
 
-* Replace the content in *Pages\Index.cshtml* with the following code:
+* Replace the content in *Pages/Index.cshtml* with the following code:
 
   [!code-cshtml[Index](signalr/sample-snapshot/3.x/Index.cshtml)]
 
@@ -394,7 +421,7 @@ The SignalR server must be configured to pass SignalR requests to SignalR.
 
 ## Add SignalR client code
 
-* Replace the content in *Pages\Index.cshtml* with the following code:
+* Replace the content in *Pages/Index.cshtml* with the following code:
 
   [!code-cshtml[Index](signalr/sample-snapshot/3.x/Index.cshtml)]
 
