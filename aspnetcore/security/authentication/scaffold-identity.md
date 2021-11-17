@@ -29,7 +29,7 @@ Services are required when using [Two Factor Authentication](xref:security/authe
 
 When scaffolding Identity with a new data context into a project with existing individual accounts:
 
-* In `Startup.ConfigureServices`, remove the calls to:
+* In *Program.cs*, remove the calls to:
   * `AddDbContext`
   * `AddDefaultIdentity`
 
