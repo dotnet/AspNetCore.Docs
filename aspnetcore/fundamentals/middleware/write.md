@@ -2,7 +2,7 @@
 title: Write custom ASP.NET Core middleware
 author: rick-anderson
 description: Learn how to write custom ASP.NET Core middleware.
-monikerRange: '>= aspnetcore-2.1'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 5/18/2020
@@ -22,7 +22,7 @@ Middleware is software that's assembled into an app pipeline to handle requests 
 
 Middleware is generally encapsulated in a class and exposed with an extension method. Consider the following middleware, which sets the culture for the current request from a query string:
 
-[!code-csharp[](write/snapshot/StartupCulture.cs)]
+:::code language="csharp" source="write/snapshot/StartupCulture.cs":::
 
 The preceding sample code is used to demonstrate creating a middleware component. For ASP.NET Core's built-in localization support, see <xref:fundamentals/localization>.
 
@@ -30,7 +30,7 @@ Test the middleware by passing in the culture. For example, request `https://loc
 
 The following code moves the middleware delegate to a class:
 
-[!code-csharp[](write/snapshot/RequestCultureMiddleware.cs)]
+:::code language="csharp" source="write/snapshot/RequestCultureMiddleware.cs":::
 
 The middleware class must include:
 
@@ -45,11 +45,11 @@ Additional parameters for the constructor and `Invoke`/`InvokeAsync` are populat
 
 Middleware should follow the [Explicit Dependencies Principle](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#explicit-dependencies) by exposing its dependencies in its constructor. Middleware is constructed once per *application lifetime*. See the [Per-request middleware dependencies](#per-request-middleware-dependencies) section if you need to share services with middleware within a request.
 
-Middleware components can resolve their dependencies from [dependency injection (DI)](xref:fundamentals/dependency-injection) through constructor parameters. [UseMiddleware&lt;T&gt;](/dotnet/api/microsoft.aspnetcore.builder.usemiddlewareextensions.usemiddleware#Microsoft_AspNetCore_Builder_UseMiddlewareExtensions_UseMiddleware_Microsoft_AspNetCore_Builder_IApplicationBuilder_System_Type_System_Object___) can also accept additional parameters directly.
+Middleware components can resolve their dependencies from [dependency injection (DI)](xref:fundamentals/dependency-injection) through constructor parameters. <xref:Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.UseMiddleware%2A> can also accept additional parameters directly.
 
 ## Per-request middleware dependencies
 
-Because middleware is constructed at app startup, not per-request, *scoped* lifetime services used by middleware constructors aren't shared with other dependency-injected types during each request. If you must share a *scoped* service between your middleware and other types, add these services to the `Invoke` method's signature. The `Invoke` method can accept additional parameters that are populated by DI:
+Because middleware is constructed at app startup, not per-request, *scoped* lifetime services used by middleware constructors aren't shared with other dependency-injected types during each request. If you must share a *scoped* service between your middleware and other types, add these services to the `InvokeAsync` method's signature. The `InvokeAsync` method can accept additional parameters that are populated by DI:
 
 ```csharp
 public class CustomMiddleware
@@ -61,8 +61,8 @@ public class CustomMiddleware
         _next = next;
     }
 
-    // IMyScopedService is injected into Invoke
-    public async Task Invoke(HttpContext httpContext, IMyScopedService svc)
+    // IMyScopedService is injected into InvokeAsync
+    public async Task InvokeAsync(HttpContext httpContext, IMyScopedService svc)
     {
         svc.MyProperty = 1000;
         await _next(httpContext);
@@ -76,11 +76,11 @@ public class CustomMiddleware
 
 The following extension method exposes the middleware through <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder>:
 
-[!code-csharp[](write/snapshot/RequestCultureMiddlewareExtensions.cs)]
+:::code language="csharp" source="write/snapshot/RequestCultureMiddlewareExtensions.cs":::
 
 The following code calls the middleware from `Startup.Configure`:
 
-[!code-csharp[](write/snapshot/Startup.cs?highlight=5)]
+:::code language="csharp" source="write/snapshot/Startup.cs" highlight="5":::
 
 ## Additional resources
 
