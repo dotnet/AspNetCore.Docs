@@ -112,10 +112,11 @@ The SignalR server library is included in the ASP.NET Core shared framework. The
 
   * In **Solution Explorer**, right-click the project, and select **Add** > **Client-Side Library**.
   * In the **Add Client-Side Library** dialog:
-    ** Select **unpkg** for **Provider**
-  * Enter `@microsoft/signalr@latest` for **Library**
-  * Select **Choose specific files**, expand the *dist/browser* folder, and select *signalr.js* and *signalr.min.js*.
-  * Set **Target Location** to *wwwroot/js/signalr/*, and select **Install**.
+    * Select **unpkg** for **Provider**
+    * Enter `@microsoft/signalr@latest` for **Library**
+    * Select **Choose specific files**, expand the *dist/browser* folder, and select *signalr.js* and *signalr.min.js*.
+    * Set **Target Location** to *wwwroot/js/signalr/*
+    * Select **Install**
 
   ![Add Client-Side Library dialog - select library](signalr/_static/3.x/find-signalr-client-libs-select-files.png)
 
@@ -186,7 +187,7 @@ A *hub* is a class that serves as a high-level pipeline that handles client-serv
   * In the SignalRChat project folder, create a *Hubs* folder.
   * In the *Hubs* folder, create the `ChatHub` class with the following code:
 
-  [!code-csharp[ChatHub](signalr/sample-snapshot/3.x/ChatHub.cs)]
+  [!code-csharp[ChatHub](signalr/samples/SignalRChat/Hubs/ChatHub.cs)]
 
   The `ChatHub` class inherits from the SignalR <xref:Microsoft.AspNetCore.SignalR.Hub> class. The `Hub` class manages connections, groups, and messaging.
 
@@ -194,11 +195,9 @@ A *hub* is a class that serves as a high-level pipeline that handles client-serv
 
 ## Configure SignalR
 
-The SignalR server must be configured to pass SignalR requests to SignalR.
+The SignalR server must be configured to pass SignalR requests to SignalR. Add the following highlighted code to the *Program.cs* file.
 
-* Add the following highlighted code to the *Program.cs* file.
-
-  [!code-csharp[Startup](signalr/samples/SignalRChat/Program.cs?highlight=1,6,24)]
+[!code-csharp[Startup](signalr/samples/SignalRChat/Program.cs?highlight=1,6,24)]
 
 The preceding highlighted code adds SignalR to the ASP.NET Core dependency injection and routing systems.
 
@@ -334,7 +333,8 @@ The SignalR server library is included in the ASP.NET Core 3.1 shared framework.
   * In the **Add Client-Side Library** dialog, for **Provider** select **unpkg**.
   * For **Library**, enter `@microsoft/signalr@latest`.
   * Select **Choose specific files**, expand the *dist/browser* folder, and select *signalr.js* and *signalr.min.js*.
-  * Set **Target Location** to *wwwroot/js/signalr/*, and select **Install**.
+  * Set **Target Location** to *wwwroot/js/signalr/*
+  * Select **Install**
 
   ![Add Client-Side Library dialog - select library](signalr/_static/3.x/find-signalr-client-libs-select-files.png)
 
