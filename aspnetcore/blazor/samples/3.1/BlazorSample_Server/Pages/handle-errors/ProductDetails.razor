@@ -38,13 +38,13 @@ else
         }
     }
 
-    private class ProductDetail
+    public class ProductDetail
     {
         public string ProductName { get; set; }
         public string Description { get; set; }
     }
 
-    private interface IProductRepository
+    public interface IProductRepository
     {
         public Task<ProductDetail> GetProductByIdAsync(int id);
     }
