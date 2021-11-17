@@ -338,8 +338,6 @@ The details of how precedence works are coupled to how route templates are defin
 * A complex segment is considered as specific as a parameter segment with a constraint.
 * Catch-all parameters are the least specific. See **catch-all** in the [Route templates](#rtr) section for important information on catch-all routes.
 
-See the [source code on GitHub](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Routing/src/Template/RoutePrecedence.cs#L189) for a reference of exact values.
-
 <a name="lg"></a>
 
 ### URL generation concepts
@@ -387,7 +385,7 @@ The methods provided by <xref:Microsoft.AspNetCore.Routing.LinkGenerator> suppor
 
 In the following example, a middleware uses the <xref:Microsoft.AspNetCore.Routing.LinkGenerator> API to create a link to an action method that lists store products. Using the link generator by injecting it into a class and calling `GenerateLink` is available to any class in an app:
 
-:::code language="csharp" source="routing/samples/3.x/RoutingSample/Middleware/ProductsLinkMiddleware.cs" id="snippet":::
+:::code language="csharp" source="routing/samples/6.0/RoutingSample/Snippets/Middleware/ProductsMiddleware.cs" id="snippet_Class":::
 
 <a name="rtr"></a>
 
