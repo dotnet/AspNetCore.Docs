@@ -1,8 +1,9 @@
-﻿using RoutingSample.Routing;
+﻿using System.Diagnostics;
+using RoutingSample.Routing;
 
 namespace RoutingSample.Snippets
 {
-    public static class Program
+    public class Program
     {
         public static void RegexMap(WebApplication app)
         {
@@ -45,6 +46,84 @@ namespace RoutingSample.Snippets
 
             app.MapHealthChecks("/healthz").RequireHost("*:8080");
             // </snippet_RequireHost>
+        }
+
+        public static void StopwatchMiddleware(WebApplication app)
+        {
+            // <snippet_StopwatchMiddleware>
+            var logger = app.Services.GetRequiredService<ILogger<Program>>();
+
+            app.Use(async (context, next) =>
+            {
+                var stopwatch = Stopwatch.StartNew();
+                await next(context);
+                stopwatch.Stop();
+
+                logger.LogInformation("Time 1: {ElapsedMilliseconds}ms", stopwatch.ElapsedMilliseconds);
+            });
+
+            app.UseRouting();
+
+            app.Use(async (context, next) =>
+            {
+                var stopwatch = Stopwatch.StartNew();
+                await next(context);
+                stopwatch.Stop();
+
+                logger.LogInformation("Time 2: {ElapsedMilliseconds}ms", stopwatch.ElapsedMilliseconds);
+            });
+
+            app.UseAuthorization();
+
+            app.Use(async (context, next) =>
+            {
+                var stopwatch = Stopwatch.StartNew();
+                await next(context);
+                stopwatch.Stop();
+
+                logger.LogInformation("Time 3: {ElapsedMilliseconds}ms", stopwatch.ElapsedMilliseconds);
+            });
+
+            app.MapGet("/", () => "Timing Test.");
+            // </snippet_StopwatchMiddleware>
+        }
+
+        public static void StopwatchMiddlewareAuto(WebApplication app)
+        {
+            // <snippet_StopwatchMiddlewareAuto>
+            var logger = app.Services.GetRequiredService<ILogger<Program>>();
+            var timerCount = 0;
+
+            app.Use(async (context, next) =>
+            {
+                using (new AutoStopwatch(logger, $"Time {++timerCount}"))
+                {
+                    await next(context);
+                }
+            });
+
+            app.UseRouting();
+
+            app.Use(async (context, next) =>
+            {
+                using (new AutoStopwatch(logger, $"Time {++timerCount}"))
+                {
+                    await next(context);
+                }
+            });
+
+            app.UseAuthorization();
+
+            app.Use(async (context, next) =>
+            {
+                using (new AutoStopwatch(logger, $"Time {++timerCount}"))
+                {
+                    await next(context);
+                }
+            });
+
+            app.MapGet("/", () => "Timing Test.");
+            // </snippet_StopwatchMiddlewareAuto>
         }
     }
 }

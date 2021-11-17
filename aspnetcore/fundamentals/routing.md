@@ -851,7 +851,7 @@ Routing is performance tested using thousands of endpoints. It's unlikely that a
 
 This following code sample demonstrates a basic technique for narrowing down the source of delay:
 
-:::code language="csharp" source="routing/samples/3.x/RoutingSample/StartupDelay.cs" id="snippet":::
+:::code language="csharp" source="routing/samples/6.0/RoutingSample/Snippets/Program.cs" id="snippet_StopwatchMiddleware":::
 
 To time routing:
 
@@ -862,9 +862,9 @@ This is a basic way to narrow down the delay when it's significant, for example,
 
 The following code uses a more compact approach to the preceding timing code:
 
-:::code language="csharp" source="routing/samples/3.x/RoutingSample/StartupSW.cs" id="snippetSW":::
+:::code language="csharp" source="routing/samples/6.0/RoutingSample/Snippets/AutoStopwatch.cs" id="snippet_Class":::
 
-:::code language="csharp" source="routing/samples/3.x/RoutingSample/StartupSW.cs" id="snippet":::
+:::code language="csharp" source="routing/samples/6.0/RoutingSample/Snippets/Program.cs" id="snippet_StopwatchMiddlewareAuto":::
 
 ### Potentially expensive routing features
 
