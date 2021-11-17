@@ -111,8 +111,6 @@ In the preceding example, there are two endpoints, but only the health check end
 * The metadata can be processed by routing-aware middleware.
 * The metadata can be of any .NET type.
 
-<!-- TODO -->
-
 ## Routing concepts
 
 The routing system builds on top of the middleware pipeline by adding the powerful **endpoint** concept. Endpoints represent units of the app's functionality that are distinct from each other in terms of routing, authorization, and any number of ASP.NET Core's systems.
@@ -130,19 +128,19 @@ An ASP.NET Core endpoint is:
 
 The following code shows how to retrieve and inspect the endpoint matching the current request:
 
-:::code language="csharp" source="routing/samples/3.x/RoutingSample/EndpointInspectorStartup.cs" id="snippet":::
+:::code language="csharp" source="routing/samples/6.0/RoutingSample/Snippets/Program.cs" id="snippet_InspectEndpointMiddleware":::
 
 The endpoint, if selected, can be retrieved from the `HttpContext`. Its properties can be inspected. Endpoint objects are immutable and cannot be modified after creation. The most common type of endpoint is a <xref:Microsoft.AspNetCore.Routing.RouteEndpoint>. `RouteEndpoint` includes information that allows it to be selected by the routing system.
 
-In the preceding code, [app.Use](xref:Microsoft.AspNetCore.Builder.UseExtensions.Use%2A) configures an in-line [middleware](xref:fundamentals/middleware/index).
+In the preceding code, [app.Use](xref:Microsoft.AspNetCore.Builder.UseExtensions.Use%2A) configures an inline [middleware](xref:fundamentals/middleware/index).
 
 <a name="mt"></a>
 
 The following code shows that, depending on where `app.Use` is called in the pipeline, there may not be an endpoint:
 
-:::code language="csharp" source="routing/samples/3.x/RoutingSample/MiddlewareFlowStartup.cs" id="snippet":::
+:::code language="csharp" source="routing/samples/6.0/RoutingSample/Snippets/Program.cs" id="snippet_CurrentEndpointMiddlewareOrder":::
 
-This preceding sample adds `Console.WriteLine` statements that display whether or not an endpoint has been selected. For clarity, the sample assigns a display name to the provided `/` endpoint.
+This preceding sample adds `Console.WriteLine` statements that display whether or not an endpoint has been selected. For clarity, the sample assigns a display name to the provided `/` endpoint. Apps that use [Minimal APIs](xref:fundamentals/minimal-apis) typically don't need to call `UseRouting` or `UseEndpoints`. The preceding sample code includes these calls to control exactly when the `UseRouting` and `UseEndpoints` middleware runs within the pipeline.
 
 Running this code with a URL of `/` displays:
 
@@ -173,7 +171,8 @@ The `UseEndpoints` middleware is designed to be used in tandem with the `UseRout
 
 The following code demonstrates how middleware can influence or react to routing:
 
-:::code language="csharp" source="routing/samples/3.x/RoutingSample/IntegratedMiddlewareStartup.cs" id="snippet":::
+:::code language="csharp" source="routing/samples/6.0/RoutingSample/Snippets/Program.cs" id="snippet_RequiresAudit":::
+:::code language="csharp" source="routing/samples/6.0/RoutingSample/Snippets/RequiresAuditAttribute.cs" id="snippet_Class":::
 
 The preceding example demonstrates two important concepts:
 
@@ -185,14 +184,14 @@ The preceding example demonstrates two important concepts:
     * Often makes security decisions, as done by `UseAuthorization` and `UseCors`.
   * The combination of middleware and metadata allows configuring policies per-endpoint.
 
-The preceding code shows an example of a custom middleware that supports per-endpoint policies. The middleware writes an *audit log* of access to sensitive data to the console. The middleware can be configured to *audit* an endpoint with the `AuditPolicyAttribute` metadata. This sample demonstrates an *opt-in* pattern where only endpoints that are marked as sensitive are audited. It's possible to define this logic in reverse, auditing everything that isn't marked as safe, for example. The endpoint metadata system is flexible. This logic could be designed in whatever way suits the use case.
+The preceding code shows an example of a custom middleware that supports per-endpoint policies. The middleware writes an *audit log* of access to sensitive data to the console. The middleware can be configured to *audit* an endpoint with the `RequiresAuditAttribute` metadata. This sample demonstrates an *opt-in* pattern where only endpoints that are marked as sensitive are audited. It's possible to define this logic in reverse, auditing everything that isn't marked as safe, for example. The endpoint metadata system is flexible. This logic could be designed in whatever way suits the use case.
 
 The preceding sample code is intended to demonstrate the basic concepts of endpoints. **The sample is not intended for production use**. A more complete version of an *audit log* middleware would:
 
 * Log to a file or database.
 * Include details such as the user, IP address, name of the sensitive endpoint, and more.
 
-The audit policy metadata `AuditPolicyAttribute` is defined as an `Attribute` for easier use with class-based frameworks such as controllers and SignalR. When using *route to code*:
+The audit policy metadata `RequiresAuditAttribute` is defined as an `Attribute` for easier use with class-based frameworks such as controllers and SignalR. When using *route to code*:
 
 * Metadata is attached with a builder API.
 * Class-based frameworks include all attributes on the corresponding method and class when creating endpoints.
@@ -201,20 +200,20 @@ The best practices for metadata types are to define them either as interfaces or
 
 <a name="tm"></a>
 
-### Comparing a terminal middleware and routing
+### Compare terminal middleware with routing
 
-The following code sample contrasts using middleware with using routing:
+The following example demonstrates both terminal middleware and routing:
 
-:::code language="csharp" source="routing/samples/3.x/RoutingSample/TerminalMiddlewareStartup.cs" id="snippet":::
+:::code language="csharp" source="routing/samples/6.0/RoutingSample/Snippets/Program.cs" id="snippet_CompareTerminalMiddlewareRouting":::
 
 The style of middleware shown with `Approach 1:` is **terminal middleware**. It's called terminal middleware because it does a matching operation:
 
-* The matching operation in the preceding sample is `Path == "/"` for the middleware and `Path == "/Movie"` for routing.
+* The matching operation in the preceding sample is `Path == "/"` for the middleware and `Path == "/Routing"` for routing.
 * When a match is successful, it executes some functionality and returns, rather than invoking the `next` middleware.
 
 It's called terminal middleware because it terminates the search, executes some functionality, and then returns.
 
-Comparing a terminal middleware and routing:
+The following list compares terminal middleware with routing:
 
 * Both approaches allow terminating the processing pipeline:
   * Middleware terminates the pipeline by returning rather than invoking `next`.
@@ -250,7 +249,7 @@ Existing terminal middleware that integrates with [Map](xref:fundamentals/middle
 
 The following code shows use of [MapHealthChecks](xref:host-and-deploy/health-checks):
 
-:::code language="csharp" source="routing/samples/3.x/RoutingSample/AuthorizationStartup.cs" id="snippet":::
+:::code language="csharp" source="routing/samples/6.0/RoutingSample/Snippets/Program.cs" id="snippet_MapHealthChecks" highlight="4":::
 
 The preceding sample shows why returning the builder object is important. Returning the builder object allows the app developer to configure policies such as authorization for the endpoint. In this example, the health checks middleware has no direct integration with the authorization system.
 
@@ -837,8 +836,6 @@ When the `[Host]` attribute is applied to both the controller and action method:
 
 * The attribute on the action is used.
 * The controller attribute is ignored.
-
-<!-- TODO -->
 
 ## Performance guidance for routing
 

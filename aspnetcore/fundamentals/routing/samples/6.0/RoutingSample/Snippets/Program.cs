@@ -5,6 +5,125 @@ namespace RoutingSample.Snippets;
 
 public class Program
 {
+    public static void CurrentEndpointMiddleware(WebApplication app)
+    {
+        // <snippet_InspectEndpointMiddleware>
+        app.Use(async (context, next) =>
+        {
+            var currentEndpoint = context.GetEndpoint();
+
+            if (currentEndpoint is null)
+            {
+                await next(context);
+                return;
+            }
+
+            Console.WriteLine($"Endpoint: {currentEndpoint.DisplayName}");
+
+            if (currentEndpoint is RouteEndpoint routeEndpoint)
+            {
+                Console.WriteLine($"  - Route Pattern: {routeEndpoint.RoutePattern}");
+            }
+
+            foreach (var endpointMetadata in currentEndpoint.Metadata)
+            {
+                Console.WriteLine($"  - Metadata: {endpointMetadata}");
+            }
+
+            await next(context);
+        });
+
+        app.MapGet("/", () => "Inspect Endpoint.");
+        // </snippet_InspectEndpointMiddleware>
+    }
+
+    public static void CurrentEndpointMiddlewareOrder(WebApplication app)
+    {
+        // <snippet_CurrentEndpointMiddlewareOrder>
+        app.Use(async (context, next) =>
+        {
+            Console.WriteLine($"1. Endpoint: {context.GetEndpoint()?.DisplayName ?? "(null)"}");
+            await next(context);
+        });
+
+        app.UseRouting();
+
+        app.Use(async (context, next) =>
+        {
+            Console.WriteLine($"2. Endpoint: {context.GetEndpoint()?.DisplayName ?? "(null)"}");
+            await next(context);
+        });
+
+        app.MapGet("/", (HttpContext context) =>
+        {
+            Console.WriteLine($"3. Endpoint: {context.GetEndpoint()?.DisplayName ?? "(null)"}");
+            return "Hello World!";
+        }).WithDisplayName("Hello");
+
+        app.UseEndpoints(_ => { });
+
+        app.Use(async (context, next) =>
+        {
+            Console.WriteLine($"4. Endpoint: {context.GetEndpoint()?.DisplayName ?? "(null)"}");
+            await next(context);
+        });
+        // </snippet_CurrentEndpointMiddlewareOrder>
+    }
+
+    public static void RequiresAudit(WebApplication app)
+    {
+        // <snippet_RequiresAudit>
+        app.UseHttpMethodOverride();
+        app.UseRouting();
+
+        app.Use(async (context, next) =>
+        {
+            if (context.GetEndpoint()?.Metadata.GetMetadata<RequiresAuditAttribute>() is not null)
+            {
+                Console.WriteLine($"ACCESS TO SENSITIVE DATA AT: {DateTime.UtcNow}");
+            }
+
+            await next(context);
+        });
+
+        app.MapGet("/", () => "Audit isn't required.");
+        app.MapGet("/sensitive", () => "Audit required for sensitive data.")
+            .WithMetadata(new RequiresAuditAttribute());
+        // </snippet_RequiresAudit>
+    }
+
+    public static void CompareTerminalMiddlewareRouting(WebApplication app)
+    {
+        // <snippet_CompareTerminalMiddlewareRouting>
+        // Approach 1: Terminal Middleware.
+        app.Use(async (context, next) =>
+        {
+            if (context.Request.Path == "/")
+            {
+                await context.Response.WriteAsync("Terminal Middleware.");
+                return;
+            }
+
+            await next(context);
+        });
+
+        app.UseRouting();
+
+        // Approach 2: Routing.
+        app.MapGet("/Routing", () => "Routing.");
+        // </snippet_CompareTerminalMiddlewareRouting>
+    }
+
+    public static void MapHealthChecks(WebApplication app)
+    {
+        // <snippet_MapHealthChecks>
+        app.UseAuthentication();
+        app.UseAuthorization();
+
+        app.MapHealthChecks("/healthz").RequireAuthorization();
+        // </snippet_MapHealthChecks>
+    }
+
     public static void RegexMap(WebApplication app)
     {
         // <snippet_RegexMapGet>
