@@ -81,7 +81,7 @@ In the following example for IIS, the custom header (`blazor-environment`) is ad
 > [!NOTE]
 > For standalone Blazor Webassembly apps, set the environment manually via [start configuration](#set-the-environment-via-startup-configuration) or the [`blazor-environment` header](#set-the-environment-via-header).
 
-You might be able to use a [JS Initializer](xref:blazor/javascript-interop/index#javascript-initializers) in conjunction with a build environment variable in your CI process to add an initializer specific to the environment as part of the build.
+You might be able to use a [JS Initializer](xref:blazor/js-interop/index#javascript-initializers) in conjunction with a build environment variable in your CI process to add an initializer specific to the environment as part of the build.
 
 Use the following guidance for hosted Blazor WebAssembly solutions hosted by Azure App Service:
 
