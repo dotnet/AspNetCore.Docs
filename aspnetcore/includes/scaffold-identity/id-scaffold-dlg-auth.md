@@ -1,7 +1,6 @@
 ---
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 ---
-::: moniker range=">= aspnetcore-3.0"
 
 Run the Identity scaffolder:
 
@@ -124,5 +123,3 @@ dotnet aspnet-codegenerator identity -dc MyApplication.Data.ApplicationDbContext
 If you run the Identity scaffolder without specifying the `--files` flag or the `--useDefaultUI` flag, all the available Identity UI pages will be created in your project.
 
 ---
-
-::: moniker-end
