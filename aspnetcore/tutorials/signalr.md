@@ -3,6 +3,7 @@ title: Get started with ASP.NET Core SignalR
 author: bradygaster
 description: In this tutorial, you create a chat app that uses ASP.NET Core SignalR.
 ms.author: bradyg
+monikerRange: '>= aspnetcore-3.1'
 ms.custom: mvc
 ms.date: 11/21/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
@@ -105,13 +106,14 @@ At the end, you'll have a working chat app:
 
 ## Add the SignalR client library
 
-The SignalR server library is included in the ASP.NET Core 3.1 shared framework. The JavaScript client library isn't automatically included in the project. For this tutorial, you use Library Manager (LibMan) to get the client library from *unpkg*. unpkg is a content delivery network (CDN) that can deliver anything found in npm, the Node.js package manager.
+The SignalR server library is included in the ASP.NET Core shared framework. The JavaScript client library isn't automatically included in the project. For this tutorial, use Library Manager (LibMan) to get the client library from [unpkg](https://unpkg.com/). `unpkg`is a fast, global content delivery network for everything on [npm](https://unpkg.com/). 
 
 # [Visual Studio](#tab/visual-studio/)
 
   * In **Solution Explorer**, right-click the project, and select **Add** > **Client-Side Library**.
-  * In the **Add Client-Side Library** dialog, for **Provider** select **unpkg**.
-  * For **Library**, enter `@microsoft/signalr@latest`.
+  * In the **Add Client-Side Library** dialog:
+    ** Select **unpkg** for **Provider**
+  * Enter `@microsoft/signalr@latest` for **Library**
   * Select **Choose specific files**, expand the *dist/browser* folder, and select *signalr.js* and *signalr.min.js*.
   * Set **Target Location** to *wwwroot/js/signalr/*, and select **Install**.
 
@@ -182,11 +184,11 @@ The SignalR server library is included in the ASP.NET Core 3.1 shared framework.
 A *hub* is a class that serves as a high-level pipeline that handles client-server communication.
 
   * In the SignalRChat project folder, create a *Hubs* folder.
-  * In the *Hubs* folder, create a *ChatHub.cs* file with the following code:
+  * In the *Hubs* folder, create the `ChatHub` class with the following code:
 
   [!code-csharp[ChatHub](signalr/sample-snapshot/3.x/ChatHub.cs)]
 
-  The `ChatHub` class inherits from the SignalR `Hub` class. The `Hub` class manages connections, groups, and messaging.
+  The `ChatHub` class inherits from the SignalR <xref:Microsoft.AspNetCore.SignalR.Hub> class. The `Hub` class manages connections, groups, and messaging.
 
   The `SendMessage` method can be called by a connected client to send a message to all clients. JavaScript client code that calls the method is shown later in the tutorial. SignalR code is asynchronous to provide maximum scalability.
 
@@ -194,29 +196,29 @@ A *hub* is a class that serves as a high-level pipeline that handles client-serv
 
 The SignalR server must be configured to pass SignalR requests to SignalR.
 
-* Add the following highlighted code to the *Startup.cs* file.
+* Add the following highlighted code to the *Program.cs* file.
 
-  [!code-csharp[Startup](signalr/sample-snapshot/3.x/Startup.cs?highlight=11,28,55)]
+  [!code-csharp[Startup](signalr/samples/SignalRChat/Program.cs?highlight=1,6,24)]
 
-  These changes add SignalR to the ASP.NET Core dependency injection and routing systems.
+The preceding highlighted code adds SignalR to the ASP.NET Core dependency injection and routing systems.
 
 ## Add SignalR client code
 
 * Replace the content in *Pages/Index.cshtml* with the following code:
 
-  [!code-cshtml[Index](signalr/sample-snapshot/3.x/Index.cshtml)]
+  [!code-cshtml[Index](signalr/samples/SignalRChat/Pages/Index.cshtml)]
 
-  The preceding code:
+  The preceding markup:
 
-  * Creates text boxes for name and message text, and a submit button.
+  * Creates text boxes and a submit button.
   * Creates a list with `id="messagesList"` for displaying messages that are received from the SignalR hub.
-  * Includes script references to SignalR and the *chat.js* application code that you create in the next step.
+  * Includes script references to SignalR and the *chat.js* app code is created in the next step.
 
 * In the *wwwroot/js* folder, create a *chat.js* file with the following code:
 
-  [!code-javascript[chat](signalr/sample-snapshot/3.x/chat.js)]
+  [!code-javascript[chat](signalr/samples/SignalRChat/wwwroot/js/chat.js)]
 
-  The preceding code:
+  The preceding JavaScript:
 
   * Creates and starts a connection.
   * Adds to the submit button a handler that sends messages to the hub.
