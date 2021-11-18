@@ -201,7 +201,7 @@ Multiple handlers can be registered in the order that they should execute. Each 
 
 :::code language="csharp" source="http-requests/samples/6.0/HttpRequestsSample/Program.cs" id="snippet_AddHttpMessageHandlerMultiple":::
 
-In the the preceding code, `SampleHandler1` runs first, before `SampleHandler2`.
+In the preceding code, `SampleHandler1` runs first, before `SampleHandler2`.
 
 ### Use DI in outgoing request middleware
 
