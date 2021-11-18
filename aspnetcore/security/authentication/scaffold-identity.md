@@ -35,8 +35,7 @@ When scaffolding Identity with a new data context into a project with existing i
 
 For example, `AddDbContext` and `AddDefaultIdentity` are commented out in the following code:
 
-[!code-csharp[](scaffold-identity/6.0sample/WebAuth/Program.cs
-?name=snippet_co)]
+[!code-csharp[](scaffold-identity/6.0sample/WebAuth/Program.cs?name=snippet_co)]
 
 The preceding code comments out the code that is duplicated in *Areas/Identity/IdentityHostingStartup.cs*
 
