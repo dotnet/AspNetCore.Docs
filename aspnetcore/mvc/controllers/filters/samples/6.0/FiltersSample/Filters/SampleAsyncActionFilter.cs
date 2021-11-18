@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace FiltersSample.Snippets.Filters;
+namespace FiltersSample.Filters;
 
 // <snippet_Class>
 public class SampleAsyncActionFilter : IAsyncActionFilter

@@ -1,7 +1,14 @@
+using FiltersSample.Filters;
+
+// <snippet_GlobalFilter>
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(options =>
+{
+    options.Filters.Add<GlobalSampleActionFilter>();
+});
+// </snippet_GlobalFilter>
 
 var app = builder.Build();
 
