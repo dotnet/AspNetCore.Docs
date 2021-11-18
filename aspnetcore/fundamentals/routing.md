@@ -323,9 +323,9 @@ Due to the kinds of extensibility provided by routing, it isn't possible for the
 >
 > The order of operations inside <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> doesn't influence the behavior of routing, with one exception. <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute%2A> and <xref:Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute%2A> automatically assign an order value to their endpoints based on the order they are invoked. This simulates long-time behavior of controllers without the routing system providing the same guarantees as older routing implementations.
 >
-> In the legacy implementation of routing, it's possible to implement routing extensibility that has a dependency on the order in which routes are processed. Endpoint routing in ASP.NET Core 3.0 and later:
+> Endpoint routing in ASP.NET Core:
 > 
-> * Doesn't have a concept of routes.
+> * Doesn't have the concept of routes.
 > * Doesn't provide ordering guarantees. All endpoints are processed at once.
 
 <a name="rtp"></a>
@@ -795,11 +795,9 @@ Values explicitly provided that don't match a segment of the route are added to 
 
 ### Problems with route value invalidation
 
-As of ASP.NET Core 3.0, some URL generation schemes used in earlier ASP.NET Core versions don't work well with URL generation. The ASP.NET Core team plans to add features to address these needs in a future release. For now the best solution is to use legacy routing.
+The following code shows an example of a URL generation scheme that's not supported by routing:
 
-The following code shows an example of a URL generation scheme that's not supported by routing.
-
-:::code language="csharp" source="routing/samples/3.x/RoutingSample/StartupUnsupported.cs" id="snippet":::
+:::code language="csharp" source="routing/samples/6.0/RoutingSample/Snippets/Program.cs" id="snippet_RouteValueInvalidation":::
 
 In the preceding code, the `culture` route parameter is used for localization. The desire is to have the `culture` parameter always accepted as an ambient value. However, the `culture` parameter is not accepted as an ambient value because of the way required values work:
 
@@ -878,8 +876,7 @@ The following list provides some insight into routing features that are relative
 * Complex segments (`{x}-{y}-{z}`): 
   * Are significantly more expensive than parsing a regular URL path segment.
   * Result in many more substrings being allocated.
-  * The complex segment logic was not updated in ASP.NET Core 3.0 routing performance update.
-* Synchronous data access: Many complex apps have database access as part of their routing. ASP.NET Core 2.2 and earlier routing might not provide the right extensibility points to support database access routing. For example, <xref:Microsoft.AspNetCore.Routing.IRouteConstraint>, and <xref:Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint> are synchronous. Extensibility points such as <xref:Microsoft.AspNetCore.Routing.MatcherPolicy> and <xref:Microsoft.AspNetCore.Routing.EndpointSelectorContext> are asynchronous.
+* Synchronous data access: Many complex apps have database access as part of their routing. Use extensibility points such as <xref:Microsoft.AspNetCore.Routing.MatcherPolicy> and <xref:Microsoft.AspNetCore.Routing.EndpointSelectorContext>, which are asynchronous.
 
 <!-- TODO: This needs a better edit -->
 ### Guidance for large route tables

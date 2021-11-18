@@ -198,6 +198,20 @@ public class Program
         // </snippet_MapControllerRoute>
     }
 
+    public static void RouteValueInvalidation(WebApplication app)
+    {
+        // <snippet_RouteValueInvalidation>
+        app.MapControllerRoute(
+            "default",
+            "{culture}/{controller=Home}/{action=Index}/{id?}");
+
+        app.MapControllerRoute(
+            "blog",
+            "{culture}/{**slug}",
+            new { controller = "Blog", action = "ReadPost" });
+        // </snippet_RouteValueInvalidation>
+    }
+
     public static void RequireHost(WebApplication app)
     {
         // <snippet_RequireHost>
