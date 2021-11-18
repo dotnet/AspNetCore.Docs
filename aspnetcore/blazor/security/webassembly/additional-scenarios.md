@@ -881,25 +881,6 @@ In the **`Server`** app, create a `Pages` folder if it doesn't exist. Create a `
 
   In the preceding example, the placeholder `{CLIENT APP ASSEMBLY NAME}` is the client app's assembly name (for example `BlazorSample.Client`).
 
-  You can also structure the preceding code to:
-
-  * Test in the conditional `if` statement for authentication paths (`/authentication`) by dropping the [logical negation operator (`!`)](/dotnet/csharp/language-reference/operators/boolean-logical-operators#logical-negation-operator-). The conditional evaluates to `true` when the path starts with the `/authentication` segment.
-  * Use the <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> render mode for the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
-
-  ```cshtml
-  <div id="app">
-      @if (HttpContext.Request.Path.StartsWithSegments("/authentication"))
-      {
-          <component type="typeof({CLIENT APP ASSEMBLY NAME}.App)" 
-              render-mode="Static" />
-      }
-      else
-      {
-          <text>Loading...</text>
-      }
-  </div>
-  ```
-
 ## Options for hosted apps and third-party login providers
 
 When authenticating and authorizing a hosted Blazor WebAssembly app with a third-party provider, there are several options available for authenticating the user. Which one you choose depends on your scenario.
@@ -1938,27 +1919,8 @@ In the server app, create a `Pages` folder if it doesn't exist. Create a `_Host.
       }
   </div>
   ```
-  
+
   In the preceding example, the placeholder `{CLIENT APP ASSEMBLY NAME}` is the client app's assembly name (for example `BlazorSample.Client`).
-
-  You can also structure the preceding code to:
-
-  * Test in the conditional `if` statement for authentication paths (`/authentication`) by dropping the [logical negation operator (`!`)](/dotnet/csharp/language-reference/operators/boolean-logical-operators#logical-negation-operator-). The conditional evaluates to `true` when the path starts with the `/authentication` segment.
-  * Use the <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> render mode for the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
-
-  ```cshtml
-  <div id="app">
-      @if (HttpContext.Request.Path.StartsWithSegments("/authentication"))
-      {
-          <component type="typeof({CLIENT APP ASSEMBLY NAME}.App)" 
-              render-mode="Static" />
-      }
-      else
-      {
-          <text>Loading...</text>
-      }
-  </div>
-  ```
 
 ## Options for hosted apps and third-party login providers
 
@@ -2998,29 +2960,8 @@ In the server app, create a `Pages` folder if it doesn't exist. Create a `_Host.
       }
   </app>
   ```
-  
-  In the preceding example, the placeholder `{CLIENT APP ASSEMBLY NAME}` is the client app's assembly name (for example `BlazorSample.Client`).
 
   In the preceding example, the placeholder `{CLIENT APP ASSEMBLY NAME}` is the client app's assembly name (for example `BlazorSample.Client`).
-
-  You can also structure the preceding code to:
-
-  * Test in the conditional `if` statement for authentication paths (`/authentication`) by dropping the [logical negation operator (`!`)](/dotnet/csharp/language-reference/operators/boolean-logical-operators#logical-negation-operator-). The conditional evaluates to `true` when the path starts with the `/authentication` segment.
-  * Use the <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> render mode for the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
-
-  ```cshtml
-  <div id="app">
-      @if (HttpContext.Request.Path.StartsWithSegments("/authentication"))
-      {
-          <component type="typeof({CLIENT APP ASSEMBLY NAME}.App)" 
-              render-mode="Static" />
-      }
-      else
-      {
-          <text>Loading...</text>
-      }
-  </div>
-  ```
 
 ## Options for hosted apps and third-party login providers
 
