@@ -5,7 +5,7 @@ description: Discover how ASP.NET Core routing is responsible for matching HTTP 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 4/1/2020
+ms.date: 11/09/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/routing
 ---
@@ -31,26 +31,35 @@ This article covers low-level details of ASP.NET Core routing. For information o
 * For controllers, see <xref:mvc/controllers/routing>.
 * For Razor Pages conventions, see <xref:razor-pages/razor-pages-conventions>.
 
-<!-- TODO -->
 ## Routing basics
-
-All ASP.NET Core templates include routing in the generated code. Routing is registered in the [middleware](xref:fundamentals/middleware/index) pipeline in `Startup.Configure`.
 
 The following code shows a basic example of routing:
 
-:::code language="csharp" source="routing/samples/3.x/RoutingSample/Startup.cs" id="snippet" highlight="8,10":::
+:::code language="csharp" source="routing/samples/6.0/RoutingSample/Program.cs" highlight="4":::
+
+The preceding example includes a single endpoint using the [MapGet](xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet%2A) method:
+
+* When an HTTP `GET` request is sent to the root URL `/`:
+  * The request delegate executes.
+  * `Hello World!` is written to the HTTP response.
+* If the request method is not `GET` or the root URL is not `/`, no route matches and an HTTP 404 is returned.
 
 Routing uses a pair of middleware, registered by <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A> and <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A>:
 
 * `UseRouting` adds route matching to the middleware pipeline. This middleware looks at the set of endpoints defined in the app, and selects the [best match](#urlm) based on the request.
 * `UseEndpoints` adds endpoint execution to the middleware pipeline. It runs the delegate associated with the selected endpoint.
 
-The preceding example includes a single *route to code* endpoint using the [MapGet](xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet%2A) method:
+Apps that use [Minimal APIs](xref:fundamentals/minimal-apis) typically don't need to call `UseRouting` or `UseEndpoints`. <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> configures a middleware pipeline that wraps middleware added in *Program.cs* with `UseRouting` and `UseEndpoints`. However, apps that use Minimal APIs can change the order in which `UseRouting` and `UseEndpoints` run by calling these methods explicitly. For example, fhe following code makes an explicit call to `UseRouting`:
 
-* When an HTTP `GET` request is sent to the root URL `/`:
-  * The request delegate shown executes.
-  * `Hello World!` is written to the HTTP response. By default, the root URL `/` is `https://localhost:5001/`.
-* If the request method is not `GET` or the root URL is not `/`, no route matches and an HTTP 404 is returned.
+:::code language="csharp" source="routing/samples/6.0/RoutingSample/Snippets/Program.cs" id="snippet_UseRouting" highlight="7":::
+
+In the preceding code:
+
+* The call to `app.Use` registers a custom middleware that runs at the start of the pipeline.
+* The call to `UseRouting` configures the route matching middleware to run *after* the custom middleware.
+* The endpoint registered with `MapGet` runs at the end of the pipeline.
+
+If the preceding example didn't include a call to `UseRouting`, the custom middleware would run *after* the route matching middleware.
 
 ### Endpoints
 
@@ -70,23 +79,21 @@ Endpoints that can be matched and executed by the app are configured in `UseEndp
 
 The following example shows routing with a more sophisticated route template:
 
-:::code language="csharp" source="routing/samples/3.x/RoutingSample/RouteTemplateStartup.cs" id="snippet":::
+:::code language="csharp" source="routing/samples/6.0/RoutingSample/Snippets/Program.cs" id="snippet_RouteTemplate":::
 
-The string `/hello/{name:alpha}` is a **route template**. It is used to configure how the endpoint is matched. In this case, the template matches:
+The string `/hello/{name:alpha}` is a **route template**. A route template is used to configure how the endpoint is matched. In this case, the template matches:
 
-* A URL like `/hello/Ryan`
-* Any URL path that begins with `/hello/` followed by a sequence of alphabetic characters.  `:alpha` applies a route constraint that matches only alphabetic characters. [Route constraints](#route-constraints) are explained later in this article.
+* A URL like `/hello/Docs`
+* Any URL path that begins with `/hello/` followed by a sequence of alphabetic characters. `:alpha` applies a route constraint that matches only alphabetic characters. [Route constraints](#route-constraints) are explained later in this article.
 
 The second segment of the URL path, `{name:alpha}`:
 
 * Is bound to the `name` parameter.
 * Is captured and stored in [HttpRequest.RouteValues](xref:Microsoft.AspNetCore.Http.HttpRequest.RouteValues%2A).
 
-The endpoint routing system described in this article is new as of ASP.NET Core 3.0. However, all versions of ASP.NET Core support the same set of route template features and route constraints.
-
 The following example shows routing with [health checks](xref:host-and-deploy/health-checks) and authorization:
 
-:::code language="csharp" source="routing/samples/3.x/RoutingSample/AuthorizationStartup.cs" id="snippet":::
+:::code language="csharp" source="routing/samples/6.0/RoutingSample/Snippets/Program.cs" id="snippet_HealthChecksAuthz":::
 
 [!INCLUDE[request localized comments](~/includes/code-comments-loc.md)]
 
@@ -101,6 +108,8 @@ Calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentic
 
 * See which endpoint was selected by `UseRouting`.
 * Apply an authorization policy before <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> dispatches to the endpoint.
+
+
 
 <a name="metadata"></a>
 
@@ -385,7 +394,7 @@ The methods provided by <xref:Microsoft.AspNetCore.Routing.LinkGenerator> suppor
 
 In the following example, a middleware uses the <xref:Microsoft.AspNetCore.Routing.LinkGenerator> API to create a link to an action method that lists store products. Using the link generator by injecting it into a class and calling `GenerateLink` is available to any class in an app:
 
-:::code language="csharp" source="routing/samples/6.0/RoutingSample/Snippets/Middleware/ProductsMiddleware.cs" id="snippet_Class":::
+:::code language="csharp" source="routing/samples/6.0/RoutingSample/Snippets/Middleware/ProductsMiddleware.cs" id="snippet_Class" highlight="12":::
 
 <a name="rtr"></a>
 
@@ -610,7 +619,7 @@ Consider the following `IOutboundParameterTransformer` implementation:
 
 To use a parameter transformer in a route pattern, configure it using <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> in *Program.cs*:
 
-:::code language="csharp" source="routing/samples/6.0/RoutingSample/Program.cs" id="snippet_AddRouting":::
+:::code language="csharp" source="routing/samples/6.0/RoutingSample/Snippets/Program.cs" id="snippet_AddRouting":::
 
 The ASP.NET Core framework uses parameter transformers to transform the URI where an endpoint resolves. For example, parameter transformers transform the route values used to match an `area`, `controller`, `action`, and `page`:
 

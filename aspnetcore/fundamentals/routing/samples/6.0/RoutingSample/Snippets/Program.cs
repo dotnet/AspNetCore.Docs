@@ -5,6 +5,39 @@ namespace RoutingSample.Snippets;
 
 public class Program
 {
+    public static void UseRouting(WebApplication app)
+    {
+        // <snippet_UseRouting>
+        app.Use(async (context, next) =>
+        {
+            // ...
+            await next(context);
+        });
+
+        app.UseRouting();
+
+        app.MapGet("/", () => "Hello World!");
+        // </snippet_UseRouting>
+    }
+
+    public static void RouteTemplate(WebApplication app)
+    {
+        // <snippet_RouteTemplate>
+        app.MapGet("/hello/{name:alpha}", (string name) => $"Hello {name}!");
+        // </snippet_RouteTemplate>
+    }
+
+    public static void HealthChecksAuthz(WebApplication app)
+    {
+        // <snippet_HealthChecksAuthz>
+        app.UseAuthentication();
+        app.UseAuthorization();
+
+        app.MapHealthChecks("/healthz").RequireAuthorization();
+        app.MapGet("/", () => "Hello World!");
+        // </snippet_HealthChecksAuthz>
+    }
+
     public static void CurrentEndpointMiddleware(WebApplication app)
     {
         // <snippet_InspectEndpointMiddleware>
@@ -146,6 +179,14 @@ public class Program
         builder.Services.AddRouting(options =>
             options.ConstraintMap.Add("noZeroes", typeof(NoZeroesRouteConstraint)));
         // </snippet_AddRoutingConstraintMap>
+    }
+
+    public static void AddRouting(WebApplicationBuilder builder)
+    {
+        // <snippet_AddRouting>
+        builder.Services.AddRouting(options =>
+            options.ConstraintMap["slugify"] = typeof(SlugifyParameterTransformer));
+        // </snippet_AddRouting>
     }
 
     public static void MapControllerRoute(WebApplication app)
