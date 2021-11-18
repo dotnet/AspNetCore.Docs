@@ -5,7 +5,7 @@ description: Learn how to configure Blazor WebAssembly for additional security s
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/27/2020
+ms.date: 11/18/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/security/webassembly/additional-scenarios
 ---
@@ -862,14 +862,14 @@ In the **`Server`** app, create a `Pages` folder if it doesn't exist. Create a `
 
   ```cshtml
   <div id="app">
-      @if (!HttpContext.Request.Path.StartsWithSegments("/authentication"))
+      @if (HttpContext.Request.Path.StartsWithSegments("/authentication"))
       {
-          <component type="typeof({CLIENT APP ASSEMBLY NAME}.App)" 
-              render-mode="WebAssemblyPrerendered" />
+          <text>Loading...</text>
       }
       else
       {
-          <text>Loading...</text>
+          <component type="typeof(Wasm.Authentication.Client.App)" 
+              render-mode="WebAssemblyPrerendered" />
       }
   </div>
   ```
@@ -1922,14 +1922,14 @@ In the server app, create a `Pages` folder if it doesn't exist. Create a `_Host.
 
   ```cshtml
   <div id="app">
-      @if (!HttpContext.Request.Path.StartsWithSegments("/authentication"))
+      @if (HttpContext.Request.Path.StartsWithSegments("/authentication"))
       {
-          <component type="typeof({CLIENT APP ASSEMBLY NAME}.App)" 
-              render-mode="WebAssemblyPrerendered" />
+          <text>Loading...</text>
       }
       else
       {
-          <text>Loading...</text>
+          <component type="typeof(Wasm.Authentication.Client.App)" 
+              render-mode="WebAssemblyPrerendered" />
       }
   </div>
   ```
@@ -2984,14 +2984,14 @@ In the server app, create a `Pages` folder if it doesn't exist. Create a `_Host.
 
   ```cshtml
   <app>
-      @if (!HttpContext.Request.Path.StartsWithSegments("/authentication"))
+      @if (HttpContext.Request.Path.StartsWithSegments("/authentication"))
       {
-          <component type="typeof({CLIENT APP ASSEMBLY NAME}.App)" 
-              render-mode="WebAssemblyPrerendered" />
+          <text>Loading...</text>
       }
       else
       {
-          <text>Loading...</text>
+          <component type="typeof(Wasm.Authentication.Client.App)" 
+              render-mode="WebAssemblyPrerendered" />
       }
   </app>
   ```
