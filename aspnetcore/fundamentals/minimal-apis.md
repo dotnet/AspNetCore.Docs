@@ -297,7 +297,7 @@ A configured `WebApplication` supports `Map{Verb}` and <xref:Microsoft.AspNetCor
 
 ### Route Handlers
 
-Route handlers are methods that execute when the a route matches. Route handlers can be a function or any shape, including synchronous or asynchronous. Route handlers can be a lambda expression, a local function, an instance method or a static method.
+Route handlers are methods that execute when the route matches. Route handlers can be a function or any shape, including synchronous or asynchronous. Route handlers can be a lambda expression, a local function, an instance method or a static method.
 
 #### Lambda expression
 
