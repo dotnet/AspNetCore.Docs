@@ -873,7 +873,7 @@ In the **`Server`** app, create a `Pages` folder if it doesn't exist. Create a `
       }
       else
       {
-          <component type="typeof(Wasm.Authentication.Client.App)" 
+          <component type="typeof({CLIENT APP ASSEMBLY NAME}.App)" 
               render-mode="WebAssemblyPrerendered" />
       }
   </div>
@@ -1933,14 +1933,12 @@ In the server app, create a `Pages` folder if it doesn't exist. Create a `_Host.
       }
       else
       {
-          <component type="typeof(Wasm.Authentication.Client.App)" 
+          <component type="typeof({CLIENT APP ASSEMBLY NAME}.App)" 
               render-mode="WebAssemblyPrerendered" />
       }
   </div>
   ```
   
-  In the preceding example, the placeholder `{CLIENT APP ASSEMBLY NAME}` is the client app's assembly name (for example `BlazorSample.Client`).
-
   In the preceding example, the placeholder `{CLIENT APP ASSEMBLY NAME}` is the client app's assembly name (for example `BlazorSample.Client`).
 
   You can also structure the preceding code to:
@@ -2995,7 +2993,7 @@ In the server app, create a `Pages` folder if it doesn't exist. Create a `_Host.
       }
       else
       {
-          <component type="typeof(Wasm.Authentication.Client.App)" 
+          <component type="typeof({CLIENT APP ASSEMBLY NAME}.App)" 
               render-mode="WebAssemblyPrerendered" />
       }
   </app>
