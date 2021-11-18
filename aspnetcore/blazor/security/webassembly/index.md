@@ -34,6 +34,9 @@ Other options for authenticating SPAs exist, such as the use of SameSite cookies
 * Tokens with OAuth and OIDC don't rely on the user agent behaving correctly to ensure that the app is secure.
 * Token-based protocols, such as OAuth and OIDC, allow for authenticating and authorizing hosted and standalone apps with the same set of security characteristics.
 
+> [!IMPORTANT]
+> [Prerendering](xref:blazor/components/prerendering-and-integration) isn't supported for authentication endpoints (`/authentication/` path segment). For more information, see <xref:blazor/security/webassembly/additional-scenarios#support-prerendering-with-authentication>.
+
 ## Authentication process with OIDC
 
 The [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) library offers several primitives to implement authentication and authorization using OIDC. In broad terms, authentication works as follows:
