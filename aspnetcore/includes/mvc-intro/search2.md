@@ -52,7 +52,7 @@ If you add this method, the action invoker would match the `[HttpPost] Index` me
 
 However, even if you add this `[HttpPost]` version of the `Index` method, there's a limitation in how this has all been implemented. Imagine that you want to bookmark a particular search or you want to send a link to friends that they can click in order to see the same filtered list of movies. Notice that the URL for the HTTP POST request is the same as the URL for the GET request (localhost:xxxxx/Movies/Index) -- there's no search information in the URL. The search string information is sent to the server as a [form field value](https://developer.mozilla.org/docs/Learn/HTML/Forms/Sending_and_retrieving_form_data). You can verify that with the browser Developer tools or the excellent [Fiddler tool](https://www.telerik.com/fiddler). The image below shows the Chrome browser Developer tools:
 
-![Network tab of Developer Tools in Microsoft Edge showing a request body with a searchString value of ghost](~/tutorials/first-mvc-app/search/_static/f12_rb.png)
+![Network tab of Microsoft Edge Developer Tools showing a request body with a searchString value of ghost](~/tutorials/first-mvc-app/search/_static/f12_rb.png)
 
 You can see the search parameter and [XSRF](xref:security/anti-request-forgery) token in the request body. Note, as mentioned in the previous tutorial, the [Form Tag Helper](xref:mvc/views/working-with-forms) generates an [XSRF](xref:security/anti-request-forgery) anti-forgery token. We're not modifying data, so we don't need to validate the token in the controller method.
 
