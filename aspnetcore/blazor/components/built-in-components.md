@@ -5,7 +5,7 @@ description: Find information on Razor components built-into the Blazor framewor
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/30/2021
+ms.date: 11/09/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/built-in-components
 ---
@@ -22,6 +22,8 @@ The following built-in Razor components are provided by the Blazor framework:
 * [`DynamicComponent`](xref:blazor/components/dynamiccomponent)
 * [`ErrorBoundary`](xref:blazor/fundamentals/handle-errors#error-boundaries)
 * [`FocusOnNavigate`](xref:blazor/fundamentals/routing#focus-an-element-on-navigation)
+* [`HeadContent`](xref:blazor/components/control-head-content)
+* [`HeadOutlet`](xref:blazor/components/control-head-content)
 * [`InputCheckbox`](xref:blazor/forms-validation#built-in-form-components)
 * [`InputDate`](xref:blazor/forms-validation#built-in-form-components)
 * [`InputFile`](xref:blazor/file-uploads)
@@ -35,6 +37,7 @@ The following built-in Razor components are provided by the Blazor framework:
 * [`MainLayout`](xref:blazor/components/layouts#mainlayout-component)
 * [`NavLink`](xref:blazor/fundamentals/routing#navlink-and-navmenu-components)
 * [`NavMenu`](xref:blazor/fundamentals/routing#navlink-and-navmenu-components)
+* [`PageTitle`](xref:blazor/components/control-head-content)
 * [`Router`](xref:blazor/fundamentals/routing#route-templates)
 * [`Virtualize`](xref:blazor/components/virtualization)
 

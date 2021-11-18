@@ -8,12 +8,14 @@
       uid: index
     - name: Compare ASP.NET Core and ASP.NET
       uid: fundamentals/choose-between-aspnet-and-aspnetcore
-    - name: Compare .NET Core and .NET Framework
+    - name: Compare .NET and .NET Framework
       href: /dotnet/standard/choosing-core-framework-server?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
 - name: Get started
   uid: getting-started
 - name: What's new
   items: 
+    - name: What's new in 6.0
+      uid: aspnetcore-6.0
     - name: What's new in 5.0
       uid: aspnetcore-5.0
     - name: What's new in 3.1
@@ -90,11 +92,14 @@
               uid: tutorials/signalr-blazor
     - name: Web API apps
       items:
-        - name: Create a web API
-          displayName: tutorial
+        - name: Create a web API with controllers
+          displayName: API tutorial
           uid: tutorials/first-web-api
+        - name: Create a minimal web API
+          displayName: API tutorial
+          uid: tutorials/min-web-api
         - name: Web API with MongoDB
-          displayName: tutorial
+          displayName: API tutorial
           uid: tutorials/first-mongo-app
         - name: Web API with JavaScript
           displayName: tutorial
@@ -207,7 +212,7 @@
   items:
     - name: Overview
       uid: fundamentals/index
-    - name: The Startup class
+    - name: App startup
       uid: fundamentals/startup
     - name: Dependency injection (services)
       uid: fundamentals/dependency-injection
@@ -384,6 +389,8 @@
         uid: blazor/forms-validation
       - name: File uploads
         uid: blazor/file-uploads
+      - name: File downloads
+        uid: blazor/file-downloads
       - name: JavaScript interop
         items:
           - name: Overview
@@ -394,6 +401,8 @@
             uid: blazor/js-interop/call-dotnet-from-javascript
       - name: Call a web API
         uid: blazor/call-web-api
+      - name: Images
+        uid: blazor/images
       - name: Security and Identity
         items:
           - name: Overview
@@ -436,6 +445,8 @@
         uid: blazor/debug
       - name: Lazy load assemblies with WebAssembly
         uid: blazor/webassembly-lazy-load-assemblies
+      - name: WebAssembly native dependencies
+        uid: blazor/webassembly-native-dependencies
       - name: Performance
         uid: blazor/performance
       - name: Test components
@@ -531,8 +542,8 @@
               uid: mvc/views/tag-helpers/builtin-th/link-tag-helper
             - name: Partial
               uid: mvc/views/tag-helpers/builtin-th/partial-tag-helper
-            - name: Preserve Component State
-              uid: mvc/views/tag-helpers/builtin-th/preserve-component-state-tag-helper
+            - name: Persist Component State
+              uid: mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper
             - name: Script
               uid: mvc/views/tag-helpers/builtin-th/script-tag-helper
             - name: Select
@@ -571,6 +582,10 @@
       uid: web-api/index
     - name: Tutorials
       items:
+        - name: Create a web API with controllers
+          uid: tutorials/first-web-api
+        - name: Create a minimal web API
+          uid: tutorials/min-web-api
         - name: Create a web API
           uid: tutorials/first-web-api
         - name: Web API with MongoDB
@@ -605,6 +620,8 @@
         uid: web-api/http-repl
       - name: Telemetry
         uid: web-api/http-repl/telemetry
+- name: Minimal APIs
+  uid: fundamentals/minimal-apis
 - name: Real-time apps
   displayName: signalr
   items:
@@ -784,6 +801,8 @@
       uid: grpc/troubleshoot
 - name: Test, debug, and troubleshoot
   items:
+    - name: .NET Hot Reload
+      uid: test/hot-reload
     - name: Razor Pages unit tests
       uid: test/razor-pages-tests
     - name: Test controllers
@@ -808,6 +827,19 @@
       uid: test/troubleshoot-azure-iis
     - name: Azure and IIS errors reference
       uid: host-and-deploy/azure-iis-errors-reference
+    - name: Code analysis
+      uid: diagnostics/code-analysis
+      items:
+        - name: ASP0004
+          uid: diagnostics/asp0004
+        - name: ASP0005
+          uid: diagnostics/asp0005
+        - name: ASP0007
+          uid: diagnostics/asp0007
+        - name: MVC1000
+          uid: diagnostics/mvc1000
+        - name: MVC1001
+          uid: diagnostics/mvc1001
 - name: Data access
   items:
     - name: Tutorials
@@ -1375,6 +1407,12 @@
     - name: 5.0 to 6.0
       displayName: migrate, migration
       uid: migration/50-to-60
+    - name: 3.1/5.0 Code to 6.0
+      displayName: migrate, migration
+      uid: migration/50-to-60-samples
+    - name: 3.1 to 6.0 LTS
+      displayName: migrate, migration, LTS
+      uid: migration/31-to-60
     - name: 3.1 to 5.0
       displayName: migrate, migration
       uid: migration/31-to-50

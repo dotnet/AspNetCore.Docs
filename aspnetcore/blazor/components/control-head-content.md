@@ -5,7 +5,7 @@ description: Learn how to control &lt;head&gt; content in Blazor apps, including
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/03/2021
+ms.date: 11/09/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/control-head-content
 ---
@@ -15,7 +15,11 @@ Razor components can modify the HTML `<head>` element content of a page, includi
 
 ## Control `<head>` content in a Razor component
 
-Specify the page's title with the `PageTitle` component. Specify `<head>` element content with the `HeadContent` component. The following example sets the page's title and description using Razor.
+Specify the page's title with the <xref:Microsoft.AspNetCore.Components.Web.PageTitle> component, which enables rendering an HTML `<title>` element to a [`HeadOutlet` component](#headoutlet-component).
+    
+Specify `<head>` element content with the <xref:Microsoft.AspNetCore.Components.Web.HeadContent> component, which provides content to a [`HeadOutlet` component](#headoutlet-component).
+
+The following example sets the page's title and description using Razor.
 
 `Pages/ControlHeadContent.razor`:
 
@@ -46,9 +50,9 @@ Specify the page's title with the `PageTitle` component. Specify `<head>` elemen
 
 ## `HeadOutlet` component
 
-The `HeadOutlet` component renders content provided by `HeadContent` components.
+The <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component renders content provided by <xref:Microsoft.AspNetCore.Components.Web.PageTitle> and <xref:Microsoft.AspNetCore.Components.Web.HeadContent> components.
 
-In an app created from the Blazor WebAssembly project template, the `HeadOutlet` component is added to the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.RootComponents> collection of the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder> in `Program.cs`:
+In an app created from the Blazor WebAssembly project template, the <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is added to the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.RootComponents> collection of the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder> in `Program.cs`:
 
 ```csharp
 builder.RootComponents.Add<HeadOutlet>("head::after");
@@ -56,7 +60,7 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 When the [`::after` pseudo-selector](https://developer.mozilla.org/docs/Web/CSS/::after) is specified, the contents of the root component are appended to the existing head contents instead of replacing the content. This allows the app to retain static head content in `wwwroot/index.html` without having to repeat the content in the app's Razor components.
 
-In Blazor Server apps created from the Blazor Server project template, a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) renders `<head>` content for the `HeadOutlet` component in `Pages/_Layout.cshtml`:
+In Blazor Server apps created from the Blazor Server project template, a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) renders `<head>` content for the <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component in `Pages/_Layout.cshtml`:
 
 ```cshtml
 <head>

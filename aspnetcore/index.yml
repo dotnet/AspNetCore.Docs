@@ -11,7 +11,7 @@ metadata:
   ms.topic: hub-page
   author: WadePickett
   ms.author: wpickett
-  ms.date: 05/25/2021
+  ms.date: 11/08/2021
 
 # highlightedContent section (optional)
 # Maximum of 8 items
@@ -41,7 +41,7 @@ highlightedContent:
     # Card
     - title: "Create your first web API"
       itemType: get-started
-      url: tutorials/first-web-api.md
+      url: tutorials/min-web-api.md
     # Card
     - title: "Create your first real-time web app"
       itemType: get-started
@@ -74,15 +74,15 @@ conceptualContent:
           itemType: concept
           text: "Blazor hosting models"
     # Card
-    - title: RESTful web API apps
-      summary: Develop RESTful HTTP services with ASP.NET Core web API
+    - title: HTTP API apps
+      summary: Develop HTTP services with ASP.NET Core
       links:
-        - url: tutorials/first-web-api.md
+        - url: tutorials/min-web-api.md
           itemType: get-started
-          text: "Create a web API with ASP.NET Core"
+          text: "Create a minimal web API with ASP.NET Core"
         - url: /learn/modules/build-web-api-net-core/
           itemType: learn
-          text: "Create web APIs with ASP.NET Core"
+          text: "Create a web API with ASP.NET Core Controllers"
         - url: tutorials/web-api-help-pages-using-swagger.md
           itemType: tutorial
           text: "Generate web API help pages with Swagger / OpenAPI"
@@ -217,13 +217,13 @@ conceptualContent:
         - url: data/ef-mvc/intro.md
           itemType: tutorial
           text: "Entity Framework Core with ASP.NET Core MVC"
-        - url: /visualstudio/azure/vs-azure-tools-connected-services-storage?view=vs-2019&viewFallbackFrom=aspnetcore-3.1
+        - url: /visualstudio/azure/azure/vs-azure-tools-connected-services-storage?view=vs-2022
           itemType: tutorial
           text: "Azure Storage"
-        - url: /azure/visual-studio/vs-storage-aspnet5-getting-started-blobs?bc=%252faspnet%252fcore%252fbreadcrumb%252ftoc.json&toc=%252faspnet%252fcore%252ftoc.json&view=aspnetcore-3.1
+        - url: /azure/storage/blobs/storage-quickstart-blobs-dotnet
           itemType: tutorial
           text: "Blob Storage"
-        - url: /azure/visual-studio/vs-storage-aspnet5-getting-started-tables?bc=%252faspnet%252fcore%252fbreadcrumb%252ftoc.json&toc=%252faspnet%252fcore%252ftoc.json&view=aspnetcore-3.1
+        - url: /azure/storage/tables/table-storage-overview?bc=%252faspnet%252fcore%252fbreadcrumb%252ftoc.json&toc=%252faspnet%252fcore%252ftoc.json&view=aspnetcore-6.0
           itemType: concept
           text: "Azure Table Storage"
       # Card
@@ -261,7 +261,7 @@ additionalContent:
       # Card
       - title: API reference for ASP.NET Core
         links:
-          - url: /dotnet/api/?view=aspnetcore-5.0
+          - url: /dotnet/api/?view=aspnetcore-6.0
             text: ".NET API browser"
       # Card
       - title: Host and deploy
@@ -317,7 +317,7 @@ additionalContent:
         links:
           - url: test/razor-pages-tests.md
             text: "Razor Pages unit tests"
-          - url: /visualstudio/debugger/remote-debugging-azure?view=vs-2019&viewFallbackFrom=aspnetcore-3.1
+          - url: /visualstudio/debugger/remote-debugging-azure?view=vs-2022
             text: "Remote debugging"
           - url: /azure/azure-monitor/app/snapshot-debugger?bc=%252faspnet%252fcore%252fbreadcrumb%252ftoc.json&toc=%252faspnet%252fcore%252ftoc.json&view=aspnetcore-3.1
             text: "Snapshot debugging"
@@ -336,7 +336,7 @@ additionalContent:
         links:
           - url: /azure/app-service/app-service-web-get-started-dotnet
             text: "Deploy an ASP.NET Core web app"
-          - url: /visualstudio/containers/container-tools?view=vs-2019.md
+          - url: /visualstudio/containers/container-tools?view=vs-2022
             text: "ASP.NET Core and Docker"
           - url: /learn/modules/host-a-web-app-with-azure-app-service/
             text: "Host a web application with Azure App Service"
@@ -379,6 +379,10 @@ additionalContent:
       # Card
       - title: Migration
         links:
+          - url: migration/50-to-60.md
+            text: "ASP.NET Core 5.0 to 6.0"
+          - url: migration/50-to-60-samples.md
+            text: "ASP.NET Core 5.0 code samples to 6.0 minimal hosting model"
           - url: migration/31-to-50.md
             text: "ASP.NET Core 3.1 to 5.0"
           - url: migration/30-to-31.md

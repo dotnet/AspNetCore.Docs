@@ -5,7 +5,7 @@ using ModelBindingSample.Models;
 
 namespace ModelBindingSample.Converters
 {
-    #region snippet_Class
+    // <snippet_Class>
     internal class ObjectIdConverter : JsonConverter<ObjectId>
     {
         public override ObjectId Read(
@@ -20,5 +20,5 @@ namespace ModelBindingSample.Converters
             writer.WriteNumberValue(value.Id);
         }
     }
-    #endregion
+    // </snippet_Class>
 }

@@ -914,7 +914,7 @@ There are three directives that pertain to [Tag Helpers](xref:mvc/views/tag-help
 
 ### Razor keywords
 
-* `page` (Requires ASP.NET Core 2.1 or later)
+* `page`
 * `namespace`
 * `functions`
 * `inherits`

@@ -15,7 +15,7 @@ The App Offline file (`app_offline.htm`) is used by the ASP.NET Core Module to s
 
 If a file with the name `app_offline.htm` is detected in the root directory of an app, the ASP.NET Core Module attempts to gracefully shut down the app and stop processing incoming requests. If the app is still running after the number of seconds defined in `shutdownTimeLimit`, the ASP.NET Core Module stops the running process.
 
-While the `app_offline.htm` file is present, the ASP.NET Core Module responds to requests by sending back the contents of the `app_offline.htm` file. When the `app_offline.htm` file is removed, the next request starts the app.
+While the `app_offline.htm` file is present, the ASP.NET Core Module responds to requests by sending back the contents of the `app_offline.htm` file. The `app_offline.htm` must be less than 4 GB. When the `app_offline.htm` file is removed, the next request starts the app.
 
 When using the out-of-process hosting model, the app might not shut down immediately if there's an open connection. For example, a WebSocket connection may delay app shut down.
 

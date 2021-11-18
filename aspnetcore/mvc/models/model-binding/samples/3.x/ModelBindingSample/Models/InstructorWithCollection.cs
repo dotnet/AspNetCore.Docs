@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ModelBindingSample.Models
 {
-    #region snippet_BindRequired
+    // <snippet_BindRequired>
     public class InstructorWithCollection
     {
         public int ID { get; set; }
@@ -15,7 +15,7 @@ namespace ModelBindingSample.Models
         [Display(Name = "Hire Date")]
         [BindRequired]
         public DateTime HireDate { get; set; }
-        #endregion
+        // </snippet_BindRequired>
 
         [Display(Name = "Last Name")]
         public string LastName { get; set; }

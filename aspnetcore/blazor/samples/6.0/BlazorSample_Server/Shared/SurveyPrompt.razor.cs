@@ -6,17 +6,18 @@ namespace BlazorSample.Shared
     public partial class SurveyPrompt : 
         ComponentBase, IObserver<ElementReference>, IDisposable
     {
-        private IDisposable subscription = null;
+        private IDisposable? subscription = null;
 
         [Parameter]
-        public IObservable<ElementReference> Parent { get; set; }
+        public IObservable<ElementReference>? Parent { get; set; }
 
         protected override void OnParametersSet()
         {
             base.OnParametersSet();
 
             subscription?.Dispose();
-            subscription = Parent.Subscribe(this);
+            subscription = 
+                Parent is not null ? Parent.Subscribe(this) : null;
         }
 
         public void OnCompleted()

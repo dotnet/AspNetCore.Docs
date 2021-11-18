@@ -5,16 +5,15 @@ description: Learn about logging in Blazor apps, including log level configurati
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/16/2020
+ms.date: 11/09/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/fundamentals/logging
-zone_pivot_groups: blazor-hosting-models
 ---
 # ASP.NET Core Blazor logging
 
 ::: moniker range=">= aspnetcore-6.0"
 
-::: zone pivot="webassembly"
+## Logging in Blazor WebAssembly apps
 
 Configure custom logging in Blazor WebAssembly apps with the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.Logging?displayProperty=nameWithType> property.
 
@@ -50,7 +49,7 @@ Inject an <xref:Microsoft.Extensions.Logging.ILoggerProvider> to add a `WebAssem
 
 Add the namespace for <xref:Microsoft.Extensions.Logging?displayProperty=fullName> and inject an <xref:Microsoft.Extensions.Logging.ILoggerProvider> into the component:
 
-```csharp
+```razor
 @using Microsoft.Extensions.Logging
 @inject ILoggerProvider LoggerProvider
 ```
@@ -64,13 +63,9 @@ var connection = new HubConnectionBuilder()
     .Build();
 ```
 
-::: zone-end
-
-::: zone pivot="server"
+## Logging in Blazor Server apps
 
 For general ASP.NET Core logging guidance that pertains to Blazor Server, see <xref:fundamentals/logging/index>.
-
-::: zone-end
 
 ## Razor component logging
 
@@ -98,7 +93,7 @@ The following example demonstrates logging with an <xref:Microsoft.Extensions.Lo
 
 ::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-::: zone pivot="webassembly"
+## Logging in Blazor WebAssembly apps
 
 Configure custom logging in Blazor WebAssembly apps with the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.Logging?displayProperty=nameWithType> property.
 
@@ -134,7 +129,7 @@ Inject an <xref:Microsoft.Extensions.Logging.ILoggerProvider> to add a `WebAssem
 
 Add the namespace for <xref:Microsoft.Extensions.Logging?displayProperty=fullName> and inject an <xref:Microsoft.Extensions.Logging.ILoggerProvider> into the component:
 
-```csharp
+```razor
 @using Microsoft.Extensions.Logging
 @inject ILoggerProvider LoggerProvider
 ```
@@ -148,13 +143,9 @@ var connection = new HubConnectionBuilder()
     .Build();
 ```
 
-::: zone-end
-
-::: zone pivot="server"
+## Logging in Blazor Server apps
 
 For general ASP.NET Core logging guidance that pertains to Blazor Server, see <xref:fundamentals/logging/index>.
-
-::: zone-end
 
 ## Razor component logging
 
@@ -182,7 +173,7 @@ The following example demonstrates logging with an <xref:Microsoft.Extensions.Lo
 
 ::: moniker range="< aspnetcore-5.0"
 
-::: zone pivot="webassembly"
+## Logging in Blazor WebAssembly apps
 
 Configure custom logging in Blazor WebAssembly apps with the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.Logging?displayProperty=nameWithType> property.
 
@@ -218,7 +209,7 @@ Inject an <xref:Microsoft.Extensions.Logging.ILoggerProvider> to add a `WebAssem
 
 Add the namespace for <xref:Microsoft.Extensions.Logging?displayProperty=fullName> and inject an <xref:Microsoft.Extensions.Logging.ILoggerProvider> into the component:
 
-```csharp
+```razor
 @using Microsoft.Extensions.Logging
 @inject ILoggerProvider LoggerProvider
 ```
@@ -232,13 +223,9 @@ var connection = new HubConnectionBuilder()
     .Build();
 ```
 
-::: zone-end
-
-::: zone pivot="server"
+## Logging in Blazor Server apps
 
 For general ASP.NET Core logging guidance that pertains to Blazor Server, see <xref:fundamentals/logging/index>.
-
-::: zone-end
 
 ## Razor component logging
 

@@ -94,7 +94,7 @@ The framework provides a robust [logging](xref:fundamentals/logging/index) syste
 
 Using the preceding code, there is no need to update *Program.cs*, because [logging](xref:fundamentals/logging/index) is provided by the framework.
 
-## Services injected into Program.c
+## Services injected into Program.cs
 
 Any service registered with the DI container can be resolved from `app.Services` in *Program.cs*:
 
@@ -197,7 +197,7 @@ To reduce the logging output, set "Logging:LogLevel:Microsoft:Error" in the *app
 
 The following code shows how to resolve a scoped service for a limited duration when the app starts:
 
-[!code-json[](dependency-injection/samples/6.x/WebApp1/Program.cs?highlight=3,7-13)]
+[!code-csharp[](dependency-injection/samples/6.x/WebApp1/Program.cs?highlight=3,7-13)]
 
 ## Scope validation
 

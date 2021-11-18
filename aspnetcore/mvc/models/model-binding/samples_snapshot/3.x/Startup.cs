@@ -20,7 +20,7 @@ namespace WebApp
 
         public IConfiguration Configuration { get; }
 
-        #region snippet
+        // <snippet>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews(options =>
@@ -30,7 +30,7 @@ namespace WebApp
                 options.ValueProviderFactories[index] = new CulturedQueryStringValueProviderFactory();
             });
         }
-        #endregion
+        // </snippet>
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -61,7 +61,7 @@ namespace WebApp
         }
     }
 
-    #region snippet1
+    // <snippet1>
     public class CulturedQueryStringValueProviderFactory : IValueProviderFactory
     {
         public Task CreateValueProviderAsync(ValueProviderFactoryContext context)
@@ -85,6 +85,6 @@ namespace WebApp
             return Task.CompletedTask;
         }
     }
-    #endregion
+    // </snippet1>
 
 }

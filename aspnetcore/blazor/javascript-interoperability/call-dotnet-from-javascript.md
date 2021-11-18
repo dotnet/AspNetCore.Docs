@@ -5,7 +5,7 @@ description: Learn how to invoke .NET methods from JavaScript functions in Blazo
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc 
-ms.date: 05/25/2021
+ms.date: 11/09/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, JS, Promise]
 uid: blazor/js-interop/call-dotnet-from-javascript
 ---
@@ -264,7 +264,7 @@ When a `ListItem` component's **`InteropCall`** button is selected, `updateMessa
 
 `Shared/ListItem.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Shared/call-dotnet-from-js/ListItem.razor?highlight=1,5,11,15,18-22,24)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Shared/call-dotnet-from-js/ListItem.razor)]
 
 [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) is called to update the UI when `message` is set in `UpdateMessage`. If `StateHasChanged` isn't called, Blazor has no way of knowing that the UI should be updated when the <xref:System.Action> is invoked.
 
@@ -353,9 +353,48 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 
 For information on using a byte array when calling JavaScript from .NET, see <xref:blazor/js-interop/call-javascript-from-dotnet#byte-array-support>.
 
+## Stream from JavaScript to .NET
+
+Blazor supports streaming data directly from JavaScript to .NET. Streams are requested using the `Microsoft.JSInterop.IJSStreamReference` interface.
+
+`Microsoft.JSInterop.IJSStreamReference.OpenReadStreamAsync` returns a <xref:System.IO.Stream> and uses the following parameters:
+
+* `maxAllowedSize`: Maximum number of bytes permitted for the read operation from JavaScript, which defaults to 512,000 bytes if not specified.
+* `cancellationToken`: A <xref:System.Threading.CancellationToken> for cancelling the read.
+
+In JavaScript:
+
+```javascript
+function streamToDotNet() {
+  return new Uint8Array(10000000);
+}
+```
+
+In C# code:
+
+```csharp
+var dataReference = 
+    await JS.InvokeAsync<IJSStreamReference>("streamToDotNet");
+using var dataReferenceStream = 
+    await dataReference.OpenReadStreamAsync(maxAllowedSize: 10_000_000);
+
+var outputPath = Path.Combine(Path.GetTempPath(), "file.txt");
+using var outputFileStream = File.OpenWrite(outputPath);
+await dataReferenceStream.CopyToAsync(outputFileStream);
+```
+
+In the preceding example:
+
+* `JS` is an injected <xref:Microsoft.JSInterop.IJSRuntime> instance.
+* The `dataReferenceStream` is written to disk (`file.txt`) at the current user's temporary folder path (<xref:System.IO.Path.GetTempPath%2A>).
+
+<xref:blazor/js-interop/call-javascript-from-dotnet#stream-from-net-to-javascript> covers the reverse operation, streaming from .NET to JavaScript using a <xref:Microsoft.JSInterop.DotNetStreamReference>.
+
+<xref:blazor/file-uploads> covers how to upload a file in Blazor.
+
 ## Size limits on JavaScript interop calls
 
-[!INCLUDE[](~/blazor/includes/js-interop/size-limits.md)]
+[!INCLUDE[](~/blazor/includes/js-interop/6.0/size-limits.md)]
 
 ## JavaScript isolation in JavaScript modules
 
@@ -669,7 +708,7 @@ Objects that contain circular references can't be serialized on the client for e
 
 ## Size limits on JavaScript interop calls
 
-[!INCLUDE[](~/blazor/includes/js-interop/size-limits.md)]
+[!INCLUDE[](~/blazor/includes/js-interop/5.0/size-limits.md)]
 
 ## JavaScript isolation in JavaScript modules
 
@@ -981,7 +1020,7 @@ Objects that contain circular references can't be serialized on the client for e
 
 ## Size limits on JavaScript interop calls
 
-[!INCLUDE[](~/blazor/includes/js-interop/size-limits.md)]
+[!INCLUDE[](~/blazor/includes/js-interop/3.1/size-limits.md)]
 
 ## Additional resources
 

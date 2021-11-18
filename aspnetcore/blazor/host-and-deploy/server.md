@@ -5,7 +5,7 @@ description: Learn how to host and deploy a Blazor Server app using ASP.NET Core
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/26/2020
+ms.date: 11/09/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/host-and-deploy/server
 ---
@@ -25,13 +25,6 @@ A web server capable of hosting an ASP.NET Core app is required. Visual Studio i
 
 ## Scalability
 
-Plan a deployment to make the best use of the available infrastructure for a Blazor Server app. See the following resources to address Blazor Server app scalability:
-
-* [Fundamentals of Blazor Server apps](xref:blazor/hosting-models#blazor-server)
-* <xref:blazor/security/server/threat-mitigation>
-
-### Deployment server
-
 When considering the scalability of a single server (scale up), the memory available to an app is likely the first resource that the app will exhaust as user demands increase. The available memory on the server affects the:
 
 * Number of active circuits that a server can support.
@@ -41,13 +34,17 @@ For guidance on building secure and scalable Blazor server apps, see <xref:blazo
 
 Each circuit uses approximately 250 KB of memory for a minimal *Hello World*-style app. The size of a circuit depends on the app's code and the state maintenance requirements associated with each component. We recommend that you measure resource demands during development for your app and infrastructure, but the following baseline can be a starting point in planning your deployment target: If you expect your app to support 5,000 concurrent users, consider budgeting at least 1.3 GB of server memory to the app (or ~273 KB per user).
 
-### SignalR configuration
+## SignalR configuration
 
-Blazor Server apps use ASP.NET Core SignalR to communicate with the browser. [SignalR's hosting and scaling conditions](xref:signalr/publish-to-azure-web-app) apply to Blazor Server apps.
+Blazor Server apps use [ASP.NET Core SignalR](<xref:signalr/introduction>) to communicate with the browser. [SignalR's hosting and scaling conditions](xref:signalr/publish-to-azure-web-app) apply to Blazor Server apps.
 
-Blazor works best when using WebSockets as the SignalR transport due to lower latency, reliability, and [security](xref:signalr/security). Long Polling is used by SignalR when WebSockets isn't available or when the app is explicitly configured to use Long Polling. When deploying to Azure App Service, configure the app to use WebSockets in the Azure portal settings for the service. For details on configuring the app for Azure App Service, see the [SignalR publishing guidelines](xref:signalr/publish-to-azure-web-app).
+Blazor works best when using [WebSockets](xref:fundamentals/websockets) as the SignalR transport due to lower latency, better reliability, and improved [security](xref:signalr/security). [Long Polling](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md#long-polling-server-to-client-only) is used by SignalR when WebSockets isn't available or when the app is explicitly configured to use Long Polling. When deploying to Azure App Service, configure the app to use WebSockets in the Azure portal settings for the service. For details on configuring the app for Azure App Service, see the [SignalR publishing guidelines](xref:signalr/publish-to-azure-web-app).
 
-#### Azure SignalR Service
+Blazor Server emits a console warning if it detects Long Polling is utilized:
+
+> Failed to connect via WebSockets, using the Long Polling fallback transport. This may be due to a VPN or proxy blocking the connection. To troubleshoot this, visit https://aka.ms/blazor-server-using-fallback-long-polling.
+
+## Azure SignalR Service
 
 We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) for Blazor Server apps. The service works in conjunction with the app's Blazor Hub for scaling up a Blazor Server app to a large number of concurrent SignalR connections. In addition, the SignalR Service's global reach and high-performance data centers significantly aid in reducing latency due to geography.
 
@@ -64,7 +61,7 @@ We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-
 
 ### Configuration
 
-To configure an app for the Azure SignalR Service, the app must support *sticky sessions*, where clients are [redirected back to the same server when prerendering](xref:blazor/hosting-models#connection-to-the-server). The `ServerStickyMode` option or configuration value is set to `Required`. Typically, an app creates the configuration using **_ONE_** of the following approaches:
+To configure an app for the Azure SignalR Service, the app must support *sticky sessions*, where clients are redirected back to the same server when prerendering. The `ServerStickyMode` option or configuration value is set to `Required`. Typically, an app creates the configuration using **one** of the following approaches:
 
 * `Program.cs`:
 
@@ -72,11 +69,11 @@ To configure an app for the Azure SignalR Service, the app must support *sticky 
   builder.Services.AddSignalR().AddAzureSignalR(options =>
   {
       options.ServerStickyMode = 
-      Microsoft.Azure.SignalR.ServerStickyMode.Required;
+          Microsoft.Azure.SignalR.ServerStickyMode.Required;
   });
   ```
 
-* Configuration (use **_ONE_** of the following approaches):
+* Configuration (use **one** of the following approaches):
 
   * In `appsettings.json`:
 
@@ -96,14 +93,25 @@ To provision the Azure SignalR Service for an app in Visual Studio:
 
 Provisioning the Azure SignalR Service in Visual Studio automatically [enables *sticky sessions*](#configuration) and adds the SignalR connection string to the app service's configuration.
 
-#### IIS
+## Azure App Service
+
+*This section only applies to apps not using the [Azure SignalR Service](#azure-signalr-service).*
+
+When the Azure SignalR Service is ***not*** used, the App Service requires configuration for Application Request Routing (ARR) affinity and WebSockets. Clients connect their WebSockets directly to the app, not to the Azure SignalR Service.
+
+Use the following guidance to configure the app:
+
+* [Configure the app in Azure App Service](xref:signalr/publish-to-azure-web-app#configure-the-app-in-azure-app-service).
+* [App Service Plan Limits](xref:signalr/publish-to-azure-web-app#app-service-plan-limits).
+
+## IIS
 
 When using IIS, enable:
 
 * [WebSockets on IIS](xref:fundamentals/websockets#enabling-websockets-on-iis).
 * [Sticky sessions with Application Request Routing](/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing).
 
-#### Kubernetes
+## Kubernetes
 
 Create an ingress definition with the following [Kubernetes annotations for sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/):
 
@@ -119,7 +127,7 @@ metadata:
     nginx.ingress.kubernetes.io/session-cookie-max-age: "14400"
 ```
 
-#### Linux with Nginx
+## Linux with Nginx
 
 For SignalR WebSockets to function properly, confirm that the proxy's `Upgrade` and `Connection` headers are set to the following values and that `$connection_upgrade` is mapped to either:
 
@@ -191,7 +199,7 @@ Check the browser console for WebSockets errors. Example errors:
 
 For more information, see the [Apache documentation](https://httpd.apache.org/docs/current/mod/mod_proxy.html).
 
-### Measure network latency
+## Measure network latency
 
 [JS interop](xref:blazor/js-interop/call-javascript-from-dotnet) can be used to measure network latency, as the following example demonstrates:
 
@@ -242,13 +250,6 @@ A web server capable of hosting an ASP.NET Core app is required. Visual Studio i
 
 ## Scalability
 
-Plan a deployment to make the best use of the available infrastructure for a Blazor Server app. See the following resources to address Blazor Server app scalability:
-
-* [Fundamentals of Blazor Server apps](xref:blazor/hosting-models#blazor-server)
-* <xref:blazor/security/server/threat-mitigation>
-
-### Deployment server
-
 When considering the scalability of a single server (scale up), the memory available to an app is likely the first resource that the app will exhaust as user demands increase. The available memory on the server affects the:
 
 * Number of active circuits that a server can support.
@@ -258,13 +259,13 @@ For guidance on building secure and scalable Blazor server apps, see <xref:blazo
 
 Each circuit uses approximately 250 KB of memory for a minimal *Hello World*-style app. The size of a circuit depends on the app's code and the state maintenance requirements associated with each component. We recommend that you measure resource demands during development for your app and infrastructure, but the following baseline can be a starting point in planning your deployment target: If you expect your app to support 5,000 concurrent users, consider budgeting at least 1.3 GB of server memory to the app (or ~273 KB per user).
 
-### SignalR configuration
+## SignalR configuration
 
 Blazor Server apps use ASP.NET Core SignalR to communicate with the browser. [SignalR's hosting and scaling conditions](xref:signalr/publish-to-azure-web-app) apply to Blazor Server apps.
 
 Blazor works best when using WebSockets as the SignalR transport due to lower latency, reliability, and [security](xref:signalr/security). Long Polling is used by SignalR when WebSockets isn't available or when the app is explicitly configured to use Long Polling. When deploying to Azure App Service, configure the app to use WebSockets in the Azure portal settings for the service. For details on configuring the app for Azure App Service, see the [SignalR publishing guidelines](xref:signalr/publish-to-azure-web-app).
 
-#### Azure SignalR Service
+## Azure SignalR Service
 
 We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) for Blazor Server apps. The service works in conjunction with the app's Blazor Hub for scaling up a Blazor Server app to a large number of concurrent SignalR connections. In addition, the SignalR Service's global reach and high-performance data centers significantly aid in reducing latency due to geography.
 
@@ -281,7 +282,7 @@ We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-
 
 ### Configuration
 
-To configure an app for the Azure SignalR Service, the app must support *sticky sessions*, where clients are [redirected back to the same server when prerendering](xref:blazor/hosting-models#connection-to-the-server). The `ServerStickyMode` option or configuration value is set to `Required`. Typically, an app creates the configuration using **_ONE_** of the following approaches:
+To configure an app for the Azure SignalR Service, the app must support *sticky sessions*, where clients are redirected back to the same server when prerendering. The `ServerStickyMode` option or configuration value is set to `Required`. Typically, an app creates the configuration using **one** of the following approaches:
 
 * `Startup.ConfigureServices`:
 
@@ -289,11 +290,11 @@ To configure an app for the Azure SignalR Service, the app must support *sticky 
   services.AddSignalR().AddAzureSignalR(options =>
   {
       options.ServerStickyMode = 
-      Microsoft.Azure.SignalR.ServerStickyMode.Required;
+          Microsoft.Azure.SignalR.ServerStickyMode.Required;
   });
   ```
 
-* Configuration (use **_ONE_** of the following approaches):
+* Configuration (use **one** of the following approaches):
 
   * In `appsettings.json`:
 
@@ -313,14 +314,25 @@ To provision the Azure SignalR Service for an app in Visual Studio:
 
 Provisioning the Azure SignalR Service in Visual Studio automatically [enables *sticky sessions*](#configuration) and adds the SignalR connection string to the app service's configuration.
 
-#### IIS
+## Azure App Service
+
+*This section only applies to apps not using the [Azure SignalR Service](#azure-signalr-service).*
+
+When the Azure SignalR Service is ***not*** used, the App Service requires configuration for Application Request Routing (ARR) affinity and WebSockets. Clients connect their WebSockets directly to the app, not to the Azure SignalR Service.
+
+Use the following guidance to configure the app:
+
+* [Configure the app in Azure App Service](xref:signalr/publish-to-azure-web-app#configure-the-app-in-azure-app-service).
+* [App Service Plan Limits](xref:signalr/publish-to-azure-web-app#app-service-plan-limits).
+
+## IIS
 
 When using IIS, enable:
 
 * [WebSockets on IIS](xref:fundamentals/websockets#enabling-websockets-on-iis).
 * [Sticky sessions with Application Request Routing](/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing).
 
-#### Kubernetes
+## Kubernetes
 
 Create an ingress definition with the following [Kubernetes annotations for sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/):
 
@@ -336,7 +348,7 @@ metadata:
     nginx.ingress.kubernetes.io/session-cookie-max-age: "14400"
 ```
 
-#### Linux with Nginx
+## Linux with Nginx
 
 For SignalR WebSockets to function properly, confirm that the proxy's `Upgrade` and `Connection` headers are set to the following values and that `$connection_upgrade` is mapped to either:
 
@@ -408,7 +420,7 @@ Check the browser console for WebSockets errors. Example errors:
 
 For more information, see the [Apache documentation](https://httpd.apache.org/docs/current/mod/mod_proxy.html).
 
-### Measure network latency
+## Measure network latency
 
 [JS interop](xref:blazor/js-interop/call-javascript-from-dotnet) can be used to measure network latency, as the following example demonstrates:
 
@@ -459,13 +471,6 @@ A web server capable of hosting an ASP.NET Core app is required. Visual Studio i
 
 ## Scalability
 
-Plan a deployment to make the best use of the available infrastructure for a Blazor Server app. See the following resources to address Blazor Server app scalability:
-
-* [Fundamentals of Blazor Server apps](xref:blazor/hosting-models#blazor-server)
-* <xref:blazor/security/server/threat-mitigation>
-
-### Deployment server
-
 When considering the scalability of a single server (scale up), the memory available to an app is likely the first resource that the app will exhaust as user demands increase. The available memory on the server affects the:
 
 * Number of active circuits that a server can support.
@@ -475,13 +480,13 @@ For guidance on building secure and scalable Blazor server apps, see <xref:blazo
 
 Each circuit uses approximately 250 KB of memory for a minimal *Hello World*-style app. The size of a circuit depends on the app's code and the state maintenance requirements associated with each component. We recommend that you measure resource demands during development for your app and infrastructure, but the following baseline can be a starting point in planning your deployment target: If you expect your app to support 5,000 concurrent users, consider budgeting at least 1.3 GB of server memory to the app (or ~273 KB per user).
 
-### SignalR configuration
+## SignalR configuration
 
 Blazor Server apps use ASP.NET Core SignalR to communicate with the browser. [SignalR's hosting and scaling conditions](xref:signalr/publish-to-azure-web-app) apply to Blazor Server apps.
 
 Blazor works best when using WebSockets as the SignalR transport due to lower latency, reliability, and [security](xref:signalr/security). Long Polling is used by SignalR when WebSockets isn't available or when the app is explicitly configured to use Long Polling. When deploying to Azure App Service, configure the app to use WebSockets in the Azure portal settings for the service. For details on configuring the app for Azure App Service, see the [SignalR publishing guidelines](xref:signalr/publish-to-azure-web-app).
 
-#### Azure SignalR Service
+## Azure SignalR Service
 
 We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) for Blazor Server apps. The service works in conjunction with the app's Blazor Hub for scaling up a Blazor Server app to a large number of concurrent SignalR connections. In addition, the SignalR Service's global reach and high-performance data centers significantly aid in reducing latency due to geography.
 
@@ -498,7 +503,7 @@ We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-
 
 ### Configuration
 
-To configure an app for the Azure SignalR Service, the app must support *sticky sessions*, where clients are [redirected back to the same server when prerendering](xref:blazor/hosting-models#connection-to-the-server). The `ServerStickyMode` option or configuration value is set to `Required`. Typically, an app creates the configuration using **_ONE_** of the following approaches:
+To configure an app for the Azure SignalR Service, the app must support *sticky sessions*, where clients are redirected back to the same server when prerendering. The `ServerStickyMode` option or configuration value is set to `Required`. Typically, an app creates the configuration using **one** of the following approaches:
 
 * `Startup.ConfigureServices`:
 
@@ -506,11 +511,11 @@ To configure an app for the Azure SignalR Service, the app must support *sticky 
   services.AddSignalR().AddAzureSignalR(options =>
   {
       options.ServerStickyMode = 
-      Microsoft.Azure.SignalR.ServerStickyMode.Required;
+          Microsoft.Azure.SignalR.ServerStickyMode.Required;
   });
   ```
 
-* Configuration (use **_ONE_** of the following approaches):
+* Configuration (use **one** of the following approaches):
 
   * In `appsettings.json`:
 
@@ -530,14 +535,25 @@ To provision the Azure SignalR Service for an app in Visual Studio:
 
 Provisioning the Azure SignalR Service in Visual Studio automatically [enables *sticky sessions*](#configuration) and adds the SignalR connection string to the app service's configuration.
 
-#### IIS
+## Azure App Service
+
+*This section only applies to apps not using the [Azure SignalR Service](#azure-signalr-service).*
+
+When the Azure SignalR Service is ***not*** used, the App Service requires configuration for Application Request Routing (ARR) affinity and WebSockets. Clients connect their WebSockets directly to the app, not to the Azure SignalR Service.
+
+Use the following guidance to configure the app:
+
+* [Configure the app in Azure App Service](xref:signalr/publish-to-azure-web-app#configure-the-app-in-azure-app-service).
+* [App Service Plan Limits](xref:signalr/publish-to-azure-web-app#app-service-plan-limits).
+
+## IIS
 
 When using IIS, enable:
 
 * [WebSockets on IIS](xref:fundamentals/websockets#enabling-websockets-on-iis).
 * [Sticky sessions with Application Request Routing](/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing).
 
-#### Kubernetes
+## Kubernetes
 
 Create an ingress definition with the following [Kubernetes annotations for sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/):
 
@@ -553,7 +569,7 @@ metadata:
     nginx.ingress.kubernetes.io/session-cookie-max-age: "14400"
 ```
 
-#### Linux with Nginx
+## Linux with Nginx
 
 For SignalR WebSockets to function properly, confirm that the proxy's `Upgrade` and `Connection` headers are set to the following values and that `$connection_upgrade` is mapped to either:
 
@@ -625,7 +641,7 @@ Check the browser console for WebSockets errors. Example errors:
 
 For more information, see the [Apache documentation](https://httpd.apache.org/docs/current/mod/mod_proxy.html).
 
-### Measure network latency
+## Measure network latency
 
 [JS interop](xref:blazor/js-interop/call-javascript-from-dotnet) can be used to measure network latency, as the following example demonstrates:
 

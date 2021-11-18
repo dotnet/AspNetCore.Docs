@@ -6,7 +6,7 @@ public class TimerService : IDisposable
     private int elapsedCount;
     private readonly ILogger<TimerService> logger;
     private readonly NotifierService notifier;
-    private System.Timers.Timer timer;
+    private System.Timers.Timer? timer;
 
     public TimerService(NotifierService notifier, 
         ILogger<TimerService> logger)
@@ -28,7 +28,7 @@ public class TimerService : IDisposable
         }
     }
 
-    private async void HandleTimer(object source, 
+    private async void HandleTimer(object? source, 
         System.Timers.ElapsedEventArgs e)
     {
         elapsedCount += 1;

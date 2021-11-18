@@ -67,7 +67,7 @@ HTTP/3 is discovered as an upgrade from HTTP/1.1 or HTTP/2 via the `alt-svc` hea
 ## Localhost testing
 
 * Browsers do not enable HTTP/3 on localhost or loopback connections. To test with a browser, run the client and server on separate machines. For example, use a Virtual Machine, [Windows Subsystem for Linux](/windows/wsl/), or [Windows Sandbox](/windows/security/threat-protection/windows-sandbox/windows-sandbox-overview).
-* `HttpClient` can be used for localhost/loopback testing in .NET 6 or later. Extra configured is required when using `HttpClient` to make an HTTP/3 request:
+* `HttpClient` can be used for localhost/loopback testing in .NET 6 or later. Extra configuration is required when using `HttpClient` to make an HTTP/3 request:
 
   * Set `HttpRequestMessage.Version` to 3.0, or
   * Set `HttpRequestMessage.VersionPolicy` to `HttpVersionPolicy.RequestVersionOrHigher`.

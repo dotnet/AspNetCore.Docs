@@ -5,7 +5,7 @@ description: Learn about Razor component integration scenarios for Blazor apps, 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/31/2021
+ms.date: 11/09/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/prerendering-and-integration
 zone_pivot_groups: blazor-hosting-models
@@ -733,13 +733,11 @@ For more information, see <xref:blazor/components/index#namespaces>.
 
 ::: zone-end
 
-## Preserve prerendered state
+## Persist prerendered state
 
-Without preserving prerendered state, any state that used during prerendering is lost and must be recreated when the app is fully loaded. If any state is setup asynchronously, the UI may flicker as the prerendered UI is replaced with temporary placeholders and then fully rendered again.
+Without persisting prerendered state, state used during prerendering is lost and must be recreated when the app is fully loaded. If any state is setup asynchronously, the UI may flicker as the prerendered UI is replaced with temporary placeholders and then fully rendered again.
 
-To solve these problems, Blazor supports persisting state in a prerendered page using the [Preserve Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/preserve-component-state-tag-helper) (`<preserve-component-state />`). Add the `<preserve-component-state />` tag inside the closing `</body>` tag of `_Layout.cshtml`.
-
-::: zone pivot="webassembly"
+To solve these problems, Blazor supports persisting state in a prerendered page using the [Persist Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper). Add the Tag Helper's tag, `<persist-component-state />`, inside the closing `</body>` tag.
 
 `Pages/_Layout.cshtml`:
 
@@ -751,46 +749,67 @@ To solve these problems, Blazor supports persisting state in a prerendered page 
 </body>
 ```
 
-::: zone-end
+In the app, decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. The [`PersistentComponentState.RegisterOnPersisting`](xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A) event is fired just before the state is persisted into the prerendered page, which allows a component to retrieve the state when initializing the component.
 
-::: zone pivot="server"
-
-`Pages/_Layout.cshtml`:
-
-```cshtml
-<body>
-    ...
-
-    <persist-component-state />
-</body>
-```
-
-::: zone-end
-
-In the app, decide what state to persist using the `ComponentApplicationState` service. The `ComponentApplicationState.OnPersisting` event is fired just before the state is persisted into the prerendered page, which allows a component to retrieve the state when initializing the component.
-
-The following example shows how the weather forecast in the `FetchData` component from an app based on the Blazor project template is persisted during prerendering and then retrieved to initialize the component. The Persist Component State Tag Helper persists the component state after all component invocations.
+The following example shows how the weather forecast in the `FetchData` component from a hosted Blazor WebAssembly app based on the Blazor project template is persisted during prerendering and then retrieved to initialize the component. The Persist Component State Tag Helper persists the component state after all component invocations.
 
 `Pages/FetchData.razor`:
 
 ```razor
 @page "/fetchdata"
 @implements IDisposable
-@inject ComponentApplicationState ApplicationState
+@using BlazorSample.Shared
+@inject IWeatherForecastService WeatherForecastService
+@inject PersistentComponentState ApplicationState
 
-...
+<h1>Weather forecast</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+@if (forecasts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Temp. (C)</th>
+                <th>Temp. (F)</th>
+                <th>Summary</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var forecast in forecasts)
+            {
+                <tr>
+                    <td>@forecast.Date.ToShortDateString()</td>
+                    <td>@forecast.TemperatureC</td>
+                    <td>@forecast.TemperatureF</td>
+                    <td>@forecast.Summary</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
 
 @code {
-    private WeatherForecast[] forecasts;
+    private WeatherForecast[] forecasts = Array.Empty<WeatherForecast>();
+    private PersistingComponentStateSubscription _persistingSubscription;
 
     protected override async Task OnInitializedAsync()
     {
-        ApplicationState.OnPersisting += PersistForecasts;
+        _persistingSubscription = ApplicationState.RegisterOnPersisting(PersistForecasts);
 
-        if (!ApplicationState
-            .TryTakeAsJson<WeatherForecast[]>("fetchdata", out forecasts))
+        if (!ApplicationState.TryTakeFromJson<WeatherForecast[]>("fetchdata", out var restored))
         {
-            forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+            forecasts = await WeatherForecastService.GetForecastAsync(DateTime.Now);
+        }
+        else
+        {
+            forecasts = restored!;
         }
     }
 
@@ -803,7 +822,7 @@ The following example shows how the weather forecast in the `FetchData` componen
 
     void IDisposable.Dispose()
     {
-        ApplicationState.OnPersisting -= PersistForecasts;
+        _persistingSubscription.Dispose();
     }
 }
 ```
@@ -820,7 +839,7 @@ By initializing components with the same state used during prerendering, any exp
 * Razor component lifecycle subjects that pertain to prerendering
   * [Component initialization (`OnInitialized{Async}`)](xref:blazor/components/lifecycle#component-initialization-oninitializedasync)
   * [After component render (`OnAfterRender{Async}`)](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync)
-  * [Stateful reconnection after prerendering](xref:blazor/components/lifecycle#stateful-reconnection-after-prerendering): Although the content in the section focuses on Blazor Server and stateful SignalR *reconnection*, the scenario for prerendering in hosted Blazor WebAssembly apps (<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>) involves similar conditions and approaches to prevent executing developer code twice. To preserve state during the execution of initialization code while prerendering, see <xref:blazor/components/prerendering-and-integration#preserve-prerendered-state>.
+  * [Stateful reconnection after prerendering](xref:blazor/components/lifecycle#stateful-reconnection-after-prerendering): Although the content in the section focuses on Blazor Server and stateful SignalR *reconnection*, the scenario for prerendering in hosted Blazor WebAssembly apps (<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>) involves similar conditions and approaches to prevent executing developer code twice. To preserve state during the execution of initialization code while prerendering, see <xref:blazor/components/prerendering-and-integration#persist-prerendered-state>.
   * [Detect when the app is prerendering](xref:blazor/components/lifecycle#detect-when-the-app-is-prerendering)
 * Authentication and authorization subjects that pertain to prerendering
   * [General aspects](xref:blazor/security/index#aspnet-core-blazor-authentication-and-authorization)
@@ -840,7 +859,7 @@ By initializing components with the same state used during prerendering, any exp
   * [Stateful reconnection after prerendering](xref:blazor/components/lifecycle#stateful-reconnection-after-prerendering)
   * [Detect when the app is prerendering](xref:blazor/components/lifecycle#detect-when-the-app-is-prerendering)
 * [Authentication and authorization: General aspects](xref:blazor/security/index#aspnet-core-blazor-authentication-and-authorization)
-* [Blazor Server rerendering](xref:blazor/fundamentals/handle-errors#blazor-server-prerendering-server)
+* [Handle Errors: Blazor Server Prerendering](xref:blazor/fundamentals/handle-errors#prerendering-blazor-server)
 * [Host and deploy: Blazor Server](xref:blazor/host-and-deploy/server)
 * [Threat mitigation: Cross-site scripting (XSS)](xref:blazor/security/server/threat-mitigation#cross-site-scripting-xss)
 
@@ -1501,7 +1520,7 @@ For more information, see <xref:blazor/components/index#namespaces>.
 * Razor component lifecycle subjects that pertain to prerendering
   * [Component initialization (`OnInitialized{Async}`)](xref:blazor/components/lifecycle#component-initialization-oninitializedasync)
   * [After component render (`OnAfterRender{Async}`)](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync)
-  * [Stateful reconnection after prerendering](xref:blazor/components/lifecycle#stateful-reconnection-after-prerendering): Although the content in the section focuses on Blazor Server and stateful SignalR *reconnection*, the scenario for prerendering in hosted Blazor WebAssembly apps (<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>) involves similar conditions and approaches to prevent executing developer code twice. To preserve state during the execution of initialization code while prerendering, see <xref:blazor/components/prerendering-and-integration#preserve-prerendered-state>.
+  * [Stateful reconnection after prerendering](xref:blazor/components/lifecycle#stateful-reconnection-after-prerendering): Although the content in the section focuses on Blazor Server and stateful SignalR *reconnection*, the scenario for prerendering in hosted Blazor WebAssembly apps (<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>) involves similar conditions and approaches to prevent executing developer code twice. To preserve state during the execution of initialization code while prerendering, see <xref:blazor/components/prerendering-and-integration#persist-prerendered-state>.
   * [Detect when the app is prerendering](xref:blazor/components/lifecycle#detect-when-the-app-is-prerendering)
 * Authentication and authorization subjects that pertain to prerendering
   * [General aspects](xref:blazor/security/index#aspnet-core-blazor-authentication-and-authorization)
@@ -1521,7 +1540,7 @@ For more information, see <xref:blazor/components/index#namespaces>.
   * [Stateful reconnection after prerendering](xref:blazor/components/lifecycle#stateful-reconnection-after-prerendering)
   * [Detect when the app is prerendering](xref:blazor/components/lifecycle#detect-when-the-app-is-prerendering)
 * [Authentication and authorization: General aspects](xref:blazor/security/index#aspnet-core-blazor-authentication-and-authorization)
-* [Blazor Server rerendering](xref:blazor/fundamentals/handle-errors#blazor-server-prerendering-server)
+* [Handle Errors: Blazor Server Prerendering](xref:blazor/fundamentals/handle-errors#prerendering-blazor-server)
 * [Host and deploy: Blazor Server](xref:blazor/host-and-deploy/server)
 * [Threat mitigation: Cross-site scripting (XSS)](xref:blazor/security/server/threat-mitigation#cross-site-scripting-xss)
 
@@ -1935,7 +1954,7 @@ For more information, see <xref:blazor/components/index#namespaces>.
   * [Stateful reconnection after prerendering](xref:blazor/components/lifecycle#stateful-reconnection-after-prerendering)
   * [Detect when the app is prerendering](xref:blazor/components/lifecycle#detect-when-the-app-is-prerendering)
 * [Authentication and authorization: General aspects](xref:blazor/security/index#aspnet-core-blazor-authentication-and-authorization)
-* [Blazor Server rerendering](xref:blazor/fundamentals/handle-errors#blazor-server-prerendering-server)
+* [Handle Errors: Blazor Server Prerendering](xref:blazor/fundamentals/handle-errors#prerendering-blazor-server)
 * [Host and deploy: Blazor Server](xref:blazor/host-and-deploy/server)
 * [Threat mitigation: Cross-site scripting (XSS)](xref:blazor/security/server/threat-mitigation#cross-site-scripting-xss)
 

@@ -15,7 +15,7 @@
 <div id="val-set-by-interop" @ref="divElement"></div>
 
 @code {
-    private string infoFromJs;
+    private string? infoFromJs;
     private ElementReference divElement;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)

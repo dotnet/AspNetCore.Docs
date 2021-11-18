@@ -26,7 +26,7 @@ The sample app is a Razor Pages app and assumes a basic understanding of Razor P
 * [Razor Pages unit tests](xref:test/razor-pages-tests)
 
 > [!NOTE]
-> For testing SPAs, we recommended a tool such as [Selenium](https://www.seleniumhq.org/), which can automate a browser.
+> For testing SPAs, we recommended a tool such as [Playwright for .NET](https://playwright.dev/dotnet/), which can automate a browser.
 
 ## Introduction to integration tests
 
@@ -327,9 +327,9 @@ The `WebApplicationFactory` constructor infers the app [content root](xref:funda
 
 ## Disable shadow copying
 
-Shadow copying causes the tests to execute in a different directory than the output directory. For tests to work properly, shadow copying must be disabled. The [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/test/integration-tests/samples) uses xUnit and disables shadow copying for xUnit by including an `xunit.runner.json` file with the correct configuration setting. For more information, see the [xUnit documentation](https://xunit.net/docs/configuration-files).
+Shadow copying causes the tests to execute in a different directory than the output directory. If your tests rely on loading files relative to `Assembly.Location` and you encounter issues, you might have to disable shadow copying.
 
-Add the `xunit.runner.json` file to root of the test project with the following content:
+To disable shadow copying when using xUnit, create a `xunit.runner.json` file in your test project directory, with the [correct configuration setting](https://xunit.net/docs/configuration-files#shadowCopy):
 
 ```json
 {

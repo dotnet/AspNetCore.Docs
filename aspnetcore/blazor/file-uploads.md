@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
-ms.date: 05/09/2021
+ms.date: 11/09/2021
 uid: blazor/file-uploads
 zone_pivot_groups: blazor-hosting-models
 ---
@@ -47,7 +47,7 @@ To read data from a user-selected file, call <xref:Microsoft.AspNetCore.Componen
 
 Avoid reading the incoming file stream directly into memory. For example, don't copy file bytes into a <xref:System.IO.MemoryStream> or read as a byte array. These approaches can result in performance and security problems, especially in Blazor Server. Instead, consider copying file bytes to an external store, such as a blob or a file on disk. If you need access to a <xref:System.IO.Stream> that represents the file's bytes, use <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream%2A?displayProperty=nameWithType>.
 
-In the following examples, `broswerFile` represents the uploaded file and implements <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile>:
+In the following examples, `browserFile` represents the uploaded file and implements <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile>:
 
 ❌ The following approach is **NOT recommended** because the file's <xref:System.IO.Stream> content is read into a <xref:System.String> in memory (`reader`):
 
@@ -415,7 +415,7 @@ To read data from a user-selected file, call <xref:Microsoft.AspNetCore.Componen
 
 Avoid reading the incoming file stream directly into memory. For example, don't copy file bytes into a <xref:System.IO.MemoryStream> or read as a byte array. These approaches can result in performance and security problems, especially in Blazor Server. Instead, consider copying file bytes to an external store, such as a blob or a file on disk. If you need access to a <xref:System.IO.Stream> that represents the file's bytes, use <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream%2A?displayProperty=nameWithType>.
 
-In the following examples, `broswerFile` represents the uploaded file and implements <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile>:
+In the following examples, `browserFile` represents the uploaded file and implements <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile>:
 
 ❌ The following approach is **NOT recommended** because the file's <xref:System.IO.Stream> content is read into a <xref:System.String> in memory (`reader`):
 
@@ -743,6 +743,8 @@ In Blazor Server, file data is streamed over the SignalR connection into .NET co
 
 ## Additional resources
 
+* <xref:blazor/file-downloads>
+* <xref:blazor/images>
 * <xref:mvc/models/file-uploads#security-considerations>
 * <xref:blazor/forms-validation>
 

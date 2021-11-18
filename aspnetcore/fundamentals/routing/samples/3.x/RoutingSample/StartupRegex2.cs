@@ -17,7 +17,7 @@ namespace RoutingSample
             app.UseRouting();
             // Using an object literal to specify a regex constraint.
 
-            #region snippet
+            // <snippet>
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
@@ -26,7 +26,7 @@ namespace RoutingSample
                     constraints: new { ssn = "^\\d{3}-\\d{2}-\\d{4}$", },
                     defaults: new { controller = "People", action = "List", });
             });
-            #endregion
+            // </snippet>
         }
     }
 }

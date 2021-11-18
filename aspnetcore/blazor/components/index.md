@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components in Blazor apps, includ
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/19/2021
+ms.date: 11/09/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/index
 ---
@@ -375,7 +375,7 @@ public DateTime StartData { get; set; } = DateTime.Now;
 
 After the initial assignment of <xref:System.DateTime.Now?displayProperty=nameWithType>, do **not** assign a value to `StartData` in developer code. For more information, see the [Overwritten parameters](#overwritten-parameters) section of this article.
 
-Apply the `[EditorRequired]` attribute to specify a required component parameter. If a parameter value isn't provided, editors or build tools may display warnings to the user. This attribute is only valid on properties also marked with the `[Parameter]` attribute. The `[EditorRequired]` attribute is enforced at design-time and when the app is built. The attribute isn't enforced at runtime, and it doesn't guarantee a non-`null` parameter value.
+Apply the [`[EditorRequired]` attribute](xref:Microsoft.AspNetCore.Components.EditorRequiredAttribute) to specify a required component parameter. If a parameter value isn't provided, editors or build tools may display warnings to the user. This attribute is only valid on properties also marked with the [`[Parameter]` attribute](xref:Microsoft.AspNetCore.Components.ParameterAttribute). The <xref:Microsoft.AspNetCore.Components.EditorRequiredAttribute> is enforced at design-time and when the app is built. The attribute isn't enforced at runtime, and it doesn't guarantee a non-`null` parameter value.
 
 ```csharp
 [Parameter]
@@ -1039,7 +1039,7 @@ To render a Razor component from JS, register the component as a root component 
   > [!NOTE]
   > The preceding code example requires a namespace for the app's components (for example, `using BlazorSample.Pages;`) in the `Program.cs` file.
 
-* In a Blazor WebAssembly app, call `RegisterForJavaScript` on <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.RootComponents> in `Program.cs`:
+* In a Blazor WebAssembly app, call <xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript%2A> on <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.RootComponents> in `Program.cs`:
 
   ```csharp
   builder.RootComponents.RegisterForJavaScript<Counter>(identifier: "counter");
@@ -1057,7 +1057,10 @@ await Blazor.rootComponents.add(containerElement, 'counter', { incrementAmount: 
 
 ## Blazor custom elements
 
-Experimental support is available for building custom elements using the [`Microsoft.AspNetCore.Components.CustomElements` NuGet package](https://www.nuget.org/packages/microsoft.aspnetcore.components.customelements). Custom elements use standard HTML interfaces to implement custom HTML elements.
+*Experimental* support is available for building custom elements using the [`Microsoft.AspNetCore.Components.CustomElements` NuGet package](https://www.nuget.org/packages/microsoft.aspnetcore.components.customelements). Custom elements use standard HTML interfaces to implement custom HTML elements.
+
+> [!WARNING]
+> Experimental features are provided for the purpose of exploring feature viability and may not ship in a stable version.
 
 Register a root component as a custom element:
 

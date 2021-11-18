@@ -69,7 +69,7 @@ For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 * Enter *Web API* in the search box.
 * Select the **ASP.NET Core Web API** template and select **Next**.
 * In the **Configure your new project dialog**, name the project *TodoApi* and select **Next**.
-* In the **Additional information** dialog, confirm that **Framework** is **.NET 6.0 (Preview)**, and select **Create**.
+* In the **Additional information** dialog, confirm that **Framework** is **.NET 6.0 (Long-term support)**, and select **Create**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -151,7 +151,7 @@ Run the app:
 * Select the **.NET Core** task template.
 * Press Ctrl+F5.
 
-In a browser, go to following URL: [https://localhost:5001/swagger](https://localhost:5001/swagger)
+In a browser, navigate to `https://localhost:<port>/swagger`, where `<port>` is the randomly chosen port number displayed in the output.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 

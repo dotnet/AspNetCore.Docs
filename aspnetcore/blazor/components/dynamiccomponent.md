@@ -5,7 +5,7 @@ description: Learn how to use dynamically-rendered Razor components in Blazor ap
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/09/2021
+ms.date: 11/09/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/dynamiccomponent
 ---
@@ -13,9 +13,9 @@ uid: blazor/components/dynamiccomponent
 
 By [Dave Brock](https://twitter.com/daveabrock)
 
-Use the built-in `DynamicComponent` component to render components by type.
+Use the built-in <xref:Microsoft.AspNetCore.Components.DynamicComponent> component to render components by type.
 
-A `DynamicComponent` is useful for rendering components without iterating through possible types or using conditional logic. For example, `DynamicComponent` can render a component based on a user selection from a dropdown list.
+A <xref:Microsoft.AspNetCore.Components.DynamicComponent> is useful for rendering components without iterating through possible types or using conditional logic. For example, <xref:Microsoft.AspNetCore.Components.DynamicComponent> can render a component based on a user selection from a dropdown list.
 
 In the following example:
 
@@ -33,7 +33,7 @@ In the following example:
 
 For more information on passing parameter values, see the [Pass parameters](#pass-parameters) section later in this article.
 
-Use the `Instance` property to access the dynamically-created component instance:
+Use the <xref:Microsoft.AspNetCore.Components.DynamicComponent.Instance> property to access the dynamically-created component instance:
 
 ```razor
 <DynamicComponent Type="@typeof({COMPONENT})" @ref="dc" />
@@ -155,7 +155,7 @@ In the preceding example:
 
 ## Pass parameters
 
-If dynamically-rendered components have [component parameters](xref:blazor/components/index#component-parameters), pass them into the `DynamicComponent` as an `IDictionary<string, object>`. The `string` is the name of the parameter, and the `object` is the parameter's value.
+If dynamically-rendered components have [component parameters](xref:blazor/components/index#component-parameters), pass them into the <xref:Microsoft.AspNetCore.Components.DynamicComponent> as an `IDictionary<string, object>`. The `string` is the name of the parameter, and the `object` is the parameter's value.
 
 The following example configures a component metadata object (`ComponentMetadata`) to supply parameter values to dynamically-rendered components based on the type name. The example is just one of several approaches that you can adopt. Parameter data can also be provided from a web API, a database, or a method. The only requirement is that the approach returns an `IDictionary<string, object>`.
 
@@ -289,7 +289,7 @@ The `RocketLab` component (`Shared/RocketLab.razor`) includes a component parame
 
 ## Avoid catch-all parameters
 
-Avoid the use of [catch-all parameters](xref:blazor/fundamentals/routing#catch-all-route-parameters). If catch-all parameters are used, every explicit parameter on `DynamicComponent` effectively is a reserved word that you can't pass to a dynamic child. Any new parameters passed to `DynamicComponent` are a breaking change, as they start shadowing child component parameters that happen to have the same name. It's unlikely that the caller always knows a fixed set of parameter names to pass to all possible dynamic children.
+Avoid the use of [catch-all parameters](xref:blazor/fundamentals/routing#catch-all-route-parameters). If catch-all parameters are used, every explicit parameter on <xref:Microsoft.AspNetCore.Components.DynamicComponent> effectively is a reserved word that you can't pass to a dynamic child. Any new parameters passed to <xref:Microsoft.AspNetCore.Components.DynamicComponent> are a breaking change, as they start shadowing child component parameters that happen to have the same name. It's unlikely that the caller always knows a fixed set of parameter names to pass to all possible dynamic children.
 
 ## Trademarks
 

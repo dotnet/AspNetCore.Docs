@@ -61,7 +61,7 @@ The default behavior can be changed so that the hosted service's `StartAsync` ru
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddHostedService<VideosWatcher>();}
+builder.Services.AddHostedService<VideosWatcher>();
 ```
 ### `StopAsync`
 

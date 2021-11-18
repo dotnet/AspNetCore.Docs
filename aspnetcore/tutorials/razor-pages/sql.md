@@ -166,7 +166,7 @@ The app shows the seeded data:
 
 ::: moniker-end
 
-::: moniker range="< aspnetcore-5.0 >= aspnetcore-3.0"
+::: moniker range="< aspnetcore-5.0"
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30) ([how to download](xref:index#how-to-download-a-sample)).
 
@@ -404,6 +404,7 @@ There are many third-party tools you can download to manage and view a SQLite da
 
 ## Seed the database
 
+<!-- Next version put it in the Data folder -->
 Create a new class named `SeedData` in the *Models* folder with the following code:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie60/Models/SeedData.cs?name=snippet_1)]

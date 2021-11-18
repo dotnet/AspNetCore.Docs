@@ -5,7 +5,7 @@ description: Learn about the tooling available to build Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/24/2021
+ms.date: 11/09/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/tooling
 zone_pivot_groups: operating-systems
@@ -16,7 +16,7 @@ zone_pivot_groups: operating-systems
 
 ::: zone pivot="windows"
 
-1. Install the latest version of [Visual Studio 2022](https://visualstudio.microsoft.com/vs/preview/) with the **ASP.NET and web development** workload.
+1. Install the latest version of [Visual Studio 2022](https://visualstudio.microsoft.com) with the **ASP.NET and web development** workload.
 
 1. Create a new project.
 
@@ -281,35 +281,9 @@ For more information on template options, see the following resources:
   * `dotnet new blazorserver -h`
   * `dotnet new blazorwasm -h`
 
-## .NET Hot reload
-
-.NET Hot Reload applies code changes, including changes to stylesheets, to a running app without restarting the app and without losing app state.
-
-Hot Reload is activated using the [`dotnet watch`](xref:tutorials/dotnet-watch) command:
-
-```dotnetcli
-dotnet watch
-```
-
-To force the app to rebuild and restart, use the keyboard combination <kbd>Ctrl</kbd>+<kbd>R</kbd> in the command shell.
-
-When an unsupported code edit is made, called a *rude edit*, `dotnet watch` asks you if you want to restart the app:
-
-* **Yes**: Restarts the app.
-* **No**: Doesn't restart the app and leaves the app running without the changes applied.
-* **Always**: Restarts the app as needed when rude edits occur.
-* **Never**: Doesn't restart the app and avoids future prompts.
-
-To disable support for Hot Reload, pass the `--no-hot-reload` option to the `dotnet watch` command:
-
-```dotnetcli
-dotnet watch --no-hot-reload
-```
-
-For Blazor WebAssembly apps, only method body replacement is currently supported. Additional features will be added in upcoming releases of ASP.NET Core. For more information on supported scenarios, see [Supported code changes (C# and Visual Basic)](/visualstudio/debugger/supported-code-changes-csharp).
-
 ## Additional resources
 
+* <xref:test/hot-reload>
 * <xref:blazor/hosting-models>
 * <xref:blazor/project-structure>
 
@@ -319,7 +293,7 @@ For Blazor WebAssembly apps, only method body replacement is currently supported
 
 ::: zone pivot="windows"
 
-1. Install the latest version of [Visual Studio 2022](https://visualstudio.microsoft.com/vs/preview/) with the **ASP.NET and web development** workload.
+1. Install the latest version of [Visual Studio 2022](https://visualstudio.microsoft.com) with the **ASP.NET and web development** workload.
 
 1. Create a new project.
 
@@ -549,7 +523,7 @@ dotnet new blazorserver -h
 
 ::: zone pivot="windows"
 
-1. Install the latest version of [Visual Studio 2022](https://visualstudio.microsoft.com/vs/preview/) with the **ASP.NET and web development** workload.
+1. Install the latest version of [Visual Studio 2022](https://visualstudio.microsoft.com) with the **ASP.NET and web development** workload.
 
 1. Create a new project.
 

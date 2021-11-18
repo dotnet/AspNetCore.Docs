@@ -2,18 +2,21 @@
 @using Microsoft.Extensions.DependencyInjection
 @inherits OwningComponentBase
 
-<h1>User (@UserService.Name)</h1>
+<h1>User @(UserService is not null ? $"({UserService.Name})" : string.Empty)</h1>
 
 <ul>
-    @foreach (var setting in SettingService.GetSettings())
+    @if (SettingService is not null)
     {
-        <li>@setting.SettingName: @setting.SettingValue</li>
+        foreach (var setting in SettingService.GetSettings())
+        {
+            <li>@setting.SettingName: @setting.SettingValue</li>
+        }
     }
 </ul>
 
 @code {
-    private IUserService UserService { get; set; }
-    private ISettingService SettingService { get; set; }
+    private IUserService? UserService { get; set; }
+    private ISettingService? SettingService { get; set; }
 
     protected override void OnInitialized()
     {
@@ -21,18 +24,18 @@
         SettingService = ScopedServices.GetRequiredService<ISettingService>();
     }
 
-    private class Setting
+    public class Setting
     {
-        public string SettingName { get; set; }
-        public string SettingValue { get; set; }
+        public string? SettingName { get; set; }
+        public string? SettingValue { get; set; }
     }
 
-    private interface IUserService
+    public interface IUserService
     {
-        public string Name { get; set; }
+        public string? Name { get; set; }
     }
 
-    private interface ISettingService
+    public interface ISettingService
     {
         public IList<Setting> GetSettings();
     }

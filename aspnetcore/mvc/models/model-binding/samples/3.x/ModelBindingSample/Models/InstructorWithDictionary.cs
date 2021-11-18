@@ -5,12 +5,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ModelBindingSample.Models
 {
-    #region snippet_BindNever
+    // <snippet_BindNever>
     public class InstructorWithDictionary
     {
         [BindNever]
         public int ID { get; set; }
-        #endregion
+        // </snippet_BindNever>
         [Required]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }

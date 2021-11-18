@@ -56,7 +56,7 @@ The <xref:System.ComponentModel.DataAnnotations.DataType> attribute on `ReleaseD
 
 [DataAnnotations](/dotnet/api/system.componentmodel.dataannotations) are covered in a later tutorial.
 
-he question mark after `string` indicates that the property is nullable. For more information, see [Nullable reference types](/dotnet/csharp/nullable-references). 
+The question mark after `string` indicates that the property is nullable. For more information, see [Nullable reference types](/dotnet/csharp/nullable-references). 
 
 ## Add NuGet packages
 
@@ -245,13 +245,15 @@ The scaffolded pages can't be used yet because the database doesn't exist. Runni
 
 ## Build the app
 
-Build the app. The compiler generates several warnings about how `null` values are handled. The released version of .NET 6 will scaffold code without these warnings. See [this GitHub issue](https://github.com/dotnet/Scaffolding/issues/1594) and [Nullable reference types](/dotnet/csharp/nullable-references) for more information.
+Build the app. The compiler generates several warnings about how `null` values are handled. See [this GitHub issue](https://github.com/dotnet/Scaffolding/issues/1594) and [Nullable reference types](/dotnet/csharp/nullable-references) for more information.
 
 To eliminate the warnings from nullable reference types, remove the following line from the *MvcMovie.csproj* file:
 
 ```xml
 <Nullable>enable</Nullable>
 ```
+
+We hope to fix this issue in the next release.
 
 ## Initial migration
 
@@ -470,8 +472,6 @@ The `@model` directive allows access to the list of movies that the controller p
 
 Because the `Model` object is strongly typed as an `IEnumerable<Movie>` object, each item in the loop is typed as `Movie`. Among other benefits, the compiler validates the types used in the code.
 
-[!INCLUDE[s](~/includes/sql-log.md)]
-
 ## Additional resources
 
 * [Tag Helpers](xref:mvc/views/tag-helpers/intro)
@@ -620,7 +620,7 @@ export PATH=$HOME/.dotnet/tools:$PATH
 Run the following command:
 
 ```dotnetcli
-dotnet-aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
+dotnet-aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
 ```
 
 [!INCLUDE [explains scaffold generated params](~/includes/mvc-intro/model4.md)]
@@ -1089,7 +1089,7 @@ The automatic creation of these files is known as *scaffolding*.
 * Run the following command:
 
   ```dotnetcli
-  dotnet-aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
+  dotnet-aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
   ```
 
   [!INCLUDE [explains scaffold generated params](~/includes/mvc-intro/model4.md)]
@@ -1101,7 +1101,7 @@ The automatic creation of these files is known as *scaffolding*.
 * Run the following command:
 
   ```dotnetcli
-  dotnet-aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
+  dotnet-aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
   ```
 
   [!INCLUDE [explains scaffold generated params](~/includes/mvc-intro/model4.md)]

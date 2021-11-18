@@ -13,8 +13,8 @@
 </p>
 
 @code {
-    private IJSObjectReference module;
-    private string result;
+    private IJSObjectReference? module;
+    private string? result;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -30,10 +30,9 @@
         result = await Prompt("Provide some text");
     }
 
-    public async ValueTask<string> Prompt(string message)
-    {
-        return await module.InvokeAsync<string>("showPrompt", message);
-    }
+    public async ValueTask<string?> Prompt(string message) =>
+        module is not null ? 
+            await module.InvokeAsync<string>("showPrompt", message) : null;
 
     async ValueTask IAsyncDisposable.DisposeAsync()
     {

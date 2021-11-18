@@ -5,22 +5,19 @@ description: Learn how to configure and manage Blazor SignalR connections.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/12/2021
+ms.date: 11/09/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/fundamentals/signalr
-zone_pivot_groups: blazor-hosting-models
 ---
 # ASP.NET Core Blazor SignalR guidance
 
 ::: moniker range=">= aspnetcore-6.0"
 
-::: zone pivot="webassembly"
-
 This article explains how to configure and manage SignalR connections in Blazor apps.
 
 For general guidance on ASP.NET Core SignalR configuration, see the topics in the <xref:signalr/introduction> area of the documentation. To configure SignalR [added to a hosted Blazor WebAssembly solution](xref:tutorials/signalr-blazor), see <xref:signalr/configuration#configure-server-options>.
 
-## SignalR cross-origin negotiation for authentication
+## SignalR cross-origin negotiation for authentication (Blazor WebAssembly)
 
 To configure SignalR's underlying client to send credentials, such as cookies or HTTP authentication headers:
 
@@ -64,27 +61,29 @@ To configure SignalR's underlying client to send credentials, such as cookies or
 
 For more information, see <xref:signalr/configuration#configure-additional-options>.
 
-## Render mode
+## Render mode (Blazor WebAssembly)
 
 If a Blazor WebAssembly app that uses SignalR is configured to prerender on the server, prerendering occurs before the client connection to the server is established. For more information, see the following articles:
 
 * <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>
 * <xref:blazor/components/prerendering-and-integration>
 
-## Additional resources
+## Additional resources for Blazor WebAssembly apps
 
 * <xref:signalr/introduction>
 * <xref:signalr/configuration>
 
-::: zone-end
+## Use sticky sessions for webfarm hosting (Blazor Server)
 
-::: zone pivot="server"
+A Blazor Server app prerenders in response to the first client request, which creates UI state on the server. When the client attempts to create a SignalR connection, **the client must reconnect to the same server**. Blazor Server apps that use more than one backend server should implement *sticky sessions* for SignalR connections.
 
-This article explains how to configure and manage SignalR connections in Blazor apps.
+## Azure SignalR Service (Blazor Server)
 
-For general guidance on ASP.NET Core SignalR configuration, see the topics in the <xref:signalr/introduction> area of the documentation. To configure SignalR [added to a hosted Blazor WebAssembly solution](xref:tutorials/signalr-blazor), see <xref:signalr/configuration#configure-server-options>.
+We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) for Blazor Server apps hosted in Microsoft Azure. The service works in conjunction with the app's Blazor Hub for scaling up a Blazor Server app to a large number of concurrent SignalR connections. In addition, the SignalR Service's global reach and high-performance data centers significantly aid in reducing latency due to geography.
 
-## Circuit handler options
+Sticky sessions are enabled for the Azure SignalR Service by setting the service's `ServerStickyMode` option or configuration value to `Required`. For more information, see <xref:blazor/host-and-deploy/server#azure-signalr-service>.
+
+## Circuit handler options for Blazor Server apps
 
 Configure the Blazor Server circuit with the <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions> shown in the following table.
 
@@ -129,11 +128,11 @@ builder.Services.AddServerSideBlazor()
     });
 ```
 
-## Blazor Hub endpoint route configuration
+## Blazor Hub endpoint route configuration (Blazor Server)
 
 In `Program.cs`, Blazor Server apps call <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> to map the Blazor <xref:Microsoft.AspNetCore.SignalR.Hub> to the app's default path. The Blazor Server script (`blazor.server.js`) automatically points to the endpoint created by <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A>.
 
-## Reflect the connection state in the UI
+## Reflect the connection state in the UI (Blazor Server)
 
 When the client detects that the connection has been lost, a default UI is displayed to the user while the client attempts to reconnect. If reconnection fails, the user is provided the option to retry.
 
@@ -170,13 +169,23 @@ The following table describes the CSS classes applied to the `components-reconne
 | `components-reconnect-failed`   | Reconnection failed, probably due to a network failure. To attempt reconnection, call `window.Blazor.reconnect()` in JavaScript. |
 | `components-reconnect-rejected` | Reconnection rejected. The server was reached but refused the connection, and the user's state on the server is lost. To reload the app, call `location.reload()` in JavaScript. This connection state may result when:<ul><li>A crash in the server-side circuit occurs.</li><li>The client is disconnected long enough for the server to drop the user's state. Instances of the user's components are disposed.</li><li>The server is restarted, or the app's worker process is recycled.</li></ul> |
 
-## Render mode
+Customize the delay before the reconnection display appears by setting the `transition-delay` property in the site's CSS for the modal element. The following example sets the transition delay from 500 ms (default) to 1,000 ms (1 second).
+
+`wwwroot/css/site.css`:
+
+```css
+#components-reconnect-modal {
+    transition: visibility 0s linear 1000ms;
+}
+```
+
+## Render mode (Blazor Server)
 
 By default, Blazor Server apps prerender the UI on the server before the client connection to the server is established. For more information, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 
-## Blazor startup
+## Blazor startup (Blazor Server)
 
-Configure the manual start of a Blazor Server app's [SignalR circuit](xref:blazor/hosting-models#circuits) in the `Pages/_Layout.cshtml` file:
+Configure the manual start of a Blazor Server app's SignalR circuit in the `Pages/_Layout.cshtml` file:
 
 * Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` script.
 * Place a script that calls `Blazor.start` after the `blazor.server.js` script's `<script>` tag and inside the closing `</body>` tag.
@@ -185,7 +194,7 @@ When `autostart` is disabled, any aspect of the app that doesn't depend on the c
 
 For more information, including how to initialize Blazor when the document is ready and how to chain to a [JS Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise), see <xref:blazor/fundamentals/startup>.
 
-## Configure SignalR client logging
+## Configure SignalR client logging (Blazor Server)
 
 On the client builder, pass in the `configureSignalR` configuration object that calls `configureLogging` with the log level.
 
@@ -210,7 +219,7 @@ In the preceding example, `information` is equivalent to a log level of <xref:Mi
 
 For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 
-## Modify the reconnection handler
+## Modify the reconnection handler (Blazor Server)
 
 The reconnection handler's circuit connection events can be modified for custom behaviors, such as:
 
@@ -244,7 +253,7 @@ To modify the connection events, register callbacks for the following connection
 
 For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 
-## Adjust the reconnection retry count and interval
+## Adjust the reconnection retry count and interval (Blazor Server)
 
 To adjust the reconnection retry count and interval, set the number of retries (`maxRetries`) and period in milliseconds permitted for each retry attempt (`retryIntervalMilliseconds`).
 
@@ -268,49 +277,7 @@ To adjust the reconnection retry count and interval, set the number of retries (
 
 For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 
-## Hide or replace the reconnection display
-
-To hide the reconnection display, set the reconnection handler's `_reconnectionDisplay` to an empty object (`{}` or `new Object()`).
-
-`Pages/_Layout.cshtml`:
-
-```cshtml
-<body>
-    ...
-
-    <script src="_framework/blazor.server.js" autostart="false"></script>
-    <script>
-      window.addEventListener('beforeunload', function () {
-        Blazor.defaultReconnectionHandler._reconnectionDisplay = {};
-      });
-
-      Blazor.start();
-    </script>
-</body>
-```
-
-To replace the reconnection display, set `_reconnectionDisplay` in the preceding example to the element for display:
-
-```javascript
-Blazor.defaultReconnectionHandler._reconnectionDisplay = 
-  document.getElementById("{ELEMENT ID}");
-```
-
-The placeholder `{ELEMENT ID}` is the ID of the HTML element to display.
-
-For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
-
-Customize the delay before the reconnection display appears by setting the `transition-delay` property in the site's CSS for the modal element. The following example sets the transition delay from 500 ms (default) to 1,000 ms (1 second).
-
-`wwwroot/css/site.css`:
-
-```css
-#components-reconnect-modal {
-    transition: visibility 0s linear 1000ms;
-}
-```
-
-## Disconnect the Blazor circuit from the client
+## Disconnect the Blazor circuit from the client (Blazor Server)
 
 By default, a Blazor circuit is disconnected when the [`unload` page event](https://developer.mozilla.org/docs/Web/API/Window/unload_event) is triggered. To disconnect the circuit for other scenarios on the client, invoke `Blazor.disconnect` in the appropriate event handler. In the following example, the circuit is disconnected when the page is hidden ([`pagehide` event](https://developer.mozilla.org/docs/Web/API/Window/pagehide_event)):
 
@@ -332,7 +299,7 @@ Blazor Server allows code to define a *circuit handler*, which allows running co
 
 Circuit handlers are registered using DI. Scoped instances are created per instance of a circuit. Using the `TrackingCircuitHandler` in the preceding example, a singleton service is created because the state of all circuits must be tracked.
 
-`Program.cs`:
+In `Program.cs`:
 
 ```csharp
 builder.Services.AddSingleton<CircuitHandler, TrackingCircuitHandler>();
@@ -342,11 +309,7 @@ If a custom circuit handler's methods throw an unhandled exception, the exceptio
 
 When a circuit ends because a user has disconnected and the framework is cleaning up the circuit state, the framework disposes of the circuit's DI scope. Disposing the scope disposes any circuit-scoped DI services that implement <xref:System.IDisposable?displayProperty=fullName>. If any DI service throws an unhandled exception during disposal, the framework logs the exception.
 
-## Azure SignalR Service
-
-We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) for Blazor Server apps hosted in Microsoft Azure. The service works in conjunction with the app's Blazor Hub for scaling up a Blazor Server app to a large number of concurrent SignalR connections. In addition, the SignalR Service's global reach and high-performance data centers significantly aid in reducing latency due to geography. For prerendering support with the Azure SignalR Service, configure the app to use *sticky sessions*. For more information, see <xref:blazor/host-and-deploy/server>.
-
-## Additional resources
+## Additional resources for Blazor Server apps
 
 * <xref:signalr/introduction>
 * <xref:signalr/configuration>
@@ -356,19 +319,15 @@ We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-
 * [Performance guide for Azure SignalR Service](/azure/azure-signalr/signalr-concept-performance)
 * <xref:signalr/publish-to-azure-web-app>
 
-::: zone-end
-
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
-
-::: zone pivot="webassembly"
 
 This article explains how to configure and manage SignalR connections in Blazor apps.
 
 For general guidance on ASP.NET Core SignalR configuration, see the topics in the <xref:signalr/introduction> area of the documentation. To configure SignalR [added to a hosted Blazor WebAssembly solution](xref:tutorials/signalr-blazor), see <xref:signalr/configuration#configure-server-options>.
 
-## SignalR cross-origin negotiation for authentication
+## SignalR cross-origin negotiation for authentication (Blazor WebAssembly)
 
 To configure SignalR's underlying client to send credentials, such as cookies or HTTP authentication headers:
 
@@ -412,27 +371,29 @@ To configure SignalR's underlying client to send credentials, such as cookies or
 
 For more information, see <xref:signalr/configuration#configure-additional-options>.
 
-## Render mode
+## Render mode (Blazor WebAssembly)
 
 If a Blazor WebAssembly app that uses SignalR is configured to prerender on the server, prerendering occurs before the client connection to the server is established. For more information, see the following articles:
 
 * <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>
 * <xref:blazor/components/prerendering-and-integration>
 
-## Additional resources
+## Additional resources for Blazor WebAssembly apps
 
 * <xref:signalr/introduction>
 * <xref:signalr/configuration>
 
-::: zone-end
+## Use sticky sessions for webfarm hosting (Blazor Server)
 
-::: zone pivot="server"
+A Blazor Server app prerenders in response to the first client request, which creates the UI state on the server. When the client attempts to create a SignalR connection, **the client must reconnect to the same server**. Blazor Server apps that use more than one backend server should implement *sticky sessions* for SignalR connections.
 
-This article explains how to configure and manage SignalR connections in Blazor apps.
+## Azure SignalR Service (Blazor Server)
 
-For general guidance on ASP.NET Core SignalR configuration, see the topics in the <xref:signalr/introduction> area of the documentation. To configure SignalR [added to a hosted Blazor WebAssembly solution](xref:tutorials/signalr-blazor), see <xref:signalr/configuration#configure-server-options>.
+We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) for Blazor Server apps hosted in Microsoft Azure. The service works in conjunction with the app's Blazor Hub for scaling up a Blazor Server app to a large number of concurrent SignalR connections. In addition, the SignalR Service's global reach and high-performance data centers significantly aid in reducing latency due to geography.
 
-## Circuit handler options
+For prerendering support with the Azure SignalR Service, configure the app to use *sticky sessions*. For more information, see <xref:blazor/host-and-deploy/server#azure-signalr-service>.
+
+## Circuit handler options for Blazor Server apps
 
 Configure the Blazor Server circuit with the <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions> shown in the following table.
 
@@ -477,11 +438,11 @@ services.AddServerSideBlazor()
     });
 ```
 
-## Blazor Hub endpoint route configuration
+## Blazor Hub endpoint route configuration (Blazor Server)
 
 In `Startup.Configure`, Blazor Server apps call <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> on the <xref:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder> of <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> to map the Blazor <xref:Microsoft.AspNetCore.SignalR.Hub> to the app's default path. The Blazor Server script (`blazor.server.js`) automatically points to the endpoint created by <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A>.
 
-## Reflect the connection state in the UI
+## Reflect the connection state in the UI (Blazor Server)
 
 When the client detects that the connection has been lost, a default UI is displayed to the user while the client attempts to reconnect. If reconnection fails, the user is provided the option to retry.
 
@@ -518,13 +479,23 @@ The following table describes the CSS classes applied to the `components-reconne
 | `components-reconnect-failed`   | Reconnection failed, probably due to a network failure. To attempt reconnection, call `window.Blazor.reconnect()` in JavaScript. |
 | `components-reconnect-rejected` | Reconnection rejected. The server was reached but refused the connection, and the user's state on the server is lost. To reload the app, call `location.reload()` in JavaScript. This connection state may result when:<ul><li>A crash in the server-side circuit occurs.</li><li>The client is disconnected long enough for the server to drop the user's state. Instances of the user's components are disposed.</li><li>The server is restarted, or the app's worker process is recycled.</li></ul> |
 
-## Render mode
+Customize the delay before the reconnection display appears by setting the `transition-delay` property in the site's CSS for the modal element. The following example sets the transition delay from 500 ms (default) to 1,000 ms (1 second).
+
+`wwwroot/css/site.css`:
+
+```css
+#components-reconnect-modal {
+    transition: visibility 0s linear 1000ms;
+}
+```
+
+## Render mode (Blazor Server)
 
 By default, Blazor Server apps prerender the UI on the server before the client connection to the server is established. For more information, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 
-## Blazor startup
+## Blazor startup (Blazor Server)
 
-Configure the manual start of a Blazor Server app's [SignalR circuit](xref:blazor/hosting-models#circuits) in the `Pages/_Host.cshtml` file:
+Configure the manual start of a Blazor Server app's SignalR circuit in the `Pages/_Host.cshtml` file:
 
 * Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` script.
 * Place a script that calls `Blazor.start` after the `blazor.server.js` script's `<script>` tag and inside the closing `</body>` tag.
@@ -533,7 +504,7 @@ When `autostart` is disabled, any aspect of the app that doesn't depend on the c
 
 For more information, including how to initialize Blazor when the document is ready and how to chain to a [JS Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise), see <xref:blazor/fundamentals/startup>.
 
-## Configure SignalR client logging
+## Configure SignalR client logging (Blazor Server)
 
 On the client builder, pass in the `configureSignalR` configuration object that calls `configureLogging` with the log level.
 
@@ -558,7 +529,7 @@ In the preceding example, `information` is equivalent to a log level of <xref:Mi
 
 For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 
-## Modify the reconnection handler
+## Modify the reconnection handler (Blazor Server)
 
 The reconnection handler's circuit connection events can be modified for custom behaviors, such as:
 
@@ -592,7 +563,7 @@ To modify the connection events, register callbacks for the following connection
 
 For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 
-## Adjust the reconnection retry count and interval
+## Adjust the reconnection retry count and interval (Blazor Server)
 
 To adjust the reconnection retry count and interval, set the number of retries (`maxRetries`) and period in milliseconds permitted for each retry attempt (`retryIntervalMilliseconds`).
 
@@ -616,49 +587,7 @@ To adjust the reconnection retry count and interval, set the number of retries (
 
 For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 
-## Hide or replace the reconnection display
-
-To hide the reconnection display, set the reconnection handler's `_reconnectionDisplay` to an empty object (`{}` or `new Object()`).
-
-`Pages/_Host.cshtml`:
-
-```cshtml
-<body>
-    ...
-
-    <script src="_framework/blazor.server.js" autostart="false"></script>
-    <script>
-      window.addEventListener('beforeunload', function () {
-        Blazor.defaultReconnectionHandler._reconnectionDisplay = {};
-      });
-
-      Blazor.start();
-    </script>
-</body>
-```
-
-To replace the reconnection display, set `_reconnectionDisplay` in the preceding example to the element for display:
-
-```javascript
-Blazor.defaultReconnectionHandler._reconnectionDisplay = 
-  document.getElementById("{ELEMENT ID}");
-```
-
-The placeholder `{ELEMENT ID}` is the ID of the HTML element to display.
-
-For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
-
-Customize the delay before the reconnection display appears by setting the `transition-delay` property in the site's CSS for the modal element. The following example sets the transition delay from 500 ms (default) to 1,000 ms (1 second).
-
-`wwwroot/css/site.css`:
-
-```css
-#components-reconnect-modal {
-    transition: visibility 0s linear 1000ms;
-}
-```
-
-## Disconnect the Blazor circuit from the client
+## Disconnect the Blazor circuit from the client (Blazor Server)
 
 By default, a Blazor circuit is disconnected when the [`unload` page event](https://developer.mozilla.org/docs/Web/API/Window/unload_event) is triggered. To disconnect the circuit for other scenarios on the client, invoke `Blazor.disconnect` in the appropriate event handler. In the following example, the circuit is disconnected when the page is hidden ([`pagehide` event](https://developer.mozilla.org/docs/Web/API/Window/pagehide_event)):
 
@@ -694,11 +623,7 @@ If a custom circuit handler's methods throw an unhandled exception, the exceptio
 
 When a circuit ends because a user has disconnected and the framework is cleaning up the circuit state, the framework disposes of the circuit's DI scope. Disposing the scope disposes any circuit-scoped DI services that implement <xref:System.IDisposable?displayProperty=fullName>. If any DI service throws an unhandled exception during disposal, the framework logs the exception.
 
-## Azure SignalR Service
-
-We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) for Blazor Server apps hosted in Microsoft Azure. The service works in conjunction with the app's Blazor Hub for scaling up a Blazor Server app to a large number of concurrent SignalR connections. In addition, the SignalR Service's global reach and high-performance data centers significantly aid in reducing latency due to geography. For prerendering support with the Azure SignalR Service, configure the app to use *sticky sessions*. For more information, see <xref:blazor/host-and-deploy/server>.
-
-## Additional resources
+## Additional resources for Blazor Server apps
 
 * <xref:signalr/introduction>
 * <xref:signalr/configuration>
@@ -708,19 +633,15 @@ We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-
 * [Performance guide for Azure SignalR Service](/azure/azure-signalr/signalr-concept-performance)
 * <xref:signalr/publish-to-azure-web-app>
 
-::: zone-end
-
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
-
-::: zone pivot="webassembly"
 
 This article explains how to configure and manage SignalR connections in Blazor apps.
 
 For general guidance on ASP.NET Core SignalR configuration, see the topics in the <xref:signalr/introduction> area of the documentation. To configure SignalR [added to a hosted Blazor WebAssembly solution](xref:tutorials/signalr-blazor), see <xref:signalr/configuration#configure-server-options>.
 
-## SignalR cross-origin negotiation for authentication
+## SignalR cross-origin negotiation for authentication (Blazor WebAssembly)
 
 To configure SignalR's underlying client to send credentials, such as cookies or HTTP authentication headers:
 
@@ -764,20 +685,22 @@ To configure SignalR's underlying client to send credentials, such as cookies or
 
 For more information, see <xref:signalr/configuration#configure-additional-options>.
 
-## Additional resources
+## Additional resources for Blazor WebAssembly apps
 
 * <xref:signalr/introduction>
 * <xref:signalr/configuration>
 
-::: zone-end
+## Use sticky sessions for webfarm hosting (Blazor Server)
 
-::: zone pivot="server"
+A Blazor Server app prerenders in response to the first client request, which creates the UI state on the server. When the client attempts to create a SignalR connection, **the client must reconnect to the same server**. Blazor Server apps that use more than one backend server should implement *sticky sessions* for SignalR connections. For more information, see <xref:blazor/host-and-deploy/server#configuration>.
 
-This article explains how to configure and manage SignalR connections in Blazor apps.
+## Azure SignalR Service (Blazor Server)
 
-For general guidance on ASP.NET Core SignalR configuration, see the topics in the <xref:signalr/introduction> area of the documentation. To configure SignalR [added to a hosted Blazor WebAssembly solution](xref:tutorials/signalr-blazor), see <xref:signalr/configuration#configure-server-options>.
+We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) for Blazor Server apps hosted in Microsoft Azure. The service works in conjunction with the app's Blazor Hub for scaling up a Blazor Server app to a large number of concurrent SignalR connections. In addition, the SignalR Service's global reach and high-performance data centers significantly aid in reducing latency due to geography.
 
-## Circuit handler options
+For prerendering support with the Azure SignalR Service, configure the app to use *sticky sessions*. For more information, see <xref:blazor/host-and-deploy/server#azure-signalr-service>.
+
+## Circuit handler options for Blazor Server apps
 
 Configure the Blazor Server circuit with the <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions> shown in the following table.
 
@@ -822,11 +745,11 @@ services.AddServerSideBlazor()
     });
 ```
 
-## Blazor Hub endpoint route configuration
+## Blazor Hub endpoint route configuration (Blazor Server)
 
 In `Startup.Configure`, Blazor Server apps call <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> on the <xref:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder> of <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> to map the Blazor <xref:Microsoft.AspNetCore.SignalR.Hub> to the app's default path. The Blazor Server script (`blazor.server.js`) automatically points to the endpoint created by <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A>.
 
-## Reflect the connection state in the UI
+## Reflect the connection state in the UI (Blazor Server)
 
 When the client detects that the connection has been lost, a default UI is displayed to the user while the client attempts to reconnect. If reconnection fails, the user is provided the option to retry.
 
@@ -863,13 +786,13 @@ The following table describes the CSS classes applied to the `components-reconne
 | `components-reconnect-failed`   | Reconnection failed, probably due to a network failure. To attempt reconnection, call `window.Blazor.reconnect()` in JavaScript. |
 | `components-reconnect-rejected` | Reconnection rejected. The server was reached but refused the connection, and the user's state on the server is lost. To reload the app, call `location.reload()` in JavaScript. This connection state may result when:<ul><li>A crash in the server-side circuit occurs.</li><li>The client is disconnected long enough for the server to drop the user's state. Instances of the user's components are disposed.</li><li>The server is restarted, or the app's worker process is recycled.</li></ul> |
 
-## Render mode
+## Render mode (Blazor Server)
 
 By default, Blazor Server apps prerender the UI on the server before the client connection to the server is established. For more information, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 
-## Blazor startup
+## Blazor startup (Blazor Server)
 
-Configure the manual start of a Blazor Server app's [SignalR circuit](xref:blazor/hosting-models#circuits) in the `Pages/_Host.cshtml` file:
+Configure the manual start of a Blazor Server app's SignalR circuit in the `Pages/_Host.cshtml` file:
 
 * Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` script.
 * Place a script that calls `Blazor.start` after the `blazor.server.js` script's `<script>` tag and inside the closing `</body>` tag.
@@ -878,7 +801,7 @@ When `autostart` is disabled, any aspect of the app that doesn't depend on the c
 
 For more information, including how to initialize Blazor when the document is ready and how to chain to a [JS Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise), see <xref:blazor/fundamentals/startup>.
 
-## Configure SignalR client logging
+## Configure SignalR client logging (Blazor Server)
 
 On the client builder, pass in the `configureSignalR` configuration object that calls `configureLogging` with the log level.
 
@@ -903,7 +826,7 @@ In the preceding example, `information` is equivalent to a log level of <xref:Mi
 
 For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 
-## Modify the reconnection handler
+## Modify the reconnection handler (Blazor Server)
 
 The reconnection handler's circuit connection events can be modified for custom behaviors, such as:
 
@@ -937,7 +860,7 @@ To modify the connection events, register callbacks for the following connection
 
 For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 
-## Adjust the reconnection retry count and interval
+## Adjust the reconnection retry count and interval (Blazor Server)
 
 To adjust the reconnection retry count and interval, set the number of retries (`maxRetries`) and period in milliseconds permitted for each retry attempt (`retryIntervalMilliseconds`).
 
@@ -958,38 +881,6 @@ To adjust the reconnection retry count and interval, set the number of retries (
     </script>
 </body>
 ```
-
-For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
-
-## Hide or replace the reconnection display
-
-To hide the reconnection display, set the reconnection handler's `_reconnectionDisplay` to an empty object (`{}` or `new Object()`).
-
-`Pages/_Host.cshtml`:
-
-```cshtml
-<body>
-    ...
-
-    <script src="_framework/blazor.server.js" autostart="false"></script>
-    <script>
-      window.addEventListener('beforeunload', function () {
-        Blazor.defaultReconnectionHandler._reconnectionDisplay = {};
-      });
-
-      Blazor.start();
-    </script>
-</body>
-```
-
-To replace the reconnection display, set `_reconnectionDisplay` in the preceding example to the element for display:
-
-```javascript
-Blazor.defaultReconnectionHandler._reconnectionDisplay = 
-  document.getElementById("{ELEMENT ID}");
-```
-
-The placeholder `{ELEMENT ID}` is the ID of the HTML element to display.
 
 For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 
@@ -1017,11 +908,7 @@ If a custom circuit handler's methods throw an unhandled exception, the exceptio
 
 When a circuit ends because a user has disconnected and the framework is cleaning up the circuit state, the framework disposes of the circuit's DI scope. Disposing the scope disposes any circuit-scoped DI services that implement <xref:System.IDisposable?displayProperty=fullName>. If any DI service throws an unhandled exception during disposal, the framework logs the exception.
 
-## Azure SignalR Service
-
-We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) for Blazor Server apps hosted in Microsoft Azure. The service works in conjunction with the app's Blazor Hub for scaling up a Blazor Server app to a large number of concurrent SignalR connections. In addition, the SignalR Service's global reach and high-performance data centers significantly aid in reducing latency due to geography. For prerendering support with the Azure SignalR Service, configure the app to use *sticky sessions*. For more information, see <xref:blazor/host-and-deploy/server>.
-
-## Additional resources
+## Additional resources for Blazor Server apps
 
 * <xref:signalr/introduction>
 * <xref:signalr/configuration>
@@ -1030,7 +917,5 @@ We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-
 * [What is Azure SignalR Service?](/azure/azure-signalr/signalr-overview)
 * [Performance guide for Azure SignalR Service](/azure/azure-signalr/signalr-concept-performance)
 * <xref:signalr/publish-to-azure-web-app>
-
-::: zone-end
 
 ::: moniker-end

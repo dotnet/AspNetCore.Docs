@@ -5,7 +5,7 @@ description: Learn how to use component virtualization in ASP.NET Core Blazor ap
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/26/2021
+ms.date: 11/09/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/virtualization
 ---
@@ -38,7 +38,7 @@ Without virtualization, a typical list might use a C# [`foreach`](/dotnet/csharp
 </div>
 ```
 
-If the collection contains thousands of flights, rendering the flights takes a long time and users experience a noticeable UI lag. Most of the flights aren't rendered because they fall outside of the height of the `<div>` element.
+If the collection contains thousands of flights, rendering the flights takes a long time and users experience a noticeable UI lag. Most of the flights aren't seen because they fall outside of the height of the `<div>` element.
 
 Instead of rendering the entire list of flights at once, replace the [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop in the preceding example with the `Virtualize` component:
 
@@ -106,7 +106,25 @@ private async ValueTask<ItemsProviderResult<Employee>> LoadEmployees(
 }
 ```
 
-<xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.RefreshDataAsync%2A?displayProperty=nameWithType> instructs the component to rerequest data from its <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemsProvider%2A>. This is useful when external data changes. There's no need to call <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.RefreshDataAsync%2A> when using <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.Items%2A>.
+<xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.RefreshDataAsync%2A?displayProperty=nameWithType> instructs the component to rerequest data from its <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemsProvider%2A>. This is useful when external data changes. There's usually no need to call <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.RefreshDataAsync%2A> when using <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.Items%2A>. 
+
+<xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.RefreshDataAsync%2A> updates a `Virtualize` component's data without causing a rerender. If <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.RefreshDataAsync%2A> is invoked from a Blazor event handler or component lifecycle method, triggering a render isn't required because a render is automatically triggered at the end of the event handler or lifecycle method. If <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.RefreshDataAsync%2A> is triggered separately from a background task or event, such as in the following `ForcecastUpdated` delegate, call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> to update the UI at the end of the background task or event:
+
+```csharp
+private Virtualize virtualizeComponent;
+
+protected override void OnInitialized()
+{
+    WeatherForecastSource.ForcecastUpdated += async () => 
+    {
+        await InvokeAsync(() =>
+        {
+            await virtualizeComponent.RefreshDataAsync();
+            StateHasChanged();
+        });
+    });
+}
+```
 
 ## Placeholder
 
@@ -186,7 +204,7 @@ Without virtualization, a typical list might use a C# [`foreach`](/dotnet/csharp
 </div>
 ```
 
-If the collection contains thousands of flights, rendering the flights takes a long time and users experience a noticeable UI lag. Most of the flights aren't rendered because they fall outside of the height of the `<div>` element.
+If the collection contains thousands of flights, rendering the flights takes a long time and users experience a noticeable UI lag. Most of the flights aren't seen because they fall outside of the height of the `<div>` element.
 
 Instead of rendering the entire list of flights at once, replace the [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop in the preceding example with the `Virtualize` component:
 

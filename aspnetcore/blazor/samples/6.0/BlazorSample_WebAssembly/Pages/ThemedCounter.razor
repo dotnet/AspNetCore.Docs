@@ -12,7 +12,9 @@
 </p>
 
 <p>
-    <button class="btn @ThemeInfo.ButtonClass" @onclick="IncrementCount">
+    <button 
+        class="btn @(ThemeInfo is not null ? ThemeInfo.ButtonClass : string.Empty)" 
+        @onclick="IncrementCount">
         Increment Counter (Themed)
     </button>
 </p>
@@ -21,7 +23,7 @@
     private int currentCount = 0;
 
     [CascadingParameter]
-    protected ThemeInfo ThemeInfo { get; set; }
+    protected ThemeInfo? ThemeInfo { get; set; }
 
     private void IncrementCount()
     {
