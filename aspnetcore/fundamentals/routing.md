@@ -308,7 +308,7 @@ All matching endpoints are processed in each phase until the <xref:Microsoft.Asp
 The route precedence is computed based on a **more specific** route template being given a higher priority. For example, consider the templates `/hello` and `/{message}`:
 
 * Both match the URL path `/hello`.
-* `/hello`  is more specific and therefore higher priority.
+* `/hello` is more specific and therefore higher priority.
 
 In general, route precedence does a good job of choosing the best match for the kinds of URL schemes used in practice. Use <xref:Microsoft.AspNetCore.Routing.RouteEndpoint.Order> only when necessary to avoid an ambiguity.
 
@@ -400,7 +400,7 @@ In the following example, a middleware uses the <xref:Microsoft.AspNetCore.Routi
 
 ## Route templates
 
-Tokens within `{}` define route parameters that are bound if the route is matched. More than one route parameter can be defined in a route segment, but route parameters  must be separated by a literal value. For example, `{controller=Home}{action=Index}` isn't a valid route, since there's no literal value between `{controller}` and `{action}`.  Route parameters must have a name and may have additional attributes specified.
+Tokens within `{}` define route parameters that are bound if the route is matched. More than one route parameter can be defined in a route segment, but route parameters must be separated by a literal value. For example, `{controller=Home}{action=Index}` isn't a valid route, since there's no literal value between `{controller}` and `{action}`. Route parameters must have a name and may have additional attributes specified.
 
 Literal text other than route parameters (for example, `{id}`) and the path separator `/` must match the text in the URL. Text matching is case-insensitive and based on the decoded representation of the URL's path. To match a literal route parameter delimiter `{` or `}`, escape the delimiter by repeating the character. For example `{{` or `}}`.
 
@@ -417,7 +417,7 @@ Catch-all parameters can also match the empty string.
 
 The catch-all parameter escapes the appropriate characters when the route is used to generate a URL, including path separator `/` characters. For example, the route `foo/{*path}` with route values `{ path = "my/path" }` generates `foo/my%2Fpath`. Note the escaped forward slash. To round-trip path separator characters, use the `**` route parameter prefix. The route `foo/{**path}` with `{ path = "my/path" }` generates `foo/my/path`.
 
-URL patterns that attempt to capture a file name with an optional file extension have additional considerations. For example, consider the template `files/{filename}.{ext?}`. When values for both `filename` and `ext` exist, both values are populated. If only a value for `filename` exists in the URL, the route matches because the trailing `.` is  optional. The following URLs match this route:
+URL patterns that attempt to capture a file name with an optional file extension have additional considerations. For example, consider the template `files/{filename}.{ext?}`. When values for both `filename` and `ext` exist, both values are populated. If only a value for `filename` exists in the URL, the route matches because the trailing `.` is optional. The following URLs match this route:
 
 * `/files/myFile.txt`
 * `/files/myFile`
@@ -563,7 +563,7 @@ Regular expressions used in routing often start with the `^` character and match
 
 For more information on regular expression syntax, see [.NET Framework Regular Expressions](/dotnet/standard/base-types/regular-expression-language-quick-reference).
 
-To constrain a parameter to a known set of possible values, use a regular expression. For example, `{action:regex(^(list|get|create)$)}` only matches the `action` route value to `list`, `get`, or `create`. If passed into the constraints dictionary, the string `^(list|get|create)$` is equivalent. Constraints that are passed in the constraints dictionary that don't match one of the known constraints are also treated as regular expressions. Constraints that are passed  within a template that don't match one of the known constraints are not treated as regular expressions.
+To constrain a parameter to a known set of possible values, use a regular expression. For example, `{action:regex(^(list|get|create)$)}` only matches the `action` route value to `list`, `get`, or `create`. If passed into the constraints dictionary, the string `^(list|get|create)$` is equivalent. Constraints that are passed in the constraints dictionary that don't match one of the known constraints are also treated as regular expressions. Constraints that are passed within a template that don't match one of the known constraints are not treated as regular expressions.
 
 ### Custom route constraints
 
@@ -636,7 +636,7 @@ ASP.NET Core provides API conventions for using parameter transformers with gene
 
 ## URL generation reference
 
-This section contains a reference for the algorithm implemented by URL generation. In practice, most complex examples of URL generation use controllers or Razor Pages. See  [routing in controllers](xref:mvc/controllers/routing) for additional information.
+This section contains a reference for the algorithm implemented by URL generation. In practice, most complex examples of URL generation use controllers or Razor Pages. See [routing in controllers](xref:mvc/controllers/routing) for additional information.
 
 The URL generation process begins with a call to [LinkGenerator.GetPathByAddress](xref:Microsoft.AspNetCore.Routing.LinkGenerator.GetPathByAddress%2A) or a similar method. The method is provided with an address, a set of route values, and optionally information about the current request from `HttpContext`.
 
@@ -678,28 +678,28 @@ The role of the address scheme is to make the association between the address an
 
 From the current request, routing accesses the route values of the current request `HttpContext.Request.RouteValues`. The values associated with the current request are referred to as the **ambient values**. For the purpose of clarity, the documentation refers to the route values passed in to methods as **explicit values**.
 
-The following example shows ambient values and explicit values. It provides ambient values from the current request and explicit values: `{ id = 17, }`:
+The following example shows ambient values and explicit values. It provides ambient values from the current request and explicit values:
 
-:::code language="csharp" source="routing/samples/3.x/RoutingSample/Controllers/WidgetController.cs" id="snippet":::
+:::code language="csharp" source="routing/samples/6.0/RoutingSample/Snippets/Controllers/WidgetController.cs" id="snippet_ClassIndex":::
 
 The preceding code:
 
 * Returns `/Widget/Index/17`
 * Gets <xref:Microsoft.AspNetCore.Routing.LinkGenerator> via [DI](xref:fundamentals/dependency-injection).
 
-The following code provides no ambient values and explicit values: `{ controller = "Home", action = "Subscribe", id = 17, }`:
+The following code provides no ambient values and explicit values:
 
-:::code language="csharp" source="routing/samples/3.x/RoutingSample/Controllers/WidgetController.cs" id="snippet2":::
+:::code language="csharp" source="routing/samples/6.0/RoutingSample/Snippets/Controllers/WidgetController.cs" id="snippet_HomeSubscribe":::
 
-The preceding  method returns `/Home/Subscribe/17`
+The preceding method returns `/Home/Subscribe/17`
 
 The following code in the `WidgetController` returns `/Widget/Subscribe/17`:
 
-:::code language="csharp" source="routing/samples/3.x/RoutingSample/Controllers/WidgetController.cs" id="snippet3":::
+:::code language="csharp" source="routing/samples/6.0/RoutingSample/Snippets/Controllers/WidgetController.cs" id="snippet_WidgetSubscribe":::
 
-The following code provides the controller from ambient values in the current request and explicit values: `{ action = "Edit", id = 17, }`:
+The following code provides the controller from ambient values in the current request and explicit values:
 
-:::code language="csharp" source="routing/samples/3.x/RoutingSample/Controllers/GadgetController.cs" id="snippet":::
+:::code language="csharp" source="routing/samples/6.0/RoutingSample/Snippets/Controllers/GadgetController.cs" id="snippet_Class":::
 
 In the preceding code:
 
@@ -707,11 +707,11 @@ In the preceding code:
 * <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Url> gets the <xref:Microsoft.AspNetCore.Mvc.IUrlHelper>.
 * <xref:Microsoft.AspNetCore.Mvc.UrlHelperExtensions.Action%2A> generates a URL with an absolute path for an action method. The URL contains the specified `action` name and `route` values.
 
-The following code provides ambient values from the current request and explicit values: `{ page = "./Edit, id = 17, }`:
+The following code provides ambient values from the current request and explicit values:
 
-:::code language="csharp" source="routing/samples/3.x/RoutingSample/Pages/Index.cshtml.cs" id="snippet":::
+:::code language="csharp" source="routing/samples/6.0/RoutingSample/Snippets/Pages/Index.cshtml.cs" id="snippet_Class":::
 
-The preceding code sets `url` to  `/Edit/17` when the Edit Razor Page contains the following page directive:
+The preceding code sets `url` to `/Edit/17` when the Edit Razor Page contains the following page directive:
 
 `@page "{id:int}"`
 
@@ -735,7 +735,7 @@ Once the set of candidate endpoints are found, the URL generation algorithm:
 * Processes the endpoints iteratively.
 * Returns the first successful result.
 
-The first step in this process is called **route value invalidation**.  Route value invalidation is the process by which routing decides which route values from the ambient values should be used and which should be ignored. Each ambient value is considered and either combined with the explicit values, or ignored.
+The first step in this process is called **route value invalidation**. Route value invalidation is the process by which routing decides which route values from the ambient values should be used and which should be ignored. Each ambient value is considered and either combined with the explicit values, or ignored.
 
 The best way to think about the role of ambient values is that they attempt to save application developers typing, in some common cases. Traditionally, the scenarios where ambient values are helpful are related to MVC:
 
@@ -753,7 +753,7 @@ Route value invalidation works on the assumption that the app's URL scheme is hi
 Some examples demonstrating this principle:
 
 * If the explicit values contain a value for `id`, the ambient value for `id` is ignored. The ambient values for `controller` and `action` can be used.
-* If the explicit values contain a value for `action`, any ambient value for `action` is ignored. The ambient values for `controller` can be used. If the explicit value for `action` is different from the ambient value for `action`, the `id` value won't be used.  If the explicit value for `action` is the same as the ambient value for `action`, the `id` value can be used.
+* If the explicit values contain a value for `action`, any ambient value for `action` is ignored. The ambient values for `controller` can be used. If the explicit value for `action` is different from the ambient value for `action`, the `id` value won't be used. If the explicit value for `action` is the same as the ambient value for `action`, the `id` value can be used.
 * If the explicit values contain a value for `controller`, any ambient value for `controller` is ignored. If the explicit value for `controller` is different from the ambient value for `controller`, the `action` and `id` values won't be used. If the explicit value for `controller` is the same as the ambient value for `controller`, the `action` and `id` values can be used.
 
 This process is further complicated by the existence of attribute routes and dedicated conventional routes. Controller conventional routes such as `{controller}/{action}/{id?}` specify a hierarchy using route parameters. For [dedicated conventional routes](xref:mvc/controllers/routing#dcr) and [attribute routes](xref:mvc/controllers/routing#ar) to controllers and Razor Pages:
@@ -860,7 +860,7 @@ To time routing:
 * Interleave each middleware with a copy of the timing middleware shown in the preceding code.
 * Add a unique identifier to correlate the timing data with the code.
 
-This is a basic way to narrow down the delay when it's significant, for example, more than `10ms`.  Subtracting `Time 2` from `Time 1` reports the time spent inside the `UseRouting` middleware.
+This is a basic way to narrow down the delay when it's significant, for example, more than `10ms`. Subtracting `Time 2` from `Time 1` reports the time spent inside the `UseRouting` middleware.
 
 The following code uses a more compact approach to the preceding timing code:
 
