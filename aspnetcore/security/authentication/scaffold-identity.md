@@ -41,6 +41,7 @@ The preceding code comments out the code that is duplicated in *Areas/Identity/I
 
 Typically, apps that were created with individual accounts should ***not*** create a new data context.
 
+<!--
 ## Scaffold Identity into an empty project
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
@@ -52,6 +53,7 @@ Update the `Startup` class with code similar to the following:
 [!INCLUDE[](~/includes/scaffold-identity/hsts.md)]
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
+-->
 
 ## Scaffold Identity into a Razor project without existing authorization
 
