@@ -54,6 +54,7 @@ Update the `Startup` class with code similar to the following:
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 -->
+<a name="RPNA"></a>
 
 ## Scaffold Identity into a Razor project without existing authorization
 
@@ -81,6 +82,8 @@ There is already an object named 'AspNetRoles' in the database.
 Fixed via dotnet ef database drop
 before dotnet ef database update
 -->
+
+[!INCLUDE[](~/includes/scaffold-identity/install-pkg.md)]
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
