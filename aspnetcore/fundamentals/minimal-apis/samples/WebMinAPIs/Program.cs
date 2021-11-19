@@ -207,6 +207,25 @@ app.MapGet("/", () => "Hello World");
 
 app.Run();
 #endregion
+#region snippet_resolving_dependencies
+using App.Services;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllers();
+builder.Services.AddTransient<SomeService>();
+
+var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var service = scope.ServiceProvider.GetRequiredService<SomeService>();
+    service.Test();
+}
+
+app.MapControllers();
+app.Run();
+#endregion
 #elif REB  // Read Env Builder
 #region snippet_reb
 var builder = WebApplication.CreateBuilder(args);
