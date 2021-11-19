@@ -8,7 +8,7 @@ Install the [Microsoft.VisualStudio.Web.CodeGeneration.Design](https://www.nuget
 In the Visual Studio **Package Manager Console**:
 
 ```powershell
-Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Design -Version 6.0.0
+Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Design
 ```
 
 # [.NET Core CLI](#tab/netcore-cli)

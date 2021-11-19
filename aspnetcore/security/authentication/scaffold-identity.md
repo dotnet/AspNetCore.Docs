@@ -97,19 +97,20 @@ Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*. For more i
 
 <a name="useauthentication"></a>
 
+<!--
 ### Enable authentication
 
 Update the `Startup` class with code similar to the following:
 
 [!code-csharp[](scaffold-identity/3.1sample/StartupRP.cs?name=snippet)]
 
-[!INCLUDE[](~/includes/scaffold-identity/hsts.md)]
+[!INCLUDE[](~/includes/scaffold-identity/hsts.md)] -->
 
 ### Layout changes
 
 Optional: Add the login partial (`_LoginPartial`) to the layout file:
 
-[!code-cshtml[](scaffold-identity/3.1sample/_Layout.cshtml?highlight=20)]
+[!code-cshtml[](scaffold-identity/6.0sample/_Layout.cshtml?highlight=21)]
 
 ## Scaffold Identity into a Razor project with authorization
 
