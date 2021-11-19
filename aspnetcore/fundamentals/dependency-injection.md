@@ -249,7 +249,7 @@ Service1.Dispose
 
 Consider the following code:
 
-[!code-csharp[](dependency-injection/samples/6.x/DIsample2/DIsample2/Program.cs?name=snippet2)]
+[!code-csharp[](dependency-injection/samples/6.x/DIsample2/DIsample2/Program.cs?name=snippet3)]
 
 In the preceding code:
 
