@@ -724,7 +724,7 @@ Load assemblies at runtime when the assemblies are required by a route. For more
 
 When a Blazor WebAssembly app is published, the output is statically compressed during publish to reduce the app's size and remove the overhead for runtime compression. Blazor relies on the server to perform content negotiation and serve statically-compressed files.
 
-After an app is deployed, verify that the app serves compressed files. Inspect the **Network** tab in a browser's [Developer Tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) and verify that the files are served with `Content-Encoding: br` (Brotli compression) or `Content-Encoding: gz` (Gzip compression). If the host isn't serving compressed files, follow the instructions in <xref:blazor/host-and-deploy/webassembly#compression>.
+After an app is deployed, verify that the app serves compressed files. Inspect the **Network** tab in a browser's [developer tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) and verify that the files are served with `Content-Encoding: br` (Brotli compression) or `Content-Encoding: gz` (Gzip compression). If the host isn't serving compressed files, follow the instructions in <xref:blazor/host-and-deploy/webassembly#compression>.
 
 ### Disable unused features
 
@@ -1457,7 +1457,7 @@ Load assemblies at runtime when the assemblies are required by a route. For more
 
 When a Blazor WebAssembly app is published, the output is statically compressed during publish to reduce the app's size and remove the overhead for runtime compression. Blazor relies on the server to perform content negotation and serve statically-compressed files.
 
-After an app is deployed, verify that the app serves compressed files. Inspect the **Network** tab in a browser's [Developer Tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) and verify that the files are served with `Content-Encoding: br` (Brotli compression) or `Content-Encoding: gz` (Gzip compression). If the host isn't serving compressed files, follow the instructions in <xref:blazor/host-and-deploy/webassembly#compression>.
+After an app is deployed, verify that the app serves compressed files. Inspect the **Network** tab in a browser's [developer tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) and verify that the files are served with `Content-Encoding: br` (Brotli compression) or `Content-Encoding: gz` (Gzip compression). If the host isn't serving compressed files, follow the instructions in <xref:blazor/host-and-deploy/webassembly#compression>.
 
 ### Disable unused features
 
@@ -2157,7 +2157,7 @@ Load assemblies at runtime when the assemblies are required by a route. For more
 
 When a Blazor WebAssembly app is published, the output is statically compressed during publish to reduce the app's size and remove the overhead for runtime compression. Blazor relies on the server to perform content negotiation and serve statically-compressed files.
 
-After an app is deployed, verify that the app serves compressed files. Inspect the **Network** tab in a browser's [Developer Tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) and verify that the files are served with `Content-Encoding: br` (Brotli compression) or `Content-Encoding: gz` (Gzip compression). If the host isn't serving compressed files, follow the instructions in <xref:blazor/host-and-deploy/webassembly#compression>.
+After an app is deployed, verify that the app serves compressed files. Inspect the **Network** tab in a browser's [developer tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) and verify that the files are served with `Content-Encoding: br` (Brotli compression) or `Content-Encoding: gz` (Gzip compression). If the host isn't serving compressed files, follow the instructions in <xref:blazor/host-and-deploy/webassembly#compression>.
 
 ### Disable unused features
 

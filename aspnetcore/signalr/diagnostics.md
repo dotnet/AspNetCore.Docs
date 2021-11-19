@@ -171,7 +171,7 @@ Replace `[interface]` with the network interface you wish to capture on. Usually
 
 This method only works for browser-based apps.
 
-Most browser Developer Tools have a "Network" tab that allows you to capture network activity between the browser and the server. However, these traces don't include WebSocket and Server-Sent Event messages. If you are using those transports, using a tool like Fiddler or TcpDump (described below) is a better approach.
+Most browser developer tools consoles have a "Network" tab that allows you to capture network activity between the browser and the server. However, these traces don't include WebSocket and Server-Sent Event messages. If you are using those transports, using a tool like Fiddler or TcpDump (described below) is a better approach.
 
 ### Microsoft Edge and Internet Explorer
 
