@@ -29,19 +29,6 @@ Services are required when using [Two Factor Authentication](xref:security/authe
 
 Typically, apps that were created with individual accounts should ***not*** create a new data context.
 
-<!--
-## Scaffold Identity into an empty project
-
-[!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
-
-Update the `Startup` class with code similar to the following:
-
-[!code-csharp[](scaffold-identity/3.1sample/StartupMVC.cs?name=snippet)]
-
-[!INCLUDE[](~/includes/scaffold-identity/hsts.md)]
-
-[!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
--->
 <a name="RPNA"></a>
 
 ## Scaffold Identity into a Razor project without existing authorization
