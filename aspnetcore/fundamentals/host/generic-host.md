@@ -176,11 +176,11 @@ App configuration is created by calling <xref:Microsoft.Extensions.Hosting.HostB
 
 The configuration created by `ConfigureAppConfiguration` is available at [HostBuilderContext.Configuration](xref:Microsoft.Extensions.Hosting.HostBuilderContext.Configuration*) for subsequent operations and as a service from DI. The host configuration is also added to the app configuration.
 
-For more information, see [Configuration in ASP.NET Core](xref:fundamentals/configuration/index).
+For more information, see <xref:fundamentals/configuration/index>.
 
 ## Settings for all app types
 
-This section lists host settings that apply to both HTTP and non-HTTP workloads. By default, environment variables used to configure these settings can have a `DOTNET_` or `ASPNETCORE_` prefix. For more information, see the [Default builder settings](#default-builder-settings) section.
+This section lists host settings that apply to both HTTP and non-HTTP workloads. By default, environment variables used to configure these settings can have a `DOTNET_` or `ASPNETCORE_` prefix, which appear in the following list of settings as the `{PREFIX_}` placeholder. For more information, see the [Default builder settings](#default-builder-settings) section and [Configuration: Environment variables](xref:fundamentals/configuration/index#environment-variables).
 
 <!-- In the following sections, two spaces at end of line are used to force line breaks in the rendered page. -->
 
@@ -191,7 +191,7 @@ The [IHostEnvironment.ApplicationName](xref:Microsoft.Extensions.Hosting.IHostEn
 **Key**: `applicationName`  
 **Type**: `string`  
 **Default**: The name of the assembly that contains the app's entry point.  
-**Environment variable**: `<PREFIX_>APPLICATIONNAME`
+**Environment variable**: `{PREFIX_}APPLICATIONNAME`
 
 To set this value, use the environment variable. 
 
@@ -202,7 +202,7 @@ The [IHostEnvironment.ContentRootPath](xref:Microsoft.Extensions.Hosting.IHostEn
 **Key**: `contentRoot`  
 **Type**: `string`  
 **Default**: The folder where the app assembly resides.  
-**Environment variable**: `<PREFIX_>CONTENTROOT`
+**Environment variable**: `{PREFIX_}CONTENTROOT`
 
 To set this value, use the environment variable or call `UseContentRoot` on `IHostBuilder`:
 
@@ -224,7 +224,7 @@ The [IHostEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostEn
 **Key**: `environment`  
 **Type**: `string`  
 **Default**: `Production`  
-**Environment variable**: `<PREFIX_>ENVIRONMENT`
+**Environment variable**: `{PREFIX_}ENVIRONMENT`
 
 To set this value, use the environment variable or call `UseEnvironment` on `IHostBuilder`:
 
@@ -246,7 +246,7 @@ If the timeout period expires before all of the hosted services stop, any remain
 **Key**: `shutdownTimeoutSeconds`  
 **Type**: `int`  
 **Default**: 5 seconds  
-**Environment variable**: `<PREFIX_>SHUTDOWNTIMEOUTSECONDS`
+**Environment variable**: `{PREFIX_}SHUTDOWNTIMEOUTSECONDS`
 
 To set this value, use the environment variable or configure `HostOptions`. The following example sets the timeout to 20 seconds:
 
@@ -257,17 +257,17 @@ To set this value, use the environment variable or configure `HostOptions`. The 
 By [default](xref:fundamentals/configuration/index#default), *appsettings.json* and *appsettings.{Environment}.json* are reloaded when the file changes. To disable this reload behavior in ASP.NET Core 5.0 or later, set the `hostBuilder:reloadConfigOnChange` key to `false`.
 
 **Key**: `hostBuilder:reloadConfigOnChange`  
-**Type**: `bool` (`true` or `1`)  
+**Type**: `bool` (`true` or `false`)  
 **Default**: `true`  
 **Command-line argument**: `hostBuilder:reloadConfigOnChange`  
-**Environment variable**: `<PREFIX_>hostBuilder:reloadConfigOnChange`
+**Environment variable**: `{PREFIX_}hostBuilder:reloadConfigOnChange`
 
 > [!WARNING]
 > The colon (`:`) separator doesn't work with environment variable hierarchical keys on all platforms. For more information, see [Environment variables](xref:fundamentals/configuration/index#environment-variables).
 
 ## Settings for web apps
 
-Some host settings apply only to HTTP workloads. By default, environment variables used to configure these settings can have a `DOTNET_` or `ASPNETCORE_` prefix.
+Some host settings apply only to HTTP workloads. By default, environment variables used to configure these settings can have a `DOTNET_` or `ASPNETCORE_` prefix, which appear in the following list of settings as the `{PREFIX_}` placeholder.
 
 Extension methods on `IWebHostBuilder` are available for these settings. Code samples that show how to call the extension methods assume `webBuilder` is an instance of `IWebHostBuilder`, as in the following example:
 
@@ -286,9 +286,9 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 When `false`, errors during startup result in the host exiting. When `true`, the host captures exceptions during startup and attempts to start the server.
 
 **Key**: `captureStartupErrors`  
-**Type**: `bool` (`true` or `1`)  
+**Type**: `bool` (`true`/`1` or `false`/`0`)  
 **Default**: Defaults to `false` unless the app runs with Kestrel behind IIS, where the default is `true`.  
-**Environment variable**: `<PREFIX_>CAPTURESTARTUPERRORS`
+**Environment variable**: `{PREFIX_}CAPTURESTARTUPERRORS`
 
 To set this value, use configuration or call `CaptureStartupErrors`:
 
@@ -301,9 +301,9 @@ webBuilder.CaptureStartupErrors(true);
 When enabled, or when the environment is `Development`, the app captures detailed errors.
 
 **Key**: `detailedErrors`  
-**Type**: `bool` (`true` or `1`)  
+**Type**: `bool` (`true`/`1` or `false`/`0`)  
 **Default**: `false`  
-**Environment variable**: `<PREFIX_>_DETAILEDERRORS`
+**Environment variable**: `{PREFIX_}DETAILEDERRORS`
 
 To set this value, use configuration or call `UseSetting`:
 
@@ -318,7 +318,7 @@ A semicolon-delimited string of hosting startup assemblies to load on startup. A
 **Key**: `hostingStartupAssemblies`  
 **Type**: `string`  
 **Default**: Empty string  
-**Environment variable**: `<PREFIX_>_HOSTINGSTARTUPASSEMBLIES`
+**Environment variable**: `{PREFIX_}HOSTINGSTARTUPASSEMBLIES`
 
 To set this value, use configuration or call `UseSetting`:
 
@@ -333,7 +333,7 @@ A semicolon-delimited string of hosting startup assemblies to exclude on startup
 **Key**: `hostingStartupExcludeAssemblies`  
 **Type**: `string`  
 **Default**: Empty string  
-**Environment variable**: `<PREFIX_>_HOSTINGSTARTUPEXCLUDEASSEMBLIES`
+**Environment variable**: `{PREFIX_}HOSTINGSTARTUPEXCLUDEASSEMBLIES`
 
 To set this value, use configuration or call `UseSetting`:
 
@@ -348,7 +348,7 @@ The HTTPS redirect port. Used in [enforcing HTTPS](xref:security/enforcing-ssl).
 **Key**: `https_port`  
 **Type**: `string`  
 **Default**: A default value isn't set.  
-**Environment variable**: `<PREFIX_>HTTPS_PORT`
+**Environment variable**: `{PREFIX_}HTTPS_PORT`
 
 To set this value, use configuration or call `UseSetting`:
 
@@ -361,9 +361,9 @@ webBuilder.UseSetting("https_port", "8080");
 Indicates whether the host should listen on the URLs configured with the `IWebHostBuilder` instead of those URLs configured with the `IServer` implementation.
 
 **Key**: `preferHostingUrls`  
-**Type**: `bool` (`true` or `1`)  
+**Type**: `bool` (`true`/`1` or `false`/`0`)  
 **Default**: `true`  
-**Environment variable**: `<PREFIX_>_PREFERHOSTINGURLS`
+**Environment variable**: `{PREFIX_}PREFERHOSTINGURLS`
 
 To set this value, use the environment variable or call `PreferHostingUrls`:
 
@@ -376,9 +376,9 @@ webBuilder.PreferHostingUrls(false);
 Prevents the automatic loading of hosting startup assemblies, including hosting startup assemblies configured by the app's assembly. For more information, see <xref:fundamentals/configuration/platform-specific-configuration>.
 
 **Key**: `preventHostingStartup`  
-**Type**: `bool` (`true` or `1`)  
+**Type**: `bool` (`true`/`1` or `false`/`0`)  
 **Default**: `false`  
-**Environment variable**: `<PREFIX_>_PREVENTHOSTINGSTARTUP`
+**Environment variable**: `{PREFIX_}PREVENTHOSTINGSTARTUP`
 
 To set this value, use the environment variable or call `UseSetting` :
 
@@ -393,7 +393,7 @@ The assembly to search for the `Startup` class.
 **Key**: `startupAssembly`  
 **Type**: `string`  
 **Default**: The app's assembly  
-**Environment variable**: `<PREFIX_>STARTUPASSEMBLY`
+**Environment variable**: `{PREFIX_}STARTUPASSEMBLY`
 
 To set this value, use the environment variable or call `UseStartup`. `UseStartup` can take an assembly name (`string`) or a type (`TStartup`). If multiple `UseStartup` methods are called, the last one takes precedence.
 
@@ -405,6 +405,21 @@ webBuilder.UseStartup("StartupAssemblyName");
 webBuilder.UseStartup<Startup>();
 ```
 
+### SuppressStatusMessages
+
+When enabled, suppresses hosting startup status messages.
+
+**Key**: `suppressStatusMessages`  
+**Type**: `bool` (`true`/`1` or `false`/`0`)  
+**Default**: `false`  
+**Environment variable**: `{PREFIX_}SUPPRESSSTATUSMESSAGES`
+
+To set this value, use configuration or call `UseSetting`:
+
+```csharp
+webBuilder.UseSetting(WebHostDefaults.SuppressStatusMessagesKey, "true");
+```
+
 ### URLs
 
 A semicolon-delimited list of IP addresses or host addresses with ports and protocols that the server should listen on for requests. For example, `http://localhost:123`. Use "\*" to indicate that the server should listen for requests on any IP address or hostname using the specified port and protocol (for example, `http://*:5000`). The protocol (`http://` or `https://`) must be included with each URL. Supported formats vary among servers.
@@ -412,7 +427,7 @@ A semicolon-delimited list of IP addresses or host addresses with ports and prot
 **Key**: `urls`  
 **Type**: `string`  
 **Default**: `http://localhost:5000` and `https://localhost:5001`  
-**Environment variable**: `<PREFIX_>URLS`
+**Environment variable**: `{PREFIX_}URLS`
 
 To set this value, use the environment variable or call `UseUrls`:
 
@@ -429,7 +444,7 @@ The [IWebHostEnvironment.WebRootPath](xref:Microsoft.AspNetCore.Hosting.IWebHost
 **Key**: `webroot`  
 **Type**: `string`  
 **Default**: The default is `wwwroot`. The path to *{content root}/wwwroot* must exist.  
-**Environment variable**: `<PREFIX_>WEBROOT`
+**Environment variable**: `{PREFIX_}WEBROOT`
 
 To set this value, use the environment variable or call `UseWebRoot` on `IWebHostBuilder`:
 
@@ -683,7 +698,7 @@ For more information, see [Configuration in ASP.NET Core](xref:fundamentals/conf
 
 ## Settings for all app types
 
-This section lists host settings that apply to both HTTP and non-HTTP workloads. By default, environment variables used to configure these settings can have a `DOTNET_` or `ASPNETCORE_` prefix.
+This section lists host settings that apply to both HTTP and non-HTTP workloads. By default, environment variables used to configure these settings can have a `DOTNET_` or `ASPNETCORE_` prefix, which appear in the following configuration for the `{PREFIX_}` placeholder.
 
 <!-- In the following sections, two spaces at end of line are used to force line breaks in the rendered page. -->
 
@@ -694,7 +709,7 @@ The [IHostEnvironment.ApplicationName](xref:Microsoft.Extensions.Hosting.IHostEn
 **Key**: `applicationName`  
 **Type**: `string`  
 **Default**: The name of the assembly that contains the app's entry point.  
-**Environment variable**: `<PREFIX_>APPLICATIONNAME`
+**Environment variable**: `{PREFIX_}APPLICATIONNAME`
 
 To set this value, use the environment variable. 
 
@@ -705,7 +720,7 @@ The [IHostEnvironment.ContentRootPath](xref:Microsoft.Extensions.Hosting.IHostEn
 **Key**: `contentRoot`  
 **Type**: `string`  
 **Default**: The folder where the app assembly resides.  
-**Environment variable**: `<PREFIX_>CONTENTROOT`
+**Environment variable**: `{PREFIX_}CONTENTROOT`
 
 To set this value, use the environment variable or call `UseContentRoot` on `IHostBuilder`:
 
@@ -727,7 +742,7 @@ The [IHostEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostEn
 **Key**: `environment`  
 **Type**: `string`  
 **Default**: `Production`  
-**Environment variable**: `<PREFIX_>ENVIRONMENT`
+**Environment variable**: `{PREFIX_}ENVIRONMENT`
 
 To set this value, use the environment variable or call `UseEnvironment` on `IHostBuilder`:
 
@@ -749,7 +764,7 @@ If the timeout period expires before all of the hosted services stop, any remain
 **Key**: `shutdownTimeoutSeconds`  
 **Type**: `int`  
 **Default**: 5 seconds  
-**Environment variable**: `<PREFIX_>SHUTDOWNTIMEOUTSECONDS`
+**Environment variable**: `{PREFIX_}SHUTDOWNTIMEOUTSECONDS`
 
 To set this value, use the environment variable or configure `HostOptions`. The following example sets the timeout to 20 seconds:
 
@@ -776,9 +791,9 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 When `false`, errors during startup result in the host exiting. When `true`, the host captures exceptions during startup and attempts to start the server.
 
 **Key**: `captureStartupErrors`  
-**Type**: `bool` (`true` or `1`)  
+**Type**: `bool` (`true`/`1` or `false`/`0`)  
 **Default**: Defaults to `false` unless the app runs with Kestrel behind IIS, where the default is `true`.  
-**Environment variable**: `<PREFIX_>CAPTURESTARTUPERRORS`
+**Environment variable**: `{PREFIX_}CAPTURESTARTUPERRORS`
 
 To set this value, use configuration or call `CaptureStartupErrors`:
 
@@ -791,9 +806,9 @@ webBuilder.CaptureStartupErrors(true);
 When enabled, or when the environment is `Development`, the app captures detailed errors.
 
 **Key**: `detailedErrors`  
-**Type**: `bool` (`true` or `1`)  
+**Type**: `bool` (`true`/`1` or `false`/`0`)  
 **Default**: `false`  
-**Environment variable**: `<PREFIX_>_DETAILEDERRORS`
+**Environment variable**: `{PREFIX_}DETAILEDERRORS`
 
 To set this value, use configuration or call `UseSetting`:
 
@@ -808,7 +823,7 @@ A semicolon-delimited string of hosting startup assemblies to load on startup. A
 **Key**: `hostingStartupAssemblies`  
 **Type**: `string`  
 **Default**: Empty string  
-**Environment variable**: `<PREFIX_>_HOSTINGSTARTUPASSEMBLIES`
+**Environment variable**: `{PREFIX_}HOSTINGSTARTUPASSEMBLIES`
 
 To set this value, use configuration or call `UseSetting`:
 
@@ -823,7 +838,7 @@ A semicolon-delimited string of hosting startup assemblies to exclude on startup
 **Key**: `hostingStartupExcludeAssemblies`  
 **Type**: `string`  
 **Default**: Empty string  
-**Environment variable**: `<PREFIX_>_HOSTINGSTARTUPEXCLUDEASSEMBLIES`
+**Environment variable**: `{PREFIX_}HOSTINGSTARTUPEXCLUDEASSEMBLIES`
 
 To set this value, use configuration or call `UseSetting`:
 
@@ -838,7 +853,7 @@ The HTTPS redirect port. Used in [enforcing HTTPS](xref:security/enforcing-ssl).
 **Key**: `https_port`  
 **Type**: `string`  
 **Default**: A default value isn't set.  
-**Environment variable**: `<PREFIX_>HTTPS_PORT`
+**Environment variable**: `{PREFIX_}HTTPS_PORT`
 
 To set this value, use configuration or call `UseSetting`:
 
@@ -851,9 +866,9 @@ webBuilder.UseSetting("https_port", "8080");
 Indicates whether the host should listen on the URLs configured with the `IWebHostBuilder` instead of those URLs configured with the `IServer` implementation.
 
 **Key**: `preferHostingUrls`  
-**Type**: `bool` (`true` or `1`)  
+**Type**: `bool` (`true`/`1` or `false`/`0`)  
 **Default**: `true`  
-**Environment variable**: `<PREFIX_>_PREFERHOSTINGURLS`
+**Environment variable**: `{PREFIX_}PREFERHOSTINGURLS`
 
 To set this value, use the environment variable or call `PreferHostingUrls`:
 
@@ -866,9 +881,9 @@ webBuilder.PreferHostingUrls(false);
 Prevents the automatic loading of hosting startup assemblies, including hosting startup assemblies configured by the app's assembly. For more information, see <xref:fundamentals/configuration/platform-specific-configuration>.
 
 **Key**: `preventHostingStartup`  
-**Type**: `bool` (`true` or `1`)  
+**Type**: `bool` (`true`/`1` or `false`/`0`)  
 **Default**: `false`  
-**Environment variable**: `<PREFIX_>_PREVENTHOSTINGSTARTUP`
+**Environment variable**: `{PREFIX_}PREVENTHOSTINGSTARTUP`
 
 To set this value, use the environment variable or call `UseSetting` :
 
@@ -883,7 +898,7 @@ The assembly to search for the `Startup` class.
 **Key**: `startupAssembly`  
 **Type**: `string`  
 **Default**: The app's assembly  
-**Environment variable**: `<PREFIX_>STARTUPASSEMBLY`
+**Environment variable**: `{PREFIX_}STARTUPASSEMBLY`
 
 To set this value, use the environment variable or call `UseStartup`. `UseStartup` can take an assembly name (`string`) or a type (`TStartup`). If multiple `UseStartup` methods are called, the last one takes precedence.
 
@@ -895,6 +910,21 @@ webBuilder.UseStartup("StartupAssemblyName");
 webBuilder.UseStartup<Startup>();
 ```
 
+### SuppressStatusMessages
+
+When enabled, suppresses hosting startup status messages.
+
+**Key**: `suppressStatusMessages`  
+**Type**: `bool` (`true`/`1` or `false`/`0`)  
+**Default**: `false`  
+**Environment variable**: `{PREFIX_}SUPPRESSSTATUSMESSAGES`
+
+To set this value, use configuration or call `UseSetting`:
+
+```csharp
+webBuilder.UseSetting(WebHostDefaults.SuppressStatusMessagesKey, "true");
+```
+
 ### URLs
 
 A semicolon-delimited list of IP addresses or host addresses with ports and protocols that the server should listen on for requests. For example, `http://localhost:123`. Use "\*" to indicate that the server should listen for requests on any IP address or hostname using the specified port and protocol (for example, `http://*:5000`). The protocol (`http://` or `https://`) must be included with each URL. Supported formats vary among servers.
@@ -902,7 +932,7 @@ A semicolon-delimited list of IP addresses or host addresses with ports and prot
 **Key**: `urls`  
 **Type**: `string`  
 **Default**: `http://localhost:5000` and `https://localhost:5001`  
-**Environment variable**: `<PREFIX_>URLS`
+**Environment variable**: `{PREFIX_}URLS`
 
 To set this value, use the environment variable or call `UseUrls`:
 
@@ -919,7 +949,7 @@ The [IWebHostEnvironment.WebRootPath](xref:Microsoft.AspNetCore.Hosting.IWebHost
 **Key**: `webroot`  
 **Type**: `string`  
 **Default**: The default is `wwwroot`. The path to *{content root}/wwwroot* must exist.  
-**Environment variable**: `<PREFIX_>WEBROOT`
+**Environment variable**: `{PREFIX_}WEBROOT`
 
 To set this value, use the environment variable or call `UseWebRoot` on `IWebHostBuilder`:
 
