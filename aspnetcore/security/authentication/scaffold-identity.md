@@ -114,6 +114,8 @@ Optional: Add the login partial (`_LoginPartial`) to the layout file:
 
 ## Scaffold Identity into a Razor project with authorization
 
+[!INCLUDE[](~/includes/scaffold-identity/install-pkg.md)]
+
 <!--
 Use >=2.1: dotnet new webapp -au Individual -o RPauth
 Use = 2.0: dotnet new razor -au Individual -o RPauth
@@ -126,8 +128,6 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
 -->
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
-
-Some Identity options are configured in *Areas/Identity/IdentityHostingStartup.cs*. For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
 
 ## Scaffold Identity into an MVC project without existing authorization
 
@@ -360,7 +360,7 @@ In the *Pages/Shared/Layout.cshtml* file, make the following changes:
 ## Scaffold Identity into a Blazor Server project with authorization
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
-
+<!-- Remove this, no longer true -->
 Some Identity options are configured in *Areas/Identity/IdentityHostingStartup.cs*. For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
 
 ## Standalone or hosted Blazor WebAssembly apps
