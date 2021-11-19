@@ -142,6 +142,8 @@ dotnet restore
 dotnet aspnet-codegenerator identity -dc MvcAuth.Data.ApplicationDbContext  --files "Account.Login;Account.Register"
 -->
 
+[!INCLUDE[](~/includes/scaffold-identity/install-pkg.md)]
+
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
 ## Scaffold Identity into a Blazor Server project without existing authorization
