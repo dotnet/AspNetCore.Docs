@@ -10,6 +10,6 @@ public class ShortCircuitingController : Controller
 {
     [ShortCircuitingResourceFilter]
     public IActionResult Index() =>
-        Content($"{nameof(ShortCircuitingController)}.{nameof(Index)}");
+        Content($"- {nameof(ShortCircuitingController)}.{nameof(Index)}");
 }
 // </snippet_Class>

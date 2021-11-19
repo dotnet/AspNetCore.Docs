@@ -10,6 +10,10 @@ builder.Services.AddControllersWithViews(options =>
 });
 // </snippet_GlobalFilter>
 
+// <snippet_ResponseHeaderFilterService>
+builder.Services.AddScoped<LoggingResponseHeaderFilterService>();
+// </snippet_ResponseHeaderFilterService>
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
