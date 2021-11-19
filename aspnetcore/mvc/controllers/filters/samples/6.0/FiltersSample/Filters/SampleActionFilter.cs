@@ -5,7 +5,6 @@ namespace FiltersSample.Filters;
 // <snippet_Class>
 public class SampleActionFilter : IActionFilter
 {
-
     public void OnActionExecuting(ActionExecutingContext context)
     {
         // Do something before the action executes.

@@ -209,20 +209,20 @@ To make the global filter `GlobalSampleActionFilter` run first, set its `Order` 
 
 ## Cancellation and short-circuiting
 
-The filter pipeline can be short-circuited by setting the <xref:Microsoft.AspNetCore.Mvc.Filters.ResourceExecutingContext.Result> property on the <xref:Microsoft.AspNetCore.Mvc.Filters.ResourceExecutingContext> parameter provided to the filter method. For instance, the following Resource filter prevents the rest of the pipeline from executing:
+The filter pipeline can be short-circuited by setting the <xref:Microsoft.AspNetCore.Mvc.Filters.ResourceExecutingContext.Result> property on the <xref:Microsoft.AspNetCore.Mvc.Filters.ResourceExecutingContext> parameter provided to the filter method. For example, the following Resource filter prevents the rest of the pipeline from executing:
 
 <a name="short-circuiting-resource-filter"></a>
 
-:::code language="csharp" source="filters/samples/3.x/FiltersSample/Filters/ShortCircuitingResourceFilterAttribute.cs" id="snippet":::
+:::code language="csharp" source="filters/samples/6.0/FiltersSample/Filters/ShortCircuitingResourceFilterAttribute.cs" id="snippet_Class" highlight="5-8":::
 
-In the following code, both the `ShortCircuitingResourceFilter` and the `AddHeader` filter target the `SomeResource` action method. The `ShortCircuitingResourceFilter`:
+In the following code, both the `[ShortCircuitingResourceFilter]` and the `[ResponseHeader]` filter target the `Index` action method. The `ShortCircuitingResourceFilterAttribute` filter:
 
-* Runs first, because it's a Resource Filter and `AddHeader` is an Action Filter.
+* Runs first, because it's a Resource Filter and `ResponseHeaderAttribute` is an Action Filter.
 * Short-circuits the rest of the pipeline.
 
-Therefore the `AddHeader` filter never runs for the `SomeResource` action. This behavior would be the same if both filters were applied at the action method level, provided the `ShortCircuitingResourceFilter` ran first. The `ShortCircuitingResourceFilter` runs first because of its filter type, or by explicit use of `Order` property.
+Therefore the `ResponseHeaderAttribute` filter never runs for the `Index` action. This behavior would be the same if both filters were applied at the action method level, provided the `ShortCircuitingResourceFilterAttribute` ran first. The `ShortCircuitingResourceFilterAttribute` runs first because of its filter type:
 
-:::code language="csharp" source="filters/samples/3.x/FiltersSample/Controllers/SampleController.cs" id="snippet3" highlight="1,15":::
+:::code language="csharp" source="filters/samples/6.0/FiltersSample/Controllers/ShortCircuitingController.cs" id="snippet_Class":::
 
 ## Dependency injection
 
