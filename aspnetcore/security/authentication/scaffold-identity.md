@@ -436,10 +436,6 @@ A similar approach can be followed for production scenarios.
 
 To prevent publishing static Identity assets to the web root, see <xref:security/authentication/identity#prevent-publish-of-static-identity-assets>.
 
-## Additional resources
-
-* [Changes to authentication code to ASP.NET Core 2.1 and later](xref:migration/20_21#changes-to-authentication-code)
-
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-6.0"
