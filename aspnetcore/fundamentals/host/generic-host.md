@@ -257,7 +257,7 @@ To set this value, use the environment variable or configure `HostOptions`. The 
 By [default](xref:fundamentals/configuration/index#default), *appsettings.json* and *appsettings.{Environment}.json* are reloaded when the file changes. To disable this reload behavior in ASP.NET Core 5.0 or later, set the `hostBuilder:reloadConfigOnChange` key to `false`.
 
 **Key**: `hostBuilder:reloadConfigOnChange`  
-**Type**: `bool` (`true` or `1`)  
+**Type**: `bool` (`true` or `false`)  
 **Default**: `true`  
 **Command-line argument**: `hostBuilder:reloadConfigOnChange`  
 **Environment variable**: `<PREFIX_>hostBuilder:reloadConfigOnChange`
@@ -286,7 +286,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 When `false`, errors during startup result in the host exiting. When `true`, the host captures exceptions during startup and attempts to start the server.
 
 **Key**: `captureStartupErrors`  
-**Type**: `bool` (`true` or `1`)  
+**Type**: `bool` (`true` or `false`)  
 **Default**: Defaults to `false` unless the app runs with Kestrel behind IIS, where the default is `true`.  
 **Environment variable**: `<PREFIX_>CAPTURESTARTUPERRORS`
 
@@ -301,7 +301,7 @@ webBuilder.CaptureStartupErrors(true);
 When enabled, or when the environment is `Development`, the app captures detailed errors.
 
 **Key**: `detailedErrors`  
-**Type**: `bool` (`true` or `1`)  
+**Type**: `bool` (`true` or `false`)  
 **Default**: `false`  
 **Environment variable**: `<PREFIX_>_DETAILEDERRORS`
 
