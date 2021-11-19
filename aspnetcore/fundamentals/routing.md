@@ -49,7 +49,7 @@ Routing uses a pair of middleware, registered by <xref:Microsoft.AspNetCore.Buil
 * `UseRouting` adds route matching to the middleware pipeline. This middleware looks at the set of endpoints defined in the app, and selects the [best match](#urlm) based on the request.
 * `UseEndpoints` adds endpoint execution to the middleware pipeline. It runs the delegate associated with the selected endpoint.
 
-Apps that use [Minimal APIs](xref:fundamentals/minimal-apis) typically don't need to call `UseRouting` or `UseEndpoints`. <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> configures a middleware pipeline that wraps middleware added in *Program.cs* with `UseRouting` and `UseEndpoints`. However, apps that use Minimal APIs can change the order in which `UseRouting` and `UseEndpoints` run by calling these methods explicitly. For example, fhe following code makes an explicit call to `UseRouting`:
+Apps typically don't need to call `UseRouting` or `UseEndpoints`. <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> configures a middleware pipeline that wraps middleware added in *Program.cs* with `UseRouting` and `UseEndpoints`. However, apps can change the order in which `UseRouting` and `UseEndpoints` run by calling these methods explicitly. For example, fhe following code makes an explicit call to `UseRouting`:
 
 :::code language="csharp" source="routing/samples/6.0/RoutingSample/Snippets/Program.cs" id="snippet_UseRouting" highlight="7":::
 
@@ -94,8 +94,6 @@ The second segment of the URL path, `{name:alpha}`:
 The following example shows routing with [health checks](xref:host-and-deploy/health-checks) and authorization:
 
 :::code language="csharp" source="routing/samples/6.0/RoutingSample/Snippets/Program.cs" id="snippet_HealthChecksAuthz":::
-
-[!INCLUDE[request localized comments](~/includes/code-comments-loc.md)]
 
 The preceding example demonstrates how:
 
@@ -149,7 +147,9 @@ The following code shows that, depending on where `app.Use` is called in the pip
 
 :::code language="csharp" source="routing/samples/6.0/RoutingSample/Snippets/Program.cs" id="snippet_CurrentEndpointMiddlewareOrder":::
 
-This preceding sample adds `Console.WriteLine` statements that display whether or not an endpoint has been selected. For clarity, the sample assigns a display name to the provided `/` endpoint. Apps that use [Minimal APIs](xref:fundamentals/minimal-apis) typically don't need to call `UseRouting` or `UseEndpoints`. The preceding sample code includes these calls to control exactly when the `UseRouting` and `UseEndpoints` middleware runs within the pipeline.
+The preceding sample adds `Console.WriteLine` statements that display whether or not an endpoint has been selected. For clarity, the sample assigns a display name to the provided `/` endpoint.
+
+The preceding sample also includes calls to `UseRouting` and `UseEndpoints` to control exactly when these middleware run within the pipeline.
 
 Running this code with a URL of `/` displays:
 
