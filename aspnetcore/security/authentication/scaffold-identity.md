@@ -27,18 +27,6 @@ We recommend using a source control system that shows file differences and allow
 
 Services are required when using [Two Factor Authentication](xref:security/authentication/identity-enable-qrcodes), [Account confirmation and password recovery](xref:security/authentication/accconfirm), and other security features with Identity. Services or service stubs aren't generated when scaffolding Identity. Services to enable these features must be added manually. For example, see [Require Email Confirmation](xref:security/authentication/accconfirm#require-email-confirmation).
 
-When scaffolding Identity with a new data context into a project with existing individual accounts:
-
-* In *Program.cs*, remove the calls to:
-  * `AddDbContext`
-  * `AddDefaultIdentity`
-
-For example, `AddDbContext` and `AddDefaultIdentity` are commented out in the following code:
-
-[!code-csharp[](scaffold-identity/6.0sample/WebAuth/Program.cs?name=snippet_co)]
-
-The preceding code comments out the code that is duplicated in *Areas/Identity/IdentityHostingStartup.cs*
-
 Typically, apps that were created with individual accounts should ***not*** create a new data context.
 
 <!--
@@ -87,8 +75,6 @@ before dotnet ef database update
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*. For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
-
 <a name="efm"></a>
 
 ### Migrations, UseAuthentication, and layout
@@ -110,7 +96,7 @@ Update the `Startup` class with code similar to the following:
 
 Optional: Add the login partial (`_LoginPartial`) to the layout file:
 
-[!code-cshtml[](scaffold-identity/6.0sample/_Layout.cshtml?highlight=21)]
+[!code-cshtml[](scaffold-identity/6.0sample/_Layout.cshtml?highlight=29)]
 
 ## Scaffold Identity into a Razor project with authorization
 
@@ -145,23 +131,19 @@ dotnet ef migrations add CreateIdentitySchema
 dotnet ef database update
 -->
 
+[!INCLUDE[](~/includes/scaffold-identity/install-pkg.md)]
+
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
 Optional: Add the login partial (`_LoginPartial`) to the *Views/Shared/_Layout.cshtml* file:
 
-[!code-cshtml[](scaffold-identity/3.1sample/_Layout.cshtml?highlight=20)]
-
-* Move the *Pages/Shared/_LoginPartial.cshtml* file to *Views/Shared/_LoginPartial.cshtml*
-
-Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*. For more information, see IHostingStartup.
+[!code-cshtml[](scaffold-identity/6.0sample/_Layout.cshtml?highlight=29)]
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
-Update the `Startup` class with code similar to the following:
+Add `MapRazorPages` to *Program.cs* as shown in the following highlighted code:
 
-[!code-csharp[](scaffold-identity/3.1sample/StartupMVC.cs?name=snippet)]
-
-[!INCLUDE[](~/includes/scaffold-identity/hsts.md)]
+[!code-cshtml[](scaffold-identity/6.0sample/ProgramMRP.cs?highlight=39)]
 
 ## Scaffold Identity into an MVC project with authorization
 
