@@ -194,10 +194,10 @@ The [Microsoft.AspNetCore.Authentication.Negotiate](https://www.nuget.org/packag
 
 ### Linux and macOS environment configuration
 
-Instructions for joining a Linux or macOS machine to a Windows domain are available in the [Connect Azure Data Studio to your SQL Server using Windows authentication - Kerberos](/sql/azure-data-studio/enable-kerberos?view=sql-server-2017#join-your-os-to-the-active-directory-domain-controller) article. The instructions create a machine account for the Linux machine on the domain. SPNs must be added to that machine account.
+Instructions for joining a Linux or macOS machine to a Windows domain are available in the [Connect Azure Data Studio to your SQL Server using Windows authentication - Kerberos](/sql/azure-data-studio/enable-kerberos?view=sql-server-2017#join-your-os-to-the-active-directory-domain-controller&preserve-view=true ) article. The instructions create a machine account for the Linux machine on the domain. SPNs must be added to that machine account.
 
 > [!NOTE]
-> When following the guidance in the [Connect Azure Data Studio to your SQL Server using Windows authentication - Kerberos](/sql/azure-data-studio/enable-kerberos?view=sql-server-2017#join-your-os-to-the-active-directory-domain-controller) article, replace `python-software-properties` with `python3-software-properties` if needed.
+> When following the guidance in the [Connect Azure Data Studio to your SQL Server using Windows authentication - Kerberos](/sql/azure-data-studio/enable-kerberos?view=sql-server-2017#join-your-os-to-the-active-directory-domain-controller&preserve-view=true ) article, replace `python-software-properties` with `python3-software-properties` if needed.
 
 Once the Linux or macOS machine is joined to the domain, additional steps are required to provide a [keytab file](/archive/blogs/pie/all-you-need-to-know-about-keytab-files) with the SPNs:
 
@@ -451,10 +451,10 @@ The [Microsoft.AspNetCore.Authentication.Negotiate](https://www.nuget.org/packag
 
 ### Linux and macOS environment configuration
 
-Instructions for joining a Linux or macOS machine to a Windows domain are available in the [Connect Azure Data Studio to your SQL Server using Windows authentication - Kerberos](/sql/azure-data-studio/enable-kerberos?view=sql-server-2017#join-your-os-to-the-active-directory-domain-controller) article. The instructions create a machine account for the Linux machine on the domain. SPNs must be added to that machine account.
+Instructions for joining a Linux or macOS machine to a Windows domain are available in the [Connect Azure Data Studio to your SQL Server using Windows authentication - Kerberos](/sql/azure-data-studio/enable-kerberos?view=sql-server-2017#join-your-os-to-the-active-directory-domain-controller&preserve-view=true ) article. The instructions create a machine account for the Linux machine on the domain. SPNs must be added to that machine account.
 
 > [!NOTE]
-> When following the guidance in the [Connect Azure Data Studio to your SQL Server using Windows authentication - Kerberos](/sql/azure-data-studio/enable-kerberos?view=sql-server-2017#join-your-os-to-the-active-directory-domain-controller) article, replace `python-software-properties` with `python3-software-properties` if needed.
+> When following the guidance in the [Connect Azure Data Studio to your SQL Server using Windows authentication - Kerberos](/sql/azure-data-studio/enable-kerberos?view=sql-server-2017#join-your-os-to-the-active-directory-domain-controller&preserve-view=true ) article, replace `python-software-properties` with `python3-software-properties` if needed.
 
 Once the Linux or macOS machine is joined to the domain, additional steps are required to provide a [keytab file](/archive/blogs/pie/all-you-need-to-know-about-keytab-files) with the SPNs:
 
