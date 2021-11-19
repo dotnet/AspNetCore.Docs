@@ -180,7 +180,7 @@ For more information, see [Configuration in ASP.NET Core](xref:fundamentals/conf
 
 ## Settings for all app types
 
-This section lists host settings that apply to both HTTP and non-HTTP workloads. By default, environment variables used to configure these settings can have a `DOTNET_` or `ASPNETCORE_` prefix, which appear in the following configuration for the `{PREFIX_}` placeholder. For more information, see the [Default builder settings](#default-builder-settings) section.
+This section lists host settings that apply to both HTTP and non-HTTP workloads. By default, environment variables used to configure these settings can have a `DOTNET_` or `ASPNETCORE_` prefix, which appear in the following list of settings as the `{PREFIX_}` placeholder. For more information, see the [Default builder settings](#default-builder-settings) section.
 
 <!-- In the following sections, two spaces at end of line are used to force line breaks in the rendered page. -->
 
@@ -267,7 +267,7 @@ By [default](xref:fundamentals/configuration/index#default), *appsettings.json* 
 
 ## Settings for web apps
 
-Some host settings apply only to HTTP workloads. By default, environment variables used to configure these settings can have a `DOTNET_` or `ASPNETCORE_` prefix, which appear in the following configuration for the `{PREFIX_}` placeholder.
+Some host settings apply only to HTTP workloads. By default, environment variables used to configure these settings can have a `DOTNET_` or `ASPNETCORE_` prefix, which appear in the following list of settings as the `{PREFIX_}` placeholder.
 
 Extension methods on `IWebHostBuilder` are available for these settings. Code samples that show how to call the extension methods assume `webBuilder` is an instance of `IWebHostBuilder`, as in the following example:
 
