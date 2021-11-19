@@ -176,11 +176,11 @@ App configuration is created by calling <xref:Microsoft.Extensions.Hosting.HostB
 
 The configuration created by `ConfigureAppConfiguration` is available at [HostBuilderContext.Configuration](xref:Microsoft.Extensions.Hosting.HostBuilderContext.Configuration*) for subsequent operations and as a service from DI. The host configuration is also added to the app configuration.
 
-For more information, see [Configuration in ASP.NET Core](xref:fundamentals/configuration/index).
+For more information, see <xref:fundamentals/configuration/index>.
 
 ## Settings for all app types
 
-This section lists host settings that apply to both HTTP and non-HTTP workloads. By default, environment variables used to configure these settings can have a `DOTNET_` or `ASPNETCORE_` prefix, which appear in the following list of settings as the `{PREFIX_}` placeholder. For more information, see the [Default builder settings](#default-builder-settings) section.
+This section lists host settings that apply to both HTTP and non-HTTP workloads. By default, environment variables used to configure these settings can have a `DOTNET_` or `ASPNETCORE_` prefix, which appear in the following list of settings as the `{PREFIX_}` placeholder. For more information, see the [Default builder settings](#default-builder-settings) section and [Configuration: Environment variables](xref:fundamentals/configuration/index#environment-variables).
 
 <!-- In the following sections, two spaces at end of line are used to force line breaks in the rendered page. -->
 
