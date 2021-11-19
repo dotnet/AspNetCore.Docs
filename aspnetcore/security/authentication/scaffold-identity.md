@@ -27,31 +27,9 @@ We recommend using a source control system that shows file differences and allow
 
 Services are required when using [Two Factor Authentication](xref:security/authentication/identity-enable-qrcodes), [Account confirmation and password recovery](xref:security/authentication/accconfirm), and other security features with Identity. Services or service stubs aren't generated when scaffolding Identity. Services to enable these features must be added manually. For example, see [Require Email Confirmation](xref:security/authentication/accconfirm#require-email-confirmation).
 
-When scaffolding Identity with a new data context into a project with existing individual accounts:
-
-* In `Startup.ConfigureServices`, remove the calls to:
-  * `AddDbContext`
-  * `AddDefaultIdentity`
-
-For example, `AddDbContext` and `AddDefaultIdentity` are commented out in the following code:
-
-[!code-csharp[](scaffold-identity/3.1sample/StartupRemove.cs?name=snippet)]
-
-The preceding code comments out the code that is duplicated in *Areas/Identity/IdentityHostingStartup.cs*
-
 Typically, apps that were created with individual accounts should ***not*** create a new data context.
 
-## Scaffold Identity into an empty project
-
-[!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
-
-Update the `Startup` class with code similar to the following:
-
-[!code-csharp[](scaffold-identity/3.1sample/StartupMVC.cs?name=snippet)]
-
-[!INCLUDE[](~/includes/scaffold-identity/hsts.md)]
-
-[!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
+<a name="RPNA"></a>
 
 ## Scaffold Identity into a Razor project without existing authorization
 
@@ -80,9 +58,9 @@ Fixed via dotnet ef database drop
 before dotnet ef database update
 -->
 
-[!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
+[!INCLUDE[](~/includes/scaffold-identity/install-pkg.md)]
 
-Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*. For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
+[!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
 <a name="efm"></a>
 
@@ -92,21 +70,24 @@ Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*. For more i
 
 <a name="useauthentication"></a>
 
+<!--
 ### Enable authentication
 
 Update the `Startup` class with code similar to the following:
 
 [!code-csharp[](scaffold-identity/3.1sample/StartupRP.cs?name=snippet)]
 
-[!INCLUDE[](~/includes/scaffold-identity/hsts.md)]
+[!INCLUDE[](~/includes/scaffold-identity/hsts.md)] -->
 
 ### Layout changes
 
 Optional: Add the login partial (`_LoginPartial`) to the layout file:
 
-[!code-cshtml[](scaffold-identity/3.1sample/_Layout.cshtml?highlight=20)]
+[!code-cshtml[](scaffold-identity/6.0sample/_Layout.cshtml?highlight=29)]
 
 ## Scaffold Identity into a Razor project with authorization
+
+[!INCLUDE[](~/includes/scaffold-identity/install-pkg.md)]
 
 <!--
 Use >=2.1: dotnet new webapp -au Individual -o RPauth
@@ -120,8 +101,6 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
 -->
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
-
-Some Identity options are configured in *Areas/Identity/IdentityHostingStartup.cs*. For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
 
 ## Scaffold Identity into an MVC project without existing authorization
 
@@ -139,23 +118,19 @@ dotnet ef migrations add CreateIdentitySchema
 dotnet ef database update
 -->
 
+[!INCLUDE[](~/includes/scaffold-identity/install-pkg.md)]
+
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
 Optional: Add the login partial (`_LoginPartial`) to the *Views/Shared/_Layout.cshtml* file:
 
-[!code-cshtml[](scaffold-identity/3.1sample/_Layout.cshtml?highlight=20)]
-
-* Move the *Pages/Shared/_LoginPartial.cshtml* file to *Views/Shared/_LoginPartial.cshtml*
-
-Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*. For more information, see IHostingStartup.
+[!code-cshtml[](scaffold-identity/6.0sample/_Layout.cshtml?highlight=29)]
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
-Update the `Startup` class with code similar to the following:
+Add `MapRazorPages` to *Program.cs* as shown in the following highlighted code:
 
-[!code-csharp[](scaffold-identity/3.1sample/StartupMVC.cs?name=snippet)]
-
-[!INCLUDE[](~/includes/scaffold-identity/hsts.md)]
+[!code-cshtml[](scaffold-identity/6.0sample/ProgramMRP.cs?highlight=39)]
 
 ## Scaffold Identity into an MVC project with authorization
 
@@ -166,6 +141,8 @@ dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet restore
 dotnet aspnet-codegenerator identity -dc MvcAuth.Data.ApplicationDbContext  --files "Account.Login;Account.Register"
 -->
+
+[!INCLUDE[](~/includes/scaffold-identity/install-pkg.md)]
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
@@ -354,7 +331,7 @@ In the *Pages/Shared/Layout.cshtml* file, make the following changes:
 ## Scaffold Identity into a Blazor Server project with authorization
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
-
+<!-- Remove this, no longer true -->
 Some Identity options are configured in *Areas/Identity/IdentityHostingStartup.cs*. For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
 
 ## Standalone or hosted Blazor WebAssembly apps
@@ -370,24 +347,6 @@ For more information, see the [Blazor Security and Identity articles](xref:blazo
 ## Create full Identity UI source
 <!-- remove AllowAreas  #23280 -->
 To maintain full control of the Identity UI, run the Identity scaffolder and select **Override all files**.
-
-The following highlighted code shows the changes to replace the default Identity UI with Identity in an ASP.NET Core 2.1 web app. You might want to do this to have full control of the Identity UI.
-
-[!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet1&highlight=13-14,17-999)]
-
-The default Identity is replaced in the following code:
-
-[!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet2)]
-
-The following code sets the [LoginPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.loginpath), [LogoutPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.logoutpath), and [AccessDeniedPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.accessdeniedpath):
-
-[!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet3)]
-
-Register an `IEmailSender` implementation, for example:
-
-[!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet4)]
-
-[!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet)]
 
 <!--
 uld option: Use Local DB, not SQLite
@@ -476,10 +435,6 @@ A similar approach can be followed for production scenarios.
 ## Prevent publish of static Identity assets
 
 To prevent publishing static Identity assets to the web root, see <xref:security/authentication/identity#prevent-publish-of-static-identity-assets>.
-
-## Additional resources
-
-* [Changes to authentication code to ASP.NET Core 2.1 and later](xref:migration/20_21#changes-to-authentication-code)
 
 ::: moniker-end
 
