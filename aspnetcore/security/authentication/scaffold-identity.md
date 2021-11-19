@@ -359,24 +359,6 @@ For more information, see the [Blazor Security and Identity articles](xref:blazo
 <!-- remove AllowAreas  #23280 -->
 To maintain full control of the Identity UI, run the Identity scaffolder and select **Override all files**.
 
-The following highlighted code shows the changes to replace the default Identity UI with Identity in an ASP.NET Core 2.1 web app. You might want to do this to have full control of the Identity UI.
-
-[!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet1&highlight=13-14,17-999)]
-
-The default Identity is replaced in the following code:
-
-[!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet2)]
-
-The following code sets the [LoginPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.loginpath), [LogoutPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.logoutpath), and [AccessDeniedPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.accessdeniedpath):
-
-[!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet3)]
-
-Register an `IEmailSender` implementation, for example:
-
-[!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet4)]
-
-[!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet)]
-
 <!--
 uld option: Use Local DB, not SQLite
 
