@@ -58,9 +58,21 @@ Store sensitive settings such as the Microsoft **Application (client) ID** found
 
 ## Configure Microsoft Account Authentication
 
+::: moniker range="< aspnetcore-6.0"
+
 Add the Microsoft Account service to the `Startup.ConfigureServices`:
 
 [!code-csharp[](~/security/authentication/social/social-code/3.x/StartupMS3x.cs?name=snippet&highlight=10-14)]
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-6.0"
+
+Add the Authentication service to the `Program`:
+
+[!code-csharp[](~/security/authentication/social/social-code/6.x/ProgramMS.cs)]
+
+::: moniker-end
 
 [!INCLUDE [default settings configuration](includes/default-settings.md)]
 

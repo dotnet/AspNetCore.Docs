@@ -17,22 +17,26 @@ This sample shows how to enable users to [sign in with their Twitter account](ht
 
 ## Create the app in Twitter
 
-* Add the [Microsoft.AspNetCore.Authentication.Twitter](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Twitter/3.0.0) NuGet package to the project.
+* Add the [Microsoft.AspNetCore.Authentication.Twitter](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Twitter) NuGet package to the project.
 
-* Navigate to [https://apps.twitter.com/](https://apps.twitter.com/) and sign in. If you don't already have a Twitter account, use the **[Sign up now](https://twitter.com/signup)** link to create one.
+* Navigate to [twitter developer portal Dashboard](https://developer.twitter.com/en/portal/dashboard) and sign in. If you don't already have a Twitter account, use the **[Sign up now](https://twitter.com/signup)** link to create one.
 
-* Select **Create an app**. Fill out the **App name**, **Application description** and public **Website** URI (this can be temporary until you register the domain name):
+* If you don't have a project, create one.
 
-* Check the box next to **Enable Sign in with Twitter**
+* Select **+ Add app**. Fill out the **App name** then record the generated API Key, API Key Secret and Bearer Token. These will be needed
+later.
 
-* Microsoft.AspNetCore.Identity requires users to have an email address by default. Go to the **Permissions** tab, click the **Edit** button and check the box next to **Request email address from users**.
+* In the **App Settings** page, select **Edit** in the **Authentication settings** section, then:
+  * Enable 3-legged OAuth
+  * Request email address from users
+  * Fill out the required fields and select **Save**
 
-* Enter your development URI with `/signin-twitter` appended into the **Callback URLs** field (for example: `https://webapp128.azurewebsites.net/signin-twitter`). The Twitter authentication scheme configured later in this sample will automatically handle requests at `/signin-twitter` route to implement the OAuth flow.
+  > [!NOTE]
+  > Microsoft.AspNetCore.Identity requires users to have an email address by default. For Callback URLs during development, use `https://localhost:{PORT}/signin-twitter`, where the `{PORT}` placeholder is the app's port.
 
   > [!NOTE]
   > The URI segment `/signin-twitter` is set as the default callback of the Twitter authentication provider. You can change the default callback URI while configuring the Twitter authentication middleware via the inherited [RemoteAuthenticationOptions.CallbackPath](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) property of the [TwitterOptions](/dotnet/api/microsoft.aspnetcore.authentication.twitter.twitteroptions) class.
 
-* Fill out the rest of the form and select **Create**. New application details are displayed:
 
 ## Store the Twitter consumer API key and secret
 
@@ -52,9 +56,20 @@ These tokens can be found on the **Keys and Access Tokens** tab after creating a
 
 ## Configure Twitter Authentication
 
-Add the Twitter service in the `ConfigureServices` method in *Startup.cs* file:
+::: moniker range="< aspnetcore-6.0"
+
+Add the Authentication service to the `Startup.ConfigureServices`:
 
 [!code-csharp[](~/security/authentication/social/social-code/3.x/StartupTwitter3x.cs?name=snippet&highlight=10-15)]
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-6.0"
+
+[!code-csharp[](~/security/authentication/social/social-code/6.x/ProgramTwitter.cs)]
+
+::: moniker-end
+
 
 [!INCLUDE [default settings configuration](includes/default-settings.md)]
 

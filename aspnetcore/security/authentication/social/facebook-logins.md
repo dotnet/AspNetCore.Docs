@@ -74,7 +74,9 @@ Store sensitive settings such as the Facebook app ID and secret values with [Sec
 
 ## Configure Facebook Authentication
 
-Add the Facebook service in the `ConfigureServices` method in the *Startup.cs* file:
+::: moniker range="< aspnetcore-6.0"
+
+Add the Authentication service to the `Startup.ConfigureServices`:
 
 ```csharp
 services.AddAuthentication().AddFacebook(facebookOptions =>
@@ -83,6 +85,16 @@ services.AddAuthentication().AddFacebook(facebookOptions =>
     facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
 });
 ```
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-6.0"
+
+Add the Authentication service to the `Program`:
+
+[!code-csharp[](~/security/authentication/social/social-code/6.x/ProgramFacebook.cs)]
+
+::: moniker-end
 
 [!INCLUDE [default settings configuration](includes/default-settings.md)]
 

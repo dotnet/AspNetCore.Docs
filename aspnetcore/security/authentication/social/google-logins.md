@@ -17,12 +17,31 @@ This tutorial shows you how to enable users to sign in with their Google account
 ## Create a Google API Console project and client ID
 
 * Add the [Microsoft.AspNetCore.Authentication.Google](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google) NuGet package to the app.
+
 * Follow the guidance in [Integrating Google Sign-In into your web app](https://developers.google.com/identity/sign-in/web/sign-in) (Google documentation).
-* In the **Credentials** page of the [Google console](https://console.developers.google.com/apis/credentials), select **CREATE CREDENTIALS** > **OAuth client ID**.
-* In the **Application type** dialog, select **Web application**. Provide a **Name** for the app.
+
+* Go to [Google API & Services](https://console.cloud.google.com/apis).
+
+* A **Project** must exist first, you may have to create one first, just a name is required. Once a project is selected, you will enter the **Dashboard**.
+
+* In the **Oauth consent screen** of the **Dashboard**: 
+  * Select **User Type - External**. press **CREATE**.
+  * In the **App information** dialog, Provide an **app name** for the app, **user support email** and **developer contact information**.
+  * Step through the **Scopes** step.
+  * Step through the **Test users** step.
+  * Review the **OAuth consent screen** and go back to the app **Dashboard**.
+
+
+* In the **Credentials** tab of the application Dashboard, select **CREATE CREDENTIALS** > **OAuth client ID**.
+
+* Select **Application type** > **Web application**, choose a **name**.
+
 * In the **Authorized redirect URIs** section, select **ADD URI** to set the redirect URI. Example redirect URI: `https://localhost:{PORT}/signin-google`, where the `{PORT}` placeholder is the app's port.
+
 * Select the **CREATE** button.
+
 * Save the **Client ID** and **Client Secret** for use in the app's configuration.
+
 * When deploying the site, either:
   * Update the app's redirect URI in the **Google Console** to the app's deployed redirect URI.
   * Create a new Google API registration in the **Google Console** for the production app with its production redirect URI.
@@ -45,9 +64,21 @@ You can manage your API credentials and usage in the [API Console](https://conso
 
 ## Configure Google authentication
 
-Add the Google service to `Startup.ConfigureServices`:
+::: moniker range="< aspnetcore-6.0"
+
+Add the Authentication service to the `Startup.ConfigureServices`:
 
 [!code-csharp[](~/security/authentication/social/social-code/3.x/StartupGoogle3x.cs?highlight=11-19)]
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-6.0"
+
+Add the Authentication service to the `Program`:
+
+[!code-csharp[](~/security/authentication/social/social-code/6.x/ProgramGoogle.cs)]
+
+::: moniker-end
 
 [!INCLUDE [default settings configuration](includes/default-settings2-2.md)]
 
