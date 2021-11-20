@@ -22,7 +22,7 @@ By convention, controller classes:
 * Reside in the project's root-level *Controllers* folder.
 * Inherit from `Microsoft.AspNetCore.Mvc.Controller`.
 
-A controller is an instantiable class in which at least one of the following conditions is true:
+A controller is an instantiable class, usually [public](/dotnet/csharp/language-reference/keywords/public), in which at least one of the following conditions is true:
 
 * The class name is suffixed with `Controller`.
 * The class inherits from a class whose name is suffixed with `Controller`.
