@@ -1,4 +1,4 @@
-#define IMP  // DEFAULT RBAC LDAP HTS IMP
+#define RBAC  // DEFAULT RBAC LDAP HTS IMP
 #if NEVER
 #elif DEFAULT
 #region snippet1
@@ -51,11 +51,8 @@ builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
         }
     });
 
-builder.Services.AddAuthorization(options =>
-{
-    options.FallbackPolicy = options.DefaultPolicy;
-});
 builder.Services.AddRazorPages();
+#endregion
 
 var app = builder.Build();
 
@@ -76,7 +73,6 @@ app.UseAuthorization();
 app.MapRazorPages();
 
 app.Run();
-#endregion
 #elif LDAP
 #region snippet_ldap
 using Microsoft.AspNetCore.Authentication.Negotiate;
