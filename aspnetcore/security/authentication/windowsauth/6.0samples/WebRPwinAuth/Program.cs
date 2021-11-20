@@ -50,9 +50,9 @@ builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
             options.EnableLdap("contoso.com");
         }
     });
+#endregion
 
 builder.Services.AddRazorPages();
-#endregion
 
 var app = builder.Build();
 
@@ -94,13 +94,9 @@ builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
                 });
             }
         });
-#endregion
 
-builder.Services.AddAuthorization(options =>
-{
-    options.FallbackPolicy = options.DefaultPolicy;
-});
 builder.Services.AddRazorPages();
+#endregion
 
 var app = builder.Build();
 

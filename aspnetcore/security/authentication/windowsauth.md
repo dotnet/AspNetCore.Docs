@@ -160,8 +160,6 @@ By default, the negotiate authentication handler resolves nested domains. In a l
 
 Anonymous requests are allowed. Use [ASP.NET Core Authorization](xref:security/authorization/introduction) to challenge anonymous requests for authentication.
 
-<xref:Microsoft.AspNetCore.Authentication.Negotiate.NegotiateDefaults.AuthenticationScheme> requires the NuGet package [Microsoft.AspNetCore.Authentication.Negotiate](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Negotiate).
-
 ### Windows environment configuration
 
 The [Microsoft.AspNetCore.Authentication.Negotiate](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Negotiate) component performs [User Mode](/windows-hardware/drivers/gettingstarted/user-mode-and-kernel-mode) authentication. Service Principal Names (SPNs) must be added to the user account running the service, not the machine account. Execute `setspn -S HTTP/myservername.mydomain.com myuser` in an administrative command shell.
@@ -194,7 +192,7 @@ Once the Linux or macOS machine is joined to the domain, additional steps are re
 
 The following code adds authentication and configures the app's web host to use HTTP.sys with Windows Authentication:
 
-[!code-csharp[](windowsauth/6.0samples/WebRPwinAuth/Program.cs?name=snippet_hts&highlight=11-17)]
+[!code-csharp[](windowsauth/6.0samples/WebRPwinAuth/Program.cs?name=snippet_hts&highlight=6,11-17)]
 
 > [!NOTE]
 > HTTP.sys delegates to [Kernel Mode](/windows-hardware/drivers/gettingstarted/user-mode-and-kernel-mode) authentication with the Kerberos authentication protocol. [User Mode](/windows-hardware/drivers/gettingstarted/user-mode-and-kernel-mode) authentication isn't supported with Kerberos and HTTP.sys. The machine account must be used to decrypt the Kerberos token/ticket that's obtained from Active Directory and forwarded by the client to the server to authenticate the user. Register the Service Principal Name (SPN) for the host, not the user of the app.
@@ -221,7 +219,7 @@ When both Windows Authentication and anonymous access are enabled, use the [[`[A
 
 ASP.NET Core doesn't implement impersonation. Apps run with the app's identity for all requests, using app pool or process identity. If the app should perform an action on behalf of a user, use [WindowsIdentity.RunImpersonated](xref:System.Security.Principal.WindowsIdentity.RunImpersonated*) or <xref:System.Security.Principal.WindowsIdentity.RunImpersonatedAsync%2A> in a [terminal inline middleware](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder) in `Startup.Configure`. Run a single action in this context and then close the context.
 
-[!code-csharp[](windowsauth/6.0samples/WebRPwinAuth/Program.cs?name=snippet_imp)]
+[!code-csharp[](windowsauth/6.0samples/WebRPwinAuth/Program.cs?name=snippet_imp&highlight=10-19)]
 
 While the [Microsoft.AspNetCore.Authentication.Negotiate](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Negotiate) package enables authentication on Windows, Linux, and macOS, impersonation is only supported on Windows.
 
