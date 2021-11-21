@@ -20,7 +20,7 @@ In many cases, HTML Helpers provide an alternative approach to a specific Tag He
 
 ## The Form Tag Helper
 
-The [Form](https://www.w3.org/TR/html401/interact/forms.html) Tag Helper:
+The [Form Tag Helper](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.formtaghelper):
 
 * Generates the HTML [\<FORM>](https://www.w3.org/TR/html401/interact/forms.html) `action` attribute value for a MVC controller action or named route
 
