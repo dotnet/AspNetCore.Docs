@@ -749,7 +749,7 @@ To solve these problems, Blazor supports persisting state in a prerendered page 
 </body>
 ```
 
-In the app, decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. The [`PersistentComponentState.RegisterOnPersisting`](xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A) event is fired just before the state is persisted into the prerendered page, which allows a component to retrieve the state when initializing the component.
+Decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. [`PersistentComponentState.RegisterOnPersisting`](xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A) registers a callback to persist the component state before the app is paused. The state is retrieved when the application resumes.
 
 The following example shows how the weather forecast in the `FetchData` component from a hosted Blazor WebAssembly app based on the Blazor project template is persisted during prerendering and then retrieved to initialize the component. The Persist Component State Tag Helper persists the component state after all component invocations.
 
@@ -797,15 +797,18 @@ else
 
 @code {
     private WeatherForecast[] forecasts = Array.Empty<WeatherForecast>();
-    private PersistingComponentStateSubscription _persistingSubscription;
+    private PersistingComponentStateSubscription persistingSubscription;
 
     protected override async Task OnInitializedAsync()
     {
-        _persistingSubscription = ApplicationState.RegisterOnPersisting(PersistForecasts);
+        persistingSubscription = 
+            ApplicationState.RegisterOnPersisting(PersistForecasts);
 
-        if (!ApplicationState.TryTakeFromJson<WeatherForecast[]>("fetchdata", out var restored))
+        if (!ApplicationState.TryTakeFromJson<WeatherForecast[]>(
+            "fetchdata", out var restored))
         {
-            forecasts = await WeatherForecastService.GetForecastAsync(DateTime.Now);
+            forecasts = 
+                await WeatherForecastService.GetForecastAsync(DateTime.Now);
         }
         else
         {
@@ -822,7 +825,7 @@ else
 
     void IDisposable.Dispose()
     {
-        _persistingSubscription.Dispose();
+        persistingSubscription.Dispose();
     }
 }
 ```
