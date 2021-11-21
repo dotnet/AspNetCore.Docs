@@ -200,27 +200,24 @@ A resolver:
 public class FileResolver : Resolver
 {
     private readonly Uri _address;
-    private Action<ResolverResult> _listener;
+    private readonly int _port;
 
-    public ExampleResolver(Uri address)
+    public ExampleResolver(Uri address, int defaultPort, ILoggerFactory loggerFactory)
+        : base(loggerFactory)
     {
         _address = address;
+        _port = defaultPort;
     }
 
-    public override async Task RefreshAsync(CancellationToken cancellationToken)
+    public override async Task ResolveAsync(CancellationToken cancellationToken)
     {
         // Load JSON from a file on disk and deserialize into endpoints.
         var jsonString = await File.ReadAllTextAsync(_address.LocalPath);
         var results = JsonSerializer.Deserialize<string[]>(jsonString);
-        var addresses = results.Select(r => new DnsEndPoint(r, 80));
+        var addresses = results.Select(r => new BalancerAddress(r, _port)).ToArray();
 
         // Pass the results back to the channel.
-        _listener(ResolverResult.ForResult(addresses, serviceConfig: null));
-    }
-
-    public override void Start(Action<ResolverResult> listener)
-    {
-        _listener = listener;
+        Listener(ResolverResult.ForResult(addresses));
     }
 }
 
@@ -231,7 +228,7 @@ public class FileResolverFactory : ResolverFactory
 
     public override Resolver Create(ResolverOptions options)
     {
-        return new FileResolver(options.Address);
+        return new FileResolver(options.Address, options.DefaultPort, options.LoggerFactory);
     }
 }
 ```
