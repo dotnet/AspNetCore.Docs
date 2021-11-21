@@ -48,7 +48,7 @@ In Blazor Server apps (`Pages/_Host.cshtml`):
 </body>
 ```
 
-Decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. The [`PersistentComponentState.RegisterOnPersisting`](xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A) event is fired just before the state is persisted into the prerendered page, which allows you to retrieve any persisted state when initializing a component.
+Decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. [`PersistentComponentState.RegisterOnPersisting`](xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A) registers a callback to persist the component state before the app is paused. The state is retrieved when the application resumes.
 
 In the following example:
 
@@ -57,19 +57,27 @@ In the following example:
 
 ```razor
 @implements IDisposable
-@inject ComponentApplicationState ApplicationState
+@inject PersistentComponentState ApplicationState
 
 ...
 
 @code {
+    private {TYPE} data;
+    private PersistingComponentStateSubscription persistingSubscription;
+
     protected override async Task OnInitializedAsync()
     {
-        ApplicationState.OnPersisting += PersistData;
+        persistingSubscription = 
+            ApplicationState.RegisterOnPersisting(PersistData);
 
-        if (!ApplicationState
-            .TryTakeAsJson<{TYPE}>("{TOKEN}", out var data))
+        if (!ApplicationState.TryTakeFromJson<{TYPE}>(
+            "{TOKEN}", out var restored))
         {
-            data = ...;
+            data = await ...;
+        }
+        else
+        {
+            data = restored!;
         }
     }
 
@@ -82,7 +90,7 @@ In the following example:
 
     void IDisposable.Dispose()
     {
-        ApplicationState.OnPersisting -= PersistData;
+        persistingSubscription.Dispose();
     }
 }
 ```
