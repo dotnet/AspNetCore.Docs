@@ -203,7 +203,7 @@ app.Run(async (context) =>
         await context.Response
             .WriteAsync($"User: {user.Name}\tState: {user.ImpersonationLevel}\n");
 
-        WindowsIdentity.RunImpersonated(user.AccessToken, () =>
+        await WindowsIdentity.RunImpersonatedAsync(user.AccessToken, async () =>
         {
             var impersonatedUser = WindowsIdentity.GetCurrent();
             var message =
@@ -211,7 +211,7 @@ app.Run(async (context) =>
                 $"State: {impersonatedUser.ImpersonationLevel}";
 
             var bytes = Encoding.UTF8.GetBytes(message);
-            context.Response.Body.Write(bytes, 0, bytes.Length);
+            await context.Response.Body.WriteAsync(bytes, 0, bytes.Length);
         });
     }
     catch (Exception e)
