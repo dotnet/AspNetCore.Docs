@@ -88,7 +88,7 @@ The `Configure(IConfiguration, bool)` overload can be used to enable reloading e
 ```
 
 If reloading configuration is enabled and a change is signaled then the following steps are taken:
-- The new configuraiton is compared to the old one, any endpoint without configuration changes are not modified.
+- The new configuration is compared to the old one, any endpoint without configuration changes are not modified.
 - Removed or modified endpoints are given 5 seconds to complete processing requests and shut down.
 - New or modified endpoints are started.
 
@@ -332,7 +332,7 @@ webBuilder.ConfigureKestrel(serverOptions =>
 
 ### SNI with `ServerOptionsSelectionCallback`
 
-Kestrel supports additional dynamic TLS configuraiton via the `ServerOptionsSelectionCallback` callback. The callback is invoked once per connection to allow the app to inspect the host name and select the appropriate certificate and TLS configuration. Default certificates and `ConfigureHttpsDefaults` are not used with this callback.
+Kestrel supports additional dynamic TLS configuration via the `ServerOptionsSelectionCallback` callback. The callback is invoked once per connection to allow the app to inspect the host name and select the appropriate certificate and TLS configuration. Default certificates and `ConfigureHttpsDefaults` are not used with this callback.
 
 ```csharp
 //using System.Security.Cryptography.X509Certificates;
