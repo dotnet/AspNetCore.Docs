@@ -346,7 +346,7 @@ Action filters:
 
 The following code shows a sample action filter:
 
-:::code language="csharp" source="filters/samples/3.x/FiltersSample/Filters/MySampleActionFilter.cs" id="snippet_ActionFilter":::
+:::code language="csharp" source="filters/samples/6.0/FiltersSample/Filters/SampleActionFilter.cs" id="snippet_Class":::
 
 The <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext> provides the following properties:
 
@@ -363,7 +363,6 @@ The <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext> provides `Cont
 
 * <xref:System.Web.Mvc.ActionExecutedContext.Canceled> - True if the action execution was short-circuited by another filter.
 * <xref:System.Web.Mvc.ActionExecutedContext.Exception> - Non-null if the action or a previously run action filter threw an exception. Setting this property to null:
-
   * Effectively handles the exception.
   * `Result` is executed as if it was returned from the action method.
 
@@ -381,7 +380,7 @@ The `OnActionExecuting` action filter can be used to:
 * Validate model state.
 * Return an error if the state is invalid.
 
-:::code language="csharp" source="filters/samples/3.x/FiltersSample/Filters/ValidateModelAttribute.cs" id="snippet":::
+:::code language="csharp" source="filters/samples/6.0/FiltersSample/Filters/ValidateModelAttribute.cs" id="snippet_Class":::
 
 > [!NOTE]
 > Controllers annotated with the `[ApiController]` attribute automatically validate model state and return a 400 response. For more information, see [Automatic HTTP 400 responses](xref:web-api/index#automatic-http-400-responses).
@@ -391,11 +390,8 @@ The `OnActionExecuted` method runs after the action method:
 * And can see and manipulate the results of the action through the <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.Result> property.
 * <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.Canceled> is set to true if the action execution was short-circuited by another filter.
 * <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.Exception> is set to a non-null value if the action or a subsequent action filter threw an exception. Setting `Exception` to null:
-
   * Effectively handles an exception.
   * `ActionExecutedContext.Result` is executed as if it were returned normally from the action method.
-
-:::code language="csharp" source="filters/samples/3.x/FiltersSample/Filters/ValidateModelAttribute.cs" id="snippet2":::
 
 ## Exception filters
 
@@ -404,13 +400,13 @@ Exception filters:
 * Implement <xref:Microsoft.AspNetCore.Mvc.Filters.IExceptionFilter> or <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncExceptionFilter>.
 * Can be used to implement common error handling policies.
 
-The following sample exception filter uses a custom error view to display details about exceptions that occur when the app is in development:
+The following sample exception filter displays details about exceptions that occur when the app is in development:
 
-:::code language="csharp" source="filters/samples/3.x/FiltersSample/Filters/CustomExceptionFilter.cs" id="snippet_ExceptionFilter" highlight="16-19":::
+:::code language="csharp" source="filters/samples/6.0/FiltersSample/Filters/SampleExceptionFilter.cs" id="snippet_Class":::
 
 The following code tests the exception filter:
 
-:::code language="csharp" source="filters/samples/3.x/FiltersSample/Controllers/FailingController.cs" id="snippet":::
+:::code language="csharp" source="filters/samples/6.0/FiltersSample/Controllers/ExceptionController.cs" id="snippet_Class":::
 
 Exception filters:
 
@@ -441,7 +437,7 @@ Result filters:
 
 The following code shows a result filter that adds an HTTP header:
 
-:::code language="csharp" source="filters/samples/3.x/FiltersSample/Filters/LoggingAddHeaderFilter.cs" id="snippet_ResultFilter":::
+:::code language="csharp" source="filters/samples/6.0/FiltersSample/Filters/LoggingResponseHeaderFilterService.cs" id="snippet_Class":::
 
 The kind of result being executed depends on the action. An action returning a view includes all razor processing as part of the <xref:Microsoft.AspNetCore.Mvc.ViewResult> being executed. An API method might perform some serialization as part of the execution of the result. Learn more about [action results](xref:mvc/controllers/actions).
 
@@ -463,7 +459,7 @@ When the <xref:Microsoft.AspNetCore.Mvc.Filters.IResultFilter.OnResultExecuted%2
 
 For an <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncResultFilter>, a call to `await next` on the <xref:Microsoft.AspNetCore.Mvc.Filters.ResultExecutionDelegate> executes any subsequent result filters and the action result. To short-circuit, set <xref:Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext.Cancel?displayProperty=nameWithType> to `true` and don't call the `ResultExecutionDelegate`:
 
-:::code language="csharp" source="filters/samples/3.x/FiltersSample/Filters/MyAsyncResponseFilter.cs" id="snippet":::
+:::code language="csharp" source="filters/samples/6.0/FiltersSample/Snippets/Filters/SampleAsyncResultFilter.cs" id="snippet_Class":::
 
 The framework provides an abstract `ResultFilterAttribute` that can be subclassed. The [ResponseHeaderAttribute](#response-header-attribute) class shown previously is an example of a result filter attribute.
 
@@ -476,7 +472,7 @@ The <xref:Microsoft.AspNetCore.Mvc.Filters.IAlwaysRunResultFilter> and <xref:Mic
 
 For example, the following filter always runs and sets an action result (<xref:Microsoft.AspNetCore.Mvc.ObjectResult>) with a *422 Unprocessable Entity* status code when content negotiation fails:
 
-:::code language="csharp" source="filters/samples/3.x/FiltersSample/Filters/UnprocessableResultFilter.cs" id="snippet":::
+:::code language="csharp" source="filters/samples/6.0/FiltersSample/Snippets/Filters/UnprocessableResultFilter.cs" id="snippet_Class":::
 
 ## IFilterFactory
 

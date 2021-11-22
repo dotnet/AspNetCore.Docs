@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using FiltersSample.Models;
+using FiltersSample.Filters;
 
 namespace FiltersSample.Controllers;
 
@@ -13,6 +14,7 @@ public class HomeController : Controller
         _logger = logger;
     }
 
+    [ValidateModel]
     public IActionResult Index()
     {
         return View();
