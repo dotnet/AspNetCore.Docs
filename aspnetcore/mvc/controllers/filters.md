@@ -70,6 +70,8 @@ The following diagram shows how filter types interact in the filter pipeline:
 
 :::image source="filters/_static/filter-pipeline-2.png" alt-text="The request is processed through Authorization Filters, Resource Filters, Model Binding, Action Filters, Action Execution and Action Result Conversion, Exception Filters, Result Filters, and Result Execution. On the way out, the request is only processed by Result Filters and Resource Filters before becoming a response sent to the client.":::
 
+Razor Pages also support [Razor Page filters](xref:razor-pages/filter), which run before and after a Razor Page handler.
+
 ## Implementation
 
 Filters support both synchronous and asynchronous implementations through different interface definitions.
@@ -134,8 +136,8 @@ Filters cannot be applied to Razor Page handler methods. They can be applied eit
 
 A filter can be added to the pipeline at one of three *scopes*:
 
-* Using an attribute on a controller action. Filter attributes cannot be applied to Razor Pages handler methods.
 * Using an attribute on a controller or Razor Page.
+* Using an attribute on a controller action. Filter attributes cannot be applied to Razor Pages handler methods.
 * Globally for all controllers, actions, and Razor Pages as shown in the following code:
   :::code language="csharp" source="filters/samples/6.0/FiltersSample/Program.cs" id="snippet_GlobalFilter" highlight="6":::
 
@@ -146,22 +148,22 @@ When there are multiple filters for a particular stage of the pipeline, scope de
 As a result of filter nesting, the *after* code of filters runs in the reverse order of the *before* code. The filter sequence:
 
 * The *before* code of global filters.
-  * The *before* code of controller and Razor Page filters.
+  * The *before* code of controller filters.
     * The *before* code of action method filters.
     * The *after* code of action method filters.
-  * The *after* code of controller and Razor Page filters.
+  * The *after* code of controller filters.
 * The *after* code of global filters.
 
-The following example that illustrates the order in which filter methods are called for synchronous action filters.
+The following example illustrates the order in which filter methods run for synchronous action filters:
 
-| Sequence | Filter scope             | Filter method       |
-|:--------:|:------------------------:|:-------------------:|
-| 1        | Global                   | `OnActionExecuting` |
-| 2        | Controller or Razor Page | `OnActionExecuting` |
-| 3        | Method                   | `OnActionExecuting` |
-| 4        | Method                   | `OnActionExecuted`  |
-| 5        | Controller or Razor Page | `OnActionExecuted`  |
-| 6        | Global                   | `OnActionExecuted`  |
+| Sequence | Filter scope | Filter method       |
+|:--------:|:------------:|:-------------------:|
+| 1        | Global       | `OnActionExecuting` |
+| 2        | Controller   | `OnActionExecuting` |
+| 3        | Action       | `OnActionExecuting` |
+| 4        | Action       | `OnActionExecuted`  |
+| 5        | Controller   | `OnActionExecuted`  |
+| 6        | Global       | `OnActionExecuted`  |
 
 ### Controller level filters
 
