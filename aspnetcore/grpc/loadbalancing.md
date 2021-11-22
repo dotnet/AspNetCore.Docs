@@ -22,10 +22,7 @@ Client-side load balancing requires:
 > [!IMPORTANT]
 > This feature is in preview. Integration with other gRPC features is not complete and testing is required.
 > 
-> Client-side load balancing is currently:
-> 
-> * Only available in pre-release versions of `Grpc.Net.Client` on NuGet.org.
-> * Not supported when used with [gRPC client factory](xref:grpc/clientfactory).
+> Client-side load balancing is currently only available in prerelease versions of `Grpc.Net.Client` on NuGet.org.
 
 ## Configure gRPC client-side load balancing
 
