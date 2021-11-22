@@ -8,11 +8,11 @@ Run the Identity scaffolder:
 # [Visual Studio](#tab/visual-studio)
 
 * From **Solution Explorer**, right-click on the project > **Add** > **New Scaffolded Item**.
-* From the left pane of the **Add Scaffold** dialog, select **Identity** > **Add**.
+* From the left pane of the **Add New Scaffolded Item** dialog, select **Identity**. Select **Identity** in the center pane. Select the **Add** button.
 * In the **Add Identity** dialog, select the options you want.
-  * Select your existing layout page so your layout file isn't overwritten with incorrect markup. When an existing *\_Layout.cshtml* file is selected, it is **not** overwritten. For example:
-    * `~/Pages/Shared/_Layout.cshtml` for Razor Pages or Blazor Server projects with existing Razor Pages infrastructure
-    * `~/Views/Shared/_Layout.cshtml` for MVC projects or Blazor Server projects with existing MVC infrastructure
+  * Select your existing layout page so your layout file isn't overwritten with incorrect markup. When an existing `_Layout.cshtml` file is selected, it is **not** overwritten. For example:
+    * `~/Pages/Shared/_Layout.cshtml` for Razor Pages or Blazor Server projects with existing Razor Pages infrastructure.
+    * `~/Views/Shared/_Layout.cshtml` for MVC projects or Blazor Server projects with existing MVC infrastructure.
 * To use your existing data context, select at least one file to override. You must select at least one file to add your data context.
   * Select your data context class.
   * Select **Add**.

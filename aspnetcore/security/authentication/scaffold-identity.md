@@ -146,11 +146,11 @@ dotnet aspnet-codegenerator identity -dc MvcAuth.Data.ApplicationDbContext  --fi
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
-## Scaffold Identity into a Blazor Server project without existing authorization
+## Scaffold Identity into a Blazor Server project
 
-[!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
+[!INCLUDE[](~/includes/scaffold-identity/install-pkg.md)]
 
-Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*. For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
+[!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
 ### Migrations
 
@@ -165,7 +165,7 @@ Tokens can be passed to components:
 
 For more information, see <xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app>.
 
-In the *Pages/_Host.cshtml* file, establish the token after adding it to the `InitialApplicationState` and `TokenProvider` classes:
+In the `Pages/_Host.cshtml` file, establish the token after adding it to the `InitialApplicationState` and `TokenProvider` classes:
 
 ```csharp
 @inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
@@ -180,7 +180,7 @@ var tokens = new InitialApplicationState
 };
 ```
 
-Update the `App` component (*App.razor*) to assign the `InitialState.XsrfToken`:
+Update the `App` component (`App.razor`) to assign the `InitialState.XsrfToken`:
 
 ```csharp
 @inject TokenProvider TokenProvider
@@ -192,23 +192,17 @@ TokenProvider.XsrfToken = InitialState.XsrfToken;
 
 The `TokenProvider` service demonstrated in the topic is used in the `LoginDisplay` component in the following [Layout and authentication flow changes](#layout-and-authentication-flow-changes) section.
 
-### Enable authentication
+### Register the token provider service
 
-In the `Startup` class:
+If using a [token provider service](xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app), register the service in `Program.cs`:
 
-* Confirm that Razor Pages services are added in `Startup.ConfigureServices`.
-* If using the [TokenProvider](xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app), register the service.
-* Call `UseDatabaseErrorPage` on the application builder in `Startup.Configure` for the Development environment.
-* Call `UseAuthentication` and `UseAuthorization` after `UseRouting`.
-* Add an endpoint for Razor Pages.
-
-[!code-csharp[](scaffold-identity/3.1sample/StartupBlazor.cs?highlight=3,6,14,27-28,32)]
-
-[!INCLUDE[](~/includes/scaffold-identity/hsts.md)]
+```csharp
+builder.Services.AddScoped<TokenProvider>();
+```
 
 ### Layout and authentication flow changes
 
-Add a `RedirectToLogin` component (*RedirectToLogin.razor*) to the app's *Shared* folder in the project root:
+Add a `RedirectToLogin` component (`RedirectToLogin.razor`) to the app's `Shared` folder in the project root:
 
 ```razor
 @inject NavigationManager Navigation
@@ -221,7 +215,7 @@ Add a `RedirectToLogin` component (*RedirectToLogin.razor*) to the app's *Shared
 }
 ```
 
-Add a `LoginDisplay` component (*LoginDisplay.razor*) to the app's *Shared* folder. The [TokenProvider service](xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app) provides the XSRF token for the HTML form that POSTs to Identity's logout endpoint:
+Add a `LoginDisplay` component (`LoginDisplay.razor`) to the app's `Shared` folder. A [token provider service](xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app), `TokenProvider` in the following example, provides the XSRF token for the HTML form that POSTs to Identity's logout endpoint:
 
 ```razor
 @using Microsoft.AspNetCore.Components.Authorization
@@ -246,7 +240,7 @@ Add a `LoginDisplay` component (*LoginDisplay.razor*) to the app's *Shared* fold
 </AuthorizeView>
 ```
 
-In the `MainLayout` component (*Shared/MainLayout.razor*), add the `LoginDisplay` component to the top-row `<div>` element's content:
+In the `MainLayout` component (`Shared/MainLayout.razor`), add the `LoginDisplay` component to the top-row `<div>` element's content:
 
 ```razor
 <div class="top-row px-4 auth">
@@ -270,11 +264,11 @@ The Identity pages layout and styles can be modified to produce pages that use t
 > [!NOTE]
 > The example in this section is merely a starting point for customization. Additional work is likely required for the best user experience.
 
-Create a new `NavMenu_IdentityLayout` component (*Shared/NavMenu_IdentityLayout.razor*). For the markup and code of the component, use the same content of the app's `NavMenu` component (*Shared/NavMenu.razor*). Strip out any `NavLink`s to components that can't be reached anonymously because automatic redirects in the `RedirectToLogin` component fail for components requiring authentication or authorization.
+Create a new `NavMenu_IdentityLayout` component (`Shared/NavMenu_IdentityLayout.razor`). For the markup and code of the component, use the same content of the app's `NavMenu` component (`Shared/NavMenu.razor`). Strip out any `NavLink`s to components that can't be reached anonymously because automatic redirects in the `RedirectToLogin` component fail for components requiring authentication or authorization.
 
-In the *Pages/Shared/Layout.cshtml* file, make the following changes:
+In the `Pages/Shared/Layout.cshtml` file, make the following changes:
 
-* Add Razor directives to the top of the file to use Tag Helpers and the app's components in the *Shared* folder:
+* Add Razor directives to the top of the file to use Tag Helpers and the app's components in the `Shared` folder:
 
   ```cshtml
   @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
@@ -327,12 +321,6 @@ In the *Pages/Shared/Layout.cshtml* file, make the following changes:
   @RenderSection("Scripts", required: false)
   <script src="_framework/blazor.server.js"></script>
   ```
-
-## Scaffold Identity into a Blazor Server project with authorization
-
-[!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
-<!-- Remove this, no longer true -->
-Some Identity options are configured in *Areas/Identity/IdentityHostingStartup.cs*. For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
 
 ## Standalone or hosted Blazor WebAssembly apps
 
