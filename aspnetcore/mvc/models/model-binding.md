@@ -5,18 +5,16 @@ description: Learn how model binding in ASP.NET Core works and how to customize 
 monikerRange: '>= aspnetcore-3.1'
 ms.assetid: 0be164aa-1d72-4192-bd6b-192c9c301164
 ms.author: riande
-ms.date: 12/18/2019
+ms.date: 11/09/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/models/model-binding
 ---
 
 # Model Binding in ASP.NET Core
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 This article explains what model binding is, how it works, and how to customize its behavior.
-
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/model-binding/samples) ([how to download](xref:index#how-to-download-a-sample)).
 
 ## What is Model binding
 
@@ -628,12 +626,13 @@ This attribute's name follows the pattern of model binding attributes that speci
 
 ## Additional resources
 
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/model-binding/samples) ([how to download](xref:index#how-to-download-a-sample))
 * <xref:mvc/models/validation>
 * <xref:mvc/advanced/custom-model-binding>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 This article explains what model binding is, how it works, and how to customize its behavior.
 
@@ -1022,9 +1021,9 @@ For `Dictionary` targets, model binding looks for matches to *parameter_name* or
   * selectedCourses["1050"]="Chemistry"
   * selectedCourses["2000"]="Economics"
   
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-6.0 >= aspnetcore-5.0"
+:::moniker range="< aspnetcore-6.0 >= aspnetcore-5.0"
 
 ## Constructor binding and record types
 
@@ -1139,9 +1138,9 @@ TryUpdateModel(person, ...);
 
 In this case, MVC will not attempt to bind `Name` again. However, `Age` is allowed to be updated
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 <a name="glob"></a>
 
@@ -1260,4 +1259,4 @@ This attribute's name follows the pattern of model binding attributes that speci
 * <xref:mvc/models/validation>
 * <xref:mvc/advanced/custom-model-binding>
 
-::: moniker-end
+:::moniker-end
