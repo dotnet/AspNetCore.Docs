@@ -147,13 +147,13 @@ The following code writes a message to the log on application startup:
 
 For more information, see <xref:fundamentals/logging/index?view=aspnetcore-6.0>
 
-### Resolving Registered Dependencies
+### Access the Dependency Injection (DI) container
 
-The following code shows how to resolve registered dependencies while configuring app.
+The following code shows how to get services from the DI container during application startup:
 
-This is similar to adding it as a [parameter to configure method of Startup class](xref:fundamentals/dependency-injection?view=aspnetcore-5.0#services-injected-into-startup).
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_dependencies)]
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_resolving_dependencies)]
+For more information, see <xref:fundamentals/dependency-injection?view=aspnetcore-6.0>.
 
 ## WebApplicationBuilder
 

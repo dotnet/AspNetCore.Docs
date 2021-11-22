@@ -1,4 +1,4 @@
-#define Default // Default CREATE P1 PM PE I1 I0 IP CERT CERT2 CERT3 RE CONFIG LOG REB 
+#define Default // Default CREATE P1 PM PE I1 I0 IP CERT CERT2 CERT3 RE CONFIG LOG #i REB 
 // CONFIGB LOGB IWHB DEP R1 LE LF IM SM NR NR2 RP WILD CON OV EPB OP1 OP2 OP3 OP4
 // CB BA CJSON MULTI STREAM XTN AUTH1 AUTH2 AUTH3 AUTH4 CORS CORS2 SWAG SWAG2 
 // FIL2 IHB CHNGR ADDMID
@@ -207,25 +207,27 @@ app.MapGet("/", () => "Hello World");
 
 app.Run();
 #endregion
-#region snippet_resolving_dependencies
-using App.Services;
+#elif DEPS
+#region snippet_dependencies
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
-builder.Services.AddTransient<SomeService>();
+builder.Services.AddScoped<SampleService>();
 
 var app = builder.Build();
 
+app.MapControllers();
+
 using (var scope = app.Services.CreateScope())
 {
-    var service = scope.ServiceProvider.GetRequiredService<SomeService>();
-    service.Test();
+    var sampleService = scope.ServiceProvider.GetRequiredService<SampleService>();
+    sampleService.DoSomething();
 }
 
-app.MapControllers();
 app.Run();
 #endregion
+class SampleService { public void DoSomething() { } }
 #elif REB  // Read Env Builder
 #region snippet_reb
 var builder = WebApplication.CreateBuilder(args);
