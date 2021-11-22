@@ -28,7 +28,7 @@ Blazor WebAssembly apps run on the client. Authorization is *only* used to deter
 > <xref:Microsoft.AspNetCore.Identity.SignInManager%601> and <xref:Microsoft.AspNetCore.Identity.UserManager%601> aren't supported in Razor components. Blazor Server apps use ASP.NET Core Identity. For more information, see the following guidance:
 > 
 > * <xref:blazor/security/server/index>
-> * [Scaffold ASP.NET Core Identity into a Blazor Server app without existing authorization](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project-without-existing-authorization)
+> * [Scaffold ASP.NET Core Identity into a Blazor Server app](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project)
 
 ## Authentication
 
