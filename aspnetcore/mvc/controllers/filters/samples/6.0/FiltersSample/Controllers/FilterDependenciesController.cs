@@ -13,7 +13,7 @@ public class FilterDependenciesController : Controller
 
     // <snippet_TypeFilter>
     [TypeFilter(typeof(LoggingResponseHeaderFilter),
-        Arguments = new object[] { "X-Filter-Header", "Filter Value" })]
+        Arguments = new object[] { "Filter-Header", "Filter Value" })]
     public IActionResult WithTypeFilter() =>
         Content($"- {nameof(FilterDependenciesController)}.{nameof(WithTypeFilter)}");
     // </snippet_TypeFilter>

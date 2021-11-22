@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace FiltersSample.Controllers;
 
 // <snippet_Class>
-[ResponseHeader("X-Filter-Header", "Filter Value")]
+[ResponseHeader("Filter-Header", "Filter Value")]
 public class ShortCircuitingController : Controller
 {
     [ShortCircuitingResourceFilter]

@@ -12,7 +12,7 @@ public class SampleActionFilter : IActionFilter
 
     public void OnActionExecuted(ActionExecutedContext context)
     {
-        // Do something action the action executes.
+        // Do something after the action executes.
     }
 }
 // </snippet_Class>

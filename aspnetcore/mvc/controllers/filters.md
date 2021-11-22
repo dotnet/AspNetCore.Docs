@@ -106,7 +106,7 @@ Attributes allow filters to accept arguments, as shown in the preceding example.
 
 :::code language="csharp" source="filters/samples/6.0/FiltersSample/Controllers/ResponseHeaderController.cs" id="snippet_ClassIndex" highlight="1":::
 
-Use a tool such as the [browser developer tools](https://developer.mozilla.org/docs/Learn/Common_questions/What_are_browser_developer_tools) to examine the headers. Under **Response Headers**, `x-filter-header: Filter Value` is displayed.
+Use a tool such as the [browser developer tools](https://developer.mozilla.org/docs/Learn/Common_questions/What_are_browser_developer_tools) to examine the headers. Under **Response Headers**, `filter-header: Filter Value` is displayed.
 
 The following code applies `ResponseHeaderAttribute` to both a controller and an action:
 
@@ -114,8 +114,8 @@ The following code applies `ResponseHeaderAttribute` to both a controller and an
 
 Responses from the `Multiple` action include the following headers:
 
-* `x-filter-header: Filter Value`
-* `x-another-filter-header: Another Filter Value`
+* `filter-header: Filter Value`
+* `another-filter-header: Another Filter Value`
 
 Several of the filter interfaces have corresponding attributes that can be used as base classes for custom implementations.
 
@@ -289,12 +289,6 @@ The following example shows how to pass arguments to a type using `TypeFilterAtt
 
 :::code language="csharp" source="filters/samples/6.0/FiltersSample/Controllers/FilterDependenciesController.cs" id="snippet_TypeFilter" highlight="1-2":::
 
-<!-- 
-https://localhost:5001/home/hi?name=joe
-VS debug window shows 
-FiltersSample.Filters.LogConstantFilter:Information: Method 'Hi' called
--->
-
 ## Authorization filters
 
 Authorization filters:
@@ -435,9 +429,9 @@ Result filters:
 
 ### IResultFilter and IAsyncResultFilter
 
-The following code shows a result filter that adds an HTTP header:
+The following code shows a sample result filter:
 
-:::code language="csharp" source="filters/samples/6.0/FiltersSample/Filters/LoggingResponseHeaderFilterService.cs" id="snippet_Class":::
+:::code language="csharp" source="filters/samples/6.0/FiltersSample/Snippets/Filters/SampleResultFilter.cs" id="snippet_Class":::
 
 The kind of result being executed depends on the action. An action returning a view includes all razor processing as part of the <xref:Microsoft.AspNetCore.Mvc.ViewResult> being executed. An API method might perform some serialization as part of the execution of the result. Learn more about [action results](xref:mvc/controllers/actions).
 
@@ -520,13 +514,13 @@ In the preceding code, the first approach to applying the filter is preferred.
 
 Resource filters work like [middleware](xref:fundamentals/middleware/index) in that they surround the execution of everything that comes later in the pipeline. But filters differ from middleware in that they're part of the runtime, which means that they have access to context and constructs.
 
-To use middleware as a filter, create a type with a `Configure` method that specifies the middleware to inject into the filter pipeline. The following example uses the localization middleware to establish the current culture for a request:
+To use middleware as a filter, create a type with a `Configure` method that specifies the middleware to inject into the filter pipeline. The following example uses middleware to set a response header:
 
-:::code language="csharp" source="filters/samples/3.x/FiltersSample/Filters/LocalizationPipeline.cs" id="snippet_MiddlewareFilter" highlight="3,22":::
+:::code language="csharp" source="filters/samples/6.0/FiltersSample/FilterMiddlewarePipeline.cs" id="snippet_Class":::
 
 Use the <xref:Microsoft.AspNetCore.Mvc.MiddlewareFilterAttribute> to run the middleware:
 
-:::code language="csharp" source="filters/samples/3.x/FiltersSample/Controllers/HomeController.cs" id="snippet_MiddlewareFilter" highlight="2":::
+:::code language="csharp" source="filters/samples/6.0/FiltersSample/Controllers/FilterMiddlewareController.cs" id="snippet_Class" highlight="1":::
 
 Middleware filters run at the same stage of the filter pipeline as Resource filters, before model binding and after the rest of the pipeline.
 
