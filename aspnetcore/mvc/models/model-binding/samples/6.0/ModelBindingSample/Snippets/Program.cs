@@ -17,7 +17,7 @@ namespace ModelBindingSample.Snippets
 
         public static void ReplaceQueryStringValueProviderFactory(WebApplicationBuilder builder)
         {
-            // <snippet_ReplaceQueryStringValueProviderFactory
+            // <snippet_ReplaceQueryStringValueProviderFactory>
             builder.Services.AddControllers(options =>
             {
                 var index = options.ValueProviderFactories.IndexOf(
@@ -25,7 +25,7 @@ namespace ModelBindingSample.Snippets
 
                 options.ValueProviderFactories[index] = new CultureQueryStringValueProviderFactory();
             });
-            // </snippet_ReplaceQueryStringValueProviderFactory
+            // </snippet_ReplaceQueryStringValueProviderFactory>
         }
 
         public static void AddXmlSerializerFormatters(WebApplicationBuilder builder)

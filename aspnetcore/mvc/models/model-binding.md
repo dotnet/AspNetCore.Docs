@@ -74,7 +74,7 @@ Can be applied to a controller or `PageModel` class to tell model binding to tar
 
 By default, properties are not bound for HTTP GET requests. Typically, all you need for a GET request is a record ID parameter. The record ID is used to look up the item in the database. Therefore, there is no need to bind a property that holds an instance of the model. In scenarios where you do want properties bound to data from GET requests, set the `SupportsGet` property to `true`:
 
-:::code language="csharp" source="model-binding/samples/6.0/ModelBindingSample/Snippets/Pages/Index.cshtml.cs" id="snippet_SupportsGet":::
+:::code language="csharp" source="model-binding/samples/6.0/ModelBindingSample/Snippets/Pages/Index.cshtml.cs" id="snippet_SupportsGet" highlight="1":::
 
 ## Sources
 
@@ -291,6 +291,8 @@ public class Instructor
     public string Id { get; set; }
     
     public string Name { get; set; }
+
+    // ...
 }
 ```
 
