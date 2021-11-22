@@ -520,8 +520,8 @@ To make the ASP.NET Core route value provider and query string value provider un
 * Replace the [culture value](https://github.com/dotnet/AspNetCore/blob/e625fe29b049c60242e8048b4ea743cca65aa7b5/src/Mvc/Mvc.Core/src/ModelBinding/QueryStringValueProviderFactory.cs#L30) passed to the value provider constructor with [CultureInfo.CurrentCulture](xref:System.Globalization.CultureInfo.CurrentCulture)
 * Replace the default value provider factory in MVC options with your new one:
 
-:::code language="csharp" source="model-binding/samples/6.0/ModelBindingSample/Snippets/Program.cs" id="snippet_ReplaceQueryStringValueProviderFactory":::
 :::code language="csharp" source="model-binding/samples/6.0/ModelBindingSample/Snippets/CultureQueryStringValueProviderFactory.cs" id="snippet_Class":::
+:::code language="csharp" source="model-binding/samples/6.0/ModelBindingSample/Snippets/Program.cs" id="snippet_ReplaceQueryStringValueProviderFactory":::
 
 ## Special data types
 
