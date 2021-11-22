@@ -406,7 +406,7 @@ The following sample exception filter displays details about exceptions that occ
 
 The following code tests the exception filter:
 
-:::code language="csharp" source="filters/samples/6.0/FiltersSample/Controllers/ExceptionController.cs" id="snippet_Class":::
+:::code language="csharp" source="filters/samples/6.0/FiltersSample/Controllers/ExceptionController.cs" id="snippet_Class" highlight="1":::
 
 Exception filters:
 
@@ -493,31 +493,13 @@ The ASP.NET Core runtime doesn't guarantee:
 
 `IFilterFactory` can be implemented using custom attribute implementations as another approach to creating filters:
 
-:::code language="csharp" source="filters/samples/3.x/FiltersSample/Filters/AddHeaderWithFactoryAttribute.cs" id="snippet_IFilterFactory" highlight="1,4,5,6,7":::
+:::code language="csharp" source="filters/samples/6.0/FiltersSample/Filters/ResponseHeaderFactoryAttribute.cs" id="snippet_Class" highlight="1,5-6":::
 
 The filter is applied in the following code:
 
-:::code language="csharp" source="filters/samples/3.x/FiltersSample/Controllers/SampleController.cs" id="snippet3" highlight="21":::
-
-Test the preceding code by running the [download sample](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/filters/3.1sample):
-
-* Invoke the F12 developer tools.
-* Navigate to `https://localhost:5001/Sample/HeaderWithFactory`.
-
-The F12 developer tools display the following response headers added by the sample code:
-
-* **author:** `Rick Anderson`
-* **globaladdheader:** `Result filter added to MvcOptions.Filters`
-* **internal:** `My header`
-
-The preceding code creates the **internal:** `My header` response header.
+:::code language="csharp" source="filters/samples/6.0/FiltersSample/Controllers/FilterFactoryController.cs" id="snippet_Index" highlight="1":::
 
 ### IFilterFactory implemented on an attribute
-
-<!-- Review 
-This section needs to be rewritten.
-What's a non-named attribute?
--->
 
 Filters that implement `IFilterFactory` are useful for filters that:
 
@@ -526,15 +508,15 @@ Filters that implement `IFilterFactory` are useful for filters that:
 
 <xref:Microsoft.AspNetCore.Mvc.TypeFilterAttribute> implements <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory>. `IFilterFactory` exposes the <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory.CreateInstance%2A> method for creating an <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata> instance. `CreateInstance` loads the specified type from the services container (DI).
 
-:::code language="csharp" source="filters/samples/3.x/FiltersSample/Filters/SampleActionFilterAttribute.cs" id="snippet_TypeFilterAttribute" highlight="1,3,8":::
+:::code language="csharp" source="filters/samples/6.0/FiltersSample/Filters/SampleActionTypeFilterAttribute.cs" id="snippet_Class" highlight="1,3-4":::
 
-The following code shows three approaches to applying the `[SampleActionFilter]`:
+The following code shows three approaches to applying the filter:
 
-:::code language="csharp" source="filters/samples/3.x/FiltersSample/Controllers/HomeController.cs" id="snippet" highlight="1":::
+:::code language="csharp" source="filters/samples/6.0/FiltersSample/Controllers/FilterFactoryController.cs" id="snippet_TypeFilterAttribute" highlight="1,5,9":::
 
-In the preceding code, decorating the method with `[SampleActionFilter]` is the preferred approach to applying the `SampleActionFilter`.
+In the preceding code, the first approach to applying the filter is preferred.
 
-## Using middleware in the filter pipeline
+## Use middleware in the filter pipeline
 
 Resource filters work like [middleware](xref:fundamentals/middleware/index) in that they surround the execution of everything that comes later in the pipeline. But filters differ from middleware in that they're part of the runtime, which means that they have access to context and constructs.
 

@@ -8,6 +8,6 @@ namespace FiltersSample.Controllers;
 public class ExceptionController : Controller
 {
     public IActionResult Index() =>
-        throw new Exception($"Testing {nameof(SampleExceptionFilter)}.");
+        Content($"- {nameof(ExceptionController)}.{nameof(Index)}");
 }
 // </snippet_Class>

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace Filters.Filters;
+namespace FiltersSample.Filters;
 
 public class LoggingResponseHeaderFilter : IActionFilter
 {
