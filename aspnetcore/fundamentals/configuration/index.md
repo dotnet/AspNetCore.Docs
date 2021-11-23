@@ -1457,7 +1457,7 @@ In the preceding environment variable, `Https` is the name of the Kestrel specif
 
 ## GetValue
 
-[`ConfigurationBinder.GetValue<T>`](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.GetValue*) extracts a single value from configuration with a specified key and converts it to the specified type. In practice, this method is used as an extension method to [`IConfiguration`](xref:Microsoft.Extensions.Configuration.IConfiguration):
+[`ConfigurationBinder.GetValue<T>`](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.GetValue*) extracts a single value from configuration with a specified key and converts it to the specified type. This method is an extension method for [`IConfiguration`](xref:Microsoft.Extensions.Configuration.IConfiguration):
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/TestNum.cshtml.cs?name=snippet)]
 
