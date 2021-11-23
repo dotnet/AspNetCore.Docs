@@ -26,8 +26,8 @@ namespace RazorPagesMovie.Pages.Movies
             Movie = await _context.Movie.ToListAsync();
         }
     }
-#pragma warning disable CS8618
-#pragma warning disable CS8604
+#pragma warning restore CS8618
+#pragma warning restore CS8604
 }
 #endregion
 #endregion
