@@ -16,8 +16,6 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT), [Kirk Larkin](https://twitt
 
 HTTP is a stateless protocol. By default, HTTP requests are independent messages that don't retain user values. This article describes several approaches to preserve user data between requests.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/app-state/samples) ([how to download](xref:index#how-to-download-a-sample))
-
 ## State management
 
 State can be stored using several approaches. Each approach is described later in this topic.
@@ -276,6 +274,8 @@ The recommended approach to check for errors is to call `await feature.Session.C
 SignalR apps should not use session state to store information. SignalR apps can store per connection state in `Context.Items` in the hub. <!-- https://github.com/aspnet/SignalR/issues/2139 -->
 
 ## Additional resources
+
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/app-state/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 <xref:host-and-deploy/web-farm>
 
