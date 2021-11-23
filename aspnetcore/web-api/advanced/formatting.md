@@ -25,9 +25,9 @@ Some action result types are specific to a particular format, such as <xref:Micr
 
 An action isn't required to return any specific type. ASP.NET Core supports any object return value. Results from actions that return objects that aren't <xref:Microsoft.AspNetCore.Mvc.IActionResult> types are serialized using the appropriate <xref:Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter> implementation. For more information, see <xref:web-api/action-return-types>.
 
-The built-in helper method <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Ok%2A> returns JSON-formatted data:
+The built-in helper method <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Ok%2A?displayProperty=nameWithType> returns JSON-formatted data:
 
-:::code language="csharp" source="formatting/samples/3.x/ResponseFormattingSample/Controllers/AuthorsController.cs" id="snippet_get":::
+:::code language="csharp" source="formatting/samples/6.x/ResponseFormattingSample/Controllers/TodosController.cs" id="snippet_Get" highlight="3":::
 
 The sample download returns the list of authors. Using the F12 browser developer tools or [Postman](https://www.getpostman.com/tools) with the previous code:
 
@@ -36,11 +36,9 @@ The sample download returns the list of authors. Using the F12 browser developer
 
 To return plain text formatted data, use <xref:Microsoft.AspNetCore.Mvc.ContentResult> and the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Content%2A> helper:
 
-:::code language="csharp" source="formatting/samples/3.x/ResponseFormattingSample/Controllers/AuthorsController.cs" id="snippet_about":::
+:::code language="csharp" source="formatting/samples/6.x/ResponseFormattingSample/Controllers/TodosController.cs" id="snippet_GetVersion":::
 
-In the preceding code, the `Content-Type` returned is `text/plain`. Returning a string delivers `Content-Type` of `text/plain`:
-
-:::code language="csharp" source="formatting/samples/3.x/ResponseFormattingSample/Controllers/AuthorsController.cs" id="snippet_string":::
+In the preceding code, the `Content-Type` returned is `text/plain`.
 
 For actions with multiple return types, return `IActionResult`. For example, returning different HTTP status codes based on the result of operations performed.
 
@@ -55,7 +53,7 @@ When a model type is returned, the return type is `ObjectResult`.
 
 The following action method uses the `Ok` and `NotFound` helper methods:
 
-:::code language="csharp" source="formatting/samples/3.x/ResponseFormattingSample/Controllers/AuthorsController.cs" id="snippet_search":::
+:::code language="csharp" source="formatting/samples/6.x/ResponseFormattingSample/Controllers/TodosController.cs" id="snippet_GetById" highlight="8,11":::
 
 By default, ASP.NET Core supports `application/json`, `text/json`, and `text/plain` media types. Tools such as [Fiddler](https://www.telerik.com/fiddler) or [Postman](https://www.getpostman.com/tools) can set the `Accept` request header to specify the return format. When the `Accept` header contains a type the server supports, that type is returned. The next section shows how to add additional formatters.
 
@@ -63,7 +61,7 @@ Controller actions can return POCOs (Plain Old CLR Objects). When a POCO is retu
 
 Returning an object type:
 
-:::code language="csharp" source="formatting/samples/3.x/ResponseFormattingSample/Controllers/AuthorsController.cs" id="snippet_alias":::
+:::code language="csharp" source="formatting/samples/6.x/ResponseFormattingSample/Snippets/Controllers/TodosController.cs" id="snippet_GetById":::
 
 In the preceding code, a request for a valid author alias returns a `200 OK` response with the author's data. A request for an invalid alias returns a `204 No Content` response.
 
@@ -98,7 +96,7 @@ This approach provides a more consistent experience across browsers when consumi
 To configure an app to honor browser accept headers, set
 <xref:Microsoft.AspNetCore.Mvc.MvcOptions.RespectBrowserAcceptHeader> to `true`:
 
-:::code language="csharp" source="formatting/samples/3.x/ResponseFormattingSample/StartupRespectBrowserAcceptHeader.cs" id="snippet":::
+:::code language="csharp" source="formatting/samples/6.x/ResponseFormattingSample/Snippets/Program.cs" id="snippet_RespectBrowserAcceptHeader" highlight="6":::
 
 ### Configure formatters
 
@@ -108,7 +106,7 @@ Apps that need to support additional formats can add the appropriate NuGet packa
 
 XML formatters implemented using <xref:System.Xml.Serialization.XmlSerializer> are configured by calling <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcBuilderExtensions.AddXmlSerializerFormatters%2A>:
 
-:::code language="csharp" source="formatting/samples/3.x/ResponseFormattingSample/Startup.cs" id="snippet":::
+:::code language="csharp" source="formatting/samples/6.x/ResponseFormattingSample/Snippets/Program.cs" id="snippet_AddXmlSerializerFormatters" highlight="5":::
 
 The preceding code serializes results using `XmlSerializer`.
 
@@ -118,47 +116,26 @@ When using the preceding code, controller methods return the appropriate format 
 
 Features for the `System.Text.Json` based formatters can be configured using <xref:Microsoft.AspNetCore.Mvc.JsonOptions.JsonSerializerOptions?displayProperty=fullName>. The default formatting is camelCase. The following highlighted code sets PascalCase formatting:
 
-:::code language="csharp" source="formatting/samples/3.x/ResponseFormattingSample/StartupPascalCase.cs" id="snippet" highlight="4-5":::
+:::code language="csharp" source="formatting/samples/6.x/ResponseFormattingSample/Snippets/Program.cs" id="snippet_JsonSerializerOptions" highlight="5-8":::
 
 The following action method calls [ControllerBase.Problem](xref:Microsoft.AspNetCore.Mvc.ControllerBase.Problem%2A) to create a <xref:Microsoft.AspNetCore.Mvc.ProblemDetails> response:
 
-:::code language="csharp" source="formatting/samples/3.x/ResponseFormattingSample/Controllers/WeatherForecastController.cs" id="snippet_Problem" highlight="4":::
+:::code language="csharp" source="formatting/samples/6.x/ResponseFormattingSample/Controllers/TodosController.cs" id="snippet_GetError" highlight="3":::
 
 With the preceding code:
 
 * `https://localhost:5001/WeatherForecast/temperature` returns PascalCase.
 * `https://localhost:5001/WeatherForecast/error` returns camelCase. The error response is always camelCase, even when the app sets the format to PascalCase. `ProblemDetails` follows [RFC 7807](https://tools.ietf.org/html/rfc7807#appendix-A), which specifies lower case
 
-The following code sets PascalCase and adds a custom converter:
-
-```csharp
-services.AddControllers().AddJsonOptions(options =>
-{
-    // Use the default property (Pascal) casing.
-    options.JsonSerializerOptions.PropertyNamingPolicy = null;
-
-    // Configure a custom converter.
-    options.JsonSerializerOptions.Converters.Add(new MyCustomJsonConverter());
-});
-```
-
 Output serialization options, on a per-action basis, can be configured using `JsonResult`. For example:
 
-```csharp
-public IActionResult Get()
-{
-    return Json(model, new JsonSerializerOptions
-    {
-        WriteIndented = true,
-    });
-}
-```
+:::code language="csharp" source="formatting/samples/6.x/ResponseFormattingSample/Snippets/Controllers/TodosController.cs" id="snippet_Get":::
 
 ### Add Newtonsoft.Json-based JSON format support
 
 The default JSON formatters are based on `System.Text.Json`. Support for `Newtonsoft.Json` based formatters and features is available by installing the [`Microsoft.AspNetCore.Mvc.NewtonsoftJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/) NuGet package and configuring it in `Startup.ConfigureServices`.
 
-:::code language="csharp" source="formatting/samples/3.x/ResponseFormattingSample/StartupNewtonsoftJson.cs" id="snippet":::
+:::code language="csharp" source="formatting/samples/6.x/ResponseFormattingSample/Snippets/Program.cs" id="snippet_AddNewtonsoftJson" highlight="5":::
 
 In the preceding code, the call to `AddNewtonsoftJson` configures the following Web API, MVC, and Razor Pages features to use `Newtonsoft.Json`:
 
@@ -176,34 +153,17 @@ Some features may not work well with `System.Text.Json`-based formatters and req
 
 Features for the `Newtonsoft.Json`-based formatters can be configured using `Microsoft.AspNetCore.Mvc.MvcNewtonsoftJsonOptions.SerializerSettings`:
 
-```csharp
-services.AddControllers().AddNewtonsoftJson(options =>
-{
-    // Use the default property (Pascal) casing
-    options.SerializerSettings.ContractResolver = new DefaultContractResolver();
-
-    // Configure a custom converter
-    options.SerializerSettings.Converters.Add(new MyCustomJsonConverter());
-});
-```
+:::code language="csharp" source="formatting/samples/6.x/ResponseFormattingSample/Snippets/Program.cs" id="snippet_AddNewtonsoftJsonSerializerSettings":::
 
 Output serialization options, on a per-action basis, can be configured using `JsonResult`. For example:
 
-```csharp
-public IActionResult Get()
-{
-    return Json(model, new JsonSerializerSettings
-    {
-        Formatting = Formatting.Indented,
-    });
-}
-```
+:::code language="csharp" source="formatting/samples/6.x/ResponseFormattingSample/Snippets/Controllers/TodosController.cs" id="snippet_GetNewtonsoftJson":::
 
 ### Specify a format
 
 To restrict the response formats, apply the [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) filter. Like most [Filters](xref:mvc/controllers/filters), `[Produces]` can be applied at the action, controller, or global scope:
 
-:::code language="csharp" source="formatting/samples/3.x/ResponseFormattingSample/Controllers/WeatherForecastController.cs" id="snippet":::
+:::code language="csharp" source="formatting/samples/6.x/ResponseFormattingSample/Snippets/Controllers/TodosController.cs" id="snippet_ClassDeclaration" highlight="3":::
 
 The preceding [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) filter:
 
@@ -216,7 +176,7 @@ For more information, see [Filters](xref:mvc/controllers/filters).
 
 Some special cases are implemented using built-in formatters. By default, `string` return types are formatted as *text/plain* (*text/html* if requested via the `Accept` header). This behavior can be deleted by removing the <xref:Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter>. Formatters are removed in the `ConfigureServices` method. Actions that have a model object return type return `204 No Content` when returning `null`. This behavior can be deleted by removing the <xref:Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter>. The following code removes the `StringOutputFormatter` and `HttpNoContentOutputFormatter`.
 
-:::code language="csharp" source="formatting/samples/3.x/ResponseFormattingSample/StartupStringOutputFormatter.cs" id="snippet":::
+:::code language="csharp" source="formatting/samples/6.x/ResponseFormattingSample/Snippets/Program.cs" id="snippet_RemoveOutputFormatters" highlight=""7-8:::
 
 Without the `StringOutputFormatter`, the built-in JSON formatter formats `string` return types. If the built-in JSON formatter is removed and an XML formatter is available, the XML formatter formats `string` return types. Otherwise, `string` return types return `406 Not Acceptable`.
 
