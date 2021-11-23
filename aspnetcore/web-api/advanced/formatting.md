@@ -176,7 +176,7 @@ For more information, see [Filters](xref:mvc/controllers/filters).
 
 Some special cases are implemented using built-in formatters. By default, `string` return types are formatted as *text/plain* (*text/html* if requested via the `Accept` header). This behavior can be deleted by removing the <xref:Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter>. Formatters are removed in the `ConfigureServices` method. Actions that have a model object return type return `204 No Content` when returning `null`. This behavior can be deleted by removing the <xref:Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter>. The following code removes the `StringOutputFormatter` and `HttpNoContentOutputFormatter`.
 
-:::code language="csharp" source="formatting/samples/6.x/ResponseFormattingSample/Snippets/Program.cs" id="snippet_RemoveOutputFormatters" highlight=""7-8:::
+:::code language="csharp" source="formatting/samples/6.x/ResponseFormattingSample/Snippets/Program.cs" id="snippet_RemoveOutputFormatters" highlight="7-8":::
 
 Without the `StringOutputFormatter`, the built-in JSON formatter formats `string` return types. If the built-in JSON formatter is removed and an XML formatter is available, the XML formatter formats `string` return types. Otherwise, `string` return types return `406 Not Acceptable`.
 
