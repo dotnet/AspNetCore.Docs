@@ -87,13 +87,12 @@ To enable the session middleware, `Progam.cs` must contain:
 
 The following code shows how to set up the in-memory session provider with a default in-memory implementation of `IDistributedCache`:
 
-/
 [!code-csharp[](app-state/6.0samples/RazorPagesContacts/Program.cs
 ?name=snippet_2&highlight=8-13,30)]
 
 The preceding code sets a short timeout to simplify testing.
 
-The order of middleware is important.  Call `UseSession` after `UseRouting` and before `UseEndpoints`. See [Middleware Ordering](xref:fundamentals/middleware/index#order).
+The order of middleware is important.  Call `UseSession` after `UseRouting` and before `MapRazorPages` and `MapDefaultControllerRoute` . See [Middleware Ordering](xref:fundamentals/middleware/index#order).
 
 [HttpContext.Session](xref:Microsoft.AspNetCore.Http.HttpContext.Session) is available after session state is configured.
 
@@ -121,7 +120,8 @@ Session uses a cookie to track and identify requests from a single browser. By d
 
 To override cookie session defaults, use <xref:Microsoft.AspNetCore.Builder.SessionOptions>:
 
-[!code-csharp[](app-state/samples/3.x/SessionSample/Startup2.cs?name=snippet1&highlight=5-10)]
+[!code-csharp[](app-state/6.0samples/RazorPagesContacts/Program.cs
+?name=snippet_or&highlight=8-13)]
 
 The app uses the <xref:Microsoft.AspNetCore.Builder.SessionOptions.IdleTimeout> property to determine how long a session can be idle before its contents in the server's cache are abandoned. This property is independent of the cookie expiration. Each request that passes through the [Session Middleware](xref:Microsoft.AspNetCore.Session.SessionMiddleware) resets the timeout.
 
@@ -155,7 +155,11 @@ Name: @HttpContext.Session.GetString(IndexModel.SessionKeyName)
 
 The following example shows how to set and get an integer and a string:
 
-[!code-csharp[](app-state/samples/3.x/SessionSample/Pages/Index.cshtml.cs?name=snippet1&highlight=18-19,22-23)]
+[!code-csharp[](app-state/6.0samples/SessionSample/Pages/Index.cshtml.cs)]
+
+The following markup displays the session values on a Razor Page:
+
+[!code-cshtml[](app-state/6.0samples/SessionSample/Pages/Privacy.cshtml)]
 
 All session data must be serialized to enable a distributed cache scenario, even when using the in-memory cache. String and integer serializers are provided by the extension methods of <xref:Microsoft.AspNetCore.Http.ISession>. Complex types must be serialized by the user using another mechanism, such as JSON.
 
