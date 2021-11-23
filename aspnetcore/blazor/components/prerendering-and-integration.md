@@ -43,7 +43,7 @@ To set up prerendering for a hosted Blazor WebAssembly app:
 1. Add `_Host.cshtml` and `_Layout.cshtml` files to the **`Server`** project's `Pages` folder. You can obtain the files from a project created from the Blazor Server template using Visual Studio or using the .NET CLI with the `dotnet new blazorserver -o BlazorServer` command in a command shell (the `-o BlazorServer` option creates a folder for the project). After placing the files into the **`Server`** project's `Pages` folder, make the following changes to the files.
 
    > [!IMPORTANT]
-   > The use of a layout page (`_Layout.cshtml`) is required to [control head (`<head>`) content](xref:blazor/components/control-head-content), such as the page's title (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component). The reason for this requirement is that components that use <xref:Microsoft.AspNetCore.Components.Web.PageTitle> and <xref:Microsoft.AspNetCore.Components.Web.HeadContent> components must be rendered before the layout with the <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component. **This order of rendering is required to control head content.** For more information on controlling head content, see <xref:blazor/components/control-head-content>.
+   > The use of a layout page (`_Layout.cshtml`) with a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is required to [control head (`<head>`) content](xref:blazor/components/control-head-content), such as the page's title (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component). For more information, see <xref:blazor/components/control-head-content#control-head-content-during-prerendering>.
 
    Make the following changes to the `_Layout.cshtml` file:
 
@@ -170,7 +170,7 @@ MVC:
 * `Views/_ViewStart.cshtml`
 
 > [!IMPORTANT]
-> The use of a layout page (`_Layout.cshtml`) with a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is required to [control head (`<head>`) content](xref:blazor/components/control-head-content), such as the page's title (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component). The reason for this requirement is that components that use <xref:Microsoft.AspNetCore.Components.Web.PageTitle> and <xref:Microsoft.AspNetCore.Components.Web.HeadContent> components must be rendered before the layout with the <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component. **This order of rendering is required to control head content.** For more information on controlling head content, see <xref:blazor/components/control-head-content>.
+> The use of a layout page (`_Layout.cshtml`) with a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is required to [control head (`<head>`) content](xref:blazor/components/control-head-content), such as the page's title (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component). For more information, see <xref:blazor/components/control-head-content#control-head-content-during-prerendering>.
 
 The preceding files can be obtained by generating an app from the ASP.NET Core project templates using:
 
@@ -388,7 +388,7 @@ After [configuring the project](#configuration), use the guidance in the followi
 Use the following guidance to integrate Razor components into pages and views of an existing Razor Pages or MVC app.
 
 > [!IMPORTANT]
-> The use of a layout page (`_Layout.cshtml`) with a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is required to [control head (`<head>`) content](xref:blazor/components/control-head-content), such as the page's title (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component). The reason for this requirement is that components that use <xref:Microsoft.AspNetCore.Components.Web.PageTitle> and <xref:Microsoft.AspNetCore.Components.Web.HeadContent> components must be rendered before the layout with the <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component. **This order of rendering is required to control head content.** For more information on controlling head content, see <xref:blazor/components/control-head-content>.
+> The use of a layout page (`_Layout.cshtml`) with a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is required to [control head (`<head>`) content](xref:blazor/components/control-head-content), such as the page's title (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component). For more information, see <xref:blazor/components/control-head-content#control-head-content-during-prerendering>.
 
 1. In the project's layout file:
 
@@ -542,13 +542,7 @@ To support routable Razor components in Razor Pages apps:
    In this scenario, components use the shared `_Layout.cshtml` file for their layout.
   
    > [!IMPORTANT]
-   > The use of a layout page (`_Layout.cshtml`) with a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is required to [control head (`<head>`) content](xref:blazor/components/control-head-content), such as the page's title (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component). The reason for this requirement is that components that use <xref:Microsoft.AspNetCore.Components.Web.PageTitle> and <xref:Microsoft.AspNetCore.Components.Web.HeadContent> components must be rendered before the layout with the <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component. **This order of rendering is required to control head content.** For more information on controlling head content, see <xref:blazor/components/control-head-content>.
-   >
-   > If the shared `_Layout.cshtml` file doesn't have the Tag Helper, add it to the `<head>` elements:
-   >
-   > ```cshtml
-   > <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
-   > ```
+   > The use of a layout page (`_Layout.cshtml`) with a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is required to [control head (`<head>`) content](xref:blazor/components/control-head-content), such as the page's title (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component). For more information, see <xref:blazor/components/control-head-content#control-head-content-during-prerendering>.
   
    <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configures whether the `App` component:
 
@@ -633,13 +627,7 @@ To support routable Razor components in MVC apps:
    Components use the shared `_Layout.cshtml` file for their layout.
      
    > [!IMPORTANT]
-   > The use of a layout page (`_Layout.cshtml`) with a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is required to [control head (`<head>`) content](xref:blazor/components/control-head-content), such as the page's title (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component). The reason for this requirement is that components that use <xref:Microsoft.AspNetCore.Components.Web.PageTitle> and <xref:Microsoft.AspNetCore.Components.Web.HeadContent> components must be rendered before the layout with the <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component. **This order of rendering is required to control head content.** For more information on controlling head content, see <xref:blazor/components/control-head-content>.
-   >
-   > If the shared `_Layout.cshtml` file doesn't have the Tag Helper, add it to the `<head>` elements:
-   >
-   > ```cshtml
-   > <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
-   > ```
+   > The use of a layout page (`_Layout.cshtml`) with a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is required to [control head (`<head>`) content](xref:blazor/components/control-head-content), such as the page's title (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component). For more information, see <xref:blazor/components/control-head-content#control-head-content-during-prerendering>.
 
    <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configures whether the `App` component:
 
@@ -725,13 +713,7 @@ The following Razor page renders a `Counter` component:
 For more information, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
      
 > [!IMPORTANT]
-> The use of a layout page (`_Layout.cshtml`) with a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is required to [control head (`<head>`) content](xref:blazor/components/control-head-content), such as the page's title (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component). The reason for this requirement is that components that use <xref:Microsoft.AspNetCore.Components.Web.PageTitle> and <xref:Microsoft.AspNetCore.Components.Web.HeadContent> components must be rendered before the layout with the <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component. **This order of rendering is required to control head content.** For more information on controlling head content, see <xref:blazor/components/control-head-content>.
->
-> If the shared `_Layout.cshtml` file doesn't have the Tag Helper, add it to the `<head>` elements:
->
-> ```cshtml
-> <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
-> ```
+> The use of a layout page (`_Layout.cshtml`) with a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is required to [control head (`<head>`) content](xref:blazor/components/control-head-content), such as the page's title (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component). For more information, see <xref:blazor/components/control-head-content#control-head-content-during-prerendering>.
 
 ### Render noninteractive components
 
@@ -757,13 +739,7 @@ In the following Razor page, the `Counter` component is statically rendered with
 For more information, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
      
 > [!IMPORTANT]
-> The use of a layout page (`_Layout.cshtml`) with a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is required to [control head (`<head>`) content](xref:blazor/components/control-head-content), such as the page's title (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component). The reason for this requirement is that components that use <xref:Microsoft.AspNetCore.Components.Web.PageTitle> and <xref:Microsoft.AspNetCore.Components.Web.HeadContent> components must be rendered before the layout with the <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component. **This order of rendering is required to control head content.** For more information on controlling head content, see <xref:blazor/components/control-head-content>.
->
-> If the shared `_Layout.cshtml` file doesn't have the Tag Helper, add it to the `<head>` elements:
->
-> ```cshtml
-> <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
-> ```
+> The use of a layout page (`_Layout.cshtml`) with a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is required to [control head (`<head>`) content](xref:blazor/components/control-head-content), such as the page's title (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component). For more information, see <xref:blazor/components/control-head-content#control-head-content-during-prerendering>.
 
 ## Component namespaces
 
