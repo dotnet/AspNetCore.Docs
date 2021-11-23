@@ -40,7 +40,12 @@ To set up prerendering for a hosted Blazor WebAssembly app:
    - builder.RootComponents.Add<HeadOutlet>("head::after");
    ```
 
-1. Add `_Host.cshtml` and `_Layout.cshtml` files to the **`Server`** project's `Pages` folder. You can obtain the files from a project created from the Blazor Server template using Visual Studio or using the .NET CLI with the `dotnet new blazorserver -o BlazorServer` command in a command shell (the `-o BlazorServer` option creates a folder for the project). After placing the files into the **`Server`** project's `Pages` folder:
+1. Add `_Host.cshtml` and `_Layout.cshtml` files to the **`Server`** project's `Pages` folder. You can obtain the files from a project created from the Blazor Server template using Visual Studio or using the .NET CLI with the `dotnet new blazorserver -o BlazorServer` command in a command shell (the `-o BlazorServer` option creates a folder for the project). After placing the files into the **`Server`** project's `Pages` folder, make the following changes to the files.
+
+   > [!IMPORTANT]
+   > The use of a layout page (`_Layout.cshtml`) is required to [control head (`<head>`) content](xref:blazor/components/control-head-content), such as the page's title (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other `<head>` elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component). The reason for this requirement is that components that use <xref:Microsoft.AspNetCore.Components.Web.PageTitle> and <xref:Microsoft.AspNetCore.Components.Web.HeadContent> components must be rendered before the layout with the <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component. **This order of rendering is required to control head content.** For more information on controlling head content, see <xref:blazor/components/control-head-content>.
+
+The use of a layout page (`_Layout.cshtml`) is required to 
 
    Make the following changes to the `_Layout.cshtml` file:
 
