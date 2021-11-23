@@ -277,7 +277,9 @@ SignalR apps should not use session state to store information. SignalR apps can
 
 ## Additional resources
 
-# Session and state management in ASP.NET Core
+<xref:host-and-deploy/web-farm>
+
+::: moniker-end
 
 ::: moniker range="< aspnetcore-6.0"
 
