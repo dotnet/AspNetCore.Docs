@@ -4,28 +4,24 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-// ThisIsPascalCase, thisIsCamelCase
-
-namespace WebAPI5PascalCase
+namespace ResponseFormattingSample
 {
-    public class Startup
+    public class StartupNewtonsoftJson
     {
-        public Startup(IConfiguration configuration)
+        public StartupNewtonsoftJson(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
 
-        // Set PascalCase. The default is camelCase.
-        #region snippet
+        // <snippet>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers()
-                    .AddJsonOptions(options => 
-                       options.JsonSerializerOptions.PropertyNamingPolicy = null);
+                .AddNewtonsoftJson();
         }
-        #endregion
+        // </snippet>
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

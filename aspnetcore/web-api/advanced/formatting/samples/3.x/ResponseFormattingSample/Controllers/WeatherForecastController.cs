@@ -3,14 +3,16 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
-namespace WebAPI5PascalCase.Controllers
+namespace ResponseFormattingSample.Controllers
 {
+    // <snippet>
     [ApiController]
     [Route("[controller]")]
+    [Produces("application/json")]
     public class WeatherForecastController : ControllerBase
     {
+        // </snippet>
         private static readonly string[] Summaries = new[]
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
@@ -36,12 +38,12 @@ namespace WebAPI5PascalCase.Controllers
             .ToArray();
         }
 
-        #region snippet
+        // <snippet_Problem>
         [HttpGet("error")]
         public IActionResult GetError()
         {
             return Problem("Something went wrong!");
         }
-        #endregion
+        // </snippet_Problem>
     }
 }

@@ -19,16 +19,16 @@ namespace ResponseFormattingSample.Controllers
             _authors = new Authors();
         }
 
-        #region snippet_get
+        // <snippet_get>
         // GET: api/authors
         [HttpGet]
         public ActionResult Get()
         {
             return Ok(_authors.List());
         }
-        #endregion
+        // </snippet_get>
 
-        #region snippet_search
+        // <snippet_search>
         // GET: api/authors/search?namelike=th
         [HttpGet("Search")]
         public IActionResult Search(string namelike)
@@ -40,34 +40,34 @@ namespace ResponseFormattingSample.Controllers
             }
             return Ok(result);
         }
-        #endregion
+        // </snippet_search>
 
-        #region snippet_alias
+        // <snippet_alias>
         // GET api/authors/RickAndMSFT
         [HttpGet("{alias}")]
         public Author Get(string alias)
         {
             return _authors.GetByAlias(alias);
         }
-        #endregion
+        // </snippet_alias>
 
-        #region snippet_about
+        // <snippet_about>
         // GET api/authors/about
         [HttpGet("About")]
         public ContentResult About()
         {
             return Content("An API listing authors of docs.asp.net.");
         }
-        #endregion
+        // </snippet_about>
 
-        #region snippet_string
+        // <snippet_string>
         // GET api/authors/version
         [HttpGet("version")]
         public string Version()
         {
             return "Version 1.0.0";
         }
-        #endregion
+        // </snippet_string>
 
     }
 
