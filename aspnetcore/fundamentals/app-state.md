@@ -79,15 +79,17 @@ The [Microsoft.AspNetCore.Session](https://www.nuget.org/packages/Microsoft.AspN
 * Is included implicitly by the framework.
 * Provides middleware for managing session state.
 
-To enable the session middleware, `Startup` must contain:
+To enable the session middleware, `Progam.cs` must contain:
 
 * Any of the <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> memory caches. The `IDistributedCache` implementation is used as a backing store for session. For more information, see <xref:performance/caching/distributed>.
-* A call to <xref:Microsoft.Extensions.DependencyInjection.SessionServiceCollectionExtensions.AddSession%2A> in `ConfigureServices`.
-* A call to <xref:Microsoft.AspNetCore.Builder.SessionMiddlewareExtensions.UseSession%2A> in `Configure`.
+* A call to <xref:Microsoft.Extensions.DependencyInjection.SessionServiceCollectionExtensions.AddSession%2A>
+* A call to <xref:Microsoft.AspNetCore.Builder.SessionMiddlewareExtensions.UseSession%2A>
 
 The following code shows how to set up the in-memory session provider with a default in-memory implementation of `IDistributedCache`:
 
-[!code-csharp[](app-state/samples/3.x/SessionSample/Startup4.cs?name=snippet1&highlight=12-19,45)]
+/
+[!code-csharp[](app-state/6.0samples/RazorPagesContacts/Program.cs
+?name=snippet_2&highlight=8-13,30)]
 
 The preceding code sets a short timeout to simplify testing.
 
