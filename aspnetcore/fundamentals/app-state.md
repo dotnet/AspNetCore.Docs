@@ -4,13 +4,13 @@ author: rick-anderson
 description: Discover approaches to preserve session between requests.
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/06/2020
+ms.date: 11/25/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/app-state
 ---
 # Session and state management in ASP.NET Core
 
-::: moniker range=">= aspnetcore-3.0"
+::: moniker range=">= aspnetcore-6.0"
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Kirk Larkin](https://twitter.com/serpent5), and [Diana LaRose](https://github.com/DianaLaRose)
 
@@ -278,13 +278,14 @@ SignalR apps should not use session state to store information. SignalR apps can
 ## Additional resources
 
 <xref:host-and-deploy/web-farm>
+
 ::: moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+::: moniker range="< aspnetcore-6.0"
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT), [Steve Smith](https://ardalis.com/), [Diana LaRose](https://github.com/DianaLaRose), and [Luke Latham](https://github.com/guardrex)
+By [Rick Anderson](https://twitter.com/RickAndMSFT), [Kirk Larkin](https://twitter.com/serpent5), and [Diana LaRose](https://github.com/DianaLaRose)
 
-HTTP is a stateless protocol. Without taking additional steps, HTTP requests are independent messages that don't retain user values or app state. This article describes several approaches to preserve user data and app state between requests.
+HTTP is a stateless protocol. By default, HTTP requests are independent messages that don't retain user values. This article describes several approaches to preserve user data between requests.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/app-state/samples) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -294,14 +295,13 @@ State can be stored using several approaches. Each approach is described later i
 
 | Storage approach | Storage mechanism |
 | ---------------- | ----------------- |
-| [Cookies](#cookies) | HTTP cookies (may include data stored using server-side app code) |
+| [Cookies](#cookies) | HTTP cookies. May include data stored using server-side app code. |
 | [Session state](#session-state) | HTTP cookies and server-side app code |
 | [TempData](#tempdata) | HTTP cookies or session state |
 | [Query strings](#query-strings) | HTTP query strings |
 | [Hidden fields](#hidden-fields) | HTTP form fields |
 | [HttpContext.Items](#httpcontextitems) | Server-side app code |
 | [Cache](#cache) | Server-side app code |
-| [Dependency Injection](#dependency-injection) | Server-side app code |
 
 ## Cookies
 
@@ -309,32 +309,36 @@ Cookies store data across requests. Because cookies are sent with every request,
 
 Because cookies are subject to tampering, they must be validated by the app. Cookies can be deleted by users and expire on clients. However, cookies are generally the most durable form of data persistence on the client.
 
-Cookies are often used for personalization, where content is customized for a known user. The user is only identified and not authenticated in most cases. The cookie can store the user's name, account name, or unique user ID (such as a GUID). You can then use the cookie to access the user's personalized settings, such as their preferred website background color.
+Cookies are often used for personalization, where content is customized for a known user. The user is only identified and not authenticated in most cases. The cookie can store the user's name, account name, or unique user ID such as a GUID. The cookie can be used to access the user's personalized settings, such as their preferred website background color.
 
-Be mindful of the [European Union General Data Protection Regulations (GDPR)](https://ec.europa.eu/info/law/law-topic/data-protection) when issuing cookies and dealing with privacy concerns. For more information, see [General Data Protection Regulation (GDPR) support in ASP.NET Core](xref:security/gdpr).
+See the [European Union General Data Protection Regulations (GDPR)](https://ec.europa.eu/info/law/law-topic/data-protection) when issuing cookies and dealing with privacy concerns. For more information, see [General Data Protection Regulation (GDPR) support in ASP.NET Core](xref:security/gdpr).
 
 ## Session state
 
-Session state is an ASP.NET Core scenario for storage of user data while the user browses a web app. Session state uses a store maintained by the app to persist data across requests from a client. The session data is backed by a cache and considered ephemeral data&mdash;the site should continue to function without the session data. Critical application data should be stored in the user database and cached in session only as a performance optimization.
+Session state is an ASP.NET Core scenario for storage of user data while the user browses a web app. Session state uses a store maintained by the app to persist data across requests from a client. The session data is backed by a cache and considered ephemeral data. The site should continue to function without the session data. Critical application data should be stored in the user database and cached in session only as a performance optimization.
 
-> [!NOTE]
-> Session isn't supported in [SignalR](xref:signalr/index) apps because a [SignalR Hub](xref:signalr/hubs) may execute independent of an HTTP context. For example, this can occur when a long polling request is held open by a hub beyond the lifetime of the request's HTTP context.
+Session isn't supported in [SignalR](xref:signalr/index) apps because a [SignalR Hub](xref:signalr/hubs) may execute independent of an HTTP context. For example, this can occur when a long polling request is held open by a hub beyond the lifetime of the request's HTTP context.
 
-ASP.NET Core maintains session state by providing a cookie to the client that contains a session ID, which is sent to the app with each request. The app uses the session ID to fetch the session data.
+ASP.NET Core maintains session state by providing a cookie to the client that contains a session ID. The cookie session ID:
+
+* Is sent to the app with each request.
+* Is used by the app to fetch the session data.
 
 Session state exhibits the following behaviors:
 
-* Because the session cookie is specific to the browser, sessions aren't shared across browsers.
+* The session cookie is specific to the browser. Sessions aren't shared across browsers.
 * Session cookies are deleted when the browser session ends.
 * If a cookie is received for an expired session, a new session is created that uses the same session cookie.
-* Empty sessions aren't retained&mdash;the session must have at least one value set into it to persist the session across requests. When a session isn't retained, a new session ID is generated for each new request.
-* The app retains a session for a limited time after the last request. The app either sets the session timeout or uses the default value of 20 minutes. Session state is ideal for storing user data that's specific to a particular session but where the data doesn't require permanent storage across sessions.
+* Empty sessions aren't retained. The session must have at least one value set to persist the session across requests. When a session isn't retained, a new session ID is generated for each new request.
+* The app retains a session for a limited time after the last request. The app either sets the session timeout or uses the default value of 20 minutes. Session state is ideal for storing user data:
+  * That's specific to a particular session.
+  * Where the data doesn't require permanent storage across sessions.
 * Session data is deleted either when the <xref:Microsoft.AspNetCore.Http.ISession.Clear%2A?displayProperty=nameWithType> implementation is called or when the session expires.
 * There's no default mechanism to inform app code that a client browser has been closed or when the session cookie is deleted or expired on the client.
-* The ASP.NET Core MVC and Razor pages templates include support for General Data Protection Regulation (GDPR). Session state cookies aren't marked essential by default, so session state isn't functional unless tracking is permitted by the site visitor. For more information, see <xref:security/gdpr#tempdata-provider-and-session-state-cookies-arent-essential>.
+* Session state cookies aren't marked essential by default. Session state isn't functional unless tracking is permitted by the site visitor. For more information, see <xref:security/gdpr#tempdata-provider-and-session-state-cookies-arent-essential>.
 
 > [!WARNING]
-> Don't store sensitive data in session state. The user might not close the browser and clear the session cookie. Some browsers maintain valid session cookies across browser windows. A session might not be restricted to a single user&mdash;the next user might continue to browse the app with the same session cookie.
+> Don't store sensitive data in session state. The user might not close the browser and clear the session cookie. Some browsers maintain valid session cookies across browser windows. A session might not be restricted to a single user. The next user might continue to browse the app with the same session cookie.
 
 The in-memory cache provider stores session data in the memory of the server where the app resides. In a server farm scenario:
 
@@ -343,7 +347,12 @@ The in-memory cache provider stores session data in the memory of the server whe
 
 ### Configure session state
 
-The [Microsoft.AspNetCore.Session](https://www.nuget.org/packages/Microsoft.AspNetCore.Session/) package, which is included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app), provides middleware for managing session state. To enable the session middleware, `Startup` must contain:
+The [Microsoft.AspNetCore.Session](https://www.nuget.org/packages/Microsoft.AspNetCore.Session/) package:
+
+* Is included implicitly by the framework.
+* Provides middleware for managing session state.
+
+To enable the session middleware, `Startup` must contain:
 
 * Any of the <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> memory caches. The `IDistributedCache` implementation is used as a backing store for session. For more information, see <xref:performance/caching/distributed>.
 * A call to <xref:Microsoft.Extensions.DependencyInjection.SessionServiceCollectionExtensions.AddSession%2A> in `ConfigureServices`.
@@ -351,11 +360,13 @@ The [Microsoft.AspNetCore.Session](https://www.nuget.org/packages/Microsoft.AspN
 
 The following code shows how to set up the in-memory session provider with a default in-memory implementation of `IDistributedCache`:
 
-[!code-csharp[](app-state/samples/2.x/SessionSample/Startup.cs?name=snippet1&highlight=5-14,34)]
+[!code-csharp[](app-state/samples/3.x/SessionSample/Startup4.cs?name=snippet1&highlight=12-19,45)]
 
-The order of middleware is important. In the preceding example, an `InvalidOperationException` exception occurs when `UseSession` is invoked after `UseMvc`. For more information, see [Middleware Ordering](xref:fundamentals/middleware/index#order).
+The preceding code sets a short timeout to simplify testing.
 
-<xref:Microsoft.AspNetCore.Http.HttpContext.Session?displayProperty=nameWithType> is available after session state is configured.
+The order of middleware is important.  Call `UseSession` after `UseRouting` and before `UseEndpoints`. See [Middleware Ordering](xref:fundamentals/middleware/index#order).
+
+[HttpContext.Session](xref:Microsoft.AspNetCore.Http.HttpContext.Session) is available after session state is configured.
 
 `HttpContext.Session` can't be accessed before `UseSession` has been called.
 
@@ -379,9 +390,9 @@ To override session defaults, use <xref:Microsoft.AspNetCore.Builder.SessionOpti
 
 Session uses a cookie to track and identify requests from a single browser. By default, this cookie is named `.AspNetCore.Session`, and it uses a path of `/`. Because the cookie default doesn't specify a domain, it isn't made available to the client-side script on the page (because <xref:Microsoft.AspNetCore.Http.CookieBuilder.HttpOnly> defaults to `true`).
 
-To override cookie session defaults, use `SessionOptions`:
+To override cookie session defaults, use <xref:Microsoft.AspNetCore.Builder.SessionOptions>:
 
-[!code-csharp[](app-state/samples_snapshot/2.x/SessionSample/Startup.cs?name=snippet1&highlight=14-19)]
+[!code-csharp[](app-state/samples/3.x/SessionSample/Startup2.cs?name=snippet1&highlight=5-10)]
 
 The app uses the <xref:Microsoft.AspNetCore.Builder.SessionOptions.IdleTimeout> property to determine how long a session can be idle before its contents in the server's cache are abandoned. This property is independent of the cookie expiration. Each request that passes through the [Session Middleware](xref:Microsoft.AspNetCore.Session.SessionMiddleware) resets the timeout.
 
@@ -391,7 +402,7 @@ Session state is *non-locking*. If two requests simultaneously attempt to modify
 
 Session state is accessed from a Razor Pages <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> class or MVC <xref:Microsoft.AspNetCore.Mvc.Controller> class with <xref:Microsoft.AspNetCore.Http.HttpContext.Session?displayProperty=nameWithType>. This property is an <xref:Microsoft.AspNetCore.Http.ISession> implementation.
 
-The `ISession` implementation provides several extension methods to set and retrieve integer and string values. The extension methods are in the <xref:Microsoft.AspNetCore.Http> namespace (add a `using Microsoft.AspNetCore.Http;` statement to gain access to the extension methods) when the [Microsoft.AspNetCore.Http.Extensions](https://www.nuget.org/packages/Microsoft.AspNetCore.Http.Extensions/) package is referenced by the project. Both packages are included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
+The `ISession` implementation provides several extension methods to set and retrieve integer and string values. The extension methods are in the <xref:Microsoft.AspNetCore.Http> namespace.
 
 `ISession` extension methods:
 
@@ -415,21 +426,24 @@ Name: @HttpContext.Session.GetString(IndexModel.SessionKeyName)
 
 The following example shows how to set and get an integer and a string:
 
-[!code-csharp[](app-state/samples/2.x/SessionSample/Pages/Index.cshtml.cs?name=snippet1&highlight=18-19,22-23)]
+[!code-csharp[](app-state/samples/3.x/SessionSample/Pages/Index.cshtml.cs?name=snippet1&highlight=18-19,22-23)]
 
-All session data must be serialized to enable a distributed cache scenario, even when using the in-memory cache. String and integer serializers are provided by the extension methods of <xref:Microsoft.AspNetCore.Http.ISession>). Complex types must be serialized by the user using another mechanism, such as JSON.
+All session data must be serialized to enable a distributed cache scenario, even when using the in-memory cache. String and integer serializers are provided by the extension methods of <xref:Microsoft.AspNetCore.Http.ISession>. Complex types must be serialized by the user using another mechanism, such as JSON.
 
-Add the following extension methods to set and get serializable objects:
+Use the following sample code to serialize objects:
 
-[!code-csharp[](app-state/samples/2.x/SessionSample/Extensions/SessionExtensions.cs?name=snippet1)]
+[!code-csharp[](app-state/samples/3.x/SessionSample/Extensions/SessionExtensions.cs?name=snippet1)]
 
-The following example shows how to set and get a serializable object with the extension methods:
+The following example shows how to set and get a serializable object with the `SessionExtensions` class:
 
-[!code-csharp[](app-state/samples/2.x/SessionSample/Pages/Index.cshtml.cs?name=snippet2)]
+[!code-csharp[](app-state/samples/3.x/SessionSample/Pages/Index.cshtml.cs?name=snippet2)]
 
 ## TempData
 
-ASP.NET Core exposes the Razor Pages [TempData](xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.TempData) or Controller <xref:Microsoft.AspNetCore.Mvc.Controller.TempData>. This property stores data until it's read in another request. [Keep(String)](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*) and [Peek(string)](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Peek*) methods can be used to examine the data without deletion at the end of the request. [Keep()](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*) marks all items in the dictionary for retention. `TempData` is particularly useful for redirection when data is required for more than a single request. `TempData` is implemented by `TempData` providers using either cookies or session state.
+ASP.NET Core exposes the Razor Pages [TempData](xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.TempData) or Controller <xref:Microsoft.AspNetCore.Mvc.Controller.TempData>. This property stores data until it's read in another request. The [Keep(String)](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*) and [Peek(string)](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Peek*) methods can be used to examine the data without deletion at the end of the request. [Keep](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*) marks all items in the dictionary for retention. `TempData` is:
+
+* Useful for redirection when data is required for more than a single request.
+* Implemented by `TempData` providers using either cookies or session state.
 
 ## TempData samples
 
@@ -441,7 +455,7 @@ The following page displays `TempData["Message"]`:
 
 [!code-cshtml[](app-state/3.0samples/RazorPagesContacts/Pages/Customers/IndexPeek.cshtml?range=1-14)]
 
-In the preceding markup, at the end of the request, `TempData["Message"]` is **not** deleted because `Peek` is used. Refreshing the page displays `TempData["Message"]`.
+In the preceding markup, at the end of the request, `TempData["Message"]` is **not** deleted because `Peek` is used. Refreshing the page displays the contents of `TempData["Message"]`.
 
 The following markup is similar to the preceding code, but uses `Keep` to preserve the data at the end of the request:
 
@@ -457,37 +471,31 @@ The following code displays `TempData["Message"]`, but at the end of the request
 
 The cookie-based TempData provider is used by default to store TempData in cookies.
 
-The cookie data is encrypted using <xref:Microsoft.AspNetCore.DataProtection.IDataProtector>, encoded with <xref:Microsoft.AspNetCore.WebUtilities.Base64UrlTextEncoder>, then chunked. Because the cookie is chunked, the single cookie size limit found in ASP.NET Core 1.x doesn't apply. The cookie data isn't compressed because compressing encrypted data can lead to security problems such as the [CRIME](https://wikipedia.org/wiki/CRIME_(security_exploit)) and [BREACH](https://wikipedia.org/wiki/BREACH_(security_exploit)) attacks. For more information on the cookie-based TempData provider, see <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.CookieTempDataProvider>.
+The cookie data is encrypted using <xref:Microsoft.AspNetCore.DataProtection.IDataProtector>, encoded with <xref:Microsoft.AspNetCore.WebUtilities.Base64UrlTextEncoder>, then chunked. The maximum cookie size is less than [4096 bytes](http://www.faqs.org/rfcs/rfc2965.html) due to encryption and chunking. The cookie data isn't compressed because compressing encrypted data can lead to security problems such as the [CRIME](https://wikipedia.org/wiki/CRIME_(security_exploit)) and [BREACH](https://wikipedia.org/wiki/BREACH_(security_exploit)) attacks. For more information on the cookie-based TempData provider, see <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.CookieTempDataProvider>.
 
 ### Choose a TempData provider
 
 Choosing a TempData provider involves several considerations, such as:
 
-1. Does the app already use session state? If so, using the session state TempData provider has no additional cost to the app (aside from the size of the data).
-2. Does the app use TempData only sparingly for relatively small amounts of data (up to 500 bytes)? If so, the cookie TempData provider adds a small cost to each request that carries TempData. If not, the session state TempData provider can be beneficial to avoid round-tripping a large amount of data in each request until the TempData is consumed.
-3. Does the app run in a server farm on multiple servers? If so, there's no additional configuration required to use the cookie TempData provider outside of Data Protection (see <xref:security/data-protection/introduction> and [Key storage providers](xref:security/data-protection/implementation/key-storage-providers)).
+* Does the app already use session state? If so, using the session state TempData provider has no additional cost to the app beyond the size of the data.
+* Does the app use TempData only sparingly for relatively small amounts of data, up to 500 bytes? If so, the cookie TempData provider adds a small cost to each request that carries TempData. If not, the session state TempData provider can be beneficial to avoid round-tripping a large amount of data in each request until the TempData is consumed.
+* Does the app run in a server farm on multiple servers? If so, there's no additional configuration required to use the cookie TempData provider outside of Data Protection (see <xref:security/data-protection/introduction> and [Key storage providers](xref:security/data-protection/implementation/key-storage-providers)).
 
-> [!NOTE]
-> Most web clients (such as web browsers) enforce limits on the maximum size of each cookie, the total number of cookies, or both. When using the cookie TempData provider, verify the app won't exceed these limits. Consider the total size of the data. Account for increases in cookie size due to encryption and chunking.
+Most web clients such as web browsers enforce limits on the maximum size of each cookie and the total number of cookies. When using the cookie TempData provider, verify the app won't exceed [these limits](http://www.faqs.org/rfcs/rfc2965.html). Consider the total size of the data. Account for increases in cookie size due to encryption and chunking.
 
 ### Configure the TempData provider
 
 The cookie-based TempData provider is enabled by default.
 
-To enable the session-based TempData provider, use the <xref:Microsoft.Extensions.DependencyInjection.MvcViewFeaturesMvcBuilderExtensions.AddSessionStateTempDataProvider%2A> extension method:
+To enable the session-based TempData provider, use the <xref:Microsoft.Extensions.DependencyInjection.MvcViewFeaturesMvcBuilderExtensions.AddSessionStateTempDataProvider%2A> extension method. Only one call to `AddSessionStateTempDataProvider` is required:
 
-[!code-csharp[](app-state/samples_snapshot_2/2.x/SessionSample/Startup.cs?name=snippet1&highlight=11,13,32)]
-
-The order of middleware is important. In the preceding example, an `InvalidOperationException` exception occurs when `UseSession` is invoked after `UseMvc`. For more information, see [Middleware Ordering](xref:fundamentals/middleware/index#order).
-
-> [!IMPORTANT]
-> If targeting .NET Framework and using the session-based TempData provider, add the [Microsoft.AspNetCore.Session](https://www.nuget.org/packages/Microsoft.AspNetCore.Session/) package to the project.
+[!code-csharp[](app-state/samples/3.x/SessionSample/Startup3.cs?name=snippet1&highlight=4,6,8,30)]
 
 ## Query strings
 
 A limited amount of data can be passed from one request to another by adding it to the new request's query string. This is useful for capturing state in a persistent manner that allows links with embedded state to be shared through email or social networks. Because URL query strings are public, never use query strings for sensitive data.
 
-In addition to unintended sharing, including data in query strings can create opportunities for [Cross-Site Request Forgery (CSRF)](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)) attacks, which can trick users into visiting malicious sites while authenticated. Attackers can then steal user data from the app or take malicious actions on behalf of the user. Any preserved app or session state must protect against CSRF attacks. For more information, see <xref:security/anti-request-forgery>.
+In addition to unintended sharing, including data in query strings can expose the app to [Cross-Site Request Forgery (CSRF)](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)) attacks. Any preserved session state must protect against CSRF attacks. For more information, see <xref:security/anti-request-forgery>.
 
 ## Hidden fields
 
@@ -497,90 +505,42 @@ Data can be saved in hidden form fields and posted back on the next request. Thi
 
 The <xref:Microsoft.AspNetCore.Http.HttpContext.Items?displayProperty=nameWithType> collection is used to store data while processing a single request. The collection's contents are discarded after a request is processed. The `Items` collection is often used to allow components or middleware to communicate when they operate at different points in time during a request and have no direct way to pass parameters.
 
-In the following example, [middleware](xref:fundamentals/middleware/index) adds `isVerified` to the `Items` collection.
+In the following example, [middleware](xref:fundamentals/middleware/index) adds `isVerified` to the `Items` collection:
 
-```csharp
-app.Use(async (context, next) =>
-{
-    // perform some verification
-    context.Items["isVerified"] = true;
-    await next.Invoke();
-});
-```
+[!code-csharp[](app-state/samples/3.x/SessionSample/Startup.cs?name=snippet1)]
 
-Later in the pipeline, another middleware can access the value of `isVerified`:
+For middleware that's only used in a single app, fixed `string` keys are acceptable. Middleware shared between apps should use unique object keys to avoid key collisions. The following example shows how to use a unique object key defined in a middleware class:
 
-```csharp
-app.Run(async (context) =>
-{
-    await context.Response.WriteAsync($"Verified: {context.Items["isVerified"]}");
-});
-```
-
-For middleware that's only used by a single app, `string` keys are acceptable. Middleware shared between app instances should use unique object keys to avoid key collisions. The following example shows how to use a unique object key defined in a middleware class:
-
-[!code-csharp[](app-state/samples/2.x/SessionSample/Middleware/HttpContextItemsMiddleware.cs?name=snippet1&highlight=4,13)]
+[!code-csharp[](app-state/samples/3.x/SessionSample/Middleware/HttpContextItemsMiddleware.cs?name=snippet1&highlight=4,13)]
 
 Other code can access the value stored in `HttpContext.Items` using the key exposed by the middleware class:
 
-[!code-csharp[](app-state/samples/2.x/SessionSample/Pages/Index.cshtml.cs?name=snippet3)]
+[!code-csharp[](app-state/samples/3.x/SessionSample/Pages/Index.cshtml.cs?name=snippet3)]
 
 This approach also has the advantage of eliminating the use of key strings in the code.
 
 ## Cache
 
-Caching is an efficient way to store and retrieve data. The app can control the lifetime of cached items.
+Caching is an efficient way to store and retrieve data. The app can control the lifetime of cached items. For more information, see <xref:performance/caching/response>.
 
-Cached data isn't associated with a specific request, user, or session. **Be careful not to cache user-specific data that may be retrieved by other users' requests.**
+Cached data isn't associated with a specific request, user, or session. **Do not cache user-specific data that may be retrieved by other user requests.**
 
-For more information, see <xref:performance/caching/response>.
-
-## Dependency Injection
-
-Use [Dependency Injection](xref:fundamentals/dependency-injection) to make data available to all users:
-
-1. Define a service containing the data. For example, a class named `MyAppData` is defined:
-
-    ```csharp
-    public class MyAppData
-    {
-        // Declare properties and methods
-    }
-    ```
-
-2. Add the service class to `Startup.ConfigureServices`:
-
-    ```csharp
-    public void ConfigureServices(IServiceCollection services)
-    {
-        services.AddSingleton<MyAppData>();
-    }
-    ```
-
-3. Consume the data service class:
-
-    ```csharp
-    public class IndexModel : PageModel
-    {
-        public IndexModel(MyAppData myService)
-        {
-            // Do something with the service
-            //    Examples: Read data, store in a field or property
-        }
-    }
-    ```
+To cache application wide data, see <xref:performance/caching/memory>.
 
 ## Common errors
 
 * "Unable to resolve service for type 'Microsoft.Extensions.Caching.Distributed.IDistributedCache' while attempting to activate 'Microsoft.AspNetCore.Session.DistributedSessionStore'."
 
-  This is usually caused by failing to configure at least one `IDistributedCache` implementation. For more information, see <xref:performance/caching/distributed> and <xref:performance/caching/memory>.
+  This is typically caused by failing to configure at least one `IDistributedCache` implementation. For more information, see <xref:performance/caching/distributed> and <xref:performance/caching/memory>.
 
-* In the event that the session middleware fails to persist a session (for example, if the backing store isn't available), the middleware logs the exception and the request continues normally. This leads to unpredictable behavior.
+If the session middleware fails to persist a session:
 
-  For example, a user stores a shopping cart in session. The user adds an item to the cart but the commit fails. The app doesn't know about the failure so it reports to the user that the item was added to their cart, which isn't true.
+* The middleware logs the exception and the request continues normally.
+* This leads to unpredictable behavior.
 
-  The recommended approach to check for errors is to call `await feature.Session.CommitAsync();` from app code when the app is done writing to the session. `CommitAsync` throws an exception if the backing store is unavailable. If `CommitAsync` fails, the app can process the exception. `LoadAsync` throws under the same conditions where the data store is unavailable.
+The session middleware can fail to persist a session if the backing store isn't available. For example, a user stores a shopping cart in session. The user adds an item to the cart but the commit fails. The app doesn't know about the failure so it reports to the user that the item was added to their cart, which isn't true.
+
+The recommended approach to check for errors is to call `await feature.Session.CommitAsync` when the app is done writing to the session. <xref:Microsoft.AspNetCore.Http.ISession.CommitAsync*> throws an exception if the backing store is unavailable. If `CommitAsync` fails, the app can process the exception. <xref:Microsoft.AspNetCore.Http.ISession.LoadAsync*> throws under the same conditions when the data store is unavailable.
   
 ## SignalR and session state
 
