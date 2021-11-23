@@ -772,6 +772,14 @@ The following code shows how to use the custom `EFConfigurationProvider` in *Pro
 
 [!code-csharp[](index/samples_snippets/6.x/EfconfigSample/Program.cs?highlight=5-6)]
 
+## Access configuration with Dependency Injection (DI)
+
+Configuration can be injected into services using [Dependency Injection (DI)](xref:fundamentals/dependency-injection) by resolving the <xref:Microsoft.Extensions.Configuration.IConfiguration> service:
+
+[!code-csharp[](index/samples/6.x/ConfigSample/Service.cs?name=snippet_Class&highlight=5-6)]
+
+For information on how to access values using `IConfiguration`, see [GetValue](#getvalue) and [GetSection, GetChildren, and Exists](#getsection-getchildren-and-exists) in this article.
+
 ## Access configuration in Razor Pages
 
 The following code displays configuration data in a Razor Page:
@@ -1609,14 +1617,6 @@ The following code shows how to use the custom `EFConfigurationProvider` in *Pro
 [!code-csharp[](index/samples_snippets/3.x/ConfigurationSample/Program.cs?highlight=7-8)]
 
 <a name="acs"></a>
-
-## Generic access to configuration information
-
-The [`IConfiguration`](xref:Microsoft.Extensions.Configuration.IConfiguration) service may be retrieved via [Dependency Injection](xref:fundamentals/dependency-injection), and used to access configuration information within an application:
-
-[!code-csharp[](index/samples/3.x/ConfigSample/configAccess.cs)]
-
-For information on the specifics on information retrieval from the [`IConfiguration`](xref:Microsoft.Extensions.Configuration.IConfiguration), see [GetValue](#getvalue-1) and [GetSection](#getsection-getchildren-and-exists-1) subsections of this article.
 
 ## Access configuration in Startup
 
