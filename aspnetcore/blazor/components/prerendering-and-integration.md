@@ -209,7 +209,7 @@ Update the imported layout file (`_Layout.cshtml`) to include the **`Client`** p
     <link rel="stylesheet" href="~/css/site.css" />
 +   <link href="css/app.css" rel="stylesheet" />
 +   <link href="BlazorHosted.Client.styles.css" rel="stylesheet" />
-+   <component type="typeof(HeadOutlet)" render-mode="WebAssemblyPrerendered" />
++   <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
 </head>
 ```
 
