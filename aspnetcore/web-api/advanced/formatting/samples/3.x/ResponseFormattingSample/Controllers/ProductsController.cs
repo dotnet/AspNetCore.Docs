@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ResponseFormattingSample.Controllers
 {
-    #region snippet
+    // <snippet>
     [Route("api/[controller]")]
     [ApiController]
     [FormatFilter]
@@ -12,7 +12,7 @@ namespace ResponseFormattingSample.Controllers
         [HttpGet("{id}.{format?}")]
         public Product Get(int id)
         {
-            #endregion
+            // </snippet>
 
             return new Product();
         }
