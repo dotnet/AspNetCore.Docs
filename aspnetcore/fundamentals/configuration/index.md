@@ -774,6 +774,14 @@ The following code shows how to use the custom `EFConfigurationProvider` in *Pro
 
 [!code-csharp[](index/samples_snippets/6.x/EfconfigSample/Program.cs?highlight=5-6)]
 
+## Access configuration with Dependency Injection (DI)
+
+Configuration can be injected into services using [Dependency Injection (DI)](xref:fundamentals/dependency-injection) by resolving the <xref:Microsoft.Extensions.Configuration.IConfiguration> service:
+
+[!code-csharp[](index/samples/6.x/ConfigSample/Service.cs?name=snippet_Class&highlight=5-6)]
+
+For information on how to access values using `IConfiguration`, see [GetValue](#getvalue) and [GetSection, GetChildren, and Exists](#getsection-getchildren-and-exists) in this article.
+
 ## Access configuration in Razor Pages
 
 The following code displays configuration data in a Razor Page:
@@ -1451,7 +1459,7 @@ In the preceding environment variable, `Https` is the name of the Kestrel specif
 
 ## GetValue
 
-[`ConfigurationBinder.GetValue<T>`](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.GetValue*) extracts a single value from configuration with a specified key and converts it to the specified type:
+[`ConfigurationBinder.GetValue<T>`](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.GetValue*) extracts a single value from configuration with a specified key and converts it to the specified type. This method is an extension method for <xref:Microsoft.Extensions.Configuration.IConfiguration>:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/TestNum.cshtml.cs?name=snippet)]
 
