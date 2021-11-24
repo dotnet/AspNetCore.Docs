@@ -185,19 +185,21 @@ Consider the following page that creates a customer:
 
 The following page displays `TempData["Message"]`:
 
+app-state\6.0samples\RazorPagesContacts\Pages\Customers\IndexPeek.cshtml
+
 [!code-cshtml[](app-state/3.0samples/RazorPagesContacts/Pages/Customers/IndexPeek.cshtml?range=1-14)]
 
 In the preceding markup, at the end of the request, `TempData["Message"]` is **not** deleted because `Peek` is used. Refreshing the page displays the contents of `TempData["Message"]`.
 
 The following markup is similar to the preceding code, but uses `Keep` to preserve the data at the end of the request:
 
-[!code-cshtml[](app-state/3.0samples/RazorPagesContacts/Pages/Customers/IndexKeep.cshtml?range=1-14)]
+[!code-cshtml[](app-state/6.0samples/RazorPagesContacts/Pages/Customers/IndexKeep.cshtml?range=1-14)]
 
 Navigating between the *IndexPeek* and *IndexKeep* pages won't delete `TempData["Message"]`.
 
 The following code displays `TempData["Message"]`, but at the end of the request, `TempData["Message"]` is deleted:
 
-[!code-cshtml[](app-state/3.0samples/RazorPagesContacts/Pages/Customers/Index.cshtml?range=1-14)]
+[!code-cshtml[](app-state/6.0samples/RazorPagesContacts/Pages/Customers/Index.cshtml?range=1-14)]
 
 ### TempData providers
 
