@@ -11,12 +11,12 @@ namespace ResponseFormattingSample.Snippets.Controllers;
 [ApiController]
 [Route("api/[controller]")]
 [Produces("application/json")]
-public class TodosController : ControllerBase
+public class TodoItemsController : ControllerBase
 // </snippet_ClassDeclaration>
 {
     private readonly TodoItemStore _todoItemStore;
 
-    public TodosController(TodoItemStore todoItemStore) =>
+    public TodoItemsController(TodoItemStore todoItemStore) =>
         _todoItemStore = todoItemStore;
 
     // <snippet_Get>

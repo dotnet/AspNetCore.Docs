@@ -5,11 +5,11 @@ namespace ResponseFormattingSample.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class TodosController : ControllerBase
+public class TodoItemsController : ControllerBase
 {
     private readonly TodoItemStore _todoItemStore;
 
-    public TodosController(TodoItemStore todoItemStore) =>
+    public TodoItemsController(TodoItemStore todoItemStore) =>
         _todoItemStore = todoItemStore;
 
     // <snippet_Get>

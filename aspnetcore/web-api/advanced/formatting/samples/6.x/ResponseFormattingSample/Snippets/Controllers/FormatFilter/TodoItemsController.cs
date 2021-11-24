@@ -8,11 +8,11 @@ namespace ResponseFormattingSample.Snippets.Controllers.FormatFilter;
 [ApiController]
 [Route("api/[controller]")]
 [FormatFilter]
-public class TodosController : ControllerBase
+public class TodoItemsController : ControllerBase
 {
     private readonly TodoItemStore _todoItemStore;
 
-    public TodosController(TodoItemStore todoItemStore) =>
+    public TodoItemsController(TodoItemStore todoItemStore) =>
         _todoItemStore = todoItemStore;
 
     [HttpGet("{id:long}.{format?}")]
