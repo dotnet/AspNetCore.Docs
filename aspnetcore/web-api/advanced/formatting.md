@@ -194,7 +194,7 @@ Clients can request a particular format as part of the URL, for example:
 
 The mapping from request path should be specified in the route the API is using. For example:
 
-:::code language="csharp" source="formatting/samples/3.x/ResponseFormattingSample/Controllers/ProductsController.cs" id="snippet":::
+:::code language="csharp" source="formatting/samples/6.x/ResponseFormattingSample/Snippets/Controllers/FormatFilter/TodosController.cs" id="snippet_ClassGet" highlight="3,11":::
 
 The preceding route allows the requested format to be specified as an optional file extension. The [`[FormatFilter]`](xref:Microsoft.AspNetCore.Mvc.FormatFilterAttribute) attribute checks for the existence of the format value in the `RouteData` and maps the response format to the appropriate formatter when the response is created.
 
