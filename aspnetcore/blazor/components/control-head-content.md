@@ -56,13 +56,13 @@ When [Razor components are prerendered](xref:blazor/components/prerendering-and-
 
 If the shared `_Layout.cshtml` file doesn't have a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component, add it to the `<head>` elements.
 
-In a **required**, shared `_Layout.cshtml` file of a Blazor Server app:
+In a **required**, shared `_Layout.cshtml` file of a Blazor Server app or Razor Pages/MVC app that embeds components into pages or views:
 
 ```cshtml
 <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
 ```
 
-In a **required**, shared `_Layout.cshtml` file of a prerendered Blazor WebAssembly app:
+In a **required**, shared `_Layout.cshtml` file of a prerendered hosted Blazor WebAssembly app:
 
 ```cshtml
 <component type="typeof(HeadOutlet)" render-mode="WebAssemblyPrerendered" />
