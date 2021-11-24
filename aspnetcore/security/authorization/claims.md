@@ -64,7 +64,7 @@ If the claim value isn't a single value or a transformation is required, use [Re
 
 If you apply multiple policies to a controller or action, then all policies must pass before access is granted. For example:
 
-[!code-csharp[](~/security/authorization/claims/samples/6.x/WebAll/Controllers/SalaryController.cs?name=snippet2&highlight=1,14)]
+[!code-csharp[](~/security/authorization/claims/samples/6.x/WebAll/Controllers/SalaryController.cs?name=snippet&highlight=1,14)]
 
 In the preceding example any identity which fulfills the `EmployeeOnly` policy can access the `Payslip` action as that policy is enforced on the controller. However in order to call the `UpdateSalary` action the identity must fulfill *both* the `EmployeeOnly` policy and the `HumanResources` policy.
 
