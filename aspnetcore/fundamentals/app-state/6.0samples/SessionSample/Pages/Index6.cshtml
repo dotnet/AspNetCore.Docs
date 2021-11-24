@@ -1,0 +1,14 @@
+﻿@page
+@model Index6Model
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+<p><b>Name:</b> @HttpContext.Session.GetString("_Name");<b>Age:
+
+</b> @HttpContext.Session.GetInt32("_Age").ToString()</p>
+<p></p>
+<p><b>Session Time:</b> @HttpContext.Session.GetString("_Time");
+    <p><b>Current Time:</b> @DateTime.Now;
+</div>

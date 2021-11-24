@@ -87,8 +87,7 @@ To enable the session middleware, `Progam.cs` must contain:
 
 The following code shows how to set up the in-memory session provider with a default in-memory implementation of `IDistributedCache`:
 
-[!code-csharp[](app-state/6.0samples/RazorPagesContacts/Program.cs
-?name=snippet_2&highlight=8-13,30)]
+[!code-csharp[](app-state/6.0samples/RazorPagesContacts/Program.cs?name=snippet_2&highlight=8-13,30)]
 
 The preceding code sets a short timeout to simplify testing.
 
@@ -155,7 +154,7 @@ Name: @HttpContext.Session.GetString(IndexModel.SessionKeyName)
 
 The following example shows how to set and get an integer and a string:
 
-[!code-csharp[](app-state/6.0samples/SessionSample/Pages/Index.cshtml.cs)]
+[!code-csharp[](app-state/6.0samples/SessionSample/Pages/Index.cshtml.cs?name=snippet1)]
 
 The following markup displays the session values on a Razor Page:
 
@@ -165,11 +164,11 @@ All session data must be serialized to enable a distributed cache scenario, even
 
 Use the following sample code to serialize objects:
 
-[!code-csharp[](app-state/samples/3.x/SessionSample/Extensions/SessionExtensions.cs?name=snippet1)]
+[!code-csharp[](app-state/samples/6.x/SessionSample/Extensions/SessionExtensions.cs?name=snippet1)]
 
 The following example shows how to set and get a serializable object with the `SessionExtensions` class:
 
-[!code-csharp[](app-state/samples/3.x/SessionSample/Pages/Index.cshtml.cs?name=snippet2)]
+[!code-csharp[](app-state/samples/3.x/SessionSample/Pages/Index6.cshtml.cs)]
 
 ## TempData
 
