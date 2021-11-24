@@ -330,7 +330,7 @@ services.AddCertificateForwarding(options =>
         if (!string.IsNullOrWhiteSpace(headerValue))
         {
             string certPem = WebUtility.UrlDecode(headerValue);
-            clientCertificate = X509Certificate2.CreateFromPem(certPem);
+            clientCertificate = X509Certificate2.CreateFromPemFile(certPem);
         }
 
         return clientCertificate;
