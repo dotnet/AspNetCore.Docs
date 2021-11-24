@@ -16,8 +16,6 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT), [Kirk Larkin](https://twitt
 
 HTTP is a stateless protocol. By default, HTTP requests are independent messages that don't retain user values. This article describes several approaches to preserve user data between requests.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/app-state/samples) ([how to download](xref:index#how-to-download-a-sample))
-
 ## State management
 
 State can be stored using several approaches. Each approach is described later in this topic.
@@ -81,19 +79,19 @@ The [Microsoft.AspNetCore.Session](https://www.nuget.org/packages/Microsoft.AspN
 * Is included implicitly by the framework.
 * Provides middleware for managing session state.
 
-To enable the session middleware, `Startup` must contain:
+To enable the session middleware, `Progam.cs` must contain:
 
 * Any of the <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> memory caches. The `IDistributedCache` implementation is used as a backing store for session. For more information, see <xref:performance/caching/distributed>.
-* A call to <xref:Microsoft.Extensions.DependencyInjection.SessionServiceCollectionExtensions.AddSession%2A> in `ConfigureServices`.
-* A call to <xref:Microsoft.AspNetCore.Builder.SessionMiddlewareExtensions.UseSession%2A> in `Configure`.
+* A call to <xref:Microsoft.Extensions.DependencyInjection.SessionServiceCollectionExtensions.AddSession%2A>
+* A call to <xref:Microsoft.AspNetCore.Builder.SessionMiddlewareExtensions.UseSession%2A>
 
 The following code shows how to set up the in-memory session provider with a default in-memory implementation of `IDistributedCache`:
 
-[!code-csharp[](app-state/samples/3.x/SessionSample/Startup4.cs?name=snippet1&highlight=12-19,45)]
+[!code-csharp[](app-state/6.0samples/RazorPagesContacts/Program.cs?name=snippet_2&highlight=6,8-13,30)]
 
 The preceding code sets a short timeout to simplify testing.
 
-The order of middleware is important.  Call `UseSession` after `UseRouting` and before `UseEndpoints`. See [Middleware Ordering](xref:fundamentals/middleware/index#order).
+The order of middleware is important.  Call `UseSession` after `UseRouting` and before `MapRazorPages` and `MapDefaultControllerRoute` . See [Middleware Ordering](xref:fundamentals/middleware/index#order).
 
 [HttpContext.Session](xref:Microsoft.AspNetCore.Http.HttpContext.Session) is available after session state is configured.
 
@@ -121,7 +119,7 @@ Session uses a cookie to track and identify requests from a single browser. By d
 
 To override cookie session defaults, use <xref:Microsoft.AspNetCore.Builder.SessionOptions>:
 
-[!code-csharp[](app-state/samples/3.x/SessionSample/Startup2.cs?name=snippet1&highlight=5-10)]
+[!code-csharp[](app-state/6.0samples/RazorPagesContacts/Program.cs?name=snippet_or&highlight=8-13)]
 
 The app uses the <xref:Microsoft.AspNetCore.Builder.SessionOptions.IdleTimeout> property to determine how long a session can be idle before its contents in the server's cache are abandoned. This property is independent of the cookie expiration. Each request that passes through the [Session Middleware](xref:Microsoft.AspNetCore.Session.SessionMiddleware) resets the timeout.
 
@@ -155,17 +153,21 @@ Name: @HttpContext.Session.GetString(IndexModel.SessionKeyName)
 
 The following example shows how to set and get an integer and a string:
 
-[!code-csharp[](app-state/samples/3.x/SessionSample/Pages/Index.cshtml.cs?name=snippet1&highlight=18-19,22-23)]
+[!code-csharp[](app-state/6.0samples/SessionSample/Pages/Index.cshtml.cs?name=snippet1)]
+
+The following markup displays the session values on a Razor Page:
+
+[!code-cshtml[](app-state/6.0samples/SessionSample/Pages/Privacy.cshtml)]
 
 All session data must be serialized to enable a distributed cache scenario, even when using the in-memory cache. String and integer serializers are provided by the extension methods of <xref:Microsoft.AspNetCore.Http.ISession>. Complex types must be serialized by the user using another mechanism, such as JSON.
 
 Use the following sample code to serialize objects:
 
-[!code-csharp[](app-state/samples/3.x/SessionSample/Extensions/SessionExtensions.cs?name=snippet1)]
+[!code-csharp[](app-state/6.0samples/SessionSample/Extensions/SessionExtensions.cs?name=snippet1)]
 
 The following example shows how to set and get a serializable object with the `SessionExtensions` class:
 
-[!code-csharp[](app-state/samples/3.x/SessionSample/Pages/Index.cshtml.cs?name=snippet2)]
+[!code-csharp[](app-state/6.0samples/SessionSample/Pages/Index6.cshtml.cs)]
 
 ## TempData
 
@@ -188,13 +190,13 @@ In the preceding markup, at the end of the request, `TempData["Message"]` is **n
 
 The following markup is similar to the preceding code, but uses `Keep` to preserve the data at the end of the request:
 
-[!code-cshtml[](app-state/3.0samples/RazorPagesContacts/Pages/Customers/IndexKeep.cshtml?range=1-14)]
+[!code-cshtml[](app-state/6.0samples/RazorPagesContacts/Pages/Customers/IndexKeep.cshtml?range=1-14)]
 
 Navigating between the *IndexPeek* and *IndexKeep* pages won't delete `TempData["Message"]`.
 
 The following code displays `TempData["Message"]`, but at the end of the request, `TempData["Message"]` is deleted:
 
-[!code-cshtml[](app-state/3.0samples/RazorPagesContacts/Pages/Customers/Index.cshtml?range=1-14)]
+[!code-cshtml[](app-state/6.0samples/RazorPagesContacts/Pages/Customers/Index.cshtml?range=1-14)]
 
 ### TempData providers
 
@@ -208,7 +210,7 @@ Choosing a TempData provider involves several considerations, such as:
 
 * Does the app already use session state? If so, using the session state TempData provider has no additional cost to the app beyond the size of the data.
 * Does the app use TempData only sparingly for relatively small amounts of data, up to 500 bytes? If so, the cookie TempData provider adds a small cost to each request that carries TempData. If not, the session state TempData provider can be beneficial to avoid round-tripping a large amount of data in each request until the TempData is consumed.
-* Does the app run in a server farm on multiple servers? If so, there's no additional configuration required to use the cookie TempData provider outside of Data Protection (see <xref:security/data-protection/introduction> and [Key storage providers](xref:security/data-protection/implementation/key-storage-providers)).
+* Does the app run in a server farm on multiple servers? If so, there's no additional configuration required to use the cookie TempData provider outside of Data Protection. For more information, see <xref:security/data-protection/introduction> and [Key storage providers](xref:security/data-protection/implementation/key-storage-providers).
 
 Most web clients such as web browsers enforce limits on the maximum size of each cookie and the total number of cookies. When using the cookie TempData provider, verify the app won't exceed [these limits](http://www.faqs.org/rfcs/rfc2965.html). Consider the total size of the data. Account for increases in cookie size due to encryption and chunking.
 
@@ -218,7 +220,7 @@ The cookie-based TempData provider is enabled by default.
 
 To enable the session-based TempData provider, use the <xref:Microsoft.Extensions.DependencyInjection.MvcViewFeaturesMvcBuilderExtensions.AddSessionStateTempDataProvider%2A> extension method. Only one call to `AddSessionStateTempDataProvider` is required:
 
-[!code-csharp[](app-state/samples/3.x/SessionSample/Startup3.cs?name=snippet1&highlight=4,6,8,30)]
+[!code-csharp[](app-state/6.0samples/SessionSample/Program.cs?name=snippet&highlight=4,6,8,25)]
 
 ## Query strings
 
@@ -230,21 +232,21 @@ In addition to unintended sharing, including data in query strings can expose th
 
 Data can be saved in hidden form fields and posted back on the next request. This is common in multi-page forms. Because the client can potentially tamper with the data, the app must always revalidate the data stored in hidden fields.
 
-## HttpContext.Items
+## `HttpContext.Items`
 
 The <xref:Microsoft.AspNetCore.Http.HttpContext.Items?displayProperty=nameWithType> collection is used to store data while processing a single request. The collection's contents are discarded after a request is processed. The `Items` collection is often used to allow components or middleware to communicate when they operate at different points in time during a request and have no direct way to pass parameters.
 
 In the following example, [middleware](xref:fundamentals/middleware/index) adds `isVerified` to the `Items` collection:
 
-[!code-csharp[](app-state/samples/3.x/SessionSample/Startup.cs?name=snippet1)]
+[!code-csharp[](app-state/6.0samples/SessionSample/Program.cs?name=snippet_hci)]
 
 For middleware that's only used in a single app, fixed `string` keys are acceptable. Middleware shared between apps should use unique object keys to avoid key collisions. The following example shows how to use a unique object key defined in a middleware class:
 
-[!code-csharp[](app-state/samples/3.x/SessionSample/Middleware/HttpContextItemsMiddleware.cs?name=snippet1&highlight=4,13)]
+[!code-csharp[](app-state/6.0samples/SessionSample/Middleware/HttpContextItemsMiddleware.cs?name=snippet1&highlight=4,13)]
 
 Other code can access the value stored in `HttpContext.Items` using the key exposed by the middleware class:
 
-[!code-csharp[](app-state/samples/3.x/SessionSample/Pages/Index.cshtml.cs?name=snippet3)]
+[!code-csharp[](app-state/6.0samples/SessionSample/Pages/Index2.cshtml.cs?name=snippet)]
 
 This approach also has the advantage of eliminating the use of key strings in the code.
 
@@ -276,6 +278,8 @@ The recommended approach to check for errors is to call `await feature.Session.C
 SignalR apps should not use session state to store information. SignalR apps can store per connection state in `Context.Items` in the hub. <!-- https://github.com/aspnet/SignalR/issues/2139 -->
 
 ## Additional resources
+
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/app-state/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 <xref:host-and-deploy/web-farm>
 

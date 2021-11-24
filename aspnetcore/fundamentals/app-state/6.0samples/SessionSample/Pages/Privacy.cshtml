@@ -1,0 +1,14 @@
+﻿@page
+@model PrivacyModel
+@{
+    ViewData["Title"] = "Privacy Policy";
+}
+<h1>@ViewData["Title"]</h1>
+
+<div class="text-center">
+<p><b>Name:</b> @HttpContext.Session.GetString("_Name");<b>Age:
+
+</b> @HttpContext.Session.GetInt32("_Age").ToString()</p>
+</div>
+
+
