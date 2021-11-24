@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using WebAll.Models;
 
@@ -22,6 +23,14 @@ namespace WebAll.Controllers
         {
             return View();
         }
+
+        #region snippet
+        [Authorize(Policy = "EmployeeOnly")]
+        public IActionResult VacationBalance()
+        {
+            return View();
+        }
+        #endregion
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
