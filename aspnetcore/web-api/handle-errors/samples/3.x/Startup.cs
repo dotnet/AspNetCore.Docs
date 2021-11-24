@@ -37,7 +37,7 @@ namespace WebApiSample
         public void ConfigureServices(IServiceCollection services)
         {
 #if InvalidModelStateResponseFactory
-            #region snippet_DisableProblemDetailsInvalidModelStateResponseFactory
+            // <snippet_DisableProblemDetailsInvalidModelStateResponseFactory>
             services.AddControllers()
                 .ConfigureApiBehaviorOptions(options =>
                 {
@@ -52,18 +52,18 @@ namespace WebApiSample
                         return result;
                     };
                 });
-            #endregion
+            // </snippet_DisableProblemDetailsInvalidModelStateResponseFactory>
 #endif
 
 #if ExceptionFilter
-            #region snippet_AddExceptionFilter
+            // <snippet_AddExceptionFilter>
             services.AddControllers(options =>
                 options.Filters.Add(new HttpResponseExceptionFilter()));
-            #endregion
+            // </snippet_AddExceptionFilter>
 #endif
         }
 
-        #region snippet_UseExceptionHandler
+        // <snippet_UseExceptionHandler>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -83,6 +83,6 @@ namespace WebApiSample
                 endpoints.MapControllers();
             });
         }
-        #endregion
+        // </snippet_UseExceptionHandler>
     }
 }

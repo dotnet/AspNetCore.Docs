@@ -20,18 +20,18 @@ using Microsoft.Extensions.Hosting.Internal;
 namespace WebApiSample.Controllers
 {
 #if GenericAction
-    #region snippet_ErrorController
+    // <snippet_ErrorController>
     [ApiController]
     public class ErrorController : ControllerBase
     {
         [Route("/error")]
         public IActionResult Error() => Problem();
     }
-    #endregion
+    // </snippet_ErrorController>
 #endif
 
 #if EnvironmentSpecificActions
-    #region snippet_ErrorControllerEnvironmentSpecific
+    // <snippet_ErrorControllerEnvironmentSpecific>
     [ApiController]
     public class ErrorController : ControllerBase
     {
@@ -55,6 +55,6 @@ namespace WebApiSample.Controllers
         [Route("/error")]
         public IActionResult Error() => Problem();
     }
-    #endregion
+    // </snippet_ErrorControllerEnvironmentSpecific>
 #endif
 }

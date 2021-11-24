@@ -21,7 +21,7 @@ namespace WebApiSample.Controllers
         public IEnumerable<WeatherForecast> Get() =>
             GetWeather();
 
-        #region snippet_GetByCity
+        // <snippet_GetByCity>
         [HttpGet("{city}")]
         public WeatherForecast Get(string city)
         {
@@ -33,7 +33,7 @@ namespace WebApiSample.Controllers
             
             return GetWeather().First();
         }
-        #endregion
+        // </snippet_GetByCity>
 
         private IEnumerable<WeatherForecast> GetWeather()
         {
