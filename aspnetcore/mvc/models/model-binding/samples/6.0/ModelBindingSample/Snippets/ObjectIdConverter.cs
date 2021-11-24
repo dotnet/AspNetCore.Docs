@@ -7,7 +7,7 @@ namespace ModelBindingSample.Snippets;
 internal class ObjectIdConverter : JsonConverter<ObjectId>
 {
     public override ObjectId Read(
-            ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) =>
+        ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) =>
         new(JsonSerializer.Deserialize<int>(ref reader, options));
 
     public override void Write(

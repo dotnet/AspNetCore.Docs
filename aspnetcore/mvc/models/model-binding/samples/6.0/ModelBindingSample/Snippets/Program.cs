@@ -21,7 +21,7 @@ public static class Program
         builder.Services.AddControllers(options =>
         {
             var index = options.ValueProviderFactories.IndexOf(
-                options.ValueProviderFactories.OfType<QueryStringValueProviderFactory>().Single());
+             options.ValueProviderFactories.OfType<QueryStringValueProviderFactory>().Single());
 
             options.ValueProviderFactories[index] = new CultureQueryStringValueProviderFactory();
         });
