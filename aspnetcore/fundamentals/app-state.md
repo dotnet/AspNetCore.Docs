@@ -168,7 +168,7 @@ Use the following sample code to serialize objects:
 
 The following example shows how to set and get a serializable object with the `SessionExtensions` class:
 
-[!code-csharp[](app-state/samples/3.x/SessionSample/Pages/Index6.cshtml.cs)]
+[!code-csharp[](app-state/samples/6.x/SessionSample/Pages/Index6.cshtml.cs)]
 
 ## TempData
 
@@ -211,7 +211,7 @@ Choosing a TempData provider involves several considerations, such as:
 
 * Does the app already use session state? If so, using the session state TempData provider has no additional cost to the app beyond the size of the data.
 * Does the app use TempData only sparingly for relatively small amounts of data, up to 500 bytes? If so, the cookie TempData provider adds a small cost to each request that carries TempData. If not, the session state TempData provider can be beneficial to avoid round-tripping a large amount of data in each request until the TempData is consumed.
-* Does the app run in a server farm on multiple servers? If so, there's no additional configuration required to use the cookie TempData provider outside of Data Protection (see <xref:security/data-protection/introduction> and [Key storage providers](xref:security/data-protection/implementation/key-storage-providers)).
+* Does the app run in a server farm on multiple servers? If so, there's no additional configuration required to use the cookie TempData provider outside of Data Protection. For more information, see <xref:security/data-protection/introduction> and [Key storage providers](xref:security/data-protection/implementation/key-storage-providers).
 
 Most web clients such as web browsers enforce limits on the maximum size of each cookie and the total number of cookies. When using the cookie TempData provider, verify the app won't exceed [these limits](http://www.faqs.org/rfcs/rfc2965.html). Consider the total size of the data. Account for increases in cookie size due to encryption and chunking.
 
@@ -221,7 +221,7 @@ The cookie-based TempData provider is enabled by default.
 
 To enable the session-based TempData provider, use the <xref:Microsoft.Extensions.DependencyInjection.MvcViewFeaturesMvcBuilderExtensions.AddSessionStateTempDataProvider%2A> extension method. Only one call to `AddSessionStateTempDataProvider` is required:
 
-[!code-csharp[](app-state/samples/3.x/SessionSample/Startup3.cs?name=snippet1&highlight=4,6,8,30)]
+[!code-csharp[](app-state/samples/6.x/SessionSample/Program.cs?name=snippet&highlight=4,6,8,25)]
 
 ## Query strings
 
@@ -233,21 +233,21 @@ In addition to unintended sharing, including data in query strings can expose th
 
 Data can be saved in hidden form fields and posted back on the next request. This is common in multi-page forms. Because the client can potentially tamper with the data, the app must always revalidate the data stored in hidden fields.
 
-## HttpContext.Items
+## `HttpContext.Items`
 
 The <xref:Microsoft.AspNetCore.Http.HttpContext.Items?displayProperty=nameWithType> collection is used to store data while processing a single request. The collection's contents are discarded after a request is processed. The `Items` collection is often used to allow components or middleware to communicate when they operate at different points in time during a request and have no direct way to pass parameters.
 
 In the following example, [middleware](xref:fundamentals/middleware/index) adds `isVerified` to the `Items` collection:
 
-[!code-csharp[](app-state/samples/3.x/SessionSample/Startup.cs?name=snippet1)]
+[!code-csharp[](app-state/samples/6.x/SessionSample/Program.cs?name=snippet_hci)]
 
 For middleware that's only used in a single app, fixed `string` keys are acceptable. Middleware shared between apps should use unique object keys to avoid key collisions. The following example shows how to use a unique object key defined in a middleware class:
 
-[!code-csharp[](app-state/samples/3.x/SessionSample/Middleware/HttpContextItemsMiddleware.cs?name=snippet1&highlight=4,13)]
+[!code-csharp[](app-state/samples/6.x/SessionSample/Middleware/HttpContextItemsMiddleware.cs?name=snippet1&highlight=4,13)]
 
 Other code can access the value stored in `HttpContext.Items` using the key exposed by the middleware class:
 
-[!code-csharp[](app-state/samples/3.x/SessionSample/Pages/Index.cshtml.cs?name=snippet3)]
+[!code-csharp[](app-state/samples/6.x/SessionSample/Pages/Index2.cshtml.cs?name=snippet)]
 
 This approach also has the advantage of eliminating the use of key strings in the code.
 

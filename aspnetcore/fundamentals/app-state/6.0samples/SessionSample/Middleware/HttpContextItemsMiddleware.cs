@@ -1,15 +1,10 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-
-namespace SessionSample.Middleware
+﻿namespace SessionSample.Middleware
 {
     #region snippet1
     public class HttpContextItemsMiddleware
     {
         private readonly RequestDelegate _next;
-        public static readonly object HttpContextItemsMiddlewareKey = new Object();
+        public static readonly object HttpContextItemsMiddlewareKey = new();
 
         public HttpContextItemsMiddleware(RequestDelegate next)
         {

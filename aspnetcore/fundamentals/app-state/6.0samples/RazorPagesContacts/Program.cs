@@ -1,4 +1,4 @@
-#define OR  // SECOND FIRST OR 
+#define FIRST  // SECOND FIRST OR 
 #if NEVER
 #elif FIRST
 #region snippet
