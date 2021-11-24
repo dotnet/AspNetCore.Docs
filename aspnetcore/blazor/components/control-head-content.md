@@ -48,6 +48,26 @@ The following example sets the page's title and description using Razor.
 }
 ```
 
+## Control head content during prerendering
+
+*This section applies to prerendered Blazor WebAssembly apps and Blazor Server apps.*
+
+When [Razor components are prerendered](xref:blazor/components/prerendering-and-integration), the use of a layout page (`_Layout.cshtml`) is required to control head (`<head>`) content with the <xref:Microsoft.AspNetCore.Components.Web.PageTitle> and <xref:Microsoft.AspNetCore.Components.Web.HeadContent> components. The reason for this requirement is that components that control head content must be rendered before the layout with the <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component. **This order of rendering is required to control head content.**
+
+If the shared `_Layout.cshtml` file doesn't have a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component, add it to the `<head>` elements.
+
+In a **required**, shared `_Layout.cshtml` file of a Blazor Server app or Razor Pages/MVC app that embeds components into pages or views:
+
+```cshtml
+<component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
+```
+
+In a **required**, shared `_Layout.cshtml` file of a prerendered hosted Blazor WebAssembly app:
+
+```cshtml
+<component type="typeof(HeadOutlet)" render-mode="WebAssemblyPrerendered" />
+```
+
 ## `HeadOutlet` component
 
 The <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component renders content provided by <xref:Microsoft.AspNetCore.Components.Web.PageTitle> and <xref:Microsoft.AspNetCore.Components.Web.HeadContent> components.
