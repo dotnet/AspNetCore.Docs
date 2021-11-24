@@ -22,7 +22,13 @@ An identity can contain multiple claims with multiple values and can contain mul
 
 ## Adding claims checks
 
-Claim based authorization checks are declarative - the developer embeds them within their code, against a controller or an action within a controller, specifying claims which the current user must possess, and optionally the value the claim must hold to access the requested resource. Claims requirements are policy based, the developer must build and register a policy expressing the claims requirements.
+Claim based authorization checks:
+
+* Are declarative.
+* Are applied to Razor Pages, controllers, or actions within a controller. 
+* can ***not*** be applied at the Razor Page handler level, they must be applied to the Page.
+
+Claims in code specify claims which the current user must possess, and optionally the value the claim must hold to access the requested resource. Claims requirements are policy based, the developer must build and register a policy expressing the claims requirements.
 
 The simplest type of claim policy looks for the presence of a claim and doesn't check the value.
 
@@ -48,7 +54,8 @@ Policies can ***not*** be applied at the Razor Page handler level, they must be 
 
 If you have a controller that's protected by the `[Authorize]` attribute, but want to allow anonymous access to particular actions you apply the `AllowAnonymousAttribute` attribute.
 
-[!code-csharp[](~/security/authorization/claims/samples/6.x/WebAll/Controllers/VacationController.cs?name=snippet2&highlight=14)]
+
+[!code-csharp[](~/security/authorization/claims/samples/6.x/WebAll/Controllers/VacationController.cs?name=snippet&highlight=14)]
 
 Because policies can ***not*** be applied at the Razor Page handler level, we recommend using a controller when polices must be applied at the page handler level. The rest of the app that doesn't require policies at the Razor Page handler level can use Razor Pages.
 
