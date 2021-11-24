@@ -164,11 +164,12 @@ All session data must be serialized to enable a distributed cache scenario, even
 
 Use the following sample code to serialize objects:
 
-[!code-csharp[](app-state/samples/6.x/SessionSample/Extensions/SessionExtensions.cs?name=snippet1)]
+app-state\6.0samples\SessionSample\Extensions\SessionExtensions.cs
+[!code-csharp[](app-state/samples/6.0/SessionSample/Extensions/SessionExtensions.cs?name=snippet1)]
 
 The following example shows how to set and get a serializable object with the `SessionExtensions` class:
 
-[!code-csharp[](app-state/samples/6.x/SessionSample/Pages/Index6.cshtml.cs)]
+[!code-csharp[](app-state/samples/6.0/SessionSample/Pages/Index6.cshtml.cs)]
 
 ## TempData
 
@@ -221,7 +222,7 @@ The cookie-based TempData provider is enabled by default.
 
 To enable the session-based TempData provider, use the <xref:Microsoft.Extensions.DependencyInjection.MvcViewFeaturesMvcBuilderExtensions.AddSessionStateTempDataProvider%2A> extension method. Only one call to `AddSessionStateTempDataProvider` is required:
 
-[!code-csharp[](app-state/samples/6.x/SessionSample/Program.cs?name=snippet&highlight=4,6,8,25)]
+[!code-csharp[](app-state/samples/6.0/SessionSample/Program.cs?name=snippet&highlight=4,6,8,25)]
 
 ## Query strings
 
@@ -239,15 +240,15 @@ The <xref:Microsoft.AspNetCore.Http.HttpContext.Items?displayProperty=nameWithTy
 
 In the following example, [middleware](xref:fundamentals/middleware/index) adds `isVerified` to the `Items` collection:
 
-[!code-csharp[](app-state/samples/6.x/SessionSample/Program.cs?name=snippet_hci)]
+[!code-csharp[](app-state/samples/6.0/SessionSample/Program.cs?name=snippet_hci)]
 
 For middleware that's only used in a single app, fixed `string` keys are acceptable. Middleware shared between apps should use unique object keys to avoid key collisions. The following example shows how to use a unique object key defined in a middleware class:
 
-[!code-csharp[](app-state/samples/6.x/SessionSample/Middleware/HttpContextItemsMiddleware.cs?name=snippet1&highlight=4,13)]
+[!code-csharp[](app-state/samples/6.0/SessionSample/Middleware/HttpContextItemsMiddleware.cs?name=snippet1&highlight=4,13)]
 
 Other code can access the value stored in `HttpContext.Items` using the key exposed by the middleware class:
 
-[!code-csharp[](app-state/samples/6.x/SessionSample/Pages/Index2.cshtml.cs?name=snippet)]
+[!code-csharp[](app-state/samples/6.0/SessionSample/Pages/Index2.cshtml.cs?name=snippet)]
 
 This approach also has the advantage of eliminating the use of key strings in the code.
 
