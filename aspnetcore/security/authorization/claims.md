@@ -40,13 +40,19 @@ You then apply the policy using the `Policy` property on the [`[Authorize]`](xre
 
 [!code-csharp[](~/security/authorization/claims/samples/6.x/WebAll/Controllers/Home2Controller.cs?name=snippet&highlight=1)]
 
-The `AuthorizeAttribute` attribute can be applied to an entire controller, in this instance only identities matching the policy are allowed access to any Action on the controller.
+The `AuthorizeAttribute` attribute can be applied to an entire controller or Razor Page, in this instance only identities matching the policy are allowed access to any Action on the controller.
 
 [!code-csharp[](~/security/authorization/claims/samples/6.x/WebAll/Controllers/VacationController.cs?name=snippet&highlight=1)]
+
+[!code-csharp[](~/security/authorization/claims/samples/6.x/WebAll/Pages/Index.cshtml.cs?name=snippet&highlight=1)]
+
+Policies can ***not*** be applied at the Razor Page handler level, they must be applied to the Page.
 
 If you have a controller that's protected by the `AuthorizeAttribute` attribute, but want to allow anonymous access to particular actions you apply the `AllowAnonymousAttribute` attribute.
 
 [!code-csharp[](~/security/authorization/claims/samples/6.x/WebAll/Controllers/VacationController.cs?name=snippet2&highlight=14)]
+
+Because policies can ***not*** be applied at the Razor Page handler level, we recommend using a controller when polices must be applied at the page handler level.
 
 Most claims come with a value. You can specify a list of allowed values when creating the policy. The following example would only succeed for employees whose employee number was 1, 2, 3, 4 or 5.
 
