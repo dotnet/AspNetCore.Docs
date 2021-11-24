@@ -87,7 +87,7 @@ To enable the session middleware, `Progam.cs` must contain:
 
 The following code shows how to set up the in-memory session provider with a default in-memory implementation of `IDistributedCache`:
 
-[!code-csharp[](app-state/6.0samples/RazorPagesContacts/Program.cs?name=snippet_2&highlight=8-13,30)]
+[!code-csharp[](app-state/6.0samples/RazorPagesContacts/Program.cs?name=snippet_2&highlight=6,8-13,30)]
 
 The preceding code sets a short timeout to simplify testing.
 
@@ -119,8 +119,7 @@ Session uses a cookie to track and identify requests from a single browser. By d
 
 To override cookie session defaults, use <xref:Microsoft.AspNetCore.Builder.SessionOptions>:
 
-[!code-csharp[](app-state/6.0samples/RazorPagesContacts/Program.cs
-?name=snippet_or&highlight=8-13)]
+[!code-csharp[](app-state/6.0samples/RazorPagesContacts/Program.cs?name=snippet_or&highlight=8-13)]
 
 The app uses the <xref:Microsoft.AspNetCore.Builder.SessionOptions.IdleTimeout> property to determine how long a session can be idle before its contents in the server's cache are abandoned. This property is independent of the cookie expiration. Each request that passes through the [Session Middleware](xref:Microsoft.AspNetCore.Session.SessionMiddleware) resets the timeout.
 
@@ -184,8 +183,6 @@ Consider the following page that creates a customer:
 [!code-csharp[](app-state/3.0samples/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet&highlight=15-16,30)]
 
 The following page displays `TempData["Message"]`:
-
-app-state\6.0samples\RazorPagesContacts\Pages\Customers\IndexPeek.cshtml
 
 [!code-cshtml[](app-state/3.0samples/RazorPagesContacts/Pages/Customers/IndexPeek.cshtml?range=1-14)]
 
