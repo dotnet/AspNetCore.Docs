@@ -10,7 +10,6 @@ public static class Program
         // <snippet_RespectBrowserAcceptHeader>
         var builder = WebApplication.CreateBuilder(args);
 
-        // Add services to the container.
         builder.Services.AddControllers(options =>
         {
             options.RespectBrowserAcceptHeader = true;
@@ -23,7 +22,6 @@ public static class Program
         // <snippet_AddXmlSerializerFormatters>
         var builder = WebApplication.CreateBuilder(args);
 
-        // Add services to the container.
         builder.Services.AddControllers()
             .AddXmlSerializerFormatters();
         // </snippet_AddXmlSerializerFormatters>
@@ -34,7 +32,6 @@ public static class Program
         // <snippet_JsonSerializerOptions>
         var builder = WebApplication.CreateBuilder(args);
 
-        // Add services to the container.
         builder.Services.AddControllers()
             .AddJsonOptions(options =>
             {
@@ -48,7 +45,6 @@ public static class Program
         // <snippet_AddNewtonsoftJson>
         var builder = WebApplication.CreateBuilder(args);
 
-        // Add services to the container.
         builder.Services.AddControllers()
             .AddNewtonsoftJson();
         // </snippet_AddNewtonsoftJson>
@@ -70,7 +66,6 @@ public static class Program
         // <snippet_RemoveOutputFormatters>
         var builder = WebApplication.CreateBuilder(args);
 
-        // Add services to the container.
         builder.Services.AddControllers(options =>
         {
             // using Microsoft.AspNetCore.Mvc.Formatters;
