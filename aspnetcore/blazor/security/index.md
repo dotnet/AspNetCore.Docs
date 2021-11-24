@@ -521,7 +521,7 @@ If the app is required to check authorization rules as part of procedural logic,
 
 Common errors:
 
-* **Authorization requires a cascading parameter of type `Task\<AuthenticationState>`. Consider using `CascadingAuthenticationState` to supply this.**
+* **Authorization requires a cascading parameter of type `Task<AuthenticationState>`. Consider using `CascadingAuthenticationState` to supply this.**
 
 * **`null` value is received for `authenticationStateTask`**
 
