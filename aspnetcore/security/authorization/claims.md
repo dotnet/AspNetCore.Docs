@@ -26,37 +26,35 @@ Claim based authorization checks are declarative - the developer embeds them wit
 
 The simplest type of claim policy looks for the presence of a claim and doesn't check the value.
 
-Build and register the policy. This takes place as part of the Authorization service configuration, typically in the *Program.cs* file:
+Build and register the policy and call <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>. Registering the policy takes place as part of the Authorization service configuration, typically in the *Program.cs* file:
 
-[!code-csharp[](~/security/authorization/claims/samples/6.x/WebAll/Program.cs?name=snippet)]
-
-Call <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>:
-
-[!code-csharp[](~/security/authorization/claims/samples/6.x/WebAll/Program.cs?name=snippet&highlight=23)]
+[!code-csharp[](~/security/authorization/claims/samples/6.x/WebAll/Program.cs?name=snippet&highlight=6-9,23)]
 
 In this case the `EmployeeOnly` policy checks for the presence of an `EmployeeNumber` claim on the current identity.
 
-You then apply the policy using the `Policy` property on the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute to specify the policy name;
+Apply the policy using the `Policy` property on the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute to specify the policy name;
 
 [!code-csharp[](~/security/authorization/claims/samples/6.x/WebAll/Controllers/Home2Controller.cs?name=snippet&highlight=1)]
 
-The `AuthorizeAttribute` attribute can be applied to an entire controller or Razor Page, in this instance only identities matching the policy are allowed access to any Action on the controller.
+The `[Authorize]` attribute can be applied to an entire controller or Razor Page, in this instance only identities matching the policy are allowed access to any Action on the controller.
 
 [!code-csharp[](~/security/authorization/claims/samples/6.x/WebAll/Controllers/VacationController.cs?name=snippet&highlight=1)]
+
+The following code applies the `[Authorize]` attribute to a Razor Page:
 
 [!code-csharp[](~/security/authorization/claims/samples/6.x/WebAll/Pages/Index.cshtml.cs?name=snippet&highlight=1)]
 
 Policies can ***not*** be applied at the Razor Page handler level, they must be applied to the Page.
 
-If you have a controller that's protected by the `AuthorizeAttribute` attribute, but want to allow anonymous access to particular actions you apply the `AllowAnonymousAttribute` attribute.
+If you have a controller that's protected by the `[Authorize]` attribute, but want to allow anonymous access to particular actions you apply the `AllowAnonymousAttribute` attribute.
 
 [!code-csharp[](~/security/authorization/claims/samples/6.x/WebAll/Controllers/VacationController.cs?name=snippet2&highlight=14)]
 
-Because policies can ***not*** be applied at the Razor Page handler level, we recommend using a controller when polices must be applied at the page handler level.
+Because policies can ***not*** be applied at the Razor Page handler level, we recommend using a controller when polices must be applied at the page handler level. The rest of the app that doesn't require policies at the Razor Page handler level can use Razor Pages.
 
 Most claims come with a value. You can specify a list of allowed values when creating the policy. The following example would only succeed for employees whose employee number was 1, 2, 3, 4 or 5.
 
-[!code-csharp[](~/security/authorization/claims/samples/6.x/WebAll/Program.cs?name=snippet2)]
+[!code-csharp[](~/security/authorization/claims/samples/6.x/WebAll/Program.cs?name=snippet2&highlight=6-10)]
 
 ### Add a generic claim check
 
@@ -66,24 +64,15 @@ If the claim value isn't a single value or a transformation is required, use [Re
 
 If you apply multiple policies to a controller or action, then all policies must pass before access is granted. For example:
 
-```csharp
-[Authorize(Policy = "EmployeeOnly")]
-public class SalaryController : Controller
-{
-    public ActionResult Payslip()
-    {
-    }
+[!code-csharp[](~/security/authorization/claims/samples/6.x/WebAll/Controllers/SalaryController.cs?name=snippet2&highlight=1,14)]
 
-    [Authorize(Policy = "HumanResources")]
-    public ActionResult UpdateSalary()
-    {
-    }
-}
-```
-
-In the above example any identity which fulfills the `EmployeeOnly` policy can access the `Payslip` action as that policy is enforced on the controller. However in order to call the `UpdateSalary` action the identity must fulfill *both* the `EmployeeOnly` policy and the `HumanResources` policy.
+In the preceding example any identity which fulfills the `EmployeeOnly` policy can access the `Payslip` action as that policy is enforced on the controller. However in order to call the `UpdateSalary` action the identity must fulfill *both* the `EmployeeOnly` policy and the `HumanResources` policy.
 
 If you want more complicated policies, such as taking a date of birth claim, calculating an age from it then checking the age is 21 or older then you need to write [custom policy handlers](xref:security/authorization/policies).
+
+In the following sample, both page handler methods must fulfill *both* the `EmployeeOnly` policy and the `HumanResources` policy:
+
+[!code-csharp[](~/security/authorization/claims/samples/6.x/WebAll/Pages/X/Salary.cshtml.cs?name=snippet&highlight=1,2)]
 
 ::: moniker-end
 
@@ -149,7 +138,7 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 
 In this case the `EmployeeOnly` policy checks for the presence of an `EmployeeNumber` claim on the current identity.
 
-You then apply the policy using the `Policy` property on the `AuthorizeAttribute` attribute to specify the policy name;
+You then apply the policy using the `Policy` property on the `[Authorize]` attribute to specify the policy name;
 
 ```csharp
 [Authorize(Policy = "EmployeeOnly")]
@@ -159,7 +148,7 @@ public IActionResult VacationBalance()
 }
 ```
 
-The `AuthorizeAttribute` attribute can be applied to an entire controller, in this instance only identities matching the policy will be allowed access to any Action on the controller.
+The `[Authorize]` attribute can be applied to an entire controller, in this instance only identities matching the policy will be allowed access to any Action on the controller.
 
 ```csharp
 [Authorize(Policy = "EmployeeOnly")]
@@ -171,7 +160,7 @@ public class VacationController : Controller
 }
 ```
 
-If you have a controller that's protected by the `AuthorizeAttribute` attribute, but want to allow anonymous access to particular actions you apply the `AllowAnonymousAttribute` attribute.
+If you have a controller that's protected by the `[Authorize]` attribute, but want to allow anonymous access to particular actions you apply the `AllowAnonymousAttribute` attribute.
 
 ```csharp
 [Authorize(Policy = "EmployeeOnly")]
@@ -264,7 +253,7 @@ public void ConfigureServices(IServiceCollection services)
 
 In this case the `EmployeeOnly` policy checks for the presence of an `EmployeeNumber` claim on the current identity.
 
-You then apply the policy using the `Policy` property on the `AuthorizeAttribute` attribute to specify the policy name;
+You then apply the policy using the `Policy` property on the `[Authorize]` attribute to specify the policy name;
 
 ```csharp
 [Authorize(Policy = "EmployeeOnly")]
@@ -274,7 +263,7 @@ public IActionResult VacationBalance()
 }
 ```
 
-The `AuthorizeAttribute` attribute can be applied to an entire controller, in this instance only identities matching the policy will be allowed access to any Action on the controller.
+The `[Authorize]` attribute can be applied to an entire controller, in this instance only identities matching the policy will be allowed access to any Action on the controller.
 
 ```csharp
 [Authorize(Policy = "EmployeeOnly")]
@@ -286,7 +275,7 @@ public class VacationController : Controller
 }
 ```
 
-If you have a controller that's protected by the `AuthorizeAttribute` attribute, but want to allow anonymous access to particular actions you apply the `AllowAnonymousAttribute` attribute.
+If you have a controller that's protected by the `[Authorize]` attribute, but want to allow anonymous access to particular actions you apply the `AllowAnonymousAttribute` attribute.
 
 ```csharp
 [Authorize(Policy = "EmployeeOnly")]
