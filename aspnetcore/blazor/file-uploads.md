@@ -110,8 +110,6 @@ The following example demonstrates multiple file upload in a component. <xref:Mi
 
 [!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload1.razor)]
 
-In the preceding code, <xref:System.IO.Path.GetRandomFileName%2A> is called to generate a secure filename. Never trust the filename provided by the browser, as an attacker may choose an existing filename and overwrite an existing file, or send a path which attempts to write outside of your application.
-
 ::: zone-end
 
 ::: zone pivot="server"
@@ -361,7 +359,7 @@ public class FilesaveController : ControllerBase
 }
 ```
 
-In the preceding code, <xref:System.IO.Path.GetRandomFileName%2A> is called to generate a secure filename. Never trust the filename provided by the browser, as an attacker may choose an existing filename and overwrite an existing file, or send a path which attempts to write outside of your application.
+In the preceding code, <xref:System.IO.Path.GetRandomFileName%2A> is called to generate a secure filename. Never trust the filename provided by the browser, as an attacker may choose an existing filename that overwrites an existing file or send a path that attempts to write outside of the app.
 
 ## File streams
 
