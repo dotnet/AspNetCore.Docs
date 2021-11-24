@@ -29,7 +29,7 @@ Controllers and Razor pages work with data that comes from HTTP requests. For ex
 
 Suppose you have the following action method:
 
-:::code language="csharp" source="model-binding/samples/6.0/ModelBindingSample/Snippets/Controllers/PetsController.cs" id="snippet_GetById":::
+:::code language="csharp" source="model-binding/samples/6.x/ModelBindingSample/Snippets/Controllers/PetsController.cs" id="snippet_GetById":::
 
 And the app receives a request with this URL:
 
@@ -62,19 +62,19 @@ Model binding tries to find values for the following kinds of targets:
 
 Can be applied to a public property of a controller or `PageModel` class to cause model binding to target that property:
 
-:::code language="csharp" source="model-binding/samples/6.0/ModelBindingSample/Snippets/Pages/Edit.cshtml.cs" id="snippet_Class" highlight="3":::
+:::code language="csharp" source="model-binding/samples/6.x/ModelBindingSample/Snippets/Pages/Edit.cshtml.cs" id="snippet_Class" highlight="3":::
 
 ### [BindProperties] attribute
 
 Can be applied to a controller or `PageModel` class to tell model binding to target all public properties of the class:
 
-:::code language="csharp" source="model-binding/samples/6.0/ModelBindingSample/Snippets/Pages/Create.cshtml.cs" id="snippet_Class" highlight="1":::
+:::code language="csharp" source="model-binding/samples/6.x/ModelBindingSample/Snippets/Pages/Create.cshtml.cs" id="snippet_Class" highlight="1":::
 
 ### Model binding for HTTP GET requests
 
 By default, properties are not bound for HTTP GET requests. Typically, all you need for a GET request is a record ID parameter. The record ID is used to look up the item in the database. Therefore, there is no need to bind a property that holds an instance of the model. In scenarios where you do want properties bound to data from GET requests, set the `SupportsGet` property to `true`:
 
-:::code language="csharp" source="model-binding/samples/6.0/ModelBindingSample/Snippets/Pages/Index.cshtml.cs" id="snippet_SupportsGet" highlight="1":::
+:::code language="csharp" source="model-binding/samples/6.x/ModelBindingSample/Snippets/Pages/Index.cshtml.cs" id="snippet_SupportsGet" highlight="1":::
 
 ## Sources
 
@@ -103,11 +103,11 @@ These attributes:
 
 * Are added to model properties individually and not to the model class, as in the following example:
 
-  :::code language="csharp" source="model-binding/samples/6.0/ModelBindingSample/Snippets/Instructor.cs" id="snippet_Class" highlight="5":::
+  :::code language="csharp" source="model-binding/samples/6.x/ModelBindingSample/Snippets/Instructor.cs" id="snippet_Class" highlight="5":::
 
 * Optionally accept a model name value in the constructor. This option is provided in case the property name doesn't match the value in the request. For instance, the value in the request might be a header with a hyphen in its name, as in the following example:
 
-  :::code language="csharp" source="model-binding/samples/6.0/ModelBindingSample/Snippets/Pages/Index.cshtml.cs" id="snippet_FromHeader":::
+  :::code language="csharp" source="model-binding/samples/6.x/ModelBindingSample/Snippets/Pages/Index.cshtml.cs" id="snippet_FromHeader":::
 
 ### [FromBody] attribute
 
@@ -115,11 +115,11 @@ Apply the `[FromBody]` attribute to a parameter to populate its properties from 
 
 When `[FromBody]` is applied to a complex type parameter, any binding source attributes applied to its properties are ignored. For example, the following `Create` action specifies that its `pet` parameter is populated from the body:
 
-:::code language="csharp" source="model-binding/samples/6.0/ModelBindingSample/Snippets/Controllers/PetsController.cs" id="snippet_Create":::
+:::code language="csharp" source="model-binding/samples/6.x/ModelBindingSample/Snippets/Controllers/PetsController.cs" id="snippet_Create":::
 
 The `Pet` class specifies that its `Breed` property is populated from a query string parameter:
 
-:::code language="csharp" source="model-binding/samples/6.0/ModelBindingSample/Snippets/Pet.cs" id="snippet_Class" highlight="5":::
+:::code language="csharp" source="model-binding/samples/6.x/ModelBindingSample/Snippets/Pet.cs" id="snippet_Class" highlight="5":::
 
 In the preceding example:
 
@@ -138,9 +138,9 @@ Source data is provided to the model binding system by *value providers*. You ca
 * Create a class that implements `IValueProviderFactory`.
 * Register the factory class in *Program.cs*.
 
-The sample includes a [value provider](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/mvc/models/model-binding/samples/6.0/ModelBindingSample/CookieValueProvider.cs) and [factory](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/mvc/models/model-binding/samples/6.0/ModelBindingSample/CookieValueProviderFactory.cs) example that gets values from cookies. Register custom value provider factories in *Program.cs*:
+The sample includes a [value provider](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/mvc/models/model-binding/samples/6.x/ModelBindingSample/CookieValueProvider.cs) and [factory](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/mvc/models/model-binding/samples/6.x/ModelBindingSample/CookieValueProviderFactory.cs) example that gets values from cookies. Register custom value provider factories in *Program.cs*:
 
-:::code language="csharp" source="model-binding/samples/6.0/ModelBindingSample/Snippets/Program.cs" id="snippet_AddValueProviderFactory" highlight="3":::
+:::code language="csharp" source="model-binding/samples/6.x/ModelBindingSample/Snippets/Program.cs" id="snippet_AddValueProviderFactory" highlight="3":::
 
 The preceding code puts the custom value provider after all built-in value providers. To make it the first in the list, call `Insert(0, new CookieValueProviderFactory())` instead of `Add`.
 
@@ -165,7 +165,7 @@ In an API controller that has the `[ApiController]` attribute, invalid model sta
 
 In a Razor page, redisplay the page with an error message:
 
-:::code language="csharp" source="model-binding/samples/6.0/ModelBindingSample/Snippets/Pages/Index.cshtml.cs" id="snippet_ModelStateInvalid" highlight="3-6":::
+:::code language="csharp" source="model-binding/samples/6.x/ModelBindingSample/Snippets/Pages/Index.cshtml.cs" id="snippet_ModelStateInvalid" highlight="3-6":::
 
 When the page is redisplayed by the preceding code, the invalid input isn't shown in the form field. This is because the model property has been set to null or a default value. The invalid input does appear in an error message. If you want to redisplay the bad data in the form field, consider making the model property a string and doing the data conversion manually.
 
@@ -201,14 +201,14 @@ For binding to a parameter, the prefix is the parameter name. For binding to a `
 
 For example, suppose the complex type is the following `Instructor` class:
 
-  ```csharp
-  public class Instructor
-  {
-      public int ID { get; set; }
-      public string LastName { get; set; }
-      public string FirstName { get; set; }
-  }
-  ```
+```csharp
+public class Instructor
+{
+    public int ID { get; set; }
+    public string LastName { get; set; }
+    public string FirstName { get; set; }
+}
+```
 
 ### Prefix = parameter name
 
@@ -268,7 +268,8 @@ In the following example, only the specified properties of the `Instructor` mode
 
 ```csharp
 [HttpPost]
-public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor instructor)
+public IActionResult OnPost(
+    [Bind("LastName,FirstMidName,HireDate")] Instructor instructor)
 ```
 
 The `[Bind]` attribute can be used to protect against overposting in *create* scenarios. It doesn't work well in edit scenarios because excluded properties are set to null or a default value instead of being left unchanged. For defense against overposting, view models are recommended rather than the `[Bind]` attribute. For more information, see [Security note about overposting](xref:data/ef-mvc/crud#security-note-about-overposting).
@@ -277,21 +278,20 @@ The `[Bind]` attribute can be used to protect against overposting in *create* sc
 
 <xref:Microsoft.AspNetCore.Mvc.ModelBinderAttribute> can be applied to types, properties, or parameters. It allows specifying the type of model binder used to bind the specific instance or type. For example:
 
-```C#
+```csharp
 [HttpPost]
-public IActionResult OnPost([ModelBinder(typeof(MyInstructorModelBinder))] Instructor instructor)
+public IActionResult OnPost(
+    [ModelBinder(typeof(MyInstructorModelBinder))] Instructor instructor)
 ```
 
 The `[ModelBinder]` attribute can also be used to change the name of a property or parameter when it's being model bound:
 
-```C#
+```csharp
 public class Instructor
 {
     [ModelBinder(Name = "instructor_id")]
     public string Id { get; set; }
     
-    public string Name { get; set; }
-
     // ...
 }
 ```
@@ -300,7 +300,7 @@ public class Instructor
 
 Can only be applied to model properties, not to method parameters. Causes model binding to add a model state error if binding cannot occur for a model's property. Here's an example:
 
-:::code language="csharp" source="model-binding/samples/6.0/ModelBindingSample/Snippets/InstructorBindRequired.cs" id="snippet_Class" highlight="5":::
+:::code language="csharp" source="model-binding/samples/6.x/ModelBindingSample/Snippets/InstructorBindRequired.cs" id="snippet_Class" highlight="5":::
 
 See also the discussion of the `[Required]` attribute in [Model validation](xref:mvc/models/validation#required-attribute).
 
@@ -308,7 +308,7 @@ See also the discussion of the `[Required]` attribute in [Model validation](xref
 
 Can only be applied to model properties, not to method parameters. Prevents model binding from setting a model's property. Here's an example:
 
-:::code language="csharp" source="model-binding/samples/6.0/ModelBindingSample/Snippets/InstructorBindNever.cs" id="snippet_Class" highlight="3":::
+:::code language="csharp" source="model-binding/samples/6.x/ModelBindingSample/Snippets/InstructorBindNever.cs" id="snippet_Class" highlight="3":::
 
 ## Collections
 
@@ -396,17 +396,18 @@ Model binding requires that complex types have a parameterless constructor. Both
 Record types are a great way to succinctly represent data over the network. ASP.NET Core supports model binding and validating record types with a single constructor:
 
 ```csharp
-public record Person([Required] string Name, [Range(0, 150)] int Age, [BindNever] int Id);
+public record Person(
+    [Required] string Name, [Range(0, 150)] int Age, [BindNever] int Id);
 
 public class PersonController
 {
-   public IActionResult Index() => View();
+    public IActionResult Index() => View();
 
-   [HttpPost]
-   public IActionResult Index(Person person)
-   {
-       ...
-   }
+    [HttpPost]
+    public IActionResult Index(Person person)
+    {
+        // ...
+    }
 }
 ```
 
@@ -416,7 +417,7 @@ public class PersonController
 @model Person
 
 Name: <input asp-for="Name" />
-...
+<br />
 Age: <input asp-for="Age" />
 ```
 
@@ -445,7 +446,7 @@ public class Person(string Name)
 
 public record Person([Required] string Name, [Range(0, 100)] int Age)
 {
-   public Person(string Name) : this (Name, 0);
+    public Person(string Name) : this (Name, 0);
 }
 ```
 
@@ -456,10 +457,11 @@ Record types with manually authored constructors that look like primary construc
 ```csharp
 public record Person
 {
-   public Person([Required] string Name, [Range(0, 100)] int Age) => (this.Name, this.Age) = (Name, Age);
+    public Person([Required] string Name, [Range(0, 100)] int Age)
+        => (this.Name, this.Age) = (Name, Age);
 
-   public string Name { get; set; }
-   public int Age { get; set; }
+    public string Name { get; set; }
+    public int Age { get; set; }
 }
 ```
 
@@ -483,8 +485,11 @@ Validation uses metadata on the parameter but uses the property to read the valu
 ```csharp
 public record Person([Required] string Name)
 {
-   private readonly string _name;
-   public Name { get; init => _name = value ?? string.Empty; } // Now this property is never null. However this object could have been constructed as `new Person(null);`
+    private readonly string _name;
+
+    // The following property is never null.
+    // However this object could have been constructed as "new Person(null)".
+    public string Name { get; init => _name = value ?? string.Empty; }
 }
 ```
 
@@ -493,7 +498,7 @@ public record Person([Required] string Name)
 ```csharp
 public record Person(string Name)
 {
-   public int Age { get; set; }
+    public int Age { get; set; }
 }
 
 var person = new Person("initial-name");
@@ -520,8 +525,8 @@ To make the ASP.NET Core route value provider and query string value provider un
 * Replace the [culture value](https://github.com/dotnet/AspNetCore/blob/e625fe29b049c60242e8048b4ea743cca65aa7b5/src/Mvc/Mvc.Core/src/ModelBinding/QueryStringValueProviderFactory.cs#L30) passed to the value provider constructor with [CultureInfo.CurrentCulture](xref:System.Globalization.CultureInfo.CurrentCulture)
 * Replace the default value provider factory in MVC options with your new one:
 
-:::code language="csharp" source="model-binding/samples/6.0/ModelBindingSample/Snippets/CultureQueryStringValueProviderFactory.cs" id="snippet_Class":::
-:::code language="csharp" source="model-binding/samples/6.0/ModelBindingSample/Snippets/Program.cs" id="snippet_ReplaceQueryStringValueProviderFactory":::
+:::code language="csharp" source="model-binding/samples/6.x/ModelBindingSample/Snippets/CultureQueryStringValueProviderFactory.cs" id="snippet_Class":::
+:::code language="csharp" source="model-binding/samples/6.x/ModelBindingSample/Snippets/Program.cs" id="snippet_ReplaceQueryStringValueProviderFactory":::
 
 ## Special data types
 
@@ -549,7 +554,7 @@ To use the built-in XML input formatters:
 
 * In *Program.cs*, call <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcCoreBuilderExtensions.AddXmlSerializerFormatters%2A> or <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcCoreBuilderExtensions.AddXmlDataContractSerializerFormatters%2A>.
 
-  :::code language="csharp" source="model-binding/samples/6.0/ModelBindingSample/Snippets/Program.cs" id="snippet_AddXmlSerializerFormatters":::
+  :::code language="csharp" source="model-binding/samples/6.x/ModelBindingSample/Snippets/Program.cs" id="snippet_AddXmlSerializerFormatters":::
 
 * Apply the `Consumes` attribute to controller classes or action methods that should expect XML in the request body.
 
@@ -567,15 +572,15 @@ An input formatter takes full responsibility for reading data from the request b
 
 Consider the following model, which contains a custom `ObjectId` property named `Id`:
 
-:::code language="csharp" source="model-binding/samples/6.0/ModelBindingSample/Snippets/InstructorObjectId.cs" id="snippet_Class" highlight="4":::
+:::code language="csharp" source="model-binding/samples/6.x/ModelBindingSample/Snippets/InstructorObjectId.cs" id="snippet_Class" highlight="4":::
 
 To customize the model binding process when using `System.Text.Json`, create a class derived from <xref:System.Text.Json.Serialization.JsonConverter%601>:
 
-:::code language="csharp" source="model-binding/samples/6.0/ModelBindingSample/Snippets/ObjectIdConverter.cs" id="snippet_Class":::
+:::code language="csharp" source="model-binding/samples/6.x/ModelBindingSample/Snippets/ObjectIdConverter.cs" id="snippet_Class":::
 
 To use a custom converter, apply the <xref:System.Text.Json.Serialization.JsonConverterAttribute> attribute to the type. In the following example, the `ObjectId` type is configured with `ObjectIdConverter` as its custom converter:
 
-:::code language="csharp" source="model-binding/samples/6.0/ModelBindingSample/Snippets/ObjectId.cs" id="snippet_Type" highlight="1":::
+:::code language="csharp" source="model-binding/samples/6.x/ModelBindingSample/Snippets/ObjectId.cs" id="snippet_Type" highlight="1":::
 
 For more information, see [How to write custom converters](/dotnet/standard/serialization/system-text-json-converters-how-to).
 
@@ -585,11 +590,11 @@ The model binding and validation systems' behavior is driven by [ModelMetadata](
 
 To disable model binding on all models of a specified type, add an <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ExcludeBindingMetadataProvider> in *Program.cs*. For example, to disable model binding on all models of type `System.Version`:
 
-:::code language="csharp" source="model-binding/samples/6.0/ModelBindingSample/Snippets/Program.cs" id="snippet_ModelMetadataDetailsProviders" highlight="4-5":::
+:::code language="csharp" source="model-binding/samples/6.x/ModelBindingSample/Snippets/Program.cs" id="snippet_ModelMetadataDetailsProviders" highlight="4-5":::
 
 To disable validation on properties of a specified type, add a <xref:Microsoft.AspNetCore.Mvc.ModelBinding.SuppressChildValidationMetadataProvider> in *Program.cs*. For example, to disable validation on properties of type `System.Guid`:
 
-:::code language="csharp" source="model-binding/samples/6.0/ModelBindingSample/Snippets/Program.cs" id="snippet_ModelMetadataDetailsProviders" highlight="6-7":::
+:::code language="csharp" source="model-binding/samples/6.x/ModelBindingSample/Snippets/Program.cs" id="snippet_ModelMetadataDetailsProviders" highlight="6-7":::
 
 ## Custom model binders
 
@@ -599,7 +604,7 @@ You can extend model binding by writing a custom model binder and using the `[Mo
 
 Model binding can be invoked manually by using the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync%2A> method. The method is defined on both `ControllerBase` and `PageModel` classes. Method overloads let you specify the prefix and value provider to use. The method returns `false` if model binding fails. Here's an example:
 
-:::code language="csharp" source="model-binding/samples/6.0/ModelBindingSample/Snippets/Pages/Index.cshtml.cs" id="snippet_TryUpdateModelAsync" highlight="1-4":::
+:::code language="csharp" source="model-binding/samples/6.x/ModelBindingSample/Snippets/Pages/Index.cshtml.cs" id="snippet_TryUpdateModelAsync" highlight="1-4":::
 
 <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync%2A>  uses value providers to get data from the form body, query string, and route data. `TryUpdateModelAsync` is typically:
 
@@ -899,14 +904,14 @@ The `[Bind]` attribute can be used to protect against overposting in *create* sc
 
 <xref:Microsoft.AspNetCore.Mvc.ModelBinderAttribute> can be applied to types, properties, or parameters. It allows specifying the type of model binder used to bind the specific instance or type. For example:
 
-```C#
+```csharp
 [HttpPost]
 public IActionResult OnPost([ModelBinder(typeof(MyInstructorModelBinder))] Instructor instructor)
 ```
 
 The `[ModelBinder]` attribute can also be used to change the name of a property or parameter when it's being model bound:
 
-```C#
+```csharp
 public class Instructor
 {
     [ModelBinder(Name = "instructor_id")]
