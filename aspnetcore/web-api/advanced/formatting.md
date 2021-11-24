@@ -11,7 +11,7 @@ uid: web-api/advanced/formatting
 ---
 # Format response data in ASP.NET Core Web API
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Steve Smith](https://ardalis.com/)
+By [Kirk Larkin](https://twitter.com/serpent5) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 :::moniker range=">= aspnetcore-6.0"
 
