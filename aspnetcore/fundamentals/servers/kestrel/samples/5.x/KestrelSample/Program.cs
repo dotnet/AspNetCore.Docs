@@ -16,7 +16,7 @@ namespace KestrelSample
     public class Program
     {
 #if DefaultBuilder
-        #region snippet_DefaultBuilder
+        // <snippet_DefaultBuilder>
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
@@ -28,9 +28,9 @@ namespace KestrelSample
                 {
                     webBuilder.UseStartup<Startup>();
                 });
-        #endregion
+        // </snippet_DefaultBuilder>
 #elif TCPSocket
-        #region snippet_TCPSocket
+        // <snippet_TCPSocket>
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
@@ -52,7 +52,7 @@ namespace KestrelSample
                     })
                     .UseStartup<Startup>();
                 });
-        #endregion
+        // </snippet_TCPSocket>
 #elif UnixSocket
         public static void Main(string[] args)
         {
@@ -63,7 +63,7 @@ namespace KestrelSample
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    #region snippet_UnixSocket
+                    // <snippet_UnixSocket>
                     webBuilder.ConfigureKestrel(serverOptions =>
                     {
                         serverOptions.ListenUnixSocket("/tmp/kestrel-test.sock");
@@ -74,7 +74,7 @@ namespace KestrelSample
                                     "testpassword");
                             });
                     })
-                    #endregion
+                    // </snippet_UnixSocket>
                     .UseStartup<Startup>();
                 });
 #elif FileDescriptor
@@ -87,7 +87,7 @@ namespace KestrelSample
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    #region snippet_FileDescriptor
+                    // <snippet_FileDescriptor>
                     webBuilder.ConfigureKestrel(serverOptions =>
                     {
                         var fds = Environment
@@ -100,7 +100,7 @@ namespace KestrelSample
                             listenOptions.UseHttps("testCert.pfx", "testpassword");
                         });
                     })
-                    #endregion
+                    // </snippet_FileDescriptor>
                     .UseStartup<Startup>();
                 });
 #elif Limits
@@ -113,7 +113,7 @@ namespace KestrelSample
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    #region snippet_Limits
+                    // <snippet_Limits>
                     webBuilder.ConfigureKestrel(serverOptions =>
                     {
                         serverOptions.Limits.MaxConcurrentConnections = 100;
@@ -137,7 +137,7 @@ namespace KestrelSample
                         serverOptions.Limits.RequestHeadersTimeout = 
                             TimeSpan.FromMinutes(1);
                     })
-                    #endregion
+                    // </snippet_Limits>
                     .UseStartup<Startup>();
                 });
 #elif Port0
@@ -150,12 +150,12 @@ namespace KestrelSample
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    #region snippet_Port0
+                    // <snippet_Port0>
                     webBuilder.ConfigureKestrel(serverOptions =>
                     {
                         serverOptions.Listen(IPAddress.Loopback, 0);
                     })
-                    #endregion
+                    // </snippet_Port0>
                     .UseStartup<Startup>();
                 });
 #elif SyncIO
@@ -168,12 +168,12 @@ namespace KestrelSample
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    #region snippet_SyncIO
+                    // <snippet_SyncIO>
                     webBuilder.ConfigureKestrel(serverOptions =>
                     {
                         serverOptions.AllowSynchronousIO = true;
                     })
-                    #endregion
+                    // </snippet_SyncIO>
                     .UseStartup<Startup>();
                 });
 #endif

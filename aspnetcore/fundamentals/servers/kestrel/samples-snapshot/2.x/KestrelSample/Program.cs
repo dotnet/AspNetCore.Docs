@@ -10,7 +10,7 @@ using Microsoft.Extensions.Logging;
 
 namespace KestrelSample
 {
-    #region snippet_Program
+    // <snippet_Program>
     public class Program
     {
         public static void Main(string[] args)
@@ -22,5 +22,5 @@ namespace KestrelSample
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>();
     }
-    #endregion
+    // </snippet_Program>
 }

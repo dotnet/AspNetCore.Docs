@@ -16,7 +16,7 @@ namespace KestrelSample
     public class Startup
     {
 #if Default
-        #region snippet_Configure
+        // <snippet_Configure>
         public void Configure(IApplicationBuilder app)
         {
             var serverAddressesFeature = 
@@ -43,7 +43,7 @@ namespace KestrelSample
                     $"{context.Request.GetDisplayUrl()}<p>");
             });
         }
-        #endregion
+        // </snippet_Configure>
 #elif Limits
         public void Configure(IApplicationBuilder app)
         {
@@ -51,7 +51,7 @@ namespace KestrelSample
 
             app.UseStaticFiles();
 
-            #region snippet_Limits
+            // <snippet_Limits>
             app.Run(async (context) =>
             {
                 context.Features.Get<IHttpMaxRequestBodySizeFeature>()
@@ -73,7 +73,7 @@ namespace KestrelSample
                     minResponseRateFeature.MinDataRate = new MinDataRate(
                         bytesPerSecond: 100, gracePeriod: TimeSpan.FromSeconds(10));
                 }
-            #endregion
+            // </snippet_Limits>
                 context.Response.ContentType = "text/html";
                 await context.Response
                     .WriteAsync("<!DOCTYPE html><html lang=\"en\"><head>" +
