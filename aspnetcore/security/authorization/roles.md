@@ -88,6 +88,7 @@ This example authorizes users who belong to the `Administrator`, `PowerUser` or 
 Append [AddRoles](/dotnet/api/microsoft.aspnetcore.identity.identitybuilder.addroles#Microsoft_AspNetCore_Identity_IdentityBuilder_AddRoles__1) to add Role services:
 
 [!code-csharp[](~/security/authorization/roles/samples/6_0/WebAll/Program.cs?name=snippet_ef&highlight=12)]
+::: moniker-end
 
 ::: moniker range="< aspnetcore-6.0"
 
