@@ -1,4 +1,4 @@
-#define DEFAULT //DEFAULT SECOND
+#define SECOND //DEFAULT SECOND
 #if NEVER
 #elif DEFAULT
 #region snippet
@@ -9,7 +9,8 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddAuthorization(options =>
 {
-   options.AddPolicy("EmployeeOnly", policy => policy.RequireClaim("EmployeeNumber"));
+    options.AddPolicy("RequireAdministratorRole",
+         policy => policy.RequireRole("Administrator"));
 });
 
 var app = builder.Build();
@@ -40,11 +41,12 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy("Founders", policy =>
-                      policy.RequireClaim("EmployeeNumber", "1", "2", "3", "4", "5"));
+    options.AddPolicy("ElevatedRights", policy =>
+          policy.RequireRole("Administrator", "PowerUser", "BackupAdministrator"));
 });
 
 var app = builder.Build();
+#endregion
 
 if (!app.Environment.IsDevelopment())
 {
@@ -62,5 +64,49 @@ app.MapDefaultControllerRoute();
 app.MapRazorPages();
 
 app.Run();
-#endregion
+#elif EF
+// This won't build in this project
+using WebApplication3.Data;
+#region snippet_ef
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+
+var builder = WebApplication.CreateBuilder(args);
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(connectionString));
+builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddRazorPages();
+builder.Services.AddControllersWithViews();
+
+var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseMigrationsEndPoint();
+}
+else
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.MapRazorPages();
+app.MapDefaultControllerRoute();
+
+app.Run();
+#region
 #endif

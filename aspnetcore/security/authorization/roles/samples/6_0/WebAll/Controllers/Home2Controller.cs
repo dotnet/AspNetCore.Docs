@@ -25,8 +25,8 @@ namespace WebAll.Controllers
         }
 
         #region snippet
-        [Authorize(Policy = "EmployeeOnly")]
-        public IActionResult VacationBalance()
+        [Authorize(Policy = "RequireAdministratorRole")]
+        public IActionResult Shutdown()
         {
             return View();
         }

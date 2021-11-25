@@ -3,6 +3,7 @@ title: Role-based authorization in ASP.NET Core
 author: rick-anderson
 description: Learn how to restrict ASP.NET Core controller and action access by passing roles to the Authorize attribute.
 ms.author: riande
+monikerRange: '>= aspnetcore-3.1'
 ms.date: 10/14/2016
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authorization/roles
@@ -70,36 +71,15 @@ For Razor Pages, the `AuthorizeAttribute` can be applied by either:
 
 Role requirements can also be expressed using the new Policy syntax, where a developer registers a policy at startup as part of the Authorization service configuration. This normally occurs in `ConfigureServices()` in your *Startup.cs* file.
 
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddControllersWithViews();
-    services.AddRazorPages();
-
-    services.AddAuthorization(options =>
-    {
-        options.AddPolicy("RequireAdministratorRole",
-             policy => policy.RequireRole("Administrator"));
-    });
-}
-```
+[!code-csharp[](~/security/authorization/roles/samples/6_0/WebAll/Program.cs?name=snippet&highlight=6-10)]
 
 Policies are applied using the `Policy` property on the `AuthorizeAttribute` attribute:
 
-```csharp
-[Authorize(Policy = "RequireAdministratorRole")]
-public IActionResult Shutdown()
-{
-    return View();
-}
-```
+[!code-csharp[](~/security/authorization/roles/samples/6_0/WebAll/Controllers/Home2Controller.cs?name=snippet&highlight=1)]
 
 If you want to specify multiple allowed roles in a requirement then you can specify them as parameters to the `RequireRole` method:
 
-```csharp
-options.AddPolicy("ElevatedRights", policy =>
-                  policy.RequireRole("Administrator", "PowerUser", "BackupAdministrator"));
-```
+[!code-csharp[](~/security/authorization/roles/samples/6_0/WebAll/Program.cs?name=snippet2&highlight=6-10)]
 
 This example authorizes users who belong to the `Administrator`, `PowerUser` or `BackupAdministrator` roles.
 
@@ -107,9 +87,7 @@ This example authorizes users who belong to the `Administrator`, `PowerUser` or 
 
 Append [AddRoles](/dotnet/api/microsoft.aspnetcore.identity.identitybuilder.addroles#Microsoft_AspNetCore_Identity_IdentityBuilder_AddRoles__1) to add Role services:
 
-[!code-csharp[](roles/samples/3_0/Startup.cs?name=snippet&highlight=7)]
-::: moniker-end
-
+[!code-csharp[](~/security/authorization/roles/samples/6_0/WebAll/Program.cs?name=snippet_ef&highlight=12)]
 
 ::: moniker range="< aspnetcore-6.0"
 
