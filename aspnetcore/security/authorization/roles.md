@@ -15,7 +15,7 @@ uid: security/authorization/roles
 
 When an identity is created it may belong to one or more roles. For example, Tracy may belong to the Administrator and User roles whilst Scott may only belong to the User role. How these roles are created and managed depends on the backing store of the authorization process. Roles are exposed to the developer through the [IsInRole](/dotnet/api/system.security.principal.genericprincipal.isinrole) method on the [ClaimsPrincipal](/dotnet/api/system.security.claims.claimsprincipal) class.
 
-We recommend not using Roles as claims, but rather using a [claims](security/authorization/claims). When using Single Page Apps (SPAs), see <xref:security/authentication/identity/spa>.
+We recommend not using Roles as claims, but rather using a [claims](xref:security/authorization/claims). When using Single Page Apps (SPAs), see <xref:security/authentication/identity/spa>.
 
 ## Adding role checks
 
@@ -117,7 +117,7 @@ Append [AddRoles](/dotnet/api/microsoft.aspnetcore.identity.identitybuilder.addr
 
 When an identity is created it may belong to one or more roles. For example, Tracy may belong to the Administrator and User roles whilst Scott may only belong to the User role. How these roles are created and managed depends on the backing store of the authorization process. Roles are exposed to the developer through the [IsInRole](/dotnet/api/system.security.principal.genericprincipal.isinrole) method on the [ClaimsPrincipal](/dotnet/api/system.security.claims.claimsprincipal) class.
 
-We recommend not using Roles as claims, but rather using a [claims](security/authorization/claims). When using Single Page Apps (SPAs), see <xref:security/authentication/identity/spa>.
+We recommend not using Roles as claims, but rather using a [claims](xref:security/authorization/claims). When using Single Page Apps (SPAs), see <xref:security/authentication/identity/spa>.
 
 ## Adding role checks
 
