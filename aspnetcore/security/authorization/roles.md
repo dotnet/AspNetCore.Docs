@@ -16,7 +16,7 @@ uid: security/authorization/roles
 
 When an identity is created it may belong to one or more roles. For example, Tracy may belong to the Administrator and User roles whilst Scott may only belong to the User role. How these roles are created and managed depends on the backing store of the authorization process. Roles are exposed to the developer through the [IsInRole](/dotnet/api/system.security.principal.genericprincipal.isinrole) method on the [ClaimsPrincipal](/dotnet/api/system.security.claims.claimsprincipal) class.
 
-We recommend not using Roles as claims, but rather using a [claims](xref:security/authorization/claims). When using Single Page Apps (SPAs), see <xref:security/authentication/identity/spa>.
+We recommend not using Roles as claims, but rather using a [claims](xref:security/authorization/claims). The Single Page Apps (SPAs) templates for ASP.NET Core are not designed to use Roles. To secure SPAs, see <xref:security/authentication/identity/spa>.
 
 ## Adding role checks
 
@@ -36,24 +36,24 @@ Multiple roles can be specified as a comma separated list:
 
 [!code-csharp[](~/security/authorization/roles/samples/6_0/WebAll/Controllers/SalaryController.cs?name=snippet&highlight=1)]
 
-The controller `SalaryController` is only accessible by users who are members of the `HRManager` role ***or*** the `Finance` role.
+The `SalaryController` is only accessible by users who are members of the `HRManager` role ***or*** the `Finance` role.
 
-If you apply multiple attributes then an accessing user must be a member of all the roles specified. The following sample requires that a user must be a member of both the `PowerUser` and `ControlPanelUser` role:
+WHen multiple attributes are applied, an accessing user must be a member of all the roles specified. The following sample requires that a user must be a member of both the `PowerUser` ***and*** `ControlPanelUser` role:
 
 [!code-csharp[](~/security/authorization/roles/samples/6_0/WebAll/Controllers/ControlPanelController.cs?name=snippet&highlight=1-2)]
 
-You can further limit access by applying additional role authorization attributes at the action level:
+Access to an action can be limited by applying additional role authorization attributes at the action level:
 
-[!code-csharp[](~/security/authorization/roles/samples/6_0/WebAll/Controllers/ControlAllPanelController.cs?name=snippet&highlight=1-2)]
+[!code-csharp[](~/security/authorization/roles/samples/6_0/WebAll/Controllers/ControlAllPanelController.cs?name=snippet&highlight=1-2,9)]
 
 In the preceding `ControlAllPanelController` controller:
 
 * Members of the `Administrator` role or the `PowerUser` role can access the controller and the `SetTime` action.
 * Only members of the `Administrator` role can access the `ShutDown` action.
 
-You can also lock down a controller but allow anonymous, unauthenticated access to individual actions.
+A controller can be locked down but allow anonymous, unauthenticated access to individual actions:
 
-[!code-csharp[](~/security/authorization/roles/samples/6_0/WebAll/Controllers/ControlAllPanelController.cs?name=snippet&highlight=1-2)]
+[!code-csharp[](~/security/authorization/roles/samples/6_0/WebAll/Pages/X/Update.cshtml.cs?name=snippet&highlight=1)]
 
 For Razor Pages, the `AuthorizeAttribute` can be applied by either:
 
@@ -77,11 +77,11 @@ Policies are applied using the `Policy` property on the `AuthorizeAttribute` att
 
 [!code-csharp[](~/security/authorization/roles/samples/6_0/WebAll/Controllers/Home2Controller.cs?name=snippet&highlight=1)]
 
-If you want to specify multiple allowed roles in a requirement then you can specify them as parameters to the `RequireRole` method:
+To specify multiple allowed roles in a requirement, specify them as parameters to the `RequireRole` method:
 
 [!code-csharp[](~/security/authorization/roles/samples/6_0/WebAll/Program.cs?name=snippet2&highlight=6-10)]
 
-This example authorizes users who belong to the `Administrator`, `PowerUser` or `BackupAdministrator` roles.
+The preceding code authorizes users who belong to the `Administrator`, `PowerUser` or `BackupAdministrator` roles.
 
 ### Add Role services to Identity
 
