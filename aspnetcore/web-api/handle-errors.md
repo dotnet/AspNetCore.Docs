@@ -91,7 +91,7 @@ The preceding `HandleError` action sends an [RFC 7807](https://tools.ietf.org/ht
 > [!WARNING]
 > Don't mark the error handler action method with HTTP method attributes, such as `HttpGet`. Explicit verbs prevent some requests from reaching the action method. Allow anonymous access to the method if unauthenticated users should see the error.
 
-Exception Handling Middleware can also provide more detailed content-negotiated output in the Development environment. To produce a consistent payload format across all environments:
+Exception Handling Middleware can also be used in the Development environment to produce a consistent payload format across all environments:
 
 1. In *Program.cs*, register environment-specific Exception Handling Middleware instances:
 
@@ -102,7 +102,7 @@ Exception Handling Middleware can also provide more detailed content-negotiated 
     * A route of `/error-development` in the Development environment.
     * A route of `/error` in non-Development environments.
     
-<a name="pd"></a>
+    <a name="pd"></a>
 1. Add controller actions for both the Development and non-Development routes:
 
     :::code language="csharp" source="handle-errors/samples/6.x/HandleErrorsSample/Controllers/ErrorsController.cs" id="snippet_ConsistentEnvironments":::

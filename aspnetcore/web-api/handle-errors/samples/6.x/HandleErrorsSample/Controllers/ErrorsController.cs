@@ -30,7 +30,6 @@ public class ErrorsController : ControllerBase
             detail: exceptionHandlerFeature.Error.StackTrace,
             title: exceptionHandlerFeature.Error.Message);
     }
-    // </snippet_ConsistentEnvironments>
 
     // <snippet_HandleError>
     [Route("/error")]
