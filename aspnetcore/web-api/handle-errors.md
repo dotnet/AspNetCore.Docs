@@ -13,71 +13,40 @@ uid: web-api/handle-errors
 
 :::moniker range=">= aspnetcore-6.0"
 
-This article describes how to handle and customize error handling with ASP.NET Core web APIs.
-
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/handle-errors/samples) ([How to download](xref:index#how-to-download-a-sample))
+This article describes how to handle errors and customize error handling with ASP.NET Core web APIs.
 
 ## Developer Exception Page
 
-The [Developer Exception Page](xref:fundamentals/error-handling) is a useful tool to get detailed stack traces for server errors. It uses <xref:Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware> to capture synchronous and asynchronous exceptions from the HTTP pipeline and to generate error responses. To illustrate, consider the following controller action:
+The [Developer Exception Page](xref:fundamentals/error-handling) shows detailed stack traces for server errors. It uses <xref:Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware> to capture synchronous and asynchronous exceptions from the HTTP pipeline and to generate error responses. For example, consider the following controller action, which throws an exception:
 
-:::code language="csharp" source="handle-errors/samples/3.x/Controllers/WeatherForecastController.cs" id="snippet_GetByCity":::
+:::code language="csharp" source="handle-errors/samples/6.x/HandleErrorsSample/Controllers/ErrorsController.cs" id="snippet_Throw":::
 
-Run the following `curl` command to test the preceding action:
-
-```bash
-curl -i https://localhost:5001/weatherforecast/chicago
-```
-
-The Developer Exception Page displays a plain-text response if the client doesn't request HTML-formatted output. The following output appears:
+When the Developer Exception Page detects an unhandled exception, it generates a default plain-text response similar to the following example:
 
 ```console
 HTTP/1.1 500 Internal Server Error
+Content-Type: text/plain; charset=utf-8
+Server: Kestrel
 Transfer-Encoding: chunked
-Content-Type: text/plain
-Server: Microsoft-IIS/10.0
-X-Powered-By: ASP.NET
-Date: Fri, 27 Sep 2019 16:13:16 GMT
 
-System.ArgumentException: We don't offer a weather forecast for chicago. (Parameter 'city')
-   at WebApiSample.Controllers.WeatherForecastController.Get(String city) in C:\working_folder\aspnet\AspNetCore.Docs\aspnetcore\web-api\handle-errors\samples\3.x\Controllers\WeatherForecastController.cs:line 34
-   at lambda_method(Closure , Object , Object[] )
-   at Microsoft.Extensions.Internal.ObjectMethodExecutor.Execute(Object target, Object[] parameters)
-   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
-   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
-   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
-   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+System.Exception: Sample exception.
+   at HandleErrorsSample.Controllers.ErrorsController.Get() in ...
+   at lambda_method1(Closure , Object , Object[] )
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
-   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
---- End of stack trace from previous location where exception was thrown ---
-   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
-   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
-   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
-   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
-   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
 
-HEADERS
-=======
-Accept: */*
-Host: localhost:44312
-User-Agent: curl/7.55.1
+...
 ```
 
-To display an HTML-formatted response instead, set the `Accept` HTTP request header to the `text/html` media type. For example:
-
-```bash
-curl -i -H "Accept: text/html" https://localhost:5001/weatherforecast/chicago
-```
-
-Consider the following excerpt from the HTTP response:
+If the client requests an HTML-formatted response, the Developer Exception Page generates a response similar to the following example:
 
 ```console
 HTTP/1.1 500 Internal Server Error
-Transfer-Encoding: chunked
 Content-Type: text/html; charset=utf-8
-Server: Microsoft-IIS/10.0
-X-Powered-By: ASP.NET
-Date: Fri, 27 Sep 2019 16:55:37 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
 
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
@@ -91,60 +60,52 @@ Date: Fri, 27 Sep 2019 16:55:37 GMT
     color: #222;
     background-color: #fff;
 }
+
+h1 {
+    color: #44525e;
+    margin: 15px 0 15px 0;
+}
+
+...
 ```
 
-The HTML-formatted response becomes useful when testing via tools like Postman. The following screen capture shows both the plain-text and the HTML-formatted responses in Postman:
-
-:::image source="handle-errors/_static/developer-exception-page-postman.gif" alt-text="Test the Developer Exception Page in Postman.":::
+To request an HTML-formatted response, set the `Accept` HTTP request header to `text/html`.
 
 > [!WARNING]
-> Enable the Developer Exception Page **only when the app is running in the Development environment**. Don't share detailed exception information publicly when the app runs in production. For more information on configuring environments, see <xref:fundamentals/environments>.
->
-> Don't mark the error handler action method with HTTP method attributes, such as `HttpGet`. Explicit verbs prevent some requests from reaching the action method. Allow anonymous access to the method if unauthenticated users should see the error.
+> Don't enable the Developer Exception Page **unless the app is running in the Development environment**. Don't share detailed exception information publicly when the app runs in production. For more information on configuring environments, see <xref:fundamentals/environments>.
 
 ## Exception handler
 
-In non-development environments, [Exception Handling Middleware](xref:fundamentals/error-handling) can be used to produce an error payload:
+In non-development environments, use [Exception Handling Middleware](xref:fundamentals/error-handling) to produce an error payload:
 
-1. In `Startup.Configure`, invoke <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A> to use the middleware:
+1. In *Program.cs*, call <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A> to add the Exception Handling Middleware:
 
-    :::code language="csharp" source="handle-errors/samples/3.x/Startup.cs" id="snippet_UseExceptionHandler" highlight="9":::
+    :::code language="csharp" source="handle-errors/samples/6.x/HandleErrorsSample/Program.cs" id="snippet_Middleware" highlight="7":::
 
 1. Configure a controller action to respond to the `/error` route:
 
-    :::code language="csharp" source="handle-errors/samples/3.x/Controllers/ErrorController.cs" id="snippet_ErrorController":::
+    :::code language="csharp" source="handle-errors/samples/6.x/HandleErrorsSample/Controllers/ErrorsController.cs" id="snippet_HandleError":::
 
-The preceding `Error` action sends an [RFC 7807](https://tools.ietf.org/html/rfc7807)-compliant payload to the client.
+The preceding `HandleError` action sends an [RFC 7807](https://tools.ietf.org/html/rfc7807)-compliant payload to the client.
 
-Exception Handling Middleware can also provide more detailed content-negotiated output in the local development environment. Use the following steps to produce a consistent payload format across development and production environments:
+> [!WARNING]
+> Don't mark the error handler action method with HTTP method attributes, such as `HttpGet`. Explicit verbs prevent some requests from reaching the action method. Allow anonymous access to the method if unauthenticated users should see the error.
 
-1. In `Startup.Configure`, register environment-specific Exception Handling Middleware instances:
+Exception Handling Middleware can also provide more detailed content-negotiated output in the Development environment. To produce a consistent payload format across all environments:
 
-    ```csharp
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-    {
-        if (env.IsDevelopment())
-        {
-            app.UseExceptionHandler("/error-local-development");
-        }
-        else
-        {
-            app.UseExceptionHandler("/error");
-        }
-    }
-    ```
+1. In *Program.cs*, register environment-specific Exception Handling Middleware instances:
+
+    :::code language="csharp" source="handle-errors/samples/6.x/HandleErrorsSample/Snippets/Program.cs" id="snippet_ConsistentEnvironments":::
 
     In the preceding code, the middleware is registered with:
 
-    * A route of `/error-local-development` in the Development environment.
-    * A route of `/error` in environments that aren't Development.
+    * A route of `/error-development` in the Development environment.
+    * A route of `/error` in non-Development environments.
     
-    <a name="pd"></a>
-1. Apply attribute routing to controller actions:
+<a name="pd"></a>
+1. Add controller actions for both the Development and non-Development routes:
 
-    :::code language="csharp" source="handle-errors/samples/3.x/Controllers/ErrorController.cs" id="snippet_ErrorControllerEnvironmentSpecific":::
-
-    The preceding code calls [ControllerBase.Problem](xref:Microsoft.AspNetCore.Mvc.ControllerBase.Problem%2A) to create a <xref:Microsoft.AspNetCore.Mvc.ProblemDetails> response.
+    :::code language="csharp" source="handle-errors/samples/6.x/HandleErrorsSample/Controllers/ErrorsController.cs" id="snippet_ConsistentEnvironments":::
 
 ## Use exceptions to modify the response
 
@@ -210,6 +171,10 @@ The defaults in the exception handling middleware work well for most apps. For a
 ### Producing a ProblemDetails payload for exceptions
 
 ASP.NET Core doesn't produce a standardized error payload when an unhandled exception occurs. For scenarios where it's desirable to return a standardized [ProblemDetails response](https://datatracker.ietf.org/doc/html/rfc7807) to the client, the [ProblemDetails middleware](https://www.nuget.org/packages/Hellang.Middleware.ProblemDetails/) can be used to map exceptions and 404 responses to a [ProblemDetails](xref:web-api/handle-errors#pd) payload. The exception handling middleware can also be used to return a <xref:Microsoft.AspNetCore.Mvc.ProblemDetails> payload for unhandled exceptions.
+
+## Additional resources
+
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/handle-errors/samples) ([How to download](xref:index#how-to-download-a-sample))
 
 :::moniker-end
 
