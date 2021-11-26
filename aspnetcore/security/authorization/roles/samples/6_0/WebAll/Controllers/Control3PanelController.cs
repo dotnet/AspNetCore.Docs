@@ -7,16 +7,12 @@ namespace WebAll.Controllers
     [Authorize]
     public class Control3PanelController : Controller
     {
-        public IActionResult SetTime()
-        {
-            return View();
-        }
+        public IActionResult SetTime() =>
+            Content("[Authorize]");
 
         [AllowAnonymous]
-        public IActionResult Login()
-        {
-            return View();
-        }
+        public IActionResult Login() =>
+            Content("[AllowAnonymous]");
     }
     #endregion
 }

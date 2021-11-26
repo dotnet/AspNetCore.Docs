@@ -8,10 +8,8 @@ namespace WebAll.Pages
     [Authorize(Policy = "RequireAdministratorRole")]
     public class UpdateModel : PageModel
     {
-        public ContentResult OnPost()
-        {
-            return Content("OnGetPayStub");
-        }
+        public IActionResult OnPost() =>
+             Content("OnPost RequireAdministratorRole");
     }
     #endregion
 }

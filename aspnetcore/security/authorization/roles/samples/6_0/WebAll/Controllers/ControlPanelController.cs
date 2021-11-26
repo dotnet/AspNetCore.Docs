@@ -8,10 +8,8 @@ namespace WebAll.Controllers
     [Authorize(Roles = "ControlPanelUser")]
     public class ControlPanelController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        public IActionResult Index() =>
+            Content("PowerUser && ControlPanelUser");
     }
     #endregion
 }

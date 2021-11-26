@@ -134,7 +134,7 @@ In the preceding `ControlAllPanelController` controller:
 
 You can also lock down a controller but allow anonymous, unauthenticated access to individual actions.
 
-[!code-csharp[](~/security/authorization/roles/samples/6_0/WebAll/Controllers/ControlAllPanelController.cs?name=snippet&highlight=1-2)]
+[!code-csharp[](~/security/authorization/roles/samples/6_0/WebAll/Controllers/Control3PanelController.cs?name=snippet&highlight=1,9)]
 
 For Razor Pages, the `AuthorizeAttribute` can be applied by either:
 

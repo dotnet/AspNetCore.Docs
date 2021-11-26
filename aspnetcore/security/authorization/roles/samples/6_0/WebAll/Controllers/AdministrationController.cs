@@ -7,10 +7,8 @@ namespace WebAll.Controllers
     [Authorize(Roles = "Administrator")]
     public class AdministrationController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        public IActionResult Index() =>
+            Content("Administrator");
     }
     #endregion
 }

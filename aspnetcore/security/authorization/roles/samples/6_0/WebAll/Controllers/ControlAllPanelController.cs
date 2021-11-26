@@ -7,16 +7,12 @@ namespace WebAll.Controllers
     [Authorize(Roles = "Administrator, PowerUser")]
     public class ControlAllPanelController : Controller
     {
-        public IActionResult SetTime()
-        {
-            return View();
-        }
+        public IActionResult SetTime() =>
+            Content("Administrator || PowerUser");
 
         [Authorize(Roles = "Administrator")]
-        public ActionResult ShutDown()
-        {
-            return View();
-        }
+        public IActionResult ShutDown() =>
+            Content("Administrator only");
     }
     #endregion
 }

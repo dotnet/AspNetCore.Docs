@@ -8,17 +8,13 @@ namespace WebAll.Controllers
     [Authorize(Roles = "HRManager,Finance")]
     public class SalaryController : Controller
     {
-        public IActionResult Payslip()
-        {
-            return View();
-        }
+        public IActionResult Payslip() =>
+                        Content("Payslip");
         #endregion
 
         [Authorize(Policy = "HumanResources")]
-        public IActionResult UpdateSalary()
-        {
-            return View();
-        }
+        public IActionResult UpdateSalary() =>
+                    Content("HumanResources");
     }
     #endregion
 }
