@@ -32,7 +32,7 @@ Kestrel is supported on all platforms and versions that .NET Core supports.
 
 ASP.NET Core project templates use Kestrel by default when not hosted with IIS. In *Program.cs*, the <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A?displayProperty=nameWithType> method calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel%2A>:
 
-:::code language="csharp" source="kestrel/samples/6.x/KestrelSample/Program.cs" id="snippet_snippet_CreateBuilder" highlight="1":::
+:::code language="csharp" source="kestrel/samples/6.x/KestrelSample/Program.cs" id="snippet_CreateBuilder" highlight="1":::
 
 For more information on configuring `WebApplication` and `WebApplicationBuilder`, see the <xref:fundamentals/minimal-apis>.
 
