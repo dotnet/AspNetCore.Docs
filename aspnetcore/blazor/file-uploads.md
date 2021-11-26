@@ -359,6 +359,8 @@ public class FilesaveController : ControllerBase
 }
 ```
 
+In the preceding code, <xref:System.IO.Path.GetRandomFileName%2A> is called to generate a secure filename. Never trust the filename provided by the browser, as an attacker may choose an existing filename that overwrites an existing file or send a path that attempts to write outside of the app.
+
 ## File streams
 
 ::: zone pivot="webassembly"

@@ -7,7 +7,7 @@ using System.IO;
 
 namespace ErrorHandlingSample.Pages
 {
-    #region snippet
+    // <snippet>
     [ResponseCache(Duration=0, Location=ResponseCacheLocation.None, NoStore=true)]
     [IgnoreAntiforgeryToken]
     public class ErrorModel : PageModel
@@ -39,5 +39,5 @@ namespace ErrorHandlingSample.Pages
             }
         }
     }
-    #endregion
+    // </snippet>
 }
