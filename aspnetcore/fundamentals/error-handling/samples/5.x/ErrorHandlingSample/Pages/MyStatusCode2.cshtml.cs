@@ -6,7 +6,7 @@ using System.Diagnostics;
 
 namespace ErrorHandlingSample.Pages
 {
-    #region snippet
+    // <snippet>
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public class MyStatusCode2Model : PageModel
     {
@@ -34,5 +34,5 @@ namespace ErrorHandlingSample.Pages
             }
         }
     }
-    #endregion
+    // </snippet>
 }

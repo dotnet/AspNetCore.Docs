@@ -25,9 +25,10 @@ namespace ErrorHandlingSample
             services.AddRazorPages();
         }
 
-        #region snippet
+        // <snippet>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            // <snippet_DevPageAndHandlerPage>
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -37,6 +38,7 @@ namespace ErrorHandlingSample
                 app.UseExceptionHandler("/Error");
                 app.UseHsts();
             }
+            // </snippet_DevPageAndHandlerPage>
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -50,6 +52,6 @@ namespace ErrorHandlingSample
                 endpoints.MapRazorPages();
             });
         }
-        #endregion
+        // </snippet>
     }
 }

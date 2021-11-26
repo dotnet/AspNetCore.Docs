@@ -29,7 +29,6 @@ namespace ErrorHandlingSample.Pages
             Referrer = HttpContext.Request.Headers["referer"];
 
             // Do NOT expose sensitive error information directly to the client.
-            #region snippet_ExceptionHandlerPathFeature
             var exceptionHandlerPathFeature =
                 HttpContext.Features.Get<IExceptionHandlerPathFeature>();
             if (exceptionHandlerPathFeature?.Error is FileNotFoundException)
@@ -40,7 +39,6 @@ namespace ErrorHandlingSample.Pages
             {
                 ExceptionMessage += " from home page";
             }
-            #endregion
         }
     }
 }
