@@ -13,7 +13,7 @@ namespace ErrorHandlingSample.Pages
             _logger = logger;
         }
 
-        #region snippet
+        // <snippet>
         public void OnGet()
         {
             // using Microsoft.AspNetCore.Diagnostics;
@@ -24,6 +24,6 @@ namespace ErrorHandlingSample.Pages
                 statusCodePagesFeature.Enabled = false;
             }
         }
-        #endregion
+        // </snippet>
     }
 }

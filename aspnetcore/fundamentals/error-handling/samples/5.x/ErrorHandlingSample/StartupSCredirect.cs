@@ -20,7 +20,7 @@ namespace ErrorHandlingSample
             services.AddRazorPages();
         }
 
-        #region snippet
+        // <snippet>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -47,6 +47,6 @@ namespace ErrorHandlingSample
                 endpoints.MapRazorPages();
             });
         }
-        #endregion
+        // </snippet>
     }
 }
