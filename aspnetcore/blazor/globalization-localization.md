@@ -476,17 +476,21 @@ For information on ordering the Localization Middleware in the middleware pipeli
 
 The following example shows how to set the current culture in a cookie that can be read by the Localization Middleware.
 
-Add the following namespaces to the top of the `Pages/_Layout.cshtml` file:
+Modifications to the `Pages/_Host.cshtml` file require the following namespaces:
 
-```csharp
-@using System.Globalization
-@using Microsoft.AspNetCore.Localization
-```
+* <xref:System.Globalization?displayProperty=fullName>
+* <xref:Microsoft.AspNetCore.Localization?displayProperty=fullName>
 
-Immediately after the opening `<body>` tag of `Pages/_Layout.cshtml`, add the following Razor expression:
+`Pages/_Host.cshtml`:
 
 ```cshtml
+@page "/"
+@namespace {NAMESPACE}.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using System.Globalization
+@using Microsoft.AspNetCore.Localization
 @{
+    Layout = "_Layout";
     this.HttpContext.Response.Cookies.Append(
         CookieRequestCultureProvider.DefaultCookieName,
         CookieRequestCultureProvider.MakeCookieValue(
@@ -494,7 +498,11 @@ Immediately after the opening `<body>` tag of `Pages/_Layout.cshtml`, add the fo
                 CultureInfo.CurrentCulture,
                 CultureInfo.CurrentUICulture)));
 }
+
+<component type="typeof(App)" render-mode="ServerPrerendered" />
 ```
+
+In the preceding example, the `{NAMESPACE}` placeholder is the app's assembly name.
 
 For information on ordering the Localization Middleware in the middleware pipeline of `Program.cs`, see <xref:fundamentals/middleware/index#middleware-order>.
 
