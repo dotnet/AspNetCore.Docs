@@ -34,7 +34,7 @@ ASP.NET Core project templates use Kestrel by default when not hosted with IIS. 
 
 :::code language="csharp" source="kestrel/samples/6.x/KestrelSample/Program.cs" id="snippet_CreateBuilder" highlight="1":::
 
-For more information on configuring `WebApplication` and `WebApplicationBuilder`, see the <xref:fundamentals/minimal-apis>.
+For more information on configuring `WebApplication` and `WebApplicationBuilder`, see <xref:fundamentals/minimal-apis>.
 
 ## Optional client certificates
 
