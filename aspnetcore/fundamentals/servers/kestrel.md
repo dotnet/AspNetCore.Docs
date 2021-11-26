@@ -28,15 +28,13 @@ Kestrel supports the following scenarios:
 
 Kestrel is supported on all platforms and versions that .NET Core supports.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/servers/kestrel/samples/5.x) ([how to download](xref:index#how-to-download-a-sample))
-
 ## Get started
 
-ASP.NET Core project templates use Kestrel by default when not hosted with IIS. In *Program.cs*, the <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults%2A> method calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel%2A>:
+ASP.NET Core project templates use Kestrel by default when not hosted with IIS. In *Program.cs*, the <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A?displayProperty=nameWithType> method calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel%2A>:
 
-:::code language="csharp" source="kestrel/samples/5.x/KestrelSample/Program.cs" id="snippet_DefaultBuilder" highlight="8":::
+:::code language="csharp" source="kestrel/samples/6.x/KestrelSample/Program.cs" id="snippet_CreateBuilder" highlight="1":::
 
-For more information on building the host, see the *Set up a host* and *Default builder settings* sections of <xref:fundamentals/host/generic-host#set-up-a-host>.
+For more information on configuring `WebApplication` and `WebApplicationBuilder`, see <xref:fundamentals/minimal-apis>.
 
 ## Optional client certificates
 
