@@ -281,6 +281,19 @@ For more information on template options, see the following resources:
   * `dotnet new blazorserver -h`
   * `dotnet new blazorwasm -h`
 
+## .NET WebAssembly build tools
+
+The **.NET WebAssembly build tools** are based on [Emscripten](https://emscripten.org/), a compiler toolchain for the web platform. To install the **.NET WebAssembly build tools**, use ***either*** of the following approaches:
+
+* For the **ASP.NET and web development** workload in the Visual Studio installer, select the **.NET WebAssembly build tools** option from the list of optional components.
+* Run `dotnet workload install wasm-tools` in a command shell.
+
+For more information, see the following resources:
+
+* [Ahead-of-time (AOT) compilation](xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation)
+* [Runtime relinking](xref:blazor/host-and-deploy/webassembly#runtime-relinking)
+* <xref:blazor/webassembly-native-dependencies>
+
 ## Additional resources
 
 * <xref:test/hot-reload>
