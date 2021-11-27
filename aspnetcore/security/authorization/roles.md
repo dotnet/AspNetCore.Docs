@@ -14,7 +14,7 @@ uid: security/authorization/roles
 
 <a name="security-authorization-role-based"></a>
 
-When an identity is created it may belong to one or more roles. For example, Tracy may belong to the Administrator and User roles whilst Scott may only belong to the User role. How these roles are created and managed depends on the backing store of the authorization process. Roles are exposed to the developer through the [IsInRole](/dotnet/api/system.security.principal.genericprincipal.isinrole) method on the [ClaimsPrincipal](/dotnet/api/system.security.claims.claimsprincipal) class.
+When an identity is created it may belong to one or more roles. For example, Tracy may belong to the `Administrator` and `User` roles while Scott may only belong to the `User` role. How these roles are created and managed depends on the backing store of the authorization process. Roles are exposed to the developer through the [IsInRole](/dotnet/api/system.security.principal.genericprincipal.isinrole) method on the [ClaimsPrincipal](/dotnet/api/system.security.claims.claimsprincipal) class. [AddRoles](/dotnet/api/microsoft.aspnetcore.identity.identitybuilder.addroles#Microsoft_AspNetCore_Identity_IdentityBuilder_AddRoles__1) must be added to Role services.
 
 We recommend not using Roles as claims, but rather using a [claims](xref:security/authorization/claims). The Single Page Apps (SPAs) templates for ASP.NET Core are not designed to use Roles. To secure SPAs, see <xref:security/authentication/identity/spa>.
 
@@ -22,11 +22,9 @@ We recommend not using Roles as claims, but rather using a [claims](xref:securit
 
 Role based authorization checks:
 
-* Are declarative.
+* Are declarative and specify roles which the current user must be a member of to access the requested resource.
 * Are applied to Razor Pages, controllers, or actions within a controller.
 * Can ***not*** be applied at the Razor Page handler level, they must be applied to the Page.
-
-Role-based authorization checks specify which roles which the current user must be a member of to access the requested resource.
 
 For example, the following code limits access to any actions on the `AdministrationController` to users who are a member of the `Administrator` role:
 
