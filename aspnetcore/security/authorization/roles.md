@@ -36,7 +36,7 @@ Multiple roles can be specified as a comma separated list:
 
 The `SalaryController` is only accessible by users who are members of the `HRManager` role ***or*** the `Finance` role.
 
-WHen multiple attributes are applied, an accessing user must be a member of all the roles specified. The following sample requires that a user must be a member of both the `PowerUser` ***and*** `ControlPanelUser` role:
+WHen multiple attributes are applied, an accessing user must be a member of all the roles specified. The following sample requires that a user must be a member of ***both*** the `PowerUser` ***and*** `ControlPanelUser` role:
 
 [!code-csharp[](~/security/authorization/roles/samples/6_0/WebAll/Controllers/ControlPanelController.cs?name=snippet&highlight=1-2)]
 
@@ -53,10 +53,10 @@ A controller can be locked down but allow anonymous, unauthenticated access to i
 
 [!code-csharp[](~/security/authorization/roles/samples/6_0/WebAll/Controllers/Control3PanelController.cs?name=snippet&highlight=1,7)]
 
-For Razor Pages, the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute)can be applied by either:
+For Razor Pages, [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) can be applied by either:
 
 * Using a [convention](xref:razor-pages/razor-pages-conventions#page-model-action-conventions), or
-* Applying the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute)to the `PageModel` instance:
+* Applying the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) to the `PageModel` instance:
 
 [!code-csharp[](~/security/authorization/roles/samples/6_0/WebAll/Pages/X/Update.cshtml.cs?name=snippet&highlight=1)]
 
@@ -67,11 +67,11 @@ For Razor Pages, the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.Aut
 
 ## Policy based role checks
 
-Role requirements can also be expressed using the new Policy syntax, where a developer registers a policy at startup as part of the Authorization service configuration. This typically occurs in in the *Program.cs* file:
+Role requirements can also be expressed using the new Policy syntax, where a developer registers a policy at application startup as part of the Authorization service configuration. This typically occurs in in the *Program.cs* file:
 
 [!code-csharp[](~/security/authorization/roles/samples/6_0/WebAll/Program.cs?name=snippet&highlight=6-10)]
 
-Policies are applied using the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy> property on the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute)attribute:
+Policies are applied using the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy> property on the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute:
 
 [!code-csharp[](~/security/authorization/roles/samples/6_0/WebAll/Controllers/Home2Controller.cs?name=snippet&highlight=1)]
 
@@ -134,7 +134,7 @@ You can also lock down a controller but allow anonymous, unauthenticated access 
 
 [!code-csharp[](~/security/authorization/roles/samples/6_0/WebAll/Controllers/Control3PanelController.cs?name=snippet&highlight=1,9)]
 
-For Razor Pages, the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute)can be applied by either:
+For Razor Pages, the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) can be applied by either:
 
 * Using a [convention](xref:razor-pages/razor-pages-conventions#page-model-action-conventions), or
 * Applying the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute)to the `PageModel` instance:
