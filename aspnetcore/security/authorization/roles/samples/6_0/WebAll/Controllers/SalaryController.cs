@@ -3,6 +3,22 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebAll.Controllers
 {
+    #region snippet
+    [Authorize(Roles = "HRManager,Finance")]
+    public class SalaryController : Controller
+    {
+        public IActionResult Payslip() =>
+                        Content("Payslip");
+    }
+    #endregion
+}
+
+/*
+ * using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
+namespace WebAll.Controllers
+{
     #region snippet2
     #region snippet
     [Authorize(Roles = "HRManager,Finance")]
@@ -18,3 +34,4 @@ namespace WebAll.Controllers
     }
     #endregion
 }
+*/

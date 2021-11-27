@@ -60,7 +60,7 @@ For Razor Pages, the `AuthorizeAttribute` can be applied by either:
 * Using a [convention](xref:razor-pages/razor-pages-conventions#page-model-action-conventions), or
 * Applying the `AuthorizeAttribute` to the `PageModel` instance:
 
-[!code-csharp[](~/security/authorization/roles/samples/6_0/WebAll/Controllers/ControlAllPanelController.cs?name=snippet&highlight=1-2)]
+[!code-csharp[](~/security/authorization/roles/samples/6_0/WebAll/Pages/X/Update.cshtml.cs?name=snippet&highlight=1)]
 
 > [!IMPORTANT]
 > Filter attributes, including `AuthorizeAttribute`, can only be applied to PageModel and cannot be applied to specific page handler methods.
