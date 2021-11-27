@@ -2,10 +2,10 @@
 title: Introduction to authentication for Single Page Apps on ASP.NET Core
 author: javiercn
 description: Use Identity with a Single Page App hosted inside an ASP.NET Core app.
-monikerRange: '>= aspnetcore-3.0'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 10/27/2020
+ms.date: 11/27/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/identity/spa
 ---
@@ -13,7 +13,7 @@ uid: security/authentication/identity/spa
 
 ::: moniker range=">= aspnetcore-6.0"
 
-The ASP.NET Core 3.1 and later templates offer authentication in Single Page Apps (SPAs) using the support for API authorization. ASP.NET Core Identity for authenticating and storing users is combined with [Duende Identity Server](https://docs.duendesoftware.com) for implementing OpenID Connect.
+The ASP.NET Core templates offer authentication in Single Page Apps (SPAs) using the support for API authorization. ASP.NET Core Identity for authenticating and storing users is combined with [Duende Identity Server](https://docs.duendesoftware.com) for implementing OpenID Connect.
 
 > [!IMPORTANT]
 > [Duende Software](https://duendesoftware.com/) might require you to pay a license fee for production use of Duende Identity Server. For more information, see <xref:migration/50-to-60#project-templates-use-duende-identity-server>.
@@ -93,27 +93,6 @@ The `Startup` class has the following additions:
     ```csharp
     app.UseIdentityServer();
     ```
-
-### Azure App Service on Linux
-
-For Azure App Service deployments on Linux, specify the issuer explicitly in `Startup.ConfigureServices`:
-
-```csharp
-services.Configure<JwtBearerOptions>(
-    IdentityServerJwtConstants.IdentityServerJwtBearerScheme, 
-    options =>
-    {
-        options.Authority = "{AUTHORITY}";
-    });
-```
-
-In the preceding code, the `{AUTHORITY}` placeholder is the <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions.Authority> to use when making OpenID Connect calls.
-
-Example:
-
-```csharp
-options.Authority = "https://contoso-service.azurewebsites.net";
-```
 
 ### AddApiAuthorization
 
@@ -196,46 +175,6 @@ Now that you've seen the main components of the solution, you can take a deeper 
 ## Require authorization on a new API
 
 By default, the system is configured to easily require authorization for new APIs. To do so, create a new controller and add the `[Authorize]` attribute to the controller class or to any action within the controller.
-
-## Customize the API authentication handler
-
-To customize the configuration of the API's JWT handler, configure its <xref:Microsoft.AspNetCore.Builder.JwtBearerOptions> instance:
-
-```csharp
-services.AddAuthentication()
-    .AddIdentityServerJwt();
-
-services.Configure<JwtBearerOptions>(
-    IdentityServerJwtConstants.IdentityServerJwtBearerScheme,
-    options =>
-    {
-        ...
-    });
-```
-
-The API's JWT handler raises events that enable control over the authentication process using `JwtBearerEvents`. To provide support for API authorization, `AddIdentityServerJwt` registers its own event handlers.
-
-To customize the handling of an event, wrap the existing event handler with additional logic as required. For example:
-
-```csharp
-services.Configure<JwtBearerOptions>(
-    IdentityServerJwtConstants.IdentityServerJwtBearerScheme,
-    options =>
-    {
-        var onTokenValidated = options.Events.OnTokenValidated;       
-        
-        options.Events.OnTokenValidated = async context =>
-        {
-            await onTokenValidated(context);
-            ...
-        }
-    });
-```
-
-In the preceding code, the `OnTokenValidated` event handler is replaced with a custom implementation. This implementation:
-
-1. Calls the original implementation provided by the API authorization support.
-1. Run its own custom logic.
 
 ## Protect a client-side route (Angular)
 
