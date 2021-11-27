@@ -44,7 +44,7 @@ WHen multiple attributes are applied, an accessing user must be a member of all 
 
 Access to an action can be limited by applying additional role authorization attributes at the action level:
 
-[!code-csharp[](~/security/authorization/roles/samples/6_0/WebAll/Controllers/ControlAllPanelController.cs?name=snippet&highlight=1-2,9)]
+[!code-csharp[](~/security/authorization/roles/samples/6_0/WebAll/Controllers/ControlAllPanelController.cs?name=snippet&highlight=1-2,7)]
 
 In the preceding `ControlAllPanelController` controller:
 
@@ -53,12 +53,12 @@ In the preceding `ControlAllPanelController` controller:
 
 A controller can be locked down but allow anonymous, unauthenticated access to individual actions:
 
-[!code-csharp[](~/security/authorization/roles/samples/6_0/WebAll/Pages/X/Update.cshtml.cs?name=snippet&highlight=1)]
+[!code-csharp[](~/security/authorization/roles/samples/6_0/WebAll/Controllers/Control3PanelController.cs?name=snippet&highlight=1,7)]
 
-For Razor Pages, the `AuthorizeAttribute` can be applied by either:
+For Razor Pages, the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute)can be applied by either:
 
 * Using a [convention](xref:razor-pages/razor-pages-conventions#page-model-action-conventions), or
-* Applying the `AuthorizeAttribute` to the `PageModel` instance:
+* Applying the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute)to the `PageModel` instance:
 
 [!code-csharp[](~/security/authorization/roles/samples/6_0/WebAll/Pages/X/Update.cshtml.cs?name=snippet&highlight=1)]
 
@@ -69,15 +69,15 @@ For Razor Pages, the `AuthorizeAttribute` can be applied by either:
 
 ## Policy based role checks
 
-Role requirements can also be expressed using the new Policy syntax, where a developer registers a policy at startup as part of the Authorization service configuration. This normally occurs in `ConfigureServices()` in your *Startup.cs* file.
+Role requirements can also be expressed using the new Policy syntax, where a developer registers a policy at startup as part of the Authorization service configuration. This typically occurs in in the *Program.cs* file:
 
 [!code-csharp[](~/security/authorization/roles/samples/6_0/WebAll/Program.cs?name=snippet&highlight=6-10)]
 
-Policies are applied using the `Policy` property on the `AuthorizeAttribute` attribute:
+Policies are applied using the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy> property on the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute)attribute:
 
 [!code-csharp[](~/security/authorization/roles/samples/6_0/WebAll/Controllers/Home2Controller.cs?name=snippet&highlight=1)]
 
-To specify multiple allowed roles in a requirement, specify them as parameters to the `RequireRole` method:
+To specify multiple allowed roles in a requirement, specify them as parameters to the <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireRole%2A> method:
 
 [!code-csharp[](~/security/authorization/roles/samples/6_0/WebAll/Program.cs?name=snippet2&highlight=6-10)]
 
@@ -136,10 +136,10 @@ You can also lock down a controller but allow anonymous, unauthenticated access 
 
 [!code-csharp[](~/security/authorization/roles/samples/6_0/WebAll/Controllers/Control3PanelController.cs?name=snippet&highlight=1,9)]
 
-For Razor Pages, the `AuthorizeAttribute` can be applied by either:
+For Razor Pages, the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute)can be applied by either:
 
 * Using a [convention](xref:razor-pages/razor-pages-conventions#page-model-action-conventions), or
-* Applying the `AuthorizeAttribute` to the `PageModel` instance:
+* Applying the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute)to the `PageModel` instance:
 
 ```csharp
 [Authorize(Policy = "RequireAdministratorRole")]
@@ -174,7 +174,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Policies are applied using the `Policy` property on the `AuthorizeAttribute` attribute:
+Policies are applied using the `Policy` property on the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute)attribute:
 
 ```csharp
 [Authorize(Policy = "RequireAdministratorRole")]
