@@ -85,7 +85,7 @@ services.AddSingleton<ResolverFactory>(
     () => new DnsResolverFactory(refreshInterval: TimeSpan.FromSeconds(30)));
 ```
 
-The preceding code creates a `DnsResolverFactory` with a refresh interval and registers it with dependency injection. For more information on using a custom configured resolver, see [Configure custom resolvers and load balancers](#configure-custom-resolvers-and-load-balancers).
+The preceding code creates a `DnsResolverFactory` with a refresh interval and registers it with dependency injection. For more information on using a custom-configured resolver, see [Configure custom resolvers and load balancers](#configure-custom-resolvers-and-load-balancers).
 
 #### StaticResolverFactory
 
