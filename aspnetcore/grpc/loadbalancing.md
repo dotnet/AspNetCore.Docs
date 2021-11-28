@@ -74,9 +74,11 @@ The preceding code:
   * Pick first load balancer attempts to connect to one of the resolved addresses.
   * The call is sent to the first address the channel successfully connects to.
 
-##### Address caching
+##### DNS address caching
 
-Performance is important when load balancing. The latency of resolving addresses is eliminated from gRPC calls by caching the addresses. A resolver will be invoked when making the first gRPC call, and subsequent calls use the cache. Addresses are automatically refreshed if a connection is interrupted. Refreshing is important in scenarios where addresses change at runtime. For example, in Kubernetes a [restarted pod](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/) triggers the DNS resolver to refresh and get the pod's new address.
+Performance is important when load balancing. The latency of resolving addresses is eliminated from gRPC calls by caching the addresses.
+
+A resolver will be invoked when making the first gRPC call, and subsequent calls use the cache. Addresses are automatically refreshed if a connection is interrupted. Refreshing is important in scenarios where addresses change at runtime. For example, in Kubernetes a [restarted pod](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/) triggers the DNS resolver to refresh and get the pod's new address.
 
 By default, a DNS resolver is refreshed if a connection is interrupted. The DNS resolver can also optionally refresh itself on a periodic interval. This can be useful for quickly detecting new pod instances. 
 
