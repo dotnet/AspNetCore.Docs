@@ -21,6 +21,8 @@ The following tutorials are available for ASP.NET Core Blazor:
 
 * <xref:tutorials/signalr-blazor> (Blazor Server or Blazor WebAssembly)
 
+For more information on Blazor hosting models, Blazor Server and Blazor WebAssembly, see <xref:blazor/hosting-models>.
+
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
@@ -33,6 +35,8 @@ The following tutorials are available for ASP.NET Core Blazor:
 
 * <xref:tutorials/signalr-blazor> (Blazor Server or Blazor WebAssembly)
 
+For more information on Blazor hosting models, Blazor Server and Blazor WebAssembly, see <xref:blazor/hosting-models>.
+
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
@@ -44,5 +48,7 @@ The following tutorials are available for ASP.NET Core Blazor:
 * <xref:tutorials/build-a-blazor-app> (Blazor Server or Blazor WebAssembly)
 
 * <xref:tutorials/signalr-blazor> (Blazor Server or Blazor WebAssembly)
+
+For more information on Blazor hosting models, Blazor Server and Blazor WebAssembly, see <xref:blazor/hosting-models>.
 
 ::: moniker-end
