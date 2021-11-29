@@ -78,7 +78,7 @@ An alternative to a [custom exception handler page](#exception-handler-page) is 
 
 The following code uses a lambda for exception handling:
 
-:::code language="csharp" source="error-handling/samples/6.x/ErrorHandlingSample/Snippets/Program.cs" id="snippet_UseExceptionHandlerInline" highlight="5-29:::
+:::code language="csharp" source="error-handling/samples/6.x/ErrorHandlingSample/Snippets/Program.cs" id="snippet_UseExceptionHandlerInline" highlight="5-29":::
 
 > [!WARNING]
 > Do **not** serve sensitive error information to clients. Serving errors is a security risk.
