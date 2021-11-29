@@ -118,6 +118,48 @@ If the SUT's [environment](xref:fundamentals/environments) isn't set, the enviro
 
 ## Basic tests with the default WebApplicationFactory
 
+::: moniker range=">= aspnetcore-6.0"
+
+## Test app with minimal hosting model
+
+ASP.NET Core 6 introduced [`WebApplication`](/dotnet/api/microsoft.aspnetcore.builder.webapplication) which removed the need for a `Startup` class. To test with `WebApplicationFactory` without a `Startup` class, an ASP.NET Core 6 app needs to expose the implicitly defined `Program` class to the test project in **one** of the following ways:
+
+* Expose internal types from the web app to the test project. This can be done in the project file (`.csproj`):
+   ```
+
+  ```xml
+  <ItemGroup>
+       <InternalsVisibleTo Include="MyTestProject" />
+  </ItemGroup>
+  ```
+* Make the `Program` class public using a partial class declaration
+:
+  ```diff
+  var builder = WebApplication.CreateBuilder(args);
+  // ... Configure services, routes, etc.
+  app.Run();
+  + public partial class Program { }
+  ```
+
+After making the changes in the Web application. The test project now can use the `Program` class for the `WebApplicationFactory`.
+
+```csharp
+[Fact]
+public async Task HelloWorldTest()
+{
+    var application = new WebApplicationFactory<Program>()
+        .WithWebHostBuilder(builder =>
+        {
+            // ... Configure test services
+        });
+        
+    var client = application.CreateClient();
+    ...
+    }
+```
+
+::: moniker-end
+
 [`WebApplicationFactory<TEntryPoint>`](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1) is used to create a [`TestServer`](/dotnet/api/microsoft.aspnetcore.testhost.testserver) for the integration tests. `TEntryPoint` is the entry point class of the SUT, usually the `Startup` class.
 
 Test classes implement a *class fixture* interface ([`IClassFixture`](https://xunit.net/docs/shared-context#class-fixture)) to indicate the class contains tests and provide shared object instances across the tests in the class.
@@ -195,44 +237,6 @@ The `Post_DeleteMessageHandler_ReturnsRedirectToRoot` test method of the [sample
 Because another test in the `IndexPageTests` class performs an operation that deletes all of the records in the database and may run before the `Post_DeleteMessageHandler_ReturnsRedirectToRoot` method, the database is reseeded in this test method to ensure that a record is present for the SUT to delete. Selecting the first delete button of the `messages` form in the SUT is simulated in the request to the SUT:
 
 [!code-csharp[](integration-tests/samples/3.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs?name=snippet3)]
-
-## Test app with minimal hosting model
-
-ASP.NET Core 6 introduced [`WebApplication`](/dotnet/api/microsoft.aspnetcore.builder.webapplication) which removed the need for a `Startup` class. To test with `WebApplicationFactory` without a `Startup` class, the ASP.NET Core 6 application needs to expose the implicitly defined `Program` class to the test project in **one** of the following ways:
-
-* Expose internal types from the web application to the test project. This can be done in the project file (.csproj)
-* ```
-
-  ```xml
-  <ItemGroup>
-       <InternalsVisibleTo Include="MyTestProject" />
-  </ItemGroup>
-  ```
-* Make the `Program` class public using a partial class declaration
-
-  ```diff
-  var builder = WebApplication.CreateBuilder(args);
-  // ... Configure services, routes, etc.
-  app.Run();
-  + public partial class Program { }
-  ```
-
-After making the changes in the Web application. The test project now can use the `Program` class for the `WebApplicationFactory`.
-
-```csharp
-[Fact]
-public async Task HelloWorldTest()
-{
-    var application = new WebApplicationFactory<Program>()
-        .WithWebHostBuilder(builder =>
-        {
-            // ... Configure test services
-        });
-        
-    var client = application.CreateClient();
-    ...
-    }
-```
 
 ## Client options
 
