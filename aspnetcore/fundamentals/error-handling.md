@@ -17,23 +17,19 @@ By [Kirk Larkin](https://twitter.com/serpent5), [Tom Dykstra](https://github.com
 
 This article covers common approaches to handling errors in ASP.NET Core web apps. See <xref:web-api/handle-errors> for web APIs.
 
-## Developer Exception Page
+## Developer exception page
 
-The *Developer Exception Page* displays detailed information about unhandled request exceptions. The ASP.NET Core templates generate the following code:
+The *Developer Exception Page* displays detailed information about unhandled request exceptions. ASP.NET Core apps enable the developer exception page by default when running in the [Development environment](xref:fundamentals/environments).
 
-:::code language="csharp" source="error-handling/samples/5.x/ErrorHandlingSample/Startup.cs" id="snippet" highlight="3-6":::
+The developer exception page runs early in the middleware pipeline, so that it can catch unhandled exceptions thrown in middleware that follows.
 
-The preceding highlighted code enables the developer exception page when the app is running in the [Development environment](xref:fundamentals/environments).
-
-The templates place <xref:Microsoft.AspNetCore.Builder.DeveloperExceptionPageExtensions.UseDeveloperExceptionPage%2A> early in the middleware pipeline so that it can catch unhandled exceptions thrown in middleware that follows.
-
-The preceding code enables the Developer Exception Page ***only*** when the app runs in the Development environment. Detailed exception information shouldn't be displayed publicly when the app runs in the Production environment. For more information on configuring environments, see <xref:fundamentals/environments>.
+Detailed exception information shouldn't be displayed publicly when the app runs in the Production environment. For more information on configuring environments, see <xref:fundamentals/environments>.
 
 The Developer Exception Page can include the following information about the exception and the request:
 
 * Stack trace
-* Query string parameters if any
-* Cookies if any
+* Query string parameters, if any
+* Cookies, if any
 * Headers
 
 The Developer Exception Page isn't guaranteed to provide any information. Use [Logging](xref:fundamentals/logging/index) for complete error information.
@@ -85,13 +81,13 @@ The following code uses a lambda for exception handling:
 
 ## UseStatusCodePages
 
-By default, an ASP.NET Core app doesn't provide a status code page for HTTP error status codes, such as *404 - Not Found*. When the app sets an HTTP 400-599 error status code that doesn't have a body, it returns the status code and an empty response body. To provide status code pages, use the status code pages middleware. To enable default text-only handlers for common error status codes, call <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages%2A> in *Program.cs*:
+By default, an ASP.NET Core app doesn't provide a status code page for HTTP error status codes, such as *404 - Not Found*. When the app sets an HTTP 400-599 error status code that doesn't have a body, it returns the status code and an empty response body. To enable default text-only handlers for common error status codes, call <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages%2A> in *Program.cs*:
 
 :::code language="csharp" source="error-handling/samples/6.x/ErrorHandlingSample/Snippets/Program.cs" id="snippet_UseStatusCodePages" highlight="9":::
 
 Call `UseStatusCodePages` before request handling middleware. For example, call `UseStatusCodePages` before the Static File Middleware and the Endpoints Middleware.
 
-When `UseStatusCodePages` isn't used, navigating to a URL without an endpoint returns a browser-dependent error message indicating the endpoint can't be found. When `UseStatusCodePages` is called, the browser returns:
+When `UseStatusCodePages` isn't used, navigating to a URL without an endpoint returns a browser-dependent error message indicating the endpoint can't be found. When `UseStatusCodePages` is called, the browser returns the following response:
 
 ```console
 Status Code: 404; Not Found
@@ -152,7 +148,9 @@ This method is commonly used when the app should:
 * Process the request without redirecting to a different endpoint. For web apps, the client's browser address bar reflects the originally requested endpoint.
 * Preserve and return the original status code with the response.
 
-The URL and query string templates may include a placeholder `{0}` for the status code. The URL template must start with `/`.
+The URL template must start with `/` and may include a placeholder `{0}` for the status code. To pass the status code as a query-string parameter, pass a second argument into `UseStatusCodePagesWithReExecute`. For example:
+
+:::code language="csharp" source="error-handling/samples/6.x/ErrorHandlingSample/Snippets/Program.cs" id="snippet_UseStatusCodePagesReExecuteQueryString":::
 
 The endpoint that processes the error can get the original URL that generated the error, as shown in the following example:
 

@@ -125,4 +125,11 @@ public static class Program
         app.UseStatusCodePagesWithReExecute("/StatusCode/{0}");
         // </snippet_UseStatusCodePagesReExecute>
     }
+
+    public static void UseStatusCodePagesReExecuteQueryString(WebApplicationBuilder builder)
+    {
+        // <snippet_UseStatusCodePagesReExecuteQueryString>
+        app.UseStatusCodePagesWithReExecute("/StatusCode", "?statusCode={0}");
+        // </snippet_UseStatusCodePagesReExecuteQueryString>
+    }
 }
