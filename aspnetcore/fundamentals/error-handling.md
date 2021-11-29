@@ -5,7 +5,7 @@ description: Discover how to handle errors in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2019
+ms.date: 11/09/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/error-handling
 ---
@@ -67,7 +67,7 @@ To allow unauthenticated users to view the custom error handling page, ensure th
 
 Use <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerPathFeature> to access the exception and the original request path in an error handler. The following example uses `IExceptionHandlerPathFeature` to get more information about the exception that was thrown:
 
-:::code language="csharp" source="error-handling/samples/6.x/ErrorHandlingSample/Pages/Error.cshtml.cs" id="snippet_Class" highlight="15-25":::
+:::code language="csharp" source="error-handling/samples/6.x/ErrorHandlingSample/Pages/Error.cshtml.cs" id="snippet_Class" highlight="15-27":::
 
 > [!WARNING]
 > Do **not** serve sensitive error information to clients. Serving errors is a security risk.
@@ -78,7 +78,7 @@ An alternative to a [custom exception handler page](#exception-handler-page) is 
 
 The following code uses a lambda for exception handling:
 
-:::code language="csharp" source="error-handling/samples/6.x/ErrorHandlingSample/Snippets/Program.cs" id="snippet_UseExceptionHandlerInline":::
+:::code language="csharp" source="error-handling/samples/6.x/ErrorHandlingSample/Snippets/Program.cs" id="snippet_UseExceptionHandlerInline" highlight="5-29:::
 
 > [!WARNING]
 > Do **not** serve sensitive error information to clients. Serving errors is a security risk.

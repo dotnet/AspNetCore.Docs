@@ -5,34 +5,41 @@ namespace ErrorHandlingSample.Snippets;
 
 public static class Program
 {
-    public static void UseExceptionHandlerInline(WebApplication app)
+    public static void UseExceptionHandlerInline(WebApplicationBuilder builder)
     {
         // <snippet_UseExceptionHandlerInline>
-        app.UseExceptionHandler(exceptionHandlerApp =>
+        var app = builder.Build();
+
+        if (!app.Environment.IsDevelopment())
         {
-            exceptionHandlerApp.Run(async context =>
+            app.UseExceptionHandler(exceptionHandlerApp =>
             {
-                context.Response.StatusCode = StatusCodes.Status500InternalServerError;
-
-                // using static System.Net.Mime.MediaTypeNames;
-                context.Response.ContentType = Text.Plain;
-
-                await context.Response.WriteAsync("An exception was thrown.");
-
-                var exceptionHandlerPathFeature =
-                    context.Features.Get<IExceptionHandlerPathFeature>();
-
-                if (exceptionHandlerPathFeature?.Error is FileNotFoundException)
+                exceptionHandlerApp.Run(async context =>
                 {
-                    await context.Response.WriteAsync(" The file was not found.");
-                }
+                    context.Response.StatusCode = StatusCodes.Status500InternalServerError;
 
-                if (exceptionHandlerPathFeature?.Path == "/")
-                {
-                    await context.Response.WriteAsync(" Page: Home.");
-                }
+                    // using static System.Net.Mime.MediaTypeNames;
+                    context.Response.ContentType = Text.Plain;
+
+                    await context.Response.WriteAsync("An exception was thrown.");
+
+                    var exceptionHandlerPathFeature =
+                        context.Features.Get<IExceptionHandlerPathFeature>();
+
+                    if (exceptionHandlerPathFeature?.Error is FileNotFoundException)
+                    {
+                        await context.Response.WriteAsync(" The file was not found.");
+                    }
+
+                    if (exceptionHandlerPathFeature?.Path == "/")
+                    {
+                        await context.Response.WriteAsync(" Page: Home.");
+                    }
+                });
             });
-        });
+
+            app.UseHsts();
+        }
         // </snippet_UseExceptionHandlerInline>
     }
 
