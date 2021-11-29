@@ -15,11 +15,11 @@ uid: blazor/tutorials
 
 The following tutorials are available for ASP.NET Core Blazor:
 
-* [Build your first Blazor app](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro)
+* [Build your first Blazor app](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro) (Blazor Server)
 
-* <xref:tutorials/build-a-blazor-app>
+* <xref:tutorials/build-a-blazor-app> (Blazor Server or Blazor WebAssembly)
 
-* <xref:tutorials/signalr-blazor>
+* <xref:tutorials/signalr-blazor> (Blazor Server or Blazor WebAssembly)
 
 ::: moniker-end
 
@@ -27,11 +27,11 @@ The following tutorials are available for ASP.NET Core Blazor:
 
 The following tutorials are available for ASP.NET Core Blazor:
 
-* [Build your first Blazor app](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro)
+* [Build your first Blazor app](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro) (Blazor Server)
 
-* <xref:tutorials/build-a-blazor-app>
+* <xref:tutorials/build-a-blazor-app> (Blazor Server or Blazor WebAssembly)
 
-* <xref:tutorials/signalr-blazor>
+* <xref:tutorials/signalr-blazor> (Blazor Server or Blazor WebAssembly)
 
 ::: moniker-end
 
@@ -39,10 +39,10 @@ The following tutorials are available for ASP.NET Core Blazor:
 
 The following tutorials are available for ASP.NET Core Blazor:
 
-* [Build your first Blazor app](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro)
+* [Build your first Blazor app](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro) (Blazor Server)
 
-* <xref:tutorials/build-a-blazor-app>
+* <xref:tutorials/build-a-blazor-app> (Blazor Server or Blazor WebAssembly)
 
-* <xref:tutorials/signalr-blazor>
+* <xref:tutorials/signalr-blazor> (Blazor Server or Blazor WebAssembly)
 
 ::: moniker-end
