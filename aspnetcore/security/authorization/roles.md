@@ -36,7 +36,7 @@ Multiple roles can be specified as a comma separated list:
 
 The `SalaryController` is only accessible by users who are members of the `HRManager` role ***or*** the `Finance` role.
 
-WHen multiple attributes are applied, an accessing user must be a member of all the roles specified. The following sample requires that a user must be a member of ***both*** the `PowerUser` ***and*** `ControlPanelUser` role:
+WHen multiple attributes are applied, an accessing user must be a member of ***all*** the roles specified. The following sample requires that a user must be a member of ***both*** the `PowerUser` ***and*** `ControlPanelUser` role:
 
 [!code-csharp[](~/security/authorization/roles/samples/6_0/WebAll/Controllers/ControlPanelController.cs?name=snippet&highlight=1-2)]
 
@@ -67,7 +67,7 @@ For Razor Pages, [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.Authori
 
 ## Policy based role checks
 
-Role requirements can also be expressed using the new Policy syntax, where a developer registers a policy at application startup as part of the Authorization service configuration. This typically occurs in in the *Program.cs* file:
+Role requirements can also be expressed using the Policy syntax, where a developer registers a policy at application startup as part of the Authorization service configuration. This typically occurs in in the *Program.cs* file:
 
 [!code-csharp[](~/security/authorization/roles/samples/6_0/WebAll/Program.cs?name=snippet&highlight=6-10)]
 

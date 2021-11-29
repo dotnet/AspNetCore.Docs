@@ -8,7 +8,7 @@ namespace WebAll.Controllers
     public class SalaryController : Controller
     {
         public IActionResult Payslip() =>
-                        Content("HRManager ||Finance");
+                        Content("HRManager || Finance");
     }
     #endregion
 }
