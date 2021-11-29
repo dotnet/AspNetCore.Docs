@@ -1,9 +1,9 @@
-#region snippet_UsingBooksApiModels
+// <snippet_UsingBooksApiModels>
 using BooksApi.Models;
-#endregion
-#region snippet_UsingBooksApiServices
+// </snippet_UsingBooksApiModels>
+// <snippet_UsingBooksApiServices>
 using BooksApi.Services;
-#endregion
+// </snippet_UsingBooksApiServices>
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +29,7 @@ namespace BooksApi
 
         public IConfiguration Configuration { get; }
 
-        #region snippet_ConfigureServices
+        // <snippet_ConfigureServices>
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<BookstoreDatabaseSettings>(
@@ -43,7 +43,7 @@ namespace BooksApi
             services.AddControllers()
                 .AddNewtonsoftJson(options => options.UseMemberCasing());
         }
-        #endregion
+        // </snippet_ConfigureServices>
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
