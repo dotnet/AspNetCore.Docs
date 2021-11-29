@@ -198,18 +198,17 @@ Because another test in the `IndexPageTests` class performs an operation that de
 
 ## Test app with minimal hosting model
 
-ASP.NET Core 6 introduced the minimal hosting model which is a more simple way to set up a web application and integrates the `Startup.cs` file in the `Program.cs` file. It also uses [top-level statements](/dotnet/csharp/fundamentals/program-structure/top-level-statements) and [global `using` directives](/dotnet/csharp/whats-new/csharp-10#global-using-directives). 
+ASP.NET Core 6 introduced [`WebApplication`](/dotnet/api/microsoft.aspnetcore.builder.webapplication) which removed the need for a `Startup` class. To test with `WebApplicationFactory` without a `Startup` class, the ASP.NET Core 6 application needs to expose the implicitly defined `Program` class to the test project in **one** of the following ways:
 
-To test with `WebApplicationFactory` or `TestServer`, the user needs to make changes in the ASP.NET Core 6 application in **one** of the following ways:
-
-* Project file (.csproj), the project file should contain:
+* Expose internal types from the web application to the test project. This can be done in the project file (.csproj)
+* ```
 
   ```xml
   <ItemGroup>
        <InternalsVisibleTo Include="MyTestProject" />
   </ItemGroup>
   ```
-* A public partial Program class
+* Make the `Program` class public using a partial class declaration
 
   ```diff
   var builder = WebApplication.CreateBuilder(args);
