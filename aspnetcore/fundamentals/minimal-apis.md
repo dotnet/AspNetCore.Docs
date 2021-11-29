@@ -11,7 +11,12 @@ uid: fundamentals/minimal-apis
 
 # Minimal APIs overview
 
-This document provides an overview of minimal APIs. The minimal APIs consist of:
+This document:
+
+* Provides an overview of minimal APIs.
+* In intended for experienced developers. For an introduction, see <xref:tutorials/min-web-api>
+
+The minimal APIs consist of:
 
 * New hosting APIs
 * <xref:Microsoft.AspNetCore.Builder.WebApplication> and <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder>
