@@ -120,8 +120,6 @@ If the SUT's [environment](xref:fundamentals/environments) isn't set, the enviro
 
 ::: moniker range=">= aspnetcore-6.0"
 
-## Test app with minimal hosting model
-
 ASP.NET Core 6 introduced [`WebApplication`](/dotnet/api/microsoft.aspnetcore.builder.webapplication) which removed the need for a `Startup` class. To test with `WebApplicationFactory` without a `Startup` class, an ASP.NET Core 6 app needs to expose the implicitly defined `Program` class to the test project in **one** of the following ways:
 
 * Expose internal types from the web app to the test project. This can be done in the project file (`.csproj`):
