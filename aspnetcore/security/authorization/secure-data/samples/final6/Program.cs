@@ -7,7 +7,8 @@ using ContactManager.Data;
 using Microsoft.AspNetCore.Authorization;
 using ContactManager.Authorization;
 
-#region snippet4  // snippet3 used in next define
+// snippet3 used in next define
+#region snippet4  
 #region snippet2
 #region snippet
 var builder = WebApplication.CreateBuilder(args);
