@@ -128,8 +128,7 @@ ASP.NET Core 6 introduced [`WebApplication`](/dotnet/api/microsoft.aspnetcore.bu
        <InternalsVisibleTo Include="MyTestProject" />
   </ItemGroup>
   ```
-* Make the `Program` class public using a partial class declaration
-:
+* Make the `Program` class public using a partial class declaration:
   ```diff
   var builder = WebApplication.CreateBuilder(args);
   // ... Configure services, routes, etc.
@@ -137,7 +136,7 @@ ASP.NET Core 6 introduced [`WebApplication`](/dotnet/api/microsoft.aspnetcore.bu
   + public partial class Program { }
   ```
 
-After making the changes in the Web application. The test project now can use the `Program` class for the `WebApplicationFactory`.
+After making the changes in the web application, the test project now can use the `Program` class for the `WebApplicationFactory`.
 
 ```csharp
 [Fact]
