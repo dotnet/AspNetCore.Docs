@@ -7,7 +7,7 @@ namespace ContactManager.Data
 {
     public static class SeedData
     {
-        public static void Initialize(IServiceProvider serviceProvider, string testUserPw="0")
+        public static async Task Initialize(IServiceProvider serviceProvider, string testUserPw="")
         {
             using (var context = new ApplicationDbContext(
                 serviceProvider.GetRequiredService<DbContextOptions<ApplicationDbContext>>()))

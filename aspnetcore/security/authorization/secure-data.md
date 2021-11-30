@@ -81,7 +81,7 @@ The following sections have all the major steps to create the secure user data a
 
 Use the ASP.NET [Identity](xref:security/authentication/identity) user ID to ensure users can edit their data, but not other users data. Add `OwnerID` and `ContactStatus` to the `Contact` model:
 
-[!code-csharp[](secure-data/samples/final3/Models/Contact.cs?name=snippet1&highlight=5-6,16-999)]
+[!code-csharp[](secure-data/samples/final6/Models/Contact.cs?name=snippet1&highlight=5-6,16-999)]
 
 `OwnerID` is the user's ID from the `AspNetUser` table in the [Identity](xref:security/authentication/identity) database. The `Status` field determines if a contact is viewable by general users.
 
@@ -96,7 +96,7 @@ dotnet ef database update
 
 Append [AddRoles](/dotnet/api/microsoft.aspnetcore.identity.identitybuilder.addroles#Microsoft_AspNetCore_Identity_IdentityBuilder_AddRoles__1) to add Role services:
 
-[!code-csharp[](secure-data/samples/final3/Startup.cs?name=snippet2&highlight=8)]
+[!code-csharp[](secure-data/samples/final6/Program.cs?name=snippet2&highlight=15)]
 
 <a name="rau"></a>
 
@@ -104,7 +104,7 @@ Append [AddRoles](/dotnet/api/microsoft.aspnetcore.identity.identitybuilder.addr
 
 Set the fallback authentication policy to require users to be authenticated:
 
-[!code-csharp[](secure-data/samples/final3/Startup.cs?name=snippet&highlight=13-99)]
+[!code-csharp[](secure-data/samples/final6/Program.cs?name=snippet&highlight=16-21)]
 
 The preceding highlighted code sets the [fallback authentication policy](xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy). The fallback authentication policy requires ***all*** users to be authenticated, except for Razor Pages, controllers, or action methods with an authentication attribute. For example, Razor Pages, controllers, or action methods with `[AllowAnonymous]` or `[Authorize(PolicyName="MyPolicy")]` use the applied authentication attribute rather than the fallback authentication policy.
 
@@ -122,13 +122,13 @@ For more information on policies, see <xref:security/authorization/policies>.
 
 An alternative way for MVC controllers and Razor Pages to require all users be authenticated is adding an authorization filter:
 
-[!code-csharp[](secure-data/samples/final3/Startup2.cs?name=snippet&highlight=14-99)]
+[!code-csharp[](secure-data/samples/final6/Program.cs?name=snippet3&highlight=21-27)]
 
 The preceding code uses an authorization filter, setting the fallback policy uses endpoint routing. Setting the fallback policy is the preferred way to require all users be authenticated.
 
 Add [AllowAnonymous](/dotnet/api/microsoft.aspnetcore.authorization.allowanonymousattribute) to the `Index` and `Privacy` pages so anonymous users can get information about the site before they register:
 
-[!code-csharp[](secure-data/samples/final3/Pages/Index.cshtml.cs?highlight=1,7)]
+[!code-csharp[](secure-data/samples/final6/Pages/Index.cshtml.cs?highlight=1,6)]
 
 ### Configure the test account
 
@@ -140,9 +140,9 @@ dotnet user-secrets set SeedUserPW <PW>
 
 If a strong password is not specified, an exception is thrown when `SeedData.Initialize` is called.
 
-Update `Main` to use the test password:
+Update the app to use the test password:
 
-[!code-csharp[](secure-data/samples/final3/Program.cs?name=snippet)]
+[!code-csharp[](secure-data/samples/final6/Program.cs?name=snippet4&highlight=21-27)]
 
 ### Create the test accounts and update the contacts
 
@@ -357,6 +357,7 @@ dotnet ef database update
 
 ### Seed the database
 
+<!-- must be sync Task for finished program -->
 Add the [SeedData](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authorization/secure-data/samples/starter6/Data/SeedData.cs) class to the *Data* folder:
 
 [!code-csharp[](secure-data/samples/starter6/Data/SeedData.cs)]
@@ -506,17 +507,17 @@ Update `Main` to use the test password:
 
 Update the `Initialize` method in the `SeedData` class to create the test accounts:
 
-[!code-csharp[](secure-data/samples/final3/Data/SeedData.cs?name=snippet_Initialize)]
+[!code-csharp[](secure-data/samples/final6/Data/SeedData.cs?name=snippet_Initialize)]
 
 Add the administrator user ID and `ContactStatus` to the contacts. Make one of the contacts "Submitted" and one "Rejected". Add the user ID and status to all the contacts. Only one contact is shown:
 
-[!code-csharp[](secure-data/samples/final3/Data/SeedData.cs?name=snippet1&highlight=17,18)]
+[!code-csharp[](secure-data/samples/final6/Data/SeedData.cs?name=snippet1&highlight=17,18)]
 
 ## Create owner, manager, and administrator authorization handlers
 
 Create a `ContactIsOwnerAuthorizationHandler` class in the *Authorization* folder. The `ContactIsOwnerAuthorizationHandler` verifies that the user acting on a resource owns the resource.
 
-[!code-csharp[](secure-data/samples/final3/Authorization/ContactIsOwnerAuthorizationHandler.cs)]
+[!code-csharp[](secure-data/samples/final6/Authorization/ContactIsOwnerAuthorizationHandler.cs)]
 
 The `ContactIsOwnerAuthorizationHandler` calls [context.Succeed](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.succeed#Microsoft_AspNetCore_Authorization_AuthorizationHandlerContext_Succeed_Microsoft_AspNetCore_Authorization_IAuthorizationRequirement_) if the current authenticated user is the contact owner. Authorization handlers generally:
 
@@ -531,13 +532,13 @@ The app allows contact owners to edit/delete/create their own data. `ContactIsOw
 
 Create a `ContactManagerAuthorizationHandler` class in the *Authorization* folder. The `ContactManagerAuthorizationHandler` verifies the user acting on the resource is a manager. Only managers can approve or reject content changes (new or changed).
 
-[!code-csharp[](secure-data/samples/final3/Authorization/ContactManagerAuthorizationHandler.cs)]
+[!code-csharp[](secure-data/samples/final6/Authorization/ContactManagerAuthorizationHandler.cs)]
 
 ### Create an administrator authorization handler
 
 Create a `ContactAdministratorsAuthorizationHandler` class in the *Authorization* folder. The `ContactAdministratorsAuthorizationHandler` verifies the user acting on the resource is an administrator. Administrator can do all operations.
 
-[!code-csharp[](secure-data/samples/final3/Authorization/ContactAdministratorsAuthorizationHandler.cs)]
+[!code-csharp[](secure-data/samples/final6/Authorization/ContactAdministratorsAuthorizationHandler.cs)]
 
 ## Register the authorization handlers
 
