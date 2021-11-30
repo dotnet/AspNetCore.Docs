@@ -83,7 +83,7 @@ public class MyCustomMiddleware
 {
     // ...
 
-    public Task InvokeAsync(HttpContext context)
+    public async Task InvokeAsync(HttpContext context)
     {
         // ...
     }
