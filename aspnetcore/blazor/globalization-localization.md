@@ -149,15 +149,7 @@ The following `CultureExample1` component can be used to demonstrate Blazor glob
 
 The number string format (`N2`) in the preceding example (`.ToString("N2")`) is a [standard .NET numeric format specifier](/dotnet/standard/base-types/standard-numeric-format-strings#numeric-format-specifier-n). The `N2` format is supported for all numeric types, includes a group separator, and renders up to two decimal places.
 
-Add a list item to the navigation menu `<ul>` element in `Shared/NavMenu.razor` for the `CultureExample1` component:
-
-```razor
-<li class="nav-item px-3">
-    <NavLink class="nav-link" href="culture-example-1">
-        <span class="oi oi-list-rich" aria-hidden="true"></span> Culture Example 1
-    </NavLink>
-</li>
-```
+Optionally, add a menu item to the navigation in `Shared/NavMenu.razor` for the `CultureExample1` component.
 
 ## Dynamically set the culture from the `Accept-Language` header
 
@@ -380,7 +372,12 @@ CultureInfo.DefaultThreadCurrentUICulture = culture;
 await host.RunAsync();
 ```
 
-The following `CultureSelector` component shows how to set the user's culture selection into browser local storage via JS interop. The component is placed in the `Shared` folder for use throughout the app.
+The following `CultureSelector` component shows how to perform the following actions:
+
+* Set the user's culture selection into browser local storage via JS interop.
+* Reload the component that they requested (`forceLoad: true`), which uses the updated culture.
+
+The `CultureSelector` component is placed in the `Shared` folder for use throughout the app.
 
 `Shared/CultureSelector.razor`:
 
@@ -426,7 +423,7 @@ The following `CultureSelector` component shows how to set the user's culture se
 }
 ```
 
-Inside the closing `</div>` tag of the `<div class="main">` element in `Shared/MainLayout.razor`, add the `CultureSelector` component:
+Inside the closing tag of the `<main>` element in `Shared/MainLayout.razor`, add the `CultureSelector` component:
 
 ```razor
 <div class="bottom-row px-4">
@@ -557,7 +554,7 @@ public class CultureController : Controller
 > [!WARNING]
 > Use the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.LocalRedirect%2A> action result to prevent open redirect attacks. For more information, see <xref:security/preventing-open-redirects>.
 
-The following `CultureSelector` component shows how to perform the initial redirection when the user selects a culture. The component is placed in the `Shared` folder for use throughout the app.
+The following `CultureSelector` component shows how to call the `Set` method of the `CultureController` with the new culture. The component is placed in the `Shared` folder for use throughout the app.
 
 `Shared/CultureSelector.razor`:
 
@@ -841,7 +838,7 @@ Create resources for each locale. In the following example, resources are create
 </root>
 ```
 
-The following component demonstrates the use of the localized `Greeting` string with <xref:Microsoft.Extensions.Localization.IStringLocalizer%601>.
+The following component demonstrates the use of the localized `Greeting` string with <xref:Microsoft.Extensions.Localization.IStringLocalizer%601>. The Razor markup `@Loc["Greeting"]` in the following example localizes the string keyed to the `Greeting` value, which is set in the preceding resource files.
 
 Add the namespace for <xref:Microsoft.Extensions.Localization?displayProperty=fullName> to the app's `_Imports.razor` file:
 
@@ -882,15 +879,7 @@ Add the namespace for <xref:Microsoft.Extensions.Localization?displayProperty=fu
 }
 ```
 
-Add a list item to the navigation menu `<ul>` element in `Shared/NavMenu.razor` for the `CultureExample2` component:
-
-```razor
-<li class="nav-item px-3">
-    <NavLink class="nav-link" href="culture-example-2">
-        <span class="oi oi-list-rich" aria-hidden="true"></span> Culture Example 2
-    </NavLink>
-</li>
-```
+Optionally, add a menu item to the navigation in `Shared/NavMenu.razor` for the `CultureExample2` component.
 
 ## Additional resources
 
@@ -1040,15 +1029,7 @@ The following `CultureExample1` component can be used to demonstrate Blazor glob
 
 The number string format (`N2`) in the preceding example (`.ToString("N2")`) is a [standard .NET numeric format specifier](/dotnet/standard/base-types/standard-numeric-format-strings#numeric-format-specifier-n). The `N2` format is supported for all numeric types, includes a group separator, and renders up to two decimal places.
 
-Add a list item to the navigation menu `<ul>` element in `Shared/NavMenu.razor` for the `CultureExample1` component:
-
-```razor
-<li class="nav-item px-3">
-    <NavLink class="nav-link" href="culture-example-1">
-        <span class="oi oi-list-rich" aria-hidden="true"></span> Culture Example 1
-    </NavLink>
-</li>
-```
+Optionally, add a menu item to the navigation in `Shared/NavMenu.razor` for the `CultureExample1` component.
 
 ## Dynamically set the culture from the `Accept-Language` header
 
@@ -1727,7 +1708,7 @@ Create resources for each locale. In the following example, resources are create
 </root>
 ```
 
-The following component demonstrates the use of the localized `Greeting` string with <xref:Microsoft.Extensions.Localization.IStringLocalizer%601>.
+The following component demonstrates the use of the localized `Greeting` string with <xref:Microsoft.Extensions.Localization.IStringLocalizer%601>. The Razor markup `@Loc["Greeting"]` in the following example localizes the string keyed to the `Greeting` value, which is set in the preceding resource files.
 
 Add the namespace for <xref:Microsoft.Extensions.Localization?displayProperty=fullName> to the app's `_Imports.razor` file:
 
@@ -1768,15 +1749,7 @@ Add the namespace for <xref:Microsoft.Extensions.Localization?displayProperty=fu
 }
 ```
 
-Add a list item to the navigation menu `<ul>` element in `Shared/NavMenu.razor` for the `CultureExample2` component:
-
-```razor
-<li class="nav-item px-3">
-    <NavLink class="nav-link" href="culture-example-2">
-        <span class="oi oi-list-rich" aria-hidden="true"></span> Culture Example 2
-    </NavLink>
-</li>
-```
+Optionally, add a menu item to the navigation in `Shared/NavMenu.razor` for the `CultureExample2` component.
 
 ## Additional resources
 
@@ -1926,15 +1899,7 @@ The following `CultureExample1` component can be used to demonstrate Blazor glob
 
 The number string format (`N2`) in the preceding example (`.ToString("N2")`) is a [standard .NET numeric format specifier](/dotnet/standard/base-types/standard-numeric-format-strings#numeric-format-specifier-n). The `N2` format is supported for all numeric types, includes a group separator, and renders up to two decimal places.
 
-Add a list item to the navigation menu `<ul>` element in `Shared/NavMenu.razor` for the `CultureExample1` component:
-
-```razor
-<li class="nav-item px-3">
-    <NavLink class="nav-link" href="culture-example-1">
-        <span class="oi oi-list-rich" aria-hidden="true"></span> Culture Example 1
-    </NavLink>
-</li>
-```
+Optionally, add a menu item to the navigation in `Shared/NavMenu.razor` for the `CultureExample1` component.
 
 ## Dynamically set the culture from the `Accept-Language` header
 
@@ -2530,7 +2495,7 @@ Create resources for each locale. In the following example, resources are create
 </root>
 ```
 
-The following component demonstrates the use of the localized `Greeting` string with <xref:Microsoft.Extensions.Localization.IStringLocalizer%601>.
+The following component demonstrates the use of the localized `Greeting` string with <xref:Microsoft.Extensions.Localization.IStringLocalizer%601>. The Razor markup `@Loc["Greeting"]` in the following example localizes the string keyed to the `Greeting` value, which is set in the preceding resource files.
 
 Add the namespace for <xref:Microsoft.Extensions.Localization?displayProperty=fullName> to the app's `_Imports.razor` file:
 
@@ -2571,15 +2536,7 @@ Add the namespace for <xref:Microsoft.Extensions.Localization?displayProperty=fu
 }
 ```
 
-Add a list item to the navigation menu `<ul>` element in `Shared/NavMenu.razor` for the `CultureExample2` component:
-
-```razor
-<li class="nav-item px-3">
-    <NavLink class="nav-link" href="culture-example-2">
-        <span class="oi oi-list-rich" aria-hidden="true"></span> Culture Example 2
-    </NavLink>
-</li>
-```
+Optionally, add a menu item to the navigation in `Shared/NavMenu.razor` for the `CultureExample2` component.
 
 ## Additional resources
 
