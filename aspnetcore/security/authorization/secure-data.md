@@ -142,7 +142,7 @@ If a strong password is not specified, an exception is thrown when `SeedData.Ini
 
 Update the app to use the test password:
 
-[!code-csharp[](secure-data/samples/final6/Program.cs?name=snippet4&highlight=21-27)]
+[!code-csharp[](secure-data/samples/final6/Program.cs?name=snippet4)]
 
 ### Create the test accounts and update the contacts
 
@@ -185,7 +185,7 @@ Create a `ContactAdministratorsAuthorizationHandler` class in the *Authorization
 
 Services using Entity Framework Core must be registered for [dependency injection](xref:fundamentals/dependency-injection) using [AddScoped](/dotnet/api/microsoft.extensions.dependencyinjection.servicecollectionserviceextensions). The `ContactIsOwnerAuthorizationHandler` uses ASP.NET Core [Identity](xref:security/authentication/identity), which is built on Entity Framework Core. Register the handlers with the service collection so they're available to the `ContactsController` through [dependency injection](xref:fundamentals/dependency-injection). Add the following code to the end of `ConfigureServices`:
 
-[!code-csharp[](secure-data/samples/final6/Program.cs?name=snippet4&highlight=21-27)]
+[!code-csharp[](secure-data/samples/final6/Program.cs?name=snippet4)]
 
 `ContactAdministratorsAuthorizationHandler` and `ContactManagerAuthorizationHandler` are added as singletons. They're singletons because they don't use EF and all the information needed is in the `Context` parameter of the `HandleRequirementAsync` method.
 
