@@ -1,4 +1,5 @@
-﻿using BookStoreApi.Models;
+﻿// <snippet_File>
+using BookStoreApi.Models;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 
@@ -38,3 +39,4 @@ public class BooksService
     public async Task RemoveAsync(string id) =>
         await _booksCollection.DeleteOneAsync(x => x.Id == id);
 }
+// </snippet_File>

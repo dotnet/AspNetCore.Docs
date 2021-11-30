@@ -91,7 +91,7 @@ Use the mongo Shell in the following steps to create a database, make collection
 1. Define a schema for the `Books` collection and insert two documents using the following command:
 
    ```console
-   db.Books.insertMany([{ "Name": "Design Patterns", "Price": 54.93, "Category": "Computers", "Author": "Ralph Johnson"}, { "Name": "Clean Code", "Price": 43.15, "Category": "Computers","Author": "Robert C. Martin"}])
+   db.Books.insertMany([{ "Name": "Design Patterns", "Price": 54.93, "Category": "Computers", "Author": "Ralph Johnson" }, { "Name": "Clean Code", "Price": 43.15, "Category": "Computers","Author": "Robert C. Martin" }])
    ```
 
    A result similar to the following is displayed:
@@ -185,7 +185,7 @@ Use the mongo Shell in the following steps to create a database, make collection
 1. Add a *Models* directory to the project root.
 1. Add a `Book` class to the *Models* directory with the following code:
 
-   :::code language="csharp" source="first-mongo-app/samples/6.x/BookStoreApi/Models/Book.cs" range="4-15,17-24":::
+   :::code language="csharp" source="first-mongo-app/samples_snapshot/6.x/Book.cs":::
 
    In the preceding class, the `Id` property is:
 
@@ -222,13 +222,13 @@ Use the mongo Shell in the following steps to create a database, make collection
 1. Add a *Services* directory to the project root.
 1. Add a `BooksService` class to the *Services* directory with the following code:
 
-   :::code language="csharp" source="first-mongo-app/samples/6.x/BookStoreApi/Services/BooksService.cs":::
+   :::code language="csharp" source="first-mongo-app/samples/6.x/BookStoreApi/Services/BooksService.cs" id="snippet_File":::
 
    In the preceding code, a `BookStoreDatabaseSettings` instance is retrieved from DI via constructor injection. This technique provides access to the *appsettings.json* configuration values that were added in the [Add a configuration model](#add-a-configuration-model) section.
 
 1. Add the following highlighted code to *Program.cs*:
 
-   :::code language="csharp" source="first-mongo-app/samples/6.x/BookStoreApi/Program.cs" id="snippet_BooksService" highlight="9":::
+   :::code language="csharp" source="first-mongo-app/samples/6.x/BookStoreApi/Program.cs" id="snippet_BooksService" highlight="7":::
 
    In the preceding code, the `BooksService` class is registered with DI to support constructor injection in consuming classes. The singleton service lifetime is most appropriate because `BooksService` takes a direct dependency on `MongoClient`. Per the official [Mongo Client reuse guidelines](https://mongodb.github.io/mongo-csharp-driver/2.14/reference/driver/connecting/#re-use), `MongoClient` should be registered in DI with a singleton service lifetime.
 
@@ -314,7 +314,7 @@ To satisfy the preceding requirements, make the following changes:
 
 1. In *Program.cs*, chain the following highlighted code on to the `AddControllers` method call:
 
-   :::code language="csharp" source="first-mongo-app/samples/6.x/BookStoreApi/Program.cs" id="snippet_AddControllers" highlight="10":::
+   :::code language="csharp" source="first-mongo-app/samples/6.x/BookStoreApi/Program.cs" id="snippet_AddControllers" highlight="10-11":::
 
    With the preceding change, property names in the web API's serialized JSON response match their corresponding property names in the CLR object type. For example, the `Book` class's `Author` property serializes as `Author` instead of `author`.
 
