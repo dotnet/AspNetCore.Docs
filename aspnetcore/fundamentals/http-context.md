@@ -118,7 +118,8 @@ public class UserRepository : IUserRepository
     public void LogCurrentUser()
     {
         var username = _httpContextAccessor.HttpContext.User.Identity.Name;
-        service.LogAccessRequest(username);
+        
+        // ...
     }
 }
 ```
