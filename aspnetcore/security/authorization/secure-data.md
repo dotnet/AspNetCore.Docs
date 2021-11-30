@@ -332,7 +332,7 @@ Create a contact in the administrator's browser. Copy the URL for delete and edi
   ```
 
 * Add *Models/Contact.cs*:
-
+                  secure-data\samples\starter6\ContactManager\Models\Contact.cs
   [!code-csharp[](secure-data/samples/starter6/Models/Contact.cs)]
 
 * Scaffold the `Contact` model.
@@ -407,7 +407,9 @@ The sample contains the following authorization handlers:
 
 * `ContactIsOwnerAuthorizationHandler`: Ensures that a user can only edit their data.
 * `ContactManagerAuthorizationHandler`: Allows managers to approve or reject contacts.
-* `ContactAdministratorsAuthorizationHandler`: Allows administrators to approve or reject contacts and to edit/delete contacts.
+* `ContactAdministratorsAuthorizationHandler`: Allows administrators to:
+  * Approve or reject contacts
+  * Edit and delete contacts
 
 ## Prerequisites
 
