@@ -54,19 +54,7 @@ The following `HelloWorld` component uses a route template of `/hello-world`. Th
 
 The preceding component loads in the browser at `/hello-world` regardless of whether or not you add the component to the app's UI navigation. Optionally, components can be added to the `NavMenu` component so that a link to the component appears in the app's UI-based navigation.
 
-For the preceding `HelloWorld` component, add the following `NavLink` component to the `NavMenu` component. Add the `NavLink` component in a new list item (`<li>...</li>`) between the unordered list tags (`<ul>...</ul>`).
-
-`Shared/NavMenu.razor`:
-
-```razor
-<li class="nav-item px-3">
-    <NavLink class="nav-link" href="hello-world">
-        <span class="oi oi-list-rich" aria-hidden="true"></span> Hello World!
-    </NavLink>
-</li>
-```
-
-For more information, including descriptions of the `NavLink` and `NavMenu` components, see <xref:blazor/fundamentals/routing>.
+For the preceding `HelloWorld` component, you can add a `NavLink` component to the `NavMenu` component in the `Shared` folder. For more information, including descriptions of the `NavLink` and `NavMenu` components, see <xref:blazor/fundamentals/routing>.
 
 ### Markup
 
@@ -1148,19 +1136,7 @@ The following `HelloWorld` component uses a route template of `/hello-world`. Th
 
 The preceding component loads in the browser at `/hello-world` regardless of whether or not you add the component to the app's UI navigation. Optionally, components can be added to the `NavMenu` component so that a link to the component appears in the app's UI-based navigation.
 
-For the preceding `HelloWorld` component, add the following `NavLink` component to the `NavMenu` component. Add the `NavLink` component in a new list item (`<li>...</li>`) between the unordered list tags (`<ul>...</ul>`).
-
-`Shared/NavMenu.razor`:
-
-```razor
-<li class="nav-item px-3">
-    <NavLink class="nav-link" href="hello-world">
-        <span class="oi oi-list-rich" aria-hidden="true"></span> Hello World!
-    </NavLink>
-</li>
-```
-
-For more information, including descriptions of the `NavLink` and `NavMenu` components, see <xref:blazor/fundamentals/routing>.
+For the preceding `HelloWorld` component, you can add a `NavLink` component to the `NavMenu` component in the `Shared` folder. For more information, including descriptions of the `NavLink` and `NavMenu` components, see <xref:blazor/fundamentals/routing>.
 
 ### Markup
 
@@ -2099,19 +2075,7 @@ The following `HelloWorld` component uses a route template of `/hello-world`. Th
 
 The preceding component loads in the browser at `/hello-world` regardless of whether or not you add the component to the app's UI navigation. Optionally, components can be added to the `NavMenu` component so that a link to the component appears in the app's UI-based navigation.
 
-For the preceding `HelloWorld` component, add the following `NavLink` component to the `NavMenu` component. Add the `NavLink` component in a new list item (`<li>...</li>`) between the unordered list tags (`<ul>...</ul>`).
-
-`Shared/NavMenu.razor`:
-
-```razor
-<li class="nav-item px-3">
-    <NavLink class="nav-link" href="hello-world">
-        <span class="oi oi-list-rich" aria-hidden="true"></span> Hello World!
-    </NavLink>
-</li>
-```
-
-For more information, including descriptions of the `NavLink` and `NavMenu` components, see <xref:blazor/fundamentals/routing>.
+For the preceding `HelloWorld` component, you can add a `NavLink` component to the `NavMenu` component in the `Shared` folder. For more information, including descriptions of the `NavLink` and `NavMenu` components, see <xref:blazor/fundamentals/routing>.
 
 ### Markup
 
