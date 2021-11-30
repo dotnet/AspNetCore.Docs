@@ -96,7 +96,7 @@ dotnet ef database update
 
 Append [AddRoles](/dotnet/api/microsoft.aspnetcore.identity.identitybuilder.addroles#Microsoft_AspNetCore_Identity_IdentityBuilder_AddRoles__1) to add Role services:
 
-[!code-csharp[](secure-data/samples/final6/Program.cs?name=snippet2&highlight=15)]
+[!code-csharp[](secure-data/samples/final6/Program.cs?name=snippet&highlight=10)]
 
 <a name="rau"></a>
 
@@ -104,7 +104,7 @@ Append [AddRoles](/dotnet/api/microsoft.aspnetcore.identity.identitybuilder.addr
 
 Set the fallback authentication policy to require users to be authenticated:
 
-[!code-csharp[](secure-data/samples/final6/Program.cs?name=snippet&highlight=16-21)]
+[!code-csharp[](secure-data/samples/final6/Program.cs?name=snippet2&highlight=15-99)]
 
 The preceding highlighted code sets the [fallback authentication policy](xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy). The fallback authentication policy requires ***all*** users to be authenticated, except for Razor Pages, controllers, or action methods with an authentication attribute. For example, Razor Pages, controllers, or action methods with `[AllowAnonymous]` or `[Authorize(PolicyName="MyPolicy")]` use the applied authentication attribute rather than the fallback authentication policy.
 
