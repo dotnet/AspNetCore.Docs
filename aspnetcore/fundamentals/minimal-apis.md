@@ -14,7 +14,7 @@ uid: fundamentals/minimal-apis
 This document:
 
 * Provides an overview of minimal APIs.
-* In intended for experienced developers. For an introduction, see <xref:tutorials/min-web-api>
+* Is intended for experienced developers. For an introduction, see <xref:tutorials/min-web-api>
 
 The minimal APIs consist of:
 
