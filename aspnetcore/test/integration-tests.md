@@ -149,8 +149,8 @@ public async Task HelloWorldTest()
         });
         
     var client = application.CreateClient();
-    ...
-    }
+    //...
+}
 ```
 
 ::: moniker-end
