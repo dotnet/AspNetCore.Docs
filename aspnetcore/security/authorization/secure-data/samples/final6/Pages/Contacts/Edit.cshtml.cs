@@ -1,74 +1,102 @@
+using ContactManager.Authorization;
 using ContactManager.Data;
 using ContactManager.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
 namespace ContactManager.Pages.Contacts
 {
-    public class EditModel : PageModel
-    {
-        private readonly ApplicationDbContext _context;
-
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-        public EditModel(ApplicationDbContext context)
-#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+    #region snippet
+    public class EditModel : DI_BasePageModel
+    {
+        public EditModel(
+            ApplicationDbContext context,
+            IAuthorizationService authorizationService,
+            UserManager<IdentityUser> userManager)
+            : base(context, authorizationService, userManager)
         {
-            _context = context;
         }
 
         [BindProperty]
         public Contact Contact { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
-            if (id == null)
+            Contact? contact = await Context.Contact.FirstOrDefaultAsync(
+                                                             m => m.ContactId == id);
+            if (contact == null)
             {
                 return NotFound();
             }
 
-#pragma warning disable CS8601 // Possible null reference assignment.
-            Contact = await _context.Contact.FirstOrDefaultAsync(m => m.ContactId == id);
-#pragma warning restore CS8601 // Possible null reference assignment.
+            Contact = contact;
 
-            if (Contact == null)
+            var isAuthorized = await AuthorizationService.AuthorizeAsync(
+                                                      User, Contact,
+                                                      ContactOperations.Update);
+            if (!isAuthorized.Succeeded)
             {
-                return NotFound();
+                return Forbid();
             }
+
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(int id)
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            _context.Attach(Contact).State = EntityState.Modified;
+            // Fetch Contact from DB to get OwnerID.
+            var contact = await Context
+                .Contact.AsNoTracking()
+                .FirstOrDefaultAsync(m => m.ContactId == id);
 
-            try
+            if (contact == null)
             {
-                await _context.SaveChangesAsync();
+                return NotFound();
             }
-            catch (DbUpdateConcurrencyException)
+
+            var isAuthorized = await AuthorizationService.AuthorizeAsync(
+                                                     User, contact,
+                                                     ContactOperations.Update);
+            if (!isAuthorized.Succeeded)
             {
-                if (!ContactExists(Contact.ContactId))
+                return Forbid();
+            }
+
+            Contact.OwnerID = contact.OwnerID;
+
+            Context.Attach(Contact).State = EntityState.Modified;
+
+            if (Contact.Status == ContactStatus.Approved)
+            {
+                // If the contact is updated after approval, 
+                // and the user cannot approve,
+                // set the status back to submitted so the update can be
+                // checked and approved.
+                var canApprove = await AuthorizationService.AuthorizeAsync(User,
+                                        Contact,
+                                        ContactOperations.Approve);
+
+                if (!canApprove.Succeeded)
                 {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
+                    Contact.Status = ContactStatus.Submitted;
                 }
             }
+
+            await Context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
         }
-
-        private bool ContactExists(int id)
-        {
-            return _context.Contact.Any(e => e.ContactId == id);
-        }
     }
+    #endregion
+    #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+
 }

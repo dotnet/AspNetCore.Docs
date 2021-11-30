@@ -31,6 +31,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Contact[0].Email)
             </th>
+             <th>
+                @Html.DisplayNameFor(model => model.Contact[0].Status)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -55,12 +58,30 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.ContactId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.ContactId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ContactId">Delete</a>
-            </td>
-        </tr>
-}
+                           <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @if ((await AuthorizationService.AuthorizeAsync(
+                     User, item,
+                     ContactOperations.Update)).Succeeded)
+                    {
+                        <a asp-page="./Edit" asp-route-id="@item.ContactId">Edit</a>
+                        <text> | </text>
+                    }
+
+                    <a asp-page="./Details" asp-route-id="@item.ContactId">Details</a>
+
+                    @if ((await AuthorizationService.AuthorizeAsync(
+                     User, item,
+                     ContactOperations.Delete)).Succeeded)
+                    {
+                        <text> | </text>
+                        <a asp-page="./Delete" asp-route-id="@item.ContactId">Delete</a>
+                    }
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+

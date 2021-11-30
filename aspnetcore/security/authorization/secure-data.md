@@ -142,7 +142,7 @@ If a strong password is not specified, an exception is thrown when `SeedData.Ini
 
 Update the app to use the test password:
 
-[!code-csharp[](secure-data/samples/final6/Program.cs?name=snippet4)]
+[!code-csharp[](secure-data/samples/final6/Program.cs?name=snippet4&highlight=33-99)]
 
 ### Create the test accounts and update the contacts
 
@@ -185,7 +185,7 @@ Create a `ContactAdministratorsAuthorizationHandler` class in the *Authorization
 
 Services using Entity Framework Core must be registered for [dependency injection](xref:fundamentals/dependency-injection) using [AddScoped](/dotnet/api/microsoft.extensions.dependencyinjection.servicecollectionserviceextensions). The `ContactIsOwnerAuthorizationHandler` uses ASP.NET Core [Identity](xref:security/authentication/identity), which is built on Entity Framework Core. Register the handlers with the service collection so they're available to the `ContactsController` through [dependency injection](xref:fundamentals/dependency-injection). Add the following code to the end of `ConfigureServices`:
 
-[!code-csharp[](secure-data/samples/final6/Program.cs?name=snippet4)]
+[!code-csharp[](secure-data/samples/final6/Program.cs?name=snippet4&highlight=22-30)]
 
 `ContactAdministratorsAuthorizationHandler` and `ContactManagerAuthorizationHandler` are added as singletons. They're singletons because they don't use EF and all the information needed is in the `Context` parameter of the `HandleRequirementAsync` method.
 
@@ -213,34 +213,32 @@ The preceding code:
 
 ### Update the CreateModel
 
-Update the create page model constructor to use the `DI_BasePageModel` base class:
+Update the create page model:
 
-[!code-csharp[](secure-data/samples/final3/Pages/Contacts/Create.cshtml.cs?name=snippetCtor)]
+* Constructor to use the `DI_BasePageModel` base class.
+* `OnPostAsync` method to:
+  * Add the user ID to the `Contact` model.
+  * Call the authorization handler to verify the user has permission to create contacts.
 
-Update the `CreateModel.OnPostAsync` method to:
-
-* Add the user ID to the `Contact` model.
-* Call the authorization handler to verify the user has permission to create contacts.
-
-[!code-csharp[](secure-data/samples/final3/Pages/Contacts/Create.cshtml.cs?name=snippet_Create)]
+[!code-csharp[](secure-data/samples/final6/Pages/Contacts/Create.cshtml.cs?name=snippet)]
 
 ### Update the IndexModel
 
 Update the `OnGetAsync` method so only approved contacts are shown to general users:
 
-[!code-csharp[](secure-data/samples/final3/Pages/Contacts/Index.cshtml.cs?name=snippet)]
+[!code-csharp[](secure-data/samples/final6/Pages/Contacts/Index.cshtml.cs?name=snippet)]
 
 ### Update the EditModel
 
 Add an authorization handler to verify the user owns the contact. Because resource authorization is being validated, the `[Authorize]` attribute is not enough. The app doesn't have access to the resource when attributes are evaluated. Resource-based authorization must be imperative. Checks must be performed once the app has access to the resource, either by loading it in the page model or by loading it within the handler itself. You frequently access the resource by passing in the resource key.
 
-[!code-csharp[](secure-data/samples/final3/Pages/Contacts/Edit.cshtml.cs?name=snippet)]
+[!code-csharp[](secure-data/samples/final6/Pages/Contacts/Edit.cshtml.cs?name=snippet)]
 
 ### Update the DeleteModel
 
 Update the delete page model to use the authorization handler to verify the user has delete permission on the contact.
 
-[!code-csharp[](secure-data/samples/final3/Pages/Contacts/Delete.cshtml.cs?name=snippet)]
+[!code-csharp[](secure-data/samples/final6/Pages/Contacts/Delete.cshtml.cs?name=snippet)]
 
 ## Inject the authorization service into the views
 
@@ -248,7 +246,7 @@ Currently, the UI shows edit and delete links for contacts the user can't modify
 
 Inject the authorization service in the *Pages/_ViewImports.cshtml* file so it's available to all views:
 
-[!code-cshtml[](secure-data/samples/final3/Pages/_ViewImports.cshtml?highlight=6-99)]
+[!code-cshtml[](secure-data/samples/final6/Pages/_ViewImports.cshtml?highlight=6-99)]
 
 The preceding markup adds several `using` statements.
 

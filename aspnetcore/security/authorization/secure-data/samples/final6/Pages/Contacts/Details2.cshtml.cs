@@ -3,15 +3,17 @@ using ContactManager.Data;
 using ContactManager.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace ContactManager.Pages.Contacts
 {
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
     #region snippet
-    public class IndexModel : DI_BasePageModel
+    [AllowAnonymous]
+    public class Details2Model : DI_BasePageModel
     {
-        public IndexModel(
+        public Details2Model(
             ApplicationDbContext context,
             IAuthorizationService authorizationService,
             UserManager<IdentityUser> userManager)
@@ -19,27 +21,36 @@ namespace ContactManager.Pages.Contacts
         {
         }
 
-        public IList<Contact> Contact { get; set; }
+        public Contact Contact { get; set; }
 
-        public async Task OnGetAsync()
+        public async Task<IActionResult> OnGetAsync(int id)
         {
-            var contacts = from c in Context.Contact
-                           select c;
+            Contact? _contact = await Context.Contact.FirstOrDefaultAsync(m => m.ContactId == id);
+
+            if (_contact == null)
+            {
+                return NotFound();
+            }
+            Contact = _contact;
+
+            if (!User.Identity!.IsAuthenticated)
+            {
+                return Challenge();
+            }
 
             var isAuthorized = User.IsInRole(Constants.ContactManagersRole) ||
                                User.IsInRole(Constants.ContactAdministratorsRole);
 
             var currentUserId = UserManager.GetUserId(User);
 
-            // Only approved contacts are shown UNLESS you're authorized to see them
-            // or you are the owner.
-            if (!isAuthorized)
+            if (!isAuthorized
+                && currentUserId != Contact.OwnerID
+                && Contact.Status != ContactStatus.Approved)
             {
-                contacts = contacts.Where(c => c.Status == ContactStatus.Approved
-                                            || c.OwnerID == currentUserId);
+                return Forbid();
             }
 
-            Contact = await contacts.ToListAsync();
+            return Page();
         }
     }
     #endregion
