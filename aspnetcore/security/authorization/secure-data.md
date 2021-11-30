@@ -310,11 +310,11 @@ An easy way to test the completed app is to launch three different browsers (or 
 * Managers can approve/reject contact data. The `Details` view shows **Approve** and **Reject** buttons.
 * Administrators can approve/reject and edit/delete all data.
 
-| User                | Seeded by the app | Options                                  |
+| User                | Approve or reject contacts| Options                                  |
 | ------------------- | :---------------: | ---------------------------------------- |
-| test@example.com    | No                | Edit/delete the own data.                |
-| manager@contoso.com | Yes               | Approve/reject and edit/delete own data. |
-| admin@contoso.com   | Yes               | Approve/reject and edit/delete all data. |
+| test@example.com    | No                | Edit and delete their data.                |
+| manager@contoso.com | Yes               | Edit and delete their data. |
+| admin@contoso.com   | Yes               | Edit and delete ***all*** data. |
 
 Create a contact in the administrator's browser. Copy the URL for delete and edit from the administrator contact. Paste these links into the test user's browser to verify the test user can't perform these operations.
 
