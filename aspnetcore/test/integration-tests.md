@@ -118,6 +118,43 @@ If the SUT's [environment](xref:fundamentals/environments) isn't set, the enviro
 
 ## Basic tests with the default WebApplicationFactory
 
+::: moniker range=">= aspnetcore-6.0"
+
+ASP.NET Core 6 introduced [`WebApplication`](/dotnet/api/microsoft.aspnetcore.builder.webapplication) which removed the need for a `Startup` class. To test with `WebApplicationFactory` without a `Startup` class, an ASP.NET Core 6 app needs to expose the implicitly defined `Program` class to the test project in **one** of the following ways:
+
+* Expose internal types from the web app to the test project. This can be done in the project file (`.csproj`):
+  ```xml
+  <ItemGroup>
+       <InternalsVisibleTo Include="MyTestProject" />
+  </ItemGroup>
+  ```
+* Make the `Program` class public using a partial class declaration:
+  ```diff
+  var builder = WebApplication.CreateBuilder(args);
+  // ... Configure services, routes, etc.
+  app.Run();
+  + public partial class Program { }
+  ```
+
+After making the changes in the web application, the test project now can use the `Program` class for the `WebApplicationFactory`.
+
+```csharp
+[Fact]
+public async Task HelloWorldTest()
+{
+    var application = new WebApplicationFactory<Program>()
+        .WithWebHostBuilder(builder =>
+        {
+            // ... Configure test services
+        });
+        
+    var client = application.CreateClient();
+    //...
+}
+```
+
+::: moniker-end
+
 [`WebApplicationFactory<TEntryPoint>`](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1) is used to create a [`TestServer`](/dotnet/api/microsoft.aspnetcore.testhost.testserver) for the integration tests. `TEntryPoint` is the entry point class of the SUT, usually the `Startup` class.
 
 Test classes implement a *class fixture* interface ([`IClassFixture`](https://xunit.net/docs/shared-context#class-fixture)) to indicate the class contains tests and provide shared object instances across the tests in the class.
