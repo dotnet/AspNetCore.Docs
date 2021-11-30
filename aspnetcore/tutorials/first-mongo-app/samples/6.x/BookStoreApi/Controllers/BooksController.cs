@@ -48,6 +48,8 @@ public class BooksController : ControllerBase
             return NotFound();
         }
 
+        updatedBook.Id = book.Id;
+
         await _booksService.UpdateAsync(id, updatedBook);
 
         return NoContent();

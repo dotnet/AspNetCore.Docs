@@ -10,7 +10,7 @@ public class Book
 {
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
-    public string Id { get; set; } = null!;
+    public string? Id { get; set; }
 
     // <snippet_BookName>
     [BsonElement("Name")]

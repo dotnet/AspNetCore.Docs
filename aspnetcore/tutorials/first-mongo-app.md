@@ -201,7 +201,7 @@ Use the mongo Shell in the following steps to create a database, make collection
 
    :::code language="json" source="first-mongo-app/samples/6.x/BookStoreApi/appsettings.json" highlight="2-6":::
 
-1. Add a *BookStoreDatabaseSettings.cs* file to the *Models* directory with the following code:
+1. Add a `BookStoreDatabaseSettings` class to the *Models* directory with the following code:
 
    :::code language="csharp" source="first-mongo-app/samples/6.x/BookStoreApi/Models/BookStoreDatabaseSettings.cs":::
 
@@ -270,7 +270,7 @@ The preceding web API controller:
 
 1. Build and run the app.
 
-1. Navigate to `https://localhost:<port>/api/books` to test the controller's parameterless `Get` action method. A JSON response similar to the following is displayed:
+1. Navigate to `https://localhost:<port>/api/books`, where `<port>` is the automatically assigned port number for the app, to test the controller's parameterless `Get` action method. A JSON response similar to the following is displayed:
 
    ```json
    [
