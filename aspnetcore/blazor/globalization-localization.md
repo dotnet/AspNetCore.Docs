@@ -838,7 +838,7 @@ Create resources for each locale. In the following example, resources are create
 </root>
 ```
 
-The following component demonstrates the use of the localized `Greeting` string with <xref:Microsoft.Extensions.Localization.IStringLocalizer%601>. The Razor markup `@Loc["Greeting"]` in the following example localizes the string keyed to the `Greeting` resource, which is set in the preceding resource files.
+The following component demonstrates the use of the localized `Greeting` string with <xref:Microsoft.Extensions.Localization.IStringLocalizer%601>. The Razor markup `@Loc["Greeting"]` in the following example localizes the string keyed to the `Greeting` value, which is set in the preceding resource files.
 
 Add the namespace for <xref:Microsoft.Extensions.Localization?displayProperty=fullName> to the app's `_Imports.razor` file:
 
@@ -1708,7 +1708,7 @@ Create resources for each locale. In the following example, resources are create
 </root>
 ```
 
-The following component demonstrates the use of the localized `Greeting` string with <xref:Microsoft.Extensions.Localization.IStringLocalizer%601>. The Razor markup `@Loc["Greeting"]` in the following example localizes the string keyed to the `Greeting` resource, which is set in the preceding resource files.
+The following component demonstrates the use of the localized `Greeting` string with <xref:Microsoft.Extensions.Localization.IStringLocalizer%601>. The Razor markup `@Loc["Greeting"]` in the following example localizes the string keyed to the `Greeting` value, which is set in the preceding resource files.
 
 Add the namespace for <xref:Microsoft.Extensions.Localization?displayProperty=fullName> to the app's `_Imports.razor` file:
 
@@ -2495,7 +2495,7 @@ Create resources for each locale. In the following example, resources are create
 </root>
 ```
 
-The following component demonstrates the use of the localized `Greeting` string with <xref:Microsoft.Extensions.Localization.IStringLocalizer%601>. The Razor markup `@Loc["Greeting"]` in the following example localizes the string keyed to the `Greeting` resource, which is set in the preceding resource files.
+The following component demonstrates the use of the localized `Greeting` string with <xref:Microsoft.Extensions.Localization.IStringLocalizer%601>. The Razor markup `@Loc["Greeting"]` in the following example localizes the string keyed to the `Greeting` value, which is set in the preceding resource files.
 
 Add the namespace for <xref:Microsoft.Extensions.Localization?displayProperty=fullName> to the app's `_Imports.razor` file:
 
