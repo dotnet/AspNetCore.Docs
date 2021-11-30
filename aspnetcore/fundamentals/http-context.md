@@ -112,10 +112,8 @@ public class UserRepository : IUserRepository
 {
     private readonly IHttpContextAccessor _httpContextAccessor;
 
-    public UserRepository(IHttpContextAccessor httpContextAccessor)
-    {
+    public UserRepository(IHttpContextAccessor httpContextAccessor) =>
         _httpContextAccessor = httpContextAccessor;
-    }
 
     public void LogCurrentUser()
     {
@@ -138,21 +136,21 @@ To safely do background work with `HttpContext` data:
 * Pass the copied data to a background task.
 * Do ***not*** reference `HttpContext` data in parallel tasks. Extract the data needed from the context before starting the parallel tasks.
 
-To avoid unsafe code, never pass the `HttpContext` into a method that does background work. Pass the required data instead. In the following example, `SendEmailCore` is called to start sending an email. The `correlationId` is passed to `SendEmailCore`, not the `HttpContext`. Code execution doesn't wait for `SendEmailCore` to complete:
+To avoid unsafe code, never pass `HttpContext` into a method that does background work. Pass the required data instead. In the following example, `SendEmailCoreAsync` starts sending an email. The value of the `X-Correlation-Id` header is passed to `SendEmailCoreAsync` instead of the `HttpContext`. Code execution doesn't wait for `SendEmailCoreAsync` to complete:
 
 ```csharp
 public class EmailController : Controller
 {
     public IActionResult SendEmail(string email)
     {
-        var correlationId = HttpContext.Request.Headers["x-correlation-id"].ToString();
+        var correlationId = HttpContext.Request.Headers["X-Correlation-Id"].ToString();
 
-        _ = SendEmailCore(correlationId);
+        _ = SendEmailCoreAsync(correlationId);
 
         return View();
     }
 
-    private async Task SendEmailCore(string correlationId)
+    private async Task SendEmailCoreAsync(string correlationId)
     {
         // ...
     }
