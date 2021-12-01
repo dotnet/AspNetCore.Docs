@@ -1,6 +1,6 @@
 ﻿namespace PoliciesAuthApp1.Services.Requirements
 {
-    #region snippet_MinimumAgeRequirementClass
+    // <snippet_MinimumAgeRequirementClass>
     using Microsoft.AspNetCore.Authorization;
 
     public class MinimumAgeRequirement : IAuthorizationRequirement
@@ -12,5 +12,5 @@
             MinimumAge = minimumAge;
         }
     }
-    #endregion
+    // </snippet_MinimumAgeRequirementClass>
 }

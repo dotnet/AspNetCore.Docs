@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Microsoft.AspNetCore.Authorization
 {
-    #region snippet
+    // <snippet>
     /// <summary>
     /// Checks policy based permissions for a user
     /// </summary>
@@ -60,5 +60,5 @@ namespace Microsoft.AspNetCore.Authorization
         Task<AuthorizationResult> AuthorizeAsync(
                                     ClaimsPrincipal user, object resource, string policyName);
     }
-    #endregion
+    // </snippet>
 }

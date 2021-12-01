@@ -1,6 +1,6 @@
 ﻿namespace PoliciesAuthApp1.Services.Handlers
 {
-    #region snippet_PermissionHandlerClass
+    // <snippet_PermissionHandlerClass>
     using System.Linq;
     using System.Security.Claims;
     using System.Threading.Tasks;
@@ -53,5 +53,5 @@
             return true;
         }
     }
-    #endregion
+    // </snippet_PermissionHandlerClass>
 }
