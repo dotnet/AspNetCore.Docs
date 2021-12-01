@@ -16,7 +16,6 @@ on:
 
 env:
   DOTNET_VERSION: '5.0.301' # set this to the dot net version to use
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -24,6 +23,9 @@ jobs:
   create-what-is-new:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -38,7 +40,7 @@ jobs:
       - name: 'Print manual run reason'
         if: ${{ github.event_name == 'workflow_dispatch' }}
         run: |
-          echo 'Reason: ${{ github.event.inputs.reason }}'
+          echo "Reason: ${{ github.event.inputs.reason }}"
 
       # Print dotnet info
       - name: Display .NET info
