@@ -3,7 +3,7 @@ using Microsoft.Extensions.Caching.Memory;
 
 namespace CachingMemorySample.Pages;
 
-#region snippet_ClassConstructor
+// <snippet_ClassConstructor>
 public class IndexModel : PageModel
 {
     private readonly IMemoryCache _memoryCache;
@@ -12,13 +12,13 @@ public class IndexModel : PageModel
         _memoryCache = memoryCache;
 
     // ...
-    #endregion
+    // </snippet_ClassConstructor>
 
     public DateTime CurrentDateTime { get; set; }
 
     public DateTime CacheCurrentDateTime { get; set; }
 
-    #region snippet_OnGet
+    // <snippet_OnGet>
     public void OnGet()
     {
         CurrentDateTime = DateTime.Now;
@@ -35,5 +35,5 @@ public class IndexModel : PageModel
 
         CacheCurrentDateTime = cacheValue;
     }
-    #endregion
+    // </snippet_OnGet>
 }
