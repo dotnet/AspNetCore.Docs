@@ -25,8 +25,8 @@ An identity can contain multiple claims with multiple values and can contain mul
 Claim based authorization checks:
 
 * Are declarative.
-* Are applied to Razor Pages, controllers, or actions within a controller. 
-* can ***not*** be applied at the Razor Page handler level, they must be applied to the Page.
+* Are applied to Razor Pages, controllers, or actions within a controller.
+* Can ***not*** be applied at the Razor Page handler level, they must be applied to the Page.
 
 Claims in code specify claims which the current user must possess, and optionally the value the claim must hold to access the requested resource. Claims requirements are policy based, the developer must build and register a policy expressing the claims requirements.
 
