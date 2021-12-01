@@ -11,7 +11,7 @@ namespace TodoApi
 {
     public class Startup
     {
-        #region snippet_ConfigureServices
+        // <snippet_ConfigureServices>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<TodoContext>(opt =>
@@ -46,9 +46,9 @@ namespace TodoApi
                 c.IncludeXmlComments(xmlPath);
             });
         }
-        #endregion
+        // </snippet_ConfigureServices>
 
-        #region snippet_Configure
+        // <snippet_Configure>
         public void Configure(IApplicationBuilder app)
         {
             app.UseStaticFiles();
@@ -65,6 +65,6 @@ namespace TodoApi
 
             app.UseMvc();
         }
-        #endregion
+        // </snippet_Configure>
     }
 }

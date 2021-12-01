@@ -6,7 +6,7 @@ using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Primitives;
 using WebCacheSample.Models;
 
-#region snippet_ctor
+// <snippet_ctor>
 public class HomeController : Controller
 {
     private IMemoryCache _cache;
@@ -15,14 +15,14 @@ public class HomeController : Controller
     {
         _cache = memoryCache;
     }
-    #endregion
+    // </snippet_ctor>
 
     public IActionResult Index()
     {
         return RedirectToAction("CacheGet");
     }
 
-    #region snippet1
+    // <snippet1>
     public IActionResult CacheTryGetValueSet()
     {
         DateTime cacheEntry;
@@ -44,17 +44,17 @@ public class HomeController : Controller
 
         return View("Cache", cacheEntry);
     }
-    #endregion
+    // </snippet1>
 
-    #region snippet_gct
+    // <snippet_gct>
     public IActionResult CacheGet()
     {
         var cacheEntry = _cache.Get<DateTime?>(CacheKeys.Entry);
         return View("Cache", cacheEntry);
     }
-    #endregion
+    // </snippet_gct>
 
-    #region snippet2
+    // <snippet2>
     public IActionResult CacheGetOrCreate()
     {
         var cacheEntry = _cache.GetOrCreate(CacheKeys.Entry, entry =>
@@ -77,9 +77,9 @@ public class HomeController : Controller
 
         return View("Cache", cacheEntry);
     }
-    #endregion
+    // </snippet2>
 
-    #region snippet_set
+    // <snippet_set>
     public IActionResult SetCacheRelativeExpiration()
     {
         DateTime cacheEntry;
@@ -96,7 +96,7 @@ public class HomeController : Controller
 
         return View("Cache", cacheEntry);
     }
-    #endregion
+    // </snippet_set>
 
     public IActionResult CacheRemove()
     {
@@ -104,7 +104,7 @@ public class HomeController : Controller
         return RedirectToAction("CacheGet");
     }
 
-    #region snippet_et
+    // <snippet_et>
     public IActionResult CreateCallbackEntry()
     {
         var cacheEntryOptions = new MemoryCacheEntryOptions()
@@ -139,9 +139,9 @@ public class HomeController : Controller
         var message = $"Entry was evicted. Reason: {reason}.";
         ((HomeController)state)._cache.Set(CacheKeys.CallbackMessage, message);
     }
-    #endregion
+    // </snippet_et>
 
-    #region snippet_ed
+    // <snippet_ed>
     public IActionResult CreateDependentEntries()
     {
         var cts = new CancellationTokenSource();
@@ -183,9 +183,9 @@ public class HomeController : Controller
         var message = $"Parent entry was evicted. Reason: {reason}.";
         ((HomeController)state)._cache.Set(CacheKeys.DependentMessage, message);
     }
-    #endregion
+    // </snippet_ed>
 
-    #region snippet_cancel
+    // <snippet_cancel>
     public IActionResult CancelTest()
     {
         var cachedVal = DateTime.Now.Second.ToString();
@@ -224,9 +224,9 @@ public class HomeController : Controller
 
         return View();
     }
-    #endregion
+    // </snippet_cancel>
 
-    #region snippet99
+    // <snippet99>
     public IActionResult CacheGetOrCreateAbs()
     {
         var cacheEntry = _cache.GetOrCreate(CacheKeys.Entry, entry =>
@@ -237,9 +237,9 @@ public class HomeController : Controller
 
         return View("Cache", cacheEntry);
     }
-    #endregion
+    // </snippet99>
 
-    #region snippet9
+    // <snippet9>
     public IActionResult CacheGetOrCreateAbsSliding()
     {
         var cacheEntry = _cache.GetOrCreate(CacheKeys.Entry, entry =>
@@ -251,9 +251,9 @@ public class HomeController : Controller
 
         return View("Cache", cacheEntry);
     }
-    #endregion
+    // </snippet9>
 
-    #region snippet_ae
+    // <snippet_ae>
     public IActionResult CacheAutoExpiringTryGetValueSet()
     {
         DateTime cacheEntry;
@@ -272,7 +272,7 @@ public class HomeController : Controller
 
         return View("Cache", cacheEntry);
     }
-    #endregion
+    // </snippet_ae>
     public IActionResult Privacy()
     {
         return View();

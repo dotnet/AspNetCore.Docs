@@ -2,7 +2,7 @@
 
 namespace RPcache.Services
 {
-    #region snippet
+    // <snippet>
     // using Microsoft.Extensions.Caching.Memory;
     public class MyMemoryCache 
     {
@@ -15,5 +15,5 @@ namespace RPcache.Services
             });
         }
     }
-    #endregion
+    // </snippet>
 }

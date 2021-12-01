@@ -5,7 +5,7 @@ using HttpRequestsSample.Models;
 
 namespace HttpRequestsSample.Handlers
 {
-    #region snippet_Class
+    // <snippet_Class>
     public class OperationHandler : DelegatingHandler
     {
         private readonly IOperationScoped _operationService;
@@ -23,5 +23,5 @@ namespace HttpRequestsSample.Handlers
             return await base.SendAsync(request, cancellationToken);
         }
     }
-    #endregion
+    // </snippet_Class>
 }

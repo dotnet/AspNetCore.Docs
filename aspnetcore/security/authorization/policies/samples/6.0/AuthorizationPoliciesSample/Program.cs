@@ -28,9 +28,9 @@ builder.Services.AddAuthorization(options =>
             && c.Issuer == "https://microsoftsecurity")));
 });
 
-#region snippet_minimumAgeHandlerRegistration
+// <snippet_minimumAgeHandlerRegistration>
 builder.Services.AddSingleton<IAuthorizationHandler, MinimumAgeHandler>();
-#endregion
+// </snippet_minimumAgeHandlerRegistration>
 builder.Services.AddSingleton<IAuthorizationHandler, PermissionHandler>();
 builder.Services.AddSingleton<IAuthorizationHandler, BadgeEntryHandler>();
 builder.Services.AddSingleton<IAuthorizationHandler, TemporaryStickerHandler>();
@@ -55,10 +55,10 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-#region snippet_requireAuthorization
+// <snippet_requireAuthorization>
 app.MapGet("/helloworld", () => "Hello World!")
     .RequireAuthorization("AtLeast21");
-#endregion
+// </snippet_requireAuthorization>
 
 app.MapDefaultControllerRoute();
 app.MapRazorPages();

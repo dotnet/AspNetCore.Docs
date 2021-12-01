@@ -13,7 +13,7 @@ namespace HttpRequestsSample
 {
     public class Startup
     {
-        #region snippet_IOperationScoped
+        // <snippet_IOperationScoped>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<TodoContext>(options =>
@@ -44,7 +44,7 @@ namespace HttpRequestsSample
             services.AddControllers();
             services.AddRazorPages();
         }
-        #endregion
+        // </snippet_IOperationScoped>
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

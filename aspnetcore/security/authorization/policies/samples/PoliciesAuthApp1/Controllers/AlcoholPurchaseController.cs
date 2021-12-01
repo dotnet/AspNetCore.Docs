@@ -1,6 +1,6 @@
 namespace PoliciesAuthApp1.Controllers
 {
-    #region snippet_AlcoholPurchaseControllerClass
+    // <snippet_AlcoholPurchaseControllerClass>
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
@@ -9,5 +9,5 @@ namespace PoliciesAuthApp1.Controllers
     {
         public IActionResult Index() => View();
     }
-    #endregion
+    // </snippet_AlcoholPurchaseControllerClass>
 }
