@@ -45,9 +45,33 @@ You can manage your API credentials and usage in the [API Console](https://conso
 
 ## Configure Google authentication
 
-Add the Google service to `Startup.ConfigureServices`:
+Add the Google service to `Program.cs` builder:
 
-[!code-csharp[](~/security/authentication/social/social-code/3.x/StartupGoogle3x.cs?highlight=11-19)]
+     var builder = WebApplication.CreateBuilder(args);
+
+     // Add services to the container.
+     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+     builder.Services.AddDbContext<ApplicationDbContext>(options =>
+         options.UseSqlServer(connectionString));
+     builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+     builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+         .AddEntityFrameworkStores<ApplicationDbContext>();
+
+     builder.Services.AddAuthentication()
+         .AddGoogle(options =>
+         {
+             IConfigurationSection googleAuthNSection =
+                 builder.Configuration.GetSection("Authentication:Google");
+
+             options.ClientId = googleAuthNSection["ClientId"];
+             options.ClientSecret = googleAuthNSection["ClientSecret"];
+         });
+
+     builder.Services.AddControllersWithViews();
+
+     var app = builder.Build();
+
 
 [!INCLUDE [default settings configuration](includes/default-settings2-2.md)]
 
