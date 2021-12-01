@@ -8,7 +8,7 @@ namespace TodoApi
 {
     public class Startup3
     {
-        #region snippet_ConfigureServices
+        // <snippet_ConfigureServices>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<TodoContext>(opt =>
@@ -21,7 +21,7 @@ namespace TodoApi
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
             });
         }
-        #endregion
+        // </snippet_ConfigureServices>
 
         public void Configure(IApplicationBuilder app)
         {
@@ -30,13 +30,13 @@ namespace TodoApi
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
             // specifying the Swagger JSON endpoint.
-            #region snippet_UseSwaggerUI
+            // <snippet_UseSwaggerUI>
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
                 c.RoutePrefix = string.Empty;
             });
-            #endregion
+            // </snippet_UseSwaggerUI>
 
             app.UseMvc();
         }

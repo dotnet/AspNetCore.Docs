@@ -1,8 +1,8 @@
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
-#region snippet_UsingOpenApiModels
+// <snippet_UsingOpenApiModels>
 using Microsoft.OpenApi.Models;
-#endregion
+// </snippet_UsingOpenApiModels>
 using SwashbuckleSample.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,7 +15,7 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 
-#region snippet_Services
+// <snippet_Services>
 builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new OpenApiInfo
@@ -40,18 +40,18 @@ builder.Services.AddSwaggerGen(options =>
     var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 });
-#endregion
+// </snippet_Services>
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-#region snippet_Middleware
+// <snippet_Middleware>
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-#endregion
+// </snippet_Middleware>
 
 app.UseHttpsRedirection();
 

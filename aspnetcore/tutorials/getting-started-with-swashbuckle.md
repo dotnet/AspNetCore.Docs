@@ -11,7 +11,7 @@ uid: tutorials/get-started-with-swashbuckle
 ---
 # Get started with Swashbuckle and ASP.NET Core
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 There are three main components to Swashbuckle:
 
@@ -73,11 +73,11 @@ dotnet add TodoApi.csproj package Swashbuckle.AspNetCore -v 6.2.3
 
 Add the Swagger generator to the services collection in *Program.cs*:
 
-:::code language="csharp" source="web-api-help-pages-using-swagger/samples/6.0/SwashbuckleSample/Snippets/Program.cs" id="snippet_ServicesDefault" highlight="4":::
+:::code language="csharp" source="web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/Snippets/Program.cs" id="snippet_ServicesDefault" highlight="4":::
 
 Enable the middleware for serving the generated JSON document and the Swagger UI, also in *Program.cs*:
 
-:::code language="csharp" source="web-api-help-pages-using-swagger/samples/6.0/SwashbuckleSample/Program.cs" id="snippet_Middleware" highlight="3,4":::
+:::code language="csharp" source="web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/Program.cs" id="snippet_Middleware" highlight="3,4":::
 
 The preceding code adds the Swagger middleware only if the current environment is set to Development. The `UseSwaggerUI` method call enables the [Static File Middleware](xref:fundamentals/static-files).
 
@@ -88,14 +88,14 @@ The Swagger UI can be found at `https://localhost:<port>/swagger`. Explore the A
 > [!TIP]
 > To serve the Swagger UI at the app's root (`https://localhost:<port>/`), set the `RoutePrefix` property to an empty string:
 >
-> :::code language="csharp" source="web-api-help-pages-using-swagger/samples/6.0/SwashbuckleSample/Snippets/Program.cs" id="snippet_MiddlewareRoutePrefix" highlight="4":::
+> :::code language="csharp" source="web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/Snippets/Program.cs" id="snippet_MiddlewareRoutePrefix" highlight="4":::
 
 If using directories with IIS or a reverse proxy, set the Swagger endpoint to a relative path using the `./` prefix. For example, `./swagger/v1/swagger.json`. Using `/swagger/v1/swagger.json` instructs the app to look for the JSON file at the true root of the URL (plus the route prefix, if used). For example, use `https://localhost:<port>/<route_prefix>/swagger/v1/swagger.json` instead of `https://localhost:<port>/<virtual_directory>/<route_prefix>/swagger/v1/swagger.json`.
 
 > [!NOTE]
 > By default, Swashbuckle generates and exposes Swagger JSON in version 3.0 of the specification&mdash;officially called the OpenAPI Specification. To support backwards compatibility, you can opt into exposing JSON in the 2.0 format instead. This 2.0 format is important for integrations such as Microsoft Power Apps and Microsoft Flow that currently support OpenAPI version 2.0. To opt into the 2.0 format, set the `SerializeAsV2` property in *Program.cs*:
 >
-> :::code language="csharp" source="web-api-help-pages-using-swagger/samples/6.0/SwashbuckleSample/Snippets/Program.cs" id="snippet_MiddlewareJsonV2" highlight="3":::
+> :::code language="csharp" source="web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/Snippets/Program.cs" id="snippet_MiddlewareJsonV2" highlight="3":::
 
 ## Customize and extend
 
@@ -107,11 +107,11 @@ The configuration action passed to the `AddSwaggerGen` method adds information s
 
 In *Program.cs*, import the following namespace to use the `OpenApiInfo` class:
 
-:::code language="csharp" source="web-api-help-pages-using-swagger/samples/6.0/SwashbuckleSample/Program.cs" id="snippet_UsingOpenApiModels":::
+:::code language="csharp" source="web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/Program.cs" id="snippet_UsingOpenApiModels":::
 
 Using the `OpenApiInfo` class, modify the information displayed in the UI:
 
-:::code language="csharp" source="web-api-help-pages-using-swagger/samples/6.0/SwashbuckleSample/Snippets/Program.cs" id="snippet_ServicesOpenApiInfo" highlight="3-19":::
+:::code language="csharp" source="web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/Snippets/Program.cs" id="snippet_ServicesOpenApiInfo" highlight="3-19":::
 
 The Swagger UI displays the version's information:
 
@@ -126,26 +126,26 @@ XML comments can be enabled with the following approaches:
 * Right-click the project in **Solution Explorer** and select **Edit <project_name>.csproj**.
 * Manually add the highlighted lines to the *.csproj* file:
 
-:::code language="xml" source="web-api-help-pages-using-swagger/samples/6.0/SwashbuckleSample/SwashbuckleSample.csproj" range="9-12" highlight="1-2,4":::
+:::code language="xml" source="web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/SwashbuckleSample.csproj" range="9-12" highlight="1-2,4":::
 
 #### [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * From the *Solution Pad*, press **control** and click the project name. Navigate to **Tools** > **Edit File**.
 * Manually add the highlighted lines to the *.csproj* file:
 
-:::code language="xml" source="web-api-help-pages-using-swagger/samples/6.0/SwashbuckleSample/SwashbuckleSample.csproj" range="9-12" highlight="1-2,4":::
+:::code language="xml" source="web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/SwashbuckleSample.csproj" range="9-12" highlight="1-2,4":::
 
 #### [Visual Studio Code](#tab/visual-studio-code)
 
 Manually add the highlighted lines to the *.csproj* file:
 
-:::code language="xml" source="web-api-help-pages-using-swagger/samples/6.0/SwashbuckleSample/SwashbuckleSample.csproj" range="9-12" highlight="1-2,4":::
+:::code language="xml" source="web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/SwashbuckleSample.csproj" range="9-12" highlight="1-2,4":::
 
 #### [.NET Core CLI](#tab/netcore-cli)
 
 Manually add the highlighted lines to the *.csproj* file:
 
-:::code language="xml" source="web-api-help-pages-using-swagger/samples/6.0/SwashbuckleSample/SwashbuckleSample.csproj" range="9-12" highlight="1-2,4":::
+:::code language="xml" source="web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/SwashbuckleSample.csproj" range="9-12" highlight="1-2,4":::
 
 ---
 
@@ -157,21 +157,21 @@ warning CS1591: Missing XML comment for publicly visible type or member 'TodoCon
 
 To suppress warnings project-wide, define a semicolon-delimited list of warning codes to ignore in the project file. Appending the warning codes to `$(NoWarn);` applies the [C# default values](https://github.com/dotnet/sdk/blob/2eb6c546931b5bcb92cd3128b93932a980553ea1/src/Tasks/Microsoft.NET.Build.Tasks/targets/Microsoft.NET.Sdk.CSharp.props#L16) too.
 
-:::code language="xml" source="web-api-help-pages-using-swagger/samples/6.0/SwashbuckleSample/SwashbuckleSample.csproj" range="9-12" highlight="3":::
+:::code language="xml" source="web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/SwashbuckleSample.csproj" range="9-12" highlight="3":::
 
 To suppress warnings only for specific members, enclose the code in [#pragma warning](/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-pragma-warning) preprocessor directives. This approach is useful for code that shouldn't be exposed via the API docs. In the following example, warning code CS1591 is ignored for the entire `TodoContext` class. Enforcement of the warning code is restored at the close of the class definition. Specify multiple warning codes with a comma-delimited list.
 
-:::code language="csharp" source="web-api-help-pages-using-swagger/samples/6.0/SwashbuckleSample/Models/TodoContext.cs" id="snippet_PragmaWarningDisable" highlight="3,10":::
+:::code language="csharp" source="web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/Models/TodoContext.cs" id="snippet_PragmaWarningDisable" highlight="3,10":::
 
 Configure Swagger to use the XML file that's generated with the preceding instructions. For Linux or non-Windows operating systems, file names and paths can be case-sensitive. For example, a *TodoApi.XML* file is valid on Windows but not CentOS.
 
-:::code language="csharp" source="web-api-help-pages-using-swagger/samples/6.0/SwashbuckleSample/Program.cs" id="snippet_Services" highlight="22-23":::
+:::code language="csharp" source="web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/Program.cs" id="snippet_Services" highlight="22-23":::
 
 In the preceding code, [Reflection](/dotnet/csharp/programming-guide/concepts/reflection) is used to build an XML file name matching that of the web API project. The [AppContext.BaseDirectory](xref:System.AppContext.BaseDirectory%2A) property is used to construct a path to the XML file. Some Swagger features (for example, schemata of input parameters or HTTP methods and response codes from the respective attributes) work without the use of an XML documentation file. For most features, namely method summaries and the descriptions of parameters and response codes, the use of an XML file is mandatory.
 
 Adding triple-slash comments to an action enhances the Swagger UI by adding the description to the section header. Add a [\<summary>](/dotnet/csharp/programming-guide/xmldoc/summary) element above the `Delete` action:
 
-:::code language="csharp" source="web-api-help-pages-using-swagger/samples/6.0/SwashbuckleSample/Controllers/TodoController.cs" id="snippet_Delete" highlight="1-3":::
+:::code language="csharp" source="web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/Controllers/TodoController.cs" id="snippet_Delete" highlight="1-3":::
 
 The Swagger UI displays the inner text of the preceding code's `<summary>` element:
 
@@ -183,7 +183,7 @@ The UI is driven by the generated JSON schema:
 
 Add a [\<remarks>](/dotnet/csharp/programming-guide/xmldoc/remarks) element to the `Create` action method documentation. It supplements information specified in the `<summary>` element and provides a more robust Swagger UI. The `<remarks>` element content can consist of text, JSON, or XML.
 
-:::code language="csharp" source="web-api-help-pages-using-swagger/samples/6.0/SwashbuckleSample/Controllers/TodoController.cs" id="snippet_Create" highlight="6-16":::
+:::code language="csharp" source="web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/Controllers/TodoController.cs" id="snippet_Create" highlight="6-16":::
 
 Notice the UI enhancements with these additional comments:
 
@@ -191,11 +191,11 @@ Notice the UI enhancements with these additional comments:
 
 ### Data annotations
 
-Mark the model with attributes, found in the [System.ComponentModel.DataAnnotations](/dotnet/api/system.componentmodel.dataannotations) namespace, to help drive the Swagger UI components.
+Mark the model with attributes, found in the <xref:System.ComponentModel.DataAnnotations?displayProperty=fullName> namespace, to help drive the Swagger UI components.
 
 Add the `[Required]` attribute to the `Name` property of the `TodoItem` class:
 
-:::code language="csharp" source="web-api-help-pages-using-swagger/samples/6.0/SwashbuckleSample/Models/TodoItem.cs" highlight="10":::
+:::code language="csharp" source="web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/Models/TodoItem.cs" highlight="10":::
 
 The presence of this attribute changes the UI behavior and alters the underlying JSON schema:
 
@@ -203,7 +203,7 @@ The presence of this attribute changes the UI behavior and alters the underlying
 
 Add the `[Produces("application/json")]` attribute to the API controller. Its purpose is to declare that the controller's actions support a response content type of *application/json*:
 
-:::code language="csharp" source="web-api-help-pages-using-swagger/samples/6.0/SwashbuckleSample/Controllers/TodoController.cs" id="snippet_ClassDeclaration" highlight="3":::
+:::code language="csharp" source="web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/Controllers/TodoController.cs" id="snippet_ClassDeclaration" highlight="3":::
 
 The **Media type** drop-down selects this content type as the default for the controller's GET actions:
 
@@ -217,7 +217,7 @@ Developers consuming a web API are most concerned with what's returned&mdash;spe
 
 The `Create` action returns an HTTP 201 status code on success. An HTTP 400 status code is returned when the posted request body is null. Without proper documentation in the Swagger UI, the consumer lacks knowledge of these expected outcomes. Fix that problem by adding the highlighted lines in the following example:
 
-:::code language="csharp" source="web-api-help-pages-using-swagger/samples/6.0/SwashbuckleSample/Controllers/TodoController.cs" id="snippet_Create" highlight="17-18,20-21":::
+:::code language="csharp" source="web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/Controllers/TodoController.cs" id="snippet_Create" highlight="17-18,20-21":::
 
 The Swagger UI now clearly documents the expected HTTP response codes:
 
@@ -233,20 +233,20 @@ The default UI is both functional and presentable. However, API documentation pa
 
 Enable Static File Middleware:
 
-:::code language="csharp" source="web-api-help-pages-using-swagger/samples/6.0/SwashbuckleSample/Snippets/Program.cs" id="snippet_MiddlewareStaticFiles" highlight="2":::
+:::code language="csharp" source="web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/Snippets/Program.cs" id="snippet_MiddlewareStaticFiles" highlight="2":::
 
 To inject additional CSS stylesheets, add them to the project's *wwwroot* folder and specify the relative path in the middleware options:
 
-:::code language="csharp" source="web-api-help-pages-using-swagger/samples/6.0/SwashbuckleSample/Snippets/Program.cs" id="snippet_MiddlewareInjectStylesheet" highlight="3":::
+:::code language="csharp" source="web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/Snippets/Program.cs" id="snippet_MiddlewareInjectStylesheet" highlight="3":::
 
 ## Additional resources
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/) ([how to download](xref:index#how-to-download-a-sample))
 * [Microsoft Learn: Improve the developer experience of an API with Swagger documentation](/learn/modules/improve-api-developer-experience-with-swagger/)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -310,11 +310,11 @@ dotnet add TodoApi.csproj package Swashbuckle.AspNetCore -v 5.6.3
 
 Add the Swagger generator to the services collection in the `Startup.ConfigureServices` method:
 
-:::code language="csharp" source="web-api-help-pages-using-swagger/samples/3.0/TodoApi.Swashbuckle/Startup2.cs" id="snippet_ConfigureServices" highlight="8":::
+:::code language="csharp" source="web-api-help-pages-using-swagger/samples/3.x/TodoApi.Swashbuckle/Startup2.cs" id="snippet_ConfigureServices" highlight="8":::
 
 In the `Startup.Configure` method, enable the middleware for serving the generated JSON document and the Swagger UI:
 
-:::code language="csharp" source="web-api-help-pages-using-swagger/samples/3.0/TodoApi.Swashbuckle/Startup2.cs" id="snippet_Configure" highlight="4,7":::
+:::code language="csharp" source="web-api-help-pages-using-swagger/samples/3.x/TodoApi.Swashbuckle/Startup2.cs" id="snippet_Configure" highlight="4,7":::
 
 > [!NOTE]
 > Swashbuckle relies on MVC's <xref:Microsoft.AspNetCore.Mvc.ApiExplorer> to discover the routes and endpoints. If the project calls <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddMvc%2A>, routes and endpoints are discovered automatically. When calling <xref:Microsoft.Extensions.DependencyInjection.MvcCoreServiceCollectionExtensions.AddMvcCore%2A>, the <xref:Microsoft.Extensions.DependencyInjection.MvcApiExplorerMvcCoreBuilderExtensions.AddApiExplorer%2A> method must be explicitly called. For more information, see [Swashbuckle, ApiExplorer, and Routing](https://github.com/domaindrivendev/Swashbuckle.AspNetCore#swashbuckle-apiexplorer-and-routing).
@@ -335,7 +335,7 @@ If using directories with IIS or a reverse proxy, set the Swagger endpoint to a 
 > [!NOTE]
 > By default, Swashbuckle generates and exposes Swagger JSON in version 3.0 of the specification&mdash;officially called the OpenAPI Specification. To support backwards compatibility, you can opt into exposing JSON in the 2.0 format instead. This 2.0 format is important for integrations such as Microsoft Power Apps and Microsoft Flow that currently support OpenAPI version 2.0. To opt into the 2.0 format, set the `SerializeAsV2` property in `Startup.Configure`:
 >
-> :::code language="csharp" source="web-api-help-pages-using-swagger/samples/3.0/TodoApi.Swashbuckle/Startup3.cs" id="snippet_Configure" highlight="4-7":::
+> :::code language="csharp" source="web-api-help-pages-using-swagger/samples/3.x/TodoApi.Swashbuckle/Startup3.cs" id="snippet_Configure" highlight="4-7":::
 
 ## Customize and extend
 
@@ -429,7 +429,7 @@ namespace TodoApi
 
 Configure Swagger to use the XML file that's generated with the preceding instructions. For Linux or non-Windows operating systems, file names and paths can be case-sensitive. For example, a *TodoApi.XML* file is valid on Windows but not CentOS.
 
-:::code language="csharp" source="web-api-help-pages-using-swagger/samples/3.0/TodoApi.Swashbuckle/Startup.cs" id="snippet_ConfigureServices" highlight="30-32":::
+:::code language="csharp" source="web-api-help-pages-using-swagger/samples/3.x/TodoApi.Swashbuckle/Startup.cs" id="snippet_ConfigureServices" highlight="30-32":::
 
 In the preceding code, [Reflection](/dotnet/csharp/programming-guide/concepts/reflection) is used to build an XML file name matching that of the web API project. The [AppContext.BaseDirectory](xref:System.AppContext.BaseDirectory%2A) property is used to construct a path to the XML file. Some Swagger features (for example, schemata of input parameters or HTTP methods and response codes from the respective attributes) work without the use of an XML documentation file. For most features, namely method summaries and the descriptions of parameters and response codes, the use of an XML file is mandatory.
 
@@ -472,7 +472,7 @@ The UI is driven by the generated JSON schema:
 
 Add a [\<remarks>](/dotnet/csharp/programming-guide/xmldoc/remarks) element to the `Create` action method documentation. It supplements information specified in the `<summary>` element and provides a more robust Swagger UI. The `<remarks>` element content can consist of text, JSON, or XML.
 
-:::code language="csharp" source="web-api-help-pages-using-swagger/samples/3.0/TodoApi.Swashbuckle/Controllers/TodoController.cs" id="snippet_Create" highlight="4-14":::
+:::code language="csharp" source="web-api-help-pages-using-swagger/samples/3.x/TodoApi.Swashbuckle/Controllers/TodoController.cs" id="snippet_Create" highlight="4-14":::
 
 Notice the UI enhancements with these additional comments:
 
@@ -480,7 +480,7 @@ Notice the UI enhancements with these additional comments:
 
 ### Data annotations
 
-Mark the model with attributes, found in the [System.ComponentModel.DataAnnotations](/dotnet/api/system.componentmodel.dataannotations) namespace, to help drive the Swagger UI components.
+Mark the model with attributes, found in the <xref:System.ComponentModel.DataAnnotations?displayProperty=fullName> namespace, to help drive the Swagger UI components.
 
 Add the `[Required]` attribute to the `Name` property of the `TodoItem` class:
 
@@ -514,7 +514,7 @@ The presence of this attribute changes the UI behavior and alters the underlying
 
 Add the `[Produces("application/json")]` attribute to the API controller. Its purpose is to declare that the controller's actions support a response content type of *application/json*:
 
-:::code language="csharp" source="web-api-help-pages-using-swagger/samples/3.0/TodoApi.Swashbuckle/Controllers/TodoController.cs" id="snippet_TodoController" highlight="1":::
+:::code language="csharp" source="web-api-help-pages-using-swagger/samples/3.x/TodoApi.Swashbuckle/Controllers/TodoController.cs" id="snippet_TodoController" highlight="1":::
 
 The **Response Content Type** drop-down selects this content type as the default for the controller's GET actions:
 
@@ -528,7 +528,7 @@ Developers consuming a web API are most concerned with what's returned&mdash;spe
 
 The `Create` action returns an HTTP 201 status code on success. An HTTP 400 status code is returned when the posted request body is null. Without proper documentation in the Swagger UI, the consumer lacks knowledge of these expected outcomes. Fix that problem by adding the highlighted lines in the following example:
 
-:::code language="csharp" source="web-api-help-pages-using-swagger/samples/3.0/TodoApi.Swashbuckle/Controllers/TodoController.cs" id="snippet_Create" highlight="17,18,20,21":::
+:::code language="csharp" source="web-api-help-pages-using-swagger/samples/3.x/TodoApi.Swashbuckle/Controllers/TodoController.cs" id="snippet_Create" highlight="17,18,20,21":::
 
 The Swagger UI now clearly documents the expected HTTP response codes:
 
@@ -552,7 +552,7 @@ The preceding NuGet package is already installed if targeting .NET Core 2.x and 
 
 Enable Static File Middleware:
 
-:::code language="csharp" source="web-api-help-pages-using-swagger/samples/3.0/TodoApi.Swashbuckle/Startup.cs" id="snippet_Configure" highlight="3":::
+:::code language="csharp" source="web-api-help-pages-using-swagger/samples/3.x/TodoApi.Swashbuckle/Startup.cs" id="snippet_Configure" highlight="3":::
 
 To inject additional CSS stylesheets, add them to the project's *wwwroot* folder and specify the relative path in the middleware options:
 
@@ -567,4 +567,4 @@ app.UseSwaggerUI(c =>
 
 * [Microsoft Learn: Improve the developer experience of an API with Swagger documentation](/learn/modules/improve-api-developer-experience-with-swagger/)
 
-::: moniker-end
+:::moniker-end
