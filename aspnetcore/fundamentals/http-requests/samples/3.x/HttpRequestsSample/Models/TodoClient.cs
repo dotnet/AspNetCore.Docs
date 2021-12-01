@@ -49,7 +49,7 @@ namespace HttpRequestsSample.Models
             return await JsonSerializer.DeserializeAsync<TodoItem>(httpResponseStream, _jsonSerializerOptions);
         }
 
-        #region snippet_POST
+        // <snippet_POST>
         public async Task CreateItemAsync(TodoItem todoItem)
         {
             var todoItemJson = new StringContent(
@@ -62,9 +62,9 @@ namespace HttpRequestsSample.Models
 
             httpResponse.EnsureSuccessStatusCode();
         }
-        #endregion
+        // </snippet_POST>
 
-        #region snippet_PUT
+        // <snippet_PUT>
         public async Task SaveItemAsync(TodoItem todoItem)
         {
             var todoItemJson = new StringContent(
@@ -77,9 +77,9 @@ namespace HttpRequestsSample.Models
 
             httpResponse.EnsureSuccessStatusCode();
         }
-        #endregion
+        // </snippet_PUT>
 
-        #region snippet_DELETE
+        // <snippet_DELETE>
         public async Task DeleteItemAsync(long itemId)
         {
             using var httpResponse =
@@ -87,6 +87,6 @@ namespace HttpRequestsSample.Models
 
             httpResponse.EnsureSuccessStatusCode();
         }
-        #endregion
+        // </snippet_DELETE>
     }
 }
