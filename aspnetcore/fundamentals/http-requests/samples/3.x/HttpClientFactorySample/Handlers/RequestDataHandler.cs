@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 
 namespace HttpClientFactorySample.Handlers
 {
-    #region snippet1
+    // <snippet1>
     public class RequestDataHandler : DelegatingHandler
     {
         private readonly ILogger<RequestDataHandler> _logger;
@@ -33,5 +33,5 @@ namespace HttpClientFactorySample.Handlers
             return base.SendAsync(request, cancellationToken);
         }
     }
-    #endregion
+    // </snippet1>
 }

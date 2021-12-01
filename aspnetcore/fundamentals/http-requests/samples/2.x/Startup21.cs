@@ -15,7 +15,7 @@ namespace HeaderProp21
 
         public IConfiguration Configuration { get; }
 
-        #region snippet
+        // <snippet>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
@@ -44,6 +44,6 @@ namespace HeaderProp21
 
             app.UseMvc();
         }
-        #endregion
+        // </snippet>
     }
 }

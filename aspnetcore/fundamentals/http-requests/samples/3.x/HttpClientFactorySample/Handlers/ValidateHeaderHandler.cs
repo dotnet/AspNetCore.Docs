@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace HttpClientFactorySample.Handlers
 {
-    #region snippet1
+    // <snippet1>
     public class ValidateHeaderHandler : DelegatingHandler
     {
         protected override async Task<HttpResponseMessage> SendAsync(
@@ -24,5 +24,5 @@ namespace HttpClientFactorySample.Handlers
             return await base.SendAsync(request, cancellationToken);
         }
     }
-    #endregion
+    // </snippet1>
 }

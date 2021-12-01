@@ -5,16 +5,16 @@ using Microsoft.Net.Http.Headers;
 using Polly;
 using Refit;
 
-#region snippet_AddHttpClientBasic
+// <snippet_AddHttpClientBasic>
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddHttpClient();
-#endregion
+// </snippet_AddHttpClientBasic>
 
 builder.Services.AddRazorPages();
 
-#region snippet_AddHttpClientNamed
+// <snippet_AddHttpClientNamed>
 builder.Services.AddHttpClient("GitHub", httpClient =>
 {
     httpClient.BaseAddress = new Uri("https://api.github.com/");
@@ -26,9 +26,9 @@ builder.Services.AddHttpClient("GitHub", httpClient =>
     httpClient.DefaultRequestHeaders.Add(
         HeaderNames.UserAgent, "HttpRequestsSample");
 });
-#endregion
+// </snippet_AddHttpClientNamed>
 
-#region snippet_AddRefitClient
+// <snippet_AddRefitClient>
 builder.Services.AddRefitClient<IGitHubClient>()
     .ConfigureHttpClient(httpClient =>
     {
@@ -41,27 +41,27 @@ builder.Services.AddRefitClient<IGitHubClient>()
         httpClient.DefaultRequestHeaders.Add(
             HeaderNames.UserAgent, "HttpRequestsSample");
     });
-#endregion
+// </snippet_AddRefitClient>
 
-#region snippet_AddHttpMessageHandler
+// <snippet_AddHttpMessageHandler>
 builder.Services.AddTransient<ValidateHeaderHandler>();
 
 builder.Services.AddHttpClient("HttpMessageHandler")
     .AddHttpMessageHandler<ValidateHeaderHandler>();
-#endregion
+// </snippet_AddHttpMessageHandler>
 
-#region snippet_AddHttpMessageHandlerMultiple
+// <snippet_AddHttpMessageHandlerMultiple>
 builder.Services.AddTransient<SampleHandler1>();
 builder.Services.AddTransient<SampleHandler2>();
 
 builder.Services.AddHttpClient("MultipleHttpMessageHandlers")
     .AddHttpMessageHandler<SampleHandler1>()
     .AddHttpMessageHandler<SampleHandler2>();
-#endregion
+// </snippet_AddHttpMessageHandlerMultiple>
 
-#region snippet_OperationScoped
+// <snippet_OperationScoped>
 builder.Services.AddScoped<IOperationScoped, OperationScoped>();
-#endregion
+// </snippet_OperationScoped>
 
 builder.Services.AddTransient<OperationHandler>();
 builder.Services.AddTransient<OperationResponseHandler>();
@@ -71,18 +71,18 @@ builder.Services.AddHttpClient("Operation")
     .AddHttpMessageHandler<OperationResponseHandler>()
     .SetHandlerLifetime(TimeSpan.FromSeconds(5));
 
-#region snippet_AddHttpClientTyped
+// <snippet_AddHttpClientTyped>
 builder.Services.AddHttpClient<GitHubService>();
-#endregion
+// </snippet_AddHttpClientTyped>
 
-#region snippet_AddHttpClientPollyWaitAndRetry
+// <snippet_AddHttpClientPollyWaitAndRetry>
 builder.Services.AddHttpClient("PollyWaitAndRetry")
     .AddTransientHttpErrorPolicy(policyBuilder =>
         policyBuilder.WaitAndRetryAsync(
             3, retryNumber => TimeSpan.FromMilliseconds(600)));
-#endregion
+// </snippet_AddHttpClientPollyWaitAndRetry>
 
-#region snippet_AddHttpClientPollyDynamic
+// <snippet_AddHttpClientPollyDynamic>
 var timeoutPolicy = Policy.TimeoutAsync<HttpResponseMessage>(
     TimeSpan.FromSeconds(10));
 var longTimeoutPolicy = Policy.TimeoutAsync<HttpResponseMessage>(
@@ -91,22 +91,22 @@ var longTimeoutPolicy = Policy.TimeoutAsync<HttpResponseMessage>(
 builder.Services.AddHttpClient("PollyDynamic")
     .AddPolicyHandler(httpRequestMessage =>
         httpRequestMessage.Method == HttpMethod.Get ? timeoutPolicy : longTimeoutPolicy);
-#endregion
+// </snippet_AddHttpClientPollyDynamic>
 
-#region snippet_AddHttpClientPollyMultiple
+// <snippet_AddHttpClientPollyMultiple>
 builder.Services.AddHttpClient("PollyMultiple")
     .AddTransientHttpErrorPolicy(policyBuilder =>
         policyBuilder.RetryAsync(3))
     .AddTransientHttpErrorPolicy(policyBuilder =>
         policyBuilder.CircuitBreakerAsync(5, TimeSpan.FromSeconds(30)));
-#endregion
+// </snippet_AddHttpClientPollyMultiple>
 
-#region snippet_AddHttpClientHandlerLifetime
+// <snippet_AddHttpClientHandlerLifetime>
 builder.Services.AddHttpClient("HandlerLifetime")
     .SetHandlerLifetime(TimeSpan.FromMinutes(5));
-#endregion
+// </snippet_AddHttpClientHandlerLifetime>
 
-#region snippet_AddHttpClientConfigureHttpMessageHandler
+// <snippet_AddHttpClientConfigureHttpMessageHandler>
 builder.Services.AddHttpClient("ConfiguredHttpMessageHandler")
     .ConfigurePrimaryHttpMessageHandler(() =>
         new HttpClientHandler
@@ -114,16 +114,16 @@ builder.Services.AddHttpClient("ConfiguredHttpMessageHandler")
             AllowAutoRedirect = true,
             UseDefaultCredentials = true
         });
-#endregion
+// </snippet_AddHttpClientConfigureHttpMessageHandler>
 
-#region snippet_AddHttpClientNoAutomaticCookies
+// <snippet_AddHttpClientNoAutomaticCookies>
 builder.Services.AddHttpClient("NoAutomaticCookies")
     .ConfigurePrimaryHttpMessageHandler(() =>
         new HttpClientHandler
         {
             UseCookies = false
         });
-#endregion
+// </snippet_AddHttpClientNoAutomaticCookies>
 
 var app = builder.Build();
 

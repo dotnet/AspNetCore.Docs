@@ -15,7 +15,7 @@ namespace HeaderProp
 
         public IConfiguration Configuration { get; }
 
-        #region snippet
+        // <snippet>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
@@ -47,6 +47,6 @@ namespace HeaderProp
                 endpoints.MapControllers();
             });
         }
-        #endregion
+        // </snippet>
     }
 }

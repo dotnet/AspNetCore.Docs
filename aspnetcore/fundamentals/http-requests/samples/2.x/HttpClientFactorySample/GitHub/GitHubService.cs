@@ -8,7 +8,7 @@ namespace HttpClientFactorySample.GitHub
     /// <summary>
     /// Exposes methods to return GitHub API data
     /// </summary>
-    #region snippet1
+    // <snippet1>
     public class GitHubService
     {
         public HttpClient Client { get; }
@@ -39,5 +39,5 @@ namespace HttpClientFactorySample.GitHub
             return result;
         }
     }
-    #endregion
+    // </snippet1>
 }
