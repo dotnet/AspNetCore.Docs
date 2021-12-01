@@ -139,7 +139,7 @@ public class HomeController : Controller
         var message = $"Entry was evicted. Reason: {reason}.";
         ((HomeController)state)._cache.Set(CacheKeys.CallbackMessage, message);
     }
-    // <snippet_/et>
+    // </snippet_et>
 
     // <snippet_ed>
     public IActionResult CreateDependentEntries()
