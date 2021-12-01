@@ -6,7 +6,7 @@ using System;
 
 namespace RPcache.Pages
 {
-    #region snippet
+    // <snippet>
     public class TestCacheModel : PageModel
     {
         private MemoryCache _cache;
@@ -22,7 +22,7 @@ namespace RPcache.Pages
         [TempData] 
         public int cache_size { get; set; }
 
-        #region snippet2
+        // <snippet2>
         public IActionResult OnGet()
         {
             if (!_cache.TryGetValue(MyKey, out string cacheEntry))
@@ -48,20 +48,20 @@ namespace RPcache.Pages
 
             return Page();
         }
-        #endregion
+        // </snippet2>
 
 
         public IActionResult OnPost()
         {
-            #region snippet3       
+            // <snippet3>
             _cache.Remove(MyKey);
 
             // Remove 33% of cached items.
             _cache.Compact(.33);   
             cache_size = _cache.Count;
-            #endregion
+            // </snippet3>
             return Page();
         }
     }
-    #endregion
+    // </snippet>
 }

@@ -13,7 +13,7 @@ uid: performance/caching/memory
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [John Luo](https://github.com/JunTaoLuo), and [Steve Smith](https://ardalis.com/)
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 Caching can significantly improve the performance and scalability of an app by reducing the work required to generate content. Caching works best with data that changes infrequently **and** is expensive to generate. Caching makes a copy of data that can be returned much faster than from the source. Apps should be written and tested to **never** depend on cached data.
 
@@ -52,41 +52,41 @@ Use `System.Runtime.Caching`/`MemoryCache` as a compatibility bridge when portin
 
 In-memory caching is a *service* that's referenced from an app using [Dependency Injection](xref:fundamentals/dependency-injection). Request the `IMemoryCache` instance in the constructor:
 
-:::code language="csharp" source="memory/samples/6.0/CachingMemorySample/Pages/Index.cshtml.cs" id="snippet_ClassConstructor" highlight="5":::
+:::code language="csharp" source="memory/samples/6.x/CachingMemorySample/Pages/Index.cshtml.cs" id="snippet_ClassConstructor" highlight="5":::
 
 The following code uses <xref:Microsoft.Extensions.Caching.Memory.IMemoryCache.TryGetValue%2A> to check if a time is in the cache. If a time isn't cached, a new entry is created and added to the cache with <xref:Microsoft.Extensions.Caching.Memory.CacheExtensions.Set%2A>: 
 
-:::code language="csharp" source="memory/samples/6.0/CachingMemorySample/Pages/Index.cshtml.cs" id="snippet_OnGet" highlight="5,9-12":::
+:::code language="csharp" source="memory/samples/6.x/CachingMemorySample/Pages/Index.cshtml.cs" id="snippet_OnGet" highlight="5,9-12":::
 
 In the preceding code, the cache entry is configured with a sliding expiration of three seconds. If the cache entry isn't accessed for more than three seconds, it gets evicted from the cache. Each time the cache entry is accessed, it remains in the cache for a further 3 seconds. The `CacheKeys` class is part of the download sample.
 
 The current time and the cached time are displayed:
 
-:::code language="cshtml" source="memory/samples/6.0/CachingMemorySample/Pages/Index.cshtml" id="snippet_CacheCurrentDateTime":::
+:::code language="cshtml" source="memory/samples/6.x/CachingMemorySample/Pages/Index.cshtml" id="snippet_CacheCurrentDateTime":::
 
 The following code uses the `Set` extension method to cache data for a relative time without `MemoryCacheEntryOptions`:
 
-:::code language="csharp" source="memory/samples/6.0/CachingMemorySample/Snippets/Pages/Index.cshtml.cs" id="snippet_OnGetCacheRelative":::
+:::code language="csharp" source="memory/samples/6.x/CachingMemorySample/Snippets/Pages/Index.cshtml.cs" id="snippet_OnGetCacheRelative":::
 
 In the preceding code, the cache entry is configured with a relative expiration of one day. The cache entry gets evicted from the cache after one day, even if it's accessed within this timeout period.
 
 The following code uses <xref:Microsoft.Extensions.Caching.Memory.CacheExtensions.GetOrCreate%2A> and <xref:Microsoft.Extensions.Caching.Memory.CacheExtensions.GetOrCreateAsync%2A> to cache data.
 
-:::code language="csharp" source="memory/samples/6.0/CachingMemorySample/Snippets/Pages/Index.cshtml.cs" id="snippet_OnGetCacheGetOrCreate":::
+:::code language="csharp" source="memory/samples/6.x/CachingMemorySample/Snippets/Pages/Index.cshtml.cs" id="snippet_OnGetCacheGetOrCreate":::
 
 The following code calls <xref:Microsoft.Extensions.Caching.Memory.CacheExtensions.Get%2A> to fetch the cached time:
 
-:::code language="csharp" source="memory/samples/6.0/CachingMemorySample/Snippets/Pages/Index.cshtml.cs" id="snippet_OnGetCacheGet":::
+:::code language="csharp" source="memory/samples/6.x/CachingMemorySample/Snippets/Pages/Index.cshtml.cs" id="snippet_OnGetCacheGet":::
 
 The following code gets or creates a cached item with absolute expiration:
 
-:::code language="csharp" source="memory/samples/6.0/CachingMemorySample/Snippets/Pages/Index.cshtml.cs" id="snippet_OnGetCacheGetOrCreateAbsolute" highlight="5":::
+:::code language="csharp" source="memory/samples/6.x/CachingMemorySample/Snippets/Pages/Index.cshtml.cs" id="snippet_OnGetCacheGetOrCreateAbsolute" highlight="5":::
 
 A cached item set with a sliding expiration only is at risk of becoming stale. If it's accessed more frequently than the sliding expiration interval, the item will never expire. Combine a sliding expiration with an absolute expiration to guarantee that the item expires once its absolute expiration time passes. The absolute expiration sets an upper bound to how long the item can be cached while still allowing the item to expire earlier if it isn't requested within the sliding expiration interval. When both absolute and sliding expiration are specified, the expirations are logically ORed. If either the sliding expiration interval *or* the absolute expiration time pass, the item is evicted from the cache.
 
 The following code gets or creates a cached item with both sliding *and* absolute expiration:
 
-:::code language="csharp" source="memory/samples/6.0/CachingMemorySample/Snippets/Pages/Index.cshtml.cs" id="snippet_OnGetCacheGetOrCreateSlidingAbsolute" highlight="5-6":::
+:::code language="csharp" source="memory/samples/6.x/CachingMemorySample/Snippets/Pages/Index.cshtml.cs" id="snippet_OnGetCacheGetOrCreateSlidingAbsolute" highlight="5-6":::
 
 The preceding code guarantees the data won't be cached longer than the absolute time.
 
@@ -99,7 +99,7 @@ The following example:
 * Sets the cache priority to <xref:Microsoft.Extensions.Caching.Memory.CacheItemPriority.NeverRemove?displayProperty=nameWithType>.
 * Sets a <xref:Microsoft.Extensions.Caching.Memory.PostEvictionDelegate> that gets called after the entry is evicted from the cache. The callback is run on a different thread from the code that removes the item from the cache.
 
-:::code language="csharp" source="memory/samples/6.0/CachingMemorySample/Snippets/Pages/Index.cshtml.cs" id="snippet_MemoryCacheEntryOptions" highlight="4-5":::
+:::code language="csharp" source="memory/samples/6.x/CachingMemorySample/Snippets/Pages/Index.cshtml.cs" id="snippet_MemoryCacheEntryOptions" highlight="4-5":::
 
 ## Use SetSize, Size, and SizeLimit to limit cache size
 
@@ -117,19 +117,19 @@ If <xref:Microsoft.Extensions.Caching.Memory.MemoryCacheOptions.SizeLimit> isn't
 
 The following code creates a unitless fixed size <xref:Microsoft.Extensions.Caching.Memory.MemoryCache> accessible by [dependency injection](xref:fundamentals/dependency-injection):
 
-:::code language="csharp" source="memory/samples/6.0/CachingMemorySample/Snippets/MyMemoryCache.cs" id="snippet_Class":::
+:::code language="csharp" source="memory/samples/6.x/CachingMemorySample/Snippets/MyMemoryCache.cs" id="snippet_Class":::
 
 `SizeLimit` doesn't have units. Cached entries must specify size in whatever units they consider most appropriate if the cache size limit has been set. All users of a cache instance should use the same unit system. An entry won't be cached if the sum of the cached entry sizes exceeds the value specified by `SizeLimit`. If no cache size limit is set, the cache size set on the entry is ignored.
 
 The following code registers `MyMemoryCache` with the [dependency injection](xref:fundamentals/dependency-injection) container:
 
-:::code language="csharp" source="memory/samples/6.0/CachingMemorySample/Snippets/Program.cs" id="snippet_AddSingletonMyMemoryCache" highlight="4":::
+:::code language="csharp" source="memory/samples/6.x/CachingMemorySample/Snippets/Program.cs" id="snippet_AddSingletonMyMemoryCache" highlight="4":::
 
 `MyMemoryCache` is created as an independent memory cache for components that are aware of this size limited cache and know how to set cache entry size appropriately.
 
 The size of the cache entry can be set using the <xref:Microsoft.Extensions.Caching.Memory.MemoryCacheEntryExtensions.SetSize%2A> extension method or the <xref:Microsoft.Extensions.Caching.Memory.MemoryCacheEntryOptions.Size> property:
 
-:::code language="csharp" source="memory/samples/6.0/CachingMemorySample/Snippets/Pages/MyMemoryCache.cshtml.cs" id="snippet_OnGetCacheSizeSetSize" highlight="4,6":::
+:::code language="csharp" source="memory/samples/6.x/CachingMemorySample/Snippets/Pages/MyMemoryCache.cshtml.cs" id="snippet_OnGetCacheSizeSetSize" highlight="4,6":::
 
 In the preceding code, the two highlighted lines achieve the same result of setting the size of the cache entry. `SetSize` is provided for convenience when chaining calls onto `new MemoryCacheOptions()`.
 
@@ -145,7 +145,7 @@ In the preceding code, the two highlighted lines achieve the same result of sett
 
 Pinned items with priority <xref:Microsoft.Extensions.Caching.Memory.CacheItemPriority.NeverRemove> are [never removed](https://github.com/dotnet/runtime/blob/release/6.0/src/libraries/Microsoft.Extensions.Caching.Memory/src/MemoryCache.cs#L415-L430). The following code removes a cache item and calls `Compact` to remove 25% of cached entries:
 
-:::code language="csharp" source="memory/samples/6.0/CachingMemorySample/Snippets/Pages/MyMemoryCache.cshtml.cs" id="snippet_OnGetCacheCompact":::
+:::code language="csharp" source="memory/samples/6.x/CachingMemorySample/Snippets/Pages/MyMemoryCache.cshtml.cs" id="snippet_OnGetCacheCompact":::
 
 For more information, see the [Compact source on GitHub](https://github.com/dotnet/runtime/blob/release/6.0/src/libraries/Microsoft.Extensions.Caching.Memory/src/MemoryCache.cs#L382-L393).
 
@@ -153,15 +153,15 @@ For more information, see the [Compact source on GitHub](https://github.com/dotn
 
 The following sample shows how to expire a cache entry if a dependent entry expires. A <xref:Microsoft.Extensions.Primitives.CancellationChangeToken> is added to the cached item. When `Cancel` is called on the `CancellationTokenSource`, both cache entries are evicted:
 
-:::code language="csharp" source="memory/samples/6.0/CachingMemorySample/Snippets/Pages/Index.cshtml.cs" id="snippet_CacheDependencies" highlight="16,24":::
+:::code language="csharp" source="memory/samples/6.x/CachingMemorySample/Snippets/Pages/Index.cshtml.cs" id="snippet_CacheDependencies" highlight="16,24":::
 
 Using a <xref:System.Threading.CancellationTokenSource> allows multiple cache entries to be evicted as a group. With the `using` pattern in the code above, cache entries created inside the `using` scope inherit triggers and expiration settings.
 
 ## Additional notes
 
-* Expiration doesn't happen in the background. There's no timer that actively scans the cache for expired items. Any activity on the cache (`Get`, `Set`, `Remove`) can trigger a background scan for expired items. A timer on the `CancellationTokenSource` (<xref:System.Threading.CancellationTokenSource.CancelAfter%2A>) also removes the entry and triggers a scan for expired items. The following example uses [CancellationTokenSource(TimeSpan)](/dotnet/api/system.threading.cancellationtokensource.-ctor) for the registered token. When this token fires, it removes the entry immediately and fires the eviction callbacks:
+* Expiration doesn't happen in the background. There's no timer that actively scans the cache for expired items. Any activity on the cache (`Get`, `Set`, `Remove`) can trigger a background scan for expired items. A timer on the `CancellationTokenSource` (<xref:System.Threading.CancellationTokenSource.CancelAfter%2A>) also removes the entry and triggers a scan for expired items. The following example uses <xref:System.Threading.CancellationTokenSource.%23ctor(System.TimeSpan)> for the registered token. When this token fires, it removes the entry immediately and fires the eviction callbacks:
 
-  :::code language="csharp" source="memory/samples/6.0/CachingMemorySample/Snippets/Pages/Index.cshtml.cs" id="snippet_OnGeCacheExpirationToken":::
+  :::code language="csharp" source="memory/samples/6.x/CachingMemorySample/Snippets/Pages/Index.cshtml.cs" id="snippet_OnGeCacheExpirationToken":::
 
 * When using a callback to repopulate a cache item:
   * Multiple requests can find the cached key value empty because the callback hasn't completed.
@@ -184,9 +184,9 @@ Use a [background service](xref:fundamentals/host/hosted-services) such as <xref
 * <xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper>
 * <xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper>
     
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching/memory/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -339,7 +339,7 @@ Using a <xref:System.Threading.CancellationTokenSource> allows multiple cache en
 
 ## Additional notes
 
-* Expiration doesn't happen in the background. There is no timer that actively scans the cache for expired items. Any activity on the cache (`Get`, `Set`, `Remove`) can trigger a background scan for expired items. A timer on the `CancellationTokenSource` (<xref:System.Threading.CancellationTokenSource.CancelAfter%2A>) also removes the entry and triggers a scan for expired items. The following example uses [CancellationTokenSource(TimeSpan)](/dotnet/api/system.threading.cancellationtokensource.-ctor) for the registered token. When this token fires it removes the entry immediately and fires the eviction callbacks:
+* Expiration doesn't happen in the background. There is no timer that actively scans the cache for expired items. Any activity on the cache (`Get`, `Set`, `Remove`) can trigger a background scan for expired items. A timer on the `CancellationTokenSource` (<xref:System.Threading.CancellationTokenSource.CancelAfter%2A>) also removes the entry and triggers a scan for expired items. The following example uses <xref:System.Threading.CancellationTokenSource.%23ctor(System.TimeSpan)> for the registered token. When this token fires it removes the entry immediately and fires the eviction callbacks:
 
   :::code language="csharp" source="memory/samples/3.x/WebCacheSample/Controllers/HomeController.cs" id="snippet_ae":::
 
@@ -363,4 +363,4 @@ Use a [background service](xref:fundamentals/host/hosted-services) such as <xref
 * <xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper>
 * <xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper>
     
-::: moniker-end
+:::moniker-end

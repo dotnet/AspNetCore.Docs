@@ -16,13 +16,13 @@ namespace RPcache
 
         public IConfiguration Configuration { get; }
 
-        #region snippet
+        // <snippet>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
             services.AddSingleton<MyMemoryCache>();
         }
-        #endregion
+        // </snippet>
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

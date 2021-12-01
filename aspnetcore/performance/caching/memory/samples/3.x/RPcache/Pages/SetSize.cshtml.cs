@@ -6,7 +6,7 @@ using System;
 
 namespace RPcache.Pages
 {
-    #region snippet
+    // <snippet>
     public class SetSize : PageModel
     {
         private MemoryCache _cache;
@@ -20,7 +20,7 @@ namespace RPcache.Pages
         [TempData]
         public string DateTime_Now { get; set; }
 
-        #region snippet2
+        // <snippet2>
         public IActionResult OnGet()
         {
             if (!_cache.TryGetValue(MyKey, out string cacheEntry))
@@ -45,7 +45,7 @@ namespace RPcache.Pages
 
             return RedirectToPage("./Index");
         }
-        #endregion
+        // </snippet2>
     }
-    #endregion
+    // </snippet>
 }
