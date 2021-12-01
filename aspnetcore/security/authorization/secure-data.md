@@ -142,7 +142,7 @@ If a strong password is not specified, an exception is thrown when `SeedData.Ini
 
 Update the app to use the test password:
 
-[!code-csharp[](secure-data/samples/final6/Program.cs?name=snippet4&highlight=33-99)]
+[!code-csharp[](secure-data/samples/final6/Program.cs?name=snippet4&highlight=34-99)]
 
 ### Create the test accounts and update the contacts
 
@@ -263,7 +263,7 @@ Update the details view so managers can approve or reject contacts:
 
 [!code-cshtml[](secure-data/samples/final3/Pages/Contacts/Details.cshtml?name=snippet)]
 
-Update the details page model:
+### Update the details page model
 
 [!code-csharp[](secure-data/samples/final3/Pages/Contacts/Details.cshtml.cs?name=snippet)]
 
