@@ -1,6 +1,6 @@
 ﻿namespace PoliciesAuthApp1.Services.Handlers
 {
-    #region snippet_MinimumAgeHandlerClass
+    // <snippet_MinimumAgeHandlerClass>
     using System;
     using System.Security.Claims;
     using System.Threading.Tasks;
@@ -42,5 +42,5 @@
             return Task.CompletedTask;
         }
     }
-    #endregion
+    // </snippet_MinimumAgeHandlerClass>
 }

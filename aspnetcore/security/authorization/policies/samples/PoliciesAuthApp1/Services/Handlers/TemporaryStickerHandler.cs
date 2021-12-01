@@ -1,6 +1,6 @@
 ﻿namespace PoliciesAuthApp1.Services.Handlers
 {
-    #region snippet_TemporaryStickerHandlerClass
+    // <snippet_TemporaryStickerHandlerClass>
     using System.Security.Claims;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Authorization;
@@ -24,5 +24,5 @@
             return Task.CompletedTask;
         }
     }
-    #endregion
+    // </snippet_TemporaryStickerHandlerClass>
 }
