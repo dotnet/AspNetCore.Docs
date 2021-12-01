@@ -356,7 +356,7 @@ Let's declutter this page by taking advantage of some of those capabilities.
 
 Add a [layout page](xref:mvc/views/layout) to *Pages/Shared/_Layout.cshtml*:
 
-[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Shared/_Layout2.cshtml?hightlight=12)]
+[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Shared/_Layout2.cshtml?highlight=12)]
 
 The [Layout](xref:mvc/views/layout):
 
@@ -961,7 +961,7 @@ Let's declutter this page by taking advantage of some of those capabilities.
 
 Add a [layout page](xref:mvc/views/layout) to *Pages/Shared/_Layout.cshtml*:
 
-[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Shared/_Layout2.cshtml?hightlight=12)]
+[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Shared/_Layout2.cshtml?highlight=12)]
 
 The [Layout](xref:mvc/views/layout):
 
