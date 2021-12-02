@@ -361,6 +361,23 @@ public class FilesaveController : ControllerBase
 
 In the preceding code, <xref:System.IO.Path.GetRandomFileName%2A> is called to generate a secure filename. Never trust the filename provided by the browser, as an attacker may choose an existing filename that overwrites an existing file or send a path that attempts to write outside of the app.
 
+::: zone pivot="server"
+
+## Upload files with progress
+
+The following example demonstrates how to upload files in a Blazor Server app with upload progress displayed to the user.
+
+`Pages/FileUpload3.razor`:
+
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_Server/Pages/file-uploads/FileUpload3.razor)]
+
+For more information, see the following API resources:
+
+* <xref:System.IO.FileStream>: Provides a <xref:System.IO.Stream> for a file, supporting both synchronous and asynchronous read and write operations.
+* <xref:System.IO.FileStream.Read%2A>: The preceding `FileUpload3` component example is based on the approach in the *Examples* section of this API document. The main difference between the example in the API document and the `FileUpload3` component is that the component reads the stream asychronously with <xref:System.IO.FileStream.ReadAsync%2A?displayProperty=nameWithType>. Reading a stream sychronously with <xref:System.IO.FileStream.Read%2A> isn't supported in Razor components.
+
+::: zone-end
+
 ## File streams
 
 ::: zone pivot="webassembly"
@@ -728,6 +745,23 @@ public class FilesaveController : ControllerBase
     }
 }
 ```
+
+::: zone pivot="server"
+
+## Upload files with progress
+
+The following example demonstrates how to upload files in a Blazor Server app with upload progress displayed to the user.
+
+`Pages/FileUpload3.razor`:
+
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_Server/Pages/file-uploads/FileUpload3.razor)]
+
+For more information, see the following API resources:
+
+* <xref:System.IO.FileStream>: Provides a <xref:System.IO.Stream> for a file, supporting both synchronous and asynchronous read and write operations.
+* <xref:System.IO.FileStream.Read%2A>: The preceding `FileUpload3` component example is based on the approach in the *Examples* section of this API document. The main difference between the example in the API document and the `FileUpload3` component is that the component reads the stream asychronously with <xref:System.IO.FileStream.ReadAsync%2A?displayProperty=nameWithType>. Reading a stream sychronously with <xref:System.IO.FileStream.Read%2A> isn't supported in Razor components.
+
+::: zone-end
 
 ## File streams
 
