@@ -28,7 +28,7 @@ Request delegates are configured using <xref:Microsoft.AspNetCore.Builder.RunExt
 
 ## Middleware code analysis
 
-ASP.NET Core includes many compiler platform analyzers inspect application code for code quality. For more information, see <xref:diagnostics/code-analysis>
+ASP.NET Core includes many compiler platform analyzers that inspect application code for quality. For more information, see <xref:diagnostics/code-analysis>
 
 ## Create a middleware pipeline with `WebApplication`
 
