@@ -966,6 +966,8 @@ For targets that are collections of simple types, model binding looks for matche
   ```
   [a]=1050&[b]=2000&index=a&index=b
   ```
+  > [!WARNING] 
+  > Since the model binding looks for the keyword `index` from a Form or Query string is strongly recommended to not use it as your action's parameter name to avoid unexpected behaviors.
 
 * The following format is supported only in form data:
 
