@@ -532,7 +532,7 @@ Enumerating a large table in a view could return a partially constructed HTTP 20
 <xref:Microsoft.AspNetCore.Mvc.MvcOptions.MaxModelBindingCollectionSize> defaults to 1024. The following code sets `MaxModelBindingCollectionSize`:
 
 <!-- Review: If I set MaxModelBindingCollectionSize to 3, it still returns all the rows. Is there a minimum? -->
- [!code-csharp[Main](intro/samples/cu60/ProgramEnsure.cs?name=ProgramMax&highlight=16-20)]
+ [!code-csharp[Main](intro/samples/cu60/ProgramMax.cs?name=snippet&highlight=16-20)]
 
 See [Configuration](xref:fundamentals/configuration/index) for information on configuration settings like `MyMaxModelBindingCollectionSize`.
 
