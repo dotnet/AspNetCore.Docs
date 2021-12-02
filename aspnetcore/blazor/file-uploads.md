@@ -379,7 +379,7 @@ To use the following example in a test app:
 For more information, see the following API resources:
 
 * <xref:System.IO.FileStream>: Provides a <xref:System.IO.Stream> for a file, supporting both synchronous and asynchronous read and write operations.
-* <xref:System.IO.FileStream.Read%2A>: The preceding `FileUpload3` component example reads the stream asynchronously with <xref:System.IO.FileStream.ReadAsync%2A?displayProperty=nameWithType>. Reading a stream synchronously with <xref:System.IO.FileStream.Read%2A> isn't supported in Razor components.
+* <xref:System.IO.FileStream.ReadAsync%2A?displayProperty=nameWithType>: The preceding `FileUpload3` component reads the stream asynchronously with <xref:System.IO.FileStream.ReadAsync%2A>. Reading a stream synchronously with <xref:System.IO.FileStream.Read%2A> isn't supported in Razor components.
 
 ::: zone-end
 
@@ -769,7 +769,7 @@ To use the following example in a test app:
 For more information, see the following API resources:
 
 * <xref:System.IO.FileStream>: Provides a <xref:System.IO.Stream> for a file, supporting both synchronous and asynchronous read and write operations.
-* <xref:System.IO.FileStream.Read%2A>: The preceding `FileUpload3` component example reads the stream asynchronously with <xref:System.IO.FileStream.ReadAsync%2A?displayProperty=nameWithType>. Reading a stream synchronously with <xref:System.IO.FileStream.Read%2A> isn't supported in Razor components.
+* <xref:System.IO.FileStream.ReadAsync%2A?displayProperty=nameWithType>: The preceding `FileUpload3` component reads the stream asynchronously with <xref:System.IO.FileStream.ReadAsync%2A>. Reading a stream synchronously with <xref:System.IO.FileStream.Read%2A> isn't supported in Razor components.
 
 ::: zone-end
 
