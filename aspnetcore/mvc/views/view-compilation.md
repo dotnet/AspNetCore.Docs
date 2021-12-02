@@ -19,12 +19,8 @@ Razor files with a *.cshtml* extension are compiled at both build and publish ti
 ## Razor compilation
 
 Build-time and publish-time compilation of Razor files is enabled by default by the Razor SDK. When enabled, runtime compilation complements build-time compilation, allowing Razor files to be updated if they're edited.
-    
-In addition to build time compilation, .NET 6 support updating Razor views and Razor Pages using <xref:test/hot-reload />
 
-::: moniker-end
-
-::: moniker range=">=aspnetcore-3.1 && <=aspnetcore-6.0"
+In addition to build time compilation, the runtime supports updating Razor views and Razor Pages using <xref:test/hot-reload />
 
 ## Enable runtime compilation at project creation
 
@@ -47,8 +43,6 @@ dotnet new webapp --razor-runtime-compilation
 
 ---
 
-::: moniker-end
-
 ## Enable runtime compilation in an existing project
 
 To enable runtime compilation for all environments in an existing project:
@@ -66,8 +60,6 @@ To enable runtime compilation for all environments in an existing project:
     }
     ```
 
-::: moniker range=">=aspnetcore-3.1 && <=aspnetcore-6.0"
-    
 ## Conditionally enable runtime compilation in an existing project
 
 Runtime compilation can be enabled such that it's only available for local development. Conditionally enabling in this manner ensures that the published output:
@@ -87,7 +79,6 @@ In the following example, runtime compilation is enabled in the Development envi
 [!code-json[](~/mvc/views/view-compilation/samples/3.1/launchSettings.json?highlight=15-16,24-25)]
 
 No code changes are needed in the project's `Startup` class. At runtime, ASP.NET Core searches for an [assembly-level HostingStartup attribute](xref:fundamentals/configuration/platform-specific-configuration#hostingstartup-attribute) in `Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation`. The `HostingStartup` attribute specifies the app startup code to execute. That startup code enables runtime compilation.
-::: moniker-end
 
 ## Enable runtime compilation for a Razor Class Library
 
@@ -189,31 +180,6 @@ Consider a scenario in which a Razor Pages project references a [Razor Class Lib
 ## Additional resources
 
 * [RazorCompileOnBuild and RazorCompileOnPublish](xref:razor-pages/sdk#properties) properties.
-* <xref:razor-pages/index>
-* <xref:mvc/views/overview>
-* <xref:razor-pages/sdk>
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
-A Razor file is compiled at runtime, when the associated Razor Page or MVC view is invoked. Razor files are compiled at both build and publish time using the [Razor SDK](xref:razor-pages/sdk).
-
-## Razor compilation
-
-Build-time and publish-time compilation of Razor files is enabled by default by the Razor SDK. Editing Razor files after they're updated is supported at build time. By default, only the compiled *Views.dll* and no *.cshtml* files or references assemblies required to compile Razor files are deployed with an app.
-
-> [!IMPORTANT]
-> The precompilation tool has been deprecated, and will be removed in ASP.NET Core 3.0. We recommend migrating to [Razor Sdk](xref:razor-pages/sdk).
->
-> The Razor SDK is effective only when no precompilation-specific properties are set in the project file. For instance, setting the *.csproj* file's `MvcRazorCompileOnPublish` property to `true` disables the Razor SDK.
-
-## Runtime compilation
-
-Build-time compilation is supplemented by runtime compilation of Razor files. ASP.NET Core MVC will recompile Razor files when the contents of a *.cshtml* file change.
-
-## Additional resources
-
 * <xref:razor-pages/index>
 * <xref:mvc/views/overview>
 * <xref:razor-pages/sdk>
