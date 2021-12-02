@@ -43,23 +43,6 @@ dotnet new webapp --razor-runtime-compilation
 
 ---
 
-## Enable runtime compilation in an existing project
-
-To enable runtime compilation for all environments in an existing project:
-
-1. Install the [Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation/) NuGet package.
-1. Update the project's `Startup.ConfigureServices` method to include a call to <xref:Microsoft.Extensions.DependencyInjection.RazorRuntimeCompilationMvcBuilderExtensions.AddRazorRuntimeCompilation*>. For example:
-
-    ```csharp
-    public void ConfigureServices(IServiceCollection services)
-    {
-        services.AddRazorPages()
-            .AddRazorRuntimeCompilation();
-
-        // code omitted for brevity
-    }
-    ```
-
 ## Conditionally enable runtime compilation in an existing project
 
 Runtime compilation can be enabled such that it's only available for local development. Conditionally enabling in this manner ensures that the published output:
