@@ -26,6 +26,10 @@ Request delegates are configured using <xref:Microsoft.AspNetCore.Builder.RunExt
 
 <xref:migration/http-modules> explains the difference between request pipelines in ASP.NET Core and ASP.NET 4.x and provides additional middleware samples.
 
+## Middleware code analysis
+
+ASP.NET Core includes many compiler platform analyzers inspect application code for code quality. For more information, see <xref:diagnostics/code-analysis>
+
 ## Create a middleware pipeline with `WebApplication`
 
 The ASP.NET Core request pipeline consists of a sequence of request delegates, called one after the other. The following diagram demonstrates the concept. The thread of execution follows the black arrows.
