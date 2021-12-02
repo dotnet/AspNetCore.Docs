@@ -73,8 +73,8 @@ Using <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>, options are comp
 
 The difference between `IOptionsMonitor` and `IOptionsSnapshot` is that:
 
-* `IOptionsMonitor` is a [singleton service](/dotnet/core/extensions/dependency-injection#singleton) that retrieves current option values at any time, which is especially useful in singleton dependencies.
-* `IOptionsSnapshot` is a [scoped service](/dotnet/core/extensions/dependency-injection#scoped) and provides a snapshot of the options at the time the `IOptionsSnapshot<T>` object is constructed. Options snapshots are designed for use with transient and scoped dependencies.
+* `IOptionsMonitor` is a [Singleton service](/dotnet/core/extensions/dependency-injection#singleton) that retrieves current option values at any time, which is especially useful in singleton dependencies.
+* `IOptionsSnapshot` is a [Scoped service](/dotnet/core/extensions/dependency-injection#scoped) and provides a snapshot of the options at the time the `IOptionsSnapshot<T>` object is constructed. Options snapshots are designed for use with transient and scoped dependencies.
 
 The following code uses <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>.
 
@@ -313,8 +313,8 @@ Using <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>, options are comp
 
 The difference between `IOptionsMonitor` and `IOptionsSnapshot` is that:
 
-* `IOptionsMonitor` is a [singleton service](/dotnet/core/extensions/dependency-injection#singleton) that retrieves current option values at any time, which is especially useful in singleton dependencies.
-* `IOptionsSnapshot` is a [scoped service](/dotnet/core/extensions/dependency-injection#scoped) and provides a snapshot of the options at the time the `IOptionsSnapshot<T>` object is constructed. Options snapshots are designed for use with transient and scoped dependencies.
+* `IOptionsMonitor` is a [Singleton service](/dotnet/core/extensions/dependency-injection#singleton) that retrieves current option values at any time, which is especially useful in singleton dependencies.
+* `IOptionsSnapshot` is a [Scoped service](/dotnet/core/extensions/dependency-injection#scoped) and provides a snapshot of the options at the time the `IOptionsSnapshot<T>` object is constructed. Options snapshots are designed for use with transient and scoped dependencies.
 
 The following code uses <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>.
 
