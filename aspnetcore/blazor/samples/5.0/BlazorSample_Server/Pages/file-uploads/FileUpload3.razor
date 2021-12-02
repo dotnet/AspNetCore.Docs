@@ -66,10 +66,9 @@ else
         {
             try
             {
-                var trustedFileNameForFileStorage = Path.GetRandomFileName();
-                var path = Path.Combine(Environment.ContentRootPath,
-                    Environment.EnvironmentName, "unsafe_uploads",
-                    trustedFileNameForFileStorage);
+                var trustedFileName = Path.GetRandomFileName();
+                var path = Path.Combine(Environment.ContentRootPath, 
+                    Environment.EnvironmentName, "unsafe_uploads", trustedFileName);
 
                 await using FileStream writeStream = new(path, FileMode.Create);
                 using var readStream = file.OpenReadStream(maxFileSize);
@@ -97,7 +96,7 @@ else
                 }
 
                 bytesToRead = bytes.Length;
-                writeStream.Write(bytes, 0, bytesToRead);                
+                writeStream.Write(bytes, 0, bytesToRead);
                 loadedFiles.Add(file);
             }
             catch (Exception ex)
