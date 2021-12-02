@@ -967,7 +967,10 @@ For targets that are collections of simple types, model binding looks for matche
   [a]=1050&[b]=2000&index=a&index=b
   ```
   > [!WARNING] 
-  > Since the model binding looks for the keyword `index` from a Form or Query string is strongly recommended to not use it as your action's parameter name to avoid unexpected behaviors.
+  > Avoid binding a parameter or a property named `index` or `Index` if it is adjacent to a collection value. Model binding will attempt to use it as the index for the collection which might result in incorrect binding. For example, consider the following action:
+  
+  ```csharp
+  public IActionResult Post(string index, List<Product> products)
 
 * The following format is supported only in form data:
 
