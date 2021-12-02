@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 
 namespace GenericHostSample
 {
-    #region snippet_LifetimeEvents
+    // <snippet_LifetimeEvents>
     internal class LifetimeEventsHostedService : IHostedService
     {
         private readonly ILogger _logger;
@@ -54,5 +54,5 @@ namespace GenericHostSample
             // Perform post-stopped activities here
         }
     }
-    #endregion
+    // </snippet_LifetimeEvents>
 }
