@@ -74,15 +74,16 @@ else
                 await using FileStream writeStream = new(path, FileMode.Create);
                 using var readStream = file.OpenReadStream(maxFileSize);
                 var bytesRead = 0;
+                var totalRead = 0;
                 var buffer = new byte[10 * 1096];
 
                 while ((bytesRead = await readStream.ReadAsync(buffer)) != 0)
                 {
-                    bytesRead += bytesRead;
+                    totalRead += bytesRead;
 
                     await writeStream.WriteAsync(buffer, 0, bytesRead);
 
-                    progressPercent = Decimal.Divide(bytesRead, file.Size);
+                    progressPercent = Decimal.Divide(totalRead, file.Size);
 
                     StateHasChanged();
                 }
