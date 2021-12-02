@@ -3,6 +3,8 @@ items:
   href: index.yml
   expanded: true
   items:
+    - name: November 2021
+      href: 21-11.md
     - name: October 2021
       href: 21-10.md
     - name: September 2021
@@ -13,5 +15,3 @@ items:
       href: 21-07.md
     - name: June 2021
       href: 21-06.md
-    - name: May 2021
-      href: 2021-05.md
