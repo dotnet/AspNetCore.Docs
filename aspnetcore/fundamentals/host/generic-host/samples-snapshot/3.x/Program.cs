@@ -15,7 +15,7 @@ namespace GenericHostSample
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
-            #region snippet_HostConfig
+            // <snippet_HostConfig>
             // using Microsoft.Extensions.Configuration;
 
             Host.CreateDefaultBuilder(args)
@@ -26,10 +26,10 @@ namespace GenericHostSample
                     configHost.AddEnvironmentVariables(prefix: "PREFIX_");
                     configHost.AddCommandLine(args);
                 });
-             #endregion
+            // </snippet_HostConfig>
 
         public static IHostBuilder CreateHostBuilder2(string[] args) =>
-        #region snippet_HostOptions
+            // <snippet_HostOptions>
             Host.CreateDefaultBuilder(args)
                 .ConfigureServices((hostContext, services) =>
                 {
@@ -38,7 +38,7 @@ namespace GenericHostSample
                         option.ShutdownTimeout = System.TimeSpan.FromSeconds(20);
                     });
                 });
-        #endregion
+            // </snippet_HostOptions>
   
     }
 }
