@@ -52,7 +52,7 @@ else
 
 @code {
     private List<IBrowserFile> loadedFiles = new();
-    private long maxFileSize = 1024 * 1024 * 16;
+    private long maxFileSize = 1024 * 1024 * 15;
     private int maxAllowedFiles = 3;
     private bool isLoading;
     private decimal progressPercent;
@@ -75,7 +75,7 @@ else
                 using var readStream = file.OpenReadStream(maxFileSize);
                 var bytesRead = 0;
                 var totalRead = 0;
-                var buffer = new byte[10 * 1096];
+                var buffer = new byte[1024 * 10];
 
                 while ((bytesRead = await readStream.ReadAsync(buffer)) != 0)
                 {
@@ -89,8 +89,6 @@ else
                 }
 
                 loadedFiles.Add(file);
-                writeStream.Close();
-                readStream.Close();
             }
             catch (Exception ex)
             {
