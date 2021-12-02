@@ -45,5 +45,5 @@ Collocated JS files are publicly addressable using the path to the file in the p
 
   ```csharp
   var module = await JS.InvokeAsync<IJSObjectReference>("import", 
-      "_content/AppJS/Pages/Index.razor.js");
+      "./_content/AppJS/Pages/Index.razor.js");
   ```
