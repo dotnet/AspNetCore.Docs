@@ -509,7 +509,6 @@ Because requests are forwarded by reverse proxy, use the [Forwarded Headers Midd
 Invoke the <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders%2A> method at the top of `Program.cs` before calling other middleware. Configure the middleware to forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers:
 
 ```csharp
-// ...
 // requires using Microsoft.AspNetCore.HttpOverrides;
 app.UseForwardedHeaders(new ForwardedHeadersOptions
 {
