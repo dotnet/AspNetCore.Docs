@@ -22,10 +22,6 @@ Build-time and publish-time compilation of Razor files is enabled by default by 
 
 In addition to build time compilation, the runtime supports updating Razor views and Razor Pages using <xref:test/hot-reload>
 
-## Enable runtime compilation at project creation
-
-The Razor Pages and MVC project templates include an option to enable runtime compilation when the project is created. This option is supported in ASP.NET Core 3.1 and later.
-
 # [Visual Studio](#tab/visual-studio)
 
 In the **Create a new ASP.NET Core web application** dialog:
