@@ -367,6 +367,11 @@ In the preceding code, <xref:System.IO.Path.GetRandomFileName%2A> is called to g
 
 The following example demonstrates how to upload files in a Blazor Server app with upload progress displayed to the user.
 
+To use the following example in a test app:
+
+* Create a folder to save uploaded files for the `Development` environment: `Development/unsafe_uploads`.
+* Configure the maximum file size (`maxFileSize`) and maximum allowed files (`maxAllowedFiles`).
+
 `Pages/FileUpload3.razor`:
 
 [!code-razor[](~/blazor/samples/6.0/BlazorSample_Server/Pages/file-uploads/FileUpload3.razor)]
@@ -751,6 +756,11 @@ public class FilesaveController : ControllerBase
 ## Upload files with progress
 
 The following example demonstrates how to upload files in a Blazor Server app with upload progress displayed to the user.
+
+To use the following example in a test app:
+
+* Create a folder to save uploaded files for the `Development` environment: `Development/unsafe_uploads`.
+* Configure the maximum file size (`maxFileSize`) and maximum allowed files (`maxAllowedFiles`).
 
 `Pages/FileUpload3.razor`:
 
