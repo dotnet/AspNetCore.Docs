@@ -485,8 +485,9 @@ Call `EventUtil.AsNonRenderingEventHandler` to call an event handler that doesn'
 
 In the following example:
 
-* Selecting the first button, which calls `HandleSelectRerender`, triggers a rerender.
-* Selecting the second button, which calls `HandleSelectWithoutRerender`, doesn't trigger a rerender.
+* Selecting the first button, which calls `HandleClick1`, triggers a rerender.
+* Selecting the second button, which calls `HandleClick2`, doesn't trigger a rerender.
+* Selecting the third button, which calls `HandleClick3`, doesn't trigger a rerender and uses [event arguments](xref:blazor/components/event-handling#event-arguments) (<xref:Microsoft.AspNetCore.Components.Web.MouseEventArgs>).
 
 `Pages/HandleSelect2.razor`:
 
@@ -499,29 +500,43 @@ In the following example:
     Last render DateTime: @dt
 </p>
 
-<button @onclick="HandleSelectRerender">
+<button @onclick="HandleClick1">
     Select me (Rerenders)
 </button>
 
-<button @onclick="EventUtil.AsNonRenderingEventHandler(HandleSelectWithoutRerender)">
+<button @onclick="EventUtil.AsNonRenderingEventHandler(HandleClick2)">
     Select me (Avoids Rerender)
+</button>
+
+<button @onclick="EventUtil.AsNonRenderingEventHandler<MouseEventArgs>(HandleClick3)">
+    Select me (Avoids Rerender and uses <code>MouseEventArgs</code>)
 </button>
 
 @code {
     private DateTime dt = DateTime.Now;
 
-    private void HandleSelectRerender()
+    private void HandleClick1()
     {
         dt = DateTime.Now;
 
         Logger.LogInformation("This event handler triggers a rerender.");
     }
 
-    private void HandleSelectWithoutRerender()
+    private void HandleClick2()
     {
         dt = DateTime.Now;
 
         Logger.LogInformation("This event handler doesn't trigger a rerender.");
+    }
+    
+    private void HandleClick3(MouseEventArgs args)
+    {
+        dt = DateTime.Now;
+
+        Logger.LogInformation(
+            "This event handler doesn't trigger a rerender. " +
+            "Mouse coordinates: {ScreenX}:{ScreenY}", 
+            args.ScreenX, args.ScreenY);
     }
 }
 ```
@@ -1218,8 +1233,9 @@ Call `EventUtil.AsNonRenderingEventHandler` to call an event handler that doesn'
 
 In the following example:
 
-* Selecting the first button, which calls `HandleSelectRerender`, triggers a rerender.
-* Selecting the second button, which calls `HandleSelectWithoutRerender`, doesn't trigger a rerender.
+* Selecting the first button, which calls `HandleClick1`, triggers a rerender.
+* Selecting the second button, which calls `HandleClick2`, doesn't trigger a rerender.
+* Selecting the third button, which calls `HandleClick3`, doesn't trigger a rerender and uses [event arguments](xref:blazor/components/event-handling#event-arguments) (<xref:Microsoft.AspNetCore.Components.Web.MouseEventArgs>).
 
 `Pages/HandleSelect2.razor`:
 
@@ -1232,29 +1248,43 @@ In the following example:
     Last render DateTime: @dt
 </p>
 
-<button @onclick="HandleSelectRerender">
+<button @onclick="HandleClick1">
     Select me (Rerenders)
 </button>
 
-<button @onclick="EventUtil.AsNonRenderingEventHandler(HandleSelectWithoutRerender)">
+<button @onclick="EventUtil.AsNonRenderingEventHandler(HandleClick2)">
     Select me (Avoids Rerender)
+</button>
+
+<button @onclick="EventUtil.AsNonRenderingEventHandler<MouseEventArgs>(HandleClick3)">
+    Select me (Avoids Rerender and uses <code>MouseEventArgs</code>)
 </button>
 
 @code {
     private DateTime dt = DateTime.Now;
 
-    private void HandleSelectRerender()
+    private void HandleClick1()
     {
         dt = DateTime.Now;
 
         Logger.LogInformation("This event handler triggers a rerender.");
     }
 
-    private void HandleSelectWithoutRerender()
+    private void HandleClick2()
     {
         dt = DateTime.Now;
 
         Logger.LogInformation("This event handler doesn't trigger a rerender.");
+    }
+    
+    private void HandleClick3(MouseEventArgs args)
+    {
+        dt = DateTime.Now;
+
+        Logger.LogInformation(
+            "This event handler doesn't trigger a rerender. " +
+            "Mouse coordinates: {ScreenX}:{ScreenY}", 
+            args.ScreenX, args.ScreenY);
     }
 }
 ```
@@ -1943,8 +1973,9 @@ Call `EventUtil.AsNonRenderingEventHandler` to call an event handler that doesn'
 
 In the following example:
 
-* Selecting the first button, which calls `HandleSelectRerender`, triggers a rerender.
-* Selecting the second button, which calls `HandleSelectWithoutRerender`, doesn't trigger a rerender.
+* Selecting the first button, which calls `HandleClick1`, triggers a rerender.
+* Selecting the second button, which calls `HandleClick2`, doesn't trigger a rerender.
+* Selecting the third button, which calls `HandleClick3`, doesn't trigger a rerender and uses [event arguments](xref:blazor/components/event-handling#event-arguments) (<xref:Microsoft.AspNetCore.Components.Web.MouseEventArgs>).
 
 `Pages/HandleSelect2.razor`:
 
@@ -1957,29 +1988,43 @@ In the following example:
     Last render DateTime: @dt
 </p>
 
-<button @onclick="HandleSelectRerender">
+<button @onclick="HandleClick1">
     Select me (Rerenders)
 </button>
 
-<button @onclick="EventUtil.AsNonRenderingEventHandler(HandleSelectWithoutRerender)">
+<button @onclick="EventUtil.AsNonRenderingEventHandler(HandleClick2)">
     Select me (Avoids Rerender)
+</button>
+
+<button @onclick="EventUtil.AsNonRenderingEventHandler<MouseEventArgs>(HandleClick3)">
+    Select me (Avoids Rerender and uses <code>MouseEventArgs</code>)
 </button>
 
 @code {
     private DateTime dt = DateTime.Now;
 
-    private void HandleSelectRerender()
+    private void HandleClick1()
     {
         dt = DateTime.Now;
 
         Logger.LogInformation("This event handler triggers a rerender.");
     }
 
-    private void HandleSelectWithoutRerender()
+    private void HandleClick2()
     {
         dt = DateTime.Now;
 
         Logger.LogInformation("This event handler doesn't trigger a rerender.");
+    }
+    
+    private void HandleClick3(MouseEventArgs args)
+    {
+        dt = DateTime.Now;
+
+        Logger.LogInformation(
+            "This event handler doesn't trigger a rerender. " +
+            "Mouse coordinates: {ScreenX}:{ScreenY}", 
+            args.ScreenX, args.ScreenY);
     }
 }
 ```
