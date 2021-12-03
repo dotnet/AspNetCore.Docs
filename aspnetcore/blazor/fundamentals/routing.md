@@ -1,7 +1,7 @@
 ---
-title: ASP.NET Core Blazor routing
+title: ASP.NET Core Blazor routing and navigation
 author: guardrex
-description: Learn how to manage request routing in apps and how to use the NavLink component in Blazor apps for navigation.
+description: Learn how to manage request routing in Blazor apps and how to use the Navigation Manager and NavLink component for navigation.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
@@ -9,7 +9,7 @@ ms.date: 11/09/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/fundamentals/routing
 ---
-# ASP.NET Core Blazor routing
+# ASP.NET Core Blazor routing and navigation
 
 ::: moniker range=">= aspnetcore-6.0"
 
@@ -221,7 +221,7 @@ Use <xref:Microsoft.AspNetCore.Components.NavigationManager> to manage URIs and 
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.LocationChanged> | An event that fires when the navigation location has changed. For more information, see the [Location changes](#location-changes) section. |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.ToAbsoluteUri%2A> | Converts a relative URI into an absolute URI. |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.ToBaseRelativePath%2A> | Given a base URI (for example, a URI previously returned by <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri>), converts an absolute URI into a URI relative to the base URI prefix. |
-| `GetUriWithQueryParameter` | Returns a URI constructed by updating <xref:Microsoft.AspNetCore.Components.NavigationManager.Uri?displayProperty=nameWithType> with a single parameter added, updated, or removed. For more information, see the [Query strings](#query-strings) section. |
+| <xref:Microsoft.AspNetCore.Components.NavigationManagerExtensions.GetUriWithQueryParameter%2A> | Returns a URI constructed by updating <xref:Microsoft.AspNetCore.Components.NavigationManager.Uri?displayProperty=nameWithType> with a single parameter added, updated, or removed. For more information, see the [Query strings](#query-strings) section. |
 
 ## Location changes
 

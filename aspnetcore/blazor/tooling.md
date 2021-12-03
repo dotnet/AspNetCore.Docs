@@ -28,7 +28,7 @@ zone_pivot_groups: operating-systems
 
    For information on the two Blazor hosting models, *Blazor WebAssembly* (standalone and hosted) and *Blazor Server*, see <xref:blazor/hosting-models>.
 
-1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app.
+1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app.
 
    When running a hosted Blazor WebAssembly solution in Visual Studio, the startup project of the solution is the **`Server`** project.
 
@@ -214,7 +214,7 @@ When executing a hosted Blazor WebAssembly app, run the app from the solution's 
    }
    ```
 
-1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app.
+1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app.
 
 > [!NOTE]
 > Only [browser debugging](xref:blazor/debug#debug-in-the-browser) is supported at this time.
@@ -318,7 +318,7 @@ For more information, see the following resources:
 
    For information on the two Blazor hosting models, *Blazor WebAssembly* (standalone and hosted) and *Blazor Server*, see <xref:blazor/hosting-models>.
 
-1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app.
+1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app.
 
    When running a hosted Blazor WebAssembly solution in Visual Studio, the startup project of the solution is the **`Server`** project.
 
@@ -465,7 +465,7 @@ When executing a hosted Blazor WebAssembly app, run the app from the solution's 
    ...
    ```
 
-1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app.
+1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app.
 
 ## Trust a development certificate
 
@@ -548,7 +548,7 @@ dotnet new blazorserver -h
 
    For information on the two Blazor hosting models, *Blazor WebAssembly* (standalone and hosted) and *Blazor Server*, see <xref:blazor/hosting-models>.
 
-1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app.
+1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app.
 
    When running a hosted Blazor WebAssembly solution in Visual Studio, the startup project of the solution is the **`Server`** project.
 
@@ -695,7 +695,7 @@ When executing a hosted Blazor WebAssembly app, run the app from the solution's 
    ...
    ```
 
-1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app.
+1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app.
 
 ## Trust a development certificate
 

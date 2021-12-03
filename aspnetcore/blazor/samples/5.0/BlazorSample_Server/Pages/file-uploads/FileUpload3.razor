@@ -1,0 +1,102 @@
+@page "/file-upload-3"
+@using System 
+@using System.IO
+@using Microsoft.AspNetCore.Hosting
+@using Microsoft.Extensions.Logging
+@inject ILogger<FileUpload3> Logger
+@inject IWebHostEnvironment Environment
+
+<h3>Upload Files</h3>
+
+<p>
+    <label>
+        Max file size:
+        <input type="number" @bind="maxFileSize" />
+    </label>
+</p>
+
+<p>
+    <label>
+        Max allowed files:
+        <input type="number" @bind="maxAllowedFiles" />
+    </label>
+</p>
+
+<p>
+    <label>
+        Upload up to @maxAllowedFiles of up to @maxFileSize bytes:
+        <InputFile OnChange="@LoadFiles" multiple />
+    </label>
+</p>
+
+@if (isLoading)
+{
+    <p>Progress: @string.Format("{0:P0}", progressPercent)</p>
+}
+else
+{
+    <ul>
+        @foreach (var file in loadedFiles)
+        {
+            <li>
+                <ul>
+                    <li>Name: @file.Name</li>
+                    <li>Last modified: @file.LastModified.ToString()</li>
+                    <li>Size (bytes): @file.Size</li>
+                    <li>Content type: @file.ContentType</li>
+                </ul>
+            </li>
+        }
+    </ul>
+}
+
+@code {
+    private List<IBrowserFile> loadedFiles = new();
+    private long maxFileSize = 1024 * 1024 * 15;
+    private int maxAllowedFiles = 3;
+    private bool isLoading;
+    private decimal progressPercent;
+
+    private async Task LoadFiles(InputFileChangeEventArgs e)
+    {
+        isLoading = true;
+        loadedFiles.Clear();
+        progressPercent = 0;
+
+        foreach (var file in e.GetMultipleFiles(maxAllowedFiles))
+        {
+            try
+            {
+                var trustedFileName = Path.GetRandomFileName();
+                var path = Path.Combine(Environment.ContentRootPath,
+                    Environment.EnvironmentName, "unsafe_uploads", trustedFileName);
+
+                await using FileStream writeStream = new(path, FileMode.Create);
+                using var readStream = file.OpenReadStream(maxFileSize);
+                var bytesRead = 0;
+                var totalRead = 0;
+                var buffer = new byte[1024 * 10];
+
+                while ((bytesRead = await readStream.ReadAsync(buffer)) != 0)
+                {
+                    totalRead += bytesRead;
+
+                    await writeStream.WriteAsync(buffer, 0, bytesRead);
+
+                    progressPercent = Decimal.Divide(totalRead, file.Size);
+
+                    StateHasChanged();
+                }
+
+                loadedFiles.Add(file);
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("File: {Filename} Error: {Error}", 
+                    file.Name, ex.Message);
+            }
+        }
+
+        isLoading = false;
+    }
+}
