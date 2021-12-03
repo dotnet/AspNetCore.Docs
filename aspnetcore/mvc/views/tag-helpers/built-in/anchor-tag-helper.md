@@ -284,7 +284,7 @@ The generated HTML:
 <a href="/Attendee?attendeeid=10">View Attendee</a>
 ```
 
-If the referenced page does not exist, a link to the main page will be generated.  No warning will be produced.
+If the referenced page doesn't exist, a link to the main page is generated. No warning is indicated.
 
 ### asp-page-handler
 
