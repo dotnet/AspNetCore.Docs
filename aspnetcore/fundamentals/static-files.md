@@ -23,9 +23,7 @@ Static files are stored within the project's [web root](xref:fundamentals/index#
 
 The <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A> method sets the content root to the current directory:
 
-[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet)]
-
-The preceding code was created with the web app template.
+[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet&hightlight=1)]
 
 Static files are accessible via a path relative to the [web root](xref:fundamentals/index#web-root). For example, the **Web Application** project templates contain several folders within the `wwwroot` folder:
 
@@ -38,17 +36,15 @@ Consider creating the *wwwroot/images* folder and adding the *wwwroot/images/MyI
 
 ### Serve files in web root
 
-The default web app templates call the <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> method in `Startup.Configure`, which enables static files to be served:
+The default web app templates call the <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> method in `Program.cs`, which enables static files to be served:
 
-[!code-csharp[](~/fundamentals/static-files/samples/3.x/StaticFilesSample/Startup.cs?name=snippet_Configure&highlight=15)]
+[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet&hightlight=15)]
 
-The parameterless `UseStaticFiles` method overload marks the files in [web root](xref:fundamentals/index#web-root) as servable. The following markup references *wwwroot/images/MyImage.jpg*:
+The parameterless `UseStaticFiles` method overload marks the files in [web root](xref:fundamentals/index#web-root) as servable. The following highlighted markup references *wwwroot/images/MyImage.jpg*:
 
-```html
-<img src="~/images/MyImage.jpg" class="img" alt="My image" />
-```
+[!code-chtml[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Pages/Privacy.cshtml?highlight=10)]
 
-In the preceding code, the tilde character `~/` points to the [web root](xref:fundamentals/index#web-root).
+In the preceding highlighted markup, the tilde character `~` points to the [web root](xref:fundamentals/index#web-root).
 
 ### Serve files outside of web root
 
@@ -64,27 +60,23 @@ Consider a directory hierarchy in which the static files to be served reside out
 
 A request can access the `red-rose.jpg` file by configuring the Static File Middleware as follows:
 
-[!code-csharp[](~/fundamentals/static-files/samples/3.x/StaticFilesSample/StartupRose.cs?name=snippet_Configure&highlight=15-22)]
+[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_rr&hightlight=1,16-21)]
 
 In the preceding code, the *MyStaticFiles* directory hierarchy is exposed publicly via the *StaticFiles* URI segment. A request to `https://<hostname>/StaticFiles/images/red-rose.jpg` serves the *red-rose.jpg* file.
 
-The following markup references *MyStaticFiles/images/red-rose.jpg*:
-
-```html
-<img src="~/StaticFiles/images/red-rose.jpg" class="img" alt="A red rose" />
-```
+The following highlighted markup references *MyStaticFiles/images/red-rose.jpg*:
+<!-- test via /Home2/MyStaticFilesRR -->
+[!code-chtml[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Views/Home2/MyStaticFilesRR.cshtml)]
 
 ### Set HTTP response headers
 
 A <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> object can be used to set HTTP response headers. In addition to configuring static file serving from the [web root](xref:fundamentals/index#web-root), the following code sets the `Cache-Control` header:
 
-[!code-csharp[](~/fundamentals/static-files/samples/3.x/StaticFilesSample/StartupAddHeader.cs?name=snippet_Configure&highlight=15-24)]
+[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_rh&hightlight=14-22)]
 
-<!-- Q: The preceding code sets max-age to 604800 seconds (7 days), so what does the following mean? -->
+The preceding code makes static files are publicly cacheable for one week (604800 seconds):
 
-Static files are publicly cacheable for 600 seconds:
-
-![Response headers showing the Cache-Control header has been added](static-files/_static/add-header.png)
+![Response headers showing the Cache-Control header has been added V6](static-files/_static/add-header.png)
 
 ## Static file authorization
 
@@ -339,9 +331,7 @@ A <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> object can be used to se
 
 [!code-csharp[](~/fundamentals/static-files/samples/3.x/StaticFilesSample/StartupAddHeader.cs?name=snippet_Configure&highlight=15-24)]
 
-<!-- Q: The preceding code sets max-age to 604800 seconds (7 days), so what does the following mean? -->
-
-Static files are publicly cacheable for 600 seconds:
+The preceding code sets max-age to 604800 seconds (7 days).
 
 ![Response headers showing the Cache-Control header has been added](static-files/_static/add-header.png)
 

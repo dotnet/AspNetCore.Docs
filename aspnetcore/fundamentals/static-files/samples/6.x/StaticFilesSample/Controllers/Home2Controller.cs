@@ -23,6 +23,20 @@ namespace StaticFilesSample.Controllers
             return View();
         }
 
+        public IActionResult MyStaticFilesRR()
+        {
+            // Only returns image when calling 
+            /*
+             app.UseStaticFiles(new StaticFileOptions
+            {
+            FileProvider = new PhysicalFileProvider(
+            Path.Combine(builder.Environment.ContentRootPath, "MyStaticFiles")),
+            RequestPath = "/StaticFiles"
+            });
+            */
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
