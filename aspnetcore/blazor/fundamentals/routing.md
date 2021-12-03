@@ -1,7 +1,7 @@
 ---
-title: ASP.NET Core Blazor routing
+title: ASP.NET Core Blazor routing and navigation
 author: guardrex
-description: Learn how to manage request routing in apps and how to use the NavLink component in Blazor apps for navigation.
+description: Learn how to manage request routing in Blazor apps and how to use the Navigation Manager and NavLink component for navigation.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
@@ -9,7 +9,7 @@ ms.date: 11/09/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/fundamentals/routing
 ---
-# ASP.NET Core Blazor routing
+# ASP.NET Core Blazor routing and navigation
 
 ::: moniker range=">= aspnetcore-6.0"
 
