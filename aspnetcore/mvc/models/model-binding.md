@@ -346,7 +346,11 @@ For targets that are collections of simple types, model binding looks for matche
   
   ```csharp
   public IActionResult Post(string index, List<Product> products)
-* The following format is supported only in form data:
+  ```
+  In the preceding code, the `index` query string parameter binds to the `index` method parameter and also is used to bind the product collection. Renaming the `index` parameter or using a model binding attribute to configure binding avoids this issue:
+  ```csharp
+  public IActionResult Post(string productIndex, List<Product> products)
+  ```
 
   ```
   selectedCourses[]=1050&selectedCourses[]=2000
