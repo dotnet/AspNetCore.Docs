@@ -1,0 +1,11 @@
+name: Merge to Live
+on:
+  workflow_dispatch
+jobs:
+  default:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: gh pr create --base live --head main --title "Merge to Live" --body "[AUTOMATED]"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
