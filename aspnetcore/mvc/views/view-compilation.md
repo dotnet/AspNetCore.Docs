@@ -20,26 +20,7 @@ Razor files with a *.cshtml* extension are compiled at both build and publish ti
 
 Build-time and publish-time compilation of Razor files is enabled by default by the Razor SDK. When enabled, runtime compilation complements build-time compilation, allowing Razor files to be updated if they're edited.
 
-## Enable runtime compilation at project creation
-
-The Razor Pages and MVC project templates include an option to enable runtime compilation when the project is created. This option is supported in ASP.NET Core 3.1 and later.
-
-# [Visual Studio](#tab/visual-studio)
-
-In the **Create a new ASP.NET Core web application** dialog:
-
-1. Select either the **Web Application** or the **Web Application (Model-View-Controller)** project template.
-1. Select the **Enable Razor runtime compilation** checkbox.
-
-# [.NET Core CLI](#tab/netcore-cli)
-
-Use the `-rrc` or `--razor-runtime-compilation` template option. For example, the following command creates a new Razor Pages project with runtime compilation enabled:
-
-```dotnetcli
-dotnet new webapp --razor-runtime-compilation
-```
-
----
+In addition to build time compilation, updating Razor views and Razor Pages is supported using <xref:test/hot-reload>.
 
 ## Enable runtime compilation in an existing project
 
