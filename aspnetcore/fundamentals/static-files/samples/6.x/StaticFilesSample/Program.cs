@@ -1,4 +1,4 @@
-#define DF // DEFAULT RR RH DB DF DF2 UFS UFS2
+#define TREE // DEFAULT RR RH DB DF DF2 UFS UFS2 TREE
 #if NEVER
 #elif DEFAULT
 #region snippet
@@ -232,6 +232,42 @@ app.UseHttpsRedirection();
 app.UseFileServer(enableDirectoryBrowsing: true);
 
 app.UseRouting();
+
+app.UseAuthorization();
+
+app.MapDefaultControllerRoute();
+app.MapRazorPages();
+
+app.Run();
+#endregion
+#elif TREE
+#region snippet_tree
+using Microsoft.Extensions.FileProviders;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddRazorPages();
+builder.Services.AddControllersWithViews();
+
+var app = builder.Build();
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+
+app.UseStaticFiles();
+
+app.UseFileServer(new FileServerOptions
+{
+    FileProvider = new PhysicalFileProvider(
+           Path.Combine(builder.Environment.ContentRootPath, "MyStaticFiles")),
+    RequestPath = "/StaticFiles",
+    EnableDirectoryBrowsing = true
+});
 
 app.UseAuthorization();
 

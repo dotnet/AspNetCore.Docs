@@ -154,6 +154,9 @@ Call `app.UseFileServer` to enable the serving of static files and the default f
 
 The following code enables the serving of static files, the default file, and directory browsing:
 
+<!-- REVIEW: app.UseFileServer(enableDirectoryBrowsing: true); returns the default HTML doc before the default Razor Page - ie, Pages/Index.cshtml --
+But when using app.UseDefaultFiles();, I need to comment out Pages/Index.cshtml
+-->
 [[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_ufs2&highlight=14-22)] 
 
 Consider the following directory hierarchy:
@@ -169,7 +172,9 @@ Consider the following directory hierarchy:
 
 The following code enables the serving of static files, the default file, and directory browsing of `MyStaticFiles`:
 
-[!code-csharp[](~/fundamentals/static-files/samples/3.x/StaticFilesSample/StartupFileServer.cs?name=snippet_ClassMembers&highlight=4,21-31)]
+<!-- https://localhost:44391/StaticFiles/ or the link on https://localhost:44391/Home2/MyStaticFilesRR -->
+
+[[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_tree&highlight=14-22)] 
 
 <xref:Microsoft.Extensions.DependencyInjection.DirectoryBrowserServiceExtensions.AddDirectoryBrowser%2A> must be called when the `EnableDirectoryBrowsing` property value is `true`.
 
