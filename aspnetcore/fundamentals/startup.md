@@ -15,7 +15,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT), [Tom Dykstra](https://githu
 
 ::: moniker range=">= aspnetcore-6.0"
 
-ASP.NET Core apps created with the web templates contain the application startup code in the *program.cs* file.
+ASP.NET Core apps created with the web templates contain the application startup code in the *Program.cs* file.
 
 The following app startup code supports:
 
