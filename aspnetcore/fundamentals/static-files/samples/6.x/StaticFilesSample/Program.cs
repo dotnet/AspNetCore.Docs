@@ -1,4 +1,4 @@
-#define AUTH // DEFAULT RR RH AUTH
+#define DF // DEFAULT RR RH DB DF DF2 UFS UFS2
 #if NEVER
 #elif DEFAULT
 #region snippet
@@ -92,10 +92,45 @@ app.MapRazorPages();
 
 app.Run();
 #endregion
-#elif AUTH
-#region snippet_auth
+#elif DB  // Directory Browsing
+#region snippet_db
 using Microsoft.Extensions.FileProviders;
 
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddRazorPages();
+builder.Services.AddControllersWithViews();
+
+builder.Services.AddDirectoryBrowser();
+
+var app = builder.Build();
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+
+app.UseStaticFiles();
+
+app.UseDirectoryBrowser(new DirectoryBrowserOptions
+{
+    FileProvider = new PhysicalFileProvider(
+           Path.Combine(builder.Environment.WebRootPath, "images")),
+    RequestPath = "/MyImages"
+});
+
+app.UseAuthorization();
+
+app.MapDefaultControllerRoute();
+app.MapRazorPages();
+
+app.Run();
+#endregion
+#elif DF  // Default file
+#region snippet_df
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
@@ -111,17 +146,94 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseDefaultFiles();
+
+app.UseStaticFiles();
+app.UseAuthorization();
+
+app.MapDefaultControllerRoute();
+app.MapRazorPages();
+
+app.Run();
+#endregion
+#elif DF2
+#region snippet_df2
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddRazorPages();
+builder.Services.AddControllersWithViews();
+
+var app = builder.Build();
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+
+var options = new DefaultFilesOptions();
+options.DefaultFileNames.Clear();
+options.DefaultFileNames.Add("mydefault.html");
+app.UseDefaultFiles(options);
 app.UseStaticFiles();
 
 app.UseAuthorization();
+
+app.MapDefaultControllerRoute();
+app.MapRazorPages();
+
+app.Run();
+#endregion
+#elif UFS
+#region snippet_ufs
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddRazorPages();
+builder.Services.AddControllersWithViews();
+
+var app = builder.Build();
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+
+app.UseFileServer();
+
 app.UseAuthorization();
 
-app.UseStaticFiles(new StaticFileOptions
+app.MapDefaultControllerRoute();
+app.MapRazorPages();
+
+app.Run();
+#endregion
+#elif UFS2
+#region snippet_ufs2
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddRazorPages();
+builder.Services.AddControllersWithViews();
+
+var app = builder.Build();
+
+if (!app.Environment.IsDevelopment())
 {
-    FileProvider = new PhysicalFileProvider(
-           Path.Combine(builder.Environment.ContentRootPath, "MyStaticFiles")),
-    RequestPath = "/StaticFiles"
-});
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+
+app.UseFileServer(enableDirectoryBrowsing: true);
+
+app.UseRouting();
+
+app.UseAuthorization();
 
 app.MapDefaultControllerRoute();
 app.MapRazorPages();
