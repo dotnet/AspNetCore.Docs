@@ -142,7 +142,7 @@ The first file found from the list is served as though the request included the 
 
 The following code changes the default file name to *mydefault.html*:
 
-[[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_df2&highlight=14-22)] 
+[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_df2&highlight=14-22)] 
 
 ### UseFileServer for default documents
 
@@ -150,14 +150,14 @@ The following code changes the default file name to *mydefault.html*:
 
 Call `app.UseFileServer` to enable the serving of static files and the default file. Directory browsing isn't enabled. The following code shows `Startup.Configure` with `UseFileServer`:
 
-[[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_ufs&highlight=14-22)] 
+[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_ufs&highlight=14-22)] 
 
 The following code enables the serving of static files, the default file, and directory browsing:
 
 <!-- REVIEW: app.UseFileServer(enableDirectoryBrowsing: true); returns the default HTML doc before the default Razor Page - ie, Pages/Index.cshtml --
 But when using app.UseDefaultFiles();, I need to comment out Pages/Index.cshtml
 -->
-[[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_ufs2&highlight=14-22)] 
+[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_ufs2&highlight=14-22)] 
 
 Consider the following directory hierarchy:
 
@@ -174,7 +174,7 @@ The following code enables the serving of static files, the default file, and di
 
 <!-- https://localhost:44391/StaticFiles/ or the link on https://localhost:44391/Home2/MyStaticFilesRR -->
 
-[[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_tree&highlight=14-22)] 
+[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_tree&highlight=14-22)] 
 
 <xref:Microsoft.Extensions.DependencyInjection.DirectoryBrowserServiceExtensions.AddDirectoryBrowser%2A> must be called when the `EnableDirectoryBrowsing` property value is `true`.
 
