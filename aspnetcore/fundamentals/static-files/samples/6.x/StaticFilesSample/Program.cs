@@ -1,4 +1,4 @@
-#define TREE // DEFAULT RR RH DB DF DF2 UFS UFS2 TREE
+#define NS // DEFAULT RR RH DB DF DF2 UFS UFS2 TREE FECTP NS
 #if NEVER
 #elif DEFAULT
 #region snippet
@@ -267,6 +267,83 @@ app.UseFileServer(new FileServerOptions
            Path.Combine(builder.Environment.ContentRootPath, "MyStaticFiles")),
     RequestPath = "/StaticFiles",
     EnableDirectoryBrowsing = true
+});
+
+app.UseAuthorization();
+
+app.MapDefaultControllerRoute();
+app.MapRazorPages();
+
+app.Run();
+#endregion
+#elif FECTP
+#region snippet_fec
+using Microsoft.AspNetCore.StaticFiles;
+using Microsoft.Extensions.FileProviders;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddRazorPages();
+builder.Services.AddControllersWithViews();
+
+var app = builder.Build();
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+
+// Set up custom content types - associating file extension to MIME type
+var provider = new FileExtensionContentTypeProvider();
+// Add new mappings
+provider.Mappings[".myapp"] = "application/x-msdownload";
+provider.Mappings[".htm3"] = "text/html";
+provider.Mappings[".image"] = "image/png";
+// Replace an existing mapping
+provider.Mappings[".rtf"] = "application/x-msdownload";
+// Remove MP4 videos.
+provider.Mappings.Remove(".mp4");
+
+app.UseStaticFiles();
+
+app.UseDirectoryBrowser(new DirectoryBrowserOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(builder.Environment.WebRootPath, "images")),
+    RequestPath = "/MyImages"
+});
+
+app.UseAuthorization();
+
+app.MapDefaultControllerRoute();
+app.MapRazorPages();
+
+app.Run();
+#endregion
+#elif NS
+#region snippet_ns
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddRazorPages();
+builder.Services.AddControllersWithViews();
+
+var app = builder.Build();
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    ServeUnknownFileTypes = true,
+    DefaultContentType = "image/png"
 });
 
 app.UseAuthorization();
