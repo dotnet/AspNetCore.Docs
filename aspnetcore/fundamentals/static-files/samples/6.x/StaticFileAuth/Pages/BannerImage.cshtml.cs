@@ -10,11 +10,8 @@ namespace StaticFileAuth.Pages
     {
         private readonly IWebHostEnvironment _env;
 
-        public BannerImageModel(IWebHostEnvironment env)
-        {
+        public BannerImageModel(IWebHostEnvironment env) =>
             _env = env;
-
-        }
 
         public PhysicalFileResult OnGet()
         {

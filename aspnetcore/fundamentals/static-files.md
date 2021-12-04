@@ -60,19 +60,19 @@ Consider a directory hierarchy in which the static files to be served reside out
 
 A request can access the `red-rose.jpg` file by configuring the Static File Middleware as follows:
 
-[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_rr&highlight=1,16-21)]
+[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_rr&highlight=1,18-23)]
 
 In the preceding code, the *MyStaticFiles* directory hierarchy is exposed publicly via the *StaticFiles* URI segment. A request to `https://<hostname>/StaticFiles/images/red-rose.jpg` serves the *red-rose.jpg* file.
 
 The following highlighted markup references *MyStaticFiles/images/red-rose.jpg*:
 <!-- test via /Home2/MyStaticFilesRR -->
-[!code-chtml[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Views/Home2/MyStaticFilesRR.cshtml)]
+[!code-chtml[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Views/Home2/MyStaticFilesRR.cshtml?range=1)]
 
 ### Set HTTP response headers
 
 A <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> object can be used to set HTTP response headers. In addition to configuring static file serving from the [web root](xref:fundamentals/index#web-root), the following code sets the `Cache-Control` header:
 
-[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_rh&highlight=14-22)]
+[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_rh&highlight=16-24)]
 
 The preceding code makes static files publicly available in the local cache for one week (604800 seconds):
 
@@ -91,7 +91,7 @@ To serve static files based on authorization:
   * Call `UseStaticFiles`, specifying a path, after calling `UseAuthorization`.
   * Set the [fallback authorization policy](xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy).
 
-[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFileAuth/Program.cs?name=snippet_auth&highlight=14-22)]
+[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFileAuth/Program.cs?name=snippet_auth&highlight=18-23,38,45-50)]
   
   In the preceding code, the fallback authorization policy requires ***all*** users to be authenticated. Endpoints such as controllers, Razor Pages, etc that specify their own authorization requirements don't use the fallback authorization policy. For example, Razor Pages, controllers, or action methods with `[AllowAnonymous]` or `[Authorize(PolicyName="MyPolicy")]` use the applied authorization attribute rather than the fallback authorization policy.
 
@@ -127,7 +127,7 @@ The preceding code allows directory browsing of the *wwwroot/images* folder usin
 
 Setting a default page provides visitors a starting point on a site. To serve a default file from `wwwroot` without requiring the request URL to include the file's name, call the <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles%2A> method:
 
-[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_df&highlight=14-22)]  
+[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_df&highlight=16)]  
 
 `UseDefaultFiles` must be called before `UseStaticFiles` to serve the default file. `UseDefaultFiles` is a URL rewriter that doesn't serve the file.
 
@@ -142,7 +142,7 @@ The first file found from the list is served as though the request included the 
 
 The following code changes the default file name to *mydefault.html*:
 
-[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_df2&highlight=14-22)] 
+[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_df2&highlight=16-19)] 
 
 ### UseFileServer for default documents
 
@@ -150,14 +150,14 @@ The following code changes the default file name to *mydefault.html*:
 
 Call `app.UseFileServer` to enable the serving of static files and the default file. Directory browsing isn't enabled. The following code shows `Startup.Configure` with `UseFileServer`:
 
-[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_ufs&highlight=14-22)] 
+[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_ufs&highlight=16)] 
 
 The following code enables the serving of static files, the default file, and directory browsing:
 
 <!-- REVIEW: app.UseFileServer(enableDirectoryBrowsing: true); returns the default HTML doc before the default Razor Page - ie, Pages/Index.cshtml --
 But when using app.UseDefaultFiles();, I need to comment out Pages/Index.cshtml
 -->
-[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_ufs2&highlight=14-22)] 
+[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_ufs2&highlight=16)] 
 
 Consider the following directory hierarchy:
 
@@ -174,7 +174,7 @@ The following code enables the serving of static files, the default file, and di
 
 <!-- https://localhost:44391/StaticFiles/ or the link on https://localhost:44391/Home2/MyStaticFilesRR -->
 
-[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_tree&highlight=14-22)] 
+[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_tree&highlight=18-26)] 
 
 <xref:Microsoft.Extensions.DependencyInjection.DirectoryBrowserServiceExtensions.AddDirectoryBrowser%2A> must be called when the `EnableDirectoryBrowsing` property value is `true`.
 
@@ -195,7 +195,7 @@ If no default-named file exists in the *MyStaticFiles* directory, `https://<host
 
 The <xref:Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider> class contains a `Mappings` property that serves as a mapping of file extensions to MIME content types. In the following sample, several file extensions are mapped to known MIME types. The *.rtf* extension is replaced, and *.mp4* is removed:
 
-[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_fec&highlight=14-22)] 
+[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_fec&highlight=19-37)] 
 
 See [MIME content types](https://www.iana.org/assignments/media-types/media-types.xhtml).
 
@@ -205,7 +205,7 @@ The Static File Middleware understands almost 400 known file content types. If t
 
 The following code enables serving unknown types and renders the unknown file as an image:
 
-[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_ns&highlight=14-22)] 
+[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_ns&highlight=16-20)] 
 
 With the preceding code, a request for a file with an unknown content type is returned as an image.
 

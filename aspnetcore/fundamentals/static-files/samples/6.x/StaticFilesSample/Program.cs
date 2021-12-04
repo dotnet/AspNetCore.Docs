@@ -1,4 +1,4 @@
-#define NS // DEFAULT RR RH DB DF DF2 UFS UFS2 TREE FECTP NS
+#define UFS2 // DEFAULT RR RH DB DF DF2 UFS UFS2 TREE FECTP NS
 #if NEVER
 #elif DEFAULT
 #region snippet
@@ -101,7 +101,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDirectoryBrowser();
+//builder.Services.AddDirectoryBrowser(); // Not needed. What is AddDirectoryBrowser used for?
 
 var app = builder.Build();
 
@@ -177,6 +177,7 @@ var options = new DefaultFilesOptions();
 options.DefaultFileNames.Clear();
 options.DefaultFileNames.Add("mydefault.html");
 app.UseDefaultFiles(options);
+
 app.UseStaticFiles();
 
 app.UseAuthorization();
