@@ -137,7 +137,7 @@ Inject the <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime> (formerl
 
 The following example is an `IHostedService` implementation that registers `IHostApplicationLifetime` events:
 
-:::code language="csharp" source="generic-host/samples-snapshot/3.x/LifetimeEventsHostedService.cs" id="snippet_LifetimeEvents":::
+:::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Services/HostApplicationLifetimeEventsHostedService.cs" id="snippet_Class":::
 
 ## IHostLifetime
 
@@ -170,7 +170,7 @@ The environment variable provider with prefix `DOTNET_` and command-line argumen
 
 The following example creates host configuration:
 
-:::code language="csharp" source="generic-host/samples-snapshot/3.x/Program.cs" id="snippet_HostConfig":::
+:::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Snippets/Program.cs" id="snippet_ConfigureHostConfiguration":::
 
 ## App configuration
 
@@ -208,11 +208,7 @@ The <xref:Microsoft.Extensions.Hosting.IHostEnvironment.ContentRootPath%2A?displ
 
 To set this value, use the environment variable or call `UseContentRoot` on `IHostBuilder`:
 
-```csharp
-Host.CreateDefaultBuilder(args)
-    .UseContentRoot("c:\\content-root")
-    //...
-```
+:::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Snippets/Program.cs" id="snippet_UseContentRoot":::
 
 For more information, see:
 
@@ -230,11 +226,7 @@ The <xref:Microsoft.Extensions.Hosting.IHostEnvironment.EnvironmentName%2A?displ
 
 To set this value, use the environment variable or call `UseEnvironment` on `IHostBuilder`:
 
-```csharp
-Host.CreateDefaultBuilder(args)
-    .UseEnvironment("Development")
-    //...
-```
+:::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Snippets/Program.cs" id="snippet_UseEnvironment":::
 
 ### ShutdownTimeout
 
@@ -252,7 +244,7 @@ If the timeout period expires before all of the hosted services stop, any remain
 
 To set this value, use the environment variable or configure `HostOptions`. The following example sets the timeout to 20 seconds:
 
-:::code language="csharp" source="generic-host/samples-snapshot/3.x/Program.cs" id="snippet_HostOptions":::
+:::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Snippets/Program.cs" id="snippet_ShutdownTimeout":::
 
 ### Disable app configuration reload on change
 
@@ -273,15 +265,7 @@ Some host settings apply only to HTTP workloads. By default, environment variabl
 
 Extension methods on `IWebHostBuilder` are available for these settings. Code samples that show how to call the extension methods assume `webBuilder` is an instance of `IWebHostBuilder`, as in the following example:
 
-```csharp
-public static IHostBuilder CreateHostBuilder(string[] args) =>
-    Host.CreateDefaultBuilder(args)
-        .ConfigureWebHostDefaults(webBuilder =>
-        {
-            webBuilder.CaptureStartupErrors(true);
-            webBuilder.UseStartup<Startup>();
-        });
-```
+:::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Snippets/Program.cs" id="snippet_ConfigureWebHostDefaults":::
 
 ### CaptureStartupErrors
 
@@ -294,9 +278,7 @@ When `false`, errors during startup result in the host exiting. When `true`, the
 
 To set this value, use configuration or call `CaptureStartupErrors`:
 
-```csharp
-webBuilder.CaptureStartupErrors(true);
-```
+:::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Snippets/Program.cs" id="snippet_WebHostBuilderCaptureStartupErrors":::
 
 ### DetailedErrors
 
@@ -309,9 +291,7 @@ When enabled, or when the environment is `Development`, the app captures detaile
 
 To set this value, use configuration or call `UseSetting`:
 
-```csharp
-webBuilder.UseSetting(WebHostDefaults.DetailedErrorsKey, "true");
-```
+:::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Snippets/Program.cs" id="snippet_WebHostBuilderDetailedErrors":::
 
 ### HostingStartupAssemblies
 
@@ -324,9 +304,7 @@ A semicolon-delimited string of hosting startup assemblies to load on startup. A
 
 To set this value, use configuration or call `UseSetting`:
 
-```csharp
-webBuilder.UseSetting(WebHostDefaults.HostingStartupAssembliesKey, "assembly1;assembly2");
-```
+:::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Snippets/Program.cs" id="snippet_WebHostBuilderHostingStartupAssemblies":::
 
 ### HostingStartupExcludeAssemblies
 
@@ -339,9 +317,7 @@ A semicolon-delimited string of hosting startup assemblies to exclude on startup
 
 To set this value, use configuration or call `UseSetting`:
 
-```csharp
-webBuilder.UseSetting(WebHostDefaults.HostingStartupExcludeAssembliesKey, "assembly1;assembly2");
-```
+:::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Snippets/Program.cs" id="snippet_WebHostBuilderHostingStartupExcludeAssemblies":::
 
 ### HTTPS_Port
 
@@ -354,9 +330,7 @@ The HTTPS redirect port. Used in [enforcing HTTPS](xref:security/enforcing-ssl).
 
 To set this value, use configuration or call `UseSetting`:
 
-```csharp
-webBuilder.UseSetting("https_port", "8080");
-```
+:::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Snippets/Program.cs" id="snippet_WebHostBuilderHttpsPort":::
 
 ### PreferHostingUrls
 
@@ -369,9 +343,7 @@ Indicates whether the host should listen on the URLs configured with the `IWebHo
 
 To set this value, use the environment variable or call `PreferHostingUrls`:
 
-```csharp
-webBuilder.PreferHostingUrls(false);
-```
+:::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Snippets/Program.cs" id="snippet_WebHostBuilderPreferHostingUrls":::
 
 ### PreventHostingStartup
 
@@ -384,9 +356,7 @@ Prevents the automatic loading of hosting startup assemblies, including hosting 
 
 To set this value, use the environment variable or call `UseSetting` :
 
-```csharp
-webBuilder.UseSetting(WebHostDefaults.PreventHostingStartupKey, "true");
-```
+:::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Snippets/Program.cs" id="snippet_WebHostBuilderPreventHostingStartup":::
 
 ### StartupAssembly
 
@@ -399,13 +369,8 @@ The assembly to search for the `Startup` class.
 
 To set this value, use the environment variable or call `UseStartup`. `UseStartup` can take an assembly name (`string`) or a type (`TStartup`). If multiple `UseStartup` methods are called, the last one takes precedence.
 
-```csharp
-webBuilder.UseStartup("StartupAssemblyName");
-```
-
-```csharp
-webBuilder.UseStartup<Startup>();
-```
+:::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Snippets/Program.cs" id="snippet_WebHostBuilderUseStartup":::
+:::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Snippets/Program.cs" id="snippet_WebHostBuilderUseStartupGeneric":::
 
 ### SuppressStatusMessages
 
@@ -418,9 +383,7 @@ When enabled, suppresses hosting startup status messages.
 
 To set this value, use configuration or call `UseSetting`:
 
-```csharp
-webBuilder.UseSetting(WebHostDefaults.SuppressStatusMessagesKey, "true");
-```
+:::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Snippets/Program.cs" id="snippet_WebHostBuilderSuppressStatusMessages":::
 
 ### URLs
 
@@ -433,9 +396,7 @@ A semicolon-delimited list of IP addresses or host addresses with ports and prot
 
 To set this value, use the environment variable or call `UseUrls`:
 
-```csharp
-webBuilder.UseUrls("http://*:5000;http://localhost:5001;https://hostname:5002");
-```
+:::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Snippets/Program.cs" id="snippet_WebHostBuilderUseUrls":::
 
 Kestrel has its own endpoint configuration API. For more information, see <xref:fundamentals/servers/kestrel/endpoints>.
 
@@ -450,9 +411,7 @@ The [IWebHostEnvironment.WebRootPath](xref:Microsoft.AspNetCore.Hosting.IWebHost
 
 To set this value, use the environment variable or call `UseWebRoot` on `IWebHostBuilder`:
 
-```csharp
-webBuilder.UseWebRoot("public");
-```
+:::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Snippets/Program.cs" id="snippet_WebHostBuilderUseWebRoot":::
 
 For more information, see:
 
