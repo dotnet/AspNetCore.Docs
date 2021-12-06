@@ -13,7 +13,7 @@ uid: fundamentals/host/generic-host
 
 :::moniker range=">= aspnetcore-6.0"
 
-The ASP.NET Core templates create a <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> and <xref:Microsoft.AspNetCore.Builder.WebApplication>, which configure and build a .NET Generic Host behind the scenes.
+The ASP.NET Core templates create a <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> and <xref:Microsoft.AspNetCore.Builder.WebApplication>, which configure and build a .NET Generic Host.
 
 For more information on configuring the .NET Generic Host using `WebApplicationBuilder`, see <xref:fundamentals/minimal-apis>. This article provides information on using the .NET Generic Host directly in ASP.NET Core.
 
