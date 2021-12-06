@@ -230,7 +230,7 @@ The actual number of rows rendered, and the size of the placeholders, will vary 
   * **Both the placeholders and the content rows are rendered in a single vertical stack, with every item filling the whole horizontal width**. This is generally the default, so in typical cases with `div` elements, things will work by default. However, if you are using CSS to create a more advanced layout, bear in mind these requirements:
     * The scroll container styling should have `display` value of `block` (the default for a `div`), `table-row-group` (the default for a `tbody`), or `flex` with `flex-direction` set to `column`.
     * The content row styling should have a `display` value of `block` (the default for a `div`) or `table-row` (the default for a `tr`).
-    * You shouldn't use CSS to interfere with the layout for the placeholder elements. They will by default have a `display` value of `block`, except if the parent is a table row group, in which case they default to `table-row`. Don't try to influence their width or height, including by causing them to have a border or `::content` pseudoelements.
+    * You shouldn't use CSS to interfere with the layout for the placeholder elements. They will by default have a `display` value of `block`, except if the parent is a table row group, in which case they default to `table-row`. Don't try to influence their width or height, including by causing them to have a border or `content` pseudoelements.
 
 Anything that stops the placeholders and content elements from rendering as a single vertical stack, or causes the content items to vary in height, will prevent correct functioning of the `Virtualize` component.
 
