@@ -175,9 +175,9 @@ By default, the `Virtualize` component measures the rendering size (height) of i
 
 When making changes to items rendered by the `Virtualize` component, call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> to force re-evaluation and rerendering of the component. For more information, see <xref:blazor/components/rendering>.
 
-## Keyboard scrolling support
+## Keyboard scroll support
 
-To allow users to scroll the virtualized content using their keyboard, ensure that the virtualized elements or scroll container itself is focusable. If you do not, then keyboard scrolling does not work in Chromium-based browsers.
+To allow users to scroll virtualized content using their keyboard, ensure that the virtualized elements or scroll container itself is focusable. If you fail to take this step, keyboard scrolling doesn't work in Chromium-based browsers.
 
 For example, you can use a `tabindex` attribute on the scroll container:
 
@@ -189,13 +189,13 @@ For example, you can use a `tabindex` attribute on the scroll container:
 </div>
 ```
 
-To learn more about the meaning of `tabindex` value `-1`, `0`, or other values, see [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex).
+To learn more about the meaning of `tabindex` value `-1`, `0`, or other values, see [`tabindex` (MDN documentation)](https://developer.mozilla.org/docs/Web/HTML/Global_attributes/tabindex).
 
-## Advanced styling and scroll detection
+## Advanced styles and scroll detection
 
-The `Virtualize` component is designed to support specific element layout mechanisms only. To understand which kinds of element layouts will work correctly, you should understand how `Virtualize` detects which elements should be visible and shows them in the correct place.
+The `Virtualize` component is only designed to support specific element layout mechanisms. To understand which element layouts work correctly, the following explains how `Virtualize` detects which elements should be visible for display in the correct place.
 
-If your source code looks like this:
+If your source code looks like the following:
 
 ```razor
 <div style="height:500px; overflow-y:scroll" tabindex="-1">
@@ -205,7 +205,7 @@ If your source code looks like this:
 </div>
 ```
 
-... then at runtime, the `Virtualize` component will render a DOM structure similar to the following:
+At runtime, the `Virtualize` component renders a DOM structure similar to the following:
 
 ```html
 <div style="height:500px; overflow-y:scroll" tabindex="-1">
@@ -219,20 +219,27 @@ If your source code looks like this:
 </div>
 ```
 
-The actual number of rows rendered, and the size of the placeholders, will vary according to your styling and `Items` collection size. However, notice that there are placeholder `div` elements injected before and after your content. These serve two purposes:
+The actual number of rows rendered and the size of the placeholders vary according to your styling and `Items` collection size. However, notice that there are placeholder `div` elements injected before and after your content. These serve two purposes:
 
- * To provide an offset before and after your content, causing the currently-visible items to appear at the correct location in the scroll range, and the scroll range itself to represent the total size of all content.
- * To detect when the user is scrolling beyond the current visible range, meaning that different content must now be rendered.
+* To provide an offset before and after your content, causing currently-visible items to appear at the correct location in the scroll range and the scroll range itself to represent the total size of all content.
+* To detect when the user is scrolling beyond the current visible range, meaning that different content must be rendered.
 
- The placeholder elements internally use an [Intersection Observer](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) to receive notification when they are becoming visible. `Virtualize` depends on receiving these events. So, `Virtualize` works when:
+The placeholder elements internally use an [Intersection Observer](https://developer.mozilla.org/docs/Web/API/Intersection_Observer_API) to receive notification when they're becoming visible. `Virtualize` depends on receiving these events. `Virtualize` works under the following conditions:
 
-  * **All content items are of identical height**, so that it's possible to calculate which content corresponds to a given scroll position (without first fetching every data item and rendering it into a DOM element). 
-  * **Both the placeholders and the content rows are rendered in a single vertical stack, with every item filling the whole horizontal width**. This is generally the default, so in typical cases with `div` elements, things will work by default. However, if you are using CSS to create a more advanced layout, bear in mind these requirements:
-    * The scroll container styling should have `display` value of `block` (the default for a `div`), `table-row-group` (the default for a `tbody`), or `flex` with `flex-direction` set to `column`.
-    * The content row styling should have a `display` value of `block` (the default for a `div`) or `table-row` (the default for a `tr`).
-    * You shouldn't use CSS to interfere with the layout for the placeholder elements. They will by default have a `display` value of `block`, except if the parent is a table row group, in which case they default to `table-row`. Don't try to influence their width or height, including by causing them to have a border or `content` pseudoelements.
+* **All content items are of identical height.** This makes it possible to calculate which content corresponds to a given scroll position without first fetching every data item and rendering the data into a DOM element.
 
-Anything that stops the placeholders and content elements from rendering as a single vertical stack, or causes the content items to vary in height, will prevent correct functioning of the `Virtualize` component.
+* **Both the placeholders and the content rows are rendered in a single vertical stack with every item filling the whole horizontal width.** This is generally the default. In typical cases with `div` elements, `Virtualize` works by default. If you're using CSS to create a more advanced layout, bear in mind the following requirements:
+
+    * Scroll container styling requires a `display` with any of the following values:
+      * `block` (the default for a `div`).
+      * `table-row-group` (the default for a `tbody`).
+      * `flex` with `flex-direction` set to `column`.
+    * Content row styling requires a `display` with either of the following values:
+      * `block` (the default for a `div`).
+      * `table-row` (the default for a `tr`).
+    * Don't use CSS to interfere with the layout for the placeholder elements. By default, the placeholder elements have a `display` value of `block`, except if the parent is a table row group, in which case they default to `table-row`. Don't try to influence placeholder element width or height, including by causing them to have a border or `content` pseudo-elements.
+
+Any approach that stops the placeholders and content elements from rendering as a single vertical stack, or causes the content items to vary in height, prevents correct functioning of the `Virtualize` component.
 
 ::: moniker-end
 
