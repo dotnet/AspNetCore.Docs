@@ -4,7 +4,7 @@ author: rick-anderson
 description: Tutorial with code examples demonstrating the integration of Facebook account user authentication into an existing ASP.NET Core app.
 ms.author: riande
 ms.custom: "seoapril2019, mvc, seodec18"
-ms.date: 03/19/2020
+ms.date: 12/05/2021
 monikerRange: '>= aspnetcore-3.0'
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/facebook-logins
