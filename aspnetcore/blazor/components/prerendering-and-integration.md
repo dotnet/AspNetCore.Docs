@@ -322,16 +322,16 @@ For more information on the Component Tag Helper, including passing parameters a
 
 Additional work might be required depending on the static resources that components use and how layout pages are organized in an app. Typically, scripts are added to a page or view's `Scripts` render section and stylesheets are added to the layout's `<head>` element content.
 
-### Ensuring that top-level prerendered components are not trimmed out on publish
+### Ensure that top-level prerendered components aren't trimmed out on publish
 
-If your [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) directly references a component from a library that is subject to trimming on publish, you may find that the component is trimmed out during publish because there are no references to it from your client-side application code. As a result, it would not be prerendered, leaving a blank spot in the output. If this happens, you can instruct the trimmer to preserve that library component by adding a [`DynamicDependency` attribute](/dotnet/api/system.diagnostics.codeanalysis.dynamicdependencyattribute) to any class in your client-side application. For example, if you need to preserve a component called `SomeLibraryComponentToBePreserved`, then on any of your components, add:
+If your [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) directly references a component from a library that's subject to trimming on publish, you may find that the component is trimmed out during publish because there are no references to it from client-side app code. As a result, the component isn't prerendered, leaving a blank spot in the output. If this occurs, instruct the trimmer to preserve that library component by adding a [`DynamicDependency` attribute](xref:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute) to any class in the client-side app. To preserve a component called `SomeLibraryComponentToBePreserved`, then add the following to any component:
 
 ```razor
 @using System.Diagnostics.CodeAnalysis
 @attribute [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(SomeLibraryComponentToBePreserved))]
 ```
 
-It's rare that you will need to do this, because in most cases you would prerender your own application's components (which are not trimmed), which in turn will reference components from libraries (causing them also not to be trimmed). You would only need to use `DynamicDependency` explicitly if you're prerendering a library component directly, and that library is subject to trimming.
+The preceding approach usually isn't required because in most cases the app prerenders its components (which are not trimmed), which in turn references components from libraries (causing them also not to be trimmed). Only use `DynamicDependency` explicitly for prerendering a library component directly where the library is subject to trimming.
 
 ## Render components in a page or view with a CSS selector
 
