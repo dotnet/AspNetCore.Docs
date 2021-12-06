@@ -322,6 +322,17 @@ For more information on the Component Tag Helper, including passing parameters a
 
 Additional work might be required depending on the static resources that components use and how layout pages are organized in an app. Typically, scripts are added to a page or view's `Scripts` render section and stylesheets are added to the layout's `<head>` element content.
 
+### Ensuring that top-level prerendered components are not trimmed out on publish
+
+If your [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) directly references a component from a library that is subject to trimming on publish, you may find that the component is trimmed out during publish because there are no references to it from your client-side application code. As a result, it would not be prerendered, leaving a blank spot in the output. If this happens, you can instruct the trimmer to preserve that library component by adding a [`DynamicDependency` attribute](https://docs.microsoft.com/en-us/dotnet/api/system.diagnostics.codeanalysis.dynamicdependencyattribute) to any class in your client-side application. For example, if you need to preserve a component called `SomeLibraryComponentToBePreserved`, then on any of your components, add:
+
+```razor
+@using System.Diagnostics.CodeAnalysis
+@attribute [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(SomeLibraryComponentToBePreserved))]
+```
+
+It's rare that you will need to do this, because in most cases you would prerender your own application's components (which are not trimmed), which in turn will reference components from libraries (causing them also not to be trimmed). You would only need to use `DynamicDependency` explicitly if you're prerendering a library component directly, and that library is subject to trimming.
+
 ## Render components in a page or view with a CSS selector
 
 After [configuring the solution](#solution-configuration), including the [additional configuration](#configuration-for-embedding-razor-components-into-pages-and-views), add root components to the **`Client`** project of a hosted Blazor WebAssembly solution in the `Program.cs` file. In the following example, the `Counter` component is declared as a root component with a CSS selector that selects the element with the `id` that matches `counter-component`. In the following example, the **`Client`** project's namespace is `BlazorHosted.Client`.
