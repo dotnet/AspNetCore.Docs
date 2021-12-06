@@ -42,7 +42,7 @@ The default web app templates call the <xref:Microsoft.AspNetCore.Builder.Static
 
 The parameterless `UseStaticFiles` method overload marks the files in [web root](xref:fundamentals/index#web-root) as servable. The following highlighted markup references *wwwroot/images/MyImage.jpg*:
 
-[!code-chtml[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Pages/Privacy.cshtml?highlight=10)]
+[!code-chtml[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Pages/Privacy.cshtml?highlight=9-10)]
 
 In the preceding highlighted markup, the tilde character `~` points to the [web root](xref:fundamentals/index#web-root).
 
@@ -70,7 +70,7 @@ The following highlighted markup references *MyStaticFiles/images/red-rose.jpg*:
 
 ### Set HTTP response headers
 
-A <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> object can be used to set HTTP response headers. In addition to configuring static file serving from the [web root](xref:fundamentals/index#web-root), the following code sets the `Cache-Control` header:
+A <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> object can be used to set HTTP response headers. In addition to configuring static file serving from the [web root](xref:fundamentals/index#web-root), the following code sets the [Cache-Control](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control) header:
 
 [!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_rh&highlight=16-24)]
 
@@ -148,14 +148,14 @@ The following code changes the default file name to *mydefault.html*:
 
 <xref:Microsoft.AspNetCore.Builder.FileServerExtensions.UseFileServer*> combines the functionality of `UseStaticFiles`, `UseDefaultFiles`, and optionally `UseDirectoryBrowser`.
 
-Call `app.UseFileServer` to enable the serving of static files and the default file. Directory browsing isn't enabled. The following code shows `Startup.Configure` with `UseFileServer`:
+Call `app.UseFileServer` to enable the serving of static files and the default file. Directory browsing isn't enabled:
 
 [!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_ufs&highlight=16)] 
 
 The following code enables the serving of static files, the default file, and directory browsing:
 
 <!-- REVIEW: app.UseFileServer(enableDirectoryBrowsing: true); returns the default HTML doc before the default Razor Page - ie, / returns the default HTML file, not Pages/Index.cshtml --
-But when using app.UseDefaultFiles();, I need to comment out Pages/Index.cshtml or / returns  Pages/Index.cshtml, not the default HTML file. 
+But when using app.UseDefaultFiles();, I need to comment out Pages/Index.cshtml or / returns  Pages/Index.cshtml, not the default HTML file.
 -->
 [!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_ufs2&highlight=16)] 
 
@@ -174,14 +174,14 @@ The following code enables the serving of static files, the default file, and di
 
 <!-- https://localhost:44391/StaticFiles/ or the link on https://localhost:44391/Home2/MyStaticFilesRR -->
 
-[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_tree&highlight=18-26)]
+[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_tree&highlight=1,18-26)]
 
 <!-- REVIEW: Has this changed or was it alway wrong? 
 <xref:Microsoft.Extensions.DependencyInjection.DirectoryBrowserServiceExtensions.AddDirectoryBrowser%2A> must be called when the `EnableDirectoryBrowsing` property value is `true`.
 
  -->
 
-Using the file hierarchy and preceding code, URLs resolve as follows:
+Using the preceding file hierarchy and code, URLs resolve as follows:
 
 | URI            |      Response  |
 | ------- | ------|
