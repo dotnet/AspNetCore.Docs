@@ -66,7 +66,7 @@ In the preceding code, the *MyStaticFiles* directory hierarchy is exposed public
 
 The following highlighted markup references *MyStaticFiles/images/red-rose.jpg*:
 <!-- test via /Home2/MyStaticFilesRR -->
-[!code-chtml[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Views/Home2/MyStaticFilesRR.cshtml?range=1)]
+[!code-html[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Views/Home2/MyStaticFilesRR.cshtml?range=1)]
 
 ### Set HTTP response headers
 
@@ -112,7 +112,7 @@ Directory browsing allows directory listing within specified directories.
 
 Directory browsing is disabled by default for security reasons. For more information, see [Security considerations for static files](#security-considerations-for-static-files).
 
-Enable directory browsing with <xref:Microsoft.Extensions.DependencyInjection.DirectoryBrowserServiceExtensions.AddDirectoryBrowser%2A> and <xref:Microsoft.AspNetCore.Builder.DirectoryBrowserExtensions.UseDirectoryBrowser%2A>:
+Enable directory browsing with <xref:Microsoft.AspNetCore.Builder.DirectoryBrowserExtensions.UseDirectoryBrowser%2A>:
 
 [!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_db&highlight=14-22)]  
 
@@ -154,8 +154,8 @@ Call `app.UseFileServer` to enable the serving of static files and the default f
 
 The following code enables the serving of static files, the default file, and directory browsing:
 
-<!-- REVIEW: app.UseFileServer(enableDirectoryBrowsing: true); returns the default HTML doc before the default Razor Page - ie, Pages/Index.cshtml --
-But when using app.UseDefaultFiles();, I need to comment out Pages/Index.cshtml
+<!-- REVIEW: app.UseFileServer(enableDirectoryBrowsing: true); returns the default HTML doc before the default Razor Page - ie, / returns the default HTML file, not Pages/Index.cshtml --
+But when using app.UseDefaultFiles();, I need to comment out Pages/Index.cshtml or / returns  Pages/Index.cshtml, not the default HTML file. 
 -->
 [!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_ufs2&highlight=16)] 
 
@@ -174,9 +174,12 @@ The following code enables the serving of static files, the default file, and di
 
 <!-- https://localhost:44391/StaticFiles/ or the link on https://localhost:44391/Home2/MyStaticFilesRR -->
 
-[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_tree&highlight=18-26)] 
+[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_tree&highlight=18-26)]
 
+<!-- REVIEW: Has this changed or was it alway wrong? 
 <xref:Microsoft.Extensions.DependencyInjection.DirectoryBrowserServiceExtensions.AddDirectoryBrowser%2A> must be called when the `EnableDirectoryBrowsing` property value is `true`.
+
+ -->
 
 Using the file hierarchy and preceding code, URLs resolve as follows:
 

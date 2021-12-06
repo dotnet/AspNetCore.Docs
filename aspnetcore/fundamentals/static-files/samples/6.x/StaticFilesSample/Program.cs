@@ -101,7 +101,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
 
-//builder.Services.AddDirectoryBrowser(); // Not needed. What is AddDirectoryBrowser used for?
+// builder.Services.AddDirectoryBrowser(); // No needed to browse /MyImages
 
 var app = builder.Build();
 
