@@ -73,8 +73,6 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
         });
 ```
 
-If the app uses Entity Framework Core, don't change the name or signature of the `CreateHostBuilder` method. The [Entity Framework Core tools](/ef/core/miscellaneous/cli/) expect to find a `CreateHostBuilder` method that configures the host without running the app. For more information, see [Design-time DbContext Creation](/ef/core/miscellaneous/cli/dbcontext-creation).
-
 ## Default builder settings
 
 The <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder%2A> method:
