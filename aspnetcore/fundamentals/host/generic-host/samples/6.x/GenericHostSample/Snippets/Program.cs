@@ -46,10 +46,8 @@ public static class Program
                 {
                     options.ShutdownTimeout = TimeSpan.FromSeconds(20);
                 });
-            })
-            // ...
-            // </snippet_ShutdownTimeout>
-            ;
+            });
+        // </snippet_ShutdownTimeout>
     }
 
     public static void ConfigureWebHostDefaults(string[] args)
