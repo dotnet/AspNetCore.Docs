@@ -13,7 +13,7 @@ uid: security/authentication/microsoft-logins
 
 By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This sample shows you how to enable users to sign in with their work, school, or personal Microsoft account using the ASP.NET Core 3.0 project created on the [previous page](xref:security/authentication/social/index).
+This sample shows you how to enable users to sign in with their work, school, or personal Microsoft account using the ASP.NET Core project created on the [previous page](xref:security/authentication/social/index).
 
 ## Create the app in Microsoft Developer Portal
 
