@@ -9,6 +9,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - run: |
+          numOpenPullRequests="$(gh pr list --author app/github-actions --search "base:live" --json id --jq ". | length")"
+
+          if [ "$numOpenPullRequests" -ne "0" ]; then
+            echo "::error::An open pull-request already exists.";
+            exit 1;
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: gh pr create --base live --head main --title "Merge to Live" --body "[AUTOMATED]"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
