@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\test\image1.image" />
+    <Content Remove="wwwroot\mapTest\image1.image" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\test\image1.image" />
+    <None Include="wwwroot\mapTest\image1.image" />
   </ItemGroup>
 
 </Project>

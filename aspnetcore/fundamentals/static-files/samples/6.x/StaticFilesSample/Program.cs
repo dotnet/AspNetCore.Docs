@@ -315,13 +315,6 @@ app.UseStaticFiles(new StaticFileOptions
     ContentTypeProvider = provider
 });
 
-//app.UseDirectoryBrowser(new DirectoryBrowserOptions
-//{
-//    FileProvider = new PhysicalFileProvider(
-//        Path.Combine(builder.Environment.WebRootPath, "images")),
-//    RequestPath = "/MyImages"
-//});
-
 app.UseAuthorization();
 
 app.MapDefaultControllerRoute();
