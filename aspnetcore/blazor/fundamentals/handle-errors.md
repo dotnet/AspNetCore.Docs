@@ -406,8 +406,8 @@ In Blazor Server, prerendering works by:
 
 In prerendered Blazor WebAssembly, prerendering works by:
 
-* Generating initial HTML for prerendered components on the server.
-* Making a component interactive after the browser has loaded the app's compiled code and the .NET runtime (if not already loaded) in the background.
+* Generating initial HTML on the server for all of the prerendered components that are part of the same page.
+* Making the component interactive on the client after the browser has loaded the app's compiled code and the .NET runtime (if not already loaded) in the background.
 
 If a component throws an unhandled exception during prerendering, for example, during a lifecycle method or in rendering logic:
 
