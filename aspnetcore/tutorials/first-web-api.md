@@ -69,7 +69,10 @@ For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 * Enter *Web API* in the search box.
 * Select the **ASP.NET Core Web API** template and select **Next**.
 * In the **Configure your new project dialog**, name the project *TodoApi* and select **Next**.
-* In the **Additional information** dialog, confirm that **Framework** is **.NET 6.0 (Long-term support)**, checkbox **Use controllers(uncheck to use minimal APIs) is ticked** and select **Create**.
+* In the **Additional information** dialog:
+  * Confirm the **Framework** is **.NET 6.0 (Long-term support)**.
+  * Confirm the checkbox for **Use controllers(uncheck to use minimal APIs)** is checked.
+  * Select **Create**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
