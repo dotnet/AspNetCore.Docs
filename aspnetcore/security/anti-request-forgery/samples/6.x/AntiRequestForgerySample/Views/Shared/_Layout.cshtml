@@ -22,6 +22,9 @@
 						<li class="nav-item">
 							<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
 						</li>
+						<li class="nav-item">
+							<a class="nav-link text-dark" asp-area="" asp-controller="JavaScript" asp-action="Index">JavaScript</a>
+						</li>
 					</ul>
 				</div>
 			</div>
@@ -40,5 +43,6 @@
 	</footer>
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+	@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

@@ -220,7 +220,7 @@ If cookies are used to store authentication tokens and to authenticate API reque
 
 Using JavaScript with views, the token can be created using a service from within the view. Inject the <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgery> service into the view and call <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgery.GetAndStoreTokens%2A>:
 
-:::code language="cshtml" source="anti-request-forgery/samples/2.x/MvcSample/Views/Home/Ajax.cshtml" highlight="4-10,12-13,35-36":::
+:::code language="cshtml" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Views/JavaScript/Index.cshtml" highlight="1,6,9,23-26":::
 
 This approach eliminates the need to deal directly with setting cookies from the server or reading them from the client.
 
