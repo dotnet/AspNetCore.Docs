@@ -46,7 +46,7 @@ The parameterless `UseStaticFiles` method overload marks the files in [web root]
 <img src="~/images/MyImage.jpg" class="img" alt="My image" />
 ```
 
-In the preceding highlighted markup, the tilde character `~` points to the [web root](xref:fundamentals/index#web-root).
+In the preceding markup, the tilde character `~` points to the [web root](xref:fundamentals/index#web-root).
 
 ### Serve files outside of web root
 
@@ -66,9 +66,9 @@ A request can access the `red-rose.jpg` file by configuring the Static File Midd
 
 In the preceding code, the *MyStaticFiles* directory hierarchy is exposed publicly via the *StaticFiles* URI segment. A request to `https://<hostname>/StaticFiles/images/red-rose.jpg` serves the *red-rose.jpg* file.
 
-The following highlighted markup references *MyStaticFiles/images/red-rose.jpg*:
+The following markup references *MyStaticFiles/images/red-rose.jpg*:
 <!-- zz test via /Home2/MyStaticFilesRR -->
-[!code-html[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Views/Home2/MyStaticFilesRR.cshtml?range=1&highlight=1)]
+[!code-html[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Views/Home2/MyStaticFilesRR.cshtml?range=1)]
 
 ### Set HTTP response headers
 
@@ -123,7 +123,7 @@ The preceding code allows directory browsing of the *wwwroot/images* folder usin
 
 ![directory browsing](static-files/_static/dir-browse.png)
 
-For basic programs, `UseDirectoryBrowser` without `AddDirectoryBrowser` may work. [AddDirectoryBrowser](https://github.com/dotnet/aspnetcore/blob/fc4e391aa58a9fa67fdc3a96da6cfcadd0648b17/src/Middleware/StaticFiles/src/DirectoryBrowserServiceExtensions.cs#L25) should be called as it [adds services](https://github.com/dotnet/aspnetcore/blob/fc4e391aa58a9fa67fdc3a96da6cfcadd0648b17/src/Middleware/StaticFiles/src/DirectoryBrowserMiddleware.cs#L46) like [HtmlEncoder](/dotnet/api/system.text.encodings.web.htmlencoder).
+`AddDirectoryBrowser` [adds services](https://github.com/dotnet/aspnetcore/blob/fc4e391aa58a9fa67fdc3a96da6cfcadd0648b17/src/Middleware/StaticFiles/src/DirectoryBrowserServiceExtensions.cs#L25) required by the directory browsing middleware, including <xref:System.Text.Encodings.Web.HtmlEncoder>. These services may be added by other calls, such as <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddRazorPages%2A>, but we recommend calling `AddDirectoryBrowser` to ensure the services are added in all apps.
 
 ## Serve default documents
 
