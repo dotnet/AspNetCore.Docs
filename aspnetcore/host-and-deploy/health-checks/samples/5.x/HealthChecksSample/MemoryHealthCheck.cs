@@ -12,7 +12,7 @@ namespace SampleApp
     //
     // This example also shows a technique for authoring a health check that requires registration with additional configuration data. This technique works via named options and is useful for authoring health checks that will be distributed as libraries.
 
-    #region snippet1
+    // <snippet1>
     public class MemoryHealthCheck : IHealthCheck
     {
         private readonly IOptionsMonitor<MemoryCheckOptions> _options;
@@ -25,7 +25,7 @@ namespace SampleApp
         public string Name => "memory_check";
 
         public Task<HealthCheckResult> CheckHealthAsync(
-            HealthCheckContext context, 
+            HealthCheckContext context,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             var options = _options.Get(context.Registration.Name);
@@ -39,7 +39,7 @@ namespace SampleApp
                 { "Gen1Collections", GC.CollectionCount(1) },
                 { "Gen2Collections", GC.CollectionCount(2) },
             };
-            var status = (allocated < options.Threshold) ? 
+            var status = (allocated < options.Threshold) ?
                 HealthStatus.Healthy : context.Registration.FailureStatus;
 
             return Task.FromResult(new HealthCheckResult(
@@ -50,9 +50,9 @@ namespace SampleApp
                 data: data));
         }
     }
-    #endregion
+    // </snippet1>
 
-    #region snippet2
+    // <snippet2>
     public static class GCInfoHealthCheckBuilderExtensions
     {
         public static IHealthChecksBuilder AddMemoryHealthCheck(
@@ -78,13 +78,13 @@ namespace SampleApp
             return builder;
         }
     }
-    #endregion
+    // </snippet2>
 
-    #region snippet3
+    // <snippet3>
     public class MemoryCheckOptions
     {
         // Failure threshold (in bytes)
         public long Threshold { get; set; } = 1024L * 1024L * 1024L;
     }
-    #endregion
+    // </snippet3>
 }

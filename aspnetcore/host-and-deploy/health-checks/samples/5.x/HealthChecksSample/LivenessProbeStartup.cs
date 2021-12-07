@@ -30,14 +30,14 @@ namespace SampleApp
 
         public void ConfigureServices(IServiceCollection services)
         {
-            #region snippet_ConfigureServices
+            // <snippet_ConfigureServices>
             services.AddHostedService<StartupHostedService>();
             services.AddSingleton<StartupHostedServiceHealthCheck>();
 
             services.AddHealthChecks()
                 .AddCheck<StartupHostedServiceHealthCheck>(
-                    "hosted_service_startup", 
-                    failureStatus: HealthStatus.Degraded, 
+                    "hosted_service_startup",
+                    failureStatus: HealthStatus.Degraded,
                     tags: new[] { "ready" });
 
             services.Configure<HealthCheckPublisherOptions>(options =>
@@ -47,7 +47,7 @@ namespace SampleApp
             });
 
             services.AddSingleton<IHealthCheckPublisher, ReadinessPublisher>();
-            #endregion
+            // </snippet_ConfigureServices>
         }
 
         public void Configure(IApplicationBuilder app)
