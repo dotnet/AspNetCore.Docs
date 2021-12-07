@@ -41,7 +41,7 @@ Using `ServerCallContext.CancellationToken` in a gRPC service:
 
 ### Deadlines and retries
 
-gRPC supports [transient fault handing using retries](xref:grpc/retries). When a gRPC call uses retries and a deadline is configured then the deadline tracks time across retries. When the deadline is exceeded a gRPC call immediately aborts the underlying HTTP request, skips any remaining retries, and throws a `DeadlineExceeded` error.
+gRPC supports [transient fault handing using retries](xref:grpc/retries). A gRPC call can be configured with retries and a deadline. In that situation a deadline tracks time across all retries for a gRPC call. When the deadline is exceeded a gRPC call immediately aborts the underlying HTTP request, skips any remaining retries, and throws a `DeadlineExceeded` error.
 
 ### Propagating deadlines
 
