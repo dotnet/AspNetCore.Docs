@@ -25,17 +25,17 @@ namespace SampleApp
     // This is an example of registering a custom health check as a service. All IHealthCheck services are available to the health check service and middleware. We recommend registering all health checks as Singleton services.
     //
     // Register Health Check Middleware at the URL: /health
-    // 
+    //
     // This example overrides the HealthCheckOptions.ResponseWriter to write a custom health check result.
 
     public class CustomWriterStartup
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            #region snippet_ConfigureServices
+            // <snippet_ConfigureServices>
             services.AddHealthChecks()
                 .AddMemoryHealthCheck("memory");
-            #endregion
+            // </snippet_ConfigureServices>
         }
 
         public void Configure(IApplicationBuilder app)
@@ -59,7 +59,7 @@ namespace SampleApp
         }
 
 #if SYSTEM_TEXT_JSON
-        #region snippet_WriteResponse_SystemTextJson
+        // <snippet_WriteResponse_SystemTextJson>
         private static Task WriteResponse(HttpContext context, HealthReport result)
         {
             context.Response.ContentType = "application/json; charset=utf-8";
@@ -86,7 +86,7 @@ namespace SampleApp
                         {
                             writer.WritePropertyName(item.Key);
                             JsonSerializer.Serialize(
-                                writer, item.Value, item.Value?.GetType() ?? 
+                                writer, item.Value, item.Value?.GetType() ??
                                 typeof(object));
                         }
                         writer.WriteEndObject();
@@ -101,9 +101,9 @@ namespace SampleApp
                 return context.Response.WriteAsync(json);
             }
         }
-        #endregion
+        // </snippet_WriteResponse_SystemTextJson>
 #else
-        #region snippet_WriteResponse_NewtonSoftJson
+        // <snippet_WriteResponse_NewtonSoftJson>
         private static Task WriteResponse(HttpContext context, HealthReport result)
         {
             context.Response.ContentType = "application/json";
@@ -120,7 +120,7 @@ namespace SampleApp
             return context.Response.WriteAsync(
                 json.ToString(Formatting.Indented));
         }
-        #endregion
+        // </snippet_WriteResponse_NewtonSoftJson>
 #endif
     }
 }

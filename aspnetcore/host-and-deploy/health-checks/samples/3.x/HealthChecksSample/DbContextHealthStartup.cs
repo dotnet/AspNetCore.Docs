@@ -11,7 +11,7 @@ namespace SampleApp
     // Use the `--scenario dbcontext` switch to run this version of the sample.
     //
     // Register Health Check Middleware at the URL: /health
-    // 
+    //
     // By default, health checks return a 200-Ok with 'Healthy' when the database is responsive.
     // - A SqlConnectionHealthCheck is used in the example for a SQL database.
     // - The default response writer writes the HealthStatus as text/plain content.
@@ -29,7 +29,7 @@ namespace SampleApp
 
         public void ConfigureServices(IServiceCollection services)
         {
-            #region snippet_ConfigureServices
+            // <snippet_ConfigureServices>
             services.AddHealthChecks()
                 .AddDbContextCheck<AppDbContext>();
 
@@ -38,7 +38,7 @@ namespace SampleApp
                 options.UseSqlServer(
                     Configuration["ConnectionStrings:DefaultConnection"]);
             });
-            #endregion
+            // </snippet_ConfigureServices>
         }
 
         public void Configure(IApplicationBuilder app)
@@ -55,7 +55,7 @@ namespace SampleApp
                     await context.Response.WriteAsync(Environment.NewLine);
                     await context.Response.Body.FlushAsync();
 
-                    var appDbContext = 
+                    var appDbContext =
                         context.RequestServices.GetRequiredService<AppDbContext>();
                     await appDbContext.Database.EnsureCreatedAsync();
 
@@ -72,7 +72,7 @@ namespace SampleApp
                     await context.Response.WriteAsync(Environment.NewLine);
                     await context.Response.Body.FlushAsync();
 
-                    var appDbContext = 
+                    var appDbContext =
                         context.RequestServices.GetRequiredService<AppDbContext>();
                     await appDbContext.Database.EnsureDeletedAsync();
 
