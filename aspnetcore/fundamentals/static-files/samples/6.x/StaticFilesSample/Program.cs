@@ -1,4 +1,4 @@
-#define TREE // DEFAULT RR RH DB DF DF2 UFS UFS2 TREE FECTP NS
+#define FECTP // DEFAULT RR RH DB DF DF2 UFS UFS2 TREE FECTP NS
 #if NEVER
 #elif DEFAULT
 #region snippet
@@ -310,14 +310,17 @@ provider.Mappings[".rtf"] = "application/x-msdownload";
 // Remove MP4 videos.
 provider.Mappings.Remove(".mp4");
 
-app.UseStaticFiles();
-
-app.UseDirectoryBrowser(new DirectoryBrowserOptions
+app.UseStaticFiles(new StaticFileOptions
 {
-    FileProvider = new PhysicalFileProvider(
-        Path.Combine(builder.Environment.WebRootPath, "images")),
-    RequestPath = "/MyImages"
+    ContentTypeProvider = provider
 });
+
+//app.UseDirectoryBrowser(new DirectoryBrowserOptions
+//{
+//    FileProvider = new PhysicalFileProvider(
+//        Path.Combine(builder.Environment.WebRootPath, "images")),
+//    RequestPath = "/MyImages"
+//});
 
 app.UseAuthorization();
 

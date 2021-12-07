@@ -199,6 +199,7 @@ If no default-named file exists in the *MyStaticFiles* directory, `https://<host
 
 The <xref:Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider> class contains a `Mappings` property that serves as a mapping of file extensions to MIME content types. In the following sample, several file extensions are mapped to known MIME types. The *.rtf* extension is replaced, and *.mp4* is removed:
 
+<!-- test via /mapTest/image1.image and mapTest/test.htm3 -->
 [!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_fec&highlight=19-37)] 
 
 See [MIME content types](https://www.iana.org/assignments/media-types/media-types.xhtml).

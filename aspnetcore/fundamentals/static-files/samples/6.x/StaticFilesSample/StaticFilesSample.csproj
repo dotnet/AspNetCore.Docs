@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\test\image1.image" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="MyStaticFiles\images\MyImage.jpg" />
   </ItemGroup>
 
@@ -15,6 +19,10 @@
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\test\image1.image" />
   </ItemGroup>
 
 </Project>
