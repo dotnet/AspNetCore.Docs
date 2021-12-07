@@ -384,7 +384,7 @@ The following conditions apply to error handling with <xref:Microsoft.JSInterop.
 
 Similarly, JavaScript code may initiate calls to .NET methods indicated by the [`[JSInvokable]` attribute](xref:blazor/js-interop/call-dotnet-from-javascript). If these .NET methods throw an unhandled exception:
 
-* In a Blazor Server app, the exception is ***not** treated as fatal to the app's circuit.
+* In a Blazor Server app, the exception is ***not*** treated as fatal to the app's circuit.
 * The JavaScript-side `Promise` is rejected.
 
 You have the option of using error handling code on either the .NET side or the JavaScript side of the method call.
