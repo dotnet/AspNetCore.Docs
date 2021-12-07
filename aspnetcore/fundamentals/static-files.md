@@ -40,9 +40,11 @@ The default web app templates call the <xref:Microsoft.AspNetCore.Builder.Static
 
 [!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet&highlight=15)]
 
-The parameterless `UseStaticFiles` method overload marks the files in [web root](xref:fundamentals/index#web-root) as servable. The following highlighted markup references *wwwroot/images/MyImage.jpg*:
+The parameterless `UseStaticFiles` method overload marks the files in [web root](xref:fundamentals/index#web-root) as servable. The following markup references *wwwroot/images/MyImage.jpg*:
 
-[!code-chtml[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Pages/Privacy.cshtml?highlight=9-10)]
+```html
+<img src="~/images/MyImage.jpg" class="img" alt="My image" />
+```
 
 In the preceding highlighted markup, the tilde character `~` points to the [web root](xref:fundamentals/index#web-root).
 
@@ -65,8 +67,8 @@ A request can access the `red-rose.jpg` file by configuring the Static File Midd
 In the preceding code, the *MyStaticFiles* directory hierarchy is exposed publicly via the *StaticFiles* URI segment. A request to `https://<hostname>/StaticFiles/images/red-rose.jpg` serves the *red-rose.jpg* file.
 
 The following highlighted markup references *MyStaticFiles/images/red-rose.jpg*:
-<!-- test via /Home2/MyStaticFilesRR -->
-[!code-html[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Views/Home2/MyStaticFilesRR.cshtml?range=1)]
+<!-- zz test via /Home2/MyStaticFilesRR -->
+[!code-html[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Views/Home2/MyStaticFilesRR.cshtml?range=1&highlight=1)]
 
 ### Set HTTP response headers
 
@@ -176,7 +178,7 @@ The following code enables the serving of static files, the default file, and di
 
 <!-- https://localhost:44391/StaticFiles/ or the link on https://localhost:44391/Home2/MyStaticFilesRR -->
 
-[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_tree&highlight=1,22-28)]
+[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_tree&highlight=1,8,22-28)]
 
 <xref:Microsoft.Extensions.DependencyInjection.DirectoryBrowserServiceExtensions.AddDirectoryBrowser%2A> must be called when the `EnableDirectoryBrowsing` property value is `true`.
 
