@@ -1,4 +1,4 @@
-#define UFS2 // DEFAULT RR RH DB DF DF2 UFS UFS2 TREE FECTP NS
+#define TREE // DEFAULT RR RH DB DF DF2 UFS UFS2 TREE FECTP NS
 #if NEVER
 #elif DEFAULT
 #region snippet
@@ -101,7 +101,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
 
-// builder.Services.AddDirectoryBrowser(); // No needed to browse /MyImages
+builder.Services.AddDirectoryBrowser();
 
 var app = builder.Build();
 
@@ -249,6 +249,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDirectoryBrowser();
 
 var app = builder.Build();
 

@@ -112,7 +112,7 @@ Directory browsing allows directory listing within specified directories.
 
 Directory browsing is disabled by default for security reasons. For more information, see [Security considerations for static files](#security-considerations-for-static-files).
 
-Enable directory browsing with <xref:Microsoft.AspNetCore.Builder.DirectoryBrowserExtensions.UseDirectoryBrowser%2A>:
+Enable directory browsing with <xref:Microsoft.Extensions.DependencyInjection.DirectoryBrowserServiceExtensions.AddDirectoryBrowser%2A> and <xref:Microsoft.AspNetCore.Builder.DirectoryBrowserExtensions.UseDirectoryBrowser%2A>:
 
 [!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_db&highlight=14-22)]  
 
@@ -120,6 +120,8 @@ Enable directory browsing with <xref:Microsoft.AspNetCore.Builder.DirectoryBrows
 The preceding code allows directory browsing of the *wwwroot/images* folder using the URL `https://<hostname>/MyImages`, with links to each file and folder:
 
 ![directory browsing](static-files/_static/dir-browse.png)
+
+For basic programs, `UseDirectoryBrowser` without `AddDirectoryBrowser` may work. [AddDirectoryBrowser](https://github.com/dotnet/aspnetcore/blob/fc4e391aa58a9fa67fdc3a96da6cfcadd0648b17/src/Middleware/StaticFiles/src/DirectoryBrowserServiceExtensions.cs#L25) should be called as it [adds services](https://github.com/dotnet/aspnetcore/blob/fc4e391aa58a9fa67fdc3a96da6cfcadd0648b17/src/Middleware/StaticFiles/src/DirectoryBrowserMiddleware.cs#L46) like [HtmlEncoder](/dotnet/api/system.text.encodings.web.htmlencoder).
 
 ## Serve default documents
 
@@ -176,10 +178,7 @@ The following code enables the serving of static files, the default file, and di
 
 [!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_tree&highlight=1,18-26)]
 
-<!-- REVIEW: Has this changed or was it alway wrong? 
 <xref:Microsoft.Extensions.DependencyInjection.DirectoryBrowserServiceExtensions.AddDirectoryBrowser%2A> must be called when the `EnableDirectoryBrowsing` property value is `true`.
-
- -->
 
 Using the preceding file hierarchy and code, URLs resolve as follows:
 
