@@ -189,13 +189,9 @@ builder.Services.AddOidcAuthentication(options =>
 
 ## Logging configuration
 
-Add a package reference for [`Microsoft.Extensions.Logging.Configuration`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration) to the app's project file:
+Add the [`Microsoft.Extensions.Logging.Configuration`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration) package to the app.
 
-```xml
-<PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="{VERSION}" />
-```
-
-In the preceding example, the `{VERSION}` placeholder is the package's version. Package versions are found at [NuGet.org](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration).
+[!INCLUDE[](~/blazor/includes/package-reference.md)]
 
 In the app settings file, provide logging configuration. The logging configuration is loaded in `Program.cs`.
 
@@ -424,13 +420,9 @@ builder.Services.AddOidcAuthentication(options =>
 
 ## Logging configuration
 
-Add a package reference for [`Microsoft.Extensions.Logging.Configuration`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration) to the app's project file:
+Add the [`Microsoft.Extensions.Logging.Configuration`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration) package to the app.
 
-```xml
-<PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="{VERSION}" />
-```
-
-In the preceding example, the `{VERSION}` placeholder is the package's version. Package versions are found at [NuGet.org](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration).
+[!INCLUDE[](~/blazor/includes/package-reference.md)]
 
 In the app settings file, provide logging configuration. The logging configuration is loaded in `Program.cs`.
 
@@ -660,13 +652,9 @@ builder.Services.AddOidcAuthentication(options =>
 
 ## Logging configuration
 
-Add a package reference for [`Microsoft.Extensions.Logging.Configuration`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration) to the app's project file:
+Add the [`Microsoft.Extensions.Logging.Configuration`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration) package to the app.
 
-```xml
-<PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="{VERSION}" />
-```
-
-In the preceding example, the `{VERSION}` placeholder is the package's version. Package versions are found at [NuGet.org](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration).
+[!INCLUDE[](~/blazor/includes/package-reference.md)]
 
 In the app settings file, provide logging configuration. The logging configuration is loaded in `Program.cs`.
 

@@ -210,13 +210,9 @@ In the following component code, the `<button>` element calls the `DeleteItem` m
 
 <xref:System.Net.Http.IHttpClientFactory> services and the configuration of a named <xref:System.Net.Http.HttpClient> are supported.
 
-Reference the [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) NuGet package in the project file:
+Add the [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) NuGet package to the app.
 
-```xml
-<PackageReference Include="Microsoft.Extensions.Http" Version="{VERSION}" />
-```
-
-In the preceding example, the `{VERSION}` placeholder is the version of the package.
+[!INCLUDE[](~/blazor/includes/package-reference.md)]
 
 In `Program.cs`:
 
@@ -829,13 +825,9 @@ In the following component code, the `<button>` element calls the `DeleteItem` m
 
 <xref:System.Net.Http.IHttpClientFactory> services and the configuration of a named <xref:System.Net.Http.HttpClient> are supported.
 
-Reference the [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) NuGet package in the project file:
+Add the [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) NuGet package to the app.
 
-```xml
-<PackageReference Include="Microsoft.Extensions.Http" Version="{VERSION}" />
-```
-
-In the preceding example, the `{VERSION}` placeholder is the version of the package.
+[!INCLUDE[](~/blazor/includes/package-reference.md)]
 
 In `Program.cs`:
 
@@ -1450,13 +1442,9 @@ In the following component code, the `<button>` element calls the `DeleteItem` m
 
 <xref:System.Net.Http.IHttpClientFactory> services and the configuration of a named <xref:System.Net.Http.HttpClient> are supported.
 
-Reference the [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) NuGet package in the project file:
+Add the [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) NuGet package to the app.
 
-```xml
-<PackageReference Include="Microsoft.Extensions.Http" Version="{VERSION}" />
-```
-
-In the preceding example, the `{VERSION}` placeholder is the version of the package.
+[!INCLUDE[](~/blazor/includes/package-reference.md)]
 
 In `Program.cs`:
 
