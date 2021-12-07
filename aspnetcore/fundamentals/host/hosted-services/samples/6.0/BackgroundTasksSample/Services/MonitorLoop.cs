@@ -7,8 +7,8 @@ namespace BackgroundTasksSample.Services
         private readonly ILogger _logger;
         private readonly CancellationToken _cancellationToken;
 
-        public MonitorLoop(IBackgroundTaskQueue taskQueue, 
-            ILogger<MonitorLoop> logger, 
+        public MonitorLoop(IBackgroundTaskQueue taskQueue,
+            ILogger<MonitorLoop> logger,
             IHostApplicationLifetime applicationLifetime)
         {
             _taskQueue = taskQueue;
@@ -61,7 +61,8 @@ namespace BackgroundTasksSample.Services
 
                 delayLoop++;
 
-                _logger.LogInformation("Queued Background Task {Guid} is running. " + "{DelayLoop}/3", guid, delayLoop);
+                _logger.LogInformation("Queued Background Task {Guid} is running. " 
+                                       + "{DelayLoop}/3", guid, delayLoop);
             }
 
             if (delayLoop == 3)

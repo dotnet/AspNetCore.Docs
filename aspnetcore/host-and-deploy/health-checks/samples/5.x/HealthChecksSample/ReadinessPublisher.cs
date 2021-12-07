@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 
 namespace SampleApp
 {
-    #region snippet_ReadinessPublisher
+    // <snippet_ReadinessPublisher>
     public class ReadinessPublisher : IHealthCheckPublisher
     {
         private readonly ILogger _logger;
@@ -16,22 +16,22 @@ namespace SampleApp
             _logger = logger;
         }
 
-        // The following example is for demonstration purposes only. Health Checks 
-        // Middleware already logs health checks results. A real-world readiness 
-        // check in a production app might perform a set of more expensive or 
-        // time-consuming checks to determine if other resources are responding 
+        // The following example is for demonstration purposes only. Health Checks
+        // Middleware already logs health checks results. A real-world readiness
+        // check in a production app might perform a set of more expensive or
+        // time-consuming checks to determine if other resources are responding
         // properly.
-        public Task PublishAsync(HealthReport report, 
+        public Task PublishAsync(HealthReport report,
             CancellationToken cancellationToken)
         {
             if (report.Status == HealthStatus.Healthy)
             {
-                _logger.LogInformation("{Timestamp} Readiness Probe Status: {Result}", 
+                _logger.LogInformation("{Timestamp} Readiness Probe Status: {Result}",
                     DateTime.UtcNow, report.Status);
             }
             else
             {
-                _logger.LogError("{Timestamp} Readiness Probe Status: {Result}", 
+                _logger.LogError("{Timestamp} Readiness Probe Status: {Result}",
                     DateTime.UtcNow, report.Status);
             }
 
@@ -40,5 +40,5 @@ namespace SampleApp
             return Task.CompletedTask;
         }
     }
-    #endregion
+    // </snippet_ReadinessPublisher>
 }
