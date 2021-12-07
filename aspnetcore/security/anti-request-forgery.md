@@ -226,55 +226,17 @@ This approach eliminates the need to deal directly with setting cookies from the
 
 The preceding example uses JavaScript to read the hidden field value for the AJAX POST header.
 
-JavaScript can also access tokens in cookies and use the cookie's contents to create a header with the token's value.
+JavaScript can also access tokens in cookies and use the cookie's contents to create a header with the token's value. The following example writes the request token to a JavaScript-readable cookie:
 
-```csharp
-context.Response.Cookies.Append("CSRF-TOKEN", tokens.RequestToken, 
-    new Microsoft.AspNetCore.Http.CookieOptions { HttpOnly = false });
-```
+:::code language="csharp" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Program.cs" id="snippet_CookiesAppend":::
 
-Assuming the script requests to send the token in a header called `X-CSRF-TOKEN`, configure the antiforgery service to look for the `X-CSRF-TOKEN` header:
+Assuming the script sends the token in a request header called `X-XSRF-TOKEN`, configure the antiforgery service to look for the `X-XSRF-TOKEN` header:
 
-```csharp
-services.AddAntiforgery(options => options.HeaderName = "X-CSRF-TOKEN");
-```
+:::code language="csharp" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Program.cs" id="snippet_AddAntiforgeryOptionsJavaScript":::
 
 The following example uses JavaScript to make an AJAX request with the appropriate header:
 
-```javascript
-function getCookie(cname) {
-    var name = cname + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for (var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) === ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) === 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
-}
-
-var csrfToken = getCookie("CSRF-TOKEN");
-
-var xhttp = new XMLHttpRequest();
-xhttp.onreadystatechange = function () {
-    if (xhttp.readyState === XMLHttpRequest.DONE) {
-        if (xhttp.status === 204) {
-            alert('Todo item is created successfully.');
-        } else {
-            alert('There was an error processing the AJAX request.');
-        }
-    }
-};
-xhttp.open('POST', '/api/items', true);
-xhttp.setRequestHeader("Content-type", "application/json");
-xhttp.setRequestHeader("X-CSRF-TOKEN", csrfToken);
-xhttp.send(JSON.stringify({ "name": "Learn C#" }));
-```
+:::code language="csharp" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Index.js" highlight="9":::
 
 ## Windows authentication and antiforgery cookies
 

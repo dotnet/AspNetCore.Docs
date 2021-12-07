@@ -26,4 +26,11 @@ public static class Program
         });
         // </snippet_AddControllersWithViewsAutoValidateAntiforgeryTokenAttribute>
     }
+
+    public static void AddAntiforgeryOptionsJavaScript(WebApplicationBuilder builder)
+    {
+        // <snippet_AddAntiforgeryOptionsJavaScript>
+        builder.Services.AddAntiforgery(options => options.HeaderName = "X-XSRF-TOKEN");
+        // </snippet_AddAntiforgeryOptionsJavaScript>
+    }
 }

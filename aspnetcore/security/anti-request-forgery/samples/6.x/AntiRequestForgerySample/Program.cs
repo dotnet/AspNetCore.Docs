@@ -33,8 +33,10 @@ app.Use((context, next) =>
         || string.Equals(requestPath, "/index.html", StringComparison.OrdinalIgnoreCase))
     {
         var tokenSet = antiforgery.GetAndStoreTokens(context);
+        // <snippet_CookiesAppend>
         context.Response.Cookies.Append("XSRF-TOKEN", tokenSet.RequestToken!,
             new CookieOptions { HttpOnly = false });
+        // </snippet_CookiesAppend>
     }
 
     return next(context);
