@@ -396,22 +396,27 @@ For more information, see the following articles:
 
 ### Prerendering
 
-*This section applies to Blazor Server apps.*
+Blazor components can be prerendered using the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) so that their rendered HTML markup is returned as part of the user's initial HTTP request.
 
-Blazor components can be prerendered using the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) so that their rendered HTML markup is returned as part of the user's initial HTTP request. This works by:
+In Blazor Server, prerendering works by:
 
 * Creating a new circuit for all of the prerendered components that are part of the same page.
 * Generating the initial HTML.
 * Treating the circuit as `disconnected` until the user's browser establishes a SignalR connection back to the same server. When the connection is established, interactivity on the circuit is resumed and the components' HTML markup is updated.
 
-If any component throws an unhandled exception during prerendering, for example, during a lifecycle method or in rendering logic:
+In prerendered Blazor WebAssembly, prerendering works by:
 
-* The exception is fatal to the circuit.
-* The exception is thrown up the call stack from the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper> Tag Helper. Therefore, the entire HTTP request fails unless the exception is explicitly caught by developer code.
+* Generating initial HTML for prerendered components on the server.
+* Making a component interactive after the browser has loaded the app's compiled code and the .NET runtime (if not already loaded) in the background.
+
+If a component throws an unhandled exception during prerendering, for example, during a lifecycle method or in rendering logic:
+
+* In Blazor Sever apps, the exception is fatal to the circuit. In prerendered Blazor WebAssembly apps, the exception prevents rendering the component.
+* The exception is thrown up the call stack from the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper>.
 
 Under normal circumstances when prerendering fails, continuing to build and render the component doesn't make sense because a working component can't be rendered.
 
-To tolerate errors that may occur during prerendering, error handling logic must be placed inside a component that may throw exceptions. Use [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statements with error handling and logging. Instead of wrapping the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper> Tag Helper in a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement, place error handling logic in the component rendered by the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper> Tag Helper.
+To tolerate errors that may occur during prerendering, error handling logic must be placed inside a component that may throw exceptions. Use [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statements with error handling and logging. Instead of wrapping the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper> in a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement, place error handling logic in the component rendered by the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper>.
 
 ## Advanced scenarios
 
