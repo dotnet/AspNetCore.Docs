@@ -713,7 +713,15 @@ function jsInteropCall() {
 }
 ```
 
+## Ahead-of-time (AOT) compilation
+
+[Ahead-of-time (AOT) compilation](/dotnet/standard/glossary#aot) compiles a Blazor app's .NET code directly into native WebAssembly for direct execution by the browser. AOT-compiled apps result in larger apps that take longer to download, but AOT-compiled apps usually provide better runtime performance, especially for apps that execute CPU-intensive tasks. For more information, see <xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation>.
+
 ## Minimize app download size
+
+### Runtime relinking
+
+For information on how runtime relinking minimizes an app's download size, see <xref:blazor/host-and-deploy/webassembly#runtime-relinking>.
 
 ### Use `System.Text.Json`
 
