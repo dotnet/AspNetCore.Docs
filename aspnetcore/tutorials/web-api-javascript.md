@@ -32,7 +32,7 @@ The simplest `fetch` call accepts a single parameter representing the route. A s
 
 1. Configure the app to [serve static files](/dotnet/api/microsoft.aspnetcore.builder.staticfileextensions.usestaticfiles#Microsoft_AspNetCore_Builder_StaticFileExtensions_UseStaticFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) and [enable default file mapping](/dotnet/api/microsoft.aspnetcore.builder.defaultfilesextensions.usedefaultfiles#Microsoft_AspNetCore_Builder_DefaultFilesExtensions_UseDefaultFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_). The following highlighted code is needed in *Program.cs*:
 <!-- TODO: Copy code to another folder outside GitHub and test: -->
-    :::code language="csharp" source="first-web-api/samples/6.0/TodoApi/StartupJavaScript.cs" id="snippet" highlight="17-18":::
+:::code language="csharp" source="first-web-api/samples/6.0/TodoApi/StartupJavaScript.cs" id="snippet" highlight="17-18":::
 
 1. Create a *wwwroot* folder in the project root.
 
