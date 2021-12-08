@@ -1,52 +1,30 @@
-// Unused usings removed
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+#if NEVER
+#region snippet
 using Microsoft.EntityFrameworkCore;
 using TodoApi.Models;
 
-namespace TodoApi
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllers();
+builder.Services.AddDbContext<TodoContext>(opt =>
+    opt.UseInMemoryDatabase("TodoList"));
+
+var app = builder.Build();
+
+if (builder.Environment.IsDevelopment())
 {
-    public class StartupJavaScript
-    {
-        public StartupJavaScript(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
-        public IConfiguration Configuration { get; }
-
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddDbContext<TodoContext>(opt =>
-               opt.UseInMemoryDatabase("TodoList"));
-            services.AddControllers();
-        }
-
-        #region snippet_configure
-public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-{
-    if (env.IsDevelopment())
-    {
-        app.UseDeveloperExceptionPage();
-    }
-
-    app.UseDefaultFiles();
-    app.UseStaticFiles();
-
-    app.UseHttpsRedirection();
-
-    app.UseRouting();
-
-    app.UseAuthorization();
-
-    app.UseEndpoints(endpoints =>
-    {
-        endpoints.MapControllers();
-    });
+    app.UseDeveloperExceptionPage();
 }
-        #endregion
-    }
-}
+
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
+app.UseHttpsRedirection();
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.Run();
+#endregion
+#endif
