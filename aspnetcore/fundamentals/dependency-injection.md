@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how ASP.NET Core implements dependency injection and how to use it.
 ms.author: riande
 ms.custom: mvc
-ms.date: 7/21/2020
+ms.date: 11/21/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/dependency-injection
 ---
@@ -197,7 +197,7 @@ To reduce the logging output, set "Logging:LogLevel:Microsoft:Error" in the *app
 
 The following code shows how to resolve a scoped service for a limited duration when the app starts:
 
-[!code-json[](dependency-injection/samples/6.x/WebApp1/Program.cs?highlight=3,7-13)]
+[!code-csharp[](dependency-injection/samples/6.x/WebApp1/Program.cs?highlight=3,7-13)]
 
 ## Scope validation
 
@@ -249,7 +249,7 @@ Service1.Dispose
 
 Consider the following code:
 
-[!code-csharp[](dependency-injection/samples/6.x/DIsample2/DIsample2/Program.cs?name=snippet2)]
+[!code-csharp[](dependency-injection/samples/6.x/DIsample2/DIsample2/Program.cs?name=snippet3)]
 
 In the preceding code:
 

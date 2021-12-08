@@ -49,7 +49,7 @@ Inject an <xref:Microsoft.Extensions.Logging.ILoggerProvider> to add a `WebAssem
 
 Add the namespace for <xref:Microsoft.Extensions.Logging?displayProperty=fullName> and inject an <xref:Microsoft.Extensions.Logging.ILoggerProvider> into the component:
 
-```csharp
+```razor
 @using Microsoft.Extensions.Logging
 @inject ILoggerProvider LoggerProvider
 ```
@@ -129,7 +129,7 @@ Inject an <xref:Microsoft.Extensions.Logging.ILoggerProvider> to add a `WebAssem
 
 Add the namespace for <xref:Microsoft.Extensions.Logging?displayProperty=fullName> and inject an <xref:Microsoft.Extensions.Logging.ILoggerProvider> into the component:
 
-```csharp
+```razor
 @using Microsoft.Extensions.Logging
 @inject ILoggerProvider LoggerProvider
 ```
@@ -209,7 +209,7 @@ Inject an <xref:Microsoft.Extensions.Logging.ILoggerProvider> to add a `WebAssem
 
 Add the namespace for <xref:Microsoft.Extensions.Logging?displayProperty=fullName> and inject an <xref:Microsoft.Extensions.Logging.ILoggerProvider> into the component:
 
-```csharp
+```razor
 @using Microsoft.Extensions.Logging
 @inject ILoggerProvider LoggerProvider
 ```

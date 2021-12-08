@@ -95,7 +95,7 @@ app.Run();
 #region snippet_whb
 var builder = WebApplication.CreateBuilder(args);
 
-// Change the HTTP server implemenation to be HTTP.sys based.
+// Change the HTTP server implementation to be HTTP.sys based.
 // Windows only.
 builder.WebHost.UseHttpSys();
 

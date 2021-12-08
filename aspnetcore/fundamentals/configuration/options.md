@@ -41,18 +41,18 @@ This topic provides information on the options pattern in ASP.NET Core. For info
 * Does ***not*** support:
   * Reading of configuration data after the app has started.
   * [Named options](#named)
-* Is registered as a [Singleton](xref:fundamentals/dependency-injection#singleton) and can be injected into any [service lifetime](xref:fundamentals/dependency-injection#service-lifetimes).
+* Is registered as a [Singleton](/dotnet/core/extensions/dependency-injection#singleton) and can be injected into any [service lifetime](/dotnet/core/extensions/dependency-injection#service-lifetimes).
 
 <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>:
 
 * Is useful in scenarios where options should be recomputed on every request. For more information, see [Use IOptionsSnapshot to read updated data](#ios).
-* Is registered as [Scoped](xref:fundamentals/dependency-injection#scoped) and therefore cannot be injected into a Singleton service.
+* Is registered as [Scoped](/dotnet/core/extensions/dependency-injection#scoped) and therefore cannot be injected into a Singleton service.
 * Supports [named options](#named)
 
 <xref:Microsoft.Extensions.Options.IOptionsMonitor%601>:
 
 * Is used to retrieve options and manage options notifications for `TOptions` instances.
-* Is registered as a [Singleton](xref:fundamentals/dependency-injection#singleton) and can be injected into any [service lifetime](xref:fundamentals/dependency-injection#service-lifetimes).
+* Is registered as a [Singleton](/dotnet/core/extensions/dependency-injection#singleton) and can be injected into any [service lifetime](/dotnet/core/extensions/dependency-injection#service-lifetimes).
 * Supports:
   * Change notifications
   * [named options](#named)
@@ -73,8 +73,8 @@ Using <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>, options are comp
 
 The difference between `IOptionsMonitor` and `IOptionsSnapshot` is that:
 
-* `IOptionsMonitor` is a [singleton service](xref:fundamentals/dependency-injection#singleton) that retrieves current option values at any time, which is especially useful in singleton dependencies.
-* `IOptionsSnapshot` is a [scoped service](xref:fundamentals/dependency-injection#scoped) and provides a snapshot of the options at the time the `IOptionsSnapshot<T>` object is constructed. Options snapshots are designed for use with transient and scoped dependencies.
+* `IOptionsMonitor` is a [Singleton service](/dotnet/core/extensions/dependency-injection#singleton) that retrieves current option values at any time, which is especially useful in singleton dependencies.
+* `IOptionsSnapshot` is a [Scoped service](/dotnet/core/extensions/dependency-injection#scoped) and provides a snapshot of the options at the time the `IOptionsSnapshot<T>` object is constructed. Options snapshots are designed for use with transient and scoped dependencies.
 
 The following code uses <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>.
 
@@ -281,18 +281,18 @@ This topic provides information on the options pattern in ASP.NET Core. For info
 * Does ***not*** support:
   * Reading of configuration data after the app has started.
   * [Named options](#named)
-* Is registered as a [Singleton](xref:fundamentals/dependency-injection#singleton) and can be injected into any [service lifetime](xref:fundamentals/dependency-injection#service-lifetimes).
+* Is registered as a [Singleton](/dotnet/core/extensions/dependency-injection#singleton) and can be injected into any [service lifetime](/dotnet/core/extensions/dependency-injection#service-lifetimes).
 
 <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>:
 
 * Is useful in scenarios where options should be recomputed on every request. For more information, see [Use IOptionsSnapshot to read updated data](#ios).
-* Is registered as [Scoped](xref:fundamentals/dependency-injection#scoped) and therefore cannot be injected into a Singleton service.
+* Is registered as [Scoped](/dotnet/core/extensions/dependency-injection#scoped) and therefore cannot be injected into a Singleton service.
 * Supports [named options](#named5)
 
 <xref:Microsoft.Extensions.Options.IOptionsMonitor%601>:
 
 * Is used to retrieve options and manage options notifications for `TOptions` instances.
-* Is registered as a [Singleton](xref:fundamentals/dependency-injection#singleton) and can be injected into any [service lifetime](xref:fundamentals/dependency-injection#service-lifetimes).
+* Is registered as a [Singleton](/dotnet/core/extensions/dependency-injection#singleton) and can be injected into any [service lifetime](/dotnet/core/extensions/dependency-injection#service-lifetimes).
 * Supports:
   * Change notifications
   * [Named options](#named5)
@@ -313,8 +313,8 @@ Using <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>, options are comp
 
 The difference between `IOptionsMonitor` and `IOptionsSnapshot` is that:
 
-* `IOptionsMonitor` is a [singleton service](xref:fundamentals/dependency-injection#singleton) that retrieves current option values at any time, which is especially useful in singleton dependencies.
-* `IOptionsSnapshot` is a [scoped service](xref:fundamentals/dependency-injection#scoped) and provides a snapshot of the options at the time the `IOptionsSnapshot<T>` object is constructed. Options snapshots are designed for use with transient and scoped dependencies.
+* `IOptionsMonitor` is a [Singleton service](/dotnet/core/extensions/dependency-injection#singleton) that retrieves current option values at any time, which is especially useful in singleton dependencies.
+* `IOptionsSnapshot` is a [Scoped service](/dotnet/core/extensions/dependency-injection#scoped) and provides a snapshot of the options at the time the `IOptionsSnapshot<T>` object is constructed. Options snapshots are designed for use with transient and scoped dependencies.
 
 The following code uses <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>.
 

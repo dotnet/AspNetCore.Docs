@@ -390,15 +390,9 @@ The following example is based on:
 * The `Starship` model  (`Starship.cs`) from the [Example form](#example-form) section.
 * The `CustomValidation` component shown in the [Validator components](#validator-components) section.
 
-Place the `Starship` model (`Starship.cs`) into the solution's **`Shared`** project so that both the client and server apps can use the model. Add or update the namespace to match the namespace of the shared app (for example, `namespace BlazorSample.Shared`). Since the model requires data annotations, add a package reference for [`System.ComponentModel.Annotations`](https://www.nuget.org/packages/System.ComponentModel.Annotations) to the **`Shared`** project's project file:
+Place the `Starship` model (`Starship.cs`) into the solution's **`Shared`** project so that both the client and server apps can use the model. Add or update the namespace to match the namespace of the shared app (for example, `namespace BlazorSample.Shared`). Since the model requires data annotations, add the [`System.ComponentModel.Annotations`](https://www.nuget.org/packages/System.ComponentModel.Annotations) package to the **`Shared`** project.
 
-```xml
-<ItemGroup>
-  <PackageReference Include="System.ComponentModel.Annotations" Version="{VERSION}" />
-</ItemGroup>
-```
-
-To determine the latest non-preview version of the package for the `{VERSION}` placeholder, see the package **Version History** at [NuGet.org for `System.ComponentModel.Annotations`](https://www.nuget.org/packages/System.ComponentModel.Annotations).
+[!INCLUDE[](~/blazor/includes/package-reference.md)]
 
 In the **`Server`** project, add a controller to process starship validation requests and return failed validation messages. Update the namespaces in the last `using` statement for the **`Shared`** project and the `namespace` for the controller class. In addition to data annotations validation (client-side and server-side), the controller validates that a value is provided for the ship's description (`Description`) if the user selects the `Defense` ship classification (`Classification`).
 
@@ -1378,15 +1372,9 @@ The following example is based on:
 * The `Starship` model  (`Starship.cs`) from the [Example form](#example-form) section.
 * The `CustomValidation` component shown in the [Validator components](#validator-components) section.
 
-Place the `Starship` model (`Starship.cs`) into the solution's **`Shared`** project so that both the client and server apps can use the model. Add or update the namespace to match the namespace of the shared app (for example, `namespace BlazorSample.Shared`). Since the model requires data annotations, add a package reference for [`System.ComponentModel.Annotations`](https://www.nuget.org/packages/System.ComponentModel.Annotations) to the **`Shared`** project's project file:
+Place the `Starship` model (`Starship.cs`) into the solution's **`Shared`** project so that both the client and server apps can use the model. Add or update the namespace to match the namespace of the shared app (for example, `namespace BlazorSample.Shared`). Since the model requires data annotations, add the [`System.ComponentModel.Annotations`](https://www.nuget.org/packages/System.ComponentModel.Annotations) package to the **`Shared`** project.
 
-```xml
-<ItemGroup>
-  <PackageReference Include="System.ComponentModel.Annotations" Version="{VERSION}" />
-</ItemGroup>
-```
-
-To determine the latest non-preview version of the package for the `{VERSION}` placeholder, see the package **Version History** at [NuGet.org for `System.ComponentModel.Annotations`](https://www.nuget.org/packages/System.ComponentModel.Annotations).
+[!INCLUDE[](~/blazor/includes/package-reference.md)]
 
 In the **`Server`** project, add a controller to process starship validation requests and return failed validation messages. Update the namespaces in the last `using` statement for the **`Shared`** project and the `namespace` for the controller class. In addition to data annotations validation (client-side and server-side), the controller validates that a value is provided for the ship's description (`Description`) if the user selects the `Defense` ship classification (`Classification`).
 
@@ -2331,15 +2319,9 @@ The following example is based on:
 * The `Starship` model  (`Starship.cs`) from the [Example form](#example-form) section.
 * The `CustomValidation` component shown in the [Validator components](#validator-components) section.
 
-Place the `Starship` model (`Starship.cs`) into the solution's **`Shared`** project so that both the client and server apps can use the model. Add or update the namespace to match the namespace of the shared app (for example, `namespace BlazorSample.Shared`). Since the model requires data annotations, add a package reference for [`System.ComponentModel.Annotations`](https://www.nuget.org/packages/System.ComponentModel.Annotations) to the **`Shared`** project's project file:
+Place the `Starship` model (`Starship.cs`) into the solution's **`Shared`** project so that both the client and server apps can use the model. Add or update the namespace to match the namespace of the shared app (for example, `namespace BlazorSample.Shared`). Since the model requires data annotations, add the [`System.ComponentModel.Annotations`](https://www.nuget.org/packages/System.ComponentModel.Annotations) package to the **`Shared`** project.
 
-```xml
-<ItemGroup>
-  <PackageReference Include="System.ComponentModel.Annotations" Version="{VERSION}" />
-</ItemGroup>
-```
-
-To determine the latest non-preview version of the package for the `{VERSION}` placeholder, see the package **Version History** at [NuGet.org for `System.ComponentModel.Annotations`](https://www.nuget.org/packages/System.ComponentModel.Annotations).
+[!INCLUDE[](~/blazor/includes/package-reference.md)]
 
 In the **`Server`** project, add a controller to process starship validation requests and return failed validation messages. Update the namespaces in the last `using` statement for the **`Shared`** project and the `namespace` for the controller class. In addition to data annotations validation (client-side and server-side), the controller validates that a value is provided for the ship's description (`Description`) if the user selects the `Defense` ship classification (`Classification`).
 

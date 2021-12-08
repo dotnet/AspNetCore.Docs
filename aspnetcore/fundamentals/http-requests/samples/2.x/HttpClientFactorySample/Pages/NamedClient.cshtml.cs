@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace HttpClientFactorySample.Pages
 {
-    #region snippet1
+    // <snippet1>
     public class NamedClientModel : PageModel
     {
         private readonly IHttpClientFactory _clientFactory;
@@ -45,5 +45,5 @@ namespace HttpClientFactorySample.Pages
             }
         }
     }
-    #endregion
+    // </snippet1>
 }

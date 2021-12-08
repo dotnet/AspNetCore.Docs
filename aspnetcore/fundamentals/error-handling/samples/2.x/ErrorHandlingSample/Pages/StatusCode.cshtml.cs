@@ -34,7 +34,7 @@ namespace ErrorHandlingSample.Pages
             RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
             ErrorStatusCode = code;
 
-            #region snippet_StatusCodeReExecute
+            // <snippet_StatusCodeReExecute>
             var statusCodeReExecuteFeature = HttpContext.Features.Get<IStatusCodeReExecuteFeature>();
             if (statusCodeReExecuteFeature != null)
             {
@@ -43,7 +43,7 @@ namespace ErrorHandlingSample.Pages
                     + statusCodeReExecuteFeature.OriginalPath
                     + statusCodeReExecuteFeature.OriginalQueryString;
             }
-            #endregion
+            // </snippet_StatusCodeReExecute>
         }
     }
 }

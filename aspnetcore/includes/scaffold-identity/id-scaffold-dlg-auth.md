@@ -1,18 +1,18 @@
 ---
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 ---
-::: moniker range=">= aspnetcore-3.0"
+::: moniker range=">= aspnetcore-6.0"
 
 Run the Identity scaffolder:
 
 # [Visual Studio](#tab/visual-studio)
 
 * From **Solution Explorer**, right-click on the project > **Add** > **New Scaffolded Item**.
-* From the left pane of the **Add Scaffold** dialog, select **Identity** > **Add**.
+* From the left pane of the **Add New Scaffolded Item** dialog, select **Identity**. Select **Identity** in the center pane. Select the **Add** button.
 * In the **Add Identity** dialog, select the options you want.
-  * Select your existing layout page so your layout file isn't overwritten with incorrect markup. When an existing *\_Layout.cshtml* file is selected, it is **not** overwritten. For example:
-    * `~/Pages/Shared/_Layout.cshtml` for Razor Pages or Blazor Server projects with existing Razor Pages infrastructure
-    * `~/Views/Shared/_Layout.cshtml` for MVC projects or Blazor Server projects with existing MVC infrastructure
+  * Select your existing layout page so your layout file isn't overwritten with incorrect markup. When an existing `_Layout.cshtml` file is selected, it is **not** overwritten. For example:
+    * `~/Pages/Shared/_Layout.cshtml` for Razor Pages or Blazor Server projects with existing Razor Pages infrastructure.
+    * `~/Views/Shared/_Layout.cshtml` for MVC projects or Blazor Server projects with existing MVC infrastructure.
 * To use your existing data context, select at least one file to override. You must select at least one file to add your data context.
   * Select your data context class.
   * Select **Add**.
@@ -67,7 +67,7 @@ If you run the Identity scaffolder without specifying the `--files` flag or the 
 
 ::: moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+::: moniker range="< aspnetcore-6.0"
 
 Run the Identity scaffolder:
 
@@ -76,9 +76,9 @@ Run the Identity scaffolder:
 * From **Solution Explorer**, right-click on the project > **Add** > **New Scaffolded Item**.
 * From the left pane of the **Add Scaffold** dialog, select **Identity** > **Add**.
 * In the **Add Identity** dialog, select the options you want.
-  * Select your existing layout page, or your layout file will be overwritten with incorrect markup. When an existing *\_Layout.cshtml* file is selected, it is **not** overwritten. For example:
-    * `~/Pages/Shared/_Layout.cshtml` for Razor Pages
-    * `~/Views/Shared/_Layout.cshtml` for MVC projects
+  * Select your existing layout page so your layout file isn't overwritten with incorrect markup. When an existing *\_Layout.cshtml* file is selected, it is **not** overwritten. For example:
+    * `~/Pages/Shared/_Layout.cshtml` for Razor Pages or Blazor Server projects with existing Razor Pages infrastructure
+    * `~/Views/Shared/_Layout.cshtml` for MVC projects or Blazor Server projects with existing MVC infrastructure
 * To use your existing data context, select at least one file to override. You must select at least one file to add your data context.
   * Select your data context class.
   * Select **Add**.
@@ -96,11 +96,15 @@ If you have not previously installed the ASP.NET Core scaffolder, install it now
 dotnet tool install -g dotnet-aspnet-codegenerator
 ```
 
-Add a package reference to [Microsoft.VisualStudio.Web.CodeGeneration.Design](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design/) to the project file (*.csproj*). Run the following commands in the project directory:
+Add required NuGet package references to the project file (*.csproj*). Run the following commands in the project directory:
 
 ```dotnetcli
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
-dotnet restore
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore
+dotnet add package Microsoft.AspNetCore.Identity.UI
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.EntityFrameworkCore.Tools
 ```
 
 Run the following command to list the Identity scaffolder options:
@@ -108,6 +112,8 @@ Run the following command to list the Identity scaffolder options:
 ```dotnetcli
 dotnet aspnet-codegenerator identity -h
 ```
+
+[!INCLUDE[](~/includes/scaffoldTFM.md)]
 
 In the project folder, run the Identity scaffolder with the options you want. For example, to setup identity with the default UI and the minimum number of files, run the following command. Use the correct fully qualified name for your DB context:
 

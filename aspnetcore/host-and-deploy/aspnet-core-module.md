@@ -23,6 +23,9 @@ The ASP.NET Core Module is a native IIS module that plugs into the IIS pipeline,
 
 There are trade-offs between each of the hosting models. By default, the in-process hosting model is used due to better performance and diagnostics.
 
+For more information and configuration guidance, see the following topics:
+* <xref:fundamentals/servers/index>
+
 ## Install ASP.NET Core Module
 
 The ASP.NET Core Module is installed with the .NET Core Runtime from the [.NET Core Hosting Bundle](xref:host-and-deploy/iis/hosting-bundle). The ASP.NET Core Module is forward and backward compatible with LTS releases of .NET.

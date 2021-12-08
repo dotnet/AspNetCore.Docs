@@ -8,7 +8,7 @@ namespace SampleApp
     // Use the `--scenario db` switch to run this version of the sample.
     //
     // Register Health Check Middleware at the URL: /health
-    // 
+    //
     // By default, health checks return a 200-Ok with 'Healthy' when the database is responsive.
     // - A BeatPulse SQL Server health check is used in the example for a SQL database. For more information on BeatPulse, see https://github.com/Xabaril/BeatPulse.
     // - The default response writer writes the HealthStatus as text/plain content.
@@ -26,10 +26,10 @@ namespace SampleApp
 
         public void ConfigureServices(IServiceCollection services)
         {
-            #region snippet_ConfigureServices
+            // <snippet_ConfigureServices>
             services.AddHealthChecks()
                 .AddSqlServer(Configuration["ConnectionStrings:DefaultConnection"]);
-            #endregion
+            // </snippet_ConfigureServices>
         }
 
         public void Configure(IApplicationBuilder app)

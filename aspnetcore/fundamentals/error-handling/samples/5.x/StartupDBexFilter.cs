@@ -18,7 +18,7 @@ namespace WebRP_AppAuth
 
         public IConfiguration Configuration { get; }
 
-        #region snippet
+        // <snippet>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -29,7 +29,7 @@ namespace WebRP_AppAuth
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddRazorPages();
         }
-        #endregion
+        // </snippet>
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

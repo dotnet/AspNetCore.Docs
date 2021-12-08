@@ -1,6 +1,6 @@
 namespace PoliciesAuthApp2.Pages
 {
-    #region snippet_AlcoholPurchaseModelClass
+    // <snippet_AlcoholPurchaseModelClass>
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -8,5 +8,5 @@ namespace PoliciesAuthApp2.Pages
     public class AlcoholPurchaseModel : PageModel
     {
     }
-    #endregion
+    // </snippet_AlcoholPurchaseModelClass>
 }

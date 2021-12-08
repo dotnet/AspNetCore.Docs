@@ -105,10 +105,7 @@ For more information:
 
 ## Scaffold Identity
 
-Scaffold Identity into a Blazor Server project:
-
-* [Without existing authorization](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project-without-existing-authorization).
-* [With authorization](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project-with-authorization).
+For more information on scaffolding Identity into a Blazor Server project, see <xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project>.
 
 ## Additional claims and tokens from external providers
 

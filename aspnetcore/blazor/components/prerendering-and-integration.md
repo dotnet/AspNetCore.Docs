@@ -40,7 +40,10 @@ To set up prerendering for a hosted Blazor WebAssembly app:
    - builder.RootComponents.Add<HeadOutlet>("head::after");
    ```
 
-1. Add `_Host.cshtml` and `_Layout.cshtml` files to the **`Server`** project's `Pages` folder. You can obtain the files from a project created from the Blazor Server template using Visual Studio or using the .NET CLI with the `dotnet new blazorserver -o BlazorServer` command in a command shell (the `-o BlazorServer` option creates a folder for the project). After placing the files into the **`Server`** project's `Pages` folder:
+1. Add `_Host.cshtml` and `_Layout.cshtml` files to the **`Server`** project's `Pages` folder. You can obtain the files from a project created from the Blazor Server template using Visual Studio or using the .NET CLI with the `dotnet new blazorserver -o BlazorServer` command in a command shell (the `-o BlazorServer` option creates a folder for the project). After placing the files into the **`Server`** project's `Pages` folder, make the following changes to the files.
+
+   > [!IMPORTANT]
+   > The use of a layout page (`_Layout.cshtml`) with a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is required to [control head (`<head>`) content](xref:blazor/components/control-head-content), such as the page's title (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component). For more information, see <xref:blazor/components/control-head-content#control-head-content-during-prerendering>.
 
    Make the following changes to the `_Layout.cshtml` file:
 
@@ -129,6 +132,9 @@ To set up prerendering for a hosted Blazor WebAssembly app:
      <component type="typeof(App)" render-mode="WebAssemblyPrerendered" />
      ```
 
+     > [!IMPORTANT]
+     > Prerendering isn't supported for authentication endpoints (`/authentication/` path segment). For more information, see <xref:blazor/security/webassembly/additional-scenarios#support-prerendering-with-authentication>.
+
 1. In endpoint mapping of the **`Server`** project in `Program.cs`, change the fallback from the `index.html` file to the `_Host.cshtml` page:
 
    Delete:
@@ -162,6 +168,9 @@ MVC:
 * `Views/Shared/_Layout.cshtml`
 * `Views/_ViewImports.cshtml`
 * `Views/_ViewStart.cshtml`
+
+> [!IMPORTANT]
+> The use of a layout page (`_Layout.cshtml`) with a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is required to [control head (`<head>`) content](xref:blazor/components/control-head-content), such as the page's title (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component). For more information, see <xref:blazor/components/control-head-content#control-head-content-during-prerendering>.
 
 The preceding files can be obtained by generating an app from the ASP.NET Core project templates using:
 
@@ -200,6 +209,7 @@ Update the imported layout file (`_Layout.cshtml`) to include the **`Client`** p
     <link rel="stylesheet" href="~/css/site.css" />
 +   <link href="css/app.css" rel="stylesheet" />
 +   <link href="BlazorHosted.Client.styles.css" rel="stylesheet" />
++   <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
 </head>
 ```
 
@@ -312,6 +322,18 @@ For more information on the Component Tag Helper, including passing parameters a
 
 Additional work might be required depending on the static resources that components use and how layout pages are organized in an app. Typically, scripts are added to a page or view's `Scripts` render section and stylesheets are added to the layout's `<head>` element content.
 
+### Ensure that top-level prerendered components aren't trimmed out on publish
+
+If a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) directly references a component from a library that's subject to trimming on publish, the component might be trimmed out during publish because there are no references to it from client-side app code. As a result, the component isn't prerendered, leaving a blank spot in the output. If this occurs, instruct the trimmer to preserve the library component by adding a [`DynamicDependency` attribute](xref:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute) to any class in the client-side app. To preserve a component called `SomeLibraryComponentToBePreserved`, add the following to any component:
+
+```razor
+@using System.Diagnostics.CodeAnalysis
+@attribute [DynamicDependency(DynamicallyAccessedMemberTypes.All, 
+    typeof(SomeLibraryComponentToBePreserved))]
+```
+
+The preceding approach usually isn't required because in most cases the app prerenders its components (which are not trimmed), which in turn references components from libraries (causing them also not to be trimmed). Only use `DynamicDependency` explicitly for prerendering a library component directly when the library is subject to trimming.
+
 ## Render components in a page or view with a CSS selector
 
 After [configuring the solution](#solution-configuration), including the [additional configuration](#configuration-for-embedding-razor-components-into-pages-and-views), add root components to the **`Client`** project of a hosted Blazor WebAssembly solution in the `Program.cs` file. In the following example, the `Counter` component is declared as a root component with a CSS selector that selects the element with the `id` that matches `counter-component`. In the following example, the **`Client`** project's namespace is `BlazorHosted.Client`.
@@ -375,17 +397,23 @@ After [configuring the project](#configuration), use the guidance in the followi
 
 ## Configuration
 
-An existing Razor Pages or MVC app can integrate Razor components into pages and views:
+Use the following guidance to integrate Razor components into pages and views of an existing Razor Pages or MVC app.
+
+> [!IMPORTANT]
+> The use of a layout page (`_Layout.cshtml`) with a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is required to [control head (`<head>`) content](xref:blazor/components/control-head-content), such as the page's title (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component). For more information, see <xref:blazor/components/control-head-content#control-head-content-during-prerendering>.
 
 1. In the project's layout file:
 
-   * Add the following `<base>` tag to the `<head>` element in `Pages/Shared/_Layout.cshtml` (Razor Pages) or `Views/Shared/_Layout.cshtml` (MVC):
+   * Add the following `<base>` tag and <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component Tag Helper to the `<head>` element in `Pages/Shared/_Layout.cshtml` (Razor Pages) or `Views/Shared/_Layout.cshtml` (MVC):
 
      ```html
      <base href="~/" />
+     <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
      ```
 
      The `href` value (the *app base path*) in the preceding example assumes that the app resides at the root URL path (`/`). If the app is a sub-application, follow the guidance in the *App base path* section of the <xref:blazor/host-and-deploy/index#app-base-path> article.
+  
+     The <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is used to render head (`<head>`) content for page titles (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component) set by Razor components. For more information, see <xref:blazor/components/control-head-content>.
 
    * Add a `<script>` tag for the `blazor.server.js` script immediately before the `Scripts` render section (`@await RenderSectionAsync(...)`) in the app's layout.
 
@@ -524,7 +552,10 @@ To support routable Razor components in Razor Pages apps:
    ```
 
    In this scenario, components use the shared `_Layout.cshtml` file for their layout.
-
+  
+   > [!IMPORTANT]
+   > The use of a layout page (`_Layout.cshtml`) with a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is required to [control head (`<head>`) content](xref:blazor/components/control-head-content), such as the page's title (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component). For more information, see <xref:blazor/components/control-head-content#control-head-content-during-prerendering>.
+  
    <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configures whether the `App` component:
 
    * Is prerendered into the page.
@@ -606,6 +637,9 @@ To support routable Razor components in MVC apps:
    ```
 
    Components use the shared `_Layout.cshtml` file for their layout.
+     
+   > [!IMPORTANT]
+   > The use of a layout page (`_Layout.cshtml`) with a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is required to [control head (`<head>`) content](xref:blazor/components/control-head-content), such as the page's title (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component). For more information, see <xref:blazor/components/control-head-content#control-head-content-during-prerendering>.
 
    <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configures whether the `App` component:
 
@@ -689,6 +723,9 @@ The following Razor page renders a `Counter` component:
 ```
 
 For more information, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
+     
+> [!IMPORTANT]
+> The use of a layout page (`_Layout.cshtml`) with a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is required to [control head (`<head>`) content](xref:blazor/components/control-head-content), such as the page's title (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component). For more information, see <xref:blazor/components/control-head-content#control-head-content-during-prerendering>.
 
 ### Render noninteractive components
 
@@ -712,6 +749,9 @@ In the following Razor page, the `Counter` component is statically rendered with
 ```
 
 For more information, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
+     
+> [!IMPORTANT]
+> The use of a layout page (`_Layout.cshtml`) with a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is required to [control head (`<head>`) content](xref:blazor/components/control-head-content), such as the page's title (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component). For more information, see <xref:blazor/components/control-head-content#control-head-content-during-prerendering>.
 
 ## Component namespaces
 
@@ -746,7 +786,7 @@ To solve these problems, Blazor supports persisting state in a prerendered page 
 </body>
 ```
 
-In the app, decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. The [`PersistentComponentState.RegisterOnPersisting`](xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A) event is fired just before the state is persisted into the prerendered page, which allows a component to retrieve the state when initializing the component.
+Decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. [`PersistentComponentState.RegisterOnPersisting`](xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A) registers a callback to persist the component state before the app is paused. The state is retrieved when the application resumes.
 
 The following example shows how the weather forecast in the `FetchData` component from a hosted Blazor WebAssembly app based on the Blazor project template is persisted during prerendering and then retrieved to initialize the component. The Persist Component State Tag Helper persists the component state after all component invocations.
 
@@ -794,15 +834,18 @@ else
 
 @code {
     private WeatherForecast[] forecasts = Array.Empty<WeatherForecast>();
-    private PersistingComponentStateSubscription _persistingSubscription;
+    private PersistingComponentStateSubscription persistingSubscription;
 
     protected override async Task OnInitializedAsync()
     {
-        _persistingSubscription = ApplicationState.RegisterOnPersisting(PersistForecasts);
+        persistingSubscription = 
+            ApplicationState.RegisterOnPersisting(PersistForecasts);
 
-        if (!ApplicationState.TryTakeFromJson<WeatherForecast[]>("fetchdata", out var restored))
+        if (!ApplicationState.TryTakeFromJson<WeatherForecast[]>(
+            "fetchdata", out var restored))
         {
-            forecasts = await WeatherForecastService.GetForecastAsync(DateTime.Now);
+            forecasts = 
+                await WeatherForecastService.GetForecastAsync(DateTime.Now);
         }
         else
         {
@@ -819,7 +862,7 @@ else
 
     void IDisposable.Dispose()
     {
-        _persistingSubscription.Dispose();
+        persistingSubscription.Dispose();
     }
 }
 ```

@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace ErrorHandlingSample.Pages.MyFolder
 {
-    #region snippet_ExceptionHandlerPathFeature
+    // <snippet_ExceptionHandlerPathFeature>
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public class ErrorModel : PageModel
     {
@@ -35,5 +35,5 @@ namespace ErrorHandlingSample.Pages.MyFolder
             }
         }
     }
-    #endregion
+    // </snippet_ExceptionHandlerPathFeature>
 }

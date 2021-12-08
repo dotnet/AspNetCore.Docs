@@ -22,10 +22,7 @@ Client-side load balancing requires:
 > [!IMPORTANT]
 > This feature is in preview. Integration with other gRPC features is not complete and testing is required.
 > 
-> Client-side load balancing is currently:
-> 
-> * Only available in pre-release versions of `Grpc.Net.Client` on NuGet.org.
-> * Not supported when used with [gRPC client factory](xref:grpc/clientfactory).
+> Client-side load balancing is currently only available in prerelease versions of `Grpc.Net.Client` on NuGet.org.
 
 ## Configure gRPC client-side load balancing
 
@@ -77,7 +74,20 @@ The preceding code:
   * Pick first load balancer attempts to connect to one of the resolved addresses.
   * The call is sent to the first address the channel successfully connects to.
 
-Performance is important when load balancing. The latency of resolving addresses is eliminated from gRPC calls by caching the addresses. A resolver will be invoked when making the first gRPC call, and subsequent calls use the cache. Addresses are automatically refreshed if a connection is interrupted. Refreshing is important in scenarios where addresses change at runtime. For example, in Kubernetes a [restarted pod](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/) triggers the DNS resolver to refresh and get the pod's new address.
+##### DNS address caching
+
+Performance is important when load balancing. The latency of resolving addresses is eliminated from gRPC calls by caching the addresses. A resolver will be invoked when making the first gRPC call, and subsequent calls use the cache.
+
+Addresses are automatically refreshed if a connection is interrupted. Refreshing is important in scenarios where addresses change at runtime. For example, in Kubernetes a [restarted pod](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/) triggers the DNS resolver to refresh and get the pod's new address.
+
+By default, a DNS resolver is refreshed if a connection is interrupted. The DNS resolver can also optionally refresh itself on a periodic interval. This can be useful for quickly detecting new pod instances. 
+
+```csharp
+services.AddSingleton<ResolverFactory>(
+    () => new DnsResolverFactory(refreshInterval: TimeSpan.FromSeconds(30)));
+```
+
+The preceding code creates a `DnsResolverFactory` with a refresh interval and registers it with dependency injection. For more information on using a custom-configured resolver, see [Configure custom resolvers and load balancers](#configure-custom-resolvers-and-load-balancers).
 
 #### StaticResolverFactory
 

@@ -20,7 +20,7 @@ namespace HttpClientFactorySample
         }
 
         public IConfiguration Configuration { get; }
-        #region snippet1
+        // <snippet1>
         public void ConfigureServices(IServiceCollection services)
         {           
             services.AddHttpClient<UnreliableEndpointCallerService>()
@@ -28,7 +28,7 @@ namespace HttpClientFactorySample
                     p.WaitAndRetryAsync(3, _ => TimeSpan.FromMilliseconds(600)));
 
             // Remaining code deleted for brevity.
-            #endregion
+            // </snippet1>
 
             services.AddControllers();
             services.AddRazorPages();

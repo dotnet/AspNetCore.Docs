@@ -1,10 +1,10 @@
 ﻿namespace PoliciesAuthApp1.Services.Requirements
 {
-    #region snippet_BuildingEntryRequirementClass
+    // <snippet_BuildingEntryRequirementClass>
     using Microsoft.AspNetCore.Authorization;
 
     public class BuildingEntryRequirement : IAuthorizationRequirement
     {
     }
-    #endregion
+    // </snippet_BuildingEntryRequirementClass>
 }

@@ -9,14 +9,14 @@ namespace TodoApi
 {
     public class Startup4
     {
-        #region snippet_ConfigureServices
+        // <snippet_ConfigureServices>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<TodoContext>(opt =>
                 opt.UseInMemoryDatabase("TodoList"));
             services.AddMvc();
 
-            #region snippet_AddSwaggerGen
+            // <snippet_AddSwaggerGen>
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
             {
@@ -39,11 +39,11 @@ namespace TodoApi
                     }
                 });
             });
-            #endregion
+            // </snippet_AddSwaggerGen>
         }
-        #endregion
+        // </snippet_ConfigureServices>
 
-        #region snippet_Configure
+        // <snippet_Configure>
         public void Configure(IApplicationBuilder app)
         {
             app.UseStaticFiles();
@@ -60,6 +60,6 @@ namespace TodoApi
 
             app.UseMvc();
         }
-        #endregion
+        // </snippet_Configure>
     }
 }

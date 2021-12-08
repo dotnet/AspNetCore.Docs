@@ -28,7 +28,7 @@ Blazor WebAssembly apps run on the client. Authorization is *only* used to deter
 > <xref:Microsoft.AspNetCore.Identity.SignInManager%601> and <xref:Microsoft.AspNetCore.Identity.UserManager%601> aren't supported in Razor components. Blazor Server apps use ASP.NET Core Identity. For more information, see the following guidance:
 > 
 > * <xref:blazor/security/server/index>
-> * [Scaffold ASP.NET Core Identity into a Blazor Server app without existing authorization](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project-without-existing-authorization)
+> * [Scaffold ASP.NET Core Identity into a Blazor Server app](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project)
 
 ## Authentication
 
@@ -283,7 +283,7 @@ If authorization conditions aren't specified, <xref:Microsoft.AspNetCore.Compone
 * Authenticated (signed-in) users as authorized.
 * Unauthenticated (signed-out) users as unauthorized.
 
-The <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component can be used in the `NavMenu` component (`Shared/NavMenu.razor`) to display a list item (`<li>...</li>`) for a [`NavLink` component](xref:blazor/fundamentals/routing#navlink-and-navmenu-components) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), but note that this approach only removes the list item from the rendered output. It doesn't prevent the user from navigating to the component.
+The <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component can be used in the `NavMenu` component (`Shared/NavMenu.razor`) to display a [`NavLink` component](xref:blazor/fundamentals/routing#navlink-and-navmenu-components) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), but note that this approach only removes the list item from the rendered output. It doesn't prevent the user from navigating to the component.
 
 Apps created from a [Blazor project template](xref:blazor/project-structure) that include authentication use a `LoginDisplay` component that depends on an `AuthorizeView` component. The `AuthorizeView` component selectively displays content to users for Identity-related work. The following example is from the [Blazor WebAssembly project template](xref:blazor/project-structure).
 
@@ -420,6 +420,80 @@ If neither <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Roles> no
 * Authenticated (signed-in) users as authorized.
 * Unauthenticated (signed-out) users as unauthorized.
 
+## Resource authorization
+
+To authorize users for resources, pass the request's route data to the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView.Resource> parameter of <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView>.
+
+In the <xref:Microsoft.AspNetCore.Components.Routing.Router.Found?displayProperty=nameWithType> content for a requested route in the `App` component (`App.razor`):
+
+```razor
+<AuthorizeRouteView Resource="@routeData" RouteData="@routeData" 
+    DefaultLayout="@typeof(MainLayout)" />
+```
+
+For more information on how authorization state data is passed and used in procedural logic, see the [Expose the authentication state as a cascading parameter](#expose-the-authentication-state-as-a-cascading-parameter) section.
+
+When the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> receives the route data for the resource, authorization policies have access to <xref:Microsoft.AspNetCore.Components.RouteData.PageType?displayProperty=nameWithType> and <xref:Microsoft.AspNetCore.Components.RouteData.RouteValues?displayProperty=nameWithType> that permit custom logic to make authorization decisions.
+
+In the following example, an `EditUser` policy is created in <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions> for the app's authorization service configuration (<xref:Microsoft.Extensions.DependencyInjection.AuthorizationServiceCollectionExtensions.AddAuthorizationCore%2A>) with the following logic:
+
+* Determine if a route value exists with a key of `id`. If the key exists, the route value is stored in `value`.
+* In a variable named `id`, store `value` as a string or set an empty string value (`string.Empty`).
+* If `id` isn't an empty string, assert that the policy is satisfied (return `true`) if the string's value starts with `EMP`. Otherwise, assert that the policy fails (return `false`).
+
+In either `Program.cs` or `Startup.cs` (depending on the hosting model and framework version):
+
+* Add namespaces for <xref:Microsoft.AspNetCore.Components?displayProperty=fullName> and <xref:System.Linq?displayProperty=fullName>:
+
+  ```csharp
+  using Microsoft.AspNetCore.Components;
+  using System.Linq;
+  ```
+
+* Add the policy:
+
+  ```csharp
+  options.AddPolicy("EditUser", policy =>
+      policy.RequireAssertion(context =>
+      {
+          if (context.Resource is RouteData rd)
+          {
+              var routeValue = rd.RouteValues.TryGetValue("id", out var value);
+              var id = Convert.ToString(value, 
+                  System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty;
+
+              if (!string.IsNullOrEmpty(id))
+              {
+                  return id.StartsWith("EMP", StringComparison.InvariantCulture);
+              }
+          }
+
+          return false;
+      })
+  );
+  ```
+
+The preceding example is an oversimplified authorization policy, merely used to demonstrate the concept with a working example. For more information on creating and configuring authorization policies, see <xref:security/authorization/policies>.
+
+In the following `EditUser` component, the resource at `/users/{id}/edit` has a route parameter for the user's identifier (`{id}`). The component uses the preceding `EditUser` authorization policy to determine if the route value for `id` starts with `EMP`. If `id` starts with `EMP`, the policy succeeds and access to the component is authorized. If `id` starts with a value other than `EMP` or if `id` is an empty string, the policy fails, and the component doesn't load.
+
+`Pages/EditUser.razor`:
+
+```razor
+@page "/users/{id}/edit"
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize(Policy = "EditUser")]
+
+<h1>Edit User</h1>
+
+<p>The 'EditUser' policy is satisfied! <code>Id</code> starts with 'EMP'.</p>
+
+@code {
+    [Parameter]
+    public string Id { get; set; }
+}
+```
+
 ## Customize unauthorized content with the Router component
 
 The <xref:Microsoft.AspNetCore.Components.Routing.Router> component, in conjunction with the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> component, allows the app to specify custom content if:
@@ -521,7 +595,7 @@ If the app is required to check authorization rules as part of procedural logic,
 
 Common errors:
 
-* **Authorization requires a cascading parameter of type `Task\<AuthenticationState>`. Consider using `CascadingAuthenticationState` to supply this.**
+* **Authorization requires a cascading parameter of type `Task<AuthenticationState>`. Consider using `CascadingAuthenticationState` to supply this.**
 
 * **`null` value is received for `authenticationStateTask`**
 
@@ -826,7 +900,7 @@ If authorization conditions aren't specified, <xref:Microsoft.AspNetCore.Compone
 * Authenticated (signed-in) users as authorized.
 * Unauthenticated (signed-out) users as unauthorized.
 
-The <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component can be used in the `NavMenu` component (`Shared/NavMenu.razor`) to display a list item (`<li>...</li>`) for a [`NavLink` component](xref:blazor/fundamentals/routing#navlink-and-navmenu-components) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), but note that this approach only removes the list item from the rendered output. It doesn't prevent the user from navigating to the component.
+The <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component can be used in the `NavMenu` component (`Shared/NavMenu.razor`) to display a [`NavLink` component](xref:blazor/fundamentals/routing#navlink-and-navmenu-components) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), but note that this approach only removes the list item from the rendered output. It doesn't prevent the user from navigating to the component.
 
 Apps created from a [Blazor project template](xref:blazor/project-structure) that include authentication use a `LoginDisplay` component that depends on an `AuthorizeView` component. The `AuthorizeView` component selectively displays content to users for Identity-related work. The following example is from the [Blazor WebAssembly project template](xref:blazor/project-structure).
 
@@ -963,6 +1037,80 @@ If neither <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Roles> no
 * Authenticated (signed-in) users as authorized.
 * Unauthenticated (signed-out) users as unauthorized.
 
+## Resource authorization
+
+To authorize users for resources, pass the request's route data to the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView.Resource> parameter of <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView>.
+
+In the <xref:Microsoft.AspNetCore.Components.Routing.Router.Found?displayProperty=nameWithType> content for a requested route in the `App` component (`App.razor`):
+
+```razor
+<AuthorizeRouteView Resource="@routeData" RouteData="@routeData" 
+    DefaultLayout="@typeof(MainLayout)" />
+```
+
+For more information on how authorization state data is passed and used in procedural logic, see the [Expose the authentication state as a cascading parameter](#expose-the-authentication-state-as-a-cascading-parameter) section.
+
+When the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> receives the route data for the resource, authorization policies have access to <xref:Microsoft.AspNetCore.Components.RouteData.PageType?displayProperty=nameWithType> and <xref:Microsoft.AspNetCore.Components.RouteData.RouteValues?displayProperty=nameWithType> that permit custom logic to make authorization decisions.
+
+In the following example, an `EditUser` policy is created in <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions> for the app's authorization service configuration (<xref:Microsoft.Extensions.DependencyInjection.AuthorizationServiceCollectionExtensions.AddAuthorizationCore%2A>) with the following logic:
+
+* Determine if a route value exists with a key of `id`. If the key exists, the route value is stored in `value`.
+* In a variable named `id`, store `value` as a string or set an empty string value (`string.Empty`).
+* If `id` isn't an empty string, assert that the policy is satisfied (return `true`) if the string's value starts with `EMP`. Otherwise, assert that the policy fails (return `false`).
+
+In either `Program.cs` or `Startup.cs` (depending on the hosting model and framework version):
+
+* Add namespaces for <xref:Microsoft.AspNetCore.Components?displayProperty=fullName> and <xref:System.Linq?displayProperty=fullName>:
+
+  ```csharp
+  using Microsoft.AspNetCore.Components;
+  using System.Linq;
+  ```
+
+* Add the policy:
+
+  ```csharp
+  options.AddPolicy("EditUser", policy =>
+      policy.RequireAssertion(context =>
+      {
+          if (context.Resource is RouteData rd)
+          {
+              var routeValue = rd.RouteValues.TryGetValue("id", out var value);
+              var id = Convert.ToString(value, 
+                  System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty;
+
+              if (!string.IsNullOrEmpty(id))
+              {
+                  return id.StartsWith("EMP", StringComparison.InvariantCulture);
+              }
+          }
+
+          return false;
+      })
+  );
+  ```
+
+The preceding example is an oversimplified authorization policy, merely used to demonstrate the concept with a working example. For more information on creating and configuring authorization policies, see <xref:security/authorization/policies>.
+
+In the following `EditUser` component, the resource at `/users/{id}/edit` has a route parameter for the user's identifier (`{id}`). The component uses the preceding `EditUser` authorization policy to determine if the route value for `id` starts with `EMP`. If `id` starts with `EMP`, the policy succeeds and access to the component is authorized. If `id` starts with a value other than `EMP` or if `id` is an empty string, the policy fails, and the component doesn't load.
+
+`Pages/EditUser.razor`:
+
+```razor
+@page "/users/{id}/edit"
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize(Policy = "EditUser")]
+
+<h1>Edit User</h1>
+
+<p>The 'EditUser' policy is satisfied! <code>Id</code> starts with 'EMP'.</p>
+
+@code {
+    [Parameter]
+    public string Id { get; set; }
+}
+```
+
 ## Customize unauthorized content with the Router component
 
 The <xref:Microsoft.AspNetCore.Components.Routing.Router> component, in conjunction with the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> component, allows the app to specify custom content if:
@@ -1066,7 +1214,7 @@ If the app is required to check authorization rules as part of procedural logic,
 
 Common errors:
 
-* **Authorization requires a cascading parameter of type `Task\<AuthenticationState>`. Consider using `CascadingAuthenticationState` to supply this.**
+* **Authorization requires a cascading parameter of type `Task<AuthenticationState>`. Consider using `CascadingAuthenticationState` to supply this.**
 
 * **`null` value is received for `authenticationStateTask`**
 
@@ -1371,7 +1519,7 @@ If authorization conditions aren't specified, <xref:Microsoft.AspNetCore.Compone
 * Authenticated (signed-in) users as authorized.
 * Unauthenticated (signed-out) users as unauthorized.
 
-The <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component can be used in the `NavMenu` component (`Shared/NavMenu.razor`) to display a list item (`<li>...</li>`) for a [`NavLink` component](xref:blazor/fundamentals/routing#navlink-and-navmenu-components) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), but note that this approach only removes the list item from the rendered output. It doesn't prevent the user from navigating to the component.
+The <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component can be used in the `NavMenu` component (`Shared/NavMenu.razor`) to display a [`NavLink` component](xref:blazor/fundamentals/routing#navlink-and-navmenu-components) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), but note that this approach only removes the list item from the rendered output. It doesn't prevent the user from navigating to the component.
 
 Apps created from a [Blazor project template](xref:blazor/project-structure) that include authentication use a `LoginDisplay` component that depends on an `AuthorizeView` component. The `AuthorizeView` component selectively displays content to users for Identity-related work. The following example is from the [Blazor WebAssembly project template](xref:blazor/project-structure).
 
@@ -1609,7 +1757,7 @@ If the app is required to check authorization rules as part of procedural logic,
 
 Common errors:
 
-* **Authorization requires a cascading parameter of type `Task\<AuthenticationState>`. Consider using `CascadingAuthenticationState` to supply this.**
+* **Authorization requires a cascading parameter of type `Task<AuthenticationState>`. Consider using `CascadingAuthenticationState` to supply this.**
 
 * **`null` value is received for `authenticationStateTask`**
 

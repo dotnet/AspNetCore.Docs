@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace HttpClientFactorySample.GitHub
 {
-    #region snippet1
+    // <snippet1>
     public class RepoService
     {
         // _httpClient isn't exposed publicly
@@ -27,5 +27,5 @@ namespace HttpClientFactorySample.GitHub
                 <IEnumerable<string>>(responseStream);
         }
     }
-    #endregion
+    // </snippet1>
 }

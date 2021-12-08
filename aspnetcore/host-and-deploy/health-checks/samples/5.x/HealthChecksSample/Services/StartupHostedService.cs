@@ -6,14 +6,14 @@ using Microsoft.Extensions.Logging;
 
 namespace SampleApp.Services
 {
-    #region snippet1
+    // <snippet1>
     public class StartupHostedService : IHostedService, IDisposable
     {
         private readonly int _delaySeconds = 15;
         private readonly ILogger _logger;
         private readonly StartupHostedServiceHealthCheck _startupHostedServiceHealthCheck;
 
-        public StartupHostedService(ILogger<StartupHostedService> logger, 
+        public StartupHostedService(ILogger<StartupHostedService> logger,
             StartupHostedServiceHealthCheck startupHostedServiceHealthCheck)
         {
             _logger = logger;
@@ -48,5 +48,5 @@ namespace SampleApp.Services
         {
         }
     }
-    #endregion
+    // </snippet1>
 }

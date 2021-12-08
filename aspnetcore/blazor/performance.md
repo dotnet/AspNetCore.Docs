@@ -485,8 +485,9 @@ Call `EventUtil.AsNonRenderingEventHandler` to call an event handler that doesn'
 
 In the following example:
 
-* Selecting the first button, which calls `HandleSelectRerender`, triggers a rerender.
-* Selecting the second button, which calls `HandleSelectWithoutRerender`, doesn't trigger a rerender.
+* Selecting the first button, which calls `HandleClick1`, triggers a rerender.
+* Selecting the second button, which calls `HandleClick2`, doesn't trigger a rerender.
+* Selecting the third button, which calls `HandleClick3`, doesn't trigger a rerender and uses [event arguments](xref:blazor/components/event-handling#event-arguments) (<xref:Microsoft.AspNetCore.Components.Web.MouseEventArgs>).
 
 `Pages/HandleSelect2.razor`:
 
@@ -499,29 +500,43 @@ In the following example:
     Last render DateTime: @dt
 </p>
 
-<button @onclick="HandleSelectRerender">
+<button @onclick="HandleClick1">
     Select me (Rerenders)
 </button>
 
-<button @onclick="EventUtil.AsNonRenderingEventHandler(HandleSelectWithoutRerender)">
+<button @onclick="EventUtil.AsNonRenderingEventHandler(HandleClick2)">
     Select me (Avoids Rerender)
+</button>
+
+<button @onclick="EventUtil.AsNonRenderingEventHandler<MouseEventArgs>(HandleClick3)">
+    Select me (Avoids Rerender and uses <code>MouseEventArgs</code>)
 </button>
 
 @code {
     private DateTime dt = DateTime.Now;
 
-    private void HandleSelectRerender()
+    private void HandleClick1()
     {
         dt = DateTime.Now;
 
         Logger.LogInformation("This event handler triggers a rerender.");
     }
 
-    private void HandleSelectWithoutRerender()
+    private void HandleClick2()
     {
         dt = DateTime.Now;
 
         Logger.LogInformation("This event handler doesn't trigger a rerender.");
+    }
+    
+    private void HandleClick3(MouseEventArgs args)
+    {
+        dt = DateTime.Now;
+
+        Logger.LogInformation(
+            "This event handler doesn't trigger a rerender. " +
+            "Mouse coordinates: {ScreenX}:{ScreenY}", 
+            args.ScreenX, args.ScreenY);
     }
 }
 ```
@@ -698,7 +713,15 @@ function jsInteropCall() {
 }
 ```
 
+## Ahead-of-time (AOT) compilation
+
+[Ahead-of-time (AOT) compilation](/dotnet/standard/glossary#aot) compiles a Blazor app's .NET code directly into native WebAssembly for direct execution by the browser. AOT-compiled apps result in larger apps that take longer to download, but AOT-compiled apps usually provide better runtime performance, especially for apps that execute CPU-intensive tasks. For more information, see <xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation>.
+
 ## Minimize app download size
+
+### Runtime relinking
+
+For information on how runtime relinking minimizes an app's download size, see <xref:blazor/host-and-deploy/webassembly#runtime-relinking>.
 
 ### Use `System.Text.Json`
 
@@ -724,7 +747,7 @@ Load assemblies at runtime when the assemblies are required by a route. For more
 
 When a Blazor WebAssembly app is published, the output is statically compressed during publish to reduce the app's size and remove the overhead for runtime compression. Blazor relies on the server to perform content negotiation and serve statically-compressed files.
 
-After an app is deployed, verify that the app serves compressed files. Inspect the **Network** tab in a browser's [Developer Tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) and verify that the files are served with `Content-Encoding: br` (Brotli compression) or `Content-Encoding: gz` (Gzip compression). If the host isn't serving compressed files, follow the instructions in <xref:blazor/host-and-deploy/webassembly#compression>.
+After an app is deployed, verify that the app serves compressed files. Inspect the **Network** tab in a browser's [developer tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) and verify that the files are served with `Content-Encoding: br` (Brotli compression) or `Content-Encoding: gz` (Gzip compression). If the host isn't serving compressed files, follow the instructions in <xref:blazor/host-and-deploy/webassembly#compression>.
 
 ### Disable unused features
 
@@ -1218,8 +1241,9 @@ Call `EventUtil.AsNonRenderingEventHandler` to call an event handler that doesn'
 
 In the following example:
 
-* Selecting the first button, which calls `HandleSelectRerender`, triggers a rerender.
-* Selecting the second button, which calls `HandleSelectWithoutRerender`, doesn't trigger a rerender.
+* Selecting the first button, which calls `HandleClick1`, triggers a rerender.
+* Selecting the second button, which calls `HandleClick2`, doesn't trigger a rerender.
+* Selecting the third button, which calls `HandleClick3`, doesn't trigger a rerender and uses [event arguments](xref:blazor/components/event-handling#event-arguments) (<xref:Microsoft.AspNetCore.Components.Web.MouseEventArgs>).
 
 `Pages/HandleSelect2.razor`:
 
@@ -1232,29 +1256,43 @@ In the following example:
     Last render DateTime: @dt
 </p>
 
-<button @onclick="HandleSelectRerender">
+<button @onclick="HandleClick1">
     Select me (Rerenders)
 </button>
 
-<button @onclick="EventUtil.AsNonRenderingEventHandler(HandleSelectWithoutRerender)">
+<button @onclick="EventUtil.AsNonRenderingEventHandler(HandleClick2)">
     Select me (Avoids Rerender)
+</button>
+
+<button @onclick="EventUtil.AsNonRenderingEventHandler<MouseEventArgs>(HandleClick3)">
+    Select me (Avoids Rerender and uses <code>MouseEventArgs</code>)
 </button>
 
 @code {
     private DateTime dt = DateTime.Now;
 
-    private void HandleSelectRerender()
+    private void HandleClick1()
     {
         dt = DateTime.Now;
 
         Logger.LogInformation("This event handler triggers a rerender.");
     }
 
-    private void HandleSelectWithoutRerender()
+    private void HandleClick2()
     {
         dt = DateTime.Now;
 
         Logger.LogInformation("This event handler doesn't trigger a rerender.");
+    }
+    
+    private void HandleClick3(MouseEventArgs args)
+    {
+        dt = DateTime.Now;
+
+        Logger.LogInformation(
+            "This event handler doesn't trigger a rerender. " +
+            "Mouse coordinates: {ScreenX}:{ScreenY}", 
+            args.ScreenX, args.ScreenY);
     }
 }
 ```
@@ -1457,7 +1495,7 @@ Load assemblies at runtime when the assemblies are required by a route. For more
 
 When a Blazor WebAssembly app is published, the output is statically compressed during publish to reduce the app's size and remove the overhead for runtime compression. Blazor relies on the server to perform content negotation and serve statically-compressed files.
 
-After an app is deployed, verify that the app serves compressed files. Inspect the **Network** tab in a browser's [Developer Tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) and verify that the files are served with `Content-Encoding: br` (Brotli compression) or `Content-Encoding: gz` (Gzip compression). If the host isn't serving compressed files, follow the instructions in <xref:blazor/host-and-deploy/webassembly#compression>.
+After an app is deployed, verify that the app serves compressed files. Inspect the **Network** tab in a browser's [developer tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) and verify that the files are served with `Content-Encoding: br` (Brotli compression) or `Content-Encoding: gz` (Gzip compression). If the host isn't serving compressed files, follow the instructions in <xref:blazor/host-and-deploy/webassembly#compression>.
 
 ### Disable unused features
 
@@ -1943,8 +1981,9 @@ Call `EventUtil.AsNonRenderingEventHandler` to call an event handler that doesn'
 
 In the following example:
 
-* Selecting the first button, which calls `HandleSelectRerender`, triggers a rerender.
-* Selecting the second button, which calls `HandleSelectWithoutRerender`, doesn't trigger a rerender.
+* Selecting the first button, which calls `HandleClick1`, triggers a rerender.
+* Selecting the second button, which calls `HandleClick2`, doesn't trigger a rerender.
+* Selecting the third button, which calls `HandleClick3`, doesn't trigger a rerender and uses [event arguments](xref:blazor/components/event-handling#event-arguments) (<xref:Microsoft.AspNetCore.Components.Web.MouseEventArgs>).
 
 `Pages/HandleSelect2.razor`:
 
@@ -1957,29 +1996,43 @@ In the following example:
     Last render DateTime: @dt
 </p>
 
-<button @onclick="HandleSelectRerender">
+<button @onclick="HandleClick1">
     Select me (Rerenders)
 </button>
 
-<button @onclick="EventUtil.AsNonRenderingEventHandler(HandleSelectWithoutRerender)">
+<button @onclick="EventUtil.AsNonRenderingEventHandler(HandleClick2)">
     Select me (Avoids Rerender)
+</button>
+
+<button @onclick="EventUtil.AsNonRenderingEventHandler<MouseEventArgs>(HandleClick3)">
+    Select me (Avoids Rerender and uses <code>MouseEventArgs</code>)
 </button>
 
 @code {
     private DateTime dt = DateTime.Now;
 
-    private void HandleSelectRerender()
+    private void HandleClick1()
     {
         dt = DateTime.Now;
 
         Logger.LogInformation("This event handler triggers a rerender.");
     }
 
-    private void HandleSelectWithoutRerender()
+    private void HandleClick2()
     {
         dt = DateTime.Now;
 
         Logger.LogInformation("This event handler doesn't trigger a rerender.");
+    }
+    
+    private void HandleClick3(MouseEventArgs args)
+    {
+        dt = DateTime.Now;
+
+        Logger.LogInformation(
+            "This event handler doesn't trigger a rerender. " +
+            "Mouse coordinates: {ScreenX}:{ScreenY}", 
+            args.ScreenX, args.ScreenY);
     }
 }
 ```
@@ -2157,7 +2210,7 @@ Load assemblies at runtime when the assemblies are required by a route. For more
 
 When a Blazor WebAssembly app is published, the output is statically compressed during publish to reduce the app's size and remove the overhead for runtime compression. Blazor relies on the server to perform content negotiation and serve statically-compressed files.
 
-After an app is deployed, verify that the app serves compressed files. Inspect the **Network** tab in a browser's [Developer Tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) and verify that the files are served with `Content-Encoding: br` (Brotli compression) or `Content-Encoding: gz` (Gzip compression). If the host isn't serving compressed files, follow the instructions in <xref:blazor/host-and-deploy/webassembly#compression>.
+After an app is deployed, verify that the app serves compressed files. Inspect the **Network** tab in a browser's [developer tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) and verify that the files are served with `Content-Encoding: br` (Brotli compression) or `Content-Encoding: gz` (Gzip compression). If the host isn't serving compressed files, follow the instructions in <xref:blazor/host-and-deploy/webassembly#compression>.
 
 ### Disable unused features
 

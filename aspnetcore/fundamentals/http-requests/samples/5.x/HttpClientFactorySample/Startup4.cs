@@ -20,7 +20,7 @@ namespace HttpClientFactorySample
         }
 
         public IConfiguration Configuration { get; }
-        #region snippet1
+        // <snippet1>
         public void ConfigureServices(IServiceCollection services)
         {           
             var timeout = Policy.TimeoutAsync<HttpResponseMessage>(
@@ -40,7 +40,7 @@ namespace HttpClientFactorySample
                .AddPolicyHandlerFromRegistry("long");
 
             // Remaining code deleted for brevity.
-            #endregion
+            // </snippet1>
 
             services.AddControllers();
             services.AddRazorPages();

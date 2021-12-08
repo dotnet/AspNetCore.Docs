@@ -681,7 +681,7 @@ In such scenarios, enable shadow copying by customizing the ASP.NET Core module 
   <system.webServer>
     <handlers>
       <remove name="aspNetCore"/>
-      <add name="aspNetCore" path="*" verb="*" modules="AspNetCoreModulev2" resourceType="Unspecified"/>
+      <add name="aspNetCore" path="*" verb="*" modules="AspNetCoreModuleV2" resourceType="Unspecified"/>
     </handlers>
     <aspNetCore processPath="%LAUNCHER_PATH%" arguments="%LAUNCHER_ARGS%" stdoutLogEnabled="false" stdoutLogFile=".\logs\stdout">
       <handlerSettings>

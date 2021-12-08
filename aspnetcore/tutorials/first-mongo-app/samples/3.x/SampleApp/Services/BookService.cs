@@ -1,4 +1,4 @@
-﻿#region snippet_BookServiceClass
+﻿// <snippet_BookServiceClass>
 using BooksApi.Models;
 using MongoDB.Driver;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ namespace BooksApi.Services
     {
         private readonly IMongoCollection<Book> _books;
 
-        #region snippet_BookServiceConstructor
+        // <snippet_BookServiceConstructor>
         public BookService(IBookstoreDatabaseSettings settings)
         {
             var client = new MongoClient(settings.ConnectionString);
@@ -18,7 +18,7 @@ namespace BooksApi.Services
 
             _books = database.GetCollection<Book>(settings.BooksCollectionName);
         }
-        #endregion
+        // </snippet_BookServiceConstructor>
 
         public List<Book> Get() =>
             _books.Find(book => true).ToList();
@@ -42,4 +42,4 @@ namespace BooksApi.Services
             _books.DeleteOne(book => book.Id == id);
     }
 }
-#endregion
+// </snippet_BookServiceClass>

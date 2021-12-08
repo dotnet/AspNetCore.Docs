@@ -28,7 +28,7 @@ zone_pivot_groups: operating-systems
 
    For information on the two Blazor hosting models, *Blazor WebAssembly* (standalone and hosted) and *Blazor Server*, see <xref:blazor/hosting-models>.
 
-1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app.
+1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app.
 
    When running a hosted Blazor WebAssembly solution in Visual Studio, the startup project of the solution is the **`Server`** project.
 
@@ -214,7 +214,7 @@ When executing a hosted Blazor WebAssembly app, run the app from the solution's 
    }
    ```
 
-1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app.
+1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app.
 
 > [!NOTE]
 > Only [browser debugging](xref:blazor/debug#debug-in-the-browser) is supported at this time.
@@ -281,6 +281,19 @@ For more information on template options, see the following resources:
   * `dotnet new blazorserver -h`
   * `dotnet new blazorwasm -h`
 
+## .NET WebAssembly build tools
+
+The **.NET WebAssembly build tools** are based on [Emscripten](https://emscripten.org/), a compiler toolchain for the web platform. To install the **.NET WebAssembly build tools**, use ***either*** of the following approaches:
+
+* For the **ASP.NET and web development** workload in the Visual Studio installer, select the **.NET WebAssembly build tools** option from the list of optional components.
+* Run `dotnet workload install wasm-tools` in a command shell.
+
+For more information, see the following resources:
+
+* [Ahead-of-time (AOT) compilation](xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation)
+* [Runtime relinking](xref:blazor/host-and-deploy/webassembly#runtime-relinking)
+* <xref:blazor/webassembly-native-dependencies>
+
 ## Additional resources
 
 * <xref:test/hot-reload>
@@ -305,7 +318,7 @@ For more information on template options, see the following resources:
 
    For information on the two Blazor hosting models, *Blazor WebAssembly* (standalone and hosted) and *Blazor Server*, see <xref:blazor/hosting-models>.
 
-1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app.
+1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app.
 
    When running a hosted Blazor WebAssembly solution in Visual Studio, the startup project of the solution is the **`Server`** project.
 
@@ -452,7 +465,7 @@ When executing a hosted Blazor WebAssembly app, run the app from the solution's 
    ...
    ```
 
-1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app.
+1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app.
 
 ## Trust a development certificate
 
@@ -535,7 +548,7 @@ dotnet new blazorserver -h
 
    For information on the two Blazor hosting models, *Blazor WebAssembly* (standalone and hosted) and *Blazor Server*, see <xref:blazor/hosting-models>.
 
-1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app.
+1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app.
 
    When running a hosted Blazor WebAssembly solution in Visual Studio, the startup project of the solution is the **`Server`** project.
 
@@ -682,7 +695,7 @@ When executing a hosted Blazor WebAssembly app, run the app from the solution's 
    ...
    ```
 
-1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app.
+1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app.
 
 ## Trust a development certificate
 

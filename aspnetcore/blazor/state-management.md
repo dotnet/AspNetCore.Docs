@@ -402,7 +402,7 @@ else
 }
 ```
 
-The `CounterStateProvider` component handles the loading phase by not rendering its child content until loading is complete.
+The `CounterStateProvider` component handles the loading phase by not rendering its child content until state loading is complete.
 
 To use the `CounterStateProvider` component, wrap an instance of the component around any other component that requires access to the counter state. To make the state accessible to all components in an app, wrap the `CounterStateProvider` component around the <xref:Microsoft.AspNetCore.Components.Routing.Router> in the `App` component (`App.razor`):
 
@@ -837,7 +837,7 @@ else
 }
 ```
 
-The `CounterStateProvider` component handles the loading phase by not rendering its child content until loading is complete.
+The `CounterStateProvider` component handles the loading phase by not rendering its child content until state loading is complete.
 
 To use the `CounterStateProvider` component, wrap an instance of the component around any other component that requires access to the counter state. To make the state accessible to all components in an app, wrap the `CounterStateProvider` component around the <xref:Microsoft.AspNetCore.Components.Routing.Router> in the `App` component (`App.razor`):
 
@@ -1288,7 +1288,7 @@ else
 }
 ```
 
-The `CounterStateProvider` component handles the loading phase by not rendering its child content until loading is complete.
+The `CounterStateProvider` component handles the loading phase by not rendering its child content until state loading is complete.
 
 To use the `CounterStateProvider` component, wrap an instance of the component around any other component that requires access to the counter state. To make the state accessible to all components in an app, wrap the `CounterStateProvider` component around the <xref:Microsoft.AspNetCore.Components.Routing.Router> in the `App` component (`App.razor`):
 

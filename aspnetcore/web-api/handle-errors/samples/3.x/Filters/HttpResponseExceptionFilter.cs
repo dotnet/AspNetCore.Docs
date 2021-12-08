@@ -4,7 +4,7 @@ using WebApiSample.Exceptions;
 
 namespace WebApiSample.Filters
 {
-    #region snippet_HttpResponseExceptionFilter
+    // <snippet_HttpResponseExceptionFilter>
     public class HttpResponseExceptionFilter : IActionFilter, IOrderedFilter
     {
         public int Order { get; } = int.MaxValue - 10;
@@ -23,5 +23,5 @@ namespace WebApiSample.Filters
             }
         }
     }
-    #endregion
+    // </snippet_HttpResponseExceptionFilter>
 }

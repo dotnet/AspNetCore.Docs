@@ -9,7 +9,7 @@ namespace TodoApi
 {
     public class Startup2
     {
-        #region snippet_ConfigureServices
+        // <snippet_ConfigureServices>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<TodoContext>(opt =>
@@ -20,9 +20,9 @@ namespace TodoApi
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen();
         }
-        #endregion
+        // </snippet_ConfigureServices>
 
-        #region snippet_Configure
+        // <snippet_Configure>
         public void Configure(IApplicationBuilder app)
         {
             // Enable middleware to serve generated Swagger as a JSON endpoint.
@@ -37,6 +37,6 @@ namespace TodoApi
 
             app.UseMvc();
         }
-        #endregion
+        // </snippet_Configure>
     }
 }

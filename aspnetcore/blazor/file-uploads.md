@@ -359,6 +359,31 @@ public class FilesaveController : ControllerBase
 }
 ```
 
+In the preceding code, <xref:System.IO.Path.GetRandomFileName%2A> is called to generate a secure filename. Never trust the filename provided by the browser, as an attacker may choose an existing filename that overwrites an existing file or send a path that attempts to write outside of the app.
+
+::: zone pivot="server"
+
+## Upload files with progress
+
+The following example demonstrates how to upload files in a Blazor Server app with upload progress displayed to the user.
+
+To use the following example in a test app:
+
+* Create a folder to save uploaded files for the `Development` environment: `Development/unsafe_uploads`.
+* Configure the maximum file size (`maxFileSize`, 15 MB in the following example) and maximum number of allowed files (`maxAllowedFiles`, 3 in the following example).
+* Set the buffer to a different value (10 KB in the following example), if desired, for increased granularity in progress reporting. We don't recommended using a buffer larger than 30 KB due to performance and security concerns.
+
+`Pages/FileUpload3.razor`:
+
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_Server/Pages/file-uploads/FileUpload3.razor)]
+
+For more information, see the following API resources:
+
+* <xref:System.IO.FileStream>: Provides a <xref:System.IO.Stream> for a file, supporting both synchronous and asynchronous read and write operations.
+* <xref:System.IO.FileStream.ReadAsync%2A?displayProperty=nameWithType>: The preceding `FileUpload3` component reads the stream asynchronously with <xref:System.IO.FileStream.ReadAsync%2A>. Reading a stream synchronously with <xref:System.IO.FileStream.Read%2A> isn't supported in Razor components.
+
+::: zone-end
+
 ## File streams
 
 ::: zone pivot="webassembly"
@@ -726,6 +751,29 @@ public class FilesaveController : ControllerBase
     }
 }
 ```
+
+::: zone pivot="server"
+
+## Upload files with progress
+
+The following example demonstrates how to upload files in a Blazor Server app with upload progress displayed to the user.
+
+To use the following example in a test app:
+
+* Create a folder to save uploaded files for the `Development` environment: `Development/unsafe_uploads`.
+* Configure the maximum file size (`maxFileSize`, 15 MB in the following example) and maximum number of allowed files (`maxAllowedFiles`, 3 in the following example).
+* Set the buffer to a different value (10 KB in the following example), if desired, for increased granularity in progress reporting. We don't recommended using a buffer larger than 30 KB due to performance and security concerns.
+
+`Pages/FileUpload3.razor`:
+
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_Server/Pages/file-uploads/FileUpload3.razor)]
+
+For more information, see the following API resources:
+
+* <xref:System.IO.FileStream>: Provides a <xref:System.IO.Stream> for a file, supporting both synchronous and asynchronous read and write operations.
+* <xref:System.IO.FileStream.ReadAsync%2A?displayProperty=nameWithType>: The preceding `FileUpload3` component reads the stream asynchronously with <xref:System.IO.FileStream.ReadAsync%2A>. Reading a stream synchronously with <xref:System.IO.FileStream.Read%2A> isn't supported in Razor components.
+
+::: zone-end
 
 ## File streams
 

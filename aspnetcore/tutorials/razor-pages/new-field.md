@@ -128,7 +128,7 @@ The `dotnet-ef migrations add rating` command tells the framework to:
 
 The name `rating` is arbitrary and is used to name the migration file. It's helpful to use a meaningful name for the migration file.
 
-The `dotnet-ef database update` command tells the framework to apply the schema changes to the database and to preserve existing data.
+The `dotnet ef database update` command tells the framework to apply the schema changes to the database and to preserve existing data.
 
 Delete all the records in the database, the initializer will seed the database and include the `Rating` field. 
 
