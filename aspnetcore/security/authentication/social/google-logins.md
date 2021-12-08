@@ -12,7 +12,7 @@ uid: security/authentication/google-logins
 
 By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This tutorial shows you how to enable users to sign in with their Google account using the ASP.NET Core project created on the [previous page](xref:security/authentication/social/index).
+This tutorial shows you how to enable users to sign in with their Google account using the ASP.NET Core 3.0 project created on the [previous page](xref:security/authentication/social/index).
 
 ## Create a Google API Console project and client ID
 
