@@ -5,7 +5,6 @@ description: This sample demonstrates the integration of Microsoft account user 
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/19/2020
-monikerRange: '>= aspnetcore-3.1'
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/microsoft-logins
 ---
