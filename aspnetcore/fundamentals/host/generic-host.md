@@ -15,7 +15,7 @@ uid: fundamentals/host/generic-host
 
 This article provides information on using the .NET Generic Host in ASP.NET Core.
 
-The ASP.NET Core templates create a <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> and <xref:Microsoft.AspNetCore.Builder.WebApplication>, which configure, build, and wrap a .NET Generic Host. For more information on configuring the .NET Generic Host using `WebApplicationBuilder` and `WebApplication`, see <xref:fundamentals/minimal-apis>.
+The ASP.NET Core templates create a <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> and <xref:Microsoft.AspNetCore.Builder.WebApplication>, which provide a streamlined way to configure and run web applications without a `Startup` class. For more information on configuring the .NET Generic Host using `WebApplicationBuilder` and `WebApplication`, see <xref:migration/50-to-60#new-hosting-model>.
 
 For information on using the .NET Generic Host in console apps, see [.NET Generic Host](/dotnet/core/extensions/generic-host).
 
