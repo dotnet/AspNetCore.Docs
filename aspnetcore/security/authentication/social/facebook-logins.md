@@ -34,7 +34,7 @@ This tutorial with code examples shows how to enable your users to sign in with 
 
   ![Create a New App ID form](index/_static/FBNewAppId.png)
 
-* On the **Add Products to Your App** page, click **Set Up** on the **Facebook Login** card.
+* On the **Add Products to Your App** page, select **Set Up** on the **Facebook Login** card.
 
   ![Product Setup page](index/_static/FBProductSetup.png)
 
@@ -42,7 +42,7 @@ This tutorial with code examples shows how to enable your users to sign in with 
 
   ![Skip Quick Start](index/_static/FBSkipQuickStart.png)
 
-* You are presented with the **Client OAuth Settings** page:
+* The **Client OAuth Settings** page is presented:
 
   ![Client OAuth Settings page](index/_static/FBOAuthSetup.png)
 
@@ -51,13 +51,13 @@ This tutorial with code examples shows how to enable your users to sign in with 
 > [!NOTE]
 > The URI */signin-facebook* is set as the default callback of the Facebook authentication provider. You can change the default callback URI while configuring the Facebook authentication middleware via the inherited [RemoteAuthenticationOptions.CallbackPath](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) property of the [FacebookOptions](/dotnet/api/microsoft.aspnetcore.authentication.facebook.facebookoptions) class.
 
-* Click **Save Changes**.
+* Select **Save Changes**.
 
-* Click **Settings** > **Basic** link in the left navigation.
+* Select **Settings** > **Basic** link in the left navigation.
 
-  On this page, make a note of your `App ID` and your `App Secret`. You will add both into your ASP.NET Core application in the next section:
+* Make a note of your `App ID` and your `App Secret`. You will add both into your ASP.NET Core application in the next section:
 
-* When deploying the site you need to revisit the **Facebook Login** setup page and register a new public URI.
+* When deploying the site you need to revisit the **Facebook Login** setup page, and register a new public URI.
 
 ## Store the Facebook app ID and secret
 
@@ -119,7 +119,7 @@ The following code sets the `AccessDeniedPath` to `"/AccessDeniedPathInfo"`:
 
 [!code-csharp[](~/security/authentication/social/social-code/StartupAccessDeniedPath.cs?name=snippetFB)]
 
-We recommend the `AccessDeniedPath` page contain the following information:
+We recommend the `AccessDeniedPath` page contains the following information:
 
 *  Remote authentication was canceled.
 * This app requires authentication.
@@ -137,7 +137,7 @@ We recommend the `AccessDeniedPath` page contain the following information:
 
 [!INCLUDE[](includes/chain-auth-providers.md)]
 
-See the [FacebookOptions](/dotnet/api/microsoft.aspnetcore.builder.facebookoptions) API reference for more information on configuration options supported by Facebook authentication. Configuration options can be used to:
+ For more information on configuration options supported by Facebook authentication, see the [FacebookOptions](/dotnet/api/microsoft.aspnetcore.builder.facebookoptions) API reference. Configuration options can be used to:
 
 * Request different information about the user.
 * Add query string arguments to customize the login experience.

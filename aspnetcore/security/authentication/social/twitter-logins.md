@@ -75,13 +75,13 @@ Add the Authentication service to the `Startup.ConfigureServices`:
 
 [!INCLUDE[](includes/chain-auth-providers.md)]
 
-See the [TwitterOptions](/dotnet/api/microsoft.aspnetcore.builder.twitteroptions) API reference for more information on configuration options supported by Twitter authentication. This can be used to request different information about the user.
+For more information on configuration options supported by Twitter authentication, see the [TwitterOptions](/dotnet/api/microsoft.aspnetcore.builder.twitteroptions) API reference. This can be used to request different information about the user.
 
 ## Sign in with Twitter
 
 Run the app and select **Log in**. An option to sign in with Twitter appears:
 
-Clicking on **Twitter** redirects to Twitter for authentication:
+Selecting **Twitter** redirects to Twitter for authentication:
 
 After entering your Twitter credentials, you are redirected back to the web site where you can set your email.
 
@@ -97,7 +97,7 @@ Rather in the twitter setup, you can provide an External sign-in homepage. The e
 
 ## Troubleshooting
 
-* **ASP.NET Core 2.x only:** If Identity isn't configured by calling `services.AddIdentity` in `ConfigureServices`, attempting to authenticate will result in *ArgumentException: The 'SignInScheme' option must be provided*. The project template used in this sample ensures that this is done.
+* **ASP.NET Core 2.x only:** If Identity isn't configured by calling `services.AddIdentity` in `ConfigureServices`, attempting to authenticate will result in *ArgumentException: The 'SignInScheme' option must be provided*. The project template used in this sample ensures Identity is configured.
 * If the site database has not been created by applying the initial migration, you will get *A database operation failed while processing the request* error. Tap **Apply Migrations** to create the database and refresh to continue past the error.
 
 ## Next steps

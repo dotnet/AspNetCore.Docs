@@ -22,11 +22,11 @@ This tutorial shows you how to enable users to sign in with their Google account
 
 * Go to [Google API & Services](https://console.cloud.google.com/apis).
 
-* A **Project** must exist first, you may have to create one first, just a name is required. Once a project is selected, you will enter the **Dashboard**.
+* A **Project** must exist first, you may have to create one. Just a name is required. Once a project is selected, you will enter the **Dashboard**.
 
 * In the **Oauth consent screen** of the **Dashboard**: 
-  * Select **User Type - External**. press **CREATE**.
-  * In the **App information** dialog, Provide an **app name** for the app, **user support email** and **developer contact information**.
+  * Select **User Type - External** and **CREATE**.
+  * In the **App information** dialog, Provide an **app name** for the app, **user support email**, and **developer contact information**.
   * Step through the **Scopes** step.
   * Step through the **Test users** step.
   * Review the **OAuth consent screen** and go back to the app **Dashboard**.
@@ -84,15 +84,15 @@ Add the Authentication service to the `Program`:
 
 ## Sign in with Google
 
-* Run the app and click **Log in**. An option to sign in with Google appears.
-* Click the **Google** button, which redirects to Google for authentication.
+* Run the app and select **Log in**. An option to sign in with Google appears.
+* Select the **Google** button, which redirects to Google for authentication.
 * After entering your Google credentials, you are redirected back to the web site.
 
 [!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
 
 [!INCLUDE[](includes/chain-auth-providers.md)]
 
-See the <xref:Microsoft.AspNetCore.Authentication.Google.GoogleOptions> API reference for more information on configuration options supported by Google authentication. This can be used to request different information about the user.
+For more information on configuration options supported by Google authentication, see the <xref:Microsoft.AspNetCore.Authentication.Google.GoogleOptions> API reference . This can be used to request different information about the user.
 
 ## Change the default callback URI
 
@@ -101,7 +101,7 @@ The URI segment `/signin-google` is set as the default callback of the Google au
 ## Troubleshooting
 
 * If the sign-in doesn't work and you aren't getting any errors, switch to development mode to make the issue easier to debug.
-* If Identity isn't configured by calling `services.AddIdentity` in `ConfigureServices`, attempting to authenticate results in *ArgumentException: The 'SignInScheme' option must be provided*. The project template used in this tutorial ensures that this is done.
+* If Identity isn't configured by calling `services.AddIdentity` in `ConfigureServices`, attempting to authenticate results in *ArgumentException: The 'SignInScheme' option must be provided*. The project template used in this tutorial ensures Identity is configured.
 * If the site database has not been created by applying the initial migration, you get *A database operation failed while processing the request* error. Select **Apply Migrations** to create the database, and refresh the page to continue past the error.
 
 ## Next steps

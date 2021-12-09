@@ -68,9 +68,9 @@ For more information about configuration options supported by Microsoft Account 
 
 ## Sign in with Microsoft Account
 
-Run the app and click **Log in**. An option to sign in with Microsoft appears. When you click on Microsoft, you are redirected to Microsoft for authentication. After signing in with your Microsoft Account, you will be prompted to let the app access your info:
-
-Tap **Yes** and you will be redirected back to the web site where you can set your email.
+* Run the app and select **Log in**. An option to sign in with Microsoft appears.
+* Select to sign in with Microsoft. You are redirected to Microsoft for authentication. After signing in with your Microsoft Account, you will be prompted to let the app access your info:
+* Select **Yes**. You are redirected back to the web site where you can set your email.
 
 You are now logged in using your Microsoft credentials:
 
@@ -83,7 +83,9 @@ You are now logged in using your Microsoft credentials:
 * If the Microsoft Account provider redirects you to a sign in error page, note the error title and description query string parameters directly following the `#` (hashtag) in the Uri.
 
   Although the error message seems to indicate a problem with Microsoft authentication, the most common cause is your application Uri not matching any of the **Redirect URIs** specified for the **Web** platform.
+
 * If Identity isn't configured by calling `services.AddIdentity` in `ConfigureServices`, attempting to authenticate will result in *ArgumentException: The 'SignInScheme' option must be provided*. The project template used in this sample ensures that this is done.
+
 * If the site database has not been created by applying the initial migration, you will get *A database operation failed while processing the request* error. Tap **Apply Migrations** to create the database and refresh to continue past the error.
 
 ## Next steps
@@ -149,7 +151,7 @@ For more information about configuration options supported by Microsoft Account 
 
 ## Sign in with Microsoft Account
 
-Run the app and click **Log in**. An option to sign in with Microsoft appears. When you click on Microsoft, you are redirected to Microsoft for authentication. After signing in with your Microsoft Account, you will be prompted to let the app access your info:
+Run the app and select **Log in**. An option to sign in with Microsoft appears. When you select on Microsoft, you are redirected to Microsoft for authentication. After signing in with your Microsoft Account, you will be prompted to let the app access your info:
 
 Tap **Yes** and you will be redirected back to the web site where you can set your email.
 
