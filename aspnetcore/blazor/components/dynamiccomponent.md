@@ -41,11 +41,11 @@ Use the <xref:Microsoft.AspNetCore.Components.DynamicComponent.Instance> propert
 <button @onclick="Refresh">Refresh</button>
 
 @code {
-    private DynamicComponent dc;
+    private DynamicComponent? dc;
 
     private Task Refresh()
     {
-        return (dc.Instance as IRefreshable)?.Refresh();
+        return (dc?.Instance as IRefreshable)?.Refresh();
     }
 }
 ```
@@ -138,11 +138,11 @@ In the following example, a Razor component renders a component based on the use
 }
 
 @code {
-    private Type selectedType;
+    private Type? selectedType;
 
     private void OnDropdownChange(ChangeEventArgs e)
     {
-        selectedType = e.Value.ToString().Length > 0 ? 
+        selectedType = e.Value?.ToString()?.Length > 0 ? 
             Type.GetType($"{APP NAMESPACE}.Shared.{e.Value}") : null;
     }
 }
@@ -162,17 +162,37 @@ The following example configures a component metadata object (`ComponentMetadata
 `ComponentMetadata.cs`:
 
 ```csharp
-using System;
-using System.Collections.Generic;
-
 public class ComponentMetadata
 {
-    public string Name { get; set; }
-    public Dictionary<string, object> Parameters { get; set; }
+    public string? Name { get; set; }
+    public Dictionary<string, object> Parameters { get; set; } = 
+        new Dictionary<string, object>();
 }
 ```
 
-In the following example, only the `RocketLab` component has a parameter, which assigns a value for a window seat (`WindowSeat`) on a spaceflight.
+The following `RocketLab` component (`Shared/RocketLab.razor`) has been updated from the preceding example to include a component parameter named `WindowSeat` to specify if the passenger prefers a window seat on their flight:
+
+`Shared/RocketLab.razor`:
+
+```razor
+<h2>Rocket Lab&reg;</h2>
+
+<p>
+    User selected a window seat: @WindowSeat
+</p>
+
+<p>
+    Rocket Lab is a trademark of 
+    <a href="https://www.rocketlabusa.com/">Rocket Lab USA Inc.</a>
+</p>
+
+@code {
+    [Parameter]
+    public bool WindowSeat { get; set; }
+}
+```
+
+In the following example, only the `RocketLab` component's parameter for a window seat (`WindowSeat`) receives the value of the **`Window Seat`** checkbox.
 
 `Pages/DynamicComponentExample2.razor`:
 
@@ -234,7 +254,7 @@ In the following example, only the `RocketLab` component has a parameter, which 
                 new ComponentMetadata { Name = "SpaceX" }
             }
         };
-    private Type selectedType;
+    private Type? selectedType;
     private bool windowSeat;
 
     private bool WindowSeat
@@ -249,7 +269,7 @@ In the following example, only the `RocketLab` component has a parameter, which 
 
     private void OnDropdownChange(ChangeEventArgs e)
     {
-        selectedType = e.Value.ToString().Length > 0 ? 
+        selectedType = e.Value?.ToString()?.Length > 0 ? 
             Type.GetType($"{APP NAMESPACE}.Shared.{e.Value}") : null;
     }
 }
@@ -264,28 +284,6 @@ In the preceding example:
     * `SpaceX` (`Shared/SpaceX.razor`)
     * `UnitedLaunchAlliance` (`Shared/UnitedLaunchAlliance.razor`)
     * `VirginGalactic` (`Shared/VirginGalactic.razor`)
-
-The `RocketLab` component (`Shared/RocketLab.razor`) includes a component parameter named `WindowSeat`:
-
-`Shared/RocketLab.razor`:
-
-```razor
-<h2>Rocket Lab&reg;</h2>
-
-<p>
-    User selected a window seat: @WindowSeat
-</p>
-
-<p>
-    Rocket Lab is a trademark of 
-    <a href="https://www.rocketlabusa.com/">Rocket Lab USA Inc.</a>
-</p>
-
-@code {
-    [Parameter]
-    public bool WindowSeat { get; set; }
-}
-```
 
 ## Avoid catch-all parameters
 
