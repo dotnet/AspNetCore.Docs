@@ -4,7 +4,7 @@ author: rick-anderson
 description: Tutorial with code examples demonstrating the integration of Facebook account user authentication into an existing ASP.NET Core app.
 ms.author: riande
 ms.custom: "seoapril2019, mvc, seodec18"
-ms.date: 03/19/2020
+ms.date: 12/08/2021
 monikerRange: '>= aspnetcore-3.0'
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/facebook-logins
@@ -17,7 +17,7 @@ By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://
 <!-- per @rick-anderson and scott addie, don't update images. Remove images and point the customer to the FB set up page. FB needs to maintain  instructions to get key and secret.
 -->
 
-This tutorial with code examples shows how to enable your users to sign in with their Facebook account using a sample ASP.NET Core 3.0 project created on the [previous page](xref:security/authentication/social/index). We start by creating a Facebook App ID by following the [official steps](https://developers.facebook.com).
+This tutorial with code examples shows how to enable your users to sign in with their Facebook account using a sample ASP.NET Core project created on the [previous page](xref:security/authentication/social/index). We start by creating a Facebook App ID by following the [official steps](https://developers.facebook.com).
 
 ## Create the app in Facebook
 
@@ -25,15 +25,16 @@ This tutorial with code examples shows how to enable your users to sign in with 
 
 * Navigate to the [Facebook Developers app](https://developers.facebook.com/apps/) page and sign in. If you don't already have a Facebook account, use the **Sign up for Facebook** link on the login page to create one.  Once you have a Facebook account, follow the instructions to register as a Facebook Developer.
 
-* From the **My Apps** menu select **Create App** to create a new App ID.
-
+* From the **My Apps** menu select **Create App**. The **Create an app** form appears.
    ![Facebook for developers portal open in Microsoft Edge](index/_static/FBMyApps.png)
 
-* Fill out the form and tap the **Create App ID** button.
+* Select an app type that best fits your project. For this project, select **Consumer**, and then **Next**. A new App ID is created.
+
+* Fill out the form and tap the **Create App** button.
 
   ![Create a New App ID form](index/_static/FBNewAppId.png)
 
-* On the new App card, select **Add a Product**.  On the **Facebook Login** card, click **Set Up** 
+* On the **Add Products to Your App** page, select **Set Up** on the **Facebook Login** card.
 
   ![Product Setup page](index/_static/FBProductSetup.png)
 
@@ -41,7 +42,7 @@ This tutorial with code examples shows how to enable your users to sign in with 
 
   ![Skip Quick Start](index/_static/FBSkipQuickStart.png)
 
-* You are presented with the **Client OAuth Settings** page:
+* The **Client OAuth Settings** page is presented:
 
   ![Client OAuth Settings page](index/_static/FBOAuthSetup.png)
 
@@ -50,13 +51,13 @@ This tutorial with code examples shows how to enable your users to sign in with 
 > [!NOTE]
 > The URI */signin-facebook* is set as the default callback of the Facebook authentication provider. You can change the default callback URI while configuring the Facebook authentication middleware via the inherited [RemoteAuthenticationOptions.CallbackPath](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) property of the [FacebookOptions](/dotnet/api/microsoft.aspnetcore.authentication.facebook.facebookoptions) class.
 
-* Click **Save Changes**.
+* Select **Save Changes**.
 
-* Click **Settings** > **Basic** link in the left navigation.
+* Select **Settings** > **Basic** link in the left navigation.
 
-  On this page, make a note of your `App ID` and your `App Secret`. You will add both into your ASP.NET Core application in the next section:
+* Make a note of your `App ID` and your `App Secret`. You will add both into your ASP.NET Core application in the next section:
 
-* When deploying the site you need to revisit the **Facebook Login** setup page and register a new public URI.
+* When deploying the site you need to revisit the **Facebook Login** setup page, and register a new public URI.
 
 ## Store the Facebook app ID and secret
 
@@ -74,7 +75,9 @@ Store sensitive settings such as the Facebook app ID and secret values with [Sec
 
 ## Configure Facebook Authentication
 
-Add the Facebook service in the `ConfigureServices` method in the *Startup.cs* file:
+::: moniker range="< aspnetcore-6.0"
+
+Add the Authentication service to the `Startup.ConfigureServices`:
 
 ```csharp
 services.AddAuthentication().AddFacebook(facebookOptions =>
@@ -83,6 +86,16 @@ services.AddAuthentication().AddFacebook(facebookOptions =>
     facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
 });
 ```
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-6.0"
+
+Add the Authentication service to the `Program`:
+
+[!code-csharp[](~/security/authentication/social/social-code/6.x/ProgramFacebook.cs)]
+
+::: moniker-end
 
 [!INCLUDE [default settings configuration](includes/default-settings.md)]
 
@@ -106,7 +119,7 @@ The following code sets the `AccessDeniedPath` to `"/AccessDeniedPathInfo"`:
 
 [!code-csharp[](~/security/authentication/social/social-code/StartupAccessDeniedPath.cs?name=snippetFB)]
 
-We recommend the `AccessDeniedPath` page contain the following information:
+We recommend the `AccessDeniedPath` page contains the following information:
 
 *  Remote authentication was canceled.
 * This app requires authentication.
@@ -124,7 +137,7 @@ We recommend the `AccessDeniedPath` page contain the following information:
 
 [!INCLUDE[](includes/chain-auth-providers.md)]
 
-See the [FacebookOptions](/dotnet/api/microsoft.aspnetcore.builder.facebookoptions) API reference for more information on configuration options supported by Facebook authentication. Configuration options can be used to:
+ For more information on configuration options supported by Facebook authentication, see the [FacebookOptions](/dotnet/api/microsoft.aspnetcore.builder.facebookoptions) API reference. Configuration options can be used to:
 
 * Request different information about the user.
 * Add query string arguments to customize the login experience.
