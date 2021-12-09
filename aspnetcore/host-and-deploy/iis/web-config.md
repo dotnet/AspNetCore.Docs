@@ -90,7 +90,7 @@ The <xref:System.Configuration.SectionInformation.InheritInChildApplications%2A>
 
 When an app is deployed to [Azure App Service](https://azure.microsoft.com/services/app-service/), the `stdoutLogFile` path is set to `\\?\%home%\LogFiles\stdout`. The path saves stdout logs to the `LogFiles` folder, which is a location automatically created by the service.
 
-For information on IIS sub-application configuration, see <xref:host-and-deploy/iis/index#sub-applications>.
+For information on IIS sub-application configuration, see <xref:host-and-deploy/iis/advanced#sub-applications>.
 
 ### Attributes of the `aspNetCore` element
 
