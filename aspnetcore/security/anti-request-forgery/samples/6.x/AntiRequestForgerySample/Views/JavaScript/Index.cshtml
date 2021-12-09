@@ -1,0 +1,37 @@
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Antiforgery
+
+@{
+    ViewData["Title"] = "JavaScript";
+
+    var requestToken = Antiforgery.GetAndStoreTokens(Context).RequestToken;
+}
+
+<input id="RequestVerificationToken" type="hidden" value="@requestToken" />
+
+<button id="button" class="btn btn-primary">Submit with Token</button>
+<div id="result" class="mt-2"></div>
+
+@section Scripts {
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const resultElement = document.getElementById("result");
+
+        document.getElementById("button").addEventListener("click", async () => {
+
+            const response = await fetch("@Url.Action("FetchEndpoint")", {
+                method: "POST",
+                headers: {
+                    RequestVerificationToken:
+                        document.getElementById("RequestVerificationToken").value
+                }
+            });
+
+            if (response.ok) {
+                resultElement.innerText = await response.text();
+            } else {
+                resultElement.innerText = `Request Failed: ${response.status}`
+            }
+        });
+    });
+</script>
+}

@@ -8,7 +8,7 @@ namespace SampleApp
     //
     // StartupHostedServiceHealthCheck is part of the Liveness Probe Startup sample.
 
-    #region snippet1
+    // <snippet1>
     public class StartupHostedServiceHealthCheck : IHealthCheck
     {
         private volatile bool _startupTaskCompleted = false;
@@ -22,7 +22,7 @@ namespace SampleApp
         }
 
         public Task<HealthCheckResult> CheckHealthAsync(
-            HealthCheckContext context, 
+            HealthCheckContext context,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             if (StartupTaskCompleted)
@@ -35,5 +35,5 @@ namespace SampleApp
                 HealthCheckResult.Unhealthy("The startup task is still running."));
         }
     }
-    #endregion
+    // </snippet1>
 }

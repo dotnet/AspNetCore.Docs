@@ -138,17 +138,15 @@ C# expressions that evaluate to a string are HTML encoded. C# expressions that e
 @("<span>Hello World</span>")
 ```
 
-The code renders the following HTML:
+The preceding code renders the following HTML:
 
 ```html
 &lt;span&gt;Hello World&lt;/span&gt;
 ```
 
-The HTML is shown in the browser as:
+The HTML is shown in the browser as plain text:
 
-```html
-<span>Hello World</span>
-```
+&lt;span&gt;Hello World&lt;/span&gt;
 
 `HtmlHelper.Raw` output isn't encoded but rendered as HTML markup.
 

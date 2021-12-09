@@ -91,25 +91,15 @@ Use the following guidance for hosted Blazor WebAssembly solutions hosted by Azu
 
 1. Confirm that the casing of environment segments in app settings filenames matches their environment name casing ***exactly***. For example, the matching app settings filename for the `Staging` environment is `appsettings.Staging.json`. If the filename is `appsettings.staging.json` (lowercase "`s`"), the file isn't located, and the settings in the file aren't used in the `Staging` environment.
 
-1. In the Azure portal for the environment's deployment slot, set the environment with the `ASPNETCORE_ENVIRONMENT` app setting. In the following example for the `Staging` deployment slot, the app setting is set to `Staging`:
+1. In the Azure portal for the environment's deployment slot, set the environment with the `ASPNETCORE_ENVIRONMENT` app setting. For an app named `BlazorAzureAppSample`, the staging App Service Slot is named `BlazorAzureAppSample/Staging`. For the `Staging` slot's configuration, create an app setting for `ASPNETCORE_ENVIRONMENT` with a value of `Staging`. **Deployment slot setting** is enabled for the setting.
 
-   ![Azure portal](environments/_static/image1.png)
+1. For Visual Studio deployment, confirm that the app is deployed to the correct deployment slot. For an app named `BlazorAzureAppSample`, the app is deployed to the `Staging` deployment slot.
 
-1. For Visual Studio deployment, confirm that the app is deployed to the correct deployment slot. In the following example, the app deploys from Visual Studio to the `Staging` deployment slot:
+When requested in a browser, the `BlazorAzureAppSample/Staging` app loads in the `Staging` environment at `https://blazorazureappsample-staging.azurewebsites.net`.
 
-   ![Visual Studio deployment configuration](environments/_static/image2.png)
+When the app is loaded in the browser, the response header collection for `blazor.boot.json` indicates that the `Blazor-Environment` header value is `Staging`.
 
-The app loads in the specified environment with the correct settings. In the following example, the app loads from the `Staging` deployment slot at the URL `https://bwhappsettingsasdf-staging.azurewebsites.net`:
-
-![Browser screenshot of the loaded app from the Staging deployment slot](environments/_static/image3.png)
-
-In the response header collection for `blazor.boot.json`, the `Blazor-Environment` header indicates the environment. In the following example, the `Blazor-Environment` header is inspected in the browser's developer tools and has a value of `Staging`:
-
-![Developer tools Network tab for the response of the blazor.boot.json request](environments/_static/image4.png)
-
-App settings from the files `appsettings.json` and `appsettings.{ENVIRONMENT}.json` (the `{ENVIRONMENT}` placeholder is the app's environment) are loaded by the app. In the following example, the app's settings files are loaded according to the browser's developer tools, which includes the settings file for the `Staging` environment (`appsettings.Staging.json`):
-
-![Developer tools Network tab indicating that both app settings files loaded (200 - OK status code)](environments/_static/image5.png)
+App settings from the `appsettings.{ENVIRONMENT}.json` file are loaded by the app, where the `{ENVIRONMENT}` placeholder is the app's environment. In the preceding example, settings from the `appsettings.Staging.json` file are loaded.
 
 ## Read the environment
 
@@ -240,25 +230,15 @@ Use the following guidance for hosted Blazor WebAssembly solutions hosted by Azu
 
 1. Confirm that the casing of environment segments in app settings filenames matches their environment name casing ***exactly***. For example, the matching app settings filename for the `Staging` environment is `appsettings.Staging.json`. If the filename is `appsettings.staging.json` (lowercase "`s`"), the file isn't located, and the settings in the file aren't used in the `Staging` environment.
 
-1. In the Azure portal for the environment's deployment slot, set the environment with the `ASPNETCORE_ENVIRONMENT` app setting. In the following example for the `Staging` deployment slot, the app setting is set to `Staging`:
+1. In the Azure portal for the environment's deployment slot, set the environment with the `ASPNETCORE_ENVIRONMENT` app setting. For an app named `BlazorAzureAppSample`, the staging App Service Slot is named `BlazorAzureAppSample/Staging`. For the `Staging` slot's configuration, create an app setting for `ASPNETCORE_ENVIRONMENT` with a value of `Staging`. **Deployment slot setting** is enabled for the setting.
 
-   ![Azure portal](environments/_static/image1.png)
+1. For Visual Studio deployment, confirm that the app is deployed to the correct deployment slot. For an app named `BlazorAzureAppSample`, the app is deployed to the `Staging` deployment slot.
 
-1. For Visual Studio deployment, confirm that the app is deployed to the correct deployment slot. In the following example, the app deploys from Visual Studio to the `Staging` deployment slot:
+When requested in a browser, the `BlazorAzureAppSample/Staging` app loads in the `Staging` environment at `https://blazorazureappsample-staging.azurewebsites.net`.
 
-   ![Visual Studio deployment configuration](environments/_static/image2.png)
+When the app is loaded in the browser, the response header collection for `blazor.boot.json` indicates that the `Blazor-Environment` header value is `Staging`.
 
-The app loads in the specified environment with the correct settings. In the following example, the app loads from the `Staging` deployment slot at the URL `https://bwhappsettingsasdf-staging.azurewebsites.net`:
-
-![Browser screenshot of the loaded app from the Staging deployment slot](environments/_static/image3.png)
-
-In the response header collection for `blazor.boot.json`, the `Blazor-Environment` header indicates the environment. In the following example, the `Blazor-Environment` header is inspected in the browser's developer tools and has a value of `Staging`:
-
-![Developer tools Network tab for the response of the blazor.boot.json request](environments/_static/image4.png)
-
-App settings from the files `appsettings.json` and `appsettings.{ENVIRONMENT}.json` (the `{ENVIRONMENT}` placeholder is the app's environment) are loaded by the app. In the following example, the app's settings files are loaded according to the browser's developer tools, which includes the settings file for the `Staging` environment (`appsettings.Staging.json`):
-
-![Developer tools Network tab indicating that both app settings files loaded (200 - OK status code)](environments/_static/image5.png)
+App settings from the `appsettings.{ENVIRONMENT}.json` file are loaded by the app, where the `{ENVIRONMENT}` placeholder is the app's environment. In the preceding example, settings from the `appsettings.Staging.json` file are loaded.
 
 ## Read the environment
 
@@ -364,25 +344,15 @@ Use the following guidance for hosted Blazor WebAssembly solutions hosted by Azu
 
 1. Confirm that the casing of environment segments in app settings filenames matches their environment name casing ***exactly***. For example, the matching app settings filename for the `Staging` environment is `appsettings.Staging.json`. If the filename is `appsettings.staging.json` (lowercase "`s`"), the file isn't located, and the settings in the file aren't used in the `Staging` environment.
 
-1. In the Azure portal for the environment's deployment slot, set the environment with the `ASPNETCORE_ENVIRONMENT` app setting. In the following example for the `Staging` deployment slot, the app setting is set to `Staging`:
+1. In the Azure portal for the environment's deployment slot, set the environment with the `ASPNETCORE_ENVIRONMENT` app setting. For an app named `BlazorAzureAppSample`, the staging App Service Slot is named `BlazorAzureAppSample/Staging`. For the `Staging` slot's configuration, create an app setting for `ASPNETCORE_ENVIRONMENT` with a value of `Staging`. **Deployment slot setting** is enabled for the setting.
 
-   ![Azure portal](environments/_static/image1.png)
+1. For Visual Studio deployment, confirm that the app is deployed to the correct deployment slot. For an app named `BlazorAzureAppSample`, the app is deployed to the `Staging` deployment slot.
 
-1. For Visual Studio deployment, confirm that the app is deployed to the correct deployment slot. In the following example, the app deploys from Visual Studio to the `Staging` deployment slot:
+When requested in a browser, the `BlazorAzureAppSample/Staging` app loads in the `Staging` environment at `https://blazorazureappsample-staging.azurewebsites.net`.
 
-   ![Visual Studio deployment configuration](environments/_static/image2.png)
+When the app is loaded in the browser, the response header collection for `blazor.boot.json` indicates that the `Blazor-Environment` header value is `Staging`.
 
-The app loads in the specified environment with the correct settings. In the following example, the app loads from the `Staging` deployment slot at the URL `https://bwhappsettingsasdf-staging.azurewebsites.net`:
-
-![Browser screenshot of the loaded app from the Staging deployment slot](environments/_static/image3.png)
-
-In the response header collection for `blazor.boot.json`, the `Blazor-Environment` header indicates the environment. In the following example, the `Blazor-Environment` header is inspected in the browser's developer tools and has a value of `Staging`:
-
-![Developer tools Network tab for the response of the blazor.boot.json request](environments/_static/image4.png)
-
-App settings from the files `appsettings.json` and `appsettings.{ENVIRONMENT}.json` (the `{ENVIRONMENT}` placeholder is the app's environment) are loaded by the app. In the following example, the app's settings files are loaded according to the browser's developer tools, which includes the settings file for the `Staging` environment (`appsettings.Staging.json`):
-
-![Developer tools Network tab indicating that both app settings files loaded (200 - OK status code)](environments/_static/image5.png)
+App settings from the `appsettings.{ENVIRONMENT}.json` file are loaded by the app, where the `{ENVIRONMENT}` placeholder is the app's environment. In the preceding example, settings from the `appsettings.Staging.json` file are loaded.
 
 ## Read the environment
 

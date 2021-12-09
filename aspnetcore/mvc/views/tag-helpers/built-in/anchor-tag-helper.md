@@ -284,6 +284,8 @@ The generated HTML:
 <a href="/Attendee?attendeeid=10">View Attendee</a>
 ```
 
+If the referenced page doesn't exist, a link to the main page is generated. No warning is indicated.
+
 ### asp-page-handler
 
 The [asp-page-handler](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.PageHandler*) attribute is used with Razor Pages. It's intended for linking to specific page handlers.

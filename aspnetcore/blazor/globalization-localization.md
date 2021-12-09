@@ -287,13 +287,9 @@ Use the `CultureExample1` component shown in the [Demonstration component](#demo
 
 Examples of locations where an app might store a user's preference include in [browser local storage](https://developer.mozilla.org/docs/Web/API/Window/localStorage) (common in Blazor WebAssembly apps), in a localization cookie or database (common in Blazor Server apps), or in an external service attached to an external database and accessed by a [web API](xref:blazor/call-web-api). The following example demonstrates how to use browser local storage.
 
-Add a package reference for the [`Microsoft.Extensions.Localization`](https://www.nuget.org/packages/Microsoft.Extensions.Localization) package to the app's project file (`.csproj`):
+Add the [`Microsoft.Extensions.Localization`](https://www.nuget.org/packages/Microsoft.Extensions.Localization) package to the app.
 
-```xml
-<PackageReference Include="Microsoft.Extensions.Localization" Version="{VERSION}" />
-```
-
-The `{VERSION}` placeholder in the preceding package reference is the version of the package.
+[!INCLUDE[](~/blazor/includes/package-reference.md)]
 
 Set the `BlazorWebAssemblyLoadAllGlobalizationData` property to `true` in the project file:
 
@@ -437,15 +433,9 @@ Inside the closing tag of the `<main>` element in `Shared/MainLayout.razor`, add
 
 Examples of locations where an app might store a user's preference include in [browser local storage](https://developer.mozilla.org/docs/Web/API/Window/localStorage) (common in Blazor WebAssembly apps), in a localization cookie or database (common in Blazor Server apps), or in an external service attached to an external database and accessed by a [web API](xref:blazor/call-web-api). The following example demonstrates how to use a localization cookie.
 
-Add a package reference for the [`Microsoft.Extensions.Localization`](https://www.nuget.org/packages/Microsoft.Extensions.Localization) package to the app's project file (`.csproj`):
+Add the [`Microsoft.Extensions.Localization`](https://www.nuget.org/packages/Microsoft.Extensions.Localization) package to the app.
 
-```xml
-<ItemGroup>
-  <PackageReference Include="Microsoft.Extensions.Localization" Version="{VERSION}" />
-</ItemGroup>
-```
-
-The `{VERSION}` placeholder in the preceding package reference is the version of the package.
+[!INCLUDE[](~/blazor/includes/package-reference.md)]
 
 Blazor Server apps are localized using [Localization Middleware](xref:fundamentals/localization#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>.
 
@@ -622,13 +612,9 @@ Use the `CultureExample1` component shown in the [Demonstration component](#demo
 
 ## Localization
 
-If the app doesn't already support culture selection per the [Dynamically set the culture by user preference](#dynamically-set-the-culture-by-user-preference) section of this article, add a package reference for the [`Microsoft.Extensions.Localization`](https://www.nuget.org/packages/Microsoft.Extensions.Localization) package to the app's project file (`.csproj`):
+If the app doesn't already support culture selection per the [Dynamically set the culture by user preference](#dynamically-set-the-culture-by-user-preference) section of this article, add the [`Microsoft.Extensions.Localization`](https://www.nuget.org/packages/Microsoft.Extensions.Localization) package to the app.
 
-```xml
-<PackageReference Include="Microsoft.Extensions.Localization" Version="{VERSION}" />
-```
-
-The `{VERSION}` placeholder in the preceding package reference is the version of the package.
+[!INCLUDE[](~/blazor/includes/package-reference.md)]
 
 ::: zone pivot="webassembly"
 
@@ -1167,13 +1153,9 @@ Use the `CultureExample1` component shown in the [Demonstration component](#demo
 
 Examples of locations where an app might store a user's preference include in [browser local storage](https://developer.mozilla.org/docs/Web/API/Window/localStorage) (common in Blazor WebAssembly apps), in a localization cookie or database (common in Blazor Server apps), or in an external service attached to an external database and accessed by a [web API](xref:blazor/call-web-api). The following example demonstrates how to use browser local storage.
 
-Add a package reference for the [`Microsoft.Extensions.Localization`](https://www.nuget.org/packages/Microsoft.Extensions.Localization) package to the app's project file (`.csproj`):
+Add the [`Microsoft.Extensions.Localization`](https://www.nuget.org/packages/Microsoft.Extensions.Localization) package to the app.
 
-```xml
-<PackageReference Include="Microsoft.Extensions.Localization" Version="{VERSION}" />
-```
-
-The `{VERSION}` placeholder in the preceding package reference is the version of the package.
+[!INCLUDE[](~/blazor/includes/package-reference.md)]
 
 Set the `BlazorWebAssemblyLoadAllGlobalizationData` property to `true` in the project file:
 
@@ -1312,15 +1294,9 @@ Inside the closing `</div>` tag of the `<div class="main">` element in `Shared/M
 
 Examples of locations where an app might store a user's preference include in [browser local storage](https://developer.mozilla.org/docs/Web/API/Window/localStorage) (common in Blazor WebAssembly apps), in a localization cookie or database (common in Blazor Server apps), or in an external service attached to an external database and accessed by a [web API](xref:blazor/call-web-api). The following example demonstrates how to use a localization cookie.
 
-Add a package reference for the [`Microsoft.Extensions.Localization`](https://www.nuget.org/packages/Microsoft.Extensions.Localization) package to the app's project file (`.csproj`):
+Add the [`Microsoft.Extensions.Localization`](https://www.nuget.org/packages/Microsoft.Extensions.Localization) package to the app.
 
-```xml
-<ItemGroup>
-  <PackageReference Include="Microsoft.Extensions.Localization" Version="{VERSION}" />
-</ItemGroup>
-```
-
-The `{VERSION}` placeholder in the preceding package reference is the version of the package.
+[!INCLUDE[](~/blazor/includes/package-reference.md)]
 
 Blazor Server apps are localized using [Localization Middleware](xref:fundamentals/localization#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>.
 
@@ -1492,13 +1468,9 @@ Use the `CultureExample1` component shown in the [Demonstration component](#demo
 
 ## Localization
 
-If the app doesn't already support culture selection per the [Dynamically set the culture by user preference](#dynamically-set-the-culture-by-user-preference) section of this article, add a package reference for the [`Microsoft.Extensions.Localization`](https://www.nuget.org/packages/Microsoft.Extensions.Localization) package to the app's project file (`.csproj`):
+If the app doesn't already support culture selection per the [Dynamically set the culture by user preference](#dynamically-set-the-culture-by-user-preference) section of this article, add the [`Microsoft.Extensions.Localization`](https://www.nuget.org/packages/Microsoft.Extensions.Localization) package to the app.
 
-```xml
-<PackageReference Include="Microsoft.Extensions.Localization" Version="{VERSION}" />
-```
-
-The `{VERSION}` placeholder in the preceding package reference is the version of the package.
+[!INCLUDE[](~/blazor/includes/package-reference.md)]
 
 ::: zone pivot="webassembly"
 
@@ -1984,13 +1956,9 @@ Use the `CultureExample1` component shown in the [Demonstration component](#demo
 
 Examples of locations where an app might store a user's preference include in [browser local storage](https://developer.mozilla.org/docs/Web/API/Window/localStorage) (common in Blazor WebAssembly apps), in a localization cookie or database (common in Blazor Server apps), or in an external service attached to an external database and accessed by a [web API](xref:blazor/call-web-api). The following example demonstrates how to use browser local storage.
 
-Add a package reference for the [`Microsoft.Extensions.Localization`](https://www.nuget.org/packages/Microsoft.Extensions.Localization) package to the app's project file (`.csproj`):
+Add the [`Microsoft.Extensions.Localization`](https://www.nuget.org/packages/Microsoft.Extensions.Localization) package to the app.
 
-```xml
-<PackageReference Include="Microsoft.Extensions.Localization" Version="{VERSION}" />
-```
-
-The `{VERSION}` placeholder in the preceding package reference is the version of the package.
+[!INCLUDE[](~/blazor/includes/package-reference.md)]
 
 The app's culture in a Blazor WebAssembly app is set using the Blazor framework's API. A user's culture selection can be persisted in browser local storage.
 
@@ -2105,15 +2073,9 @@ Inside the closing `</div>` tag of the `<div class="main">` element in `Shared/M
 
 Examples of locations where an app might store a user's preference include in [browser local storage](https://developer.mozilla.org/docs/Web/API/Window/localStorage) (common in Blazor WebAssembly apps), in a localization cookie or database (common in Blazor Server apps), or in an external service attached to an external database and accessed by a [web API](xref:blazor/call-web-api). The following example demonstrates how to use a localization cookie.
 
-Add a package reference for the [`Microsoft.Extensions.Localization`](https://www.nuget.org/packages/Microsoft.Extensions.Localization) package to the app's project file (`.csproj`):
+Add the [`Microsoft.Extensions.Localization`](https://www.nuget.org/packages/Microsoft.Extensions.Localization) package to the app.
 
-```xml
-<ItemGroup>
-  <PackageReference Include="Microsoft.Extensions.Localization" Version="{VERSION}" />
-</ItemGroup>
-```
-
-The `{VERSION}` placeholder in the preceding package reference is the version of the package.
+[!INCLUDE[](~/blazor/includes/package-reference.md)]
 
 Blazor Server apps are localized using [Localization Middleware](xref:fundamentals/localization#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>.
 
@@ -2285,13 +2247,9 @@ Use the `CultureExample1` component shown in the [Demonstration component](#demo
 
 ## Localization
 
-If the app doesn't already support culture selection per the [Dynamically set the culture by user preference](#dynamically-set-the-culture-by-user-preference) section of this article, add a package reference for the [`Microsoft.Extensions.Localization`](https://www.nuget.org/packages/Microsoft.Extensions.Localization) package to the app's project file (`.csproj`):
+If the app doesn't already support culture selection per the [Dynamically set the culture by user preference](#dynamically-set-the-culture-by-user-preference) section of this article, add the [`Microsoft.Extensions.Localization`](https://www.nuget.org/packages/Microsoft.Extensions.Localization) package to the app.
 
-```xml
-<PackageReference Include="Microsoft.Extensions.Localization" Version="{VERSION}" />
-```
-
-The `{VERSION}` placeholder in the preceding package reference is the version of the package.
+[!INCLUDE[](~/blazor/includes/package-reference.md)]
 
 ::: zone pivot="webassembly"
 

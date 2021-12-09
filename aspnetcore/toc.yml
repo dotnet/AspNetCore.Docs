@@ -335,7 +335,7 @@
         uid: blazor/project-structure
       - name: Fundamentals
         items:
-          - name: Routing
+          - name: Routing and navigation
             uid: blazor/fundamentals/routing
           - name: Configuration
             uid: blazor/fundamentals/configuration
