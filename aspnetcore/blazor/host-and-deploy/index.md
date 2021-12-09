@@ -52,6 +52,12 @@ Publish locations:
 
 The assets in the folder are deployed to the web server. Deployment might be a manual or automated process depending on the development tools in use.
 
+## IIS Application Pools
+
+Sharing an app pool among ASP.NET Core apps isn't supported, including for Blazor apps. Use one app pool per app when hosting with IIS, and avoid the use of IIS's [virtual directories](/iis/get-started/planning-your-iis-architecture/understanding-sites-applications-and-virtual-directories-on-iis#virtual-directories) for hosting multiple apps.
+
+One or more Blazor WebAssembly apps hosted by an ASP.NET Core app, known as a [hosted Blazor WebAssembly solution](xref:blazor/hosting-models#blazor-webassembly), are supported for ***one*** app pool. However, we don't recommend or support assigning a single app pool to multiple hosted Blazor WebAssembly solutions or in sub-app hosting scenarios. For more information, see <xref:host-and-deploy/iis/advanced#sub-applications>.
+
 ## App base path
 
 The *app base path* is the app's root URL path. Consider the following ASP.NET Core app and Blazor sub-app:
@@ -211,6 +217,12 @@ Publish locations:
 
 The assets in the folder are deployed to the web server. Deployment might be a manual or automated process depending on the development tools in use.
 
+## IIS Application Pools
+
+Sharing an app pool among ASP.NET Core apps isn't supported, including for Blazor apps. Use one app pool per app when hosting with IIS, and avoid the use of IIS's [virtual directories](/iis/get-started/planning-your-iis-architecture/understanding-sites-applications-and-virtual-directories-on-iis#virtual-directories) for hosting multiple apps.
+
+One or more Blazor WebAssembly apps hosted by an ASP.NET Core app, known as a [hosted Blazor WebAssembly solution](xref:blazor/hosting-models#blazor-webassembly), are supported for ***one*** app pool. However, we don't recommend or support assigning a single app pool to multiple hosted Blazor WebAssembly solutions or in sub-app hosting scenarios. For more information, see <xref:host-and-deploy/iis/advanced#sub-applications>.
+
 ## App base path
 
 The *app base path* is the app's root URL path. Consider the following ASP.NET Core app and Blazor sub-app:
@@ -349,6 +361,12 @@ Publish locations:
 * Blazor Server: The app is published into the `/bin/Release/{TARGET FRAMEWORK}/publish` folder. Deploy the contents of the `publish` folder to the host.
 
 The assets in the folder are deployed to the web server. Deployment might be a manual or automated process depending on the development tools in use.
+
+## IIS Application Pools
+
+Sharing an app pool among ASP.NET Core apps isn't supported, including for Blazor apps. Use one app pool per app when hosting with IIS, and avoid the use of IIS's [virtual directories](/iis/get-started/planning-your-iis-architecture/understanding-sites-applications-and-virtual-directories-on-iis#virtual-directories) for hosting multiple apps.
+
+One or more Blazor WebAssembly apps hosted by an ASP.NET Core app, known as a [hosted Blazor WebAssembly solution](xref:blazor/hosting-models#blazor-webassembly), are supported for ***one*** app pool. However, we don't recommend or support assigning a single app pool to multiple hosted Blazor WebAssembly solutions or in sub-app hosting scenarios. For more information, see <xref:host-and-deploy/iis/advanced#sub-applications>.
 
 ## App base path
 
