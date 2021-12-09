@@ -15,7 +15,7 @@ uid: fundamentals/host/generic-host
 
 This article provides information on using the .NET Generic Host in ASP.NET Core.
 
-The ASP.NET Core templates create a <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> and <xref:Microsoft.AspNetCore.Builder.WebApplication>, which provide a streamlined way to configure and run web applications without a `Startup` class. For more information on configuring the .NET Generic Host using `WebApplicationBuilder` and `WebApplication`, see <xref:migration/50-to-60#new-hosting-model>.
+The ASP.NET Core templates create a <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> and <xref:Microsoft.AspNetCore.Builder.WebApplication>, which provide a streamlined way to configure and run web applications without a `Startup` class. For more information on `WebApplicationBuilder` and `WebApplication`, see <xref:migration/50-to-60#new-hosting-model>.
 
 For information on using the .NET Generic Host in console apps, see [.NET Generic Host](/dotnet/core/extensions/generic-host).
 
@@ -30,48 +30,17 @@ A *host* is an object that encapsulates an app's resources, such as:
 
 When a host starts, it calls <xref:Microsoft.Extensions.Hosting.IHostedService.StartAsync%2A?displayProperty=nameWithType> on each implementation of <xref:Microsoft.Extensions.Hosting.IHostedService> registered in the service container's collection of hosted services. In a web app, one of the `IHostedService` implementations is a web service that starts an [HTTP server implementation](xref:fundamentals/index#servers).
 
-The main reason for including all of the app's interdependent resources in one object is lifetime management: control over app startup and graceful shutdown.
+Including all of the app's interdependent resources in one object enables control over app startup and graceful shutdown.
 
 ## Set up a host
 
-The host is typically configured, built, and run by code in the `Program` class. The `Main` method:
-
-* Calls a `CreateHostBuilder` method to create and configure a builder object.
-* Calls `Build` and `Run` methods on the builder object.
-
-The ASP.NET Core web templates generate the following code to create a host:
-
-```csharp
-public class Program
-{
-    public static void Main(string[] args)
-    {
-        CreateHostBuilder(args).Build().Run();
-    }
-
-    public static IHostBuilder CreateHostBuilder(string[] args) =>
-        Host.CreateDefaultBuilder(args)
-            .ConfigureWebHostDefaults(webBuilder =>
-            {
-                webBuilder.UseStartup<Startup>();
-            });
-}
-```
-
-The following code creates a host with an `IHostedService` implementation added to the DI container:
+The host is typically configured, built, and run by code in the *Program.cs*. The following code creates a host with an `IHostedService` implementation added to the DI container:
 
 :::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Program.cs" id="snippet_Host":::
 
-For an HTTP workload, the `Main` method is the same but `CreateHostBuilder` calls `ConfigureWebHostDefaults`:
+For an HTTP workload, call <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults%2A> after <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder%2A>:
 
-```csharp
-public static IHostBuilder CreateHostBuilder(string[] args) =>
-    Host.CreateDefaultBuilder(args)
-        .ConfigureWebHostDefaults(webBuilder =>
-        {
-            webBuilder.UseStartup<Startup>();
-        });
-```
+:::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Snippets/Program.cs" id="snippet_HostConfigureWebHostDefaults":::
 
 ## Default builder settings
 
@@ -116,9 +85,15 @@ For more information on framework-provided services, see <xref:fundamentals/depe
 
 ## IHostApplicationLifetime
 
-Inject the <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime> (formerly `IApplicationLifetime`) service into any class to handle post-startup and graceful shutdown tasks. Three properties on the interface are cancellation tokens used to register app start and app stop event handler methods. The interface also includes a `StopApplication` method.
+Inject the <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime> (formerly `IApplicationLifetime`) service into any class to handle post-startup and graceful shutdown tasks. Three properties on the interface are cancellation tokens used to register app start and app stop event handler methods. The interface also includes a `StopApplication` method, which allows apps to request a graceful shutdown.
 
-The following example is an `IHostedService` implementation that registers `IHostApplicationLifetime` events:
+When performing a graceful shutdown, the host:
+
+* Triggers the <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.ApplicationStopping%2A> event handlers, which allows the app to run logic before the shutdown process begins.
+* Stops the server, which disables new connections. The server waits for requests on existing connections to complete, for as long as the [shutdown timeout](#shutdowntimeout) allows. The server sends the connection close header for further requests on existing connections.
+* Triggers the <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.ApplicationStopped%2A> event handlers, which allows the app to run logic after the application has shutdown.
+
+The following example is an `IHostedService` implementation that registers `IHostApplicationLifetime` event handlers:
 
 :::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Services/HostApplicationLifetimeEventsHostedService.cs" id="snippet_Class":::
 

@@ -2,6 +2,19 @@ namespace GenericHostSample.Snippets;
 
 public static class Program
 {
+    public static async Task HostConfigureWebHostDefaults(string[] args)
+    {
+        // <snippet_HostConfigureWebHostDefaults>
+        await Host.CreateDefaultBuilder(args)
+            .ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.UseStartup<Startup>();
+            })
+            .Build()
+            .RunAsync();
+        // </snippet_HostConfigureWebHostDefaults>
+    }
+
     public static void ConfigureHostConfiguration(string[] args)
     {
         // <snippet_ConfigureHostConfiguration>
