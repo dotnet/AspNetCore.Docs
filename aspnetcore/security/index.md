@@ -17,7 +17,8 @@ ASP.NET Core enables developers to easily configure and manage security for thei
 * [Data protection](xref:security/data-protection/introduction)
 * [HTTPS enforcement](xref:security/enforcing-ssl)
 * [App secrets](xref:security/app-secrets)
-* [XSRF/CSRF prevention](xref:security/anti-request-forgery), and CORS management.
+* [XSRF/CSRF prevention](xref:security/anti-request-forgery)
+* [Cross Origin Resource Sharing (CORS)](xref:security/cors)
 * [Cross-Site Scripting (XSS) attacks](xref:security/cross-site-scripting)
 
 These security features allow you to build robust yet secure ASP.NET Core apps.
