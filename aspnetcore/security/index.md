@@ -13,10 +13,10 @@ uid: security/index
 ASP.NET Core enables developers to easily configure and manage security for their apps. ASP.NET Core contains features for managing:
 
 * [Authentication](xref:security/authentication/index)
-* [Authorization](security/authorization/introduction)
+* [Authorization](xref:security/authorization/introduction)
 * [Data protection](xref:security/data-protection/introduction)
-* [HTTPS enforcement](security/enforcing-ssl)
-* [App secrets](security/app-secrets)
+* [HTTPS enforcement](xref:security/enforcing-ssl)
+* [App secrets](xref:security/app-secrets)
 * [XSRF/CSRF prevention](xref:security/anti-request-forgery), and CORS management.
 * [Cross-Site Scripting (XSS) attacks](xref:security/cross-site-scripting)
 
@@ -47,4 +47,4 @@ There are more vulnerabilities that you should be aware of. For more information
 
 * <xref:security/authentication/identity>
 * <xref:security/authentication/identity-enable-qrcodes>
-* <xref:security/authentication/social/index>
+* <xref:security/authentication/social/index> 
