@@ -274,5 +274,5 @@ gRPC is a message based RPC framework. That means that the entire message is loa
 Advice for creating high-performance applications with large binary payloads:
 
 * **Avoid** very large binary payloads in gRPC messages.
-* **Consider** splitting up large gRPC messages [using streaming](xref:grpc/client#client-streaming-call). Binary data is chunked and streamed over multiple messages.
-* **Consider** not using gRPC for large binary data. gRPC can be used alongside other HTTP endpoints. Sending and receiving large files using HTTP body stream is very efficient.
+* **Consider** splitting up large binary payloads [using streaming](xref:grpc/client#client-streaming-call). Binary data is chunked and streamed over multiple messages.
+* **Consider** not using gRPC for large binary data. HTTP endpoints can be used alongside gRPC services. An HTTP endpoint that supports sending or receiving large files using the stream body is very efficient.
