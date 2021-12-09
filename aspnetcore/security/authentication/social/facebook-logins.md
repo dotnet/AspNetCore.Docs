@@ -4,7 +4,7 @@ author: rick-anderson
 description: Tutorial with code examples demonstrating the integration of Facebook account user authentication into an existing ASP.NET Core app.
 ms.author: riande
 ms.custom: "seoapril2019, mvc, seodec18"
-ms.date: 03/19/2020
+ms.date: 12/08/2021
 monikerRange: '>= aspnetcore-3.0'
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/facebook-logins
@@ -25,15 +25,16 @@ This tutorial with code examples shows how to enable your users to sign in with 
 
 * Navigate to the [Facebook Developers app](https://developers.facebook.com/apps/) page and sign in. If you don't already have a Facebook account, use the **Sign up for Facebook** link on the login page to create one.  Once you have a Facebook account, follow the instructions to register as a Facebook Developer.
 
-* From the **My Apps** menu select **Create App** to create a new App ID.
-
+* From the **My Apps** menu select **Create App**. The **Create an app** form appears.
    ![Facebook for developers portal open in Microsoft Edge](index/_static/FBMyApps.png)
 
-* Fill out the form and tap the **Create App ID** button.
+* Select an app type that best fits your project. For this project, select **Consumer**, and then **Next**. A new App ID is created.
+
+* Fill out the form and tap the **Create App** button.
 
   ![Create a New App ID form](index/_static/FBNewAppId.png)
 
-* On the new App card, select **Add a Product**.  On the **Facebook Login** card, click **Set Up** 
+* On the **Add Products to Your App** page, click **Set Up** on the **Facebook Login** card.
 
   ![Product Setup page](index/_static/FBProductSetup.png)
 
