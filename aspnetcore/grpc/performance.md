@@ -264,3 +264,15 @@ The preceding code:
 * Attempts to get an array from `ByteString.Memory` with <xref:System.Runtime.InteropServices.MemoryMarshal.TryGetArray%2A?displayProperty=nameWithType>.
 * Uses the `ArraySegment<byte>` if it was successfully retrieved. The segment has a reference to the array, offset and count.
 * Otherwise, falls back to allocating a new array with `ByteString.ToByteArray()`.
+
+### gRPC services and large binary payloads
+
+gRPC and Protobuf can send and receive large binary payloads. Protobuf is a binary serialization format, allowing bytes to be sent directly, without the base64 encoding required by a text-based such as JSON or XML. However, there are still important performance characteristics to keep in mind when working with large payloads.
+
+gRPC is a message based RPC framework. That means that the entire message is loaded into memory before gRPC can send it, and the entire message is deserialized into memory when received. Messages with large binary payloads can allocate arrays on the [large object heap](/dotnet/standard/garbage-collection/large-object-heap) and impact throughput.
+
+Advice for creating high-performance applications with large binary payloads:
+
+* **Avoid** very large binary payloads in gRPC messages.
+* **Consider** splitting up large gRPC messages [using streaming](xref:grpc/client#client-streaming-call). Binary data is chunked and streamed over multiple messages.
+* **Consider** not using gRPC for large binary data. gRPC can be used alongside other HTTP endpoints. Sending and receiving large files using HTTP body stream is very efficient.
