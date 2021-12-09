@@ -267,9 +267,9 @@ The preceding code:
 
 ### gRPC services and large binary payloads
 
-gRPC and Protobuf can send and receive large binary payloads. Protobuf is a binary serialization format, allowing bytes to be sent directly, without the base64 encoding required by a text-based such as JSON or XML. However, there are still important performance characteristics to keep in mind when working with large payloads.
+gRPC and Protobuf can send and receive large binary payloads. Although binary Protobuf is more efficent than text-based JSON at serializing binary payloads, there are still important performance characteristics to keep in mind when working with large binary payloads.
 
-gRPC is a message based RPC framework. That means that the entire message is loaded into memory before gRPC can send it, and the entire message is deserialized into memory when received. Messages with large binary payloads can allocate arrays on the [large object heap](/dotnet/standard/garbage-collection/large-object-heap) and impact throughput.
+gRPC is a message based RPC framework. That means that the entire message is loaded into memory before gRPC can send it, and the entire message is deserialized into memory when received. Messages with large binary payloads can allocate byte arrays on the [large object heap](/dotnet/standard/garbage-collection/large-object-heap). Large allocations impact server performance and scalablity.
 
 Advice for creating high-performance applications with large binary payloads:
 
