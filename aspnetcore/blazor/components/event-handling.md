@@ -114,8 +114,8 @@ Custom events with custom event arguments are generally enabled with the followi
    ```csharp
    public class CustomEventArgs : EventArgs
    {
-       public string CustomProperty1 {get; set;}
-       public string CustomProperty2 {get; set;}
+       public string? CustomProperty1 {get; set;}
+       public string? CustomProperty2 {get; set;}
    }
    ```
 
@@ -165,7 +165,7 @@ public static class EventHandlers
 public class CustomPasteEventArgs : EventArgs
 {
     public DateTime EventTimestamp { get; set; }
-    public string PastedData { get; set; }
+    public string? PastedData { get; set; }
 }
 ```
 
@@ -178,10 +178,10 @@ Add JavaScript code to supply data for the <xref:System.EventArgs> subclass. In 
     Blazor.registerCustomEventType('custompaste', {
         browserEventName: 'paste',
         createEventArgs: event => {
-            return {
-                eventTimestamp: new Date(),
-                pastedData: event.clipboardData.getData('text')
-            };
+          return {
+            eventTimestamp: new Date(),
+            pastedData: event.clipboardData.getData('text')
+          };
         }
     });
 </script>
@@ -216,7 +216,7 @@ In a Razor component, attach the custom handler to an element.
 </p>
 
 @code {
-    private string message;
+    private string? message;
 
     private void HandleCustomPaste(CustomPasteEventArgs eventArgs)
     {

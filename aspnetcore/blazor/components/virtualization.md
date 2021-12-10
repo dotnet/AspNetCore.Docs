@@ -111,7 +111,7 @@ private async ValueTask<ItemsProviderResult<Employee>> LoadEmployees(
 <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.RefreshDataAsync%2A> updates a `Virtualize` component's data without causing a rerender. If <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.RefreshDataAsync%2A> is invoked from a Blazor event handler or component lifecycle method, triggering a render isn't required because a render is automatically triggered at the end of the event handler or lifecycle method. If <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.RefreshDataAsync%2A> is triggered separately from a background task or event, such as in the following `ForcecastUpdated` delegate, call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> to update the UI at the end of the background task or event:
 
 ```csharp
-private Virtualize virtualizeComponent;
+private Virtualize<FetchData>? virtualizeComponent;
 
 protected override void OnInitialized()
 {
@@ -119,7 +119,7 @@ protected override void OnInitialized()
     {
         await InvokeAsync(() =>
         {
-            await virtualizeComponent.RefreshDataAsync();
+            await virtualizeComponent?.RefreshDataAsync();
             StateHasChanged();
         });
     });
@@ -230,14 +230,14 @@ The placeholder elements internally use an [Intersection Observer](https://devel
 
 * **Both the placeholders and the content rows are rendered in a single vertical stack with every item filling the whole horizontal width.** This is generally the default. In typical cases with `div` elements, `Virtualize` works by default. If you're using CSS to create a more advanced layout, bear in mind the following requirements:
 
-    * Scroll container styling requires a `display` with any of the following values:
-      * `block` (the default for a `div`).
-      * `table-row-group` (the default for a `tbody`).
-      * `flex` with `flex-direction` set to `column`.
-    * Content row styling requires a `display` with either of the following values:
-      * `block` (the default for a `div`).
-      * `table-row` (the default for a `tr`).
-    * Don't use CSS to interfere with the layout for the placeholder elements. By default, the placeholder elements have a `display` value of `block`, except if the parent is a table row group, in which case they default to `table-row`. Don't try to influence placeholder element width or height, including by causing them to have a border or `content` pseudo-elements.
+  * Scroll container styling requires a `display` with any of the following values:
+    * `block` (the default for a `div`).
+    * `table-row-group` (the default for a `tbody`).
+    * `flex` with `flex-direction` set to `column`.
+  * Content row styling requires a `display` with either of the following values:
+    * `block` (the default for a `div`).
+    * `table-row` (the default for a `tr`).
+  * Don't use CSS to interfere with the layout for the placeholder elements. By default, the placeholder elements have a `display` value of `block`, except if the parent is a table row group, in which case they default to `table-row`. Don't try to influence placeholder element width or height, including by causing them to have a border or `content` pseudo-elements.
 
 Any approach that stops the placeholders and content elements from rendering as a single vertical stack, or causes the content items to vary in height, prevents correct functioning of the `Virtualize` component.
 
