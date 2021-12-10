@@ -31,11 +31,7 @@ In the test project, create a test:
 
 * Build and start a host that uses <xref:Microsoft.AspNetCore.TestHost.TestServer>.
 * Add any required services that the middleware uses.
-* Add package references to the project for the following NuGet packages:
-
-  * [Microsoft.AspNetCore.TestHost](https://www.nuget.org/packages/Microsoft.AspNetCore.TestHost/)
-  * [Microsoft.AspNetCore.Hosting](https://www.nuget.org/packages/Microsoft.AspNetCore.Hosting/)
-
+* Add a package references to the project for the [`Microsoft.AspNetCore.TestHost`](https://www.nuget.org/packages/Microsoft.AspNetCore.TestHost/) NuGet package.
 * Configure the processing pipeline to use the middleware for the test.
 
   [!code-csharp[](middleware/samples_snapshot/3.x/setup.cs?highlight=4-18)]
