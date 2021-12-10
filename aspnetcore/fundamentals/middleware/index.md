@@ -11,7 +11,7 @@ uid: fundamentals/middleware/index
 ---
 # ASP.NET Core Middleware
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Steve Smith](https://ardalis.com/)
 
@@ -221,7 +221,7 @@ app.Map("/level1", level1App => {
 
 <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen%2A> branches the request pipeline based on the result of the given predicate. Any predicate of type `Func<HttpContext, bool>` can be used to map requests to a new branch of the pipeline. In the following example, a predicate is used to detect the presence of a query string variable `branch`:
 
-[!code-csharp[](index/snapshot/Chain/StartupMapWhen.cs?highlight=14-15)]
+[!code-csharp[](index/snapshot/Chain60/ProgramMapWhen.cs?highlight=4)]
 
 The following table shows the requests and responses from `http://localhost:1234` using the previous code:
 
@@ -279,9 +279,9 @@ ASP.NET Core ships with the following middleware components. The *Order* column 
 * <xref:fundamentals/middleware/extensibility>
 * <xref:fundamentals/middleware/extensibility-third-party-container>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Steve Smith](https://ardalis.com/)
 
@@ -548,4 +548,4 @@ ASP.NET Core ships with the following middleware components. The *Order* column 
 * <xref:fundamentals/middleware/extensibility>
 * <xref:fundamentals/middleware/extensibility-third-party-container>
 
-::: moniker-end
+:::moniker-end

@@ -1,4 +1,4 @@
-#define FECTP // DEFAULT RR RH DB DF DF2 UFS UFS2 TREE FECTP NS
+#define DB // DEFAULT RR RH DB DF DF2 UFS UFS2 TREE FECTP NS
 #if NEVER
 #elif DEFAULT
 #region snippet
@@ -94,6 +94,7 @@ app.Run();
 #endregion
 #elif DB  // Directory Browsing
 #region snippet_db
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -115,11 +116,20 @@ app.UseHttpsRedirection();
 
 app.UseStaticFiles();
 
+var fileProvider = new PhysicalFileProvider(Path.Combine(builder.Environment.WebRootPath, "images"));
+var requestPath = "/MyImages";
+
+// Enable displaying browser links.
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = fileProvider,
+    RequestPath = requestPath
+});
+
 app.UseDirectoryBrowser(new DirectoryBrowserOptions
 {
-    FileProvider = new PhysicalFileProvider(
-           Path.Combine(builder.Environment.WebRootPath, "images")),
-    RequestPath = "/MyImages"
+    FileProvider = fileProvider,
+    RequestPath = requestPath
 });
 
 app.UseAuthorization();
