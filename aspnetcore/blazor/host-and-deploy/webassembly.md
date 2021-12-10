@@ -811,8 +811,8 @@ Placeholders:
 >
 > Comparing the checksum of a file to a valid checksum value doesn't guarantee file safety, but modifying a file in a way that maintains a checksum value isn't trivial for malicious users. Therefore, checksums are useful as a general security approach. Compare the checksum of the local `integrity.ps1` file to one of the following values:
 >
-> * SHA256: `85f323154a7100b9be5db0e2b24853a577e7a006f52b25eb423c4045dee24716`
-> * MD5: `f0043f26b3be7a82e87e6aa68b423e48`
+> * SHA256: `32c24cb667d79a701135cb72f6bae490d81703323f61b8af2c7e5e5dc0f0c2bb`
+> * MD5: `9cee7d7ec86ee809a329b5406fbf21a8`
 >
 > Obtain the file's checksum on Windows OS with the following command. Provide the path and file name for the `{PATH AND FILE NAME}` placeholder and indicate the type of checksum to produce for the `{SHA512|MD5}` placeholder, either `SHA256` or `MD5`:
 >
@@ -1636,8 +1636,8 @@ Placeholders:
 >
 > Comparing the checksum of a file to a valid checksum value doesn't guarantee file safety, but modifying a file in a way that maintains a checksum value isn't trivial for malicious users. Therefore, checksums are useful as a general security approach. Compare the checksum of the local `integrity.ps1` file to one of the following values:
 >
-> * SHA256: `85f323154a7100b9be5db0e2b24853a577e7a006f52b25eb423c4045dee24716`
-> * MD5: `f0043f26b3be7a82e87e6aa68b423e48`
+> * SHA256: `32c24cb667d79a701135cb72f6bae490d81703323f61b8af2c7e5e5dc0f0c2bb`
+> * MD5: `9cee7d7ec86ee809a329b5406fbf21a8`
 >
 > Obtain the file's checksum on Windows OS with the following command. Provide the path and file name for the `{PATH AND FILE NAME}` placeholder and indicate the type of checksum to produce for the `{SHA512|MD5}` placeholder, either `SHA256` or `MD5`:
 >
@@ -2461,8 +2461,8 @@ Placeholders:
 >
 > Comparing the checksum of a file to a valid checksum value doesn't guarantee file safety, but modifying a file in a way that maintains a checksum value isn't trivial for malicious users. Therefore, checksums are useful as a general security approach. Compare the checksum of the local `integrity.ps1` file to one of the following values:
 >
-> * SHA256: `85f323154a7100b9be5db0e2b24853a577e7a006f52b25eb423c4045dee24716`
-> * MD5: `f0043f26b3be7a82e87e6aa68b423e48`
+> * SHA256: `32c24cb667d79a701135cb72f6bae490d81703323f61b8af2c7e5e5dc0f0c2bb`
+> * MD5: `9cee7d7ec86ee809a329b5406fbf21a8`
 >
 > Obtain the file's checksum on Windows OS with the following command. Provide the path and file name for the `{PATH AND FILE NAME}` placeholder and indicate the type of checksum to produce for the `{SHA512|MD5}` placeholder, either `SHA256` or `MD5`:
 >
