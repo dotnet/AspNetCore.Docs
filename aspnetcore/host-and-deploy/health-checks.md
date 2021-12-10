@@ -389,26 +389,6 @@ In the sample app's `LivenessProbeStartup` example, the `StartupHostedService` r
 >
 > [`AspNetCore.Diagnostics.HealthChecks`](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks) isn't maintained or supported by Microsoft.
 
-## Restrict health checks with MapWhen
-
-Use <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen%2A> to conditionally branch the request pipeline for health check endpoints.
-
-In the following example, `MapWhen` branches the request pipeline to activate Health Checks Middleware if a GET request is received for the `api/healthz` endpoint:
-
-```csharp
-app.MapWhen(
-    context => context.Request.Method == HttpMethod.Get.Method && 
-        context.Request.Path.StartsWith("/api/healthz"),
-    builder => builder.UseHealthChecks());
-
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapRazorPages();
-});
-```
-
-For more information, see <xref:fundamentals/middleware/index#branch-the-middleware-pipeline>.
-
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
