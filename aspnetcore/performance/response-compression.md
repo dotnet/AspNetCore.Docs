@@ -2,7 +2,7 @@
 title: Response compression in ASP.NET Core
 author: rick-anderson
 description: Learn about response compression and how to use Response Compression Middleware in ASP.NET Core apps.
-monikerRange: '>= aspnetcore-2.1'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
