@@ -31,7 +31,7 @@ function Test-BlazorApplication {
   $result = [ValidationErrors]::new();
   $result.ComparisonErrors = $errors;
   $result.DownloadedAppErrors = $web;
-  $result.PublishedAppErrors = $res;
+  $result.PublishedAppErrors = $res.Errors;
   $result.PublishedApp = $res;
   $result.DownloadedApp = $web;
 
