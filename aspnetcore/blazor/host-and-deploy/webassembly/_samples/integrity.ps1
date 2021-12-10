@@ -40,7 +40,7 @@ function Test-BlazorApplication {
   }
   else {
     if ($result.IsValid()) {
-      "No error founds. Application is consistent."
+      "No errors found. Application is consistent."
     }
     else {
       foreach ($publishError in $result.PublishedAppErrors) {
