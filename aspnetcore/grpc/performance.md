@@ -278,6 +278,6 @@ Messages with large binary payloads can allocate byte arrays on the [large objec
 
 Advice for creating high-performance applications with large binary payloads:
 
-* **Avoid** very large binary payloads in gRPC messages.
+* **Avoid** large binary payloads in gRPC messages. A byte array larger than 85,000 bytes is considered a large object. Keeping below that size avoids allocating on the large object heap.
 * **Consider** splitting large binary payloads [using streaming](xref:grpc/client#client-streaming-call). Binary data is chunked and streamed over multiple messages.
 * **Consider** not using gRPC for large binary data. HTTP endpoints can be used alongside gRPC services. An HTTP endpoint that supports sending or receiving large files using the stream body is efficient.
