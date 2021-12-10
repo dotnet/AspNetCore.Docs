@@ -267,12 +267,12 @@ The preceding code:
 
 ### gRPC services and large binary payloads
 
-gRPC and Protobuf can send and receive large binary payloads. Although binary Protobuf is more efficent than text-based JSON at serializing binary payloads, there are still important performance characteristics to keep in mind when working with large binary payloads.
+gRPC and Protobuf can send and receive large binary payloads. Although binary Protobuf is more efficient than text-based JSON at serializing binary payloads, there are still important performance characteristics to keep in mind when working with large binary payloads.
 
-gRPC is a message based RPC framework. That means that the entire message is loaded into memory before gRPC can send it, and the entire message is deserialized into memory when received. Messages with large binary payloads can allocate byte arrays on the [large object heap](/dotnet/standard/garbage-collection/large-object-heap). Large allocations impact server performance and scalablity.
+gRPC is a message based RPC framework. That means that the entire message is loaded into memory before gRPC can send it, and the entire message is deserialized into memory when received. Messages with large binary payloads can allocate byte arrays on the [large object heap](/dotnet/standard/garbage-collection/large-object-heap). Large allocations impact server performance and scalability.
 
 Advice for creating high-performance applications with large binary payloads:
 
 * **Avoid** very large binary payloads in gRPC messages.
 * **Consider** splitting up large binary payloads [using streaming](xref:grpc/client#client-streaming-call). Binary data is chunked and streamed over multiple messages.
-* **Consider** not using gRPC for large binary data. HTTP endpoints can be used alongside gRPC services. An HTTP endpoint that supports sending or receiving large files using the stream body is very efficient.
+* **Consider** not using gRPC for large binary data. HTTP endpoints can be used alongside gRPC services. An HTTP endpoint that supports sending or receiving large files using the stream body is efficient.
