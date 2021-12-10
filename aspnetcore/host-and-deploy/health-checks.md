@@ -23,27 +23,7 @@ Health checks are exposed by an app as HTTP endpoints. Health check endpoints ca
 * Use of memory, disk, and other physical server resources can be monitored for healthy status.
 * Health checks can test an app's dependencies, such as databases and external service endpoints, to confirm availability and normal functioning.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/host-and-deploy/health-checks/samples) ([how to download](xref:index#how-to-download-a-sample))
-
-The sample app includes examples of the scenarios described in this article. To run the sample app for a given scenario, use the [dotnet run](/dotnet/core/tools/dotnet-run) command from the project's folder in a command shell. See the sample app's `README.md` file and the scenario descriptions in this article for details on how to use the sample app.
-
-## Prerequisites
-
 Health checks are typically used with an external monitoring service or container orchestrator to check the status of an app. Before adding health checks to an app, decide on which monitoring system to use. The monitoring system dictates what types of health checks to create and how to configure their endpoints.
-
-The [`Microsoft.AspNetCore.Diagnostics.HealthChecks`](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.HealthChecks) package is referenced implicitly for ASP.NET Core apps. To run health checks using Entity Framework Core, add a reference to the [`Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore`](https://www.nuget.org/packages/Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore) package.
-
-The sample app provides startup code to demonstrate health checks for several scenarios. The [database probe](#database-probe) scenario checks the health of a database connection using [`AspNetCore.Diagnostics.HealthChecks`](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks). The [DbContext probe](#entity-framework-core-dbcontext-probe) scenario checks a database using an EF Core `DbContext`. To explore the database scenarios, the sample app:
-
-* Creates a database and provides its connection string in the `appsettings.json` file.
-* Has the following package references in its project file:
-  * [`AspNetCore.HealthChecks.SqlServer`](https://www.nuget.org/packages/AspNetCore.HealthChecks.SqlServer)
-  * [`Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore`](https://www.nuget.org/packages/Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore)
-
-> [!NOTE]
-> [`AspNetCore.Diagnostics.HealthChecks`](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks) isn't maintained or supported by Microsoft.
-
-Another health check scenario demonstrates how to filter health checks to a management port. The sample app requires you to create a `Properties/launchSettings.json` file that includes the management URL and management port. For more information, see the [Filter by port](#filter-by-port) section.
 
 ## Basic health probe
 
@@ -51,19 +31,13 @@ For many apps, a basic health probe configuration that reports the app's availab
 
 The basic configuration registers health check services and calls the Health Checks Middleware to respond at a URL endpoint with a health response. By default, no specific health checks are registered to test any particular dependency or subsystem. The app is considered healthy if it can respond at the health endpoint URL. The default response writer writes the status (<xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus>) as a plaintext response back to the client, indicating either a <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Healthy?displayProperty=nameWithType>, <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Degraded?displayProperty=nameWithType>, or <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy?displayProperty=nameWithType> status.
 
-Register health check services with <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks%2A> in `Startup.ConfigureServices`. Create a health check endpoint by calling `MapHealthChecks` in `Startup.Configure`.
+Register health check services with <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks%2A> in *Program.cs*. Create a health check endpoint by calling <xref:Microsoft.AspNetCore.Builder.HealthCheckEndpointRouteBuilderExtensions.MapHealthChecks%2A>.
 
-In the sample app, the health check endpoint is created at `/healthz` (`BasicStartup.cs`):
+The following example creates a health check endpoint at `/healthz`:
 
 :::code language="csharp" source="health-checks/samples/6.x/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksComplete" highlight="3,7":::
 
-To run the basic configuration scenario using the sample app, execute the following command from the project's folder in a command shell:
-
-```dotnetcli
-dotnet run --scenario basic
-```
-
-### Docker example
+### Docker `HEALTHCHECK`
 
 [Docker](xref:host-and-deploy/docker/index) offers a built-in `HEALTHCHECK` directive that can be used to check the status of an app that uses the basic health check configuration:
 
@@ -75,15 +49,17 @@ HEALTHCHECK CMD curl --fail http://localhost:5000/healthz || exit
 
 Health checks are created by implementing the <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck> interface. The <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck.CheckHealthAsync%2A> method returns a <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckResult> that indicates the health as `Healthy`, `Degraded`, or `Unhealthy`. The result is written as a plaintext response with a configurable status code (configuration is described in the [Health check options](#health-check-options) section). <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckResult> can also return optional key-value pairs.
 
-The following `ExampleHealthCheck` class demonstrates the layout of a health check. The health checks logic is placed in the `CheckHealthAsync` method. The following example sets a dummy variable, `healthCheckResultHealthy`, to `true`. If the value of `healthCheckResultHealthy` is set to `false`, the <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckRegistration.FailureStatus?displayProperty=nameWithType> status is returned.
+The following example demonstrates the layout of a health check: 
 
 :::code language="csharp" source="health-checks/samples/6.x/HealthChecksSample/HealthChecks/SampleHealthCheck.cs" id="snippet_Class":::
 
-If <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck.CheckHealthAsync%2A> throws an exception during the check, a new <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthReportEntry> is returned with its <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthReportEntry.Status?displayProperty=nameWithType> set to the <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckRegistration.FailureStatus>, which is defined by <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck%2A> (see the [Register health check services](#register-health-check-services) section) and includes the [inner exception](xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthReportEntry.Exception) that initially caused the check failure. The <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthReportEntry.Description> is set to the exception's message.
+The health check's logic is placed in the <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck.CheckHealthAsync%2A> method. The preceding example sets a dummy variable, `isHealthy`, to `true`. If the value of `isHealthy` is set to `false`, the <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckRegistration.FailureStatus?displayProperty=nameWithType> status is returned.
+
+If <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck.CheckHealthAsync%2A> throws an exception during the check, a new <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthReportEntry> is returned with its <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthReportEntry.Status?displayProperty=nameWithType> set to the <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckRegistration.FailureStatus>. This status is defined by <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck%2A> (see the [Register health check services](#register-health-check-services) section) and includes the [inner exception](xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthReportEntry.Exception) that caused the check failure. The <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthReportEntry.Description> is set to the exception's message.
 
 ## Register health check services
 
-The `ExampleHealthCheck` type is added to health check services with <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck%2A> in `Startup.ConfigureServices`:
+To register a health check service, call <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck%2A> in *Program.cs*:
 
 :::code language="csharp" source="health-checks/samples/6.x/HealthChecksSample/Snippets/Program.cs" id="snippet_AddHealthChecks":::
 
@@ -93,35 +69,39 @@ The <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckEx
 
 :::code language="csharp" source="health-checks/samples/6.x/HealthChecksSample/Snippets/Program.cs" id="snippet_AddHealthChecksExtended":::
 
-<xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderDelegateExtensions.AddCheck%2A> can also execute a lambda function. In the following example, the health check always returns a healthy state:
+<xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderDelegateExtensions.AddCheck%2A> can also execute a lambda function. In the following example, the health check always returns a healthy result:
 
 :::code language="csharp" source="health-checks/samples/6.x/HealthChecksSample/Snippets/Program.cs" id="snippet_AddHealthChecksDelegate":::
 
-Call <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddTypeActivatedCheck%2A> to pass arguments to a health check implementation. In the following example,a type-activated health check accepts an integer and a string for use when <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck.CheckHealthAsync%2A> is called:
+Call <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddTypeActivatedCheck%2A> to pass arguments to a health check implementation. In the following example,a type-activated health check accepts an integer and a string in its constructor:
 
 :::code language="csharp" source="health-checks/samples/6.x/HealthChecksSample/HealthChecks/SampleHealthCheckWithArgs.cs" id="snippet_Class" highlight="6":::
 
-The preceding health check is registered by calling `AddTypeActivatedCheck` with the integer and string passed to the implementation:
+To register the preceding health check, call `AddTypeActivatedCheck` with the integer and string passed as arguments:
 
 :::code language="csharp" source="health-checks/samples/6.x/HealthChecksSample/Snippets/Program.cs" id="snippet_AddHealthChecksTypeActivated":::
 
 ## Use Health Checks Routing
 
-In `Startup.Configure`, call `MapHealthChecks` on the endpoint builder with the endpoint URL or relative path:
+In *Program.cs*, call `MapHealthChecks` on the endpoint builder with the endpoint URL or relative path:
 
 :::code language="csharp" source="health-checks/samples/6.x/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecks":::
 
 ### Require host
 
-Call `RequireHost` to specify one or more permitted hosts for the health check endpoint. Hosts should be Unicode rather than punycode and may include a port. If a collection isn't supplied, any host is accepted.
+Call `RequireHost` to specify one or more permitted hosts for the health check endpoint. Hosts should be Unicode rather than punycode and may include a port. If a collection isn't supplied, any host is accepted:
 
 :::code language="csharp" source="health-checks/samples/6.x/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksRequireHost":::
 
-For more information, see the [Filter by port](#filter-by-port) section.
+To restrict the health check endpoint to respond only on a specific port, specify a port in the call to `RequireHost`. This approach is typically used in a container environment to expose a port for monitoring services:
+
+:::code language="csharp" source="health-checks/samples/6.x/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksRequireHostPort":::
+
+For more information, see [Host matching in routes with RequireHost](xref:fundamentals/routing#host-matching-in-routes-with-requirehost).
 
 ### Require authorization
 
-Call `RequireAuthorization` to run Authorization Middleware on the health check request endpoint. A `RequireAuthorization` overload accepts one or more authorization policies. If a policy isn't provided, the default authorization policy is used.
+Call `RequireAuthorization` to run Authorization Middleware on the health check request endpoint. A `RequireAuthorization` overload accepts one or more authorization policies. If a policy isn't provided, the default authorization policy is used:
 
 :::code language="csharp" source="health-checks/samples/6.x/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksRequireAuthorization":::
 
@@ -140,35 +120,27 @@ Although running health checks manually from a browser isn't a common use scenar
 
 ### Filter health checks
 
-By default, Health Checks Middleware runs all registered health checks. To run a subset of health checks, provide a function that returns a boolean to the <xref:Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions.Predicate> option. In the following example, the `Bar` health check is filtered out by its tag (`bar_tag`) in the function's conditional statement, where `true` is only returned if the health check's <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckRegistration.Tags> property matches `foo_tag` or `baz_tag`:
+By default, the Health Checks Middleware runs all registered health checks. To run a subset of health checks, provide a function that returns a boolean to the <xref:Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions.Predicate> option.
 
-In `Startup.ConfigureServices`:
-
-:::code language="csharp" source="health-checks/samples/6.x/HealthChecksSample/Snippets/Program.cs" id="snippet_AddHealthChecksFilterTags":::
-
-In `Startup.Configure`, the `Predicate` filters out the 'Bar' health check. Only Foo and Baz execute:
+The following example filters the health checks so that only those tagged with `sample` run:
 
 :::code language="csharp" source="health-checks/samples/6.x/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksFilterTags":::
 
 ### Customize the HTTP status code
 
-Use <xref:Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions.ResultStatusCodes> to customize the mapping of health status to HTTP status codes. The following <xref:Microsoft.AspNetCore.Http.StatusCodes> assignments are the default values used by the middleware. Change the status code values to meet your requirements.
-
-In `Startup.Configure`:
+Use <xref:Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions.ResultStatusCodes> to customize the mapping of health status to HTTP status codes. The following <xref:Microsoft.AspNetCore.Http.StatusCodes> assignments are the default values used by the middleware. Change the status code values to meet your requirements:
 
 :::code language="csharp" source="health-checks/samples/6.x/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksResultStatusCodes":::
 
 ### Suppress cache headers
 
-<xref:Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions.AllowCachingResponses> controls whether the Health Checks Middleware adds HTTP headers to a probe response to prevent response caching. If the value is `false` (default), the middleware sets or overrides the `Cache-Control`, `Expires`, and `Pragma` headers to prevent response caching. If the value is `true`, the middleware doesn't modify the cache headers of the response.
-
-In `Startup.Configure`:
+<xref:Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions.AllowCachingResponses> controls whether the Health Checks Middleware adds HTTP headers to a probe response to prevent response caching. If the value is `false` (default), the middleware sets or overrides the `Cache-Control`, `Expires`, and `Pragma` headers to prevent response caching. If the value is `true`, the middleware doesn't modify the cache headers of the response:
 
 :::code language="csharp" source="health-checks/samples/6.x/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksAllowCachingResponses":::
 
 ### Customize output
 
-In `Startup.Configure`, set the <xref:Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions.ResponseWriter%2A?displayProperty=nameWithType> option to a delegate for writing the response:
+To customize the output of a health checks report, set the <xref:Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions.ResponseWriter%2A?displayProperty=nameWithType> property to a delegate that writes the response:
 
 :::code language="csharp" source="health-checks/samples/6.x/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksResponseWriter":::
 
@@ -182,22 +154,14 @@ The health checks API doesn't provide built-in support for complex JSON return f
 
 A health check can specify a database query to run as a boolean test to indicate if the database is responding normally.
 
-The sample app uses [`AspNetCore.Diagnostics.HealthChecks`](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks), a health check library for ASP.NET Core apps, to run a health check on a SQL Server database. `AspNetCore.Diagnostics.HealthChecks` executes a `SELECT 1` query against the database to confirm the connection to the database is healthy.
+[`AspNetCore.Diagnostics.HealthChecks`](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks), a health check library for ASP.NET Core apps, includes a health check that runs against a SQL Server database. `AspNetCore.Diagnostics.HealthChecks` executes a `SELECT 1` query against the database to confirm the connection to the database is healthy.
 
 > [!WARNING]
 > When checking a database connection with a query, choose a query that returns quickly. The query approach runs the risk of overloading the database and degrading its performance. In most cases, running a test query isn't necessary. Merely making a successful connection to the database is sufficient. If you find it necessary to run a query, choose a simple SELECT query, such as `SELECT 1`.
 
-Include a package reference to [`AspNetCore.HealthChecks.SqlServer`](https://www.nuget.org/packages/AspNetCore.HealthChecks.SqlServer).
-
-Register health check services with <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks%2A> in `Startup.ConfigureServices`. The sample app calls the `AddSqlServer` method with the database's connection string (`DbHealthStartup.cs`):
+To use this SQL Server health check, include a package reference to the [`AspNetCore.HealthChecks.SqlServer`](https://www.nuget.org/packages/AspNetCore.HealthChecks.SqlServer) NuGet package. The following example registers the SQL Server health check:
 
 :::code language="csharp" source="health-checks/samples/6.x/HealthChecksSample/Snippets/Program.cs" id="snippet_AddHealthChecksSqlServer":::
-
-To run the database probe scenario using the sample app, execute the following command from the project's folder in a command shell:
-
-```dotnetcli
-dotnet run --scenario db
-```
 
 > [!NOTE]
 > [`AspNetCore.Diagnostics.HealthChecks`](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks) isn't maintained or supported by Microsoft.
@@ -207,60 +171,18 @@ dotnet run --scenario db
 The `DbContext` check confirms that the app can communicate with the database configured for an EF Core `DbContext`. The `DbContext` check is supported in apps that:
 
 * Use [Entity Framework (EF) Core](/ef/core/).
-* Include a package reference to [`Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore`](https://www.nuget.org/packages/Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore).
+* Include a package reference to the [`Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore`](https://www.nuget.org/packages/Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore) NuGet package.
 
-`AddDbContextCheck<TContext>` registers a health check for a `DbContext`. The `DbContext` is supplied as the `TContext` to the method. An overload is available to configure the failure status, tags, and a custom test query.
+<xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkCoreHealthChecksBuilderExtensions.AddDbContextCheck%2A> registers a health check for a <xref:Microsoft.EntityFrameworkCore.DbContext>. The `DbContext` is supplied to the method as the `TContext`. An overload is available to configure the failure status, tags, and a custom test query.
 
 By default:
 
 * The `DbContextHealthCheck` calls EF Core's `CanConnectAsync` method. You can customize what operation is run when checking health using `AddDbContextCheck` method overloads.
 * The name of the health check is the name of the `TContext` type.
 
-In the sample app, `AppDbContext` is provided to `AddDbContextCheck` and registered as a service in `Startup.ConfigureServices` (`DbContextHealthStartup.cs`):
+The following examples registers a `DbContext` and an associated `DbContextHealthCheck`:
 
 :::code language="csharp" source="health-checks/samples/6.x/HealthChecksSample/Snippets/Program.cs" id="snippet_AddHealthChecksDbContext":::
-
-To run the `DbContext` probe scenario using the sample app, confirm that the database specified by the connection string doesn't exist in the SQL Server instance. If the database exists, delete it.
-
-Execute the following command from the project's folder in a command shell:
-
-```dotnetcli
-dotnet run --scenario dbcontext
-```
-
-After the app is running, check the health status by making a request to the `/health` endpoint in a browser. The database and `AppDbContext` don't exist, so app provides the following response:
-
-```
-Unhealthy
-```
-
-Trigger the sample app to create the database. Make a request to `/createdatabase`. The app responds:
-
-```
-Creating the database...
-Done!
-Navigate to /health to see the health status.
-```
-
-Make a request to the `/health` endpoint. The database and context exist, so app responds:
-
-```
-Healthy
-```
-
-Trigger the sample app to delete the database. Make a request to `/deletedatabase`. The app responds:
-
-```
-Deleting the database...
-Done!
-Navigate to /health to see the health status.
-```
-
-Make a request to the `/health` endpoint. The app provides an unhealthy response:
-
-```
-Unhealthy
-```
 
 ## Separate readiness and liveness probes
 
@@ -271,39 +193,28 @@ In some hosting scenarios, a pair of health checks is used to distinguish two ap
 
 Consider the following example: An app must download a large configuration file before it's ready to process requests. We don't want the app to be restarted if the initial download fails because the app can retry downloading the file several times. We use a *liveness probe* to describe the liveness of the process, no other checks are run. We also want to prevent requests from being sent to the app before the configuration file download has succeeded. We use a *readiness probe* to indicate a "not ready" state until the download succeeds and the app is ready to receive requests.
 
-The sample app contains a health check to report the completion of long-running startup task in a [Hosted Service](xref:fundamentals/host/hosted-services). The `StartupHostedServiceHealthCheck` exposes a property, `StartupTaskCompleted`, that the hosted service can set to `true` when its long-running task is finished (`StartupHostedServiceHealthCheck.cs`):
-
-:::code language="csharp" source="health-checks/samples/6.x/HealthChecksSample/HealthChecks/StartupHealthCheck.cs" id="snippet_Class" highlight="5-9":::
-
-The long-running background task is started by a [Hosted Service](xref:fundamentals/host/hosted-services) (`Services/StartupHostedService`). At the conclusion of the task, `StartupHostedServiceHealthCheck.StartupTaskCompleted` is set to `true`:
+The following background task simulates a startup process that takes roughly 15 seconds. Once it completes, the task sets the `StartupHealthCheck.StartupCompleted` property to true:
 
 :::code language="csharp" source="health-checks/samples/6.x/HealthChecksSample/Services/StartupBackgroundService.cs" id="snippet_Class" highlight="13":::
 
-The health check is registered with <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck%2A> in `Startup.ConfigureServices` along with the hosted service. Because the hosted service must set the property on the health check, the health check is also registered in the service container (`LivenessProbeStartup.cs`):
+The `StartupHealthCheck` reports the completion of the long-running startup task and exposes the `StartupCompleted` property that gets set by the background service:
+
+:::code language="csharp" source="health-checks/samples/6.x/HealthChecksSample/HealthChecks/StartupHealthCheck.cs" id="snippet_Class" highlight="5-9":::
+
+The health check is registered with <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck%2A> in *Program.cs* along with the hosted service. Because the hosted service must set the property on the health check, the health check is also registered in the service container as a singleton:
 
 :::code language="csharp" source="health-checks/samples/6.x/HealthChecksSample/Snippets/Program.cs" id="snippet_AddHealthChecksReadinessLiveness":::
 
-A health check endpoint is created by calling `MapHealthChecks` in `Startup.Configure`. In the sample app, the health check endpoints are created at:
-
-* `/health/ready` for the readiness check. The readiness check filters health checks to the health check with the `ready` tag.
-* `/health/live` for the liveness check. The liveness check filters out the `StartupHostedServiceHealthCheck` by returning `false` in the [`HealthCheckOptions.Predicate`](xref:Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions.Predicate) (for more information, see [Filter health checks](#filter-health-checks))
-
-In the following example code:
-
-* The readiness check uses all registered checks with the 'ready' tag.
-* The `Predicate` excludes all checks and returns a 200-Ok.
+To create two different health check endpoints, call `MapHealthChecks` twice:
 
 :::code language="csharp" source="health-checks/samples/6.x/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksReadinessLiveness":::
 
-To run the readiness/liveness configuration scenario using the sample app, execute the following command from the project's folder in a command shell:
+The preceding example creates the following health check endpoints:
 
-```dotnetcli
-dotnet run --scenario liveness
-```
+* `/healthz/ready` for the readiness check. The readiness check filters health checks to those tagged with `ready`.
+* `/healthz/live` for the liveness check. The liveness check filters out all health checks by returning `false` in the <xref:Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions.Predicate%2A?displayProperty=nameWithType> delegate. For more information on filtering health checks, see [Filter health checks](#filter-health-checks)) in this article.
 
-In a browser, visit `/health/ready` several times until 15 seconds have passed. The health check reports `Unhealthy` for the first 15 seconds. After 15 seconds, the endpoint reports `Healthy`, which reflects the completion of the long-running task by the hosted service.
-
-This example also creates a Health Check Publisher (<xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher> implementation) that runs the first readiness check with a two-second delay. For more information, see the [Health Check Publisher](#health-check-publisher) section.
+Before the startup task completes, the `/healthz/ready` endpoint reports an `Unhealthy` status. Once the startup task completes, this endpoint reports a `Healthy` status. The `/healthz/live` endpoint excludes all checks and reports a `Healthy` status for all calls.
 
 ### Kubernetes example
 
@@ -327,18 +238,6 @@ spec:
     ports:
       - containerPort: 80
 ```
-
-## Filter by port
-
-Call `RequireHost` on `MapHealthChecks` with a URL pattern that specifies a port to restrict health check requests to the port specified. This approach is typically used in a container environment to expose a port for monitoring services.
-
-The sample app configures the port using the [Environment Variable Configuration Provider](xref:fundamentals/configuration/index#environment-variables). The port is set in the `launchSettings.json` file and passed to the configuration provider via an environment variable. You must also configure the server to listen to requests on the management port.
-
-Register health check services with <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks%2A> in `Startup.ConfigureServices`. Create a health check endpoint by calling `MapHealthChecks` in `Startup.Configure`.
-
-In the sample app, a call to `RequireHost` on the endpoint in `Startup.Configure` specifies the management port from configuration:
-
-:::code language="csharp" source="health-checks/samples/6.x/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksRequireHostPort":::
 
 ## Distribute a health check library
 
@@ -364,7 +263,7 @@ To distribute a health check as a library:
 
 ## Health Check Publisher
 
-When an <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher> is added to the service container, the health check system periodically executes your health checks and calls `PublishAsync` with the result. This is useful in a push-based health monitoring system scenario that expects each process to call the monitoring system periodically in order to determine health.
+When an <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher> is added to the service container, the health check system periodically executes your health checks and calls <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher.PublishAsync%2A> with the result. This is useful in a push-based health monitoring system scenario that expects each process to call the monitoring system periodically in order to determine health.
 
 <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions> allow you to set the:
 
@@ -373,14 +272,13 @@ When an <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublishe
 * <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Predicate>: If <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Predicate> is `null` (default), the health check publisher service runs all registered health checks. To run a subset of health checks, provide a function that filters the set of checks. The predicate is evaluated each period.
 * <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Timeout>: The timeout for executing the health checks for all <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher> instances. Use <xref:System.Threading.Timeout.InfiniteTimeSpan> to execute without a timeout. The default value is 30 seconds.
 
-In the sample app, `ReadinessPublisher` is an <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher> implementation. The health check status is logged for each check at a log level of:
-
-* Information (<xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation%2A>) if the health checks status is <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Healthy>.
-* Error (<xref:Microsoft.Extensions.Logging.LoggerExtensions.LogError%2A>) if the status is either <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Degraded> or <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy>.
+The following example demonstrates the layout of a health publisher:
 
 :::code language="csharp" source="health-checks/samples/6.x/HealthChecksSample/HealthCheckPublishers/SampleHealthCheckPublisher.cs" id="snippet_Class":::
 
-In the sample app's `LivenessProbeStartup` example, the `StartupHostedService` readiness check has a two second startup delay and runs the check every 30 seconds. To activate the <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher> implementation, the sample registers `ReadinessPublisher` as a singleton service in the [dependency injection (DI)](xref:fundamentals/dependency-injection) container:
+The <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions> class provides properties for configuring the behavior of the health check publisher.
+
+The following example registers a health check publisher as a singleton and configures <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions>:
 
 :::code language="csharp" source="health-checks/samples/6.x/HealthChecksSample/Snippets/Program.cs" id="snippet_HealthCheckPublisherOptionsService":::
 
@@ -388,6 +286,10 @@ In the sample app's `LivenessProbeStartup` example, the `StartupHostedService` r
 > [`AspNetCore.Diagnostics.HealthChecks`](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks) includes publishers for several systems, including [Application Insights](/azure/application-insights/app-insights-overview).
 >
 > [`AspNetCore.Diagnostics.HealthChecks`](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks) isn't maintained or supported by Microsoft.
+
+## Additional resources
+
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/host-and-deploy/health-checks/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 :::moniker-end
 

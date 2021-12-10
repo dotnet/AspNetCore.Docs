@@ -95,31 +95,12 @@ public static class Program
         // </snippet_MapHealthChecksRequireAuthorization>
     }
 
-    public static void AddHealthChecksFilterTags(WebApplicationBuilder builder)
-    {
-        // <snippet_AddHealthChecksFilterTags>
-        builder.Services.AddHealthChecks()
-            .AddCheck(
-                "Check_1",
-                () => HealthCheckResult.Healthy("Check_1 is healthy."),
-                tags: new[] { "tag_1" })
-            .AddCheck(
-                "Check_2",
-                () => HealthCheckResult.Healthy("Check_2 is unhealthy."),
-                tags: new[] { "tag_1" })
-            .AddCheck(
-                "Check_2",
-                () => HealthCheckResult.Healthy("Check_3 is healthy."),
-                tags: new[] { "tag_2" });
-        // </snippet_AddHealthChecksFilterTags>
-    }
-
     public static void MapHealthChecksFilterTags(WebApplication app)
     {
         // <snippet_MapHealthChecksFilterTags>
         app.MapHealthChecks("/healthz", new HealthCheckOptions
         {
-            Predicate = healthCheck => healthCheck.Tags.Contains("tag_1")
+            Predicate = healthCheck => healthCheck.Tags.Contains("sample")
         });
         // </snippet_MapHealthChecksFilterTags>
     }
