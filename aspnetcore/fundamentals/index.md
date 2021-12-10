@@ -15,7 +15,7 @@ uid: fundamentals/index
 
 This article provides an overview of key topics for understanding how to develop ASP.NET Core apps.
 
-## The Startup class
+## Program.cs
 
 The `Startup` class is where:
 
@@ -26,7 +26,6 @@ Here's a sample `Startup` class:
 
 [!code-csharp[](index/samples_snapshot/3.x/Startup.cs?highlight=3,12)]
 
-For more information, see <xref:fundamentals/startup>.
 
 ## Dependency injection (services)
 
