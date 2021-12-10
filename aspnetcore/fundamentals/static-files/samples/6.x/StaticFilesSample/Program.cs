@@ -119,7 +119,7 @@ app.UseStaticFiles();
 var fileProvider = new PhysicalFileProvider(Path.Combine(builder.Environment.WebRootPath, "images"));
 var requestPath = "/MyImages";
 
-// Enable displaying files.
+// Enable displaying browser links.
 app.UseStaticFiles(new StaticFileOptions
 {
     FileProvider = fileProvider,
