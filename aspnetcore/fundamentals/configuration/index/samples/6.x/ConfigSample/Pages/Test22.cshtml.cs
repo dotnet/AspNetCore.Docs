@@ -1,7 +1,6 @@
 ﻿using ConfigSample.Options;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Diagnostics;
 
 namespace ConfigSample.Pages
 {
