@@ -31,23 +31,14 @@ In the test project, create a test:
 
 * Build and start a host that uses <xref:Microsoft.AspNetCore.TestHost.TestServer>.
 * Add any required services that the middleware uses.
-* Add the [Microsoft.AspNetCore.TestHost](https://www.nuget.org/packages/Microsoft.AspNetCore.TestHost/) NuGet package to the project:
-  
-  ```dotnetcli
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="3.1.*" />
-  </ItemGroup>
-  ```
-* Add the [Microsoft.AspNetCore.Hosting](https://www.nuget.org/packages/Microsoft.AspNetCore.Hosting/) Nuget package to the project:
+* Add package references to the project for the following NuGet packages:
 
-  ```dotnetcli
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
-  </ItemGroup>
-  ```
+  * [Microsoft.AspNetCore.TestHost](https://www.nuget.org/packages/Microsoft.AspNetCore.TestHost/)
+  * [Microsoft.AspNetCore.Hosting](https://www.nuget.org/packages/Microsoft.AspNetCore.Hosting/)
+
 * Configure the processing pipeline to use the middleware for the test.
 
-[!code-csharp[](middleware/samples_snapshot/3.x/setup.cs?highlight=4-18)]
+  [!code-csharp[](middleware/samples_snapshot/3.x/setup.cs?highlight=4-18)]
 
 ## Send requests with HttpClient
 
