@@ -31,7 +31,7 @@ function Test-BlazorApplication {
   $result = [ValidationErrors]::new();
   $result.ComparisonErrors = $errors;
   $result.DownloadedAppErrors = $web;
-  $result.PublishedAppErrors = $res;
+  $result.PublishedAppErrors = $res.Errors;
   $result.PublishedApp = $res;
   $result.DownloadedApp = $web;
 
@@ -40,7 +40,7 @@ function Test-BlazorApplication {
   }
   else {
     if ($result.IsValid()) {
-      "No error founds. Application is consistent."
+      "No errors found. Application is consistent."
     }
     else {
       foreach ($publishError in $result.PublishedAppErrors) {
