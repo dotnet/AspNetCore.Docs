@@ -1,6 +1,6 @@
 ---
 title: What's new in ASP.NET Core 2.1
-author: isaac2004
+author: isaacrlevin
 description: Learn about the new features in ASP.NET Core 2.1.
 ms.author: riande
 ms.custom: mvc

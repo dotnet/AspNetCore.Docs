@@ -1,6 +1,6 @@
 ---
 title: Migrate from ASP.NET to ASP.NET Core
-author: isaac2004
+author: isaacrlevin
 description: Receive guidance for migrating existing ASP.NET MVC or Web API apps to ASP.NET Core.web
 ms.author: scaddie
 ms.date: 10/18/2019
