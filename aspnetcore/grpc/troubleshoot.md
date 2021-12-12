@@ -76,7 +76,6 @@ There are some additional requirements to call insecure gRPC services depending 
 
 * .NET 5 or later requires [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client) version 2.32.0 or later.
 * .NET Core 3.x requires additional configuration. The app must set the `System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` switch to `true`:
-    
     ```csharp
     // This switch must be set before creating the GrpcChannel/HttpClient.
     AppContext.SetSwitch(
@@ -88,6 +87,9 @@ There are some additional requirements to call insecure gRPC services depending 
     ```
 
 The `System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` switch is only required for .NET Core 3.x. It does nothing in .NET 5 and isn't required.
+
+> [!IMPORTANT]
+> gRPC services called without TLS must be hosted on a HTTP/2 only port. For more information, see [ASP.NET Core protocol negotiation](xref:grpc/aspnetcore#protocol-negotiation).
 
 ## Unable to start ASP.NET Core gRPC app on macOS
 
