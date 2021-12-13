@@ -21,11 +21,7 @@ using (var scope = app.Services.CreateScope())
     SeedData.Initialize(services);
 }
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseDeveloperExceptionPage();
-}
-else
+if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
     app.UseHsts();
