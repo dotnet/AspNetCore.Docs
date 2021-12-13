@@ -255,7 +255,7 @@ To distribute a health check as a library:
    * `arg2`: A string argument for the health check.
    * `name`: An optional health check name. If `null`, a default value is used.
    * `failureStatus`: An optional <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus>, which is reported for a failure status. If `null`, <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy?displayProperty=nameWithType> is used.
-   * `tags`: An `IEnumerable<string>` collection of tags.
+   * `tags`: An optional `IEnumerable<string>` collection of tags.
 
    :::code language="csharp" source="health-checks/samples/6.x/HealthChecksSample/Extensions/SampleHealthCheckBuilderExtensions.cs" id="snippet_Class":::
 
