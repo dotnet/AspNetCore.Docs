@@ -42,23 +42,23 @@ The following airline flight search tool example uses private fields to track th
 
 ```razor
 @code {
-    private int prevInboundFlightId;
-    private int prevOutboundFlightId;
+    private int prevInboundFlightId = 0;
+    private int prevOutboundFlightId = 0;
     private bool shouldRender;
 
     [Parameter]
-    public FlightInfo InboundFlight { get; set; }
+    public FlightInfo? InboundFlight { get; set; }
 
     [Parameter]
-    public FlightInfo OutboundFlight { get; set; }
+    public FlightInfo? OutboundFlight { get; set; }
 
     protected override void OnParametersSet()
     {
-        shouldRender = InboundFlight.FlightId != prevInboundFlightId
-            || OutboundFlight.FlightId != prevOutboundFlightId;
+        shouldRender = InboundFlight?.FlightId != prevInboundFlightId
+            || OutboundFlight?.FlightId != prevOutboundFlightId;
 
-        prevInboundFlightId = InboundFlight.FlightId;
-        prevOutboundFlightId = OutboundFlight.FlightId;
+        prevInboundFlightId = InboundFlight?.FlightId ?? 0;
+        prevOutboundFlightId = OutboundFlight?.FlightId ?? 0;
     }
 
     protected override bool ShouldRender() => shouldRender;
@@ -126,7 +126,7 @@ Consider the following portion of a parent component that renders child componen
 
 @code {
     [Parameter]
-    public ChatMessage Message { get; set; }
+    public ChatMessage? Message { get; set; }
 }
 ```
 
@@ -227,10 +227,10 @@ To reduce parameter load, bundle multiple parameters in a custom class. For exam
 
 @code {
     [Parameter]
-    public TItem Data { get; set; }
+    public TItem? Data { get; set; }
     
     [Parameter]
-    public GridOptions Options { get; set; }
+    public GridOptions? Options { get; set; }
 }
 ```
 
@@ -273,7 +273,7 @@ Components can elect to receive "unmatched" parameter values using the <xref:Mic
 
 @code {
     [Parameter(CaptureUnmatchedValues = true)]
-    public IDictionary<string, object> OtherAttributes { get; set; }
+    public IDictionary<string, object>? OtherAttributes { get; set; }
 }
 ```
 
@@ -304,7 +304,7 @@ In extreme cases, you can override the component's virtual <xref:Microsoft.AspNe
     public int MessageId { get; set; }
 
     [Parameter]
-    public string Text { get; set; }
+    public string? Text { get; set; }
 
     [Parameter]
     public EventCallback<string> TextChanged { get; set; }
@@ -362,7 +362,7 @@ Rather than use native events that rapidly fire, consider the use of JS interop 
 
 @code {
     private ElementReference mouseMoveElement;
-    private DotNetObjectReference<MyComponent> selfReference;
+    private DotNetObjectReference<MyComponent>? selfReference;
     private string message = "Move the mouse in the box";
 
     [JSInvokable]
@@ -436,7 +436,7 @@ In the following example, no event handler added to the component triggers a rer
     }
 
     Task IHandleEvent.HandleEventAsync(
-        EventCallbackWorkItem callback, object arg) => callback.InvokeAsync(arg);
+        EventCallbackWorkItem callback, object? arg) => callback.InvokeAsync(arg);
 }
 ```
 
@@ -598,8 +598,8 @@ If a large number of buttons are rendered using the preceding approach, renderin
 
     private class Button
     {
-        public string Id { get; set; }
-        public Action<MouseEventArgs> Action { get; set; }
+        public string? Id { get; set; }
+        public Action<MouseEventArgs> Action { get; set; } = e => { };
     }
 }
 ```

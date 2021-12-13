@@ -201,36 +201,11 @@ For more information, see the [Apache documentation](https://httpd.apache.org/do
 
 ## Measure network latency
 
-[JS interop](xref:blazor/js-interop/call-javascript-from-dotnet) can be used to measure network latency, as the following example demonstrates:
+[JS interop](xref:blazor/js-interop/call-javascript-from-dotnet) can be used to measure network latency, as the following example demonstrates.
 
-```razor
-@inject IJSRuntime JS
+`Shared/MeasureLatency.razor`:
 
-@if (latency is null)
-{
-    <span>Calculating...</span>
-}
-else
-{
-    <span>@(latency.Value.TotalMilliseconds)ms</span>
-}
-
-@code {
-    private DateTime startTime;
-    private TimeSpan? latency;
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            startTime = DateTime.UtcNow;
-            var _ = await JS.InvokeAsync<string>("toString");
-            latency = DateTime.UtcNow - startTime;
-            StateHasChanged();
-        }
-    }
-}
-```
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Shared/host-and-deploy/MeasureLatency.razor)]
 
 For a reasonable UI experience, we recommend a sustained UI latency of 250 ms or less.
 

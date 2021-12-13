@@ -24,7 +24,7 @@ To configure the Trimmer, see the [Trimming options](/dotnet/core/deploying/trim
 * Stop the Trimmer from trimming specific assemblies.
 * "Root" assemblies for trimming.
 * Surface warnings for reflected types by setting the `<SuppressTrimAnalysisWarnings>` property to `false` in the project file.
-* Control symbol trimming and degugger support.
+* Control symbol trimming and debugger support.
 * Set Trimmer features for trimming framework library features.
 
 ## Additional resources

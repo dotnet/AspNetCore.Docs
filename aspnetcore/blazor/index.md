@@ -55,10 +55,10 @@ Blazor uses natural HTML tags for UI composition. The following Razor markup dem
 
 @code {
     [Parameter]
-    public RenderFragment ChildContent { get; set; }
+    public RenderFragment? ChildContent { get; set; }
 
     [Parameter]
-    public string Title { get; set; }
+    public string? Title { get; set; }
 
     private void OnYes()
     {

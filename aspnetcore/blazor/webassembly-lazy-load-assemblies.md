@@ -255,7 +255,7 @@ The demonstration in this section:
 
    @code {
        private RobotModel robotModel = new() { AxisSelection = Axis.Left };
-       private string message;
+       private string? message;
 
        private void HandleValidSubmit()
        {

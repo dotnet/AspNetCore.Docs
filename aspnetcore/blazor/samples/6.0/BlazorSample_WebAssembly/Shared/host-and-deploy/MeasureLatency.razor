@@ -1,0 +1,28 @@
+@inject IJSRuntime JS
+
+<h2>Measure Latency</h2>
+
+@if (latency is null)
+{
+    <span>Calculating...</span>
+}
+else
+{
+    <span>@(latency.Value.TotalMilliseconds)ms</span>
+}
+
+@code {
+    private DateTime startTime;
+    private TimeSpan? latency;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            startTime = DateTime.UtcNow;
+            var _ = await JS.InvokeAsync<string>("toString");
+            latency = DateTime.UtcNow - startTime;
+            StateHasChanged();
+        }
+    }
+}
