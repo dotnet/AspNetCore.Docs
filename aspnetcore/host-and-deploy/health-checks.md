@@ -17,7 +17,7 @@ By [Glenn Condron](https://github.com/glennc)
 
 ASP.NET Core offers Health Checks Middleware and libraries for reporting the health of app infrastructure components.
 
-Health checks are exposed by an app as HTTP endpoints. Health check endpoints can be configured for a variety of real-time monitoring scenarios:
+Health checks are exposed by an app as HTTP endpoints. Health check endpoints can be configured for various real-time monitoring scenarios:
 
 * Health probes can be used by container orchestrators and load balancers to check an app's status. For example, a container orchestrator may respond to a failing health check by halting a rolling deployment or restarting a container. A load balancer might react to an unhealthy app by routing traffic away from the failing instance to a healthy instance.
 * Use of memory, disk, and other physical server resources can be monitored for healthy status.
@@ -73,7 +73,7 @@ The <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckEx
 
 :::code language="csharp" source="health-checks/samples/6.x/HealthChecksSample/Snippets/Program.cs" id="snippet_AddHealthChecksDelegate":::
 
-Call <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddTypeActivatedCheck%2A> to pass arguments to a health check implementation. In the following example,a type-activated health check accepts an integer and a string in its constructor:
+Call <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddTypeActivatedCheck%2A> to pass arguments to a health check implementation. In the following example, a type-activated health check accepts an integer and a string in its constructor:
 
 :::code language="csharp" source="health-checks/samples/6.x/HealthChecksSample/HealthChecks/SampleHealthCheckWithArgs.cs" id="snippet_Class" highlight="6":::
 
@@ -180,7 +180,7 @@ By default:
 * The `DbContextHealthCheck` calls EF Core's `CanConnectAsync` method. You can customize what operation is run when checking health using `AddDbContextCheck` method overloads.
 * The name of the health check is the name of the `TContext` type.
 
-The following examples registers a `DbContext` and an associated `DbContextHealthCheck`:
+The following example registers a `DbContext` and an associated `DbContextHealthCheck`:
 
 :::code language="csharp" source="health-checks/samples/6.x/HealthChecksSample/Snippets/Program.cs" id="snippet_AddHealthChecksDbContext":::
 
@@ -245,29 +245,27 @@ To distribute a health check as a library:
 
 1. Write a health check that implements the <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck> interface as a standalone class. The class can rely on [dependency injection (DI)](xref:fundamentals/dependency-injection), type activation, and [named options](xref:fundamentals/configuration/options) to access configuration data.
 
-   In the health checks logic of `CheckHealthAsync`, `arg1` and `arg2` are used in the method to run the probe's health check logic.
-
-1. Write an extension method with parameters that the consuming app calls in its `Startup.Configure` method. In the following example, assume the following health check method signature:
+1. Write an extension method with parameters that the consuming app calls in its *Program.cs* method. Consider the following example health check, which accepts `arg1` and `arg2` as constructor parameters:
 
    :::code language="csharp" source="health-checks/samples/6.x/HealthChecksSample/HealthChecks/SampleHealthCheckWithArgs.cs" id="snippet_ctor":::
 
-   The preceding signature indicates that the `ExampleHealthCheck` requires additional data to process the health check probe logic. The data is provided to the delegate used to create the health check instance when the health check is registered with an extension method. In the following example, the caller specifies optional:
+   The preceding signature indicates that the health check requires custom data to process the health check probe logic. The data is provided to the delegate used to create the health check instance when the health check is registered with an extension method. In the following example, the caller specifies:
 
-   * health check name (`name`). If `null`, `example_health_check` is used.
-   * string data point for the health check (`data1`).
-   * integer data point for the health check (`data2`). If `null`, `1` is used.
-   * failure status (<xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus>). The default is `null`. If `null`, <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy?displayProperty=nameWithType> is reported for a failure status.
-   * tags (`IEnumerable<string>`).
+   * `arg1`: An integer data point for the health check.
+   * `arg2`: A string argument for the health check.
+   * `name`: An optional health check name. If `null`, a default value is used.
+   * `failureStatus`: An optional <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus>, which is reported for a failure status. If `null`, <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy?displayProperty=nameWithType> is used.
+   * `tags`: An `IEnumerable<string>` collection of tags.
 
    :::code language="csharp" source="health-checks/samples/6.x/HealthChecksSample/Extensions/SampleHealthCheckBuilderExtensions.cs" id="snippet_Class":::
 
 ## Health Check Publisher
 
-When an <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher> is added to the service container, the health check system periodically executes your health checks and calls <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher.PublishAsync%2A> with the result. This is useful in a push-based health monitoring system scenario that expects each process to call the monitoring system periodically in order to determine health.
+When an <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher> is added to the service container, the health check system periodically executes your health checks and calls <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher.PublishAsync%2A> with the result. This process is useful in a push-based health monitoring system scenario that expects each process to call the monitoring system periodically to determine health.
 
 <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions> allow you to set the:
 
-* <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Delay>: The initial delay applied after the app starts before executing <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher> instances. The delay is applied once at startup and doesn't apply to subsequent iterations. The default value is five seconds.
+* <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Delay>: The initial delay applied after the app starts before executing <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher> instances. The delay is applied once at startup and doesn't apply to later iterations. The default value is five seconds.
 * <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Period>: The period of <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher> execution. The default value is 30 seconds.
 * <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Predicate>: If <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Predicate> is `null` (default), the health check publisher service runs all registered health checks. To run a subset of health checks, provide a function that filters the set of checks. The predicate is evaluated each period.
 * <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions.Timeout>: The timeout for executing the health checks for all <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher> instances. Use <xref:System.Threading.Timeout.InfiniteTimeSpan> to execute without a timeout. The default value is 30 seconds.
@@ -297,7 +295,7 @@ The following example registers a health check publisher as a singleton and conf
 
 ASP.NET Core offers Health Checks Middleware and libraries for reporting the health of app infrastructure components.
 
-Health checks are exposed by an app as HTTP endpoints. Health check endpoints can be configured for a variety of real-time monitoring scenarios:
+Health checks are exposed by an app as HTTP endpoints. Health check endpoints can be configured for various real-time monitoring scenarios:
 
 * Health probes can be used by container orchestrators and load balancers to check an app's status. For example, a container orchestrator may respond to a failing health check by halting a rolling deployment or restarting a container. A load balancer might react to an unhealthy app by routing traffic away from the failing instance to a healthy instance.
 * Use of memory, disk, and other physical server resources can be monitored for healthy status.
@@ -1069,7 +1067,7 @@ For more information, see <xref:fundamentals/middleware/index#branch-the-middlew
 
 ASP.NET Core offers Health Checks Middleware and libraries for reporting the health of app infrastructure components.
 
-Health checks are exposed by an app as HTTP endpoints. Health check endpoints can be configured for a variety of real-time monitoring scenarios:
+Health checks are exposed by an app as HTTP endpoints. Health check endpoints can be configured for various real-time monitoring scenarios:
 
 * Health probes can be used by container orchestrators and load balancers to check an app's status. For example, a container orchestrator may respond to a failing health check by halting a rolling deployment or restarting a container. A load balancer might react to an unhealthy app by routing traffic away from the failing instance to a healthy instance.
 * Use of memory, disk, and other physical server resources can be monitored for healthy status.
