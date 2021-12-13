@@ -68,7 +68,7 @@ Use the **Razor Class Library** project template.
 The library generated from the project template:
 
 * Targets the current .NET framework based on the installed SDK.
-* Enables browser compatibilty checks for platform dependencies by including `browser` as a supported platform with the `SupportedPlatform` MSBuild item.
+* Enables browser compatibility checks for platform dependencies by including `browser` as a supported platform with the `SupportedPlatform` MSBuild item.
 * Adds a NuGet package reference for [Microsoft.AspNetCore.Components.Web](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Web).
 
 Example:
