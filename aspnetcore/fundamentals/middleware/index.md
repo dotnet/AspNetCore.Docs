@@ -234,7 +234,7 @@ The following table shows the requests and responses from `http://localhost:1234
 
 [!code-csharp[](index/snapshot/Chain60/ProgramUseWhen.cs?highlight=4-5)]
 
-In the preceding example, a response of "Hello from main pipeline." is written for all requests. If the request includes a query string variable `branch`, its value is logged before the main pipeline is rejoined.
+In the preceding example, a response of "Hello from non-Map delegate." is written for all requests. If the request includes a query string variable `branch`, its value is logged before the main pipeline is rejoined.
 
 ## Built-in middleware
 
