@@ -2,7 +2,7 @@
 title: Azure Key Vault configuration provider in ASP.NET Core
 author: rick-anderson
 description: Learn how to use the Azure Key Vault configuration provider to configure an app using name-value pairs loaded at runtime.
-monikerRange: '>= aspnetcore-2.1'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc, devx-track-azurecli, contperf-fy21q3
 ms.date: 03/17/2021
@@ -11,9 +11,9 @@ uid: security/key-vault-configuration
 ---
 # Azure Key Vault configuration provider in ASP.NET Core
 
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-6.0"
 
-This document explains how to use the [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) configuration provider to load app configuration values from Azure Key Vault secrets. Azure Key Vault is a cloud-based service that helps safeguard cryptographic keys and secrets used by apps and services. Common scenarios for using Azure Key Vault with ASP.NET Core apps include:
+This article explains how to use the [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) configuration provider to load app configuration values from Azure Key Vault secrets. Azure Key Vault is a cloud-based service that helps safeguard cryptographic keys and secrets used by apps and services. Common scenarios for using Azure Key Vault with ASP.NET Core apps include:
 
 * Controlling access to sensitive configuration data.
 * Meeting the requirement for FIPS 140-2 Level 2 validated Hardware Security Modules (HSMs) when storing configuration data.
@@ -130,16 +130,16 @@ The sample app uses an Application ID and X.509 certificate when the `#define` p
 1. Select **Save**.
 1. Deploy the app.
 
-The `Certificate` sample app obtains its configuration values from `IConfigurationRoot` with the same name as the secret name:
+The `Certificate` sample app obtains its configuration values from <xref:Microsoft.Extensions.Configuration.IConfigurationRoot> with the same name as the secret name:
 
 * Non-hierarchical values: The value for `SecretName` is obtained with `config["SecretName"]`.
-* Hierarchical values (sections): Use `:` (colon) notation or the `GetSection` extension method. Use either of these approaches to obtain the configuration value:
+* Hierarchical values (sections): Use `:` (colon) notation or the <xref:Microsoft.Extensions.Configuration.IConfiguration.GetSection%2A> method. Use either of these approaches to obtain the configuration value:
   * `config["Section:SecretName"]`
   * `config.GetSection("Section")["SecretName"]`
 
-The X.509 certificate is managed by the OS. The app calls `AddAzureKeyVault` with values supplied by the *appsettings.json* file:
+The X.509 certificate is managed by the OS. The app calls <xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault%2A> with values supplied by the *appsettings.json* file:
 
-[!code-csharp[](key-vault-configuration/samples/3.x/SampleApp/Program.cs?name=snippet1&highlight=46-49)]
+:::code language="csharp" source="key-vault-configuration/samples/3.x/SampleApp/Program.cs" id="snippet1" highlight="46-49":::
 
 Example values:
 
@@ -149,7 +149,7 @@ Example values:
 
 *appsettings.json*:
 
-[!code-json[](key-vault-configuration/samples/3.x/SampleApp/appsettings.json?highlight=10-12)]
+:::code language="json" source="key-vault-configuration/samples/3.x/SampleApp/appsettings.json" highlight="10-12":::
 
 When you run the app, a webpage shows the loaded secret values. In the Development environment, secret values load with the `_dev` suffix. In the Production environment, the values load with the `_prod` suffix.
 
@@ -177,9 +177,9 @@ The sample app:
 
 * Creates an instance of the <xref:Azure.Identity.DefaultAzureCredential> class. The credential attempts to obtain an access token from environment for Azure resources.
 * A new <xref:Azure.Security.KeyVault.Secrets.SecretClient> is created with the `DefaultAzureCredential` instance.
-* The `SecretClient` instance is used with a `KeyVaultSecretManager` instance, which loads secret values and replaces double-dashes (`--`) with colons (`:`) in key names.
+* The `SecretClient` instance is used with a <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.KeyVaultSecretManager> instance, which loads secret values and replaces double-dashes (`--`) with colons (`:`) in key names.
 
-[!code-csharp[](key-vault-configuration/samples/3.x/SampleApp/Program.cs?name=snippet2&highlight=12-14)]
+:::code language="csharp" source="key-vault-configuration/samples/3.x/SampleApp/Program.cs" id="snippet2" highlight="12-14":::
 
 Key vault name example value: `contosovault`
 
@@ -214,9 +214,9 @@ config.AddAzureKeyVault(
 
 The `AzureKeyVaultConfigurationOptions` object contains the following properties.
 
-| Property         | Description |
-| ---------------- | ----------- |
-| <xref:Microsoft.Extensions.Configuration.AzureKeyVault.AzureKeyVaultConfigurationOptions.Manager%2A>        | <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager> instance used to control secret loading. |
+| Property                                                                                                    | Description                                                                                                                           |
+|-------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
+| <xref:Microsoft.Extensions.Configuration.AzureKeyVault.AzureKeyVaultConfigurationOptions.Manager%2A>        | <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager> instance used to control secret loading.               |
 | <xref:Microsoft.Extensions.Configuration.AzureKeyVault.AzureKeyVaultConfigurationOptions.ReloadInterval%2A> | `TimeSpan` to wait between attempts at polling the key vault for changes. The default value is `null` (configuration isn't reloaded). |
 
 ## Use a key name prefix
@@ -235,7 +235,7 @@ In the following example, a secret is established in the key vault (and using Se
 
 `AddAzureKeyVault` is called with a custom `IKeyVaultSecretManager` implementation:
 
-[!code-csharp[](key-vault-configuration/samples_snapshot/Program.cs)]
+:::code language="csharp" source="key-vault-configuration/samples_snapshot/3.x/Program.cs":::
 
 The implementation reacts to the version prefixes of secrets to load the proper secret into configuration:
 
@@ -244,7 +244,7 @@ The implementation reacts to the version prefixes of secrets to load the proper 
   * Removes the prefix from the secret name.
   * Replaces two dashes in any name with the `KeyDelimiter`, which is the delimiter used in configuration (usually a colon). Azure Key Vault doesn't allow a colon in secret names.
 
-[!code-csharp[](key-vault-configuration/samples_snapshot/PrefixKeyVaultSecretManager.cs)]
+:::code language="csharp" source="key-vault-configuration/samples_snapshot/3.x/PrefixKeyVaultSecretManager.cs":::
 
 The `Load` method is called by a provider algorithm that iterates through the vault secrets to find the version-prefixed secrets. When a version prefix is found with `Load`, the algorithm uses the `GetKey` method to return the configuration name of the secret name. It removes the version prefix from the secret's name. The rest of the secret name is returned for loading into the app's configuration name-value pairs.
 
@@ -295,7 +295,7 @@ The provider can read configuration values into an array for binding to a POCO a
 
 When reading from a configuration source that allows keys to contain colon (`:`) separators, a numeric key segment is used to distinguish the keys that make up an array (`:0:`, `:1:`, &hellip; `:{n}:`). For more information, see [Configuration: Bind an array to a class](xref:fundamentals/configuration/index#boa).
 
-Azure Key Vault keys can't use a colon as a separator. The approach described in this document uses double dashes (`--`) as a separator for hierarchical values (sections). Array keys are stored in Azure Key Vault with double dashes and numeric key segments (`--0--`, `--1--`, &hellip; `--{n}--`).
+Azure Key Vault keys can't use a colon as a separator. The approach described in this article uses double dashes (`--`) as a separator for hierarchical values (sections). Array keys are stored in Azure Key Vault with double dashes and numeric key segments (`--0--`, `--1--`, &hellip; `--{n}--`).
 
 Examine the following [Serilog](https://serilog.net/) logging provider configuration provided by a JSON file. There are two object literals defined in the `WriteTo` array that reflect two Serilog *sinks*, which describe destinations for logging output:
 
@@ -322,18 +322,18 @@ Examine the following [Serilog](https://serilog.net/) logging provider configura
 
 The configuration shown in the preceding JSON file is stored in Azure Key Vault using double dash (`--`) notation and numeric segments:
 
-| Key | Value |
-| --- | ----- |
-| `Serilog--WriteTo--0--Name` | `AzureTableStorage` |
-| `Serilog--WriteTo--0--Args--storageTableName` | `logs` |
-| `Serilog--WriteTo--0--Args--connectionString` | `DefaultEnd...ountKey=Eby8...GMGw==` |
-| `Serilog--WriteTo--1--Name` | `AzureDocumentDB` |
-| `Serilog--WriteTo--1--Args--endpointUrl` | `https://contoso.documents.azure.com:443` |
-| `Serilog--WriteTo--1--Args--authorizationKey` | `Eby8...GMGw==` |
+| Key                                           | Value                                     |
+|-----------------------------------------------|-------------------------------------------|
+| `Serilog--WriteTo--0--Name`                   | `AzureTableStorage`                       |
+| `Serilog--WriteTo--0--Args--storageTableName` | `logs`                                    |
+| `Serilog--WriteTo--0--Args--connectionString` | `DefaultEnd...ountKey=Eby8...GMGw==`      |
+| `Serilog--WriteTo--1--Name`                   | `AzureDocumentDB`                         |
+| `Serilog--WriteTo--1--Args--endpointUrl`      | `https://contoso.documents.azure.com:443` |
+| `Serilog--WriteTo--1--Args--authorizationKey` | `Eby8...GMGw==`                           |
 
 ## Reload secrets
 
-Secrets are cached until `IConfigurationRoot.Reload()` is called. Expired, disabled, and updated secrets in the key vault aren't respected by the app until `Reload` is executed.
+Secrets are cached until <xref:Microsoft.Extensions.Configuration.IConfigurationRoot.Reload%2A?displayProperty=nameWithType> is called. Expired, disabled, and updated secrets in the key vault aren't respected by the app until `Reload` is executed.
 
 ```csharp
 Configuration.Reload();
@@ -364,11 +364,11 @@ When the app fails to load configuration using the provider, an error message is
 * [Quickstart: Set and retrieve a secret from Azure Key Vault by using a .NET web app](/azure/key-vault/quick-create-net)
 * [Tutorial: How to use Azure Key Vault with Azure Windows Virtual Machine in .NET](/azure/key-vault/tutorial-net-windows-virtual-machine)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+:::moniker range="< aspnetcore-6.0"
 
-This document explains how to use the [Microsoft Azure Key Vault](https://azure.microsoft.com/services/key-vault/) configuration provider to load app configuration values from Azure Key Vault secrets. Azure Key Vault is a cloud-based service that helps safeguard cryptographic keys and secrets used by apps and services. Common scenarios for using Azure Key Vault with ASP.NET Core apps include:
+This article explains how to use the [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) configuration provider to load app configuration values from Azure Key Vault secrets. Azure Key Vault is a cloud-based service that helps safeguard cryptographic keys and secrets used by apps and services. Common scenarios for using Azure Key Vault with ASP.NET Core apps include:
 
 * Controlling access to sensitive configuration data.
 * Meeting the requirement for FIPS 140-2 Level 2 validated Hardware Security Modules (HSMs) when storing configuration data.
@@ -377,14 +377,17 @@ This document explains how to use the [Microsoft Azure Key Vault](https://azure.
 
 ## Packages
 
-Add a package reference to the [Microsoft.Extensions.Configuration.AzureKeyVault](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureKeyVault/) package.
+Add package references for the following packages:
+
+* [Azure.Extensions.AspNetCore.Configuration.Secrets](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.Configuration.Secrets)
+* [Azure.Identity](https://www.nuget.org/packages/Azure.Identity)
 
 ## Sample app
 
 The sample app runs in either of two modes determined by the `#define` preprocessor directive at the top of *Program.cs*:
 
 * `Certificate`: Demonstrates using an Azure Key Vault Client ID and X.509 certificate to access secrets stored in Azure Key Vault. This sample can be run from any location, whether deployed to Azure App Service or any host that can serve an ASP.NET Core app.
-* `Managed`: Demonstrates using [Managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview) to authenticate the app to Azure Key Vault with Azure Active Directory (AD) authentication without credentials stored in the app's code or configuration. When using managed identities to authenticate, an Azure AD Application ID and Password (Client Secret) aren't required. The `Managed` version of the sample must be deployed to Azure. Follow the guidance in the [Use the managed identities for Azure resources](#use-managed-identities-for-azure-resources) section.
+* `Managed`: Demonstrates how to use [Managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview). The managed identity authenticates the app to Azure Key Vault with Azure Active Directory (AD) authentication without credentials stored in the app's code or configuration. When using managed identities to authenticate, an Azure AD Application ID and Password (Client Secret) aren't required. The `Managed` version of the sample must be deployed to Azure. Follow the guidance in the [Use the managed identities for Azure resources](#use-managed-identities-for-azure-resources) section.
 
 For more information configuring a sample app using preprocessor directives (`#define`), see <xref:index#preprocessor-directives-in-sample-code>.
 
@@ -419,7 +422,7 @@ When these secrets are stored in Azure Key Vault in the [Secret storage in the P
 
 ## Secret storage in the Production environment with Azure Key Vault
 
-The instructions provided by [Quickstart: Set and retrieve a secret from Azure Key Vault using Azure CLI](/azure/key-vault/quick-create-cli) are summarized here for creating an Azure Key Vault and storing secrets used by the sample app.
+Complete the following steps to create an Azure Key Vault and store the sample app's secrets in it. For more information, see [Quickstart: Set and retrieve a secret from Azure Key Vault using Azure CLI](/azure/key-vault/quick-create-cli).
 
 1. Open Azure Cloud Shell using any one of the following methods in the [Azure portal](https://portal.azure.com/):
 
@@ -461,7 +464,7 @@ Configure Azure AD, Azure Key Vault, and the app to use an Azure AD Application 
 > [!NOTE]
 > Although using an Application ID and X.509 certificate is supported for apps hosted in Azure, it's not recommended. Instead, use [Managed identities for Azure resources](#use-managed-identities-for-azure-resources) when hosting an app in Azure. Managed identities don't require storing a certificate in the app or in the development environment.
 
-The sample app uses an Application ID and X.509 certificate when the `#define` statement at the top of the *Program.cs* file is set to `Certificate`.
+The sample app uses an Application ID and X.509 certificate when the `#define` preprocessor directive at the top of *Program.cs* is set to `Certificate`.
 
 1. Create a PKCS#12 archive (*.pfx*) certificate. Options for creating certificates include [MakeCert on Windows](/windows/desktop/seccrypto/makecert) and [OpenSSL](https://www.openssl.org/).
 1. Install the certificate into the current user's personal certificate store. Marking the key as exportable is optional. Note the certificate's thumbprint, which is used later in this process.
@@ -482,16 +485,16 @@ The sample app uses an Application ID and X.509 certificate when the `#define` s
 1. Select **Save**.
 1. Deploy the app.
 
-The `Certificate` sample app obtains its configuration values from `IConfigurationRoot` with the same name as the secret name:
+The `Certificate` sample app obtains its configuration values from <xref:Microsoft.Extensions.Configuration.IConfigurationRoot> with the same name as the secret name:
 
 * Non-hierarchical values: The value for `SecretName` is obtained with `config["SecretName"]`.
-* Hierarchical values (sections): Use `:` (colon) notation or the `GetSection` extension method. Use either of these approaches to obtain the configuration value:
+* Hierarchical values (sections): Use `:` (colon) notation or the <xref:Microsoft.Extensions.Configuration.IConfiguration.GetSection%2A> method. Use either of these approaches to obtain the configuration value:
   * `config["Section:SecretName"]`
   * `config.GetSection("Section")["SecretName"]`
 
 The X.509 certificate is managed by the OS. The app calls <xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault%2A> with values supplied by the *appsettings.json* file:
 
-[!code-csharp[](key-vault-configuration/samples/2.x/SampleApp/Program.cs?name=snippet1&highlight=20-23)]
+:::code language="csharp" source="key-vault-configuration/samples/3.x/SampleApp/Program.cs" id="snippet1" highlight="46-49":::
 
 Example values:
 
@@ -501,7 +504,7 @@ Example values:
 
 *appsettings.json*:
 
-[!code-json[](key-vault-configuration/samples/2.x/SampleApp/appsettings.json?highlight=10-12)]
+:::code language="json" source="key-vault-configuration/samples/3.x/SampleApp/appsettings.json" highlight="10-12":::
 
 When you run the app, a webpage shows the loaded secret values. In the Development environment, secret values load with the `_dev` suffix. In the Production environment, the values load with the `_prod` suffix.
 
@@ -509,7 +512,7 @@ When you run the app, a webpage shows the loaded secret values. In the Developme
 
 **An app deployed to Azure** can take advantage of [Managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview). A managed identity allows the app to authenticate with Azure Key Vault using Azure AD authentication without credentials (Application ID and Password/Client Secret) stored in the app.
 
-The sample app uses managed identities for Azure resources when the `#define` statement at the top of the *Program.cs* file is set to `Managed`.
+The sample app uses managed identities for Azure resources when the `#define` preprocessor directive at the top of *Program.cs* is set to `Managed`.
 
 Enter the vault name into the app's *appsettings.json* file. The sample app doesn't require an Application ID and Password (Client Secret) when set to the `Managed` version, so you can ignore those configuration entries. The app is deployed to Azure, and Azure authenticates the app to access Azure Key Vault only using the vault name stored in the *appsettings.json* file.
 
@@ -527,14 +530,14 @@ az keyvault set-policy --name {KEY VAULT NAME} --object-id {OBJECT ID} --secret-
 
 The sample app:
 
-* Creates an instance of the `AzureServiceTokenProvider` class without a connection string. When a connection string isn't provided, the provider attempts to obtain an access token from managed identities for Azure resources.
-* A new <xref:Microsoft.Azure.KeyVault.KeyVaultClient> is created with the `AzureServiceTokenProvider` instance token callback.
-* The <xref:Microsoft.Azure.KeyVault.KeyVaultClient> instance is used with a default implementation of <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager> that loads all secret values and replaces double-dashes (`--`) with colons (`:`) in key names.
+* Creates an instance of the <xref:Azure.Identity.DefaultAzureCredential> class. The credential attempts to obtain an access token from environment for Azure resources.
+* A new <xref:Azure.Security.KeyVault.Secrets.SecretClient> is created with the `DefaultAzureCredential` instance.
+* The `SecretClient` instance is used with a <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.KeyVaultSecretManager> instance, which loads secret values and replaces double-dashes (`--`) with colons (`:`) in key names.
 
-[!code-csharp[](key-vault-configuration/samples/2.x/SampleApp/Program.cs?name=snippet2&highlight=13-21)]
+:::code language="csharp" source="key-vault-configuration/samples/3.x/SampleApp/Program.cs" id="snippet2" highlight="12-14":::
 
 Key vault name example value: `contosovault`
-    
+
 *appsettings.json*:
 
 ```json
@@ -549,29 +552,56 @@ If you receive an `Access denied` error, confirm that the app is registered with
 
 For information on using the provider with a managed identity and Azure Pipelines, see [Create an Azure Resource Manager service connection to a VM with a managed service identity](/azure/devops/pipelines/library/connect-to-azure#create-an-azure-resource-manager-service-connection-to-a-vm-with-a-managed-service-identity).
 
+## Configuration options
+
+`AddAzureKeyVault` can accept an <xref:Microsoft.Extensions.Configuration.AzureKeyVault.AzureKeyVaultConfigurationOptions> object:
+
+```csharp
+config.AddAzureKeyVault(
+    new SecretClient(
+        new Uri("Your Key Vault Endpoint"),
+        new DefaultAzureCredential()),
+        new AzureKeyVaultConfigurationOptions())
+    {
+        ...
+    });
+```
+
+The `AzureKeyVaultConfigurationOptions` object contains the following properties.
+
+| Property                                                                                                    | Description                                                                                                                           |
+|-------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
+| <xref:Microsoft.Extensions.Configuration.AzureKeyVault.AzureKeyVaultConfigurationOptions.Manager%2A>        | <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager> instance used to control secret loading.               |
+| <xref:Microsoft.Extensions.Configuration.AzureKeyVault.AzureKeyVaultConfigurationOptions.ReloadInterval%2A> | `TimeSpan` to wait between attempts at polling the key vault for changes. The default value is `null` (configuration isn't reloaded). |
+
 ## Use a key name prefix
 
-<xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault%2A> provides an overload that accepts an implementation of <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager>. This overload allows you to control how key vault secrets are converted into configuration keys. For example, you can implement the interface to load secret values based on a prefix value you provide at app startup. This technique allows you, for example, to load secrets based on the version of the app.
+`AddAzureKeyVault` provides an overload that accepts an implementation of <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager>, which allows you to control how key vault secrets are converted into configuration keys. For example, you can implement the interface to load secret values based on a prefix value you provide at app startup. This technique allows you, for example, to load secrets based on the version of the app.
 
 > [!WARNING]
-> Don't use prefixes on key vault secrets to place secrets for multiple apps into the same key vault or to place environmental secrets (for example, *development* versus *production* secrets) into the same vault. We recommend that different apps and development/production environments use separate key vaults to isolate app environments for the highest level of security.
+> Don't use prefixes on key vault secrets to:
+>
+> * Place secrets for multiple apps into the same vault.
+> * Place environmental secrets (for example, *development* versus *production* secrets) into the same vault.
+> 
+> Different apps and development/production environments should use separate key vaults to isolate app environments for the highest level of security.
 
 In the following example, a secret is established in the key vault (and using Secret Manager for the Development environment) for `5000-AppSecret` (periods aren't allowed in key vault secret names). This secret represents an app secret for version 5.0.0.0 of the app. For another version of the app, 5.1.0.0, a secret is added to the key vault (and using Secret Manager) for `5100-AppSecret`. Each app version loads its versioned secret value into its configuration as `AppSecret`, removing the version as it loads the secret.
 
-<xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault%2A> is called with a custom <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager>:
+`AddAzureKeyVault` is called with a custom `IKeyVaultSecretManager` implementation:
 
-[!code-csharp[](key-vault-configuration/samples_snapshot/Program.cs)]
+:::code language="csharp" source="key-vault-configuration/samples_snapshot/3.x/Program.cs":::
 
-The <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager> implementation reacts to the version prefixes of secrets to load the proper secret into configuration:
+The implementation reacts to the version prefixes of secrets to load the proper secret into configuration:
 
 * `Load` loads a secret when its name starts with the prefix. Other secrets aren't loaded.
 * `GetKey`:
   * Removes the prefix from the secret name.
   * Replaces two dashes in any name with the `KeyDelimiter`, which is the delimiter used in configuration (usually a colon). Azure Key Vault doesn't allow a colon in secret names.
 
-[!code-csharp[](key-vault-configuration/samples_snapshot/PrefixKeyVaultSecretManager.cs)]
+:::code language="csharp" source="key-vault-configuration/samples_snapshot/3.x/PrefixKeyVaultSecretManager.cs":::
 
-The `Load` method is called by a provider algorithm that iterates through the vault secrets to find the ones that have the version prefix. When a version prefix is found with `Load`, the algorithm uses the `GetKey` method to return the configuration name of the secret name. It removes the version prefix from the secret's name. The rest of the secret name is returned for loading into the app's configuration name-value pairs.
+The `Load` method is called by a provider algorithm that iterates through the vault secrets to find the version-prefixed secrets. When a version prefix is found with `Load`, the algorithm uses the `GetKey` method to return the configuration name of the secret name. It removes the version prefix from the secret's name. The rest of the secret name is returned for loading into the app's configuration name-value pairs.
 
 When this approach is implemented:
 
@@ -612,7 +642,7 @@ When this approach is implemented:
 1. If the app's version is changed in the project file to `5.1.0.0` and the app is run again, the secret value returned is `5.1.0.0_secret_value_dev` in the Development environment and `5.1.0.0_secret_value_prod` in Production.
 
 > [!NOTE]
-> You can also provide your own <xref:Microsoft.Azure.KeyVault.KeyVaultClient> implementation to <xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault%2A>. A custom client permits sharing a single instance of the client across the app.
+> You can also provide your own <xref:Azure.Security.KeyVault.Secrets.SecretClient> implementation to `AddAzureKeyVault`. A custom client permits sharing a single instance of the client across the app.
 
 ## Bind an array to a class
 
@@ -620,7 +650,7 @@ The provider can read configuration values into an array for binding to a POCO a
 
 When reading from a configuration source that allows keys to contain colon (`:`) separators, a numeric key segment is used to distinguish the keys that make up an array (`:0:`, `:1:`, &hellip; `:{n}:`). For more information, see [Configuration: Bind an array to a class](xref:fundamentals/configuration/index#boa).
 
-Azure Key Vault keys can't use a colon as a separator. The approach described in this document uses double dashes (`--`) as a separator for hierarchical values (sections). Array keys are stored in Azure Key Vault with double dashes and numeric key segments (`--0--`, `--1--`, &hellip; `--{n}--`).
+Azure Key Vault keys can't use a colon as a separator. The approach described in this article uses double dashes (`--`) as a separator for hierarchical values (sections). Array keys are stored in Azure Key Vault with double dashes and numeric key segments (`--0--`, `--1--`, &hellip; `--{n}--`).
 
 Examine the following [Serilog](https://serilog.net/) logging provider configuration provided by a JSON file. There are two object literals defined in the `WriteTo` array that reflect two Serilog *sinks*, which describe destinations for logging output:
 
@@ -647,18 +677,18 @@ Examine the following [Serilog](https://serilog.net/) logging provider configura
 
 The configuration shown in the preceding JSON file is stored in Azure Key Vault using double dash (`--`) notation and numeric segments:
 
-| Key | Value |
-| --- | ----- |
-| `Serilog--WriteTo--0--Name` | `AzureTableStorage` |
-| `Serilog--WriteTo--0--Args--storageTableName` | `logs` |
-| `Serilog--WriteTo--0--Args--connectionString` | `DefaultEnd...ountKey=Eby8...GMGw==` |
-| `Serilog--WriteTo--1--Name` | `AzureDocumentDB` |
-| `Serilog--WriteTo--1--Args--endpointUrl` | `https://contoso.documents.azure.com:443` |
-| `Serilog--WriteTo--1--Args--authorizationKey` | `Eby8...GMGw==` |
+| Key                                           | Value                                     |
+|-----------------------------------------------|-------------------------------------------|
+| `Serilog--WriteTo--0--Name`                   | `AzureTableStorage`                       |
+| `Serilog--WriteTo--0--Args--storageTableName` | `logs`                                    |
+| `Serilog--WriteTo--0--Args--connectionString` | `DefaultEnd...ountKey=Eby8...GMGw==`      |
+| `Serilog--WriteTo--1--Name`                   | `AzureDocumentDB`                         |
+| `Serilog--WriteTo--1--Args--endpointUrl`      | `https://contoso.documents.azure.com:443` |
+| `Serilog--WriteTo--1--Args--authorizationKey` | `Eby8...GMGw==`                           |
 
 ## Reload secrets
 
-Secrets are cached until `IConfigurationRoot.Reload()` is called. Expired, disabled, and updated secrets in the key vault aren't respected by the app until `Reload` is executed.
+Secrets are cached until <xref:Microsoft.Extensions.Configuration.IConfigurationRoot.Reload%2A?displayProperty=nameWithType> is called. Expired, disabled, and updated secrets in the key vault aren't respected by the app until `Reload` is executed.
 
 ```csharp
 Configuration.Reload();
@@ -666,7 +696,7 @@ Configuration.Reload();
 
 ## Disabled and expired secrets
 
-Disabled and expired secrets throw a <xref:Microsoft.Azure.KeyVault.Models.KeyVaultErrorException>. To prevent the app from throwing, provide the configuration using a different configuration provider or update the disabled or expired secret.
+Disabled and expired secrets throw a <xref:Azure.RequestFailedException>. To prevent the app from throwing, provide the configuration using a different configuration provider or update the disabled or expired secret.
 
 ## Troubleshoot
 
@@ -677,9 +707,9 @@ When the app fails to load configuration using the provider, an error message is
 * The app isn't authorized to access the key vault.
 * The access policy doesn't include `Get` and `List` permissions.
 * In the key vault, the configuration data (name-value pair) is incorrectly named, missing, disabled, or expired.
-* The app has the wrong key vault name (`KeyVaultName`), Azure AD Application ID (`AzureADApplicationId`), or Azure AD certificate thumbprint (`AzureADCertThumbprint`).
+* The app has the wrong key vault name (`KeyVaultName`), Azure AD Application ID (`AzureADApplicationId`), or Azure AD certificate thumbprint (`AzureADCertThumbprint`), or Azure AD Directory ID (`AzureADDirectoryId`).
 * The configuration key (name) is incorrect in the app for the value you're trying to load.
-* When adding the access policy for the app to the key vault, the policy was created, but the **Save** button wasn't selected in the **Access policies** UI.
+* When adding the key vault access policy for the app, the policy was created, but the **Save** button wasn't selected in the **Access policies** UI.
 
 ## Additional resources
 
@@ -689,4 +719,4 @@ When the app fails to load configuration using the provider, an error message is
 * [Quickstart: Set and retrieve a secret from Azure Key Vault by using a .NET web app](/azure/key-vault/quick-create-net)
 * [Tutorial: How to use Azure Key Vault with Azure Windows Virtual Machine in .NET](/azure/key-vault/tutorial-net-windows-virtual-machine)
 
-::: moniker-end
+:::moniker-end
