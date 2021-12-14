@@ -480,6 +480,10 @@ ls -la /root/.dotnet/corefx/cryptography/x509stores/my
 
 To fix problems with the IIS Express certificate, select **Repair** from the Visual Studio installer. For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/16892).
 
+### Group policy prevents self-signed certificates from being trusted
+
+In some cases, group policy may prevent self-signed certificates from being trusted. For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/21173).
+
 ## Additional information
 
 * <xref:host-and-deploy/proxy-load-balancer>
