@@ -77,7 +77,7 @@ When an app is created to use Work or School Accounts (`SingleOrg`), the app aut
 
 If adding authentication to an app, manually add the [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal) package to the app.
 
-[!INCLUDE[](~/blazor/includes/package-reference.md)]
+[!INCLUDE[](~/includes/package-reference.md)]
 
 The [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal) package transitively adds the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) package to the app.
 
@@ -250,7 +250,7 @@ When an app is created to use Work or School Accounts (`SingleOrg`), the app aut
 
 If adding authentication to an app, manually add the [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal) package to the app.
 
-[!INCLUDE[](~/blazor/includes/package-reference.md)]
+[!INCLUDE[](~/includes/package-reference.md)]
 
 The [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal) package transitively adds the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) package to the app.
 
@@ -418,7 +418,7 @@ When an app is created to use Work or School Accounts (`SingleOrg`), the app aut
 
 If adding authentication to an app, manually add the [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal) package to the app.
 
-[!INCLUDE[](~/blazor/includes/package-reference.md)]
+[!INCLUDE[](~/includes/package-reference.md)]
 
 The [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal) package transitively adds the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) package to the app.
 

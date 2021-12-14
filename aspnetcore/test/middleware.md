@@ -36,6 +36,8 @@ In the test project, create a test:
 
   [!code-csharp[](middleware/samples_snapshot/3.x/setup.cs?highlight=4-18)]
 
+[!INCLUDE[](~/includes/package-reference.md)]
+
 ## Send requests with HttpClient
 
 Send a request using <xref:System.Net.Http.HttpClient>:

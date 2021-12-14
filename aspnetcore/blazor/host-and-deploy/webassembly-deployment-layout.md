@@ -42,7 +42,7 @@ Later in this article, the [Customize the Blazor WebAssembly loading process via
 
 1. In the **`Client`** project, add the experimental `Microsoft.AspNetCore.Components.WebAssembly.MultipartBundle` package.
 
-   [!INCLUDE[](~/blazor/includes/package-reference.md)]
+   [!INCLUDE[](~/includes/package-reference.md)]
 
 1. In the **`Server`** project, add an endpoint for serving the bundle file (`app.bundle`). Example code can be found in the [Serve the bundle from the host server app](#serve-the-bundle-from-the-host-server-app) section of this article.
 
