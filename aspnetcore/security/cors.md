@@ -518,6 +518,14 @@ If <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.AllowAnyOrig
 
 If the response doesn't include the `Access-Control-Allow-Origin` header, the cross-origin request fails. Specifically, the browser disallows the request. Even if the server returns a successful response, the browser doesn't make the response available to the client app.
 
+<a name="no-http"></a>
+
+### HTTP redirection to HTTPS causes ERR_INVALID_REDIRECT on the CORS preflight request
+
+Requests to an endpoint using HTTP that are redirected to HTTPS by <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A> fail with `ERR_INVALID_REDIRECT on the CORS preflight request`.
+
+API projects can reject HTTP requests rather than use `UseHttpsRedirection` to redirect requests to HTTPS.
+
 <a name="options"></a>
 
 ### Display OPTIONS requests
