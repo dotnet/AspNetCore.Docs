@@ -103,6 +103,8 @@ When you start your ASP.NET Core app, it won't launch a CRA server. The instance
 > [!IMPORTANT]
 > "Server-side rendering" is not a supported feature of this template. Our goal with this template is to meet parity with "create-react-app". As such, scenarios and features not included in a "create-react-app" project (such as SSR) are not supported and are left as an exercise for the user.
 
+[!INCLUDE[](~/includes/spa-proxy.md)]
+
 ## Additional resources
 
 * <xref:security/authentication/identity/spa>
