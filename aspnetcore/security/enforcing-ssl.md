@@ -42,7 +42,7 @@ No API can prevent a client from sending sensitive data on the first request.
 
 Requests to an endpoint using HTTP that are redirected to HTTPS by <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A> fail with `ERR_INVALID_REDIRECT on the CORS preflight request`.
 
-API project can reject HTTP requests rather than use `UseHttpsRedirection` to redirect requests to HTTPS.
+API projects can reject HTTP requests rather than use `UseHttpsRedirection` to redirect requests to HTTPS.
 
 ## Require HTTPS
 
