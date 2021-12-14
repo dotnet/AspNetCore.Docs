@@ -29,6 +29,9 @@ Using .NET for client-side web development offers the following advantages:
 * Stay productive with [Visual Studio](https://visualstudio.microsoft.com) on Windows, Linux, and macOS.
 * Build on a common set of languages, frameworks, and tools that are stable, feature-rich, and easy to use.
 
+> [!NOTE]
+> For a Blazor quick start tutorial, see [Build your first Blazor app](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro).
+
 ## Components
 
 Blazor apps are based on *components*. A component in Blazor is an element of UI, such as a page, dialog, or data entry form.
@@ -91,28 +94,6 @@ The dialog is rendered when the `Index` component is accessed in a browser. When
 
 Components render into an in-memory representation of the browser's [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) called a *render tree*, which is used to update the UI in a flexible and efficient way.
 
-## Blazor WebAssembly
-
-Blazor WebAssembly is a [single-page app (SPA) framework](/dotnet/architecture/modern-web-apps-azure/choose-between-traditional-web-and-single-page-apps) for building interactive client-side web apps with .NET. Blazor WebAssembly uses open web standards without plugins or recompiling code into other languages. Blazor WebAssembly works in all modern web browsers, including mobile browsers.
-
-Running .NET code inside web browsers is made possible by [WebAssembly](https://webassembly.org) (abbreviated `wasm`). WebAssembly is a compact bytecode format optimized for fast download and maximum execution speed. WebAssembly is an open web standard and supported in web browsers without plugins.
-
-WebAssembly code can access the full functionality of the browser via JavaScript, called *JavaScript interoperability*, often shortened to *JavaScript interop* or *JS interop*. .NET code executed via WebAssembly in the browser runs in the browser's JavaScript sandbox with the protections that the sandbox provides against malicious actions on the client machine.
-
-![Blazor WebAssembly runs .NET code in the browser with WebAssembly.](~/blazor/index/_static/blazor-webassembly.png)
-
-When a Blazor WebAssembly app is built and run in a browser:
-
-* C# code files and Razor files are compiled into .NET assemblies.
-* The assemblies and the [.NET runtime](/dotnet/framework/get-started/overview) are downloaded to the browser.
-* Blazor WebAssembly bootstraps the .NET runtime and configures the runtime to load the assemblies for the app. The Blazor WebAssembly runtime uses JavaScript interop to handle DOM manipulation and browser API calls.
-
-The size of the published app, its *payload size*, is a critical performance factor for an app's usability. A large app takes a relatively long time to download to a browser, which diminishes the user experience. Blazor WebAssembly optimizes payload size to reduce download times:
-
-* Unused code is stripped out of the app when it's published by the [Intermediate Language (IL) Trimmer](xref:blazor/host-and-deploy/configure-trimmer).
-* HTTP responses are compressed.
-* The .NET runtime and assemblies are cached in the browser.
-
 ## Blazor Server
 
 Blazor Server provides support for hosting Razor components on the server in an ASP.NET Core app. UI updates are handled over a [SignalR](xref:signalr/introduction) connection.
@@ -136,6 +117,28 @@ Blazor Server produces a graph of components to display similar to an HTML or XM
 After the components are interactive on the client, UI updates are triggered by user interaction and app events. When an update occurs, the component graph is rerendered, and a UI *diff* (difference) is calculated. This diff is the smallest set of DOM edits required to update the UI on the client. The diff is sent to the client in a binary format and applied by the browser.
 
 A component is disposed after the user navigates away from the component.
+
+## Blazor WebAssembly
+
+Blazor WebAssembly is a [single-page app (SPA) framework](/dotnet/architecture/modern-web-apps-azure/choose-between-traditional-web-and-single-page-apps) for building interactive client-side web apps with .NET. Blazor WebAssembly uses open web standards without plugins or recompiling code into other languages. Blazor WebAssembly works in all modern web browsers, including mobile browsers.
+
+Running .NET code inside web browsers is made possible by [WebAssembly](https://webassembly.org) (abbreviated `wasm`). WebAssembly is a compact bytecode format optimized for fast download and maximum execution speed. WebAssembly is an open web standard and supported in web browsers without plugins.
+
+WebAssembly code can access the full functionality of the browser via JavaScript, called *JavaScript interoperability*, often shortened to *JavaScript interop* or *JS interop*. .NET code executed via WebAssembly in the browser runs in the browser's JavaScript sandbox with the protections that the sandbox provides against malicious actions on the client machine.
+
+![Blazor WebAssembly runs .NET code in the browser with WebAssembly.](~/blazor/index/_static/blazor-webassembly.png)
+
+When a Blazor WebAssembly app is built and run in a browser:
+
+* C# code files and Razor files are compiled into .NET assemblies.
+* The assemblies and the [.NET runtime](/dotnet/framework/get-started/overview) are downloaded to the browser.
+* Blazor WebAssembly bootstraps the .NET runtime and configures the runtime to load the assemblies for the app. The Blazor WebAssembly runtime uses JavaScript interop to handle DOM manipulation and browser API calls.
+
+The size of the published app, its *payload size*, is a critical performance factor for an app's usability. A large app takes a relatively long time to download to a browser, which diminishes the user experience. Blazor WebAssembly optimizes payload size to reduce download times:
+
+* Unused code is stripped out of the app when it's published by the [Intermediate Language (IL) Trimmer](xref:blazor/host-and-deploy/configure-trimmer).
+* HTTP responses are compressed.
+* The .NET runtime and assemblies are cached in the browser.
 
 ## JavaScript interop
 
