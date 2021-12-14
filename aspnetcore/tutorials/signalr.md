@@ -80,9 +80,9 @@ At the end, you'll have a working chat app:
     * The checkbox **trust the authors of all files in the parent folder**
    * **Yes, I trust the authors** (because dotnet generated the files).
 
-   The `dotnet new` command creates a new Razor Pages project in the *RazorPagesMovie* folder.
+   The `dotnet new` command creates a new Razor Pages project in the *SignalRChat* folder.
 
-   The `code` command opens the *RazorPagesMovie* folder in the current instance of Visual Studio Code.
+   The `code` command opens the *SignalRChat* folder in the current instance of Visual Studio Code.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -368,6 +368,7 @@ The SignalR server library is included in the ASP.NET Core 3.1 shared framework.
   ```
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
+
 
   * In the **Terminal**, run the following command to install LibMan.
 
