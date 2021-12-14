@@ -183,7 +183,7 @@ Because the error boundary is defined in the layout in the preceding examples, t
 ...
 
 @code {
-    private ErrorBoundary errorBoundary;
+    private ErrorBoundary? errorBoundary;
 
     protected override void OnParametersSet()
     {
@@ -210,7 +210,7 @@ The following `Error` component example merely logs errors, but methods of the c
 
 @code {
     [Parameter]
-    public RenderFragment ChildContent { get; set; }
+    public RenderFragment? ChildContent { get; set; }
 
     public void ProcessError(Exception ex)
     {
@@ -234,34 +234,51 @@ In the `App` component, wrap the `Router` component with the `Error` component. 
 
 To process errors in a component:
 
-* Designate the `Error` component as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute) in the [`@code`](xref:mvc/views/razor#code) block:
-
-  ```razor
-  [CascadingParameter]
-  public Error Error { get; set; }
-  ```
-
-* Call an error processing method in any `catch` block with an appropriate exception type. The example `Error` component only offers a single `ProcessError` method, but the error processing component can provide any number of error processing methods to address alternative error processing requirements throughout the app.
+* Designate the `Error` component as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute) in the [`@code`](xref:mvc/views/razor#code) block. In an example `Counter` component in an app based on a Blazor project template, add the following `Error` property:
 
   ```csharp
-  try
-  {
-      ...
-  }
-  catch (Exception ex)
-  {
-      Error.ProcessError(ex);
+  [CascadingParameter]
+  public Error? Error { get; set; }
+  ```
+
+* Call an error processing method in any `catch` block with an appropriate exception type. The example `Error` component only offers a single `ProcessError` method, but the error processing component can provide any number of error processing methods to address alternative error processing requirements throughout the app. In the following `Counter` component example, an exception is thrown and trapped when the count is greater than five:
+
+  ```razor
+  @code {
+      private int currentCount = 0;
+
+      [CascadingParameter]
+      public Error? Error { get; set; }
+
+      private void IncrementCount()
+      {
+          try
+          {
+              currentCount++;
+
+              if (currentCount > 5)
+              {
+                  throw new InvalidOperationException("Current count is over five!");
+              }
+          }
+          catch (Exception ex)
+          {
+              Error?.ProcessError(ex);
+          }
+      }
   }
   ```
 
-Using the preceding example `Error` component and `ProcessError` method, the browser's developer tools console indicates the trapped, logged error:
+Using the preceding `Error` component with the preceding changes made to a `Counter` component, the browser's developer tools console indicates the trapped, logged error:
 
-> fail: BlazorSample.Shared.Error[0]
-> Error:ProcessError - Type: System.NullReferenceException Message: Object reference not set to an instance of an object.
+```console
+fail: BlazorSample.Shared.Error[0]
+Error:ProcessError - Type: System.InvalidOperationException Message: Current count is over five!
+```
 
 If the `ProcessError` method directly participates in rendering, such as showing a custom error message bar or changing the CSS styles of the rendered elements, call [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) at the end of the `ProcessErrors` method to rerender the UI.
 
-Because the approaches in this section handle errors with a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement, a Blazor Server app's SignalR connection between the client and server isn't broken when an error occurs and the circuit remains alive. Any unhandled exception is fatal to a circuit. For more information, see the preceding section on [how a Blazor Server app reacts to unhandled exceptions](#how-a-blazor-server-app-reacts-to-unhandled-exceptions).
+Because the approaches in this section handle errors with a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement, a Blazor Server app's SignalR connection between the client and server isn't broken when an error occurs and the circuit remains alive. Other unhandled exceptions remain fatal to a circuit. For more information, see the preceding section on [how a Blazor Server app reacts to unhandled exceptions](#how-a-blazor-server-app-reacts-to-unhandled-exceptions).
 
 ## Log errors with a persistent provider
 

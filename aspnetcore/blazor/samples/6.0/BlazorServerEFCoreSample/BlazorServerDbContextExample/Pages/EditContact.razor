@@ -8,7 +8,7 @@
 @inject IPageHelper PageHelper
 @inject EditSuccess EditSuccessState
 
-@if (Contact == null && !Busy)
+@if (Contact is null && !Busy)
 {
     <p>Could not find contact with id @ContactId.</p>
 }
@@ -154,7 +154,7 @@ else
             // get values from database
             var dbValues = dbex.Entries[0].GetDatabaseValues();
 
-            if (dbValues == null)
+            if (dbValues is null)
             {
                 // deleted - show contact not found
                 Nav.NavigateTo($"/view/{Contact.Id}");

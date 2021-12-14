@@ -294,12 +294,12 @@ public interface ITransitiveTransientDisposableDependency
 public class TransientDependency
 {
     private readonly ITransitiveTransientDisposableDependency 
-        _transitiveTransientDisposableDependency;
+        transitiveTransientDisposableDependency;
 
     public TransientDependency(ITransitiveTransientDisposableDependency 
         transitiveTransientDisposableDependency)
     {
-        _transitiveTransientDisposableDependency = 
+        this.transitiveTransientDisposableDependency = 
             transitiveTransientDisposableDependency;
     }
 }

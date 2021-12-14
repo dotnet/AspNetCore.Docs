@@ -340,6 +340,10 @@ Blazor WebAssembly and RCL projects *automatically* enable browser compatibility
 When authoring a library, indicate that a particular API isn't supported in browsers by specifying `browser` to <xref:System.Runtime.Versioning.UnsupportedOSPlatformAttribute>:
 
 ```csharp
+using System.Runtime.Versioning;
+
+...
+
 [UnsupportedOSPlatform("browser")]
 private static string GetLoggingDirectory()
 {

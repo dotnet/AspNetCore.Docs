@@ -856,7 +856,7 @@ Add the namespace for <xref:Microsoft.Extensions.Localization?displayProperty=fu
 </p>
 
 @code {
-    private string greeting;
+    private string? greeting;
 
     protected override void OnInitialized()
     {

@@ -265,7 +265,7 @@ Specify the `[SupplyParameterFromQuery]` attribute's <xref:Microsoft.AspNetCore.
 ```csharp
 [Parameter]
 [SupplyParameterFromQuery(Name = "{QUERY PARAMETER NAME}")]
-public string {COMPONENT PARAMETER NAME} { get; set; }
+public string? {COMPONENT PARAMETER NAME} { get; set; }
 ```
 
 In the following example with a URL of `/search?filter=scifi%20stars&page=3&star=LeVar%20Burton&star=Gary%20Oldman`:
@@ -285,19 +285,22 @@ In the following example with a URL of `/search?filter=scifi%20stars&page=3&star
 
 <p>Page: @Page</p>
 
-<p>Assignees:</p>
+@if (Stars is not null)
+{
+    <p>Assignees:</p>
 
-<ul>
-    @foreach (var name in Stars)
-    {
-        <li>@name</li>
-    }
-</ul>
+    <ul>
+        @foreach (var name in Stars)
+        {
+            <li>@name</li>
+        }
+    </ul>
+}
 
 @code {
     [Parameter]
     [SupplyParameterFromQuery]
-    public string Filter { get; set; }
+    public string? Filter { get; set; }
 
     [Parameter]
     [SupplyParameterFromQuery]
@@ -305,7 +308,7 @@ In the following example with a URL of `/search?filter=scifi%20stars&page=3&star
 
     [Parameter]
     [SupplyParameterFromQuery(Name = "star")]
-    public string[] Stars { get; set; }
+    public string[]? Stars { get; set; }
 }
 ```
 

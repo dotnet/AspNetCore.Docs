@@ -9,15 +9,13 @@ Nested components typically bind data using *chained bind* as described in <xref
 `StateContainer.cs`:
 
 ```csharp
-using System;
-
 public class StateContainer
 {
-    private string savedString;
+    private string? savedString;
 
     public string Property
     {
-        get => savedString;
+        get => savedString ?? string.Empty;
         set
         {
             savedString = value;
@@ -25,7 +23,7 @@ public class StateContainer
         }
     }
 
-    public event Action OnChange;
+    public event Action? OnChange;
 
     private void NotifyStateChanged() => OnChange?.Invoke();
 }

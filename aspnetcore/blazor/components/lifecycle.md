@@ -322,8 +322,9 @@ Unsubscribe event handlers from .NET events. The following [Blazor form](xref:bl
   </EditForm>
 
   @code {
-      // ...
-      private EventHandler<FieldChangedEventArgs> fieldChanged;
+      ...
+
+      private EventHandler<FieldChangedEventArgs>? fieldChanged;
 
       protected override void OnInitialized()
       {
@@ -331,7 +332,7 @@ Unsubscribe event handlers from .NET events. The following [Blazor form](xref:bl
 
           fieldChanged = (_, __) =>
           {
-              // ...
+              ...
           };
 
           editContext.OnFieldChanged += fieldChanged;
@@ -355,7 +356,7 @@ Unsubscribe event handlers from .NET events. The following [Blazor form](xref:bl
   </EditForm>
 
   @code {
-      // ...
+      ...
 
       protected override void OnInitialized()
       {
@@ -365,7 +366,7 @@ Unsubscribe event handlers from .NET events. The following [Blazor form](xref:bl
 
       private void HandleFieldChanged(object sender, FieldChangedEventArgs e)
       {
-          // ...
+          ...
       }
 
       public void Dispose()
@@ -398,10 +399,10 @@ When [anonymous functions](/dotnet/csharp/programming-guide/statements-expressio
 * Anonymous lambda expression approach (explicit disposal not required):
 
   ```csharp
-  private ValidationMessageStore messageStore;
+  private ValidationMessageStore? messageStore;
 
   [CascadingParameter]
-  private EditContext CurrentEditContext { get; set; }
+  private EditContext? CurrentEditContext { get; set; }
 
   protected override void OnInitialized()
   {

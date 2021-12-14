@@ -68,10 +68,10 @@ For example, the following `Chart` component receives stock price data and casca
 
 @code {
     [Parameter]
-    public IEnumerable<TLineData> Data { get; set; }
+    public IEnumerable<TLineData>? Data { get; set; }
 
     [Parameter]
-    public RenderFragment ChildContent { get; set; }
+    public RenderFragment? ChildContent { get; set; }
 }
 ```
 
@@ -84,7 +84,7 @@ For example, the following `Chart` component receives stock price data and casca
 
 @code {
     [Parameter]
-    public string Title { get; set; }
+    public string? Title { get; set; }
 
     [Parameter]
     public decimal Value { get; set; }

@@ -138,13 +138,13 @@ namespace Microsoft.AspNetCore.Components.WebAssembly.MultipartBundle.Tasks
     public class BundleBlazorAssets : Task
     {
         [Required]
-        public ITaskItem[] PublishBlazorBootStaticWebAsset { get; set; }
+        public ITaskItem[]? PublishBlazorBootStaticWebAsset { get; set; }
 
         [Required]
-        public string BundlePath { get; set; }
+        public string? BundlePath { get; set; }
 
         [Output]
-        public ITaskItem[] Extension { get; set; }
+        public ITaskItem[]? Extension { get; set; }
 
         public override bool Execute()
         {

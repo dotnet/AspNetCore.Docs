@@ -98,7 +98,10 @@ Binding supports [`multiple`](https://developer.mozilla.org/docs/Web/HTML/Attrib
 
     void SelectedCarsChanged(ChangeEventArgs e)
     {
-        SelectedCars = (string[])e.Value;
+        if (e.Value is not null)
+        {
+            SelectedCars = (string[])e.Value;
+        }
     }
 }
 ```

@@ -1,6 +1,6 @@
 ﻿@inject IContactFilters Filters
 
-@if (CurrentContact != null)
+@if (CurrentContact is not null)
 {
     <div class="row contact-detail">
         <div class="col-1 text-right">
@@ -52,7 +52,7 @@
         get => _currentContact;
         set
         {
-            if (value != null && !value.Equals(_currentContact))
+            if (value is not null && !value.Equals(_currentContact))
             {
                 _currentContact = value;
                 DeleteConfirmation = false;

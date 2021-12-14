@@ -12,7 +12,7 @@
 }
 else
 {
-    @if (Contact == null || Loading)
+    @if (Contact is null || Loading)
     {
         <div class="alert alert-info">Loading...</div>
     }
@@ -160,7 +160,7 @@ else
                 .SingleOrDefaultAsync(
                     c => c.Id == ContactId);
 
-            if (Contact == null)
+            if (Contact is null)
             {
                 NotFound = true;
             }
@@ -188,7 +188,7 @@ else
             var contact = await context.Contacts
                 .SingleOrDefaultAsync(c => c.Id == ContactId);
 
-            if (contact != null)
+            if (contact is not null)
             {
                 context.Contacts?.Remove(contact);
                 await context.SaveChangesAsync();
