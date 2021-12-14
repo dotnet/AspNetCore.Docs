@@ -323,14 +323,14 @@
       items:
       - name: Overview
         uid: blazor/index
+      - name: Tutorials
+        uid: blazor/tutorials
       - name: Supported platforms
         uid: blazor/supported-platforms
       - name: Tooling
         uid: blazor/tooling
       - name: Hosting models
         uid: blazor/hosting-models
-      - name: Tutorials
-        uid: blazor/tutorials
       - name: Project structure
         uid: blazor/project-structure
       - name: Fundamentals

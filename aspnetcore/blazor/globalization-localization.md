@@ -289,7 +289,7 @@ Examples of locations where an app might store a user's preference include in [b
 
 Add the [`Microsoft.Extensions.Localization`](https://www.nuget.org/packages/Microsoft.Extensions.Localization) package to the app.
 
-[!INCLUDE[](~/blazor/includes/package-reference.md)]
+[!INCLUDE[](~/includes/package-reference.md)]
 
 Set the `BlazorWebAssemblyLoadAllGlobalizationData` property to `true` in the project file:
 
@@ -435,7 +435,7 @@ Examples of locations where an app might store a user's preference include in [b
 
 Add the [`Microsoft.Extensions.Localization`](https://www.nuget.org/packages/Microsoft.Extensions.Localization) package to the app.
 
-[!INCLUDE[](~/blazor/includes/package-reference.md)]
+[!INCLUDE[](~/includes/package-reference.md)]
 
 Blazor Server apps are localized using [Localization Middleware](xref:fundamentals/localization#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>.
 
@@ -614,7 +614,7 @@ Use the `CultureExample1` component shown in the [Demonstration component](#demo
 
 If the app doesn't already support culture selection per the [Dynamically set the culture by user preference](#dynamically-set-the-culture-by-user-preference) section of this article, add the [`Microsoft.Extensions.Localization`](https://www.nuget.org/packages/Microsoft.Extensions.Localization) package to the app.
 
-[!INCLUDE[](~/blazor/includes/package-reference.md)]
+[!INCLUDE[](~/includes/package-reference.md)]
 
 ::: zone pivot="webassembly"
 
@@ -856,7 +856,7 @@ Add the namespace for <xref:Microsoft.Extensions.Localization?displayProperty=fu
 </p>
 
 @code {
-    private string greeting;
+    private string? greeting;
 
     protected override void OnInitialized()
     {
@@ -1155,7 +1155,7 @@ Examples of locations where an app might store a user's preference include in [b
 
 Add the [`Microsoft.Extensions.Localization`](https://www.nuget.org/packages/Microsoft.Extensions.Localization) package to the app.
 
-[!INCLUDE[](~/blazor/includes/package-reference.md)]
+[!INCLUDE[](~/includes/package-reference.md)]
 
 Set the `BlazorWebAssemblyLoadAllGlobalizationData` property to `true` in the project file:
 
@@ -1296,7 +1296,7 @@ Examples of locations where an app might store a user's preference include in [b
 
 Add the [`Microsoft.Extensions.Localization`](https://www.nuget.org/packages/Microsoft.Extensions.Localization) package to the app.
 
-[!INCLUDE[](~/blazor/includes/package-reference.md)]
+[!INCLUDE[](~/includes/package-reference.md)]
 
 Blazor Server apps are localized using [Localization Middleware](xref:fundamentals/localization#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>.
 
@@ -1470,7 +1470,7 @@ Use the `CultureExample1` component shown in the [Demonstration component](#demo
 
 If the app doesn't already support culture selection per the [Dynamically set the culture by user preference](#dynamically-set-the-culture-by-user-preference) section of this article, add the [`Microsoft.Extensions.Localization`](https://www.nuget.org/packages/Microsoft.Extensions.Localization) package to the app.
 
-[!INCLUDE[](~/blazor/includes/package-reference.md)]
+[!INCLUDE[](~/includes/package-reference.md)]
 
 ::: zone pivot="webassembly"
 
@@ -1958,7 +1958,7 @@ Examples of locations where an app might store a user's preference include in [b
 
 Add the [`Microsoft.Extensions.Localization`](https://www.nuget.org/packages/Microsoft.Extensions.Localization) package to the app.
 
-[!INCLUDE[](~/blazor/includes/package-reference.md)]
+[!INCLUDE[](~/includes/package-reference.md)]
 
 The app's culture in a Blazor WebAssembly app is set using the Blazor framework's API. A user's culture selection can be persisted in browser local storage.
 
@@ -2075,7 +2075,7 @@ Examples of locations where an app might store a user's preference include in [b
 
 Add the [`Microsoft.Extensions.Localization`](https://www.nuget.org/packages/Microsoft.Extensions.Localization) package to the app.
 
-[!INCLUDE[](~/blazor/includes/package-reference.md)]
+[!INCLUDE[](~/includes/package-reference.md)]
 
 Blazor Server apps are localized using [Localization Middleware](xref:fundamentals/localization#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>.
 
@@ -2249,7 +2249,7 @@ Use the `CultureExample1` component shown in the [Demonstration component](#demo
 
 If the app doesn't already support culture selection per the [Dynamically set the culture by user preference](#dynamically-set-the-culture-by-user-preference) section of this article, add the [`Microsoft.Extensions.Localization`](https://www.nuget.org/packages/Microsoft.Extensions.Localization) package to the app.
 
-[!INCLUDE[](~/blazor/includes/package-reference.md)]
+[!INCLUDE[](~/includes/package-reference.md)]
 
 ::: zone pivot="webassembly"
 

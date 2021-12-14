@@ -4,7 +4,7 @@
 @inject NavigationManager Nav
 @inject IPageHelper PageHelper
 
-@if (Contact != null)
+@if (Contact is not null)
 {
     <ContactForm Busy="@Busy" 
                    Contact="@Contact" 

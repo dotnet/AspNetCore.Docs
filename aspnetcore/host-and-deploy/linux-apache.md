@@ -126,7 +126,7 @@ Complete!
 
 ### Configure Apache
 
-Configuration files for Apache are located within the `/etc/httpd/conf.d/` directory. Any file with the *.conf* extension is processed in alphabetical order in addition to the module configuration files in `/etc/httpd/conf.modules.d/`, which contains any configuration files necessary to load modules.
+Configuration files for Apache are located within the `/etc/httpd/conf.d/` directory. In Apache on Ubuntu, all the virtual host configuration files are stored in `/etc/apache2/sites-available`. Any file with the *.conf* extension is processed in alphabetical order in addition to the module configuration files in `/etc/httpd/conf.modules.d/`, which contains any configuration files necessary to load modules.
 
 Create a configuration file, named *helloapp.conf*, for the app:
 

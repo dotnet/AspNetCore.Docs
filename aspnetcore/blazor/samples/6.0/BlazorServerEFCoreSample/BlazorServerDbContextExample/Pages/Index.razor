@@ -63,7 +63,7 @@
                 <SortIndicator Column="@(ContactFilterColumns.ZipCode)" />&nbsp;ZipCode
             </div>
         </div>
-        @if (Filters.Loading || Contacts == null)
+        @if (Filters.Loading || Contacts is null)
         {
             <div class="row">
                 <div class="col-12 alert alert-info">
@@ -71,7 +71,7 @@
                 </div>
             </div>
         }
-        @if (Contacts != null && Contacts.Count == 0)
+        @if (Contacts is not null && Contacts.Count == 0)
         {
             <div class="row">
                 <div class="col-12 alert alert-warning">
@@ -79,7 +79,7 @@
                 </div>
             </div>
         }
-        @if (Contacts != null)
+        @if (Contacts is not null)
         {
             @foreach (var contact in Contacts)
             {
@@ -202,12 +202,12 @@
         using var context = DbFactory.CreateDbContext();
         Filters.Loading = true;
 
-        if (Wrapper is not null)
+        if (Wrapper is not null && context.Contacts is not null)
         {
-            var contact = await context.Contacts?
+            var contact = await context.Contacts
                 .FirstAsync(c => c.Id == Wrapper.DeleteRequestId);
 
-            if (contact != null)
+            if (contact is not null)
             {
                 context.Contacts?.Remove(contact);
                 await context.SaveChangesAsync();

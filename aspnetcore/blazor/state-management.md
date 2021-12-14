@@ -384,7 +384,7 @@ else
     private bool isLoaded;
 
     [Parameter]
-    public RenderFragment ChildContent { get; set; }
+    public RenderFragment? ChildContent { get; set; }
 
     public int CurrentCount { get; set; }
 
@@ -419,17 +419,20 @@ Wrapped components receive and can modify the persisted counter state. The follo
 ```razor
 @page "/counter"
 
-<p>Current count: <strong>@CounterStateProvider.CurrentCount</strong></p>
+<p>Current count: <strong>@CounterStateProvider?.CurrentCount</strong></p>
 <button @onclick="IncrementCount">Increment</button>
 
 @code {
     [CascadingParameter]
-    private CounterStateProvider CounterStateProvider { get; set; }
+    private CounterStateProvider? CounterStateProvider { get; set; }
 
     private async Task IncrementCount()
     {
-        CounterStateProvider.CurrentCount++;
-        await CounterStateProvider.SaveChangesAsync();
+        if (CounterStateProvider is not null)
+        {
+            CounterStateProvider.CurrentCount++;
+            await CounterStateProvider.SaveChangesAsync();
+        }
     }
 }
 ```

@@ -191,7 +191,7 @@ builder.Services.AddOidcAuthentication(options =>
 
 Add the [`Microsoft.Extensions.Logging.Configuration`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration) package to the app.
 
-[!INCLUDE[](~/blazor/includes/package-reference.md)]
+[!INCLUDE[](~/includes/package-reference.md)]
 
 In the app settings file, provide logging configuration. The logging configuration is loaded in `Program.cs`.
 
@@ -422,7 +422,7 @@ builder.Services.AddOidcAuthentication(options =>
 
 Add the [`Microsoft.Extensions.Logging.Configuration`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration) package to the app.
 
-[!INCLUDE[](~/blazor/includes/package-reference.md)]
+[!INCLUDE[](~/includes/package-reference.md)]
 
 In the app settings file, provide logging configuration. The logging configuration is loaded in `Program.cs`.
 
@@ -654,7 +654,7 @@ builder.Services.AddOidcAuthentication(options =>
 
 Add the [`Microsoft.Extensions.Logging.Configuration`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration) package to the app.
 
-[!INCLUDE[](~/blazor/includes/package-reference.md)]
+[!INCLUDE[](~/includes/package-reference.md)]
 
 In the app settings file, provide logging configuration. The logging configuration is loaded in `Program.cs`.
 

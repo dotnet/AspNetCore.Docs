@@ -2,7 +2,7 @@
 
 <h1>@Mode Contact</h1>
 <hr />
-@if (Contact != null)
+@if (Contact is not null)
 {
     <EditForm Model="@Contact"
               OnInvalidSubmit="(async () => await HandleSubmitAsync(false))"

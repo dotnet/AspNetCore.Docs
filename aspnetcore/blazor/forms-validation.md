@@ -61,7 +61,7 @@ Assignment to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext?d
 
 @code {
     private ExampleModel exampleModel = new() { ... };
-    private EditContext editContext;
+    private EditContext? editContext;
 
     protected override void OnInitialized()
     {
@@ -190,7 +190,7 @@ In the following example, the user must select at least two starship classificat
 </p>
 
 @code {
-    private EditContext editContext;
+    private EditContext? editContext;
     private Starship starship = new();
 
     protected override void OnInitialized()
@@ -392,7 +392,7 @@ The following example is based on:
 
 Place the `Starship` model (`Starship.cs`) into the solution's **`Shared`** project so that both the client and server apps can use the model. Add or update the namespace to match the namespace of the shared app (for example, `namespace BlazorSample.Shared`). Since the model requires data annotations, add the [`System.ComponentModel.Annotations`](https://www.nuget.org/packages/System.ComponentModel.Annotations) package to the **`Shared`** project.
 
-[!INCLUDE[](~/blazor/includes/package-reference.md)]
+[!INCLUDE[](~/includes/package-reference.md)]
 
 In the **`Server`** project, add a controller to process starship validation requests and return failed validation messages. Update the namespaces in the last `using` statement for the **`Shared`** project and the `namespace` for the controller class. In addition to data annotations validation (client-side and server-side), the controller validates that a value is provided for the ship's description (`Description`) if the user selects the `Defense` ship classification (`Classification`).
 
@@ -620,14 +620,14 @@ In the following `FormExample6` component, update the namespace of the **`Shared
 
 @code {
     private bool disabled;
-    private string message;
-    private string messageStyles = "visibility:hidden";
-    private CustomValidation customValidation;
+    private string? message;
+    private string? messageStyles = "visibility:hidden";
+    private CustomValidation? customValidation;
     private Starship starship = new() { ProductionDate = DateTime.UtcNow };
 
     private async Task HandleValidSubmit(EditContext editContext)
     {
-        customValidation.ClearErrors();
+        customValidation?.ClearErrors();
 
         try
         {
@@ -640,7 +640,7 @@ In the following `FormExample6` component, update the namespace of the **`Shared
             if (response.StatusCode == HttpStatusCode.BadRequest && 
                 errors.Any())
             {
-                customValidation.DisplayErrors(errors);
+                customValidation?.DisplayErrors(errors);
             }
             else if (!response.IsSuccessStatusCode)
             {
@@ -888,7 +888,7 @@ Add an additional property to `ExampleModel`, for example:
 
 ```csharp
 [StringLength(10, ErrorMessage = "Description is too long.")]
-public string Description { get; set; } 
+public string? Description { get; set; } 
 ```
 
 Add the `Description` to the `ExampleForm7` component's form:
@@ -900,7 +900,7 @@ Add the `Description` to the `ExampleForm7` component's form:
 Update the `EditContext` instance in the component's `OnInitialized` method to use the new Field CSS Class Provider:
 
 ```csharp
-editContext.SetFieldCssClassProvider(new CustomFieldClassProvider2());
+editContext?.SetFieldCssClassProvider(new CustomFieldClassProvider2());
 ```
 
 Because a CSS validation class isn't applied to the `Description` field (`id="description"`), it isn't styled. However, field validation runs normally. If more than 10 characters are provided, the validation summary indicates the error:
@@ -986,11 +986,11 @@ public class ShipDescription
 {
     [Required]
     [StringLength(40, ErrorMessage = "Description too long (40 char).")]
-    public string ShortDescription { get; set; }
+    public string? ShortDescription { get; set; }
 
     [Required]
     [StringLength(240, ErrorMessage = "Description too long (240 char).")]
-    public string LongDescription { get; set; }
+    public string? LongDescription { get; set; }
 }
 ```
 
@@ -1374,7 +1374,7 @@ The following example is based on:
 
 Place the `Starship` model (`Starship.cs`) into the solution's **`Shared`** project so that both the client and server apps can use the model. Add or update the namespace to match the namespace of the shared app (for example, `namespace BlazorSample.Shared`). Since the model requires data annotations, add the [`System.ComponentModel.Annotations`](https://www.nuget.org/packages/System.ComponentModel.Annotations) package to the **`Shared`** project.
 
-[!INCLUDE[](~/blazor/includes/package-reference.md)]
+[!INCLUDE[](~/includes/package-reference.md)]
 
 In the **`Server`** project, add a controller to process starship validation requests and return failed validation messages. Update the namespaces in the last `using` statement for the **`Shared`** project and the `namespace` for the controller class. In addition to data annotations validation (client-side and server-side), the controller validates that a value is provided for the ship's description (`Description`) if the user selects the `Defense` ship classification (`Classification`).
 
@@ -2321,7 +2321,7 @@ The following example is based on:
 
 Place the `Starship` model (`Starship.cs`) into the solution's **`Shared`** project so that both the client and server apps can use the model. Add or update the namespace to match the namespace of the shared app (for example, `namespace BlazorSample.Shared`). Since the model requires data annotations, add the [`System.ComponentModel.Annotations`](https://www.nuget.org/packages/System.ComponentModel.Annotations) package to the **`Shared`** project.
 
-[!INCLUDE[](~/blazor/includes/package-reference.md)]
+[!INCLUDE[](~/includes/package-reference.md)]
 
 In the **`Server`** project, add a controller to process starship validation requests and return failed validation messages. Update the namespaces in the last `using` statement for the **`Shared`** project and the `namespace` for the controller class. In addition to data annotations validation (client-side and server-side), the controller validates that a value is provided for the ship's description (`Description`) if the user selects the `Defense` ship classification (`Classification`).
 

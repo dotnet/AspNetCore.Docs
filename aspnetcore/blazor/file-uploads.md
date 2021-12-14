@@ -173,8 +173,8 @@ namespace BlazorSample.Shared
     public class UploadResult
     {
         public bool Uploaded { get; set; }
-        public string FileName { get; set; }
-        public string StoredFileName { get; set; }
+        public string? FileName { get; set; }
+        public string? StoredFileName { get; set; }
         public int ErrorCode { get; set; }
     }
 }
@@ -192,8 +192,8 @@ The following `UploadResult` class is placed in the client project and in the we
 public class UploadResult
 {
     public bool Uploaded { get; set; }
-    public string FileName { get; set; }
-    public string StoredFileName { get; set; }
+    public string? FileName { get; set; }
+    public string? StoredFileName { get; set; }
     public int ErrorCode { get; set; }
 }
 ```

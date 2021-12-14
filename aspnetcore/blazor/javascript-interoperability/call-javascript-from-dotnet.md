@@ -250,7 +250,7 @@ The following example shows capturing a reference to the `username` `<input>` el
 >
 > For more information, see <xref:blazor/js-interop/index#interaction-with-the-document-object-model-dom>.
 
-An <xref:Microsoft.AspNetCore.Components.ElementReference> is passed through to JS code via JS interop. The JS code receives an `HTMLElement` instance, which it can use with normal DOM APIs. For example, the following code defines a .NET extension method (`TriggerClickEvent`) that enables sending a mouse click to an element.
+An <xref:Microsoft.AspNetCore.Components.ElementReference> is passed through to JS code via JS interop. The JS code receives an [`HTMLElement`](https://developer.mozilla.org/docs/Web/API/HTMLElement) instance, which it can use with normal DOM APIs. For example, the following code defines a .NET extension method (`TriggerClickEvent`) that enables sending a mouse click to an element.
 
 The JS function `clickElement` creates a [`click`](https://developer.mozilla.org/docs/Web/API/Element/click_event) event on the passed HTML element (`element`):
 
@@ -347,7 +347,7 @@ The `{JAVASCRIPT FUNCTION}` placeholder is the JS function identifier.
 
 @code {
     private ElementReference username;
-    private string returnValue;
+    private string? returnValue;
 
     private async Task OnClickMethod()
     {
@@ -458,7 +458,7 @@ The following example demonstrates the concept. Within the `if` statement when `
 <div @ref="unmanagedElement"></div>
 
 @code {
-    private HtmlElement unmanagedElement;
+    private ElementReference unmanagedElement;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -563,7 +563,7 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 </p>
 
 @code {
-    private string result;
+    private string? result;
 
     private async Task SendByteArray()
     {
@@ -956,7 +956,7 @@ The following example shows capturing a reference to the `username` `<input>` el
 >
 > For more information, see <xref:blazor/js-interop/index#interaction-with-the-document-object-model-dom>.
 
-An <xref:Microsoft.AspNetCore.Components.ElementReference> is passed through to JS code via JS interop. The JS code receives an `HTMLElement` instance, which it can use with normal DOM APIs. For example, the following code defines a .NET extension method (`TriggerClickEvent`) that enables sending a mouse click to an element.
+An <xref:Microsoft.AspNetCore.Components.ElementReference> is passed through to JS code via JS interop. The JS code receives an [`HTMLElement`](https://developer.mozilla.org/docs/Web/API/HTMLElement) instance, which it can use with normal DOM APIs. For example, the following code defines a .NET extension method (`TriggerClickEvent`) that enables sending a mouse click to an element.
 
 The JS function `clickElement` creates a [`click`](https://developer.mozilla.org/docs/Web/API/Element/click_event) event on the passed HTML element (`element`):
 
@@ -1164,7 +1164,7 @@ The following example demonstrates the concept. Within the `if` statement when `
 <div @ref="unmanagedElement"></div>
 
 @code {
-    private HtmlElement unmanagedElement;
+    private ElementReference unmanagedElement;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -1510,7 +1510,7 @@ The following example shows capturing a reference to the `username` `<input>` el
 >
 > For more information, see <xref:blazor/js-interop/index#interaction-with-the-document-object-model-dom>.
 
-An <xref:Microsoft.AspNetCore.Components.ElementReference> is passed through to JS code via JS interop. The JS code receives an `HTMLElement` instance, which it can use with normal DOM APIs. For example, the following code defines a .NET extension method (`TriggerClickEvent`) that enables sending a mouse click to an element.
+An <xref:Microsoft.AspNetCore.Components.ElementReference> is passed through to JS code via JS interop. The JS code receives an [`HTMLElement`](https://developer.mozilla.org/docs/Web/API/HTMLElement) instance, which it can use with normal DOM APIs. For example, the following code defines a .NET extension method (`TriggerClickEvent`) that enables sending a mouse click to an element.
 
 The JS function `clickElement` creates a [`click`](https://developer.mozilla.org/docs/Web/API/Element/click_event) event on the passed HTML element (`element`):
 

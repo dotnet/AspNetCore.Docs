@@ -23,30 +23,7 @@ The following example sets the page's title and description using Razor.
 
 `Pages/ControlHeadContent.razor`:
 
-```razor
-@page "/control-head-content"
-
-<h1>Control &lt;head&gt; content</h1>
-
-<p>
-    Title: @title
-</p>
-
-<p>
-    Description: @description
-</p>
-
-<PageTitle>@title</PageTitle>
-
-<HeadContent>
-    <meta name="description" content="@description">
-</HeadContent>
-
-@code {
-    private string description = "Description set by component";
-    private string title = "Title set by component";
-}
-```
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/control-head-content/ControlHeadContent.razor?highlight=13,15-17)]
 
 ## Control head content during prerendering
 

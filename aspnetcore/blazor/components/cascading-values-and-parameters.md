@@ -60,26 +60,22 @@ In the following example, two [`CascadingValue`](xref:Microsoft.AspNetCore.Compo
 </CascadingValue>
 
 @code {
-    private CascadingType parentCascadeParameter1;
+    private CascadingType? parentCascadeParameter1;
 
     [Parameter]
-    public CascadingType ParentCascadeParameter2 { get; set; }
-
-    ...
+    public CascadingType? ParentCascadeParameter2 { get; set; }
 }
 ```
 
 In a descendant component, the cascaded parameters receive their cascaded values from the ancestor component by <xref:Microsoft.AspNetCore.Components.CascadingValue%601.Name%2A>:
 
 ```razor
-...
-
 @code {
     [CascadingParameter(Name = "CascadeParam1")]
-    protected CascadingType ChildCascadeParameter1 { get; set; }
+    protected CascadingType? ChildCascadeParameter1 { get; set; }
 
     [CascadingParameter(Name = "CascadeParam2")]
-    protected CascadingType ChildCascadeParameter2 { get; set; }
+    protected CascadingType? ChildCascadeParameter2 { get; set; }
 }
 ```
 
@@ -131,13 +127,13 @@ Child `Tab` components aren't explicitly passed as parameters to the `TabSet`. I
 
 @code {
     [Parameter]
-    public RenderFragment ChildContent { get; set; }
+    public RenderFragment? ChildContent { get; set; }
 
-    public ITab ActiveTab { get; private set; }
+    public ITab? ActiveTab { get; private set; }
 
     public void AddTab(ITab tab)
     {
-        if (ActiveTab == null)
+        if (ActiveTab is null)
         {
             SetActiveTab(tab);
         }
@@ -170,25 +166,25 @@ Descendent `Tab` components capture the containing `TabSet` as a cascading param
 
 @code {
     [CascadingParameter]
-    public TabSet ContainerTabSet { get; set; }
+    public TabSet? ContainerTabSet { get; set; }
 
     [Parameter]
-    public string Title { get; set; }
+    public string? Title { get; set; }
 
     [Parameter]
-    public RenderFragment ChildContent { get; set; }
+    public RenderFragment? ChildContent { get; set; }
 
-    private string TitleCssClass => 
-        ContainerTabSet.ActiveTab == this ? "active" : null;
+    private string? TitleCssClass => 
+        ContainerTabSet?.ActiveTab == this ? "active" : null;
 
     protected override void OnInitialized()
     {
-        ContainerTabSet.AddTab(this);
+        ContainerTabSet?.AddTab(this);
     }
 
     private void ActivateTab()
     {
-        ContainerTabSet.SetActiveTab(this);
+        ContainerTabSet?.SetActiveTab(this);
     }
 }
 ```

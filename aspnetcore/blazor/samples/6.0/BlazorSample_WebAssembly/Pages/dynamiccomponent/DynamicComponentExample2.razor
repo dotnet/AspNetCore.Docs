@@ -1,0 +1,77 @@
+@page "/dynamiccomponent-example-2"
+
+<h1><code>DynamicComponent</code> Component Example 2</h1>
+
+<p>
+    <label>
+        <input type="checkbox" @bind="WindowSeat" />
+        Window Seat (Rocket Lab only)
+    </label>
+</p>
+
+<p>
+    <label>
+        Select your transport:
+        <select @onchange="OnDropdownChange">
+            <option value="">Select a value</option>
+            @foreach (var c in components)
+            {
+                <option value="@c.Key">@c.Value.Name</option>
+            }
+        </select>
+    </label>
+</p>
+
+@if (selectedType is not null)
+{
+    <div class="border border-primary my-1 p-1">
+        <DynamicComponent Type="@selectedType" 
+            Parameters="@components[selectedType.Name].Parameters" />
+    </div>
+}
+
+@code {
+    private Dictionary<string, ComponentMetadata> components =
+        new()
+        {
+            {
+                "RocketLabWithWindowSeat",
+                new ComponentMetadata
+                {
+                    Name = "Rocket Lab with Window Seat",
+                    Parameters = new() { { "WindowSeat", false } }
+                }
+            },
+            {
+                "VirginGalactic",
+                new ComponentMetadata { Name = "Virgin Galactic" }
+            },
+            {
+                "UnitedLaunchAlliance",
+                new ComponentMetadata { Name = "ULA" }
+            },
+            {
+                "SpaceX",
+                new ComponentMetadata { Name = "SpaceX" }
+            }
+        };
+    private Type? selectedType;
+    private bool windowSeat;
+
+    private bool WindowSeat
+    {
+        get { return windowSeat; }
+        set
+        {
+            windowSeat = value;
+            components[nameof(RocketLabWithWindowSeat)].Parameters["WindowSeat"] = 
+                windowSeat;
+        }
+    }
+
+    private void OnDropdownChange(ChangeEventArgs e)
+    {
+        selectedType = e.Value?.ToString()?.Length > 0 ? 
+            Type.GetType($"{APP NAMESPACE}.Shared.{e.Value}") : null;
+    }
+}

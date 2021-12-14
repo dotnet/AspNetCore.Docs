@@ -576,6 +576,8 @@ To support routable Razor components in Razor Pages apps:
    ```razor
    @page "/routable-counter"
 
+   <PageTitle>Routable Counter</PageTitle>
+
    <h1>Routable Counter</h1>
 
    <p>Current count: @currentCount</p>
@@ -672,6 +674,8 @@ To support routable Razor components in MVC apps:
    ```razor
    @page "/routable-counter"
 
+   <PageTitle>Routable Counter</PageTitle>
+
    <h1>Routable Counter</h1>
 
    <p>Current count: @currentCount</p>
@@ -711,7 +715,7 @@ When the page or view renders:
 The following Razor page renders a `Counter` component:
 
 ```cshtml
-<h1>My Razor Page</h1>
+<h1>Razor Page</h1>
 
 <component type="typeof(Counter)" render-mode="ServerPrerendered" 
     param-InitialValue="InitialValue" />
@@ -732,7 +736,7 @@ For more information, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-h
 In the following Razor page, the `Counter` component is statically rendered with an initial value that's specified using a form. Since the component is statically rendered, the component isn't interactive:
 
 ```cshtml
-<h1>My Razor Page</h1>
+<h1>Razor Page</h1>
 
 <form>
     <input type="number" asp-for="InitialValue" />
@@ -788,16 +792,18 @@ To solve these problems, Blazor supports persisting state in a prerendered page 
 
 Decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. [`PersistentComponentState.RegisterOnPersisting`](xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting%2A) registers a callback to persist the component state before the app is paused. The state is retrieved when the application resumes.
 
-The following example shows how the weather forecast in the `FetchData` component from a hosted Blazor WebAssembly app based on the Blazor project template is persisted during prerendering and then retrieved to initialize the component. The Persist Component State Tag Helper persists the component state after all component invocations.
+The following example is an updated version of the `FetchData` component in a hosted Blazor WebAssembly app based on the Blazor project template. The `WeatherForecastPreserveState` component persists weather forecast state during prerendering and then retrieves the state to initialize the component. The [Persist Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper) persists the component state after all component invocations.
 
-`Pages/FetchData.razor`:
+`Pages/WeatherForecastPreserveState.razor`:
 
 ```razor
-@page "/fetchdata"
+@page "/weather-forecast-preserve-state"
 @implements IDisposable
 @using BlazorSample.Shared
 @inject IWeatherForecastService WeatherForecastService
 @inject PersistentComponentState ApplicationState
+
+<PageTitle>Weather Forecast</PageTitle>
 
 <h1>Weather forecast</h1>
 
