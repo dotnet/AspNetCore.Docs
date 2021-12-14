@@ -212,7 +212,7 @@ In the following component code, the `<button>` element calls the `DeleteItem` m
 
 Add the [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) NuGet package to the app.
 
-[!INCLUDE[](~/blazor/includes/package-reference.md)]
+[!INCLUDE[](~/includes/package-reference.md)]
 
 In `Program.cs`:
 
@@ -827,7 +827,7 @@ In the following component code, the `<button>` element calls the `DeleteItem` m
 
 Add the [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) NuGet package to the app.
 
-[!INCLUDE[](~/blazor/includes/package-reference.md)]
+[!INCLUDE[](~/includes/package-reference.md)]
 
 In `Program.cs`:
 
@@ -1444,7 +1444,7 @@ In the following component code, the `<button>` element calls the `DeleteItem` m
 
 Add the [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) NuGet package to the app.
 
-[!INCLUDE[](~/blazor/includes/package-reference.md)]
+[!INCLUDE[](~/includes/package-reference.md)]
 
 In `Program.cs`:
 
