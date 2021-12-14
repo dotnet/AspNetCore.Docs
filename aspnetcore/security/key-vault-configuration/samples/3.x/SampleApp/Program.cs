@@ -29,7 +29,7 @@ namespace SampleApp
         }
 
 #if Certificate
-#region snippet1
+// <snippet1>
         // using System.Linq;
         // using System.Security.Cryptography.X509Certificates;
         // using Azure.Extensions.AspNetCore.Configuration.Secrets;
@@ -57,11 +57,11 @@ namespace SampleApp
                     }
                 })
                 .ConfigureWebHostDefaults(webBuilder => webBuilder.UseStartup<Startup>());
-#endregion
+// </snippet1>
 #endif
 
 #if Managed
-#region snippet2
+// <snippet2>
         // using Azure.Security.KeyVault.Secrets;
         // using Azure.Identity;
         // using Azure.Extensions.AspNetCore.Configuration.Secrets;
@@ -80,7 +80,7 @@ namespace SampleApp
                     }
                 })
                 .ConfigureWebHostDefaults(webBuilder => webBuilder.UseStartup<Startup>());
-#endregion
+// </snippet2>
 #endif
     }
 }
