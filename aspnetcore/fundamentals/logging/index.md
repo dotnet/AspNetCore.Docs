@@ -34,7 +34,7 @@ The default ASP.NET Core web app templates:
 
 [!code-csharp[](index/samples/6.x/WebApp/Program.cs?name=snippet1&highlight=1)]
 
-The preceding code shows the *Program.cs* file  created with the ASP.NET Core web app templates. The next several sections provide samples based on the ASP.NET Core web app templates, which use the Generic Host.
+The preceding code shows the *Program.cs* file created with the ASP.NET Core web app templates. The next several sections provide samples based on the ASP.NET Core web app templates, which use the Generic Host.
 
 The following code overrides the default set of logging providers added by `WebApplication.CreateBuilder`:
 
