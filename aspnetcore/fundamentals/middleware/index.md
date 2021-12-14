@@ -225,16 +225,16 @@ app.Map("/level1", level1App => {
 
 The following table shows the requests and responses from `http://localhost:1234` using the previous code:
 
-| Request                       | Response                     |
-| ----------------------------- | ---------------------------- |
-| localhost:1234                | Hello from non-Map delegate. |
-| localhost:1234/?branch=main | Branch used = main         |
+| Request                       | Response                       |
+| ----------------------------- | ------------------------------ |
+| `localhost:1234`              | `Hello from non-Map delegate.` |
+| `localhost:1234/?branch=main` | `Branch used = main`           |
 
 <xref:Microsoft.AspNetCore.Builder.UseWhenExtensions.UseWhen%2A> also branches the request pipeline based on the result of the given predicate. Unlike with `MapWhen`, this branch is rejoined to the main pipeline if it doesn't short-circuit or contain a terminal middleware:
 
 [!code-csharp[](index/snapshot/Chain60/ProgramUseWhen.cs?highlight=4-5)]
 
-In the preceding example, a response of "Hello from main pipeline." is written for all requests. If the request includes a query string variable `branch`, its value is logged before the main pipeline is rejoined.
+In the preceding example, a response of `Hello from non-Map delegate.` is written for all requests. If the request includes a query string variable `branch`, its value is logged before the main pipeline is rejoined.
 
 ## Built-in middleware
 
