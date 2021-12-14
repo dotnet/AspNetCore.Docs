@@ -36,6 +36,14 @@ No API can prevent a client from sending sensitive data on the first request.
 >
 > The default API projects don't include [HSTS](#hsts) because [HSTS](https://developer.mozilla.org/docs/Web/HTTP/Headers/Strict-Transport-Security) is generally a browser only instruction. Other callers, such as phone or desktop apps, do **not** obey the instruction. Even within browsers, a single authenticated call to an API over HTTP has risks on insecure networks. The secure approach is to configure API projects to only listen to and respond over HTTPS.
 
+<a name="no-http"></a>
+
+### HTTP redirection to HTTPS causes ERR_INVALID_REDIRECT on the CORS preflight request
+
+Requests to an endpoint using HTTP that are redirected to HTTPS by <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A> fail with `ERR_INVALID_REDIRECT on the CORS preflight request`.
+
+API project can reject HTTP requests rather than use `UseHttpsRedirection` to redirect requests to HTTPS.
+
 ## Require HTTPS
 
 We recommend that production ASP.NET Core web apps use:
