@@ -15,3 +15,5 @@ app.Use(async (context, next) =>
     // Do logging or other work that doesn't write to the Response.
 });
 #endregion
+
+app.Run();
