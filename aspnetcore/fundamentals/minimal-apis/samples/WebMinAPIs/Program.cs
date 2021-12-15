@@ -818,12 +818,12 @@ app.Run();
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
-app.MapPost("/uploadfile", async (IConfiguration config, HttpRequest request) =>
+app.MapPost("/uploadstream", async (IConfiguration config, HttpRequest request) =>
 {
     var filePath = Path.Combine(config["StoredFilesPath"], Path.GetRandomFileName());
 
     await using var writeStream = File.Create(filePath);
-    await request.Body.CopyToAsync(writeStream);
+    await request.BodyReader.CopyToAsync(writeStream);
 });
 
 app.Run();
