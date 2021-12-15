@@ -84,27 +84,24 @@ app.Run();
 #elif FF
 #region snippet_FF
 var builder = WebApplication.CreateBuilder();
-builder.Host.ConfigureLogging(logging =>
+builder.Logging.AddFilter((provider, category, logLevel) =>
 {
-    logging.AddFilter((provider, category, logLevel) =>
+    if (provider.Contains("ConsoleLoggerProvider")
+        && category.Contains("Controller")
+        && logLevel >= LogLevel.Information)
     {
-        if (provider.Contains("ConsoleLoggerProvider")
-            && category.Contains("Controller")
-            && logLevel >= LogLevel.Information)
-        {
-            return true;
-        }
-        else if (provider.Contains("ConsoleLoggerProvider")
-            && category.Contains("Microsoft")
-            && logLevel >= LogLevel.Information)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    });
+        return true;
+    }
+    else if (provider.Contains("ConsoleLoggerProvider")
+        && category.Contains("Microsoft")
+        && logLevel >= LogLevel.Information)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 });
 #endregion
 
@@ -133,18 +130,17 @@ app.Run();
 using Microsoft.Extensions.Logging.AzureAppServices;
 
 var builder = WebApplication.CreateBuilder();
-builder.Host.ConfigureLogging(logging => logging.AddAzureWebAppDiagnostics())
-                .ConfigureServices(serviceCollection => serviceCollection
-                    .Configure<AzureFileLoggerOptions>(options =>
-                    {
-                        options.FileName = "azure-diagnostics-";
-                        options.FileSizeLimit = 50 * 1024;
-                        options.RetainedFileCountLimit = 5;
-                    })
-                    .Configure<AzureBlobLoggerOptions>(options =>
-                    {
-                        options.BlobName = "log.txt";
-                    }));
+builder.Logging.AddAzureWebAppDiagnostics();
+builder.Services.Configure<AzureFileLoggerOptions>(options =>
+{
+    options.FileName = "azure-diagnostics-";
+    options.FileSizeLimit = 50 * 1024;
+    options.RetainedFileCountLimit = 5;
+});
+builder.Services.Configure<AzureBlobLoggerOptions>(options =>
+{
+    options.BlobName = "log.txt";
+});
 #endregion
 
 builder.Services.AddRazorPages();
@@ -170,7 +166,7 @@ app.Run();
 #elif MIN
 #region snippet_MIN
 var builder = WebApplication.CreateBuilder();
-builder.Host.ConfigureLogging(logging => logging.SetMinimumLevel(LogLevel.Warning));
+builder.Logging.SetMinimumLevel(LogLevel.Warning);
 #endregion
 
 builder.Services.AddRazorPages();
@@ -199,10 +195,9 @@ using Microsoft.Extensions.Logging.Console;
 using Microsoft.Extensions.Logging.Debug;
 
 var builder = WebApplication.CreateBuilder();
-builder.Host.ConfigureLogging(logging =>
-               logging.AddFilter("System", LogLevel.Debug)
-                  .AddFilter<DebugLoggerProvider>("Microsoft", LogLevel.Information)
-                  .AddFilter<ConsoleLoggerProvider>("Microsoft", LogLevel.Trace));
+builder.Logging.AddFilter("System", LogLevel.Debug);
+builder.Logging.AddFilter<DebugLoggerProvider>("Microsoft", LogLevel.Information);
+builder.Logging.AddFilter<ConsoleLoggerProvider>("Microsoft", LogLevel.Trace);
 #endregion
 
 builder.Services.AddRazorPages();
@@ -227,16 +222,11 @@ app.MapRazorPages();
 app.Run();
 #elif WEL
 #region snippet_WEL
-using Microsoft.Extensions.Logging.Console;
-using Microsoft.Extensions.Logging.Debug;
 
 var builder = WebApplication.CreateBuilder();
-builder.Host.ConfigureLogging(logging =>
+builder.Logging.AddEventLog(eventLogSettings =>
 {
-    logging.AddEventLog(eventLogSettings =>
-    {
-        eventLogSettings.SourceName = "MyLogs";
-    });
+    eventLogSettings.SourceName = "MyLogs";
 });
 #endregion
 
