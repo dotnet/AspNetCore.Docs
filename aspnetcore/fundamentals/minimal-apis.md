@@ -599,7 +599,7 @@ The preceding code:
 
 ### Read the request body
 
-Read a request body directly using a <xref:Microsoft.AspNetCore.Http.HttpContext> or <xref:Microsoft.AspNetCore.Http.HttpRequest> parameter:
+Read the request body directly using a <xref:Microsoft.AspNetCore.Http.HttpContext> or <xref:Microsoft.AspNetCore.Http.HttpRequest> parameter:
 
 [!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_fileupload)]
 
