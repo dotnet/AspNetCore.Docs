@@ -11,7 +11,7 @@ uid: fundamentals/logging/index
 
 # Logging in .NET Core and ASP.NET Core
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 By [Kirk Larkin](https://twitter.com/serpent5), [Juergen Gutsch](https://github.com/JuergenGutsch), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -893,9 +893,9 @@ To create a custom logger, see [Implement a custom logging provider in .NET](/do
 * <xref:fundamentals/logging/loggermessage>
 * Logging bugs should be created in the [github.com/dotnet/runtime/](https://github.com/dotnet/runtime/issues) repo.
 * <xref:blazor/fundamentals/logging>
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 
 By [Kirk Larkin](https://twitter.com/serpent5), [Juergen Gutsch](https://github.com/JuergenGutsch), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -1798,9 +1798,9 @@ The following example shows how to register filter rules in code:
 * Log level `Information` and higher.
 * All categories starting with `"Microsoft"`.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 ## Automatically log scope with SpanId, TraceId, and ParentId
 
@@ -1823,9 +1823,9 @@ The logging libraries implicitly create a scope object with `SpanId`, `TraceId`,
 
 If the `traceparent` http request header is set, the `ParentId` in the log scope shows the W3C `parent-id` from in-bound `traceparent` header and the `SpanId` in the log scope shows the updated `parent-id` for the next out-bound step/span. For more information, see [Mutating the traceparent Field](https://www.w3.org/TR/trace-context/#mutating-the-traceparent-field).
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 
 ## Create a custom logger
 
@@ -1836,4 +1836,4 @@ To create a custom logger, see [Implement a custom logging provider in .NET](/do
 * <xref:fundamentals/logging/loggermessage>
 * Logging bugs should be created in the [github.com/dotnet/runtime/](https://github.com/dotnet/runtime/issues) repo.
 * <xref:blazor/fundamentals/logging>
-::: moniker-end
+:::moniker-end
