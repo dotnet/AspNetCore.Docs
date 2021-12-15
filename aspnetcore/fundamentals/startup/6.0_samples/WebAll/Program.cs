@@ -1,3 +1,9 @@
+#define DEFAULT // DEFAULT
+// This code is used by both fundamentals/index and fundamentals/startup
+
+#if NEVER
+#elif DEFAULT
+#region snippet
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -24,3 +30,6 @@ app.MapDefaultControllerRoute();
 app.MapRazorPages();
 
 app.Run();
+#endregion
+#elif DI
+#endif

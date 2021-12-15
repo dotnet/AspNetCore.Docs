@@ -17,20 +17,23 @@ This article provides an overview of key topics for understanding how to develop
 
 ## Program.cs
 
-ASP.NET Core apps created with the web templates contain the application startup code in the `Program.cs` file.
+ASP.NET Core apps created with the web templates contain the application startup code in the `Program.cs` file. The `Program.cs` file is where:
 
-The following app startup code supports:
+* Services required by the app are configured.
+* The app's request handling pipeline is defined as a series of [middleware components](xref:fundamentals/middleware/index).
+
+The following services are added in the app startup code:
 
 * [Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
 * [MVC controllers with views](xref:tutorials/first-mvc-app/start-mvc)
 * [Web API with controllers](xref:tutorials/first-web-api)
 * [Minimal APIs](xref:tutorials/min-web-api)
 
-[!code-csharp[](~/fundamentalsstartup/6.0_samples/WebAll/Program.cs)]
+[!code-csharp[](~/fundamentals/startup/6.0_samples/WebAll/Program.cs?name=snippet)]
 
 ## Dependency injection (services)
 
-ASP.NET Core includes a built-in dependency injection (DI) framework that makes configured services available throughout an app. For example, a logging component is a service.
+ASP.NET Core includes [dependency injection (DI)](fundamentals/dependency-injection) that makes configured services available throughout an app. For example, a logging component is a service.
 
 Code to configure (or *register*) services is added to the `Startup.ConfigureServices` method. For example:
 
