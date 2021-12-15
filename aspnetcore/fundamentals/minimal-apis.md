@@ -597,7 +597,7 @@ The preceding code:
   }
   ```
 
-### Read a request body
+### Read the request body
 
 Read a request body directly using a <xref:Microsoft.AspNetCore.Http.HttpContext> or <xref:Microsoft.AspNetCore.Http.HttpRequest> parameter:
 
