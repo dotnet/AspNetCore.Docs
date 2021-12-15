@@ -1,15 +1,18 @@
 #define DEFAULT // DEFAULT
-// This code is used by both fundamentals/index and fundamentals/startup
-
 #if NEVER
 #elif DEFAULT
 #region snippet
 #region snippet2
+using Microsoft.EntityFrameworkCore;
+using RazorPagesMovie.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<RazorPagesMovieContext>(options =>
+   options.UseSqlServer(builder.Configuration.GetConnectionString("RazorPagesMovieContext")));
 
 var app = builder.Build();
 #endregion
@@ -24,12 +27,12 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+app.UseRouting();
+
 app.UseAuthorization();
 
-app.MapGet("/hi", () => "Hello!");
-
-app.MapDefaultControllerRoute();
 app.MapRazorPages();
+app.MapDefaultControllerRoute();
 
 app.Run();
 #endregion

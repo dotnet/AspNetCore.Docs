@@ -22,7 +22,7 @@ ASP.NET Core apps created with the web templates contain the application startup
 * Services required by the app are configured.
 * The app's request handling pipeline is defined as a series of [middleware components](xref:fundamentals/middleware/index).
 
-The following services are added in the app startup code:
+The following app startup code supports:
 
 * [Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
 * [MVC controllers with views](xref:tutorials/first-mvc-app/start-mvc)
@@ -33,21 +33,21 @@ The following services are added in the app startup code:
 
 ## Dependency injection (services)
 
-ASP.NET Core includes [dependency injection (DI)](xref:fundamentals/dependency-injection) that makes configured services available throughout an app. For example, a logging component is a service.
+ASP.NET Core includes [dependency injection (DI)](xref:fundamentals/dependency-injection) that makes configured services available throughout an app. Services are added to the DI container with [Builder.WebApplicationBuilder.Services](xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Services), `builder.Services` in the preceding code. When the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> is instantiated, many [framework-provided services](xref:fundamentals/dependency-injection#framework-provided-services) are added:
 
-Code to configure (or *register*) services is added to the `Startup.ConfigureServices` method. For example:
+[!code-csharp[](~/fundamentals/startup/6.0_samples/WebAll/Program.cs?name=snippet2&highlight=1)]
 
-[!code-csharp[](index/samples_snapshot/3.x/ConfigureServices.cs)]
+For example, in the preceding highlighted code, configuration, logging, and [many other services](xref:fundamentals/dependency-injection#framework-provided-services) are added.
 
-Services are typically resolved from DI using constructor injection. With constructor injection, a class declares a constructor parameter of either the required type or an interface. The DI framework provides an instance of this service at runtime.
+The following code adds Razor Pages, MVC controllers with views, and the <xref:Microsoft.EntityFrameworkCore.DbContext> to the DI container:
 
-The following example uses constructor injection to resolve a `RazorPagesMovieContext` from DI:
+[!code-csharp[](~/fundamentals/index/samples/6.0/RazorPagesMovie/Program.cs?name=snippet2&highlight=6-10)]
 
-[!code-csharp[](index/samples_snapshot/3.x/Index.cshtml.cs?highlight=5)]
+Services are typically resolved from DI using constructor injection. The DI framework provides an instance of this service at runtime.
 
-If the built-in Inversion of Control (IoC) container doesn't meet all of an app's needs, a third-party IoC container can be used instead.
+The following code uses constructor injection to resolve the database context and logger from DI:
 
-For more information, see <xref:fundamentals/dependency-injection>.
+[!code-csharp[](~/fundamentals/index/samples/6.0/RazorPagesMovie/Pages/Movies/Index.cshtml.cs?name=snippet&highlight=5)]
 
 ## Middleware
 
