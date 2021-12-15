@@ -5,7 +5,7 @@ description: Learn the foundational concepts for building ASP.NET Core apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/11/2021
+ms.date: 12/15/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/index
 ---
@@ -25,7 +25,6 @@ The `Startup` class is where:
 Here's a sample `Startup` class:
 
 [!code-csharp[](index/samples_snapshot/3.x/Startup.cs?highlight=3,12)]
-
 
 ## Dependency injection (services)
 
