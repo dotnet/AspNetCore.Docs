@@ -17,14 +17,16 @@ This article provides an overview of key topics for understanding how to develop
 
 ## Program.cs
 
-The `Startup` class is where:
+ASP.NET Core apps created with the web templates contain the application startup code in the `Program.cs` file.
 
-* Services required by the app are configured.
-* The app's request handling pipeline is defined, as a series of middleware components.
+The following app startup code supports:
 
-Here's a sample `Startup` class:
+* [Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
+* [MVC controllers with views](xref:tutorials/first-mvc-app/start-mvc)
+* [Web API with controllers](xref:tutorials/first-web-api)
+* [Minimal APIs](xref:tutorials/min-web-api)
 
-[!code-csharp[](index/samples_snapshot/3.x/Startup.cs?highlight=3,12)]
+[!code-csharp[](~/fundamentalsstartup/6.0_samples/WebAll/Program.cs)]
 
 ## Dependency injection (services)
 

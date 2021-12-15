@@ -24,7 +24,7 @@ The following app startup code supports:
 * [Web API with controllers](xref:tutorials/first-web-api)
 * [Minimal APIs](xref:tutorials/min-web-api)
 
-[!code-csharp[](startup/6.0_samples/WebAll/Program.cs)]
+[!code-csharp[](~/fundamentalsstartup/6.0_samples/WebAll/Program.cs)]
 
 ::: moniker-end
 
