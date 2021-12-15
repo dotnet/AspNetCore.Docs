@@ -597,6 +597,17 @@ The preceding code:
   }
   ```
 
+### Read the request body
+
+Read the request body directly using a <xref:Microsoft.AspNetCore.Http.HttpContext> or <xref:Microsoft.AspNetCore.Http.HttpRequest> parameter:
+
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_fileupload)]
+
+The preceding code:
+
+* Accesses the request body using <xref:Microsoft.AspNetCore.Http.HttpRequest.BodyReader?displayProperty=nameWithType>.
+* Copies the request body to a local file.
+
 ## Responses
 
 Route handlers support the following types of return values:

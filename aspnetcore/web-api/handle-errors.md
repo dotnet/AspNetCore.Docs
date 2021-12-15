@@ -89,7 +89,15 @@ In non-development environments, use [Exception Handling Middleware](xref:fundam
 The preceding `HandleError` action sends an [RFC 7807](https://tools.ietf.org/html/rfc7807)-compliant payload to the client.
 
 > [!WARNING]
-> Don't mark the error handler action method with HTTP method attributes, such as `HttpGet`. Explicit verbs prevent some requests from reaching the action method. Allow anonymous access to the method if unauthenticated users should see the error.
+> Don't mark the error handler action method with HTTP method attributes, such as `HttpGet`. Explicit verbs prevent some requests from reaching the action method.
+>
+> For web APIs that use [Swagger / OpenAPI](xref:tutorials/web-api-help-pages-using-swagger), mark the error handler action with the [[ApiExplorerSettings]](<xref:Microsoft.AspNetCore.Mvc.ApiExplorerSettingsAttribute>) attribute and set its <xref:Microsoft.AspNetCore.Mvc.ApiExplorerSettingsAttribute.IgnoreApi%2A> property to `true`. This attribute configuration excludes the error handler action from the app's OpenAPI specification:
+>
+> ```csharp
+> [ApiExplorerSettings(IgnoreApi = true)]
+> ```
+>
+> Allow anonymous access to the method if unauthenticated users should see the error.
 
 Exception Handling Middleware can also be used in the Development environment to produce a consistent payload format across all environments:
 
