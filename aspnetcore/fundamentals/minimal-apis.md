@@ -605,7 +605,7 @@ Read the request body directly using a <xref:Microsoft.AspNetCore.Http.HttpConte
 
 The preceding code:
 
-* Accesses the request body using <xref:Microsoft.AspNetCore.Http.HttpRequest.Body?displayProperty=nameWithType>.
+* Accesses the request body using <xref:Microsoft.AspNetCore.Http.HttpRequest.BodyReader?displayProperty=nameWithType>.
 * Copies the request body to a local file.
 
 ## Responses
