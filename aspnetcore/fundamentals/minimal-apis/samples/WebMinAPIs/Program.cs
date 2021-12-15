@@ -813,4 +813,20 @@ app.MapGet("/skipme", () => "Skipping Swagger.")
 app.Run();
 #endregion
 
+#elif FILEUPLOAD
+#region snippet_fileupload
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.MapPost("/uploadfile", async (IConfiguration config, HttpRequest request) =>
+{
+    var filePath = Path.Combine(config["StoredFilesPath"], Path.GetRandomFileName());
+
+    await using var writeStream = File.Create(filePath);
+    await request.Body.CopyToAsync(writeStream);
+});
+
+app.Run();
+#endregion
+
 #endif

@@ -597,6 +597,17 @@ The preceding code:
   }
   ```
 
+### Reading request body
+
+The request body can be read directly using a `HttpContext` or `HttpRequest` parameter.
+
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_fileupload)]
+
+The preceding code:
+
+* Accesses the request body using `HttpRequest.Body`.
+* Copies the request body to a local file.
+
 ## Responses
 
 Route handlers support the following types of return values:
