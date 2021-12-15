@@ -33,7 +33,7 @@ The following services are added in the app startup code:
 
 ## Dependency injection (services)
 
-ASP.NET Core includes [dependency injection (DI)](fundamentals/dependency-injection) that makes configured services available throughout an app. For example, a logging component is a service.
+ASP.NET Core includes [dependency injection (DI)](xref:fundamentals/dependency-injection) that makes configured services available throughout an app. For example, a logging component is a service.
 
 Code to configure (or *register*) services is added to the `Startup.ConfigureServices` method. For example:
 
