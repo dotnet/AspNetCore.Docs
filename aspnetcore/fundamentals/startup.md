@@ -26,6 +26,8 @@ The following app startup code supports:
 
 [!code-csharp[](~/fundamentals/startup/6.0_samples/WebAll/Program.cs?name=snippet)]
 
+For more information on application startup, see <xref:fundamentals/index>.
+
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-6.0"
