@@ -11,7 +11,7 @@ uid: fundamentals/startup
 ---
 # App startup in ASP.NET Core
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT), [Tom Dykstra](https://github.com/tdykstra), and [Steve Smith](https://ardalis.com)
+By [Kirk Larkin](https://twitter.com/serpent5) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-6.0"
 
@@ -24,7 +24,7 @@ The following app startup code supports:
 * [Web API with controllers](xref:tutorials/first-web-api)
 * [Minimal APIs](xref:tutorials/min-web-api)
 
-[!code-csharp[](startup/6.0_samples/WebAll/Program.cs)]
+[!code-csharp[](~/fundamentals/startup/6.0_samples/WebAll/Program.cs?name=snippet)]
 
 ::: moniker-end
 
