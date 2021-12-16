@@ -80,7 +80,7 @@ Although `example1.contoso.net` and `example2.contoso.net` are different hosts, 
 
 Attacks that exploit trusted cookies between apps hosted on the same domain can be prevented by not sharing domains. When each app is hosted on its own domain, there's no implicit cookie trust relationship to exploit.
 
-## ASP.NET Core antiforgery configuration
+## Antiforgery in ASP.NET Core
 
 > [!WARNING]
 > ASP.NET Core implements antiforgery using [ASP.NET Core Data Protection](xref:security/data-protection/introduction). The data protection stack must be configured to work in a server farm. For more information, see [Configuring data protection](xref:security/data-protection/configuration/overview).
@@ -146,7 +146,7 @@ ASP.NET Core includes three [filters](xref:mvc/controllers/filters) for working 
 * [AutoValidateAntiforgeryToken](xref:Microsoft.AspNetCore.Mvc.AutoValidateAntiforgeryTokenAttribute)
 * [IgnoreAntiforgeryToken](xref:Microsoft.AspNetCore.Mvc.IgnoreAntiforgeryTokenAttribute)
 
-## Antiforgery options
+## Configure antiforgery with `AntiforgeryOptions`
 
 Customize <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions> in *Program.cs*:
 
@@ -163,7 +163,7 @@ Customize <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions> in *Program
 
 For more information, see <xref:Microsoft.AspNetCore.Builder.CookieAuthenticationOptions>.
 
-## Configure antiforgery features with IAntiforgery
+## Generate antiforgery tokens with `IAntiforgery`
 
 <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgery> provides the API to configure antiforgery features. `IAntiforgery` can be requested in *Program.cs* using <xref:Microsoft.AspNetCore.Builder.WebApplication.Services%2A?displayProperty=nameWithType>. The following example uses middleware from the app's home page to generate an antiforgery token and send it in the response as a cookie:
 
