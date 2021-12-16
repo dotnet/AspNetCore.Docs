@@ -6,172 +6,172 @@ items:
   - name: Overview
     items:
       - name: About ASP.NET Core
-        topicUid: index
+        uid: index
       - name: Compare ASP.NET Core and ASP.NET
-        topicUid: fundamentals/choose-between-aspnet-and-aspnetcore
+        uid: fundamentals/choose-between-aspnet-and-aspnetcore
       - name: Compare .NET and .NET Framework
         href: /dotnet/standard/choosing-core-framework-server?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
   - name: Get started
-    topicUid: getting-started
+    uid: getting-started
   - name: What's new
     items:
       - name: What's new in 6.0
-        topicUid: aspnetcore-6.0
+        uid: aspnetcore-6.0
       - name: What's new in 5.0
-        topicUid: aspnetcore-5.0
+        uid: aspnetcore-5.0
       - name: What's new in 3.1
-        topicUid: aspnetcore-3.1
+        uid: aspnetcore-3.1
       - name: What's new in 3.0
-        topicUid: aspnetcore-3.0
+        uid: aspnetcore-3.0
       - name: What's new in 2.2
-        topicUid: aspnetcore-2.2
+        uid: aspnetcore-2.2
       - name: What's new in 2.1
-        topicUid: aspnetcore-2.1
+        uid: aspnetcore-2.1
       - name: What's new in 2.0
-        topicUid: aspnetcore-2.0
+        uid: aspnetcore-2.0
       - name: What's new in 1.1
-        topicUid: aspnetcore-1.1
+        uid: aspnetcore-1.1
   - name: Tutorials
     displayName: tutorial
     items:
       - name: Web apps
         items:
           - name: Choose an ASP.NET Core UI
-            topicUid: tutorials/choose-web-ui
+            uid: tutorials/choose-web-ui
           - name: Razor Pages
             displayName: tutorial
             items:
               - name: Overview
-                topicUid: tutorials/razor-pages/index
+                uid: tutorials/razor-pages/index
               - name: Get started
-                topicUid: tutorials/razor-pages/razor-pages-start
+                uid: tutorials/razor-pages/razor-pages-start
               - name: Add a model
-                topicUid: tutorials/razor-pages/model
+                uid: tutorials/razor-pages/model
               - name: Scaffolding
-                topicUid: tutorials/razor-pages/page
+                uid: tutorials/razor-pages/page
               - name: Work with a database
-                topicUid: tutorials/razor-pages/sql
+                uid: tutorials/razor-pages/sql
               - name: Update the pages
-                topicUid: tutorials/razor-pages/da1
+                uid: tutorials/razor-pages/da1
               - name: Add search
-                topicUid: tutorials/razor-pages/search
+                uid: tutorials/razor-pages/search
               - name: Add a new field
-                topicUid: tutorials/razor-pages/new-field
+                uid: tutorials/razor-pages/new-field
               - name: Add validation
-                topicUid: tutorials/razor-pages/validation
+                uid: tutorials/razor-pages/validation
           - name: MVC
             displayName: tutorial
             items:
               - name: Get started
-                topicUid: tutorials/first-mvc-app/start-mvc
+                uid: tutorials/first-mvc-app/start-mvc
               - name: Add a controller
-                topicUid: tutorials/first-mvc-app/adding-controller
+                uid: tutorials/first-mvc-app/adding-controller
               - name: Add a view
-                topicUid: tutorials/first-mvc-app/adding-view
+                uid: tutorials/first-mvc-app/adding-view
               - name: Add a model
-                topicUid: tutorials/first-mvc-app/adding-model
+                uid: tutorials/first-mvc-app/adding-model
               - name: Work with a database
-                topicUid: tutorials/first-mvc-app/working-with-sql
+                uid: tutorials/first-mvc-app/working-with-sql
               - name: Controller actions and views
-                topicUid: tutorials/first-mvc-app/controller-methods-views
+                uid: tutorials/first-mvc-app/controller-methods-views
               - name: Add search
-                topicUid: tutorials/first-mvc-app/search
+                uid: tutorials/first-mvc-app/search
               - name: Add a new field
-                topicUid: tutorials/first-mvc-app/new-field
+                uid: tutorials/first-mvc-app/new-field
               - name: Add validation
-                topicUid: tutorials/first-mvc-app/validation
+                uid: tutorials/first-mvc-app/validation
               - name: Examine Details and Delete
-                topicUid: tutorials/first-mvc-app/details
+                uid: tutorials/first-mvc-app/details
           - name: Blazor
             displayName: tutorial
             items:
               - name: Build your first Blazor app
                 href: https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro
               - name: Build a Blazor todo list app
-                topicUid: tutorials/build-a-blazor-app
+                uid: tutorials/build-a-blazor-app
               - name: SignalR with Blazor
-                topicUid: tutorials/signalr-blazor
+                uid: tutorials/signalr-blazor
       - name: Web API apps
         items:
           - name: Create a web API with controllers
             displayName: API tutorial
-            topicUid: tutorials/first-web-api
+            uid: tutorials/first-web-api
           - name: Create a minimal web API
             displayName: API tutorial
-            topicUid: tutorials/min-web-api
+            uid: tutorials/min-web-api
           - name: Web API with MongoDB
             displayName: API tutorial
-            topicUid: tutorials/first-mongo-app
+            uid: tutorials/first-mongo-app
           - name: Web API with JavaScript
             displayName: tutorial
-            topicUid: tutorials/web-api-javascript
+            uid: tutorials/web-api-javascript
           - name: Backend for mobile
             displayName: tutorial
-            topicUid: mobile/native-mobile-backend
+            uid: mobile/native-mobile-backend
           - name: Publish to Azure API Management
             displayName: tutorial
-            topicUid: tutorials/publish-to-azure-api-management-using-vs
+            uid: tutorials/publish-to-azure-api-management-using-vs
       - name: Real-time web apps
         items:
           - name: SignalR with JavaScript
             displayName: tutorial
-            topicUid: tutorials/signalr
+            uid: tutorials/signalr
           - name: SignalR with TypeScript
             displayName: tutorial
-            topicUid: tutorials/signalr-typescript-webpack
+            uid: tutorials/signalr-typescript-webpack
           - name: SignalR with Blazor
             displayName: tutorial
-            topicUid: tutorials/signalr-blazor
+            uid: tutorials/signalr-blazor
       - name: Remote Procedure Call apps
         items:
           - name: Get started with a gRPC service
-            topicUid: tutorials/grpc/grpc-start
+            uid: tutorials/grpc/grpc-start
       - name: Data access
         items:
           - name: EF Core with Razor Pages
             displayName: tutorial
             items:
               - name: Get started
-                topicUid: data/ef-rp/intro
+                uid: data/ef-rp/intro
               - name: Create, Read, Update, and Delete
-                topicUid: data/ef-rp/crud
+                uid: data/ef-rp/crud
               - name: Sort, filter, page, and group
-                topicUid: data/ef-rp/sort-filter-page
+                uid: data/ef-rp/sort-filter-page
               - name: Migrations
-                topicUid: data/ef-rp/migrations
+                uid: data/ef-rp/migrations
               - name: Create a complex data model
-                topicUid: data/ef-rp/complex-data-model
+                uid: data/ef-rp/complex-data-model
               - name: Read related data
-                topicUid: data/ef-rp/read-related-data
+                uid: data/ef-rp/read-related-data
               - name: Update related data
-                topicUid: data/ef-rp/update-related-data
+                uid: data/ef-rp/update-related-data
               - name: Handle concurrency conflicts
-                topicUid: data/ef-rp/concurrency
+                uid: data/ef-rp/concurrency
           - name: EF Core with MVC
             displayName: tutorial
             items:
               - name: Overview
-                topicUid: data/ef-mvc/index
+                uid: data/ef-mvc/index
               - name: Get started
-                topicUid: data/ef-mvc/intro
+                uid: data/ef-mvc/intro
               - name: Create, Read, Update, and Delete
-                topicUid: data/ef-mvc/crud
+                uid: data/ef-mvc/crud
               - name: Sort, filter, page, and group
-                topicUid: data/ef-mvc/sort-filter-page
+                uid: data/ef-mvc/sort-filter-page
               - name: Migrations
-                topicUid: data/ef-mvc/migrations
+                uid: data/ef-mvc/migrations
               - name: Create a complex data model
-                topicUid: data/ef-mvc/complex-data-model
+                uid: data/ef-mvc/complex-data-model
               - name: Read related data
-                topicUid: data/ef-mvc/read-related-data
+                uid: data/ef-mvc/read-related-data
               - name: Update related data
-                topicUid: data/ef-mvc/update-related-data
+                uid: data/ef-mvc/update-related-data
               - name: Handle concurrency conflicts
-                topicUid: data/ef-mvc/concurrency
+                uid: data/ef-mvc/concurrency
               - name: Inheritance
-                topicUid: data/ef-mvc/inheritance
+                uid: data/ef-mvc/inheritance
               - name: Advanced topics
-                topicUid: data/ef-mvc/advanced
+                uid: data/ef-mvc/advanced
       - name: Microsoft Learn modules
         items:
           - name: Web apps >>
@@ -212,341 +212,341 @@ items:
   - name: Fundamentals
     items:
       - name: Overview
-        topicUid: fundamentals/index
+        uid: fundamentals/index
       - name: App startup
-        topicUid: fundamentals/startup
+        uid: fundamentals/startup
       - name: Dependency injection (services)
-        topicUid: fundamentals/dependency-injection
+        uid: fundamentals/dependency-injection
       - name: Middleware
-        topicUid: fundamentals/middleware/index
+        uid: fundamentals/middleware/index
       - name: Host
         items:
           - name: Generic Host
-            topicUid: fundamentals/host/generic-host
+            uid: fundamentals/host/generic-host
           - name: Web Host
-            topicUid: fundamentals/host/web-host
+            uid: fundamentals/host/web-host
       - name: Servers
-        topicUid: fundamentals/servers/index
+        uid: fundamentals/servers/index
       - name: Configuration
-        topicUid: fundamentals/configuration/index
+        uid: fundamentals/configuration/index
       - name: Options
-        topicUid: fundamentals/configuration/options
+        uid: fundamentals/configuration/options
       - name: Environments (dev, stage, prod)
-        topicUid: fundamentals/environments
+        uid: fundamentals/environments
       - name: Logging
-        topicUid: fundamentals/logging/index
+        uid: fundamentals/logging/index
       - name: HTTP Logging
-        topicUid: fundamentals/http-logging/index
+        uid: fundamentals/http-logging/index
       - name: W3C Logger
-        topicUid: fundamentals/w3c-logger/index
+        uid: fundamentals/w3c-logger/index
       - name: Routing
-        topicUid: fundamentals/routing
+        uid: fundamentals/routing
       - name: Handle errors
-        topicUid: fundamentals/error-handling
+        uid: fundamentals/error-handling
       - name: Make HTTP requests
         displayName: httpclient, httpclientfactory
-        topicUid: fundamentals/http-requests
+        uid: fundamentals/http-requests
       - name: Static files
-        topicUid: fundamentals/static-files
+        uid: fundamentals/static-files
   - name: Web apps
     items:
       - name: Choose an ASP.NET Core UI
-        topicUid: tutorials/choose-web-ui
+        uid: tutorials/choose-web-ui
       - name: Razor Pages
         items:
           - name: Introduction
-            topicUid: razor-pages/index
+            uid: razor-pages/index
           - name: Tutorial
             items:
               - name: Overview
-                topicUid: tutorials/razor-pages/index
+                uid: tutorials/razor-pages/index
               - name: Get started
-                topicUid: tutorials/razor-pages/razor-pages-start
+                uid: tutorials/razor-pages/razor-pages-start
               - name: Add a model
-                topicUid: tutorials/razor-pages/model
+                uid: tutorials/razor-pages/model
               - name: Scaffolding
-                topicUid: tutorials/razor-pages/page
+                uid: tutorials/razor-pages/page
               - name: Work with a database
-                topicUid: tutorials/razor-pages/sql
+                uid: tutorials/razor-pages/sql
               - name: Update the pages
-                topicUid: tutorials/razor-pages/da1
+                uid: tutorials/razor-pages/da1
               - name: Add search
-                topicUid: tutorials/razor-pages/search
+                uid: tutorials/razor-pages/search
               - name: Add a new field
-                topicUid: tutorials/razor-pages/new-field
+                uid: tutorials/razor-pages/new-field
               - name: Add validation
-                topicUid: tutorials/razor-pages/validation
+                uid: tutorials/razor-pages/validation
           - name: Filters
-            topicUid: razor-pages/filter
+            uid: razor-pages/filter
           - name: Route and app conventions
-            topicUid: razor-pages/razor-pages-conventions
+            uid: razor-pages/razor-pages-conventions
       - name: MVC
         items:
           - name: Overview
-            topicUid: mvc/overview
+            uid: mvc/overview
           - name: Tutorial
             items:
               - name: Get started
-                topicUid: tutorials/first-mvc-app/start-mvc
+                uid: tutorials/first-mvc-app/start-mvc
               - name: Add a controller
-                topicUid: tutorials/first-mvc-app/adding-controller
+                uid: tutorials/first-mvc-app/adding-controller
               - name: Add a view
-                topicUid: tutorials/first-mvc-app/adding-view
+                uid: tutorials/first-mvc-app/adding-view
               - name: Add a model
-                topicUid: tutorials/first-mvc-app/adding-model
+                uid: tutorials/first-mvc-app/adding-model
               - name: Work with a database
-                topicUid: tutorials/first-mvc-app/working-with-sql
+                uid: tutorials/first-mvc-app/working-with-sql
               - name: Controller actions and views
-                topicUid: tutorials/first-mvc-app/controller-methods-views
+                uid: tutorials/first-mvc-app/controller-methods-views
               - name: Add search
-                topicUid: tutorials/first-mvc-app/search
+                uid: tutorials/first-mvc-app/search
               - name: Add a new field
-                topicUid: tutorials/first-mvc-app/new-field
+                uid: tutorials/first-mvc-app/new-field
               - name: Add validation
-                topicUid: tutorials/first-mvc-app/validation
+                uid: tutorials/first-mvc-app/validation
               - name: Examine the Details and Delete methods
-                topicUid: tutorials/first-mvc-app/details
+                uid: tutorials/first-mvc-app/details
           - name: Views
-            topicUid: mvc/views/overview
+            uid: mvc/views/overview
           - name: Partial views
-            topicUid: mvc/views/partial
+            uid: mvc/views/partial
           - name: Controllers
-            topicUid: mvc/controllers/actions
+            uid: mvc/controllers/actions
           - name: Routing
-            topicUid: mvc/controllers/routing
+            uid: mvc/controllers/routing
           - name: Dependency injection - controllers
-            topicUid: mvc/controllers/dependency-injection
+            uid: mvc/controllers/dependency-injection
           - name: Dependency injection - views
-            topicUid: mvc/views/dependency-injection
+            uid: mvc/views/dependency-injection
           - name: Unit test
-            topicUid: mvc/controllers/testing
+            uid: mvc/controllers/testing
       - name: Blazor
         items:
           - name: Overview
-            topicUid: blazor/index
+            uid: blazor/index
           - name: Tutorials
-            topicUid: blazor/tutorials
+            uid: blazor/tutorials
           - name: Supported platforms
-            topicUid: blazor/supported-platforms
+            uid: blazor/supported-platforms
           - name: Tooling
-            topicUid: blazor/tooling
+            uid: blazor/tooling
           - name: Hosting models
-            topicUid: blazor/hosting-models
+            uid: blazor/hosting-models
           - name: Project structure
-            topicUid: blazor/project-structure
+            uid: blazor/project-structure
           - name: Fundamentals
             items:
               - name: Routing and navigation
-                topicUid: blazor/fundamentals/routing
+                uid: blazor/fundamentals/routing
               - name: Configuration
-                topicUid: blazor/fundamentals/configuration
+                uid: blazor/fundamentals/configuration
               - name: Dependency injection
-                topicUid: blazor/fundamentals/dependency-injection
+                uid: blazor/fundamentals/dependency-injection
               - name: Startup
-                topicUid: blazor/fundamentals/startup
+                uid: blazor/fundamentals/startup
               - name: Environments
-                topicUid: blazor/fundamentals/environments
+                uid: blazor/fundamentals/environments
               - name: Logging
-                topicUid: blazor/fundamentals/logging
+                uid: blazor/fundamentals/logging
               - name: Handle errors
-                topicUid: blazor/fundamentals/handle-errors
+                uid: blazor/fundamentals/handle-errors
               - name: SignalR
-                topicUid: blazor/fundamentals/signalr
+                uid: blazor/fundamentals/signalr
               - name: Static files
-                topicUid: blazor/fundamentals/static-files
+                uid: blazor/fundamentals/static-files
           - name: Components
             items:
               - name: Overview
-                topicUid: blazor/components/index
+                uid: blazor/components/index
               - name: Layouts
-                topicUid: blazor/components/layouts
+                uid: blazor/components/layouts
               - name: Control <head> content
-                topicUid: blazor/components/control-head-content
+                uid: blazor/components/control-head-content
               - name: Cascading values and parameters
-                topicUid: blazor/components/cascading-values-and-parameters
+                uid: blazor/components/cascading-values-and-parameters
               - name: Data binding
-                topicUid: blazor/components/data-binding
+                uid: blazor/components/data-binding
               - name: Event handling
-                topicUid: blazor/components/event-handling
+                uid: blazor/components/event-handling
               - name: Lifecycle
-                topicUid: blazor/components/lifecycle
+                uid: blazor/components/lifecycle
               - name: Rendering
-                topicUid: blazor/components/rendering
+                uid: blazor/components/rendering
               - name: Templated components
-                topicUid: blazor/components/templated-components
+                uid: blazor/components/templated-components
               - name: CSS isolation
-                topicUid: blazor/components/css-isolation
+                uid: blazor/components/css-isolation
               - name: Dynamically-rendered components
-                topicUid: blazor/components/dynamiccomponent
+                uid: blazor/components/dynamiccomponent
               - name: Prerender and integrate components
-                topicUid: blazor/components/prerendering-and-integration
+                uid: blazor/components/prerendering-and-integration
               - name: Class libraries
-                topicUid: blazor/components/class-libraries
+                uid: blazor/components/class-libraries
               - name: Built-in components
-                topicUid: blazor/components/built-in-components
+                uid: blazor/components/built-in-components
           - name: Globalization and localization
-            topicUid: blazor/globalization-localization
+            uid: blazor/globalization-localization
           - name: Forms and validation
-            topicUid: blazor/forms-validation
+            uid: blazor/forms-validation
           - name: File uploads
-            topicUid: blazor/file-uploads
+            uid: blazor/file-uploads
           - name: File downloads
-            topicUid: blazor/file-downloads
+            uid: blazor/file-downloads
           - name: JavaScript interop
             items:
               - name: Overview
-                topicUid: blazor/js-interop/index
+                uid: blazor/js-interop/index
               - name: Call JavaScript from .NET
-                topicUid: blazor/js-interop/call-javascript-from-dotnet
+                uid: blazor/js-interop/call-javascript-from-dotnet
               - name: Call .NET from JavaScript
-                topicUid: blazor/js-interop/call-dotnet-from-javascript
+                uid: blazor/js-interop/call-dotnet-from-javascript
           - name: Call a web API
-            topicUid: blazor/call-web-api
+            uid: blazor/call-web-api
           - name: Images
-            topicUid: blazor/images
+            uid: blazor/images
           - name: Security and Identity
             items:
               - name: Overview
-                topicUid: blazor/security/index
+                uid: blazor/security/index
               - name: Blazor WebAssembly
                 items:
                   - name: Overview
-                    topicUid: blazor/security/webassembly/index
+                    uid: blazor/security/webassembly/index
                   - name: Standalone with Authentication library
-                    topicUid: blazor/security/webassembly/standalone-with-authentication-library
+                    uid: blazor/security/webassembly/standalone-with-authentication-library
                   - name: Standalone with Microsoft Accounts
-                    topicUid: blazor/security/webassembly/standalone-with-microsoft-accounts
+                    uid: blazor/security/webassembly/standalone-with-microsoft-accounts
                   - name: Standalone with AAD
-                    topicUid: blazor/security/webassembly/standalone-with-azure-active-directory
+                    uid: blazor/security/webassembly/standalone-with-azure-active-directory
                   - name: Standalone with AAD B2C
-                    topicUid: blazor/security/webassembly/standalone-with-azure-active-directory-b2c
+                    uid: blazor/security/webassembly/standalone-with-azure-active-directory-b2c
                   - name: Hosted with AAD
-                    topicUid: blazor/security/webassembly/hosted-with-azure-active-directory
+                    uid: blazor/security/webassembly/hosted-with-azure-active-directory
                   - name: Hosted with AAD B2C
-                    topicUid: blazor/security/webassembly/hosted-with-azure-active-directory-b2c
+                    uid: blazor/security/webassembly/hosted-with-azure-active-directory-b2c
                   - name: Hosted with Identity Server
-                    topicUid: blazor/security/webassembly/hosted-with-identity-server
+                    uid: blazor/security/webassembly/hosted-with-identity-server
                   - name: Additional scenarios
-                    topicUid: blazor/security/webassembly/additional-scenarios
+                    uid: blazor/security/webassembly/additional-scenarios
                   - name: Graph API
-                    topicUid: blazor/security/webassembly/graph-api
+                    uid: blazor/security/webassembly/graph-api
               - name: Blazor Server
                 items:
                   - name: Overview
-                    topicUid: blazor/security/server/index
+                    uid: blazor/security/server/index
                   - name: Threat mitigation
-                    topicUid: blazor/security/server/threat-mitigation
+                    uid: blazor/security/server/threat-mitigation
                   - name: Additional scenarios
-                    topicUid: blazor/security/server/additional-scenarios
+                    uid: blazor/security/server/additional-scenarios
               - name: Content Security Policy
-                topicUid: blazor/security/content-security-policy
+                uid: blazor/security/content-security-policy
           - name: State management
-            topicUid: blazor/state-management
+            uid: blazor/state-management
           - name: Debug WebAssembly
-            topicUid: blazor/debug
+            uid: blazor/debug
           - name: Lazy load assemblies with WebAssembly
-            topicUid: blazor/webassembly-lazy-load-assemblies
+            uid: blazor/webassembly-lazy-load-assemblies
           - name: WebAssembly native dependencies
-            topicUid: blazor/webassembly-native-dependencies
+            uid: blazor/webassembly-native-dependencies
           - name: Performance
-            topicUid: blazor/performance
+            uid: blazor/performance
           - name: Test components
-            topicUid: blazor/test
+            uid: blazor/test
           - name: Progressive Web Applications
-            topicUid: blazor/progressive-web-app
+            uid: blazor/progressive-web-app
           - name: Host and deploy
             items:
               - name: Overview
-                topicUid: blazor/host-and-deploy/index
+                uid: blazor/host-and-deploy/index
               - name: Blazor WebAssembly
-                topicUid: blazor/host-and-deploy/webassembly
+                uid: blazor/host-and-deploy/webassembly
               - name: Blazor Server
-                topicUid: blazor/host-and-deploy/server
+                uid: blazor/host-and-deploy/server
               - name: Configure the Linker
-                topicUid: blazor/host-and-deploy/configure-linker
+                uid: blazor/host-and-deploy/configure-linker
               - name: Configure the Trimmer
-                topicUid: blazor/host-and-deploy/configure-trimmer
+                uid: blazor/host-and-deploy/configure-trimmer
               - name: WebAssembly deployment layout
-                topicUid: blazor/host-and-deploy/webassembly-deployment-layout
+                uid: blazor/host-and-deploy/webassembly-deployment-layout
           - name: Blazor Server and EF Core
-            topicUid: blazor/blazor-server-ef-core
+            uid: blazor/blazor-server-ef-core
           - name: Advanced scenarios
-            topicUid: blazor/advanced-scenarios
+            uid: blazor/advanced-scenarios
       - name: Client-side development
         items:
           - name: Single Page Apps
             items:
               - name: Angular
-                topicUid: spa/angular
+                uid: spa/angular
               - name: React
-                topicUid: spa/react
+                uid: spa/react
               - name: React with Redux
-                topicUid: spa/react-with-redux
+                uid: spa/react-with-redux
               - name: JavaScript Services
-                topicUid: client-side/spa-services
+                uid: client-side/spa-services
           - name: LibMan
             items:
               - name: Overview
-                topicUid: client-side/libman/index
+                uid: client-side/libman/index
               - name: CLI
-                topicUid: client-side/libman/libman-cli
+                uid: client-side/libman/libman-cli
               - name: Visual Studio
-                topicUid: client-side/libman/libman-vs
+                uid: client-side/libman/libman-vs
           - name: Grunt
-            topicUid: client-side/using-grunt
+            uid: client-side/using-grunt
           - name: Bundle and minify
-            topicUid: client-side/bundling-and-minification
+            uid: client-side/bundling-and-minification
           - name: Browser Link
-            topicUid: client-side/using-browserlink
+            uid: client-side/using-browserlink
       - name: Session and state management
-        topicUid: fundamentals/app-state
+        uid: fundamentals/app-state
       - name: Layout
-        topicUid: mvc/views/layout
+        uid: mvc/views/layout
       - name: Razor syntax
-        topicUid: mvc/views/razor
+        uid: mvc/views/razor
       - name: Razor class libraries
-        topicUid: razor-pages/ui-class
+        uid: razor-pages/ui-class
       - name: Tag Helpers
-        topicUid: mvc/views/tag-helpers/builtin-th/Index
+        uid: mvc/views/tag-helpers/builtin-th/Index
         items:
           - name: Overview
-            topicUid: mvc/views/tag-helpers/intro
+            uid: mvc/views/tag-helpers/intro
           - name: Create Tag Helpers
-            topicUid: mvc/views/tag-helpers/authoring
+            uid: mvc/views/tag-helpers/authoring
           - name: Use Tag Helpers in forms
-            topicUid: mvc/views/working-with-forms
+            uid: mvc/views/working-with-forms
           - name: Tag Helper Components
-            topicUid: mvc/views/tag-helpers/th-components
+            uid: mvc/views/tag-helpers/th-components
           - name: Built-in Tag Helpers
             items:
               - name: Anchor
-                topicUid: mvc/views/tag-helpers/builtin-th/anchor-tag-helper
+                uid: mvc/views/tag-helpers/builtin-th/anchor-tag-helper
               - name: Cache
-                topicUid: mvc/views/tag-helpers/builtin-th/cache-tag-helper
+                uid: mvc/views/tag-helpers/builtin-th/cache-tag-helper
               - name: Component
-                topicUid: mvc/views/tag-helpers/builtin-th/component-tag-helper
+                uid: mvc/views/tag-helpers/builtin-th/component-tag-helper
               - name: Distributed Cache
-                topicUid: mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper
+                uid: mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper
               - name: Environment
-                topicUid: mvc/views/tag-helpers/builtin-th/environment-tag-helper
+                uid: mvc/views/tag-helpers/builtin-th/environment-tag-helper
               - name: Form
                 href: mvc/views/working-with-forms.md#the-form-tag-helper
               - name: Form Action
                 href: mvc/views/working-with-forms.md#the-form-action-tag-helper
               - name: Image
-                topicUid: mvc/views/tag-helpers/builtin-th/image-tag-helper
+                uid: mvc/views/tag-helpers/builtin-th/image-tag-helper
               - name: Input
                 href: mvc/views/working-with-forms.md#the-input-tag-helper
               - name: Label
                 href: mvc/views/working-with-forms.md#the-label-tag-helper
               - name: Link
-                topicUid: mvc/views/tag-helpers/builtin-th/link-tag-helper
+                uid: mvc/views/tag-helpers/builtin-th/link-tag-helper
               - name: Partial
-                topicUid: mvc/views/tag-helpers/builtin-th/partial-tag-helper
+                uid: mvc/views/tag-helpers/builtin-th/partial-tag-helper
               - name: Persist Component State
-                topicUid: mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper
+                uid: mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper
               - name: Script
-                topicUid: mvc/views/tag-helpers/builtin-th/script-tag-helper
+                uid: mvc/views/tag-helpers/builtin-th/script-tag-helper
               - name: Select
                 href: mvc/views/working-with-forms.md#the-select-tag-helper
               - name: Textarea
@@ -558,87 +558,87 @@ items:
       - name: Advanced
         items:
           - name: Application parts
-            topicUid: mvc/extensibility/app-parts
+            uid: mvc/extensibility/app-parts
           - name: Application model
-            topicUid: mvc/controllers/application-model
+            uid: mvc/controllers/application-model
           - name: Areas
-            topicUid: mvc/controllers/areas
+            uid: mvc/controllers/areas
           - name: Filters
-            topicUid: mvc/controllers/filters
+            uid: mvc/controllers/filters
           - name: Razor SDK
-            topicUid: razor-pages/sdk
+            uid: razor-pages/sdk
           - name: View components
-            topicUid: mvc/views/view-components
+            uid: mvc/views/view-components
           - name: View compilation
-            topicUid: mvc/views/view-compilation
+            uid: mvc/views/view-compilation
           - name: Upload files
-            topicUid: mvc/models/file-uploads
+            uid: mvc/models/file-uploads
           - name: Web SDK
-            topicUid: razor-pages/web-sdk
+            uid: razor-pages/web-sdk
           - name: aspnet-codegenerator (Scaffolding)
-            topicUid: fundamentals/tools/dotnet-aspnet-codegenerator
+            uid: fundamentals/tools/dotnet-aspnet-codegenerator
   - name: Web API apps
     items:
       - name: Overview
-        topicUid: web-api/index
+        uid: web-api/index
       - name: Tutorials
         items:
           - name: Create a web API with controllers
-            topicUid: tutorials/first-web-api
+            uid: tutorials/first-web-api
           - name: Create a minimal web API
-            topicUid: tutorials/min-web-api
+            uid: tutorials/min-web-api
           - name: Create a web API
-            topicUid: tutorials/first-web-api
+            uid: tutorials/first-web-api
           - name: Web API with MongoDB
-            topicUid: tutorials/first-mongo-app
+            uid: tutorials/first-mongo-app
       - name: Swagger / OpenAPI
         items:
           - name: Overview
-            topicUid: tutorials/web-api-help-pages-using-swagger
+            uid: tutorials/web-api-help-pages-using-swagger
           - name: Get started with Swashbuckle
-            topicUid: tutorials/get-started-with-swashbuckle
+            uid: tutorials/get-started-with-swashbuckle
           - name: Get started with NSwag
-            topicUid: tutorials/get-started-with-nswag
+            uid: tutorials/get-started-with-nswag
           - name: OpenAPI tools
-            topicUid: web-api/Microsoft.dotnet-openapi
+            uid: web-api/Microsoft.dotnet-openapi
       - name: Action return types
-        topicUid: web-api/action-return-types
+        uid: web-api/action-return-types
       - name: Handle JSON Patch requests
-        topicUid: web-api/jsonpatch
+        uid: web-api/jsonpatch
       - name: Format response data
-        topicUid: web-api/advanced/formatting
+        uid: web-api/advanced/formatting
       - name: Custom formatters
-        topicUid: web-api/advanced/custom-formatters
+        uid: web-api/advanced/custom-formatters
       - name: Analyzers
-        topicUid: web-api/advanced/analyzers
+        uid: web-api/advanced/analyzers
       - name: Conventions
-        topicUid: web-api/advanced/conventions
+        uid: web-api/advanced/conventions
       - name: Handle errors
-        topicUid: web-api/handle-errors
+        uid: web-api/handle-errors
       - name: Test with HttpRepl
         items:
           - name: Overview
-            topicUid: web-api/http-repl
+            uid: web-api/http-repl
           - name: Telemetry
-            topicUid: web-api/http-repl/telemetry
+            uid: web-api/http-repl/telemetry
   - name: Minimal APIs
-    topicUid: fundamentals/minimal-apis
+    uid: fundamentals/minimal-apis
   - name: Real-time apps
     displayName: signalr
     items:
       - name: SignalR overview
-        topicUid: signalr/introduction
+        uid: signalr/introduction
       - name: Supported platforms
-        topicUid: signalr/supported-platforms
+        uid: signalr/supported-platforms
         displayName: signalr
       - name: Tutorials
         items:
           - name: SignalR with JavaScript
-            topicUid: tutorials/signalr
+            uid: tutorials/signalr
           - name: SignalR with TypeScript
-            topicUid: tutorials/signalr-typescript-webpack
+            uid: tutorials/signalr-typescript-webpack
           - name: SignalR with Blazor
-            topicUid: tutorials/signalr-blazor
+            uid: tutorials/signalr-blazor
       - name: Samples
         href: https://github.com/aspnet/SignalR-samples
         displayName: signalr
@@ -646,40 +646,40 @@ items:
         displayName: signalr
         items:
           - name: Hubs
-            topicUid: signalr/hubs
+            uid: signalr/hubs
             displayName: signalr
           - name: Send from outside a hub
-            topicUid: signalr/hubcontext
+            uid: signalr/hubcontext
             displayName: signalr
           - name: Users and groups
-            topicUid: signalr/groups
+            uid: signalr/groups
             displayName: signalr
           - name: API design considerations
-            topicUid: signalr/api-design
+            uid: signalr/api-design
             displayName: signalr
           - name: Hub filters
-            topicUid: signalr/hub-filters
+            uid: signalr/hub-filters
             displayName: signalr
       - name: Clients
         displayName: signalr
         items:
           - name: Overview
-            topicUid: signalr/client-features
+            uid: signalr/client-features
             displayName: signalr
           - name: .NET client
-            topicUid: signalr/dotnet-client
+            uid: signalr/dotnet-client
             displayName: signalr
           - name: .NET API reference
             href: /dotnet/api/microsoft.aspnetcore.signalr.client
             displayName: signalr
           - name: Java client
-            topicUid: signalr/java-client
+            uid: signalr/java-client
             displayName: signalr
           - name: Java API reference
             href: /java/api/com.microsoft.signalr?view=aspnet-signalr-java
             displayName: signalr
           - name: JavaScript client
-            topicUid: signalr/javascript-client
+            uid: signalr/javascript-client
             displayName: signalr
           - name: JavaScript API reference
             href: /javascript/api/?view=signalr-js-latest
@@ -689,42 +689,42 @@ items:
         items:
           - name: Overview
             displayName: signalr
-            topicUid: signalr/scale
+            uid: signalr/scale
           - name: Azure App Service
-            topicUid: signalr/publish-to-azure-web-app
+            uid: signalr/publish-to-azure-web-app
             displayName: signalr
           - name: Redis backplane
             displayName: signalr
-            topicUid: signalr/redis-backplane
+            uid: signalr/redis-backplane
           - name: SignalR with background services
-            topicUid: signalr/background-services
+            uid: signalr/background-services
       - name: Configuration
-        topicUid: signalr/configuration
+        uid: signalr/configuration
         displayName: signalr
       - name: Authentication and authorization
-        topicUid: signalr/authn-and-authz
+        uid: signalr/authn-and-authz
         displayName: signalr
       - name: Security considerations
-        topicUid: signalr/security
+        uid: signalr/security
         displayName: signalr
       - name: MessagePack Hub Protocol
-        topicUid: signalr/messagepackhubprotocol
+        uid: signalr/messagepackhubprotocol
         displayName: signalr
       - name: Streaming
-        topicUid: signalr/streaming
+        uid: signalr/streaming
         displayName: signalr
       - name: Compare SignalR and SignalR Core
-        topicUid: signalr/version-differences
+        uid: signalr/version-differences
         displayName: signalr
       - name: WebSockets
         displayName: signalr
-        topicUid: fundamentals/websockets
+        uid: fundamentals/websockets
       - name: Logging and diagnostics
         displayName: signalr
-        topicUid: signalr/diagnostics
+        uid: signalr/diagnostics
       - name: Troubleshooting
         displayName: signalr
-        topicUid: signalr/troubleshoot
+        uid: signalr/troubleshoot
       - name: Specifications
         displayName: signalr, specs
         items:
@@ -735,81 +735,81 @@ items:
   - name: Remote Procedure Call apps
     items:
       - name: Introduction to gRPC services
-        topicUid: grpc/index
+        uid: grpc/index
       - name: Tutorials
         items:
           - name: Get started with a gRPC service
-            topicUid: tutorials/grpc/grpc-start
+            uid: tutorials/grpc/grpc-start
       - name: gRPC services with C#
         items:
           - name: Overview
-            topicUid: grpc/basics
+            uid: grpc/basics
           - name: Create gRPC services
-            topicUid: grpc/services
+            uid: grpc/services
           - name: Create Protobuf messages
-            topicUid: grpc/protobuf
+            uid: grpc/protobuf
           - name: Versioning gRPC services
-            topicUid: grpc/versioning
+            uid: grpc/versioning
       - name: Call gRPC services with C#
         items:
           - name: Overview
-            topicUid: grpc/client
+            uid: grpc/client
           - name: gRPC client factory integration
-            topicUid: grpc/clientfactory
+            uid: grpc/clientfactory
           - name: Deadlines and cancellation
-            topicUid: grpc/deadlines-cancellation
+            uid: grpc/deadlines-cancellation
           - name: Transient fault handling
-            topicUid: grpc/retries
+            uid: grpc/retries
           - name: Client-side load balancing
-            topicUid: grpc/loadbalancing
+            uid: grpc/loadbalancing
           - name: .NET Standard 2.0 support
-            topicUid: grpc/netstandard
+            uid: grpc/netstandard
       - name: gRPC services with ASP.NET Core
-        topicUid: grpc/aspnetcore
+        uid: grpc/aspnetcore
       - name: Supported platforms
-        topicUid: grpc/supported-platforms
+        uid: grpc/supported-platforms
       - name: Use gRPC in browser apps
-        topicUid: grpc/browser
+        uid: grpc/browser
       - name: Configuration
-        topicUid: grpc/configuration
+        uid: grpc/configuration
       - name: Authentication and authorization
-        topicUid: grpc/authn-and-authz
+        uid: grpc/authn-and-authz
       - name: Logging and diagnostics
-        topicUid: grpc/diagnostics
+        uid: grpc/diagnostics
       - name: Security considerations
-        topicUid: grpc/security
+        uid: grpc/security
       - name: Performance best practices
-        topicUid: grpc/performance
+        uid: grpc/performance
       - name: Inter-process communication
-        topicUid: grpc/interprocess
+        uid: grpc/interprocess
       - name: Create JSON Web APIs from gRPC
-        topicUid: grpc/httpapi
+        uid: grpc/httpapi
       - name: Code-first gRPC services and clients
-        topicUid: grpc/code-first
+        uid: grpc/code-first
       - name: Manage Protobuf references with dotnet-grpc
-        topicUid: grpc/dotnet-grpc
+        uid: grpc/dotnet-grpc
       - name: Test gRPC services with gRPCurl
-        topicUid: grpc/test-tools
+        uid: grpc/test-tools
       - name: Migrate gRPC services from C-core
-        topicUid: grpc/migration
+        uid: grpc/migration
       - name: Why migrate WCF to ASP.NET Core gRPC
-        topicUid: grpc/wcf
+        uid: grpc/wcf
       - name: Compare gRPC services with HTTP APIs
-        topicUid: grpc/comparison
+        uid: grpc/comparison
       - name: Samples
         href: https://github.com/grpc/grpc-dotnet/tree/master/examples
       - name: Troubleshoot
-        topicUid: grpc/troubleshoot
+        uid: grpc/troubleshoot
   - name: Test, debug, and troubleshoot
     items:
       - name: .NET Hot Reload
-        topicUid: test/hot-reload
+        uid: test/hot-reload
       - name: Razor Pages unit tests
-        topicUid: test/razor-pages-tests
+        uid: test/razor-pages-tests
       - name: Test controllers
-        topicUid: mvc/controllers/testing
+        uid: mvc/controllers/testing
       - name: Test middleware
-        topicUid: test/middleware
+        uid: test/middleware
       - name: Remote debugging
         href: /visualstudio/debugger/remote-debugging-azure
       - name: Snapshot debugging
@@ -817,30 +817,30 @@ items:
       - name: Snapshot debugging in Visual Studio
         href: /visualstudio/debugger/debug-live-azure-applications
       - name: Integration tests
-        topicUid: test/integration-tests
+        uid: test/integration-tests
       - name: Load and stress testing
-        topicUid: test/loadtests
+        uid: test/loadtests
       - name: Troubleshoot and debug
-        topicUid: test/troubleshoot
+        uid: test/troubleshoot
       - name: Logging
-        topicUid: fundamentals/logging/index
+        uid: fundamentals/logging/index
       - name: Troubleshoot Azure and IIS
-        topicUid: test/troubleshoot-azure-iis
+        uid: test/troubleshoot-azure-iis
       - name: Azure and IIS errors reference
-        topicUid: host-and-deploy/azure-iis-errors-reference
+        uid: host-and-deploy/azure-iis-errors-reference
       - name: Code analysis
-        topicUid: diagnostics/code-analysis
+        uid: diagnostics/code-analysis
         items:
           - name: ASP0004
-            topicUid: diagnostics/asp0004
+            uid: diagnostics/asp0004
           - name: ASP0005
-            topicUid: diagnostics/asp0005
+            uid: diagnostics/asp0005
           - name: ASP0007
-            topicUid: diagnostics/asp0007
+            uid: diagnostics/asp0007
           - name: MVC1000
-            topicUid: diagnostics/mvc1000
+            uid: diagnostics/mvc1000
           - name: MVC1001
-            topicUid: diagnostics/mvc1001
+            uid: diagnostics/mvc1001
   - name: Data access
     items:
       - name: Tutorials
@@ -848,47 +848,47 @@ items:
           - name: EF Core with Razor Pages
             items:
               - name: Get started
-                topicUid: data/ef-rp/intro
+                uid: data/ef-rp/intro
               - name: Create, Read, Update, and Delete
-                topicUid: data/ef-rp/crud
+                uid: data/ef-rp/crud
               - name: Sort, filter, page, and group
-                topicUid: data/ef-rp/sort-filter-page
+                uid: data/ef-rp/sort-filter-page
               - name: Migrations
-                topicUid: data/ef-rp/migrations
+                uid: data/ef-rp/migrations
               - name: Create a complex data model
-                topicUid: data/ef-rp/complex-data-model
+                uid: data/ef-rp/complex-data-model
               - name: Read related data
-                topicUid: data/ef-rp/read-related-data
+                uid: data/ef-rp/read-related-data
               - name: Update related data
-                topicUid: data/ef-rp/update-related-data
+                uid: data/ef-rp/update-related-data
               - name: Handle concurrency conflicts
-                topicUid: data/ef-rp/concurrency
+                uid: data/ef-rp/concurrency
           - name: EF Core with MVC
             items:
               - name: Overview
-                topicUid: data/ef-mvc/index
+                uid: data/ef-mvc/index
               - name: Get started
-                topicUid: data/ef-mvc/intro
+                uid: data/ef-mvc/intro
               - name: Create, Read, Update, and Delete
-                topicUid: data/ef-mvc/crud
+                uid: data/ef-mvc/crud
               - name: Sort, filter, page, and group
-                topicUid: data/ef-mvc/sort-filter-page
+                uid: data/ef-mvc/sort-filter-page
               - name: Migrations
-                topicUid: data/ef-mvc/migrations
+                uid: data/ef-mvc/migrations
               - name: Create a complex data model
-                topicUid: data/ef-mvc/complex-data-model
+                uid: data/ef-mvc/complex-data-model
               - name: Read related data
-                topicUid: data/ef-mvc/read-related-data
+                uid: data/ef-mvc/read-related-data
               - name: Update related data
-                topicUid: data/ef-mvc/update-related-data
+                uid: data/ef-mvc/update-related-data
               - name: Handle concurrency conflicts
-                topicUid: data/ef-mvc/concurrency
+                uid: data/ef-mvc/concurrency
               - name: Inheritance
-                topicUid: data/ef-mvc/inheritance
+                uid: data/ef-mvc/inheritance
               - name: Advanced topics
-                topicUid: data/ef-mvc/advanced
+                uid: data/ef-mvc/advanced
       - name: EF 6 with ASP.NET Core
-        topicUid: data/entity-framework-6
+        uid: data/entity-framework-6
       - name: Azure Storage with Visual Studio
         items:
           - name: Connected Services
@@ -904,16 +904,16 @@ items:
     items:
       - name: Overview
         displayName: azure, deploy, publish
-        topicUid: host-and-deploy/index
+        uid: host-and-deploy/index
       - name: Azure App Service
         displayName: deploy, publish
         items:
           - name: Overview
             displayName: azure, deploy, publish
-            topicUid: host-and-deploy/azure-apps/index
+            uid: host-and-deploy/azure-apps/index
           - name: Publish with Visual Studio
             displayName: azure, deploy, publish
-            topicUid: tutorials/publish-to-azure-webapp-using-vs
+            uid: tutorials/publish-to-azure-webapp-using-vs
           - name: Publish with Visual Studio for Mac
             displayName: azure, deploy, publish
             href: /visualstudio/mac/publish-app-svc?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
@@ -925,13 +925,13 @@ items:
             href: /azure/devops/pipelines/get-started-yaml
           - name: ASP.NET Core Module
             displayName: azure, deploy, publish
-            topicUid: host-and-deploy/aspnet-core-module
+            uid: host-and-deploy/aspnet-core-module
           - name: Troubleshoot
             displayName: azure, deploy, publish
-            topicUid: test/troubleshoot-azure-iis
+            uid: test/troubleshoot-azure-iis
           - name: Errors reference
             displayName: azure, deploy, publish
-            topicUid: host-and-deploy/azure-iis-errors-reference
+            uid: host-and-deploy/azure-iis-errors-reference
       - name: DevOps
         items:
           - name: Overview
@@ -957,105 +957,105 @@ items:
         items:
           - name: Overview
             displayName: deploy, publish
-            topicUid: host-and-deploy/iis/index
+            uid: host-and-deploy/iis/index
           - name: Publish to IIS tutorial
-            topicUid: tutorials/publish-to-iis
+            uid: tutorials/publish-to-iis
           - name: ASP.NET Core Module
             displayName: deploy, publish
-            topicUid: host-and-deploy/aspnet-core-module
+            uid: host-and-deploy/aspnet-core-module
           - name: In-process hosting
             displayName: deploy, publish
-            topicUid: host-and-deploy/iis/in-process-hosting
+            uid: host-and-deploy/iis/in-process-hosting
           - name: Out-of-process hosting
             displayName: deploy, publish
-            topicUid: host-and-deploy/iis/out-of-process-hosting
+            uid: host-and-deploy/iis/out-of-process-hosting
           - name: Hosting Bundle
             displayName: deploy, publish
-            topicUid: host-and-deploy/iis/hosting-bundle
+            uid: host-and-deploy/iis/hosting-bundle
           - name: web.config file
             displayName: deploy, publish
-            topicUid: host-and-deploy/iis/web-config
+            uid: host-and-deploy/iis/web-config
           - name: IIS support in Visual Studio
             displayName: deploy, publish
-            topicUid: host-and-deploy/iis/development-time-iis-support
+            uid: host-and-deploy/iis/development-time-iis-support
           - name: IIS Modules
             displayName: deploy, publish
-            topicUid: host-and-deploy/iis/modules
+            uid: host-and-deploy/iis/modules
           - name: Logging and diagnostics
             displayName: deploy, publish
-            topicUid: host-and-deploy/iis/logging-and-diagnostics
+            uid: host-and-deploy/iis/logging-and-diagnostics
           - name: Troubleshoot
             displayName: deploy, publish
-            topicUid: test/troubleshoot-azure-iis
+            uid: test/troubleshoot-azure-iis
           - name: Errors reference
             displayName: deploy, publish
-            topicUid: host-and-deploy/azure-iis-errors-reference
+            uid: host-and-deploy/azure-iis-errors-reference
           - name: Advanced
             displayName: deploy, publish
-            topicUid: host-and-deploy/iis/advanced
+            uid: host-and-deploy/iis/advanced
           - name: Transform web.config
             displayName: deploy, publish
-            topicUid: host-and-deploy/iis/transform-webconfig
+            uid: host-and-deploy/iis/transform-webconfig
           - name: HTTP/2
             displayName: deploy, publish
-            topicUid: host-and-deploy/iis/protocols
+            uid: host-and-deploy/iis/protocols
           - name: HTTP/3
             displayName: deploy, publish
-            topicUid: host-and-deploy/iis/http3
+            uid: host-and-deploy/iis/http3
       - name: Kestrel
         displayName: deploy, publish, server, Kestrel
         items:
           - name: Kestrel overview
             displayName: deploy, publish, server
-            topicUid: fundamentals/servers/kestrel
+            uid: fundamentals/servers/kestrel
           - name: Endpoints
             displayName: deploy, publish, server, Kestrel
-            topicUid: fundamentals/servers/kestrel/endpoints
+            uid: fundamentals/servers/kestrel/endpoints
           - name: Options
             displayName: deploy, publish, server, Kestrel
-            topicUid: fundamentals/servers/kestrel/options
+            uid: fundamentals/servers/kestrel/options
           - name: Diagnostics
             displayName: diagnostics
-            topicUid: fundamentals/servers/kestrel/diagnostics
+            uid: fundamentals/servers/kestrel/diagnostics
           - name: HTTP/2
             displayName: deploy, publish, server, Kestrel
-            topicUid: fundamentals/servers/kestrel/http2
+            uid: fundamentals/servers/kestrel/http2
           - name: HTTP/3
             displayName: HTTP/3, kestrel
-            topicUid: fundamentals/servers/kestrel/http3
+            uid: fundamentals/servers/kestrel/http3
           - name: When to use a reverse proxy
             displayName: deploy, publish, server, Kestrel
-            topicUid: fundamentals/servers/kestrel/when-to-use-a-reverse-proxy
+            uid: fundamentals/servers/kestrel/when-to-use-a-reverse-proxy
           - name: Host filtering
             displayName: deploy, publish, server, Kestrel
-            topicUid: fundamentals/servers/kestrel/host-filtering
+            uid: fundamentals/servers/kestrel/host-filtering
           - name: Request draining
             displayName: deploy, publish, server, Kestrel
-            topicUid: fundamentals/servers/kestrel/request-draining
+            uid: fundamentals/servers/kestrel/request-draining
       - name: HTTP.sys
         displayName: deploy, publish, server
-        topicUid: fundamentals/servers/httpsys
+        uid: fundamentals/servers/httpsys
       - name: Windows service
         displayName: deploy, publish
-        topicUid: host-and-deploy/windows-service
+        uid: host-and-deploy/windows-service
       - name: Linux with Nginx
         displayName: deploy, publish
-        topicUid: host-and-deploy/linux-nginx
+        uid: host-and-deploy/linux-nginx
       - name: Linux with Apache
         displayName: deploy, publish
-        topicUid: host-and-deploy/linux-apache
+        uid: host-and-deploy/linux-apache
       - name: Docker
         displayName: deploy, publish
         items:
           - name: Overview
             displayName: deploy, publish, docker
-            topicUid: host-and-deploy/docker/index
+            uid: host-and-deploy/docker/index
           - name: Build Docker images
             displayName: deploy, publish, docker
-            topicUid: host-and-deploy/docker/building-net-docker-images
+            uid: host-and-deploy/docker/building-net-docker-images
           - name: Visual Studio Tools
             displayName: deploy, publish, docker
-            topicUid: host-and-deploy/docker/visual-studio-tools-for-docker
+            uid: host-and-deploy/docker/visual-studio-tools-for-docker
           - name: Publish to a Docker image
             displayName: deploy, publish, docker
             href: /visualstudio/containers/vs-azure-tools-docker-hosting-web-apps-in-docker
@@ -1064,87 +1064,87 @@ items:
             href: https://github.com/dotnet/dotnet-docker/blob/main/samples/aspnetapp/README.md
       - name: Proxy and load balancer configuration
         displayName: deploy, publish
-        topicUid: host-and-deploy/proxy-load-balancer
+        uid: host-and-deploy/proxy-load-balancer
       - name: Web farm
         displayName: deploy, publish
-        topicUid: host-and-deploy/web-farm
+        uid: host-and-deploy/web-farm
       - name: Visual Studio publish profiles
         displayName: deploy, publish
-        topicUid: host-and-deploy/visual-studio-publish-profiles
+        uid: host-and-deploy/visual-studio-publish-profiles
       - name: Visual Studio for Mac publish to folder
         displayName: deploy, publish
         href: /visualstudio/mac/publish-folder?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
       - name: Directory structure
         displayName: deploy, publish
-        topicUid: host-and-deploy/directory-structure
+        uid: host-and-deploy/directory-structure
       - name: Health checks
-        topicUid: host-and-deploy/health-checks
+        uid: host-and-deploy/health-checks
         displayName: deploy, publish
   - name: Security and Identity
     displayName: authentication, authorization
     items:
       - name: Overview
-        topicUid: security/index
+        uid: security/index
       - name: Authentication
         items:
           - name: Overview
-            topicUid: security/authentication/index
+            uid: security/authentication/index
           - name: Introduction to Identity
-            topicUid: security/authentication/identity
+            uid: security/authentication/identity
           - name: Mapping, customizing, and transforming claims
-            topicUid: security/authentication/claims
+            uid: security/authentication/claims
           - name: Identity with SPA
-            topicUid: security/authentication/identity/spa
+            uid: security/authentication/identity/spa
           - name: Scaffold Identity
-            topicUid: security/authentication/scaffold-identity
+            uid: security/authentication/scaffold-identity
           - name: Add custom user data to Identity
-            topicUid: security/authentication/add-user-data
+            uid: security/authentication/add-user-data
           - name: Authentication samples
-            topicUid: security/authentication/samples
+            uid: security/authentication/samples
           - name: Customize Identity
-            topicUid: security/authentication/customize_identity_model
+            uid: security/authentication/customize_identity_model
           - name: Community OSS authentication options
-            topicUid: security/authentication/community
+            uid: security/authentication/community
           - name: Configure Identity
-            topicUid: security/authentication/identity-configuration
+            uid: security/authentication/identity-configuration
           - name: Configure Windows Authentication
-            topicUid: security/authentication/windowsauth
+            uid: security/authentication/windowsauth
           - name: Custom storage providers for Identity
-            topicUid: security/authentication/identity-custom-storage-providers
+            uid: security/authentication/identity-custom-storage-providers
           - name: Google, Facebook ...
             items:
               - name: Overview
-                topicUid: security/authentication/social/index
+                uid: security/authentication/social/index
               - name: Google authentication
-                topicUid: security/authentication/google-logins
+                uid: security/authentication/google-logins
               - name: Facebook authentication
-                topicUid: security/authentication/facebook-logins
+                uid: security/authentication/facebook-logins
               - name: Microsoft authentication
-                topicUid: security/authentication/microsoft-logins
+                uid: security/authentication/microsoft-logins
               - name: Twitter authentication
-                topicUid: security/authentication/twitter-logins
+                uid: security/authentication/twitter-logins
               - name: Other providers
-                topicUid: security/authentication/otherlogins
+                uid: security/authentication/otherlogins
               - name: Additional claims
-                topicUid: security/authentication/social/additional-claims
+                uid: security/authentication/social/additional-claims
           - name: Policy schemes
-            topicUid: security/authentication/policyschemes
+            uid: security/authentication/policyschemes
           - name: WS-Federation authentication
-            topicUid: security/authentication/ws-federation
+            uid: security/authentication/ws-federation
           - name: Account confirmation and password recovery
-            topicUid: security/authentication/accconfirm
+            uid: security/authentication/accconfirm
           - name: Enable QR code generation in Identity
-            topicUid: security/authentication/identity-enable-qrcodes
+            uid: security/authentication/identity-enable-qrcodes
           - name: Two-factor authentication with SMS
-            topicUid: security/authentication/2fa
+            uid: security/authentication/2fa
           - name: Use cookie authentication without Identity
-            topicUid: security/authentication/cookie
+            uid: security/authentication/cookie
           - name: Use social authentication without Identity
-            topicUid: security/authentication/social/social-without-identity
+            uid: security/authentication/social/social-without-identity
           - name: Azure Active Directory
             items:
               - name: Overview
-                topicUid: security/authentication/azure-active-directory/index
+                uid: security/authentication/azure-active-directory/index
               - name: Integrate Azure AD into a web app
                 href: /azure/active-directory/develop/quickstart-v2-aspnet-core-webapp
               - name: Scenarios
@@ -1158,7 +1158,7 @@ items:
                   - name: Web API that calls other web APIs
                     href: /azure/active-directory/develop/scenario-web-api-call-api-overview
                   - name: Integrate Azure AD B2C into a web app
-                    topicUid: security/authentication/azure-ad-b2c
+                    uid: security/authentication/azure-ad-b2c
               - name: Samples
                 items:
                   - name: Sign-in users and call web APIs using Azure AD V2
@@ -1174,290 +1174,290 @@ items:
           - name: Secure ASP.NET Core apps with Azure App Service authentication (Easy Auth)
             href: /azure/app-service/overview-authentication-authorization?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
           - name: Individual user accounts
-            topicUid: security/authentication/individual
+            uid: security/authentication/individual
           - name: Configure certificate authentication
-            topicUid: security/authentication/certauth
+            uid: security/authentication/certauth
           - name: Multi-factor authentication
-            topicUid: security/authentication/mfa
+            uid: security/authentication/mfa
       - name: Authorization
         items:
           - name: Overview
-            topicUid: security/authorization/introduction
+            uid: security/authorization/introduction
           - name: Create a web app with authorization
-            topicUid: security/authorization/secure-data
+            uid: security/authorization/secure-data
           - name: Razor Pages authorization conventions
-            topicUid: security/authorization/razor-pages-authorization
+            uid: security/authorization/razor-pages-authorization
           - name: Simple authorization
-            topicUid: security/authorization/simple
+            uid: security/authorization/simple
           - name: Role-based authorization
-            topicUid: security/authorization/roles
+            uid: security/authorization/roles
           - name: Claims-based authorization
-            topicUid: security/authorization/claims
+            uid: security/authorization/claims
           - name: Policy-based authorization
-            topicUid: security/authorization/policies
+            uid: security/authorization/policies
           - name: Authorization policy providers
-            topicUid: security/authorization/iauthorizationpolicyprovider
+            uid: security/authorization/iauthorizationpolicyprovider
           - name: Customize the behavior of AuthorizationMiddleware
-            topicUid: security/authorization/authorizationmiddlewareresulthandler
+            uid: security/authorization/authorizationmiddlewareresulthandler
           - name: Dependency injection in requirement handlers
-            topicUid: security/authorization/dependencyinjection
+            uid: security/authorization/dependencyinjection
           - name: Resource-based authorization
-            topicUid: security/authorization/resourcebased
+            uid: security/authorization/resourcebased
           - name: View-based authorization
-            topicUid: security/authorization/views
+            uid: security/authorization/views
           - name: Limit identity by scheme
-            topicUid: security/authorization/limitingidentitybyscheme
+            uid: security/authorization/limitingidentitybyscheme
       - name: Data protection
         displayName: encryption
         items:
           - name: Overview
-            topicUid: security/data-protection/introduction
+            uid: security/data-protection/introduction
           - name: Data protection APIs
-            topicUid: security/data-protection/using-data-protection
+            uid: security/data-protection/using-data-protection
           - name: Consumer APIs
             items:
               - name: Overview
-                topicUid: security/data-protection/consumer-apis/overview
+                uid: security/data-protection/consumer-apis/overview
               - name: Purpose strings
-                topicUid: security/data-protection/consumer-apis/purpose-strings
+                uid: security/data-protection/consumer-apis/purpose-strings
               - name: Purpose hierarchy and multi-tenancy
-                topicUid: security/data-protection/consumer-apis/purpose-strings-multitenancy
+                uid: security/data-protection/consumer-apis/purpose-strings-multitenancy
               - name: Hash passwords
-                topicUid: security/data-protection/consumer-apis/password-hashing
+                uid: security/data-protection/consumer-apis/password-hashing
               - name: Limit the lifetime of protected payloads
-                topicUid: security/data-protection/consumer-apis/limited-lifetime-payloads
+                uid: security/data-protection/consumer-apis/limited-lifetime-payloads
               - name: Unprotect payloads whose keys have been revoked
-                topicUid: security/data-protection/consumer-apis/dangerous-unprotect
+                uid: security/data-protection/consumer-apis/dangerous-unprotect
           - name: Configuration
             items:
               - name: Overview
-                topicUid: security/data-protection/configuration/index
+                uid: security/data-protection/configuration/index
               - name: Configure data protection
-                topicUid: security/data-protection/configuration/overview
+                uid: security/data-protection/configuration/overview
               - name: Default settings
-                topicUid: security/data-protection/configuration/default-settings
+                uid: security/data-protection/configuration/default-settings
               - name: Machine-wide policy
-                topicUid: security/data-protection/configuration/machine-wide-policy
+                uid: security/data-protection/configuration/machine-wide-policy
               - name: Non-DI aware scenarios
-                topicUid: security/data-protection/configuration/non-di-scenarios
+                uid: security/data-protection/configuration/non-di-scenarios
           - name: Extensibility APIs
             items:
               - name: Overview
-                topicUid: security/data-protection/extensibility/index
+                uid: security/data-protection/extensibility/index
               - name: Core cryptography extensibility
-                topicUid: security/data-protection/extensibility/core-crypto
+                uid: security/data-protection/extensibility/core-crypto
               - name: Key management extensibility
-                topicUid: security/data-protection/extensibility/key-management
+                uid: security/data-protection/extensibility/key-management
               - name: Miscellaneous APIs
-                topicUid: security/data-protection/extensibility/misc-apis
+                uid: security/data-protection/extensibility/misc-apis
           - name: Implementation
             items:
               - name: Overview
-                topicUid: security/data-protection/implementation/index
+                uid: security/data-protection/implementation/index
               - name: Authenticated encryption details
-                topicUid: security/data-protection/implementation/authenticated-encryption-details
+                uid: security/data-protection/implementation/authenticated-encryption-details
               - name: Subkey derivation and authenticated encryption
-                topicUid: security/data-protection/implementation/subkeyderivation
+                uid: security/data-protection/implementation/subkeyderivation
               - name: Context headers
-                topicUid: security/data-protection/implementation/context-headers
+                uid: security/data-protection/implementation/context-headers
               - name: Key management
-                topicUid: security/data-protection/implementation/key-management
+                uid: security/data-protection/implementation/key-management
               - name: Key storage providers
-                topicUid: security/data-protection/implementation/key-storage-providers
+                uid: security/data-protection/implementation/key-storage-providers
               - name: Key encryption at rest
-                topicUid: security/data-protection/implementation/key-encryption-at-rest
+                uid: security/data-protection/implementation/key-encryption-at-rest
               - name: Key immutability and settings
-                topicUid: security/data-protection/implementation/key-immutability
+                uid: security/data-protection/implementation/key-immutability
               - name: Key storage format
-                topicUid: security/data-protection/implementation/key-storage-format
+                uid: security/data-protection/implementation/key-storage-format
               - name: Ephemeral data protection providers
-                topicUid: security/data-protection/implementation/key-storage-ephemeral
+                uid: security/data-protection/implementation/key-storage-ephemeral
           - name: Compatibility
             items:
               - name: Overview
-                topicUid: security/data-protection/compatibility/index
+                uid: security/data-protection/compatibility/index
               - name: Replace machineKey in ASP.NET
-                topicUid: security/data-protection/compatibility/replacing-machinekey
+                uid: security/data-protection/compatibility/replacing-machinekey
       - name: Secrets management
         items:
           - name: Protect secrets in development
             displayName: password, connection string, API key
-            topicUid: security/app-secrets
+            uid: security/app-secrets
           - name: Azure Key Vault Configuration Provider
             displayName: password, connection string, API key, secrets
-            topicUid: security/key-vault-configuration
+            uid: security/key-vault-configuration
       - name: Enforce HTTPS
-        topicUid: security/enforcing-ssl
+        uid: security/enforcing-ssl
       - name: Host Docker with HTTPS
-        topicUid: security/docker-https
+        uid: security/docker-https
       - name: Docker Compose with HTTPS
-        topicUid: security/docker-compose-https
+        uid: security/docker-compose-https
       - name: EU General Data Protection Regulation (GDPR) support
-        topicUid: security/gdpr
+        uid: security/gdpr
       - name: Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks
-        topicUid: security/anti-request-forgery
+        uid: security/anti-request-forgery
       - name: Prevent open redirect attacks
-        topicUid: security/preventing-open-redirects
+        uid: security/preventing-open-redirects
       - name: Prevent Cross-Site Scripting (XSS)
-        topicUid: security/cross-site-scripting
+        uid: security/cross-site-scripting
       - name: Enable Cross-Origin Requests (CORS)
-        topicUid: security/cors
+        uid: security/cors
       - name: Share cookies among apps
-        topicUid: security/cookie-sharing
+        uid: security/cookie-sharing
       - name: SameSite cookies
-        topicUid: security/samesite
+        uid: security/samesite
       - name: SameSite samples
         items:
           - name: Razor Pages 2.1 SameSite cookie sample
-            topicUid: security/samesite/rp21
+            uid: security/samesite/rp21
           - name: Razor Pages 3.1 SameSite cookie sample
-            topicUid: security/samesite/rp31
+            uid: security/samesite/rp31
           - name: MVC SameSite cookie sample
-            topicUid: security/samesite/mvc21
+            uid: security/samesite/mvc21
       - name: IP safelist
-        topicUid: security/ip-safelist
+        uid: security/ip-safelist
       - name: Application security - OWASP
         href: https://cheatsheetseries.owasp.org/cheatsheets/DotNet_Security_Cheat_Sheet.html
   - name: Performance
     items:
       - name: Overview
-        topicUid: performance/performance-best-practices
+        uid: performance/performance-best-practices
       - name: Memory and GC
-        topicUid: performance/memory
+        uid: performance/memory
       - name: Caching
         items:
           - name: Overview
-            topicUid: performance/caching/response
+            uid: performance/caching/response
           - name: In-memory cache
-            topicUid: performance/caching/memory
+            uid: performance/caching/memory
           - name: Distributed caching
-            topicUid: performance/caching/distributed
+            uid: performance/caching/distributed
           - name: Response caching middleware
-            topicUid: performance/caching/middleware
+            uid: performance/caching/middleware
           - name: Object reuse with ObjectPool
-            topicUid: performance/ObjectPool
+            uid: performance/ObjectPool
       - name: Response compression
-        topicUid: performance/response-compression
+        uid: performance/response-compression
       - name: Diagnostic tools
-        topicUid: performance/diagnostic-tools
+        uid: performance/diagnostic-tools
       - name: Load and stress testing
-        topicUid: test/loadtests
+        uid: test/loadtests
       - name: Event counters
         href: /dotnet/core/diagnostics/event-counter-perf
   - name: Globalization and localization
     items:
       - name: Overview
         displayName: globalization, localization
-        topicUid: fundamentals/localization
+        uid: fundamentals/localization
       - name: Portable Object localization
-        topicUid: fundamentals/portable-object-localization
+        uid: fundamentals/portable-object-localization
       - name: Extensibility
-        topicUid: fundamentals/localization-extensibility
+        uid: fundamentals/localization-extensibility
       - name: Troubleshoot
-        topicUid: fundamentals/troubleshoot-aspnet-core-localization
+        uid: fundamentals/troubleshoot-aspnet-core-localization
   - name: Advanced
     items:
       - name: Model binding
-        topicUid: mvc/models/model-binding
+        uid: mvc/models/model-binding
       - name: Custom model binding
-        topicUid: mvc/advanced/custom-model-binding
+        uid: mvc/advanced/custom-model-binding
       - name: Model validation
-        topicUid: mvc/models/validation
+        uid: mvc/models/validation
       - name: Compatibility version
-        topicUid: mvc/compatibility-version
+        uid: mvc/compatibility-version
       - name: Write middleware
-        topicUid: fundamentals/middleware/write
+        uid: fundamentals/middleware/write
       - name: Basic JSON APIs with Route-to-code
-        topicUid: web-api/route-to-code
+        uid: web-api/route-to-code
       - name: Request and response operations
         displayName: middleware
-        topicUid: fundamentals/middleware/request-response
+        uid: fundamentals/middleware/request-response
       - name: URL rewriting
-        topicUid: fundamentals/url-rewriting
+        uid: fundamentals/url-rewriting
       - name: File providers
-        topicUid: fundamentals/file-providers
+        uid: fundamentals/file-providers
       - name: Request-feature interfaces
-        topicUid: fundamentals/request-features
+        uid: fundamentals/request-features
       - name: Access HttpContext
-        topicUid: fundamentals/httpcontext
+        uid: fundamentals/httpcontext
       - name: Change tokens
-        topicUid: fundamentals/change-tokens
+        uid: fundamentals/change-tokens
       - name: Open Web Interface for .NET (OWIN)
-        topicUid: fundamentals/owin
+        uid: fundamentals/owin
       - name: Background tasks with hosted services
-        topicUid: fundamentals/host/hosted-services
+        uid: fundamentals/host/hosted-services
       - name: Hosting startup assemblies
-        topicUid: fundamentals/configuration/platform-specific-configuration
+        uid: fundamentals/configuration/platform-specific-configuration
       - name: ASP.NET Core in class libraries
         displayName: shared framework
-        topicUid: fundamentals/target-aspnetcore
+        uid: fundamentals/target-aspnetcore
       - name: Microsoft.AspNetCore.App metapackage
-        topicUid: fundamentals/metapackage-app
+        uid: fundamentals/metapackage-app
       - name: Microsoft.AspNetCore.All metapackage
-        topicUid: fundamentals/metapackage
+        uid: fundamentals/metapackage
       - name: Logging with LoggerMessage
-        topicUid: fundamentals/logging/loggermessage
+        uid: fundamentals/logging/loggermessage
       - name: Use a file watcher
-        topicUid: tutorials/dotnet-watch
+        uid: tutorials/dotnet-watch
       - name: Factory-based middleware
-        topicUid: fundamentals/middleware/extensibility
+        uid: fundamentals/middleware/extensibility
       - name: Factory-based middleware with third-party container
-        topicUid: fundamentals/middleware/extensibility-third-party-container
+        uid: fundamentals/middleware/extensibility-third-party-container
   - name: Migration
     items:
       - name: 5.0 to 6.0
         displayName: migrate, migration
-        topicUid: migration/50-to-60
+        uid: migration/50-to-60
       - name: 3.1/5.0 Code to 6.0
         displayName: migrate, migration
-        topicUid: migration/50-to-60-samples
+        uid: migration/50-to-60-samples
       - name: 3.1 to 6.0 LTS
         displayName: migrate, migration, LTS
-        topicUid: migration/31-to-60
+        uid: migration/31-to-60
       - name: 3.1 to 5.0
         displayName: migrate, migration
-        topicUid: migration/31-to-50
+        uid: migration/31-to-50
       - name: 3.0 to 3.1
         displayName: migrate, migration
-        topicUid: migration/30-to-31
+        uid: migration/30-to-31
       - name: 2.2 to 3.0
         displayName: migrate, migration
-        topicUid: migration/22-to-30
+        uid: migration/22-to-30
       - name: 2.1 to 2.2
         displayName: migrate, migration
-        topicUid: migration/21-to-22
+        uid: migration/21-to-22
       - name: 2.0 to 2.1
         displayName: migrate, migration
-        topicUid: migration/20_21
+        uid: migration/20_21
       - name: 1.x to 2.0
         displayName: migrate, migration
         items:
           - name: Overview
-            topicUid: migration/1x-to-2x/index
+            uid: migration/1x-to-2x/index
           - name: Authentication and Identity
-            topicUid: migration/1x-to-2x/identity-2x
+            uid: migration/1x-to-2x/identity-2x
       - name: ASP.NET to ASP.NET Core
         displayName: migrate, migration
         items:
           - name: Overview
-            topicUid: migration/proper-to-2x/index
+            uid: migration/proper-to-2x/index
           - name: MVC
-            topicUid: migration/mvc
+            uid: migration/mvc
           - name: Web API
-            topicUid: migration/webapi
+            uid: migration/webapi
           - name: Configuration
-            topicUid: migration/configuration
+            uid: migration/configuration
           - name: Authentication and Identity
-            topicUid: migration/identity
+            uid: migration/identity
           - name: ClaimsPrincipal.Current
-            topicUid: migration/claimsprincipal-current
+            uid: migration/claimsprincipal-current
           - name: Membership to Identity
-            topicUid: migration/proper-to-2x/membership-to-core-identity
+            uid: migration/proper-to-2x/membership-to-core-identity
           - name: HTTP modules to middleware
-            topicUid: migration/http-modules
+            uid: migration/http-modules
       - name: Logging (not ASP.NET Core)
         displayName: migrate, migration
-        topicUid: migration/logging-nonaspnetcore
+        uid: migration/logging-nonaspnetcore
   - name: API reference
     href: /dotnet/api/?view=aspnetcore-2.2
   - name: Contribute
