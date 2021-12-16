@@ -69,7 +69,7 @@ The following code:
 
 [!code-csharp[](~/grpc/configuration/sample/Program.cs?name=snippet&highlight=3-8)]
 
-Note that client interceptors aren't configured using `GrpcChannelOptions`. Instead, client interceptors are configured using the `Intercept` extension method with a channel. This extension method is in the `Grpc.Core.Interceptors` namespace.
+Note that client interceptors aren't configured with `GrpcChannelOptions`. Instead, client interceptors are configured using the `Intercept` extension method with a channel. This extension method is in the `Grpc.Core.Interceptors` namespace.
 
 [!code-csharp[](~/grpc/configuration/sample/Program2.cs?name=snippet&highlight=4)]
 
