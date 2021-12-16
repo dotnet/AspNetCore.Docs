@@ -280,6 +280,7 @@ Advice for creating high-performance applications with large binary payloads:
 
 * **Avoid** large binary payloads in gRPC messages. A byte array larger than 85,000 bytes is considered a large object. Keeping below that size avoids allocating on the large object heap.
 * **Consider** splitting large binary payloads [using gRPC streaming](xref:grpc/client#client-streaming-call). Binary data is chunked and streamed over multiple messages. For more information on how to stream files, see an [example of gRPC streaming file upload](https://github.com/grpc/grpc-dotnet/tree/master/examples#uploader) at the grpc-dotnet repository.
-* **Consider** not using gRPC for large binary data. In ASP.NET Core, Web APIs can be used alongside gRPC services. An HTTP endpoint can access the request and response stream body directly. Examples of doing this using minimal web APIs:
+* **Consider** not using gRPC for large binary data. In ASP.NET Core, Web APIs can be used alongside gRPC services. An HTTP endpoint can access the request and response stream body directly.
+  Examples of doing this using minimal web APIs:
   * [Read the request body](xref:fundamentals/minimal-apis#read-the-request-body)
   * [Return stream response](xref:fundamentals/minimal-apis#stream)
