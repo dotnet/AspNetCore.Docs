@@ -51,7 +51,7 @@ The following code uses constructor injection to resolve the database context an
 
 ## Middleware
 
-The request handling pipeline is composed as a series of middleware components. Each component performs operations on an [`HttpContext`](xref:fundamentals/http-context) and either invokes the next middleware in the pipeline or terminates the request.
+The request handling pipeline is composed as a series of middleware components. Each component performs operations on an [`HttpContext`](xref:fundamentals/httpcontext) and either invokes the next middleware in the pipeline or terminates the request.
 
 By convention, a middleware component is added to the pipeline by invoking a `Use{Feature}` extension method. Middleware added to the app is highlighted in the following code:
 
@@ -84,7 +84,7 @@ The following example instantiates a .NET Minimal Host:
 The [WebApplicationBuilder.Build](xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build%2A) method configures a host with a set of default options, such as:
 
 * Use [Kestrel](#servers) as the web server and enable IIS integration.
-* Load [configuration](xref:fundamentals/configuration) from *appsettings.json*, environment variables, command line arguments, and other configuration sources.
+* Load [configuration](xref:fundamentals/configuration/index) from *appsettings.json*, environment variables, command line arguments, and other configuration sources.
 * Send logging output to the console and debug providers.
 
 ### Non-web scenarios
@@ -117,7 +117,7 @@ For more information, see <xref:fundamentals/servers/index>.
 
 ## Configuration
 
-ASP.NET Core provides a [configuration](xref:fundamentals/configuration) framework that gets settings as name-value pairs from an ordered set of configuration providers. Built-in configuration providers are available for a variety of sources, such as *.json* files, *.xml* files, environment variables, and command-line arguments. Write custom configuration providers to support other sources.
+ASP.NET Core provides a [configuration](xref:fundamentals/configuration/index) framework that gets settings as name-value pairs from an ordered set of configuration providers. Built-in configuration providers are available for a variety of sources, such as *.json* files, *.xml* files, environment variables, and command-line arguments. Write custom configuration providers to support other sources.
 
 By [default](xref:fundamentals/configuration/index#default), ASP.NET Core apps are configured to read from *appsettings.json*, environment variables, the command line, and more. When the app's configuration is loaded, values from environment variables override values from *appsettings.json*.
 
