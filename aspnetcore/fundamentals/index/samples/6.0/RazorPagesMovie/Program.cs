@@ -12,7 +12,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<RazorPagesMovieContext>(options =>
-   options.UseSqlServer(builder.Configuration.GetConnectionString("RazorPagesMovieContext")));
+   options.UseSqlServer(builder.Configuration.GetConnectionString("RPMovieContext")));
 
 var app = builder.Build();
 #endregion
