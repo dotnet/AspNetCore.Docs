@@ -734,6 +734,17 @@ In the project file, the script is run after publishing the app:
 > [!NOTE]
 > When renaming and lazy loading the same assemblies, see the guidance in <xref:blazor/webassembly-lazy-load-assemblies#onnavigateasync-events-and-renamed-assembly-files>.
 
+## Prior deployment corruption
+
+Typically on deployment:
+
+* Only the files that have changed are replaced, which usually results in a faster deployment.
+* Existing files that aren't part of the new deployment are left in place for use by the new deployment.
+
+In rare cases, lingering files from a prior deployment can corrupt a new deployment. Completely deleting the existing deployment (or locally-published app prior to deployment) may resolve the issue with a corrupted deployment. Often, deleting the existing deployment ***once*** is sufficient to resolve the problem, including for a DevOps build and deploy pipeline.
+
+If you determine that clearing a prior deployment is always required when a DevOps build and deploy pipeline is in use, you can temporarily add a step to the build pipeline to delete the prior deployment for each new deployment until you troubleshoot the exact cause of the corruption.
+
 ## Resolve integrity check failures
 
 When Blazor WebAssembly downloads an app's startup files, it instructs the browser to perform integrity checks on the responses. It uses information in the `blazor.boot.json` file to specify the expected SHA-256 hash values for `.dll`, `.wasm`, and other files. This is beneficial for the following reasons:
@@ -1559,6 +1570,17 @@ In the project file, the script is run after publishing the app:
 > [!NOTE]
 > When renaming and lazy loading the same assemblies, see the guidance in <xref:blazor/webassembly-lazy-load-assemblies#onnavigateasync-events-and-renamed-assembly-files>.
 
+## Prior deployment corruption
+
+Typically on deployment:
+
+* Only the files that have changed are replaced, which usually results in a faster deployment.
+* Existing files that aren't part of the new deployment are left in place for use by the new deployment.
+
+In rare cases, lingering files from a prior deployment can corrupt a new deployment. Completely deleting the existing deployment (or locally-published app prior to deployment) may resolve the issue with a corrupted deployment. Often, deleting the existing deployment ***once*** is sufficient to resolve the problem, including for a DevOps build and deploy pipeline.
+
+If you determine that clearing a prior deployment is always required when a DevOps build and deploy pipeline is in use, you can temporarily add a step to the build pipeline to delete the prior deployment for each new deployment until you troubleshoot the exact cause of the corruption.
+
 ## Resolve integrity check failures
 
 When Blazor WebAssembly downloads an app's startup files, it instructs the browser to perform integrity checks on the responses. It uses information in the `blazor.boot.json` file to specify the expected SHA-256 hash values for `.dll`, `.wasm`, and other files. This is beneficial for the following reasons:
@@ -2383,6 +2405,17 @@ In the project file, the script is run after publishing the app:
 
 > [!NOTE]
 > When renaming and lazy loading the same assemblies, see the guidance in <xref:blazor/webassembly-lazy-load-assemblies#onnavigateasync-events-and-renamed-assembly-files>.
+
+## Prior deployment corruption
+
+Typically on deployment:
+
+* Only the files that have changed are replaced, which usually results in a faster deployment.
+* Existing files that aren't part of the new deployment are left in place for use by the new deployment.
+
+In rare cases, lingering files from a prior deployment can corrupt a new deployment. Completely deleting the existing deployment (or locally-published app prior to deployment) may resolve the issue with a corrupted deployment. Often, deleting the existing deployment ***once*** is sufficient to resolve the problem, including for a DevOps build and deploy pipeline.
+
+If you determine that clearing a prior deployment is always required when a DevOps build and deploy pipeline is in use, you can temporarily add a step to the build pipeline to delete the prior deployment for each new deployment until you troubleshoot the exact cause of the corruption.
 
 ## Resolve integrity check failures
 
