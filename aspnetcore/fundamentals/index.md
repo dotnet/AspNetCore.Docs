@@ -71,7 +71,7 @@ On startup, an ASP.NET Core app builds a *host*. The host encapsulates all of th
 
 There are three different hosts:
 
-* .NET Minimal Host
+* .NET WebApplication Host
 * .NET Generic Host
 * ASP.NET Core Web Host
 
