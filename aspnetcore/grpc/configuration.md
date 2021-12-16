@@ -36,6 +36,10 @@ Options for a single service override the global options provided in `AddGrpc` a
 
 [!code-csharp[](~/grpc/configuration/sample/GrcpService/Startup2.cs?name=snippet)]
 
+Interceptors have a per-request lifetime by default. Registering the interceptor type with DI overrides how an interceptor is created and its lifetime.
+
+[!code-csharp[](~/grpc/configuration/sample/GrcpService/Startup3.cs?name=snippet)]
+
 ## Configure client options
 
 gRPC client configuration is set on `GrpcChannelOptions`. Configuration options are in the [`Grpc.Net.Client`](https://www.nuget.org/packages/Grpc.Net.Client) package.
