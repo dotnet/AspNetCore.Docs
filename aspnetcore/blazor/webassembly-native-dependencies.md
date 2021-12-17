@@ -73,7 +73,7 @@ Add a simple native C function to a Blazor WebAssembly app:
 
    <p>
        @@fact(3) result: @fact(3)
-   <p>
+   </p>
 
    @code {
        [DllImport("Test")]

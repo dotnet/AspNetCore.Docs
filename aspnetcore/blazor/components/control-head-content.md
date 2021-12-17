@@ -78,9 +78,11 @@ In Blazor apps created from Blazor project templates, the `NotFound` component t
 
 ## Additional resources
 
+* [Control headers in C# code at startup](xref:blazor/fundamentals/startup#control-headers-in-c-code)
+
 Mozilla MDN Web Docs documentation:
 
 * [What's in the head? Metadata in HTML](https://developer.mozilla.org/docs/Learn/HTML/Introduction_to_HTML/The_head_metadata_in_HTML)
-* [\<head>: The Document Metadata (Header) element](https://developer.mozilla.org/docs/Web/HTML/Element/head)
-* [\<title>: The Document Title element](https://developer.mozilla.org/docs/Web/HTML/Element/title)
-* [\<meta>: The metadata element](https://developer.mozilla.org/docs/Web/HTML/Element/meta)
+* [`<head>`: The Document Metadata (Header) element](https://developer.mozilla.org/docs/Web/HTML/Element/head)
+* [`<title>`: The Document Title element](https://developer.mozilla.org/docs/Web/HTML/Element/title)
+* [`<meta>`: The metadata element](https://developer.mozilla.org/docs/Web/HTML/Element/meta)
