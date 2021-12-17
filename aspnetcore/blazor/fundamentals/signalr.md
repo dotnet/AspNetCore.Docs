@@ -78,7 +78,7 @@ If a Blazor WebAssembly app that uses SignalR is configured to prerender on the 
 A Blazor Server app prerenders in response to the first client request, which creates UI state on the server. When the client attempts to create a SignalR connection, **the client must reconnect to the same server**. Blazor Server apps that use more than one backend server should implement *sticky sessions* for SignalR connections.
 
 > [!NOTE]
-> The following error is thrown by an app that hasn't enabled sticky sessions in a webfarm hosting scenario:
+> The following error is thrown by an app that hasn't enabled sticky sessions in a webfarm:
 >
 > > blazor.server.js:1 Uncaught (in promise) Error: Invocation canceled due to the underlying connection being closed.
 
@@ -393,7 +393,7 @@ If a Blazor WebAssembly app that uses SignalR is configured to prerender on the 
 A Blazor Server app prerenders in response to the first client request, which creates the UI state on the server. When the client attempts to create a SignalR connection, **the client must reconnect to the same server**. Blazor Server apps that use more than one backend server should implement *sticky sessions* for SignalR connections.
 
 > [!NOTE]
-> The following error is thrown by an app that hasn't enabled sticky sessions in a webfarm hosting scenario:
+> The following error is thrown by an app that hasn't enabled sticky sessions in a webfarm:
 >
 > > blazor.server.js:1 Uncaught (in promise) Error: Invocation canceled due to the underlying connection being closed.
 
@@ -705,7 +705,7 @@ For more information, see <xref:signalr/configuration#configure-additional-optio
 A Blazor Server app prerenders in response to the first client request, which creates the UI state on the server. When the client attempts to create a SignalR connection, **the client must reconnect to the same server**. Blazor Server apps that use more than one backend server should implement *sticky sessions* for SignalR connections. For more information, see <xref:blazor/host-and-deploy/server#configuration>.
 
 > [!NOTE]
-> The following error is thrown by an app that hasn't enabled sticky sessions in a webfarm hosting scenario:
+> The following error is thrown by an app that hasn't enabled sticky sessions in a webfarm:
 >
 > > blazor.server.js:1 Uncaught (in promise) Error: Invocation canceled due to the underlying connection being closed.
 
