@@ -77,6 +77,11 @@ If a Blazor WebAssembly app that uses SignalR is configured to prerender on the 
 
 A Blazor Server app prerenders in response to the first client request, which creates UI state on the server. When the client attempts to create a SignalR connection, **the client must reconnect to the same server**. Blazor Server apps that use more than one backend server should implement *sticky sessions* for SignalR connections.
 
+> [!NOTE]
+> The following error is thrown by an app that hasn't enabled sticky sessions in a webfarm hosting scenario:
+>
+> > blazor.server.js:1 Uncaught (in promise) Error: Invocation canceled due to the underlying connection being closed.
+
 ## Azure SignalR Service (Blazor Server)
 
 We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) for Blazor Server apps hosted in Microsoft Azure. The service works in conjunction with the app's Blazor Hub for scaling up a Blazor Server app to a large number of concurrent SignalR connections. In addition, the SignalR Service's global reach and high-performance data centers significantly aid in reducing latency due to geography.
@@ -387,6 +392,11 @@ If a Blazor WebAssembly app that uses SignalR is configured to prerender on the 
 
 A Blazor Server app prerenders in response to the first client request, which creates the UI state on the server. When the client attempts to create a SignalR connection, **the client must reconnect to the same server**. Blazor Server apps that use more than one backend server should implement *sticky sessions* for SignalR connections.
 
+> [!NOTE]
+> The following error is thrown by an app that hasn't enabled sticky sessions in a webfarm hosting scenario:
+>
+> > blazor.server.js:1 Uncaught (in promise) Error: Invocation canceled due to the underlying connection being closed.
+
 ## Azure SignalR Service (Blazor Server)
 
 We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) for Blazor Server apps hosted in Microsoft Azure. The service works in conjunction with the app's Blazor Hub for scaling up a Blazor Server app to a large number of concurrent SignalR connections. In addition, the SignalR Service's global reach and high-performance data centers significantly aid in reducing latency due to geography.
@@ -693,6 +703,11 @@ For more information, see <xref:signalr/configuration#configure-additional-optio
 ## Use sticky sessions for webfarm hosting (Blazor Server)
 
 A Blazor Server app prerenders in response to the first client request, which creates the UI state on the server. When the client attempts to create a SignalR connection, **the client must reconnect to the same server**. Blazor Server apps that use more than one backend server should implement *sticky sessions* for SignalR connections. For more information, see <xref:blazor/host-and-deploy/server#configuration>.
+
+> [!NOTE]
+> The following error is thrown by an app that hasn't enabled sticky sessions in a webfarm hosting scenario:
+>
+> > blazor.server.js:1 Uncaught (in promise) Error: Invocation canceled due to the underlying connection being closed.
 
 ## Azure SignalR Service (Blazor Server)
 
