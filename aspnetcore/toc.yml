@@ -831,16 +831,46 @@ items:
       - name: Code analysis
         uid: diagnostics/code-analysis
         items:
+          - name: ASP0000
+            uid: diagnostics/asp0000
+          - name: ASP0001
+            uid: diagnostics/asp0001
+          - name: ASP0003
+            uid: diagnostics/asp0003
           - name: ASP0004
             uid: diagnostics/asp0004
           - name: ASP0005
             uid: diagnostics/asp0005
+          - name: ASP0006
+            uid: diagnostics/asp0006
           - name: ASP0007
             uid: diagnostics/asp0007
+          - name: BL0001
+            uid: diagnostics/bl0001
+          - name: BL0002
+            uid: diagnostics/bl0002
+          - name: BL0003
+            uid: diagnostics/bl0003
+          - name: BL0004
+            uid: diagnostics/bl0004
+          - name: BL0005
+            uid: diagnostics/bl0005
+          - name: BL0006
+            uid: diagnostics/bl0006
           - name: MVC1000
             uid: diagnostics/mvc1000
           - name: MVC1001
             uid: diagnostics/mvc1001
+          - name: MVC1002
+            uid: diagnostics/mvc1002
+          - name: MVC1003
+            uid: diagnostics/mvc1003
+          - name: MVC1004
+            uid: diagnostics/mvc1004
+          - name: MVC1005
+            uid: diagnostics/mvc1005
+          - name: MVC1006
+            uid: diagnostics/mvc1006
   - name: Data access
     items:
       - name: Tutorials

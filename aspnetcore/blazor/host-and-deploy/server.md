@@ -83,6 +83,11 @@ To configure an app for the Azure SignalR Service, the app must support *sticky 
 
   * The app service's **Configuration** > **Application settings** in the Azure portal (**Name**: `Azure__SignalR__StickyServerMode`, **Value**: `Required`). This approach is adopted for the app automatically if you [provision the Azure SignalR Service](#provision-the-azure-signalr-service).
 
+> [!NOTE]
+> The following error is thrown by an app that hasn't enabled sticky sessions for Azure SignalR Service:
+>
+> > blazor.server.js:1 Uncaught (in promise) Error: Invocation canceled due to the underlying connection being closed.
+
 ### Provision the Azure SignalR Service
 
 To provision the Azure SignalR Service for an app in Visual Studio:
@@ -278,6 +283,11 @@ To configure an app for the Azure SignalR Service, the app must support *sticky 
     ```
 
   * The app service's **Configuration** > **Application settings** in the Azure portal (**Name**: `Azure__SignalR__StickyServerMode`, **Value**: `Required`). This approach is adopted for the app automatically if you [provision the Azure SignalR Service](#provision-the-azure-signalr-service).
+
+> [!NOTE]
+> The following error is thrown by an app that hasn't enabled sticky sessions for Azure SignalR Service:
+>
+> > blazor.server.js:1 Uncaught (in promise) Error: Invocation canceled due to the underlying connection being closed.
 
 ### Provision the Azure SignalR Service
 
@@ -499,6 +509,11 @@ To configure an app for the Azure SignalR Service, the app must support *sticky 
     ```
 
   * The app service's **Configuration** > **Application settings** in the Azure portal (**Name**: `Azure__SignalR__StickyServerMode`, **Value**: `Required`). This approach is adopted for the app automatically if you [provision the Azure SignalR Service](#provision-the-azure-signalr-service).
+
+> [!NOTE]
+> The following error is thrown by an app that hasn't enabled sticky sessions for Azure SignalR Service:
+>
+> > blazor.server.js:1 Uncaught (in promise) Error: Invocation canceled due to the underlying connection being closed.
 
 ### Provision the Azure SignalR Service
 

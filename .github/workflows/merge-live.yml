@@ -1,16 +1,24 @@
 name: Merge to Live
+on:
+  push:
+    branches:
+      - main
 permissions:
   contents: read
   pull-requests: write
-on:
-  schedule:
-    - cron: "0 8 * * *"
-  workflow_dispatch:
+env:
+  DOTNET_DOCS_HEAD: main
+  DOTNET_DOCS_BASE: live
 jobs:
   default:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: gh pr create --base live --head main --title "Merge to Live" --body "[AUTOMATED]"
+      - run: |
+          if [ "$(gh pr list --base $DOTNET_DOCS_BASE --head $DOTNET_DOCS_HEAD --json id --jq ". | length")" -ne "0" ]; then
+            echo "::notice title=Skipping Workflow::A pull request for branch \"$DOTNET_DOCS_HEAD\" into branch \"$DOTNET_DOCS_BASE\" already exists."
+          else
+            gh pr create --base $DOTNET_DOCS_BASE --head $DOTNET_DOCS_HEAD --title "Merge to Live" --body "[AUTOMATED]"
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
