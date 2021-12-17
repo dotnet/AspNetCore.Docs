@@ -19,7 +19,7 @@ uid: blazor/security/content-security-policy
 * Actions taken by a page, specifying permitted URL targets of forms.
 * Plugins that can be loaded.
 
-To apply a CSP to an app, the developer specifies several CSP content security *directives* in one or more `Content-Security-Policy` headers or `<meta>` tags.
+To apply a CSP to an app, the developer specifies several CSP content security *directives* in one or more `Content-Security-Policy` headers or `<meta>` tags. For guidance on applying a CSP to an app in C# code at startup, see <xref:blazor/fundamentals/startup#control-headers-in-c-code>.
 
 Policies are evaluated by the browser while a page is loading. The browser inspects the page's sources and determines if they meet the requirements of the content security directives. When policy directives aren't met for a resource, the browser doesn't load the resource. For example, consider a policy that doesn't allow third-party scripts. When a page contains a `<script>` tag with a third-party origin in the `src` attribute, the browser prevents the script from loading.
 
@@ -153,6 +153,7 @@ Test and update an app's policy every release.
 
 ## Additional resources
 
+* [Apply a CSP in C# code at startup](xref:blazor/fundamentals/startup#control-headers-in-c-code)
 * [MDN web docs: Content-Security-Policy](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy)
 * [Content Security Policy Level 2](https://www.w3.org/TR/CSP2/)
 * [Google CSP Evaluator](https://csp-evaluator.withgoogle.com/)
@@ -167,7 +168,7 @@ Test and update an app's policy every release.
 * Actions taken by a page, specifying permitted URL targets of forms.
 * Plugins that can be loaded.
 
-To apply a CSP to an app, the developer specifies several CSP content security *directives* in one or more `Content-Security-Policy` headers or `<meta>` tags.
+To apply a CSP to an app, the developer specifies several CSP content security *directives* in one or more `Content-Security-Policy` headers or `<meta>` tags. For guidance on applying a CSP to an app in C# code at startup, see <xref:blazor/fundamentals/startup#control-headers-in-c-code>.
 
 Policies are evaluated by the browser while a page is loading. The browser inspects the page's sources and determines if they meet the requirements of the content security directives. When policy directives aren't met for a resource, the browser doesn't load the resource. For example, consider a policy that doesn't allow third-party scripts. When a page contains a `<script>` tag with a third-party origin in the `src` attribute, the browser prevents the script from loading.
 
@@ -304,6 +305,7 @@ Test and update an app's policy every release.
 
 ## Additional resources
 
+* [Apply a CSP in C# code at startup](xref:blazor/fundamentals/startup#control-headers-in-c-code)
 * [MDN web docs: Content-Security-Policy](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy)
 * [Content Security Policy Level 2](https://www.w3.org/TR/CSP2/)
 * [Google CSP Evaluator](https://csp-evaluator.withgoogle.com/)
@@ -318,7 +320,7 @@ Test and update an app's policy every release.
 * Actions taken by a page, specifying permitted URL targets of forms.
 * Plugins that can be loaded.
 
-To apply a CSP to an app, the developer specifies several CSP content security *directives* in one or more `Content-Security-Policy` headers or `<meta>` tags.
+To apply a CSP to an app, the developer specifies several CSP content security *directives* in one or more `Content-Security-Policy` headers or `<meta>` tags. For guidance on applying a CSP to an app in C# code at startup, see <xref:blazor/fundamentals/startup#control-headers-in-c-code>.
 
 Policies are evaluated by the browser while a page is loading. The browser inspects the page's sources and determines if they meet the requirements of the content security directives. When policy directives aren't met for a resource, the browser doesn't load the resource. For example, consider a policy that doesn't allow third-party scripts. When a page contains a `<script>` tag with a third-party origin in the `src` attribute, the browser prevents the script from loading.
 
@@ -458,6 +460,7 @@ Test and update an app's policy every release.
 
 ## Additional resources
 
+* [Apply a CSP in C# code at startup](xref:blazor/fundamentals/startup#control-headers-in-c-code)
 * [MDN web docs: Content-Security-Policy](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy)
 * [Content Security Policy Level 2](https://www.w3.org/TR/CSP2/)
 * [Google CSP Evaluator](https://csp-evaluator.withgoogle.com/)
