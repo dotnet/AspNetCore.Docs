@@ -17,44 +17,45 @@ This article provides an overview of key topics for understanding how to develop
 
 ## Program.cs
 
-The `Startup` class is where:
+ASP.NET Core apps created with the web templates contain the application startup code in the `Program.cs` file. The `Program.cs` file is where:
 
 * Services required by the app are configured.
-* The app's request handling pipeline is defined, as a series of middleware components.
+* The app's request handling pipeline is defined as a series of [middleware components](xref:fundamentals/middleware/index).
 
-Here's a sample `Startup` class:
+The following app startup code supports:
 
-[!code-csharp[](index/samples_snapshot/3.x/Startup.cs?highlight=3,12)]
+* [Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
+* [MVC controllers with views](xref:tutorials/first-mvc-app/start-mvc)
+* [Web API with controllers](xref:tutorials/first-web-api)
+* [Minimal web APIs](xref:tutorials/min-web-api)
+
+[!code-csharp[](~/fundamentals/startup/6.0_samples/WebAll/Program.cs?name=snippet)]
 
 ## Dependency injection (services)
 
-ASP.NET Core includes a built-in dependency injection (DI) framework that makes configured services available throughout an app. For example, a logging component is a service.
+ASP.NET Core includes [dependency injection (DI)](xref:fundamentals/dependency-injection) that makes configured services available throughout an app. Services are added to the DI container with [WebApplicationBuilder.Services](xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Services), `builder.Services` in the preceding code. When the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> is instantiated, many [framework-provided services](xref:fundamentals/dependency-injection#framework-provided-services) are added. `builder` is a `WebApplicationBuilder` in the following code:
 
-Code to configure (or *register*) services is added to the `Startup.ConfigureServices` method. For example:
+[!code-csharp[](~/fundamentals/startup/6.0_samples/WebAll/Program.cs?name=snippet2&highlight=1)]
 
-[!code-csharp[](index/samples_snapshot/3.x/ConfigureServices.cs)]
+In the preceding highlighted code, `builder` has configuration, logging, and [many other services](xref:fundamentals/dependency-injection#framework-provided-services) added to the DI container.
 
-Services are typically resolved from DI using constructor injection. With constructor injection, a class declares a constructor parameter of either the required type or an interface. The DI framework provides an instance of this service at runtime.
+The following code adds Razor Pages, MVC controllers with views, and a custom <xref:Microsoft.EntityFrameworkCore.DbContext> to the DI container:
 
-The following example uses constructor injection to resolve a `RazorPagesMovieContext` from DI:
+[!code-csharp[](~/fundamentals/index/samples/6.0/RazorPagesMovie/Program.cs?name=snippet2&highlight=6-10)]
 
-[!code-csharp[](index/samples_snapshot/3.x/Index.cshtml.cs?highlight=5)]
+Services are typically resolved from DI using constructor injection. The DI framework provides an instance of this service at runtime.
 
-If the built-in Inversion of Control (IoC) container doesn't meet all of an app's needs, a third-party IoC container can be used instead.
+The following code uses constructor injection to resolve the database context and logger from DI:
 
-For more information, see <xref:fundamentals/dependency-injection>.
+[!code-csharp[](~/fundamentals/index/samples/6.0/RazorPagesMovie/Pages/Movies/Index.cshtml.cs?name=snippet&highlight=3-10, 16-17)]
 
 ## Middleware
 
-The request handling pipeline is composed as a series of middleware components. Each component performs operations on an `HttpContext` and either invokes the next middleware in the pipeline or terminates the request.
+The request handling pipeline is composed as a series of middleware components. Each component performs operations on an [`HttpContext`](xref:fundamentals/httpcontext) and either invokes the next middleware in the pipeline or terminates the request.
 
-By convention, a middleware component is added to the pipeline by invoking a `Use...` extension method in the `Startup.Configure` method. For example, to enable rendering of static files, call `UseStaticFiles`.
+By convention, a middleware component is added to the pipeline by invoking a `Use{Feature}` extension method. Middleware added to the app is highlighted in the following code:
 
-The following example configures a request handling pipeline:
-
-[!code-csharp[](index/samples_snapshot/3.x/Configure.cs)]
-
-ASP.NET Core includes a rich set of built-in middleware. Custom middleware components can also be written.
+[!code-csharp[](~/fundamentals/startup/6.0_samples/WebAll/Program.cs?name=snippet&highlight=12-19)]
 
 For more information, see <xref:fundamentals/middleware/index>.
 
@@ -68,24 +69,23 @@ On startup, an ASP.NET Core app builds a *host*. The host encapsulates all of th
 * Dependency injection (DI) services
 * Configuration
 
-There are two different hosts: 
+There are three different hosts:
 
+* .NET WebApplication Host
 * .NET Generic Host
 * ASP.NET Core Web Host
 
-The .NET Generic Host is recommended. The ASP.NET Core Web Host is available only for backwards compatibility.
+The .NET Minimal Host is recommended and used in all the ASP.NET Core templates. The Minimal and Generic hosts share many of the same interfaces and classes. The ASP.NET Core Web Host is available only for backwards compatibility.
 
-The following example creates a .NET Generic Host:
+The following example instantiates a WebApplication  Host:
 
-[!code-csharp[](index/samples_snapshot/3.x/Program.cs)]
+[!code-csharp[](~/fundamentals/startup/6.0_samples/WebAll/Program.cs?name=snippet2&highlight=7)]
 
-The `CreateDefaultBuilder` and `ConfigureWebHostDefaults` methods configure a host with a set of default options, such as:
+The [WebApplicationBuilder.Build](xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build%2A) method configures a host with a set of default options, such as:
 
 * Use [Kestrel](#servers) as the web server and enable IIS integration.
-* Load configuration from *appsettings.json*, *appsettings.{Environment Name}.json*, environment variables, command line arguments, and other configuration sources.
+* Load [configuration](xref:fundamentals/configuration/index) from *appsettings.json*, environment variables, command line arguments, and other configuration sources.
 * Send logging output to the console and debug providers.
-
-For more information, see <xref:fundamentals/host/generic-host>.
 
 ### Non-web scenarios
 
@@ -117,11 +117,9 @@ For more information, see <xref:fundamentals/servers/index>.
 
 ## Configuration
 
-ASP.NET Core provides a configuration framework that gets settings as name-value pairs from an ordered set of configuration providers. Built-in configuration providers are available for a variety of sources, such as *.json* files, *.xml* files, environment variables, and command-line arguments. Write custom configuration providers to support other sources.
+ASP.NET Core provides a [configuration](xref:fundamentals/configuration/index) framework that gets settings as name-value pairs from an ordered set of configuration providers. Built-in configuration providers are available for a variety of sources, such as *.json* files, *.xml* files, environment variables, and command-line arguments. Write custom configuration providers to support other sources.
 
 By [default](xref:fundamentals/configuration/index#default), ASP.NET Core apps are configured to read from *appsettings.json*, environment variables, the command line, and more. When the app's configuration is loaded, values from environment variables override values from *appsettings.json*.
-
-The preferred way to read related configuration values is using the [options pattern](xref:fundamentals/configuration/options). For more information, see [Bind hierarchical configuration data using the options pattern](xref:fundamentals/configuration/index#optpat).
 
 For managing confidential configuration data such as passwords, .NET Core provides the [Secret Manager](xref:security/app-secrets#secret-manager). For production secrets, we recommend [Azure Key Vault](xref:security/key-vault-configuration).
 
@@ -129,11 +127,11 @@ For more information, see <xref:fundamentals/configuration/index>.
 
 ## Environments
 
-Execution environments, such as `Development`, `Staging`, and `Production`, are a first-class notion in ASP.NET Core. Specify the environment an app is running in by setting the `ASPNETCORE_ENVIRONMENT` environment variable. ASP.NET Core reads that environment variable at app startup and stores the value in an `IWebHostEnvironment` implementation. This implementation is available anywhere in an app via dependency injection (DI).
+Execution environments, such as `Development`, `Staging`, and `Production`, are available in ASP.NET Core. Specify the environment an app is running in by setting the `ASPNETCORE_ENVIRONMENT` environment variable. ASP.NET Core reads that environment variable at app startup and stores the value in an `IWebHostEnvironment` implementation. This implementation is available anywhere in an app via dependency injection (DI).
 
-The following example configures the app to provide detailed error information when running in the `Development` environment:
+The following example configures the exception handler and [HTTP Strict Transport Security Protocol (HSTS)](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts) middleware when ***not*** running in the `Development` environment:
 
-[!code-csharp[](index/samples_snapshot/3.x/StartupConfigure.cs?highlight=3-6)]
+[!code-csharp[](~/fundamentals/startup/6.0_samples/WebAll/Program.cs?name=snippet&highlight=10-14)]
 
 For more information, see <xref:fundamentals/environments>.
 
@@ -151,15 +149,17 @@ ASP.NET Core supports a logging API that works with a variety of built-in and th
 
 To create logs, resolve an <xref:Microsoft.Extensions.Logging.ILogger%601> service from dependency injection (DI) and call logging methods such as <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation*>. For example:
 
-[!code-csharp[](index/samples_snapshot/3.x/TodoController.cs?highlight=5,13,19)]
-
-Logging methods such as `LogInformation` support any number of fields. These fields are commonly used to construct a message `string`, but some logging providers send these to a data store as separate fields. This feature makes it possible for logging providers to implement [semantic logging, also known as structured logging](https://softwareengineering.stackexchange.com/questions/312197/benefits-of-structured-logging-vs-basic-logging).
+[!code-csharp[](~/fundamentals/index/samples/6.0/RazorPagesMovie/Pages/Movies/Index.cshtml.cs?name=snippet&highlight=3-10, 16-17)]
 
 For more information, see <xref:fundamentals/logging/index>.
 
 ## Routing
 
 A *route* is a URL pattern that is mapped to a handler. The handler is typically a Razor page, an action method in an MVC controller, or a middleware. ASP.NET Core routing gives you control over the URLs used by your app.
+
+The following code, generated by the ASP.NET Core web application template, calls <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>:
+
+[!code-csharp[](~/fundamentals/startup/6.0_samples/WebAll/Program.cs?name=snippet4&highlight=17)]
 
 For more information, see <xref:fundamentals/routing>.
 

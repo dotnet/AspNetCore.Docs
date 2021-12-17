@@ -486,11 +486,11 @@ When a server side validation error occurs (for example when you have custom ser
 
 The `Validation Summary Tag Helper`  is used to display a summary of validation messages. The `asp-validation-summary` attribute value can be any of the following:
 
-|asp-validation-summary|Validation messages displayed|
-|--- |--- |
-|ValidationSummary.All|Property and model level|
-|ValidationSummary.ModelOnly|Model|
-|ValidationSummary.None|None|
+| asp-validation-summary | Validation messages displayed |
+|------------------------|-------------------------------|
+| `All`                  | Property and model level      |
+| `ModelOnly`            | Model                         |
+| `None`                 | None                          |
 
 ### Sample
 

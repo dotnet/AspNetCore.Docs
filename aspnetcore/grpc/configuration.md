@@ -25,7 +25,7 @@ The following table describes options for configuring gRPC services:
 | `CompressionProviders` | gzip | A collection of compression providers used to compress and decompress messages. Custom compression providers can be created and added to the collection. The default configured providers support **gzip** compression. |
 | `ResponseCompressionAlgorithm` | `null` | The compression algorithm used to compress messages sent from the server. The algorithm must match a compression provider in `CompressionProviders`. For the algorithm to compress a response, the client must indicate it supports the algorithm by sending it in the **grpc-accept-encoding** header. |
 | `ResponseCompressionLevel` | `null` | The compress level used to compress messages sent from the server. |
-| `Interceptors` | None | A collection of interceptors that are run with each gRPC call. Interceptors are run in the order they are registered. Globally configured interceptors are run before interceptors configured for a single service. For more information about gRPC interceptors, see [gRPC Interceptors vs. Middleware](xref:grpc/migration#grpc-interceptors-vs-middleware). |
+| `Interceptors` | None | A collection of interceptors that are run with each gRPC call. Interceptors are run in the order they are registered. Globally configured interceptors are run before interceptors configured for a single service.<br/><br/>Interceptors have a per-request lifetime by default. The interceptor constructor is called and parameters are resolved from [dependency injection (DI)](xref:fundamentals/dependency-injection). An interceptor type can also be registered with DI to override how it is created and its lifetime.<br/><br/>Interceptors offer similar functionalities compared to ASP.NET Core middleware. For more information, see [gRPC Interceptors vs. Middleware](xref:grpc/migration#grpc-interceptors-vs-middleware). |
 | `IgnoreUnknownServices` | `false` | If `true`, calls to unknown services and methods don't return an **UNIMPLEMENTED** status, and the request passes to the next registered middleware in ASP.NET Core. |
 
 Options can be configured for all services by providing an options delegate to the `AddGrpc` call in `Startup.ConfigureServices`:
@@ -35,6 +35,10 @@ Options can be configured for all services by providing an options delegate to t
 Options for a single service override the global options provided in `AddGrpc` and can be configured using `AddServiceOptions<TService>`:
 
 [!code-csharp[](~/grpc/configuration/sample/GrcpService/Startup2.cs?name=snippet)]
+
+Service interceptors have a per-request lifetime by default. Registering the interceptor type with DI overrides how an interceptor is created and its lifetime.
+
+[!code-csharp[](~/grpc/configuration/sample/GrcpService/Startup3.cs?name=snippet)]
 
 ## Configure client options
 
@@ -64,6 +68,10 @@ The following code:
 * Creates a client.
 
 [!code-csharp[](~/grpc/configuration/sample/Program.cs?name=snippet&highlight=3-8)]
+
+Note that client interceptors aren't configured with `GrpcChannelOptions`. Instead, client interceptors are configured using the `Intercept` extension method with a channel. This extension method is in the `Grpc.Core.Interceptors` namespace.
+
+[!code-csharp[](~/grpc/configuration/sample/Program2.cs?name=snippet&highlight=4)]
 
 [!INCLUDE[](~/includes/gRPCazure.md)]
 
