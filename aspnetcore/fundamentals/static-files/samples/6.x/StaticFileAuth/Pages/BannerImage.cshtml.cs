@@ -18,7 +18,7 @@ namespace StaticFileAuth.Pages
             var filePath = Path.Combine(
                     _env.ContentRootPath, "MyStaticFiles", "images", "red-rose.jpg");
 
-            return PhysicalFile(filePath, "image/jpeg");
+            return new PhysicalFileResult(filePath, "image/jpeg");
         }
     }
     #endregion
