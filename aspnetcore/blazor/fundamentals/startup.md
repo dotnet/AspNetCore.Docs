@@ -157,9 +157,9 @@ In the following examples, a [Content Security Policy (CSP)](https://developer.m
 
   The preceding example uses inline middleware, but you can also create a custom middleware class and call the middleware with an extension method in `Program.cs`. For more information, see <xref:fundamentals/middleware/write>.
 
-* In Blazor WebAssembly apps, pass <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> to <xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A> that specifies response headers at the <xref:Microsoft.AspNetCore.Builder.StaticFileOptions.OnPrepareResponse> stage. <xref:Microsoft.AspNetCore.Builder.StaticFileOptions.OnPrepareResponse> is called after the status code and headers are set but before the body is written.
+* In hosted Blazor WebAssembly apps that aren't prerendered, pass <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> to <xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A> that specifies response headers at the <xref:Microsoft.AspNetCore.Builder.StaticFileOptions.OnPrepareResponse> stage.
 
-  In `Program.cs`:
+  In `Program.cs` of the **`Server`** project:
 
   ```csharp
   var staticFileOptions = new StaticFileOptions
@@ -335,9 +335,9 @@ In the following examples, a [Content Security Policy (CSP)](https://developer.m
 
   The preceding example uses inline middleware, but you can also create a custom middleware class and call the middleware with an extension method in `Startup.Configure`. For more information, see <xref:fundamentals/middleware/write>.
 
-* In Blazor WebAssembly apps, pass <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> to <xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A> that specifies response headers at the <xref:Microsoft.AspNetCore.Builder.StaticFileOptions.OnPrepareResponse> stage. <xref:Microsoft.AspNetCore.Builder.StaticFileOptions.OnPrepareResponse> is called after the status code and headers are set but before the body is written.
+* In hosted Blazor WebAssembly apps that aren't prerendered, pass <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> to <xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A> that specifies response headers at the <xref:Microsoft.AspNetCore.Builder.StaticFileOptions.OnPrepareResponse> stage.
 
-  In `Program.cs`:
+  In `Startup.Configure` (`Startup.cs`) of the **`Server`** project:
 
   ```csharp
   var staticFileOptions = new StaticFileOptions
@@ -499,7 +499,7 @@ Control headers at startup in C# code using the following approaches.
 
 In the following examples, a [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy) is applied to the app via a CSP header. The `{POLICY STRING}` placeholder is the CSP policy string.
 
-* In Blazor Server and prerendered Blazor WebAssembly apps, use [ASP.NET Core Middleware](xref:fundamentals/middleware/index) to control the headers collection.
+* In Blazor Server, use [ASP.NET Core Middleware](xref:fundamentals/middleware/index) to control the headers collection.
 
   In `Startup.Configure` of `Startup.cs`:
 
@@ -513,9 +513,9 @@ In the following examples, a [Content Security Policy (CSP)](https://developer.m
 
   The preceding example uses inline middleware, but you can also create a custom middleware class and call the middleware with an extension method in `Program.cs`. For more information, see <xref:fundamentals/middleware/write>.
 
-* In Blazor WebAssembly apps, pass <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> to <xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A> that specifies response headers at the <xref:Microsoft.AspNetCore.Builder.StaticFileOptions.OnPrepareResponse> stage. <xref:Microsoft.AspNetCore.Builder.StaticFileOptions.OnPrepareResponse> is called after the status code and headers are set but before the body is written.
+* In hosted Blazor WebAssembly apps, pass <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> to <xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A> that specifies response headers at the <xref:Microsoft.AspNetCore.Builder.StaticFileOptions.OnPrepareResponse> stage.
 
-  In `Program.cs`:
+  In `Startup.Configure` (`Startup.cs`) of the **`Server`** project:
 
   ```csharp
   var staticFileOptions = new StaticFileOptions
