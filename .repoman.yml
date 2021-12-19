@@ -53,6 +53,14 @@ issues:
             - labels-add: ["Blazor"]
             - projects-add: [35]
             - labels-remove: [":watch: Not Triaged"]
+        - check:
+            - type: metadata-comment
+              name: content source
+              value: "(?i).*main\/aspnetcore\/mvc\/views\/tag-helpers\/built-in\/persist-component-state.md"
+          pass:
+            - labels-add: ["Blazor"]
+            - projects-add: [35]
+            - labels-remove: [":watch: Not Triaged"]
         
         # If the word appears anywhere in the file name path, add the label
         - check:
