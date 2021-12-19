@@ -25,7 +25,8 @@ using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 
 ...
 
-services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, options =>
+services.Configure<OpenIdConnectOptions>(
+    OpenIdConnectDefaults.AuthenticationScheme, options =>
 {
     options.ResponseType = OpenIdConnectResponseType.Code;
     options.SaveTokens = true;
@@ -143,13 +144,17 @@ public class WeatherForecastService
 
 ## Set the authentication scheme
 
-For an app that uses more than one Authentication Middleware and thus has more than one authentication scheme, the scheme that Blazor uses can be explicitly set in the endpoint configuration of `Program.cs`. The following example sets the Azure Active Directory scheme:
+For an app that uses more than one Authentication Middleware and thus has more than one authentication scheme, the scheme that Blazor uses can be explicitly set in the endpoint configuration of `Program.cs`. The following example sets the OpenID Connect (OIDC) scheme:
 
 ```csharp
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+
+...
+
 app.MapBlazorHub().RequireAuthorization(
     new AuthorizeAttribute 
     {
-        AuthenticationSchemes = AzureADDefaults.AuthenticationScheme
+        AuthenticationSchemes = OpenIdConnectDefaults.AuthenticationScheme
     });
 ```
 
@@ -169,7 +174,8 @@ using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 
 ...
 
-services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, options =>
+services.Configure<OpenIdConnectOptions>(
+    OpenIdConnectDefaults.AuthenticationScheme, options =>
 {
     options.ResponseType = OpenIdConnectResponseType.Code;
     options.SaveTokens = true;
@@ -287,13 +293,17 @@ public class WeatherForecastService
 
 ## Set the authentication scheme
 
-For an app that uses more than one Authentication Middleware and thus has more than one authentication scheme, the scheme that Blazor uses can be explicitly set in the endpoint configuration of `Startup.Configure`. The following example sets the Azure Active Directory scheme:
+For an app that uses more than one Authentication Middleware and thus has more than one authentication scheme, the scheme that Blazor uses can be explicitly set in the endpoint configuration of `Startup.Configure`. The following example sets the OpenID Connect (OIDC) scheme:
 
 ```csharp
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+
+...
+
 endpoints.MapBlazorHub().RequireAuthorization(
     new AuthorizeAttribute 
     {
-        AuthenticationSchemes = AzureADDefaults.AuthenticationScheme
+        AuthenticationSchemes = OpenIdConnectDefaults.AuthenticationScheme
     });
 ```
 
