@@ -930,8 +930,12 @@ While this approach requires an extra network hop through the server to call a t
 The authentication library and [Blazor project templates](xref:blazor/project-structure) use OpenID Connect (OIDC) v1.0 endpoints. To use a v2.0 endpoint, configure the JWT Bearer <xref:Microsoft.AspNetCore.Builder.JwtBearerOptions.Authority?displayProperty=nameWithType> option. In the following example, AAD is configured for v2.0 by appending a `v2.0` segment to the <xref:Microsoft.AspNetCore.Builder.JwtBearerOptions.Authority> property:
 
 ```csharp
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+
+...
+
 builder.Services.Configure<JwtBearerOptions>(
-    AzureADDefaults.JwtBearerAuthenticationScheme, 
+    JwtBearerDefaults.AuthenticationScheme, 
     options =>
     {
         options.Authority += "/v2.0";
@@ -1971,8 +1975,12 @@ While this approach requires an extra network hop through the server to call a t
 The authentication library and [Blazor project templates](xref:blazor/project-structure) use OpenID Connect (OIDC) v1.0 endpoints. To use a v2.0 endpoint, configure the JWT Bearer <xref:Microsoft.AspNetCore.Builder.JwtBearerOptions.Authority?displayProperty=nameWithType> option. In the following example, AAD is configured for v2.0 by appending a `v2.0` segment to the <xref:Microsoft.AspNetCore.Builder.JwtBearerOptions.Authority> property:
 
 ```csharp
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+
+...
+
 builder.Services.Configure<JwtBearerOptions>(
-    AzureADDefaults.JwtBearerAuthenticationScheme, 
+    JwtBearerDefaults.AuthenticationScheme, 
     options =>
     {
         options.Authority += "/v2.0";
