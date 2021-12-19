@@ -44,8 +44,8 @@ app.MapGet("/api/todoitems/{id}", async (int id, TodoDb db) =>
          is Todo todo
          ? Results.Ok(todo) 
          : Results.NotFound())
-   .Produces<Todo>(200)
-   .Produces(404);
+   .Produces<Todo>(StatusCodes.Status200OK)
+   .Produces(StatusCodes.Status404NotFound);
 #endregion
 
 app.MapGet("/api/todoitems", async (TodoDb db) =>
