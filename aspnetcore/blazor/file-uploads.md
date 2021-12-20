@@ -163,7 +163,7 @@ For testing, the preceding URLs are configured in the projects' `Properties/laun
 
 ::: zone pivot="webassembly"
 
-The following `UploadResult` class in the **`Shared`** project maintains the result of an uploaded file. When a file fails to upload on the server, an error code is returned in `ErrorCode` for display to the user. A safe file name is generated on the server for each file and returned to the client in `StoredFileName` for display. Files are keyed between the client and server using the unsafe/untrusted file name in `FileName`. Provide a namespace for the class matching the **`Shared`** project's assembly name. In the following example, the project's namespace is `BlazorSample.Shared`.
+The following `UploadResult` class in the **`Shared`** project maintains the result of an uploaded file. When a file fails to upload on the server, an error code is returned in `ErrorCode` for display to the user. A safe file name is generated on the server for each file and returned to the client in `StoredFileName` for display. Files are keyed between the client and server using the unsafe/untrusted file name in `FileName`. In the following example, the project's namespace is `BlazorSample.Shared`.
 
 `UploadResult.cs` in the **`Shared`** project of the hosted Blazor WebAssembly solution:
 
@@ -178,6 +178,12 @@ namespace BlazorSample.Shared
         public int ErrorCode { get; set; }
     }
 }
+```
+
+To make the `UploadResult` class available to the **`Client`** project, add an import to the **`Client`** project's `_Imports.razor` file for the **`Shared`** project:
+
+```razor
+@using BlazorSample.Shared
 ```
 
 ::: zone-end
@@ -242,6 +248,114 @@ The following controller in the **`Server`** project saves uploaded files from t
 
 To use the following code, create a `Development/unsafe_uploads` folder at the root of the **`Server`** project for the app running in the `Development` environment. Because the example uses the app's [environment](xref:blazor/fundamentals/environments) as part of the path where files are saved, additional folders are required if other environments are used in testing and production. For example, create a `Staging/unsafe_uploads` folder for the `Staging` environment. Create a `Production/unsafe_uploads` folder for the `Production` environment.
 
+> [!WARNING]
+> The example saves files without scanning their contents. In production scenarios, use an anti-virus/anti-malware scanner API on uploaded files before making them available for download or for use by other systems. For more information on security considerations when uploading files to a server, see <xref:mvc/models/file-uploads#security-considerations>.
+
+`Controllers/FilesaveController.cs`:
+
+```csharp
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using BlazorSample.Shared;
+
+[ApiController]
+[Route("[controller]")]
+public class FilesaveController : ControllerBase
+{
+    private readonly IWebHostEnvironment env;
+    private readonly ILogger<FilesaveController> logger;
+
+    public FilesaveController(IWebHostEnvironment env,
+        ILogger<FilesaveController> logger)
+    {
+        this.env = env;
+        this.logger = logger;
+    }
+
+    [HttpPost]
+    public async Task<ActionResult<IList<UploadResult>>> PostFile(
+        [FromForm] IEnumerable<IFormFile> files)
+    {
+        var maxAllowedFiles = 3;
+        long maxFileSize = 1024 * 1024 * 15;
+        var filesProcessed = 0;
+        var resourcePath = new Uri($"{Request.Scheme}://{Request.Host}/");
+        List<UploadResult> uploadResults = new();
+
+        foreach (var file in files)
+        {
+            var uploadResult = new UploadResult();
+            string trustedFileNameForFileStorage;
+            var untrustedFileName = file.FileName;
+            uploadResult.FileName = untrustedFileName;
+            var trustedFileNameForDisplay =
+                WebUtility.HtmlEncode(untrustedFileName);
+
+            if (filesProcessed < maxAllowedFiles)
+            {
+                if (file.Length == 0)
+                {
+                    logger.LogInformation("{FileName} length is 0 (Err: 1)",
+                        trustedFileNameForDisplay);
+                    uploadResult.ErrorCode = 1;
+                }
+                else if (file.Length > maxFileSize)
+                {
+                    logger.LogInformation("{FileName} of {Length} bytes is " +
+                        "larger than the limit of {Limit} bytes (Err: 2)",
+                        trustedFileNameForDisplay, file.Length, maxFileSize);
+                    uploadResult.ErrorCode = 2;
+                }
+                else
+                {
+                    try
+                    {
+                        trustedFileNameForFileStorage = Path.GetRandomFileName();
+                        var path = Path.Combine(env.ContentRootPath,
+                            env.EnvironmentName, "unsafe_uploads",
+                            trustedFileNameForFileStorage);
+
+                        await using FileStream fs = new(path, FileMode.Create);
+                        await file.CopyToAsync(fs);
+
+                        logger.LogInformation("{FileName} saved at {Path}",
+                            trustedFileNameForDisplay, path);
+                        uploadResult.Uploaded = true;
+                        uploadResult.StoredFileName = trustedFileNameForFileStorage;
+                    }
+                    catch (IOException ex)
+                    {
+                        logger.LogError("{FileName} error on upload (Err: 3): {Message}",
+                            trustedFileNameForDisplay, ex.Message);
+                        uploadResult.ErrorCode = 3;
+                    }
+                }
+
+                filesProcessed++;
+            }
+            else
+            {
+                logger.LogInformation("{FileName} not uploaded because the " +
+                    "request exceeded the allowed {Count} of files (Err: 4)",
+                    trustedFileNameForDisplay, maxAllowedFiles);
+                uploadResult.ErrorCode = 4;
+            }
+
+            uploadResults.Add(uploadResult);
+        }
+
+        return new CreatedResult(resourcePath, uploadResults);
+    }
+}
+```
+
 ::: zone-end
 
 ::: zone pivot="server"
@@ -249,8 +363,6 @@ To use the following code, create a `Development/unsafe_uploads` folder at the r
 The following controller in the web API project saves uploaded files from the client.
 
 To use the following code, create a `Development/unsafe_uploads` folder at the root of the web API project for the app running in the `Development` environment. Because the example uses the app's [environment](xref:blazor/fundamentals/environments) as part of the path where files are saved, additional folders are required if other environments are used in testing and production. For example, create a `Staging/unsafe_uploads` folder for the `Staging` environment. Create a `Production/unsafe_uploads` folder for the `Production` environment.
-
-::: zone-end
 
 > [!WARNING]
 > The example saves files without scanning their contents. In production scenarios, use an anti-virus/anti-malware scanner API on uploaded files before making them available for download or for use by other systems. For more information on security considerations when uploading files to a server, see <xref:mvc/models/file-uploads#security-considerations>.
@@ -358,6 +470,8 @@ public class FilesaveController : ControllerBase
     }
 }
 ```
+
+::: zone-end
 
 In the preceding code, <xref:System.IO.Path.GetRandomFileName%2A> is called to generate a secure filename. Never trust the filename provided by the browser, as an attacker may choose an existing filename that overwrites an existing file or send a path that attempts to write outside of the app.
 
@@ -556,7 +670,7 @@ For testing, the preceding URLs are configured in the projects' `Properties/laun
 
 ::: zone pivot="webassembly"
 
-The following `UploadResult` class in the **`Shared`** project maintains the result of an uploaded file. When a file fails to upload on the server, an error code is returned in `ErrorCode` for display to the user. A safe file name is generated on the server for each file and returned to the client in `StoredFileName` for display. Files are keyed between the client and server using the unsafe/untrusted file name in `FileName`. Provide a namespace for the class matching the **`Shared`** project's assembly name. In the following example, the project's namespace is `BlazorSample.Shared`.
+The following `UploadResult` class in the **`Shared`** project maintains the result of an uploaded file. When a file fails to upload on the server, an error code is returned in `ErrorCode` for display to the user. A safe file name is generated on the server for each file and returned to the client in `StoredFileName` for display. Files are keyed between the client and server using the unsafe/untrusted file name in `FileName`. In the following example, the project's namespace is `BlazorSample.Shared`.
 
 `UploadResult.cs` in the **`Shared`** project of the hosted Blazor WebAssembly solution:
 
@@ -571,6 +685,12 @@ namespace BlazorSample.Shared
         public int ErrorCode { get; set; }
     }
 }
+```
+
+To make the `UploadResult` class available to the **`Client`** project, add an import to the **`Client`** project's `_Imports.razor` file for the **`Shared`** project:
+
+```razor
+@using BlazorSample.Shared
 ```
 
 ::: zone-end
@@ -635,6 +755,114 @@ The following controller in the **`Server`** project saves uploaded files from t
 
 To use the following code, create a `Development/unsafe_uploads` folder at the root of the **`Server`** project for the app running in the `Development` environment. Because the example uses the app's [environment](xref:blazor/fundamentals/environments) as part of the path where files are saved, additional folders are required if other environments are used in testing and production. For example, create a `Staging/unsafe_uploads` folder for the `Staging` environment. Create a `Production/unsafe_uploads` folder for the `Production` environment.
 
+> [!WARNING]
+> The example saves files without scanning their contents. In production scenarios, use an anti-virus/anti-malware scanner API on uploaded files before making them available for download or for use by other systems. For more information on security considerations when uploading files to a server, see <xref:mvc/models/file-uploads#security-considerations>.
+
+`Controllers/FilesaveController.cs`:
+
+```csharp
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using BlazorSample.Shared;
+
+[ApiController]
+[Route("[controller]")]
+public class FilesaveController : ControllerBase
+{
+    private readonly IWebHostEnvironment env;
+    private readonly ILogger<FilesaveController> logger;
+
+    public FilesaveController(IWebHostEnvironment env,
+        ILogger<FilesaveController> logger)
+    {
+        this.env = env;
+        this.logger = logger;
+    }
+
+    [HttpPost]
+    public async Task<ActionResult<IList<UploadResult>>> PostFile(
+        [FromForm] IEnumerable<IFormFile> files)
+    {
+        var maxAllowedFiles = 3;
+        long maxFileSize = 1024 * 1024 * 15;
+        var filesProcessed = 0;
+        var resourcePath = new Uri($"{Request.Scheme}://{Request.Host}/");
+        List<UploadResult> uploadResults = new();
+
+        foreach (var file in files)
+        {
+            var uploadResult = new UploadResult();
+            string trustedFileNameForFileStorage;
+            var untrustedFileName = file.FileName;
+            uploadResult.FileName = untrustedFileName;
+            var trustedFileNameForDisplay =
+                WebUtility.HtmlEncode(untrustedFileName);
+
+            if (filesProcessed < maxAllowedFiles)
+            {
+                if (file.Length == 0)
+                {
+                    logger.LogInformation("{FileName} length is 0 (Err: 1)",
+                        trustedFileNameForDisplay);
+                    uploadResult.ErrorCode = 1;
+                }
+                else if (file.Length > maxFileSize)
+                {
+                    logger.LogInformation("{FileName} of {Length} bytes is " +
+                        "larger than the limit of {Limit} bytes (Err: 2)",
+                        trustedFileNameForDisplay, file.Length, maxFileSize);
+                    uploadResult.ErrorCode = 2;
+                }
+                else
+                {
+                    try
+                    {
+                        trustedFileNameForFileStorage = Path.GetRandomFileName();
+                        var path = Path.Combine(env.ContentRootPath,
+                            env.EnvironmentName, "unsafe_uploads",
+                            trustedFileNameForFileStorage);
+
+                        await using FileStream fs = new(path, FileMode.Create);
+                        await file.CopyToAsync(fs);
+
+                        logger.LogInformation("{FileName} saved at {Path}",
+                            trustedFileNameForDisplay, path);
+                        uploadResult.Uploaded = true;
+                        uploadResult.StoredFileName = trustedFileNameForFileStorage;
+                    }
+                    catch (IOException ex)
+                    {
+                        logger.LogError("{FileName} error on upload (Err: 3): {Message}",
+                            trustedFileNameForDisplay, ex.Message);
+                        uploadResult.ErrorCode = 3;
+                    }
+                }
+
+                filesProcessed++;
+            }
+            else
+            {
+                logger.LogInformation("{FileName} not uploaded because the " +
+                    "request exceeded the allowed {Count} of files (Err: 4)",
+                    trustedFileNameForDisplay, maxAllowedFiles);
+                uploadResult.ErrorCode = 4;
+            }
+
+            uploadResults.Add(uploadResult);
+        }
+
+        return new CreatedResult(resourcePath, uploadResults);
+    }
+}
+```
+
 ::: zone-end
 
 ::: zone pivot="server"
@@ -642,8 +870,6 @@ To use the following code, create a `Development/unsafe_uploads` folder at the r
 The following controller in the web API project saves uploaded files from the client.
 
 To use the following code, create a `Development/unsafe_uploads` folder at the root of the web API project for the app running in the `Development` environment. Because the example uses the app's [environment](xref:blazor/fundamentals/environments) as part of the path where files are saved, additional folders are required if other environments are used in testing and production. For example, create a `Staging/unsafe_uploads` folder for the `Staging` environment. Create a `Production/unsafe_uploads` folder for the `Production` environment.
-
-::: zone-end
 
 > [!WARNING]
 > The example saves files without scanning their contents. In production scenarios, use an anti-virus/anti-malware scanner API on uploaded files before making them available for download or for use by other systems. For more information on security considerations when uploading files to a server, see <xref:mvc/models/file-uploads#security-considerations>.
@@ -751,6 +977,8 @@ public class FilesaveController : ControllerBase
     }
 }
 ```
+
+::: zone-end
 
 ::: zone pivot="server"
 
