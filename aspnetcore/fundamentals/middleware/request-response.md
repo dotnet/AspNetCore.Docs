@@ -60,7 +60,7 @@ This preceding example:
 * Doesn't buffer the entire request body in a `StringBuilder` unless there aren't any newline characters.
 * Doesn't call `Split` on the string.
 
-However, there are still are a few issues:
+However, there are still a few issues:
 
 * If newline characters are sparse, much of the request body is buffered in the string.
 * The code continues to create strings (`remainingString`) and adds them to the string buffer, which results in an extra allocation.
