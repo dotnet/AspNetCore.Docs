@@ -180,7 +180,7 @@ namespace BlazorSample.Shared
 }
 ```
 
-To make the `UploadResult` class available to the **`Client`** project, add an import to the **`Client`** project's `_Imports.razor` file for the `Shared` project:
+To make the `UploadResult` class available to the **`Client`** project, add an import to the **`Client`** project's `_Imports.razor` file for the **`Shared`** project:
 
 ```razor
 @using BlazorSample.Shared
@@ -687,7 +687,7 @@ namespace BlazorSample.Shared
 }
 ```
 
-To make the `UploadResult` class available to the **`Client`** project, add an import to the **`Client`** project's `_Imports.razor` file for the `Shared` project:
+To make the `UploadResult` class available to the **`Client`** project, add an import to the **`Client`** project's `_Imports.razor` file for the **`Shared`** project:
 
 ```razor
 @using BlazorSample.Shared
