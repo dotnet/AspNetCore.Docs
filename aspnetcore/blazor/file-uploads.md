@@ -163,7 +163,7 @@ For testing, the preceding URLs are configured in the projects' `Properties/laun
 
 ::: zone pivot="webassembly"
 
-The following `UploadResult` class in the **`Shared`** project maintains the result of an uploaded file. When a file fails to upload on the server, an error code is returned in `ErrorCode` for display to the user. A safe file name is generated on the server for each file and returned to the client in `StoredFileName` for display. Files are keyed between the client and server using the unsafe/untrusted file name in `FileName`. Provide a namespace for the class matching the **`Shared`** project's assembly name. In the following example, the project's namespace is `BlazorSample.Shared`.
+The following `UploadResult` class in the **`Shared`** project maintains the result of an uploaded file. When a file fails to upload on the server, an error code is returned in `ErrorCode` for display to the user. A safe file name is generated on the server for each file and returned to the client in `StoredFileName` for display. Files are keyed between the client and server using the unsafe/untrusted file name in `FileName`. In the following example, the project's namespace is `BlazorSample.Shared`.
 
 `UploadResult.cs` in the **`Shared`** project of the hosted Blazor WebAssembly solution:
 
@@ -670,7 +670,7 @@ For testing, the preceding URLs are configured in the projects' `Properties/laun
 
 ::: zone pivot="webassembly"
 
-The following `UploadResult` class in the **`Shared`** project maintains the result of an uploaded file. When a file fails to upload on the server, an error code is returned in `ErrorCode` for display to the user. A safe file name is generated on the server for each file and returned to the client in `StoredFileName` for display. Files are keyed between the client and server using the unsafe/untrusted file name in `FileName`. Provide a namespace for the class matching the **`Shared`** project's assembly name. In the following example, the project's namespace is `BlazorSample.Shared`.
+The following `UploadResult` class in the **`Shared`** project maintains the result of an uploaded file. When a file fails to upload on the server, an error code is returned in `ErrorCode` for display to the user. A safe file name is generated on the server for each file and returned to the client in `StoredFileName` for display. Files are keyed between the client and server using the unsafe/untrusted file name in `FileName`. In the following example, the project's namespace is `BlazorSample.Shared`.
 
 `UploadResult.cs` in the **`Shared`** project of the hosted Blazor WebAssembly solution:
 
@@ -754,6 +754,9 @@ The following `FileUpload2` component:
 The following controller in the **`Server`** project saves uploaded files from the client.
 
 To use the following code, create a `Development/unsafe_uploads` folder at the root of the **`Server`** project for the app running in the `Development` environment. Because the example uses the app's [environment](xref:blazor/fundamentals/environments) as part of the path where files are saved, additional folders are required if other environments are used in testing and production. For example, create a `Staging/unsafe_uploads` folder for the `Staging` environment. Create a `Production/unsafe_uploads` folder for the `Production` environment.
+
+> [!WARNING]
+> The example saves files without scanning their contents. In production scenarios, use an anti-virus/anti-malware scanner API on uploaded files before making them available for download or for use by other systems. For more information on security considerations when uploading files to a server, see <xref:mvc/models/file-uploads#security-considerations>.
 
 `Controllers/FilesaveController.cs`:
 
@@ -868,6 +871,9 @@ The following controller in the web API project saves uploaded files from the cl
 
 To use the following code, create a `Development/unsafe_uploads` folder at the root of the web API project for the app running in the `Development` environment. Because the example uses the app's [environment](xref:blazor/fundamentals/environments) as part of the path where files are saved, additional folders are required if other environments are used in testing and production. For example, create a `Staging/unsafe_uploads` folder for the `Staging` environment. Create a `Production/unsafe_uploads` folder for the `Production` environment.
 
+> [!WARNING]
+> The example saves files without scanning their contents. In production scenarios, use an anti-virus/anti-malware scanner API on uploaded files before making them available for download or for use by other systems. For more information on security considerations when uploading files to a server, see <xref:mvc/models/file-uploads#security-considerations>.
+
 `Controllers/FilesaveController.cs`:
 
 ```csharp
@@ -973,9 +979,6 @@ public class FilesaveController : ControllerBase
 ```
 
 ::: zone-end
-
-> [!WARNING]
-> The example saves files without scanning their contents. In production scenarios, use an anti-virus/anti-malware scanner API on uploaded files before making them available for download or for use by other systems. For more information on security considerations when uploading files to a server, see <xref:mvc/models/file-uploads#security-considerations>.
 
 ::: zone pivot="server"
 
