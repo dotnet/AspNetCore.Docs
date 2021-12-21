@@ -46,11 +46,11 @@ Additional parameters for the constructor and `Invoke`/`InvokeAsync` are populat
 
 Typically, an extension method is created to expose the middleware through <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder>:
 
-:::code language="csharp" source="~/fundamentals/middleware/write/6sample/WebMiddleware/RequestCultureMiddleware.cs" id="snippet_all":::
+:::code language="csharp" source="~/fundamentals/middleware/write/6sample/WebMiddleware/RequestCultureMiddleware.cs" id="snippet_all" highlight="30-99":::
 
-//The following code calls the middleware from `Startup.Configure`:
+The following code calls the middleware from `Program.cs`:
 
-//:::code language="csharp" source="write/snapshot/Startup.cs" highlight="5":::
+:::code language="csharp" source="~/fundamentals/middleware/write/6sample/WebMiddleware/Program.cs" id="snippet_2":::
 
 ## Middleware dependencies
 
