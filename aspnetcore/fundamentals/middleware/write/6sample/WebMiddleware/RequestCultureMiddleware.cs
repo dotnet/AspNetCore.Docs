@@ -1,4 +1,6 @@
-﻿using System.Globalization;
+﻿#region snippet_all
+#region snippet_1
+using System.Globalization;
 
 // namespace ommited for brevity.
 
@@ -26,3 +28,14 @@ public class RequestCultureMiddleware
         await _next(context);
     }
 }
+#endregion
+
+public static class RequestCultureMiddlewareExtensions
+{
+    public static IApplicationBuilder UseRequestCulture(
+        this IApplicationBuilder builder)
+    {
+        return builder.UseMiddleware<RequestCultureMiddleware>();
+    }
+}
+#endregion

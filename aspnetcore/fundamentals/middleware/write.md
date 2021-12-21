@@ -23,14 +23,17 @@ This topic describes how to write *convention-based* middleware. For an approach
 
 Middleware is generally encapsulated in a class and exposed with an extension method. Consider the following middleware, which sets the culture for the current request from a query string:
 
+:::code language="csharp" source="~/fundamentals/middleware/write/6sample/WebMiddleware/Program.cs" id="snippet_first":::
+
 The preceding sample code is used to demonstrate creating a middleware component. For ASP.NET Core's built-in localization support, see <xref:fundamentals/localization>.
 
 Test the middleware by passing in the culture. For example, request `https://localhost:5001/?culture=es-es`.
 
-<!--?culture=de-de ?culture=fr-fr ?culture=zh-hk -->
+<!--?culture=de-de ?culture=fr-fr /?culture=zh-hk -->
+
 The following code moves the middleware delegate to a class:
 
-:::code language="csharp" source="write/snapshot/RequestCultureMiddleware.cs":::
+:::code language="csharp" source="~/fundamentals/middleware/write/6sample/WebMiddleware/RequestCultureMiddleware.cs" id="snippet_1":::
 
 The middleware class must include:
 
@@ -40,6 +43,14 @@ The middleware class must include:
   * Accept a first parameter of type <xref:Microsoft.AspNetCore.Http.HttpContext>.
   
 Additional parameters for the constructor and `Invoke`/`InvokeAsync` are populated by [dependency injection (DI)](xref:fundamentals/dependency-injection).
+
+Typically, an extension method is created to expose the middleware through <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder>:
+
+:::code language="csharp" source="~/fundamentals/middleware/write/6sample/WebMiddleware/RequestCultureMiddleware.cs" id="snippet_all":::
+
+//The following code calls the middleware from `Startup.Configure`:
+
+//:::code language="csharp" source="write/snapshot/Startup.cs" highlight="5":::
 
 ## Middleware dependencies
 
@@ -71,16 +82,6 @@ public class CustomMiddleware
 ```
 
 [Lifetime and registration options](xref:fundamentals/dependency-injection#lifetime-and-registration-options) contains a complete sample of middleware with *scoped* lifetime services.
-
-## Middleware extension method
-
-The following extension method exposes the middleware through <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder>:
-
-:::code language="csharp" source="write/snapshot/RequestCultureMiddlewareExtensions.cs":::
-
-The following code calls the middleware from `Startup.Configure`:
-
-:::code language="csharp" source="write/snapshot/Startup.cs" highlight="5":::
 
 ## Additional resources
 
