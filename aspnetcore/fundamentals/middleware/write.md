@@ -23,15 +23,11 @@ This topic describes how to write *convention-based* middleware. For an approach
 
 Middleware is generally encapsulated in a class and exposed with an extension method. Consider the following middleware, which sets the culture for the current request from a query string:
 
-:::code language="csharp" source="~/fundamentals/middleware/write/6sample/WebMiddleware/Program.cs":::
-
-:::code language="csharp" source="~/fundamentals/middleware/write/6sample/WebMiddleware/Program.cs" id="snippet_first":::
-
 The preceding sample code is used to demonstrate creating a middleware component. For ASP.NET Core's built-in localization support, see <xref:fundamentals/localization>.
 
 Test the middleware by passing in the culture. For example, request `https://localhost:5001/?culture=es-es`.
 
-<!--?culture=de-de ?culture=fr-fr -->
+<!--?culture=de-de ?culture=fr-fr ?culture=zh-hk -->
 The following code moves the middleware delegate to a class:
 
 :::code language="csharp" source="write/snapshot/RequestCultureMiddleware.cs":::
