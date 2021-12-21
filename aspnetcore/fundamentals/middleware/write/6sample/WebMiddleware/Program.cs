@@ -1,7 +1,7 @@
 #define FIRST // FIRST
 #if NEVER
 #elif FIRST
-// // <snippet_first>
+// <snippet_first>
 using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -31,5 +31,5 @@ app.Run(async (context) =>
 });
 
 app.Run();
-// // </snippet_first>
+// </snippet_first>
 #endif
