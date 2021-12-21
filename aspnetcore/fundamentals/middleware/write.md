@@ -5,7 +5,7 @@ description: Learn how to write custom ASP.NET Core middleware.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 5/18/2020
+ms.date: 12/18/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/middleware/write
 ---
@@ -17,19 +17,19 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Steve Smith](https://ar
 
 Middleware is software that's assembled into an app pipeline to handle requests and responses. ASP.NET Core provides a rich set of built-in middleware components, but in some scenarios you might want to write a custom middleware.
 
-> [!NOTE]
-> This topic describes how to write *convention-based* middleware. For an approach that uses strong typing and per-request activation, see <xref:fundamentals/middleware/extensibility>.
+This topic describes how to write *convention-based* middleware. For an approach that uses strong typing and per-request activation, see <xref:fundamentals/middleware/extensibility>.
 
 ## Middleware class
 
 Middleware is generally encapsulated in a class and exposed with an extension method. Consider the following middleware, which sets the culture for the current request from a query string:
 
-:::code language="csharp" source="write/snapshot/StartupCulture.cs":::
+:::code language="csharp" source="~/fundamentals/middleware/write/6sample/WebMiddleware/Program.cs" id="snippet_first" :::
 
 The preceding sample code is used to demonstrate creating a middleware component. For ASP.NET Core's built-in localization support, see <xref:fundamentals/localization>.
 
-Test the middleware by passing in the culture. For example, request `https://localhost:5001/?culture=no`.
+Test the middleware by passing in the culture. For example, request `https://localhost:5001/?culture=es-es`.
 
+<!--?culture=de-de ?culture=fr-fr -->
 The following code moves the middleware delegate to a class:
 
 :::code language="csharp" source="write/snapshot/RequestCultureMiddleware.cs":::
