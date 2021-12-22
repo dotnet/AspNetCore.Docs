@@ -12,7 +12,6 @@ public class MyCustomMiddleware
     // IMessageWriter is injected into InvokeAsync
     public async Task InvokeAsync(HttpContext httpContext, IMessageWriter svc)
     {
-        Console.WriteLine(DateTime.Now.Ticks.ToString());
         svc.Write(DateTime.Now.Ticks.ToString());
         await _next(httpContext);
     }

@@ -50,11 +50,11 @@ Typically, an extension method is created to expose the middleware through <xref
 
 The following code calls the middleware from `Program.cs`:
 
-:::code language="csharp" source="~/fundamentals/middleware/write/6sample/WebMiddleware/Program.cs" id="snippet_2" highlight="7":::
+:::code language="csharp" source="~/fundamentals/middleware/write/6sample/WebMiddleware/Program.cs" id="snippet_2" highlight="9":::
 
 ## Middleware dependencies
 
-Middleware should follow the [Explicit Dependencies Principle](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#explicit-dependencies) by exposing its dependencies in its constructor. Middleware is constructed once per *application lifetime*. See the [Per-request middleware dependencies](#per-request-middleware-dependencies) section if you need to share services with middleware within a request.
+Middleware should follow the [Explicit Dependencies Principle](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#explicit-dependencies) by exposing its dependencies in its constructor. Middleware is constructed once per *application lifetime*.
 
 Middleware components can resolve their dependencies from [dependency injection (DI)](xref:fundamentals/dependency-injection) through constructor parameters. <xref:Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.UseMiddleware%2A> can also accept additional parameters directly.
 
@@ -69,6 +69,10 @@ Because middleware is constructed at app startup, not per-request, [scoped lifet
 The following code is used to test the preceding middleware:
 
 :::code language="csharp" source="~/fundamentals/middleware/write/6sample/WebMiddleware/Program.cs" id="snippet_3" highlight="4,10":::
+
+The `IMessageWriter` interface and implementation:
+
+:::code language="csharp" source="~/fundamentals/middleware/write/6sample/WebMiddleware/IMessageWriter.cs":::
 
 ## Additional resources
 
