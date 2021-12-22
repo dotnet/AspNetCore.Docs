@@ -150,7 +150,7 @@ Select **Run** > **Start Debugging** to launch the app. Visual Studio for Mac la
 
 ---
 
-The Swagger page `/swagger/index.html` is displayed. Select :::no-loc text="**GET** > **Try it out** > **Execute**":::. The page displays:
+The Swagger page `/swagger/index.html` is displayed. Select **`GET > Try it out> Execute`**. The page displays:
 
 * The [Curl](https://curl.haxx.se/) command to test the WeatherForecast API.
 * The URL to test the WeatherForecast API.
