@@ -60,7 +60,8 @@ Middleware components can resolve their dependencies from [dependency injection 
 
 ## Per-request middleware dependencies
 
-Because middleware is constructed at app startup, not per-request, [scoped lifetime](/dotnet/core/extensions/dependency-injection#scoped) services used by middleware constructors aren't shared with other dependency-injected types during each request. To share a *scoped* service between middleware and other types, add these services to the `InvokeAsync` method's signature. The `InvokeAsync` method can accept additional parameters that are populated by DI:
+Middleware is constructed at app startup and therefore has application life
+time. [Scoped lifetime](/dotnet/core/extensions/dependency-injection#scoped) services used by middleware constructors aren't shared with other dependency-injected types during each request. To share a *scoped* service between middleware and other types, add these services to the `InvokeAsync` method's signature. The `InvokeAsync` method can accept additional parameters that are populated by DI:
 
 :::code language="csharp" source="~/fundamentals/middleware/write/6sample/WebMiddleware/MyCustomMiddleware.cs":::
 
@@ -76,6 +77,7 @@ The `IMessageWriter` interface and implementation:
 
 ## Additional resources
 
+* [Sample code used in this article](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/middleware/write/6sample)
 * [Lifetime and registration options](xref:fundamentals/dependency-injection#lifetime-and-registration-options) contains a complete sample of middleware with *scoped*, *transient*, and *singleton* lifetime services.
 * <xref:fundamentals/middleware/index>
 * <xref:test/middleware>
