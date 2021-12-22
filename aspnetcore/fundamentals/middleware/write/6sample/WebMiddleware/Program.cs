@@ -1,4 +1,4 @@
-#define SECOND // FIRST SECOND
+#define THIRD // FIRST SECOND THIRD
 #if NEVER
 #elif FIRST
 // <snippet_first>
@@ -34,6 +34,7 @@ app.Run();
 // </snippet_first>
 #elif SECOND
 #region snippet_2
+using Middleware.Example;
 using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -48,6 +49,23 @@ app.Run(async (context) =>
     await context.Response.WriteAsync(
         $"CurrentCulture.DisplayName: {CultureInfo.CurrentCulture.DisplayName}");
 });
+
+app.Run();
+#endregion
+#elif THIRD
+#region snippet_3
+using Middleware.Example;
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddScoped<IMessageWriter, LoggingMessageWriter>();
+
+var app = builder.Build();
+
+app.UseHttpsRedirection();
+
+app.UseMyCustomMiddleware();
+
+app.MapGet("/", () => "Hello World!");
 
 app.Run();
 #endregion

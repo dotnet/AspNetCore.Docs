@@ -50,7 +50,7 @@ Typically, an extension method is created to expose the middleware through <xref
 
 The following code calls the middleware from `Program.cs`:
 
-:::code language="csharp" source="~/fundamentals/middleware/write/6sample/WebMiddleware/Program.cs" id="snippet_2":::
+:::code language="csharp" source="~/fundamentals/middleware/write/6sample/WebMiddleware/Program.cs" id="snippet_2" highlight="7":::
 
 ## Middleware dependencies
 
@@ -60,28 +60,15 @@ Middleware components can resolve their dependencies from [dependency injection 
 
 ## Per-request middleware dependencies
 
-Because middleware is constructed at app startup, not per-request, *scoped* lifetime services used by middleware constructors aren't shared with other dependency-injected types during each request. If you must share a *scoped* service between your middleware and other types, add these services to the `InvokeAsync` method's signature. The `InvokeAsync` method can accept additional parameters that are populated by DI:
+Because middleware is constructed at app startup, not per-request, [scoped lifetime](/dotnet/core/extensions/dependency-injection#scoped) services used by middleware constructors aren't shared with other dependency-injected types during each request. To share a *scoped* service between middleware and other types, add these services to the `InvokeAsync` method's signature. The `InvokeAsync` method can accept additional parameters that are populated by DI:
 
-```csharp
-public class CustomMiddleware
-{
-    private readonly RequestDelegate _next;
-
-    public CustomMiddleware(RequestDelegate next)
-    {
-        _next = next;
-    }
-
-    // IMyScopedService is injected into InvokeAsync
-    public async Task InvokeAsync(HttpContext httpContext, IMyScopedService svc)
-    {
-        svc.MyProperty = 1000;
-        await _next(httpContext);
-    }
-}
-```
+:::code language="csharp" source="~/fundamentals/middleware/write/6sample/WebMiddleware/MyCustomMiddleware.cs":::
 
 [Lifetime and registration options](xref:fundamentals/dependency-injection#lifetime-and-registration-options) contains a complete sample of middleware with *scoped* lifetime services.
+
+The following code is used to test the preceding middleware:
+
+:::code language="csharp" source="~/fundamentals/middleware/write/6sample/WebMiddleware/Program.cs" id="snippet_3" highlight="4,10":::
 
 ## Additional resources
 

@@ -2,7 +2,7 @@
 #region snippet_1
 using System.Globalization;
 
-// namespace ommited for brevity.
+namespace Middleware.Example;
 
 public class RequestCultureMiddleware
 {
