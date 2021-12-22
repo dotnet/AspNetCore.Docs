@@ -21,7 +21,6 @@ Enabling users to sign in with their existing credentials:
 * Is convenient for the users.
 * Shifts many of the complexities of managing the sign-in process onto a third party.
 
-For an example of how social logins can drive traffic and customer conversions, see the case study by [Facebook](https://www.facebook.com/unsupportedbrowser).
 
 ## Create a New ASP.NET Core Project
 

@@ -274,10 +274,12 @@ gRPC is a message-based RPC framework, which means:
 * The entire message is loaded into memory before gRPC can send it.
 * When the message is received, the entire message is deserialized into memory.
 
-Messages with large binary payloads can allocate byte arrays on the [large object heap](/dotnet/standard/garbage-collection/large-object-heap). Large allocations impact server performance and scalability.
+Binary payloads are allocated as a byte array. For example, a 10 MB binary payload allocates a 10 MB byte array. Messages with large binary payloads can allocate byte arrays on the [large object heap](/dotnet/standard/garbage-collection/large-object-heap). Large allocations impact server performance and scalability.
 
 Advice for creating high-performance applications with large binary payloads:
 
 * **Avoid** large binary payloads in gRPC messages. A byte array larger than 85,000 bytes is considered a large object. Keeping below that size avoids allocating on the large object heap.
-* **Consider** splitting large binary payloads [using streaming](xref:grpc/client#client-streaming-call). Binary data is chunked and streamed over multiple messages.
-* **Consider** not using gRPC for large binary data. HTTP endpoints can be used alongside gRPC services. An HTTP endpoint that supports sending or receiving large files using the stream body is efficient.
+* **Consider** splitting large binary payloads [using gRPC streaming](xref:grpc/client#client-streaming-call). Binary data is chunked and streamed over multiple messages. For more information on how to stream files, see an [example of gRPC streaming file upload](https://github.com/grpc/grpc-dotnet/tree/master/examples#uploader) at the grpc-dotnet repository.
+* **Consider** not using gRPC for large binary data. In ASP.NET Core, Web APIs can be used alongside gRPC services. An HTTP endpoint can access the request and response stream body directly:
+  * [Read the request body using minimal web API](xref:fundamentals/minimal-apis#read-the-request-body)
+  * [Return stream response using minimal web API](xref:fundamentals/minimal-apis#stream)
