@@ -43,6 +43,7 @@ else
 
 var app = builder.Build();
 
+#region snippet_Configure
 app.Lifetime.ApplicationStarted.Register(() =>
 {
     var currentTimeUTC = DateTime.UtcNow.ToString();
@@ -51,6 +52,7 @@ app.Lifetime.ApplicationStarted.Register(() =>
         .SetSlidingExpiration(TimeSpan.FromSeconds(20));
     app.Services.GetService<IDistributedCache>().Set("cachedTimeUTC", encodedCurrentTimeUTC, options);
 });
+#endregion
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

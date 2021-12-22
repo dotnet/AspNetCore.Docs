@@ -5,6 +5,7 @@ using System.Text;
 
 namespace SampleApp.Pages
 {
+    #region snippet_IndexModel
     public class IndexModel : PageModel
     {
         private readonly IDistributedCache _cache;
@@ -45,4 +46,5 @@ namespace SampleApp.Pages
             return RedirectToPage();
         }
     }
+    #endregion
 }
