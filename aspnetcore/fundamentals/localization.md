@@ -359,6 +359,23 @@ services.Configure<RequestLocalizationOptions>(options =>
 
 Use `RequestLocalizationOptions` to add or remove localization providers.
 
+### Change request culture providers order
+
+<xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions> has three default request culture providers: <xref:Microsoft.AspNetCore.Localization.QueryStringRequestCultureProvider>, <xref:Microsoft.AspNetCore.Localization.CookieRequestCultureProvider>, and <xref:Microsoft.AspNetCore.Localization.AcceptLanguageHeaderRequestCultureProvider>. Use [`RequestLocalizationOptions.RequestCultureProviders`]](xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.RequestCultureProviders) property to change the order of these providers as shown in the following below:
+
+```csharp
+    app.UseRequestLocalization(options =>
+    {
+        var questStringCultureProvider = options.RequestCultureProviders[0];    
+        options.RequestCultureProviders.RemoveAt(0);
+        options.RequestCultureProviders.Insert(1, questStringCultureProvider);
+    });
+```
+
+In the preceding example above, the  order of `QueryStringRequestCultureProvider` and `CookieRequestCultureProvider` is swithched, so the `RequestLocalizationMiddleware` looks for the cultures from the cookies first, then query string.
+
+As previously mentioned, add a custom provider via <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptionsExtensions.AddInitialRequestCultureProvider%2A> which sets the order to `0`, so this provider takes the precedence over the others.
+
 ### Set the culture programmatically
 
 This sample **Localization.StarterWeb** project on [GitHub](https://github.com/aspnet/entropy) contains UI to set the `Culture`. The *Views/Shared/_SelectLanguagePartial.cshtml* file allows you to select the culture from the list of supported cultures:
@@ -712,6 +729,23 @@ services.Configure<RequestLocalizationOptions>(options =>
 ```
 
 Use `RequestLocalizationOptions` to add or remove localization providers.
+
+### Change request culture providers order
+
+<xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions> has three default request culture providers: <xref:Microsoft.AspNetCore.Localization.QueryStringRequestCultureProvider>, <xref:Microsoft.AspNetCore.Localization.CookieRequestCultureProvider>, and <xref:Microsoft.AspNetCore.Localization.AcceptLanguageHeaderRequestCultureProvider>. Use [`RequestLocalizationOptions.RequestCultureProviders`]](xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.RequestCultureProviders) property to change the order of these providers as shown in the following below:
+
+```csharp
+    app.UseRequestLocalization(options =>
+    {
+        var questStringCultureProvider = options.RequestCultureProviders[0];    
+        options.RequestCultureProviders.RemoveAt(0);
+        options.RequestCultureProviders.Insert(1, questStringCultureProvider);
+    });
+```
+
+In the preceding example above, the  order of `QueryStringRequestCultureProvider` and `CookieRequestCultureProvider` is swithched, so the `RequestLocalizationMiddleware` looks for the cultures from the cookies first, then query string.
+
+As previously mentioned, add a custom provider via <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptionsExtensions.AddInitialRequestCultureProvider%2A> which sets the order to `0`, so this provider takes the precedence over the others.
 
 ### Set the culture programmatically
 
