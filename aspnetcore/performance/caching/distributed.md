@@ -131,14 +131,7 @@ To configure NCache:
 1. Configure the cache cluster in [client.ncconf](https://www.alachisoft.com/resources/docs/ncache/admin-guide/client-config.html).
 1. Add the following code to `Program.cs`:
 
-   ```csharp
-   builder.Services.AddNCacheDistributedCache(configuration =>    
-   {        
-       configuration.CacheName = "demoClusteredCache";
-       configuration.EnableLogs = true;
-       configuration.ExceptionsEnabled = true;
-   });
-   ```
+[!code-csharp[](distributed/samples/6.x/DistCacheSample/Program.cs?name=snippet_AddNCache_Cache)]
 
 ## Use the distributed cache
 
