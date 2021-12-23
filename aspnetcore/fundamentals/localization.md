@@ -732,7 +732,7 @@ Use `RequestLocalizationOptions` to add or remove localization providers.
 
 ### Change request culture providers order
 
-As mentioned earlier, `RequestLocalizationOptions` came up with three default request cultures provider: `QueryStringRequestCultureProvider`, `CookieRequestCultureProvider` and `AcceptLanguageHeaderRequestCultureProvider` respectively. In case you need to change the order of these providers you could use `RequestLocalizationOptions.RequestCultureProviders` property as shown in the example below:
+<xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions> has three default request culture providers: <xref:Microsoft.AspNetCore.Localization.QueryStringRequestCultureProvider>, <xref:Microsoft.AspNetCore.Localization.CookieRequestCultureProvider>, and <xref:Microsoft.AspNetCore.Localization.AcceptLanguageHeaderRequestCultureProvider>. Use [`RequestLocalizationOptions.RequestCultureProviders`]](xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.RequestCultureProviders) property to change the order of these providers as shown in the following below:
 
 ```csharp
     app.UseRequestLocalization(options =>
@@ -743,9 +743,9 @@ As mentioned earlier, `RequestLocalizationOptions` came up with three default re
     });
 ```
 
-In the example above, we switch between the `QueryStringRequestCultureProvider` and `CookieRequestCultureProvider`, so the `RequestLocalizationMiddleware` will look for the cultures from the cookies first, then query string. Perhaps the example is silly and simple, but image that you can order these providers with your custom once according your needs.
+In the preceding example above, the  order of `QueryStringRequestCultureProvider` and `CookieRequestCultureProvider` is swithched, so the `RequestLocalizationMiddleware` looks for the cultures from the cookies first, then query string.
 
-Another real use case - that we mentioned above - is when we add a custom provider via `AddInitialRequestCultureProvider` it sets the order to `0`, so this provider will take the precedence over the others.
+As previously mentioned, add a custom provider via <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptionsExtensions.AddInitialRequestCultureProvider%2A> which sets the order to `0`, so this provider takes the precedence over the others.
 
 ### Set the culture programmatically
 
