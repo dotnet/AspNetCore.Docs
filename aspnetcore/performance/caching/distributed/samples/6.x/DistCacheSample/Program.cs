@@ -13,7 +13,6 @@ if (builder.Environment.IsDevelopment())
 {
     #region snippet_AddDistributedMemoryCache
     builder.Services.AddDistributedMemoryCache();
-    builder.Services.AddSingleton<IDistributedCache, MemoryDistributedCache>();
     #endregion
 }
 else
@@ -26,7 +25,6 @@ else
         options.SchemaName = "dbo";
         options.TableName = "TestCache";
     });
-    builder.Services.AddSingleton<IDistributedCache, SqlServerCache>();
     #endregion
 
 #elif Redis
@@ -36,7 +34,6 @@ else
                     options.Configuration = builder.Configuration.GetConnectionString("MyRedisConStr");
                     options.InstanceName = "SampleInstance";
                 });
-                builder.Services.AddSingleton<IDistributedCache, RedisCache>();
     #endregion
 #else
     #region snippet_AddNCache_Cache
