@@ -156,7 +156,7 @@ The `VirtualHost` block can appear multiple times, in one or more files on a ser
 
 The `VirtualHost` block can appear multiple times, in one or more files on a server. In the preceding configuration file, Apache accepts public traffic on port 80. The domain `www.example.com` is being served, and the `*.example.com` alias resolves to the same website. For more information, see [Name-based virtual host support](https://httpd.apache.org/docs/current/vhosts/name-based.html). Requests are proxied at the root to port 5000 of the server at 127.0.0.1. For bi-directional communication, `ProxyPass` and `ProxyPassReverse` are required. To change Kestrel's IP/port, see [Kestrel: Endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration).
 
-Create a symbolic link to the /etc/apache2/sites-enabled directory for apache to read during startup:
+Create a symbolic link to the `/etc/apache2/sites-enabled directory` for Apache to read during startup:
 
 ```bash
 sudo ln -s /etc/apache2/sites-available/helloapp.conf /etc/apache2/sites-enabled/
