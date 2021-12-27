@@ -146,9 +146,9 @@ IJSRuntime JS { get; set; }
 
 [!INCLUDE[](~/blazor/includes/prerendering.md)]
 
-## Location of JavaScipt
+## Location of JavaScript
 
-Load JavaScript (JS) code using any of approaches described by the [JavaScript (JS) interoperability (interop) overview article](xref:blazor/js-interop/index#location-of-javascipt):
+Load JavaScript (JS) code using any of approaches described by the [JavaScript (JS) interoperability (interop) overview article](xref:blazor/js-interop/index#location-of-javascript):
 
 * [Load a script in `<head>` markup](xref:blazor/js-interop/index#load-a-script-in-head-markup) (*Not generally recommended*)
 * [Load a script in `<body>` markup](xref:blazor/js-interop/index#load-a-script-in-body-markup)
@@ -853,9 +853,9 @@ IJSRuntime JS { get; set; }
 
 [!INCLUDE[](~/blazor/includes/prerendering.md)]
 
-## Location of JavaScipt
+## Location of JavaScript
 
-Load JavaScript (JS) code using any of approaches described by the [JavaScript (JS) interoperability (interop) overview article](xref:blazor/js-interop/index#location-of-javascipt):
+Load JavaScript (JS) code using any of approaches described by the [JavaScript (JS) interoperability (interop) overview article](xref:blazor/js-interop/index#location-of-javascript):
 
 * [Load a script in `<head>` markup](xref:blazor/js-interop/index#load-a-script-in-head-markup) (*Not generally recommended*)
 * [Load a script in `<body>` markup](xref:blazor/js-interop/index#load-a-script-in-body-markup)
@@ -1461,9 +1461,9 @@ IJSRuntime JS { get; set; }
 
 [!INCLUDE[](~/blazor/includes/prerendering.md)]
 
-## Location of JavaScipt
+## Location of JavaScript
 
-Load JavaScript (JS) code using any of approaches described by the [JavaScript (JS) interoperability (interop) overview article](xref:blazor/js-interop/index#location-of-javascipt):
+Load JavaScript (JS) code using any of approaches described by the [JavaScript (JS) interoperability (interop) overview article](xref:blazor/js-interop/index#location-of-javascript):
 
 * [Load a script in `<head>` markup](xref:blazor/js-interop/index#load-a-script-in-head-markup) (*Not generally recommended*)
 * [Load a script in `<body>` markup](xref:blazor/js-interop/index#load-a-script-in-body-markup)

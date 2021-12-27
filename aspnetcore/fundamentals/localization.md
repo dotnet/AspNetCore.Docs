@@ -361,7 +361,7 @@ Use `RequestLocalizationOptions` to add or remove localization providers.
 
 ### Change request culture providers order
 
-<xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions> has three default request culture providers: <xref:Microsoft.AspNetCore.Localization.QueryStringRequestCultureProvider>, <xref:Microsoft.AspNetCore.Localization.CookieRequestCultureProvider>, and <xref:Microsoft.AspNetCore.Localization.AcceptLanguageHeaderRequestCultureProvider>. Use [`RequestLocalizationOptions.RequestCultureProviders`]](xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.RequestCultureProviders) property to change the order of these providers as shown in the following below:
+<xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions> has three default request culture providers: <xref:Microsoft.AspNetCore.Localization.QueryStringRequestCultureProvider>, <xref:Microsoft.AspNetCore.Localization.CookieRequestCultureProvider>, and <xref:Microsoft.AspNetCore.Localization.AcceptLanguageHeaderRequestCultureProvider>. Use [`RequestLocalizationOptions.RequestCultureProviders`](xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.RequestCultureProviders) property to change the order of these providers as shown in the following below:
 
 ```csharp
     app.UseRequestLocalization(options =>
