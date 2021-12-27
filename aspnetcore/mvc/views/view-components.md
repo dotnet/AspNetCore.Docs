@@ -59,6 +59,17 @@ A view component class:
 
 * Doesn't take part in the controller lifecycle, which means you can't use [filters](../controllers/filters.md) in a view component
 
+Note:
+Suppose you already have a class in your project with the suffix “ViewComponent”(case-insensitive) and you do not want it to serve as a ViewComponent,you can decorate the class with the attribute `[NonViewComponent]`.
+ 
+```csharp
+     [NonViewComponent]
+     public class ReviewComponent
+     {
+
+     }
+     ```
+
 ### View component methods
 
 A view component defines its logic in an `InvokeAsync` method that returns a `Task<IViewComponentResult>` or in a synchronous `Invoke` method that returns an `IViewComponentResult`. Parameters come directly from invocation of the view component, not from model binding. A view component never directly handles a request. Typically, a view component initializes a model and passes it to a view by calling the `View` method. In summary, view component methods:
