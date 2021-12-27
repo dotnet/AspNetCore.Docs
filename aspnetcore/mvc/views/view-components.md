@@ -60,7 +60,8 @@ A view component class:
 * Doesn't take part in the controller lifecycle, which means you can't use [filters](../controllers/filters.md) in a view component
 
 Note:
-Suppose you already have a class in your project with the suffix “ViewComponent”(case-insensitive) and you do not want it to serve as a ViewComponent,you can decorate the class with the attribute `[NonViewComponent]`.
+
+Suppose you already have a class in your project with the suffix *ViewComponent*(case-insensitive) and you do not want it to serve as a ViewComponent,you can decorate the class with the attribute `[NonViewComponent]`.
  
 ```csharp
      [NonViewComponent]
@@ -68,7 +69,7 @@ Suppose you already have a class in your project with the suffix “ViewComponent”
      {
 
      }
-     ```
+ ```
 
 ### View component methods
 
