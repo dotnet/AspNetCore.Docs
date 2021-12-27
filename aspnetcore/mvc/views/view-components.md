@@ -61,13 +61,13 @@ A view component class:
 
 Note:
 
-Suppose you already have a class in your project with the suffix *ViewComponent*(case-insensitive) and you do not want it to serve as a ViewComponent,you can decorate the class with the attribute `[NonViewComponent]`.
+Suppose you already have a class in your project with the suffix *ViewComponent*(case-insensitive) and you do not want it to serve as a ViewComponent, you can decorate the class with the attribute `[NonViewComponent]`:
  
 ```csharp
      [NonViewComponent]
      public class ReviewComponent
      {
-
+         .....
      }
  ```
 
