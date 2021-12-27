@@ -230,14 +230,14 @@ The following table lists the <xref:Microsoft.Extensions.Logging.LogLevel> value
 | <xref:Microsoft.Extensions.Logging.LogLevel.Trace> | 0 | <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogTrace%2A> | Contain the most detailed messages. These messages may contain sensitive app data. These messages are disabled by default and should ***not*** be enabled in production. |
 | <xref:Microsoft.Extensions.Logging.LogLevel.Debug> | 1 | <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogDebug%2A> | For debugging and development. Use with caution in production due to the high volume. |
 | <xref:Microsoft.Extensions.Logging.LogLevel.Information> | 2 | <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation%2A> | Tracks the general flow of the app. May have long-term value. |
-| <xref:Microsoft.Extensions.Logging.LogLevel.Warning | 3 | <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogWarning%2A> | For abnormal or unexpected events. Typically includes errors or conditions that don't cause the app to fail. |
+| <xref:Microsoft.Extensions.Logging.LogLevel.Warning> | 3 | <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogWarning%2A> | For abnormal or unexpected events. Typically includes errors or conditions that don't cause the app to fail. |
 | <xref:Microsoft.Extensions.Logging.LogLevel.Error> | 4 | <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogError%2A> | For errors and exceptions that cannot be handled. These messages indicate a failure in the current operation or request, not an app-wide failure. |
 | <xref:Microsoft.Extensions.Logging.LogLevel.Critical> | 5 | <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogCritical%2A> | For failures that require immediate attention. Examples: data loss scenarios, out of disk space. |
 | <xref:Microsoft.Extensions.Logging.LogLevel.None> | 6 | | Specifies that a logging category shouldn't write messages. |
 
 In the previous table, the `LogLevel` is listed from lowest to highest severity.
 
-The <xref:<xref:Microsoft.Extensions.Logging.LoggerExtensions.Log%2A> method's first parameter, <xref:Microsoft.Extensions.Logging.LogLevel>, indicates the severity of the log. Rather than calling `Log(LogLevel, ...)`, most developers call the [`Log{LOG LEVEL}`](xref:Microsoft.Extensions.Logging.LoggerExtensions) extension methods, where the `{LOG LEVEL}` placeholder is the log level. For example, the following two logging calls are functionally equivalent and produce the same log:
+The <xref:Microsoft.Extensions.Logging.LoggerExtensions.Log%2A> method's first parameter, <xref:Microsoft.Extensions.Logging.LogLevel>, indicates the severity of the log. Rather than calling `Log(LogLevel, ...)`, most developers call the [`Log{LOG LEVEL}`](xref:Microsoft.Extensions.Logging.LoggerExtensions) extension methods, where the `{LOG LEVEL}` placeholder is the log level. For example, the following two logging calls are functionally equivalent and produce the same log:
 
 [!code-csharp[](index/samples/3.x/TodoApiDTO/Controllers/TestController.cs?name=snippet0&highlight=6-7)]
 
@@ -371,7 +371,7 @@ If the default log level is not set, the default log level value is `Information
 For example, consider the following web app:
 
 * Created with the ASP.NET web app templates.
-* *appsettings.json* and `appsettings.Development.json` deleted or renamed.
+* `appsettings.json` and `appsettings.Development.json` deleted or renamed.
 
 With the preceding setup, navigating to the privacy or home page produces many `Trace`, `Debug`, and `Information` messages with `Microsoft` in the category name.
 
@@ -421,7 +421,7 @@ To view more categories in the console window, set **`appsettings.Development.js
 
 A scope:
 
-* Is an <xref:System.IDisposable> type that's returned by the <xref:Microsoft.Extensions.Logging.ILogger.BeginScope%601> method.
+* Is an <xref:System.IDisposable> type that's returned by the <xref:Microsoft.Extensions.Logging.ILogger.BeginScope%2A> method.
 * Lasts until it's disposed.
 
 The following providers support scopes:
@@ -941,7 +941,7 @@ To create logs, use an <xref:Microsoft.Extensions.Logging.ILogger%601> object fr
 The following example:
 
 * Creates a logger, `ILogger<AboutModel>`, which uses a log *category* of the fully qualified name of the type `AboutModel`. The log category is a string that is associated with each log.
-* Calls <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation*> to log at the `Information` level. The Log *level* indicates the severity of the logged event.
+* Calls <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation%60> to log at the `Information` level. The Log *level* indicates the severity of the logged event.
 
 [!code-csharp[](index/samples/3.x/TodoApiDTO/Pages/About.cshtml.cs?name=snippet_CallLogMethods&highlight=5,14)]
 
