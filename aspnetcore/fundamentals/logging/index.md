@@ -104,7 +104,7 @@ Any logs below the minimum level are ***not***:
 * Passed to the provider.
 * Logged or displayed.
 
-To suppress all logs, specify [`LogLevel.None`](xref:Microsoft.Extensions.Logging.LogLevel). `LogLevel.None` has a value of 6, which is higher than `LogLevel.Critical` (5).
+To suppress all logs, specify <xref:Microsoft.Extensions.Logging.LogLevel.None?displayProperty=nameWithType>. `LogLevel.None` has a value of 6, which is higher than `LogLevel.Critical` (5).
 
 If a provider supports [log scopes](#logscopes), `IncludeScopes` indicates whether they're enabled. For more information, see [log scopes](#logscopes).
 
