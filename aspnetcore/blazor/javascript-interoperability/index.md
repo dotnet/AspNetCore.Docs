@@ -38,7 +38,7 @@ JS interop calls are asynchronous by default, regardless of whether the called c
 
 [!INCLUDE[](~/blazor/includes/js-initializers.md)]
 
-## Location of JavaScipt
+## Location of JavaScript
 
 Load JavaScript (JS) code using any of the following approaches:
 
