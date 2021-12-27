@@ -59,7 +59,7 @@ A view component class:
 
 * Doesn't take part in the controller lifecycle, which means you can't use [filters](../controllers/filters.md) in a view component
 
-Note:
+### The use of NonViewComponent Attribute 
 
 Suppose you have a class in your project with the suffix *ViewComponent*(case-insensitive) and you don't want it to serve as a ViewComponent, you can decorate the class with the attribute `[NonViewComponent]`:
  
