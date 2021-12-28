@@ -145,6 +145,8 @@ At the same time, there are significant drawbacks to enabling SSR. It adds compl
     }
     ```
 
+[!INCLUDE[](~/includes/spa-proxy.md)]
+
 ## Additional resources
 
 * <xref:security/authentication/identity/spa>
