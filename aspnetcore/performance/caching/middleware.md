@@ -23,13 +23,13 @@ This article explains how to configure Response Caching Middleware in an ASP.NET
 
 Response Caching Middleware is implicitly available for ASP.NET Core apps via the shared framework.
 
-In `Startup.ConfigureServices`, add the Response Caching Middleware to the service collection:
+In `Program.cs`, add the Response Caching Middleware to the service collection:
 
-[!code-csharp[](middleware/samples/3.x/ResponseCachingMiddleware/Startup.cs?name=snippet1&highlight=3)]
+[!code-csharp[](middleware/samples/6.x/ResponseCachingMiddleware/Program.cs?name=snippet1&highlight=3)]
 
-Configure the app to use the middleware with the <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*> extension method, which adds the middleware to the request processing pipeline in `Startup.Configure`:
+Configure the app to use the middleware with the <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*> extension method, which adds the middleware to the request processing pipeline in `Program.cs`:
 
-[!code-csharp[](middleware/samples/3.x/ResponseCachingMiddleware/Startup.cs?name=snippet2&highlight=17)]
+[!code-csharp[](middleware/samples/6.x/ResponseCachingMiddleware/Program.cs?name=snippet2&highlight=15)]
 
 > [!WARNING]
 > <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A> must be called before <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A> when using [CORS middleware](xref:security/cors).
@@ -39,7 +39,7 @@ The sample app adds headers to control caching on subsequent requests:
 * [Cache-Control](https://tools.ietf.org/html/rfc7234#section-5.2): Caches cacheable responses for up to 10 seconds.
 * [Vary](https://tools.ietf.org/html/rfc7231#section-7.1.4): Configures the middleware to serve a cached response only if the [Accept-Encoding](https://tools.ietf.org/html/rfc7231#section-5.3.4) header of subsequent requests matches that of the original request.
 
-[!code-csharp[](middleware/samples_snippets/3.x/AddHeaders.cs)]
+[!code-csharp[](middleware/samples_snippets/6.x/AddHeaders.cs)]
 
 The preceding headers are not written to the response and are overridden when a controller, action, or Razor Page:
 

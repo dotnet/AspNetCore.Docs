@@ -13,7 +13,7 @@ uid: fundamentals/middleware/write
 
 ::: moniker range=">= aspnetcore-6.0"
 
-By [Fiyaz Hasan](https://twitter.com/FiyazBinHasan), [Rick Anderson](https://twitter.com/RickAndMSFT) and [Steve Smith](https://ardalis.com/)
+By [Fiyaz Hasan](https://twitter.com/FiyazBinHasan), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Steve Smith](https://ardalis.com/)
 
 Middleware is software that's assembled into an app pipeline to handle requests and responses. ASP.NET Core provides a rich set of built-in middleware components, but in some scenarios you might want to write a custom middleware.
 
@@ -25,10 +25,14 @@ Middleware is generally encapsulated in a class and exposed with an extension me
 
 :::code language="csharp" source="~/fundamentals/middleware/write/6sample/WebMiddleware/Program.cs" id="snippet_first" highlight="8-21":::
 
-The preceding highlighted inline middleware is used to demonstrate creating a middleware component by calling <xref:Microsoft.AspNetCore.Builder.UseExtensions.Use%2A?displayProperty=fullName>. The preceding `Use` extension method:
+The preceding highlighted inline middleware is used to demonstrate creating a middleware component by calling <xref:Microsoft.AspNetCore.Builder.UseExtensions.Use%2A?displayProperty=fullName>. The preceding `Use` extension method adds a middleware [delegate](/dotnet/csharp/programming-guide/delegates/) defined in-line to the application's request pipeline.
 
-* Adds a middleware [delegate](/dotnet/csharp/programming-guide/delegates/) defined in-line to the application's request pipeline.
-* Calls the overload that passes a `Func<Task>` which represents the optional next <xref:Microsoft.AspNetCore.Http.RequestDelegate>.
+There are two overloads available for the `Use` extension:
+
+* One takes a <xref:Microsoft.AspNetCore.Http.HttpContext> and a `Func<Task>`. Invoke the `Func<Task>` without any parameters.
+* The other takes a `HttpContext` and a `<xref:Microsoft.AspNetCore.Http.RequestDelegate>`. Invoke the `RequestDelegate` by passing the `HttpContext`.
+
+Prefer using the later overload as it saves two internal per-request allocations that are required when using the other overload.
 
 Test the middleware by passing in the culture. For example, request `https://localhost:5001/?culture=es-es`.
 
