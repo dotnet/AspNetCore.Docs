@@ -13,7 +13,7 @@ uid: fundamentals/middleware/write
 
 ::: moniker range=">= aspnetcore-6.0"
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Steve Smith](https://ardalis.com/)
+By [Fiyaz Hasan](https://twitter.com/FiyazBinHasan), [Rick Anderson](https://twitter.com/RickAndMSFT) and [Steve Smith](https://ardalis.com/)
 
 Middleware is software that's assembled into an app pipeline to handle requests and responses. ASP.NET Core provides a rich set of built-in middleware components, but in some scenarios you might want to write a custom middleware.
 
@@ -21,13 +21,18 @@ This topic describes how to write *convention-based* middleware. For an approach
 
 ## Middleware class
 
-Middleware is generally encapsulated in a class and exposed with an extension method. Consider the following middleware, which sets the culture for the current request from a query string:
+Middleware is generally encapsulated in a class and exposed with an extension method. Consider the following inline middleware, which sets the culture for the current request from a query string:
 
-:::code language="csharp" source="~/fundamentals/middleware/write/6sample/WebMiddleware/Program.cs" id="snippet_first":::
+:::code language="csharp" source="~/fundamentals/middleware/write/6sample/WebMiddleware/Program.cs" id="snippet_first" highlight="8-21":::
 
-The preceding sample code is used to demonstrate creating a middleware component. For ASP.NET Core's built-in localization support, see <xref:fundamentals/localization>.
+The preceding highlighted inline middleware is used to demonstrate creating a middleware component by calling <xref:Microsoft.AspNetCore.Builder.UseExtensions.Use%2A?displayProperty=fullName>. The preceding `Use` extension method:
+
+* Adds a middleware [delegate](/dotnet/csharp/programming-guide/delegates/) defined in-line to the application's request pipeline.
+* Calls the overload that passes a `Func<Task>` which represents the optional next <xref:Microsoft.AspNetCore.Http.RequestDelegate>.
 
 Test the middleware by passing in the culture. For example, request `https://localhost:5001/?culture=es-es`.
+
+For ASP.NET Core's built-in localization support, see <xref:fundamentals/localization>.
 
 <!--?culture=de-de ?culture=fr-fr /?culture=zh-hk -->
 
@@ -78,7 +83,9 @@ The `IMessageWriter` interface and implementation:
 ## Additional resources
 
 * [Sample code used in this article](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/middleware/write/6sample)
+* [UseExtensions source on GitHub](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http.Abstractions/src/Extensions/UseExtensions.cs)
 * [Lifetime and registration options](xref:fundamentals/dependency-injection#lifetime-and-registration-options) contains a complete sample of middleware with *scoped*, *transient*, and *singleton* lifetime services.
+* [DEEP DIVE: HOW IS THE ASP.NET CORE MIDDLEWARE PIPELINE BUILT](https://www.stevejgordon.co.uk/how-is-the-asp-net-core-middleware-pipeline-built)
 * <xref:fundamentals/middleware/index>
 * <xref:test/middleware>
 * <xref:migration/http-modules>

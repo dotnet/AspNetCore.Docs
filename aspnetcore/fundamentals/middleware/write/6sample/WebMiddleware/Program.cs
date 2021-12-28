@@ -1,4 +1,4 @@
-#define THIRD // FIRST SECOND THIRD
+#define FIRST // FIRST SECOND THIRD
 #if NEVER
 #elif FIRST
 // <snippet_first>
@@ -21,7 +21,7 @@ app.Use(async (context, next) =>
     }
 
     // Call the next delegate/middleware in the pipeline.
-    await next();
+    await next(context);
 });
 
 app.Run(async (context) =>
