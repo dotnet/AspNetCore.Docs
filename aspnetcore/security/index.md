@@ -21,7 +21,7 @@ ASP.NET Core enables developers to easily configure and manage security for thei
 * [Cross Origin Resource Sharing (CORS)](xref:security/cors)
 * [Cross-Site Scripting (XSS) attacks](xref:security/cross-site-scripting)
 
-These security features allow you to build robust yet secure ASP.NET Core apps.
+These security features allow you to build robust and secure ASP.NET Core apps.
 
 ## ASP.NET Core security features
 
