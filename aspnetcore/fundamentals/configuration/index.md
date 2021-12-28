@@ -212,13 +212,13 @@ Environment variable names reflect the structure of an *appsettings.json* file. 
 **environment variables**
 
 ```console
-setx SmtpServer=smtp.example.com
-setx Logging__0__Name=ToEmail
-setx Logging__0__Level=Critical
-setx Logging__0__Args__FromAddress=MySystem@example.com
-setx Logging__0__Args__ToAddress=SRE@example.com
-setx Logging__1__Name=ToConsole
-setx Logging__1__Level=Information
+setx SmtpServer smtp.example.com
+setx Logging__0__Name ToEmail
+setx Logging__0__Level Critical
+setx Logging__0__Args__FromAddress MySystem@example.com
+setx Logging__0__Args__ToAddress SRE@example.com
+setx Logging__1__Name ToConsole
+setx Logging__1__Level Information
 ```
 
 ### Environment variables set in generated launchSettings.json
@@ -1061,13 +1061,13 @@ Environment variable names reflect the structure of an *appsettings.json* file. 
 **environment variables**
 
 ```console
-setx SmtpServer=smtp.example.com
-setx Logging__0__Name=ToEmail
-setx Logging__0__Level=Critical
-setx Logging__0__Args__FromAddress=MySystem@example.com
-setx Logging__0__Args__ToAddress=SRE@example.com
-setx Logging__1__Name=ToConsole
-setx Logging__1__Level=Information
+setx SmtpServer smtp.example.com
+setx Logging__0__Name ToEmail
+setx Logging__0__Level Critical
+setx Logging__0__Args__FromAddress MySystem@example.com
+setx Logging__0__Args__ToAddress SRE@example.com
+setx Logging__1__Name ToConsole
+setx Logging__1__Level Information
 ```
 
 ### Environment variables set in generated launchSettings.json

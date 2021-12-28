@@ -346,7 +346,7 @@ Run the following commands from the project folder, that is, the `TodoApi` folde
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --prerelease
 dotnet add package Microsoft.EntityFrameworkCore.Design --prerelease
 dotnet add package Microsoft.EntityFrameworkCore.SqlServer --prerelease
-dotnet tool install -g dotnet-aspnet-codegenerator --version 6.0.0-preview.7.21413.1
+dotnet tool install -g dotnet-aspnet-codegenerator --version 6.0.1
 dotnet aspnet-codegenerator controller -name TodoItemsController -async -api -m TodoItem -dc TodoContext -outDir Controllers
 ```
 
