@@ -55,7 +55,7 @@ There's no developer control over this caching behavior when using the [Response
 
 ### In-memory caching
 
-In-memory caching uses server memory to store cached data. This type of caching is suitable for a single server or multiple servers using session affinity. Session affinity  is also known as *sticky sessions*. Session affinity means that the requests from a client are always routed to the same server for processing.
+In-memory caching uses server memory to store cached data. This type of caching is suitable for a single server or multiple servers using session affinity. Session affinity is also known as *sticky sessions*. Session affinity means that the requests from a client are always routed to the same server for processing.
 
 For more information, see <xref:performance/caching/memory> and [Troubleshoot Azure Application Gateway session affinity issues](/azure/application-gateway/how-to-troubleshoot-application-gateway-session-affinity-issues).
 
