@@ -777,7 +777,7 @@ Optimize rendering speed to minimize rendering workload and improve UI responsiv
 
 ### Avoid unnecessary rendering of component subtrees
 
-You might able to remove the majority of a parent component's rendering cost by skipping the rerendering of child component subtrees when an event occurs. You should only be concerned about skipping the rerendering subtrees that are particularly expensive to render and are causing UI lag.
+You might be able to remove the majority of a parent component's rendering cost by skipping the rerendering of child component subtrees when an event occurs. You should only be concerned about skipping the rerendering subtrees that are particularly expensive to render and are causing UI lag.
 
 At runtime, components exist in a hierarchy. A root component has child components. In turn, the root's children have their own child components, and so on. When an event occurs, such as a user selecting a button, the following process determines which components to rerender:
 
@@ -1525,7 +1525,7 @@ Optimize rendering speed to minimize rendering workload and improve UI responsiv
 
 ### Avoid unnecessary rendering of component subtrees
 
-You might able to remove the majority of a parent component's rendering cost by skipping the rerendering of child component subtrees when an event occurs. You should only be concerned about skipping the rerendering subtrees that are particularly expensive to render and are causing UI lag.
+You might be able to remove the majority of a parent component's rendering cost by skipping the rerendering of child component subtrees when an event occurs. You should only be concerned about skipping the rerendering subtrees that are particularly expensive to render and are causing UI lag.
 
 At runtime, components exist in a hierarchy. A root component has child components. In turn, the root's children have their own child components, and so on. When an event occurs, such as a user selecting a button, the following process determines which components to rerender:
 
