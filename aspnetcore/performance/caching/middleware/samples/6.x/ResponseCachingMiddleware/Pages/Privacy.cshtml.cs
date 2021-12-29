@@ -14,6 +14,8 @@ namespace ResponseCachingMiddleware.Pages
 
         public void OnGet()
         {
+            ViewData["Time"] = DateTime.Now.Second.ToString() + ":"
+                + DateTime.Now.Millisecond.ToString();
         }
     }
 }

@@ -21,7 +21,7 @@ This article explains how to configure Response Caching Middleware in an ASP.NET
 
 Response Caching Middleware is available for ASP.NET Core apps. In `Program.cs`, add the Response Caching Middleware to the service collection:
 
-[!code-csharp[](middleware/samples/6.x/ResponseCachingMiddleware/Program.cs?name=snippet1&highlight=3)]
+[!code-csharp[](middleware/samples/6.x/ResponseCachingMiddleware/Program.cs?name=snippet2&highlight=3)]
 
 Configure the app to use the middleware with the <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*> extension method. `UseResponseCaching` adds the middleware to the request processing pipeline:
 
@@ -35,7 +35,7 @@ The sample app adds headers to control caching on subsequent requests:
 * [Cache-Control](https://tools.ietf.org/html/rfc7234#section-5.2): Caches cacheable responses for up to 10 seconds.
 * [Vary](https://tools.ietf.org/html/rfc7231#section-7.1.4): Configures the middleware to serve a cached response only if the [Accept-Encoding](https://tools.ietf.org/html/rfc7231#section-5.3.4) header of subsequent requests matches that of the original request.
 
-[!code-csharp[](middleware/samples/6.x/ResponseCachingMiddleware/Program.cs?name=snippet2&highlight=22-34)]
+[!code-csharp[](middleware/samples/6.x/ResponseCachingMiddleware/Program.cs?name=snippet1&highlight=22-34)]
 
 The preceding headers are not written to the response and are overridden when a controller, action, or Razor Page:
 
@@ -140,6 +140,7 @@ When testing and troubleshooting caching behavior, a browser may set request hea
 ## Additional resources
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching/middleware/samples) ([how to download](xref:index#how-to-download-a-sample))
+* [GitHub source for `IResponseCachingPolicyProvider`](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/ResponseCaching/src/Interfaces/IResponseCachingPolicyProvider.cs)
 * <xref:fundamentals/startup>
 * <xref:fundamentals/middleware/index>
 * <xref:performance/caching/memory>
