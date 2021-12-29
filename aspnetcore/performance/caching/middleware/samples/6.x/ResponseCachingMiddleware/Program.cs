@@ -1,19 +1,20 @@
+#define SECOND // FIRST SECOND
+#if NEVER
+#elif FIRST
+#region snippet1
+#region snippet3
+#region snippet2
 var builder = WebApplication.CreateBuilder(args);
 
-#region snippet1
-// Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddResponseCaching();
-#endregion
 
 var app = builder.Build();
+#endregion
 
-#region snippet2
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
@@ -24,8 +25,7 @@ app.UseStaticFiles();
 //app.UseCors();
 
 app.UseResponseCaching();
-
-app.UseRouting();
+#endregion
 
 app.Use(async (context, next) =>
 {
@@ -41,10 +41,39 @@ app.Use(async (context, next) =>
     await next();
 });
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapRazorPages();
-});
+app.MapRazorPages();
 
 app.Run();
 #endregion
+#elif SECOND
+#region snippet_2
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddRazorPages();
+
+builder.Services.AddResponseCaching(options =>
+{
+    options.MaximumBodySize = 1024;
+    options.UseCaseSensitivePaths = true;
+});
+
+var app = builder.Build();
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+//app.UseCors(); // UseCors must be called before UseResponseCaching
+
+app.UseResponseCaching();
+
+app.MapRazorPages();
+
+app.Run();
+#endregion
+#endif
