@@ -15,17 +15,16 @@ By [John Luo](https://github.com/JunTaoLuo)
 
 ::: moniker range=">= aspnetcore-6.0"
 
-This article explains how to configure Response Caching Middleware in an ASP.NET Core app. The middleware determines when responses are cacheable, stores responses, and serves responses from cache. For an introduction to HTTP caching and the [`[ResponseCache]`](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) attribute, see [Response Caching](xref:performance/caching/response).
+This article explains how to configure Response Caching Middleware in an ASP.NET Core Web API app. The middleware determines when responses are cacheable, stores responses, and serves responses from cache. For an introduction to HTTP caching and the [`[ResponseCache]`](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) attribute, see [Response Caching](xref:performance/caching/response).
 
+Response caching middleware is typically not beneficial for UI apps such as Razor Page. Output caching is being considered for the next version of ASP.NET Core, which will benefit UI apps. With output caching, the app, not the browser, decides what should be cached. For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/27387).
+
+<!--Postman:  GET: Headers > Postman > go to settings > Send no-cache header -->
 ## Configuration
 
-Response Caching Middleware is available for ASP.NET Core apps. In `Program.cs`, add the Response Caching Middleware to the service collection:
+In `Program.cs`, add the Response Caching Middleware to the service collection and configure the app to use the middleware with the <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*> extension method. `UseResponseCaching` adds the middleware to the request processing pipeline:
 
-[!code-csharp[](middleware/samples/6.x/ResponseCachingMiddleware/Program.cs?name=snippet2&highlight=3)]
-
-Configure the app to use the middleware with the <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*> extension method. `UseResponseCaching` adds the middleware to the request processing pipeline:
-
-[!code-csharp[](middleware/samples/6.x/ResponseCachingMiddleware/Program.cs?name=snippet3&highlight=17-20)]
+[!code-csharp[](middleware/samples/6.x/ResponseCachingMiddleware/Program.cs?name=snippet2&highlight=3,7)]
 
 > [!WARNING]
 > <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A> must be called before <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A> when using [CORS middleware](xref:security/cors).
@@ -45,6 +44,8 @@ Response Caching Middleware only caches server responses that result in a 200 (O
 
 > [!WARNING]
 > Responses containing content for authenticated clients must be marked as not cacheable to prevent the middleware from storing and serving those responses. See [Conditions for caching](#conditions-for-caching) for details on how the middleware determines if a response is cacheable.
+
+The preceding code typically won't return a cached value to browser. Use [Fiddler](https://www.telerik.com/fiddler), [Postman](https://www.getpostman.com/), or other tool that can explicitly set request headers and are preferred for testing caching. For more information, see [Troubleshooting](#troubleshooting) in this article.
 
 ## Options
 
@@ -113,10 +114,7 @@ For more control over caching behavior, explore other caching features of ASP.NE
 
 If caching behavior isn't as expected, confirm that responses are cacheable and capable of being served from the cache. Examine the request's incoming headers and the response's outgoing headers. Enable [logging](xref:fundamentals/logging/index) to help with debugging.
 
-When testing and troubleshooting caching behavior, a browser may set request headers that affect caching in undesirable ways. For example, a browser may set the `Cache-Control` header to `no-cache` or `max-age=0` when refreshing a page. The following tools can explicitly set request headers and are preferred for testing caching:
-
-* [Fiddler](https://www.telerik.com/fiddler)
-* [Postman](https://www.getpostman.com/)
+When testing and troubleshooting caching behavior, a browser typically sets request headers that prevent caching. For example, a browser may set the `Cache-Control` header to `no-cache` or `max-age=0` when refreshing a page. [Fiddler](https://www.telerik.com/fiddler), [Postman](https://www.getpostman.com/), and other tools can explicitly set request headers and are preferred for testing caching.
 
 ### Conditions for caching
 

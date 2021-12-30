@@ -1,25 +1,15 @@
-#define SECOND // FIRST SECOND
+#define FIRST // FIRST SECOND
 #if NEVER
 #elif FIRST
 #region snippet1
-#region snippet3
 #region snippet2
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddRazorPages();
 builder.Services.AddResponseCaching();
 
 var app = builder.Build();
-#endregion
-
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Error");
-    app.UseHsts();
-}
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();
 
 // UseCors must be called before UseResponseCaching
 //app.UseCors();
@@ -41,38 +31,7 @@ app.Use(async (context, next) =>
     await next();
 });
 
-app.MapRazorPages();
-
-app.Run();
-#endregion
-#elif SECOND
-#region snippet_2
-var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddRazorPages();
-
-builder.Services.AddResponseCaching(options =>
-{
-    options.MaximumBodySize = 1024;
-    options.UseCaseSensitivePaths = true;
-});
-
-var app = builder.Build();
-
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Error");
-    app.UseHsts();
-}
-
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-
-//app.UseCors(); // UseCors must be called before UseResponseCaching
-
-app.UseResponseCaching();
-
-app.MapRazorPages();
+app.MapGet("/", () => DateTime.Now.Millisecond);
 
 app.Run();
 #endregion
