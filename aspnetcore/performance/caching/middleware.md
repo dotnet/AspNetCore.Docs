@@ -5,13 +5,13 @@ description: Learn how to configure and use Response Caching Middleware in ASP.N
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/07/2021
+ms.date: 1/1/2022
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: performance/caching/middleware
 ---
 # Response Caching Middleware in ASP.NET Core
 
-By [John Luo](https://github.com/JunTaoLuo)
+By [John Luo](https://github.com/JunTaoLuo) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-6.0"
 
@@ -28,7 +28,7 @@ The Response caching middleware:
 
 In `Program.cs`, add the Response Caching Middleware to the service collection and configure the app to use the middleware with the <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*> extension method. `UseResponseCaching` adds the middleware to the request processing pipeline:
 
-[!code-csharp[](middleware/samples/6.x/ResponseCachingMiddleware/Program.cs?name=snippet2&highlight=3,7)]
+[!code-csharp[](middleware/samples/6.x/ResponseCachingMiddleware/Program.cs?name=snippet2&highlight=3,12)]
 
 > [!WARNING]
 > <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A> must be called before <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A> when using [CORS middleware](xref:security/cors).
@@ -38,7 +38,7 @@ The sample app adds headers to control caching on subsequent requests:
 * [Cache-Control](https://tools.ietf.org/html/rfc7234#section-5.2): Caches cacheable responses for up to 10 seconds.
 * [Vary](https://tools.ietf.org/html/rfc7231#section-7.1.4): Configures the middleware to serve a cached response only if the [Accept-Encoding](https://tools.ietf.org/html/rfc7231#section-5.3.4) header of subsequent requests matches that of the original request.
 
-[!code-csharp[](middleware/samples/6.x/ResponseCachingMiddleware/Program.cs?name=snippet1&highlight=22-34)]
+[!code-csharp[](middleware/samples/6.x/ResponseCachingMiddleware/Program.cs?name=snippet1&highlight=14-26)]
 
 The preceding headers are not written to the response and are overridden when a controller, action, or Razor Page:
 
@@ -66,7 +66,7 @@ The following example configures the middleware to:
 * Cache responses with a body size smaller than or equal to 1,024 bytes.
 * Store the responses by case-sensitive paths. For example, `/page1` and `/Page1` are stored separately.
 
-[!code-csharp[](middleware/samples/6.x/ResponseCachingMiddleware/Program.cs?name=snippet4&highlight=5-9)]
+[!code-csharp[](middleware/samples/6.x/ResponseCachingMiddleware/Program.cs?name=snippet4&highlight=3-7)]
 
 ## VaryByQueryKeys
 
