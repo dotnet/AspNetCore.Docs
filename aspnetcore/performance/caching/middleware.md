@@ -62,7 +62,7 @@ The following example configures the middleware to:
 * Cache responses with a body size smaller than or equal to 1,024 bytes.
 * Store the responses by case-sensitive paths. For example, `/page1` and `/Page1` are stored separately.
 
-[!code-csharp[](middleware/samples/6.x/ResponseCachingMiddleware/Program.cs?name=snippet_2&highlight=5-9)]
+[!code-csharp[](middleware/samples/6.x/ResponseCachingMiddleware/Program.cs?name=snippet4&highlight=5-9)]
 
 ## VaryByQueryKeys
 
