@@ -245,7 +245,7 @@ Extension methods on <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> can be 
 
 By default, the web root is relative to the content root in the `wwwroot` folder. Web root is where the static files middleware looks for static files. Web root can be changed with `WebHostOptions`, the command line, or with the <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseWebRoot%2A> method:
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_chngr)]
+[!code-csharp[](~/migration/50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_wr)]
 
 ### Custom dependency injection (DI) container
 
