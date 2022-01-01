@@ -13,9 +13,6 @@
     "repoIndexFolder": "aspnetcore/whats-new"
   },
   "inclusionCriteria": {
-    "additionalMicrosoftOrgs": [
-      "ASP.NET"
-    ],
     "minAdditionsToFile": 50
   },
   "areas": [
