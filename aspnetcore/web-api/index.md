@@ -167,7 +167,11 @@ To make automatic and custom responses consistent, call the <xref:Microsoft.AspN
 
 ### Log automatic 400 responses
 
-You can add logging by utilizing [InvalidModelStateResponseFactory](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.apibehavioroptions.invalidmodelstateresponsefactory). By default, [InvalidModelStateResponseFactory](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.apibehavioroptions.invalidmodelstateresponsefactory) uses [ProblemDetailsFactory](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.infrastructure.problemdetailsfactory) to construct an instance of [ValidationProblemDetails](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.validationproblemdetails). Here is an example of code to be used in `Startup.ConfigureServices` that adds logging and preserves the original behavior:
+You can add logging by utilizing [InvalidModelStateResponseFactory](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.apibehavioroptions.invalidmodelstateresponsefactory).
+
+By default, [InvalidModelStateResponseFactory](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.apibehavioroptions.invalidmodelstateresponsefactory) uses [ProblemDetailsFactory](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.infrastructure.problemdetailsfactory) to construct an instance of [ValidationProblemDetails](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.validationproblemdetails).
+
+Here is an example of code to be used in `Startup.ConfigureServices` that adds logging and preserves the original behavior:
 
 ```csharp
 services.AddControllers().ConfigureApiBehaviorOptions(options =>
@@ -510,7 +514,9 @@ To make automatic and custom responses consistent, call the <xref:Microsoft.AspN
 
 ### Log automatic 400 responses
 
-You can add logging by utilizing [InvalidModelStateResponseFactory](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.apibehavioroptions.invalidmodelstateresponsefactory). Here is an example of code to be used in `Startup.ConfigureServices` that adds logging on top of **any** already existing functionality that generates the response:
+You can add logging by utilizing [InvalidModelStateResponseFactory](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.apibehavioroptions.invalidmodelstateresponsefactory).
+
+Here is an example of code to be used in `Startup.ConfigureServices` that adds logging on top of **any** already existing functionality that generates the response:
 
 ```csharp
 services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
