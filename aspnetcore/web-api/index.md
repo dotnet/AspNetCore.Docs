@@ -167,7 +167,64 @@ To make automatic and custom responses consistent, call the <xref:Microsoft.AspN
 
 ### Log automatic 400 responses
 
-See [How to log automatic 400 responses on model validation errors (dotnet/AspNetCore.Docs#12157)](https://github.com/dotnet/AspNetCore.Docs/issues/12157).
+You can add logging by utilizing [InvalidModelStateResponseFactory](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.apibehavioroptions.invalidmodelstateresponsefactory). By default, [InvalidModelStateResponseFactory](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.apibehavioroptions.invalidmodelstateresponsefactory) uses [ProblemDetailsFactory](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.infrastructure.problemdetailsfactory) to construct an instance of [ValidationProblemDetails](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.validationproblemdetails). Here is an example of code to be used in `Startup.ConfigureServices` that adds logging and preserves the original behavior:
+
+```csharp
+services.AddControllers().ConfigureApiBehaviorOptions(options =>
+{
+    // If preserving of the original behavior is desired, get a reference to the delegate.
+    var builtInFactory = options.InvalidModelStateResponseFactory;
+
+    options.InvalidModelStateResponseFactory = context =>
+    {
+        // As an example, we will create a logger with the full name of the action method as the category.
+        var logger = GetLoggerInstance(context.HttpContext.RequestServices, context.ActionDescriptor.DisplayName);
+
+        // Log accordingly.
+
+        // By using the original delegate, we preserve the default behavior.
+        // Alternatively, you can take full control and simply construct the ValidationProblemDetails object yourself,
+        // or even use a custom object.
+        var result = builtInFactory(context);
+
+        // Example of manually constructing a ValidationProblemDetails object:
+        // var problemDetails = new ValidationProblemDetails(context.ModelState)
+        //    {
+        //        Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1",
+        //        Title = "One or more model validation errors occurred.",
+        //        Status = StatusCodes.Status400BadRequest,
+        //        Detail = "See the errors property for details.",
+        //        Instance = context.HttpContext.Request.Path,
+        //        Extensions =
+        //        {
+        //            ["traceId"] = Activity.Current?.Id ?? context.HttpContext?.TraceIdentifier
+        //        }
+        //    };
+
+        // If accessing the returned ValidationProblemDetails object is required, get a reference to it.
+        var problemDetails = (ValidationProblemDetails)((ObjectResult)result).Value;
+
+        // Modify & Log accordingly.
+
+        return result;
+
+        static ILogger GetLoggerInstance(IServiceProvider provider, string? category)
+        {
+            if (category is null)
+            {
+                // Get an instance of ILogger with the category "Startup".
+                return provider.GetRequiredService<ILogger<Startup>>();
+            }
+            else
+            {
+                // Alternatively, get an instance of ILoggerFactory and create a logger with a custom category.
+                var loggerFactory = provider.GetRequiredService<ILoggerFactory>();
+                return loggerFactory.CreateLogger(category);
+            }
+        }
+    };
+});
+```
 
 ### Disable automatic 400 response
 
@@ -453,7 +510,43 @@ To make automatic and custom responses consistent, call the <xref:Microsoft.AspN
 
 ### Log automatic 400 responses
 
-See [How to log automatic 400 responses on model validation errors (dotnet/AspNetCore.Docs#12157)](https://github.com/dotnet/AspNetCore.Docs/issues/12157).
+You can add logging by utilizing [InvalidModelStateResponseFactory](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.apibehavioroptions.invalidmodelstateresponsefactory). Here is an example of code to be used in `Startup.ConfigureServices` that adds logging on top of **any** already existing functionality that generates the response:
+
+```csharp
+services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+services.PostConfigure<ApiBehaviorOptions>(options =>
+{
+    // If preserving of the existing functionality is desired, get a reference to the delegate.
+    var builtInFactory = options.InvalidModelStateResponseFactory;
+
+    options.InvalidModelStateResponseFactory = context =>
+    {
+        // As an example, we will create a logger with the full name of the action method as the category.
+        var logger = GetLoggerInstance(context.HttpContext.RequestServices, context.ActionDescriptor.DisplayName);
+
+        // Log accordingly.
+
+        // Use existing functionality - either one defined by us, or in this case the framework's.
+        return builtInFactory(context);
+
+        ILogger GetLoggerInstance(IServiceProvider provider, string category)
+        {
+            if (category is null)
+            {
+                // Get an instance of ILogger with the category "Startup".
+                return provider.GetRequiredService<ILogger<Startup>>();
+            }
+            else
+            {
+                // Alternatively, get an instance of ILoggerFactory and create a logger with a custom category.
+                var loggerFactory = provider.GetRequiredService<ILoggerFactory>();
+                return loggerFactory.CreateLogger(category);
+            }
+        }
+    };
+});
+```
 
 ### Disable automatic 400 response
 
