@@ -750,6 +750,8 @@ items:
             uid: grpc/protobuf
           - name: Versioning gRPC services
             uid: grpc/versioning
+          - name: Test gRPC services
+            uid: grpc/test-services
       - name: Call gRPC services with C#
         items:
           - name: Overview
