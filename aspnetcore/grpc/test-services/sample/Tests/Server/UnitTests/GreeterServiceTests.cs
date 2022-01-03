@@ -40,8 +40,8 @@ namespace Tests.Server.UnitTests
                 new HelloRequest { Name = "Joe" }, TestServerCallContext.Create());
 
             // Assert
-            Assert.Equal("Hello Joe", response.Message);
             mockGreeter.Verify(v => v.Greet("Joe"));
+            Assert.Equal("Hello Joe", response.Message);
         }
         #endregion
 

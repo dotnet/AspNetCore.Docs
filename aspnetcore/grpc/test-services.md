@@ -98,3 +98,8 @@ The preceding integration test:
   * Overrides the `IGreeter` registered with dependency injection using `ConfigureWebHost`. 
 * Calls the `SayHelloUnary` method using the gRPC client.
 * Asserts the expected reply message based on the mock `IGreeter` instance.
+
+## Additional resources
+
+* <xref:grpc/test-tools>
+* <xref:grpc/test-client>

@@ -27,6 +27,7 @@ namespace Tests.Client
 {
     public class WorkerTests
     {
+        #region snippet_Test
         [Fact]
         public async Task Greeting_Success_RepositoryCalled()
         {
@@ -45,6 +46,7 @@ namespace Tests.Client
             // Assert
             mockRepository.Verify(v => v.SaveGreeting("Test message"));
         }
+        #endregion
 
         [Fact]
         public async Task Greeting_Error_ExceptionThrown()

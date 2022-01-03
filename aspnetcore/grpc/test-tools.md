@@ -153,3 +153,5 @@ The tool launches a browser window with the interactive web UI. gRPC services ar
 * [gRPCurl GitHub homepage](https://github.com/fullstorydev/grpcurl)
 * [gRPCui GitHub homepage](https://github.com/fullstorydev/grpcui)
 * [`Grpc.AspNetCore.Server.Reflection`](https://www.nuget.org/packages/Grpc.AspNetCore.Server.Reflection)
+* <xref:grpc/test-services>
+* <xref:grpc/test-client>

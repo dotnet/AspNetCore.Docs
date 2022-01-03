@@ -20,6 +20,7 @@ using Test;
 
 namespace Client
 {
+    #region snippet_Worker
     public class Worker : BackgroundService
     {
         private readonly Tester.TesterClient _client;
@@ -45,4 +46,5 @@ namespace Client
             }
         }
     }
+    #endregion
 }
