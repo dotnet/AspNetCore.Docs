@@ -26,6 +26,7 @@ namespace Tests.Server.UnitTests
 {
     public class WorkerTests
     {
+        #region snippet_SayHelloUnaryTest
         [Fact]
         public async Task SayHelloUnaryTest()
         {
@@ -42,6 +43,7 @@ namespace Tests.Server.UnitTests
             Assert.Equal("Hello Joe", response.Message);
             mockGreeter.Verify(v => v.Greet("Joe"));
         }
+        #endregion
 
         [Fact]
         public async Task SayHelloServerStreamingTest()

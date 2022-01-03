@@ -32,6 +32,7 @@ namespace Tests.Server.IntegrationTests
         {
         }
 
+        #region snippet_SayHelloUnaryTest
         [Fact]
         public async Task SayHelloUnaryTest()
         {
@@ -44,6 +45,7 @@ namespace Tests.Server.IntegrationTests
             // Assert
             Assert.Equal("Hello Joe", response.Message);
         }
+        #endregion
 
         [Fact]
         public async Task SayHelloClientStreamingTest()

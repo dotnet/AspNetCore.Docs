@@ -29,6 +29,7 @@ namespace Tests.Server.IntegrationTests
 {
     public class MockedGreeterServiceTests : IntegrationTestBase
     {
+        #region snippet_SayHelloUnaryTest
         public MockedGreeterServiceTests(GrpcTestFixture<Startup> fixture, ITestOutputHelper outputHelper)
             : base(fixture, outputHelper)
         {
@@ -53,5 +54,6 @@ namespace Tests.Server.IntegrationTests
             // Assert
             Assert.Equal("Test Joe", response.Message);
         }
+        #endregion
     }
 }

@@ -21,6 +21,7 @@ using Test;
 
 namespace Server
 {
+    #region snippet_TesterService
     public class TesterService : Tester.TesterBase
     {
         private readonly IGreeter _greeter;
@@ -35,7 +36,8 @@ namespace Server
             return Task.FromResult(new HelloReply { Message = _greeter.Greet(request.Name) });
         }
 
-        public override async Task SayHelloServerStreaming(HelloRequest request, IServerStreamWriter<HelloReply> responseStream, ServerCallContext context)
+        public override async Task SayHelloServerStreaming(
+            HelloRequest request, IServerStreamWriter<HelloReply> responseStream, ServerCallContext context)
         {
             var i = 0;
             while (!context.CancellationToken.IsCancellationRequested)
@@ -48,7 +50,8 @@ namespace Server
             }
         }
 
-        public override async Task<HelloReply> SayHelloClientStreaming(IAsyncStreamReader<HelloRequest> requestStream, ServerCallContext context)
+        public override async Task<HelloReply> SayHelloClientStreaming(
+            IAsyncStreamReader<HelloRequest> requestStream, ServerCallContext context)
         {
             var names = new List<string>();
 
@@ -60,7 +63,9 @@ namespace Server
             return new HelloReply { Message = _greeter.Greet(string.Join(", ", names)) };
         }
 
-        public override async Task SayHelloBidirectionalStreaming(IAsyncStreamReader<HelloRequest> requestStream, IServerStreamWriter<HelloReply> responseStream, ServerCallContext context)
+        public override async Task SayHelloBidirectionalStreaming(
+            IAsyncStreamReader<HelloRequest> requestStream, IServerStreamWriter<HelloReply> responseStream,
+            ServerCallContext context)
         {
             await foreach (var message in requestStream.ReadAllAsync())
             {
@@ -68,4 +73,5 @@ namespace Server
             }
         }
     }
+    #endregion
 }

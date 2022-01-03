@@ -26,11 +26,11 @@ In unit testing, only the gRPC service is involved. Dependencies injected into t
 
 To demonstrate service tests, review the following service in the sample app. 
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/testing/samples/) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/grpc/test-services/sample) ([how to download](xref:index#how-to-download-a-sample))
 
 The `TesterService` returns greetings using gRPC's four method types.
 
-[!code-csharp[](testing/samples/3.x/TestingControllersSample/src/TestingControllersSample/Controllers/HomeController.cs?name=snippet_HomeController&highlight=1,5,10,31-32)]
+[!code-csharp[](test-services/sample/Server/Services/TesterService.cs?name=snippet_TesterService&highlight=1,5)]
 
 The preceding gRPC service:
 
@@ -42,7 +42,7 @@ The preceding gRPC service:
 
 gRPC services can be tested directly from a unit test library. Unit tests allow a gRPC service to be tested in isolation.
 
-[!code-csharp[](testing/samples/3.x/TestingControllersSample/src/TestingControllersSample/Controllers/HomeController.cs?name=snippet_HomeController&highlight=1,5,10,31-32)]
+[!code-csharp[](test-services/sample/Tests/Server/UnitTests/GreeterServiceTests.cs?name=snippet_SayHelloUnaryTest)]
 
 The preceding unit test:
 
@@ -75,7 +75,7 @@ The [sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore
 * The `GrpcTestFixture<TStartup>` class configures the ASP.NET Core host and starts the gRPC app in an in-memory test server.
 * The `IntegrationTestBase` class is the base type that integration tests inherit from. It contains the fixture state, and APIs for creating a gRPC client to call the gRPC app.
 
-[!code-csharp[](testing/samples/3.x/TestingControllersSample/src/TestingControllersSample/Controllers/HomeController.cs?name=snippet_HomeController&highlight=1,5,10,31-32)]
+[!code-csharp[](test-services/sample/Tests/Server/IntegrationTests/GreeterServiceTests.cs?name=snippet_SayHelloUnaryTest)]
 
 The preceding integration test:
 
@@ -87,7 +87,7 @@ The preceding integration test:
 
 Dependencies can be overridden in a test with a call to `ConfigureWebHost` on the fixture. This is useful when a dependency is not available in the test environment. For example, using this feature to override a dependency that calls an external web API to a mock instance.
 
-[!code-csharp[](testing/samples/3.x/TestingControllersSample/src/TestingControllersSample/Controllers/HomeController.cs?name=snippet_HomeController&highlight=1,5,10,31-32)]
+[!code-csharp[](test-services/sample/Tests/Server/IntegrationTests/MockedGreeterServiceTests.cs?name=snippet_SayHelloUnaryTest)]
 
 The preceding integration test:
 
