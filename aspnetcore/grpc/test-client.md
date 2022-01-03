@@ -29,11 +29,11 @@ The preceding type:
 
 * Follows the [Explicit Dependencies Principle](/dotnet/architecture/modern-web-apps-azure/architectural-principles#explicit-dependencies).
 * Expects [dependency injection (DI)](xref:fundamentals/dependency-injection) to provide instances of `TesterClient` and `IGreetRepository`. The app is configured to use the [gRPC client factory](xref:grpc/clientfactory) to create `TesterClient`.
-* Can be tested with a mocked `IGreetRepository` service and `TesterClient` client using a mock object framework, such as [Moq](https://www.nuget.org/packages/Moq/). A *mocked object* is a fabricated object with a predetermined set of property and method behaviors used for testing. For more information, see [Introduction to integration tests](xref:test/integration-tests#introduction-to-integration-tests).
+* Can be tested with a mocked `IGreetRepository` service and `TesterClient` client using a mock object framework, such as [Moq](https://www.nuget.org/packages/Moq). A *mocked object* is a fabricated object with a predetermined set of property and method behaviors used for testing. For more information, see <xref:test/integration-tests#introduction-to-integration-tests>.
 
 ## Mock a gRPC client
 
-gRPC clients are concrete client types that are [generated from *\*.proto* files](xref:grpc/basics#generated-c-assets). The concrete gRPC client has methods that translate to the gRPC service in the *\*.proto* file. For example, a service called `Greeter` generates a `GreeterClient` type with methods to call the service.
+gRPC clients are concrete client types that are [generated from `*\*.proto*` files](xref:grpc/basics#generated-c-assets). The concrete gRPC client has methods that translate to the gRPC service in the `*\*.proto*` file. For example, a service called `Greeter` generates a `GreeterClient` type with methods to call the service.
 
 A mocking framework can mock a gRPC client type. When a mocked client is passed to the type, the test uses the mocked method instead of sending a gRPC call to a server.
 
@@ -41,7 +41,7 @@ A mocking framework can mock a gRPC client type. When a mocked client is passed 
 
 The preceding unit test:
 
-* Mocks `IGreetRepository` amd `TesterClient` using [Moq](https://www.nuget.org/packages/Moq/).
+* Mocks `IGreetRepository` amd `TesterClient` using [Moq](https://www.nuget.org/packages/Moq).
 * Starts the worker.
 * Verifies `SaveGreeting` is called with the expected greeting message.
 
