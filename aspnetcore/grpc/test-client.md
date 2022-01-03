@@ -1,5 +1,5 @@
 ---
-title: Mock gRPC client when testing .NET gRPC apps
+title: Mock gRPC client in .NET tests
 author: jamesnk
 description: Learn how to mock gRPC client in .NET tests.
 monikerRange: '>= aspnetcore-3.1'
@@ -9,11 +9,11 @@ ms.date: 01/01/2022
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/test-client
 ---
-# Mock gRPC client when testing .NET gRPC apps
+# Mock gRPC client in .NET tests
 
 By: [James Newton-King](https://twitter.com/jamesnk)
 
-Testing is an important aspect of building stable and maintainable software. This article discusses how to create mock gRPC clients and avoid sending gRPC calls to external servers when testing.
+Testing is an important aspect of building stable and maintainable software. Part of writing high-quality tests is removing external dependencies. This article discusses using mock gRPC clients in tests to remove gRPC calls to external servers.
 
 ## Example testable client app
 
@@ -35,7 +35,7 @@ The preceding type:
 
 gRPC clients are concrete client types that are [generated from *\*.proto* files](xref:grpc/basics#generated-c-assets). The concrete gRPC client has methods that translate to the gRPC service in the *\*.proto* file. For example, a service called `Greeter` generates a `GreeterClient` type with methods to call the service.
 
-Methods on a gRPC client type can be mocked using a mock object framework. A test uses a mocked method instead of sending a gRPC call to a server.
+A mocking framework can mock a gRPC client type. Instead of sending a gRPC call to a server, a test uses a mocked method.
 
 [!code-csharp[](test-services/sample/Tests/Client/WorkerTests.cs?name=snippet_Test)]
 
@@ -43,7 +43,7 @@ The preceding unit test:
 
 * Mocks `IGreetRepository` amd `TesterClient` using [Moq](https://www.nuget.org/packages/Moq/).
 * Starts the worker.
-* Verifies the expected greeting message is passed to `SaveGreeting`.
+* Verifies `SaveGreeting` is called with the expected greeting message.
 
 ## Additional resources
 
