@@ -3,7 +3,8 @@ title: "Tutorial: Get started with Razor Pages in ASP.NET Core"
 author: rick-anderson
 description: This is the first tutorial of a series that teaches the basics of building an ASP.NET Core Razor Pages web app.
 ms.author: riande
-ms.date: 10/06/2021
+monikerRange: '>= aspnetcore-3.1'
+ms.date: 1/6/2022
 ms.custom: contperf-fy21q2
 no-loc: [Home, Privacy, Index, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/razor-pages/razor-pages-start
@@ -12,7 +13,6 @@ uid: tutorials/razor-pages/razor-pages-start
 # Tutorial: Get started with Razor Pages in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
 
 ::: moniker range=">= aspnetcore-6.0"
 This is the first tutorial of a series that teaches the basics of building an ASP.NET Core Razor Pages web app.
