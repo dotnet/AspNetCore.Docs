@@ -18,7 +18,7 @@ Testing is an important aspect of building stable and maintainable software. Thi
 There are two common approaches for testing gRPC services:
 
 * **Unit testing** - Test gRPC services directly from a unit testing library.
-* **Integration testing** - The gRPC app is hosted in ([`TestServer`](/dotnet/api/microsoft.aspnetcore.testhost.testserver)) from the [`Microsoft.AspNetCore.TestHost`](https://www.nuget.org/packages/Microsoft.AspNetCore.TestHost/) package. gRPC services are tested by calling them using a gRPC client from a unit testing library.
+* **Integration testing** - The gRPC app is hosted in [`TestServer`](/dotnet/api/microsoft.aspnetcore.testhost.testserver) from the [`Microsoft.AspNetCore.TestHost`](https://www.nuget.org/packages/Microsoft.AspNetCore.TestHost/) package. gRPC services are tested by calling them using a gRPC client from a unit testing library.
 
 In unit testing, only the gRPC service is involved. Dependencies injected into the service must be mocked. In integration testing, the gRPC service and all of its auxiliary infrastructure are part of the test. This includes app startup, dependency injection, routing and authentication and authorization.
 
@@ -30,7 +30,7 @@ To demonstrate service tests, review the following service in the sample app.
 
 The `TesterService` returns greetings using gRPC's four method types.
 
-[!code-csharp[](test-services/sample/Server/Services/TesterService.cs?name=snippet_TesterService&highlight=1,5)]
+[!code-csharp[](test-services/sample/Server/Services/TesterService.cs?name=snippet_TesterService)]
 
 The preceding gRPC service:
 
@@ -47,7 +47,7 @@ gRPC services can be tested directly from a unit test library. Unit tests allow 
 The preceding unit test:
 
 * Mocks `IGreeter` using [Moq](https://www.nuget.org/packages/Moq/).
-* Executes the `SayHelloUnary` method. All gRPC service methods have a `ServerCallContext` argument. In this test that type is provided using the `TestServerCallContext.Create()` helper method. This helper method is included in the sample code.
+* Executes the `SayHelloUnary` method with a request message and a `ServerCallContext`. All service methods have a `ServerCallContext` argument. In this test that type is provided using the `TestServerCallContext.Create()` helper method. This helper method is included in the sample code.
 * Makes assertions:
   * Verifies the request name is passed to `IGreeter`.
   * Expected reply message is returned by the service.
@@ -65,13 +65,15 @@ var serverCallContext = TestServerCallContext.Create();
 serviceCallContext.UserState["__HttpContext"] = httpContext;
 ```
 
+Execute service methods with this call context to give them access to the configured `HttpContext` instance.
+
 ## Integration testing gRPC services
 
-Integration tests evaluate an app's components on a broader level than unit tests. The gRPC app is hosted in ([`TestServer`](/dotnet/api/microsoft.aspnetcore.testhost.testserver)), an in-memory test server from the [`Microsoft.AspNetCore.TestHost`](https://www.nuget.org/packages/Microsoft.AspNetCore.TestHost/) package.
+Integration tests evaluate an app's components on a broader level than unit tests. The gRPC app is hosted in [`TestServer`](/dotnet/api/microsoft.aspnetcore.testhost.testserver), an in-memory test server from the [`Microsoft.AspNetCore.TestHost`](https://www.nuget.org/packages/Microsoft.AspNetCore.TestHost/) package.
 
 In integration tests, the gRPC app is started by the unit test library, and then gRPC services are tested by calling them using the gRPC client.
 
-The [sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/testing/samples/) contains infrastructure to make integration testing possible:
+The [sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/grpc/test-services/sample) contains infrastructure to make integration testing possible:
 * The `GrpcTestFixture<TStartup>` class configures the ASP.NET Core host and starts the gRPC app in an in-memory test server.
 * The `IntegrationTestBase` class is the base type that integration tests inherit from. It contains the fixture state, and APIs for creating a gRPC client to call the gRPC app.
 
@@ -79,19 +81,19 @@ The [sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore
 
 The preceding integration test:
 
-* Creates a gRPC client using the channel provided by `IntegrationTestBase`.  This type is included in the sample code.
+* Creates a gRPC client using the channel provided by `IntegrationTestBase`. This type is included in the sample code.
 * Calls the `SayHelloUnary` method using the gRPC client.
 * Asserts the expected reply message is returned by the service.
 
 ### Inject mock dependencies
 
-Dependencies can be overridden in a test with a call to `ConfigureWebHost` on the fixture. This is useful when a dependency is not available in the test environment. For example, using this feature to override a dependency that calls an external web API to a mock instance.
+Dependencies can be overridden in a test with a call to `ConfigureWebHost` on the fixture. This is useful when an external dependency is not available in the test environment. For example, an app that uses an external payment gateway shouldn't call it when executing tests. This feature allows that dependency to be overridden with a mock instance.
 
 [!code-csharp[](test-services/sample/Tests/Server/IntegrationTests/MockedGreeterServiceTests.cs?name=snippet_SayHelloUnaryTest)]
 
 The preceding integration test:
 
-* In the test class's constructor:
+* In the test class's (`MockedGreeterServiceTests`) constructor:
   * Mocks `IGreeter` using [Moq](https://www.nuget.org/packages/Moq/).
   * Overrides the `IGreeter` registered with dependency injection using `ConfigureWebHost`. 
 * Calls the `SayHelloUnary` method using the gRPC client.
