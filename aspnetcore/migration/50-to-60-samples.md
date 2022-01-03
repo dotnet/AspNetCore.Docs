@@ -493,4 +493,4 @@ class MockHelloService : IHelloService
 }
 ```
 
-The .NET 5 version and .NET 6 version with the `WebApplicationFactory` by design.
+The .NET 5 version and .NET 6 version with the `WebApplicationFactory` are identical by design.
