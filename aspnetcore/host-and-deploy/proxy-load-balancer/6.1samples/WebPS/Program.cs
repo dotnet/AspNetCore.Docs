@@ -1,4 +1,4 @@
-#define TRB2 // FIRST SECOND FMHO DH LN AZ OWP OWP2 TRB TRB2 
+#define HTTPS2 // FIRST SECOND FMHO DH LN AZ OWP OWP2 TRB TRB2 HTTPS HTTPS2
 #if NEVER
 #elif FIRST
 #region snippet1
@@ -370,6 +370,85 @@ app.Use(async (context, next) =>
 
     await next();
 });
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseAuthorization();
+
+app.MapRazorPages();
+
+app.Run();
+#endregion
+#elif HTTPS
+#region snippet_https
+using Microsoft.AspNetCore.HttpOverrides;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddRazorPages();
+builder.Services.Configure<ForwardedHeadersOptions>(options =>
+{
+    options.ForwardedHeaders =
+        ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+});
+
+var app = builder.Build();
+
+app.Use((context, next) =>
+{
+    context.Request.Scheme = "https";
+    return next();
+});
+
+app.UseForwardedHeaders();
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseAuthorization();
+
+app.MapRazorPages();
+
+app.Run();
+#endregion
+#elif HTTPS2
+#region snippet_https2
+using Microsoft.AspNetCore.HttpOverrides;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddRazorPages();
+builder.Services.Configure<ForwardedHeadersOptions>(options =>
+{
+    options.ForwardedHeaders =
+        ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+});
+
+var app = builder.Build();
+
+if (!app.Environment.IsProduction())
+{
+    app.Use((context, next) =>
+    {
+        context.Request.Scheme = "https";
+        return next();
+    });
+}
+
+app.UseForwardedHeaders();
 
 if (!app.Environment.IsDevelopment())
 {
