@@ -6,7 +6,6 @@ using Microsoft.Extensions.Caching.StackExchangeRedis;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddRazorPages();
 
 if (builder.Environment.IsDevelopment())
@@ -30,10 +29,10 @@ else
 #elif Redis
     #region snippet_AddStackExchangeRedisCache
     builder.Services.AddStackExchangeRedisCache(options =>
-                {
-                    options.Configuration = builder.Configuration.GetConnectionString("MyRedisConStr");
-                    options.InstanceName = "SampleInstance";
-                });
+     {
+         options.Configuration = builder.Configuration.GetConnectionString("MyRedisConStr");
+         options.InstanceName = "SampleInstance";
+     });
     #endregion
 #else
     #region snippet_AddNCache_Cache
@@ -56,15 +55,14 @@ app.Lifetime.ApplicationStarted.Register(() =>
     byte[] encodedCurrentTimeUTC = System.Text.Encoding.UTF8.GetBytes(currentTimeUTC);
     var options = new DistributedCacheEntryOptions()
         .SetSlidingExpiration(TimeSpan.FromSeconds(20));
-    app.Services.GetService<IDistributedCache>().Set("cachedTimeUTC", encodedCurrentTimeUTC, options);
+    app.Services.GetService<IDistributedCache>()
+                              .Set("cachedTimeUTC", encodedCurrentTimeUTC, options);
 });
 #endregion
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
