@@ -66,6 +66,7 @@ To stop a class that has a case-insensitive *ViewComponent* suffix from being tr
 public class ReviewComponent
 {
     // ...
+    
 ### View component methods
 
 A view component defines its logic in an `InvokeAsync` method that returns a `Task<IViewComponentResult>` or in a synchronous `Invoke` method that returns an `IViewComponentResult`. Parameters come directly from invocation of the view component, not from model binding. A view component never directly handles a request. Typically, a view component initializes a model and passes it to a view by calling the `View` method. In summary, view component methods:
