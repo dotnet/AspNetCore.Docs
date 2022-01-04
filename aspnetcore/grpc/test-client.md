@@ -33,7 +33,7 @@ The preceding type:
 
 ## Mock a gRPC client
 
-gRPC clients are concrete client types that are [generated from `*\*.proto*` files](xref:grpc/basics#generated-c-assets). The concrete gRPC client has methods that translate to the gRPC service in the `*\*.proto*` file. For example, a service called `Greeter` generates a `GreeterClient` type with methods to call the service.
+gRPC clients are concrete client types that are [generated from `\*.proto` files](xref:grpc/basics#generated-c-assets). The concrete gRPC client has methods that translate to the gRPC service in the `\*.proto` file. For example, a service called `Greeter` generates a `GreeterClient` type with methods to call the service.
 
 A mocking framework can mock a gRPC client type. When a mocked client is passed to the type, the test uses the mocked method instead of sending a gRPC call to a server.
 
