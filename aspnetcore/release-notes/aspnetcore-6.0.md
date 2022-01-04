@@ -246,7 +246,7 @@ Use a deployment layout to enable Blazor WebAssembly app downloads in restricted
 .NET Multi-platform App UI (.NET MAUI) is a cross-platform framework for creating native mobile and desktop apps with C# and XAML.
 
 > [!NOTE]
-> .NET MAUI is in preview. Pre-release products may be substantially modified before reaching general availability.
+> .NET MAUI is in preview. Prerelease products may be substantially modified before reaching general availability.
 
 For more information, see the following resources:
 
