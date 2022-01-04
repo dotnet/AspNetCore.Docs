@@ -750,6 +750,8 @@ items:
             uid: grpc/protobuf
           - name: Versioning gRPC services
             uid: grpc/versioning
+          - name: Test gRPC services
+            uid: grpc/test-services
       - name: Call gRPC services with C#
         items:
           - name: Overview
@@ -764,6 +766,8 @@ items:
             uid: grpc/loadbalancing
           - name: .NET Standard 2.0 support
             uid: grpc/netstandard
+          - name: Mock gRPC client in tests
+            uid: grpc/test-client
       - name: gRPC services with ASP.NET Core
         uid: grpc/aspnetcore
       - name: Supported platforms
