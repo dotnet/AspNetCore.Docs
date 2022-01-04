@@ -56,8 +56,16 @@ Like controllers, view components must be public, non-nested, and non-abstract c
 A view component class:
 
 * Fully supports constructor [dependency injection](../../fundamentals/dependency-injection.md)
-
 * Doesn't take part in the controller lifecycle, which means you can't use [filters](../controllers/filters.md) in a view component
+
+To stop a class that has a case-insensitive *ViewComponent* suffix from being treated as a view component, decorate the class with the [[NonViewComponent]](xref:Microsoft.AspNetCore.Mvc.NonViewComponentAttribute) attribute:
+ 
+```csharp
+[NonViewComponent]
+public class ReviewComponent
+{
+    // ...
+```
 
 ### View component methods
 
