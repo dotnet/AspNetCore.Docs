@@ -29,7 +29,7 @@ namespace Client
 
         public void SaveGreeting(string message)
         {
-            _logger.LogInformation("Reply: {message}", message);
+            _logger.LogInformation("Reply: {Message}", message);
         }
     }
 }

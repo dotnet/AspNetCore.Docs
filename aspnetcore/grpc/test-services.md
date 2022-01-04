@@ -71,7 +71,7 @@ Execute service methods with this call context to use the configured `HttpContex
 
 Integration tests evaluate an app's components on a broader level than unit tests. The gRPC app is hosted in <xref:Microsoft.AspNetCore.TestHost.TestServer>, an in-memory test server from the [`Microsoft.AspNetCore.TestHost`](https://www.nuget.org/packages/Microsoft.AspNetCore.TestHost) package.
 
-A unit test library starts the gRPC app, and then gRPC services are tested by calling them using the gRPC client.
+A unit test library starts the gRPC app and then gRPC services are tested using the gRPC client.
 
 The [sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/grpc/test-services/sample) contains infrastructure to make integration testing possible:
 
