@@ -56,7 +56,6 @@ Like controllers, view components must be public, non-nested, and non-abstract c
 A view component class:
 
 * Fully supports constructor [dependency injection](../../fundamentals/dependency-injection.md)
-
 * Doesn't take part in the controller lifecycle, which means you can't use [filters](../controllers/filters.md) in a view component
 
 To stop a class that has a case-insensitive *ViewComponent* suffix from being treated as a view component, decorate the class with the [[NonViewComponent]](xref:Microsoft.AspNetCore.Mvc.NonViewComponentAttribute) attribute:
@@ -66,7 +65,8 @@ To stop a class that has a case-insensitive *ViewComponent* suffix from being tr
 public class ReviewComponent
 {
     // ...
-    
+```
+
 ### View component methods
 
 A view component defines its logic in an `InvokeAsync` method that returns a `Task<IViewComponentResult>` or in a synchronous `Invoke` method that returns an `IViewComponentResult`. Parameters come directly from invocation of the view component, not from model binding. A view component never directly handles a request. Typically, a view component initializes a model and passes it to a view by calling the `View` method. In summary, view component methods:
