@@ -241,16 +241,16 @@ Generic type parameters are now supported. For more information, see <xref:blazo
 
 Use a deployment layout to enable Blazor WebAssembly app downloads in restricted security environments. For more information, see <xref:blazor/host-and-deploy/webassembly-deployment-layout?view=aspnetcore-6.0>.
 
+### Blazor hybrid desktop apps (.NET MAUI)
+
+.NET Multi-platform App UI (.NET MAUI) is a cross-platform framework for creating native mobile and desktop apps with C# and XAML. For more information, see [What is .NET MAUI?](/dotnet/maui/what-is-maui).
+
 <!-- HOLD
 ### Blazor WebAssembly packaging
 
 HOLD
 
 ### Dynamically added root components
-
-HOLD
-
-### Blazor hybrid desktop apps (.NET MAUI)
 
 HOLD
 -->
