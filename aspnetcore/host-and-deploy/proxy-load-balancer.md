@@ -201,68 +201,17 @@ If the proxy isn't base64-encoding the certificate (as is the case with Nginx), 
 
 ## Troubleshoot
 
-When headers aren't forwarded as expected, enable [logging](xref:fundamentals/logging/index). If the logs don't provide sufficient information to troubleshoot the problem, enumerate the request headers received by the server. Use inline middleware to write request headers to an app response or log the headers. 
+When headers aren't forwarded as expected, enable [logging](xref:fundamentals/logging/index). If the logs don't provide sufficient information to troubleshoot the problem, enumerate the request headers received by the server. Use inline middleware to write request headers to an app response or log the headers.
 
-To write the headers to the app's response, place the following terminal inline middleware immediately after the call to <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> in `Startup.Configure`:
+To write the headers to the app's response, place the following terminal inline middleware immediately after the call to <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*>:
 
-```csharp
-app.Run(async (context) =>
-{
-    context.Response.ContentType = "text/plain";
-
-    // Request method, scheme, and path
-    await context.Response.WriteAsync(
-        $"Request Method: {context.Request.Method}{Environment.NewLine}");
-    await context.Response.WriteAsync(
-        $"Request Scheme: {context.Request.Scheme}{Environment.NewLine}");
-    await context.Response.WriteAsync(
-        $"Request Path: {context.Request.Path}{Environment.NewLine}");
-
-    // Headers
-    await context.Response.WriteAsync($"Request Headers:{Environment.NewLine}");
-
-    foreach (var header in context.Request.Headers)
-    {
-        await context.Response.WriteAsync($"{header.Key}: " +
-            $"{header.Value}{Environment.NewLine}");
-    }
-
-    await context.Response.WriteAsync(Environment.NewLine);
-
-    // Connection: RemoteIp
-    await context.Response.WriteAsync(
-        $"Request RemoteIp: {context.Connection.RemoteIpAddress}");
-});
-```
+[!code-csharp[](~/host-and-deploy/proxy-load-balancer/6.1samples/WebPS/Program.cs?name=snippet_trb&highlight=6-10)]
 
 You can write to logs instead of the response body. Writing to logs allows the site to function normally while debugging.
 
-To write logs rather than to the response body:
+To write logs rather than to the response body, place the following inline middleware immediately after the call to <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*>:
 
-* Inject `ILogger<Startup>` into the `Startup` class as described in [Create logs in Startup](xref:fundamentals/logging/index#create-logs-in-startup).
-* Place the following inline middleware immediately after the call to <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> in `Startup.Configure`.
-
-```csharp
-app.Use(async (context, next) =>
-{
-    // Request method, scheme, and path
-    _logger.LogDebug("Request Method: {Method}", context.Request.Method);
-    _logger.LogDebug("Request Scheme: {Scheme}", context.Request.Scheme);
-    _logger.LogDebug("Request Path: {Path}", context.Request.Path);
-
-    // Headers
-    foreach (var header in context.Request.Headers)
-    {
-        _logger.LogDebug("Header: {Key}: {Value}", header.Key, header.Value);
-    }
-
-    // Connection: RemoteIp
-    _logger.LogDebug("Request RemoteIp: {RemoteIpAddress}", 
-        context.Connection.RemoteIpAddress);
-
-    await next();
-});
-```
+[!code-csharp[](~/host-and-deploy/proxy-load-balancer/6.1samples/WebPS/Program.cs?name=snippet_trb&highlight=6-10)]
 
 When processed, `X-Forwarded-{For|Proto|Host}` values are moved to `X-Original-{For|Proto|Host}`. If there are multiple values in a given header, Forwarded Headers Middleware processes headers in reverse order from right to left. The default `ForwardLimit` is `1` (one), so only the rightmost value from the headers is processed unless the value of `ForwardLimit` is increased.
 
@@ -272,10 +221,10 @@ The request's original remote IP must match an entry in the `KnownProxies` or `K
 September 20th 2018, 15:49:44.168 Unknown proxy: 10.0.0.100:54321
 ```
 
-In the preceding example, 10.0.0.100 is a proxy server. If the server is a trusted proxy, add the server's IP address to `KnownProxies` (or add a trusted network to `KnownNetworks`) in `Startup.ConfigureServices`. For more information, see the [Forwarded Headers Middleware options](#forwarded-headers-middleware-options) section.
+In the preceding example, 10.0.0.100 is a proxy server. If the server is a trusted proxy, add the server's IP address to `KnownProxies` (or add a trusted network to `KnownNetworks`). For more information, see the [Forwarded Headers Middleware options](#forwarded-headers-middleware-options) section.
 
 ```csharp
-services.Configure<ForwardedHeadersOptions>(options =>
+builder.Services.Configure<ForwardedHeadersOptions>(options =>
 {
     options.KnownProxies.Add(IPAddress.Parse("10.0.0.100"));
 });

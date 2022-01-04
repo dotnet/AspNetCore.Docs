@@ -1,4 +1,4 @@
-#define OWP2 // FIRST SECOND FMHO DH LN AZ OWP OWP2
+#define TRB2 // FIRST SECOND FMHO DH LN AZ OWP OWP2 TRB TRB2 
 #if NEVER
 #elif FIRST
 #region snippet1
@@ -240,7 +240,7 @@ builder.Services.AddCertificateForwarding(options =>
     options.CertificateHeader = "YOUR_CUSTOM_HEADER_NAME";
     options.HeaderConverter = (headerValue) =>
     {
-        /* some conversion logic to create an X509Certificate2 */
+        // Conversion logic to create an X509Certificate2.
         var clientCertificate = ConversionLogic.CreateAnX509Certificate2();
         return clientCertificate;
     };
@@ -273,4 +273,117 @@ public static class ConversionLogic
         CreateAnX509Certificate2() => new System.Security.Cryptography
         .X509Certificates.X509Certificate2("abc");
 }
+#elif TRB
+#region snippet_trb
+using Microsoft.AspNetCore.HttpOverrides;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddRazorPages();
+builder.Services.Configure<ForwardedHeadersOptions>(options =>
+{
+    options.ForwardedHeaders =
+        ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+});
+
+var app = builder.Build();
+
+app.UseForwardedHeaders();
+
+app.Run(async (context) =>
+{
+    context.Response.ContentType = "text/plain";
+
+    // Request method, scheme, and path
+    await context.Response.WriteAsync(
+        $"Request Method: {context.Request.Method}{Environment.NewLine}");
+    await context.Response.WriteAsync(
+        $"Request Scheme: {context.Request.Scheme}{Environment.NewLine}");
+    await context.Response.WriteAsync(
+        $"Request Path: {context.Request.Path}{Environment.NewLine}");
+
+    // Headers
+    await context.Response.WriteAsync($"Request Headers:{Environment.NewLine}");
+
+    foreach (var header in context.Request.Headers)
+    {
+        await context.Response.WriteAsync($"{header.Key}: " +
+            $"{header.Value}{Environment.NewLine}");
+    }
+
+    await context.Response.WriteAsync(Environment.NewLine);
+
+    // Connection: RemoteIp
+    await context.Response.WriteAsync(
+        $"Request RemoteIp: {context.Connection.RemoteIpAddress}");
+});
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseAuthorization();
+
+app.MapRazorPages();
+
+app.Run();
+#endregion
+#elif TRB2
+#region snippet_trb2
+using Microsoft.AspNetCore.HttpOverrides;
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddRazorPages();
+builder.Services.Configure<ForwardedHeadersOptions>(options =>
+{
+    options.ForwardedHeaders =
+        ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+});
+
+var app = builder.Build();
+
+app.UseForwardedHeaders();
+
+ILogger _logger = app.Logger;
+
+app.Use(async (context, next) =>
+{
+    // Request method, scheme, and path.
+    _logger.LogInformation("Request Method: {Method}", context.Request.Method);
+    _logger.LogInformation("Request Scheme: {Scheme}", context.Request.Scheme);
+    _logger.LogInformation("Request Path: {Path}", context.Request.Path);
+
+    // Headers
+    foreach (var header in context.Request.Headers)
+    {
+        _logger.LogInformation("Header: {Key}: {Value}", header.Key, header.Value);
+    }
+
+    // Connection: RemoteIp
+    _logger.LogInformation("Request RemoteIp: {RemoteIpAddress}",
+        context.Connection.RemoteIpAddress);
+
+    await next();
+});
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseAuthorization();
+
+app.MapRazorPages();
+
+app.Run();
+#endregion
 #endif
