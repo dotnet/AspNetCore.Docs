@@ -5,14 +5,16 @@
 // DefaultBehavior - default ControllerBase and ApiController behavior.
 // SuppressApiControllerBehavior - use 2.1 behaviors although compat version is 2.2.
 
-#define DefaultBehavior // or SuppressApiControllerBehavior
+#define DefaultBehavior // or SuppressApiControllerBehavior, or AutomaticBadRequestLogging
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace WebApiSample
 {
@@ -38,6 +40,36 @@ namespace WebApiSample
                     options.SuppressMapClientErrors = true;
                     options.ClientErrorMapping[StatusCodes.Status404NotFound].Link =
                         "https://httpstatuses.com/404";
+                });
+            #endregion
+#endif
+#if AutomaticBadRequestLogging
+            #region snippet_AutomaticBadRequestLogging
+            services.AddControllers()
+                .ConfigureApiBehaviorOptions(options =>
+                {
+                    // If preserving of the original behavior is desired, get a reference to the delegate.
+                    var builtInFactory = options.InvalidModelStateResponseFactory;
+
+                    options.InvalidModelStateResponseFactory = context =>
+                    {
+                        // As an example, we will get an instance of ILogger with the category "Startup".
+                        var logger = context.HttpContext.RequestServices.GetRequiredService<ILogger<Startup>>();
+
+                        // Log accordingly.
+
+                        // By using the original delegate, we preserve the default behavior.
+                        // Alternatively, you can take full control and simply construct the ValidationProblemDetails object yourself,
+                        // or even use a custom object.
+                        var result = builtInFactory(context);
+
+                        // If accessing the returned ValidationProblemDetails object is required, get a reference to it.
+                        var problemDetails = (ValidationProblemDetails)((ObjectResult)result).Value;
+
+                        // Modify & Log accordingly.
+
+                        return result;
+                    };
                 });
             #endregion
 #endif
