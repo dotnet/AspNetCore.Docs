@@ -213,7 +213,7 @@ items:
     items:
       - name: Overview
         uid: fundamentals/index
-      - name: App startup
+      - name: App start up
         uid: fundamentals/startup
       - name: Dependency injection (services)
         uid: fundamentals/dependency-injection
