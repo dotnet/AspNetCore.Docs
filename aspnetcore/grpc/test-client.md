@@ -41,7 +41,7 @@ A mocking framework can mock a gRPC client type. When a mocked client is passed 
 
 The preceding unit test:
 
-* Mocks `IGreetRepository` amd `TesterClient` using [Moq](https://www.nuget.org/packages/Moq).
+* Mocks `IGreetRepository` and `TesterClient` using [Moq](https://www.nuget.org/packages/Moq).
 * Starts the worker.
 * Verifies `SaveGreeting` is called with the expected greeting message.
 
