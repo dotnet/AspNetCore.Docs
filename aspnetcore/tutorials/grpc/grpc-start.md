@@ -289,6 +289,15 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
       Request finished in 78.32260000000001ms 200 application/grpc
 ```
 
+Update the *appsettings.Development.json* file by adding the following lines:
+
+ ```
+ "Microsoft.AspNetCore.Hosting": "Information",
+ "Microsoft.AspNetCore.Routing.EndpointMiddleware": "Information"
+  ```
+
+
+
 > [!NOTE]
 > The code in this article requires the ASP.NET Core HTTPS development certificate to secure the gRPC service. If the .NET gRPC client fails with the message `The remote certificate is invalid according to the validation procedure.` or `The SSL connection could not be established.`, the development certificate isn't trusted. To fix this issue, see [Call a gRPC service with an untrusted/invalid certificate](xref:grpc/troubleshoot#call-a-grpc-service-with-an-untrustedinvalid-certificate).
 
