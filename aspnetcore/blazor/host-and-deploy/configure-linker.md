@@ -74,7 +74,7 @@ Control linking on a per-assembly basis by providing an XML configuration file a
 </linker>
 ```
 
-For more information and examples, see [Data Formats (mono/linker GitHub repository)](https://github.com/mono/linker/blob/main/docs/data-formats.md).
+For more information and examples, see [Data Formats (dotnet/linker GitHub repository)](https://github.com/dotnet/linker/blob/main/docs/data-formats.md).
 
 ## Add an XML linker configuration file to a library
 

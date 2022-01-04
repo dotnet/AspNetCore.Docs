@@ -188,7 +188,7 @@ The following class implements <xref:Microsoft.Extensions.Options.IValidateOptio
 
 [!code-csharp[](options/samples/6.x/OptionsValidationSample/Configuration/MyConfigValidation.cs?name=snippet)]
 
-`IValidateOptions` enables moving the validation code out of `StartUp` and into a class.
+`IValidateOptions` enables moving the validation code out of `Program.cs` and into a class.
 
 Using the preceding code, validation is enabled in *Program.cs* with the following code:
 

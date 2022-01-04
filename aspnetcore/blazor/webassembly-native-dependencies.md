@@ -33,6 +33,9 @@ Generally, any portable native code can be used as a native dependency with Blaz
 
 Prebuilt dependencies typically must be built using the same version of Emscripten used to build the .NET WebAssembly runtime.
 
+> [!NOTE]
+> For [Mono](https://github.com/mono/mono)/WebAssembly MSBuild properties and targets, see [`WasmApp.targets` (dotnet/runtime GitHub repository)](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/build/WasmApp.targets). Official documentation for common MSBuild properties is planned per [Document blazor msbuild configuration options (dotnet/docs #27395)](https://github.com/dotnet/docs/issues/27395).
+
 ## Use native code
 
 Add a simple native C function to a Blazor WebAssembly app:

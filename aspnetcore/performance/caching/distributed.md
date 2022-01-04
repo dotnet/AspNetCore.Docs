@@ -2,10 +2,10 @@
 title: Distributed caching in ASP.NET Core
 author: rick-anderson
 description: Learn how to use an ASP.NET Core distributed cache to improve app performance and scalability, especially in a cloud or server farm environment.
-monikerRange: '>= aspnetcore-2.1'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/07/2020
+ms.date: 1/3/2022
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: performance/caching/distributed
 ---
@@ -139,7 +139,7 @@ To use the <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> int
 
 When the sample app starts, <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> is injected into `Program.cs`. The current time is cached using <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime> (for more information, see [Generic Host: IHostApplicationLifetime](xref:fundamentals/host/generic-host#ihostapplicationlifetime)):
 
-[!code-csharp[](distributed/samples/6.x/DistCacheSample/Program.cs?name=snippet_Configure&highlight=10)]
+[!code-csharp[](distributed/samples/6.x/DistCacheSample/Program.cs?name=snippet_Configure)]
 
 The sample app injects <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> into the `IndexModel` for use by the Index page.
 

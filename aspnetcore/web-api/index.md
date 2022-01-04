@@ -167,7 +167,11 @@ To make automatic and custom responses consistent, call the <xref:Microsoft.AspN
 
 ### Log automatic 400 responses
 
-See [How to log automatic 400 responses on model validation errors (dotnet/AspNetCore.Docs#12157)](https://github.com/dotnet/AspNetCore.Docs/issues/12157).
+To log automatic 400 responses, set the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.InvalidModelStateResponseFactory%2A> delegate property to perform custom processing in `Startup.ConfigureServices`. By default, `InvalidModelStateResponseFactory` uses <xref:Microsoft.AspNetCore.Mvc.Infrastructure.ProblemDetailsFactory> to create an instance of <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>.
+
+The following example shows how to retrieve an instance of <xref:Microsoft.Extensions.Logging.ILogger%601> to log information about an automatic 400 response:
+
+[!code-csharp[](index/samples/3.x/Startup.cs?name=snippet_AutomaticBadRequestLogging)]
 
 ### Disable automatic 400 response
 

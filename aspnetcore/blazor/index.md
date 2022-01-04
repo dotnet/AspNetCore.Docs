@@ -157,6 +157,7 @@ APIs that aren't applicable inside of a web browser (for example, accessing the 
 * <xref:tutorials/signalr-blazor>
 * <xref:blazor/js-interop/call-javascript-from-dotnet>
 * <xref:blazor/js-interop/call-dotnet-from-javascript>
+* [mono/mono GitHub repository](https://github.com/mono/mono)
 * [C# Guide](/dotnet/csharp/)
 * <xref:mvc/views/razor>
 * [HTML](https://www.w3.org/html/)
