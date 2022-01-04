@@ -165,41 +165,17 @@ app.Use((context, next) =>
 
 If the proxy doesn't use headers named `X-Forwarded-For` and `X-Forwarded-Proto` to forward the proxy address/port and originating scheme information, set the <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.ForwardedForHeaderName> and <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.ForwardedProtoHeaderName> options to match the header names used by the proxy:
 
-```csharp
-services.Configure<ForwardedHeadersOptions>(options =>
-{
-    options.ForwardedForHeaderName = "Header_Name_Used_By_Proxy_For_X-Forwarded-For_Header";
-    options.ForwardedProtoHeaderName = "Header_Name_Used_By_Proxy_For_X-Forwarded-Proto_Header";
-});
-```
+[!code-csharp[](~/host-and-deploy/proxy-load-balancer/6.1samples/WebPS/Program.cs?name=snippet_dh&highlight=6-10)]
 
 ## Forward the scheme for Linux and non-IIS reverse proxies
 
 Apps that call <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*> and <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*> put a site into an infinite loop if deployed to an Azure Linux App Service, Azure Linux virtual machine (VM), or behind any other reverse proxy besides IIS. TLS is terminated by the reverse proxy, and Kestrel isn't made aware of the correct request scheme. OAuth and OIDC also fail in this configuration because they generate incorrect redirects. <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration*> adds and configures Forwarded Headers Middleware when running behind IIS, but there's no matching automatic configuration for Linux (Apache or Nginx integration).
 
-To forward the scheme from the proxy in non-IIS scenarios, add and configure Forwarded Headers Middleware. In `Startup.ConfigureServices`, use the following code:
+To forward the scheme from the proxy in non-IIS scenarios, add and configure Forwarded Headers Middleware. In `Program.cs`, use the following code:
 
-```csharp
-// using Microsoft.AspNetCore.HttpOverrides;
+[!code-csharp[](~/host-and-deploy/proxy-load-balancer/6.1samples/WebPS/Program.cs?name=snippet_ln&highlight=6-10)]
 
-if (string.Equals(
-    Environment.GetEnvironmentVariable("ASPNETCORE_FORWARDEDHEADERS_ENABLED"), 
-    "true", StringComparison.OrdinalIgnoreCase))
-{
-    services.Configure<ForwardedHeadersOptions>(options =>
-    {
-        options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | 
-            ForwardedHeaders.XForwardedProto;
-        // Only loopback proxies are allowed by default.
-        // Clear that restriction because forwarders are enabled by explicit 
-        // configuration.
-        options.KnownNetworks.Clear();
-        options.KnownProxies.Clear();
-    });
-}
-```
-
-## Certificate forwarding 
+## Certificate forwarding
 
 ### Azure
 
