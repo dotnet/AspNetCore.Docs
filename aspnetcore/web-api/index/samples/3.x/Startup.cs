@@ -48,27 +48,19 @@ namespace WebApiSample
             services.AddControllers()
                 .ConfigureApiBehaviorOptions(options =>
                 {
-                    // If preserving of the original behavior is desired, get a reference to the delegate.
+                    // To preserve the default behavior, capture the original delegate to call later.
                     var builtInFactory = options.InvalidModelStateResponseFactory;
 
                     options.InvalidModelStateResponseFactory = context =>
                     {
-                        // As an example, we will get an instance of ILogger with the category "Startup".
                         var logger = context.HttpContext.RequestServices.GetRequiredService<ILogger<Startup>>();
 
-                        // Log accordingly.
+                        // Perform logging here.
+                        // ...
 
-                        // By using the original delegate, we preserve the default behavior.
-                        // Alternatively, you can take full control and simply construct the ValidationProblemDetails object yourself,
-                        // or even use a custom object.
-                        var result = builtInFactory(context);
-
-                        // If accessing the returned ValidationProblemDetails object is required, get a reference to it.
-                        var problemDetails = (ValidationProblemDetails)((ObjectResult)result).Value;
-
-                        // Modify & Log accordingly.
-
-                        return result;
+                        // Invoke the default behavior, which produces a ValidationProblemDetails response.
+                        // To produce a custom response, return a different implementation of IActionResult instead.
+                        return builtInFactory(context);
                     };
                 });
             #endregion
