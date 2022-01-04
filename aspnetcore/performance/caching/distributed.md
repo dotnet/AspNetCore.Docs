@@ -139,7 +139,7 @@ To use the <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> int
 
 When the sample app starts, <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> is injected into `Program.cs`. The current time is cached using <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime> (for more information, see [Generic Host: IHostApplicationLifetime](xref:fundamentals/host/generic-host#ihostapplicationlifetime)):
 
-[!code-csharp[](distributed/samples/6.x/DistCacheSample/Program.cs?name=snippet_Configure&highlight=10)]
+[!code-csharp[](distributed/samples/6.x/DistCacheSample/Program.cs?name=snippet_Configure)]
 
 The sample app injects <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> into the `IndexModel` for use by the Index page.
 

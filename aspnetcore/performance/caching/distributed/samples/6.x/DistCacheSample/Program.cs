@@ -20,7 +20,8 @@ else
     #region snippet_AddDistributedSqlServerCache
     builder.Services.AddDistributedSqlServerCache(options =>
     {
-        options.ConnectionString = builder.Configuration.GetConnectionString("DistCache_ConnectionString");
+        options.ConnectionString = builder.Configuration.GetConnectionString(
+            "DistCache_ConnectionString");
         options.SchemaName = "dbo";
         options.TableName = "TestCache";
     });
