@@ -5,14 +5,16 @@
 // DefaultBehavior - default ControllerBase and ApiController behavior.
 // SuppressApiControllerBehavior - use 2.1 behaviors although compat version is 2.2.
 
-#define DefaultBehavior // or SuppressApiControllerBehavior
+#define DefaultBehavior // or SuppressApiControllerBehavior, or AutomaticBadRequestLogging
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace WebApiSample
 {
@@ -38,6 +40,28 @@ namespace WebApiSample
                     options.SuppressMapClientErrors = true;
                     options.ClientErrorMapping[StatusCodes.Status404NotFound].Link =
                         "https://httpstatuses.com/404";
+                });
+            #endregion
+#endif
+#if AutomaticBadRequestLogging
+            #region snippet_AutomaticBadRequestLogging
+            services.AddControllers()
+                .ConfigureApiBehaviorOptions(options =>
+                {
+                    // To preserve the default behavior, capture the original delegate to call later.
+                    var builtInFactory = options.InvalidModelStateResponseFactory;
+
+                    options.InvalidModelStateResponseFactory = context =>
+                    {
+                        var logger = context.HttpContext.RequestServices.GetRequiredService<ILogger<Startup>>();
+
+                        // Perform logging here.
+                        // ...
+
+                        // Invoke the default behavior, which produces a ValidationProblemDetails response.
+                        // To produce a custom response, return a different implementation of IActionResult instead.
+                        return builtInFactory(context);
+                    };
                 });
             #endregion
 #endif
