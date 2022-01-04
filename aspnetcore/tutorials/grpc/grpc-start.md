@@ -289,7 +289,7 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
       Request finished in 78.32260000000001ms 200 application/grpc
 ```
 
-if the gRPC service console do not have the logs then update the file appsettings.Development.json by adding the below two lines
+Update the *appsettings.Development.json* file by adding the following lines:
 
  ```
  "Microsoft.AspNetCore.Hosting": "Information",
