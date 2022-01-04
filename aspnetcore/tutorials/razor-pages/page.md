@@ -3,6 +3,7 @@ title: Part 3, scaffolded Razor Pages
 author: rick-anderson
 description: Part 3 of tutorial series on Razor Pages.
 ms.author: riande
+monikerRange: '>= aspnetcore-3.1'
 ms.date: 09/25/2020
 ms.custom: contperf-fy21q2
 no-loc: [Home, Privacy, Index, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
