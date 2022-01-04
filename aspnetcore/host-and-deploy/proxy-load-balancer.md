@@ -67,11 +67,13 @@ Configure the middleware with <xref:Microsoft.AspNetCore.Builder.ForwardedHeader
 
 Forwarded Headers Middleware should run before other middleware. This ordering ensures that the middleware relying on forwarded headers information can consume the header values for processing. Forwarded Headers Middleware can run after diagnostics and error handling, but it must be run before calling `UseHsts`:
 
-[!code-csharp[](~/host-and-deploy/proxy-load-balancer/6.1samples/Program.cs?name=snippet1&highlight=13-17,25,30)]
+C:\GH\aspnet\docs\1\AspNetCore.Docs\aspnetcore\host-and-deploy\proxy-load-balancer\6.1samples\WebPS\Program.cs
+
+[!code-csharp[](~/host-and-deploy/proxy-load-balancer/6.1samples/WebPS/Program.cs?name=snippet1&highlight=13-17,25,30)]
 
 Alternatively, call `UseForwardedHeaders` before diagnostics:
 
-[!code-csharp[](~/host-and-deploy/proxy-load-balancer/6.1samples/Program.cs?name=snippet2&highlight=13-17,25,30)]
+[!code-csharp[](~/host-and-deploy/proxy-load-balancer/6.1samples/WebPS/Program.cs?name=snippet2&highlight=13-17,25,30)]
 
 > [!NOTE]
 > If no <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> are specified or directly to the extension method with <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*>, the default headers to forward are [ForwardedHeaders.None](xref:Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders). The <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.ForwardedHeaders> property must be configured with the headers to forward.
