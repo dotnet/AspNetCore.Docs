@@ -115,11 +115,11 @@ To forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers, see <xref:host
 
 In some cases, it might not be possible to add forwarded headers to the requests proxied to the app. If the proxy is enforcing that all public external requests are HTTPS, the scheme can be manually set before using any type of middleware:
 
-[!code-csharp[](~/host-and-deploy/proxy-load-balancer/6.1samples/WebPS/Program.cs?name=snippet_https&highlight=6-11)]
+[!code-csharp[](~/host-and-deploy/proxy-load-balancer/6.1samples/WebPS/Program.cs?name=snippet_https&highlight=14-18)]
 
 This code can be disabled with an environment variable or other configuration setting in a development or staging environment.
 
-[!code-csharp[](~/host-and-deploy/proxy-load-balancer/6.1samples/WebPS/Program.cs?name=snippet_https2&highlight=6-11)]
+[!code-csharp[](~/host-and-deploy/proxy-load-balancer/6.1samples/WebPS/Program.cs?name=snippet_https2&highlight=14-21)]
 
 ### Deal with path base and proxies that change the request path
 
@@ -169,7 +169,7 @@ Apps that call <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.U
 
 To forward the scheme from the proxy in non-IIS scenarios, add and configure Forwarded Headers Middleware. In `Program.cs`, use the following code:
 
-[!code-csharp[](~/host-and-deploy/proxy-load-balancer/6.1samples/WebPS/Program.cs?name=snippet_ln&highlight=6-10)]
+[!code-csharp[](~/host-and-deploy/proxy-load-balancer/6.1samples/WebPS/Program.cs?name=snippet_ln&highlight=7-21)]
 
 ## Certificate forwarding
 
@@ -189,7 +189,7 @@ If a proxy is used that isn't IIS or Azure App Service's Application Request Rou
 * Configure Certificate Forwarding Middleware to specify the header name. Add the following code to configure the header from which the middleware builds a certificate.
 * Call <xref:Microsoft.AspNetCore.Builder.CertificateForwardingBuilderExtensions.UseCertificateForwarding%2A> before the call to <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A>.
 
-[!code-csharp[](~/host-and-deploy/proxy-load-balancer/6.1samples/WebPS/Program.cs?name=snippet_owp&highlight=6-10)]
+[!code-csharp[](~/host-and-deploy/proxy-load-balancer/6.1samples/WebPS/Program.cs?name=snippet_owp&highlight=4-13)]
 
 If the proxy isn't base64-encoding the certificate (as is the case with Nginx), set the `HeaderConverter` option. Consider the following example :
 [!code-csharp[](~/host-and-deploy/proxy-load-balancer/6.1samples/WebPS/Program.cs?name=snippet_owp2&highlight=4-5,17,21)]
@@ -206,7 +206,7 @@ You can write to logs instead of the response body. Writing to logs allows the s
 
 To write logs rather than to the response body, place the following inline middleware immediately after the call to <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*>:
 
-[!code-csharp[](~/host-and-deploy/proxy-load-balancer/6.1samples/WebPS/Program.cs?name=snippet_trb2&highlight=16-42)]
+[!code-csharp[](~/host-and-deploy/proxy-load-balancer/6.1samples/WebPS/Program.cs?name=snippet_trb2&highlight=17-35)]
 
 When processed, `X-Forwarded-{For|Proto|Host}` values are moved to `X-Original-{For|Proto|Host}`. If there are multiple values in a given header, Forwarded Headers Middleware processes headers in reverse order from right to left. The default `ForwardLimit` is `1` (one), so only the rightmost value from the headers is processed unless the value of `ForwardLimit` is increased.
 
