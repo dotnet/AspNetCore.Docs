@@ -181,49 +181,23 @@ To forward the scheme from the proxy in non-IIS scenarios, add and configure For
 
 To configure Azure App Service for certificate forwarding, see [Configure TLS mutual authentication for Azure App Service](/azure/app-service/app-service-web-configure-tls-mutual-auth). The following guidance pertains to configuring the ASP.NET Core app.
 
-In `Startup.Configure`, add the following code before the call to `app.UseAuthentication();`:
+* Configure Certificate Forwarding Middleware to specify the header name that Azure uses. Add the following code to configure the header from which the middleware builds a certificate.
+* Call <xref:Microsoft.AspNetCore.Builder.CertificateForwardingBuilderExtensions.UseCertificateForwarding%2A> before the call to <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A>.
 
-```csharp
-app.UseCertificateForwarding();
-```
-
-
-Configure Certificate Forwarding Middleware to specify the header name that Azure uses. In `Startup.ConfigureServices`, add the following code to configure the header from which the middleware builds a certificate:
-
-```csharp
-services.AddCertificateForwarding(options =>
-    options.CertificateHeader = "X-ARR-ClientCert");
-```
+[!code-csharp[](~/host-and-deploy/proxy-load-balancer/6.1samples/WebPS/Program.cs?name=snippet_az&highlight=6-10)]
 
 ### Other web proxies
 
-If a proxy is used that isn't IIS or Azure App Service's Application Request Routing (ARR), configure the proxy to forward the certificate that it received in an HTTP header. In `Startup.Configure`, add the following code before the call to `app.UseAuthentication();`:
+If a proxy is used that isn't IIS or Azure App Service's Application Request Routing (ARR), configure the proxy to forward the certificate that it received in an HTTP header.
 
-```csharp
-app.UseCertificateForwarding();
-```
+* Configure Certificate Forwarding Middleware to specify the header name. Add the following code to configure the header from which the middleware builds a certificate.
+* Call <xref:Microsoft.AspNetCore.Builder.CertificateForwardingBuilderExtensions.UseCertificateForwarding%2A> before the call to <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A>.
 
-Configure the Certificate Forwarding Middleware to specify the header name. In `Startup.ConfigureServices`, add the following code to configure the header from which the middleware builds a certificate:
+[!code-csharp[](~/host-and-deploy/proxy-load-balancer/6.1samples/WebPS/Program.cs?name=snippet_owp&highlight=6-10)]
 
-```csharp
-services.AddCertificateForwarding(options =>
-    options.CertificateHeader = "YOUR_CERTIFICATE_HEADER_NAME");
-```
+If the proxy isn't base64-encoding the certificate (as is the case with Nginx), set the `HeaderConverter` option. Consider the following example :
 
-If the proxy isn't base64-encoding the certificate (as is the case with Nginx), set the `HeaderConverter` option. Consider the following example in `Startup.ConfigureServices`:
-
-```csharp
-services.AddCertificateForwarding(options =>
-{
-    options.CertificateHeader = "YOUR_CUSTOM_HEADER_NAME";
-    options.HeaderConverter = (headerValue) => 
-    {
-        var clientCertificate = 
-           /* some conversion logic to create an X509Certificate2 */
-        return clientCertificate;
-    }
-});
-```
+[!code-csharp[](~/host-and-deploy/proxy-load-balancer/6.1samples/WebPS/Program.cs?name=snippet_owp2&highlight=6-10)]
 
 ## Troubleshoot
 

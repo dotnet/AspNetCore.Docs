@@ -1,4 +1,4 @@
-#define LN // FIRST SECOND FMHO DH LN
+#define OWP2 // FIRST SECOND FMHO DH LN AZ OWP OWP2
 #if NEVER
 #elif FIRST
 #region snippet1
@@ -174,4 +174,103 @@ app.MapRazorPages();
 
 app.Run();
 #endregion
+#elif AZ
+#region snippet_az
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddRazorPages();
+builder.Services.AddCertificateForwarding(options =>
+    options.CertificateHeader = "X-ARR-ClientCert");
+
+var app = builder.Build();
+
+app.UseCertificateForwarding();
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseAuthorization();
+app.UseAuthentication();
+
+app.MapRazorPages();
+
+app.Run();
+#endregion
+#elif OWP
+#region snippet_owp
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddRazorPages();
+builder.Services.AddCertificateForwarding(options =>
+    options.CertificateHeader = "YOUR_CERTIFICATE_HEADER_NAME");
+
+var app = builder.Build();
+
+app.UseCertificateForwarding();
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseAuthorization();
+app.UseAuthentication();
+
+app.MapRazorPages();
+
+app.Run();
+#endregion
+#elif OWP2
+#region snippet_owp2
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddRazorPages();
+builder.Services.AddCertificateForwarding(options =>
+{
+    options.CertificateHeader = "YOUR_CUSTOM_HEADER_NAME";
+    options.HeaderConverter = (headerValue) =>
+    {
+        /* some conversion logic to create an X509Certificate2 */
+        var clientCertificate = ConversionLogic.CreateAnX509Certificate2();
+        return clientCertificate;
+    };
+});
+
+var app = builder.Build();
+
+app.UseCertificateForwarding();
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseAuthorization();
+app.UseAuthentication();
+
+app.MapRazorPages();
+
+app.Run();
+#endregion
+
+public static class ConversionLogic
+{
+    public static System.Security.Cryptography.X509Certificates.X509Certificate2
+        CreateAnX509Certificate2() => new System.Security.Cryptography
+        .X509Certificates.X509Certificate2("abc");
+}
 #endif
