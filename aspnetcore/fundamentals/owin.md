@@ -202,7 +202,6 @@ OWIN depends on an `IDictionary<string,object>` object to communicate informatio
 | server.RemotePort | `String` | |     
 | server.LocalIpAddress  | `String` | |    
 | server.LocalPort  | `String` | |    
-| server.IsLocal  | `bool` | |    
 | server.OnSendingHeaders  | `Action<Action<object>,object>` | |
 
 ### SendFiles v0.3.0
