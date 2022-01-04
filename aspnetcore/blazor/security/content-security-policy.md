@@ -41,7 +41,7 @@ Minimally, specify the following directives and sources for Blazor apps. Add add
   * Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
   * In a Blazor WebAssembly app:
     * Specify hashes to permit required scripts to load.
-    * Specify `unsafe-eval` to permit the Blazor WebAssembly mono runtime to function.
+    * Specify `unsafe-eval` to permit the Blazor WebAssembly Mono runtime to function.
   * In a Blazor Server app, specify hashes to permit required scripts to load.
 * [style-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/style-src): Indicates valid sources for stylesheets.
   * Specify the `https://stackpath.bootstrapcdn.com/` host source for Bootstrap stylesheets.
