@@ -30,15 +30,17 @@ namespace Tests.Server.IntegrationTests
     public class MockedGreeterServiceTests : IntegrationTestBase
     {
         #region snippet_SayHelloUnaryTest
-        public MockedGreeterServiceTests(GrpcTestFixture<Startup> fixture, ITestOutputHelper outputHelper)
-            : base(fixture, outputHelper)
+        public MockedGreeterServiceTests(GrpcTestFixture<Startup> fixture,
+            ITestOutputHelper outputHelper) : base(fixture, outputHelper)
         {
             var mockGreeter = new Mock<IGreeter>();
-            mockGreeter.Setup(m => m.Greet(It.IsAny<string>())).Returns((string s) => $"Test {s}");
+            mockGreeter.Setup(
+                m => m.Greet(It.IsAny<string>())).Returns((string s) => $"Test {s}");
 
             Fixture.ConfigureWebHost(builder =>
             {
-                builder.ConfigureServices(services => services.AddSingleton(mockGreeter.Object));
+                builder.ConfigureServices(
+                    services => services.AddSingleton(mockGreeter.Object));
             });
         }
 
@@ -49,7 +51,8 @@ namespace Tests.Server.IntegrationTests
             var client = new Tester.TesterClient(Channel);
 
             // Act
-            var response = await client.SayHelloUnaryAsync(new HelloRequest { Name = "Joe" });
+            var response = await client.SayHelloUnaryAsync(
+                new HelloRequest { Name = "Joe" });
 
             // Assert
             Assert.Equal("Test Joe", response.Message);

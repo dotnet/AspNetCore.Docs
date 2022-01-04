@@ -32,7 +32,8 @@ namespace Tests.Server.UnitTests
         {
             // Arrange
             var mockGreeter = new Mock<IGreeter>();
-            mockGreeter.Setup(m => m.Greet(It.IsAny<string>())).Returns((string s) => $"Hello {s}");
+            mockGreeter.Setup(
+                m => m.Greet(It.IsAny<string>())).Returns((string s) => $"Hello {s}");
             var service = new TesterService(mockGreeter.Object);
 
             // Act

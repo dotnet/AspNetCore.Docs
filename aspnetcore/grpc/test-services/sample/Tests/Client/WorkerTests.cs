@@ -33,10 +33,13 @@ namespace Tests.Client
         {
             // Arrange
             var mockRepository = new Mock<IGreetRepository>();
+
+            var mockCall = CallHelpers.CreateAsyncUnaryCall(new HelloReply { Message = "Test" });
             var mockClient = new Mock<Tester.TesterClient>();
             mockClient
-                .Setup(m => m.SayHelloUnaryAsync(It.IsAny<HelloRequest>(), null, null, CancellationToken.None))
-                .Returns(CallHelpers.CreateAsyncUnaryCall(new HelloReply { Message = "Test message" }));
+                .Setup(m => m.SayHelloUnaryAsync(
+                    It.IsAny<HelloRequest>(), null, null, CancellationToken.None))
+                .Returns(mockCall);
 
             var worker = new Worker(mockClient.Object, mockRepository.Object);
 
@@ -44,7 +47,7 @@ namespace Tests.Client
             await worker.StartAsync(CancellationToken.None);
 
             // Assert
-            mockRepository.Verify(v => v.SaveGreeting("Test message"));
+            mockRepository.Verify(v => v.SaveGreeting("Test"));
         }
         #endregion
 

@@ -39,7 +39,9 @@ namespace Client
             {
                 count++;
 
-                var reply = await _client.SayHelloUnaryAsync(new HelloRequest { Name = $"Worker {count}" });
+                var reply = await _client.SayHelloUnaryAsync(
+                    new HelloRequest { Name = $"Worker {count}" });
+
                 _greetRepository.SaveGreeting(reply.Message);
 
                 await Task.Delay(1000, stoppingToken);
