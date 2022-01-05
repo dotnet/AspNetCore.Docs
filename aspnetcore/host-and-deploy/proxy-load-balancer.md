@@ -82,7 +82,7 @@ To forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers, see <xref:host
 
 ## Apache configuration
 
-`X-Forwarded-For` is added automatically, for more information, see [Apache Module mod_proxy: Reverse Proxy Request Headers](https://httpd.apache.org/docs/2.4/mod/mod_proxy.html#x-headers). For information on how to forward the `X-Forwarded-Proto` header, see <xref:host-and-deploy/linux-apache#configure-apache>.
+`X-Forwarded-For` is added automatically. For more information, see [Apache Module mod_proxy: Reverse Proxy Request Headers](https://httpd.apache.org/docs/2.4/mod/mod_proxy.html#x-headers). For information on how to forward the `X-Forwarded-Proto` header, see <xref:host-and-deploy/linux-apache#configure-apache>.
 
 ## Forwarded Headers Middleware options
 
@@ -117,7 +117,7 @@ In some cases, it might not be possible to add forwarded headers to the requests
 
 [!code-csharp[](~/host-and-deploy/proxy-load-balancer/6.1samples/WebPS/Program.cs?name=snippet_https&highlight=14-18)]
 
-This code can be disabled with an environment variable or other configuration setting in a development or staging environment.
+This code can be disabled with an environment variable or other configuration setting in a development or staging environment:
 
 [!code-csharp[](~/host-and-deploy/proxy-load-balancer/6.1samples/WebPS/Program.cs?name=snippet_https2&highlight=14-21)]
 
@@ -191,7 +191,7 @@ If a proxy is used that isn't IIS or Azure App Service's Application Request Rou
 
 [!code-csharp[](~/host-and-deploy/proxy-load-balancer/6.1samples/WebPS/Program.cs?name=snippet_owp&highlight=4-5,9,17,21)]
 
-If the proxy isn't base64-encoding the certificate (as is the case with Nginx), set the `HeaderConverter` option. Consider the following example :
+If the proxy isn't base64-encoding the certificate, as is the case with Nginx, set the `HeaderConverter` option. Consider the following example:
 [!code-csharp[](~/host-and-deploy/proxy-load-balancer/6.1samples/WebPS/Program.cs?name=snippet_owp2&highlight=4-13,17,25)]
 
 ## Troubleshoot
