@@ -440,7 +440,7 @@ In the following example, the `RenderFragmentChild` component has a `ChildConten
 > [!IMPORTANT]
 > The property receiving the <xref:Microsoft.AspNetCore.Components.RenderFragment> content must be named `ChildContent` by convention.
 >
-> Event callbacks aren't supported for <xref:Microsoft.AspNetCore.Components.RenderFragment>.
+> [Event callbacks](xref:blazor/components/event-handling#eventcallback) aren't supported for <xref:Microsoft.AspNetCore.Components.RenderFragment>.
 
 The following `RenderFragmentParent` component provides content for rendering the `RenderFragmentChild` by placing the content inside the child component's opening and closing tags.
 
@@ -1521,7 +1521,7 @@ In the following example, the `RenderFragmentChild` component has a `ChildConten
 > [!IMPORTANT]
 > The property receiving the <xref:Microsoft.AspNetCore.Components.RenderFragment> content must be named `ChildContent` by convention.
 >
-> Event callbacks aren't supported for <xref:Microsoft.AspNetCore.Components.RenderFragment>.
+> [Event callbacks](xref:blazor/components/event-handling#eventcallback) aren't supported for <xref:Microsoft.AspNetCore.Components.RenderFragment>.
 
 The following `RenderFragmentParent` component provides content for rendering the `RenderFragmentChild` by placing the content inside the child component's opening and closing tags.
 
@@ -2468,7 +2468,7 @@ In the following example, the `RenderFragmentChild` component has a `ChildConten
 > [!IMPORTANT]
 > The property receiving the <xref:Microsoft.AspNetCore.Components.RenderFragment> content must be named `ChildContent` by convention.
 >
-> Event callbacks aren't supported for <xref:Microsoft.AspNetCore.Components.RenderFragment>.
+> [Event callbacks](xref:blazor/components/event-handling#eventcallback) aren't supported for <xref:Microsoft.AspNetCore.Components.RenderFragment>.
 
 The following `RenderFragmentParent` component provides content for rendering the `RenderFragmentChild` by placing the content inside the child component's opening and closing tags.
 
