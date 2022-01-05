@@ -167,6 +167,9 @@ You might be factoring out child components purely as a way of reusing rendering
 
 As demonstrated in the preceding example, components can emit markup from code within their `@code` blocks and outside of them. The <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate must accept a parameter called `__builder` of type <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> so that the Razor compiler can produce rendering instructions for the fragment.
 
+> [!NOTE]
+> Assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate is only supported in Razor component files (`.razor`).
+
 To make <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> code reusable across multiple components, declare the <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate as `public` and `static`:
 
 ```razor
@@ -923,6 +926,9 @@ You might be factoring out child components purely as a way of reusing rendering
 
 As demonstrated in the preceding example, components can emit markup from code within their `@code` blocks and outside of them. The <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate must accept a parameter called `__builder` of type <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> so that the Razor compiler can produce rendering instructions for the fragment.
 
+> [!NOTE]
+> Assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate is only supported in Razor component files (`.razor`).
+
 To make <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> code reusable across multiple components, declare the <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate as `public` and `static`:
 
 ```razor
@@ -1662,6 +1668,9 @@ You might be factoring out child components purely as a way of reusing rendering
 ```
 
 As demonstrated in the preceding example, components can emit markup from code within their `@code` blocks and outside of them. The <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate must accept a parameter called `__builder` of type <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> so that the Razor compiler can produce rendering instructions for the fragment.
+
+> [!NOTE]
+> Assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate is only supported in Razor component files (`.razor`).
 
 To make <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> code reusable across multiple components, declare the <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate as `public` and `static`:
 
