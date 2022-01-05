@@ -349,26 +349,26 @@ var app = builder.Build();
 
 app.UseForwardedHeaders();
 
-ILogger _logger = app.Logger;
+var logger = app.Logger;
 
 app.Use(async (context, next) =>
 {
     // Request method, scheme, and path.
-    _logger.LogInformation("Request Method: {Method}", context.Request.Method);
-    _logger.LogInformation("Request Scheme: {Scheme}", context.Request.Scheme);
-    _logger.LogInformation("Request Path: {Path}", context.Request.Path);
+    logger.LogInformation("Request Method: {Method}", context.Request.Method);
+    logger.LogInformation("Request Scheme: {Scheme}", context.Request.Scheme);
+    logger.LogInformation("Request Path: {Path}", context.Request.Path);
 
     // Headers
     foreach (var header in context.Request.Headers)
     {
-        _logger.LogInformation("Header: {Key}: {Value}", header.Key, header.Value);
+        logger.LogInformation("Header: {Key}: {Value}", header.Key, header.Value);
     }
 
     // Connection: RemoteIp
-    _logger.LogInformation("Request RemoteIp: {RemoteIpAddress}",
+    logger.LogInformation("Request RemoteIp: {RemoteIpAddress}",
         context.Connection.RemoteIpAddress);
 
-    await next();
+    await next(context);
 });
 
 if (!app.Environment.IsDevelopment())
@@ -404,7 +404,7 @@ var app = builder.Build();
 app.Use((context, next) =>
 {
     context.Request.Scheme = "https";
-    return next();
+    return next(context);
 });
 
 app.UseForwardedHeaders();
@@ -444,7 +444,7 @@ if (!app.Environment.IsProduction())
     app.Use((context, next) =>
     {
         context.Request.Scheme = "https";
-        return next();
+        return next(context);
     });
 }
 
