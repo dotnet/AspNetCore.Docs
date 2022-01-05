@@ -139,7 +139,7 @@ If the proxy trims the path (for example, forwarding `/foo/api/1` to `/api/1`), 
 app.Use((context, next) =>
 {
     context.Request.PathBase = new PathString("/foo");
-    return next();
+    return next(context);
 });
 ```
 
@@ -153,7 +153,7 @@ app.Use((context, next) =>
         context.Request.Path = remainder;
     }
 
-    return next();
+    return next(context);
 });
 ```
 
