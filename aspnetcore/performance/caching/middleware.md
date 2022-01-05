@@ -15,15 +15,15 @@ By [John Luo](https://github.com/JunTaoLuo) and [Rick Anderson](https://twitter.
 
 ::: moniker range=">= aspnetcore-6.0"
 
-This article explains how to configure Response Caching Middleware in an ASP.NET Core app. The middleware determines when responses are cacheable, stores responses, and serves responses from cache. For an introduction to HTTP caching and the [`[ResponseCache]`](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) attribute, see [Response Caching](xref:performance/caching/response).
+This article explains how to configure [Response Caching Middleware](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/ResponseCaching/src/ResponseCachingMiddleware.cs) in an ASP.NET Core app. The middleware determines when responses are cacheable, stores responses, and serves responses from cache. For an introduction to HTTP caching and the [`[ResponseCache]`](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) attribute, see [Response Caching](xref:performance/caching/response).
 
 The Response caching middleware:
 
 * Implements the standard HTTP caching semantics, that is it caches based on HTTP cache headers like a proxies do.
 * Is typically not beneficial for UI apps such as Razor Pages. Output caching is being considered for the next version of ASP.NET Core, which will benefit UI apps. With output caching, the app, not the browser, decides what should be cached. For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/27387).
-* May be benefical to Web API clients where the client meets the [Conditions for caching](#cfc).
+* May be beneficial for public GET or HEAD API requests from clients where the [Conditions for caching](#cfc) are met.
 
-<!--Postman:  GET: Headers > Postman > go to settings > Send no-cache header -->
+<!--Postman:  GET: Headers > Postman > go to settings > uncheck Send no-cache header -->
 ## Configuration
 
 In `Program.cs`, add the Response Caching Middleware to the service collection and configure the app to use the middleware with the <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*> extension method. `UseResponseCaching` adds the middleware to the request processing pipeline:
@@ -49,7 +49,7 @@ Response Caching Middleware only caches server responses that result in a 200 (O
 > [!WARNING]
 > Responses containing content for authenticated clients must be marked as not cacheable to prevent the middleware from storing and serving those responses. See [Conditions for caching](#conditions-for-caching) for details on how the middleware determines if a response is cacheable.
 
-The preceding code typically won't return a cached value to browser. Use [Fiddler](https://www.telerik.com/fiddler), [Postman](https://www.getpostman.com/), or other tool that can explicitly set request headers and are preferred for testing caching. For more information, see [Troubleshooting](#troubleshooting) in this article.
+The preceding code typically won't return a cached value when request from a web browser. Browsers typically set the `no-cache` and `cache-control: max-age=0` headers, either of which invalidates the response caching middleware. Use [Fiddler](https://www.telerik.com/fiddler), [Postman](https://www.getpostman.com/), or other tool that can explicitly set request headers for testing caching. For more information, see [Troubleshooting](#troubleshooting) in this article.
 
 ## Options
 
@@ -116,6 +116,8 @@ For more control over caching behavior, explore other caching features of ASP.NE
 
 ## Troubleshooting
 
+The [Response Caching Middleware](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/ResponseCaching/src/ResponseCachingMiddleware.cs) uses <xref:Microsoft.Extensions.Caching.Memory.IMemoryCache>, which has a limited capacity. When the capacity is exceeded, the [memory cache is compacted](https://github.com/dotnet/runtime/blob/v6.0.1/src/libraries/Microsoft.Extensions.Caching.Memory/src/MemoryCache.cs#L359-L365). <!-- and the debug level log `Overcapacity compaction triggered` is written. -->
+
 If caching behavior isn't as expected, confirm that responses are cacheable and capable of being served from the cache. Examine the request's incoming headers and the response's outgoing headers. Enable [logging](xref:fundamentals/logging/index) to help with debugging.
 
 When testing and troubleshooting caching behavior, a browser typically sets request headers that prevent caching. For example, a browser may set the `Cache-Control` header to `no-cache` or `max-age=0` when refreshing a page. [Fiddler](https://www.telerik.com/fiddler), [Postman](https://www.getpostman.com/), and other tools can explicitly set request headers and are preferred for testing caching.
@@ -144,6 +146,7 @@ When testing and troubleshooting caching behavior, a browser typically sets requ
 ## Additional resources
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching/middleware/samples) ([how to download](xref:index#how-to-download-a-sample))
+* [GitHub source for `IResponseCachingPolicyProvider`](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/ResponseCaching/src/Interfaces/IResponseCachingPolicyProvider.cs)
 * [GitHub source for `IResponseCachingPolicyProvider`](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/ResponseCaching/src/Interfaces/IResponseCachingPolicyProvider.cs)
 * <xref:fundamentals/startup>
 * <xref:fundamentals/middleware/index>
