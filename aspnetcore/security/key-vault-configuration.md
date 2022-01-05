@@ -13,12 +13,10 @@ uid: security/key-vault-configuration
 
 :::moniker range=">= aspnetcore-6.0"
 
-This article explains how to use the [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) configuration provider to load app configuration values from Azure Key Vault secrets. Azure Key Vault is a cloud-based service that helps safeguard cryptographic keys and secrets used by apps and services. Common scenarios for using Azure Key Vault with ASP.NET Core apps include:
+This article explains how to use the [Azure Key Vault](/azure/key-vault/) configuration provider to load app configuration values from Azure Key Vault secrets. Azure Key Vault is a cloud-based service that helps safeguard cryptographic keys and secrets used by apps and services. Common scenarios for using Azure Key Vault with ASP.NET Core apps include:
 
 * Controlling access to sensitive configuration data.
 * Meeting the requirement for FIPS 140-2 Level 2 validated Hardware Security Modules (HSMs) when storing configuration data.
-
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/key-vault-configuration/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Packages
 
@@ -139,7 +137,7 @@ The `Certificate` sample app obtains its configuration values from <xref:Microso
 
 The X.509 certificate is managed by the OS. The app calls <xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault%2A> with values supplied by the *appsettings.json* file:
 
-:::code language="csharp" source="key-vault-configuration/samples/3.x/SampleApp/Program.cs" id="snippet1" highlight="46-49":::
+:::code language="csharp" source="key-vault-configuration/samples/6.x/KeyVaultConfigurationSample/Program.cs" id="snippet_Certificate":::
 
 Example values:
 
@@ -149,7 +147,7 @@ Example values:
 
 *appsettings.json*:
 
-:::code language="json" source="key-vault-configuration/samples/3.x/SampleApp/appsettings.json" highlight="10-12":::
+:::code language="json" source="key-vault-configuration/samples/6.x/KeyVaultConfigurationSample/appsettings.json":::
 
 When you run the app, a webpage shows the loaded secret values. In the Development environment, secret values load with the `_dev` suffix. In the Production environment, the values load with the `_prod` suffix.
 
@@ -179,7 +177,7 @@ The sample app:
 * A new <xref:Azure.Security.KeyVault.Secrets.SecretClient> is created with the `DefaultAzureCredential` instance.
 * The `SecretClient` instance is used with a <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.KeyVaultSecretManager> instance, which loads secret values and replaces double-dashes (`--`) with colons (`:`) in key names.
 
-:::code language="csharp" source="key-vault-configuration/samples/3.x/SampleApp/Program.cs" id="snippet2" highlight="12-14":::
+:::code language="csharp" source="key-vault-configuration/samples/6.x/KeyVaultConfigurationSample/Program.cs" id="snippet_Managed":::
 
 Key vault name example value: `contosovault`
 
@@ -358,6 +356,7 @@ When the app fails to load configuration using the provider, an error message is
 
 ## Additional resources
 
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/key-vault-configuration/samples) ([how to download](xref:index#how-to-download-a-sample))
 * <xref:fundamentals/configuration/index>
 * [Microsoft Azure: Key Vault Documentation](/azure/key-vault/)
 * [How to generate and transfer HSM-protected keys for Azure Key Vault](/azure/key-vault/key-vault-hsm-protected-keys)
