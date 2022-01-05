@@ -11,8 +11,10 @@ using System.Security.Cryptography.X509Certificates;
 
 var builder = WebApplication.CreateBuilder(args);
 
-using (var x509Store = new X509Store(StoreLocation.CurrentUser))
+if (builder.Environment.IsProduction())
 {
+    using var x509Store = new X509Store(StoreLocation.CurrentUser);
+
     x509Store.Open(OpenFlags.ReadOnly);
 
     var x509Certificate = x509Store.Certificates
@@ -24,11 +26,11 @@ using (var x509Store = new X509Store(StoreLocation.CurrentUser))
         .Single();
 
     builder.Configuration.AddAzureKeyVault(
-            new Uri($"https://{builder.Configuration["KeyVaultName"]}.vault.azure.net/"),
-            new ClientCertificateCredential(
-                builder.Configuration["AzureADDirectoryId"],
-                builder.Configuration["AzureADApplicationId"],
-                x509Certificate));
+        new Uri($"https://{builder.Configuration["KeyVaultName"]}.vault.azure.net/"),
+        new ClientCertificateCredential(
+            builder.Configuration["AzureADDirectoryId"],
+            builder.Configuration["AzureADApplicationId"],
+            x509Certificate));
 }
 
 var app = builder.Build();
@@ -41,9 +43,12 @@ var app = builder.Build();
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Configuration.AddAzureKeyVault(
-    new Uri($"https://{builder.Configuration["KeyVaultName"]}.vault.azure.net/"),
-    new DefaultAzureCredential());
+if (builder.Environment.IsProduction())
+{
+    builder.Configuration.AddAzureKeyVault(
+        new Uri($"https://{builder.Configuration["KeyVaultName"]}.vault.azure.net/"),
+        new DefaultAzureCredential());
+}
 // </snippet_Managed>
 
 var app = builder.Build();

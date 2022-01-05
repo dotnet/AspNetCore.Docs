@@ -171,11 +171,7 @@ az keyvault set-policy --name {KEY VAULT NAME} --object-id {OBJECT ID} --secret-
 
 **Restart the app** using Azure CLI, PowerShell, or the Azure portal.
 
-The sample app:
-
-* Creates an instance of the <xref:Azure.Identity.DefaultAzureCredential> class. The credential attempts to obtain an access token from environment for Azure resources.
-* A new <xref:Azure.Security.KeyVault.Secrets.SecretClient> is created with the `DefaultAzureCredential` instance.
-* The `SecretClient` instance is used with a <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.KeyVaultSecretManager> instance, which loads secret values and replaces double-dashes (`--`) with colons (`:`) in key names.
+The sample app creates an instance of the <xref:Azure.Identity.DefaultAzureCredential> class. The credential attempts to obtain an access token from environment for Azure resources:
 
 :::code language="csharp" source="key-vault-configuration/samples/6.x/KeyVaultConfigurationSample/Program.cs" id="snippet_Managed":::
 
