@@ -19,7 +19,7 @@ This article explains how to configure [Response Caching Middleware](https://git
 
 The Response caching middleware:
 
-* Implements the standard HTTP caching semantics, that is it caches based on HTTP cache headers like a proxies do.
+* Implements the standard HTTP caching semantics, that is it caches based on HTTP cache headers like proxies do.
 * Is typically not beneficial for UI apps such as Razor Pages. Output caching is being considered for the next version of ASP.NET Core, which will benefit UI apps. With output caching, the app, not the browser, decides what should be cached. For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/27387).
 * May be beneficial for public GET or HEAD API requests from clients where the [Conditions for caching](#cfc) are met.
 
@@ -49,7 +49,7 @@ Response Caching Middleware only caches server responses that result in a 200 (O
 > [!WARNING]
 > Responses containing content for authenticated clients must be marked as not cacheable to prevent the middleware from storing and serving those responses. See [Conditions for caching](#conditions-for-caching) for details on how the middleware determines if a response is cacheable.
 
-The preceding code typically won't return a cached value when request from a web browser. Browsers typically set the `no-cache` and `cache-control: max-age=0` headers, either of which invalidates the response caching middleware. Use [Fiddler](https://www.telerik.com/fiddler), [Postman](https://www.getpostman.com/), or other tool that can explicitly set request headers for testing caching. For more information, see [Troubleshooting](#troubleshooting) in this article.
+The preceding code typically won't return a cached value to a browser. Use [Fiddler](https://www.telerik.com/fiddler), [Postman](https://www.getpostman.com/), or other tool that can explicitly set request headers and are preferred for testing caching. For more information, see [Troubleshooting](#troubleshooting) in this article.
 
 ## Options
 
