@@ -1617,7 +1617,7 @@ See [Tutorial: Call an ASP.NET Core web API with JavaScript](xref:tutorials/web-
 
 ## Add authentication support to a web API
 
-[!INCLUDE[](~/includes/IdentityServer4.md)]
+[!INCLUDE[](~/includes/DuendeIdentityServer.md)]
 
 ## Additional resources
 
