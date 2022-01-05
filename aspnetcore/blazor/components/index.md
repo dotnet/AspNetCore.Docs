@@ -440,7 +440,16 @@ In the following example, the `RenderFragmentChild` component has a `ChildConten
 > [!IMPORTANT]
 > The property receiving the <xref:Microsoft.AspNetCore.Components.RenderFragment> content must be named `ChildContent` by convention.
 >
-> The <xref:Microsoft.AspNetCore.Components.RenderFragment> type is only supported in Razor component files (`.razor`).
+> Assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate is only supported in Razor component files (`.razor`):
+> 
+> ```razor
+> private RenderFragment RenderWelcomeInfo = __builder =>
+> {
+>     <p>Welcome to your new app!</p>
+> };
+> ```
+>
+> For more information, see <xref:blazor/performance#define-reusable-renderfragments-in-code>.
 
 The following `RenderFragmentParent` component provides content for rendering the `RenderFragmentChild` by placing the content inside the child component's opening and closing tags.
 
@@ -1509,7 +1518,16 @@ In the following example, the `RenderFragmentChild` component has a `ChildConten
 > [!IMPORTANT]
 > The property receiving the <xref:Microsoft.AspNetCore.Components.RenderFragment> content must be named `ChildContent` by convention.
 >
-> The <xref:Microsoft.AspNetCore.Components.RenderFragment> type is only supported in Razor component files (`.razor`).
+> Assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate is only supported in Razor component files (`.razor`):
+> 
+> ```razor
+> private RenderFragment RenderWelcomeInfo = __builder =>
+> {
+>     <p>Welcome to your new app!</p>
+> };
+> ```
+>
+> For more information, see <xref:blazor/performance#define-reusable-renderfragments-in-code>.
 
 The following `RenderFragmentParent` component provides content for rendering the `RenderFragmentChild` by placing the content inside the child component's opening and closing tags.
 
@@ -2444,7 +2462,16 @@ In the following example, the `RenderFragmentChild` component has a `ChildConten
 > [!IMPORTANT]
 > The property receiving the <xref:Microsoft.AspNetCore.Components.RenderFragment> content must be named `ChildContent` by convention.
 >
-> The <xref:Microsoft.AspNetCore.Components.RenderFragment> type is only supported in Razor component files (`.razor`).
+> Assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate is only supported in Razor component files (`.razor`):
+> 
+> ```razor
+> private RenderFragment RenderWelcomeInfo = __builder =>
+> {
+>     <p>Welcome to your new app!</p>
+> };
+> ```
+>
+> For more information, see <xref:blazor/performance#define-reusable-renderfragments-in-code>.
 
 The following `RenderFragmentParent` component provides content for rendering the `RenderFragmentChild` by placing the content inside the child component's opening and closing tags.
 
