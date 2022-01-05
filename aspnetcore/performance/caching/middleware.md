@@ -26,7 +26,7 @@ The Response caching middleware:
 <!--Postman:  GET: Headers > Postman > go to settings > uncheck Send no-cache header -->
 ## Configuration
 
-In `Program.cs`, add the Response Caching Middleware to the service collection and configure the app to use the middleware with the <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*> extension method. `UseResponseCaching` adds the middleware to the request processing pipeline:
+In `Program.cs`, add the Response Caching Middleware services to the service collection and configure the app to use the middleware with the <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A> extension method. `UseResponseCaching` adds the middleware to the request processing pipeline:
 
 [!code-csharp[](middleware/samples/6.x/ResponseCachingMiddleware/Program.cs?name=snippet2&highlight=3,12)]
 
@@ -49,7 +49,7 @@ Response Caching Middleware only caches server responses that result in a 200 (O
 > [!WARNING]
 > Responses containing content for authenticated clients must be marked as not cacheable to prevent the middleware from storing and serving those responses. See [Conditions for caching](#conditions-for-caching) for details on how the middleware determines if a response is cacheable.
 
-The preceding code typically won't return a cached value to a browser. Use [Fiddler](https://www.telerik.com/fiddler), [Postman](https://www.getpostman.com/), or other tool that can explicitly set request headers and are preferred for testing caching. For more information, see [Troubleshooting](#troubleshooting) in this article.
+The preceding code typically doesn't return a cached value to a browser. Use [Fiddler](https://www.telerik.com/fiddler), [Postman](https://www.getpostman.com/), or another tool that can explicitly set request headers and is preferred for testing caching. For more information, see [Troubleshooting](#troubleshooting) in this article.
 
 ## Options
 
