@@ -439,17 +439,6 @@ In the following example, the `RenderFragmentChild` component has a `ChildConten
 
 > [!IMPORTANT]
 > The property receiving the <xref:Microsoft.AspNetCore.Components.RenderFragment> content must be named `ChildContent` by convention.
->
-> Assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate is only supported in Razor component files (`.razor`):
-> 
-> ```razor
-> private RenderFragment RenderWelcomeInfo = __builder =>
-> {
->     <p>Welcome to your new app!</p>
-> };
-> ```
->
-> For more information, see <xref:blazor/performance#define-reusable-renderfragments-in-code>.
 
 The following `RenderFragmentParent` component provides content for rendering the `RenderFragmentChild` by placing the content inside the child component's opening and closing tags.
 
@@ -484,6 +473,18 @@ Alternatively, use a [`foreach`](/dotnet/csharp/language-reference/keywords/fore
     </RenderFragmentChild>
 }
 ```
+
+> [!NOTE]
+> Assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate is only supported in Razor component files (`.razor`):
+> 
+> ```razor
+> private RenderFragment RenderWelcomeInfo = __builder =>
+> {
+>     <p>Welcome to your new app!</p>
+> };
+> ```
+>
+> For more information, see <xref:blazor/performance#define-reusable-renderfragments-in-code>.
 
 For information on how a <xref:Microsoft.AspNetCore.Components.RenderFragment> can be used as a template for component UI, see the following articles:
 
@@ -1517,17 +1518,6 @@ In the following example, the `RenderFragmentChild` component has a `ChildConten
 
 > [!IMPORTANT]
 > The property receiving the <xref:Microsoft.AspNetCore.Components.RenderFragment> content must be named `ChildContent` by convention.
->
-> Assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate is only supported in Razor component files (`.razor`):
-> 
-> ```razor
-> private RenderFragment RenderWelcomeInfo = __builder =>
-> {
->     <p>Welcome to your new app!</p>
-> };
-> ```
->
-> For more information, see <xref:blazor/performance#define-reusable-renderfragments-in-code>.
 
 The following `RenderFragmentParent` component provides content for rendering the `RenderFragmentChild` by placing the content inside the child component's opening and closing tags.
 
@@ -1562,6 +1552,18 @@ Alternatively, use a [`foreach`](/dotnet/csharp/language-reference/keywords/fore
     </RenderFragmentChild>
 }
 ```
+
+> [!NOTE]
+> Assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate is only supported in Razor component files (`.razor`):
+> 
+> ```razor
+> private RenderFragment RenderWelcomeInfo = __builder =>
+> {
+>     <p>Welcome to your new app!</p>
+> };
+> ```
+>
+> For more information, see <xref:blazor/performance#define-reusable-renderfragments-in-code>.
 
 For information on how a <xref:Microsoft.AspNetCore.Components.RenderFragment> can be used as a template for component UI, see the following articles:
 
@@ -2461,17 +2463,6 @@ In the following example, the `RenderFragmentChild` component has a `ChildConten
 
 > [!IMPORTANT]
 > The property receiving the <xref:Microsoft.AspNetCore.Components.RenderFragment> content must be named `ChildContent` by convention.
->
-> Assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate is only supported in Razor component files (`.razor`):
-> 
-> ```razor
-> private RenderFragment RenderWelcomeInfo = __builder =>
-> {
->     <p>Welcome to your new app!</p>
-> };
-> ```
->
-> For more information, see <xref:blazor/performance#define-reusable-renderfragments-in-code>.
 
 The following `RenderFragmentParent` component provides content for rendering the `RenderFragmentChild` by placing the content inside the child component's opening and closing tags.
 
@@ -2506,6 +2497,18 @@ Alternatively, use a [`foreach`](/dotnet/csharp/language-reference/keywords/fore
     </RenderFragmentChild>
 }
 ```
+
+> [!NOTE]
+> Assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate is only supported in Razor component files (`.razor`):
+> 
+> ```razor
+> private RenderFragment RenderWelcomeInfo = __builder =>
+> {
+>     <p>Welcome to your new app!</p>
+> };
+> ```
+>
+> For more information, see <xref:blazor/performance#define-reusable-renderfragments-in-code>.
 
 For information on how a <xref:Microsoft.AspNetCore.Components.RenderFragment> can be used as a template for component UI, see the following articles:
 
