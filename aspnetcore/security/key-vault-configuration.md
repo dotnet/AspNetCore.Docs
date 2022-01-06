@@ -318,15 +318,19 @@ The configuration shown in the preceding JSON file is stored in Azure Key Vault 
 
 ## Reload secrets
 
-Secrets are cached until <xref:Microsoft.Extensions.Configuration.IConfigurationRoot.Reload%2A?displayProperty=nameWithType> is called. Expired, disabled, and updated secrets in the key vault aren't respected by the app until `Reload` is executed.
+By default, secrets are cached by the configuration provider for the app's lifetime. Secrets that have been updated, disabled, or have expired in the key vault are ignored by the app.
+
+To reload secrets, call <xref:Microsoft.Extensions.Configuration.IConfigurationRoot.Reload%2A?displayProperty=nameWithType>:
 
 ```csharp
-Configuration.Reload();
+config.Reload();
 ```
+
+To reload secrets periodically, at a specified interval, set the <xref:Microsoft.Extensions.Configuration.AzureKeyVault.AzureKeyVaultConfigurationOptions.ReloadInterval%2A?displayProperty=nameWithType> property. For more information, see [Configuration options](#configuration-options).
 
 ## Disabled and expired secrets
 
-Disabled and expired secrets are excluded from the configuration provider. To include values for these secrets in configuration, provide the configuration using a different configuration provider or update the disabled or expired secret.
+Disabled and expired secrets are excluded from the configuration provider. To include values for these secrets in app configuration, provide the configuration using a different configuration provider or update the disabled or expired secret.
 
 ## Troubleshoot
 
