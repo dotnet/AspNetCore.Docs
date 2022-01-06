@@ -37,6 +37,7 @@ namespace CookieSample.Pages.Account
             public string Password { get; set; }
         }
 
+        #region snippet2
         public async Task OnGetAsync(string returnUrl = null)
         {
             if (!string.IsNullOrEmpty(ErrorMessage))
@@ -45,14 +46,14 @@ namespace CookieSample.Pages.Account
             }
 
             // Clear the existing external cookie
-            #region snippet2
             await HttpContext.SignOutAsync(
                 CookieAuthenticationDefaults.AuthenticationScheme);
-            #endregion
 
             ReturnUrl = returnUrl;
         }
+        #endregion
 
+        #region snippet1
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             ReturnUrl = returnUrl;
@@ -74,7 +75,6 @@ namespace CookieSample.Pages.Account
                     return Page();
                 }
 
-                #region snippet1
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, user.Email),
@@ -113,7 +113,6 @@ namespace CookieSample.Pages.Account
                     CookieAuthenticationDefaults.AuthenticationScheme, 
                     new ClaimsPrincipal(claimsIdentity), 
                     authProperties);
-                #endregion
 
                 _logger.LogInformation("User {Email} logged in at {Time}.", 
                     user.Email, DateTime.UtcNow);
@@ -124,6 +123,7 @@ namespace CookieSample.Pages.Account
             // Something failed. Redisplay the form.
             return Page();
         }
+        #endregion
 
         private async Task<ApplicationUser> AuthenticateUser(string email, string password)
         {

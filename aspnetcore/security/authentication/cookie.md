@@ -22,29 +22,27 @@ For demonstration purposes in the sample app, the user account for the hypotheti
 
 ## Add cookie authentication
 
-Create the Authentication Middleware services with the <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> and <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*> methods:
+* Add the Authentication Middleware services with the <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> and <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*> methods.
+* Call [`UseAuthentication`](xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A) and [`UseAuthorization`](xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A) to set the `HttpContext.User` property and run Authorization Middleware for requests. `UseAuthentication` and `UseAuthorization` must be called before `Map` methods such as <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages%2A> and <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapDefaultControllerRoute%2A>
 
-[!code-csharp[](cookie/samples/6.x/CookieSample/Program.cs?name=snippet1&highlight=12-13)]
+[!code-csharp[](cookie/samples/6.x/CookieSample/Program.cs?name=snippet1&highlight=8-9,24-28)]
 
 <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme> passed to `AddAuthentication` sets the default authentication scheme for the app. `AuthenticationScheme` is useful when there are multiple instances of cookie authentication and the app needs to [authorize with a specific scheme](xref:security/authorization/limitingidentitybyscheme). Setting the `AuthenticationScheme` to [CookieAuthenticationDefaults.AuthenticationScheme](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme) provides a value of `"Cookies"` for the scheme. Any string value can be used that distinguishes the scheme.
 
-The app's authentication scheme is different from the app's cookie authentication scheme. When a cookie authentication scheme isn't provided to <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*>, it uses [`CookieAuthenticationDefaults.AuthenticationScheme`](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme). [`CookieAuthenticationDefaults.AuthenticationScheme`](https://github.com/dotnet/aspnetcore/blob/v6.0.1/src/Security/Authentication/Cookies/src/CookieAuthenticationDefaults.cs#L16) is set to `"Cookies"`.
+The app's authentication scheme is different from the app's cookie authentication scheme. When a cookie authentication scheme isn't provided to <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*>, it uses [`CookieAuthenticationDefaults.AuthenticationScheme`](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme). [The `CookieAuthenticationDefaults.AuthenticationScheme` GitHub Source](https://github.com/dotnet/aspnetcore/blob/v6.0.1/src/Security/Authentication/Cookies/src/CookieAuthenticationDefaults.cs#L16) shows it's set to `"Cookies"`.
 
 The authentication cookie's <xref:Microsoft.AspNetCore.Http.CookieBuilder.IsEssential> property is set to `true` by default. Authentication cookies are allowed when a site visitor hasn't consented to data collection. For more information, see <xref:security/gdpr#essential-cookies>.
-
-Call [`UseAuthentication`](xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A) and [`UseAuthorization`](xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A) to set the `HttpContext.User` property and run Authorization Middleware for requests. `UseAuthentication` and `UseAuthorization` must be called before `Map` methods such as <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages%2A> and <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapDefaultControllerRoute%2A>:
-
-[!code-csharp[](cookie/samples/6.x/CookieSample/Program.cs?name=snippet1&highlight=28-32)]
 
 The <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions> class is used to configure the authentication provider options.
 
  <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions> can be set in the <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*> method:
 
-[!code-csharp[](cookie/samples/6.x/CookieSample/Program.cs?name=snippet2&highlight=28-32)]
+[!code-csharp[](cookie/samples/6.x/CookieSample/Program.cs?name=snippet2&highlight=8-14)]
 
 ## Cookie Policy Middleware
 
-[Cookie Policy Middleware](xref:Microsoft.AspNetCore.CookiePolicy.CookiePolicyMiddleware) enables cookie policy capabilities. Middleware is processed in the order it's added.
+The 
+[Cookie Policy Middleware (GitHub Source)](https://github.com/dotnet/aspnetcore/blob/main/src/Security/CookiePolicy/src/CookiePolicyMiddleware.cs) <xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy%2A> enables cookie policy capabilities. Middleware is processed in the order it's added.
 
 ```csharp
 app.UseCookiePolicy(cookiePolicyOptions);
@@ -75,7 +73,7 @@ To create a cookie holding user information, construct a <xref:System.Security.C
 
 Create a <xref:System.Security.Claims.ClaimsIdentity> with any required <xref:System.Security.Claims.Claim>s and call <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.SignInAsync*> to sign in the user:
 
-[!code-csharp[](cookie/samples/6.x/CookieSample/Pages/Account/Login.cshtml.cs?name=snippet1)]
+[!code-csharp[](cookie/samples/6.x/CookieSample/Pages/Account/Login.cshtml.cs?name=snippet1&highlight=22-59)]
 
 [!INCLUDE[request localized comments](~/includes/code-comments-loc.md)]
 
@@ -116,7 +114,7 @@ var claims = new List<Claim>
 };
 
 var claimsIdentity = new ClaimsIdentity(
-    claims, 
+    claims,
     CookieAuthenticationDefaults.AuthenticationScheme);
 
 await HttpContext.SignInAsync(
@@ -132,54 +130,11 @@ ValidatePrincipal(CookieValidatePrincipalContext)
 
 The following is an example implementation of `CookieAuthenticationEvents`:
 
-```csharp
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
-
-public class CustomCookieAuthenticationEvents : CookieAuthenticationEvents
-{
-    private readonly IUserRepository _userRepository;
-
-    public CustomCookieAuthenticationEvents(IUserRepository userRepository)
-    {
-        // Get the database from registered DI services.
-        _userRepository = userRepository;
-    }
-
-    public override async Task ValidatePrincipal(CookieValidatePrincipalContext context)
-    {
-        var userPrincipal = context.Principal;
-
-        // Look for the LastChanged claim.
-        var lastChanged = (from c in userPrincipal.Claims
-                           where c.Type == "LastChanged"
-                           select c.Value).FirstOrDefault();
-
-        if (string.IsNullOrEmpty(lastChanged) ||
-            !_userRepository.ValidateLastChanged(lastChanged))
-        {
-            context.RejectPrincipal();
-
-            await context.HttpContext.SignOutAsync(
-                CookieAuthenticationDefaults.AuthenticationScheme);
-        }
-    }
-}
-```
+[!code-csharp[](cookie/samples/6.x/CookieSample/CustomCookieAuthenticationEvents.cs?name=snippet)]
 
 Register the events instance during cookie service registration in the `Startup.ConfigureServices` method. Provide a [scoped service registration](xref:fundamentals/dependency-injection#service-lifetimes) for your `CustomCookieAuthenticationEvents` class:
 
-```csharp
-services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(options =>
-    {
-        options.EventsType = typeof(CustomCookieAuthenticationEvents);
-    });
-
-services.AddScoped<CustomCookieAuthenticationEvents>();
-```
+[!code-csharp[](cookie/samples/6.x/CookieSample/Program.cs?name=snippet_cc&highlight=8-9,24-28)]
 
 Consider a situation in which the user's name is updated&mdash;a decision that doesn't affect security in any way. If you want to non-destructively update the user principal, call `context.ReplacePrincipal` and set the `context.ShouldRenew` property to `true`.
 
