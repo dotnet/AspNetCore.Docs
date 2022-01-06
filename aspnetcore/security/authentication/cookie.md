@@ -44,7 +44,7 @@ The <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOption
 
 ## Cookie Policy Middleware
 
-[Cookie Policy Middleware](xref:Microsoft.AspNetCore.CookiePolicy.CookiePolicyMiddleware) enables cookie policy capabilities. Adding the middleware to the app processing pipeline is order sensitive&mdash;it only affects downstream components registered in the pipeline.
+[Cookie Policy Middleware](xref:Microsoft.AspNetCore.CookiePolicy.CookiePolicyMiddleware) enables cookie policy capabilities. Middleware is processed in the order it's added.
 
 ```csharp
 app.UseCookiePolicy(cookiePolicyOptions);
