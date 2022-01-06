@@ -166,6 +166,167 @@ For more information, see the following articles:
 * Deployment to Azure App Service: <xref:tutorials/publish-to-azure-webapp-using-vs>
 * Blazor project templates: <xref:blazor/project-structure>
 
+## Hosted deployment on Linux
+
+For a hosted Blazor WebAssembly app accessible via requests at the root URL (`/`), additional app configuration isn't required.
+
+For a hosted Blazor WebAssembly accessible at a sub-app path (for example, `/blazor`):
+
+* In `Program.cs` of the **`Server`** project:
+
+  * Add a `using` statement to the top of the file for the <xref:Microsoft.AspNetCore.HttpOverrides?displayProperty=fullName> namespace:
+
+    ```csharp
+    using Microsoft.AspNetCore.HttpOverrides;
+    ```
+
+  * Configure <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> to forward :
+
+    ```csharp
+    app.UseForwardedHeaders(new ForwardedHeadersOptions
+    {
+        ForwardedHeaders = 
+            ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+    });
+
+    app.UsePathBase("/blazor");
+    ```
+
+* In `wwwroot/index.html` of the **`Client`** project, set the [app base path](xref:blazor/host-and-deploy/index#app-base-path) to the app's sub-app path. A trailing slash is required. Replace the `{PATH}` placeholder with the sub-app path in the following markup:
+
+  ```html
+  <base href="{PATH}">
+  ```
+
+  For an app that loads requests at `/blazor`, the `href` attribute is set to a value of `/blazor/`:
+
+  ```html
+  <base href="/blazor/">
+  ```
+
+* In links throughout the app, do ***not*** prefix with a forward slash. Either don't use a path segment separator or use dot-slash (`./`) notation:
+
+  * ❌ Incorrect: `<a href="/account">`
+  * ✔️ Correct: `<a href="account">`
+  * ✔️ Correct: `<a href="./account">`
+
+* In [web API requests with the `HttpClient` service](xref:blazor/call-web-api?pivots=webassembly), confirm that JSON helpers (<xref:System.Net.Http.Json.HttpClientJsonExtensions>) do ***not*** prefix URLs with a forward slash (`/`):
+
+  * ❌ Incorrect: `var rsp = await client.GetFromJsonAsync("/api/Account");`
+  * ✔️ Correct: `var rsp = await client.GetFromJsonAsync("api/Account");`
+
+### Nginx
+
+The following example hosts the app at a root URL (no sub-app path):
+
+```
+server {
+    listen      80;
+    server_name example.com *.example.com;
+    location / {
+        proxy_pass         http://0.0.0.0:5000;
+        proxy_http_version 1.1;
+        proxy_set_header   Upgrade $http_upgrade;
+        proxy_set_header   Connection keep-alive;
+        proxy_set_header   Host $host;
+        proxy_cache_bypass $http_upgrade;
+        proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header   X-Forwarded-Proto $scheme;
+    }
+}
+```
+
+To configure the server to host the app at a sub-app path, the `{PATH}` placeholder in the following `location` entry is the sub-app path:
+
+```
+server {
+    ...
+    location /{PATH} {
+    ...
+    }
+}
+```
+
+For an app that loads requests at `/blazor`:
+
+```
+server {
+    ...
+    location /blazor {
+    ...
+    }
+}
+```
+
+For more information, see <xref:host-and-deploy/linux-nginx>.
+
+### Apache
+
+The following example hosts the app at a root URL (no sub-app path):
+
+```
+<VirtualHost *:*>
+    RequestHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}
+</VirtualHost>
+
+<VirtualHost *:80>
+    ProxyRequests     On
+    ProxyPreserveHost On
+    ProxyPass         / http://0.0.0.0:5000/
+    ProxyPassReverse  / http://0.0.0.0:5000/
+    ProxyPassMatch    ^/_blazor/(.*) http://0.0.0.0:5000/_blazor/$1
+    ProxyPass         /_blazor ws://0.0.0.0:5000/_blazor
+    ServerName        www.example.com
+    ServerAlias       *.example.com
+    ErrorLog          ${APACHE_LOG_DIR}helloapp-error.log
+    CustomLog         ${APACHE_LOG_DIR}helloapp-access.log common
+</VirtualHost>
+```
+
+To configure the server to host the app at a sub-app path, the `{PATH}` placeholder in the following `location` entry is the sub-app path:
+
+```
+<VirtualHost *:*>
+    RequestHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}
+</VirtualHost>
+
+<VirtualHost *:80>
+    ProxyRequests     On
+    ProxyPreserveHost On
+    ProxyPass         / http://0.0.0.0:5000/{PATH}
+    ProxyPassReverse  / http://0.0.0.0:5000/{PATH}
+    ProxyPassMatch    ^/_blazor/(.*) http://0.0.0.0:5000/{PATH}/_blazor/$1
+    ProxyPass         /_blazor ws://0.0.0.0:5000/{PATH}/_blazor
+    ServerName        www.example.com
+    ServerAlias       *.example.com
+    ErrorLog          ${APACHE_LOG_DIR}helloapp-error.log
+    CustomLog         ${APACHE_LOG_DIR}helloapp-access.log common
+</VirtualHost>
+```
+
+For an app that loads requests at `/blazor`:
+
+```
+<VirtualHost *:*>
+    RequestHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}
+</VirtualHost>
+
+<VirtualHost *:80>
+    ProxyRequests     On
+    ProxyPreserveHost On
+    ProxyPass         / http://0.0.0.0:5000/blazor
+    ProxyPassReverse  / http://0.0.0.0:5000/blazor
+    ProxyPassMatch    ^/_blazor/(.*) http://0.0.0.0:5000/blazor/_blazor/$1
+    ProxyPass         /_blazor ws://0.0.0.0:5000/blazor/_blazor
+    ServerName        www.example.com
+    ServerAlias       *.example.com
+    ErrorLog          ${APACHE_LOG_DIR}helloapp-error.log
+    CustomLog         ${APACHE_LOG_DIR}helloapp-access.log common
+</VirtualHost>
+```
+
+For more information, see <xref:host-and-deploy/linux-apache>.
+
 ## Hosted deployment with multiple Blazor WebAssembly apps
 
 ### App configuration
