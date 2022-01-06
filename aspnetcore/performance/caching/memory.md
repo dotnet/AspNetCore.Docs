@@ -39,7 +39,7 @@ Use `System.Runtime.Caching`/`MemoryCache` as a compatibility bridge when portin
 
 * Code should always have a fallback option to fetch data and **not** depend on a cached value being available.
 * The cache uses a scarce resource, memory. Limit cache growth:
-  * Do **not** use external input to add cached entries. For example, don't allow user input to add a cache entry without limiting the cache size.
+  * Do **not** insert external input into the cache. As an example, using arbitrary user-provided input as a cache key is not recommended since the input might consume an unpredictable amount of memory.
   * Use expirations to limit cache growth.
   * [Use SetSize, Size, and SizeLimit to limit cache size](#use-setsize-size-and-sizelimit-to-limit-cache-size). The ASP.NET Core runtime does **not** limit cache size based on memory pressure. It's up to the developer to limit cache size.
 
