@@ -99,7 +99,7 @@ In `Program.cs`, `CustomAuthorizationMessageHandler` is registered as a scoped s
 ```csharp
 builder.Services.AddScoped<CustomAuthorizationMessageHandler>();
 
-// AddHttpClient is an extension in Microsoft.Http.Extensions
+// AddHttpClient is an extension in Microsoft.Extensions.Http
 builder.Services.AddHttpClient("WebAPI",
         client => client.BaseAddress = new Uri("https://www.example.com/base"))
     .AddHttpMessageHandler<CustomAuthorizationMessageHandler>();
