@@ -20,33 +20,27 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 For demonstration purposes in the sample app, the user account for the hypothetical user, Maria Rodriguez, is hardcoded into the app. Use the **Email** address `maria.rodriguez@contoso.com` and any password to sign in the user. The user is authenticated in the `AuthenticateUser` method in the *Pages/Account/Login.cshtml.cs* file. In a real-world example, the user would be authenticated against a database.
 
-## Configuration
+## Add cookie authentication
 
-In the `Startup.ConfigureServices` method, create the Authentication Middleware services with the <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> and <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*> methods:
+Create the Authentication Middleware services with the <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> and <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*> methods:
 
-[!code-csharp[](cookie/samples/6.x/CookieSample/Program.cs?name=snippet1)]
+[!code-csharp[](cookie/samples/6.x/CookieSample/Program.cs?name=snippet1&highlight=12-13)]
 
-<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme> passed to `AddAuthentication` sets the default authentication scheme for the app. `AuthenticationScheme` is useful when there are multiple instances of cookie authentication and you want to [authorize with a specific scheme](xref:security/authorization/limitingidentitybyscheme). Setting the `AuthenticationScheme` to [CookieAuthenticationDefaults.AuthenticationScheme](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme) provides a value of "Cookies" for the scheme. You can supply any string value that distinguishes the scheme.
+<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme> passed to `AddAuthentication` sets the default authentication scheme for the app. `AuthenticationScheme` is useful when there are multiple instances of cookie authentication and the app needs to [authorize with a specific scheme](xref:security/authorization/limitingidentitybyscheme). Setting the `AuthenticationScheme` to [CookieAuthenticationDefaults.AuthenticationScheme](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme) provides a value of `"Cookies"` for the scheme. Any string value can be used that distinguishes the scheme.
 
-The app's authentication scheme is different from the app's cookie authentication scheme. When a cookie authentication scheme isn't provided to <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*>, it uses `CookieAuthenticationDefaults.AuthenticationScheme` ("Cookies").
+The app's authentication scheme is different from the app's cookie authentication scheme. When a cookie authentication scheme isn't provided to <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*>, it uses [`CookieAuthenticationDefaults.AuthenticationScheme`](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme). [`CookieAuthenticationDefaults.AuthenticationScheme`](https://github.com/dotnet/aspnetcore/blob/v6.0.1/src/Security/Authentication/Cookies/src/CookieAuthenticationDefaults.cs#L16) is set to `"Cookies"`.
 
 The authentication cookie's <xref:Microsoft.AspNetCore.Http.CookieBuilder.IsEssential> property is set to `true` by default. Authentication cookies are allowed when a site visitor hasn't consented to data collection. For more information, see <xref:security/gdpr#essential-cookies>.
 
-In `Startup.Configure`, call `UseAuthentication` and `UseAuthorization` to set the `HttpContext.User` property and run Authorization Middleware for requests. Call the `UseAuthentication` and `UseAuthorization` methods before calling `UseEndpoints`:
+Call [`UseAuthentication`](xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A) and [`UseAuthorization`](xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A) to set the `HttpContext.User` property and run Authorization Middleware for requests. `UseAuthentication` and `UseAuthorization` must be called before `Map` methods such as <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages%2A> and <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapDefaultControllerRoute%2A>:
 
-[!code-csharp[](cookie/samples/6.x/CookieSample/Program.cs?name=snippet1)]
+[!code-csharp[](cookie/samples/6.x/CookieSample/Program.cs?name=snippet1&highlight=28-32)]
 
 The <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions> class is used to configure the authentication provider options.
 
-Set `CookieAuthenticationOptions` in the service configuration for authentication in the `Startup.ConfigureServices` method:
+ <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions> can be set in the <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*> method:
 
-```csharp
-services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(options =>
-    {
-        ...
-    });
-```
+[!code-csharp[](cookie/samples/6.x/CookieSample/Program.cs?name=snippet2&highlight=28-32)]
 
 ## Cookie Policy Middleware
 
