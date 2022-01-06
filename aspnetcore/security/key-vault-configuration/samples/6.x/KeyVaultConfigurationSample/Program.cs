@@ -1,13 +1,10 @@
 #define Certificate // Managed
 
-using Azure.Identity;
-
 #if Certificate
-using System.Security.Cryptography.X509Certificates;
-
 // <snippet_Certificate>
-// using System.Security.Cryptography.X509Certificates;
-// using Azure.Identity;
+
+using System.Security.Cryptography.X509Certificates;
+using Azure.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,7 +36,7 @@ var app = builder.Build();
 
 #if Managed
 // <snippet_Managed>
-// using Azure.Identity;
+using Azure.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 

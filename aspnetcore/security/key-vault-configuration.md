@@ -229,7 +229,7 @@ The implementation reacts to the version prefixes of secrets to load the proper 
   * Removes the prefix from the secret name.
   * Replaces two dashes in any name with the `KeyDelimiter`, which is the delimiter used in configuration (usually a colon). Azure Key Vault doesn't allow a colon in secret names.
 
-:::code language="csharp" source="key-vault-configuration/samples/6.x/KeyVaultConfigurationSample/Snippets/SamplePrefixKeyVaultSecretManager.cs" id="sippet_Class":::
+:::code language="csharp" source="key-vault-configuration/samples/6.x/KeyVaultConfigurationSample/Snippets/SamplePrefixKeyVaultSecretManager.cs" id="snippet_Class":::
 
 The `Load` method is called by a provider algorithm that iterates through the vault secrets to find the version-prefixed secrets. When a version prefix is found with `Load`, the algorithm uses the `GetKey` method to return the configuration name of the secret name. It removes the version prefix from the secret's name. The rest of the secret name is returned for loading into the app's configuration name-value pairs.
 
@@ -326,7 +326,7 @@ Configuration.Reload();
 
 ## Disabled and expired secrets
 
-Disabled and expired secrets throw a <xref:Azure.RequestFailedException>. To prevent the app from throwing, provide the configuration using a different configuration provider or update the disabled or expired secret.
+Disabled and expired secrets are excluded from the configuration provider. To include values for these secrets in configuration, provide the configuration using a different configuration provider or update the disabled or expired secret.
 
 ## Troubleshoot
 
@@ -336,9 +336,7 @@ When the app fails to load configuration using the provider, an error message is
 * The key vault doesn't exist in Azure Key Vault.
 * The app isn't authorized to access the key vault.
 * The access policy doesn't include `Get` and `List` permissions.
-* In the key vault, the configuration data (name-value pair) is incorrectly named, missing, disabled, or expired.
 * The app has the wrong key vault name (`KeyVaultName`), Azure AD Application ID (`AzureADApplicationId`), or Azure AD certificate thumbprint (`AzureADCertThumbprint`), or Azure AD Directory ID (`AzureADDirectoryId`).
-* The configuration key (name) is incorrect in the app for the value you're trying to load.
 * When adding the key vault access policy for the app, the policy was created, but the **Save** button wasn't selected in the **Access policies** UI.
 
 ## Additional resources

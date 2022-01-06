@@ -3,7 +3,7 @@ using Azure.Security.KeyVault.Secrets;
 
 namespace KeyVaultConfigurationSample.Snippets;
 
-// <sippet_Class>
+// <snippet_Class>
 public class SamplePrefixKeyVaultSecretManager : KeyVaultSecretManager
 {
     private readonly string _prefix;
