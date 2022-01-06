@@ -195,18 +195,9 @@ For information on using the provider with a managed identity and Azure Pipeline
 
 `AddAzureKeyVault` can accept an <xref:Microsoft.Extensions.Configuration.AzureKeyVault.AzureKeyVaultConfigurationOptions> object:
 
-```csharp
-config.AddAzureKeyVault(
-    new SecretClient(
-        new Uri("Your Key Vault Endpoint"),
-        new DefaultAzureCredential()),
-        new AzureKeyVaultConfigurationOptions())
-    {
-        ...
-    });
-```
+:::code language="csharp" source="key-vault-configuration/samples/6.x/KeyVaultConfigurationSample/Snippets/Program.cs" id="snippet_AddAzureKeyVaultConfigurationOptions":::
 
-The `AzureKeyVaultConfigurationOptions` object contains the following properties.
+The `AzureKeyVaultConfigurationOptions` object contains the following properties:
 
 | Property                                                                                                    | Description                                                                                                                           |
 |-------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
@@ -229,7 +220,7 @@ In the following example, a secret is established in the key vault (and using Se
 
 `AddAzureKeyVault` is called with a custom `IKeyVaultSecretManager` implementation:
 
-:::code language="csharp" source="key-vault-configuration/samples_snapshot/3.x/Program.cs":::
+:::code language="csharp" source="key-vault-configuration/samples/6.x/KeyVaultConfigurationSample/Snippets/Program.cs" id="snippet_AddAzureKeyVaultSecretManager":::
 
 The implementation reacts to the version prefixes of secrets to load the proper secret into configuration:
 
@@ -238,7 +229,7 @@ The implementation reacts to the version prefixes of secrets to load the proper 
   * Removes the prefix from the secret name.
   * Replaces two dashes in any name with the `KeyDelimiter`, which is the delimiter used in configuration (usually a colon). Azure Key Vault doesn't allow a colon in secret names.
 
-:::code language="csharp" source="key-vault-configuration/samples_snapshot/3.x/PrefixKeyVaultSecretManager.cs":::
+:::code language="csharp" source="key-vault-configuration/samples/6.x/KeyVaultConfigurationSample/Snippets/SamplePrefixKeyVaultSecretManager.cs" id="sippet_Class":::
 
 The `Load` method is called by a provider algorithm that iterates through the vault secrets to find the version-prefixed secrets. When a version prefix is found with `Load`, the algorithm uses the `GetKey` method to return the configuration name of the secret name. It removes the version prefix from the secret's name. The rest of the secret name is returned for loading into the app's configuration name-value pairs.
 
