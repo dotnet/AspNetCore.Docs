@@ -153,6 +153,8 @@ When you run the app, a webpage shows the loaded secret values. In the Developme
 
 ## Use managed identities for Azure resources
 
+<!-- TODO: Reframe around System-Assigned vs User-Assigned -->
+
 **An app deployed to Azure** can take advantage of [Managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview). A managed identity allows the app to authenticate with Azure Key Vault using Azure AD authentication without credentials (Application ID and Password/Client Secret) stored in the app.
 
 The sample app uses managed identities for Azure resources when the `#define` preprocessor directive at the top of *Program.cs* is set to `Managed`.
@@ -161,6 +163,7 @@ Enter the vault name into the app's *appsettings.json* file. The sample app does
 
 Deploy the sample app to Azure App Service.
 
+<!-- TODO: This doesn't appear to be true. We have to enable this explicitly in the Azure Portal. -->
 An app deployed to Azure App Service is automatically registered with Azure AD when the service is created. Obtain the Object ID from the deployment for use in the following command. The Object ID is shown in the Azure portal on the **Identity** panel of the App Service.
 
 Using Azure CLI and the app's Object ID, provide the app with `list` and `get` permissions to access the key vault:
@@ -188,6 +191,10 @@ Key vault name example value: `contosovault`
 When you run the app, a webpage shows the loaded secret values. In the Development environment, secret values have the `_dev` suffix because they're provided by Secret Manager. In the Production environment, the values load with the `_prod` suffix because they're provided by Azure Key Vault.
 
 If you receive an `Access denied` error, confirm that the app is registered with Azure AD and provided access to the key vault. Confirm that you've restarted the service in Azure.
+
+<!-- TODO: Explain User-Assigned Identity Configuration -->
+
+:::code language="csharp" source="key-vault-configuration/samples/6.x/KeyVaultConfigurationSample/Snippets/Program.cs" id="snippet_AddAzureKeyVaultManagedIdentityClientId":::
 
 For information on using the provider with a managed identity and Azure Pipelines, see [Create an Azure Resource Manager service connection to a VM with a managed service identity](/azure/devops/pipelines/library/connect-to-azure#create-an-azure-resource-manager-service-connection-to-a-vm-with-a-managed-service-identity).
 
