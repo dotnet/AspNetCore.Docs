@@ -174,7 +174,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    * When using the [C# for Visual Studio Code Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) **version 1.23.9 or later**, confirm that the latest [Blazor WASM Debugging Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.blazorwasm-companion) is installed. To inspect the installed extensions, open **View** > **Extensions** from the menu bar or select the **Extensions** icon in the **Activity** sidebar.
    * Reload the window.
 
-1. Create a `.vscode/launch.json` file with the following configuration, replacing the `{PORT}` placeholder with the port configured in `launchSettings.json`:
+1. Create a `.vscode/launch.json` file with the following configuration. Replace the `{PORT}` placeholder with the port configured in `Properties/launchSettings.json`:
 
    ```json
    {
@@ -210,7 +210,7 @@ For guidance on configuring VS Code assets in the `.vscode` folder and where to 
 
 ## Attach to an existing debugging session
 
-To attach to a running Blazor app, create a `launch.json` file with the following configuration, replacing the `{URL}` placeholder with the URL where the application is running:
+To attach to a running Blazor app, create a `.vscode/launch.json` file with the following configuration. Replace the `{URL}` placeholder with the URL where the app is running:
 
 ```json
 {
