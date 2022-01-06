@@ -242,7 +242,7 @@ To configure the server to host the app at a sub-app path, the `{PATH}` placehol
 server {
     ...
     location /{PATH} {
-    ...
+        ...
     }
 }
 ```
@@ -253,7 +253,7 @@ For an app that loads requests at `/blazor`:
 server {
     ...
     location /blazor {
-    ...
+        ...
     }
 }
 ```
@@ -283,7 +283,7 @@ The following example hosts the app at a root URL (no sub-app path):
 </VirtualHost>
 ```
 
-To configure the server to host the app at a sub-app path, the `{PATH}` placeholder in the following `location` entry is the sub-app path:
+To configure the server to host the app at a sub-app path, the `{PATH}` placeholder in the following entires is the sub-app path:
 
 ```
 <VirtualHost *:*>
