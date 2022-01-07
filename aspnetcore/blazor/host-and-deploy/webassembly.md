@@ -168,7 +168,29 @@ For more information, see the following articles:
 
 ## Hosted deployment on Linux
 
-For a hosted Blazor WebAssembly app accessible via requests at the root URL (`/`), additional app configuration isn't required.
+### Apps accessible at the root URL
+
+For a hosted Blazor WebAssembly app accessible via requests at the root URL (`/`), update `Program.cs` of the **`Server`** project:
+
+* Add a `using` statement to the top of the file for the <xref:Microsoft.AspNetCore.HttpOverrides?displayProperty=fullName> namespace:
+
+  ```csharp
+  using Microsoft.AspNetCore.HttpOverrides;
+  ```
+
+* Configure <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> to forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers:
+
+  ```csharp
+  app.UseForwardedHeaders(new ForwardedHeadersOptions
+  {
+      ForwardedHeaders = 
+          ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+  });
+  ```
+
+For more information, see <xref:host-and-deploy/proxy-load-balancer>.
+
+### Apps accessible at a sub-app path
 
 For a hosted Blazor WebAssembly accessible at a sub-app path (for example, `/blazor`):
 
@@ -180,7 +202,19 @@ For a hosted Blazor WebAssembly accessible at a sub-app path (for example, `/bla
     using Microsoft.AspNetCore.HttpOverrides;
     ```
 
-  * Configure <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> to forward :
+  * Configure <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> to forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers, and call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> to add middleware that extracts the specified path base from request path and postpend it to the request path base:
+
+    ```csharp
+    app.UseForwardedHeaders(new ForwardedHeadersOptions
+    {
+        ForwardedHeaders = 
+            ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+    });
+
+    app.UsePathBase("{PATH}");
+    ```
+
+    In the preceding example, the `{PATH}` placeholder is the sub-app path. In the following example, the app's sub-app path is `/blazor`:
 
     ```csharp
     app.UseForwardedHeaders(new ForwardedHeadersOptions
@@ -192,19 +226,24 @@ For a hosted Blazor WebAssembly accessible at a sub-app path (for example, `/bla
     app.UsePathBase("/blazor");
     ```
 
-* In `wwwroot/index.html` of the **`Client`** project, set the [app base path](xref:blazor/host-and-deploy/index#app-base-path) to the app's sub-app path. A trailing slash is required. Replace the `{PATH}` placeholder with the sub-app path in the following markup:
+  For more information, see the following resources:
+
+  * <xref:blazor/host-and-deploy/index#app-base-path>
+  * <xref:host-and-deploy/proxy-load-balancer>
+
+* In `wwwroot/index.html` of the **`Client`** project, set the [app base path](xref:blazor/host-and-deploy/index#app-base-path) to the app's sub-app path. **A trailing slash is required.** Replace the `{PATH}` placeholder with the sub-app path in the following markup:
 
   ```html
   <base href="{PATH}">
   ```
 
-  For an app that loads requests at `/blazor`, the `href` attribute is set to a value of `/blazor/`:
+  For an app that loads requests at `/blazor`, the `href` attribute is set to a value of `/blazor/`. Note that the trailing slash in the following example is required:
 
   ```html
   <base href="/blazor/">
   ```
 
-* In links throughout the app, do ***not*** prefix with a forward slash. Either don't use a path segment separator or use dot-slash (`./`) notation:
+* In links throughout the app, do ***not*** prefix with a forward slash. Either avoid the use of a path segment separator or use dot-slash (`./`) relative path notation:
 
   * ❌ Incorrect: `<a href="/account">`
   * ✔️ Correct: `<a href="account">`
@@ -215,7 +254,7 @@ For a hosted Blazor WebAssembly accessible at a sub-app path (for example, `/bla
   * ❌ Incorrect: `var rsp = await client.GetFromJsonAsync("/api/Account");`
   * ✔️ Correct: `var rsp = await client.GetFromJsonAsync("api/Account");`
 
-### Nginx
+#### Nginx
 
 The following example hosts the app at a root URL (no sub-app path):
 
@@ -247,7 +286,7 @@ server {
 }
 ```
 
-For an app that loads requests at `/blazor`:
+For an app that responds to requests at `/blazor`:
 
 ```
 server {
@@ -260,7 +299,7 @@ server {
 
 For more information, see <xref:host-and-deploy/linux-nginx>.
 
-### Apache
+#### Apache
 
 The following example hosts the app at a root URL (no sub-app path):
 
@@ -304,7 +343,7 @@ To configure the server to host the app at a sub-app path, the `{PATH}` placehol
 </VirtualHost>
 ```
 
-For an app that loads requests at `/blazor`:
+For an app that responds to requests at `/blazor`:
 
 ```
 <VirtualHost *:*>
