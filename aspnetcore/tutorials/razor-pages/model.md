@@ -238,6 +238,7 @@ In this section, the **Package Manager Console** (PMC) window is used to:
 * Run the following .NET CLI commands:
 
   ```dotnetcli
+  dotnet tool install --global dotnet-ef
   dotnet ef migrations add InitialCreate
   dotnet ef database update
   ```
@@ -247,15 +248,17 @@ In this section, the **Package Manager Console** (PMC) window is used to:
 
 ---
 
-For SQL Server, the preceding commands generate the following warning:
+The preceding commands do the following:
 
- > No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+* Generate a warning for SQL Server. Ignore the following warning, as it will be addressed in a later step:
 
-Ignore the warning, as it will be addressed in a later step.
+  > No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
 
-The `migrations` command generates code to create the initial database schema. The schema is based on the model specified in `DbContext`. The `InitialCreate` argument is used to name the migrations. Any name can be used, but by convention a name is selected that describes the migration.
+* Install `dotnet ef` as a global tool.  For more information on the Entity Framework Core Tools, see [Get the Entity Framework Core tools](https://docs.microsoft.com/ef/core/get-started/overview/install#get-the-entity-framework-core-tools)
 
-The `update` command runs the `Up` method in migrations that have not been applied. In this case, `update` runs the `Up` method in the *Migrations/\<time-stamp>_InitialCreate.cs* file, which creates the database.
+* The `migrations` command generates code to create the initial database schema. The schema is based on the model specified in `DbContext`. The `InitialCreate` argument is used to name the migrations. Any name can be used, but by convention a name is selected that describes the migration.
+
+* The `update` command runs the `Up` method in migrations that have not been applied. In this case, `update` runs the `Up` method in the *Migrations/\<time-stamp>_InitialCreate.cs* file, which creates the database.
 
 ### Examine the context registered with dependency injection
 
