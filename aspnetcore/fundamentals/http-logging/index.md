@@ -35,23 +35,28 @@ HTTP Logging ***can reduce the performance of an app***, especially when logging
 
 HTTP Logging is enabled with `UseHttpLogging`, which adds HTTP logging middleware.
 
-[!code-csharp[](samples/6.x/Startup.cs?name=snippet&highlight=3)]
+[!code-csharp[](samples/6.x/Program.cs?name=snippet&highlight=10)]
 
-By default, HTTP Logging logs common properties such as path, status-code, and headers for requests and responses. The output is logged as a single message at `LogLevel.Information`.
+By default, HTTP Logging logs common properties such as path, status-code, and headers for requests and responses. Please add in appsettings.Development.json file below code to see the logs in putput window.
+```
+ "Microsoft.AspNetCore.HttpLogging.HttpLoggingMiddleware": "Information"
+ ```
+
+The output is logged as a single message at `LogLevel.Information`.
 
 ![Sample request output](_static/requestlog.png)
 
 ## HTTP Logging options
 
-To configure the HTTP logging middleware, call `AddHttpLogging` in `ConfigureServices`.
+To configure the HTTP logging middleware, call `AddHttpLogging` in `Program.cs`.
 
-[!code-csharp[](samples/6.x/Startup.cs?name=configureservices)]
+[!code-csharp[](samples/6.x/Program.cs?name=Addservices)]
 
 ### `LoggingFields`
 
 `HttpLoggingOptions.LoggingFields` is an enum flag that configures specific parts of the request and response to log. `LoggingFields` defaults to `RequestPropertiesAndHeaders | ResponsePropertiesAndHeaders`.
 
-[!code-csharp[](samples/6.x/Startup.cs?name=configureservices&highlight=6)]
+[!code-csharp[](samples/6.x/Program.cs?name=Addservices&highlight=4)]
 
 | Flag | Flag for logging the HTTP | Value |
 | ---- | ----------- | :---: |
@@ -79,19 +84,19 @@ To configure the HTTP logging middleware, call `AddHttpLogging` in `ConfigureSer
 
 `RequestHeaders` are a set of HTTP Request Headers that are allowed to be logged. Header values are only logged for header names that are in this collection.
 
-[!code-csharp[](samples/6.x/Startup.cs?name=configureservices&highlight=7)]
+[!code-csharp[](samples/6.x/Program.cs?name=Addservices&highlight=5)]
 
 ### `ResponseHeaders`
 
 `ResponseHeaders` are a set of HTTP Response Headers that are allowed to be logged. Header values are only logged for header names that are in this collection.
 
-[!code-csharp[](samples/6.x/Startup.cs?name=configureservices&highlight=8)]
+[!code-csharp[](samples/6.x/Program.cs?name=Addservices&highlight=6)]
 
 ### `MediaTypeOptions`
 
 `MediaTypeOptions` provides configuration for selecting which encoding to use for a specific media type. 
 
-[!code-csharp[](samples/6.x/Startup.cs?name=configureservices&highlight=9)]
+[!code-csharp[](samples/6.x/Program.cs?name=Addservices&highlight=7)]
 
 #### `MediaTypeOptions` methods
 
@@ -112,10 +117,10 @@ To configure the HTTP logging middleware, call `AddHttpLogging` in `ConfigureSer
 
 Maximum request body size to log, in bytes. Defaults to 32 KB.
 
-[!code-csharp[](samples/6.x/Startup.cs?name=configureservices&highlight=10)]
+[!code-csharp[](samples/6.x/Program.cs?name=Addservices&highlight=8)]
 
 ### `ResponseBodyLogLimit`
 
 Maximum response body size to log, in bytes. Defaults to 32 KB.
 
-[!code-csharp[](samples/6.x/Startup.cs?name=configureservices&highlight=11)]
+[!code-csharp[](samples/6.x/Program.cs?name=Addservices&highlight=9)]
