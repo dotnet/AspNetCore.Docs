@@ -222,6 +222,10 @@ In Razor *.cshtml* files, tilde-slash (`~/`) points to the web root. A path begi
 
 For more information, see <xref:fundamentals/static-files>.
 
+## Additional resources
+
+* [WebApplicationBuilder source code](https://github.com/dotnet/aspnetcore/blob/v6.0.1/src/DefaultBuilder/src/WebApplicationBuilder.cs)
+
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-6.0"

@@ -174,12 +174,21 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    * When using the [C# for Visual Studio Code Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) **version 1.23.9 or later**, confirm that the latest [Blazor WASM Debugging Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.blazorwasm-companion) is installed. To inspect the installed extensions, open **View** > **Extensions** from the menu bar or select the **Extensions** icon in the **Activity** sidebar.
    * Reload the window.
 
+1. Create a `.vscode/launch.json` file with the following configuration. Replace the `{PORT}` placeholder with the port configured in `Properties/launchSettings.json`:
+
+   ```json
+   {
+     "name": "Launch and Debug"
+     "type": "blazorwasm",
+     "request": "launch",
+     "url": "https://localhost:{PORT}"
+   }
+   ```
+
 1. Start debugging using the <kbd>F5</kbd> keyboard shortcut or the menu item.
 
    > [!NOTE]
    > **Start Without Debugging** [<kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS)] isn't supported. When the app is run in Debug configuration, debugging overhead always results in a small performance reduction.
-
-1. When prompted, select the **Blazor WebAssembly Debug** option to start debugging.
 
 1. The standalone app is launched, and a debugging browser is opened.
 
@@ -201,13 +210,14 @@ For guidance on configuring VS Code assets in the `.vscode` folder and where to 
 
 ## Attach to an existing debugging session
 
-To attach to a running Blazor app, create a `launch.json` file with the following configuration:
+To attach to a running Blazor app, create a `.vscode/launch.json` file with the following configuration. Replace the `{URL}` placeholder with the URL where the app is running:
 
 ```json
 {
+  "name": "Attach and Debug"
   "type": "blazorwasm",
   "request": "attach",
-  "name": "Attach to Existing Blazor WebAssembly Application"
+  "url": "{URL}"
 }
 ```
 
@@ -230,29 +240,6 @@ The following launch configuration options are supported for the `blazorwasm` de
 | `program` | A reference to the executable to run the server of the hosted app. Must be set if `hosted` is `true`. |
 | `cwd`     | The working directory to launch the app under. Must be set if `hosted` is `true`. |
 | `env`     | The environment variables to provide to the launched process. Only applicable if `hosted` is set to `true`. |
-
-## Example launch configurations
-
-### Launch and debug a standalone Blazor WebAssembly app
-
-```json
-{
-  "type": "blazorwasm",
-  "request": "launch",
-  "name": "Launch and Debug"
-}
-```
-
-### Attach to a running app at a specified URL
-
-```json
-{
-  "type": "blazorwasm",
-  "request": "attach",
-  "name": "Attach and Debug",
-  "url": "https://localhost:7268"
-}
-```
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -554,12 +541,21 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    * When using the [C# for Visual Studio Code Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) **version 1.23.9 or later**, confirm that the latest [Blazor WASM Debugging Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.blazorwasm-companion) is installed. To inspect the installed extensions, open **View** > **Extensions** from the menu bar or select the **Extensions** icon in the **Activity** sidebar.
    * Reload the window.
 
+1. Create a `.vscode/launch.json` file with the following configuration. Replace the `{PORT}` placeholder with the port configured in `Properties/launchSettings.json`:
+
+   ```json
+   {
+     "name": "Launch and Debug"
+     "type": "blazorwasm",
+     "request": "launch",
+     "url": "https://localhost:{PORT}"
+   }
+   ```
+
 1. Start debugging using the <kbd>F5</kbd> keyboard shortcut or the menu item.
 
    > [!NOTE]
    > **Start Without Debugging** [<kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS)] isn't supported. When the app is run in Debug configuration, debugging overhead always results in a small performance reduction.
-
-1. When prompted, select the **Blazor WebAssembly Debug** option to start debugging.
 
 1. The standalone app is launched, and a debugging browser is opened.
 
@@ -629,13 +625,14 @@ The **`Server`** project's `Properties/launchSettings.json` file includes the `i
 
 ## Attach to an existing debugging session
 
-To attach to a running Blazor app, create a `launch.json` file with the following configuration:
+To attach to a running Blazor app, create a `.vscode/launch.json` file with the following configuration. Replace the `{URL}` placeholder with the URL where the app is running:
 
 ```json
 {
+  "name": "Attach and Debug"
   "type": "blazorwasm",
   "request": "attach",
-  "name": "Attach to Existing Blazor WebAssembly Application"
+  "url": "{URL}"
 }
 ```
 
@@ -658,29 +655,6 @@ The following launch configuration options are supported for the `blazorwasm` de
 | `program` | A reference to the executable to run the server of the hosted app. Must be set if `hosted` is `true`. |
 | `cwd`     | The working directory to launch the app under. Must be set if `hosted` is `true`. |
 | `env`     | The environment variables to provide to the launched process. Only applicable if `hosted` is set to `true`. |
-
-## Example launch configurations
-
-### Launch and debug a standalone Blazor WebAssembly app
-
-```json
-{
-  "type": "blazorwasm",
-  "request": "launch",
-  "name": "Launch and Debug"
-}
-```
-
-### Attach to a running app at a specified URL
-
-```json
-{
-  "type": "blazorwasm",
-  "request": "attach",
-  "name": "Attach and Debug",
-  "url": "http://localhost:5000"
-}
-```
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -982,12 +956,21 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    * When using the [C# for Visual Studio Code Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) **version 1.23.9 or later**, confirm that the latest [Blazor WASM Debugging Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.blazorwasm-companion) is installed. To inspect the installed extensions, open **View** > **Extensions** from the menu bar or select the **Extensions** icon in the **Activity** sidebar.
    * Reload the window.
 
+1. Create a `.vscode/launch.json` file with the following configuration. Replace the `{PORT}` placeholder with the port configured in `Properties/launchSettings.json`:
+
+   ```json
+   {
+     "name": "Launch and Debug"
+     "type": "blazorwasm",
+     "request": "launch",
+     "url": "https://localhost:{PORT}"
+   }
+   ```
+
 1. Start debugging using the <kbd>F5</kbd> keyboard shortcut or the menu item.
 
    > [!NOTE]
    > **Start Without Debugging** [<kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS)] isn't supported. When the app is run in Debug configuration, debugging overhead always results in a small performance reduction.
-
-1. When prompted, select the **Blazor WebAssembly Debug** option to start debugging.
 
 1. The standalone app is launched, and a debugging browser is opened.
 
@@ -1057,13 +1040,14 @@ The **`Server`** project's `Properties/launchSettings.json` file includes the `i
 
 ## Attach to an existing debugging session
 
-To attach to a running Blazor app, create a `launch.json` file with the following configuration:
+To attach to a running Blazor app, create a `.vscode/launch.json` file with the following configuration. Replace the `{URL}` placeholder with the URL where the app is running:
 
 ```json
 {
+  "name": "Attach and Debug"
   "type": "blazorwasm",
   "request": "attach",
-  "name": "Attach to Existing Blazor WebAssembly Application"
+  "url": "{URL}"
 }
 ```
 
@@ -1086,29 +1070,6 @@ The following launch configuration options are supported for the `blazorwasm` de
 | `program` | A reference to the executable to run the server of the hosted app. Must be set if `hosted` is `true`. |
 | `cwd`     | The working directory to launch the app under. Must be set if `hosted` is `true`. |
 | `env`     | The environment variables to provide to the launched process. Only applicable if `hosted` is set to `true`. |
-
-## Example launch configurations
-
-### Launch and debug a standalone Blazor WebAssembly app
-
-```json
-{
-  "type": "blazorwasm",
-  "request": "launch",
-  "name": "Launch and Debug"
-}
-```
-
-### Attach to a running app at a specified URL
-
-```json
-{
-  "type": "blazorwasm",
-  "request": "attach",
-  "name": "Attach and Debug",
-  "url": "http://localhost:5000"
-}
-```
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 

@@ -15,7 +15,7 @@ on:
         default: 'Manual run'
 
 env:
-  DOTNET_VERSION: '5.0.301' # set this to the dot net version to use
+  DOTNET_VERSION: '6.0.x' # set this to the dot net version to use
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -56,6 +56,7 @@ jobs:
         id: dotnet-whatsnew
         env:
           GitHubKey: ${{ secrets.GITHUB_TOKEN }}
+          OspoKey: ${{ secrets.OSPO_KEY }}
         run: |
           ./.github/workflows/dependencies/run-dotnet-whatsnew.sh -o dotnet -r AspNetCore.Docs -s './aspnetcore/whats-new'
 
