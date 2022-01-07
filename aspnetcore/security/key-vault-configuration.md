@@ -188,7 +188,7 @@ For apps that use a user-assigned managed identity, configure the managed identi
 1. Set the `AZURE_CLIENT_ID` environment variable.
 1. Set the <xref:Azure.Identity.DefaultAzureCredentialOptions.ManagedIdentityClientId%2A?displayProperty=nameWithType> property when calling `AddAzureKeyVault`:
 
-   :::code language="csharp" source="key-vault-configuration/samples/6.x/KeyVaultConfigurationSample/Snippets/Program.cs" id="snippet_AddAzureKeyVaultManagedIdentityClientId highlight="5":::
+   :::code language="csharp" source="key-vault-configuration/samples/6.x/KeyVaultConfigurationSample/Snippets/Program.cs" id="snippet_AddAzureKeyVaultManagedIdentityClientId" highlight="5":::
 
 When you run the app, a webpage shows the loaded secret values. In the Development environment, secret values have the `_dev` suffix because they're provided by Secret Manager. In the Production environment, the values load with the `_prod` suffix because they're provided by Azure Key Vault.
 
