@@ -5,7 +5,7 @@ description: Learn how to host and deploy a Blazor Server app using ASP.NET Core
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/09/2021
+ms.date: 01/08/2022
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/host-and-deploy/server
 ---
@@ -42,7 +42,7 @@ Blazor works best when using [WebSockets](xref:fundamentals/websockets) as the S
 
 Blazor Server emits a console warning if it detects Long Polling is utilized:
 
-> Failed to connect via WebSockets, using the Long Polling fallback transport. This may be due to a VPN or proxy blocking the connection. To troubleshoot this, visit https://aka.ms/blazor-server-using-fallback-long-polling.
+> Failed to connect via WebSockets, using the Long Polling fallback transport. This may be due to a VPN or proxy blocking the connection.
 
 ## Azure SignalR Service
 
@@ -136,8 +136,8 @@ metadata:
 
 For SignalR WebSockets to function properly, confirm that the proxy's `Upgrade` and `Connection` headers are set to the following values and that `$connection_upgrade` is mapped to either:
 
-* The Upgrade header value by default.
-* `close` when the Upgrade header is missing or empty.
+* The `Upgrade` header value by default.
+* `close` when the `Upgrade` header is missing or empty.
 
 ```
 http {
@@ -149,13 +149,17 @@ http {
     server {
         listen      80;
         server_name example.com *.example.com
+
         location / {
             proxy_pass         http://localhost:5000;
             proxy_http_version 1.1;
+            proxy_cache        off;
+            proxy_cache_bypass $http_upgrade;
+            proxy_buffering    off;
+            proxy_read_timeout 100s;
             proxy_set_header   Upgrade $http_upgrade;
             proxy_set_header   Connection $connection_upgrade;
             proxy_set_header   Host $host;
-            proxy_cache_bypass $http_upgrade;
             proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
             proxy_set_header   X-Forwarded-Proto $scheme;
         }
@@ -165,6 +169,7 @@ http {
 
 For more information, see the following articles:
 
+* <xref:signalr/scale>
 * [NGINX as a WebSocket Proxy](https://www.nginx.com/blog/websocket-nginx/)
 * [WebSocket proxying](http://nginx.org/docs/http/websocket.html)
 * <xref:host-and-deploy/linux-nginx>
@@ -337,8 +342,8 @@ metadata:
 
 For SignalR WebSockets to function properly, confirm that the proxy's `Upgrade` and `Connection` headers are set to the following values and that `$connection_upgrade` is mapped to either:
 
-* The Upgrade header value by default.
-* `close` when the Upgrade header is missing or empty.
+* The `Upgrade` header value by default.
+* `close` when the `Upgrade` header is missing or empty.
 
 ```
 http {
@@ -563,8 +568,8 @@ metadata:
 
 For SignalR WebSockets to function properly, confirm that the proxy's `Upgrade` and `Connection` headers are set to the following values and that `$connection_upgrade` is mapped to either:
 
-* The Upgrade header value by default.
-* `close` when the Upgrade header is missing or empty.
+* The `Upgrade` header value by default.
+* `close` when the `Upgrade` header is missing or empty.
 
 ```
 http {

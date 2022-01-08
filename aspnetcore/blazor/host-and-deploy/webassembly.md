@@ -5,7 +5,7 @@ description: Learn how to host and deploy a Blazor app using ASP.NET Core, Conte
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/09/2021
+ms.date: 01/08/2022
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/host-and-deploy/webassembly
 ---
@@ -202,7 +202,7 @@ For a hosted Blazor WebAssembly accessible at a sub-app path (for example, `/bla
     using Microsoft.AspNetCore.HttpOverrides;
     ```
 
-  * Configure <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> to forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers, and call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> to add middleware that extracts the specified path base from request path and postpend it to the request path base:
+  * Configure <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> to forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers, and call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> to add middleware that extracts the specified path base from request path and adds it to the end of the request path base:
 
     ```csharp
     app.UseForwardedHeaders(new ForwardedHeadersOptions
@@ -280,13 +280,13 @@ To configure the server to host the app at a sub-app path, the `{PATH}` placehol
 ```
 server {
     ...
-    location /{PATH} {
+    location {PATH} {
         ...
     }
 }
 ```
 
-For an app that responds to requests at `/blazor`:
+For an app that responds to requests at `/blazor`, the `{PATH}` placeholder is set to `/blazor`:
 
 ```
 server {
