@@ -32,13 +32,7 @@ app.UseHttpLogging();
 
 app.UseRouting();
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapGet("/", async context =>
-    {
-        await context.Response.WriteAsync("Hello World!");
-    });
-});
+app.MapGet("/", () => "Hello World!");
 
 app.Run();
 #endregion
