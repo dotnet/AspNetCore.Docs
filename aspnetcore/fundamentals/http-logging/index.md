@@ -37,7 +37,7 @@ HTTP Logging is enabled with `UseHttpLogging`, which adds HTTP logging middlewar
 
 [!code-csharp[](samples/6.x/Program.cs?name=snippet&highlight=10)]
 
-By default, HTTP Logging logs common properties such as path, status-code, and headers for requests and responses. Please add in appsettings.Development.json file below code to see the logs in putput window.
+By default, HTTP Logging logs common properties such as path, status-code, and headers for requests and responses. Add the following line to the *appsettings.Development.json* file so the HTTP logs are displayed.
 ```
  "Microsoft.AspNetCore.HttpLogging.HttpLoggingMiddleware": "Information"
  ```
