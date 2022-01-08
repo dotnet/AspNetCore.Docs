@@ -297,7 +297,16 @@ server {
 }
 ```
 
-For more information, see <xref:host-and-deploy/linux-nginx>.
+For additional Nginx host support, consult the following resources:
+
+* <xref:host-and-deploy/linux-nginx>
+* Nginx documentation:
+  * [NGINX as a WebSocket Proxy](https://www.nginx.com/blog/websocket-nginx/)
+  * [WebSocket proxying](http://nginx.org/docs/http/websocket.html)
+* Developers on non-Microsoft support forums:
+  * [Stack Overflow (tag: `blazor`)](https://stackoverflow.com/questions/tagged/blazor)
+  * [ASP.NET Core Slack Team](http://tattoocoder.com/aspnet-slack-sign-up/)
+  * [Blazor Gitter](https://gitter.im/aspnet/Blazor)
 
 #### Apache
 
@@ -364,7 +373,14 @@ For an app that responds to requests at `/blazor`:
 </VirtualHost>
 ```
 
-For more information, see <xref:host-and-deploy/linux-apache>.
+For additional Apache host support, consult the following resources:
+
+* <xref:host-and-deploy/linux-apache>
+* [Apache documentation](https://httpd.apache.org/docs/current/mod/mod_proxy.html)
+* Developers on non-Microsoft support forums:
+  * [Stack Overflow (tag: `blazor`)](https://stackoverflow.com/questions/tagged/blazor)
+  * [ASP.NET Core Slack Team](http://tattoocoder.com/aspnet-slack-sign-up/)
+  * [Blazor Gitter](https://gitter.im/aspnet/Blazor)
 
 ## Hosted deployment with multiple Blazor WebAssembly apps
 
