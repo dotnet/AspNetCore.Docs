@@ -263,7 +263,7 @@ server {
     listen      80;
     server_name example.com *.example.com;
     location / {
-        proxy_pass         http://0.0.0.0:5000;
+        proxy_pass         http://localhost:5000;
         proxy_http_version 1.1;
         proxy_set_header   Upgrade $http_upgrade;
         proxy_set_header   Connection keep-alive;
