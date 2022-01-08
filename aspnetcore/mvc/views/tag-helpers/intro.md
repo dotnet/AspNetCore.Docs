@@ -151,6 +151,26 @@ The preceding code can be written as:
        disabled="@(Model?.LicenseId == null)" />
 ```
 
+## Tag helper initializers
+
+While attributes can be used to configure individual instances of tag helpers, `<xref:Microsoft.AspNetCore.Mvc.Razor.ITagHelperInitializer />` can be used to configure all tag helper instances of a specific kind. Consider the following example of a tag helper initializer that configures the `asp-append-version` attribute / `AppendVersion` property for all `ScriptTagHelpers` in the app:
+
+```csharp
+public class AppendVersionTagHelperInitializer : ITagHelperInitializer<ScriptTagHelper>
+{
+    public void Initialize(ScriptTagHelper helper, ViewContext context)
+    {
+        helper.AppendVersion = true;
+    }
+}
+```
+
+To use the initializer, configure it by registering it as part of the application's startup:
+
+```csharp
+builder.Services.AddSingleton<ITagHelperInitializer<ScriptTagHelper>, AppendVersionTagHelperInitializer>();
+```
+
 ## IntelliSense support for Tag Helpers
 
 When you create a new ASP.NET Core web app in Visual Studio, it adds the NuGet package "Microsoft.AspNetCore.Razor.Tools". This is the package that adds Tag Helper tooling.
