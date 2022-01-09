@@ -178,7 +178,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
    ```json
    {
-     "name": "Launch and Debug"
+     "name": "Launch and Debug",
      "type": "blazorwasm",
      "request": "launch",
      "url": "https://localhost:{PORT}"
