@@ -13,7 +13,7 @@ uid: grpc/test-client
 
 By: [James Newton-King](https://twitter.com/jamesnk)
 
-Testing is an important aspect of building stable and maintainable software. Part of writing high-quality tests is removing external dependencies. This article discusses using mock gRPC clients in tests to remove gRPC calls to external servers from unit tests.
+Testing is an important aspect of building stable and maintainable software. Part of writing high-quality tests is removing external dependencies. This article discusses using mock gRPC clients in tests to remove gRPC calls to external servers.
 
 ## Example testable client app
 
