@@ -96,7 +96,7 @@ The `builder` variable represents a `Microsoft.AspNetCore.Builder.WebApplication
 builder.Services.AddSingleton<IDataAccess, DataAccess>();
 ```
 
-### Service lifetime
+## Service lifetime
 
 Services can be configured with the lifetimes shown in the following table.
 
@@ -446,7 +446,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-### Service lifetime
+## Service lifetime
 
 Services can be configured with the lifetimes shown in the following table.
 
@@ -808,7 +808,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-### Service lifetime
+## Service lifetime
 
 Services can be configured with the lifetimes shown in the following table.
 
