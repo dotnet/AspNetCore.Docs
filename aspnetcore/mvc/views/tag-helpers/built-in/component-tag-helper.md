@@ -150,6 +150,7 @@ All types of parameters are supported, except:
 * Non-serializable parameters.
 * Inheritance in collection parameters.
 * Parameters whose type is defined outside of the Blazor WebAssembly app or within a lazily-loaded assembly.
+* For receiving a [`RenderFragment` delegate for child content](xref:blazor/components/index#child-content) (for example, `param-ChildContent="..."`). For this scenario, we recommend creating a Razor component (`.razor`) that references the component you want to render with the child content you want to pass and then invoke the Razor component from the page or view with the Component Tag Helper.
 
 The parameter type must be JSON serializable, which typically means that the type must have a default constructor and settable properties. For example, you can specify a value for `Size` and `Color` in the preceding example because the types of `Size` and `Color` are primitive types (`int` and `string`), which are supported by the JSON serializer.
 
