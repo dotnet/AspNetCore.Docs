@@ -265,18 +265,20 @@ For a hosted Blazor WebAssembly accessible at a sub-app path (for example, `/bla
 The following example hosts the app at a root URL (no sub-app path):
 
 ```
-server {
-    listen      80;
-    server_name example.com *.example.com;
-    location / {
-        proxy_pass         http://localhost:5000;
-        proxy_http_version 1.1;
-        proxy_set_header   Upgrade $http_upgrade;
-        proxy_set_header   Connection keep-alive;
-        proxy_set_header   Host $host;
-        proxy_cache_bypass $http_upgrade;
-        proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header   X-Forwarded-Proto $scheme;
+http {
+    server {
+        listen      80;
+        server_name example.com *.example.com;
+        location / {
+            proxy_pass         http://localhost:5000;
+            proxy_http_version 1.1;
+            proxy_set_header   Upgrade $http_upgrade;
+            proxy_set_header   Connection keep-alive;
+            proxy_set_header   Host $host;
+            proxy_cache_bypass $http_upgrade;
+            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header   X-Forwarded-Proto $scheme;
+        }
     }
 }
 ```
@@ -284,10 +286,12 @@ server {
 To configure the server to host the app at a sub-app path, the `{PATH}` placeholder in the following `location` entry is the sub-app path:
 
 ```
-server {
-    ...
-    location {PATH} {
+http {
+    server {
         ...
+        location {PATH} {
+            ...
+        }
     }
 }
 ```
@@ -295,10 +299,12 @@ server {
 For an app that responds to requests at `/blazor`, the `{PATH}` placeholder is set to `/blazor`:
 
 ```
-server {
-    ...
-    location /blazor {
+http {
+    server {
         ...
+        location /blazor {
+            ...
+        }
     }
 }
 ```
@@ -326,10 +332,10 @@ The following example hosts the app at a root URL (no sub-app path):
 <VirtualHost *:80>
     ProxyRequests     On
     ProxyPreserveHost On
-    ProxyPass         / http://0.0.0.0:5000/
-    ProxyPassReverse  / http://0.0.0.0:5000/
-    ProxyPassMatch    ^/_blazor/(.*) http://0.0.0.0:5000/_blazor/$1
-    ProxyPass         /_blazor ws://0.0.0.0:5000/_blazor
+    ProxyPass         / http://localhost:5000/
+    ProxyPassReverse  / http://localhost:5000/
+    ProxyPassMatch    ^/_blazor/(.*) http://localhost:5000/_blazor/$1
+    ProxyPass         /_blazor ws://localhost:5000/_blazor
     ServerName        www.example.com
     ServerAlias       *.example.com
     ErrorLog          ${APACHE_LOG_DIR}helloapp-error.log
@@ -347,10 +353,10 @@ To configure the server to host the app at a sub-app path, the `{PATH}` placehol
 <VirtualHost *:80>
     ProxyRequests     On
     ProxyPreserveHost On
-    ProxyPass         / http://0.0.0.0:5000/{PATH}
-    ProxyPassReverse  / http://0.0.0.0:5000/{PATH}
-    ProxyPassMatch    ^/_blazor/(.*) http://0.0.0.0:5000/{PATH}/_blazor/$1
-    ProxyPass         /_blazor ws://0.0.0.0:5000/{PATH}/_blazor
+    ProxyPass         / http://localhost:5000/{PATH}
+    ProxyPassReverse  / http://localhost:5000/{PATH}
+    ProxyPassMatch    ^/_blazor/(.*) http://localhost:5000/{PATH}/_blazor/$1
+    ProxyPass         /_blazor ws://localhost:5000/{PATH}/_blazor
     ServerName        www.example.com
     ServerAlias       *.example.com
     ErrorLog          ${APACHE_LOG_DIR}helloapp-error.log
@@ -368,10 +374,10 @@ For an app that responds to requests at `/blazor`:
 <VirtualHost *:80>
     ProxyRequests     On
     ProxyPreserveHost On
-    ProxyPass         / http://0.0.0.0:5000/blazor
-    ProxyPassReverse  / http://0.0.0.0:5000/blazor
-    ProxyPassMatch    ^/_blazor/(.*) http://0.0.0.0:5000/blazor/_blazor/$1
-    ProxyPass         /_blazor ws://0.0.0.0:5000/blazor/_blazor
+    ProxyPass         / http://localhost:5000/blazor
+    ProxyPassReverse  / http://localhost:5000/blazor
+    ProxyPassMatch    ^/_blazor/(.*) http://localhost:5000/blazor/_blazor/$1
+    ProxyPass         /_blazor ws://localhost:5000/blazor/_blazor
     ServerName        www.example.com
     ServerAlias       *.example.com
     ErrorLog          ${APACHE_LOG_DIR}helloapp-error.log
