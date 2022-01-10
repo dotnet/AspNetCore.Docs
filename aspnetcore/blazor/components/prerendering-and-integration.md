@@ -187,7 +187,6 @@ Update the namespaces in the imported `_ViewImports.cshtml` file to match those 
 @using BlazorHosted.Server
 @namespace BlazorHosted.Server.Pages
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@using Microsoft.AspNetCore.Components.Web
 ```
 
 `Views/_ViewImports.cshtml` (MVC):
@@ -196,7 +195,6 @@ Update the namespaces in the imported `_ViewImports.cshtml` file to match those 
 @using BlazorHosted.Server
 @using BlazorHosted.Server.Models
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@using Microsoft.AspNetCore.Components.Web
 ```
 
 Update the imported layout file (`_Layout.cshtml`) to include the **`Client`** project's styles. In the following example, the **`Client`** project's namespace is `BlazorHosted.Client`. The `<title>` element can be updated at the same time. The `{APP NAME}` placeholder represents the donor project's app name.
@@ -346,6 +344,10 @@ Run the **`Server`** project. Navigate to the Razor page at `/razorpagescounter1
 For more information on the Component Tag Helper, including passing parameters and <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configuration, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 
 Additional work might be required depending on the static resources that components use and how layout pages are organized in an app. Typically, scripts are added to a page or view's `Scripts` render section and stylesheets are added to the layout's `<head>` element content.
+
+### Set child content through a render fragment
+
+The [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) isn't supported for receiving a [`RenderFragment` delegate for child content](xref:blazor/components/index#child-content) (for example, `param-ChildContent="..."`). We recommend creating a Razor component (`.razor`) that references the component you want to render with the child content you want to pass and then invoke the Razor component from the page or view.
 
 ### Ensure that top-level prerendered components aren't trimmed out on publish
 
