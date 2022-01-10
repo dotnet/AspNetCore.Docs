@@ -262,55 +262,27 @@ For a hosted Blazor WebAssembly accessible at a sub-app path (for example, `/bla
 
 #### Nginx
 
-The following example hosts the app at a root URL (no sub-app path):
+Follow the guidance for an [ASP.NET Core SignalR app](xref:signalr/scale#linux-with-nginx) with the following changes:
 
-```
-http {
-    server {
-        listen      80;
-        server_name example.com *.example.com;
-        location / {
-            proxy_pass         http://localhost:5000;
-            proxy_http_version 1.1;
-            proxy_set_header   Upgrade $http_upgrade;
-            proxy_set_header   Connection keep-alive;
-            proxy_set_header   Host $host;
-            proxy_cache_bypass $http_upgrade;
-            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_set_header   X-Forwarded-Proto $scheme;
-        }
-    }
-}
-```
+* Remove the configuration for proxy buffering (`proxy_buffering off;`) because the setting only applies to Server-Sent Events (SSE), which aren't relevant for Blazor apps.
+* Change the `location` path from `/hubroute` (`location /hubroute { ... }`) to the sub-app path `/{PATH}` (`location /{PATH} { ... }`), where the `{PATH}` placeholder is the sub-app path.
 
-To configure the server to host the app at a sub-app path, the `{PATH}` placeholder in the following `location` entry is the sub-app path:
+  For an app that responds to requests at `/blazor`, the `{PATH}` placeholder is set to `/blazor`:
 
-```
-http {
-    server {
-        ...
-        location {PATH} {
-            ...
-        }
-    }
-}
-```
-
-For an app that responds to requests at `/blazor`, the `{PATH}` placeholder is set to `/blazor`:
-
-```
-http {
-    server {
-        ...
-        location /blazor {
-            ...
-        }
-    }
-}
-```
+  ```
+  http {
+      server {
+          ...
+          location /blazor {
+              ...
+          }
+      }
+  }
+  ```
 
 For additional Nginx host support, consult the following resources:
 
+* <xref:signalr/scale>
 * <xref:host-and-deploy/linux-nginx>
 * Nginx documentation:
   * [NGINX as a WebSocket Proxy](https://www.nginx.com/blog/websocket-nginx/)

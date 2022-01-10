@@ -134,45 +134,17 @@ metadata:
 
 ## Linux with Nginx
 
-For SignalR WebSockets to function properly, confirm that the proxy's `Upgrade` and `Connection` headers are set to the following values and that `$connection_upgrade` is mapped to either:
+Follow the guidance for an [ASP.NET Core SignalR app](xref:signalr/scale#linux-with-nginx) with the following changes:
 
-* The `Upgrade` header value by default.
-* `close` when the `Upgrade` header is missing or empty.
-
-```
-http {
-    map $http_upgrade $connection_upgrade {
-        default Upgrade;
-        ''      close;
-    }
-
-    server {
-        listen      80;
-        server_name example.com *.example.com
-
-        location / {
-            proxy_pass         http://localhost:5000;
-            proxy_http_version 1.1;
-            proxy_cache        off;
-            proxy_cache_bypass $http_upgrade;
-            proxy_buffering    off;
-            proxy_read_timeout 100s;
-            proxy_set_header   Upgrade $http_upgrade;
-            proxy_set_header   Connection $connection_upgrade;
-            proxy_set_header   Host $host;
-            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_set_header   X-Forwarded-Proto $scheme;
-        }
-    }
-}
-```
+* Change the `location` path from `/hubroute` (`location /hubroute { ... }`) to the root path `/` (`location / { ... }`).
+* Remove the configuration for proxy buffering (`proxy_buffering off;`) because the setting only applies to Server-Sent Events (SSE), which aren't relevant for Blazor apps.
 
 For more information, see the following articles:
 
 * <xref:signalr/scale>
+* <xref:host-and-deploy/linux-nginx>
 * [NGINX as a WebSocket Proxy](https://www.nginx.com/blog/websocket-nginx/)
 * [WebSocket proxying](http://nginx.org/docs/http/websocket.html)
-* <xref:host-and-deploy/linux-nginx>
 
 ## Linux with Apache
 
