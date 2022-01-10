@@ -36,7 +36,7 @@ If authentication fails, this handler returns a `403 (Forbidden)` response rathe
 
 Also add `app.UseAuthentication();` in *Program.cs*. Otherwise, the `HttpContext.User` will not be set to `ClaimsPrincipal` created from the certificate. For example:
 
-:::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Snippets/Program.cs" id="snippet_AddCertificateUseAuthentication":::
+:::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Snippets/Program.cs" id="snippet_AddCertificateUseAuthentication" highlight="3-6,10":::
 
 The preceding example demonstrates the default way to add certificate authentication. The handler constructs a user principal using the common certificate properties.
 
@@ -99,7 +99,7 @@ If you find the inbound certificate doesn't meet your extra validation, call `co
 
 For real functionality, you'll probably want to call a service registered in dependency injection that connects to a database or other type of user store. Access your service by using the context passed into your delegate. Consider the following example:
 
-:::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Snippets/Program.cs" id="snippet_AddCertificateOnCertificateValidatedService":::
+:::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Snippets/Program.cs" id="snippet_AddCertificateOnCertificateValidatedService" highlight="9-10,12":::
 
 Conceptually, the validation of the certificate is an authorization concern. Adding a check on, for example, an issuer or thumbprint in an authorization policy, rather than inside `OnCertificateValidated`, is perfectly acceptable.
 
@@ -154,7 +154,7 @@ If the app is reverse proxied by NGINX with the configuration `proxy_set_header 
 
 Add the middleware in *Program.cs*. `UseCertificateForwarding` is called before the calls to `UseAuthentication` and `UseAuthorization`:
 
-:::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Snippets/Program.cs" id="snippet_UseCertificateForwarding":::
+:::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Snippets/Program.cs" id="snippet_UseCertificateForwarding" highlight="3":::
 
 A separate class can be used to implement validation logic. Because the same self-signed certificate is used in this example, ensure that only your certificate can be used. Validate that the thumbprints of both the client certificate and the server certificate match, otherwise any certificate can be used and will be enough to authenticate. This would be used inside the `AddCertificate` method. You could also validate the subject or the issuer here if you're using intermediate or child certificates.
 
@@ -286,7 +286,7 @@ ASP.NET Core 5.0 and later versions support the ability to enable caching of val
 
 By default, certificate authentication disables caching. To enable caching, call `AddCertificateCache` in *Program.cs*:
 
-:::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Snippets/Program.cs" id="AddCertificateCaching":::
+:::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Snippets/Program.cs" id="snippet_AddCertificateCaching":::
 
 The default caching implementation stores results in memory. You can provide your own cache by implementing `ICertificateValidationCache` and registering it with dependency injection. For example, `services.AddSingleton<ICertificateValidationCache, YourCache>()`.
 
