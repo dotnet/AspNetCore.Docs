@@ -254,6 +254,12 @@ For a hosted Blazor WebAssembly accessible at a sub-app path (for example, `/bla
   * ❌ Incorrect: `var rsp = await client.GetFromJsonAsync("/api/Account");`
   * ✔️ Correct: `var rsp = await client.GetFromJsonAsync("api/Account");`
 
+* In [Navigation Manager links](xref:blazor/fundamentals/routing#uri-and-navigation-state-helpers), do ***not*** prefix with a forward slash. Either avoid the use of a path segment separator or use dot-slash (`./`) relative path notation:
+
+  * ❌ Incorrect: `NavigationManager.NavigateTo("/other");`
+  * ✔️ Correct: `NavigationManager.NavigateTo("other");`
+  * ✔️ Correct: `NavigationManager.NavigateTo("./other");`
+
 #### Nginx
 
 The following example hosts the app at a root URL (no sub-app path):
