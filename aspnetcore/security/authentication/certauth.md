@@ -4,7 +4,7 @@ author: blowdart
 description: Learn how to configure certificate authentication in ASP.NET Core for IIS and HTTP.sys.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: bdorrans
-ms.date: 09/07/2021
+ms.date: 01/10/2022
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/certauth
 ---
@@ -160,82 +160,15 @@ A separate class can be used to implement validation logic. Because the same sel
 
 :::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Snippets/SampleCertificateValidationService.cs":::
 
-#### Implement an HttpClient using a certificate and the HttpClientHandler
+#### Implement an HttpClient using a certificate and IHttpClientFactory 
 
-The `HttpClientHandler` could be added directly in the constructor of the `HttpClient` class. Care should be taken when creating instances of the `HttpClient`. The `HttpClient` will then send the certificate with each request.
+In the following example, a client certificate is added to a `HttpClientHandler` using the `ClientCertificates` property from the handler. This handler can then be used in a named instance of an `HttpClient` using the `ConfigurePrimaryHttpMessageHandler` method. This is setup in *Program.cs*:
 
-```csharp
-private async Task<JsonDocument> GetApiDataUsingHttpClientHandler()
-{
-    var cert = new X509Certificate2(Path.Combine(_environment.ContentRootPath, "sts_dev_cert.pfx"), "1234");
-    var handler = new HttpClientHandler();
-    handler.ClientCertificates.Add(cert);
-    var client = new HttpClient(handler);
-     
-    var request = new HttpRequestMessage()
-    {
-        RequestUri = new Uri("https://localhost:44379/api/values"),
-        Method = HttpMethod.Get,
-    };
-    var response = await client.SendAsync(request);
-    if (response.IsSuccessStatusCode)
-    {
-        var responseContent = await response.Content.ReadAsStringAsync();
-        var data = JsonDocument.Parse(responseContent);
-        return data;
-    }
- 
-    throw new ApplicationException($"Status code: {response.StatusCode}, Error: {response.ReasonPhrase}");
-}
-```
+:::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Snippets/Program.cs" id="snippet_AddHttpClient":::
 
-#### Implement an HttpClient using a certificate and a named HttpClient from IHttpClientFactory 
+The `IHttpClientFactory` can then be used to get the named instance with the handler and the certificate. The `CreateClient` method with the name of the client defined in *Program.cs* is used to get the instance. The HTTP request can be sent using the client as required:
 
-In the following example, a client certificate is added to a `HttpClientHandler` using the `ClientCertificates` property from the handler. This handler can then be used in a named instance of an `HttpClient` using the `ConfigurePrimaryHttpMessageHandler` method. This is setup in `Startup.ConfigureServices`:
-
-```csharp
-var clientCertificate = 
-    new X509Certificate2(
-      Path.Combine(_environment.ContentRootPath, "sts_dev_cert.pfx"), "1234");
- 
-var handler = new HttpClientHandler();
-handler.ClientCertificates.Add(clientCertificate);
- 
-services.AddHttpClient("namedClient", c =>
-{
-}).ConfigurePrimaryHttpMessageHandler(() => handler);
-```
-
-The `IHttpClientFactory` can then be used to get the named instance with the handler and the certificate. The `CreateClient` method with the name of the client defined in the `Startup` class is used to get the instance. The HTTP request can be sent using the client as required.
-
-```csharp
-private readonly IHttpClientFactory _clientFactory;
- 
-public ApiService(IHttpClientFactory clientFactory)
-{
-    _clientFactory = clientFactory;
-}
- 
-private async Task<JsonDocument> GetApiDataWithNamedClient()
-{
-    var client = _clientFactory.CreateClient("namedClient");
- 
-    var request = new HttpRequestMessage()
-    {
-        RequestUri = new Uri("https://localhost:44379/api/values"),
-        Method = HttpMethod.Get,
-    };
-    var response = await client.SendAsync(request);
-    if (response.IsSuccessStatusCode)
-    {
-        var responseContent = await response.Content.ReadAsStringAsync();
-        var data = JsonDocument.Parse(responseContent);
-        return data;
-    }
- 
-    throw new ApplicationException($"Status code: {response.StatusCode}, Error: {response.ReasonPhrase}");
-}
-```
+:::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Snippets/SampleHttpService.cs" id="snippet_Class":::
 
 If the correct certificate is sent to the server, the data is returned. If no certificate or the wrong certificate is sent, an HTTP 403 status code is returned.
 
@@ -341,41 +274,9 @@ Get-ChildItem -Path cert:\localMachine\my\141594A0AE38CBBECED7AF680F7945CD51D8F2
 Export-Certificate -Cert cert:\localMachine\my\141594A0AE38CBBECED7AF680F7945CD51D8F28A -FilePath child_b_from_a_dev_damienbod.crt
 ```
 
-When using the root, intermediate, or child certificates, the certificates can be validated using the Thumbprint or PublicKey as required.
+When using the root, intermediate, or child certificates, the certificates can be validated using the Thumbprint or PublicKey as required:
 
-```csharp
-using System.Collections.Generic;
-using System.IO;
-using System.Security.Cryptography.X509Certificates;
-
-namespace AspNetCoreCertificateAuthApi
-{
-    public class MyCertificateValidationService 
-    {
-        public bool ValidateCertificate(X509Certificate2 clientCertificate)
-        {
-            return CheckIfThumbprintIsValid(clientCertificate);
-        }
-
-        private bool CheckIfThumbprintIsValid(X509Certificate2 clientCertificate)
-        {
-            var listOfValidThumbprints = new List<string>
-            {
-                "141594A0AE38CBBECED7AF680F7945CD51D8F28A",
-                "0C89639E4E2998A93E423F919B36D4009A0F9991",
-                "BA9BF91ED35538A01375EFC212A2F46104B33A44"
-            };
-
-            if (listOfValidThumbprints.Contains(clientCertificate.Thumbprint))
-            {
-                return true;
-            }
-
-            return false;
-        }
-    }
-}
-```
+:::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Snippets/SampleCertificateThumbprintsValidationService.cs":::
 
 <a name="occ"></a>
 
@@ -383,21 +284,9 @@ namespace AspNetCoreCertificateAuthApi
 
 ASP.NET Core 5.0 and later versions support the ability to enable caching of validation results. The caching dramatically improves performance of certificate authentication, as validation is an expensive operation.
 
-By default, certificate authentication disables caching. To enable caching, call `AddCertificateCache` in `Startup.ConfigureServices`:
+By default, certificate authentication disables caching. To enable caching, call `AddCertificateCache` in *Program.cs*:
 
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddAuthentication(
-        CertificateAuthenticationDefaults.AuthenticationScheme)
-            .AddCertificate()
-            .AddCertificateCache(options =>
-            {
-                options.CacheSize = 1024;
-                options.CacheEntryExpiration = TimeSpan.FromMinutes(2);
-            });
-}
-```
+:::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Snippets/Program.cs" id="AddCertificateCaching":::
 
 The default caching implementation stores results in memory. You can provide your own cache by implementing `ICertificateValidationCache` and registering it with dependency injection. For example, `services.AddSingleton<ICertificateValidationCache, YourCache>()`.
 

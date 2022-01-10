@@ -14,8 +14,7 @@ public static class Program
 
         builder.Services.AddAuthentication(
                 CertificateAuthenticationDefaults.AuthenticationScheme)
-            .AddCertificate()
-            .AddCertificateCache();
+            .AddCertificate();
 
         var app = builder.Build();
 
@@ -169,5 +168,32 @@ public static class Program
         app.UseAuthentication();
         app.UseAuthorization();
         // </snippet_UseCertificateForwarding>
+    }
+
+    public static void AddHttplient(WebApplicationBuilder builder)
+    {
+        // <snippet_AddHttpClient>
+        var clientCertificateHandler = new HttpClientHandler();
+
+        clientCertificateHandler.ClientCertificates.Add(
+            new X509Certificate2(Path.Combine("/path/to/pfx"), "1234"));
+
+        builder.Services.AddHttpClient("namedClient")
+            .ConfigurePrimaryHttpMessageHandler(() => clientCertificateHandler);
+        // </snippet_AddHttpClient>
+    }
+
+    public static void AddCertificateCaching(WebApplicationBuilder builder)
+    {
+        // <snippet_AddCertificateCaching>
+        builder.Services.AddAuthentication(
+                CertificateAuthenticationDefaults.AuthenticationScheme)
+            .AddCertificate()
+            .AddCertificateCache(options =>
+            {
+                options.CacheSize = 1024;
+                options.CacheEntryExpiration = TimeSpan.FromMinutes(2);
+            });
+        // </snippet_AddCertificateCaching>
     }
 }
