@@ -43,7 +43,7 @@ To set up prerendering for a hosted Blazor WebAssembly app:
 1. Add `_Host.cshtml` and `_Layout.cshtml` files to the **`Server`** project's `Pages` folder. You can obtain the files from a project created from the Blazor Server template using Visual Studio or using the .NET CLI with the `dotnet new blazorserver -o BlazorServer` command in a command shell (the `-o BlazorServer` option creates a folder for the project). After placing the files into the **`Server`** project's `Pages` folder, make the following changes to the files.
 
    > [!IMPORTANT]
-   > The use of a layout page (`_Layout.cshtml`) with a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is required to [control head (`<head>`) content](xref:blazor/components/control-head-content), such as the page's title (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component). For more information, see <xref:blazor/components/control-head-content#control-head-content-during-prerendering>.
+   > The use of a layout page (`_Layout.cshtml`) with a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is required to control `<head>` content, such as the page's title (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component). For more information, see <xref:blazor/components/control-head-content#control-head-content-during-prerendering>.
 
    Make the following changes to the `_Layout.cshtml` file:
 
@@ -160,22 +160,24 @@ The **`Server`** project must have the following files and folders.
 Razor Pages:
 
 * `Pages/Shared/_Layout.cshtml`
+* `Pages/Shared/_Layout.cshtml.css`
 * `Pages/_ViewImports.cshtml`
 * `Pages/_ViewStart.cshtml`
 
 MVC:
 
 * `Views/Shared/_Layout.cshtml`
+* `Views/Shared/_Layout.cshtml.css`
 * `Views/_ViewImports.cshtml`
 * `Views/_ViewStart.cshtml`
 
 > [!IMPORTANT]
-> The use of a layout page (`_Layout.cshtml`) with a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is required to [control head (`<head>`) content](xref:blazor/components/control-head-content), such as the page's title (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component). For more information, see <xref:blazor/components/control-head-content#control-head-content-during-prerendering>.
+> The use of a layout page (`_Layout.cshtml`) with a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is required to control `<head>` content, such as the page's title (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component). For more information, see <xref:blazor/components/control-head-content#control-head-content-during-prerendering>.
 
 The preceding files can be obtained by generating an app from the ASP.NET Core project templates using:
 
 * Visual Studio's new project creation tools.
-* Opening a command shell and executing `dotnet new razor -o {APP NAME}` (Razor Pages) or `dotnet new mvc -o {APP NAME}` (MVC). The option `-o|--output` with a value for the `{APP NAME}` placeholder provides a name for the app and creates a folder for the app.
+* Opening a command shell and executing `dotnet new webapp -o {APP NAME}` (Razor Pages) or `dotnet new mvc -o {APP NAME}` (MVC). The option `-o|--output` with a value for the `{APP NAME}` placeholder provides a name for the app and creates a folder for the app.
 
 Update the namespaces in the imported `_ViewImports.cshtml` file to match those in use by the **`Server`** project receiving the files.
 
@@ -185,6 +187,7 @@ Update the namespaces in the imported `_ViewImports.cshtml` file to match those 
 @using BlazorHosted.Server
 @namespace BlazorHosted.Server.Pages
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.AspNetCore.Components.Web
 ```
 
 `Views/_ViewImports.cshtml` (MVC):
@@ -193,6 +196,7 @@ Update the namespaces in the imported `_ViewImports.cshtml` file to match those 
 @using BlazorHosted.Server
 @using BlazorHosted.Server.Models
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.AspNetCore.Components.Web
 ```
 
 Update the imported layout file (`_Layout.cshtml`) to include the **`Client`** project's styles. In the following example, the **`Client`** project's namespace is `BlazorHosted.Client`. The `<title>` element can be updated at the same time. The `{APP NAME}` placeholder represents the donor project's app name.
@@ -208,12 +212,18 @@ Update the imported layout file (`_Layout.cshtml`) to include the **`Client`** p
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 +   <link href="css/app.css" rel="stylesheet" />
-+   <link href="BlazorHosted.Client.styles.css" rel="stylesheet" />
-+   <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
+-   <link rel="stylesheet" href="~/RPDonor.styles.css" asp-append-version="true" />
++   <link rel="stylesheet" href="BlazorHosted.Client.styles.css" asp-append-version="true" />
++   <component type="typeof(HeadOutlet)" render-mode="WebAssemblyPrerendered" />
 </head>
 ```
 
-The imported layout contains `Home` and `Privacy` navigation links. To make the `Home` link point to the hosted Blazor WebAssembly app, change the hyperlink:
+The imported layout contains two `Home` (`Index` page) and `Privacy` navigation links. To make the `Home` links point to the hosted Blazor WebAssembly app, change the hyperlinks:
+
+```diff
+- <a class="navbar-brand" asp-area="" asp-page="/Index">{APP NAME}</a>
++ <a class="navbar-brand" href="/">BlazorHosted</a>
+```
 
 ```diff
 - <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
@@ -223,10 +233,25 @@ The imported layout contains `Home` and `Privacy` navigation links. To make the 
 In an MVC layout file:
 
 ```diff
+- <a class="navbar-brand" asp-area="" asp-controller="Home" 
+-     asp-action="Index">{APP NAME}</a>
++ <a class="navbar-brand" href="/">BlazorHosted</a>
+```
+
+```diff
 - <a class="nav-link text-dark" asp-area="" asp-controller="Home" 
 -     asp-action="Index">Home</a>
 + <a class="nav-link text-dark" href="/">Home</a>
 ```
+
+Update the `<footer>` element's app name. The following example uses the app name `BlazorHosted`:
+
+```diff
+- &copy; {DATE} - {DONOR NAME} - <a asp-area="" asp-page="/Privacy">Privacy</a>
++ &copy; {DATE} - BlazorHosted - <a asp-area="" asp-page="/Privacy">Privacy</a>
+```
+
+In the preceding example, the `{DATE}` placeholder represents the copyright date in an app generated from the Razor Pages or MVC project template.
 
 To make the `Privacy` link lead to a privacy page (Razor Pages), add a privacy page to the **`Server`** project.
 
@@ -400,7 +425,7 @@ After [configuring the project](#configuration), use the guidance in the followi
 Use the following guidance to integrate Razor components into pages and views of an existing Razor Pages or MVC app.
 
 > [!IMPORTANT]
-> The use of a layout page (`_Layout.cshtml`) with a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is required to [control head (`<head>`) content](xref:blazor/components/control-head-content), such as the page's title (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component). For more information, see <xref:blazor/components/control-head-content#control-head-content-during-prerendering>.
+> The use of a layout page (`_Layout.cshtml`) with a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is required to control `<head>` content, such as the page's title (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component). For more information, see <xref:blazor/components/control-head-content#control-head-content-during-prerendering>.
 
 1. In the project's layout file:
 
@@ -554,7 +579,7 @@ To support routable Razor components in Razor Pages apps:
    In this scenario, components use the shared `_Layout.cshtml` file for their layout.
   
    > [!IMPORTANT]
-   > The use of a layout page (`_Layout.cshtml`) with a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is required to [control head (`<head>`) content](xref:blazor/components/control-head-content), such as the page's title (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component). For more information, see <xref:blazor/components/control-head-content#control-head-content-during-prerendering>.
+   > The use of a layout page (`_Layout.cshtml`) with a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is required to control `<head>` content, such as the page's title (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component). For more information, see <xref:blazor/components/control-head-content#control-head-content-during-prerendering>.
   
    <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configures whether the `App` component:
 
@@ -641,7 +666,7 @@ To support routable Razor components in MVC apps:
    Components use the shared `_Layout.cshtml` file for their layout.
      
    > [!IMPORTANT]
-   > The use of a layout page (`_Layout.cshtml`) with a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is required to [control head (`<head>`) content](xref:blazor/components/control-head-content), such as the page's title (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component). For more information, see <xref:blazor/components/control-head-content#control-head-content-during-prerendering>.
+   > The use of a layout page (`_Layout.cshtml`) with a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is required to control `<head>` content, such as the page's title (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component). For more information, see <xref:blazor/components/control-head-content#control-head-content-during-prerendering>.
 
    <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configures whether the `App` component:
 
@@ -729,7 +754,7 @@ The following Razor page renders a `Counter` component:
 For more information, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
      
 > [!IMPORTANT]
-> The use of a layout page (`_Layout.cshtml`) with a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is required to [control head (`<head>`) content](xref:blazor/components/control-head-content), such as the page's title (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component). For more information, see <xref:blazor/components/control-head-content#control-head-content-during-prerendering>.
+> The use of a layout page (`_Layout.cshtml`) with a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is required to control `<head>` content, such as the page's title (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component). For more information, see <xref:blazor/components/control-head-content#control-head-content-during-prerendering>.
 
 ### Render noninteractive components
 
@@ -755,7 +780,7 @@ In the following Razor page, the `Counter` component is statically rendered with
 For more information, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
      
 > [!IMPORTANT]
-> The use of a layout page (`_Layout.cshtml`) with a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is required to [control head (`<head>`) content](xref:blazor/components/control-head-content), such as the page's title (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component). For more information, see <xref:blazor/components/control-head-content#control-head-content-during-prerendering>.
+> The use of a layout page (`_Layout.cshtml`) with a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is required to control `<head>` content, such as the page's title (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component). For more information, see <xref:blazor/components/control-head-content#control-head-content-during-prerendering>.
 
 ## Component namespaces
 
