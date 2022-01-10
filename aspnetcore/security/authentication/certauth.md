@@ -36,7 +36,7 @@ If authentication fails, this handler returns a `403 (Forbidden)` response rathe
 
 Also add `app.UseAuthentication();` in *Program.cs*. Otherwise, the `HttpContext.User` will not be set to `ClaimsPrincipal` created from the certificate. For example:
 
-:::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Snippets/Program.cs" id="snippet_AddCertificateUseAuthentication" highlight="3-6,10":::
+:::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Snippets/Program.cs" id="snippet_AddCertificateUseAuthentication" highlight="3-5,9":::
 
 The preceding example demonstrates the default way to add certificate authentication. The handler constructs a user principal using the common certificate properties.
 
