@@ -347,7 +347,7 @@ Additional work might be required depending on the static resources that compone
 
 ### Set child content through a render fragment
 
-The [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) isn't supported for receiving a [`RenderFragment` delegate for child content](xref:blazor/components/index#child-content) (for example, `param-ChildContent="..."`). We recommend creating a Razor component (`.razor`) that references the component you want to render with the child content you want to pass and then invoke the Razor component from the page or view.
+The [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) doesn't support receiving a [`RenderFragment` delegate for child content](xref:blazor/components/index#child-content) (for example, `param-ChildContent="..."`). We recommend creating a Razor component (`.razor`) that references the component you want to render with the child content you want to pass and then invoke the Razor component from the page or view.
 
 ### Ensure that top-level prerendered components aren't trimmed out on publish
 
