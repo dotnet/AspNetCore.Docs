@@ -1,5 +1,5 @@
 ---
-title: Mock gRPC client in .NET tests
+title: Mock gRPC client in tests
 author: jamesnk
 description: Learn how to mock gRPC client in .NET tests.
 monikerRange: '>= aspnetcore-3.1'
@@ -9,7 +9,7 @@ ms.date: 01/01/2022
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/test-client
 ---
-# Mock gRPC client in .NET tests
+# Mock gRPC client in tests
 
 By: [James Newton-King](https://twitter.com/jamesnk)
 
@@ -33,7 +33,7 @@ The preceding type:
 
 ## Mock a gRPC client
 
-gRPC clients are concrete client types that are [generated from `\*.proto` files](xref:grpc/basics#generated-c-assets). The concrete gRPC client has methods that translate to the gRPC service in the `\*.proto` file. For example, a service called `Greeter` generates a `GreeterClient` type with methods to call the service.
+gRPC clients are concrete client types that are [generated from `.proto` files](xref:grpc/basics#generated-c-assets). The concrete gRPC client has methods that translate to the gRPC service in the `.proto` file. For example, a service called `Greeter` generates a `GreeterClient` type with methods to call the service.
 
 A mocking framework can mock a gRPC client type. When a mocked client is passed to the type, the test uses the mocked method instead of sending a gRPC call to a server.
 
@@ -43,7 +43,7 @@ The preceding unit test:
 
 * Mocks `IGreetRepository` and `TesterClient` using [Moq](https://www.nuget.org/packages/Moq).
 * Starts the worker.
-* Verifies `SaveGreeting` is called with the expected greeting message.
+* Verifies `SaveGreeting` is called with the greeting message returned by the mocked `TesterClient`.
 
 ## Additional resources
 
