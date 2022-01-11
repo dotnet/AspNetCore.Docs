@@ -357,7 +357,7 @@ Single-line attribute lists are also supported:
 public string? Title { get; set; }
 ```
 
-[`Tuples`](/dotnet/csharp/language-reference/builtin-types/value-tuples) ([API documentation](xref:System.Tuple)) are supported for component parameters and [`RenderFragment`](#child-content) types. The following component parameter example passes three types in a `Tuple`:
+[`Tuples`](/dotnet/csharp/language-reference/builtin-types/value-tuples) ([API documentation](xref:System.Tuple)) are supported for component parameters and [`RenderFragment`](#child-content) types. The following component parameter example passes three values in a `Tuple`:
 
 `Shared/RenderTupleChild.razor`:
 
