@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace WebApp1.Pages
 {
-    #region snippet
+    // <snippet_Class>
     [Authorize]
     public class PrivacyModel : PageModel
     {
-        
+
     }
-    #endregion
+    // </snippet_Class>
 }
