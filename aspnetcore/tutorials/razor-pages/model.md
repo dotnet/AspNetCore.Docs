@@ -250,7 +250,7 @@ In this section, the **Package Manager Console** (PMC) window is used to:
 
 The preceding commands install [the Entity Framework Core tools](https://docs.microsoft.com/ef/core/get-started/overview/install#get-the-entity-framework-core-tools) and run the `migrations` command to generate code that creates the initial database schema.
 
-You’ll see the following warning, which you will address in a later step:
+The following warning is displayed, which is addressed in a later step:
 
 > No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
 
