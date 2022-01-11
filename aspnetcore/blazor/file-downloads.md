@@ -71,11 +71,11 @@ The following `DownloadFileFromStream` method performs the following steps:
 }
 ```
 
-The JavaScript `downloadFileFromStream` function accepts the file name and data stream and triggers the client-side download. The function performs the following steps:
+The JavaScript `downloadFileFromStream` function accepts the file name with the data stream and triggers the client-side download. The function performs the following steps:
 
 * Read the provided stream into an [`ArrayBuffer`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer).
 * Create a [`Blob`](https://developer.mozilla.org/docs/Web/API/Blob) to wrap the `ArrayBuffer`.
-* Create an object URL to serve as the address for the file to be downloaded.
+* Create an object URL to serve as the file's download address.
 
 The `fileName` and object `url` are passed to `triggerFileDownload`, which performs the following steps:
 
@@ -84,14 +84,12 @@ The `fileName` and object `url` are passed to `triggerFileDownload`, which perfo
 * Trigger the download via `click`.
 * Remove the anchor (`<a>`) element.
 
-At this point, the file download is triggered. It should be safe to revoke the temporary object URL by calling [`revokeObjectURL`](https://developer.mozilla.org/docs/Web/API/URL/revokeObjectURL) on the URL. **This is an important step to ensure memory isn't leaked on the client.**
-
+At this point, the file download is triggered, and it's generally safe to revoke the temporary object URL by calling [`revokeObjectURL`](https://developer.mozilla.org/docs/Web/API/URL/revokeObjectURL) on the URL. **This is an important step to ensure memory isn't leaked on the client.**
 
 ```javascript
 async function downloadFileFromStream(fileName, contentStreamReference) {
   const arrayBuffer = await contentStreamReference.arrayBuffer();
   const blob = new Blob([arrayBuffer]);
-
   const url = URL.createObjectURL(blob);
 
   triggerFileDownload(fileName, url);
@@ -102,15 +100,23 @@ async function downloadFileFromStream(fileName, contentStreamReference) {
 function triggerFileDownload(fileName, url) {
   const anchorElement = document.createElement('a');
   anchorElement.href = url;
-
-  if (fileName) {
-    anchorElement.download = fileName;
-  }
-
+  anchorElement.download = fileName ?? '';
   anchorElement.click();
   anchorElement.remove();
 }
 ```
+
+`ArrayBuffer` effectively loads the entire file into client memory. For file downloads over 1 GB, we recommend opening a new tab for each large file download by setting the anchor's [`target`](https://developer.mozilla.org/docs/Web/HTML/Element/a#attr-target) to `_blank` and [`referrerpolicy`](https://developer.mozilla.org/docs/Web/HTML/Element/a#attr-referrerpolicy) to `no-referrer`:
+
+```javascript
+anchorElement.target = '_blank';
+anchorElement.referrerpolicy = 'no-referrer';
+```
+
+For more information on setting the anchor's Referrer Policy, see the following MDN documentation resources:
+
+* [`referrerpolicy`](https://developer.mozilla.org/docs/Web/HTML/Element/a#attr-referrerpolicy)
+* [`<a>`: The Anchor element: Security and privacy](https://developer.mozilla.org/docs/Web/HTML/Element/a#security_and_privacy)
 
 ## File streams
 
@@ -118,7 +124,7 @@ In Blazor WebAssembly apps, file data is streamed directly from .NET code into t
 
 ## Security considerations
 
-Use caution when providing users with the ability to download files from a server. Attackers may execute [denial of service (DOS)](/windows-hardware/drivers/ifs/denial-of-service) attacks or attempt to compromise networks and servers in other ways.
+Use caution when providing users with the ability to download files from a server. Attackers may execute [denial of service (DOS)](/windows-hardware/drivers/ifs/denial-of-service) attacks, [API exploitation attacks](https://developer.mozilla.org/docs/Web/HTML/Element/a#security_and_privacy), or attempt to compromise networks and servers in other ways.
 
 Security steps that reduce the likelihood of a successful attack are:
 
@@ -127,6 +133,7 @@ Security steps that reduce the likelihood of a successful attack are:
 
 ## Additional resources
 
+* [`<a>`: The Anchor element: Security and privacy (MDN documentation)](https://developer.mozilla.org/docs/Web/HTML/Element/a#security_and_privacy)
 * <xref:blazor/file-uploads>
 * <xref:mvc/models/file-uploads#security-considerations>
 * <xref:blazor/forms-validation>
