@@ -2,7 +2,7 @@
 title: Use cookie authentication without ASP.NET Core Identity
 author: rick-anderson
 description: Learn how to use cookie authentication without ASP.NET Core Identity.
-monikerRange: '>= aspnetcore-2.1'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.date: 1/1/2022
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
@@ -22,8 +22,8 @@ For demonstration purposes in the sample app, the user account for the hypotheti
 
 ## Add cookie authentication
 
-* Add the Authentication Middleware services with the <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> and <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*> methods.
-* Call [`UseAuthentication`](xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A) and [`UseAuthorization`](xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A) to set the `HttpContext.User` property and run Authorization Middleware for requests. `UseAuthentication` and `UseAuthorization` must be called before `Map` methods such as <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages%2A> and <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapDefaultControllerRoute%2A>
+* Add the Authentication Middleware services with the <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A> and <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie%2A> methods.
+* Call <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> to set the `HttpContext.User` property and run the Authorization Middleware for requests. `UseAuthentication` and `UseAuthorization` must be called before `Map` methods such as <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages%2A> and <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapDefaultControllerRoute%2A>
 
 [!code-csharp[](cookie/samples/6.x/CookieSample/Program.cs?name=snippet1&highlight=8-9,24-28)]
 
@@ -35,14 +35,14 @@ The authentication cookie's <xref:Microsoft.AspNetCore.Http.CookieBuilder.IsEsse
 
 The <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions> class is used to configure the authentication provider options.
 
- <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions> can be set in the <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*> method:
+Configure <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions> in the <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie%2A> method:
 
 [!code-csharp[](cookie/samples/6.x/CookieSample/Program.cs?name=snippet2&highlight=8-14)]
 
 ## Cookie Policy Middleware
 
 The 
-[Cookie Policy Middleware (GitHub Source)](https://github.com/dotnet/aspnetcore/blob/main/src/Security/CookiePolicy/src/CookiePolicyMiddleware.cs) <xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy%2A> enables cookie policy capabilities. Middleware is processed in the order it's added.
+[Cookie Policy Middleware (GitHub Source)](https://github.com/dotnet/aspnetcore/blob/main/src/Security/CookiePolicy/src/CookiePolicyMiddleware.cs) <xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy%2A> enables cookie policy capabilities. Middleware is processed in the order it's added:
 
 ```csharp
 app.UseCookiePolicy(cookiePolicyOptions);
@@ -191,7 +191,7 @@ For demonstration purposes in the sample app, the user account for the hypotheti
 
 ## Configuration
 
-In the `Startup.ConfigureServices` method, create the Authentication Middleware services with the <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> and <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*> methods:
+In the `Startup.ConfigureServices` method, create the Authentication Middleware services with the <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A> and <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie%2A> methods:
 
 [!code-csharp[](cookie/samples/3.x/CookieSample/Startup.cs?name=snippet1)]
 
