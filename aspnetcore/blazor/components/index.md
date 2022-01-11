@@ -243,7 +243,9 @@ The following rendered HTML markup from the `ParameterParent` component shows `P
 </div>
 ```
 
-Assign a C# field, property, or result of a method to a component parameter as an HTML attribute value using [Razor's reserved `@` symbol](xref:mvc/views/razor#razor-syntax). The following `ParameterParent2` component displays four instances of the preceding `ParameterChild` component and sets their `Title` parameter values to:
+Assign a C# field, property, or result of a method to a component parameter as an HTML attribute value using [Razor's reserved `@` symbol](xref:mvc/views/razor#razor-syntax). 
+
+The following `ParameterParent2` component displays four instances of the preceding `ParameterChild` component and sets their `Title` parameter values to:
 
 * The value of the `title` field.
 * The result of the `GetTitle` C# method.
@@ -356,6 +358,46 @@ Single-line attribute lists are also supported:
 [Parameter, EditorRequired]
 public string? Title { get; set; }
 ```
+
+[`Tuples`](/dotnet/csharp/language-reference/builtin-types/value-tuples) ([API documentation](xref:System.Tuple)) are supported for component parameters and [`RenderFragment`](#child-content) types. The following component parameter example passes three types in a `Tuple`:
+
+`Shared/RenderTupleChild.razor`:
+
+```csharp
+<div class="card w-50" style="margin-bottom:15px">
+    <div class="card-header font-weight-bold"><code>Tuple</code> Card</div>
+    <div class="card-body">
+        <ul>
+            <li>Integer: @Data?.Item1</li>
+            <li>String: @Data?.Item2</li>
+            <li>Boolean: @Data?.Item3</li>
+        </ul>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public Tuple<int, string, bool>? Data { get; set; }
+}
+```
+
+`Pages/RenderTupleParent.razor`:
+
+```csharp
+@page "/render-tuple-parent"
+
+<h1>Render <code>Tuple</code> Parent</h1>
+
+<RenderTupleChild Data="@data" />
+
+@code {
+    private Tuple<int, string, bool> data = new(999, "I aim to misbehave.", true);
+}
+```
+    
+Only ***unnamed tuples*** are supported for C# 7.0 or later in Razor components. [Named tuples](/dotnet/csharp/language-reference/builtin-types/value-tuples#tuple-field-names) support in Razor components is planned for a future ASP.NET Core release. For more information, see [Blazor Transpiler issue with named Tuples (dotnet/aspnetcore #28982)](https://github.com/dotnet/aspnetcore/issues/28982).
+
+Quote &copy;2005 [Universal Pictures](https://www.uphe.com): [Serenity](https://www.uphe.com/movies/serenity-2005) ([Nathan Fillion](https://www.imdb.com/name/nm0277213/))
 
 ## Route parameters
 
