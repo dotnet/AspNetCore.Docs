@@ -153,7 +153,7 @@ The preceding code can be written as:
 
 ## Tag helper initializers
 
-While attributes can be used to configure individual instances of tag helpers, `[`ITagHelperInitializer`](/dotnet/api/microsoft.aspnetcore.mvc.razor.itaghelperinitializer-1) can be used to configure all tag helper instances of a specific kind. Consider the following example of a tag helper initializer that configures the `asp-append-version` attribute / `AppendVersion` property for all `ScriptTagHelpers` in the app:
+While attributes can be used to configure individual instances of tag helpers, <xref:Microsoft.AspNetCore.Mvc.Razor.ITagHelperInitializer%601> can be used to configure all tag helper instances of a specific kind. Consider the following example of a tag helper initializer that configures the `asp-append-version` attribute / `AppendVersion` property for all `ScriptTagHelper`s in the app:
 
 ```csharp
 public class AppendVersionTagHelperInitializer : ITagHelperInitializer<ScriptTagHelper>
@@ -168,7 +168,8 @@ public class AppendVersionTagHelperInitializer : ITagHelperInitializer<ScriptTag
 To use the initializer, configure it by registering it as part of the application's startup:
 
 ```csharp
-builder.Services.AddSingleton<ITagHelperInitializer<ScriptTagHelper>, AppendVersionTagHelperInitializer>();
+builder.Services.AddSingleton
+    <ITagHelperInitializer<ScriptTagHelper>, AppendVersionTagHelperInitializer>();
 ```
 
 ## IntelliSense support for Tag Helpers
