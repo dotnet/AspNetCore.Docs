@@ -130,7 +130,7 @@ ValidatePrincipal(CookieValidatePrincipalContext)
 
 The following is an example implementation of `CookieAuthenticationEvents`:
 
-[!code-csharp[](cookie/samples/6.x/CookieSample/CustomCookieAuthenticationEvents.cs?name=snippet)]
+[!code-csharp[](cookie/samples/6.x/CookieSample/CookieAuthenticationEvents.cs?name=snippet)]
 
 Register the events instance during cookie service registration in the `Startup.ConfigureServices` method. Provide a [scoped service registration](xref:fundamentals/dependency-injection#service-lifetimes) for your `CustomCookieAuthenticationEvents` class:
 

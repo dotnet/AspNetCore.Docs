@@ -1,4 +1,4 @@
-#define CC // FIRST SECOND CC
+#define FIRST // FIRST SECOND CC
 #if NEVER
 #elif FIRST
 #region snippet1
@@ -12,7 +12,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie();
 
-builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+// 
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
