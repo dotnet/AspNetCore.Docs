@@ -1,4 +1,4 @@
-#define TRB2 // FIRST SECOND FMHO DH LN AZ OWP OWP2 TRB TRB2 HTTPS HTTPS2
+#define TRB22 // FIRST SECOND FMHO DH LN AZ OWP OWP2 TRB TRB2 HTTPS HTTPS2 TRB3 TRB22
 #if NEVER
 #elif FIRST
 #region snippet1
@@ -379,6 +379,105 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+app.UseAuthorization();
+
+app.MapRazorPages();
+
+app.Run();
+#endregion
+#elif TRB22  // Replaces TRB2
+#region snippet_trb22
+using Microsoft.AspNetCore.HttpLogging;
+using Microsoft.AspNetCore.HttpOverrides;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddRazorPages();
+
+builder.Services.AddHttpLogging(options =>
+{
+    options.LoggingFields = HttpLoggingFields.RequestPropertiesAndHeaders;
+});
+
+builder.Services.Configure<ForwardedHeadersOptions>(options =>
+{
+    options.ForwardedHeaders =
+        ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+});
+
+var app = builder.Build();
+
+app.UseForwardedHeaders();
+
+var logger = app.Logger;
+
+app.Use(async (context, next) =>
+{
+    // Connection: RemoteIp
+    logger.LogInformation("Request RemoteIp: {RemoteIpAddress}",
+        context.Connection.RemoteIpAddress);
+
+    await next(context);
+});
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseAuthorization();
+
+app.MapRazorPages();
+
+app.Run();
+#endregion
+#elif TRB3  // replaces TRB with AddHttpLogging
+#region snippet_trb3
+using Microsoft.AspNetCore.HttpLogging;
+using Microsoft.AspNetCore.HttpOverrides;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddRazorPages();
+builder.Services.AddHttpLogging(options =>
+{
+    options.LoggingFields = HttpLoggingFields.RequestPropertiesAndHeaders;
+});
+
+builder.Services.Configure<ForwardedHeadersOptions>(options =>
+{
+    options.ForwardedHeaders =
+        ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+});
+
+var app = builder.Build();
+
+app.UseForwardedHeaders();
+app.UseHttpLogging();
+
+app.Run(async (context) =>
+{
+    context.Response.ContentType = "text/plain";
+    // Connection: RemoteIp
+    await context.Response.WriteAsync(
+        $"Request RemoteIp: {context.Connection.RemoteIpAddress}");
+});
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
 
 app.UseAuthorization();
 
