@@ -214,7 +214,7 @@ To write logs rather than to the response body, place the following inline middl
 
 When processed, `X-Forwarded-{For|Proto|Host}` values are moved to `X-Original-{For|Proto|Host}`. If there are multiple values in a given header, Forwarded Headers Middleware processes headers in reverse order from right to left. The default `ForwardLimit` is `1` (one), so only the rightmost value from the headers is processed unless the value of `ForwardLimit` is increased.
 
-The request's original remote IP must match an entry in the `KnownProxies` or `KnownNetworks` lists before forwarded headers are processed. This limits header spoofing by not accepting forwarders from untrusted proxies. When an unknown proxy is detected, logging indicates the address of the proxy:
+The request's original remote IP must match an entry in the <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownProxies> or <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownNetworks> lists before forwarded headers are processed. This limits header spoofing by not accepting forwarders from untrusted proxies. When an unknown proxy is detected, logging indicates the address of the proxy:
 
 ```console
 September 20th 2018, 15:49:44.168 Unknown proxy: 10.0.0.100:54321
@@ -222,12 +222,7 @@ September 20th 2018, 15:49:44.168 Unknown proxy: 10.0.0.100:54321
 
 In the preceding example, 10.0.0.100 is a proxy server. If the server is a trusted proxy, add the server's IP address to `KnownProxies` (or add a trusted network to `KnownNetworks`). For more information, see the [Forwarded Headers Middleware options](#forwarded-headers-middleware-options) section.
 
-```csharp
-builder.Services.Configure<ForwardedHeadersOptions>(options =>
-{
-    options.KnownProxies.Add(IPAddress.Parse("10.0.0.100"));
-});
-```
+[!code-csharp[](~/host-and-deploy/proxy-load-balancer/6.1samples/WebPS/Program.cs?name=snippet_kp&highlight=11)]
 
 To display the logs, add `"Microsoft.AspNetCore.HttpLogging": "Information"` to the *appsettings.Development.json* file:
 

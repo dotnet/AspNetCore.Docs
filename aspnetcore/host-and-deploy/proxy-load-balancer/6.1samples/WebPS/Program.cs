@@ -1,4 +1,4 @@
-#define TRB22 // FIRST SECOND FMHO DH LN AZ OWP OWP2 TRB TRB2 HTTPS HTTPS2 TRB3 TRB22
+#define KP // FIRST SECOND FMHO DH LN AZ OWP OWP2 TRB TRB2 HTTPS HTTPS2 TRB3 TRB22 KP
 #if NEVER
 #elif FIRST
 #region snippet1
@@ -552,6 +552,44 @@ if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
     app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseAuthorization();
+
+app.MapRazorPages();
+
+app.Run();
+#endregion
+#elif KP
+#region snippet_kp
+using Microsoft.AspNetCore.HttpOverrides;
+using System.Net;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddRazorPages();
+builder.Services.Configure<ForwardedHeadersOptions>(options =>
+{
+    options.ForwardedHeaders =
+        ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+    options.KnownProxies.Add(IPAddress.Parse("10.0.0.100"));
+});
+
+var app = builder.Build();
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    app.UseForwardedHeaders();
+    app.UseHsts();
+}
+else
+{
+    app.UseDeveloperExceptionPage();
+    app.UseForwardedHeaders();
 }
 
 app.UseHttpsRedirection();
