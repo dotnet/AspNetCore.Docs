@@ -70,7 +70,7 @@ Similar to a regular component parameter, components accepting a cascading param
 }
 ```
 
-<xref:Microsoft.AspNetCore.Components.CascadingValue%601.IsFixed%2A?displayProperty=nameWithType> can be used to indicate that a <xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute> doesn't change after initialization. 
+<xref:Microsoft.AspNetCore.Components.CascadingValue%601.IsFixed%2A?displayProperty=nameWithType> can be used to indicate that a cascading parameter doesn't change after initialization. 
 
 ## Cascade multiple values
 
