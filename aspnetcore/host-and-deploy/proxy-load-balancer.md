@@ -220,7 +220,7 @@ The request's original remote IP must match an entry in the <xref:Microsoft.AspN
 September 20th 2018, 15:49:44.168 Unknown proxy: 10.0.0.100:54321
 ```
 
-In the preceding example, 10.0.0.100 is a proxy server. If the server is a trusted proxy, add the server's IP address to `KnownProxies` (or add a trusted network to `KnownNetworks`). For more information, see the [Forwarded Headers Middleware options](#forwarded-headers-middleware-options) section.
+In the preceding example, 10.0.0.100 is a proxy server. If the server is a trusted proxy, add the server's IP address to `KnownProxies`, or add a trusted network to `KnownNetworks`. For more information, see the [Forwarded Headers Middleware options](#forwarded-headers-middleware-options) section.
 
 [!code-csharp[](~/host-and-deploy/proxy-load-balancer/6.1samples/WebPS/Program.cs?name=snippet_kp&highlight=11)]
 
