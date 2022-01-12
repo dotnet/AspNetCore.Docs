@@ -46,11 +46,11 @@ The following component binds the `ThemeInfo` cascading value to a cascading par
 
 [!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/ThemedCounter.razor)]
 
-Similar to a regular component parameter, components accepting a cascading parameter are re-rendered when the cascading value is changed. For instance, configuring a different theme instance would cause the `ThemedCounter` component from the previous example to re-render:
+Similar to a regular component parameter, components accepting a cascading parameter are rerendered when the cascading value is changed. For instance, configuring a different theme instance causes the `ThemedCounter` component from the [`CascadingValue` component](#cascadingvalue-component) section to rerender:
 
-MainLayout.razor
+`Shared/MainLayout.razor`:
+
 ```razor
-
 <div class="main">
     <CascadingValue Value="theme">
         <div class="content px-4">
@@ -63,14 +63,14 @@ MainLayout.razor
 @code {
     private ThemeInfo theme = new() { ButtonClass = "btn-success" };
     
-    void ChangeToDarkTheme()
+    private void ChangeToDarkTheme()
     {
         theme = new() { ButtonClass = "btn-darkmode-success" };
     }
 }
 ```
 
-The `IsFixed` parameter on `CascadingValue` can be used to indidcate that a CascadingParameter does not change once initialized. 
+<xref:Microsoft.AspNetCore.Components.CascadingValue%601.IsFixed%2A?displayProperty=nameWithType> can be used to indicate that a <xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute> doesn't change after initialization. 
 
 ## Cascade multiple values
 
