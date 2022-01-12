@@ -198,7 +198,7 @@ If the proxy isn't base64-encoding the certificate, as is the case with Nginx, s
 
 When headers aren't forwarded as expected, enable [logging](xref:fundamentals/logging/index). <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseHttpLogging%2A> must be called after <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders%2A>:
 
-<!--
+<!-- COMMENTED OUT DELETE after review
  If the logs don't provide sufficient information to troubleshoot the problem, enumerate the request headers received by the server. Use inline middleware to write request headers to an app response or log the headers.
 
 To write the headers to the app's response, place the following terminal inline middleware after the call to <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*>:
@@ -208,7 +208,7 @@ To write the headers to the app's response, place the following terminal inline 
 You can write to logs instead of the response body. Writing to logs allows the site to function normally while debugging.
 
 To write logs rather than to the response body, place the following inline middleware immediately after the call to <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*>:
--->
+END of COMMENTED OUT -->
 
 [!code-csharp[](~/host-and-deploy/proxy-load-balancer/6.1samples/WebPS/Program.cs?name=snippet_trb22&highlight=8-11,21-31)]
 
