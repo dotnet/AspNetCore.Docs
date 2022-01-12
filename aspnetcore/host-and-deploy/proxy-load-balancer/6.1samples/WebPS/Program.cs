@@ -409,13 +409,12 @@ builder.Services.Configure<ForwardedHeadersOptions>(options =>
 var app = builder.Build();
 
 app.UseForwardedHeaders();
-
-var logger = app.Logger;
+app.UseHttpLogging();
 
 app.Use(async (context, next) =>
 {
     // Connection: RemoteIp
-    logger.LogInformation("Request RemoteIp: {RemoteIpAddress}",
+    app.Logger.LogInformation("Request RemoteIp: {RemoteIpAddress}",
         context.Connection.RemoteIpAddress);
 
     await next(context);
