@@ -84,7 +84,7 @@ The `fileName` and object `url` are passed to `triggerFileDownload`, which perfo
 * Trigger the download via `click`.
 * Remove the anchor (`<a>`) element.
 
-At this point, the file download is triggered, and it's generally safe to revoke the temporary object URL by calling [`revokeObjectURL`](https://developer.mozilla.org/docs/Web/API/URL/revokeObjectURL) on the URL. **This is an important step to ensure memory isn't leaked on the client.**
+At this point, the file download is triggered and then the temporary object URL is revoked by calling [`revokeObjectURL`](https://developer.mozilla.org/docs/Web/API/URL/revokeObjectURL) on the URL. **This is an important step to ensure memory isn't leaked on the client.**
 
 ```javascript
 async function downloadFileFromStream(fileName, contentStreamReference) {
@@ -106,7 +106,7 @@ function triggerFileDownload(fileName, url) {
 }
 ```
 
-`ArrayBuffer` effectively loads the entire file into client memory. For file downloads over 1 GB, we recommend opening a new tab for each large file download by setting the anchor's [`target`](https://developer.mozilla.org/docs/Web/HTML/Element/a#attr-target) to `_blank` and [`referrerpolicy`](https://developer.mozilla.org/docs/Web/HTML/Element/a#attr-referrerpolicy) to `no-referrer`:
+`contentStreamReference.arrayBuffer()` loads the entire file into client memory. For file downloads over 250 MB, we recommend opening a new tab for each large file download by setting the anchor's [`target`](https://developer.mozilla.org/docs/Web/HTML/Element/a#attr-target) to `_blank` and [`referrerpolicy`](https://developer.mozilla.org/docs/Web/HTML/Element/a#attr-referrerpolicy) to `no-referrer`:
 
 ```javascript
 anchorElement.target = '_blank';
