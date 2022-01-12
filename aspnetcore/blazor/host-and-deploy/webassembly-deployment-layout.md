@@ -21,10 +21,9 @@ A hosted Blazor WebAssembly app can customize its published files and packaging 
 The approach demonstrated in this article serves as a starting point for developers to devise their own strategies and custom loading processes.
 
 > [!WARNING]
-> Dynamic-link libraries (DLLs) are shared library files on Windows systems that are used by the operating system and applications. DLL code can't directly execute on a system, but only a few barriers exist to prevent DLL code execution once the DLL is present on a system. Any approach taken to circumvent a security restriction must be carefully considered for its security implications. These security considerations are beyond the scope of this article, and the approach demonstrated in this article must be used at your own risk. We recommend exploring the subject further with your organization's network security professionals before adopting the approach in this article, even in a development environment. Alternatives to consider include:
+> Any approach taken to circumvent a security restriction must be carefully considered for its security implications. We recommend exploring the subject further with your organization's network security professionals before adopting the approach in this article. Alternatives to consider include:
 >
 > * Enable security appliances and security software to permit network clients to download and use the exact files required by a Blazor WebAssembly app.
-> * Use [Ahead-of-time (AOT) compilation and deployment](xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation), which produces a compiled WebAssembly app that doesn't require downloading DLLs to clients.
 > * Switch from the Blazor WebAssembly hosting model to the [Blazor Server hosting model](xref:blazor/hosting-models#blazor-server), which maintains all of the app's C# code on the server and doesn't require downloading DLLs to clients. Blazor Server also offers the advantage of keeping C# code private without requiring the use of web API apps for C# code privacy with Blazor WebAssembly apps.
 
 ## Experimental NuGet package and sample app
