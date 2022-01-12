@@ -46,7 +46,7 @@ The following component binds the `ThemeInfo` cascading value to a cascading par
 
 [!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/ThemedCounter.razor)]
 
-Similar to a regular component parameter, components accepting a cascading parameter are re-rendered when the cascading is changed. For instance, configuring a different theme instance would cause the `ThemedCounter` component from the previous example to re-render:
+Similar to a regular component parameter, components accepting a cascading parameter are re-rendered when the cascading value is changed. For instance, configuring a different theme instance would cause the `ThemedCounter` component from the previous example to re-render:
 
 MainLayout.razor
 ```razor
