@@ -17,7 +17,7 @@ A .NET gRPC client library is available in the [Grpc.Net.Client](https://www.nug
 
 ## Configure gRPC client
 
-gRPC clients are concrete client types that are [generated from *\*.proto* files](xref:grpc/basics#generated-c-assets). The concrete gRPC client has methods that translate to the gRPC service in the *\*.proto* file. For example, a service called `Greeter` generates a `GreeterClient` type with methods to call the service.
+gRPC clients are concrete client types that are [generated from `.proto` files](xref:grpc/basics#generated-c-assets). The concrete gRPC client has methods that translate to the gRPC service in the `.proto` file. For example, a service called `Greeter` generates a `GreeterClient` type with methods to call the service.
 
 A gRPC client is created from a channel. Start by using `GrpcChannel.ForAddress` to create a channel, and then use the channel to create a gRPC client:
 
@@ -86,7 +86,7 @@ Console.WriteLine("Greeting: " + response.Message);
 // Greeting: Hello World
 ```
 
-Each unary service method in the *\*.proto* file will result in two .NET methods on the concrete gRPC client type for calling the method: an asynchronous method and a blocking method. For example, on `GreeterClient` there are two ways of calling `SayHello`:
+Each unary service method in the `.proto` file will result in two .NET methods on the concrete gRPC client type for calling the method: an asynchronous method and a blocking method. For example, on `GreeterClient` there are two ways of calling `SayHello`:
 
 * `GreeterClient.SayHelloAsync` - calls `Greeter.SayHello` service asynchronously. Can be awaited.
 * `GreeterClient.SayHello` - calls `Greeter.SayHello` service and blocks until complete. Don't use in asynchronous code.
