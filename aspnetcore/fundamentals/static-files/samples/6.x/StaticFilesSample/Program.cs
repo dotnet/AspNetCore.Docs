@@ -1,4 +1,4 @@
-#define DB // DEFAULT RR RH DB DF DF2 UFS UFS2 TREE FECTP NS
+#define DB // DEFAULT RR RH DB DF DF2 UFS UFS2 TREE FECTP NS MUL
 #if NEVER
 #elif DEFAULT
 #region snippet
@@ -362,4 +362,37 @@ app.MapRazorPages();
 
 app.Run();
 #endregion
+#elif MUL
+using Microsoft.Extensions.FileProviders;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddRazorPages();
+builder.Services.AddControllersWithViews();
+
+var app = builder.Build();
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+
+#region snippet_mul
+app.UseStaticFiles(); // Serve files from wwwroot
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(builder.Environment.ContentRootPath, "static"))
+});
+#endregion
+
+app.UseAuthorization();
+
+app.MapDefaultControllerRoute();
+app.MapRazorPages();
+
+app.Run();
 #endif
