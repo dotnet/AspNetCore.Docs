@@ -1,31 +1,21 @@
+#define SECOND // FIRST SECOND
+#if NEVER
+#elif FIRST
+#region snippet1
+#region snippet2
 var builder = WebApplication.CreateBuilder(args);
 
-#region snippet1
-// Add services to the container.
-builder.Services.AddRazorPages();
 builder.Services.AddResponseCaching();
-#endregion
 
 var app = builder.Build();
 
-#region snippet2
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
-}
-
 app.UseHttpsRedirection();
-app.UseStaticFiles();
 
 // UseCors must be called before UseResponseCaching
 //app.UseCors();
 
 app.UseResponseCaching();
-
-app.UseRouting();
+#endregion
 
 app.Use(async (context, next) =>
 {
@@ -41,10 +31,45 @@ app.Use(async (context, next) =>
     await next();
 });
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapRazorPages();
-});
+app.MapGet("/", () => DateTime.Now.Millisecond);
 
 app.Run();
 #endregion
+#elif SECOND
+#region snippet4
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddResponseCaching(options =>
+{
+    options.MaximumBodySize = 1024;
+    options.UseCaseSensitivePaths = true;
+});
+
+var app = builder.Build();
+
+app.UseHttpsRedirection();
+
+// UseCors must be called before UseResponseCaching
+//app.UseCors();
+
+app.UseResponseCaching();
+
+app.Use(async (context, next) =>
+{
+    context.Response.GetTypedHeaders().CacheControl =
+        new Microsoft.Net.Http.Headers.CacheControlHeaderValue()
+        {
+            Public = true,
+            MaxAge = TimeSpan.FromSeconds(10)
+        };
+    context.Response.Headers[Microsoft.Net.Http.Headers.HeaderNames.Vary] =
+        new string[] { "Accept-Encoding" };
+
+    await next(context);
+});
+
+app.MapGet("/", () => DateTime.Now.Millisecond);
+
+app.Run();
+#endregion
+#endif
