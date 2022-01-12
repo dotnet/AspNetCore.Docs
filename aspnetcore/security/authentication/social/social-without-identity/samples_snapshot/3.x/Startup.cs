@@ -1,9 +1,9 @@
-using Microsoft.AspNetCore.Authentication.Cookies;	
-using Microsoft.AspNetCore.Authentication.Google;	
-using Microsoft.AspNetCore.Builder;	
-using Microsoft.AspNetCore.Hosting;	
-using Microsoft.Extensions.Configuration;	
-using Microsoft.Extensions.DependencyInjection;	
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 namespace WebApp1
@@ -16,8 +16,8 @@ namespace WebApp1
         }
 
         public IConfiguration Configuration { get; }
-        
-        #region snippet1
+
+        // <snippet_ConfigureServices>
         public void ConfigureServices(IServiceCollection services)
         {
             // requires
@@ -39,8 +39,7 @@ namespace WebApp1
 
             services.AddRazorPages();
         }
-        #endregion
-
+        // </snippet_ConfigureServices>
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -57,9 +56,9 @@ namespace WebApp1
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            #region snippet2
+            // <snippet_UseAuthentication>
             app.UseRouting();
-            
+
             app.UseAuthentication();
             app.UseAuthorization();
 
@@ -67,7 +66,7 @@ namespace WebApp1
             {
                 endpoints.MapRazorPages();
             });
-            #endregion
+            // </snippet_UseAuthentication>
         }
     }
 }

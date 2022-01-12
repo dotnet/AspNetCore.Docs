@@ -558,7 +558,7 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 
 <p>
     Quote &copy;2005 <a href="https://www.uphe.com">Universal Pictures</a>:
-    <a href="https://www.uphe.com/movies/serenity">Serenity</a><br>
+    <a href="https://www.uphe.com/movies/serenity-2005">Serenity</a><br>
     <a href="https://www.imdb.com/name/nm0821612/">Jewel Staite on IMDB</a>
 </p>
 
