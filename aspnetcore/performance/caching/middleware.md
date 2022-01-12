@@ -20,7 +20,7 @@ This article explains how to configure [Response Caching Middleware](https://git
 The Response caching middleware:
 
 * Implements the standard HTTP caching semantics, that is it caches based on HTTP cache headers like proxies do.
-* Is typically not beneficial for UI apps such as Razor Pages. Output caching is being considered for the next version of ASP.NET Core, which will benefit UI apps. With output caching, the app, not the browser, decides what should be cached. For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/27387).
+* Is typically not beneficial for UI apps such as Razor Pages. Output caching is being considered for the next version of ASP.NET Core, which will benefit UI apps. With output caching, configuration decides what should be cached independently of HTTP headers. For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/27387).
 * May be beneficial for public GET or HEAD API requests from clients where the [Conditions for caching](#cfc) are met.
 
 <!--Postman:  GET: Headers > Postman > go to settings > uncheck Send no-cache header -->
