@@ -670,7 +670,7 @@ For more information on setting the app's base path, including sub-app path conf
 
 Follow the guidance for an [ASP.NET Core SignalR app](xref:signalr/scale#linux-with-nginx) with the following changes:
 
-* Remove the configuration for proxy buffering (`proxy_buffering off;`) because the setting only applies to Server-Sent Events (SSE), which aren't relevant for Blazor apps.
+* Remove the configuration for proxy buffering (`proxy_buffering off;`) because the setting only applies to [Server-Sent Events (SSE)](https://developer.mozilla.org/docs/Web/API/Server-sent_events), which aren't relevant to Blazor app client-server interactions.
 * Change the `location` path from `/hubroute` (`location /hubroute { ... }`) to the sub-app path `/{PATH}` (`location /{PATH} { ... }`), where the `{PATH}` placeholder is the sub-app path.
 
   The following example configures the server for an app that responds to requests at the root path `/`:
@@ -701,7 +701,6 @@ Follow the guidance for an [ASP.NET Core SignalR app](xref:signalr/scale#linux-w
 
 For more information and configuration guidance, consult the following resources:
 
-* <xref:signalr/scale>
 * <xref:host-and-deploy/linux-nginx>
 * Nginx documentation:
   * [NGINX as a WebSocket Proxy](https://www.nginx.com/blog/websocket-nginx/)
