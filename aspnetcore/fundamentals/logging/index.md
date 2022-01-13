@@ -73,8 +73,8 @@ Logging configuration is commonly provided by the `Logging` section of `appsetti
 In the preceding JSON:
 
 * The `"Default"` and `"Microsoft.AspNetCore"` categories are specified.
-* The `"Microsoft"` category applies to all categories that start with `"Microsoft"`. For example, this setting applies to the `"Microsoft.AspNetCore.Routing.EndpointMiddleware"` category.
-* The `"Microsoft"` category logs at log level `Information` and higher.
+* The `"Microsoft.AspNetCore"` category applies to all categories that start with `"Microsoft.AspNetCore"`. For example, this setting applies to the `"Microsoft.AspNetCore.Routing.EndpointMiddleware"` category.
+* The `"Microsoft.AspNetCore"` category logs at log level `Warning` and higher.
 * A specific log provider is not specified, so `LogLevel` applies to all the enabled logging providers except for the [Windows EventLog](#welog).
 
 The `Logging` property can have <xref:Microsoft.Extensions.Logging.LogLevel> and log provider properties. The `LogLevel` specifies the minimum [level](#log-level) to log for selected categories. In the preceding JSON, `Information` and `Warning` log levels are specified. `LogLevel` indicates the severity of the log and ranges from 0 to 6:
