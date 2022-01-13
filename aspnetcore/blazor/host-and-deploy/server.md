@@ -5,7 +5,7 @@ description: Learn how to host and deploy a Blazor Server app using ASP.NET Core
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/09/2021
+ms.date: 01/13/2022
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/host-and-deploy/server
 ---
@@ -42,7 +42,7 @@ Blazor works best when using [WebSockets](xref:fundamentals/websockets) as the S
 
 Blazor Server emits a console warning if it detects Long Polling is utilized:
 
-> Failed to connect via WebSockets, using the Long Polling fallback transport. This may be due to a VPN or proxy blocking the connection. To troubleshoot this, visit https://aka.ms/blazor-server-using-fallback-long-polling.
+> Failed to connect via WebSockets, using the Long Polling fallback transport. This may be due to a VPN or proxy blocking the connection.
 
 ## Azure SignalR Service
 
@@ -134,40 +134,22 @@ metadata:
 
 ## Linux with Nginx
 
-For SignalR WebSockets to function properly, confirm that the proxy's `Upgrade` and `Connection` headers are set to the following values and that `$connection_upgrade` is mapped to either:
+Follow the guidance for an [ASP.NET Core SignalR app](xref:signalr/scale#linux-with-nginx) with the following changes:
 
-* The Upgrade header value by default.
-* `close` when the Upgrade header is missing or empty.
+* Change the `location` path from `/hubroute` (`location /hubroute { ... }`) to the root path `/` (`location / { ... }`).
+* Remove the configuration for proxy buffering (`proxy_buffering off;`) because the setting only applies to [Server-Sent Events (SSE)](https://developer.mozilla.org/docs/Web/API/Server-sent_events), which aren't relevant to Blazor app client-server interactions.
 
-```
-http {
-    map $http_upgrade $connection_upgrade {
-        default Upgrade;
-        ''      close;
-    }
+For more information and configuration guidance, consult the following resources:
 
-    server {
-        listen      80;
-        server_name example.com *.example.com
-        location / {
-            proxy_pass         http://localhost:5000;
-            proxy_http_version 1.1;
-            proxy_set_header   Upgrade $http_upgrade;
-            proxy_set_header   Connection $connection_upgrade;
-            proxy_set_header   Host $host;
-            proxy_cache_bypass $http_upgrade;
-            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_set_header   X-Forwarded-Proto $scheme;
-        }
-    }
-}
-```
-
-For more information, see the following articles:
-
+* <xref:signalr/scale>
+* <xref:host-and-deploy/linux-nginx>
+* <xref:host-and-deploy/proxy-load-balancer>
 * [NGINX as a WebSocket Proxy](https://www.nginx.com/blog/websocket-nginx/)
 * [WebSocket proxying](http://nginx.org/docs/http/websocket.html)
-* <xref:host-and-deploy/linux-nginx>
+* Consult developers on non-Microsoft support forums:
+  * [Stack Overflow (tag: `blazor`)](https://stackoverflow.com/questions/tagged/blazor)
+  * [ASP.NET Core Slack Team](http://tattoocoder.com/aspnet-slack-sign-up/)
+  * [Blazor Gitter](https://gitter.im/aspnet/Blazor)
 
 ## Linux with Apache
 
@@ -196,13 +178,21 @@ a2enmod   proxy_wstunnel
 
 Check the browser console for WebSockets errors. Example errors:
 
-* Firefox can't establish a connection to the server at ws://the-domain-name.tld/_blazor?id=XXX.
+* Firefox can't establish a connection to the server at :::no-loc text="ws://the-domain-name.tld/_blazor?id=XXX":::
 * Error: Failed to start the transport 'WebSockets': Error: There was an error with the transport.
 * Error: Failed to start the transport 'LongPolling': TypeError: this.transport is undefined
 * Error: Unable to connect to the server with any of the available transports. WebSockets failed
 * Error: Cannot send data if the connection is not in the 'Connected' State.
 
-For more information, see the [Apache documentation](https://httpd.apache.org/docs/current/mod/mod_proxy.html).
+For more information and configuration guidance, consult the following resources:
+
+* <xref:host-and-deploy/linux-apache>
+* <xref:host-and-deploy/proxy-load-balancer>
+* [Apache documentation](https://httpd.apache.org/docs/current/mod/mod_proxy.html)
+* Consult developers on non-Microsoft support forums:
+  * [Stack Overflow (tag: `blazor`)](https://stackoverflow.com/questions/tagged/blazor)
+  * [ASP.NET Core Slack Team](http://tattoocoder.com/aspnet-slack-sign-up/)
+  * [Blazor Gitter](https://gitter.im/aspnet/Blazor)
 
 ## Measure network latency
 
@@ -333,12 +323,20 @@ metadata:
     nginx.ingress.kubernetes.io/session-cookie-max-age: "14400"
 ```
 
+For additional Kubernetes host support, consult the following resources:
+
+* [Kubernetes documentation](https://kubernetes.io/docs/home/)
+* Developers on non-Microsoft support forums:
+  * [Stack Overflow (tag: `blazor`)](https://stackoverflow.com/questions/tagged/blazor)
+  * [ASP.NET Core Slack Team](http://tattoocoder.com/aspnet-slack-sign-up/)
+  * [Blazor Gitter](https://gitter.im/aspnet/Blazor)
+
 ## Linux with Nginx
 
 For SignalR WebSockets to function properly, confirm that the proxy's `Upgrade` and `Connection` headers are set to the following values and that `$connection_upgrade` is mapped to either:
 
-* The Upgrade header value by default.
-* `close` when the Upgrade header is missing or empty.
+* The `Upgrade` header value by default.
+* `close` when the `Upgrade` header is missing or empty.
 
 ```
 http {
@@ -364,11 +362,16 @@ http {
 }
 ```
 
-For more information, see the following articles:
+For additional Nginx host support, consult the following resources:
 
-* [NGINX as a WebSocket Proxy](https://www.nginx.com/blog/websocket-nginx/)
-* [WebSocket proxying](http://nginx.org/docs/http/websocket.html)
 * <xref:host-and-deploy/linux-nginx>
+* Nginx documentation:
+  * [NGINX as a WebSocket Proxy](https://www.nginx.com/blog/websocket-nginx/)
+  * [WebSocket proxying](http://nginx.org/docs/http/websocket.html)
+* Developers on non-Microsoft support forums:
+  * [Stack Overflow (tag: `blazor`)](https://stackoverflow.com/questions/tagged/blazor)
+  * [ASP.NET Core Slack Team](http://tattoocoder.com/aspnet-slack-sign-up/)
+  * [Blazor Gitter](https://gitter.im/aspnet/Blazor)
 
 ## Linux with Apache
 
@@ -403,7 +406,14 @@ Check the browser console for WebSockets errors. Example errors:
 * Error: Unable to connect to the server with any of the available transports. WebSockets failed
 * Error: Cannot send data if the connection is not in the 'Connected' State.
 
-For more information, see the [Apache documentation](https://httpd.apache.org/docs/current/mod/mod_proxy.html).
+For additional Apache host support, consult the following resources:
+
+* <xref:host-and-deploy/linux-apache>
+* [Apache documentation](https://httpd.apache.org/docs/current/mod/mod_proxy.html)
+* Developers on non-Microsoft support forums:
+  * [Stack Overflow (tag: `blazor`)](https://stackoverflow.com/questions/tagged/blazor)
+  * [ASP.NET Core Slack Team](http://tattoocoder.com/aspnet-slack-sign-up/)
+  * [Blazor Gitter](https://gitter.im/aspnet/Blazor)
 
 ## Measure network latency
 
@@ -563,8 +573,8 @@ metadata:
 
 For SignalR WebSockets to function properly, confirm that the proxy's `Upgrade` and `Connection` headers are set to the following values and that `$connection_upgrade` is mapped to either:
 
-* The Upgrade header value by default.
-* `close` when the Upgrade header is missing or empty.
+* The `Upgrade` header value by default.
+* `close` when the `Upgrade` header is missing or empty.
 
 ```
 http {
