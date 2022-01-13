@@ -128,7 +128,7 @@ Verify a browser displays the default landing page for Nginx. The landing page i
 
 To configure Nginx as a reverse proxy to forward HTTP requests to your ASP.NET Core app, modify `/etc/nginx/sites-available/default`. Open it in a text editor, and replace the contents with the following snippet:
 
-```nginx
+```
 server {
     listen        80;
     server_name   example.com *.example.com;
@@ -149,7 +149,7 @@ If the app is a SignalR or Blazor Server app, see <xref:signalr/scale#linux-with
 
 When no `server_name` matches, Nginx uses the default server. If no default server is defined, the first server in the configuration file is the default server. As a best practice, add a specific default server that returns a status code of 444 in your configuration file. A default server configuration example is:
 
-```nginx
+```
 server {
     listen   80 default_server;
     # listen [::]:80 default_server deferred;
@@ -185,9 +185,9 @@ Create the service definition file:
 sudo nano /etc/systemd/system/kestrel-helloapp.service
 ```
 
-The following example is a service file for the app:
+The following example is an `.ini` service file for the app:
 
-```ini
+```
 [Unit]
 Description=Example .NET Web API App running on Ubuntu
 

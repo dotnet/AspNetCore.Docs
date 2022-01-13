@@ -18,7 +18,7 @@ namespace OptionsValidationSample
 
         public IConfiguration Configuration { get; }
 
-        #region snippet
+        // <snippet>
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<MyConfigOptions>(Configuration.GetSection(
@@ -27,7 +27,7 @@ namespace OptionsValidationSample
                                       <MyConfigOptions>, MyConfigValidation>());
             services.AddControllersWithViews();
         }
-        #endregion
+        // </snippet>
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

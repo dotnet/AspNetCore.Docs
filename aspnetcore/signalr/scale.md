@@ -111,7 +111,7 @@ http {
   map $http_connection $connection_upgrade {
     "~*Upgrade" $http_connection;
     default keep-alive;
-}
+  }
 
   server {
     listen 80;
