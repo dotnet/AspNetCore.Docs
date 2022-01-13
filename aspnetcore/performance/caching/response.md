@@ -122,7 +122,7 @@ Vary: User-Agent
 
 The preceding code requires adding the Response Caching Middleware services <xref:Microsoft.Extensions.DependencyInjection.ResponseCachingServicesExtensions.AddResponseCaching%2A> to the service collection and configuring the app to use the middleware with the <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A> extension method. `UseResponseCaching` adds the middleware to the request processing pipeline:
 
-[!code-csharp[](response/samples/6.x/WebRC/Program.cs?name=snippet)]
+[!code-csharp[](response/samples/6.x/WebRC/Program.cs?name=snippet&highlight=4,13)]
 
 ### NoStore and Location.None
 
@@ -133,11 +133,11 @@ The preceding code requires adding the Response Caching Middleware services <xre
 
 If <xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore> is `false` and <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> is `None`, `Cache-Control`, and `Pragma` are set to `no-cache`.
 
-<xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore> is typically set to `true` for error pages. The Cache2 page in the sample app produces response headers that instruct the client not to store the response.
+<xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore> is typically set to `true` for error pages. The following produces response headers that instruct the client not to store the response.
 
-[!code-csharp[](response/samples/2.x/ResponseCacheSample/Pages/Cache2.cshtml.cs?name=snippet)]
+[!code-csharp[](response/samples/6.x/WebRC/Controllers/TimeController.cs?name=snippet2)]
 
-The sample app returns the Cache2 page with the following headers:
+The preceding code includes the following headers in the response:
 
 ```
 Cache-Control: no-store,no-cache
@@ -154,13 +154,13 @@ To enable caching, <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Duration> must be
 
 `Location.Client` (`Cache-Control` set to `private`) indicates that *only the client* may cache the value. No intermediate cache should cache the value, including [Response Caching Middleware](xref:performance/caching/middleware).
 
-Cache control headers merely provide guidance to clients and intermediary proxies when and how to cache responses. There's no guarantee that clients and proxies will honor the [HTTP 1.1 Caching specification](https://tools.ietf.org/html/rfc7234). [Response Caching Middleware](xref:performance/caching/middleware) always follows the caching rules laid out by the specification.
+Cache control headers provide guidance to clients and intermediary proxies when and how to cache responses. There's no guarantee that clients and proxies will honor the [HTTP 1.1 Caching specification](https://tools.ietf.org/html/rfc7234). [Response Caching Middleware](xref:performance/caching/middleware) always follows the caching rules laid out by the specification.
 
-The following example shows the Cache3 page model from the sample app and the headers produced by setting <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Duration> and leaving the default <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> value:
+The following example shows the headers produced by setting <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Duration> and leaving the default <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> value:
 
-[!code-csharp[](response/samples/2.x/ResponseCacheSample/Pages/Cache3.cshtml.cs?name=snippet)]
+[!code-csharp[](response/samples/6.x/WebRC/Controllers/TimeController.cs?name=snippet3)]
 
-The sample app returns the Cache3 page with the following header:
+The preceding code includes the following headers in the response:
 
 ```
 Cache-Control: public,max-age=10
