@@ -1361,11 +1361,13 @@ items:
       - name: Caching
         items:
           - name: Overview
-            uid: performance/caching/response
+            uid: performance/caching/overview
           - name: In-memory cache
             uid: performance/caching/memory
           - name: Distributed caching
             uid: performance/caching/distributed
+          - name: Response caching
+            uid: performance/caching/response
           - name: Response caching middleware
             uid: performance/caching/middleware
           - name: Object reuse with ObjectPool
