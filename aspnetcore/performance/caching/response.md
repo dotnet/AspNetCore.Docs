@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to use response caching to lower bandwidth requirements and increase performance of ASP.NET Core apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
-ms.date: 1/11/222
+ms.date: 1/11/2022
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: performance/caching/response
 ---
@@ -22,13 +22,7 @@ The [ResponseCache attribute](#responsecache-attribute) participates in setting 
 
 For server-side caching that follows the HTTP 1.1 Caching specification, use [Response Caching Middleware](xref:performance/caching/middleware). The middleware can use the <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> properties to influence server-side caching behavior.
 
-The Response caching middleware:
-
-* Implements the standard HTTP caching semantics, that is it caches based on HTTP cache headers like proxies do.
-* Is typically not beneficial for UI apps such as Razor Pages. Output caching is being considered for the next version of ASP.NET Core, which will benefit UI apps. With output caching, configuration decides what should be cached independently of HTTP headers. For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/27387).
-* May be beneficial for public GET or HEAD API requests from clients where the [Conditions for caching](xref:performance/caching/middleware#cfc) are met.
-
-Use [Fiddler](https://www.telerik.com/fiddler), [Postman](https://www.getpostman.com/), or another tool that can explicitly set request headers and is preferred for testing caching. For more information, see [Troubleshooting](xref:performance/caching/middleware#troubleshooting).
+[!INCLUDE[](~/includes/response-caching-mid.md)]
 <!--Postman:  GET: Headers > Postman > go to settings > uncheck Send no-cache header -->
 
 ## HTTP-based response caching
@@ -126,7 +120,9 @@ Cache-Control: public,max-age=30
 Vary: User-Agent
 ```
 
-The preceding code requires the 
+The preceding code requires adding the Response Caching Middleware services <xref:Microsoft.Extensions.DependencyInjection.ResponseCachingServicesExtensions.AddResponseCaching%2A> to the service collection and configuring the app to use the middleware with the <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A> extension method. `UseResponseCaching` adds the middleware to the request processing pipeline:
+
+[!code-csharp[](response/samples/6.x/WebRC/Program.cs?name=snippet)]
 
 ### NoStore and Location.None
 
