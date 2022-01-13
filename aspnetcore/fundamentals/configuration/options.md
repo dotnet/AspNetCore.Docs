@@ -232,20 +232,11 @@ Use <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExten
 
 :::code language="csharp" source="options/samples/6.x/OptionsValidationSample/Program.cs" id="snippet_p3" highlight="10-99":::
 
-<!--
-## Accessing options at application startup
+## Access options in *Program.cs*
 
-<xref:Microsoft.Extensions.Options.IOptions%601> and <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> can be used in `Startup.Configure`, since services are built before the `Configure` method executes.
+To access <xref:Microsoft.Extensions.Options.IOptions%601> or <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> in *Program.cs*, call <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService%2A> on <xref:Microsoft.AspNetCore.Builder.WebApplication.Services%2A?displayProperty=nameWithType>:
 
-:::code language="csharp" source="options/samples/6.x/OptionsSample/program.cs" id="snippet_rp2":::
-
-Don't use <xref:Microsoft.Extensions.Options.IOptions%601> or <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> in `Startup.ConfigureServices`. An inconsistent options state may exist due to the ordering of service registrations.
-
-## Options.ConfigurationExtensions NuGet package
-
-The [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/) package is implicitly referenced in ASP.NET Core apps.
-
--->
+:::code language="csharp" source="options/samples/6.x/OptionsSample/program.cs" id="snippet_grs":::
 
 ## Additional resources
 

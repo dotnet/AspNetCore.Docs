@@ -1,4 +1,4 @@
-#define RP2 //  RP RP2 DELEGATE OM NMO
+#define RP2 // RP RP2 DELEGATE OM NMO GRS
 #if DEFAULT
 #elif RP
 // <snippet>
@@ -131,6 +131,37 @@ builder.Services.PostConfigure<TopItemSettings>("Month", myOptions =>
 
 var app = builder.Build();
 // </snippet_nmo>
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthorization();
+
+app.MapRazorPages();
+
+app.Run();
+#elif GRS
+using Microsoft.Extensions.Options;
+using SampleApp.Models;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddRazorPages();
+
+// <snippet_grs>
+var app = builder.Build();
+
+var option1 = app.Services.GetRequiredService<IOptionsMonitor<MyOptions>>()
+    .CurrentValue.Option1;
+// </snippet_grs>
 
 if (!app.Environment.IsDevelopment())
 {
