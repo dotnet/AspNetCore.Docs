@@ -29,3 +29,25 @@ public class TimeController : ControllerBase
 #endregion
 }
 
+#region snippet4
+[ApiController]
+[ResponseCache(VaryByHeader = "User-Agent", Duration = 30)]
+public class Time4Controller : ControllerBase
+{
+    [Route("api/[controller]")]
+    [HttpGet]
+    public ContentResult GetTime() => Content(
+                      DateTime.Now.Millisecond.ToString());
+
+    [Route("api/[controller]/ticks")]
+    [HttpGet]
+    public ContentResult GetTimeTicks() => Content(
+                  DateTime.Now.Ticks.ToString());
+
+    [Route("api/[controller]/ms")]
+    [HttpGet]
+    [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
+    public ContentResult GetTimeMS() => Content(
+                      DateTime.Now.Millisecond.ToString());
+}
+#endregion

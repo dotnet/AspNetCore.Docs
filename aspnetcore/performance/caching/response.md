@@ -120,7 +120,7 @@ Cache-Control: public,max-age=30
 Vary: User-Agent
 ```
 
-The preceding code requires adding the Response Caching Middleware services <xref:Microsoft.Extensions.DependencyInjection.ResponseCachingServicesExtensions.AddResponseCaching%2A> to the service collection and configuring the app to use the middleware with the <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A> extension method. `UseResponseCaching` adds the middleware to the request processing pipeline:
+The preceding code requires adding the Response Caching Middleware services <xref:Microsoft.Extensions.DependencyInjection.ResponseCachingServicesExtensions.AddResponseCaching%2A> to the service collection and configures the app to use the middleware with the <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A> extension method. 
 
 [!code-csharp[](response/samples/6.x/WebRC/Program.cs?name=snippet&highlight=4,13)]
 
@@ -168,27 +168,31 @@ Cache-Control: public,max-age=10
 
 ### Cache profiles
 
-Instead of duplicating response cache settings on many controller action attributes, cache profiles can be configured as options when setting up MVC/Razor Pages in `Startup.ConfigureServices`. Values found in a referenced cache profile are used as the defaults by the <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> and are overridden by any properties specified on the attribute.
+Instead of duplicating response cache settings on many controller action attributes, cache profiles can be configured as options when setting up MVC/Razor Pages. Values found in a referenced cache profile are used as the defaults by the <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> and are overridden by any properties specified on the attribute.
 
-Set up a cache profile. The following example shows a 30 second cache profile in the sample app's `Startup.ConfigureServices`:
+Set up a cache profile. The following example shows a 30 second cache profile:
 
-[!code-csharp[](response/samples/6.x/WebRC/Program.cs?name=snippet2&highlight=5,13,22)]
+[!code-csharp[](response/samples/6.x/WebRC/Program.cs?name=snippet2&highlight=5-13,22)]
 
 The following code references the `Default30` cache profile:
 
-[!code-csharp[](response/samples/6.x/WebRC/Controllers/Time2Controller.cs?name=snippet)]
+[!code-csharp[](response/samples/6.x/WebRC/Controllers/Time2Controller.cs?name=snippet&highlight=2)]
 
-The <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> can be applied to:
-
-* Razor Pages: Attributes can't be applied to handler methods.
-* MVC controllers.
-* MVC action methods: Method-level attributes override the settings specified in class-level attributes.
-
-The resulting header applied to the Cache4 page response by the `Default30` cache profile:
+The resulting header response by the `Default30` cache profile includes:
 
 ```
 Cache-Control: public,max-age=30
 ```
+
+The  [`[ResponseCache]`](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) can be applied to:
+
+* Razor Pages: Attributes can't be applied to handler methods. Browsers used with UI apps prevent response caching.
+* MVC controllers.
+* MVC action methods: Method-level attributes override the settings specified in class-level attributes.
+
+The following code applies the `[ResponseCache]` attribute at the controller level and method level:
+
+[!code-csharp[](response/samples/6.x/WebRC/Controllers/TimeController.cs?name=snippet4&highlight=2,17)]
 
 ## Additional resources
 
@@ -208,9 +212,9 @@ Cache-Control: public,max-age=30
 
 Response caching reduces the number of requests a client or proxy makes to a web server. Response caching also reduces the amount of work the web server performs to generate a response. Response caching is controlled by headers that specify how you want client, proxy, and middleware to cache responses.
 
-The [ResponseCache attribute](#responsecache-attribute) participates in setting response caching headers. Clients and intermediate proxies should honor the headers for caching responses under the [HTTP 1.1 Caching specification](https://tools.ietf.org/html/rfc7234).
+The [`[ResponseCache]`](#responsecache-attribute) participates in setting response caching headers. Clients and intermediate proxies should honor the headers for caching responses under the [HTTP 1.1 Caching specification](https://tools.ietf.org/html/rfc7234).
 
-For server-side caching that follows the HTTP 1.1 Caching specification, use [Response Caching Middleware](xref:performance/caching/middleware). The middleware can use the <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> properties to influence server-side caching behavior.
+For server-side caching that follows the HTTP 1.1 Caching specification, use [Response Caching Middleware](xref:performance/caching/middleware). The middleware can use the [`[ResponseCache]`](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) properties to set server-side caching headers.
 
 ## HTTP-based response caching
 
