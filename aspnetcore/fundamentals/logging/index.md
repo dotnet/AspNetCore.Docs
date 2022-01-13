@@ -72,7 +72,7 @@ Logging configuration is commonly provided by the `Logging` section of `appsetti
 
 In the preceding JSON:
 
-* The `"Default"` and `"Microsoft.AspNetCore"` categories are specified.
+* The `"Default"` and `"Microsoft"` categories are specified.
 * The `"Microsoft"` category applies to all categories that start with `"Microsoft"`. For example, this setting applies to the `"Microsoft.AspNetCore.Routing.EndpointMiddleware"` category.
 * The `"Microsoft"` category logs at log level `Warning` and higher.
 * A specific log provider is not specified, so `LogLevel` applies to all the enabled logging providers except for the [Windows EventLog](#welog).
