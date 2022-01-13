@@ -172,11 +172,11 @@ Instead of duplicating response cache settings on many controller action attribu
 
 Set up a cache profile. The following example shows a 30 second cache profile in the sample app's `Startup.ConfigureServices`:
 
-[!code-csharp[](response/samples/3.x/Startup.cs?name=snippet1)]
+[!code-csharp[](response/samples/6.x/WebRC/Program.cs?name=snippet2&highlight=5,13,22)]
 
-The sample app's Cache4 page model references the `Default30` cache profile:
+The following code references the `Default30` cache profile:
 
-[!code-csharp[](response/samples/2.x/ResponseCacheSample/Pages/Cache4.cshtml.cs?name=snippet)]
+[!code-csharp[](response/samples/6.x/WebRC/Controllers/Time2Controller.cs?name=snippet)]
 
 The <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> can be applied to:
 
