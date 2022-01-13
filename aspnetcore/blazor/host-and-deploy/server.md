@@ -5,7 +5,7 @@ description: Learn how to host and deploy a Blazor Server app using ASP.NET Core
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/08/2022
+ms.date: 01/13/2022
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/host-and-deploy/server
 ---
@@ -137,14 +137,19 @@ metadata:
 Follow the guidance for an [ASP.NET Core SignalR app](xref:signalr/scale#linux-with-nginx) with the following changes:
 
 * Change the `location` path from `/hubroute` (`location /hubroute { ... }`) to the root path `/` (`location / { ... }`).
-* Remove the configuration for proxy buffering (`proxy_buffering off;`) because the setting only applies to Server-Sent Events (SSE), which aren't relevant for Blazor apps.
+* Remove the configuration for proxy buffering (`proxy_buffering off;`) because the setting only applies to [Server-Sent Events (SSE)](https://developer.mozilla.org/docs/Web/API/Server-sent_events), which aren't relevant to Blazor app client-server interactions.
 
-For more information, see the following articles:
+For more information and configuration guidance, consult the following resources:
 
 * <xref:signalr/scale>
 * <xref:host-and-deploy/linux-nginx>
+* <xref:host-and-deploy/proxy-load-balancer>
 * [NGINX as a WebSocket Proxy](https://www.nginx.com/blog/websocket-nginx/)
 * [WebSocket proxying](http://nginx.org/docs/http/websocket.html)
+* Consult developers on non-Microsoft support forums:
+  * [Stack Overflow (tag: `blazor`)](https://stackoverflow.com/questions/tagged/blazor)
+  * [ASP.NET Core Slack Team](http://tattoocoder.com/aspnet-slack-sign-up/)
+  * [Blazor Gitter](https://gitter.im/aspnet/Blazor)
 
 ## Linux with Apache
 
@@ -173,13 +178,21 @@ a2enmod   proxy_wstunnel
 
 Check the browser console for WebSockets errors. Example errors:
 
-* Firefox can't establish a connection to the server at ws://the-domain-name.tld/_blazor?id=XXX.
+* Firefox can't establish a connection to the server at :::no-loc text="ws://the-domain-name.tld/_blazor?id=XXX":::
 * Error: Failed to start the transport 'WebSockets': Error: There was an error with the transport.
 * Error: Failed to start the transport 'LongPolling': TypeError: this.transport is undefined
 * Error: Unable to connect to the server with any of the available transports. WebSockets failed
 * Error: Cannot send data if the connection is not in the 'Connected' State.
 
-For more information, see the [Apache documentation](https://httpd.apache.org/docs/current/mod/mod_proxy.html).
+For more information and configuration guidance, consult the following resources:
+
+* <xref:host-and-deploy/linux-apache>
+* <xref:host-and-deploy/proxy-load-balancer>
+* [Apache documentation](https://httpd.apache.org/docs/current/mod/mod_proxy.html)
+* Consult developers on non-Microsoft support forums:
+  * [Stack Overflow (tag: `blazor`)](https://stackoverflow.com/questions/tagged/blazor)
+  * [ASP.NET Core Slack Team](http://tattoocoder.com/aspnet-slack-sign-up/)
+  * [Blazor Gitter](https://gitter.im/aspnet/Blazor)
 
 ## Measure network latency
 

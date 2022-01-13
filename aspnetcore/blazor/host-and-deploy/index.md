@@ -5,7 +5,7 @@ description: Discover how to host and deploy Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/08/2022
+ms.date: 01/13/2022
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/host-and-deploy/index
 ---
@@ -144,6 +144,23 @@ In other hosting scenarios, such as GitHub Pages and IIS sub-apps, the app base 
     }
     ```
 
+Do ***not*** prefix links throughout the app with a forward slash. Either avoid the use of a path segment separator or use dot-slash (`./`) relative path notation:
+
+* ❌ Incorrect: `<a href="/account">`
+* ✔️ Correct: `<a href="account">`
+* ✔️ Correct: `<a href="./account">`
+
+In [Blazor WebAssembly web API requests with the `HttpClient` service](xref:blazor/call-web-api?pivots=webassembly), confirm that JSON helpers (<xref:System.Net.Http.Json.HttpClientJsonExtensions>) do ***not*** prefix URLs with a forward slash (`/`):
+
+* ❌ Incorrect: `var rsp = await client.GetFromJsonAsync("/api/Account");`
+* ✔️ Correct: `var rsp = await client.GetFromJsonAsync("api/Account");`
+
+Do ***not*** prefix [Navigation Manager](xref:blazor/fundamentals/routing#uri-and-navigation-state-helpers) relative links with a forward slash. Either avoid the use of a path segment separator or use dot-slash (`./`) relative path notation:
+
+* ❌ Incorrect: `NavigationManager.NavigateTo("/other");`
+* ✔️ Correct: `NavigationManager.NavigateTo("other");`
+* ✔️ Correct: `NavigationManager.NavigateTo("./other");`
+
 In typical configurations for Azure/IIS hosting, additional configuration usually isn't required. In some non-IIS hosting and reverse proxy hosting scenarios, additional Static File Middleware configuration might be required to serve static files correctly (for example, `app.UseStaticFiles("/CoolApp");`). The required configuration might require further configuration to serve the Blazor script (`_framework/blazor.server.js` or `_framework/blazor.webassembly.js`). For more information, see <xref:blazor/fundamentals/static-files>.
 
 For a Blazor WebAssembly app with a non-root relative URL path (for example, `<base href="/CoolApp/">`), the app fails to find its resources *when run locally*. To overcome this problem during local development and testing, you can supply a *path base* argument that matches the `href` value of the `<base>` tag at runtime. **Don't include a trailing slash.** To pass the path base argument when running the app locally, execute the `dotnet run` command from the app's directory with the `--pathbase` option:
@@ -160,17 +177,7 @@ dotnet run --pathbase=/CoolApp
 
 The Blazor WebAssembly app responds locally at `http://localhost:port/CoolApp`.
 
-For additional third-party host support:
-
-* <xref:blazor/host-and-deploy/server> and <xref:signalr/scale>
-* <xref:blazor/host-and-deploy/webassembly>
-* Consult the host provider's documentation.
-* Consult developers on non-Microsoft support forums:
-  * [Stack Overflow (tag: `blazor`)](https://stackoverflow.com/questions/tagged/blazor)
-  * [ASP.NET Core Slack Team](http://tattoocoder.com/aspnet-slack-sign-up/)
-  * [Blazor Gitter](https://gitter.im/aspnet/Blazor)
-
-### Blazor Server `MapFallbackToPage` configuration
+## Blazor Server `MapFallbackToPage` configuration
 
 In scenarios where an app requires a separate area with custom resources and Razor components:
 
@@ -196,7 +203,7 @@ In scenarios where an app requires a separate area with custom resources and Raz
   app.Run();
   ```
 
-### Host multiple Blazor WebAssembly apps
+## Host multiple Blazor WebAssembly apps
 
 For more information on hosting multiple Blazor WebAssembly apps in a hosted Blazor solution, see <xref:blazor/host-and-deploy/webassembly#hosted-deployment-with-multiple-blazor-webassembly-apps>.
 
