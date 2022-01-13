@@ -17,12 +17,12 @@ namespace SampleApp
         public IConfiguration Configuration { get; set; }
 
         // No special config needed.
-        #region snippet_Example2
+        // <snippet_Example2>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
         }
-        #endregion
+        // </snippet_Example2>
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

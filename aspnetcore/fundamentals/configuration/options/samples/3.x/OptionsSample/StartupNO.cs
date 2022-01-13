@@ -17,7 +17,7 @@ namespace SampleApp
         public IConfiguration Configuration { get; set; }
 
         // Used in TestNO and set StartupNO in main.
-        #region snippet_Example2
+        // <snippet_Example2>
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<TopItemSettings>(TopItemSettings.Month,
@@ -27,7 +27,7 @@ namespace SampleApp
 
             services.AddRazorPages();
         }
-        #endregion
+        // </snippet_Example2>
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

@@ -5,7 +5,7 @@ using SampleApp.Models;
 
 namespace SampleApp.Pages
 {
-    #region snippet
+    // <snippet>
     public class Test1Model : PageModel
     {
         private readonly IConfiguration Configuration;
@@ -24,5 +24,5 @@ namespace SampleApp.Pages
                            $"Option2: {myOpts.Option2}");
         }
     }
-    #endregion
+    // </snippet>
 }

@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace SampleApp.Pages
 {
-    #region snippet
+    // <snippet>
     public class TestAllModel : PageModel
     {
         private readonly IConfiguration Configuration;
@@ -26,5 +26,5 @@ namespace SampleApp.Pages
                            $"TopItem:Month.Name :{ myOpts.Name}");
         }
     }
-    #endregion
+    // </snippet>
 }

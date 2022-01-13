@@ -16,7 +16,7 @@ namespace SampleApp
 
         public IConfiguration Configuration { get; set; }
 
-        #region snippet_Example2
+        // <snippet_Example2>
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<MyOptions>(myOptions =>
@@ -27,7 +27,7 @@ namespace SampleApp
 
             services.AddRazorPages();
         }
-        #endregion
+        // </snippet_Example2>
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
