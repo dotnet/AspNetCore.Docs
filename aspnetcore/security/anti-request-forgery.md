@@ -440,9 +440,9 @@ For more information, see <xref:Microsoft.AspNetCore.Builder.CookieAuthenticatio
 
 <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgery> provides the API to configure antiforgery features. `IAntiforgery` can be requested in the `Configure` method of the `Startup` class.
 
-The following example:
+In the following example:
 
-* Uses middleware from the app's home page to generate an antiforgery token and send it in the response as a cookie.
+* Middleware from the app's home page is used to generate an antiforgery token and send it in the response as a cookie.
 * The request token is sent as a JavaScript-readable cookie with the default Angular naming convention described in the [AngularJS](#angularjs) section.
 
 ```csharp
@@ -452,8 +452,7 @@ public void Configure(IApplicationBuilder app, IAntiforgery antiforgery)
     {
         string path = context.Request.Path.Value;
 
-        if (
-            string.Equals(path, "/", StringComparison.OrdinalIgnoreCase) ||
+        if (string.Equals(path, "/", StringComparison.OrdinalIgnoreCase) ||
             string.Equals(path, "/index.html", StringComparison.OrdinalIgnoreCase))
         {
             var tokens = antiforgery.GetAndStoreTokens(context);
