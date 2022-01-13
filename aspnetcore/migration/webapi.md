@@ -4,7 +4,7 @@ author: ardalis
 description: Learn how to migrate a web API implementation from ASP.NET 4.x Web API to ASP.NET Core MVC.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 05/26/2020
+ms.date: 01/11/2022
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: migration/webapi
 ---
@@ -44,6 +44,10 @@ The following sections demonstrate migration of the Web API project to ASP.NET C
 
 ## Create the destination project
 
+### Prerequisites
+
+[!INCLUDE[](~/includes/net-prereqs-vs-6.0.md)]
+
 Create a new blank solution in Visual Studio and add the ASP.NET 4.x Web API project to migrate:
 
 1. From the **File** menu, select **New** > **Project**.
@@ -53,9 +57,12 @@ Create a new blank solution in Visual Studio and add the ASP.NET 4.x Web API pro
 
 Add a new API project to migrate to:
 
-1. Add a new **ASP.NET Core Web Application** project to the solution.
-1. In the **Configure your new project** dialog, Name the project *ProductsCore*, and select **Create**.
-1. In the **Create a new ASP.NET Core Web Application** dialog, confirm that **.NET Core** and **ASP.NET Core 3.1** are selected. Select the **API** project template, and select **Create**.
+1. Add a new **ASP.NET Core Web API** project to the solution, and select **Next**.
+1. In the **Configure your new project** dialog, name the project *ProductsCore*, and select **Next**.
+1. In the **Additional information** dialog:
+  * Confirm the **Framework** is **.NET 6.0 (Long-term support)**.
+  * Confirm the checkbox for **Use controllers(uncheck to use minimal APIs)** is checked.
+  * Select **Create**.
 1. Remove the *WeatherForecast.cs* and *Controllers/WeatherForecastController.cs* example files from the new *ProductsCore* project.
 
 The solution now contains two projects. The following sections explain migrating the *ProductsApp* project's contents to the *ProductsCore* project.
@@ -94,7 +101,7 @@ Make the following changes:
 1. Change `ApiController` to <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. Add `using Microsoft.AspNetCore.Mvc;` to resolve the `ControllerBase` reference.
 1. Delete `using System.Web.Http;`.
 1. Change the `GetProduct` action's return type from `IHttpActionResult` to `ActionResult<Product>`.
-1. Simplify the `GetProduct` action's `return` statement to the following:
+1. Simplify the `GetProduct` action's `return` statement to the following statement:
 
     ```csharp
     return product;
@@ -164,9 +171,9 @@ The following sections demonstrate migration of the Web API project to ASP.NET C
 
 Complete the following steps in Visual Studio:
 
-* Go to **File** > **New** > **Project** > **Other Project Types** > **Visual Studio Solutions**. Select **Blank Solution**, and name the solution *WebAPIMigration*. Click the **OK** button.
+* Go to **File** > **New** > **Project** > **Other Project Types** > **Visual Studio Solutions**. Select **Blank Solution**, and name the solution *WebAPIMigration*. Select the **OK** button.
 * Add the existing *ProductsApp* project to the solution.
-* Add a new **ASP.NET Core Web Application** project to the solution. Select the **.NET Core** target framework from the drop-down, and select the **API** project template. Name the project *ProductsCore*, and click the **OK** button.
+* Add a new **ASP.NET Core Web Application** project to the solution. Select the **.NET Core** target framework from the drop-down, and select the **API** project template. Name the project *ProductsCore*, and select the **OK** button.
 
 The solution now contains two projects. The following sections explain migrating the *ProductsApp* project's contents to the *ProductsCore* project.
 
