@@ -152,7 +152,7 @@ Customize <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions> in *Program
 
 :::code language="csharp" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Program.cs" id="snippet_AddAntiforgeryOptions":::
 
-&dagger;Set the antiforgery `Cookie` properties using the properties of the <xref:Microsoft.AspNetCore.Http.CookieBuilder> class:
+Set the antiforgery `Cookie` properties using the properties of the <xref:Microsoft.AspNetCore.Http.CookieBuilder> class:
 
 | Option                                                                                    | Description                                                                                                                                                      |
 |-------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
