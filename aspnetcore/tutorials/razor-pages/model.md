@@ -248,7 +248,7 @@ In this section, the **Package Manager Console** (PMC) window is used to:
 
 ---
 
-The preceding commands install [the Entity Framework Core tools](https://docs.microsoft.com/ef/core/get-started/overview/install#get-the-entity-framework-core-tools) and run the `migrations` command to generate code that creates the initial database schema.
+The preceding commands install [the Entity Framework Core tools](/ef/core/get-started/overview/install#get-the-entity-framework-core-tools) and run the `migrations` command to generate code that creates the initial database schema.
 
 The following warning is displayed, which is addressed in a later step:
 
