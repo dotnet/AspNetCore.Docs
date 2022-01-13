@@ -144,7 +144,7 @@ Cache-Control: public,max-age=10
 
 Instead of duplicating response cache settings on many controller action attributes, cache profiles can be configured as options when setting up MVC/Razor Pages. Values found in a referenced cache profile are used as the defaults by the <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> and are overridden by any properties specified on the attribute.
 
-Set up a cache profile. The following example shows a 30 second cache profile:
+The following example shows a 30 second cache profile:
 
 [!code-csharp[](response/samples/6.x/WebRC/Program.cs?name=snippet2&highlight=5-13,22)]
 
@@ -158,7 +158,7 @@ The resulting header response by the `Default30` cache profile includes:
 Cache-Control: public,max-age=30
 ```
 
-The  [`[ResponseCache]`](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) can be applied to:
+The  [`[ResponseCache]`](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) attribute can be applied to:
 
 * Razor Pages: Attributes can't be applied to handler methods. Browsers used with UI apps prevent response caching.
 * MVC controllers.
