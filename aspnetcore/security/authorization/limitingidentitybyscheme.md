@@ -27,19 +27,19 @@ In the preceding code, two authentication handlers have been added: one for cook
 
 ## Selecting the scheme with the Authorize attribute
 
-At the point of authorization, the app indicates the handler to be used. Select the handler with which the app will authorize by passing a comma-delimited list of authentication schemes to `[Authorize]`. The `[Authorize]` attribute specifies the authentication scheme or schemes to use regardless of whether a default is configured. For example:
+At the point of authorization, the app indicates the handler to be used. Select the handler with which the app will authorize by passing a comma-delimited list of authentication schemes to `[Authorize]`. The [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute specifies the authentication scheme or schemes to use regardless of whether a default is configured. For example:
 
 [!code-csharp[](~/security/authorization/limitingidentitybyscheme/samples/AuthScheme/Controllers/MixedController.cs?name=snippet&highlight=11-13)]
 
 In the preceding example, both the cookie and bearer handlers run and have a chance to create and append an identity for the current user. By specifying a single scheme only, the corresponding handler runs:
 
-[!code-csharp[](~/security/authorization/limitingidentitybyscheme/samples/AuthScheme/Controllers/MixedController.cs?name=snippet&highlight=11-13)]
+[!code-csharp[](~/security/authorization/limitingidentitybyscheme/samples/AuthScheme/Controllers/MixedController.cs?name=snippet2&highlight=11-13)]
 
 In the preceding code, only the handler with the "Bearer" scheme runs. Any cookie-based identities are ignored.
 
 ## Selecting the scheme with policies
 
-If you prefer to specify the desired schemes in [policy](xref:security/authorization/policies), you can set the `AuthenticationSchemes` collection when adding your policy:
+If you prefer to specify the desired schemes in [policy](xref:security/authorization/policies), you can set the <xref:Microsoft.Net.Http.Server.AuthenticationSchemes> collection when adding a policy:
 
 [!code-csharp[](~/security/authorization/limitingidentitybyscheme/samples/AuthScheme/Program.cs?name=snippet2&highlight=5-15)]
 
@@ -65,6 +65,11 @@ The next step is to update the default authorization policy to accept both authe
 As the default authorization policy is overridden, it's possible to use the `[Authorize]` attribute in controllers. The controller then accepts requests with JWT issued by the first or second issuer.
 
 See [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/26002) on using multiple authentication schemes.
+
+Alternative multiple authentication scheme code:
+
+[!code-csharp[](~/security/authorization/limitingidentitybyscheme/samples/AuthScheme/Program.cs?name=snippet_ma2&highlight=9-29)]
+
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-6.0"
