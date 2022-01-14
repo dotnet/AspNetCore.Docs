@@ -11,7 +11,7 @@ uid: blazor/components/event-handling
 ---
 # ASP.NET Core Blazor event handling
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 Specify delegate event handlers in Razor component markup with [`@on{DOM EVENT}="{DELEGATE}"`](xref:mvc/views/razor#onevent) Razor syntax:
 
@@ -336,9 +336,9 @@ Call <xref:Microsoft.AspNetCore.Components.ElementReferenceExtensions.FocusAsync
 
 [!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample8.razor?highlight=16)]
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 Specify delegate event handlers in Razor component markup with [`@on{DOM EVENT}="{DELEGATE}"`](xref:mvc/views/razor#onevent) Razor syntax:
 
@@ -512,9 +512,9 @@ Call <xref:Microsoft.AspNetCore.Components.ElementReferenceExtensions.FocusAsync
 
 [!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample8.razor?highlight=16)]
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-5.0"
+:::moniker range="< aspnetcore-5.0"
 
 Specify delegate event handlers in Razor component markup with [`@on{DOM EVENT}="{DELEGATE}"`](xref:mvc/views/razor#onevent) Razor syntax:
 
@@ -680,4 +680,4 @@ In the following example, selecting the checkbox prevents click events from the 
 
 [!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample7.razor?highlight=4,15-16)]
 
-::: moniker-end
+:::moniker-end

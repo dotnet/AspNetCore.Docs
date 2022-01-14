@@ -11,7 +11,7 @@ uid: blazor/security/webassembly/standalone-with-azure-active-directory
 ---
 # Secure an ASP.NET Core Blazor WebAssembly standalone app with Azure Active Directory
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 This article covers how to create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD)](https://azure.microsoft.com/services/active-directory/) for authentication.
 
@@ -182,9 +182,9 @@ For more information, see the following sections of the *Additional scenarios* a
 * <xref:security/authentication/azure-active-directory/index>
 * [Microsoft identity platform documentation](/azure/active-directory/develop/)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 This article covers how to create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD)](https://azure.microsoft.com/services/active-directory/) for authentication.
 
@@ -355,9 +355,9 @@ For more information, see the following sections of the *Additional scenarios* a
 * <xref:security/authentication/azure-active-directory/index>
 * [Microsoft identity platform documentation](/azure/active-directory/develop/)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-5.0"
+:::moniker range="< aspnetcore-5.0"
 
 This article covers how to create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD)](https://azure.microsoft.com/services/active-directory/) for authentication.
 
@@ -521,4 +521,4 @@ For more information, see the following sections of the *Additional scenarios* a
 * <xref:security/authentication/azure-active-directory/index>
 * [Microsoft identity platform documentation](/azure/active-directory/develop/)
 
-::: moniker-end
+:::moniker-end

@@ -11,7 +11,7 @@ uid: blazor/security/webassembly/additional-scenarios
 ---
 # ASP.NET Core Blazor WebAssembly additional security scenarios
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 ## Attach tokens to outgoing requests
 
@@ -1049,9 +1049,9 @@ If an app requires a custom version of the [Microsoft Authentication Library for
 * <xref:blazor/security/webassembly/graph-api>
 * [`HttpClient` and `HttpRequestMessage` with Fetch API request options](xref:blazor/call-web-api#httpclient-and-httprequestmessage-with-fetch-api-request-options)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 ## Attach tokens to outgoing requests
 
@@ -2094,9 +2094,9 @@ If an app requires a custom version of the [Microsoft Authentication Library for
 * <xref:blazor/security/webassembly/graph-api>
 * [`HttpClient` and `HttpRequestMessage` with Fetch API request options](xref:blazor/call-web-api#httpclient-and-httprequestmessage-with-fetch-api-request-options)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-5.0"
+:::moniker range="< aspnetcore-5.0"
 
 ## Attach tokens to outgoing requests
 
@@ -3135,4 +3135,4 @@ If an app requires a custom version of the [Microsoft Authentication Library for
 * <xref:blazor/security/webassembly/graph-api>
 * [`HttpClient` and `HttpRequestMessage` with Fetch API request options](xref:blazor/call-web-api#httpclient-and-httprequestmessage-with-fetch-api-request-options)
 
-::: moniker-end
+:::moniker-end

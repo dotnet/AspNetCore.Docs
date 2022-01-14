@@ -11,7 +11,7 @@ uid: blazor/blazor-server-ef-core
 ---
 # ASP.NET Core Blazor Server with Entity Framework Core (EFCore)
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 Blazor Server is a stateful app framework. The app maintains an ongoing connection to the server, and the user's state is held in the server's memory in a *circuit*. One example of user state is data held in [dependency injection (DI)](xref:fundamentals/dependency-injection) service instances that are scoped to the circuit. The unique application model that Blazor Server provides requires a special approach to use Entity Framework Core.
 
@@ -133,9 +133,9 @@ We recommend only enabling <xref:Microsoft.EntityFrameworkCore.DbContextOptionsB
 
 * [EF Core documentation](/ef/)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 Blazor Server is a stateful app framework. The app maintains an ongoing connection to the server, and the user's state is held in the server's memory in a *circuit*. One example of user state is data held in [dependency injection (DI)](xref:fundamentals/dependency-injection) service instances that are scoped to the circuit. The unique application model that Blazor Server provides requires a special approach to use Entity Framework Core.
 
@@ -257,9 +257,9 @@ We recommend only enabling <xref:Microsoft.EntityFrameworkCore.DbContextOptionsB
 
 * [EF Core documentation](/ef/)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-5.0"
+:::moniker range="< aspnetcore-5.0"
 
 Blazor Server is a stateful app framework. The app maintains an ongoing connection to the server, and the user's state is held in the server's memory in a *circuit*. One example of user state is data held in [dependency injection (DI)](xref:fundamentals/dependency-injection) service instances that are scoped to the circuit. The unique application model that Blazor Server provides requires a special approach to use Entity Framework Core.
 
@@ -393,4 +393,4 @@ We recommend only enabling <xref:Microsoft.EntityFrameworkCore.DbContextOptionsB
 
 * [EF Core documentation](/ef/)
 
-::: moniker-end
+:::moniker-end

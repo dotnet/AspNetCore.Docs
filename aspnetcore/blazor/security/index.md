@@ -11,7 +11,7 @@ uid: blazor/security/index
 ---
 # ASP.NET Core Blazor authentication and authorization
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 ASP.NET Core supports the configuration and management of security in Blazor apps.
 
@@ -624,9 +624,9 @@ The <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationS
 * [Build a custom version of the Authentication.MSAL JavaScript library](xref:blazor/security/webassembly/additional-scenarios#build-a-custom-version-of-the-authenticationmsal-javascript-library)
 * [Awesome Blazor: Authentication](https://github.com/AdrienTorris/awesome-blazor#authentication) community sample links
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 ASP.NET Core supports the configuration and management of security in Blazor apps.
 
@@ -1245,9 +1245,9 @@ The <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationS
 * [Build a custom version of the Authentication.MSAL JavaScript library](xref:blazor/security/webassembly/additional-scenarios#build-a-custom-version-of-the-authenticationmsal-javascript-library)
 * [Awesome Blazor: Authentication](https://github.com/AdrienTorris/awesome-blazor#authentication) community sample links
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-5.0"
+:::moniker range="< aspnetcore-5.0"
 
 ASP.NET Core supports the configuration and management of security in Blazor apps.
 
@@ -1781,4 +1781,4 @@ The <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationS
 * [Build a custom version of the Authentication.MSAL JavaScript library](xref:blazor/security/webassembly/additional-scenarios#build-a-custom-version-of-the-authenticationmsal-javascript-library)
 * [Awesome Blazor: Authentication](https://github.com/AdrienTorris/awesome-blazor#authentication) community sample links
 
-::: moniker-end
+:::moniker-end

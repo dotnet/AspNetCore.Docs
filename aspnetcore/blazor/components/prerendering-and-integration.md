@@ -12,9 +12,9 @@ zone_pivot_groups: blazor-hosting-models
 ---
 # Prerender and integrate ASP.NET Core Razor components
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
-::: zone pivot="webassembly"
+:::zone pivot="webassembly"
 
 Razor components can be integrated into Razor Pages and MVC apps in a hosted Blazor WebAssembly solution. When the page or view is rendered, components can be prerendered at the same time.
 
@@ -409,9 +409,9 @@ Additional work might be required depending on the static resources that compone
 >
 > Navigate to the page or view with the embedded Razor component that uses a CSS selector (for example, `/razorpagescounter2` of the preceding example). The page or view loads with the embedded component, and the embedded component functions as expected.
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="server"
+:::zone pivot="server"
 
 Razor components can be integrated into Razor Pages and MVC apps in a Blazor Server app. When the page or view is rendered, components can be prerendered at the same time.
 
@@ -799,7 +799,7 @@ The `_ViewImports.cshtml` file is located in the `Pages` folder of a Razor Pages
 
 For more information, see <xref:blazor/components/index#namespaces>.
 
-::: zone-end
+:::zone-end
 
 ## Persist prerendered state
 
@@ -902,7 +902,7 @@ else
 
 By initializing components with the same state used during prerendering, any expensive initialization steps are only executed once. The rendered UI also matches the prerendered UI, so no flicker occurs in the browser.
 
-::: zone pivot="webassembly"
+:::zone pivot="webassembly"
 
 ## Additional Blazor WebAssembly resources
 
@@ -919,9 +919,9 @@ By initializing components with the same state used during prerendering, any exp
   * [Support prerendering with authentication](xref:blazor/security/webassembly/additional-scenarios#support-prerendering-with-authentication)
 * [Host and deploy: Blazor WebAssembly](xref:blazor/host-and-deploy/webassembly)
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="server"
+:::zone pivot="server"
 
 ## Additional Blazor Server resources
 
@@ -936,13 +936,13 @@ By initializing components with the same state used during prerendering, any exp
 * [Host and deploy: Blazor Server](xref:blazor/host-and-deploy/server)
 * [Threat mitigation: Cross-site scripting (XSS)](xref:blazor/security/server/threat-mitigation#cross-site-scripting-xss)
 
-::: zone-end
+:::zone-end
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-::: zone pivot="webassembly"
+:::zone pivot="webassembly"
 
 Razor components can be integrated into Razor Pages and MVC apps in a hosted Blazor WebAssembly solution. When the page or view is rendered, components can be prerendered at the same time.
 
@@ -1186,9 +1186,9 @@ Additional work might be required depending on the static resources that compone
 >
 > This is normal behavior because prerendering and integrating a Blazor WebAssembly app with routable Razor components is incompatible with the use of CSS selectors.
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="server"
+:::zone pivot="server"
 
 Razor components can be integrated into Razor Pages and MVC apps in a Blazor Server app. When the page or view is rendered, components can be prerendered at the same time.
 
@@ -1581,9 +1581,9 @@ The `_ViewImports.cshtml` file is located in the `Pages` folder of a Razor Pages
 
 For more information, see <xref:blazor/components/index#namespaces>.
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="webassembly"
+:::zone pivot="webassembly"
 
 ## Additional Blazor WebAssembly resources
 
@@ -1600,9 +1600,9 @@ For more information, see <xref:blazor/components/index#namespaces>.
   * [Support prerendering with authentication](xref:blazor/security/webassembly/additional-scenarios#support-prerendering-with-authentication)
 * [Host and deploy: Blazor WebAssembly](xref:blazor/host-and-deploy/webassembly)
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="server"
+:::zone pivot="server"
 
 ## Additional Blazor Server resources
 
@@ -1617,19 +1617,19 @@ For more information, see <xref:blazor/components/index#namespaces>.
 * [Host and deploy: Blazor Server](xref:blazor/host-and-deploy/server)
 * [Threat mitigation: Cross-site scripting (XSS)](xref:blazor/security/server/threat-mitigation#cross-site-scripting-xss)
 
-::: zone-end
+:::zone-end
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-5.0"
+:::moniker range="< aspnetcore-5.0"
 
-::: zone pivot="webassembly"
+:::zone pivot="webassembly"
 
 Integrating Razor components into Razor Pages and MVC apps in a hosted Blazor WebAssembly solution is supported in ASP.NET Core in .NET 5 or later. Select a .NET 5 or later version of this article.
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="server"
+:::zone pivot="server"
 
 Razor components can be integrated into Razor Pages and MVC apps in a Blazor Server app. When the page or view is rendered, components can be prerendered at the same time.
 
@@ -2031,6 +2031,6 @@ For more information, see <xref:blazor/components/index#namespaces>.
 * [Host and deploy: Blazor Server](xref:blazor/host-and-deploy/server)
 * [Threat mitigation: Cross-site scripting (XSS)](xref:blazor/security/server/threat-mitigation#cross-site-scripting-xss)
 
-::: zone-end
+:::zone-end
 
-::: moniker-end
+:::moniker-end

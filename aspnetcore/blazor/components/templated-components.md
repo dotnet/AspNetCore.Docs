@@ -11,7 +11,7 @@ uid: blazor/components/templated-components
 ---
 # ASP.NET Core Blazor templated components
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 Templated components are components that accept one or more UI templates as parameters, which can then be used as part of the component's rendering logic. Templated components allow you to author higher-level components that are more reusable than regular components. A couple of examples include:
 
@@ -134,9 +134,9 @@ For more information, see the following articles:
 
 * <xref:blazor/performance#define-reusable-renderfragments-in-code>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 Templated components are components that accept one or more UI templates as parameters, which can then be used as part of the component's rendering logic. Templated components allow you to author higher-level components that are more reusable than regular components. A couple of examples include:
 
@@ -181,9 +181,9 @@ When using generic-typed components, the type parameter is inferred if possible.
 
 * <xref:blazor/performance#define-reusable-renderfragments-in-code>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-5.0"
+:::moniker range="< aspnetcore-5.0"
 
 Templated components are components that accept one or more UI templates as parameters, which can then be used as part of the component's rendering logic. Templated components allow you to author higher-level components that are more reusable than regular components. A couple of examples include:
 
@@ -228,4 +228,4 @@ When using generic-typed components, the type parameter is inferred if possible.
 
 * <xref:blazor/performance#define-reusable-renderfragments-in-code>
 
-::: moniker-end
+:::moniker-end
