@@ -13,7 +13,7 @@ uid: blazor/fundamentals/dependency-injection
 
 By [Rainer Stropek](https://www.timecockpit.com) and [Mike Rousos](https://github.com/mjrousos)
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 [Dependency injection (DI)](xref:fundamentals/dependency-injection) is a technique for accessing services configured in a central location:
 
@@ -96,7 +96,7 @@ The `builder` variable represents a `Microsoft.AspNetCore.Builder.WebApplication
 builder.Services.AddSingleton<IDataAccess, DataAccess>();
 ```
 
-### Service lifetime
+## Service lifetime
 
 Services can be configured with the lifetimes shown in the following table.
 
@@ -337,9 +337,9 @@ Navigate to the `TransientExample` component at `/transient-example` and an <xre
 * [`IDisposable` guidance for Transient and shared instances](xref:fundamentals/dependency-injection#idisposable-guidance-for-transient-and-shared-instances)
 * <xref:mvc/views/dependency-injection>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 [Dependency injection (DI)](xref:fundamentals/dependency-injection) is a technique for accessing services configured in a central location:
 
@@ -446,7 +446,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-### Service lifetime
+## Service lifetime
 
 Services can be configured with the lifetimes shown in the following table.
 
@@ -699,9 +699,9 @@ Navigate to the `TransientExample` component at `/transient-example` and an <xre
 * [`IDisposable` guidance for Transient and shared instances](xref:fundamentals/dependency-injection#idisposable-guidance-for-transient-and-shared-instances)
 * <xref:mvc/views/dependency-injection>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-5.0"
+:::moniker range="< aspnetcore-5.0"
 
 [Dependency injection (DI)](xref:fundamentals/dependency-injection) is a technique for accessing services configured in a central location:
 
@@ -808,7 +808,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-### Service lifetime
+## Service lifetime
 
 Services can be configured with the lifetimes shown in the following table.
 
@@ -1061,4 +1061,4 @@ Navigate to the `TransientExample` component at `/transient-example` and an <xre
 * [`IDisposable` guidance for Transient and shared instances](xref:fundamentals/dependency-injection#idisposable-guidance-for-transient-and-shared-instances)
 * <xref:mvc/views/dependency-injection>
 
-::: moniker-end
+:::moniker-end

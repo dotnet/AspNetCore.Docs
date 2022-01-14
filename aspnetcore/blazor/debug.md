@@ -11,7 +11,7 @@ uid: blazor/debug
 ---
 # Debug ASP.NET Core Blazor WebAssembly
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 Blazor WebAssembly apps can be debugged using the browser dev tools in Chromium-based browsers (Edge/Chrome). You can also debug your app using the following integrated development environments (IDEs):
 
@@ -178,7 +178,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
    ```json
    {
-     "name": "Launch and Debug"
+     "name": "Launch and Debug",
      "type": "blazorwasm",
      "request": "launch",
      "url": "https://localhost:{PORT}"
@@ -376,9 +376,9 @@ VsRegEdit.exe set "<VSInstallFolder>" HKCU JSDebugger\Options\Debugging "BlazorT
 
 The `{TIMEOUT}` placeholder in the preceding command is in milliseconds. For example, one minute is assigned as `60000`.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 Blazor WebAssembly apps can be debugged using the browser dev tools in Chromium-based browsers (Edge/Chrome). You can also debug your app using the following integrated development environments (IDEs):
 
@@ -545,7 +545,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
    ```json
    {
-     "name": "Launch and Debug"
+     "name": "Launch and Debug",
      "type": "blazorwasm",
      "request": "launch",
      "url": "https://localhost:{PORT}"
@@ -791,9 +791,9 @@ VsRegEdit.exe set "<VSInstallFolder>" HKCU JSDebugger\Options\Debugging "BlazorT
 
 The `{TIMEOUT}` placeholder in the preceding command is in milliseconds. For example, one minute is assigned as `60000`.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-5.0"
+:::moniker range="< aspnetcore-5.0"
 
 Blazor WebAssembly apps can be debugged using the browser dev tools in Chromium-based browsers (Edge/Chrome). You can also debug your app using the following integrated development environments (IDEs):
 
@@ -960,7 +960,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
    ```json
    {
-     "name": "Launch and Debug"
+     "name": "Launch and Debug",
      "type": "blazorwasm",
      "request": "launch",
      "url": "https://localhost:{PORT}"
@@ -1206,4 +1206,4 @@ VsRegEdit.exe set "<VSInstallFolder>" HKCU JSDebugger\Options\Debugging "BlazorT
 
 The `{TIMEOUT}` placeholder in the preceding command is in milliseconds. For example, one minute is assigned as `60000`.
 
-::: moniker-end
+:::moniker-end

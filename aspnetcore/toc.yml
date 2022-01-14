@@ -408,6 +408,14 @@ items:
             items:
               - name: Overview
                 uid: blazor/security/index
+              - name: Blazor Server
+                items:
+                  - name: Overview
+                    uid: blazor/security/server/index
+                  - name: Threat mitigation
+                    uid: blazor/security/server/threat-mitigation
+                  - name: Additional scenarios
+                    uid: blazor/security/server/additional-scenarios
               - name: Blazor WebAssembly
                 items:
                   - name: Overview
@@ -430,14 +438,6 @@ items:
                     uid: blazor/security/webassembly/additional-scenarios
                   - name: Graph API
                     uid: blazor/security/webassembly/graph-api
-              - name: Blazor Server
-                items:
-                  - name: Overview
-                    uid: blazor/security/server/index
-                  - name: Threat mitigation
-                    uid: blazor/security/server/threat-mitigation
-                  - name: Additional scenarios
-                    uid: blazor/security/server/additional-scenarios
               - name: Content Security Policy
                 uid: blazor/security/content-security-policy
           - name: State management
@@ -458,10 +458,10 @@ items:
             items:
               - name: Overview
                 uid: blazor/host-and-deploy/index
-              - name: Blazor WebAssembly
-                uid: blazor/host-and-deploy/webassembly
               - name: Blazor Server
                 uid: blazor/host-and-deploy/server
+              - name: Blazor WebAssembly
+                uid: blazor/host-and-deploy/webassembly
               - name: Configure the Linker
                 uid: blazor/host-and-deploy/configure-linker
               - name: Configure the Trimmer
@@ -1361,11 +1361,13 @@ items:
       - name: Caching
         items:
           - name: Overview
-            uid: performance/caching/response
+            uid: performance/caching/overview
           - name: In-memory cache
             uid: performance/caching/memory
           - name: Distributed caching
             uid: performance/caching/distributed
+          - name: Response caching
+            uid: performance/caching/response
           - name: Response caching middleware
             uid: performance/caching/middleware
           - name: Object reuse with ObjectPool

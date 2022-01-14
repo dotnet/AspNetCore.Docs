@@ -1,7 +1,7 @@
-#define RP2 //  RP RP2 DELEGATE OM NMO
+#define RP2 // RP RP2 DELEGATE OM NMO GRS
 #if DEFAULT
 #elif RP
-#region snippet
+// <snippet>
 using SampleApp.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,7 +12,7 @@ builder.Services.Configure<MyOptions>(
     builder.Configuration.GetSection("MyOptions"));
 
 var app = builder.Build();
-#endregion
+// </snippet>
 
 if (!app.Environment.IsDevelopment())
 {
@@ -31,7 +31,7 @@ app.MapRazorPages();
 
 app.Run();
 #elif RP2
-#region snippet_rp2
+// <snippet_rp2>
 using SampleApp.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -46,9 +46,9 @@ var option1 = "TODO get from option1 from config";
 app.MapGet("/", () => option1);
 
 app.Run();
-#endregion
+// </snippet_rp2>
 #elif OM
-#region snippet_om
+// <snippet_om>
 using SampleApp.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -61,7 +61,7 @@ builder.Services.Configure<TopItemSettings>(TopItemSettings.Year,
     builder.Configuration.GetSection("TopItem:Year"));
 
 var app = builder.Build();
-#endregion
+// </snippet_om>
 
 if (!app.Environment.IsDevelopment())
 {
@@ -80,7 +80,7 @@ app.MapRazorPages();
 
 app.Run();
 #elif DELEGATE
-#region snippet_del
+// <snippet_del>
 using SampleApp.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -94,7 +94,7 @@ builder.Services.Configure<MyOptions>(myOptions =>
 });
 
 var app = builder.Build();
-#endregion
+// </snippet_del>
 
 if (!app.Environment.IsDevelopment())
 {
@@ -113,7 +113,7 @@ app.MapRazorPages();
 
 app.Run();
 #elif NMO
-#region snippet_nmo
+// <snippet_nmo>
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
@@ -130,7 +130,38 @@ builder.Services.PostConfigure<TopItemSettings>("Month", myOptions =>
 });
 
 var app = builder.Build();
-#endregion
+// </snippet_nmo>
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthorization();
+
+app.MapRazorPages();
+
+app.Run();
+#elif GRS
+using Microsoft.Extensions.Options;
+using SampleApp.Models;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddRazorPages();
+
+// <snippet_grs>
+var app = builder.Build();
+
+var option1 = app.Services.GetRequiredService<IOptionsMonitor<MyOptions>>()
+    .CurrentValue.Option1;
+// </snippet_grs>
 
 if (!app.Environment.IsDevelopment())
 {

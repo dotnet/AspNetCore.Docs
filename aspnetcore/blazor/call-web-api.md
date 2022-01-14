@@ -12,9 +12,9 @@ zone_pivot_groups: blazor-hosting-models
 ---
 # Call a web API from ASP.NET Core Blazor
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
-::: zone pivot="webassembly"
+:::zone pivot="webassembly"
 
 > [!NOTE]
 > This article has loaded **Blazor WebAssembly** coverage for calling web APIs. The [Blazor Server coverage](?pivots=server) addresses the following subjects:
@@ -480,9 +480,9 @@ else
 
 For more information, see <xref:blazor/fundamentals/handle-errors>.
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="server"
+:::zone pivot="server"
 
 > [!NOTE]
 > This article has loaded **Blazor Server** coverage for calling web APIs. The [Blazor WebAssembly coverage](?pivots=webassembly) addresses the following subjects:
@@ -577,25 +577,25 @@ else
 
 For an additional working example, see the Blazor Server file upload example that uploads files to a web API controller in the <xref:blazor/file-uploads#upload-files-to-a-server> article.
 
-::: zone-end
+:::zone-end
 
 ## Cross-origin resource sharing (CORS)
 
 Browser security restricts a webpage from making requests to a different domain than the one that served the webpage. This restriction is called the *same-origin policy*. The same-origin policy restricts (but doesn't prevent) a malicious site from reading sensitive data from another site. To make requests from the browser to an endpoint with a different origin, the *endpoint* must enable [cross-origin resource sharing (CORS)](https://www.w3.org/TR/cors/).
 
-::: zone pivot="webassembly"
+:::zone pivot="webassembly"
 
 For information on CORS requests in Blazor WebAssembly apps, see <xref:blazor/security/webassembly/additional-scenarios#cross-origin-resource-sharing-cors>.
 
 For information on CORS, see <xref:security/cors>. The article's examples don't pertain directly to Blazor WebAssembly apps, but the article is useful for learning general CORS concepts.
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="server"
+:::zone pivot="server"
 
 For more information, see <xref:security/cors>.
 
-::: zone-end
+:::zone-end
 
 ## Blazor framework component examples for testing web API access
 
@@ -605,16 +605,16 @@ Various network tools are publicly available for testing web API backend apps di
 
 ## Additional resources
 
-::: zone pivot="webassembly"
+:::zone pivot="webassembly"
 
 * <xref:blazor/security/webassembly/additional-scenarios>: Includes coverage on using <xref:System.Net.Http.HttpClient> to make secure web API requests.
 * <xref:security/cors>: Although the content applies to ASP.NET Core apps, not Blazor WebAssembly apps, the article covers general CORS concepts.
 * [Cross Origin Resource Sharing (CORS) at W3C](https://www.w3.org/TR/cors/)
 * [Fetch API](https://developer.mozilla.org/docs/Web/API/fetch)
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="server"
+:::zone pivot="server"
 
 * <xref:blazor/security/server/additional-scenarios>: Includes coverage on using <xref:System.Net.Http.HttpClient> to make secure web API requests.
 * <xref:fundamentals/http-requests>
@@ -623,13 +623,13 @@ Various network tools are publicly available for testing web API backend apps di
 * [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel/endpoints)
 * [Cross Origin Resource Sharing (CORS) at W3C](https://www.w3.org/TR/cors/)
 
-::: zone-end
+:::zone-end
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-::: zone pivot="webassembly"
+:::zone pivot="webassembly"
 
 > [!NOTE]
 > This article has loaded **Blazor WebAssembly** coverage for calling web APIs. The [Blazor Server coverage](?pivots=server) addresses the following subjects:
@@ -1095,9 +1095,9 @@ else
 
 For more information, see <xref:blazor/fundamentals/handle-errors>.
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="server"
+:::zone pivot="server"
 
 > [!NOTE]
 > This article has loaded **Blazor Server** coverage for calling web APIs. The [Blazor WebAssembly coverage](?pivots=webassembly) addresses the following subjects:
@@ -1192,25 +1192,25 @@ else
 
 For an additional working example, see the Blazor Server file upload example that uploads files to a web API controller in the <xref:blazor/file-uploads#upload-files-to-a-server> article.
 
-::: zone-end
+:::zone-end
 
 ## Cross-origin resource sharing (CORS)
 
 Browser security restricts a webpage from making requests to a different domain than the one that served the webpage. This restriction is called the *same-origin policy*. The same-origin policy restricts (but doesn't prevent) a malicious site from reading sensitive data from another site. To make requests from the browser to an endpoint with a different origin, the *endpoint* must enable [cross-origin resource sharing (CORS)](https://www.w3.org/TR/cors/).
 
-::: zone pivot="webassembly"
+:::zone pivot="webassembly"
 
 For information on CORS requests in Blazor WebAssembly apps, see <xref:blazor/security/webassembly/additional-scenarios#cross-origin-resource-sharing-cors>.
 
 For information on CORS, see <xref:security/cors>. The article's examples don't pertain directly to Blazor WebAssembly apps, but the article is useful for learning general CORS concepts.
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="server"
+:::zone pivot="server"
 
 For more information, see <xref:security/cors>.
 
-::: zone-end
+:::zone-end
 
 ## Blazor framework component examples for testing web API access
 
@@ -1222,16 +1222,16 @@ Various network tools are publicly available for testing web API backend apps di
 
 ## Additional resources
 
-::: zone pivot="webassembly"
+:::zone pivot="webassembly"
 
 * <xref:blazor/security/webassembly/additional-scenarios>: Includes coverage on using <xref:System.Net.Http.HttpClient> to make secure web API requests.
 * <xref:security/cors>: Although the content applies to ASP.NET Core apps, not Blazor WebAssembly apps, the article covers general CORS concepts.
 * [Cross Origin Resource Sharing (CORS) at W3C](https://www.w3.org/TR/cors/)
 * [Fetch API](https://developer.mozilla.org/docs/Web/API/fetch)
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="server"
+:::zone pivot="server"
 
 * <xref:blazor/security/server/additional-scenarios>: Includes coverage on using <xref:System.Net.Http.HttpClient> to make secure web API requests.
 * <xref:fundamentals/http-requests>
@@ -1240,13 +1240,13 @@ Various network tools are publicly available for testing web API backend apps di
 * [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel/endpoints)
 * [Cross Origin Resource Sharing (CORS) at W3C](https://www.w3.org/TR/cors/)
 
-::: zone-end
+:::zone-end
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-5.0"
+:::moniker range="< aspnetcore-5.0"
 
-::: zone pivot="webassembly"
+:::zone pivot="webassembly"
 
 > [!NOTE]
 > This article has loaded **Blazor WebAssembly** coverage for calling web APIs. The [Blazor Server coverage](?pivots=server) addresses the following subjects:
@@ -1712,9 +1712,9 @@ else
 
 For more information, see <xref:blazor/fundamentals/handle-errors>.
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="server"
+:::zone pivot="server"
 
 > [!NOTE]
 > This article has loaded **Blazor Server** coverage for calling web APIs. The [Blazor WebAssembly coverage](?pivots=webassembly) addresses the following subjects:
@@ -1809,25 +1809,25 @@ else
 
 For an additional working example, see the Blazor Server file upload example that uploads files to a web API controller in the <xref:blazor/file-uploads#upload-files-to-a-server> article.
 
-::: zone-end
+:::zone-end
 
 ## Cross-origin resource sharing (CORS)
 
 Browser security restricts a webpage from making requests to a different domain than the one that served the webpage. This restriction is called the *same-origin policy*. The same-origin policy restricts (but doesn't prevent) a malicious site from reading sensitive data from another site. To make requests from the browser to an endpoint with a different origin, the *endpoint* must enable [cross-origin resource sharing (CORS)](https://www.w3.org/TR/cors/).
 
-::: zone pivot="webassembly"
+:::zone pivot="webassembly"
 
 For information on CORS requests in Blazor WebAssembly apps, see <xref:blazor/security/webassembly/additional-scenarios#cross-origin-resource-sharing-cors>.
 
 For information on CORS, see <xref:security/cors>. The article's examples don't pertain directly to Blazor WebAssembly apps, but the article is useful for learning general CORS concepts.
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="server"
+:::zone pivot="server"
 
 For more information, see <xref:security/cors>.
 
-::: zone-end
+:::zone-end
 
 ## Blazor framework component examples for testing web API access
 
@@ -1839,16 +1839,16 @@ Various network tools are publicly available for testing web API backend apps di
 
 ## Additional resources
 
-::: zone pivot="webassembly"
+:::zone pivot="webassembly"
 
 * <xref:blazor/security/webassembly/additional-scenarios>: Includes coverage on using <xref:System.Net.Http.HttpClient> to make secure web API requests.
 * <xref:security/cors>: Although the content applies to ASP.NET Core apps, not Blazor WebAssembly apps, the article covers general CORS concepts.
 * [Cross Origin Resource Sharing (CORS) at W3C](https://www.w3.org/TR/cors/)
 * [Fetch API](https://developer.mozilla.org/docs/Web/API/fetch)
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="server"
+:::zone pivot="server"
 
 * <xref:blazor/security/server/additional-scenarios>: Includes coverage on using <xref:System.Net.Http.HttpClient> to make secure web API requests.
 * <xref:fundamentals/http-requests>
@@ -1857,6 +1857,6 @@ Various network tools are publicly available for testing web API backend apps di
 * [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration)
 * [Cross Origin Resource Sharing (CORS) at W3C](https://www.w3.org/TR/cors/)
 
-::: zone-end
+:::zone-end
 
-::: moniker-end
+:::moniker-end

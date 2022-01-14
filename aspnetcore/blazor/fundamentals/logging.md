@@ -11,7 +11,7 @@ uid: blazor/fundamentals/logging
 ---
 # ASP.NET Core Blazor logging
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 ## Logging in Blazor WebAssembly apps
 
@@ -89,9 +89,9 @@ The following example demonstrates logging with an <xref:Microsoft.Extensions.Lo
 
 * <xref:fundamentals/logging/index>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 ## Logging in Blazor WebAssembly apps
 
@@ -169,9 +169,9 @@ The following example demonstrates logging with an <xref:Microsoft.Extensions.Lo
 
 * <xref:fundamentals/logging/index>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-5.0"
+:::moniker range="< aspnetcore-5.0"
 
 ## Logging in Blazor WebAssembly apps
 
@@ -249,4 +249,4 @@ The following example demonstrates logging with an <xref:Microsoft.Extensions.Lo
 
 * <xref:fundamentals/logging/index>
 
-::: moniker-end
+:::moniker-end

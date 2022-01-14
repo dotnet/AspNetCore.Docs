@@ -1,7 +1,7 @@
 #define P3   // DEFAULT MC XM P1  P2 P3
 #if NEVER
 #elif DEFAULT
-#region snippet
+// <snippet>
 using OptionsValidationSample.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,7 +13,7 @@ builder.Services.AddOptions<MyConfigOptions>()
             .ValidateDataAnnotations();
 
 var app = builder.Build();
-#endregion
+// </snippet>
 
 if (!app.Environment.IsDevelopment())
 {
@@ -34,7 +34,7 @@ app.MapControllerRoute(
 
 app.Run();
 #elif MC
-#region snippet_mc
+// <snippet_mc>
 using OptionsValidationSample.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -55,7 +55,7 @@ builder.Services.AddOptions<MyConfigOptions>()
         }, "Key3 must be > than Key2.");   // Failure message.
 
 var app = builder.Build();
-#endregion
+// </snippet_mc>
 
 if (!app.Environment.IsDevelopment())
 {
@@ -76,7 +76,7 @@ app.MapControllerRoute(
 
 app.Run();
 #elif XM
-#region snippet_xm
+// <snippet_xm>
 using Microsoft.Extensions.Options;
 using OptionsValidationSample.Configuration;
 
@@ -91,7 +91,7 @@ builder.Services.AddSingleton<IValidateOptions
                               <MyConfigOptions>, MyConfigValidation>();
 
 var app = builder.Build();
-#endregion
+// </snippet_xm>
 
 if (!app.Environment.IsDevelopment())
 {
@@ -112,7 +112,7 @@ app.MapControllerRoute(
 
 app.Run();
 #elif P1
-#region snippet_p1
+// <snippet_p1>
 using OptionsValidationSample.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -126,7 +126,7 @@ builder.Services.PostConfigure<MyConfigOptions>(myOptions =>
 {
     myOptions.Key1 = "post_configured_key1_value";
 });
-#endregion
+// </snippet_p1>
 
 
 var app = builder.Build();
@@ -150,7 +150,7 @@ app.MapControllerRoute(
 
 app.Run();
 #elif P2
-#region snippet_p2
+// <snippet_p2>
 using OptionsValidationSample.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -164,7 +164,7 @@ builder.Services.PostConfigure<MyConfigOptions>("MyConfig", myOptions =>
 {
     myOptions.Key1 = "post_configured_key1_value";
 });
-#endregion
+// </snippet_p2>
 
 
 var app = builder.Build();
@@ -188,7 +188,7 @@ app.MapControllerRoute(
 
 app.Run();
 #elif P3
-#region snippet_p3
+// <snippet_p3>
 using OptionsValidationSample.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -202,7 +202,7 @@ builder.Services.PostConfigureAll<MyConfigOptions>(myOptions =>
 {
     myOptions.Key1 = "post_configured_key1_value";
 });
-#endregion
+// </snippet_p3>
 
 
 var app = builder.Build();

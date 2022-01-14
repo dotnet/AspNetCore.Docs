@@ -7,7 +7,7 @@ using SampleApp.Models;
 
 namespace SampleApp.Pages
 {
-    #region snippet
+    // <snippet>
     public class TestMonitorModel : PageModel
     {
         private readonly IOptionsMonitor<MyOptions> _optionsDelegate;
@@ -23,5 +23,5 @@ namespace SampleApp.Pages
                            $"Option2: {_optionsDelegate.CurrentValue.Option2}");
         }
     }
-    #endregion
+    // </snippet>
 }

@@ -11,7 +11,7 @@ uid: blazor/components/cascading-values-and-parameters
 ---
 # ASP.NET Core Blazor cascading values and parameters
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 *Cascading values and parameters* provide a convenient way to flow data down a component hierarchy from an ancestor component to any number of descendent components. Unlike [Component parameters](xref:blazor/components/index#component-parameters), cascading values and parameters don't require an attribute assignment for each descendent component where the data is consumed. Cascading values and parameters also allow components to coordinate with each other across a component hierarchy.
 
@@ -45,6 +45,32 @@ The following component binds the `ThemeInfo` cascading value to a cascading par
 `Pages/ThemedCounter.razor`:
 
 [!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/ThemedCounter.razor)]
+
+Similar to a regular component parameter, components accepting a cascading parameter are rerendered when the cascading value is changed. For instance, configuring a different theme instance causes the `ThemedCounter` component from the [`CascadingValue` component](#cascadingvalue-component) section to rerender:
+
+`Shared/MainLayout.razor`:
+
+```razor
+<div class="main">
+    <CascadingValue Value="theme">
+        <div class="content px-4">
+            @Body
+        </div>
+    </CascadingValue>
+    <button @onclick="ChangeToDarkTheme">Dark mode</button>
+</div>
+
+@code {
+    private ThemeInfo theme = new() { ButtonClass = "btn-success" };
+    
+    private void ChangeToDarkTheme()
+    {
+        theme = new() { ButtonClass = "btn-darkmode-success" };
+    }
+}
+```
+
+<xref:Microsoft.AspNetCore.Components.CascadingValue%601.IsFixed%2A?displayProperty=nameWithType> can be used to indicate that a cascading parameter doesn't change after initialization. 
 
 ## Cascade multiple values
 
@@ -224,9 +250,9 @@ The following `ExampleTabSet` component uses the `TabSet` component, which conta
 }
 ```
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 *Cascading values and parameters* provide a convenient way to flow data down a component hierarchy from an ancestor component to any number of descendent components. Unlike [Component parameters](xref:blazor/components/index#component-parameters), cascading values and parameters don't require an attribute assignment for each descendent component where the data is consumed. Cascading values and parameters also allow components to coordinate with each other across a component hierarchy.
 
@@ -443,9 +469,9 @@ The following `ExampleTabSet` component uses the `TabSet` component, which conta
 }
 ```
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-5.0"
+:::moniker range="< aspnetcore-5.0"
 
 *Cascading values and parameters* provide a convenient way to flow data down a component hierarchy from an ancestor component to any number of descendent components. Unlike [Component parameters](xref:blazor/components/index#component-parameters), cascading values and parameters don't require an attribute assignment for each descendent component where the data is consumed. Cascading values and parameters also allow components to coordinate with each other across a component hierarchy.
 
@@ -662,4 +688,4 @@ The following `ExampleTabSet` component uses the `TabSet` component, which conta
 }
 ```
 
-::: moniker-end
+:::moniker-end

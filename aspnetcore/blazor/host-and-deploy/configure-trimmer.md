@@ -11,7 +11,7 @@ uid: blazor/host-and-deploy/configure-trimmer
 ---
 # Configure the Trimmer for ASP.NET Core Blazor
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 Blazor WebAssembly performs [Intermediate Language (IL)](/dotnet/standard/managed-code#intermediate-language--execution) trimming to reduce the size of the published output. By default, trimming occurs when publishing an app.
 
@@ -32,9 +32,9 @@ To configure the Trimmer, see the [Trimming options](/dotnet/core/deploying/trim
 * [Trim self-contained deployments and executables](/dotnet/core/deploying/trimming/trim-self-contained)
 * <xref:blazor/performance#intermediate-language-il-trimming>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 Blazor WebAssembly performs [Intermediate Language (IL)](/dotnet/standard/managed-code#intermediate-language--execution) trimming to reduce the size of the published output. By default, trimming occurs when publishing an app.
 
@@ -55,4 +55,4 @@ To configure the Trimmer, see the [Trimming options](/dotnet/core/deploying/trim
 * [Trim self-contained deployments and executables](/dotnet/core/deploying/trimming/trim-self-contained)
 * <xref:blazor/performance#intermediate-language-il-trimming>
 
-::: moniker-end
+:::moniker-end

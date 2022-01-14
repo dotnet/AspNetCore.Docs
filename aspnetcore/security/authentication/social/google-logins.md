@@ -22,7 +22,7 @@ This tutorial shows you how to enable users to sign in with their Google account
 
 * Go to [Google API & Services](https://console.cloud.google.com/apis).
 
-* A **Project** must exist first, you may have to create one. Just a name is required. Once a project is selected, you will enter the **Dashboard**.
+* A **Project** must exist first, you may have to create one. Once a project is selected, you will enter the **Dashboard**.
 
 * In the **Oauth consent screen** of the **Dashboard**: 
   * Select **User Type - External** and **CREATE**.

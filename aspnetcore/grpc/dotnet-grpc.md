@@ -10,7 +10,7 @@ uid: grpc/dotnet-grpc
 ---
 # Manage Protobuf references with dotnet-grpc
 
-`dotnet-grpc` is a .NET Core Global Tool for managing [Protobuf (*.proto*)](xref:grpc/basics#proto-file) references within a .NET gRPC project. The tool can be used to add, refresh, remove, and list Protobuf references.
+`dotnet-grpc` is a .NET Core Global Tool for managing [Protobuf (`.proto`)](xref:grpc/basics#proto-file) references within a .NET gRPC project. The tool can be used to add, refresh, remove, and list Protobuf references.
 
 ## Installation
 
@@ -97,7 +97,7 @@ dotnet-grpc add-url [options] <url>
 The `remove` command is used to remove Protobuf references from the *.csproj* file. The command accepts path arguments and source URLs as arguments. The tool:
 
 * Only removes the Protobuf reference.
-* Does not delete the *.proto* file, even if it was originally downloaded from a remote URL.
+* Does not delete the `.proto` file, even if it was originally downloaded from a remote URL.
 
 ### Usage
 

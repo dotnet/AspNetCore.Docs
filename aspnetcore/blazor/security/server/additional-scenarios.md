@@ -11,7 +11,7 @@ uid: blazor/security/server/additional-scenarios
 ---
 # ASP.NET Core Blazor Server additional security scenarios
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 ## Pass tokens to a Blazor Server app
 
@@ -158,9 +158,9 @@ app.MapBlazorHub().RequireAuthorization(
     });
 ```
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 ## Pass tokens to a Blazor Server app
 
@@ -307,9 +307,9 @@ endpoints.MapBlazorHub().RequireAuthorization(
     });
 ```
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-5.0"
+:::moniker range="< aspnetcore-5.0"
 
 ## Pass tokens to a Blazor Server app
 
@@ -520,4 +520,4 @@ If tacking on a segment to the authority isn't appropriate for the app's OIDC pr
 
 You can find the App ID URI to use in the OIDC provider app registration description.
 
-::: moniker-end
+:::moniker-end

@@ -14,15 +14,15 @@ By [James Newton-King](https://twitter.com/jamesnk)
 
 This document explains how to create gRPC services and methods in C#. Topics include:
 
-* How to define services and methods in *.proto* files.
+* How to define services and methods in `.proto` files.
 * Generated code using gRPC C# tooling.
 * Implementing gRPC services and methods.
 
 ## Create new gRPC services
 
-[gRPC services with C#](xref:grpc/basics) introduced gRPC's contract-first approach to API development. Services and messages are defined in *.proto* files. C# tooling then generates code from *.proto* files. For server-side assets, an abstract base type is generated for each service, along with classes for any messages.
+[gRPC services with C#](xref:grpc/basics) introduced gRPC's contract-first approach to API development. Services and messages are defined in `.proto` files. C# tooling then generates code from `.proto` files. For server-side assets, an abstract base type is generated for each service, along with classes for any messages.
 
-The following *.proto* file:
+The following `.proto` file:
 
 * Defines a `Greeter` service.
 * The `Greeter` service defines a `SayHello` call.
@@ -100,7 +100,7 @@ A gRPC service can have different types of methods. How messages are sent and re
 * Client streaming
 * Bi-directional streaming
 
-Streaming calls are specified with the `stream` keyword in the *.proto* file. `stream` can be placed on a call's request message, response message, or both.
+Streaming calls are specified with the `stream` keyword in the `.proto` file. `stream` can be placed on a call's request message, response message, or both.
 
 ```protobuf
 syntax = "proto3";

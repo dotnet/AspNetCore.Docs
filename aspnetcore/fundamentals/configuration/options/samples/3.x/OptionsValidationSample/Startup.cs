@@ -7,7 +7,7 @@ using OptionsValidationSample.Configuration;
 
 namespace OptionsValidationSample
 {
-    #region snippet
+    // <snippet>
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -25,7 +25,7 @@ namespace OptionsValidationSample
 
             services.AddControllersWithViews();
         }
-        #endregion
+        // </snippet>
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

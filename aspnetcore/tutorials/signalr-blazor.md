@@ -12,7 +12,7 @@ zone_pivot_groups: blazor-hosting-models
 ---
 # Use ASP.NET Core SignalR with Blazor
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 This tutorial teaches the basics of building a real-time app using SignalR with Blazor. You learn how to:
 
@@ -49,7 +49,7 @@ At the end of this tutorial, you'll have a working chat app.
 
 ---
 
-::: zone pivot="webassembly"
+:::zone pivot="webassembly"
 
 ## Create a hosted Blazor WebAssembly app
 
@@ -269,9 +269,9 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
 ---
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="server"
+:::zone pivot="server"
 
 ## Create a Blazor Server app
 
@@ -478,7 +478,7 @@ Follow the guidance for your tooling:
 
 ---
 
-::: zone-end
+:::zone-end
 
 ## Next steps
 
@@ -505,9 +505,9 @@ To learn more about building Blazor apps, see the Blazor documentation:
 * <xref:blazor/debug>
 * <xref:blazor/security/server/threat-mitigation>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 This tutorial teaches the basics of building a real-time app using SignalR with Blazor. You learn how to:
 
@@ -544,7 +544,7 @@ At the end of this tutorial, you'll have a working chat app.
 
 ---
 
-::: zone pivot="webassembly"
+:::zone pivot="webassembly"
 
 ## Create a hosted Blazor WebAssembly app
 
@@ -762,9 +762,9 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
 ---
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="server"
+:::zone pivot="server"
 
 ## Create a Blazor Server app
 
@@ -971,7 +971,7 @@ Follow the guidance for your tooling:
 
 ---
 
-::: zone-end
+:::zone-end
 
 ## Next steps
 
@@ -998,9 +998,9 @@ To learn more about building Blazor apps, see the Blazor documentation:
 * <xref:blazor/debug>
 * <xref:blazor/security/server/threat-mitigation>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-5.0"
+:::moniker range="< aspnetcore-5.0"
 
 This tutorial teaches the basics of building a real-time app using SignalR with Blazor. You learn how to:
 
@@ -1037,7 +1037,7 @@ At the end of this tutorial, you'll have a working chat app.
 
 ---
 
-::: zone pivot="webassembly"
+:::zone pivot="webassembly"
 
 ## Create a hosted Blazor WebAssembly app
 
@@ -1255,9 +1255,9 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
 ---
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="server"
+:::zone pivot="server"
 
 ## Create a Blazor Server app
 
@@ -1520,7 +1520,7 @@ Follow the guidance for your tooling:
 
 ---
 
-::: zone-end
+:::zone-end
 
 ## Next steps
 
@@ -1547,4 +1547,4 @@ To learn more about building Blazor apps, see the Blazor documentation:
 * <xref:blazor/debug>
 * <xref:blazor/security/server/threat-mitigation>
 
-::: moniker-end
+:::moniker-end

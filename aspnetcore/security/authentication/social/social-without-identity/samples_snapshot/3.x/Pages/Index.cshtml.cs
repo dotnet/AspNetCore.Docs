@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace WebApp1.Pages
 {
-    #region snippet
+    // <snippet_Class>
     public class IndexModel : PageModel
     {
         public async Task<IActionResult> OnPostLogoutAsync()
@@ -14,5 +14,5 @@ namespace WebApp1.Pages
             return RedirectToPage();
         }
     }
-    #endregion
+    // </snippet_Class>
 }

@@ -4,7 +4,7 @@ author: rick-anderson
 description: This tutorial demonstrates how to build an ASP.NET Core app using OAuth 2.0 with external authentication providers.
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/23/2020
+ms.date: 1/11/2022
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/social/index
 ---
@@ -21,17 +21,12 @@ Enabling users to sign in with their existing credentials:
 * Is convenient for the users.
 * Shifts many of the complexities of managing the sign-in process onto a third party.
 
-
 ## Create a New ASP.NET Core Project
 
 # [Visual Studio](#tab/visual-studio)
 
-* Create a new project.
-* Select **ASP.NET Core Web Application** and **Next**.
-* Provide a **Project name** and confirm or change the **Location**. Select **Create**.
-* Select the latest version of ASP.NET Core in the drop-down (**ASP.NET Core {X.Y}**), and then select **Web Application**.
-* Under **Authentication**, select **Change** and set the authentication to **Individual User Accounts**. Select **OK**.
-* In the **Create a new ASP.NET Core Web Application** window, select **Create**.
+* Select the **ASP.NET Core Web App** template. Select **OK**.
+* In the **Authentication type** input,  select  **Individual User Accounts**.
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
@@ -85,7 +80,7 @@ Use the following topics to configure your application to use the respective pro
 * [Microsoft](xref:security/authentication/microsoft-logins) instructions
 * [Other provider](xref:security/authentication/otherlogins) instructions
 
-[!INCLUDE[](includes/chain-auth-providers.md)]
+[!INCLUDE[](includes/chain-auth-providers6.md)]
 
 ## Optionally set password
 

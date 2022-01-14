@@ -4,7 +4,7 @@ using Microsoft.Extensions.Options;
 
 namespace SampleApp.Pages
 {
-    #region snippet
+    // <snippet>
     public class TestNOModel : PageModel
     {
         private readonly TopItemSettings _monthTopItem;
@@ -24,5 +24,5 @@ namespace SampleApp.Pages
                            $"Year:Model {_yearTopItem.Model} \n"   );
         }
     }
-    #endregion
+    // </snippet>
 }

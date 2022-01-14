@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 namespace OptionsValidationSample.Controllers
 {
-    #region snippet
+    // <snippet>
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -22,7 +22,7 @@ namespace OptionsValidationSample.Controllers
             try
             {
                 var configValue = _config.Value;
-               
+
             }
             catch (OptionsValidationException ex)
             {
@@ -48,7 +48,7 @@ namespace OptionsValidationSample.Controllers
             }
             return Content(msg);
         }
-        #endregion
+        // </snippet>
 
         public IActionResult Privacy()
         {
