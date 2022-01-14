@@ -71,9 +71,9 @@ Select *ContosoUniversity.csproj* to open the project.
 * Build the project.
 * In Package Manager Console (PMC) run the following command:
 
-```powershell
-Update-Database
-```
+   ```powershell
+   Update-Database
+   ```
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -1106,9 +1106,9 @@ To run the app after downloading the completed project:
 * Build the project.
 * In Package Manager Console (PMC) run the following command:
 
-  ```powershell
-  Update-Database
-  ```
+   ```powershell
+   Update-Database
+   ```
 
 * Run the project to seed the database.
 
