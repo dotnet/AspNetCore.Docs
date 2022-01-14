@@ -33,7 +33,7 @@ HTTP Logging ***can reduce the performance of an app***, especially when logging
 
 ## Enabling HTTP logging
 
-HTTP Logging is enabled with `UseHttpLogging`, which adds HTTP logging middleware.
+HTTP Logging is enabled with <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseHttpLogging%2A>, which adds HTTP logging middleware.
 
 [!code-csharp[](samples/6.x/Program.cs?name=snippet&highlight=10)]
 
