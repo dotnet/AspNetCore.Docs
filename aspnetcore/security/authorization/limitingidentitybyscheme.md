@@ -33,7 +33,7 @@ At the point of authorization, the app indicates the handler to be used. Select 
 
 In the preceding example, both the cookie and bearer handlers run and have a chance to create and append an identity for the current user. By specifying a single scheme only, the corresponding handler runs:
 
-[!code-csharp[](~/security/authorization/limitingidentitybyscheme/samples/AuthScheme/Controllers/MixedController.cs?name=snippet&highlight=11-13)]lic class MixedController : Controller
+[!code-csharp[](~/security/authorization/limitingidentitybyscheme/samples/AuthScheme/Controllers/MixedController.cs?name=snippet&highlight=11-13)]
 
 In the preceding code, only the handler with the "Bearer" scheme runs. Any cookie-based identities are ignored.
 
@@ -41,24 +41,11 @@ In the preceding code, only the handler with the "Bearer" scheme runs. Any cooki
 
 If you prefer to specify the desired schemes in [policy](xref:security/authorization/policies), you can set the `AuthenticationSchemes` collection when adding your policy:
 
-```csharp
-services.AddAuthorization(options =>
-{
-    options.AddPolicy("Over18", policy =>
-    {
-        policy.AuthenticationSchemes.Add(JwtBearerDefaults.AuthenticationScheme);
-        policy.RequireAuthenticatedUser();
-        policy.Requirements.Add(new MinimumAgeRequirement());
-    });
-});
-```
+[!code-csharp[](~/security/authorization/limitingidentitybyscheme/samples/AuthScheme/Program.cs?name=snippet2&highlight=5-15)]
 
 In the preceding example, the "Over18" policy only runs against the identity created by the "Bearer" handler. Use the policy by setting the `[Authorize]` attribute's `Policy` property:
 
-```csharp
-[Authorize(Policy = "Over18")]
-public class RegistrationController : Controller
-```
+[!code-csharp[](~/security/authorization/limitingidentitybyscheme/samples/AuthScheme/Controllers/MixedController.cs?name=RegistrationController&highlight=5)]
 
 ## Use multiple authentication schemes
 
@@ -66,46 +53,14 @@ Some apps may need to support multiple types of authentication. For example, you
 
 Add all authentication schemes you'd like to accept. For example, the following code in `Startup.ConfigureServices` adds two JWT bearer authentication schemes with different issuers:
 
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    // Code omitted for brevity
-
-    services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-        .AddJwtBearer(options =>
-        {
-            options.Audience = "https://localhost:5000/";
-            options.Authority = "https://localhost:5000/identity/";
-        })
-        .AddJwtBearer("AzureAD", options =>
-        {
-            options.Audience = "https://localhost:5000/";
-            options.Authority = "https://login.microsoftonline.com/eb971100-6f99-4bdc-8611-1bc8edd7f436/";
-        });
-}
-```
+[!code-csharp[](~/security/authorization/limitingidentitybyscheme/samples/AuthScheme/Program.cs?name=snippet_ma&highlight=7-18)]
 
 > [!NOTE]
 > Only one JWT bearer authentication is registered with the default authentication scheme `JwtBearerDefaults.AuthenticationScheme`. Additional authentication has to be registered with a unique authentication scheme.
 
 The next step is to update the default authorization policy to accept both authentication schemes. For example:
 
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    // Code omitted for brevity
-
-    services.AddAuthorization(options =>
-    {
-        var defaultAuthorizationPolicyBuilder = new AuthorizationPolicyBuilder(
-            JwtBearerDefaults.AuthenticationScheme,
-            "AzureAD");
-        defaultAuthorizationPolicyBuilder = 
-            defaultAuthorizationPolicyBuilder.RequireAuthenticatedUser();
-        options.DefaultPolicy = defaultAuthorizationPolicyBuilder.Build();
-    });
-}
-```
+[!code-csharp[](~/security/authorization/limitingidentitybyscheme/samples/AuthScheme/Program.cs?name=snippet_ma&highlight=20-29)]
 
 As the default authorization policy is overridden, it's possible to use the `[Authorize]` attribute in controllers. The controller then accepts requests with JWT issued by the first or second issuer.
 
