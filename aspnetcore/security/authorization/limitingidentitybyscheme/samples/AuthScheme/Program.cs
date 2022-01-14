@@ -1,4 +1,4 @@
-#define MA // FIRST SECOND MA MA2
+#define MA2 // FIRST SECOND MA MA2
 #if NEVER
 #elif FIRST
 #region snippet
@@ -170,21 +170,22 @@ using Microsoft.AspNetCore.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var identityConfig = builder.Configuration.GetSection("AzureAdB2C")
+var config = builder.Configuration.GetSection("AzureAdB2C")
                                           .Get<MicrosoftIdentityOptions>();
 
 // Authentication
 builder.Services.AddAuthentication("B2C")
-        .AddJwtBearer("B2C", options =>
-        {
-            options.Audience = identityConfig.ClientId;
-            options.Authority = $"{identityConfig.Instance}/{identityConfig.Domain}/{identityConfig.DefaultUserFlow}/v2.0";
-        })
-        .AddJwtBearer("AAD", options =>
-        {
-            options.Audience = identityConfig.ClientId2;
-            options.Authority = $"https://login.microsoftonline.com/{identityConfig.TenantId}/v2.0";
-        });
+   .AddJwtBearer("B2C", options =>
+   {
+       options.Audience = config.ClientId;
+       options.Authority = $"{config.Instance}/{config.Domain}/" +
+                           $"{config.DefaultUserFlow}/v2.0";
+   })
+   .AddJwtBearer("AAD", options =>
+   {
+       options.Audience = config.ClientId2;
+       options.Authority = $"https://login.microsoftonline.com/{config.TenantId}/v2.0";
+   });
 
 // Authorization
 builder.Services.AddAuthorization(options =>
