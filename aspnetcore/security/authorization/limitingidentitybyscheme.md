@@ -18,21 +18,7 @@ In some scenarios, such as Single Page Applications (SPAs), it's common to use m
 
 An authentication scheme is named when the authentication service is configured during authentication. For example:
 
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    // Code omitted for brevity
-
-    services.AddAuthentication()
-        .AddCookie(options => {
-            options.LoginPath = "/Account/Unauthorized/";
-            options.AccessDeniedPath = "/Account/Forbidden/";
-        })
-        .AddJwtBearer(options => {
-            options.Audience = "http://localhost:5001/";
-            options.Authority = "http://localhost:5000/";
-        });
-```
+[!code-csharp[](~/security/authorization/limitingidentitybyscheme/samples/AuthScheme/Program.cs?name=snippet&highlight=5-15)]
 
 In the preceding code, two authentication handlers have been added: one for cookies and one for bearer.
 
@@ -43,24 +29,11 @@ In the preceding code, two authentication handlers have been added: one for cook
 
 At the point of authorization, the app indicates the handler to be used. Select the handler with which the app will authorize by passing a comma-delimited list of authentication schemes to `[Authorize]`. The `[Authorize]` attribute specifies the authentication scheme or schemes to use regardless of whether a default is configured. For example:
 
-```csharp
-[Authorize(AuthenticationSchemes = AuthSchemes)]
-public class MixedController : Controller
-    // Requires the following imports:
-    // using Microsoft.AspNetCore.Authentication.Cookies;
-    // using Microsoft.AspNetCore.Authentication.JwtBearer;
-    private const string AuthSchemes =
-        CookieAuthenticationDefaults.AuthenticationScheme + "," +
-        JwtBearerDefaults.AuthenticationScheme;
-```
+[!code-csharp[](~/security/authorization/limitingidentitybyscheme/samples/AuthScheme/Controllers/MixedController.cs?name=snippet&highlight=11-13)]
 
-In the preceding example, both the cookie and bearer handlers run and have a chance to create and append an identity for the current user. By specifying a single scheme only, the corresponding handler runs.
+In the preceding example, both the cookie and bearer handlers run and have a chance to create and append an identity for the current user. By specifying a single scheme only, the corresponding handler runs:
 
-```csharp
-[Authorize(AuthenticationSchemes = 
-    JwtBearerDefaults.AuthenticationScheme)]
-public class MixedController : Controller
-```
+[!code-csharp[](~/security/authorization/limitingidentitybyscheme/samples/AuthScheme/Controllers/MixedController.cs?name=snippet&highlight=11-13)]lic class MixedController : Controller
 
 In the preceding code, only the handler with the "Bearer" scheme runs. Any cookie-based identities are ignored.
 
