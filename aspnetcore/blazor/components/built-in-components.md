@@ -11,7 +11,7 @@ uid: blazor/components/built-in-components
 ---
 # ASP.NET Core built-in Razor components
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 The following built-in Razor components are provided by the Blazor framework:
 
@@ -41,9 +41,9 @@ The following built-in Razor components are provided by the Blazor framework:
 * [`Router`](xref:blazor/fundamentals/routing#route-templates)
 * [`Virtualize`](xref:blazor/components/virtualization)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 The following built-in Razor components are provided by ASP.NET Core:
 
@@ -67,9 +67,9 @@ The following built-in Razor components are provided by ASP.NET Core:
 * [`Router`](xref:blazor/fundamentals/routing#route-templates)
 * [`Virtualize`](xref:blazor/components/virtualization)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-5.0"
+:::moniker range="< aspnetcore-5.0"
 
 The following built-in Razor components are provided by the Blazor framework:
 
@@ -91,4 +91,4 @@ The following built-in Razor components are provided by the Blazor framework:
 * [`NavMenu`](xref:blazor/fundamentals/routing#navlink-and-navmenu-components)
 * [`Router`](xref:blazor/fundamentals/routing#route-templates)
 
-::: moniker-end
+:::moniker-end

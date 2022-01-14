@@ -11,7 +11,7 @@ uid: blazor/supported-platforms
 ---
 # ASP.NET Core Blazor supported platforms
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 Blazor WebAssembly and Blazor Server are supported in the browsers shown in the following table.
 
@@ -29,9 +29,9 @@ Blazor WebAssembly and Blazor Server are supported in the browsers shown in the 
 * <xref:blazor/hosting-models>
 * <xref:signalr/supported-platforms>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 Blazor WebAssembly and Blazor Server are supported in the browsers shown in the following table.
 
@@ -49,9 +49,9 @@ Blazor WebAssembly and Blazor Server are supported in the browsers shown in the 
 * <xref:blazor/hosting-models>
 * <xref:signalr/supported-platforms>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-5.0"
+:::moniker range="< aspnetcore-5.0"
 
 ## Blazor WebAssembly
 
@@ -84,4 +84,4 @@ Blazor WebAssembly and Blazor Server are supported in the browsers shown in the 
 * <xref:blazor/hosting-models>
 * <xref:signalr/supported-platforms>
 
-::: moniker-end
+:::moniker-end

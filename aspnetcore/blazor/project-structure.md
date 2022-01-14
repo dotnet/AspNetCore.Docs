@@ -11,7 +11,7 @@ uid: blazor/project-structure
 ---
 # ASP.NET Core Blazor project structure
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 This article describes the files and folders that make up a Blazor app generated from one of the Blazor framework's project templates.
 
@@ -106,9 +106,9 @@ Additional files and folders may appear in an app produced from a Blazor Server 
 * <xref:blazor/hosting-models>
 * <xref:fundamentals/minimal-apis>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 This article describes the files and folders that make up a Blazor app generated from one of the Blazor framework's project templates. For information on how to use tooling to create a Blazor app from a Blazor project template, see <xref:blazor/tooling>. For information on Blazor's hosting models, Blazor WebAssembly and Blazor Server, see <xref:blazor/hosting-models>.
 
@@ -203,9 +203,9 @@ Additional files and folders may appear in an app produced from a Blazor Server 
 * <xref:blazor/tooling>
 * <xref:blazor/hosting-models>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-5.0"
+:::moniker range="< aspnetcore-5.0"
 
 This article describes the files and folders that make up a Blazor app generated from one of the Blazor framework's project templates. For information on how to use tooling to create a Blazor app from a Blazor project template, see <xref:blazor/tooling>. For information on Blazor's hosting models, Blazor WebAssembly and Blazor Server, see <xref:blazor/hosting-models>.
 
@@ -296,4 +296,4 @@ Additional files and folders may appear in an app produced from a Blazor Server 
 * <xref:blazor/tooling>
 * <xref:blazor/hosting-models>
 
-::: moniker-end
+:::moniker-end

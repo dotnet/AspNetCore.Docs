@@ -11,7 +11,7 @@ uid: blazor/host-and-deploy/index
 ---
 # Host and deploy ASP.NET Core Blazor
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 ## Publish the app
 
@@ -214,9 +214,9 @@ For deployment guidance, see the following topics:
 * <xref:blazor/host-and-deploy/webassembly>
 * <xref:blazor/host-and-deploy/server>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 ## Publish the app
 
@@ -407,9 +407,9 @@ For deployment guidance, see the following topics:
 * <xref:blazor/host-and-deploy/webassembly>
 * <xref:blazor/host-and-deploy/server>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-5.0"
+:::moniker range="< aspnetcore-5.0"
 
 ## Publish the app
 
@@ -600,4 +600,4 @@ For deployment guidance, see the following topics:
 * <xref:blazor/host-and-deploy/webassembly>
 * <xref:blazor/host-and-deploy/server>
 
-::: moniker-end
+:::moniker-end

@@ -11,7 +11,7 @@ uid: blazor/fundamentals/configuration
 ---
 # ASP.NET Core Blazor configuration
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 > [!NOTE]
 > This topic applies to Blazor WebAssembly. For general guidance on ASP.NET Core app configuration, see <xref:fundamentals/configuration/index>.
@@ -240,9 +240,9 @@ Configuration files are cached for offline use. With [Progressive Web Applicatio
 
 For more information on how background updates are handled by PWAs, see <xref:blazor/progressive-web-app#background-updates>.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 > [!NOTE]
 > This topic applies to Blazor WebAssembly. For general guidance on ASP.NET Core app configuration, see <xref:fundamentals/configuration/index>.
@@ -472,9 +472,9 @@ Configuration files are cached for offline use. With [Progressive Web Applicatio
 
 For more information on how background updates are handled by PWAs, see <xref:blazor/progressive-web-app#background-updates>.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-5.0"
+:::moniker range="< aspnetcore-5.0"
 
 > [!NOTE]
 > This topic applies to Blazor WebAssembly. For general guidance on ASP.NET Core app configuration, see <xref:fundamentals/configuration/index>.
@@ -704,4 +704,4 @@ Configuration files are cached for offline use. With [Progressive Web Applicatio
 
 For more information on how background updates are handled by PWAs, see <xref:blazor/progressive-web-app#background-updates>.
 
-::: moniker-end
+:::moniker-end

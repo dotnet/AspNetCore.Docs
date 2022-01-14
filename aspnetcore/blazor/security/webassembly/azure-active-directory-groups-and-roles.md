@@ -11,7 +11,7 @@ uid: blazor/security/webassembly/aad-groups-roles
 ---
 # Azure Active Directory (AAD) groups, Administrator Roles, and App Roles
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 Azure Active Directory (AAD) provides several authorization approaches that can be combined with ASP.NET Core Identity:
 
@@ -551,9 +551,9 @@ Multiple role tests are supported:
 * <xref:security/authorization/roles>
 * <xref:blazor/security/index>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 Azure Active Directory (AAD) provides several authorization approaches that can be combined with ASP.NET Core Identity:
 
@@ -1093,4 +1093,4 @@ Multiple role tests are supported:
 * <xref:security/authorization/roles>
 * <xref:blazor/security/index>
 
-::: moniker-end
+:::moniker-end

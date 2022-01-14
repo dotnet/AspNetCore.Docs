@@ -11,7 +11,7 @@ uid: blazor/webassembly-lazy-load-assemblies
 ---
 # Lazy load assemblies in ASP.NET Core Blazor WebAssembly
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 Blazor WebAssembly app startup performance can be improved by waiting to load app assemblies until the assemblies are required, which is called *lazy loading*.
 
@@ -373,9 +373,9 @@ If the `Robot` component from the RCL is requested at `https://localhost:5001/ro
 * [Handle asynchronous navigation events with `OnNavigateAsync`](xref:blazor/fundamentals/routing#handle-asynchronous-navigation-events-with-onnavigateasync)
 * <xref:blazor/performance>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 Blazor WebAssembly app startup performance can be improved by waiting to load app assemblies until the assemblies are required, which is called *lazy loading*.
 
@@ -743,4 +743,4 @@ If the `Robot` component from the RCL is requested at `https://localhost:5001/ro
 * [Handle asynchronous navigation events with `OnNavigateAsync`](xref:blazor/fundamentals/routing#handle-asynchronous-navigation-events-with-onnavigateasync)
 * <xref:blazor/performance>
 
-::: moniker-end
+:::moniker-end

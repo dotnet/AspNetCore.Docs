@@ -12,9 +12,9 @@ zone_pivot_groups: operating-systems
 ---
 # Tooling for ASP.NET Core Blazor
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
-::: zone pivot="windows"
+:::zone pivot="windows"
 
 1. Install the latest version of [Visual Studio 2022](https://visualstudio.microsoft.com) with the **ASP.NET and web development** workload.
 
@@ -36,9 +36,9 @@ For more information on trusting the ASP.NET Core HTTPS development certificate,
 
 When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="linux"
+:::zone pivot="linux"
 
 1. Install the latest version of the [.NET Core SDK](https://dotnet.microsoft.com/download). If you previously installed the SDK, you can determine your installed version by executing the following command in a command shell:
 
@@ -231,9 +231,9 @@ There's no centralized way to trust a certificate on Linux. Typically, one of th
 
 For more information, see the guidance provided by your browser manufacturer and Linux distribution.
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="macos"
+:::zone pivot="macos"
 
 1. Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/).
 
@@ -257,7 +257,7 @@ If a prompt appears to trust the development certificate, trust the certificate 
 
 When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
 
-::: zone-end
+:::zone-end
 
 ## Use Visual Studio Code for cross-platform Blazor development
 
@@ -300,11 +300,11 @@ For more information, see the following resources:
 * <xref:blazor/hosting-models>
 * <xref:blazor/project-structure>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-::: zone pivot="windows"
+:::zone pivot="windows"
 
 1. Install the latest version of [Visual Studio 2022](https://visualstudio.microsoft.com) with the **ASP.NET and web development** workload.
 
@@ -326,9 +326,9 @@ For more information on trusting the ASP.NET Core HTTPS development certificate,
 
 When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="linux"
+:::zone pivot="linux"
 
 1. Install the latest version of the [.NET Core SDK](https://dotnet.microsoft.com/download). If you previously installed the SDK, you can determine your installed version by executing the following command in a command shell:
 
@@ -477,9 +477,9 @@ There's no centralized way to trust a certificate on Linux. Typically, one of th
 
 For more information, see the guidance provided by your browser manufacturer and Linux distribution.
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="macos"
+:::zone pivot="macos"
 
 1. Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/).
 
@@ -503,7 +503,7 @@ If a prompt appears to trust the development certificate, trust the certificate 
 
 When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
 
-::: zone-end
+:::zone-end
 
 ## Use Visual Studio Code for cross-platform Blazor development
 
@@ -530,11 +530,11 @@ dotnet new blazorserver -h
 * <xref:blazor/hosting-models>
 * <xref:blazor/project-structure>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-5.0"
+:::moniker range="< aspnetcore-5.0"
 
-::: zone pivot="windows"
+:::zone pivot="windows"
 
 1. Install the latest version of [Visual Studio 2022](https://visualstudio.microsoft.com) with the **ASP.NET and web development** workload.
 
@@ -556,9 +556,9 @@ For more information on trusting the ASP.NET Core HTTPS development certificate,
 
 When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="linux"
+:::zone pivot="linux"
 
 1. Install the latest version of the [.NET Core SDK](https://dotnet.microsoft.com/download). If you previously installed the SDK, you can determine your installed version by executing the following command in a command shell:
 
@@ -707,9 +707,9 @@ There's no centralized way to trust a certificate on Linux. Typically, one of th
 
 For more information, see the guidance provided by your browser manufacturer and Linux distribution.
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="macos"
+:::zone pivot="macos"
 
 1. Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/).
 
@@ -733,7 +733,7 @@ If a prompt appears to trust the development certificate, trust the certificate 
 
 When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
 
-::: zone-end
+:::zone-end
 
 ## Use Visual Studio Code for cross-platform Blazor development
 
@@ -760,4 +760,4 @@ dotnet new blazorserver -h
 * <xref:blazor/hosting-models>
 * <xref:blazor/project-structure>
 
-::: moniker-end
+:::moniker-end

@@ -11,7 +11,7 @@ uid: blazor/performance
 ---
 # ASP.NET Core Blazor performance best practices
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 Blazor is optimized for high performance in most realistic application UI scenarios. However, the best performance depends on developers adopting the correct patterns and features.
 
@@ -768,9 +768,9 @@ Blazor WebAssembly's runtime includes the following .NET features that can be di
 
 * By default, Blazor WebAssembly carries globalization resources required to display values, such as dates and currency, in the user's culture. If the app doesn't require localization, you may [configure the app to support the invariant culture](xref:blazor/globalization-localization#invariant-globalization), which is based on the `en-US` culture.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 Blazor is optimized for high performance in most realistic application UI scenarios. However, the best performance depends on developers adopting the correct patterns and features.
 
@@ -1519,9 +1519,9 @@ Blazor WebAssembly's runtime includes the following .NET features that can be di
 
 * By default, Blazor WebAssembly carries globalization resources required to display values, such as dates and currency, in the user's culture. If the app doesn't require localization, you may [configure the app to support the invariant culture](xref:blazor/globalization-localization#invariant-globalization), which is based on the `en-US` culture.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-5.0"
+:::moniker range="< aspnetcore-5.0"
 
 Blazor is optimized for high performance in most realistic application UI scenarios. However, the best performance depends on developers adopting the correct patterns and features.
 
@@ -2245,4 +2245,4 @@ Blazor WebAssembly's runtime includes the following .NET features that can be di
 
 * By default, Blazor WebAssembly carries globalization resources required to display values, such as dates and currency, in the user's culture. If the app doesn't require localization, you may [configure the app to support the invariant culture](xref:blazor/globalization-localization#invariant-globalization), which is based on the `en-US` culture.
 
-::: moniker-end
+:::moniker-end

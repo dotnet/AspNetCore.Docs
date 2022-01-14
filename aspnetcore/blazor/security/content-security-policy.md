@@ -11,7 +11,7 @@ uid: blazor/security/content-security-policy
 ---
 # Enforce a Content Security Policy for ASP.NET Core Blazor
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 [Cross-Site Scripting (XSS)](xref:security/cross-site-scripting) is a security vulnerability where an attacker places one or more malicious client-side scripts into an app's rendered content. A Content Security Policy (CSP) helps protect against XSS attacks by informing the browser of valid:
 
@@ -158,9 +158,9 @@ Test and update an app's policy every release.
 * [Content Security Policy Level 2](https://www.w3.org/TR/CSP2/)
 * [Google CSP Evaluator](https://csp-evaluator.withgoogle.com/)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 [Cross-Site Scripting (XSS)](xref:security/cross-site-scripting) is a security vulnerability where an attacker places one or more malicious client-side scripts into an app's rendered content. A Content Security Policy (CSP) helps protect against XSS attacks by informing the browser of valid:
 
@@ -310,9 +310,9 @@ Test and update an app's policy every release.
 * [Content Security Policy Level 2](https://www.w3.org/TR/CSP2/)
 * [Google CSP Evaluator](https://csp-evaluator.withgoogle.com/)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-5.0"
+:::moniker range="< aspnetcore-5.0"
 
 [Cross-Site Scripting (XSS)](xref:security/cross-site-scripting) is a security vulnerability where an attacker places one or more malicious client-side scripts into an app's rendered content. A Content Security Policy (CSP) helps protect against XSS attacks by informing the browser of valid:
 
@@ -465,4 +465,4 @@ Test and update an app's policy every release.
 * [Content Security Policy Level 2](https://www.w3.org/TR/CSP2/)
 * [Google CSP Evaluator](https://csp-evaluator.withgoogle.com/)
 
-::: moniker-end
+:::moniker-end

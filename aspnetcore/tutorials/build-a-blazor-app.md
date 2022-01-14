@@ -12,7 +12,7 @@ zone_pivot_groups: blazor-hosting-models
 ---
 # Build a Blazor todo list app
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 This tutorial shows you how to build and modify a Blazor app. You learn how to:
 
@@ -32,21 +32,21 @@ At the end of this tutorial, you'll have a working todo list app.
 
 Create a new Blazor app named `TodoList` in a command shell:
 
-::: zone pivot="server"
+:::zone pivot="server"
 
 ```dotnetcli
 dotnet new blazorserver -o TodoList
 ```
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="webassembly"
+:::zone pivot="webassembly"
 
 ```dotnetcli
 dotnet new blazorwasm -o TodoList
 ```
 
-::: zone-end
+:::zone-end
 
 The preceding command creates a folder named `TodoList` with the `-o|--output` option to hold the app. The `TodoList` folder is the *root folder* of the project. Change directories to the `TodoList` folder with the following command:
 
@@ -187,9 +187,9 @@ Learn about tooling for ASP.NET Core Blazor:
 > [!div class="nextstepaction"]
 > <xref:blazor/tooling>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 This tutorial shows you how to build and modify a Blazor app. You learn how to:
 
@@ -209,21 +209,21 @@ At the end of this tutorial, you'll have a working todo list app.
 
 Create a new Blazor app named `TodoList` in a command shell:
 
-::: zone pivot="server"
+:::zone pivot="server"
 
 ```dotnetcli
 dotnet new blazorserver -o TodoList
 ```
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="webassembly"
+:::zone pivot="webassembly"
 
 ```dotnetcli
 dotnet new blazorwasm -o TodoList
 ```
 
-::: zone-end
+:::zone-end
 
 The preceding command creates a folder named `TodoList` with the `-o|--output` option to hold the app. The `TodoList` folder is the *root folder* of the project. Change directories to the `TodoList` folder with the following command:
 
@@ -364,9 +364,9 @@ Learn about tooling for ASP.NET Core Blazor:
 > [!div class="nextstepaction"]
 > <xref:blazor/tooling>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-5.0"
+:::moniker range="< aspnetcore-5.0"
 
 This tutorial shows you how to build and modify a Blazor app. You learn how to:
 
@@ -386,21 +386,21 @@ At the end of this tutorial, you'll have a working todo list app.
 
 Create a new Blazor app named `TodoList` in a command shell:
 
-::: zone pivot="server"
+:::zone pivot="server"
 
 ```dotnetcli
 dotnet new blazorserver -o TodoList
 ```
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="webassembly"
+:::zone pivot="webassembly"
 
 ```dotnetcli
 dotnet new blazorwasm -o TodoList
 ```
 
-::: zone-end
+:::zone-end
 
 The preceding command creates a folder named `TodoList` with the `-o|--output` option to hold the app. The `TodoList` folder is the *root folder* of the project. Change directories to the `TodoList` folder with the following command:
 
@@ -541,4 +541,4 @@ Learn about tooling for ASP.NET Core Blazor:
 > [!div class="nextstepaction"]
 > <xref:blazor/tooling>
 
-::: moniker-end
+:::moniker-end
