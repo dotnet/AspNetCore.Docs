@@ -14,7 +14,7 @@ uid: data/ef-rp/intro
 
 By [Tom Dykstra](https://github.com/tdykstra), [Jeremy Likness](https://twitter.com/jeremylikness), and [Jon P Smith](https://twitter.com/thereformedprog)
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 This is the first in a series of tutorials that show how to use Entity Framework (EF) Core in an [ASP.NET Core Razor Pages](xref:razor-pages/index) app. The tutorials build a web site for a fictional Contoso University. The site includes functionality such as student admission, course creation, and instructor assignments. The tutorial uses the code first approach. For information on following this tutorial using the database first approach, see [this Github issue](https://github.com/dotnet/AspNetCore.Docs/issues/16897).
 
@@ -529,13 +529,6 @@ In general, a web page shouldn't be loading an arbitrary number of rows. A query
 
 Enumerating a large table in a view could return a partially constructed HTTP 200 response if a database exception occurs part way through the enumeration.
 
-<xref:Microsoft.AspNetCore.Mvc.MvcOptions.MaxModelBindingCollectionSize> defaults to 1024. The following code sets `MaxModelBindingCollectionSize`:
-
-<!-- Review: If I set MaxModelBindingCollectionSize to 3, it still returns all the rows. Is there a minimum? -->
- [!code-csharp[Main](intro/samples/cu60/ProgramMax.cs?name=snippet&highlight=14-18)]
-
-See [Configuration](xref:fundamentals/configuration/index) for information on configuration settings like `MyMaxModelBindingCollectionSize`.
-
 Paging is covered later in the tutorial.
 
 For more information, see [Performance considerations (EF)](/dotnet/framework/data/adonet/ef/performance-considerations).
@@ -547,9 +540,9 @@ For more information, see [Performance considerations (EF)](/dotnet/framework/da
 > [!div class="step-by-step"]
 > [Next tutorial](xref:data/ef-rp/crud)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-5.0"
+:::moniker range="< aspnetcore-5.0"
 
 This is the first in a series of tutorials that show how to use Entity Framework (EF) Core in an [ASP.NET Core Razor Pages](xref:razor-pages/index) app. The tutorials build a web site for a fictional Contoso University. The site includes functionality such as student admission, course creation, and instructor assignments. The tutorial uses the code first approach. For information on following this tutorial using the database first approach, see [this Github issue](https://github.com/dotnet/AspNetCore.Docs/issues/16897).
 
@@ -982,9 +975,9 @@ For more information about asynchronous programming in .NET, see [Async Overview
 > [!div class="step-by-step"]
 > [Next tutorial](xref:data/ef-rp/crud)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="= aspnetcore-5.0"
+:::moniker range="= aspnetcore-5.0"
 
 This is the first in a series of tutorials that show how to use Entity Framework (EF) Core in an [ASP.NET Core Razor Pages](xref:razor-pages/index) app. The tutorials build a web site for a fictional Contoso University. The site includes functionality such as student admission, course creation, and instructor assignments. The tutorial uses the code first approach. For information on following this tutorial using the database first approach, see [this Github issue](https://github.com/dotnet/AspNetCore.Docs/issues/16897).
 
@@ -1497,4 +1490,4 @@ For more information, see [Performance considerations (EF)](/dotnet/framework/da
 > [!div class="step-by-step"]
 > [Next tutorial](xref:data/ef-rp/crud)
 
-::: moniker-end
+:::moniker-end
