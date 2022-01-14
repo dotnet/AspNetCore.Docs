@@ -50,7 +50,7 @@ The output is logged as a single message at `LogLevel.Information`.
 
 To configure the HTTP logging middleware, call <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddHttpLogging%2A> in `Program.cs`.
 
-[!code-csharp[](samples/6.x/Program.cs?name=Addservices)]
+[!code-csharp[](samples/6.x/Program.cs)]
 
 ### `LoggingFields`
 
