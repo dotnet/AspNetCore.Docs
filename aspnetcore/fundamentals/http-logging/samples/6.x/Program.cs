@@ -1,10 +1,10 @@
+#region Addservices
 using Microsoft.AspNetCore.HttpLogging;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 //builder.Services.AddRazorPages();
-#region Addservices
 builder.Services.AddHttpLogging(logging =>
 {
     //Customize http logging here
