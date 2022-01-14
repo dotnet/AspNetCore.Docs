@@ -10,7 +10,7 @@ uid: performance/caching/response
 ---
 # Response caching in ASP.NET Core
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT), and [Kirk Larkin](https://twitter.com/serpent5)
+By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://twitter.com/serpent5)
 
 ::: moniker range=">= aspnetcore-6.0"
 
