@@ -45,7 +45,7 @@ If you prefer to specify the desired schemes in [policy](xref:security/authoriza
 
 In the preceding example, the "Over18" policy only runs against the identity created by the "Bearer" handler. Use the policy by setting the `[Authorize]` attribute's `Policy` property:
 
-[!code-csharp[](~/security/authorization/limitingidentitybyscheme/samples/AuthScheme/Controllers/MixedController.cs?name=RegistrationController&highlight=5)]
+[!code-csharp[](~/security/authorization/limitingidentitybyscheme/samples/AuthScheme/Controllers/RegistrationController.cs?name=snippet&highlight=5)]
 
 ## Use multiple authentication schemes
 
