@@ -51,14 +51,14 @@ In the preceding example, the "Over18" policy only runs against the identity cre
 
 Some apps may need to support multiple types of authentication. For example, your app might authenticate users from Azure Active Directory and from a users database. Another example is an app that authenticates users from both Active Directory Federation Services and Azure Active Directory B2C. In this case, the app should accept a JWT bearer token from several issuers.
 
-Add all authentication schemes you'd like to accept. For example, the following code in `Startup.ConfigureServices` adds two JWT bearer authentication schemes with different issuers:
+Add all authentication schemes you'd like to accept. For example, the following code adds two JWT bearer authentication schemes with different issuers:
 
 [!code-csharp[](~/security/authorization/limitingidentitybyscheme/samples/AuthScheme/Program.cs?name=snippet_ma&highlight=7-18)]
 
 > [!NOTE]
 > Only one JWT bearer authentication is registered with the default authentication scheme `JwtBearerDefaults.AuthenticationScheme`. Additional authentication has to be registered with a unique authentication scheme.
 
-The next step is to update the default authorization policy to accept both authentication schemes. For example:
+Update the default authorization policy to accept both authentication schemes. For example:
 
 [!code-csharp[](~/security/authorization/limitingidentitybyscheme/samples/AuthScheme/Program.cs?name=snippet_ma&highlight=20-29)]
 
@@ -66,7 +66,7 @@ As the default authorization policy is overridden, it's possible to use the `[Au
 
 See [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/26002) on using multiple authentication schemes.
 
-Alternative multiple authentication scheme code:
+The following example uses [Azure Active Directory B2C](/azure/active-directory-b2c/overview) and another [Azure Active Directory](/azure/active-directory/authentication/overview-authentication) tenant:
 
 [!code-csharp[](~/security/authorization/limitingidentitybyscheme/samples/AuthScheme/Program.cs?name=snippet_ma2&highlight=9-29)]
 
