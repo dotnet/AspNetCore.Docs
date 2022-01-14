@@ -12,7 +12,7 @@ zone_pivot_groups: blazor-hosting-models
 ---
 # ASP.NET Core Blazor file uploads
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 > [!WARNING]
 > Always follow security best practices when permitting users to upload files. For more information, see <xref:mvc/models/file-uploads#security-considerations>.
@@ -106,17 +106,17 @@ The following example demonstrates multiple file upload in a component. <xref:Mi
 
 `Pages/FileUpload1.razor`:
 
-::: zone pivot="webassembly"
+:::zone pivot="webassembly"
 
 [!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload1.razor)]
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="server"
+:::zone pivot="server"
 
 [!code-razor[](~/blazor/samples/6.0/BlazorSample_Server/Pages/file-uploads/FileUpload1.razor)]
 
-::: zone-end
+:::zone-end
 
 <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile> returns metadata [exposed by the browser](https://developer.mozilla.org/docs/Web/API/File#Instance_properties) as properties. Use this metadata for preliminary validation.
 
@@ -130,13 +130,13 @@ The following example demonstrates multiple file upload in a component. <xref:Mi
 
 ## Upload files to a server
 
-::: zone pivot="webassembly"
+:::zone pivot="webassembly"
 
 The following example demonstrates uploading files to a web API controller in the **`Server`** app of a hosted Blazor WebAssembly solution.
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="server"
+:::zone pivot="server"
 
 The following example demonstrates uploading files from a Blazor Server app to a backend web API controller in a separate app, possibly on a separate server.
 
@@ -157,11 +157,11 @@ For the examples in this section:
 
 For testing, the preceding URLs are configured in the projects' `Properties/launchSettings.json` files.
 
-::: zone-end
+:::zone-end
 
 ### Upload result class
 
-::: zone pivot="webassembly"
+:::zone pivot="webassembly"
 
 The following `UploadResult` class in the **`Shared`** project maintains the result of an uploaded file. When a file fails to upload on the server, an error code is returned in `ErrorCode` for display to the user. A safe file name is generated on the server for each file and returned to the client in `StoredFileName` for display. Files are keyed between the client and server using the unsafe/untrusted file name in `FileName`. In the following example, the project's namespace is `BlazorSample.Shared`.
 
@@ -186,9 +186,9 @@ To make the `UploadResult` class available to the **`Client`** project, add an i
 @using BlazorSample.Shared
 ```
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="server"
+:::zone pivot="server"
 
 The following `UploadResult` class is placed in the client project and in the web API project to maintain the result of an uploaded file. When a file fails to upload on the server, an error code is returned in `ErrorCode` for display to the user. A safe file name is generated on the server for each file and returned to the client in `StoredFileName` for display. Files are keyed between the client and server using the unsafe/untrusted file name in `FileName`.
 
@@ -204,7 +204,7 @@ public class UploadResult
 }
 ```
 
-::: zone-end
+:::zone-end
 
 > [!NOTE]
 > A security best practice for production apps is to avoid sending error messages to clients that might reveal sensitive information about an app, server, or network. Providing detailed error messages can aid a malicious user in devising attacks on an app, server, or network. The example code in this section only sends back an error code number (`int`) for display by the component client-side if a server-side error occurs. If a user requires assistance with a file upload, they provide the error code to support personnel for support ticket resolution without ever knowing the exact cause of the error.
@@ -224,25 +224,25 @@ The following `FileUpload2` component:
 >
 > For more information on security considerations when uploading files to a server, see <xref:mvc/models/file-uploads#security-considerations>.
 
-::: zone pivot="webassembly"
+:::zone pivot="webassembly"
 
 `Pages/FileUpload2.razor` in the **`Client`** project:
 
 [!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload2.razor)]
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="server"
+:::zone pivot="server"
 
 `Pages/FileUpload2.razor` in the Blazor Server app:
 
 [!code-razor[](~/blazor/samples/6.0/BlazorSample_Server/Pages/file-uploads/FileUpload2.razor)]
 
-::: zone-end
+:::zone-end
 
 ### Upload controller
 
-::: zone pivot="webassembly"
+:::zone pivot="webassembly"
 
 The following controller in the **`Server`** project saves uploaded files from the client.
 
@@ -356,9 +356,9 @@ public class FilesaveController : ControllerBase
 }
 ```
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="server"
+:::zone pivot="server"
 
 The following controller in the web API project saves uploaded files from the client.
 
@@ -471,11 +471,11 @@ public class FilesaveController : ControllerBase
 }
 ```
 
-::: zone-end
+:::zone-end
 
 In the preceding code, <xref:System.IO.Path.GetRandomFileName%2A> is called to generate a secure filename. Never trust the filename provided by the browser, as an attacker may choose an existing filename that overwrites an existing file or send a path that attempts to write outside of the app.
 
-::: zone pivot="server"
+:::zone pivot="server"
 
 ## Upload files with progress
 
@@ -496,30 +496,30 @@ For more information, see the following API resources:
 * <xref:System.IO.FileStream>: Provides a <xref:System.IO.Stream> for a file, supporting both synchronous and asynchronous read and write operations.
 * <xref:System.IO.FileStream.ReadAsync%2A?displayProperty=nameWithType>: The preceding `FileUpload3` component reads the stream asynchronously with <xref:System.IO.FileStream.ReadAsync%2A>. Reading a stream synchronously with <xref:System.IO.FileStream.Read%2A> isn't supported in Razor components.
 
-::: zone-end
+:::zone-end
 
 ## File streams
 
-::: zone pivot="webassembly"
+:::zone pivot="webassembly"
 
 In Blazor WebAssembly, file data is streamed directly into the .NET code within the browser.
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="server"
+:::zone pivot="server"
 
 In Blazor Server, file data is streamed over the SignalR connection into .NET code on the server as the file is read.
 
-::: zone-end
+:::zone-end
 
 ## Additional resources
 
 * <xref:mvc/models/file-uploads#security-considerations>
 * <xref:blazor/forms-validation>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 > [!WARNING]
 > Always follow security best practices when permitting users to upload files. For more information, see <xref:mvc/models/file-uploads#security-considerations>.
@@ -616,17 +616,17 @@ The following example demonstrates multiple file upload in a component. <xref:Mi
 
 `Pages/FileUpload1.razor`:
 
-::: zone pivot="webassembly"
+:::zone pivot="webassembly"
 
 [!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload1.razor)]
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="server"
+:::zone pivot="server"
 
 [!code-razor[](~/blazor/samples/5.0/BlazorSample_Server/Pages/file-uploads/FileUpload1.razor)]
 
-::: zone-end
+:::zone-end
 
 <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile> returns metadata [exposed by the browser](https://developer.mozilla.org/docs/Web/API/File#Instance_properties) as properties. Use this metadata for preliminary validation.
 
@@ -640,13 +640,13 @@ The following example demonstrates multiple file upload in a component. <xref:Mi
 
 ## Upload files to a server
 
-::: zone pivot="webassembly"
+:::zone pivot="webassembly"
 
 The following example demonstrates uploading files to a web API controller in the **`Server`** app of a hosted Blazor WebAssembly solution.
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="server"
+:::zone pivot="server"
 
 The following example demonstrates uploading files from a Blazor Server app to a backend web API controller in a separate app, possibly on a separate server.
 
@@ -667,11 +667,11 @@ For the examples in this section:
 
 For testing, the preceding URLs are configured in the projects' `Properties/launchSettings.json` files.
 
-::: zone-end
+:::zone-end
 
 ### Upload result class
 
-::: zone pivot="webassembly"
+:::zone pivot="webassembly"
 
 The following `UploadResult` class in the **`Shared`** project maintains the result of an uploaded file. When a file fails to upload on the server, an error code is returned in `ErrorCode` for display to the user. A safe file name is generated on the server for each file and returned to the client in `StoredFileName` for display. Files are keyed between the client and server using the unsafe/untrusted file name in `FileName`. In the following example, the project's namespace is `BlazorSample.Shared`.
 
@@ -696,9 +696,9 @@ To make the `UploadResult` class available to the **`Client`** project, add an i
 @using BlazorSample.Shared
 ```
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="server"
+:::zone pivot="server"
 
 The following `UploadResult` class is placed in the client project and in the web API project to maintain the result of an uploaded file. When a file fails to upload on the server, an error code is returned in `ErrorCode` for display to the user. A safe file name is generated on the server for each file and returned to the client in `StoredFileName` for display. Files are keyed between the client and server using the unsafe/untrusted file name in `FileName`.
 
@@ -714,7 +714,7 @@ public class UploadResult
 }
 ```
 
-::: zone-end
+:::zone-end
 
 > [!NOTE]
 > A security best practice for production apps is to avoid sending error messages to clients that might reveal sensitive information about an app, server, or network. Providing detailed error messages can aid a malicious user in devising attacks on an app, server, or network. The example code in this section only sends back an error code number (`int`) for display by the component client-side if a server-side error occurs. If a user requires assistance with a file upload, they provide the error code to support personnel for support ticket resolution without ever knowing the exact cause of the error.
@@ -734,25 +734,25 @@ The following `FileUpload2` component:
 >
 > For more information on security considerations when uploading files to a server, see <xref:mvc/models/file-uploads#security-considerations>.
 
-::: zone pivot="webassembly"
+:::zone pivot="webassembly"
 
 `Pages/FileUpload2.razor` in the **`Client`** project:
 
 [!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload2.razor)]
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="server"
+:::zone pivot="server"
 
 `Pages/FileUpload2.razor` in the Blazor Server app:
 
 [!code-razor[](~/blazor/samples/5.0/BlazorSample_Server/Pages/file-uploads/FileUpload2.razor)]
 
-::: zone-end
+:::zone-end
 
 ### Upload controller
 
-::: zone pivot="webassembly"
+:::zone pivot="webassembly"
 
 The following controller in the **`Server`** project saves uploaded files from the client.
 
@@ -866,9 +866,9 @@ public class FilesaveController : ControllerBase
 }
 ```
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="server"
+:::zone pivot="server"
 
 The following controller in the web API project saves uploaded files from the client.
 
@@ -981,9 +981,9 @@ public class FilesaveController : ControllerBase
 }
 ```
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="server"
+:::zone pivot="server"
 
 ## Upload files with progress
 
@@ -1004,21 +1004,21 @@ For more information, see the following API resources:
 * <xref:System.IO.FileStream>: Provides a <xref:System.IO.Stream> for a file, supporting both synchronous and asynchronous read and write operations.
 * <xref:System.IO.FileStream.ReadAsync%2A?displayProperty=nameWithType>: The preceding `FileUpload3` component reads the stream asynchronously with <xref:System.IO.FileStream.ReadAsync%2A>. Reading a stream synchronously with <xref:System.IO.FileStream.Read%2A> isn't supported in Razor components.
 
-::: zone-end
+:::zone-end
 
 ## File streams
 
-::: zone pivot="webassembly"
+:::zone pivot="webassembly"
 
 In Blazor WebAssembly, file data is streamed directly into the .NET code within the browser.
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="server"
+:::zone pivot="server"
 
 In Blazor Server, file data is streamed over the SignalR connection into .NET code on the server as the file is read from the stream. <xref:Microsoft.AspNetCore.Components.Forms.RemoteBrowserFileStreamOptions> allows configuring file upload characteristics for Blazor Server.
 
-::: zone-end
+:::zone-end
 
 ## Additional resources
 
@@ -1027,4 +1027,4 @@ In Blazor Server, file data is streamed over the SignalR connection into .NET co
 * <xref:mvc/models/file-uploads#security-considerations>
 * <xref:blazor/forms-validation>
 
-::: moniker-end
+:::moniker-end

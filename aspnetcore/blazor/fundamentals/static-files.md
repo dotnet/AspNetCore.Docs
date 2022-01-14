@@ -11,7 +11,7 @@ uid: blazor/fundamentals/static-files
 ---
 # ASP.NET Core Blazor static files
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 This article describes the configuration for serving static files in Blazor apps.
 
@@ -112,9 +112,9 @@ To create additional file mappings with a <xref:Microsoft.AspNetCore.StaticFiles
 * [App base path](xref:blazor/host-and-deploy/index#app-base-path)
 * [Hosted deployment with multiple Blazor WebAssembly apps](xref:blazor/host-and-deploy/webassembly#hosted-deployment-with-multiple-blazor-webassembly-apps)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 This article describes the configuration for serving static files in Blazor apps.
 
@@ -215,9 +215,9 @@ To create additional file mappings with a <xref:Microsoft.AspNetCore.StaticFiles
 * [App base path](xref:blazor/host-and-deploy/index#app-base-path)
 * [Hosted deployment with multiple Blazor WebAssembly apps](xref:blazor/host-and-deploy/webassembly#hosted-deployment-with-multiple-blazor-webassembly-apps)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-5.0"
+:::moniker range="< aspnetcore-5.0"
 
 This article describes the configuration for serving static files in Blazor apps.
 
@@ -323,4 +323,4 @@ To create additional file mappings with a <xref:Microsoft.AspNetCore.StaticFiles
 * [App base path](xref:blazor/host-and-deploy/index#app-base-path)
 * [Hosted deployment with multiple Blazor WebAssembly apps](xref:blazor/host-and-deploy/webassembly#hosted-deployment-with-multiple-blazor-webassembly-apps)
 
-::: moniker-end
+:::moniker-end

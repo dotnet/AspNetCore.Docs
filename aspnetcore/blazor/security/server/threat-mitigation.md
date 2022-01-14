@@ -11,7 +11,7 @@ uid: blazor/security/server/threat-mitigation
 ---
 # Threat mitigation guidance for ASP.NET Core Blazor Server
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 Blazor Server apps adopt a *stateful* data processing model, where the server and client maintain a long-lived relationship. The persistent state is maintained by a [circuit](xref:blazor/state-management), which can span connections that are also potentially long-lived.
 
@@ -400,9 +400,9 @@ The following list of security considerations isn't comprehensive:
 * Ensure CORS settings are appropriate when enabling CORS or explicitly disable CORS for Blazor apps.
 * Test to ensure that the server-side limits for the Blazor app provide an acceptable user experience without unacceptable levels of risk.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 Blazor Server apps adopt a *stateful* data processing model, where the server and client maintain a long-lived relationship. The persistent state is maintained by a [circuit](xref:blazor/state-management), which can span connections that are also potentially long-lived.
 
@@ -791,9 +791,9 @@ The following list of security considerations isn't comprehensive:
 * Ensure CORS settings are appropriate when enabling CORS or explicitly disable CORS for Blazor apps.
 * Test to ensure that the server-side limits for the Blazor app provide an acceptable user experience without unacceptable levels of risk.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-5.0"
+:::moniker range="< aspnetcore-5.0"
 
 Blazor Server apps adopt a *stateful* data processing model, where the server and client maintain a long-lived relationship. The persistent state is maintained by a [circuit](xref:blazor/state-management), which can span connections that are also potentially long-lived.
 
@@ -1182,4 +1182,4 @@ The following list of security considerations isn't comprehensive:
 * Ensure CORS settings are appropriate when enabling CORS or explicitly disable CORS for Blazor apps.
 * Test to ensure that the server-side limits for the Blazor app provide an acceptable user experience without unacceptable levels of risk.
 
-::: moniker-end
+:::moniker-end

@@ -11,7 +11,7 @@ uid: blazor/fundamentals/handle-errors
 ---
 # Handle errors in ASP.NET Core Blazor apps
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 This article describes how Blazor manages unhandled exceptions and how to develop apps that detect and handle errors.
 
@@ -483,9 +483,9 @@ Consider manual render tree builder logic on the same level of complexity and wi
 
 &dagger;Applies to backend ASP.NET Core web API apps that client-side Blazor WebAssembly apps use for logging.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 This article describes how Blazor manages unhandled exceptions and how to develop apps that detect and handle errors.
 
@@ -977,9 +977,9 @@ Consider manual render tree builder logic on the same level of complexity and wi
 
 &dagger;Applies to server-side ASP.NET Core apps that are web API backend apps for Blazor apps.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-5.0"
+:::moniker range="< aspnetcore-5.0"
 
 This article describes how Blazor manages unhandled exceptions and how to develop apps that detect and handle errors.
 
@@ -1471,4 +1471,4 @@ Consider manual render tree builder logic on the same level of complexity and wi
 
 &dagger;Applies to server-side ASP.NET Core apps that are web API backend apps for Blazor apps.
 
-::: moniker-end
+:::moniker-end

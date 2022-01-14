@@ -11,7 +11,7 @@ uid: blazor/js-interop/index
 ---
 # Blazor JavaScript interoperability (JS interop)
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 A Blazor app can invoke JavaScript (JS) functions from .NET methods and .NET methods from JS functions. These scenarios are called *JavaScript interoperability* (*JS interop*).
 
@@ -210,9 +210,9 @@ For more information, see:
 * <xref:blazor/fundamentals/environments>
 * <xref:performance/caching/response>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 A Blazor app can invoke JavaScript (JS) functions from .NET methods and .NET methods from JS functions. These scenarios are called *JavaScript interoperability* (*JS interop*).
 
@@ -400,9 +400,9 @@ For more information, see:
 * <xref:blazor/fundamentals/environments>
 * <xref:performance/caching/response>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-5.0"
+:::moniker range="< aspnetcore-5.0"
 
 A Blazor app can invoke JavaScript (JS) functions from .NET methods and .NET methods from JS functions. These scenarios are called *JavaScript interoperability* (*JS interop*).
 
@@ -580,4 +580,4 @@ For more information, see:
 * <xref:blazor/fundamentals/environments>
 * <xref:performance/caching/response>
 
-::: moniker-end
+:::moniker-end

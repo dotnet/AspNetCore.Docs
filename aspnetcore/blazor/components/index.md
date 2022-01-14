@@ -11,7 +11,7 @@ uid: blazor/components/index
 ---
 # ASP.NET Core Razor components
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 Blazor apps are built using *Razor components*. A component is a self-contained portion of user interface (UI) with processing logic to enable dynamic behavior. Components can be nested, reused, shared among projects, and [used in MVC and Razor Pages apps](xref:blazor/components/prerendering-and-integration).
 
@@ -1124,9 +1124,9 @@ Generate framework-specific JavaScript (JS) components from Razor components for
 > [!WARNING]
 > The Angular and React component features are currently **experimental, unsupported, and subject to change or be removed at any time**. We welcome your feedback on how well this particular approach meets your requirements.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 Blazor apps are built using *Razor components*. A component is a self-contained portion of user interface (UI) with processing logic to enable dynamic behavior. Components can be nested, reused, shared among projects, and [used in MVC and Razor Pages apps](xref:blazor/components/prerendering-and-integration).
 
@@ -2077,9 +2077,9 @@ For more information, see the following articles:
 * <xref:mvc/views/razor#typeparam>
 * <xref:blazor/components/templated-components>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-5.0"
+:::moniker range="< aspnetcore-5.0"
 
 Blazor apps are built using *Razor components*. A component is a self-contained portion of user interface (UI) with processing logic to enable dynamic behavior. Components can be nested, reused, shared among projects, and [used in MVC and Razor Pages apps](xref:blazor/components/prerendering-and-integration).
 
@@ -3046,7 +3046,7 @@ For more information, see the following articles:
 * <xref:mvc/views/razor#typeparam>
 * <xref:blazor/components/templated-components>
 
-::: moniker-end
+:::moniker-end
 
 <!--Reference links in article-->
 [1]: <xref:mvc/views/razor#code>

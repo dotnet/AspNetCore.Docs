@@ -11,7 +11,7 @@ uid: blazor/host-and-deploy/server
 ---
 # Host and deploy Blazor Server
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 ## Host configuration values
 
@@ -204,9 +204,9 @@ For more information and configuration guidance, consult the following resources
 
 For a reasonable UI experience, we recommend a sustained UI latency of 250 ms or less.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 ## Host configuration values
 
@@ -450,9 +450,9 @@ else
 
 For a reasonable UI experience, we recommend a sustained UI latency of 250 ms or less.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-5.0"
+:::moniker range="< aspnetcore-5.0"
 
 ## Host configuration values
 
@@ -676,4 +676,4 @@ else
 
 For a reasonable UI experience, we recommend a sustained UI latency of 250 ms or less.
 
-::: moniker-end
+:::moniker-end

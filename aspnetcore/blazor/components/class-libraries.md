@@ -11,7 +11,7 @@ uid: blazor/components/class-libraries
 ---
 # Consume ASP.NET Core Razor components from Razor class libraries
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 Components can be shared in a [Razor class library (RCL)](xref:razor-pages/ui-class) across projects. Include components and static assets in an app from:
 
@@ -382,9 +382,9 @@ Upload the package to NuGet using the [`dotnet nuget push`](/dotnet/core/tools/d
 * [Add an XML Intermediate Language (IL) Trimmer configuration file to a library](xref:blazor/host-and-deploy/configure-trimmer)
 * [CSS isolation support with Razor class libraries](xref:blazor/components/css-isolation#razor-class-library-rcl-support)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 Components can be shared in a [Razor class library (RCL)](xref:razor-pages/ui-class) across projects. Include components and static assets in an app from:
 
@@ -672,9 +672,9 @@ Upload the package to NuGet using the [`dotnet nuget push`](/dotnet/core/tools/d
 * [Add an XML Intermediate Language (IL) Trimmer configuration file to a library](xref:blazor/host-and-deploy/configure-trimmer)
 * [CSS isolation support with Razor class libraries](xref:blazor/components/css-isolation#razor-class-library-rcl-support)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-5.0"
+:::moniker range="< aspnetcore-5.0"
 
 Components can be shared in a [Razor class library (RCL)](xref:razor-pages/ui-class) across projects. Include components and static assets in an app from:
 
@@ -904,4 +904,4 @@ Upload the package to NuGet using the [`dotnet nuget push`](/dotnet/core/tools/d
 * <xref:razor-pages/ui-class>
 * [Add an XML Intermediate Language (IL) Linker configuration file to a library](xref:blazor/host-and-deploy/configure-linker#add-an-xml-linker-configuration-file-to-a-library)
 
-::: moniker-end
+:::moniker-end

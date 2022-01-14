@@ -12,9 +12,9 @@ zone_pivot_groups: blazor-hosting-models
 ---
 # ASP.NET Core Blazor state management
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
-::: zone pivot="webassembly"
+:::zone pivot="webassembly"
 
 User state created in a Blazor WebAssembly app is held in the browser's memory.
 
@@ -117,9 +117,9 @@ Generally, `sessionStorage` is safer to use. `sessionStorage` avoids the risk th
 * <xref:blazor/call-web-api>
 * <xref:blazor/security/webassembly/index>
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="server"
+:::zone pivot="server"
 
 Blazor Server is a stateful app framework. Most of the time, the app maintains a connection to the server. The user's state is held in the server's memory in a *circuit*. 
 
@@ -452,13 +452,13 @@ To persist many different state objects and consume different subsets of objects
 
 [!INCLUDE[](~/blazor/includes/state-container.md)]
 
-::: zone-end
+:::zone-end
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-::: zone pivot="webassembly"
+:::zone pivot="webassembly"
 
 User state created in a Blazor WebAssembly app is held in the browser's memory.
 
@@ -561,9 +561,9 @@ Generally, `sessionStorage` is safer to use. `sessionStorage` avoids the risk th
 * <xref:blazor/call-web-api>
 * <xref:blazor/security/webassembly/index>
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="server"
+:::zone pivot="server"
 
 Blazor Server is a stateful app framework. Most of the time, the app maintains a connection to the server. The user's state is held in the server's memory in a *circuit*. 
 
@@ -889,13 +889,13 @@ To persist many different state objects and consume different subsets of objects
 
 [!INCLUDE[](~/blazor/includes/state-container.md)]
 
-::: zone-end
+:::zone-end
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-5.0"
+:::moniker range="< aspnetcore-5.0"
 
-::: zone pivot="webassembly"
+:::zone pivot="webassembly"
 
 User state created in a Blazor WebAssembly app is held in the browser's memory.
 
@@ -998,9 +998,9 @@ Generally, `sessionStorage` is safer to use. `sessionStorage` avoids the risk th
 * <xref:blazor/call-web-api>
 * <xref:blazor/security/webassembly/index>
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="server"
+:::zone pivot="server"
 
 Blazor Server is a stateful app framework. Most of the time, the app maintains a connection to the server. The user's state is held in the server's memory in a *circuit*. 
 
@@ -1338,6 +1338,6 @@ To persist many different state objects and consume different subsets of objects
 
 [!INCLUDE[](~/blazor/includes/state-container.md)]
 
-::: zone-end
+:::zone-end
 
-::: moniker-end
+:::moniker-end
