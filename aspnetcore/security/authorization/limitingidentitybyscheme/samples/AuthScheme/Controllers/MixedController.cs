@@ -12,19 +12,14 @@ public class MixedController : Controller
     private const string AuthSchemes =
         CookieAuthenticationDefaults.AuthenticationScheme + "," +
         JwtBearerDefaults.AuthenticationScheme;
-    public ContentResult Index()
-    {
-        return Content(MyWidgets.GetMyContent());
-    } 
+    public ContentResult Index() => Content(MyWidgets.GetMyContent());
+
 }
 #endregion
 #region snippet2
 [Authorize(AuthenticationSchemes=JwtBearerDefaults.AuthenticationScheme)]
 public class Mixed2Controller : Controller
 {
-    public ContentResult Index()
-    {
-        return Content(MyWidgets.GetMyContent());
-    }
+    public ContentResult Index() => Content(MyWidgets.GetMyContent());
 }
 #endregion
