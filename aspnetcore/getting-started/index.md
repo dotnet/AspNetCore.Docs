@@ -53,7 +53,7 @@ dotnet dev-certs https --trust
 
 The preceding command displays the following dialog:
 
-![Security warning dialog](~/getting-started/_static/cert.png)
+![Security warning dialog](_static/cert.png)
 
 Select **Yes** if you agree to trust the development certificate.
 
