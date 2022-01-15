@@ -29,11 +29,11 @@ In the preceding code, two authentication handlers have been added: one for cook
 
 At the point of authorization, the app indicates the handler to be used. Select the handler with which the app will authorize by passing a comma-delimited list of authentication schemes to `[Authorize]`. The [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute specifies the authentication scheme or schemes to use regardless of whether a default is configured. For example:
 
-[!code-csharp[](~/security/authorization/limitingidentitybyscheme/samples/AuthScheme/Controllers/MixedController.cs?name=snippet&highlight=11-13)]
+[!code-csharp[](~/security/authorization/limitingidentitybyscheme/samples/AuthScheme/Controllers/MixedController.cs?name=snippet&highlight=8,11-13)]
 
 In the preceding example, both the cookie and bearer handlers run and have a chance to create and append an identity for the current user. By specifying a single scheme only, the corresponding handler runs:
 
-[!code-csharp[](~/security/authorization/limitingidentitybyscheme/samples/AuthScheme/Controllers/MixedController.cs?name=snippet2&highlight=11-13)]
+[!code-csharp[](~/security/authorization/limitingidentitybyscheme/samples/AuthScheme/Controllers/MixedController.cs?name=snippet2&highlight=1)]
 
 In the preceding code, only the handler with the "Bearer" scheme runs. Any cookie-based identities are ignored.
 
@@ -41,7 +41,7 @@ In the preceding code, only the handler with the "Bearer" scheme runs. Any cooki
 
 If you prefer to specify the desired schemes in [policy](xref:security/authorization/policies), you can set the <xref:Microsoft.Net.Http.Server.AuthenticationSchemes> collection when adding a policy:
 
-[!code-csharp[](~/security/authorization/limitingidentitybyscheme/samples/AuthScheme/Program.cs?name=snippet2&highlight=5-15)]
+[!code-csharp[](~/security/authorization/limitingidentitybyscheme/samples/AuthScheme/Program.cs?name=snippet2&highlight=6-15)]
 
 In the preceding example, the "Over18" policy only runs against the identity created by the "Bearer" handler. Use the policy by setting the `[Authorize]` attribute's `Policy` property:
 
@@ -68,7 +68,7 @@ See [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/26002) on us
 
 The following example uses [Azure Active Directory B2C](/azure/active-directory-b2c/overview) and another [Azure Active Directory](/azure/active-directory/authentication/overview-authentication) tenant:
 
-[!code-csharp[](~/security/authorization/limitingidentitybyscheme/samples/AuthScheme/Program.cs?name=snippet_ma2&highlight=9-29)]
+[!code-csharp[](~/security/authorization/limitingidentitybyscheme/samples/AuthScheme/Program.cs?name=snippet_ma2&highlight=9-30)]
 
 ::: moniker-end
 

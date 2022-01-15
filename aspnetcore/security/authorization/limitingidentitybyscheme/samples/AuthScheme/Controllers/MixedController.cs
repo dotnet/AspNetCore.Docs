@@ -9,14 +9,22 @@ namespace AuthScheme.Controllers;
 [Authorize(AuthenticationSchemes = AuthSchemes)]
 public class MixedController : Controller
 {
-    #region snippet2
     private const string AuthSchemes =
         CookieAuthenticationDefaults.AuthenticationScheme + "," +
         JwtBearerDefaults.AuthenticationScheme;
-    #endregion
     public ContentResult Index()
     {
         return Content(MyWidgets.GetMyContent());
     } 
+}
+#endregion
+#region snippet2
+[Authorize(AuthenticationSchemes=JwtBearerDefaults.AuthenticationScheme)]
+public class Mixed2Controller : Controller
+{
+    public ContentResult Index()
+    {
+        return Content(MyWidgets.GetMyContent());
+    }
 }
 #endregion
