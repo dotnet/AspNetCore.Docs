@@ -44,7 +44,7 @@ Hot Reload is activated using the [`dotnet watch`](xref:tutorials/dotnet-watch) 
 dotnet watch
 ```
 
-To force the app to rebuild and restart, use the keyboard combination <kbd>Ctrl</kbd>+<kbd>R</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>R</kbd> (macOS) in the command shell.
+To force the app to rebuild and restart, use the keyboard combination <kbd>Ctrl</kbd>+<kbd>R</kbd> in the command shell.
 
 When an unsupported code edit is made, called a *rude edit*, `dotnet watch` asks you if you want to restart the app:
 
