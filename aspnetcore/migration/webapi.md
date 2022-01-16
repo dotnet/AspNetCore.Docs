@@ -4,7 +4,7 @@ author: ardalis
 description: Learn how to migrate a web API implementation from ASP.NET 4.x Web API to ASP.NET Core MVC.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 01/11/2022
+ms.date: 01/14/2022
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: migration/webapi
 ---
@@ -71,7 +71,7 @@ The solution now contains two projects. The following sections explain migrating
 
 ASP.NET Core doesn't use the *App_Start* folder or the *Global.asax* file. Additionally, the *web.config* file is added at publish time.
 
-The `Startup` class:
+The `Program` class:
 
 * Replaces *Global.asax*.
 * Handles all app startup tasks.
