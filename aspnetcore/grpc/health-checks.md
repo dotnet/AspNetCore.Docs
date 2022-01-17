@@ -42,7 +42,7 @@ When health checks is set up:
 
 ## Configure `Grpc.AspNetCore.HealthChecks`
 
-By default, the gRPC health checks service uses all registered health checks to determine health status. To use a subset of health checks, gRPC health checks can be customized when it is registered. The `MapService` method is used to map health results to service names, along with a predicate for filtering health results:
+By default, the gRPC health checks service uses all registered health checks to determine health status. gRPC health checks can be customized when registered to use a subset of health checks. The `MapService` method is used to map health results to service names, along with a predicate for filtering health results:
 
 ```csharp
 services.AddGrpcHealthChecks(o =>
@@ -64,7 +64,7 @@ services.AddGrpcHealthChecks(o =>
 });
 ```
 
-The service name is usually the default (`""`) or a package qualified name of a service in your app. However, there is nothing that prevents using arbitrary values to check app health.
+The service name is usually the default (`""`) or a package qualified name of a service in your app. However, nothing prevents using arbitrary values to check app health.
 
 ## Call gRPC health checks service
 
