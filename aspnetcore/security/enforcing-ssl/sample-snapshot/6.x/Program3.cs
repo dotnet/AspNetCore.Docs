@@ -4,7 +4,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
 
-if (builder.Environment.IsDevelopment())
+if (!builder.Environment.IsDevelopment())
 {
     builder.Services.AddHttpsRedirection(options =>
     {
