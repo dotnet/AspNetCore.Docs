@@ -65,6 +65,8 @@ For example, here's the list of `<PackageReference />` nodes used in a typical A
 
 [!code-xml[](../1x-to-2x/samples/AspNetCoreDotNetFx2.0App/AspNetCoreDotNetFx2.0App/AspNetCoreDotNetFx2.0App.csproj?range=9-22)]
 
+The package `Microsoft.Extensions.CommandLineUtils` has been [retired](https://github.com/dotnet/extensions/blob/release/2.1/README.md).  It is still available but unsupported.
+
 <a name="dot-net-cli-tool-reference"></a>
 
 ## Update .NET Core CLI tools
