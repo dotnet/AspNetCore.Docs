@@ -794,7 +794,7 @@ items:
         uid: grpc/dotnet-grpc
       - name: Test services with gRPCurl
         uid: grpc/test-tools
-      - name: Migrate gRPC services from C-core
+      - name: Migrate from C-core to gRPC for .NET
         uid: grpc/migration
       - name: Why migrate WCF to ASP.NET Core gRPC
         uid: grpc/wcf
