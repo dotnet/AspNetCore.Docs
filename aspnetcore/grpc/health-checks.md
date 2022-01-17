@@ -29,11 +29,11 @@ gRPC ASP.NET Core has built-in support for gRPC health checks with the [`Grpc.As
   * `AddGrpcHealthChecks` to register services that enable health checks.
   * `MapGrpcHealthChecksService` to add a health checks service endpoint.
 
-[!code-csharp[](~/grpc/healthchecks/Startup.cs?name=snippet_1&highlight=4,15)]
+[!code-csharp[](~/grpc/health-checks/Startup.cs?name=snippet_1&highlight=4,14)]
 
 When health checks is set up:
 
-* A gRPC health checks service is added to the server app.
+* The health checks service is added to the server app.
 * .NET health checks registered with the app are periodically executed for health results. gRPC health checks reports based on health results:
   * `Unknown` reported when there are no health results.
   * `NotServing` reported when there are any health results of `HealthStatus.Unhealthy`.
@@ -74,7 +74,7 @@ The [`Grpc.HealthCheck`](https://www.nuget.org/packages/Grpc.HealthCheck) packag
 var channel = GrpcChannel.ForAddress("https://localhost:5001");
 var client = new Health.HealthClient(channel);
 
-var response = client.CheckAsync(mew HealthCheckRequest());
+var response = client.CheckAsync(new HealthCheckRequest());
 var status = response.Status;
 ```
 
