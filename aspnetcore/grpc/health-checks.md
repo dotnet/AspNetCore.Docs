@@ -14,7 +14,7 @@ By [James Newton-King](https://twitter.com/jamesnk)
 
 The [gRPC health checking protocol](https://github.com/grpc/grpc/blob/master/doc/health-checking.md) is a standard for reporting the health of gRPC server apps.
 
-Health checks are exposed by an app as a gRPC service. They are typically used with an external monitoring service to check the status of an app. The health checks service can be configured for various real-time monitoring scenarios:
+Health checks are exposed by an app as a gRPC service. They are typically used with an external monitoring service to check the status of an app. The service can be configured for various real-time monitoring scenarios:
 
 * Health probes can be used by container orchestrators and load balancers to check an app's status. For example, a container orchestrator may respond to a failing health check by halting a rolling deployment or restarting a container. A load balancer might react to an unhealthy app by routing traffic away from the failing instance to a healthy instance.
 * Use of memory, disk, and other physical server resources can be monitored for healthy status.
@@ -22,7 +22,7 @@ Health checks are exposed by an app as a gRPC service. They are typically used w
 
 ## Set up gRPC health checks
 
-gRPC ASP.NET Core has built-in support for gRPC health checks with the [`Grpc.AspNetCore.HealthChecks`](https://www.nuget.org/packages/Grpc.AspNetCore.HealthChecks) package. Results from [.NET health checks](xref:host-and-deploy/health-checks) are reported to service callers. To set up gRPC health checks in an app:
+gRPC ASP.NET Core has built-in support for gRPC health checks with the [`Grpc.AspNetCore.HealthChecks`](https://www.nuget.org/packages/Grpc.AspNetCore.HealthChecks) package. Results from [.NET health checks](xref:host-and-deploy/health-checks) are reported to  callers. To set up gRPC health checks in an app:
 
 * Add a `Grpc.AspNetCore.HealthChecks` package reference.
 * Register gRPC health checks service in `Startup.cs`:
@@ -35,15 +35,14 @@ gRPC ASP.NET Core has built-in support for gRPC health checks with the [`Grpc.As
 When health checks is set up:
 
 * The health checks service is added to the server app.
-* .NET health checks registered with the app are periodically executed for health results. gRPC health checks reports based on health results:
-  * `Unknown` reported when there are no health results.
-  * `NotServing` reported when there are any health results of <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy?displayProperty=nameWithType>.
+* .NET health checks registered with the app are periodically executed for health results. Health results determine what the gRPC service reports:
+  * `Unknown` is reported when there are no health results.
+  * `NotServing` is reported when there are any health results of <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy?displayProperty=nameWithType>.
   * Otherwise, `Serving` is reported.
-* Client apps that support gRPC health checks can call the service to monitor server health.
 
 ## Configure `Grpc.AspNetCore.HealthChecks`
 
-By default, the gRPC health checks service uses all registered health checks to determine health status. To run a subset of health checks, configure gRPC health checks when registering services. The  `MapService` is used to map health results to service names. `MapService` has an argument for filtering health results with a predicate:
+By default, the gRPC health checks service uses all registered health checks to determine health status. To use a subset of health checks, gRPC health checks can be customized when it is registered. The `MapService` method is used to map health results to service names, along with a predicate for filtering health results:
 
 ```csharp
 services.AddGrpcHealthChecks(o =>
@@ -65,7 +64,7 @@ services.AddGrpcHealthChecks(o =>
 });
 ```
 
-The service name is usually the package qualified name of services in your app. However, there is nothing that prevents using arbitrary values to check app health.
+The service name is usually the default (`""`) or a package qualified name of a service in your app. However, there is nothing that prevents using arbitrary values to check app health.
 
 ## Call gRPC health checks service
 
