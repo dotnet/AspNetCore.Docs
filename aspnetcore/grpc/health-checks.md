@@ -64,7 +64,7 @@ services.AddGrpcHealthChecks(o =>
 });
 ```
 
-The service name is usually the default (`""`) or a package qualified name of a service in your app. However, nothing prevents using arbitrary values to check app health.
+The service name is usually the default (`""`) or a package-qualified name of a service in your app. However, nothing prevents using arbitrary values to check app health.
 
 ## Call gRPC health checks service
 
