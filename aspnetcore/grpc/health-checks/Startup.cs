@@ -2,7 +2,9 @@
 public void ConfigureServices(IServiceCollection services)
 {
     services.AddGrpc();
-    services.AddGrpcHealthChecks();
+    services
+        .AddGrpcHealthChecks()
+        .AddCheck("Sample", () => HealthCheckResult.Healthy());
 }
 
 public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
