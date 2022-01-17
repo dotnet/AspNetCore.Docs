@@ -68,7 +68,7 @@ The service name is usually the default (`""`) or a package-qualified name of a 
 
 ## Call gRPC health checks service
 
-The [`Grpc.HealthCheck`](https://www.nuget.org/packages/Grpc.HealthCheck) package includes a client for gRPC health checks.
+The [`Grpc.HealthCheck`](https://www.nuget.org/packages/Grpc.HealthCheck) package includes a client for gRPC health checks:
 
 ```csharp
 var channel = GrpcChannel.ForAddress("https://localhost:5001");
