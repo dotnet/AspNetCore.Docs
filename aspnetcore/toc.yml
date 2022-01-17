@@ -752,8 +752,6 @@ items:
             uid: grpc/versioning
           - name: Test gRPC services
             uid: grpc/test-services
-          - name: gRPC health checks
-            uid: grpc/health-checks
       - name: Call gRPC services with C#
         items:
           - name: Overview
@@ -792,6 +790,8 @@ items:
         uid: grpc/httpapi
       - name: Code-first gRPC services and clients
         uid: grpc/code-first
+      - name: gRPC health checks
+        uid: grpc/health-checks
       - name: Manage Protobuf references with dotnet-grpc
         uid: grpc/dotnet-grpc
       - name: Test gRPC services with gRPCurl
