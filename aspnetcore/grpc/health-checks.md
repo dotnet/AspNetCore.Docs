@@ -20,6 +20,11 @@ Health checks are exposed by an app as a gRPC service. They are typically used w
 * Use of memory, disk, and other physical server resources can be monitored for healthy status.
 * Health checks can test an app's dependencies, such as databases and external service endpoints, to confirm availability and normal functioning.
 
+> [!IMPORTANT]
+> This feature is in preview.
+> 
+> gRPC health checks requires version 2.43.0-pre1 or later of `Grpc.AspNetCore.HealthChecks` on NuGet.org.
+
 ## Set up gRPC health checks
 
 gRPC ASP.NET Core has built-in support for gRPC health checks with the [`Grpc.AspNetCore.HealthChecks`](https://www.nuget.org/packages/Grpc.AspNetCore.HealthChecks) package. Results from [.NET health checks](xref:host-and-deploy/health-checks) are reported to callers. To set up gRPC health checks in an app:
@@ -58,9 +63,8 @@ gRPC health checks supports the client specifying a service name argument when c
 ```csharp
 services.AddGrpcHealthChecks(o =>
 {
-    o.Services.MapService("", r => r.Tags.Contains("public"));
-    o.Services.MapService("greet.Greeter", r => r.Tags.Contains("public") && r.Tags.Contains("greeter"));
-    o.Services.MapService("count.Counter", r => r.Tags.Contains("public") && r.Tags.Contains("counter"));
+    o.Services.MapService("greet.Greeter", r => r.Tags.Contains("greeter"));
+    o.Services.MapService("count.Counter", r => r.Tags.Contains("counter"));
 });
 ```
 
