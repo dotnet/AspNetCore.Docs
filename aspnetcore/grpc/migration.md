@@ -13,7 +13,7 @@ uid: grpc/migration
 Due to the implementation of the underlying stack, not all features work in the same way between [C-core-based gRPC](https://grpc.io/blog/grpc-stacks) apps and gRPC for .NET. This document highlights the key differences for migrating between the two stacks.
 
 > [!IMPORTANT]
-> gRPC C-core is in maintenance mode and [will be deprecated in favour of gRPC for .NET](https://grpc.io/blog/grpc-csharp-future/). gRPC C-core is not recommended for new apps.
+> gRPC C-core is in maintenance mode and [will be deprecated in favor of gRPC for .NET](https://grpc.io/blog/grpc-csharp-future/). gRPC C-core is not recommended for new apps.
 
 ## Platform support
 
