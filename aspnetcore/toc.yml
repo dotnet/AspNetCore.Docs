@@ -753,7 +753,7 @@ items:
           - name: Test gRPC services
             uid: grpc/test-services
           - name: gRPC health checks
-            uid: grpc/healthchecks
+            uid: grpc/health-checks
       - name: Call gRPC services with C#
         items:
           - name: Overview
