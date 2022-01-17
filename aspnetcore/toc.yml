@@ -748,7 +748,7 @@ items:
             uid: grpc/services
           - name: Create Protobuf messages
             uid: grpc/protobuf
-          - name: Versioning services
+          - name: Version services
             uid: grpc/versioning
           - name: Test services
             uid: grpc/test-services
