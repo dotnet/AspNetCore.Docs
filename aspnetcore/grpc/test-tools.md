@@ -31,7 +31,7 @@ This article discusses how to:
 
 Tooling must know the Protobuf contract of services before it can call them. There are two ways to do this:
 
-* Set up [gRPC reflection](https://github.com/grpc/grpc/blob/master/doc/server-reflection.md) on the server. Tooling such as gRPCurl and Postman automatically discovers service contracts.
+* Set up [gRPC reflection](https://github.com/grpc/grpc/blob/master/doc/server-reflection.md) on the server. Tools, such as gRPCurl and Postman, automatically discover service contracts.
 * Specify `.proto` files in command-line arguments to gRPCurl.
 
 It's easier to use gRPC reflection. gRPC reflection adds a new gRPC service to the app that clients can call to discover services.
