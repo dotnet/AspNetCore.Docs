@@ -106,7 +106,7 @@ function triggerFileDownload(fileName, url) {
 }
 ```
 
-The call to `contentStreamReference.arrayBuffer` loads the entire file into client memory. For file downloads over 250 MB, we recommend downloading the file from a URL instead:
+In the preceding example, the call to `contentStreamReference.arrayBuffer` loads the entire file into client memory. For file downloads over 250 MB, we recommend downloading the file from a URL instead:
 
 ```razor
 <button @onclick="DownloadFileFromURL">
