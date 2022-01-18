@@ -106,12 +106,7 @@ function triggerFileDownload(fileName, url) {
 }
 ```
 
-`contentStreamReference.arrayBuffer()` loads the entire file into client memory. For file downloads over 250 MB, we recommend opening a new tab for each large file download by setting the anchor's [`target`](https://developer.mozilla.org/docs/Web/HTML/Element/a#attr-target) to `_blank` and [`referrerpolicy`](https://developer.mozilla.org/docs/Web/HTML/Element/a#attr-referrerpolicy) to `no-referrer`:
-
-```javascript
-anchorElement.target = '_blank';
-anchorElement.referrerpolicy = 'no-referrer';
-```
+`contentStreamReference.arrayBuffer()` loads the entire file into client memory. For file downloads over 250 MB, we recommend downloading the file from a URL instead:
 
 For more information on setting the anchor's Referrer Policy, see the following MDN documentation resources:
 
