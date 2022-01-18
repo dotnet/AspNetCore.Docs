@@ -35,7 +35,7 @@ A development certificate is created:
 * When the [.NET SDK](/dotnet/core/sdk) is installed.
 * The [dev-certs tool](xref:security/enforcing-ssl#trust) is used to create a certificate.
 
-Some browsers require granting explicit permission to trust the local development certificate.
+The development certificate is available only for the user that generates the certificate. Some browsers require granting explicit permission to trust the local development certificate.
 
 Project templates configure apps to run on HTTPS by default and include [HTTPS redirection and HSTS support](xref:security/enforcing-ssl).
 
