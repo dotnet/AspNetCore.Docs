@@ -100,7 +100,8 @@ public static class Program
                     var subExampleCert = CertificateLoader.LoadFromStoreCert(
                         "sub.example.com", "My", StoreLocation.CurrentUser,
                         allowInvalid: true);
-                    var certs = new Dictionary<string, X509Certificate2>(StringComparer.OrdinalIgnoreCase)
+                    var certs = new Dictionary<string, X509Certificate2>(
+                        StringComparer.OrdinalIgnoreCase)
                     {
                         ["localhost"] = localhostCert,
                         ["example.com"] = exampleCert,
@@ -142,20 +143,23 @@ public static class Program
 
                     listenOptions.UseHttps((stream, clientHelloInfo, state, cancellationToken) =>
                     {
-                        if (string.Equals(clientHelloInfo.ServerName, "localhost", StringComparison.OrdinalIgnoreCase))
+                        if (string.Equals(clientHelloInfo.ServerName, "localhost",
+                            StringComparison.OrdinalIgnoreCase))
                         {
-                            return new ValueTask<SslServerAuthenticationOptions>(new SslServerAuthenticationOptions
-                            {
-                                ServerCertificate = localhostCert,
-                                // Different TLS requirements for this host
-                                ClientCertificateRequired = true
-                            });
+                            return new ValueTask<SslServerAuthenticationOptions>(
+                                new SslServerAuthenticationOptions
+                                {
+                                    ServerCertificate = localhostCert,
+                                    // Different TLS requirements for this host
+                                    ClientCertificateRequired = true
+                                });
                         }
 
-                        return new ValueTask<SslServerAuthenticationOptions>(new SslServerAuthenticationOptions
-                        {
-                            ServerCertificate = exampleCert
-                        });
+                        return new ValueTask<SslServerAuthenticationOptions>(
+                            new SslServerAuthenticationOptions
+                            {
+                                ServerCertificate = exampleCert
+                            });
                     }, state: null!);
                 });
             });
@@ -185,21 +189,24 @@ public static class Program
                     {
                         OnConnection = context =>
                         {
-                            if (string.Equals(context.ClientHelloInfo.ServerName, "localhost", StringComparison.OrdinalIgnoreCase))
+                            if (string.Equals(context.ClientHelloInfo.ServerName, "localhost",
+                                StringComparison.OrdinalIgnoreCase))
                             {
                                 // Different TLS requirements for this host
                                 context.AllowDelayedClientCertificateNegotation = true;
 
-                                return new ValueTask<SslServerAuthenticationOptions>(new SslServerAuthenticationOptions
-                                {
-                                    ServerCertificate = localhostCert
-                                });
+                                return new ValueTask<SslServerAuthenticationOptions>(
+                                    new SslServerAuthenticationOptions
+                                    {
+                                        ServerCertificate = localhostCert
+                                    });
                             }
 
-                            return new ValueTask<SslServerAuthenticationOptions>(new SslServerAuthenticationOptions
-                            {
-                                ServerCertificate = exampleCert
-                            });
+                            return new ValueTask<SslServerAuthenticationOptions>(
+                                new SslServerAuthenticationOptions
+                                {
+                                    ServerCertificate = exampleCert
+                                });
                         }
                     });
                 });

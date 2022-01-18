@@ -14,7 +14,7 @@ uid: fundamentals/servers/kestrel/endpoints
 
 :::moniker range=">= aspnetcore-6.0"
 
-By default, ASP.NET Core binds to:
+ASP.NET Core projects are configured to bind to a random HTTP port between 5000-5300 and a random HTTPS port between 7000-7300. This default configuration is specified in the generated *Properties/launchSettings.json* file and can be overridden. If no ports are specified, Kestrel binds to:
 
 * `http://localhost:5000`
 * `https://localhost:5001` (when a local development certificate is present)
@@ -47,7 +47,7 @@ Call <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen%
 
 ## ConfigureEndpointDefaults(Action\<ListenOptions>)
 
-Specifies a configuration `Action` to run for each specified endpoint. Calling `ConfigureEndpointDefaults` multiple times replaces prior `Action`s with the last `Action` specified.
+Specifies a configuration `Action` to run for each specified endpoint. Calling `ConfigureEndpointDefaults` multiple times replaces prior `Action`s with the last `Action` specified:
 
 :::code language="csharp" source="samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureEndpointDefaults":::
 
@@ -56,11 +56,9 @@ Specifies a configuration `Action` to run for each specified endpoint. Calling `
 
 ## Configure(IConfiguration)
 
-Enables Kestrel to load endpoints from an <xref:Microsoft.Extensions.Configuration.IConfiguration>. The configuration must be scoped to the configuration section for Kestrel.
+Enables Kestrel to load endpoints from an <xref:Microsoft.Extensions.Configuration.IConfiguration>. The configuration must be scoped to the configuration section for Kestrel. The `Configure(IConfiguration, bool)` overload can be used to enable reloading endpoints when the configuration source changes.
 
-The `Configure(IConfiguration, bool)` overload can be used to enable reloading endpoints when the configuration source changes.
-
-`IHostBuilder.ConfigureWebHostDefaults` calls `Configure(context.Configuration.GetSection("Kestrel"), reloadOnChange: true)` by default to load Kestrel configuration and enable reloading.
+By default, Kestrel configuration is loaded from the `Kestrel` section and reloading changes is enabled:
 
 ```json
 {
@@ -225,14 +223,14 @@ For example, the `Certificates:Default` certificate can be specified as:
 
 #### ConfigurationLoader
 
-`options.Configure(context.Configuration.GetSection("{SECTION}"))` returns a <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelConfigurationLoader> with an `.Endpoint(string name, listenOptions => { })` method that can be used to supplement a configured endpoint's settings:
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Configure(Microsoft.Extensions.Configuration.IConfiguration)> returns a <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelConfigurationLoader> with an <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelConfigurationLoader.Endpoint(System.String,System.Action{Microsoft.AspNetCore.Server.Kestrel.EndpointConfiguration})> method that can be used to supplement a configured endpoint's settings:
 
 :::code language="csharp" source="samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigurationLoader":::
 
-`KestrelServerOptions.ConfigurationLoader` can be directly accessed to continue iterating on the existing loader, such as the one provided by <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A>.
+`KestrelServerOptions.ConfigurationLoader` can be directly accessed to continue iterating on the existing loader, such as the one provided by <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.WebHost%2A?displayProperty=nameWithType>.
 
 * The configuration section for each endpoint is available on the options in the `Endpoint` method so that custom settings may be read.
-* Multiple configurations may be loaded by calling `options.Configure(context.Configuration.GetSection("{SECTION}"))` again with another section. Only the last configuration is used, unless `Load` is explicitly called on prior instances. The metapackage doesn't call `Load` so that its default configuration section may be replaced.
+* Multiple configurations may be loaded by calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Configure(Microsoft.Extensions.Configuration.IConfiguration)> again with another section. Only the last configuration is used, unless `Load` is explicitly called on prior instances. The metapackage doesn't call `Load` so that its default configuration section may be replaced.
 * `KestrelConfigurationLoader` mirrors the `Listen` family of APIs from `KestrelServerOptions` as `Endpoint` overloads, so code and config endpoints may be configured in the same place. These overloads don't use names and only consume default settings from configuration.
 
 ### Change the defaults in code
@@ -252,7 +250,7 @@ SNI can be configured in two ways:
 
 ### SNI with `ServerCertificateSelector`
 
-Kestrel supports SNI via the `ServerCertificateSelector` callback. The callback is invoked once per connection to allow the app to inspect the host name and select the appropriate certificate. The following callback code can be used in the `ConfigureWebHostDefaults` method call of a project's *Program.cs* file:
+Kestrel supports SNI via the `ServerCertificateSelector` callback. The callback is invoked once per connection to allow the app to inspect the host name and select the appropriate certificate:
 
 :::code language="csharp" source="samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ServerCertificateSelector":::
 
@@ -332,8 +330,7 @@ The matched SNI configuration is applied to the endpoint for the connection, ove
 
 ### SNI requirements
 
-* Running on target framework `netcoreapp2.1` or later. On `net461` or later, the callback is invoked but the `name` is always `null`. The `name` is also `null` if the client doesn't provide the host name parameter in the TLS handshake.
-* All websites run on the same Kestrel instance. Kestrel doesn't support sharing an IP address and port across multiple instances without a reverse proxy.
+All websites must run on the same Kestrel instance. Kestrel doesn't support sharing an IP address and port across multiple instances without a reverse proxy.
 
 ## SSL/TLS Protocols
 
@@ -418,12 +415,6 @@ When the port number `0` is specified, Kestrel dynamically binds to an available
 
 :::code language="csharp" source="samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_IServerAddressesFeature":::
 
-When the app is run, the console window output indicates the dynamic port where the app can be reached:
-
-```console
-Listening on the following addresses: http://127.0.0.1:48508
-```
-
 ## Limitations
 
 Configure endpoints with the following approaches:
@@ -447,10 +438,10 @@ When using IIS, the URL bindings for IIS override bindings are set by either `Li
 The `Protocols` property establishes the HTTP protocols (`HttpProtocols`) enabled on a connection endpoint or for the server. Assign a value to the `Protocols` property from the `HttpProtocols` enum.
 
 | `HttpProtocols` enum value | Connection protocol permitted |
-| -------------------------- | ----------------------------- |
-| `Http1`                    | HTTP/1.1 only. Can be used with or without TLS. |
-| `Http2`                    | HTTP/2 only. May be used without TLS only if the client supports a [Prior Knowledge mode](https://tools.ietf.org/html/rfc7540#section-3.4). |
-| `Http1AndHttp2`            | HTTP/1.1 and HTTP/2. HTTP/2 requires the client to select HTTP/2 in the TLS [Application-Layer Protocol Negotiation (ALPN)](https://tools.ietf.org/html/rfc7301#section-3) handshake; otherwise, the connection defaults to HTTP/1.1. |
+|--|--|
+| `Http1` | HTTP/1.1 only. Can be used with or without TLS. |
+| `Http2` | HTTP/2 only. May be used without TLS only if the client supports a [Prior Knowledge mode](https://tools.ietf.org/html/rfc7540#section-3.4). |
+| `Http1AndHttp2` | HTTP/1.1 and HTTP/2. HTTP/2 requires the client to select HTTP/2 in the TLS [Application-Layer Protocol Negotiation (ALPN)](https://tools.ietf.org/html/rfc7301#section-3) handshake; otherwise, the connection defaults to HTTP/1.1. |
 
 The default `ListenOptions.Protocols` value for any endpoint is `HttpProtocols.Http1AndHttp2`.
 
@@ -478,17 +469,15 @@ On Linux, <xref:System.Net.Security.CipherSuitesPolicy> can be used to filter TL
 
 Custom connection middleware can filter TLS handshakes on a per-connection basis for specific ciphers if necessary.
 
-The following example throws <xref:System.NotSupportedException> for any cipher algorithm that the app doesn't support. Alternatively, define and compare [ITlsHandshakeFeature.CipherAlgorithm](xref:Microsoft.AspNetCore.Connections.Features.ITlsHandshakeFeature.CipherAlgorithm) to a list of acceptable cipher suites.
+The following example throws <xref:System.NotSupportedException> for any cipher algorithm that the app doesn't support. Alternatively, define and compare <xref:Microsoft.AspNetCore.Connections.Features.ITlsHandshakeFeature.CipherAlgorithm%2A?displayProperty=nameWithType> to a list of acceptable cipher suites.
 
-No encryption is used with a [CipherAlgorithmType.Null](xref:System.Security.Authentication.CipherAlgorithmType) cipher algorithm.
+No encryption is used with a <xref:System.Security.Authentication.CipherAlgorithmType.Null?displayProperty=nameWithType> cipher algorithm.
 
 :::code language="csharp" source="samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureKestrelMiddleware":::
 
 ## Set the HTTP protocol from configuration
 
-`CreateDefaultBuilder` calls `serverOptions.Configure(context.Configuration.GetSection("Kestrel"))` by default to load Kestrel configuration.
-
-The following *appsettings.json* example establishes HTTP/1.1 as the default connection protocol for all endpoints:
+By default, Kestrel configuration is loaded from the `Kestrel` section. The following *appsettings.json* example establishes HTTP/1.1 as the default connection protocol for all endpoints:
 
 ```json
 {
