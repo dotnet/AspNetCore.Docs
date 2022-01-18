@@ -9,7 +9,7 @@ The DataAnnotations namespace provides a set of built-in validation attributes t
 
 Update the `Movie` class to take advantage of the built-in `Required`, `StringLength`, `RegularExpression`, and `Range` validation attributes.
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Models/Movie.cs?name=FinalSnippet)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Models/Movie.cs?name=FinalSnippet?highlight=11,12,18,19,20,24,25,26,29,30,31)]
 
 The validation attributes specify behavior that you want to enforce on the model properties they're applied to:
 
