@@ -106,12 +106,27 @@ function triggerFileDownload(fileName, url) {
 }
 ```
 
-`contentStreamReference.arrayBuffer()` loads the entire file into client memory. For file downloads over 250 MB, we recommend downloading the file from a URL instead:
+The call to `contentStreamReference.arrayBuffer` loads the entire file into client memory. For file downloads over 250 MB, we recommend downloading the file from a URL instead:
 
-For more information on setting the anchor's Referrer Policy, see the following MDN documentation resources:
+```razor
+<button @onclick="DownloadFileFromURL">
+    Download File From URL
+</button>
 
-* [`referrerpolicy`](https://developer.mozilla.org/docs/Web/HTML/Element/a#attr-referrerpolicy)
-* [`<a>`: The Anchor element: Security and privacy](https://developer.mozilla.org/docs/Web/HTML/Element/a#security_and_privacy)
+@code {
+    private async Task DownloadFileFromURL()
+    {
+        var fileURL = "{FILE URL}";
+        var fileName = "{FILE NAME}";
+        await JS.InvokeVoidAsync("triggerFileDownload", fileName, fileURL);
+    }
+}
+```
+
+In the preceding example, replace the placeholders with the following values:
+
+* `{FILE URL}`: The URL of the file to download. Example: `https://www.contoso.com/files/log0001.txt`
+* `{FILE NAME}`: The file name to use for the saved file. Example: `log-0001.txt`
 
 ## File streams
 
