@@ -295,6 +295,17 @@ For information on isolating scripts in [JS modules](https://developer.mozilla.o
 > [!WARNING]
 > Don't place a `<script>` tag in a component file (`.razor`) because the `<script>` tag can't be updated dynamically.
 
+## JavaScript isolation in JavaScript modules
+
+Blazor enables JavaScript (JS) isolation in standard [JavaScript modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules) ([ECMAScript specification](https://tc39.es/ecma262/#sec-modules)).
+
+JS isolation provides the following benefits:
+
+* Imported JS no longer pollutes the global namespace.
+* Consumers of a library and components aren't required to import the related JS.
+
+For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules>.
+
 ## Avoid circular object references
 
 Objects that contain circular references can't be serialized on the client for either:
@@ -395,17 +406,6 @@ In the preceding example:
 ## Size limits on JavaScript interop calls
 
 [!INCLUDE[](~/blazor/includes/js-interop/6.0/size-limits.md)]
-
-## JavaScript isolation in JavaScript modules
-
-Blazor enables JavaScript (JS) isolation in standard [JavaScript modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules) ([ECMAScript specification](https://tc39.es/ecma262/#sec-modules)).
-
-JS isolation provides the following benefits:
-
-* Imported JS no longer pollutes the global namespace.
-* Consumers of a library and components aren't required to import the related JS.
-
-For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules>.
 
 ## Additional resources
 
@@ -691,6 +691,7 @@ Load JavaScript (JS) code using any of approaches described by the [JS interop o
 
 * [Load a script in `<head>` markup](xref:blazor/js-interop/index#load-a-script-in-head-markup) (*Not generally recommended*)
 * [Load a script in `<body>` markup](xref:blazor/js-interop/index#load-a-script-in-body-markup)
+* [Load a script from an external JavaScript file (`.js`) collocated with a component](xref:blazor/js-interop/index#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component)
 * [Load a script from an external JS file (`.js`)](xref:blazor/js-interop/index#load-a-script-from-an-external-js-file-js)
 * [Inject a script after Blazor starts](xref:blazor/js-interop/index#inject-a-script-after-blazor-starts)
 
