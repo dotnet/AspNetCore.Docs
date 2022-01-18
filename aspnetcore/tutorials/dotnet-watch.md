@@ -221,3 +221,7 @@ Some configuration options can be passed to `dotnet watch` through environment v
     <script src="/_framework/aspnetcore-browser-refresh.js"></script>
 </environment>
 ```
+
+## Non-ASCII characters
+
+Starting with Visual Studio 17.2 / 6.0.300 version of the .NET SDK, `dotnet-watch` emits non-ASCII characters to the console during a hot reload session. On certain conole hosts, such as the Windows conhost, these characters may appear garbled. Consider switching to a different terminal, such as https://github.com/microsoft/terminal, that  supports rendering non-ASCII characters, or configure the `DOTNET_WATCH_SUPPRESS_EMOJIS=1` environment variable to suppress emitting these values.
