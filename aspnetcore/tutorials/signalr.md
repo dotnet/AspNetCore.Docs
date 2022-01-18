@@ -234,7 +234,7 @@ The preceding highlighted code adds SignalR to the ASP.NET Core dependency injec
 * In the integrated terminal, run the following command:
 
   ```dotnetcli
-  dotnet watch run -p SignalRChat.csproj
+  dotnet watch run --project SignalRChat.csproj
   ```
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
