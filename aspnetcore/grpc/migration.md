@@ -1,19 +1,28 @@
 ---
-title: Migrating gRPC services from C-core to ASP.NET Core
+title: Migrate gRPC from C-core to gRPC for .NET
 author: jamesnk
-description: Learn how to move an existing C-core based gRPC app to run on top of ASP.NET Core stack.
+description: Learn how to move an existing C-core based gRPC app to run on top of gRPC for .NET.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 09/25/2019
+ms.date: 01/18/2022
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/migration
 ---
-# Migrating gRPC services from C-core to ASP.NET Core
+# Migrate gRPC from C-core to gRPC for .NET
 
-Due to the implementation of the underlying stack, not all features work in the same way between [C-core-based gRPC](https://grpc.io/blog/grpc-stacks) apps and ASP.NET Core-based apps. This document highlights the key differences for migrating between the two stacks.
+Due to the implementation of the underlying stack, not all features work in the same way between [C-core-based gRPC](https://grpc.io/blog/grpc-stacks) apps and gRPC for .NET. This document highlights the key differences for migrating between the two stacks.
 
 > [!IMPORTANT]
-> gRPC C-core is in maintaince mode and [will be deprecated in favour of gRPC for .NET](https://grpc.io/blog/grpc-csharp-future/). gRPC C-core is not recommended for new apps.
+> gRPC C-core is in maintenance mode and [will be deprecated in favor of gRPC for .NET](https://grpc.io/blog/grpc-csharp-future/). gRPC C-core is not recommended for new apps.
+
+## Platform support
+
+gRPC C-core and gRPC for .NET have different platform support:
+
+* **gRPC C-core**: A C++ gRPC implementation with its own TLS and HTTP/2 stacks. The `Grpc.Core` package is a .NET wrapper around gRPC C-core and contains a gRPC client and server. It supports .NET Framework, .NET Core, and .NET 5 or later.
+* **gRPC for .NET**: Designed for .NET Core 3.x and .NET 5 or later. It uses TLS and HTTP/2 stacks built into modern .NET releases. The `Grpc.AspNetCore` package contains a gRPC server that is hosted in ASP.NET Core and requires .NET Core 3.x or .NET 5 or later. The `Grpc.Net.Client` package contains a gRPC client. The client in `Grpc.Net.Client` has limited support for .NET Framework using <xref:System.Net.Http.WinHttpHandler>.
+
+For more information, see <xref:grpc/supported-platforms>.
 
 ## gRPC service implementation lifetime
 
@@ -71,6 +80,8 @@ public class GreeterService : Greeter.GreeterBase
     }
 }
 ```
+
+For more information on gRPC logging and diagnostics, see <xref:grpc/diagnostics>.
 
 ## HTTPS
 
