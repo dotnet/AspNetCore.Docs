@@ -22,7 +22,7 @@ Collocated JS files are publicly addressable using the ***path to the file in th
 
   Razor Pages example:
 
-  A JavaScript file for the `Index` page is placed in the `Pages` folder (`Pages/Index.cshtml.js`) next to the `Index` page (`Pages/Index.cshtml`). In the `Index` page, the script is referenced at the path in the `Pages` folder:
+  A JS file for the `Index` page is placed in the `Pages` folder (`Pages/Index.cshtml.js`) next to the `Index` page (`Pages/Index.cshtml`). In the `Index` page, the script is referenced at the path in the `Pages` folder:
 
   ```razor
   @section Scripts {
@@ -34,7 +34,7 @@ Collocated JS files are publicly addressable using the ***path to the file in th
 
   Blazor example:
 
-  A JavaScript file for the `Index` component is placed in the `Pages` folder (`Pages/Index.razor.js`) next to the `Index` component (`Pages/Index.razor`). In the `Index` component, the script is referenced at the path in the `Pages` folder. The following example is based on an example shown in the <xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules> article.
+  A JS file for the `Index` component is placed in the `Pages` folder (`Pages/Index.razor.js`) next to the `Index` component (`Pages/Index.razor`). In the `Index` component, the script is referenced at the path in the `Pages` folder. The following example is based on an example shown in the <xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules> article.
 
   `Pages/Index.razor.js`:
 
