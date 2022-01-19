@@ -101,6 +101,28 @@ To highlight selected lines in a rendered snippet (usually renders as yellow bac
 [!code-javascript[](configuration/index/sample/UsingOptionsSample.csproj?range=10-20&highlight=1-3]
 ```
 
+NOTE: When highlighting line(s) within regions the line numbers (or a range) to be passed must be relative to that region like the following:
+
+```c#
+1
+2
+3
+4 #if Final
+5 #region FinalSnippet
+1 using System;
+2 using System.ComponentModel.DataAnnotations;
+3 using System.ComponentModel.DataAnnotations.Schema;
+4
+6 #endregion
+7 #endif
+```
+
+To highlight this code:
+
+```md
+[!code-csharp[](configuration/index/sample/Program.cs?name=snippet&highlight=1-3]
+```
+
 ## Test changes with DocFX
 
 Test your changes with the [DocFX command-line tool](https://dotnet.github.io/docfx/tutorial/docfx_getting_started.html#2-use-docfx-as-a-command-line-tool), which creates a locally hosted version of the site. DocFX doesn't render style and site extensions created for docs.microsoft.com.
