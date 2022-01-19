@@ -80,7 +80,7 @@ For more information, see <xref:fundamentals/startup>.
 
 The following shows the application startup code in the ASP.NET Core *Program.cs* file:
 
-[!code-csharp[](webapi/sample/6.x/ProductsCore/Product.cs?name=snippet_Product)]
+[!code-csharp[](webapi/sample/6.x/ProductsCore/Product.cs?name=snippet_Program)]
 
 ## Migrate models and controllers
 
