@@ -65,6 +65,8 @@ Add a new API project to migrate to:
    1. Uncheck **Enable OpenAPI support**.
    1. Select **Create**.
 1. Remove the *WeatherForecast.cs* and *Controllers/WeatherForecastController.cs* example files from the new *ProductsCore* project.
+1. Open *Properties\launchSettings.json*.
+1. Change `launchUrl` properties from `weatherforcast` to `productscore`.
 
 The solution now contains two projects. The following sections explain migrating the *ProductsApp* project's contents to the *ProductsCore* project.
 
@@ -141,7 +143,7 @@ Configure routing as follows:
     * Apply the [`[HttpGet]`](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute) attribute to the `GetAllProducts` action.
     * Apply the `[HttpGet("{id}")]` attribute to the `GetProduct` action.
 
-Run the migrated project, and browse to `/api/products`. A full list of three products appears. Browse to `/api/products/1`. The first product appears.
+Run the migrated project, and browse to `/api/products`.  For example: https://localhost:<port>/api/products. A full list of three products appears. Browse to `/api/products/1`. The first product appears.
 
 ## Additional resources
 
