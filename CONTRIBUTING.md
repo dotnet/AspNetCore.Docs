@@ -101,7 +101,7 @@ To highlight selected lines in a rendered snippet (usually renders as yellow bac
 [!code-javascript[](configuration/index/sample/UsingOptionsSample.csproj?range=10-20&highlight=1-3)]
 ```
 
-When highlighting lines within regions, the line numbers (or a range of line number) must be relative to the snipper `region`, as seen in the following example:
+When highlighting lines within regions, the line numbers (or a range of line numbers) must be relative to the snippet's `#region` directive, as seen in the following example:
 
 ```csharp
 1
