@@ -62,6 +62,7 @@ Add a new API project to migrate to:
 1. In the **Additional information** dialog:
   * Confirm the **Framework** is **.NET 6.0 (Long-term support)**.
   * Confirm the checkbox for **Use controllers(uncheck to use minimal APIs)** is checked.
+  * Uncheck **Enable OpenAPI support**.
   * Select **Create**.
 1. Remove the *WeatherForecast.cs* and *Controllers/WeatherForecastController.cs* example files from the new *ProductsCore* project.
 
@@ -86,7 +87,7 @@ The following shows the application startup code in the ASP.NET Core *Program.cs
 
 The following code shows the updated ASP.NET Core `ProductsController`:
 
-[!code-csharp[](webapi/sample/6.x/ProductsCore/Controllers/ProductsController.cs?highlight=1,6,8,12,37,44)]
+[!code-csharp[](webapi/sample/6.x/ProductsCore/Controllers/ProductsController.cs?highlight=2,7,9,13,38,45)]
 
 Update the `ProductsController` for ASP.NET Core:
 
