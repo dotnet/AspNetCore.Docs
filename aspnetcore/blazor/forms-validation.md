@@ -104,10 +104,6 @@ All of the input components, including <xref:Microsoft.AspNetCore.Components.For
 
 Input components provide default behavior for validating when a field is changed, including updating the field CSS class to reflect the field's state as valid or invalid. Some components include useful parsing logic. For example, <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> and <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> handle unparseable values gracefully by registering unparseable values as validation errors. Types that can accept null values also support nullability of the target field (for example, `int?` for a nullable integer).
 
-## Preview an image provided by the `InputFile` component
-
-[!INCLUDE[](includes/inputfile-preview-images.md)]
-
 ## Example form
 
 The following `Starship` type, which is used in several of this article's examples, defines a diverse set of properties with data annotations:
@@ -152,6 +148,10 @@ In the following example:
 
 > [!NOTE]
 > Changing the <xref:Microsoft.AspNetCore.Components.Forms.EditContext> after its assigned is **not** supported.
+
+## Preview an image provided by the `InputFile` component
+
+[!INCLUDE[](includes/inputfile-preview-images.md)]
 
 ## Multiple option selection with the `InputSelect` component
 
