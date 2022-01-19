@@ -134,6 +134,9 @@ The following example demonstrates multiple file upload in a component. <xref:Mi
 
 The following example demonstrates uploading files to a web API controller in the **`Server`** app of a hosted Blazor WebAssembly solution.
 
+> [!IMPORTANT]
+> When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+
 :::zone-end
 
 :::zone pivot="server"
@@ -643,6 +646,9 @@ The following example demonstrates multiple file upload in a component. <xref:Mi
 :::zone pivot="webassembly"
 
 The following example demonstrates uploading files to a web API controller in the **`Server`** app of a hosted Blazor WebAssembly solution.
+
+> [!IMPORTANT]
+> When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
 
 :::zone-end
 

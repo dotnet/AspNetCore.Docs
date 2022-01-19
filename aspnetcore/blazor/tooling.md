@@ -34,7 +34,8 @@ zone_pivot_groups: operating-systems
 
 For more information on trusting the ASP.NET Core HTTPS development certificate, see <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos>.
 
-When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+> [!IMPORTANT]
+> When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
 
 :::zone-end
 
@@ -127,6 +128,9 @@ When executing a hosted Blazor WebAssembly app, run the app from the solution's 
    **Hosted Blazor WebAssembly launch and task configuration**
 
    For hosted Blazor WebAssembly solutions, add (or move) the `.vscode` folder with `launch.json` and `tasks.json` files to the solution's parent folder, which is the folder that contains the typical project folders: `Client`, `Server`, and `Shared`. Update or confirm that the configuration in the `launch.json` and `tasks.json` files execute a hosted Blazor WebAssembly app from the **`Server`** project.
+
+   > [!IMPORTANT]
+   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
 
    Examine the `Properties/launchSettings.json` file and determine the URL of the app from the `applicationUrl` property (for example, `https://localhost:7268`). Note this value for use in the `launch.json` file.
 
@@ -255,7 +259,8 @@ For more information, see the guidance provided by your browser manufacturer and
 
 If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate. For more information on trusting the ASP.NET Core HTTPS development certificate, see <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos>.
 
-When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+> [!IMPORTANT]
+> When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
 
 :::zone-end
 
@@ -324,7 +329,8 @@ For more information, see the following resources:
 
 For more information on trusting the ASP.NET Core HTTPS development certificate, see <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos>.
 
-When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+> [!IMPORTANT]
+> When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
 
 :::zone-end
 
@@ -419,6 +425,9 @@ When executing a hosted Blazor WebAssembly app, run the app from the solution's 
 
    For hosted Blazor WebAssembly solutions, add (or move) the `.vscode` folder with `launch.json` and `tasks.json` files to the solution's parent folder, which is the folder that contains the typical project folders: `Client`, `Server`, and `Shared`. Update or confirm that the configuration in the `launch.json` and `tasks.json` files execute a hosted Blazor WebAssembly app from the **`Server`** project.
 
+   > [!IMPORTANT]
+   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+
    **`.vscode/launch.json`** (`launch` configuration):
 
    ```json
@@ -501,7 +510,8 @@ For more information, see the guidance provided by your browser manufacturer and
 
 If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate. For more information on trusting the ASP.NET Core HTTPS development certificate, see <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos>.
 
-When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+> [!IMPORTANT]
+> When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
 
 :::zone-end
 
