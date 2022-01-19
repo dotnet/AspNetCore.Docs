@@ -101,26 +101,43 @@ To highlight selected lines in a rendered snippet (usually renders as yellow bac
 [!code-javascript[](configuration/index/sample/UsingOptionsSample.csproj?range=10-20&highlight=1-3)]
 ```
 
-When highlighting lines within regions, the line numbers (or a range of line numbers) must be relative to the snippet's `#region` directive, as seen in the following example:
+When highlighting lines within regions, use line numbers (or a range of line numbers) relative to the snippet's `#region` directive, as seen in the following example.
+
+The following partial C# code example includes a region named `FinalSnippet` with three `using` statements:
 
 ```csharp
-1
-2
-3
-4 #if Final
-5 #region FinalSnippet
-1 using System;
-2 using System.ComponentModel.DataAnnotations;
-3 using System.ComponentModel.DataAnnotations.Schema;
-4
-6 #endregion
-7 #endif
+        ...
+        public decimal Price { get; set; }
+        public string? Rating {  get; set; }
+    }
+}
+#endregion
+#endif
+#if Final
+#region FinalSnippet
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace MvcMovie.Models
+{
+    public class Movie
+    {
+        public int Id { get; set; }
+
+        ...
+    }
+}
+#endregion
+#endif
 ```
 
-To highlight the three `using` statements in the preceding example, specify a `highlight` property in the query string with a value of `1-3`:
+To highlight the three `using` statements from the preceding example, specify a `highlight` property in the query string with a value of `1-3`.
+
+Markdown:
 
 ```md
-[!code-csharp[](configuration/index/sample/Program.cs?name=snippet&highlight=1-3)]
+[!code-csharp[](configuration/index/sample/Program.cs?name=FinalSnippet&highlight=1-3)]
 ```
 
 ## Test changes with DocFX
