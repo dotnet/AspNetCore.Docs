@@ -103,7 +103,7 @@ To highlight selected lines in a rendered snippet (usually renders as yellow bac
 
 When highlighting lines within regions, use line numbers (or a range of line numbers) relative to the snippet's `#region` directive, as seen in the following example.
 
-The following partial C# code example includes a region named `FinalSnippet` with three `using` statements:
+The following partial C# code (`Movie.cs`) example includes a region named `FinalSnippet` with three `using` statements:
 
 ```csharp
         ...
@@ -137,7 +137,7 @@ To highlight the three `using` statements from the preceding example, specify a 
 Markdown:
 
 ```md
-[!code-csharp[](configuration/index/sample/Program.cs?name=FinalSnippet&highlight=1-3)]
+[!code-csharp[](sample/MvcMovie60/Models/Movie.cs?name=FinalSnippet&highlight=1-3)]
 ```
 
 ## Test changes with DocFX
