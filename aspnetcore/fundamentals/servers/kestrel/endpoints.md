@@ -68,11 +68,7 @@ By default, Kestrel configuration is loaded from the `Kestrel` section and reloa
         "Url": "http://localhost:5000"
       },
       "Https": {
-        "Url": "https://localhost:5001",
-        "Certificate": {
-          "Path": "<path to .pfx file>",
-          "Password": "<certificate password>"
-        }
+        "Url": "https://localhost:5001"
       }
     }
   }
@@ -159,7 +155,7 @@ In the following *appsettings.json* example:
         "Url": "https://localhost:5001",
         "Certificate": {
           "Path": "<path to .pfx file>",
-          "Password": "<certificate password>"
+          "Password": "$CREDENTIAL_PLACEHOLDER$"
         }
       },
       "HttpsInlineCertAndKeyFile": {
@@ -167,7 +163,7 @@ In the following *appsettings.json* example:
         "Certificate": {
           "Path": "<path to .pem/.crt file>",
           "KeyPath": "<path to .key file>",
-          "Password": "<certificate password>"
+          "Password": "$CREDENTIAL_PLACEHOLDER$"
         }
       },
       "HttpsInlineCertStore": {
@@ -186,12 +182,15 @@ In the following *appsettings.json* example:
     "Certificates": {
       "Default": {
         "Path": "<path to .pfx file>",
-        "Password": "<certificate password>"
+        "Password": "$CREDENTIAL_PLACEHOLDER$"
       }
     }
   }
 }
 ```
+
+> [!WARNING]
+> In the preceding example, certificate passwords are stored in plain-text in *appsettings.json*. The `$CREDENTIAL_PLACEHOLDER$` token is used as a placeholder for each certificate's password. To store certificate passwords securely in development environments, see [Protect secrets in development](xfef:security/app-secrets). To store certificate passwords securely in production environments, see [Azure Key Vault configuration provider](xref:security/key-vault-configuration).
 
 Schema notes:
 
@@ -292,7 +291,7 @@ The following configuration adds an endpoint named `MySniEndpoint` that uses SNI
           "*.example.org": {
             "Certificate": {
               "Path": "<path to .pfx file>",
-              "Password": "<certificate password>"
+              "Password": "$CREDENTIAL_PLACEHOLDER$"
             }
           },
           "*": {
@@ -306,12 +305,15 @@ The following configuration adds an endpoint named `MySniEndpoint` that uses SNI
     "Certificates": {
       "Default": {
         "Path": "<path to .pfx file>",
-        "Password": "<certificate password>"
+        "Password": "$CREDENTIAL_PLACEHOLDER$"
       }
     }
   }
 }
 ```
+
+> [!WARNING]
+> In the preceding example, certificate passwords are stored in plain-text in *appsettings.json*. The `$CREDENTIAL_PLACEHOLDER$` token is used as a placeholder for each certificate's password. To store certificate passwords securely in development environments, see [Protect secrets in development](xfef:security/app-secrets). To store certificate passwords securely in production environments, see [Azure Key Vault configuration provider](xref:security/key-vault-configuration).
 
 HTTPS options that can be overridden by SNI:
 
@@ -347,13 +349,16 @@ SSL Protocols are protocols used for encrypting and decrypting traffic between t
         "SslProtocols": ["Tls12", "Tls13"],
         "Certificate": {
           "Path": "<path to .pfx file>",
-          "Password": "<certificate password>"
+          "Password": "$CREDENTIAL_PLACEHOLDER$"
         }
       }
     }
   }
 }
 ```
+
+> [!WARNING]
+> In the preceding example, the certificate password is stored in plain-text in *appsettings.json*. The `$CREDENTIAL_PLACEHOLDER$` token is used as a placeholder for the certificate's password. To store certificate passwords securely in development environments, see [Protect secrets in development](xfef:security/app-secrets). To store certificate passwords securely in production environments, see [Azure Key Vault configuration provider](xref:security/key-vault-configuration).
 
 The default value, `SslProtocols.None`, causes Kestrel to use the operating system defaults to choose the best protocol. Unless you have a specific reason to select a protocol, use the default.
 
@@ -372,13 +377,16 @@ The default value, `SslProtocols.None`, causes Kestrel to use the operating syst
         "ClientCertificateMode": "AllowCertificate",
         "Certificate": {
           "Path": "<path to .pfx file>",
-          "Password": "<certificate password>"
+          "Password": "$CREDENTIAL_PLACEHOLDER$"
         }
       }
     }
   }
 }
 ```
+
+> [!WARNING]
+> In the preceding example, the certificate password is stored in plain-text in *appsettings.json*. The `$CREDENTIAL_PLACEHOLDER$` token is used as a placeholder for the certificate's password. To store certificate passwords securely in development environments, see [Protect secrets in development](xfef:security/app-secrets). To store certificate passwords securely in production environments, see [Azure Key Vault configuration provider](xref:security/key-vault-configuration).
 
 The default value is `ClientCertificateMode.NoCertificate` where Kestrel will not request or require a certificate from the client.
 
@@ -618,11 +626,7 @@ The `Configure(IConfiguration, bool)` overload can be used to enable reloading e
         "Url": "http://localhost:5000"
       },
       "Https": {
-        "Url": "https://localhost:5001",
-        "Certificate": {
-          "Path": "<path to .pfx file>",
-          "Password": "<certificate password>"
-        }
+        "Url": "https://localhost:5001"
       }
     }
   }
@@ -718,7 +722,7 @@ In the following *appsettings.json* example:
         "Url": "https://localhost:5001",
         "Certificate": {
           "Path": "<path to .pfx file>",
-          "Password": "<certificate password>"
+          "Password": "$CREDENTIAL_PLACEHOLDER$"
         }
       },
       "HttpsInlineCertAndKeyFile": {
@@ -726,7 +730,7 @@ In the following *appsettings.json* example:
         "Certificate": {
           "Path": "<path to .pem/.crt file>",
           "KeyPath": "<path to .key file>",
-          "Password": "<certificate password>"
+          "Password": "$CREDENTIAL_PLACEHOLDER$"
         }
       },
       "HttpsInlineCertStore": {
@@ -745,12 +749,15 @@ In the following *appsettings.json* example:
     "Certificates": {
       "Default": {
         "Path": "<path to .pfx file>",
-        "Password": "<certificate password>"
+        "Password": "$CREDENTIAL_PLACEHOLDER$"
       }
     }
   }
 }
 ```
+
+> [!WARNING]
+> In the preceding example, certificate passwords are stored in plain-text in *appsettings.json*. The `$CREDENTIAL_PLACEHOLDER$` token is used as a placeholder for each certificate's password. To store certificate passwords securely in development environments, see [Protect secrets in development](xfef:security/app-secrets). To store certificate passwords securely in production environments, see [Azure Key Vault configuration provider](xref:security/key-vault-configuration).
 
 Schema notes:
 
@@ -942,7 +949,7 @@ The following configuration adds an endpoint named `MySniEndpoint` that uses SNI
           "*.example.org": {
             "Certificate": {
               "Path": "<path to .pfx file>",
-              "Password": "<certificate password>"
+              "Password": "$CREDENTIAL_PLACEHOLDER$"
             }
           },
           "*": {
@@ -956,12 +963,15 @@ The following configuration adds an endpoint named `MySniEndpoint` that uses SNI
     "Certificates": {
       "Default": {
         "Path": "<path to .pfx file>",
-        "Password": "<certificate password>"
+        "Password": "$CREDENTIAL_PLACEHOLDER$"
       }
     }
   }
 }
 ```
+
+> [!WARNING]
+> In the preceding example, certificate passwords are stored in plain-text in *appsettings.json*. The `$CREDENTIAL_PLACEHOLDER$` token is used as a placeholder for each certificate's password. To store certificate passwords securely in development environments, see [Protect secrets in development](xfef:security/app-secrets). To store certificate passwords securely in production environments, see [Azure Key Vault configuration provider](xref:security/key-vault-configuration).
 
 HTTPS options that can be overridden by SNI:
 
@@ -1006,13 +1016,16 @@ webBuilder.ConfigureKestrel(serverOptions =>
         "SslProtocols": ["Tls12", "Tls13"],
         "Certificate": {
           "Path": "<path to .pfx file>",
-          "Password": "<certificate password>"
+          "Password": "$CREDENTIAL_PLACEHOLDER$"
         }
       }
     }
   }
 }
 ```
+
+> [!WARNING]
+> In the preceding example, the certificate password is stored in plain-text in *appsettings.json*. The `$CREDENTIAL_PLACEHOLDER$` token is used as a placeholder for the certificate's password. To store certificate passwords securely in development environments, see [Protect secrets in development](xfef:security/app-secrets). To store certificate passwords securely in production environments, see [Azure Key Vault configuration provider](xref:security/key-vault-configuration).
 
 The default value, `SslProtocols.None`, causes Kestrel to use the operating system defaults to choose the best protocol. Unless you have a specific reason to select a protocol, use the default.
 
@@ -1039,13 +1052,16 @@ webBuilder.ConfigureKestrel(serverOptions =>
         "ClientCertificateMode": "AllowCertificate",
         "Certificate": {
           "Path": "<path to .pfx file>",
-          "Password": "<certificate password>"
+          "Password": "$CREDENTIAL_PLACEHOLDER$"
         }
       }
     }
   }
 }
 ```
+
+> [!WARNING]
+> In the preceding example, the certificate password is stored in plain-text in *appsettings.json*. The `$CREDENTIAL_PLACEHOLDER$` token is used as a placeholder for the certificate's password. To store certificate passwords securely in development environments, see [Protect secrets in development](xfef:security/app-secrets). To store certificate passwords securely in production environments, see [Azure Key Vault configuration provider](xref:security/key-vault-configuration).
 
 The default value is `ClientCertificateMode.NoCertificate` where Kestrel will not request or require a certificate from the client.
 
