@@ -60,10 +60,10 @@ Add a new API project to migrate to:
 1. Add a new **ASP.NET Core Web API** project to the solution, and select **Next**.
 1. In the **Configure your new project** dialog, name the project *ProductsCore*, and select **Next**.
 1. In the **Additional information** dialog:
-  * Confirm the **Framework** is **.NET 6.0 (Long-term support)**.
-  * Confirm the checkbox for **Use controllers(uncheck to use minimal APIs)** is checked.
-  * Uncheck **Enable OpenAPI support**.
-  * Select **Create**.
+   1. Confirm the **Framework** is **.NET 6.0 (Long-term support)**.
+   1. Confirm the checkbox for **Use controllers(uncheck to use minimal APIs)** is checked.
+   1. Uncheck **Enable OpenAPI support**.
+   1. Select **Create**.
 1. Remove the *WeatherForecast.cs* and *Controllers/WeatherForecastController.cs* example files from the new *ProductsCore* project.
 
 The solution now contains two projects. The following sections explain migrating the *ProductsApp* project's contents to the *ProductsCore* project.
