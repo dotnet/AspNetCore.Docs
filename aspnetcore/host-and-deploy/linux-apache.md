@@ -31,12 +31,28 @@ At any point in the future after upgrading the shared framework, restart the ASP
 
 Configure the app for a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd).
 
-If the app is run locally and isn't configured to make secure connections (HTTPS), adopt either of the following approaches:
+If the app is run locally in the [Development environment](xref:fundamentals/environments#configure-services-and-middleware-by-environment) and isn't configured by the server to make secure HTTPS connections, adopt either of the following approaches:
 
 * Configure the app to handle secure local connections. For more information, see the [HTTPS configuration](#https-configuration) section.
-* Remove `https://localhost:5001` (if present) from the `applicationUrl` property in the *Properties/launchSettings.json* file.
 
-Run [dotnet publish](/dotnet/core/tools/dotnet-publish) from the development environment to package an app into a directory (for example, *bin/Release/&lt;target_framework_moniker&gt;/publish*) that can run on the server:
+* Configure the app to run at the insecure endpoint:
+
+  * Deactivate HTTPS Redirection Middleware in the Development environment (`Program.cs`):
+
+    ```csharp
+    if (!app.Environment.IsDevelopment())
+    {
+        app.UseHttpsRedirection();
+    }
+    ```
+
+    For more information, see <xref:fundamentals/environments#configure-services-and-middleware-by-environment>.
+
+  * Remove `https://localhost:5001` (if present) from the `applicationUrl` property in the `Properties/launchSettings.json` file.
+
+For more information on configuration by environment, see <xref:fundamentals/environments>.
+
+Run [dotnet publish](/dotnet/core/tools/dotnet-publish) from the development environment to package an app into a directory (for example, `bin/Release/{TARGET FRAMEWORK MONIKER}/publish`, where the `{TARGET FRAMEWORK MONIKER}` placeholder is the [Target Framework Moniker (TFM)](/dotnet/standard/frameworks)) that can run on the server:
 
 ```dotnetcli
 dotnet publish --configuration Release
