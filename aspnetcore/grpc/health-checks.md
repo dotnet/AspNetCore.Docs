@@ -32,12 +32,12 @@ Health checks are exposed by an app as a gRPC service. They are typically used w
 gRPC ASP.NET Core has built-in support for gRPC health checks with the [`Grpc.AspNetCore.HealthChecks`](https://www.nuget.org/packages/Grpc.AspNetCore.HealthChecks) package. Results from [.NET health checks](xref:host-and-deploy/health-checks) are reported to callers. To set up gRPC health checks in an app:
 
 * Add a `Grpc.AspNetCore.HealthChecks` package reference.
-* Register gRPC health checks service in `Startup.cs`:
+* Register gRPC health checks service:
   * `AddGrpcHealthChecks` to register services that enable health checks.
   * `MapGrpcHealthChecksService` to add a health checks service endpoint.
 * Add health checks by implementing <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck> or using the <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck%2A> method.
 
-[!code-csharp[](~/grpc/health-checks/Startup.cs?name=snippet_1&highlight=4-6,16)]
+[!code-csharp[](~/grpc/health-checks/samples-6/GrpcServiceHC/Program.cs?name=snippet&highlight=2,7-8,13)]
 
 When health checks is set up:
 
@@ -51,24 +51,13 @@ When health checks is set up:
 
 By default, the gRPC health checks service uses all registered health checks to determine health status. gRPC health checks can be customized when registered to use a subset of health checks. The `MapService` method is used to map health results to service names, along with a predicate for filtering health results:
 
-```csharp
-services.AddGrpcHealthChecks(o =>
-{
-    o.Services.MapService("", r => r.Tags.Contains("public"));
-});
-```
+[!code-csharp[](~/grpc/health-checks/samples-6/GrpcServiceHC/Program.cs?name=snippet2&highlight=7-9)]
 
 The preceding code overrides the default service (`""`) to only use health results with the "public" tag.
 
 gRPC health checks supports the client specifying a service name argument when checking health. Multiple services are supported by providing a service name to `MapService`:
 
-```csharp
-services.AddGrpcHealthChecks(o =>
-{
-    o.Services.MapService("greet.Greeter", r => r.Tags.Contains("greeter"));
-    o.Services.MapService("count.Counter", r => r.Tags.Contains("counter"));
-});
-```
+[!code-csharp[](~/grpc/health-checks/samples-6/GrpcServiceHC/Program.cs?name=snippet3&highlight=7-10)]
 
 The service name is usually the default (`""`) or a package-qualified name of a service in your app. However, nothing prevents using arbitrary values to check app health.
 
@@ -120,7 +109,7 @@ gRPC ASP.NET Core has built-in support for gRPC health checks with the [`Grpc.As
   * `MapGrpcHealthChecksService` to add a health checks service endpoint.
 * Add health checks by implementing <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck> or using the <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck%2A> method.
 
-[!code-csharp[](~/grpc/health-checks/Startup.cs?name=snippet_1&highlight=4-6,16)]
+[!code-csharp[](~/grpc/health-checks/Startup.cs?highlight=4-6,16)]
 
 When health checks is set up:
 
