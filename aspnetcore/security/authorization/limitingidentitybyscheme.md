@@ -68,7 +68,7 @@ See [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/26002) on us
 
 The following example uses [Azure Active Directory B2C](/azure/active-directory-b2c/overview) and another [Azure Active Directory](/azure/active-directory/authentication/overview-authentication) tenant:
 
-[!code-csharp[](~/security/authorization/limitingidentitybyscheme/samples/AuthScheme/Program.cs?name=snippet_ma2&highlight=9-30)]
+[!code-csharp[](~/security/authorization/limitingidentitybyscheme/samples/AuthScheme/Program.cs?name=snippet_ma2&highlight=9-49)]
 
 ::: moniker-end
 

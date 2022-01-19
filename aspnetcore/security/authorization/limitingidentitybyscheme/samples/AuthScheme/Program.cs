@@ -167,25 +167,54 @@ app.Run();
 #region snippet_ma2
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.Net.Http.Headers;
+using System.IdentityModel.Tokens.Jwt;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var config = builder.Configuration.GetSection("AzureAdB2C")
-                                          .Get<MicrosoftIdentityOptions>();
-
 // Authentication
-builder.Services.AddAuthentication("B2C")
-   .AddJwtBearer("B2C", options =>
-   {
-       options.Audience = config.ClientId;
-       options.Authority = $"{config.Instance}/{config.Domain}/" +
-                           $"{config.DefaultUserFlow}/v2.0";
-   })
-   .AddJwtBearer("AAD", options =>
-   {
-       options.Audience = config.ClientId2;
-       options.Authority = $"https://login.microsoftonline.com/{config.TenantId}/v2.0";
-   });
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultScheme = "B2C_OR_AAD";
+    options.DefaultChallengeScheme = "B2C_OR_AAD";
+})
+.AddJwtBearer("B2C", jwtOptions =>
+{
+    jwtOptions.MetadataAddress = "B2C-MetadataAddress";
+    jwtOptions.Authority = "B2C-Authority";
+    jwtOptions.Audience = "B2C-Audience";
+})
+.AddJwtBearer("AAD", jwtOptions =>
+{
+    jwtOptions.MetadataAddress = "AAD-MetadataAddress";
+    jwtOptions.Authority = "AAD-Authority";
+    jwtOptions.Audience = "AAD-Audience";
+    jwtOptions.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateIssuerSigningKey = true,
+        ValidAudiences = builder.Configuration.GetSection("ValidAudiences").Get<string[]>(),
+        ValidIssuers = builder.Configuration.GetSection("ValidIssuers").Get<string[]>()
+    };
+})
+.AddPolicyScheme("B2C_OR_AAD", "B2C_OR_AAD", options =>
+{
+    options.ForwardDefaultSelector = context =>
+    {
+        string authorization = context.Request.Headers[HeaderNames.Authorization];
+        if (!string.IsNullOrEmpty(authorization) && authorization.StartsWith("Bearer "))
+        {
+            var token = authorization.Substring("Bearer ".Length).Trim();
+            var jwtHandler = new JwtSecurityTokenHandler();
+
+            return (jwtHandler.CanReadToken(token) && jwtHandler.ReadJwtToken(token).Issuer.Equals("B2C-Authority"))
+                ? "B2C" : "AAD";
+        }
+        return "AAD";
+    };
+});
 
 // Authorization
 builder.Services.AddAuthorization(options =>
