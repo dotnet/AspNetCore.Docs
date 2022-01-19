@@ -4,7 +4,7 @@ author: ardalis
 description: Learn how to migrate a web API implementation from ASP.NET 4.x Web API to ASP.NET Core MVC.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 01/14/2022
+ms.date: 01/18/2022
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: migration/webapi
 ---
@@ -69,20 +69,24 @@ The solution now contains two projects. The following sections explain migrating
 
 ## Migrate configuration
 
-ASP.NET Core doesn't use the *App_Start* folder or the *Global.asax* file. Additionally, the *web.config* file is added at publish time.
+ASP.NET Core doesn't use the *App_Start* folder or the *Global.asax* file. The *web.config* file is added at publish time.
 
-The `Program` class:
+The *Program.cs* file:
 
 * Replaces *Global.asax*.
 * Handles all app startup tasks.
 
 For more information, see <xref:fundamentals/startup>.
 
+The following shows the application startup code in the ASP.NET Core *Program.cs* file:
+
+[!code-csharp[](webapi/sample/6.x/ProductsCore/Product.cs?name=snippet_Product)]
+
 ## Migrate models and controllers
 
-The following code shows the `ProductsController` to be updated for ASP.NET Core:
+The following code shows the updated ASP.NET Core `ProductsController`:
 
-[!code-csharp[](webapi/sample/3.x/ProductsApp/Controllers/ProductsController.cs)]
+[!code-csharp[](webapi/sample/6.x/ProductsApp/Controllers/ProductsController.cs?highlight=1,6,8,12,37,44)]
 
 Update the `ProductsController` for ASP.NET Core:
 
