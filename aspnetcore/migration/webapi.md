@@ -85,10 +85,6 @@ The following shows the application startup code in the ASP.NET Core *Program.cs
 
 ## Migrate models and controllers
 
-The following code shows the updated ASP.NET Core `ProductsController`:
-
-[!code-csharp[](webapi/sample/6.x/ProductsCore/Controllers/ProductsController.cs?highlight=2,7,9,13,38,45)]
-
 Update the `ProductsController` for ASP.NET Core:
 
 1. Copy *Controllers/ProductsController.cs* and the *Models* folder from the original project to the new one.
@@ -111,6 +107,10 @@ Make the following changes:
     ```csharp
     return product;
     ```
+
+The following code shows the updated ASP.NET Core `ProductsController`:
+
+[!code-csharp[](webapi/sample/6.x/ProductsCore/Controllers/ProductsController.cs?highlight=2,7,9,13,38,45)]
 
 ## Configure routing
 
