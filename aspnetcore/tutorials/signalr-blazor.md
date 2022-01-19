@@ -216,6 +216,9 @@ Follow the guidance for your tooling:
 
 1. In **Solution Explorer**, select the `BlazorWebAssemblySignalRApp.Server` project. Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows)/<kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
 
+   > [!IMPORTANT]
+   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
 1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
@@ -230,6 +233,9 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
 1. Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows)/<kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
 
+   > [!IMPORTANT]
+   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
 1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
@@ -241,6 +247,9 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 1. In the **Solution** sidebar, select the `BlazorWebAssemblySignalRApp.Server` project. Press <kbd>⌘</kbd>+<kbd>↩</kbd> to run the app with debugging or <kbd>⌥</kbd>+<kbd>⌘</kbd>+<kbd>↩</kbd> to run the app without debugging.
+
+   > [!IMPORTANT]
+   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -258,6 +267,9 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    cd Server
    dotnet run
    ```
+
+   > [!IMPORTANT]
+   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -709,6 +721,9 @@ Follow the guidance for your tooling:
 
 1. In **Solution Explorer**, select the `BlazorWebAssemblySignalRApp.Server` project. Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows)/<kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
 
+   > [!IMPORTANT]
+   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
 1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
@@ -722,6 +737,9 @@ Follow the guidance for your tooling:
 For information on configuring VS Code assets in the `.vscode` folder, see the **Linux** operating system guidance in <xref:blazor/tooling>.
 
 1. Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows)/<kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
+
+   > [!IMPORTANT]
+   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -737,6 +755,9 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
+   > [!IMPORTANT]
+   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+
 1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
 
    ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](~/tutorials/signalr-blazor/_static/signalr-blazor-finished.png)
@@ -751,6 +772,9 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    cd Server
    dotnet run
    ```
+
+   > [!IMPORTANT]
+   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -1202,6 +1226,9 @@ Follow the guidance for your tooling:
 
 1. In **Solution Explorer**, select the `BlazorWebAssemblySignalRApp.Server` project. Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows)/<kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
 
+   > [!IMPORTANT]
+   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
 1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
@@ -1216,6 +1243,9 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
 1. Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows)/<kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
 
+   > [!IMPORTANT]
+   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
 1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
@@ -1227,6 +1257,9 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 1. In the **Solution** sidebar, select the `BlazorWebAssemblySignalRApp.Server` project. Press <kbd>⌘</kbd>+<kbd>↩</kbd> to run the app with debugging or <kbd>⌥</kbd>+<kbd>⌘</kbd>+<kbd>↩</kbd> to run the app without debugging.
+
+   > [!IMPORTANT]
+   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -1244,6 +1277,9 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    cd Server
    dotnet run
    ```
+
+   > [!IMPORTANT]
+   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 

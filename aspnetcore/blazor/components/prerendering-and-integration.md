@@ -413,7 +413,7 @@ Additional work might be required depending on the static resources that compone
 
 :::zone pivot="server"
 
-Razor components can be integrated into Razor Pages and MVC apps in a Blazor Server app. When the page or view is rendered, components can be prerendered at the same time.
+Razor components can be integrated into Razor Pages and MVC apps. When the page or view is rendered, components can be prerendered at the same time.
 
 After [configuring the project](#configuration), use the guidance in the following sections depending on the project's requirements:
 
@@ -1190,7 +1190,7 @@ Additional work might be required depending on the static resources that compone
 
 :::zone pivot="server"
 
-Razor components can be integrated into Razor Pages and MVC apps in a Blazor Server app. When the page or view is rendered, components can be prerendered at the same time.
+Razor components can be integrated into Razor Pages and MVC apps. When the page or view is rendered, components can be prerendered at the same time.
 
 After [configuring the project](#configuration), use the guidance in the following sections depending on the project's requirements:
 
@@ -1631,7 +1631,7 @@ Integrating Razor components into Razor Pages and MVC apps in a hosted Blazor We
 
 :::zone pivot="server"
 
-Razor components can be integrated into Razor Pages and MVC apps in a Blazor Server app. When the page or view is rendered, components can be prerendered at the same time.
+Razor components can be integrated into Razor Pages and MVC apps. When the page or view is rendered, components can be prerendered at the same time.
 
 After [configuring the project](#configuration), use the guidance in the following sections depending on the project's requirements:
 
