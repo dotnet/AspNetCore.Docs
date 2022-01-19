@@ -25,22 +25,21 @@ app.MapGet("/", () => "Communication with gRPC endpoints must be made through"
 
 app.Run();
 #elif SECOND
-#region snippet2
 using GrpcServiceHC.Services;
 
+#region snippet2
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddGrpc();
-
 builder.Services.AddGrpcHealthChecks(o =>
 {
     o.Services.MapService("", r => r.Tags.Contains("public"));
 });
 
 var app = builder.Build();
+#endregion
 
 // Code removed for brevity.
-#endregion
 app.MapGrpcService<GreeterService>();
 app.MapGrpcHealthChecksService();
 
