@@ -703,10 +703,10 @@ var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
 #region snippet_auth4
-app.MapGet("/login", [AllowAnonymous] () => "This endpoint is for admins only.");
+app.MapGet("/login", [AllowAnonymous] () => "This endpoint is for all roles.");
 
 
-app.MapGet("/login2", () => "This endpoint also for admins only.")
+app.MapGet("/login2", () => "This endpoint also for all roles.")
    .AllowAnonymous();
 #endregion
 
