@@ -86,7 +86,7 @@ The following shows the application startup code in the ASP.NET Core *Program.cs
 
 The following code shows the updated ASP.NET Core `ProductsController`:
 
-[!code-csharp[](webapi/sample/6.x/ProductsApp/Controllers/ProductsController.cs?highlight=1,6,8,12,37,44)]
+[!code-csharp[](webapi/sample/6.x/ProductsCore/Controllers/ProductsController.cs?highlight=1,6,8,12,37,44)]
 
 Update the `ProductsController` for ASP.NET Core:
 
