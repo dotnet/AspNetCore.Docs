@@ -117,7 +117,7 @@ When highlighting lines within regions, the line numbers (or a range of line num
 7 #endif
 ```
 
-To highlight this preceding code:
+To highlight the three `using` statements in the preceding example, specify a `highlight` property in the query string with a value of `1-3`:
 
 ```md
 [!code-csharp[](configuration/index/sample/Program.cs?name=snippet&highlight=1-3)]
