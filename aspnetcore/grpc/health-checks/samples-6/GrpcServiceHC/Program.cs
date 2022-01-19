@@ -60,12 +60,12 @@ builder.Services.AddGrpcHealthChecks(o =>
     o.Services.MapService("greet.Greeter", r => r.Tags.Contains("greeter"));
     o.Services.MapService("count.Counter", r => r.Tags.Contains("counter"));
 });
+
+var app = builder.Build();
 #endregion
 
 app.MapGrpcService<GreeterService>();
 app.MapGrpcHealthChecksService();
-
-var app = builder.Build();
 
 // Code removed for brevity.
 
