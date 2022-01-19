@@ -110,7 +110,7 @@ Make the following changes:
 
 The following code shows the updated ASP.NET Core `ProductsController`:
 
-[!code-csharp[](webapi/sample/6.x/ProductsCore/Controllers/ProductsController.cs?name=snippet_snippet_ProductsController&highlight=2,7,9,13,38,45)]
+[!code-csharp[](webapi/sample/6.x/ProductsCore/Controllers/ProductsController.cs?name=snippet_snippet_ProductsController&highlight=2,7,9,15,40,47)]
 
 ## Configure routing
 
