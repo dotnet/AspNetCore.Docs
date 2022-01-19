@@ -31,8 +31,7 @@ using GrpcServiceHC.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddGrpc();
-// No overload for method 'AddGrpcHealthChecks' takes 1 arguments	
-  builder.Services.AddGrpcHealthChecks(o =>
+builder.Services.AddGrpcHealthChecks(o =>
 {
     o.Services.MapService("", r => r.Tags.Contains("public"));
 });
