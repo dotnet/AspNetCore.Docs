@@ -25,8 +25,6 @@ This tutorial teaches the basics of building a real-time app using SignalR with 
 
 At the end of this tutorial, you'll have a working chat app.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/signalr-blazor/samples/) ([how to download](xref:index#how-to-download-a-sample))
-
 ## Prerequisites
 
 # [Visual Studio](#tab/visual-studio)
@@ -48,6 +46,12 @@ At the end of this tutorial, you'll have a working chat app.
 [!INCLUDE[](~/includes/6.0-SDK.md)]
 
 ---
+
+## Sample app
+
+Downloading the tutorial's sample chat app isn't required for this tutorial. The sample app is the final, working app produced by following the steps of this tutorial.
+
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/signalr-blazor/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
 :::zone pivot="webassembly"
 
@@ -532,8 +536,6 @@ This tutorial teaches the basics of building a real-time app using SignalR with 
 
 At the end of this tutorial, you'll have a working chat app.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/signalr-blazor/samples/) ([how to download](xref:index#how-to-download-a-sample))
-
 ## Prerequisites
 
 # [Visual Studio](#tab/visual-studio)
@@ -555,6 +557,12 @@ At the end of this tutorial, you'll have a working chat app.
 [!INCLUDE[](~/includes/5.0-SDK.md)]
 
 ---
+
+## Sample app
+
+Downloading the tutorial's sample chat app isn't required for this tutorial. The sample app is the final, working app produced by following the steps of this tutorial.
+
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/signalr-blazor/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
 :::zone pivot="webassembly"
 
@@ -1037,8 +1045,6 @@ This tutorial teaches the basics of building a real-time app using SignalR with 
 
 At the end of this tutorial, you'll have a working chat app.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/signalr-blazor/samples/) ([how to download](xref:index#how-to-download-a-sample))
-
 ## Prerequisites
 
 # [Visual Studio](#tab/visual-studio)
@@ -1060,6 +1066,12 @@ At the end of this tutorial, you'll have a working chat app.
 [!INCLUDE[](~/includes/3.1-SDK.md)]
 
 ---
+
+## Sample app
+
+Downloading the tutorial's sample chat app isn't required for this tutorial. The sample app is the final, working app produced by following the steps of this tutorial.
+
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/signalr-blazor/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
 :::zone pivot="webassembly"
 
