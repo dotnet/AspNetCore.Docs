@@ -142,7 +142,7 @@ public class ComponentBase : IComponent
 >
 > ```csharp
 > [Inject]
-> private IServiceProvider ServiceProvider { get; set; } = default!;
+> private IMyExampleService ExampleService { get; set; } = default!;
 > ```
 >
 > For more information, see the following resources:
