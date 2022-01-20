@@ -147,6 +147,7 @@ public class ComponentBase : IComponent
 >
 > For more information, see the following resources:
 >
+> * [Nullable reference types (NRTs) and .NET compiler null-state static analysis](xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis)
 > * [Nullable reference types (C# guide)](/dotnet/csharp/nullable-references)
 > * [default value expressions (C# reference)](/dotnet/csharp/language-reference/operators/default#default-literal)
 > * [! (null-forgiving) operator (C# reference)](/dotnet/csharp/language-reference/operators/null-forgiving)
