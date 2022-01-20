@@ -531,7 +531,7 @@ Consider an approach that uses Azure File Shares, which offers the following ben
 * Secure files with server-side encryption (SSE).
 * Track costs with Azure Tags.
 
-For more information, see [Azure Files documentation](/azure/storage/files/).
+For more information, see the [Azure Files documentation](/azure/storage/files/).
 
 ## Additional resources
 
@@ -1060,7 +1060,7 @@ Consider an approach that uses Azure File Shares, which offers the following ben
 * Secure files with server-side encryption (SSE).
 * Track costs with Azure Tags.
 
-For more information, see [Azure Files documentation](/azure/storage/files/).
+For more information, see the [Azure Files documentation](/azure/storage/files/).
 
 ## Additional resources
 
