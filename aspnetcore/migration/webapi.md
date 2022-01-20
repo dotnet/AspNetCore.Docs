@@ -83,7 +83,7 @@ For more information, see <xref:fundamentals/startup>.
 
 The following shows the application startup code in the ASP.NET Core *Program.cs* file:
 
-[!code-csharp[](webapi/sample/6.x/ProductsCore/Program.cs?name=snippet_Program)]
+[!code-csharp[](webapi/sample/6.x/ProductsCore/Program.cs)]
 
 ## Migrate models and controllers
 
@@ -112,7 +112,7 @@ Make the following changes:
 
 The following code shows the updated ASP.NET Core `ProductsController`:
 
-[!code-csharp[](webapi/sample/6.x/ProductsCore/Controllers/ProductsController.cs?name=snippet_snippet_ProductsController&highlight=2,7,9,15,40,47)]
+[!code-csharp[](webapi/sample/6.x/ProductsCore/Controllers/ProductsController.cs?highlight=1,2,8,12,37,44)]
 
 ## Configure routing
 
