@@ -137,6 +137,20 @@ public class ComponentBase : IComponent
 }
 ```
 
+> [!NOTE]
+> Don't mark injected services as nullable. Instead, assign a default literal with the null-forgiving operator (`default!`). For example:
+>
+> ```csharp
+> [Inject]
+> private IServiceProvider ServiceProvider { get; set; } = default!;
+> ```
+>
+> For more information, see the following resources:
+>
+> * [Nullable reference types (C# guide)](/dotnet/csharp/nullable-references)
+> * [default value expressions (C# reference)](/dotnet/csharp/language-reference/operators/default#default-literal)
+> * [! (null-forgiving) operator (C# reference)](/dotnet/csharp/language-reference/operators/null-forgiving)
+
 In components derived from the base class, the [`@inject`](xref:mvc/views/razor#inject) directive isn't required. The <xref:Microsoft.AspNetCore.Components.InjectAttribute> of the base class is sufficient:
 
 ```razor
