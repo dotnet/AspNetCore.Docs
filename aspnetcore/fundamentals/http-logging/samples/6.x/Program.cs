@@ -1,5 +1,5 @@
 #region snippet
-#region Addservices
+#region snippet_Addservices
 using Microsoft.AspNetCore.HttpLogging;
 
 var builder = WebApplication.CreateBuilder(args);
