@@ -6,10 +6,8 @@ using Microsoft.AspNetCore.Connections;
 using Microsoft.AspNetCore.Connections.Features;
 using Microsoft.AspNetCore.Hosting.Server.Features;
 using Microsoft.AspNetCore.Http.Features;
-// <snippet_UsingKestrelCore>
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.AspNetCore.Server.Kestrel.Core.Features;
-// </snippet_UsingKestrelCore>
 using Microsoft.AspNetCore.Server.Kestrel.Https;
 
 namespace KestrelSample.Snippets;

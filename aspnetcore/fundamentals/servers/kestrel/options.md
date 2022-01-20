@@ -13,15 +13,11 @@ uid: fundamentals/servers/kestrel/options
 
 :::moniker range=">= aspnetcore-6.0"
 
-The Kestrel web server has constraint configuration options that are especially useful in Internet-facing deployments. To configure Kestrel configuration options, call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.ConfigureKestrel%2A>:
+The Kestrel web server has constraint configuration options that are especially useful in Internet-facing deployments. To configure Kestrel configuration options, call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.ConfigureKestrel%2A> in *Program.cs*:
 
 :::code language="csharp" source="samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureKestrel":::
 
 Set constraints on the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Limits%2A?displayProperty=nameWithType> property. This property holds an instance of the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits> class.
-
-The examples in this article use the <xref:Microsoft.AspNetCore.Server.Kestrel.Core> namespace:
-
-:::code language="csharp" source="samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_UsingKestrelCore":::
 
 In examples shown later in this article, Kestrel options are configured in C# code. Kestrel options can also be set using a [configuration provider](xref:fundamentals/configuration/index). For example, the [File Configuration Provider](xref:fundamentals/configuration/index#file-configuration-provider) can load Kestrel configuration from an `appsettings.json` or `appsettings.{Environment}.json` file:
 
@@ -177,7 +173,7 @@ The following example sets `KeepAlivePingDelay` and `KeepAlivePingTimeout`:
 
 The following example enables synchronous I/O:
 
-:::code language="csharp" source="samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureKestrelAllowSynchronousIO" highlight="3-4":::
+:::code language="csharp" source="samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureKestrelAllowSynchronousIO" highlight="3":::
 
 For information about other Kestrel options and limits, see:
 
