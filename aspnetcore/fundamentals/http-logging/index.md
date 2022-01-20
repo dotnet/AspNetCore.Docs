@@ -12,6 +12,8 @@ uid: fundamentals/http-logging/index
 
 # HTTP Logging in ASP.NET Core
 
+::: moniker range=">= aspnetcore-6.0"
+
 HTTP Logging is a middleware that logs information about HTTP requests and HTTP responses. HTTP logging provides logs of:
 
 * HTTP request information
@@ -124,3 +126,5 @@ Maximum request body size to log, in bytes. Defaults to 32 KB.
 Maximum response body size to log, in bytes. Defaults to 32 KB.
 
 [!code-csharp[](samples/6.x/Program.cs?name=Addservices&highlight=9)]
+
+::: moniker-end
