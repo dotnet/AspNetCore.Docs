@@ -6,7 +6,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddHttpLogging(logging =>
 {
-    //Customize http logging here
     logging.LoggingFields = HttpLoggingFields.All;
     logging.RequestHeaders.Add("My-Request-Header");
     logging.ResponseHeaders.Add("My-Response-Header");
@@ -17,6 +16,8 @@ builder.Services.AddHttpLogging(logging =>
 });
 
 var app = builder.Build();
+
+// Code removed for brevity.
 #endregion
 
 if (!app.Environment.IsDevelopment())
