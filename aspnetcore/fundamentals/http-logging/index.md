@@ -56,7 +56,7 @@ To configure the HTTP logging middleware, call <xref:Microsoft.Extensions.Depend
 
 `HttpLoggingOptions.LoggingFields` is an enum flag that configures specific parts of the request and response to log. `LoggingFields` defaults to `RequestPropertiesAndHeaders | ResponsePropertiesAndHeaders`.
 
-[!code-csharp[](samples/6.x/Program.cs?name=Addservices&highlight=4)]
+[!code-csharp[](samples/6.x/Program.cs?name=snippet_Addservices)]
 
 | Flag | Flag for logging the HTTP | Value |
 | ---- | ----------- | :---: |
