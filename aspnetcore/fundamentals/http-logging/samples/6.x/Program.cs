@@ -1,3 +1,4 @@
+#region snippet
 #region Addservices
 using Microsoft.AspNetCore.HttpLogging;
 
@@ -18,7 +19,6 @@ builder.Services.AddHttpLogging(logging =>
 });
 #endregion
 
-#region snippet
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
