@@ -1,11 +1,9 @@
-#region snippet
+#region snippet_all
 #region snippet_Addservices
 using Microsoft.AspNetCore.HttpLogging;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-//builder.Services.AddRazorPages();
 builder.Services.AddHttpLogging(logging =>
 {
     //Customize http logging here
