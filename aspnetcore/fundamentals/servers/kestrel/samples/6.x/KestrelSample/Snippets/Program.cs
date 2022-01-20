@@ -5,7 +5,11 @@ using System.Security.Cryptography.X509Certificates;
 using Microsoft.AspNetCore.Connections;
 using Microsoft.AspNetCore.Connections.Features;
 using Microsoft.AspNetCore.Hosting.Server.Features;
+using Microsoft.AspNetCore.Http.Features;
+// <snippet_UsingKestrelCore>
 using Microsoft.AspNetCore.Server.Kestrel.Core;
+using Microsoft.AspNetCore.Server.Kestrel.Core.Features;
+// </snippet_UsingKestrelCore>
 using Microsoft.AspNetCore.Server.Kestrel.Https;
 
 namespace KestrelSample.Snippets;
@@ -376,6 +380,209 @@ public static class Program
             });
         });
         // </snippet_ConfigureKestrelMiddleware>
+    }
+
+    public static void ConfigureKestrel(string[] args)
+    {
+        // <snippet_ConfigureKestrel>
+        var builder = WebApplication.CreateBuilder(args);
+
+        builder.WebHost.ConfigureKestrel(serverOptions =>
+        {
+            // ...
+        });
+        // </snippet_ConfigureKestrel>
+    }
+
+    public static void ConfigureKestrelLimitsKeepAliveTimeout(WebApplicationBuilder builder)
+    {
+        // <snippet_ConfigureKestrelLimitsKeepAliveTimeout>
+        builder.WebHost.ConfigureKestrel(serverOptions =>
+        {
+            serverOptions.Limits.KeepAliveTimeout = TimeSpan.FromMinutes(2);
+        });
+        // </snippet_ConfigureKestrelLimitsKeepAliveTimeout>
+    }
+
+    public static void ConfigureKestrelLimitsMaxConcurrentConnections(WebApplicationBuilder builder)
+    {
+        // <snippet_ConfigureKestrelLimitsMaxConcurrentConnections>
+        builder.WebHost.ConfigureKestrel(serverOptions =>
+        {
+            serverOptions.Limits.MaxConcurrentConnections = 100;
+        });
+        // </snippet_ConfigureKestrelLimitsMaxConcurrentConnections>
+    }
+
+    public static void ConfigureKestrelLimitsMaxConcurrentUpgradedConnections(WebApplicationBuilder builder)
+    {
+        // <snippet_ConfigureKestrelLimitsMaxConcurrentUpgradedConnections>
+        builder.WebHost.ConfigureKestrel(serverOptions =>
+        {
+            serverOptions.Limits.MaxConcurrentUpgradedConnections = 100;
+        });
+        // </snippet_ConfigureKestrelLimitsMaxConcurrentUpgradedConnections>
+    }
+
+    public static void ConfigureKestrelLimitsMaxRequestBodySize(WebApplicationBuilder builder)
+    {
+        // <snippet_ConfigureKestrelLimitsMaxRequestBodySize>
+        builder.WebHost.ConfigureKestrel(serverOptions =>
+        {
+            serverOptions.Limits.MaxRequestBodySize = 100_000_000;
+        });
+        // </snippet_ConfigureKestrelLimitsMaxRequestBodySize>
+    }
+
+    public static void IHttpMaxRequestBodySizeFeatureMiddleware(WebApplication app)
+    {
+        // <snippet_IHttpMaxRequestBodySizeFeatureMiddleware>
+        app.Use(async (context, next) =>
+        {
+            var httpMaxRequestBodySizeFeature = context.Features.Get<IHttpMaxRequestBodySizeFeature>();
+
+            if (httpMaxRequestBodySizeFeature is not null)
+                httpMaxRequestBodySizeFeature.MaxRequestBodySize = 10 * 1024;
+
+            // ...
+
+            await next(context);
+        });
+        // </snippet_IHttpMaxRequestBodySizeFeatureMiddleware>
+    }
+
+    public static void ConfigureKestrelLimitsMinDataRates(WebApplicationBuilder builder)
+    {
+        // <snippet_ConfigureKestrelLimitsMinDataRates>
+        builder.WebHost.ConfigureKestrel(serverOptions =>
+        {
+            serverOptions.Limits.MinRequestBodyDataRate = new MinDataRate(
+                bytesPerSecond: 100, gracePeriod: TimeSpan.FromSeconds(10));
+            serverOptions.Limits.MinResponseDataRate = new MinDataRate(
+                bytesPerSecond: 100, gracePeriod: TimeSpan.FromSeconds(10));
+        });
+        // </snippet_ConfigureKestrelLimitsMinDataRates>
+    }
+
+    public static void DataRateFeaturesMiddleware(WebApplication app)
+    {
+        // <snippet_DataRateFeaturesMiddleware>
+        app.Use(async (context, next) =>
+        {
+            var httpMinRequestBodyDataRateFeature = context.Features
+                .Get<IHttpMinRequestBodyDataRateFeature>();
+
+            if (httpMinRequestBodyDataRateFeature is not null)
+            {
+                httpMinRequestBodyDataRateFeature.MinDataRate = new MinDataRate(
+                    bytesPerSecond: 100, gracePeriod: TimeSpan.FromSeconds(10));
+            }
+
+            var httpMinResponseDataRateFeature = context.Features
+                .Get<IHttpMinResponseDataRateFeature>();
+
+            if (httpMinResponseDataRateFeature is not null)
+            {
+                httpMinResponseDataRateFeature.MinDataRate = new MinDataRate(
+                    bytesPerSecond: 100, gracePeriod: TimeSpan.FromSeconds(10));
+            }
+
+            // ...
+
+            await next(context);
+        });
+        // </snippet_DataRateFeaturesMiddleware>
+    }
+
+    public static void ConfigureKestrelLimitsRequestHeadersTimeout(WebApplicationBuilder builder)
+    {
+        // <snippet_ConfigureKestrelLimitsRequestHeadersTimeout>
+        builder.WebHost.ConfigureKestrel(serverOptions =>
+        {
+            serverOptions.Limits.RequestHeadersTimeout = TimeSpan.FromMinutes(1);
+        });
+        // </snippet_ConfigureKestrelLimitsRequestHeadersTimeout>
+    }
+
+    public static void ConfigureKestrelHttp2LimitsMaxStreamsPerConnection(WebApplicationBuilder builder)
+    {
+        // <snippet_ConfigureKestrelHttp2LimitsMaxStreamsPerConnection>
+        builder.WebHost.ConfigureKestrel(serverOptions =>
+        {
+            serverOptions.Limits.Http2.MaxStreamsPerConnection = 100;
+        });
+        // </snippet_ConfigureKestrelHttp2LimitsMaxStreamsPerConnection>
+    }
+
+    public static void ConfigureKestrelHttp2LimitsHeaderTableSize(WebApplicationBuilder builder)
+    {
+        // <snippet_ConfigureKestrelHttp2LimitsHeaderTableSize>
+        builder.WebHost.ConfigureKestrel(serverOptions =>
+        {
+            serverOptions.Limits.Http2.HeaderTableSize = 4096;
+        });
+        // </snippet_ConfigureKestrelHttp2LimitsHeaderTableSize>
+    }
+
+    public static void ConfigureKestrelHttp2LimitsMaxFrameSize(WebApplicationBuilder builder)
+    {
+        // <snippet_ConfigureKestrelHttp2LimitsMaxFrameSize>
+        builder.WebHost.ConfigureKestrel(serverOptions =>
+        {
+            serverOptions.Limits.Http2.MaxFrameSize = 16_384;
+        });
+        // </snippet_ConfigureKestrelHttp2LimitsMaxFrameSize>
+    }
+
+    public static void ConfigureKestrelHttp2LimitsMaxRequestHeaderFieldSize(WebApplicationBuilder builder)
+    {
+        // <snippet_ConfigureKestrelHttp2LimitsMaxRequestHeaderFieldSize>
+        builder.WebHost.ConfigureKestrel(serverOptions =>
+        {
+            serverOptions.Limits.Http2.MaxRequestHeaderFieldSize = 8192;
+        });
+        // </snippet_ConfigureKestrelHttp2LimitsMaxRequestHeaderFieldSize>
+    }
+
+    public static void ConfigureKestrelHttp2LimitsInitialConnectionWindowSize(WebApplicationBuilder builder)
+    {
+        // <snippet_ConfigureKestrelHttp2LimitsInitialConnectionWindowSize>
+        builder.WebHost.ConfigureKestrel(serverOptions =>
+        {
+            serverOptions.Limits.Http2.InitialConnectionWindowSize = 131_072;
+        });
+        // </snippet_ConfigureKestrelHttp2LimitsInitialConnectionWindowSize>
+    }
+
+    public static void ConfigureKestrelHttp2LimitsInitialStreamWindowSize(WebApplicationBuilder builder)
+    {
+        // <snippet_ConfigureKestrelHttp2LimitsInitialStreamWindowSize>
+        builder.WebHost.ConfigureKestrel(serverOptions =>
+        {
+            serverOptions.Limits.Http2.InitialStreamWindowSize = 98_304;
+        });
+        // </snippet_ConfigureKestrelHttp2LimitsInitialStreamWindowSize>
+    }
+
+    public static void ConfigureKestrelHttp2LimitsKeepAlivePings(WebApplicationBuilder builder)
+    {
+        // <snippet_ConfigureKestrelHttp2LimitsKeepAlivePings>
+        builder.WebHost.ConfigureKestrel(serverOptions =>
+        {
+            serverOptions.Limits.Http2.KeepAlivePingDelay = TimeSpan.FromSeconds(30);
+            serverOptions.Limits.Http2.KeepAlivePingTimeout = TimeSpan.FromMinutes(1);
+        });
+        // </snippet_ConfigureKestrelHttp2LimitsKeepAlivePings>
+    }
+
+    public static void ConfigureKestrelAllowSynchronousIO(WebApplicationBuilder builder)
+    {
+        // <snippet_ConfigureKestrelAllowSynchronousIO>
+        builder.WebHost.ConfigureKestrel(serverOptions =>
+        {
+            serverOptions.AllowSynchronousIO = true;
+        });
+        // </snippet_ConfigureKestrelAllowSynchronousIO>
     }
 
     public static void Http3(string[] args)
