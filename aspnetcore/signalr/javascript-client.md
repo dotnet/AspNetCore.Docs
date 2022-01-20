@@ -5,7 +5,7 @@ description: Overview of ASP.NET Core SignalR JavaScript client.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: bradyg
 ms.custom: mvc, devx-track-js
-ms.date: 04/08/2020
+ms.date: 1/22/2022
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: signalr/javascript-client
 ---
@@ -15,9 +15,7 @@ uid: signalr/javascript-client
 
 By [Rachel Appel](https://twitter.com/rachelappel)
 
-The ASP.NET Core SignalR JavaScript client library enables developers to call server-side hub code.
-
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/javascript-client/samples) ([how to download](xref:index#how-to-download-a-sample))
+The ASP.NET Core SignalR JavaScript client library enables developers to call server-side SignalR hub code.
 
 ## Install the SignalR client package
 
@@ -44,7 +42,7 @@ Reference the SignalR JavaScript client in the `<script>` element. For example:
 
 To use the client library without the npm prerequisite, reference a CDN-hosted copy of the client library. For example:
 
-[!code-html[](javascript-client/samples/3.x/SignalRChat/Pages/Index.cshtml?name=snippet_CDN)]
+[!code-html[](javascript-client/samples/6.x/SignalRChat/Pages/Index.cshtml?name=snippet_CDN)]
 
 The client library is available on the following CDNs:
 
@@ -60,7 +58,7 @@ The client library is available on the following CDNs:
 
 The following code creates and starts a connection. The hub's name is case insensitive:
 
-[!code-javascript[](javascript-client/samples/3.x/SignalRChat/wwwroot/chat.js?range=3-6,29-45)]
+[!code-javascript[](javascript-client/samples/6.x/SignalRChat/wwwroot/js/chat.js)]
 
 ### Cross-origin connections
 
@@ -300,13 +298,14 @@ if (navigator && navigator.locks && navigator.locks.request) {
 ```
 
 For the preceding code example:
-
+<!-- REVIEW: Still experimenta? -->
 * Web Locks are experimental. The conditional check confirms that the browser supports Web Locks.
 * The promise resolver (`lockResolver`) is stored so that the lock can be released when it's acceptable for the tab to sleep.
 * When closing the connection, the lock is released by calling `lockResolver()`. When the lock is released, the tab is allowed to sleep.
 
 ## Additional resources
 
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/javascript-client/samples) ([how to download](xref:index#how-to-download-a-sample))
 * [JavaScript API reference](/javascript/api/?view=signalr-js-latest&preserve-view=true )
 * [JavaScript tutorial](xref:tutorials/signalr)
 * [WebPack and TypeScript tutorial](xref:tutorials/signalr-typescript-webpack)
