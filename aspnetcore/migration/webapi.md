@@ -84,7 +84,7 @@ The following shows the application startup code in the ASP.NET Core *Program.cs
 
 [!code-csharp[](webapi/sample/6.x/ProductsCore/Program.cs)]
 
-## Migrate models and controllers
+## Migrate the controller
 
 Update the `ProductsController` for ASP.NET Core:
 
