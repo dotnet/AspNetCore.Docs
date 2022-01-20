@@ -65,7 +65,7 @@ The following code creates and starts a connection. The hub's name is case insen
 Typically, browsers load connections from the same domain as the requested page. However, there are occasions when a connection to another domain is required.
 
 > [!IMPORTANT]
-> The client code must use an absolute URL instead of a relative URL. Change `.withUrl("/chathub")` to `.withUrl("https://myappurl/chathub")`.
+> The client code ***must*** use an absolute URL instead of a relative URL. Change `.withUrl("/chathub")` to `.withUrl("https://myappurl/chathub")`.
 
 To prevent a malicious site from reading sensitive data from another site, [cross-origin connections](xref:security/cors) are disabled by default. To allow a cross-origin request, enable it in the `Startup` class:
 
