@@ -10,7 +10,6 @@ uid: migration/webapi
 ---
 # Migrate from ASP.NET Web API to ASP.NET Core
 
-By [Scott Addie](https://twitter.com/scott_addie) and [Steve Smith](https://ardalis.com/)
 
 An ASP.NET 4.x Web API is an HTTP service that reaches a broad range of clients, including browsers and mobile devices. ASP.NET Core combines ASP.NET 4.x's MVC and Web API app models into a single programming model known as ASP.NET Core MVC. This article demonstrates the steps required to migrate from ASP.NET 4.x Web API to ASP.NET Core MVC.
 
