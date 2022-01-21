@@ -40,18 +40,6 @@ public IEnumerable<Product> GetOnSaleProducts() =>
     _context.Products.Where(p => p.IsOnSale);
 ```
 
-Returning `IAsyncEnumerable<T>` from an action:
-
-* No longer results in synchronous iteration.
-* Becomes as efficient as returning <xref:System.Collections.Generic.IEnumerable%601>.
-
-The framework buffers the result of the following action before providing it to the serializer:
-
-```csharp
-public IEnumerable<Product> GetOnSaleProducts() =>
-    _context.Products.Where(p => p.IsOnSale);
-```
-
 Consider declaring the action signature's return type as `IAsyncEnumerable<T>` to guarantee the asynchronous iteration. Ultimately, the iteration mode is based on the underlying concrete type being returned. MVC automatically buffers any concrete type that implements `IAsyncEnumerable<T>`.
 
 Consider the following action, which returns sale-priced product records as `IEnumerable<Product>`:
