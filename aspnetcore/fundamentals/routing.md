@@ -408,8 +408,8 @@ Asterisk `*` or double asterisk `**`:
 
 * Can be used as a prefix to a route parameter to bind to the rest of the URI.
 * Are called a **catch-all** parameters. For example, `blog/{**slug}`:
-  * Matches any URI that starts with `/blog` and has any value following it.
-  * The value following `/blog` is assigned to the [slug](https://developer.mozilla.org/docs/Glossary/Slug) route value.
+  * Matches any URI that starts with `blog/` and has any value following it.
+  * The value following `blog/` is assigned to the [slug](https://developer.mozilla.org/docs/Glossary/Slug) route value.
 
 [!INCLUDE[](~/includes/catchall.md)]
 
