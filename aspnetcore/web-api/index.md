@@ -11,8 +11,6 @@ uid: web-api/index
 ---
 # Create web APIs with ASP.NET Core
 
-By [Scott Addie](https://github.com/scottaddie) and [Tom Dykstra](https://github.com/tdykstra)
-
 ASP.NET Core supports creating RESTful services, also known as web APIs, using C#. To handle requests, a web API uses controllers. *Controllers* in a web API are classes that derive from `ControllerBase`. This article shows how to use controllers for handling web API requests.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/index/samples). ([How to download](xref:index#how-to-download-a-sample)).
@@ -21,15 +19,13 @@ ASP.NET Core supports creating RESTful services, also known as web APIs, using C
 
 A web API consists of one or more controller classes that derive from <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. The web API project template provides a starter controller:
 
-::: moniker range=">= aspnetcore-3.0"
-
 [!code-csharp[](index/samples/3.x/Controllers/WeatherForecastController.cs?name=snippet_ControllerSignature&highlight=3)]
 
 Don't create a web API controller by deriving from the <xref:Microsoft.AspNetCore.Mvc.Controller> class. `Controller` derives from `ControllerBase` and adds support for views, so it's for handling web pages, not web API requests. There's an exception to this rule: if you plan to use the same controller for both views and web APIs, derive it from `Controller`.
 
 The `ControllerBase` class provides many properties and methods that are useful for handling HTTP requests. For example, `ControllerBase.CreatedAtAction` returns a 201 status code:
 
-[!code-csharp[](index/samples/2.x/2.2/Controllers/PetsController.cs?name=snippet_400And201&highlight=10)]
+[!code-csharp[](index/samples/3.x/Controllers/PetsController.cs?name=snippet_400And201&highlight=10)]
 
 Here are some more examples of methods that `ControllerBase` provides.
 
@@ -47,7 +43,7 @@ For a list of all available methods and properties, see <xref:Microsoft.AspNetCo
 
 The <xref:Microsoft.AspNetCore.Mvc> namespace provides attributes that can be used to configure the behavior of web API controllers and action methods. The following example uses attributes to specify the supported HTTP action verb and any known HTTP status codes that could be returned:
 
-[!code-csharp[](index/samples/2.x/2.2/Controllers/PetsController.cs?name=snippet_400And201&highlight=1-3)]
+[!code-csharp[](index/samples/3.x/Controllers/PetsController.cs?name=snippet_400And201&highlight=1-3)]
 
 Here are some more examples of attributes that are available.
 
@@ -70,15 +66,10 @@ The [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) at
 * [Binding source parameter inference](#binding-source-parameter-inference)
 * [Multipart/form-data request inference](#multipartform-data-request-inference)
 * [Problem details for error status codes](#problem-details-for-error-status-codes)
-
-The *Problem details for error status codes* feature requires a [compatibility version](xref:mvc/compatibility-version) of 2.2 or later. The other features require a compatibility version of 2.1 or later.
-
 * [Attribute routing requirement](#attribute-routing-requirement)
 * [Automatic HTTP 400 responses](#automatic-http-400-responses)
 * [Binding source parameter inference](#binding-source-parameter-inference)
 * [Multipart/form-data request inference](#multipartform-data-request-inference)
-
-These features require a [compatibility version](xref:mvc/compatibility-version) of 2.1 or later.
 
 ### Attribute on specific controllers
 
@@ -90,13 +81,13 @@ The `[ApiController]` attribute can be applied to specific controllers, as in th
 
 One approach to using the attribute on more than one controller is to create a custom base controller class annotated with the `[ApiController]` attribute. The following example shows a custom base class and a controller that derives from it:
 
-[!code-csharp[](index/samples/2.x/2.2/Controllers/MyControllerBase.cs?name=snippet_MyControllerBase)]
+[!code-csharp[](index/samples/3.x/Controllers/MyControllerBase.cs?name=snippet_MyControllerBase)]
 
 [!code-csharp[](index/samples/3.x/Controllers/PetsController.cs?name=snippet_Inherit)]
 
 ### Attribute on an assembly
 
-If [compatibility version](xref:mvc/compatibility-version) is set to 2.2 or later, the `[ApiController]` attribute can be applied to an assembly. Annotation in this manner applies web API behavior to all controllers in the assembly. There's no way to opt out for individual controllers. Apply the assembly-level attribute to the namespace declaration surrounding the `Startup` class:
+The `[ApiController]` attribute can be applied to an assembly. Annotation in this manner applies web API behavior to all controllers in the assembly. There's no way to opt out for individual controllers. Apply the assembly-level attribute to the namespace declaration surrounding the `Startup` class:
 
 ```csharp
 [assembly: ApiController]
@@ -132,7 +123,7 @@ ASP.NET Core MVC uses the <xref:Microsoft.AspNetCore.Mvc.Infrastructure.ModelSta
 
 ### Default BadRequest response
 
-With a compatibility version of 2.1, the default response type for an HTTP 400 response is <xref:Microsoft.AspNetCore.Mvc.SerializableError>. The following request body is an example of the serialized type:
+The following request body is an example of the serialized type:
 
 ```json
 {
@@ -142,7 +133,7 @@ With a compatibility version of 2.1, the default response type for an HTTP 400 r
 }
 ```
 
-With a compatibility version of 2.2 or later, the default response type for an HTTP 400 response is <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>. The following request body is an example of the serialized type:
+The default response type for an HTTP 400 response is <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>. The following request body is an example of the serialized type:
 
 ```json
 {
@@ -199,7 +190,7 @@ Without the `[ApiController]` attribute or binding source attributes like `[From
 
 In the following example, the `[FromQuery]` attribute indicates that the `discontinuedOnly` parameter value is provided in the request URL's query string:
 
-[!code-csharp[](index/samples/2.x/2.2/Controllers/ProductsController.cs?name=snippet_BindingSourceAttributes&highlight=3)]
+[!code-csharp[](index/samples/3.x/Controllers/ProductsController.cs?name=snippet_BindingSourceAttributes&highlight=3)]
 
 The `[ApiController]` attribute applies inference rules for the default data sources of action parameters. These rules save you from having to identify binding sources manually by applying attributes to the action parameters. The binding source inference rules behave as follows:
 
@@ -251,11 +242,11 @@ To disable the default behavior, set the <xref:Microsoft.AspNetCore.Mvc.ApiBehav
 
 ## Problem details for error status codes
 
-When the compatibility version is 2.2 or later, MVC transforms an error result (a result with status code 400 or higher) to a result with <xref:Microsoft.AspNetCore.Mvc.ProblemDetails>. The `ProblemDetails` type is based on the [RFC 7807 specification](https://tools.ietf.org/html/rfc7807) for providing machine-readable error details in an HTTP response.
+MVC transforms an error result (a result with status code 400 or higher) to a result with <xref:Microsoft.AspNetCore.Mvc.ProblemDetails>. The `ProblemDetails` type is based on the [RFC 7807 specification](https://tools.ietf.org/html/rfc7807) for providing machine-readable error details in an HTTP response.
 
 Consider the following code in a controller action:
 
-[!code-csharp[](index/samples/2.x/2.2/Controllers/PetsController.cs?name=snippet_ProblemDetailsStatusCode)]
+[!code-csharp[](index/samples/3.x/Controllers/PetsController.cs?name=snippet_ProblemDetailsStatusCode)]
 
 The `NotFound` method produces an HTTP 404 status code with a `ProblemDetails` body. For example:
 
@@ -308,5 +299,3 @@ The `[Consumes]` attribute is applied to both actions. The `PostJson` action han
 * <xref:tutorials/web-api-help-pages-using-swagger>
 * <xref:mvc/controllers/routing>
 * [Microsoft Learn: Create a web API with ASP.NET Core](/learn/modules/build-web-api-aspnet-core/)
-
-::: moniker-end

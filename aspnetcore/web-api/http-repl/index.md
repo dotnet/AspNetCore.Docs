@@ -2,7 +2,7 @@
 title: Test web APIs with the HttpRepl
 author: rick-anderson
 description: Learn how to use the HttpRepl .NET Core Global Tool to browse and test an ASP.NET Core web API.
-monikerRange: '>= aspnetcore-2.1'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 11/12/2020
@@ -10,8 +10,6 @@ no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cook
 uid: web-api/http-repl
 ---
 # Test web APIs with the HttpRepl
-
-By [Scott Addie](https://twitter.com/Scott_Addie)
 
 The HTTP Read-Eval-Print Loop (REPL) is:
 
@@ -33,7 +31,7 @@ To follow along, [view or download the sample ASP.NET Core web API](https://gith
 
 ## Prerequisites
 
-* [!INCLUDE [2.1-SDK](~/includes/2.1-SDK.md)]
+* [!INCLUDE [3.1-SDK](~/includes/3.1-SDK.md)]
 
 ## Installation
 

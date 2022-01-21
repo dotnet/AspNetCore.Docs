@@ -2,15 +2,13 @@
 title: Develop ASP.NET Core apps using OpenAPI
 author: ryanbrandenburg
 description: Demonstrates how to use the 'Microsoft.dotnet-openapi' tool to add references to OpenAPI files.
+monikerRange: '>= aspnetcore-3.1'
 ms.author: rybrande
 ms.date: 09/26/2019
-monikerRange: '>= aspnetcore-3.0'
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: web-api/Microsoft.dotnet-openapi
 ---
 # Develop ASP.NET Core apps using OpenAPI tools
-
-By Ryan Brandenburg
 
 [Microsoft.dotnet-openapi](https://www.nuget.org/packages/Microsoft.dotnet-openapi) is a [.NET Core Global Tool](/dotnet/core/tools/global-tools) for managing [OpenAPI](https://github.com/OAI/OpenAPI-Specification) references within a project.
 

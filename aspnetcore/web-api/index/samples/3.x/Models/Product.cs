@@ -1,17 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
-namespace WebApiSample.DataAccess.Models
+namespace WebApiSample.Models
 {
-    #region snippet_ProductClass
     public class Product
     {
         public int Id { get; set; }
 
+        public bool IsDiscontinued { get; set; }
+
         [Required]
         public string Name { get; set; }
 
-        [Required]
         public string Description { get; set; }
     }
-    #endregion
 }
