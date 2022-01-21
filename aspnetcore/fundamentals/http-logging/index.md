@@ -37,7 +37,7 @@ HTTP Logging ***can reduce the performance of an app***, especially when logging
 
 HTTP Logging is enabled with <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseHttpLogging%2A>, which adds HTTP logging middleware.
 
-[!code-csharp[](samples/6.x/Program.cs?name=snippet2&highlight=3)]
+[!code-csharp[](samples/6.x/Program.cs?name=snippet2&highlight=5)]
 
 By default, HTTP Logging logs common properties such as path, status-code, and headers for requests and responses. Add the following line to the *appsettings.Development.json* file so the HTTP logs are displayed:
 
@@ -53,13 +53,13 @@ The output is logged as a single message at `LogLevel.Information`.
 
 To configure the HTTP logging middleware, call <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddHttpLogging%2A> in `Program.cs`.
 
-[!code-csharp[](samples/6.x/Program.cs?name=snippet_snippet_Addservices)]
+[!code-csharp[](samples/6.x/Program.cs?name=snippet_Addservices)]
 
 ### `LoggingFields`
 
 `HttpLoggingOptions.LoggingFields` is an enum flag that configures specific parts of the request and response to log. `LoggingFields` defaults to `RequestPropertiesAndHeaders | ResponsePropertiesAndHeaders`.
 
-[!code-csharp[](samples/6.x/Program.cs?name=snippet_snippet_Addservices)]
+[!code-csharp[](samples/6.x/Program.cs?name=snippet_Addservices)]
 
 | Flag | Flag for logging the HTTP | Value |
 | ---- | ----------- | :---: |
