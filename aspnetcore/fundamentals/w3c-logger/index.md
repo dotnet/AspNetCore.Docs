@@ -55,4 +55,4 @@ To configure the W3CLogger middleware, call <xref:Microsoft.Extensions.Dependenc
 
 ### `LoggingFields`
 
-<xref:Microsoft.AspNetCore.HttpLogging.W3CLoggerOptions.LoggingFields%2A?displayProperty=nameWithType> is a bit flag enumeration that configures specific parts of the request and response to log, and other information about the connection. `LoggingFields` defaults to include all possible fields except `UserName` and `Cookie`. 
+<xref:Microsoft.AspNetCore.HttpLogging.W3CLoggerOptions.LoggingFields%2A?displayProperty=nameWithType> is a bit flag enumeration that configures specific parts of the request and response to log, and other information about the connection. `LoggingFields` defaults to include all possible fields except `UserName` and `Cookie`. For a complete list of available fields, see <xref:Microsoft.AspNetCore.HttpLogging.W3CLoggingFields>.
