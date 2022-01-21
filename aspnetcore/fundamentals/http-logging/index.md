@@ -53,13 +53,13 @@ The output is logged as a single message at `LogLevel.Information`.
 
 To configure the HTTP logging middleware, call <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddHttpLogging%2A> in `Program.cs`.
 
-[!code-csharp[](samples/6.x/Program.cs?name=snippet_Addservices)]
+[!code-csharp[](samples/6.x/Program.cs?name=snippet_snippet_Addservices)]
 
 ### `LoggingFields`
 
 `HttpLoggingOptions.LoggingFields` is an enum flag that configures specific parts of the request and response to log. `LoggingFields` defaults to `RequestPropertiesAndHeaders | ResponsePropertiesAndHeaders`.
 
-[!code-csharp[](samples/6.x/Program.cs?name=snippet_Addservices)]
+[!code-csharp[](samples/6.x/Program.cs?name=snippet_snippet_Addservices)]
 
 | Flag | Flag for logging the HTTP | Value |
 | ---- | ----------- | :---: |
@@ -87,19 +87,19 @@ To configure the HTTP logging middleware, call <xref:Microsoft.Extensions.Depend
 
 `RequestHeaders` are a set of HTTP Request Headers that are allowed to be logged. Header values are only logged for header names that are in this collection.
 
-[!code-csharp[](samples/6.x/Program.cs?name=Addservices&highlight=5)]
+[!code-csharp[](samples/6.x/Program.cs?name=snippet_Addservices&highlight=5)]
 
 ### `ResponseHeaders`
 
 `ResponseHeaders` are a set of HTTP Response Headers that are allowed to be logged. Header values are only logged for header names that are in this collection.
 
-[!code-csharp[](samples/6.x/Program.cs?name=Addservices&highlight=6)]
+[!code-csharp[](samples/6.x/Program.cs?name=snippet_Addservices&highlight=6)]
 
 ### `MediaTypeOptions`
 
-`MediaTypeOptions` provides configuration for selecting which encoding to use for a specific media type. 
+`MediaTypeOptions` provides configuration for selecting which encoding to use for a specific media type.
 
-[!code-csharp[](samples/6.x/Program.cs?name=Addservices&highlight=7)]
+[!code-csharp[](samples/6.x/Program.cs?name=snippet_Addservices&highlight=7)]
 
 #### `MediaTypeOptions` methods
 
@@ -120,12 +120,12 @@ To configure the HTTP logging middleware, call <xref:Microsoft.Extensions.Depend
 
 Maximum request body size to log, in bytes. Defaults to 32 KB.
 
-[!code-csharp[](samples/6.x/Program.cs?name=Addservices&highlight=8)]
+[!code-csharp[](samples/6.x/Program.cs?name=snippet_Addservices&highlight=8)]
 
 ### `ResponseBodyLogLimit`
 
 Maximum response body size to log, in bytes. Defaults to 32 KB.
 
-[!code-csharp[](samples/6.x/Program.cs?name=Addservices&highlight=9)]
+[!code-csharp[](samples/6.x/Program.cs?name=snippet_Addservices&highlight=9)]
 
 ::: moniker-end

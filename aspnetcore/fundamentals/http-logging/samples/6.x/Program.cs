@@ -19,9 +19,6 @@ builder.Services.AddHttpLogging(logging =>
 
 var app = builder.Build();
 
-// Code removed for brevity.
-#endregion
-
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
@@ -29,8 +26,6 @@ if (!app.Environment.IsDevelopment())
 app.UseStaticFiles();
 
 app.UseHttpLogging(); 
-
-app.UseRouting();
 
 app.Use(async (context, next) =>
 {
@@ -43,6 +38,7 @@ app.Use(async (context, next) =>
 app.MapGet("/", () => "Hello World!");
 
 app.Run();
+#endregion
 #elif SECOND
 #region snippet2
 var builder = WebApplication.CreateBuilder(args);
