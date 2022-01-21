@@ -48,7 +48,7 @@ By default, Kestrel configuration is loaded from the `Kestrel` section using a p
 
 ### Maximum client connections
 
-<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MaxConcurrentConnections> gets or sets the maximum number of open connections.
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MaxConcurrentConnections> gets or sets the maximum number of open connections:
 
 :::code language="csharp" source="samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureKestrelLimitsMaxConcurrentConnections" highlight="3":::
 
