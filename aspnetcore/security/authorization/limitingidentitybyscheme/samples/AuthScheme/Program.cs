@@ -166,7 +166,6 @@ app.Run();
 #elif MA2
 #region snippet_ma2
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Net.Http.Headers;
 using System.IdentityModel.Tokens.Jwt;
@@ -214,15 +213,6 @@ builder.Services.AddAuthentication(options =>
         }
         return "AAD";
     };
-});
-
-// Authorization
-builder.Services.AddAuthorization(options =>
-{
-    options.DefaultPolicy =
-        new AuthorizationPolicyBuilder("B2C", "AAD")
-            .RequireAuthenticatedUser()
-            .Build();
 });
 
 builder.Services.AddAuthentication()

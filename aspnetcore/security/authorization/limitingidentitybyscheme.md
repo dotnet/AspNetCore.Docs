@@ -70,6 +70,8 @@ The following example uses [Azure Active Directory B2C](/azure/active-directory-
 
 [!code-csharp[](~/security/authorization/limitingidentitybyscheme/samples/AuthScheme/Program.cs?name=snippet_ma2&highlight=9-49)]
 
+In the preceding code, <xref:Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions.ForwardDefaultSelector> is ssed to select a default scheme for the current request that authentication handlers should forward all authentication operations to by default. The default forwarding logic checks the most specific <xref:Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions.ForwardAuthenticate>, <xref:Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions.ForwardChallenge>, <xref:Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions.ForwardForbid>, <xref:Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions.ForwardSignIn>, and <xref:Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions.ForwardSignIn> setting first, followed by checking the <xref:Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions.ForwardDefaultSelector>, followed by <xref:Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions.ForwardDefault>. The first non null result is used as the target scheme to forward to. For more information, see <xref:security/authentication/policyschemes>.
+
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-6.0"
