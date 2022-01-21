@@ -34,7 +34,7 @@ W3CLogger ***can reduce the performance of an app***. Consider the performance i
 
 Enable W3CLogger with <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseW3CLogging%2A>, which adds the W3CLogger middleware:
 
-:::code language="csharp" source="samples/6.x/Program.cs" id="snippet_UseW3CLogging" highlight="1":::
+:::code language="csharp" source="samples/6.x/Program.cs" id="snippet_UseW3CLogging" highlight="3":::
 
 By default, W3CLogger logs common properties such as path, status-code, date, time, and protocol. All information about a single request/response pair is written to the same line.
 
@@ -51,7 +51,7 @@ By default, W3CLogger logs common properties such as path, status-code, date, ti
 
 To configure the W3CLogger middleware, call <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddW3CLogging%2A> in *Program.cs*:
 
-:::code language="csharp" source="samples/6.x/Program.cs" id="snippet_AddW3CLogging":::
+:::code language="csharp" source="samples/6.x/Program.cs" id="snippet_AddW3CLogging" highlight="3":::
 
 ### `LoggingFields`
 
