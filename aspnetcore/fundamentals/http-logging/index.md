@@ -75,7 +75,7 @@ To configure the HTTP logging middleware, call <xref:Microsoft.Extensions.Depend
 
 <xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.MediaTypeOptions> provides configuration for selecting which encoding to use for a specific media type.
 
-[!code-csharp[](samples/6.x/Program.cs?name=snippet_Addservices&highlight=7)]
+[!code-csharp[](samples/6.x/Program.cs?name=snippet_Addservices&highlight=10)]
 
 #### `MediaTypeOptions` methods
 
@@ -96,12 +96,10 @@ To configure the HTTP logging middleware, call <xref:Microsoft.Extensions.Depend
 
 Maximum request body size to log, in bytes. Defaults to 32 KB.
 
-[!code-csharp[](samples/6.x/Program.cs?name=snippet_Addservices&highlight=8)]
-
 ### `ResponseBodyLogLimit`
 
 Maximum response body size to log, in bytes. Defaults to 32 KB.
 
-[!code-csharp[](samples/6.x/Program.cs?name=snippet_Addservices&highlight=9)]
+[!code-csharp[](samples/6.x/Program.cs?name=snippet_Addservices&highlight=11-12)]
 
 ::: moniker-end
