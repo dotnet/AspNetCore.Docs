@@ -463,7 +463,14 @@ See [How to log automatic 400 responses on model validation errors (dotnet/AspNe
 
 To disable the automatic 400 behavior, set the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressModelStateInvalidFilter> property to `true`. Add the following highlighted code in `Startup.ConfigureServices`:
 
-[!code-csharp[](index/samples/2.x/2.1/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=1,5)]
+```csharp
+services.AddMvc()
+.SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+**.ConfigureApiBehaviorOptions(options =>
+{
+    options.SuppressMapClientErrors = true;
+})**;
+```
 
 ## Binding source parameter inference
 
