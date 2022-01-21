@@ -1,4 +1,4 @@
-#define SECOND // FIRST SECOND
+#define FIRST // FIRST SECOND
 #if NEVER
 #elif FIRST
 #region snippet_Addservices
@@ -9,8 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddHttpLogging(logging =>
 {
     logging.LoggingFields = HttpLoggingFields.All;
-    logging.RequestHeaders.Add("My-Request-Header");
-    logging.ResponseHeaders.Add("My-Response-Header");
+    logging.RequestHeaders.Add("sec-ch-ua");
+    logging.ResponseHeaders.Add("MyResponseHeader");
     logging.MediaTypeOptions.AddText("application/javascript");
     logging.RequestBodyLogLimit = 4096;
     logging.ResponseBodyLogLimit = 4096;
@@ -32,21 +32,24 @@ app.UseHttpLogging();
 
 app.UseRouting();
 
+app.Use(async (context, next) =>
+{
+    context.Response.Headers["MyResponseHeader"] =
+        new string[] { "My Response Header Value" };
+
+    await next();
+});
+
 app.MapGet("/", () => "Hello World!");
 
 app.Run();
 #elif SECOND
 #region snippet2
-using Microsoft.AspNetCore.HttpLogging;
-
 var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddHttpLogging();
 
 var app = builder.Build();
 
-// Code removed for brevity.
-#endregion
+app.UseHttpLogging();
 
 if (!app.Environment.IsDevelopment())
 {
@@ -56,9 +59,8 @@ app.UseStaticFiles();
 
 app.UseHttpLogging(); 
 
-app.UseRouting();
-
 app.MapGet("/", () => "Hello World!");
 
 app.Run();
+#endregion
 #endif
