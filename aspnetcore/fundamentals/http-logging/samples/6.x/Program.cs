@@ -54,8 +54,6 @@ if (!app.Environment.IsDevelopment())
 }
 app.UseStaticFiles();
 
-app.UseHttpLogging(); 
-
 app.MapGet("/", () => "Hello World!");
 
 app.Run();

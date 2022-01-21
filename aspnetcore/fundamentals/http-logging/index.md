@@ -79,18 +79,9 @@ To configure the HTTP logging middleware, call <xref:Microsoft.Extensions.Depend
 
 #### `MediaTypeOptions` methods
 
-<!-- When API is published, replace the following with API links -->
-
 * <xref:Microsoft.AspNetCore.HttpLogging.MediaTypeOptions.AddText%2A>
-  * Adds a contentType to be used for logging as text using UTF-8 encoding.
-* `public void AddText(string contentType, Encoding encoding)`
-  * Adds a contentType to be used for logging as text using the specified encoding.
 * <xref:Microsoft.AspNetCore.HttpLogging.MediaTypeOptions.AddBinary%2A>
-  * Adds a <xref:Microsoft.Net.Http.Headers.MediaTypeHeaderValue> to be used for logging as binary.
-* `public void AddBinary(string contentType)`
-  * Adds a content to be used for logging as text using the specified content type.
 * <xref:Microsoft.AspNetCore.HttpLogging.MediaTypeOptions.Clear%2A>
-  * Clears all MediaTypes.
 
 ### `RequestBodyLogLimit`
 
