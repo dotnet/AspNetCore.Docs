@@ -335,7 +335,7 @@ After an app crashes and dump collection is complete, the app is allowed to term
 
 #### App is unresponsive, fails during startup, or runs normally
 
-When an app *hangs* (stops responding but doesn't crash), fails during startup, or runs normally, see [User-Mode Dump Files: Choosing the Best Tool](/windows-hardware/drivers/debugger/user-mode-dump-files#choosing-the-best-tool) to select an appropriate tool to produce the dump.
+When an app *hangs* (stops responding but doesn't crash), fails during startup, or runs normally, see [User-Mode Dump Files: Choosing the Best Tool](/windows-hardware/drivers/debugger/user-mode-dump-files) to select an appropriate tool to produce the dump.
 
 #### Analyze the dump
 
@@ -678,7 +678,7 @@ After an app crashes and dump collection is complete, the app is allowed to term
 
 #### App unresponsive, fails during startup, or runs normally
 
-When an app *hangs* (stops responding but doesn't crash), fails during startup, or runs normally, see [User-Mode Dump Files: Choosing the Best Tool](/windows-hardware/drivers/debugger/user-mode-dump-files#choosing-the-best-tool) to select an appropriate tool to produce the dump.
+When an app *hangs* (stops responding but doesn't crash), fails during startup, or runs normally, see [User-Mode Dump Files: Choosing the Best Tool](/windows-hardware/drivers/debugger/user-mode-dump-files) to select an appropriate tool to produce the dump.
 
 #### Analyze the dump
 
@@ -1015,7 +1015,7 @@ After an app crashes and dump collection is complete, the app is allowed to term
 
 #### App unresponsive, fails during startup, or runs normally
 
-When an app *hangs* (stops responding but doesn't crash), fails during startup, or runs normally, see [User-Mode Dump Files: Choosing the Best Tool](/windows-hardware/drivers/debugger/user-mode-dump-files#choosing-the-best-tool) to select an appropriate tool to produce the dump.
+When an app *hangs* (stops responding but doesn't crash), fails during startup, or runs normally, see [User-Mode Dump Files: Choosing the Best Tool](/windows-hardware/drivers/debugger/user-mode-dump-files) to select an appropriate tool to produce the dump.
 
 #### Analyze the dump
 
