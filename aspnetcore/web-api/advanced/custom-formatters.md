@@ -2,14 +2,13 @@
 title: Custom formatters in ASP.NET Core Web API
 author: rick-anderson
 description: Learn how to create and use custom formatters for web APIs in ASP.NET Core.
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.date: 06/25/2020
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: web-api/advanced/custom-formatters
 ---
 # Custom formatters in ASP.NET Core Web API
-
-By [Kirk Larkin](https://twitter.com/serpent5) and [Tom Dykstra](https://github.com/tdykstra).
 
 ASP.NET Core MVC supports data exchange in Web APIs using input and output formatters. Input formatters are used by [Model Binding](xref:mvc/models/model-binding). Output formatters are used to [format responses](xref:web-api/advanced/formatting).
 
@@ -96,17 +95,7 @@ Deserialization or serialization is performed in `ReadRequestBodyAsync` or `Writ
 
 To use a custom formatter, add an instance of the formatter class to the `InputFormatters` or `OutputFormatters` collection.
 
-::: moniker range=">= aspnetcore-3.0"
-
 [!code-csharp[](custom-formatters/samples/3.x/CustomFormattersSample/Startup.cs?name=snippet_ConfigureServices&highlight=5-6)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
-[!code-csharp[](custom-formatters/samples/2.x/CustomFormattersSample/Startup.cs?name=mvcoptions&highlight=3-4)]
-
-::: moniker-end
 
 Formatters are evaluated in the order you insert them. The first one takes precedence.
 

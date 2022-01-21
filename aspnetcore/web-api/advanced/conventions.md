@@ -2,7 +2,7 @@
 title: Use web API conventions
 author: pranavkm
 description: Learn about web API conventions in ASP.NET Core.
-monikerRange: '>= aspnetcore-2.2'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 12/05/2019
@@ -11,16 +11,14 @@ uid: web-api/advanced/conventions
 ---
 # Use web API conventions
 
-By [Pranav Krishnamoorthy](https://github.com/pranavkm) and [Scott Addie](https://github.com/scottaddie)
-
-ASP.NET Core 3.0 and later includes a way to extract common [API documentation](xref:tutorials/web-api-help-pages-using-swagger) and apply it to multiple actions, controllers, or all controllers within an assembly. Web API conventions are a substitute for decorating individual actions with [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute).
+Common [API documentation](xref:tutorials/web-api-help-pages-using-swagger) can be extracted and applied to multiple actions, controllers, or all controllers within an assembly. Web API conventions are a substitute for decorating individual actions with [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute).
 
 A convention allows you to:
 
 * Define the most common return types and status codes returned from a specific type of action.
 * Identify actions that deviate from the defined standard.
 
-ASP.NET Core MVC 3.0 and later includes a set of default conventions in <xref:Microsoft.AspNetCore.Mvc.DefaultApiConventions?displayProperty=fullName>. The conventions are demonstrated with the *ValuesController.cs* added to an **API** project template:
+Default conventions are available from <xref:Microsoft.AspNetCore.Mvc.DefaultApiConventions?displayProperty=fullName>. The conventions are demonstrated with the *ValuesController.cs* added to an **API** project template:
 
 [!code-csharp[](conventions/ValuesController.cs)]
 
