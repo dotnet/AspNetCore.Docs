@@ -1,26 +1,61 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+#define FIRST // FIRST SECOND
+#if NEVER
+#elif FIRST
+#region snippet_Addservices
+using Microsoft.AspNetCore.HttpLogging;
 
-namespace HttpLoggingSample
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddHttpLogging(logging =>
 {
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateHostBuilder(args).Build().Run();
-        }
+    logging.LoggingFields = HttpLoggingFields.All;
+    logging.RequestHeaders.Add("sec-ch-ua");
+    logging.ResponseHeaders.Add("MyResponseHeader");
+    logging.MediaTypeOptions.AddText("application/javascript");
+    logging.RequestBodyLogLimit = 4096;
+    logging.ResponseBodyLogLimit = 4096;
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
-    }
+});
+
+var app = builder.Build();
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
 }
+
+app.UseStaticFiles();
+
+app.UseHttpLogging(); 
+
+app.Use(async (context, next) =>
+{
+    context.Response.Headers["MyResponseHeader"] =
+        new string[] { "My Response Header Value" };
+
+    await next();
+});
+
+app.MapGet("/", () => "Hello World!");
+
+app.Run();
+#endregion
+#elif SECOND
+#region snippet2
+var builder = WebApplication.CreateBuilder(args);
+
+var app = builder.Build();
+
+app.UseHttpLogging();
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+}
+app.UseStaticFiles();
+
+app.MapGet("/", () => "Hello World!");
+
+app.Run();
+#endregion
+#endif
