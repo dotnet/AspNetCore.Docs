@@ -81,7 +81,7 @@ JavaScript clients call public methods on hubs via the [invoke](/javascript/api/
 
 In the following highlighted code, the method name on the hub is `SendMessage`. The second and third arguments passed to `invoke` map to the hub method's `user` and `message` arguments:
 
-[!code-javascript[](javascript-client/samples/3.x/SignalRChat/wwwroot/chat.js?highlight=26)]
+[!code-javascript[](javascript-client/samples/6.x/SignalRChat/wwwroot/chat.js?highlight=26)]
 
 Calling hub methods from a client is only supported when using the Azure SignalR Service in ***Default*** mode. For more information, see [Frequently Asked Questions (azure-signalr GitHub repository)](https://github.com/Azure/azure-signalr/blob/dev/docs/faq.md#what-is-the-meaning-of-service-mode-defaultserverlessclassic-how-can-i-choose).
 
@@ -100,7 +100,7 @@ To receive messages from the hub, define a method using the [on](/javascript/api
 
 In the following example, the method name is `ReceiveMessage`. The argument names are `user` and `message`:
 
-[!code-javascript[](javascript-client/samples/3.x/SignalRChat/wwwroot/chat.js?highlight=8-15)]
+[!code-javascript[](javascript-client/samples/6.x/SignalRChat/wwwroot/chat.js?highlight=8-15)]
 
 The preceding code in `connection.on` runs when server-side code calls it using the <xref:Microsoft.AspNetCore.SignalR.ClientProxyExtensions.SendAsync%2A> method:
 
