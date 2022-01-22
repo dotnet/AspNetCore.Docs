@@ -112,9 +112,9 @@ A best practice is to call the [start](/javascript/api/%40aspnet/signalr/hubconn
 
 ## Error handling and logging
 
-Use `try` and `catch` with `async` and `await` or the `Promise` `catch` method to handle client-side errors. Use `console.error` to output errors to the browser's console:
+Use `console.error` to output errors to the browser's console when the client can't connect or send a message:
 
-[!code-javascript[](javascript-client/samples/6.x/SignalRChat/wwwroot/chat.js?name=snippet_Invoke)]
+[!code-javascript[](javascript-client/samples/6.x/SignalRChat/wwwroot/chat.js?highlight=20,27)]
 
 Set up client-side log tracing by passing a logger and type of event to log when the connection is made. Messages are logged with the specified log level and higher. Available log levels are as follows:
 
