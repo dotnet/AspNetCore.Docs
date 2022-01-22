@@ -4,7 +4,7 @@ author: ardalis
 description: Learn how to migrate a web API implementation from ASP.NET 4.x Web API to ASP.NET Core MVC.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 01/18/2022
+ms.date: 01/21/2022
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: migration/webapi
 ---
@@ -87,6 +87,10 @@ The following shows the application startup code in the ASP.NET Core *Program.cs
 
 Update the `ProductsController` for ASP.NET Core:
 
+The following code shows the updated ASP.NET Core `ProductsController`:
+
+[!code-csharp[](webapi/sample/6.x/ProductsCore/Controllers/ProductsController.cs?highlight=1,2,8,12,37,44)]
+
 1. Copy *Controllers/ProductsController.cs* and the *Models* folder from the original project to the new one.
 1. Change the copied files' root namespace to `ProductsCore`.
 1. Update the `using ProductsApp.Models;` statement to `using ProductsCore.Models;`.
@@ -107,10 +111,6 @@ Make the following changes:
     ```csharp
     return product;
     ```
-
-The following code shows the updated ASP.NET Core `ProductsController`:
-
-[!code-csharp[](webapi/sample/6.x/ProductsCore/Controllers/ProductsController.cs?highlight=1,2,8,12,37,44)]
 
 ## Configure routing
 
