@@ -367,6 +367,8 @@ CultureInfo.DefaultThreadCurrentUICulture = culture;
 
 await host.RunAsync();
 ```
+> [!NOTE] 
+> In Blazor WebAssembly, both `DefaultThreadCurrentCulture` and `DefaultThreadCurrentUICulture` must be set to the same culture in order to load and use Localization Resources.
 
 The following `CultureSelector` component shows how to perform the following actions:
 
