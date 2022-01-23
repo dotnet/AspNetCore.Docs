@@ -367,8 +367,9 @@ CultureInfo.DefaultThreadCurrentUICulture = culture;
 
 await host.RunAsync();
 ```
-> [!NOTE] 
-> In Blazor WebAssembly, both `DefaultThreadCurrentCulture` and `DefaultThreadCurrentUICulture` must be set to the same culture in order to load and use Localization Resources.
+
+> [!IMPORTANT] 
+> In Blazor WebAssembly, <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture> and <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture> must be set to the same culture in order to load and use localization resources.
 
 The following `CultureSelector` component shows how to perform the following actions:
 
@@ -1236,6 +1237,9 @@ CultureInfo.DefaultThreadCurrentUICulture = culture;
 await host.RunAsync();
 ```
 
+> [!IMPORTANT] 
+> In Blazor WebAssembly, <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture> and <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture> must be set to the same culture in order to load and use localization resources.
+
 The following `CultureSelector` component shows how to set the user's culture selection into browser local storage via JS interop. The component is placed in the `Shared` folder for use throughout the app.
 
 `Shared/CultureSelector.razor`:
@@ -2014,6 +2018,9 @@ CultureInfo.DefaultThreadCurrentUICulture = culture;
 
 await host.RunAsync();
 ```
+
+> [!IMPORTANT] 
+> In Blazor WebAssembly, <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture> and <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture> must be set to the same culture in order to load and use localization resources.
 
 The following `CultureSelector` component shows how to set the user's culture selection into browser local storage via JS interop. The component is placed in the `Shared` folder for use throughout the app.
 
