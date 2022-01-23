@@ -284,7 +284,7 @@ The generated HTML:
 <a href="/Attendee?attendeeid=10">View Attendee</a>
 ```
 
-If the referenced page doesn't exist, a link to the current page is generated. No warning is indicated except on debug level.
+If the referenced page doesn't exist, a link to the [ambient page](https://docs.microsoft.com/aspnet/core/mvc/controllers/routing#url-generation-and-ambient-values) is generated. No warning is indicated except on debug level.
 
 ### asp-page-handler
 
