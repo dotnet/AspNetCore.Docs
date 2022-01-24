@@ -2,7 +2,7 @@
 
 namespace WebApiSample.DataAccess.Models
 {
-    #region snippet_ProductClass
+    // <snippet_ProductClass>
     public class Product
     {
         public int Id { get; set; }
@@ -15,5 +15,5 @@ namespace WebApiSample.DataAccess.Models
 
         public bool IsOnSale { get; set; }
     }
-    #endregion
+    // </snippet_ProductClass>
 }
