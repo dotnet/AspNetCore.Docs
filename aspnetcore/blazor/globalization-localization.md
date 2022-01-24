@@ -368,8 +368,10 @@ CultureInfo.DefaultThreadCurrentUICulture = culture;
 await host.RunAsync();
 ```
 
-> [!IMPORTANT] 
-> <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture> and <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture> must be set to the same culture.
+> [!IMPORTANT]
+> <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture> and <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture> must be set to the same culture in order to use <xref:System.Web.Globalization.IStringLocalizerProvider> and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601>. For more information, see [`WebAssemblyCultureProvider` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/WebAssembly/WebAssembly/src/Hosting/WebAssemblyCultureProvider.cs).
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 The following `CultureSelector` component shows how to perform the following actions:
 
@@ -1237,8 +1239,10 @@ CultureInfo.DefaultThreadCurrentUICulture = culture;
 await host.RunAsync();
 ```
 
-> [!IMPORTANT] 
-> <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture> and <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture> must be set to the same culture.
+> [!IMPORTANT]
+> <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture> and <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture> must be set to the same culture in order to use <xref:System.Web.Globalization.IStringLocalizerProvider> and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601>. For more information, see [`WebAssemblyCultureProvider` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/WebAssembly/WebAssembly/src/Hosting/WebAssemblyCultureProvider.cs).
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 The following `CultureSelector` component shows how to set the user's culture selection into browser local storage via JS interop. The component is placed in the `Shared` folder for use throughout the app.
 
@@ -2019,8 +2023,10 @@ CultureInfo.DefaultThreadCurrentUICulture = culture;
 await host.RunAsync();
 ```
 
-> [!IMPORTANT] 
-> <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture> and <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture> must be set to the same culture.
+> [!IMPORTANT]
+> <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture> and <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture> must be set to the same culture in order to use <xref:System.Web.Globalization.IStringLocalizerProvider> and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601>. For more information, see [`WebAssemblyCultureProvider` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/WebAssembly/WebAssembly/src/Hosting/WebAssemblyCultureProvider.cs).
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 The following `CultureSelector` component shows how to set the user's culture selection into browser local storage via JS interop. The component is placed in the `Shared` folder for use throughout the app.
 
