@@ -1037,6 +1037,18 @@ C# syntax with [`where`](/dotnet/csharp/language-reference/keywords/where-generi
 @typeparam TEntity where TEntity : IEntity
 ```
 
+In the following example, the `ListGenericTypeItems1` component is generically typed as `TExample`.
+
+`Shared/ListGenericTypeItems1.razor`:
+
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Shared/index/ListGenericTypeItems1.razor)]
+
+The following `GenericTypeExample1` component renders two `ListGenericTypeItems1` components setting their types to `string` and `int` with values.
+
+`Pages/GenericTypeExample1.razor`:
+
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/index/GenericTypeExample1.razor)]
+
 For more information, see the following articles:
 
 * <xref:mvc/views/razor#typeparam>
@@ -2072,6 +2084,18 @@ The [`@typeparam`][11] directive declares a [generic type parameter](/dotnet/csh
 @typeparam TItem
 ```
 
+In the following example, the `ListGenericTypeItems1` component is generically typed as `TExample`.
+
+`Shared/ListGenericTypeItems1.razor`:
+
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Shared/index/ListGenericTypeItems1.razor)]
+
+The following `GenericTypeExample1` component renders two `ListGenericTypeItems1` components setting their types to `string` and `int` with values.
+
+`Pages/GenericTypeExample1.razor`:
+
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/index/GenericTypeExample1.razor)]
+
 For more information, see the following articles:
 
 * <xref:mvc/views/razor#typeparam>
@@ -3040,6 +3064,18 @@ The [`@typeparam`][11] directive declares a [generic type parameter](/dotnet/csh
 ```razor
 @typeparam TItem
 ```
+
+In the following example, the `ListGenericTypeItems1` component is generically typed as `TExample`.
+
+`Shared/ListGenericTypeItems1.razor`:
+
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Shared/index/ListGenericTypeItems1.razor)]
+
+The following `GenericTypeExample1` component renders two `ListGenericTypeItems1` components setting their types to `string` and `int` with values.
+
+`Pages/GenericTypeExample1.razor`:
+
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/index/GenericTypeExample1.razor)]
 
 For more information, see the following articles:
 

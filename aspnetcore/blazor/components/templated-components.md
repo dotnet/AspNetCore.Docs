@@ -56,58 +56,23 @@ When using generic-typed components, the type parameter is inferred if possible.
 
 An ancestor component can cascade a type parameter by name to descendants using the [`[CascadingTypeParameter]` attribute](xref:Microsoft.AspNetCore.Components.CascadingTypeParameterAttribute). This attribute allows a generic type inference to use the specified type parameter automatically with descendants that have a type parameter with the same name.
 
-For example, the following `Chart` component receives stock price data and cascades a generic type parameter named `TLineData` to its descendent components.
+The following shared `ListDisplay` component is used to demonstrate a cascading type in the upcoming example. The component receives and renders list data and is generically typed as `TExample`.
 
-`Shared/Chart.razor`:
+`Shared/ListDisplay.razor`:
 
-```razor
-@attribute [CascadingTypeParameter(nameof(TLineData))]
-@typeparam TLineData
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Shared/templated-components/ListDisplay.razor)]
 
-...
+The following `ListGenericTypeItems2` component receives data and cascades a generic type parameter named `TExample` to its descendent components, which are generically typed with the same name (`TExample`). In an upcoming parent component example, the `ListGenericTypeItems2` component is used to display list data with the preceding `ListDisplay` component, but the `ListGenericTypeItems2` component is capable of displaying any generically-typed list item component if it's generically typed as `TExample`.
 
-@code {
-    [Parameter]
-    public IEnumerable<TLineData>? Data { get; set; }
+`Shared/ListGenericTypeItems2.razor`:
 
-    [Parameter]
-    public RenderFragment? ChildContent { get; set; }
-}
-```
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Shared/templated-components/ListGenericTypeItems2.razor)]
 
-`Shared/Line.razor`:
+The following `GenericTypeExample2` parent component sets the child content (<xref:Microsoft.AspNetCore.Components.RenderFragment>) of two `ListGenericTypeItems2` components specifying their `TExample` types. `ListDisplay` components are rendered with the list item data shown. As previously mentioned, the parent component in this example isn't required to use `ListDisplay` components. Any shared component can be rendered if its generically typed as a `TExample`, the cascaded type.
 
-```razor
-@typeparam TLineData
+`Pages/GenericTypeExample2.razor`:
 
-...
-
-@code {
-    [Parameter]
-    public string? Title { get; set; }
-
-    [Parameter]
-    public decimal Value { get; set; }
-}
-```
-
-When the `Chart` component is used, `TLineData` isn't specified for each `Line` component of the chart.
-
-`Pages/StockPriceHistory.razor`:
-
-```razor
-@page "/stock-price-history"
-
-<Chart Data="stockPriceHistory.GroupBy(x => x.Date)">
-    <Line Title="Open" Value="day => day.Values.First()" />
-    <Line Title="High" Value="day => day.Values.Max()" />
-    <Line Title="Low" Value="day => day.Values.Min()" />
-    <Line Title="Close" Value="day => day.Values.Last()" />
-</Chart>
-```
-
-> [!NOTE]
-> The Razor support in Visual Studio Code hasn't been updated to support this feature, so you may receive incorrect errors even though the project correctly builds. This will be addressed in an upcoming tooling release.
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/templated-components/GenericTypeExample2.razor)]
 
 By adding `@attribute [CascadingTypeParameter(...)]` to a component, the specified generic type argument is automatically used by descendants that:
 
