@@ -195,7 +195,7 @@ The status is reported as one of the following values:
 
 ### Stop a service
 
-Stop a service with the following Powershell 6 command:
+Stop a service with the following PowerShell 6 command:
 
 ```powershell
 Stop-Service -Name {SERVICE NAME}
@@ -203,7 +203,7 @@ Stop-Service -Name {SERVICE NAME}
 
 ### Remove a service
 
-After a short delay to stop a service, remove a service with the following Powershell 6 command:
+After a short delay to stop a service, remove a service with the following PowerShell 6 command:
 
 ```powershell
 Remove-Service -Name {SERVICE NAME}
@@ -518,7 +518,7 @@ The status is reported as one of the following values:
 
 ### Stop a service
 
-Stop a service with the following Powershell 6 command:
+Stop a service with the following PowerShell 6 command:
 
 ```powershell
 Stop-Service -Name {SERVICE NAME}
@@ -526,7 +526,7 @@ Stop-Service -Name {SERVICE NAME}
 
 ### Remove a service
 
-After a short delay to stop a service, remove a service with the following Powershell 6 command:
+After a short delay to stop a service, remove a service with the following PowerShell 6 command:
 
 ```powershell
 Remove-Service -Name {SERVICE NAME}
@@ -654,5 +654,5 @@ A dump can be analyzed using several approaches. For more information, see [Anal
 * [Kestrel endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration) (includes HTTPS configuration and SNI support)
 * <xref:fundamentals/host/generic-host>
 * <xref:test/troubleshoot>
-    
+
 :::moniker-end
