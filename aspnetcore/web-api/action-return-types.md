@@ -25,7 +25,7 @@ This document explains when it's most appropriate to use each return type.
 
 The simplest action returns a primitive or complex data type (for example, `string` or a custom object type). Consider the following action, which returns a collection of custom `Product` objects:
 
-[!code-csharp[](../web-api/action-return-types/samples/3.x/WebApiSample.Api.31/Controllers/ProductsController.cs?name=snippet_Get)]
+:::code language="csharp" source="action-return-types/samples/3.x/WebApiSample.Api.31/Controllers/ProductsController.cs" id="snippet_Get":::
 
 Without known conditions to safeguard against during action execution, returning a specific type could suffice. The preceding action accepts no parameters, so parameter constraints validation isn't needed.
 
@@ -37,11 +37,11 @@ ASP.NET Core buffers the result of actions that return <xref:System.Collections.
 
 Consider the following action, which returns sale-priced product records as `IEnumerable<Product>`:
 
-[!code-csharp[](../web-api/action-return-types/samples/3.x/WebApiSample.Api.31/Controllers/ProductsController.cs?name=snippet_GetOnSaleProducts)]
+:::code language="csharp" source="action-return-types/samples/3.x/WebApiSample.Api.31/Controllers/ProductsController.cs" id="snippet_GetOnSaleProducts":::
 
 The `IAsyncEnumerable<Product>` equivalent of the preceding action is:
 
-[!code-csharp[](../web-api/action-return-types/samples/3.x/WebApiSample.Api.31/Controllers/ProductsController.cs?name=snippet_GetOnSaleProductsAsync)]
+:::code language="csharp" source="action-return-types/samples/3.x/WebApiSample.Api.31/Controllers/ProductsController.cs" id="snippet_GetOnSaleProductsAsync":::
 
 ## IActionResult type
 
@@ -53,7 +53,7 @@ Because there are multiple return types and paths in this type of action, libera
 
 Consider the following synchronous action in which there are two possible return types:
 
-[!code-csharp[](../web-api/action-return-types/samples/3.x/WebApiSample.Api.31/Controllers/ProductsController.cs?name=snippet_GetByIdIActionResult&highlight=8,11)]
+:::code language="csharp" source="action-return-types/samples/3.x/WebApiSample.Api.31/Controllers/ProductsController.cs" id="snippet_GetByIdIActionResult" highlight="8,11":::
 
 In the preceding action:
 
@@ -64,7 +64,7 @@ In the preceding action:
 
 Consider the following asynchronous action in which there are two possible return types:
 
-[!code-csharp[](../web-api/action-return-types/samples/3.x/WebApiSample.Api.31/Controllers/ProductsController.cs?name=snippet_CreateAsyncIActionResult&highlight=9,14)]
+:::code language="csharp" source="action-return-types/samples/3.x/WebApiSample.Api.31/Controllers/ProductsController.cs" id="snippet_CreateAsyncIActionResult" highlight="9,14":::
 
 In the preceding action:
 
@@ -73,7 +73,7 @@ In the preceding action:
 
 For example, the following model indicates that requests must include the `Name` and `Description` properties. Failure to provide `Name` and `Description` in the request causes model validation to fail.
 
-[!code-csharp[](../web-api/action-return-types/samples/3.x/WebApiSample.DataAccess/Models/Product.cs?name=snippet_ProductClass&highlight=5-6,8-9)]
+:::code language="csharp" source="action-return-types/samples/3.x/WebApiSample.DataAccess/Models/Product.cs" id="snippet_ProductClass" highlight="5-6,8-9":::
 
 If the [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute is applied, model validation errors result in a 400 status code. For more information, see [Automatic HTTP 400 responses](xref:web-api/index#automatic-http-400-responses).
 
@@ -104,7 +104,7 @@ Most actions have a specific return type. Unexpected conditions can occur during
 
 Consider a synchronous action in which there are two possible return types:
 
-[!code-csharp[](../web-api/action-return-types/samples/3.x/WebApiSample.Api.31/Controllers/ProductsController.cs?name=snippet_GetByIdActionResult&highlight=8,11)]
+:::code language="csharp" source="action-return-types/samples/3.x/WebApiSample.Api.31/Controllers/ProductsController.cs" id="snippet_GetByIdActionResultOfT" highlight="8,11":::
 
 In the preceding action:
 
@@ -115,7 +115,7 @@ In the preceding action:
 
 Consider an asynchronous action in which there are two possible return types:
 
-[!code-csharp[](../web-api/action-return-types/samples/3.x/WebApiSample.Api.31/Controllers/ProductsController.cs?name=snippet_CreateAsyncActionResult&highlight=9,14)]
+:::code language="csharp" source="action-return-types/samples/3.x/WebApiSample.Api.31/Controllers/ProductsController.cs" id="snippet_CreateAsyncActionResultOfT" highlight="9,14":::
 
 In the preceding action:
 
