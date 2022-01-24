@@ -96,7 +96,7 @@ The page contains a hidden field (`<input type="hidden">`) for the course number
 
 ## Update the Course page models
 
-[AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking#) can improve performance when tracking isn't required.
+[AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking) can improve performance when tracking isn't required.
 
 Update *Pages/Courses/Delete.cshtml.cs* and *Pages/Courses/Details.cshtml.cs* by adding `AsNoTracking` to the `OnGetAsync` methods:
 

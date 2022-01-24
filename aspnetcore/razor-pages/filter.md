@@ -174,7 +174,7 @@ The following code overrides the synchronous Razor Page filters:
 
 ## Implement a filter attribute
 
-The built-in attribute-based filter [OnResultExecutionAsync](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncresultfilter.onresultexecutionasync?view=aspnetcore-2.0#) filter can be subclassed. The following filter adds a header to the response:
+The built-in attribute-based filter [OnResultExecutionAsync](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncresultfilter.onresultexecutionasync?view=aspnetcore-2.0) filter can be subclassed. The following filter adds a header to the response:
 
 [!code-csharp[Main](filter/sample/PageFilter/Filters/AddHeaderAttribute.cs)]
 
