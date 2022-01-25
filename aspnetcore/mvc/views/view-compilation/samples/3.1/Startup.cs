@@ -21,7 +21,7 @@ namespace MyApp
 
         public IWebHostEnvironment HostEnvironment { get; }
 
-        #region snippet_ConfigureServices
+        // <snippet_ConfigureServices>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
@@ -33,7 +33,7 @@ namespace MyApp
                 options.FileProviders.Add(new PhysicalFileProvider(libraryPath));
             });
         }
-        #endregion
+        // </snippet_ConfigureServices>
 
         public void Configure(IApplicationBuilder app)
         {
