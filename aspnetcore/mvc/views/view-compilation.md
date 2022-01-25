@@ -32,7 +32,7 @@ To enable runtime compilation for all environments:
 
 ## Enable runtime compilation conditionally
 
-Runtime compilation can be enabled conditionally. Conditionally enabling in this manner ensures that the published output:
+Runtime compilation can be enabled conditionally, which ensures that the published output:
 
 * Uses compiled views.
 * Doesn't enable file watchers in production.
@@ -47,24 +47,24 @@ To enable runtime compilation only for the Development environment:
 Runtime compilation can also be enabled with a [hosting startup assembly](xref:fundamentals/configuration/platform-specific-configuration). To enable runtime compilation in the Development environment for specific launch profiles:
 
 1. Install the [Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation/) NuGet package.
-1. Modify the launch profile `environmentVariables` section in *launchSettings.json*:
+1. Modify the launch profile's `environmentVariables` section in *launchSettings.json*:
    * Verify that `ASPNETCORE_ENVIRONMENT` is set to `"Development"`.
-   * Set `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES` to `"Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation"`. For example, the following *launchSettings.json* enables runtime compilation for the `IIS Express` and `ViewCompilationSample` launch profiles:
+   * Set `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES` to `"Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation"`. For example, the following *launchSettings.json* enables runtime compilation for the `ViewCompilationSample` and `IIS Express` launch profiles:
 
       :::code language="json" source="view-compilation/samples/6.x/ViewCompilationSample/Snippets/launchSettings.json" highlight="17-18,25-26":::
 
-No code changes are needed in *Program.cs*. At runtime, ASP.NET Core searches for an [assembly-level HostingStartup attribute](xref:fundamentals/configuration/platform-specific-configuration#hostingstartup-attribute) in `Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation`. The `HostingStartup` attribute specifies the app startup code to execute and that startup code enables runtime compilation.
+With this approach, no code changes are needed in *Program.cs*. At runtime, ASP.NET Core searches for an [assembly-level HostingStartup attribute](xref:fundamentals/configuration/platform-specific-configuration#hostingstartup-attribute) in `Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation`. The `HostingStartup` attribute specifies the app startup code to execute and that startup code enables runtime compilation.
 
 ## Enable runtime compilation for a Razor Class Library
 
 Consider a scenario in which a Razor Pages project references a [Razor Class Library (RCL)](xref:razor-pages/ui-class) named *MyClassLib*. The RCL contains a *_Layout.cshtml* file consumed by MVC and Razor Pages projects. To enable runtime compilation for the *_Layout.cshtml* file in that RCL, make the following changes in the Razor Pages project:
 
 1. Enable runtime compilation with the instructions at [Enable runtime compilation conditionally](#enable-runtime-compilation-conditionally).
-1. Configure the runtime compilation options in *Program.cs*:
+1. Configure <xref:Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.MvcRazorRuntimeCompilationOptions> in *Program.cs*:
 
     :::code language="csharp" source="view-compilation/samples/6.x/ViewCompilationSample/Snippets/Program.cs" id="snippet_ConfigureMvcRazorRuntimeCompilationOptions" highlight="5-11":::
 
-    In the preceding code, an absolute path to the *MyClassLib* RCL is constructed. The [PhysicalFileProvider API](xref:fundamentals/file-providers#physicalfileprovider) is used to locate directories and files at that absolute path. Finally, the `PhysicalFileProvider` instance is added to a file providers collection, which allows access to the RCL's *.cshtml* files.
+    The preceding code builds an absolute path to the *MyClassLib* RCL. The [PhysicalFileProvider API](xref:fundamentals/file-providers#physicalfileprovider) is used to locate directories and files at that absolute path. Finally, the `PhysicalFileProvider` instance is added to a file providers collection, which allows access to the RCL's *.cshtml* files.
 
 ## Additional resources
 
