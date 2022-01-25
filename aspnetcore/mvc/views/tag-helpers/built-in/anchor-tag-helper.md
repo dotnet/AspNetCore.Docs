@@ -262,7 +262,7 @@ The generated HTML:
 
 ### asp-page
 
-The [asp-page](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Page*) attribute is used with Razor Pages. Use it to set an anchor tag's `href` attribute value to a specific page. Prefixing the page name `/` creates a URL for a matching page from the root of the app:
+The [asp-page](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Page*) attribute is used with Razor Pages. Use it to set an anchor tag's `href` attribute value to a specific page. Prefixing the page name with `/` creates a URL for a matching page from the root of the app:
 
 With the sample code, the following markup creates a link to the attendee Razor Page:
 
