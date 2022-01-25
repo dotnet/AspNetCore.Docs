@@ -75,7 +75,7 @@ To prevent a malicious site from reading sensitive data from another site, [cros
 
 ## Call hub methods from the client
 
-JavaScript clients call public methods on hubs via the [invoke](/javascript/api/%40microsoft/signalr/hubconnection#invoke-string--any---) method of the [HubConnection](/javascript/api/%40microsoft/signalr/hubconnection). The `invoke` method accepts:
+JavaScript clients call public methods on hubs via the [invoke](/javascript/api/%40microsoft/signalr/hubconnection#invoke_T__T__string__any___) method of the [HubConnection](/javascript/api/%40microsoft/signalr/hubconnection). The `invoke` method accepts:
 
 * The name of the hub method.
 * Any arguments defined in the hub method.
@@ -89,14 +89,14 @@ In the following example, the method name on the hub is `SendMessage`. The secon
 
 The `invoke` method returns a JavaScript [Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise). The `Promise` is resolved with the return value (if any) when the method on the server returns. If the method on the server throws an error, the `Promise` is rejected with the error message. Use `async` and `await` or the `Promise`'s `then` and `catch` methods to handle these cases.
 
-JavaScript clients can also call public methods on hubs via the [send](/javascript/api/%40microsoft/signalr/hubconnection#send-string--any---) method of the `HubConnection`. Unlike the `invoke` method, the `send` method doesn't wait for a response from the server. The `send` method returns a JavaScript `Promise`. The `Promise` is resolved when the message has been sent to the server. If there is an error sending the message, the `Promise` is rejected with the error message. Use `async` and `await` or the `Promise`'s `then` and `catch` methods to handle these cases.
+JavaScript clients can also call public methods on hubs via the [send](/javascript/api/%40microsoft/signalr/hubconnection#send_string__any___) method of the `HubConnection`. Unlike the `invoke` method, the `send` method doesn't wait for a response from the server. The `send` method returns a JavaScript `Promise`. The `Promise` is resolved when the message has been sent to the server. If there is an error sending the message, the `Promise` is rejected with the error message. Use `async` and `await` or the `Promise`'s `then` and `catch` methods to handle these cases.
 
 > [!NOTE]
 > Using `send` doesn't wait until the server has received the message. Consequently, it's not possible to return data or errors from the server.
 
 ## Call client methods from the hub
 
-To receive messages from the hub, define a method using the [on](/javascript/api/%40microsoft/signalr/hubconnection#on-string---args--any-------void-) method of the `HubConnection`.
+To receive messages from the hub, define a method using the [on](/javascript/api/%40microsoft/signalr/hubconnection#on_string___args__any_______void_) method of the `HubConnection`.
 
 * The name of the JavaScript client method.
 * Arguments the hub passes to the method.
@@ -112,7 +112,7 @@ The preceding code in `connection.on` runs when server-side code calls it using 
 SignalR determines which client method to call by matching the method name and arguments defined in `SendAsync` and `connection.on`.
 
 > [!NOTE]
-> As a best practice, call the [start](/javascript/api/%40aspnet/signalr/hubconnection#start) method on the `HubConnection` after `on`. Doing so ensures your handlers are registered before any messages are received.
+> As a best practice, call the [start](/javascript/api/%40aspnet/signalr/hubconnection#start__) method on the `HubConnection` after `on`. Doing so ensures your handlers are registered before any messages are received.
 
 ## Error handling and logging
 
@@ -127,7 +127,7 @@ Set up client-side log tracing by passing a logger and type of event to log when
 * `signalR.LogLevel.Information`: Status messages without errors. Logs `Information`, `Warning`, and `Error` messages.
 * `signalR.LogLevel.Trace`: Trace messages. Logs everything, including data transported between hub and client.
 
-Use the [configureLogging](/javascript/api/%40aspnet/signalr/hubconnectionbuilder#configurelogging) method on [HubConnectionBuilder](/javascript/api/%40aspnet/signalr/hubconnectionbuilder) to configure the log level. Messages are logged to the browser console:
+Use the [configureLogging](/javascript/api/%40aspnet/signalr/hubconnectionbuilder) method on [HubConnectionBuilder](/javascript/api/%40aspnet/signalr/hubconnectionbuilder) to configure the log level. Messages are logged to the browser console:
 
 [!code-javascript[](javascript-client/samples/3.x/SignalRChat/wwwroot/chat.js?name=snippet_Connection&highlight=3)]
 
@@ -195,7 +195,7 @@ async function start() {
 };
 ```
 
-If the client doesn't successfully reconnect within its first four attempts, the `HubConnection` will transition to the `Disconnected` state and fire its [onclose](/javascript/api/%40aspnet/signalr/hubconnection#onclose) callbacks. This provides an opportunity to inform users the connection has been permanently lost and recommend refreshing the page:
+If the client doesn't successfully reconnect within its first four attempts, the `HubConnection` will transition to the `Disconnected` state and fire its [onclose](/javascript/api/%40aspnet/signalr/hubconnection#onclose__error___Error_____void_) callbacks. This provides an opportunity to inform users the connection has been permanently lost and recommend refreshing the page:
 
 ```javascript
 connection.onclose(error => {
@@ -383,7 +383,7 @@ To prevent a malicious site from reading sensitive data from another site, [cros
 
 ## Call hub methods from the client
 
-JavaScript clients call public methods on hubs via the [invoke](/javascript/api/%40microsoft/signalr/hubconnection#invoke-string--any---) method of the [HubConnection](/javascript/api/%40microsoft/signalr/hubconnection). The `invoke` method accepts:
+JavaScript clients call public methods on hubs via the [invoke](/javascript/api/%40microsoft/signalr/hubconnection#invoke_T__T__string__any___) method of the [HubConnection](/javascript/api/%40microsoft/signalr/hubconnection). The `invoke` method accepts:
 
 * The name of the hub method.
 * Any arguments defined in the hub method.
@@ -420,7 +420,7 @@ The preceding code in `connection.on` runs when server-side code calls it using 
 SignalR determines which client method to call by matching the method name and arguments defined in `SendAsync` and `connection.on`.
 
 > [!NOTE]
-> As a best practice, call the [start](/javascript/api/%40aspnet/signalr/hubconnection#start) method on the `HubConnection` after `on`. Doing so ensures your handlers are registered before any messages are received.
+> As a best practice, call the [start](/javascript/api/%40aspnet/signalr/hubconnection#start__) method on the `HubConnection` after `on`. Doing so ensures your handlers are registered before any messages are received.
 
 ## Error handling and logging
 
@@ -435,7 +435,7 @@ Set up client-side log tracing by passing a logger and type of event to log when
 * `signalR.LogLevel.Information`: Status messages without errors. Logs `Information`, `Warning`, and `Error` messages.
 * `signalR.LogLevel.Trace`: Trace messages. Logs everything, including data transported between hub and client.
 
-Use the [configureLogging](/javascript/api/%40aspnet/signalr/hubconnectionbuilder#configurelogging) method on [HubConnectionBuilder](/javascript/api/%40aspnet/signalr/hubconnectionbuilder) to configure the log level. Messages are logged to the browser console:
+Use the [configureLogging](/javascript/api/%40aspnet/signalr/hubconnectionbuilder) method on [HubConnectionBuilder](/javascript/api/%40aspnet/signalr/hubconnectionbuilder) to configure the log level. Messages are logged to the browser console:
 
 [!code-javascript[](javascript-client/samples/3.x/SignalRChat/wwwroot/chat.js?name=snippet_Connection&highlight=3)]
 
