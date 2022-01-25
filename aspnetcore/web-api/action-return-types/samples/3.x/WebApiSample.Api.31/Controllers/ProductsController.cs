@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+#define IActionResult // or ActionResultOfT
+
+using System.Collections.Generic;
 using System.Net.Mime;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -20,13 +22,43 @@ namespace WebApiSample.Api._31.Controllers
             _repository = repository;
         }
 
-        #region snippet_Get
-        [HttpGet]
-        public List<Product> Get() =>
-            _repository.GetProducts();
-        #endregion
+#if IActionResult
+        // <snippet_GetByIdIActionResult>
+        [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Product))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public IActionResult GetById(int id)
+        {
+            if (!_repository.TryGetProduct(id, out var product))
+            {
+                return NotFound();
+            }
 
-        #region snippet_GetById
+            return Ok(product);
+        }
+        // </snippet_GetByIdIActionResult>
+
+        // <snippet_CreateAsyncIActionResult>
+        [HttpPost]
+        [Consumes(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> CreateAsync(Product product)
+        {
+            if (product.Description.Contains("XYZ Widget"))
+            {
+                return BadRequest();
+            }
+
+            await _repository.AddProductAsync(product);
+
+            return CreatedAtAction(nameof(GetById), new { id = product.Id }, product);
+        }
+        // </snippet_CreateAsyncIActionResult>
+#endif
+
+#if ActionResultOfT
+        // <snippet_GetByIdActionResultOfT>
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -39,41 +71,9 @@ namespace WebApiSample.Api._31.Controllers
 
             return product;
         }
-        #endregion
+        // </snippet_GetByIdActionResultOfT>
 
-        #region snippet_GetOnSaleProducts
-        [HttpGet("syncsale")]
-        public IEnumerable<Product> GetOnSaleProducts()
-        {
-            var products = _repository.GetProducts();
-
-            foreach (var product in products)
-            {
-                if (product.IsOnSale)
-                {
-                    yield return product;
-                }
-            }
-        }
-        #endregion
-
-        #region snippet_GetOnSaleProductsAsync
-        [HttpGet("asyncsale")]
-        public async IAsyncEnumerable<Product> GetOnSaleProductsAsync()
-        {
-            var products = _repository.GetProductsAsync();
-
-            await foreach (var product in products)
-            {
-                if (product.IsOnSale)
-                {
-                    yield return product;
-                }
-            }
-        }
-        #endregion
-
-        #region snippet_CreateAsync
+        // <snippet_CreateAsyncActionResultOfT>
         [HttpPost]
         [Consumes(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status201Created)]
@@ -89,6 +89,45 @@ namespace WebApiSample.Api._31.Controllers
 
             return CreatedAtAction(nameof(GetById), new { id = product.Id }, product);
         }
-        #endregion
+        // </snippet_CreateAsyncActionResultOfT>
+#endif
+
+        // <snippet_Get>
+        [HttpGet]
+        public List<Product> Get() =>
+            _repository.GetProducts();
+        // </snippet_Get>
+
+        // <snippet_GetOnSaleProducts>
+        [HttpGet("syncsale")]
+        public IEnumerable<Product> GetOnSaleProducts()
+        {
+            var products = _repository.GetProducts();
+
+            foreach (var product in products)
+            {
+                if (product.IsOnSale)
+                {
+                    yield return product;
+                }
+            }
+        }
+        // </snippet_GetOnSaleProducts>
+
+        // <snippet_GetOnSaleProductsAsync>
+        [HttpGet("asyncsale")]
+        public async IAsyncEnumerable<Product> GetOnSaleProductsAsync()
+        {
+            var products = _repository.GetProductsAsync();
+
+            await foreach (var product in products)
+            {
+                if (product.IsOnSale)
+                {
+                    yield return product;
+                }
+            }
+        }
+        // </snippet_GetOnSaleProductsAsync>
     }
 }
