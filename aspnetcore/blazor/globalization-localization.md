@@ -240,7 +240,7 @@ The app's culture can be set in JavaScript when Blazor starts with the `applicat
 
 The value for `applicationCulture` must conform to the [BCP-47 language tag format](https://www.rfc-editor.org/info/bcp47). For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 
-An alternative to setting the culture Blazor's start option is to set the culture in C# code. Set <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture?displayProperty=nameWithType> and <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture?displayProperty=nameWithType> in `Program.cs`.
+An alternative to setting the culture Blazor's start option is to set the culture in C# code. Set <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture?displayProperty=nameWithType> and <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture?displayProperty=nameWithType> in `Program.cs` to the same culture.
 
 Add the <xref:System.Globalization?displayProperty=fullName> namespace to `Program.cs`:
 
@@ -254,6 +254,9 @@ Add the culture settings before the line that builds and runs the <xref:Microsof
 CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
 CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("en-US");
 ```
+
+> [!IMPORTANT]
+> Always set <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture> and <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture> to the same culture in order to use <xref:Microsoft.Extensions.Localization.IStringLocalizer> and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601>.
 
 :::zone-end
 
@@ -367,6 +370,9 @@ CultureInfo.DefaultThreadCurrentUICulture = culture;
 
 await host.RunAsync();
 ```
+
+> [!IMPORTANT]
+> Always set <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture> and <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture> to the same culture in order to use <xref:Microsoft.Extensions.Localization.IStringLocalizer> and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601>.
 
 The following `CultureSelector` component shows how to perform the following actions:
 
@@ -867,6 +873,16 @@ Add the namespace for <xref:Microsoft.Extensions.Localization?displayProperty=fu
 
 Optionally, add a menu item to the navigation in `Shared/NavMenu.razor` for the `CultureExample2` component.
 
+:::zone pivot="webassembly"
+
+## Culture provider reference source
+
+To further understand how the Blazor framework processes localization, see the [`WebAssemblyCultureProvider` class](https://github.com/dotnet/aspnetcore/blob/main/src/Components/WebAssembly/WebAssembly/src/Hosting/WebAssemblyCultureProvider.cs) in the ASP.NET Core reference source.
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
+:::zone-end
+
 ## Additional resources
 
 * [Set the app base path](xref:blazor/host-and-deploy/index#app-base-path)
@@ -1106,7 +1122,7 @@ The app's culture can be set in JavaScript when Blazor starts with the `applicat
 
 The value for `applicationCulture` must conform to the [BCP-47 language tag format](https://www.rfc-editor.org/info/bcp47). For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 
-An alternative to setting the culture Blazor's start option is to set the culture in C# code. Set <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture?displayProperty=nameWithType> and <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture?displayProperty=nameWithType> in `Program.cs`.
+An alternative to setting the culture Blazor's start option is to set the culture in C# code. Set <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture?displayProperty=nameWithType> and <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture?displayProperty=nameWithType> in `Program.cs` to the same culture.
 
 Add the <xref:System.Globalization?displayProperty=fullName> namespace to `Program.cs`:
 
@@ -1120,6 +1136,9 @@ Add the culture settings before the line that builds and runs the <xref:Microsof
 CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
 CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("en-US");
 ```
+
+> [!IMPORTANT]
+> Always set <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture> and <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture> to the same culture in order to use <xref:Microsoft.Extensions.Localization.IStringLocalizer> and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601>.
 
 :::zone-end
 
@@ -1233,6 +1252,9 @@ CultureInfo.DefaultThreadCurrentUICulture = culture;
 
 await host.RunAsync();
 ```
+
+> [!IMPORTANT]
+> Always set <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture> and <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture> to the same culture in order to use <xref:Microsoft.Extensions.Localization.IStringLocalizer> and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601>.
 
 The following `CultureSelector` component shows how to set the user's culture selection into browser local storage via JS interop. The component is placed in the `Shared` folder for use throughout the app.
 
@@ -1723,6 +1745,16 @@ Add the namespace for <xref:Microsoft.Extensions.Localization?displayProperty=fu
 
 Optionally, add a menu item to the navigation in `Shared/NavMenu.razor` for the `CultureExample2` component.
 
+:::zone pivot="webassembly"
+
+## Culture provider reference source
+
+To further understand how the Blazor framework processes localization, see the [`WebAssemblyCultureProvider` class](https://github.com/dotnet/aspnetcore/blob/main/src/Components/WebAssembly/WebAssembly/src/Hosting/WebAssemblyCultureProvider.cs) in the ASP.NET Core reference source.
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
+:::zone-end
+
 ## Additional resources
 
 * [Set the app base path](xref:blazor/host-and-deploy/index#app-base-path)
@@ -2012,6 +2044,9 @@ CultureInfo.DefaultThreadCurrentUICulture = culture;
 
 await host.RunAsync();
 ```
+
+> [!IMPORTANT]
+> Always set <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture> and <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture> to the same culture in order to use <xref:Microsoft.Extensions.Localization.IStringLocalizer> and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601>.
 
 The following `CultureSelector` component shows how to set the user's culture selection into browser local storage via JS interop. The component is placed in the `Shared` folder for use throughout the app.
 
