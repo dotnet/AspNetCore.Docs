@@ -1037,13 +1037,19 @@ C# syntax with [`where`](/dotnet/csharp/language-reference/keywords/where-generi
 @typeparam TEntity where TEntity : IEntity
 ```
 
+> [!NOTE]
+> The examples in this section have names that include the number "1" in order to avoid name conflicts with the example shown in <xref:blazor/components/templated-components#infer-generic-types-based-on-ancestor-components>. You can place both examples into the same local test app for experimentation.
+
 In the following example, the `ListGenericTypeItems1` component is generically typed as `TExample`.
 
 `Shared/ListGenericTypeItems1.razor`:
 
 [!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Shared/index/ListGenericTypeItems1.razor)]
 
-The following `GenericTypeExample1` component renders two `ListGenericTypeItems1` components setting their types to `string` and `int` with values.
+The following `GenericTypeExample1` component renders two `ListGenericTypeItems1` components:
+
+* String or integer data is assigned to the `ExampleList` parameter of each component.
+* Type `string` or `int` that matches the type of the assigned data is set for the type parameter (`TExample`) of each component.
 
 `Pages/GenericTypeExample1.razor`:
 
@@ -1052,7 +1058,7 @@ The following `GenericTypeExample1` component renders two `ListGenericTypeItems1
 For more information, see the following articles:
 
 * <xref:mvc/views/razor#typeparam>
-* <xref:blazor/components/templated-components>
+* <xref:blazor/components/templated-components#infer-generic-types-based-on-ancestor-components>
 
 ## Render Razor components from JavaScript
 
@@ -2090,7 +2096,10 @@ In the following example, the `ListGenericTypeItems1` component is generically t
 
 [!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Shared/index/ListGenericTypeItems1.razor)]
 
-The following `GenericTypeExample1` component renders two `ListGenericTypeItems1` components setting their types to `string` and `int` with values.
+The following `GenericTypeExample1` component renders two `ListGenericTypeItems1` components:
+
+* String or integer data is assigned to the `ExampleList` parameter of each component.
+* Type `string` or `int` that matches the type of the assigned data is set for the type parameter (`TExample`) of each component.
 
 `Pages/GenericTypeExample1.razor`:
 
@@ -3071,7 +3080,10 @@ In the following example, the `ListGenericTypeItems1` component is generically t
 
 [!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Shared/index/ListGenericTypeItems1.razor)]
 
-The following `GenericTypeExample1` component renders two `ListGenericTypeItems1` components setting their types to `string` and `int` with values.
+The following `GenericTypeExample1` component renders two `ListGenericTypeItems1` components:
+
+* String or integer data is assigned to the `ExampleList` parameter of each component.
+* Type `string` or `int` that matches the type of the assigned data is set for the type parameter (`TExample`) of each component.
 
 `Pages/GenericTypeExample1.razor`:
 
