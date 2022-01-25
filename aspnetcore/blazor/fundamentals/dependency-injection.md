@@ -34,12 +34,12 @@ A custom service provider doesn't automatically provide the default services lis
 
 ## Add services to a Blazor WebAssembly app
 
-Configure services for the app's service collection in `Program.cs`. In the following example, the `MyDependency` implementation is registered for `IMyDependency`:
+Configure services for the app's service collection in `Program.cs`. In the following example, the `ExampleDependency` implementation is registered for `IExampleDependency`:
 
 ```csharp
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 ...
-builder.Services.AddSingleton<IMyDependency, MyDependency>();
+builder.Services.AddSingleton<IExampleDependency, ExampleDependency>();
 ...
 
 await builder.Build().RunAsync();
@@ -138,11 +138,11 @@ public class ComponentBase : IComponent
 ```
 
 > [!NOTE]
-> Don't mark injected services as nullable. Instead, assign a default literal with the null-forgiving operator (`default!`). For example:
+> Since injected services are expected to be available, don't mark injected services as nullable. Instead, assign a default literal with the null-forgiving operator (`default!`). For example:
 >
 > ```csharp
 > [Inject]
-> private IMyExampleService ExampleService { get; set; } = default!;
+> private IExampleService ExampleService { get; set; } = default!;
 > ```
 >
 > For more information, see the following resources:
@@ -375,7 +375,7 @@ A custom service provider doesn't automatically provide the default services lis
 
 ## Add services to a Blazor WebAssembly app
 
-Configure services for the app's service collection in `Program.cs`. In the following example, the `MyDependency` implementation is registered for `IMyDependency`:
+Configure services for the app's service collection in `Program.cs`. In the following example, the `ExampleDependency` implementation is registered for `IExampleDependency`:
 
 ```csharp
 public class Program
@@ -384,7 +384,7 @@ public class Program
     {
         var builder = WebAssemblyHostBuilder.CreateDefault(args);
         ...
-        builder.Services.AddSingleton<IMyDependency, MyDependency>();
+        builder.Services.AddSingleton<IExampleDependency, ExampleDependency>();
         ...
 
         await builder.Build().RunAsync();
@@ -737,7 +737,7 @@ A custom service provider doesn't automatically provide the default services lis
 
 ## Add services to a Blazor WebAssembly app
 
-Configure services for the app's service collection in `Program.cs`. In the following example, the `MyDependency` implementation is registered for `IMyDependency`:
+Configure services for the app's service collection in `Program.cs`. In the following example, the `ExampleDependency` implementation is registered for `IExampleDependency`:
 
 ```csharp
 public class Program
@@ -746,7 +746,7 @@ public class Program
     {
         var builder = WebAssemblyHostBuilder.CreateDefault(args);
         ...
-        builder.Services.AddSingleton<IMyDependency, MyDependency>();
+        builder.Services.AddSingleton<IExampleDependency, ExampleDependency>();
         ...
 
         await builder.Build().RunAsync();
