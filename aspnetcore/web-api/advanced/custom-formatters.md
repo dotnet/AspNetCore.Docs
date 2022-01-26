@@ -95,7 +95,7 @@ Deserialization or serialization is performed in <xref:Microsoft.AspNetCore.Mvc.
 
 ## Configure MVC to use a custom formatter
 
-To use a custom formatter, add an instance of the formatter class to the <xref:Microsoft.AspNetCore.Mvc.MvcOptions.InputFormatters%2A> or <xref:Microsoft.AspNetCore.Mvc.MvcOptions.OutputFormatters%2A> collection:
+To use a custom formatter, add an instance of the formatter class to the <xref:Microsoft.AspNetCore.Mvc.MvcOptions.InputFormatters%2A?displayProperty=nameWithType> or <xref:Microsoft.AspNetCore.Mvc.MvcOptions.OutputFormatters%2A?displayProperty=nameWithType> collection:
 
 :::code language="csharp" source="custom-formatters/samples/6.x/CustomFormattersSample/Program.cs" id="snippet_AddControllers" highlight="5-6":::
 
@@ -171,7 +171,7 @@ The following code shows the `VcardOutputFormatter` class from the [sample](http
 
 ### Derive from the appropriate base class
 
-For text media types (for example, vCard), derive from the <xref:Microsoft.AspNetCore.Mvc.Formatters.TextInputFormatter> or <xref:Microsoft.AspNetCore.Mvc.Formatters.TextOutputFormatter> base class.
+For text media types (for example, vCard), derive from the <xref:Microsoft.AspNetCore.Mvc.Formatters.TextInputFormatter> or <xref:Microsoft.AspNetCore.Mvc.Formatters.TextOutputFormatter> base class:
 
 :::code language="csharp" source="custom-formatters/samples/3.x/CustomFormattersSample/Formatters/VcardOutputFormatter.cs" id="snippet_ClassDeclaration":::
 
@@ -179,7 +179,7 @@ For binary types, derive from the <xref:Microsoft.AspNetCore.Mvc.Formatters.Inpu
 
 ### Specify supported media types and encodings
 
-In the constructor, specify supported media types and encodings by adding to the <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter.SupportedMediaTypes%2A> and <xref:Microsoft.AspNetCore.Mvc.Formatters.TextOutputFormatter.SupportedEncodings%2A> collections.
+In the constructor, specify supported media types and encodings by adding to the <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter.SupportedMediaTypes%2A> and <xref:Microsoft.AspNetCore.Mvc.Formatters.TextOutputFormatter.SupportedEncodings%2A> collections:
 
 :::code language="csharp" source="custom-formatters/samples/3.x/CustomFormattersSample/Formatters/VcardOutputFormatter.cs" id="snippet_ctor":::
 
@@ -187,7 +187,7 @@ A formatter class can **not** use constructor injection for its dependencies. Fo
 
 ### Override CanReadType and CanWriteType
 
-Specify the type to deserialize into or serialize from by overriding the <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter.CanReadType%2A> or <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter.CanWriteType%2A> methods. For example, to create vCard text from a `Contact` type and vice versa.
+Specify the type to deserialize into or serialize from by overriding the <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter.CanReadType%2A> or <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter.CanWriteType%2A> methods. For example, to create vCard text from a `Contact` type and vice versa:
 
 :::code language="csharp" source="custom-formatters/samples/3.x/CustomFormattersSample/Formatters/VcardOutputFormatter.cs" id="snippet_CanWriteType":::
 
@@ -213,13 +213,13 @@ For the formatter to handle only `Student` objects, check the type of <xref:Micr
 
 ### Override ReadRequestBodyAsync and WriteResponseBodyAsync
 
-Deserialization or serialization is performed in <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter.ReadRequestBodyAsync%2A> or <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter.WriteResponseBodyAsync%2A>. The following example shows how to get services from the dependency injection container. Services can't be obtained from constructor parameters.
+Deserialization or serialization is performed in <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter.ReadRequestBodyAsync%2A> or <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter.WriteResponseBodyAsync%2A>. The following example shows how to get services from the dependency injection container. Services can't be obtained from constructor parameters:
 
 :::code language="csharp" source="custom-formatters/samples/3.x/CustomFormattersSample/Formatters/VcardOutputFormatter.cs" id="snippet_WriteResponseBodyAsync":::
 
 ## Configure MVC to use a custom formatter
 
-To use a custom formatter, add an instance of the formatter class to the <xref:Microsoft.AspNetCore.Mvc.MvcOptions.InputFormatters%2A> or <xref:Microsoft.AspNetCore.Mvc.MvcOptions.OutputFormatters%2A> collection:
+To use a custom formatter, add an instance of the formatter class to the <xref:Microsoft.AspNetCore.Mvc.MvcOptions.InputFormatters%2A?displayProperty=nameWithType> or <xref:Microsoft.AspNetCore.Mvc.MvcOptions.OutputFormatters%2A?displayProperty=nameWithType> collection:
 
 :::code language="csharp" source="custom-formatters/samples/3.x/CustomFormattersSample/Startup.cs" id="snippet_ConfigureServices" highlight="5-6":::
 
