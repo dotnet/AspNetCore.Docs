@@ -33,7 +33,7 @@ gRPC for .NET has separate NuGet packages for its client and server. The package
 * [**`Grpc.AspNetCore`**](https://www.nuget.org/packages/Grpc.AspNetCore): Services are hosted by ASP.NET Core. For server configuration information, see <xref:grpc/aspnetcore>.
 * [**`Grpc.Net.Client`**](https://www.nuget.org/packages/Grpc.Net.Client): Clients use `GrpcChannel`, which internally uses networking functionality built into .NET. For client configuration information, see <xref:grpc/client>.
 
-When migration is complete, the `Grpc.Core` package should be removed from the app. `Grpc.Core` contains large native binaries, and removing the package reduces app size.
+When migration is complete, the `Grpc.Core` package should be removed from the app. `Grpc.Core` contains large native binaries, and removing the package reduces NuGet restore time and app size.
 
 ## Code generated services and clients
 
