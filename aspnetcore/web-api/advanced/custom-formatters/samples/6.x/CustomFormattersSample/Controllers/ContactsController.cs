@@ -6,7 +6,7 @@ namespace CustomFormattersSample.Controllers;
 
 // [ApiController]
 [Route("api/[controller]")]
-public class ContactsController : Controller
+public class ContactsController : ControllerBase
 {
     private static readonly ConcurrentDictionary<Guid, Contact> _contacts = new();
 
