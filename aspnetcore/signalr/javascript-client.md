@@ -75,7 +75,7 @@ To prevent a malicious site from reading sensitive data from another site, [cros
 
 ## Call hub methods from the client
 
-JavaScript clients call public methods on hubs via the [invoke](/javascript/api/%40microsoft/signalr/hubconnection#invoke-string--any---) method of the [HubConnection](/javascript/api/%40microsoft/signalr/hubconnection). The `invoke` method accepts:
+JavaScript clients call public methods on hubs via the [invoke](/javascript/api/%40microsoft/signalr/hubconnection#@microsoft-signalr-hubconnection-invoke) method of the [HubConnection](/javascript/api/%40microsoft/signalr/hubconnection). The `invoke` method accepts:
 
 * The name of the hub method.
 * Any arguments defined in the hub method.
@@ -89,14 +89,14 @@ In the following example, the method name on the hub is `SendMessage`. The secon
 
 The `invoke` method returns a JavaScript [Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise). The `Promise` is resolved with the return value (if any) when the method on the server returns. If the method on the server throws an error, the `Promise` is rejected with the error message. Use `async` and `await` or the `Promise`'s `then` and `catch` methods to handle these cases.
 
-JavaScript clients can also call public methods on hubs via the [send](/javascript/api/%40microsoft/signalr/hubconnection#send-string--any---) method of the `HubConnection`. Unlike the `invoke` method, the `send` method doesn't wait for a response from the server. The `send` method returns a JavaScript `Promise`. The `Promise` is resolved when the message has been sent to the server. If there is an error sending the message, the `Promise` is rejected with the error message. Use `async` and `await` or the `Promise`'s `then` and `catch` methods to handle these cases.
+JavaScript clients can also call public methods on hubs via the [send](/javascript/api/%40microsoft/signalr/hubconnection#@microsoft-signalr-hubconnection-send) method of the `HubConnection`. Unlike the `invoke` method, the `send` method doesn't wait for a response from the server. The `send` method returns a JavaScript `Promise`. The `Promise` is resolved when the message has been sent to the server. If there is an error sending the message, the `Promise` is rejected with the error message. Use `async` and `await` or the `Promise`'s `then` and `catch` methods to handle these cases.
 
 > [!NOTE]
 > Using `send` doesn't wait until the server has received the message. Consequently, it's not possible to return data or errors from the server.
 
 ## Call client methods from the hub
 
-To receive messages from the hub, define a method using the [on](/javascript/api/%40microsoft/signalr/hubconnection#on-string---args--any-------void-) method of the `HubConnection`.
+To receive messages from the hub, define a method using the [on](/javascript/api/%40microsoft/signalr/hubconnection#@microsoft-signalr-hubconnection-on) method of the `HubConnection`.
 
 * The name of the JavaScript client method.
 * Arguments the hub passes to the method.
@@ -383,7 +383,7 @@ To prevent a malicious site from reading sensitive data from another site, [cros
 
 ## Call hub methods from the client
 
-JavaScript clients call public methods on hubs via the [invoke](/javascript/api/%40microsoft/signalr/hubconnection#invoke-string--any---) method of the [HubConnection](/javascript/api/%40microsoft/signalr/hubconnection). The `invoke` method accepts:
+JavaScript clients call public methods on hubs via the [invoke](/javascript/api/%40microsoft/signalr/hubconnection#@microsoft-signalr-hubconnection-invoke) method of the [HubConnection](/javascript/api/%40microsoft/signalr/hubconnection). The `invoke` method accepts:
 
 * The name of the hub method.
 * Any arguments defined in the hub method.
@@ -404,7 +404,7 @@ JavaScript clients can also call public methods on hubs via the [send](/javascri
 
 ## Call client methods from the hub
 
-To receive messages from the hub, define a method using the [on](/javascript/api/%40microsoft/signalr/hubconnection#on-string---args--any-------void-) method of the `HubConnection`.
+To receive messages from the hub, define a method using the [on](/javascript/api/%40microsoft/signalr/hubconnection#@microsoft-signalr-hubconnection-on) method of the `HubConnection`.
 
 * The name of the JavaScript client method.
 * Arguments the hub passes to the method.
