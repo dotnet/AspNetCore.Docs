@@ -83,6 +83,38 @@ The following shows the application startup code in the ASP.NET Core *Program.cs
 
 [!code-csharp[](webapi/sample/6.x/ProductsCore/Program.cs)]
 
+## Migrate the model
+
+By utilizing the [Nullable feature in C# 8](/dotnet/csharp/whats-new/csharp-8#nullable-reference-types), ASP.NET Core can provide additional code flow analysis and compile-time safety in the handling of reference types. For example, protecting against `null` reference exceptions.
+
+ASP.NET Core 6.0 projects enable nullable reference types by default. Nullable reference types are enabled or disabled for the entire project with the following project files property:
+
+```xml
+<PropertyGroup>
+    <Nullable>enable</Nullable>
+</PropertyGroup>
+```
+
+For more information, see [Nullable reference types](/dotnet/csharp/nullable-references).
+
+Examine Models/Product.cs. With nullable reference types enabled for the ProductCore project, helpful `non-nullable property` warnings are visible for the `Name` and `Category` properties.
+
+![Nullable reference type warning](webapi/_static/non-nullable-warning.png)
+
+In this case, the intent is that the `Name` and `Category` can be nullable types.
+
+1. Add the `?` to declare the `Name` and `Category` properties as nullable types:
+
+```diff
+public int Id { get; set; }
+- public string Name { get; set; }
++ public string? Name { get; set; }
+- public string Category { get; set; }
++ public string Category { get; set; }
+public decimal Price { get; set; }
+</Project>
+```
+
 ## Migrate the controller
 
 Update the `ProductsController` for ASP.NET Core:
