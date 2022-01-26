@@ -103,7 +103,7 @@ Examine Models/Product.cs. With nullable reference types enabled for the Product
 
 In this case, the intent is that the `Name` and `Category` can be nullable types.
 
-1. Add the `?` to declare the `Name` and `Category` properties as nullable types:
+1. Add the `?` annotation to declare the `Name` and `Category` properties as nullable types:
 
 ```diff
 public int Id { get; set; }
