@@ -24,6 +24,21 @@ gRPC C-core and gRPC for .NET have different platform support:
 
 For more information, see <xref:grpc/supported-platforms>.
 
+## Configure server and channel
+
+NuGet packages, configuration, and startup code must be modified when migrating from gRPC C-Core to gRPC for .NET.
+
+gRPC for .NET has separate NuGet packages for its client and server. The packages added depend upon whether an app is hosting gRPC services or calling them:
+
+* [**`Grpc.AspNetCore`**](https://www.nuget.org/packages/Grpc.AspNetCore): Services are hosted by ASP.NET Core. For server configuration information, see <xref:grpc/aspnetcore>.
+* [**`Grpc.Net.Client`**](https://www.nuget.org/packages/Grpc.Net.Client): Clients use `GrpcChannel`, which internally uses networking functionality built into .NET. For client configuration information, see <xref:grpc/client>.
+
+When migration is complete, the `Grpc.Core` package should be removed from the app. `Grpc.Core` contains large native binaries, and removing the package reduces NuGet restore time and app size.
+
+## Code generated services and clients
+
+gRPC C-Core and gRPC for .NET share many APIs, and code generated from `.proto` files is compatible with both gRPC implementations. Most clients and service can be migrated from C-Core to gRPC for .NET without changes.
+
 ## gRPC service implementation lifetime
 
 In the ASP.NET Core stack, gRPC services, by default, are created with a [scoped lifetime](xref:fundamentals/dependency-injection#service-lifetimes). In contrast, gRPC C-core by default binds to a service with a [singleton lifetime](xref:fundamentals/dependency-injection#service-lifetimes).
