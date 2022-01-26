@@ -202,7 +202,7 @@ const connection = new signalR.HubConnectionBuilder()
     .build();
 ```
 
-Use the [on](/javascript/api/@microsoft/signalr/HubConnection#on) method to specify client methods that the hub can call.
+Use the [on](/javascript/api/@microsoft/signalr/HubConnection#@microsoft-signalr-hubconnection-on) method to specify client methods that the hub can call.
 
 ::: moniker-end
 
@@ -216,7 +216,7 @@ const connection = new signalR.HubConnectionBuilder()
     .build();
 ```
 
-Use the [on](/javascript/api/@aspnet/signalr/HubConnection#on) method to specify client methods that the hub can call.
+Use the [on](/javascript/api/@aspnet/signalr/HubConnection#@microsoft-signalr-hubconnection-on) method to specify client methods that the hub can call.
 
 ::: moniker-end
 
@@ -238,13 +238,13 @@ connection.start().catch(err => console.error(err));
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Hub proxies are no longer automatically generated. Instead, the method name is passed into the [invoke](/javascript/api/@microsoft/signalr/hubconnection#invoke) API as a string.
+Hub proxies are no longer automatically generated. Instead, the method name is passed into the [invoke](/javascript/api/@microsoft/signalr/hubconnection#@microsoft-signalr-hubconnection-invoke) API as a string.
 
 ::: moniker-end
 
 ::: moniker range="<= aspnetcore-2.2"
 
-Hub proxies are no longer automatically generated. Instead, the method name is passed into the [invoke](/javascript/api/@aspnet/signalr/hubconnection#invoke) API as a string.
+Hub proxies are no longer automatically generated. Instead, the method name is passed into the [invoke](/javascript/api/@aspnet/signalr/hubconnection#@microsoft-signalr-hubconnection-invoke) API as a string.
 
 ::: moniker-end
 
