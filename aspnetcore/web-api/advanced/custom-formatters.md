@@ -43,13 +43,13 @@ To create a formatter:
 
 The following code shows the `VcardOutputFormatter` class from the [sample](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/advanced/custom-formatters/samples):
 
-:::code language="csharp" source="custom-formatters/samples/3.x/CustomFormattersSample/Formatters/VcardOutputFormatter.cs" id="snippet_Class":::
+:::code language="csharp" source="custom-formatters/samples/6.x/CustomFormattersSample/Formatters/VcardOutputFormatter.cs" id="snippet_Class":::
 
 ### Derive from the appropriate base class
 
 For text media types (for example, vCard), derive from the <xref:Microsoft.AspNetCore.Mvc.Formatters.TextInputFormatter> or <xref:Microsoft.AspNetCore.Mvc.Formatters.TextOutputFormatter> base class.
 
-:::code language="csharp" source="custom-formatters/samples/3.x/CustomFormattersSample/Formatters/VcardOutputFormatter.cs" id="snippet_ClassDeclaration":::
+:::code language="csharp" source="custom-formatters/samples/6.x/CustomFormattersSample/Formatters/VcardOutputFormatter.cs" id="snippet_ClassDeclaration":::
 
 For binary types, derive from the <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter> or <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter> base class.
 
@@ -57,7 +57,7 @@ For binary types, derive from the <xref:Microsoft.AspNetCore.Mvc.Formatters.Inpu
 
 In the constructor, specify supported media types and encodings by adding to the <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter.SupportedMediaTypes%2A> and <xref:Microsoft.AspNetCore.Mvc.Formatters.TextOutputFormatter.SupportedEncodings%2A> collections.
 
-:::code language="csharp" source="custom-formatters/samples/3.x/CustomFormattersSample/Formatters/VcardOutputFormatter.cs" id="snippet_ctor":::
+:::code language="csharp" source="custom-formatters/samples/6.x/CustomFormattersSample/Formatters/VcardOutputFormatter.cs" id="snippet_ctor":::
 
 A formatter class can **not** use constructor injection for its dependencies. For example, `ILogger<VcardOutputFormatter>` can't be added as a parameter to the constructor. To access services, use the context object that gets passed in to the methods. A code example in this article and the [sample](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/advanced/custom-formatters/samples) show how to do this.
 
@@ -65,7 +65,7 @@ A formatter class can **not** use constructor injection for its dependencies. Fo
 
 Specify the type to deserialize into or serialize from by overriding the <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter.CanReadType%2A> or <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter.CanWriteType%2A> methods. For example, to create vCard text from a `Contact` type and vice versa.
 
-:::code language="csharp" source="custom-formatters/samples/3.x/CustomFormattersSample/Formatters/VcardOutputFormatter.cs" id="snippet_CanWriteType":::
+:::code language="csharp" source="custom-formatters/samples/6.x/CustomFormattersSample/Formatters/VcardOutputFormatter.cs" id="snippet_CanWriteType":::
 
 #### The CanWriteResult method
 
@@ -91,13 +91,13 @@ For the formatter to handle only `Student` objects, check the type of <xref:Micr
 
 Deserialization or serialization is performed in <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter.ReadRequestBodyAsync%2A> or <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter.WriteResponseBodyAsync%2A>. The following example shows how to get services from the dependency injection container. Services can't be obtained from constructor parameters.
 
-:::code language="csharp" source="custom-formatters/samples/3.x/CustomFormattersSample/Formatters/VcardOutputFormatter.cs" id="snippet_WriteResponseBodyAsync":::
+:::code language="csharp" source="custom-formatters/samples/6.x/CustomFormattersSample/Formatters/VcardOutputFormatter.cs" id="snippet_WriteResponseBodyAsync":::
 
 ## Configure MVC to use a custom formatter
 
 To use a custom formatter, add an instance of the formatter class to the <xref:Microsoft.AspNetCore.Mvc.MvcOptions.InputFormatters%2A> or <xref:Microsoft.AspNetCore.Mvc.MvcOptions.OutputFormatters%2A> collection:
 
-:::code language="csharp" source="custom-formatters/samples/3.x/CustomFormattersSample/Startup.cs" id="snippet_ConfigureServices" highlight="5-6":::
+:::code language="csharp" source="custom-formatters/samples/6.x/CustomFormattersSample/Program.cs" id="snippet_AddControllers" highlight="5-6":::
 
 Formatters are evaluated in the order you insert them. The first one takes precedence.
 
@@ -105,7 +105,7 @@ Formatters are evaluated in the order you insert them. The first one takes prece
 
 The following code shows the `VcardInputFormatter` class from the [sample](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/advanced/custom-formatters/samples):
 
-:::code language="csharp" source="custom-formatters/samples/3.x/CustomFormattersSample/Formatters/VcardInputFormatter.cs" id="snippet_Class":::
+:::code language="csharp" source="custom-formatters/samples/6.x/CustomFormattersSample/Formatters/VcardInputFormatter.cs" id="snippet_Class":::
 
 ## Test the app
 
@@ -119,7 +119,7 @@ FN:Nancy Davolio
 END:VCARD
 ```
 
-To see vCard output, run the app and send a Get request with Accept header `text/vcard` to `https://localhost:5001/api/contacts`.
+To see vCard output, run the app and send a Get request with Accept header `text/vcard` to `https://localhost:<port>/api/contacts`.
 
 To add a vCard to the in-memory collection of contacts:
 
