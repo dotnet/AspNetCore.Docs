@@ -20,11 +20,11 @@ This article shows how to add support for additional formats by creating custom 
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/advanced/custom-formatters/samples) ([how to download](xref:index#how-to-download-a-sample))
 
-## When to use custom formatters
+## When to use a custom formatter
 
 Use a custom formatter to add support for a content type that isn't handled by the built-in formatters.
 
-## Overview of how to use a custom formatter
+## Overview of how to create a custom formatter
 
 To create a custom formatter:
 
@@ -32,7 +32,7 @@ To create a custom formatter:
 * For deserializing data received from the client, create an input formatter class.
 * Add instances of formatter classes to the <xref:Microsoft.AspNetCore.Mvc.MvcOptions.InputFormatters%2A> and <xref:Microsoft.AspNetCore.Mvc.MvcOptions.OutputFormatters%2A> collections in <xref:Microsoft.AspNetCore.Mvc.MvcOptions>.
 
-## How to create a custom formatter class
+## Create a custom formatter
 
 To create a formatter:
 
@@ -144,11 +144,11 @@ This article shows how to add support for additional formats by creating custom 
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/advanced/custom-formatters/samples) ([how to download](xref:index#how-to-download-a-sample))
 
-## When to use custom formatters
+## When to use a custom formatter
 
 Use a custom formatter to add support for a content type that isn't handled by the built-in formatters.
 
-## Overview of how to use a custom formatter
+## Overview of how to create a custom formatter
 
 To create a custom formatter:
 
@@ -156,7 +156,7 @@ To create a custom formatter:
 * For deserializing data received from the client, create an input formatter class.
 * Add instances of formatter classes to the <xref:Microsoft.AspNetCore.Mvc.MvcOptions.InputFormatters%2A> and <xref:Microsoft.AspNetCore.Mvc.MvcOptions.OutputFormatters%2A> collections in <xref:Microsoft.AspNetCore.Mvc.MvcOptions>.
 
-## How to create a custom formatter class
+## Create a custom formatter
 
 To create a formatter:
 
