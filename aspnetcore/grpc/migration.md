@@ -15,6 +15,17 @@ Due to the implementation of the underlying stack, not all features work in the 
 > [!IMPORTANT]
 > gRPC C-core is in maintenance mode and [will be deprecated in favor of gRPC for .NET](https://grpc.io/blog/grpc-csharp-future/). gRPC C-core is not recommended for new apps.
 
+## Configure server and channel
+
+NuGet packages, configuration and startup code must be modified when migrating from gRPC C-Core to gRPC for .NET.
+
+* **Grpc.AspNetCore**: gRPC services are hosted by ASP.NET Core. The gRPC server framework is available in the [Grpc.AspNetCore](https://www.nuget.org/packages/Grpc.AspNetCore) package. For more information about configuring gRPC with ASP.NET Core, see <xref:grpc/aspnetcore>.
+* **Grpc.Net.Client**: gRPC clients use `GrpcChannel`. The gRPC client framework is available in the [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client) package. For more information about configuring `GrpcChannel`, see <xref:grpc/client>.
+
+## Code generated services and clients
+
+gRPC C-Core and gRPC for .NET share many APIs, and code generated from `.proto` files is compatible with both gRPC implementions. Most clients and service can be migrated from C-Core to gRPC for .NET without changes.
+
 ## Platform support
 
 gRPC C-core and gRPC for .NET have different platform support:
