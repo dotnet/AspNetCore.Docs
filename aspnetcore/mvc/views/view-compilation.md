@@ -53,6 +53,9 @@ Runtime compilation can also be enabled with a [hosting startup assembly](xref:f
 
       :::code language="json" source="view-compilation/samples/6.x/ViewCompilationSample/Snippets/launchSettings.json" highlight="17-18,25-26":::
 
+> [!WARNING]
+> This approach is currently broken in ASP.NET Core 6.0 and will be fixed in the next patch release. For more information, see [Allow runtime compilation to be configured via the hosting startup](https://github.com/dotnet/aspnetcore/pull/39381).
+
 With this approach, no code changes are needed in *Program.cs*. At runtime, ASP.NET Core searches for an [assembly-level HostingStartup attribute](xref:fundamentals/configuration/platform-specific-configuration#hostingstartup-attribute) in `Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation`. The `HostingStartup` attribute specifies the app startup code to execute and that startup code enables runtime compilation.
 
 ## Enable runtime compilation for a Razor Class Library
