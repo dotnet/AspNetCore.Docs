@@ -110,7 +110,7 @@ Test the app. Force the app to initialize, calling the code in the *Program.cs* 
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-Update *Program.cs* with the following highlighted code.
+Update *Program.cs* with the following highlighted code:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Program.cs?name=SQLiteSeedData&highlight=4,16-21)]
 
