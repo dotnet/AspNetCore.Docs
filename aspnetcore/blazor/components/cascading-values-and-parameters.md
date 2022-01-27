@@ -52,7 +52,7 @@ Similar to a regular component parameter, components accepting a cascading param
 
 ```razor
 <div class="main">
-    <CascadingValue Value="theme">
+    <CascadingValue Value="@theme">
         <div class="content px-4">
             @Body
         </div>
