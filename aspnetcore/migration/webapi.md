@@ -85,7 +85,7 @@ The following shows the application startup code in the ASP.NET Core *Program.cs
 
 ## Migrate the model
 
-By utilizing the [Nullable feature in C# 8](/dotnet/csharp/whats-new/csharp-8#nullable-reference-types), ASP.NET Core can provide additional code flow analysis and compile-time safety in the handling of reference types. For example, protecting against `null` reference exceptions.
+By utilizing the [Nullable feature introduced in C# 8](/dotnet/csharp/whats-new/csharp-8#nullable-reference-types), ASP.NET Core can provide additional code flow analysis and compile-time safety in the handling of reference types. For example, protecting against `null` reference exceptions.
 
 ASP.NET Core 6.0 projects enable nullable reference types by default. Nullable reference types are enabled or disabled for the entire project with the following project files property:
 
@@ -121,7 +121,7 @@ Update the `ProductsController` for ASP.NET Core:
 
 The following code shows the updated ASP.NET Core `ProductsController`:
 
-[!code-csharp[](webapi/sample/6.x/ProductsCore/Controllers/ProductsController.cs?highlight=1,2,8,12,37,44)]
+[!code-csharp[](webapi/sample/6.x/ProductsCore/Controllers/ProductsController.cs?highlight=1,2,8,12,37,47)]
 
 1. Copy *Controllers/ProductsController.cs* and the *Models* folder from the original project to the new one.
 1. Change the copied files' root namespace to `ProductsCore`.
@@ -173,7 +173,7 @@ Configure routing as follows:
     * Apply the [`[HttpGet]`](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute) attribute to the `GetAllProducts` action.
     * Apply the `[HttpGet("{id}")]` attribute to the `GetProduct` action.
 
-Run the migrated project, and browse to `/api/products`.  For example: https://localhost:<port>/api/products. A full list of three products appears. Browse to `/api/products/1`. The first product appears.
+Run the migrated project, and browse to `/api/products`.  For example: https://localhost:`<port>`/api/products. A full list of three products appears. Browse to `/api/products/1`. The first product appears.
 
 ## Additional resources
 
