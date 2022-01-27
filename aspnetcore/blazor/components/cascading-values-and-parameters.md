@@ -139,7 +139,7 @@ Child `Tab` components aren't explicitly passed as parameters to the `TabSet`. I
 
 <!-- Display the tab headers -->
 
-<CascadingValue Value=this>
+<CascadingValue Value="@this">
     <ul class="nav nav-tabs">
         @ChildContent
     </ul>
@@ -358,7 +358,7 @@ Child `Tab` components aren't explicitly passed as parameters to the `TabSet`. I
 
 <!-- Display the tab headers -->
 
-<CascadingValue Value=this>
+<CascadingValue Value="@this">
     <ul class="nav nav-tabs">
         @ChildContent
     </ul>
@@ -577,7 +577,7 @@ Child `Tab` components aren't explicitly passed as parameters to the `TabSet`. I
 
 <!-- Display the tab headers -->
 
-<CascadingValue Value=this>
+<CascadingValue Value="@this">
     <ul class="nav nav-tabs">
         @ChildContent
     </ul>
