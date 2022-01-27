@@ -129,20 +129,23 @@ In the previous code, the `Main` method has been modified to do the following:
 
 The following exception occurs when `Update-Database` has not been run:
 
-> `SqlException: Cannot open database "RazorPagesMovieContext-" requeted by the login. The login failed.`
+> `SqlException: Cannot open database "RazorPagesMovieContext-" requested by the login. The login failed.`
 > `Login failed for user 'user name'.`
 
-**For ASP.NET Core applications using versions \[6.0+), the instructions below will successfully seed the database. Note, this code is necessary because versions 6.0+ of ASP.NET Core condenses the functionality of two files used in versions (5.0\], *Startup.cs* and *Program.cs*, into a single file, the *Program.cs* file. **
-Within the *Program.cs* the following code in bold should be added:
+**For ASP.NET Core applications using versions \[6.0+), the instructions below will successfully seed the database. Note, this code is necessary because versions 6.0+ of ASP.NET Core condenses the functionality of two files used in versions (5.0\], *Startup.cs* and *Program.cs*, into a single file, the *Program.cs* file. As such, obtaining the scope of the services is slightly different.**
+
+If ASP.NET Core 6.0+ is used, then the following code should be added within the *Program.cs* file in order to seed the database:
 
 ```ASP.NET
+
 builder.Services.AddDbContext<RazorPagesMovieContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("RazorPagesMovieContext")));
 
-** var scope = builder.Services.BuildServiceProvider().CreateScope(); **
-** SeedData.Initialize((IServiceProvider)scope); **
+var scope = builder.Services.BuildServiceProvider().CreateScope(); //Add this line to Program.cs to get the scope of the services
+SeedData.Initialize((IServiceProvider)scope); //Add this line to Program.cs to pass the scope to the SeedData.Initialize() method
 
 var app = builder.Build();
+
 ```
 
 ### Test the app
