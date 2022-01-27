@@ -30,7 +30,7 @@ The validation support provided by Razor Pages and Entity Framework is a good ex
 
 ## Add validation rules to the movie model
 
-The `DataAnnotations` namespace provides:
+The <xref:System.ComponentModel.DataAnnotations> namespace provides:
 
 * A set of built-in validation attributes that are applied declaratively to a class or property.
 * Formatting attributes like `[DataType]` that help with formatting and don't provide any validation.
