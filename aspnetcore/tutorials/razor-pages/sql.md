@@ -116,6 +116,7 @@ if (context.Movie.Any())
 
 ### Add the seed initializer
 
+**For older ASP.NET Core applications, meaning versions (5.0\], the instructions below will successfully seed the database. **
 Replace the contents of the *Program.cs* with the following code:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie50/Program.cs)]
@@ -128,8 +129,21 @@ In the previous code, the `Main` method has been modified to do the following:
 
 The following exception occurs when `Update-Database` has not been run:
 
-> `SqlException: Cannot open database "RazorPagesMovieContext-" requested by the login. The login failed.`
+> `SqlException: Cannot open database "RazorPagesMovieContext-" requeted by the login. The login failed.`
 > `Login failed for user 'user name'.`
+
+**For ASP.NET Core applications using versions \[6.0+), the instructions below will successfully seed the database. Note, this code is necessary because versions 6.0+ of ASP.NET Core condenses the functionality of two files used in versions (5.0\], *Startup.cs* and *Program.cs*, into a single file, the *Program.cs* file. **
+Within the *Program.cs* the following code in bold should be added:
+
+```ASP.NET
+builder.Services.AddDbContext<RazorPagesMovieContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("RazorPagesMovieContext")));
+
+** var scope = builder.Services.BuildServiceProvider().CreateScope(); **
+** SeedData.Initialize((IServiceProvider)scope); **
+
+var app = builder.Build();
+```
 
 ### Test the app
 
