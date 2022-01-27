@@ -500,7 +500,7 @@ The following types are bound without explicit attributes:
 * <xref:Microsoft.AspNetCore.Http.HttpContext>: The context which holds all the information about the current HTTP request or response:
 
   ```csharp
-  app.MapPost("/", context => context.Response.WriteAsync("Hello World"));
+  app.MapPost("/", (HttpContext context) => context.Response.WriteAsync("Hello World"));
   ```
 
 * <xref:Microsoft.AspNetCore.Http.HttpRequest> and <xref:Microsoft.AspNetCore.Http.HttpResponse>: The HTTP request and HTTP response:
