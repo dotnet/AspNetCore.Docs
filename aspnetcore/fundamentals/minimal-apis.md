@@ -500,27 +500,27 @@ The following types are bound without explicit attributes:
 * <xref:Microsoft.AspNetCore.Http.HttpContext>: The context which holds all the information about the current HTTP request or response:
 
   ```csharp
-  app.MapPost("/", (HttpContext context) => context.Response.WriteAsync("Hello World"));
+  app.MapGet("/", (HttpContext context) => context.Response.WriteAsync("Hello World"));
   ```
 
 * <xref:Microsoft.AspNetCore.Http.HttpRequest> and <xref:Microsoft.AspNetCore.Http.HttpResponse>: The HTTP request and HTTP response:
 
   ```csharp
-  app.MapPost("/", (HttpRequest request, HttpResponse response) =>
+  app.MapGet("/", (HttpRequest request, HttpResponse response) =>
       response.WriteAsync($"Hello World {request.Query["name"]}"));
   ```
 
 * <xref:System.Threading.CancellationToken>: The cancellation token associated with the current HTTP request:
 
   ```csharp
-  app.MapPost("/", async (CancellationToken cancellationToken) => 
+  app.MapGet("/", async (CancellationToken cancellationToken) => 
       await MakeLongRunningRequestAsync(cancellationToken));
   ```
 
 * <xref:System.Security.Claims.ClaimsPrincipal>: The user associated with the request, bound from <xref:Microsoft.AspNetCore.Http.HttpContext.User%2A?displayProperty=nameWithType>:
 
   ```csharp
-  app.MapPost("/", (ClaimsPrincipal user) => user.Identity.Name);
+  app.MapGet("/", (ClaimsPrincipal user) => user.Identity.Name);
   ```
 
 ### Custom Binding
