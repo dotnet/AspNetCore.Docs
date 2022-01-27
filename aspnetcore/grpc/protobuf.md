@@ -388,14 +388,14 @@ message Status {
 ```csharp
 // Create dynamic values.
 var status = new Status();
-status.Data = Value.FromStruct(new Struct
+status.Data = Value.ForStruct(new Struct
 {
     Fields =
     {
-        ["enabled"] = Value.ForBoolean(true),
+        ["enabled"] = Value.ForBool(true),
         ["metadata"] = Value.ForList(
-            Value.FromString("value1"),
-            Value.FromString("value2"))
+            Value.ForString("value1"),
+            Value.ForString("value2"))
     }
 });
 
