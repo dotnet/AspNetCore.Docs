@@ -1046,7 +1046,10 @@ In the following example, the `ListGenericTypeItems1` component is generically t
 
 [!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Shared/index/ListGenericTypeItems1.razor)]
 
-<!-- TANAY ... Leaving this ListGenericTypeItems1.razor file content here so that you can review this quickly. I'll remove the following later.
+<!--
+
+* Leaving this ListGenericTypeItems1.razor file content here for quick review. I'll remove the following later.
+* This section "Generic type parameter support" is repeated exactly in two other spots in the doc to cover 5.0 and 3.1. You only need to look at this first instance.
 
 ```razor
 @typeparam TExample
@@ -1078,7 +1081,9 @@ The following `GenericTypeExample1` component renders two `ListGenericTypeItems1
 
 [!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/index/GenericTypeExample1.razor)]
 
-<!-- TANAY ... Leaving this GenericTypeExample1.razor file content here so that you can review this quickly. I'll remove the following later.
+<!--
+
+Leaving this GenericTypeExample1.razor file content here for quick review. I'll remove the following later.
 
 ```razor
 @page "/generic-type-example-1"
@@ -1097,6 +1102,16 @@ The following `GenericTypeExample1` component renders two `ListGenericTypeItems1
 For more information, see <xref:mvc/views/razor#typeparam>. For an example of generic typing with templated components, see <xref:blazor/components/templated-components>.
 
 ## Cascaded generic type support
+
+<!--
+
+This "Cascaded generic type support" section only appears once for 6.0 or later coverage. The coverage plan here is ...
+
+1. Explain the cascading concept with the [CascadingTypeParameter]` attribute.
+2. Explain that devs can either explicitly set the type (to be shown in an upcoming example) or infer the type from data passed (to be shown in a different upcoming example).
+3. Provide two demo components (`ListDisplay1` and `ListDisplay2`) that will be used in the upcoming sections.
+
+-->
 
 An ancestor component can cascade a type parameter by name to descendants using the [`[CascadingTypeParameter]` attribute](xref:Microsoft.AspNetCore.Components.CascadingTypeParameterAttribute). This attribute allows a generic type inference to use the specified type parameter automatically with descendants that have a type parameter with the same name.
 
@@ -1161,6 +1176,12 @@ The following subsections provide examples of the preceding approaches using the
 
 ### Explicit generic types based on ancestor components
 
+<!--
+
+This section explains how to explicitly set the type for the cascaded type param.
+
+-->
+
 The demonstration in this section cascades a type explicitly for `TExample`.
 
 > [!NOTE]
@@ -1210,6 +1231,15 @@ As previously mentioned, the parent component in this example isn't limited to u
 
 ### Infer generic types based on ancestor components
 
+<!--
+
+This section explains how to infer the type for the cascaded type param. There are two demonstrations for the data supplied for display ...
+
+1. Each component receives different data.
+2. Each component receives the same data. There are direct assignment and cascading-values-and-parameters approaches shown with cut-'n-paste demo components for dev experimentation.
+
+-->
+
 The demonstration in this section cascades a type inferred for `TExample`.
 
 > [!NOTE]
@@ -1225,10 +1255,10 @@ The demonstration in this section cascades a type inferred for `TExample`.
 
 @ChildContent
 
-@if (Data is not null)
+@if (ExampleList is not null)
 {
     <ul style="color:green">
-        @foreach(var item in Data)
+        @foreach(var item in ExampleList)
         {
             <li>@item</li>
         }
@@ -1241,7 +1271,7 @@ The demonstration in this section cascades a type inferred for `TExample`.
 
 @code {
     [Parameter]
-    public IEnumerable<TExample>? Data { get; set; }
+    public IEnumerable<TExample>? ExampleList { get; set; }
 
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
@@ -1257,18 +1287,18 @@ The following `GenericTypeExample3` component with inferred cascaded types provi
 
 <h1>Generic Type Example 3</h1>
 
-<ListGenericTypeItems3 Data="@(new List<string> { "Item 5", "Item 6" })">
+<ListGenericTypeItems3 ExampleList="@(new List<string> { "Item 5", "Item 6" })">
     <ListDisplay1 ExampleList="@(new List<string> { "Item 1", "Item 2" })" />
     <ListDisplay2 ExampleList="@(new List<string> { "Item 3", "Item 4" })" />
 </ListGenericTypeItems3>
 
-<ListGenericTypeItems3 Data="@(new List<int> { 7, 8, 9 })">
+<ListGenericTypeItems3 ExampleList="@(new List<int> { 7, 8, 9 })">
     <ListDisplay1 ExampleList="@(new List<int> { 1, 2, 3 })" />
     <ListDisplay2 ExampleList="@(new List<int> { 4, 5, 6 })" />
 </ListGenericTypeItems3>
 ```
 
-The following `GenericTypeExample4` component with inferred cascaded types provides the same data for display.
+The following `GenericTypeExample4` component with inferred cascaded types provides the same data for display. The following example directly assigns the data to the components.
 
 `Pages/GenericTypeExample4.razor`:
 
@@ -1277,19 +1307,123 @@ The following `GenericTypeExample4` component with inferred cascaded types provi
 
 <h1>Generic Type Example 4</h1>
 
-<ListGenericTypeItems3 Data="@stringData">
+<ListGenericTypeItems3 ExampleList="@stringData">
     <ListDisplay1 ExampleList="@stringData" />
     <ListDisplay2 ExampleList="@stringData" />
 </ListGenericTypeItems3>
 
-<ListGenericTypeItems3 Data="@integerData">
+<ListGenericTypeItems3 ExampleList="@integerData">
     <ListDisplay1 ExampleList="@integerData" />
     <ListDisplay2 ExampleList="@integerData" />
 </ListGenericTypeItems3>
 
 @code {
-    private List<int> integerData = new() { 1, 2, 3 };
     private List<string> stringData = new() { "Item 1", "Item 2" };
+    private List<int> integerData = new() { 1, 2, 3 };
+}
+```
+
+The following example cascades the data with [cascading values and parameters](xref:blazor/components/cascading-values-and-parameters).
+
+`Shared/ListDisplay3.razor`:
+
+```razor
+@typeparam TExample
+
+@if (ExampleList is not null)
+{
+    <ul style="color:blue">
+        @foreach (var item in ExampleList)
+        {
+            <li>@item</li>
+        }
+    </ul>
+}
+
+@code {
+    [CascadingParameter]
+    protected IEnumerable<TExample>? ExampleList { get; set; }
+}
+```
+
+`Shared/ListDisplay4.razor`:
+
+```razor
+@typeparam TExample
+
+@if (ExampleList is not null)
+{
+    <ul style="color:red">
+        @foreach (var item in ExampleList)
+        {
+            <li>@item</li>
+        }
+    </ul>
+}
+
+@code {
+    [CascadingParameter]
+    protected IEnumerable<TExample>? ExampleList { get; set; }
+}
+```
+
+`Shared/ListGenericTypeItems4.razor`:
+
+```razor
+@attribute [CascadingTypeParameter(nameof(TExample))]
+@typeparam TExample
+
+<h2>List Generic Type Items 4</h2>
+
+@ChildContent
+
+@if (ExampleList is not null)
+{
+    <ul style="color:green">
+        @foreach(var item in ExampleList)
+        {
+            <li>@item</li>
+        }
+    </ul>
+
+    <p>
+        Type of <code>TExample</code>: @typeof(TExample)
+    </p>
+}
+
+@code {
+    [CascadingParameter]
+    protected IEnumerable<TExample>? ExampleList { get; set; }
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+}
+```
+
+`Pages/GenericTypeExample5.razor`:
+
+```razor
+@page "/generic-type-example-5"
+
+<h1>Generic Type Example 5</h1>
+
+<CascadingValue Value="@stringData">
+    <ListGenericTypeItems4>
+        <ListDisplay3 />
+        <ListDisplay4 />
+    </ListGenericTypeItems4>
+</CascadingValue>
+
+<CascadingValue Value="@integerData">
+    <ListGenericTypeItems4>
+        <ListDisplay3 />
+        <ListDisplay4 />
+    </ListGenericTypeItems4>
+</CascadingValue>
+
+@code {
+    private List<string> stringData = new() { "Item 1", "Item 2" };
+    private List<int> integerData = new() { 1, 2, 3 };
 }
 ```
 
