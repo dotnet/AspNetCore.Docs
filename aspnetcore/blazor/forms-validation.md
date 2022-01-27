@@ -756,7 +756,7 @@ Update the `Starfleet Starship Database` form (`FormExample2` component) from th
         @foreach (var manufacturer in (Manufacturer[])Enum
             .GetValues(typeof(Manufacturer)))
         {
-            <InputRadio Value="manufacturer" />
+            <InputRadio Value="@manufacturer" />
             <text>&nbsp;</text>@manufacturer<br>
         }
     </InputRadioGroup>
@@ -766,21 +766,21 @@ Update the `Starfleet Starship Database` form (`FormExample2` component) from th
     combination of engine and color is allowed:<br>
     <InputRadioGroup Name="engine" @bind-Value="starship.Engine">
         <InputRadioGroup Name="color" @bind-Value="starship.Color">
-            <InputRadio Name="engine" Value="Engine.Ion" />
+            <InputRadio Name="engine" Value="@Engine.Ion" />
             Engine: Ion<br>
-            <InputRadio Name="color" Value="Color.ImperialRed" />
+            <InputRadio Name="color" Value="@Color.ImperialRed" />
             Color: Imperial Red<br><br>
-            <InputRadio Name="engine" Value="Engine.Plasma" />
+            <InputRadio Name="engine" Value="@Engine.Plasma" />
             Engine: Plasma<br>
-            <InputRadio Name="color" Value="Color.SpacecruiserGreen" />
+            <InputRadio Name="color" Value="@Color.SpacecruiserGreen" />
             Color: Spacecruiser Green<br><br>
-            <InputRadio Name="engine" Value="Engine.Fusion" />
+            <InputRadio Name="engine" Value="@Engine.Fusion" />
             Engine: Fusion<br>
-            <InputRadio Name="color" Value="Color.StarshipBlue" />
+            <InputRadio Name="color" Value="@Color.StarshipBlue" />
             Color: Starship Blue<br><br>
-            <InputRadio Name="engine" Value="Engine.Warp" />
+            <InputRadio Name="engine" Value="@Engine.Warp" />
             Engine: Warp<br>
-            <InputRadio Name="color" Value="Color.VoyagerOrange" />
+            <InputRadio Name="color" Value="@Color.VoyagerOrange" />
             Color: Voyager Orange
         </InputRadioGroup>
     </InputRadioGroup>
@@ -1738,7 +1738,7 @@ Update the `Starfleet Starship Database` form (`FormExample2` component) from th
         @foreach (var manufacturer in (Manufacturer[])Enum
             .GetValues(typeof(Manufacturer)))
         {
-            <InputRadio Value="manufacturer" />
+            <InputRadio Value="@manufacturer" />
             <text>&nbsp;</text>@manufacturer<br>
         }
     </InputRadioGroup>
@@ -1748,21 +1748,21 @@ Update the `Starfleet Starship Database` form (`FormExample2` component) from th
     combination of engine and color is allowed:<br>
     <InputRadioGroup Name="engine" @bind-Value="starship.Engine">
         <InputRadioGroup Name="color" @bind-Value="starship.Color">
-            <InputRadio Name="engine" Value="Engine.Ion" />
+            <InputRadio Name="engine" Value="@Engine.Ion" />
             Engine: Ion<br>
-            <InputRadio Name="color" Value="Color.ImperialRed" />
+            <InputRadio Name="color" Value="@Color.ImperialRed" />
             Color: Imperial Red<br><br>
-            <InputRadio Name="engine" Value="Engine.Plasma" />
+            <InputRadio Name="engine" Value="@Engine.Plasma" />
             Engine: Plasma<br>
-            <InputRadio Name="color" Value="Color.SpacecruiserGreen" />
+            <InputRadio Name="color" Value="@Color.SpacecruiserGreen" />
             Color: Spacecruiser Green<br><br>
-            <InputRadio Name="engine" Value="Engine.Fusion" />
+            <InputRadio Name="engine" Value="@Engine.Fusion" />
             Engine: Fusion<br>
-            <InputRadio Name="color" Value="Color.StarshipBlue" />
+            <InputRadio Name="color" Value="@Color.StarshipBlue" />
             Color: Starship Blue<br><br>
-            <InputRadio Name="engine" Value="Engine.Warp" />
+            <InputRadio Name="engine" Value="@Engine.Warp" />
             Engine: Warp<br>
-            <InputRadio Name="color" Value="Color.VoyagerOrange" />
+            <InputRadio Name="color" Value="@Color.VoyagerOrange" />
             Color: Voyager Orange
         </InputRadioGroup>
     </InputRadioGroup>
