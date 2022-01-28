@@ -18,14 +18,14 @@ The [gRPC health checking protocol](https://github.com/grpc/grpc/blob/master/doc
 
 Health checks are exposed by an app as a gRPC service. They are typically used with an external monitoring service to check the status of an app. The service can be configured for various real-time monitoring scenarios:
 
-* Health probes can be used by container orchestrators and load balancers to check an app's status. For example, a container orchestrator may respond to a failing health check by halting a rolling deployment or restarting a container. A load balancer might react to an unhealthy app by routing traffic away from the failing instance to a healthy instance.
+* Health probes can be used by container orchestrators and load balancers to check an app's status. For example, [Kubernetes supports a gRPC liveness, readiness and startup probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#define-a-grpc-liveness-probe). Kubernetes can be configured to reroute traffic or restart an unhealthy container based on gRPC health check results.
 * Use of memory, disk, and other physical server resources can be monitored for healthy status.
 * Health checks can test an app's dependencies, such as databases and external service endpoints, to confirm availability and normal functioning.
 
 > [!IMPORTANT]
 > This feature is in preview.
 > 
-> gRPC health checks requires version 2.43.0-pre1 or later of `Grpc.AspNetCore.HealthChecks` on NuGet.org.
+> gRPC health checks requires version 2.43.0-pre1 or later of the [`Grpc.AspNetCore.HealthChecks`](https://www.nuget.org/packages/Grpc.AspNetCore.HealthChecks) package on NuGet.org.
 
 ## Set up gRPC health checks
 
@@ -142,7 +142,7 @@ services.AddGrpcHealthChecks(o =>
 });
 ```
 
-The service name is usually the default (`""`) or a package-qualified name of a service in your app. However, nothing prevents using arbitrary values to check app health.
+The service name specified by the client is usually the default (`""`) or a package-qualified name of a service in your app. However, nothing prevents the client using arbitrary values to check app health.
 
 ## Call gRPC health checks service
 
