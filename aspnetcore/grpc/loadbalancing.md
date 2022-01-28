@@ -197,7 +197,7 @@ A resolver:
 * Can optionally provide a service configuration.
 
 ```csharp
-public class FileResolver : Resolver
+public class FileResolver : AsyncResolver
 {
     private readonly Uri _address;
     private readonly int _port;
