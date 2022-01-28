@@ -30,7 +30,7 @@ At the end, you'll have a working web app running on your local machine.
 
 ## Create a web app project
 
-Open a command shell, and enter the following command:
+Open a command shell of your choice, and enter the following command:
 
 ```dotnetcli
 dotnet new webapp -o aspnetcoreapp
