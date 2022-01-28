@@ -790,6 +790,8 @@ items:
         uid: grpc/httpapi
       - name: Code-first services and clients
         uid: grpc/code-first
+      - name: gRPC health checks
+        uid: grpc/health-checks
       - name: Manage Protobuf references with dotnet-grpc
         uid: grpc/dotnet-grpc
       - name: Test services with gRPCurl

@@ -33,10 +33,6 @@ To reference ASP.NET Core, add the following `<FrameworkReference>` element to y
 
 [!code-xml[](target-aspnetcore/samples/single-tfm/netcoreapp3.1-basic-library.csproj?highlight=8)]
 
-Referencing ASP.NET Core in this manner is only supported for projects targeting .NET Core 3.x.
-
-For information on using ASP.NET Core 5.0 and later APIs in a class library, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/22048).
-
 ## Include Blazor extensibility
 
 Blazor supports WebAssembly (WASM) and server-based [hosting models](xref:blazor/hosting-models). Unless there's a specific reason not to support both hosting models, a [Razor components](xref:blazor/components/index) library should support both hosting models. A Razor components library must use the [Microsoft.NET.Sdk.Razor SDK](xref:razor-pages/sdk).
