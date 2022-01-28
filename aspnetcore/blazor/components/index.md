@@ -1037,9 +1037,6 @@ C# syntax with [`where`](/dotnet/csharp/language-reference/keywords/where-generi
 @typeparam TEntity where TEntity : IEntity
 ```
 
-> [!NOTE]
-> The examples in this section have names that include the number "1" in order to avoid name conflicts with the examples shown in the <xref:blazor/components/templated-components> article if you place the examples into the same local test app for experimentation.
-
 In the following example, the `ListGenericTypeItems1` component is generically typed as `TExample`.
 
 `Shared/ListGenericTypeItems1.razor`:
@@ -1048,7 +1045,7 @@ In the following example, the `ListGenericTypeItems1` component is generically t
 
 <!--
 
-* Leaving this ListGenericTypeItems1.razor file content here for quick review. I'll remove the following later.
+* Leaving this ListGenericTypeItems1.razor file content here for quick review. I'll remove this comment later.
 * This section "Generic type parameter support" is repeated exactly in two other spots in the doc to cover 5.0 and 3.1. You only need to look at this first instance.
 
 ```razor
@@ -1083,7 +1080,7 @@ The following `GenericTypeExample1` component renders two `ListGenericTypeItems1
 
 <!--
 
-Leaving this GenericTypeExample1.razor file content here for quick review. I'll remove the following later.
+Leaving this GenericTypeExample1.razor file content here for quick review. I'll remove this comment later.
 
 ```razor
 @page "/generic-type-example-1"
@@ -1107,8 +1104,8 @@ For more information, see <xref:mvc/views/razor#typeparam>. For an example of ge
 
 This "Cascaded generic type support" section only appears once for 6.0 or later coverage. The coverage plan here is ...
 
-1. Explain the cascading concept with the [CascadingTypeParameter]` attribute.
-2. Explain that devs can either explicitly set the type (to be shown in an upcoming example) or infer the type from data passed (to be shown in a different upcoming example).
+1. Explain the cascading concept with the [CascadingTypeParameter] attribute.
+2. Explain that devs can either explicitly set types or infer types.
 3. Provide two demo components (`ListDisplay1` and `ListDisplay2`) that will be used in the upcoming sections.
 
 -->
@@ -1119,18 +1116,18 @@ By adding `@attribute [CascadingTypeParameter(...)]` to a component, the specifi
 
 * Are nested as child content for the component in the same `.razor` document.
 * Also declare a [`@typeparam`](xref:mvc/views/razor#typeparam) with the exact same name.
-* Don't have another value supplied or inferred for the type parameter. If another value is supplied or inferred, it takes precedence over the cascaded generic type.
+* Don't have another value explicitly supplied or implicitly inferred for the type parameter. If another value is supplied or inferred, it takes precedence over the cascaded generic type.
 
 When receiving a cascaded type parameter, components obtain the parameter value from the closest ancestor that has a <xref:Microsoft.AspNetCore.Components.CascadingTypeParameterAttribute> with a matching name. Cascaded generic type parameters are overridden within a particular subtree.
 
 Matching is only performed by name. Therefore, we recommend avoiding a cascaded generic type parameter with a generic name, for example `T` or `TItem`. If a developer opts into cascading a type parameter, they're implicitly promising that its name is unique enough not to clash with other cascaded type parameters from unrelated components.
 
-Generic types can be cascaded to child components in either of the following approaches with ancestor (parent) components, which are demonstrated in the following two sections of this article:
+Generic types can be cascaded to child components in either of the following approaches with ancestor (parent) components, which are demonstrated in the following two sub-sections:
 
 * Explicitly set the cascaded generic type.
 * Infer the cascaded generic type.
 
-The following subsections provide examples of the preceding approaches using the following two `ListDisplay` components. The components receive and render list data and are generically typed as `TExample`. These components are for demonstration purposes and only differ in the color of text that the list is rendered.
+The following subsections provide examples of the preceding approaches using the following two `ListDisplay` components. The components receive and render list data and are generically typed as `TExample`. These components are for demonstration purposes and only differ in the color of text that the list is rendered. If you wish to experiment with the components in the following sub-sections in a local test app, add the following two components to the app first.
 
 `Shared/ListDisplay1.razor`:
 
@@ -1189,8 +1186,6 @@ The demonstration in this section cascades a type explicitly for `TExample`.
 
 The following `ListGenericTypeItems2` component receives data and cascades a generic type parameter named `TExample` to its descendent components. In the upcoming parent component, the `ListGenericTypeItems2` component is used to display list data with the preceding `ListDisplay` component.
 
-Although the `ListGenericTypeItems2` component is used in this demonstration with only one "list item" child component (the `ListDisplay` component), the `ListGenericTypeItems2` component can display any `TExample` generically-typed "list item" component. An app can have several shared "list display" components used for different data display purposes.
-
 `Shared/ListGenericTypeItems2.razor`:
 
 ```razor
@@ -1208,8 +1203,6 @@ Although the `ListGenericTypeItems2` component is used in this demonstration wit
 ```
 
 The following `GenericTypeExample2` parent component sets the child content (<xref:Microsoft.AspNetCore.Components.RenderFragment>) of two `ListGenericTypeItems2` components specifying the `ListGenericTypeItems2` types (`TExample`), which are cascaded to child components. `ListDisplay` components are rendered with the list item data shown in the example. String data is used with the first `ListGenericTypeItems2` component, and integer data is used with the second `ListGenericTypeItems2` component.
-
-As previously mentioned, the parent component in this example isn't limited to using a single "list item" display component. Any shared child component can be rendered using the cascaded type if they use the same generic type name ("`TExample`").
 
 `Pages/GenericTypeExample2.razor`:
 
