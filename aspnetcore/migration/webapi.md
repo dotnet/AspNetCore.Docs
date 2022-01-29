@@ -145,14 +145,23 @@ Make the following changes:
 
 ## Configure routing
 
-The ASP.NET Core *API* project template includes endpoint routing configuration in the generated code.
+The following code code in the App_Start/WebAPIConfig.cs added an endpoint for the ASP.NET Core 3.x ProductsApp app:
 
-The following <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A> and <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> calls:
+[!code-csharp[](webapi/sample/3.x/ProductsCore/App_Start/WebAPIConfig.cs?highlight=15, 17-21)]
 
-* Register route matching and endpoint execution in the [middleware](xref:fundamentals/middleware/index) pipeline.
-* Replace the *ProductsApp* project's *App_Start/WebApiConfig.cs* file.
+In .NET 6, routes can be added directly to the <xref:Microsoft.AspNetCore.Builder.WebApplication> without an explicit call to <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> or <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>. The following code adds an endpoint to an ASP.NET Core 6 ProductsCore app:
 
-[!code-csharp[](webapi/sample/3.x/ProductsCore/Startup.cs?name=snippet_Configure&highlight=10,14)]
+[!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_rt)]
+
+**Note:** Routes added directly to the <xref:Microsoft.AspNetCore.Builder.WebApplication> execute at the ***end*** of the pipeline.
+
+ASP.NET Core 6.0 provides a minimal hosting model in which the endpoint routing middleware wraps the entire middleware pipeline, therefore there's no need to have explicit calls to `UseRouting` or `UseEndpoints` to register routes. `UseRouting` can still be used to specify where route matching happens, but `UseRouting` doesn't need to be explicitly called if routes should be matched at the beginning of the middleware pipeline.
+
+`App.MapControllers` is called in *Program.cs*.
+
+In Program.cs in the ASP.NET Core 6.0 ProductsCore app, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers%2A> is called inside `UseEndpoints` to map attribute routed controllers.
+
+[!code-csharp[](webapi/sample/6.x/ProductsCore/Program.cs?highlight=15)]
 
 Configure routing as follows:
 
