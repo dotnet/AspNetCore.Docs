@@ -58,7 +58,7 @@ The client library is available on the following CDNs:
 
 The following code creates and starts a connection and connects the UI. The hub's name is case insensitive:
 
-[!code-javascript[](javascript-client/samples/6.x/SignalRChat/wwwroot/chat.js)]
+[!code-javascript[](javascript-client/samples/6.x/SignalRChat/wwwroot/chat.js?range=3-6,29-45)]
 
 ### Cross-origin connections (CORS)
 
@@ -305,9 +305,9 @@ if (navigator && navigator.locks && navigator.locks.request) {
 ```
 
 For the preceding code example:
-<!-- REVIEW: Still experimental? -->
+
 * Web Locks are experimental. The conditional check confirms that the browser supports Web Locks.
-* The promise resolver (`lockResolver`) is stored so that the lock can be released when it's acceptable for the tab to sleep.
+* The promise resolver, `lockResolver`, is stored so that the lock can be released when it's acceptable for the tab to sleep.
 * When closing the connection, the lock is released by calling `lockResolver()`. When the lock is released, the tab is allowed to sleep.
 
 ## Additional resources
