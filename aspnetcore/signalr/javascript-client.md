@@ -58,7 +58,7 @@ The client library is available on the following CDNs:
 
 The following code creates and starts a connection and connects the UI. The hub's name is case insensitive:
 
-[!code-javascript[](javascript-client/samples/6.x/SignalRChat/wwwroot/js/chat.js)]
+[!code-javascript[](javascript-client/samples/6.x/SignalRChat/wwwroot/chat.js)]
 
 ### Cross-origin connections (CORS)
 
@@ -81,7 +81,7 @@ JavaScript clients call public methods on hubs via the [invoke](/javascript/api/
 
 In the following highlighted code, the method name on the hub is `SendMessage`. The second and third arguments passed to `invoke` map to the hub method's `user` and `message` arguments:
 
-[!code-javascript[](javascript-client/samples/6.x/SignalRChat/wwwroot/chat.js?highlight=26)]
+[!code-javascript[](javascript-client/samples/6.x/SignalRChat/wwwroot/chat.js?highlight=3&name=snippet_Invoke)]
 
 Calling hub methods from a client is only supported when using the Azure SignalR Service in ***Default*** mode. For more information, see [Frequently Asked Questions (azure-signalr GitHub repository)](https://github.com/Azure/azure-signalr/blob/dev/docs/faq.md#what-is-the-meaning-of-service-mode-defaultserverlessclassic-how-can-i-choose).
 
@@ -100,7 +100,7 @@ To receive messages from the hub, define a method using the [on](/javascript/api
 
 In the following example, the method name is `ReceiveMessage`. The argument names are `user` and `message`:
 
-[!code-javascript[](javascript-client/samples/6.x/SignalRChat/wwwroot/chat.js?highlight=8-15)]
+[!code-javascript[](javascript-client/samples/6.x/SignalRChat/wwwroot/chat.js?name=snippet_ReceiveMessage)]
 
 The preceding code in `connection.on` runs when server-side code calls it using the <xref:Microsoft.AspNetCore.SignalR.ClientProxyExtensions.SendAsync%2A> method:
 
@@ -108,13 +108,13 @@ The preceding code in `connection.on` runs when server-side code calls it using 
 
 SignalR determines which client method to call by matching the method name and arguments defined in `SendAsync` and `connection.on`.
 
-A best practice is to call the [start](/javascript/api/%40aspnet/signalr/hubconnection#start) method on the `HubConnection` after `on`. Doing so ensures your handlers are registered before any messages are received.
+A best practice is to call the [start](/javascript/api/%40aspnet/signalr/hubconnection#start) method on the `HubConnection` after `on`. Doing so ensures the handlers are registered before any messages are received.
 
 ## Error handling and logging
 
 Use `console.error` to output errors to the browser's console when the client can't connect or send a message:
 
-[!code-javascript[](javascript-client/samples/6.x/SignalRChat/wwwroot/chat.js?highlight=20,27)]
+[!code-javascript[](javascript-client/samples/6.x/SignalRChat/wwwroot/chat.js?name=snippet_Invoke)]
 
 Set up client-side log tracing by passing a logger and type of event to log when the connection is made. Messages are logged with the specified log level and higher. Available log levels are as follows:
 
@@ -145,7 +145,7 @@ Without any parameters, <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionB
 Before starting any reconnect attempts, the `HubConnection`:
 
 * Transitions to the [`HubConnectionState.Reconnecting`](xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionState.Reconnecting) state and fires its `onreconnecting` callbacks.
-* It doesn't  transition to the `Disconnected` state and trigger its `onclose` callbacks like a `HubConnection` without automatic reconnect configured.
+* Doesn't  transition to the `Disconnected` state and trigger its `onclose` callbacks like a `HubConnection` without automatic reconnect configured.
 
 The reconnect approach provides an opportunity to:
 
@@ -168,8 +168,7 @@ If the client successfully reconnects within its first four attempts, the `HubCo
 
 Since the connection looks entirely new to the server, a new `connectionId` is provided to the `onreconnected` callback.
 
-> [!WARNING]
-> The `onreconnected` callback's `connectionId` parameter is undefined if the `HubConnection` was configured to [skip negotiation](xref:signalr/configuration#configure-client-options).
+The `onreconnected` callback's `connectionId` parameter is ***undefined*** if the `HubConnection` is configured to [skip negotiation](xref:signalr/configuration#configure-client-options).
 
 ```javascript
 connection.onreconnected(connectionId => {
@@ -286,8 +285,7 @@ Some browsers have a tab freezing or sleeping feature to reduce computer resourc
 * Being mirrored
 * Capturing a window or display
 
-> [!NOTE]
-> These heuristics may change over time or differ between browsers. Check your support matrix and figure out what method works best for your scenarios.
+Browser heuristics may change over time and can differ between browsers. Check the support matrix and figure out what method works best for your scenarios.
 
 To avoid putting an app to sleep, the app should trigger one of the heuristics that the browser uses.
 
