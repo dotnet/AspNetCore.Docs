@@ -147,7 +147,7 @@ Make the following changes:
 
 The following code code in the App_Start/WebAPIConfig.cs added an endpoint for the ASP.NET Core 3.x ProductsApp app:
 
-[!code-csharp[](webapi/sample/3.x/ProductsCore/App_Start/WebAPIConfig.cs?highlight=15, 17-21)]
+[!code-csharp[](webapi/sample/3.x/ProductsSpp/App_Start/WebAPIConfig.cs?highlight=15, 17-21)]
 
 ASP.NET Core 6.0 provides a minimal hosting model in which the endpoint routing middleware wraps the entire middleware pipeline, therefore there's no need to have explicit calls to `UseRouting` or `UseEndpoints` to register routes. `UseRouting` can still be used to specify where route matching happens, but `UseRouting` doesn't need to be explicitly called if routes should be matched at the beginning of the middleware pipeline.
 
