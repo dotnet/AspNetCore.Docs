@@ -23,14 +23,21 @@ The SignalR JavaScript client library is delivered as an [npm](https://www.npmjs
 
 ### Install with npm
 
-For Visual Studio, run the following commands from **Package Manager Console** while in the root folder. For Visual Studio Code, run the following commands from the **Integrated Terminal**.
+# [Visual Studio](#tab/visual-studio)
+Run the following commands from **Package Manager Console**:
+# [Visual Studio Code](#tab/visual-studio-code)
+Run the following commands from the **Integrated Terminal**:
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+Run the following commands from a command window:
+
+---
 
 ```bash
 npm init -y
 npm install @microsoft/signalr
 ```
 
-npm installs the package contents in the *node_modules\\@microsoft\signalr\dist\browser* folder. Create a new folder named *signalr* under the *wwwroot\\lib* folder. Copy the *signalr.js* file to the *wwwroot\lib\signalr* folder.
+npm installs the package contents in the *node_modules\\@microsoft\signalr\dist\browser* folder. Create the *wwwroot/lib/signalr* folder. Copy the *signalr.js* file to the *wwwroot/lib/signalr* folder.
 
 Reference the SignalR JavaScript client in the `<script>` element. For example:
 
@@ -56,7 +63,7 @@ The client library is available on the following CDNs:
 
 ## Connect to a hub
 
-The following code creates and starts a connection and connects the UI. The hub's name is case insensitive:
+The following code creates and starts a connection. The hub's name is case insensitive:
 
 [!code-javascript[](javascript-client/samples/6.x/SignalRChat/wwwroot/chat.js?range=3-6,29-45)]
 
@@ -68,7 +75,7 @@ When making cross domain requests, the client code ***must*** use an absolute UR
 
 To prevent a malicious site from reading sensitive data from another site, [cross-origin connections](xref:security/cors) are disabled by default. To allow a cross-origin request, enable [CORS](xref:security/cors):
 
-[!code-csharp[](javascript-client/samples/6.x/SignalRChat/Program.cs?highlight=8-18,36)]
+[!code-csharp[](javascript-client/samples/6.x/SignalRChat/Program.cs?highlight=8-18,35-36,39)]
 
 <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A> must be called before calling <xref:Microsoft.AspNetCore.Builder.HubEndpointRouteBuilderExtensions.MapHub%2A>.
 
@@ -81,7 +88,7 @@ JavaScript clients call public methods on hubs via the [invoke](/javascript/api/
 
 In the following highlighted code, the method name on the hub is `SendMessage`. The second and third arguments passed to `invoke` map to the hub method's `user` and `message` arguments:
 
-[!code-javascript[](javascript-client/samples/6.x/SignalRChat/wwwroot/chat.js?highlight=3&name=snippet_Invoke)]
+[!code-javascript[](javascript-client/samples/6.x/SignalRChat/wwwroot/chat.js?highlight=2&name=snippet_Invoke)]
 
 Calling hub methods from a client is only supported when using the Azure SignalR Service in ***Default*** mode. For more information, see [Frequently Asked Questions (azure-signalr GitHub repository)](https://github.com/Azure/azure-signalr/blob/dev/docs/faq.md#what-is-the-meaning-of-service-mode-defaultserverlessclassic-how-can-i-choose).
 
@@ -108,7 +115,7 @@ The preceding code in `connection.on` runs when server-side code calls it using 
 
 SignalR determines which client method to call by matching the method name and arguments defined in `SendAsync` and `connection.on`.
 
-A best practice is to call the [start](/javascript/api/%40aspnet/signalr/hubconnection#start) method on the `HubConnection` after `on`. Doing so ensures the handlers are registered before any messages are received.
+A **best practice** is to call the [start](/javascript/api/%40aspnet/signalr/hubconnection#start) method on the `HubConnection` after `on`. Doing so ensures the handlers are registered before any messages are received.
 
 ## Error handling and logging
 
