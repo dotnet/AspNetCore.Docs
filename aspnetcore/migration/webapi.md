@@ -97,7 +97,7 @@ ASP.NET Core 6.0 projects enable nullable reference types by default. Nullable r
 
 For more information, see [Nullable reference types](/dotnet/csharp/nullable-references).
 
-Examine Models/Product.cs. With nullable reference types enabled for the ProductCore project, helpful `non-nullable property` warnings are visible for the `Name` and `Category` properties.
+Examine *Models/Product.cs*. With nullable reference types enabled for the ProductCore project, helpful `non-nullable property` warnings are visible for the `Name` and `Category` properties.
 
 ![Nullable reference type warning](webapi/_static/non-nullable-warning.png)
 
@@ -120,7 +120,7 @@ Update the `ProductsController` for ASP.NET Core:
 
 The following code shows the updated ASP.NET Core `ProductsController`:
 
-[!code-csharp[](webapi/sample/6.x/ProductsCore/Controllers/ProductsController.cs?highlight=1,2,3,33,50)]
+[!code-csharp[](webapi/sample/6.x/ProductsCore/Controllers/ProductsController.cs?highlight=1,2,33,50)]
 
 1. Copy *Controllers/ProductsController.cs* and the *Models* folder from the original project to the new one.
 1. Change the copied files' root namespace to `ProductsCore`.
@@ -149,9 +149,9 @@ The following code code in the App_Start/WebAPIConfig.cs added an endpoint for t
 
 [!code-csharp[](webapi/sample/3.x/ProductsApp/App_Start/WebAPIConfig.cs?highlight=15, 17-21)]
 
-ASP.NET Core 6.0 provides a minimal hosting model in which the endpoint routing middleware wraps the entire middleware pipeline, therefore there's no need to have explicit calls to `UseRouting` or `UseEndpoints` to register routes. `UseRouting` can still be used to specify where route matching happens, but `UseRouting` doesn't need to be explicitly called if routes should be matched at the beginning of the middleware pipeline.
+ASP.NET Core 6.0 provides a minimal hosting model in which the endpoint routing middleware wraps the entire middleware pipeline, therefore routes can be added directly to the <xref:Microsoft.AspNetCore.Builder.WebApplication> without an explicit call to <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> or <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A> to register routes.
 
-Routes can be added directly to the <xref:Microsoft.AspNetCore.Builder.WebApplication> without an explicit call to <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> or <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>. 
+`UseRouting` can still be used to specify where route matching happens, but `UseRouting` doesn't need to be explicitly called if routes should be matched at the beginning of the middleware pipeline.
 
 In *Program.cs* in the ASP.NET Core 6.0 ProductsCore app, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers%2A> is called inside `UseEndpoints` to map attribute routed controllers.
 
