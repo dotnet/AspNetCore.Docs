@@ -66,10 +66,6 @@ The [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) at
 * [Binding source parameter inference](#binding-source-parameter-inference)
 * [Multipart/form-data request inference](#multipartform-data-request-inference)
 * [Problem details for error status codes](#problem-details-for-error-status-codes)
-* [Attribute routing requirement](#attribute-routing-requirement)
-* [Automatic HTTP 400 responses](#automatic-http-400-responses)
-* [Binding source parameter inference](#binding-source-parameter-inference)
-* [Multipart/form-data request inference](#multipartform-data-request-inference)
 
 ### Attribute on specific controllers
 
