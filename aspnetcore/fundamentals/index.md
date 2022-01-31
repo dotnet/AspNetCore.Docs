@@ -11,7 +11,7 @@ uid: fundamentals/index
 ---
 # ASP.NET Core fundamentals
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 This article provides an overview of key topics for understanding how to develop ASP.NET Core apps.
 
@@ -226,9 +226,9 @@ For more information, see <xref:fundamentals/static-files>.
 
 * [WebApplicationBuilder source code](https://github.com/dotnet/aspnetcore/blob/v6.0.1/src/DefaultBuilder/src/WebApplicationBuilder.cs)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 This article provides an overview of key topics for understanding how to develop ASP.NET Core apps.
 
@@ -441,4 +441,4 @@ In Razor *.cshtml* files, tilde-slash (`~/`) points to the web root. A path begi
 
 For more information, see <xref:fundamentals/static-files>.
 
-::: moniker-end
+:::moniker-end

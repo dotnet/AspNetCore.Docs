@@ -10,7 +10,7 @@ uid: mvc/extensibility/app-parts
 
 # Share controllers, views, Razor Pages and more with Application Parts
 
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.0"
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -98,9 +98,9 @@ HTTP 404 errors are not uncommon when developing with application parts. These e
 * The root assembly needs to have a reference to the parts used for discovery. The reference can be direct or transitive.
 * The root assembly needs to reference the Web SDK. The framework has logic that stamps attributes into the root assembly that are used for discovery.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+:::moniker range="< aspnetcore-3.0"
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -186,4 +186,4 @@ HTTP 404 errors are not uncommon when developing with application parts. These e
 * The root assembly needs to reference the Web SDK.
   * The ASP.NET Core framework has custom build logic that stamps attributes into the root assembly that are used for discovery.
 
-::: moniker-end
+:::moniker-end

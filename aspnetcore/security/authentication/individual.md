@@ -13,23 +13,23 @@ ASP.NET Core Identity is included in project templates in Visual Studio with the
 
 The authentication templates are available in .NET Core CLI with `-au Individual`:
 
-::: moniker range=">= aspnetcore-2.1"
+:::moniker range=">= aspnetcore-2.1"
 
 ```dotnetcli
 dotnet new mvc -au Individual
 dotnet new webapp -au Individual
 ```
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="= aspnetcore-2.0"
+:::moniker range="= aspnetcore-2.0"
 
 ```dotnetcli
 dotnet new mvc -au Individual
 dotnet new razor -au Individual
 ```
 
-::: moniker-end
+:::moniker-end
 
 See [this GitHub issue](https://github.com/dotnet/AspNetCore/issues/5833) for web API authentication.
 

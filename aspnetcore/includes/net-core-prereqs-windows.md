@@ -6,8 +6,8 @@ no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cook
 * **ASP.NET and web development**
 * **.NET Core cross-platform development**
 
-::: moniker range=">= aspnetcore-2.1"
+:::moniker range=">= aspnetcore-2.1"
 
 [.NET Core 2.1 SDK or later](https://dotnet.microsoft.com/download)
 
-::: moniker-end
+:::moniker-end

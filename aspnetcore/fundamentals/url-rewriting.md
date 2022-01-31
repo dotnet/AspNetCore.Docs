@@ -13,7 +13,7 @@ uid: fundamentals/url-rewriting
 
 By [Mikael Mengistu](https://github.com/mikaelm12)
 
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.0"
 
 This document introduces URL rewriting with instructions on how to use URL Rewriting Middleware in ASP.NET Core apps.
 
@@ -363,9 +363,9 @@ Original Request: `/image.jpg`
 | Rearrange URL segments | `path/(.*)/(.*)/(.*)`<br>`path/1/2/3` | `path/$3/$2/$1`<br>`path/3/2/1` |
 | Replace a URL segment | `^(.*)/segment2/(.*)`<br>`/segment1/segment2/segment3` | `$1/replaced/$2`<br>`/segment1/replaced/segment3` |
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+:::moniker range="< aspnetcore-3.0"
 
 This document introduces URL rewriting with instructions on how to use URL Rewriting Middleware in ASP.NET Core apps.
 
@@ -717,7 +717,7 @@ Original Request: `/image.jpg`
 | Rearrange URL segments | `path/(.*)/(.*)/(.*)`<br>`path/1/2/3` | `path/$3/$2/$1`<br>`path/3/2/1` |
 | Replace a URL segment | `^(.*)/segment2/(.*)`<br>`/segment1/segment2/segment3` | `$1/replaced/$2`<br>`/segment1/replaced/segment3` |
 
-::: moniker-end
+:::moniker-end
 
 ## Additional resources
 

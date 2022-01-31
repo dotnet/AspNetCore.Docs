@@ -44,7 +44,7 @@ HTML attributes and content containing email addresses don't treat the `@` symbo
 ```
 
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 ### Scalable Vector Graphics (SVG)
 
@@ -64,7 +64,7 @@ HTML attributes and content containing email addresses don't treat the `@` symbo
 </svg>
 ```
 
-::: moniker-end
+:::moniker-end
 
 ## Implicit Razor expressions
 
@@ -675,7 +675,7 @@ The `@page` directive has different effects depending on the type of the file wh
 * In a `.cshtml` file indicates that the file is a Razor Page. For more information, see [Custom routes](xref:razor-pages/index#custom-routes) and <xref:razor-pages/index>.
 * Specifies that a Razor component should handle requests directly. For more information, see <xref:blazor/fundamentals/routing>.
 
-::: moniker range=">= aspnetcore-5.0"
+:::moniker range=">= aspnetcore-5.0"
 
 ### `@preservewhitespace`
 
@@ -687,7 +687,7 @@ When set to `false` (default), whitespace in the rendered markup from Razor comp
 * Leading or trailing within a `RenderFragment` parameter. For example, child content passed to another component.
 * It precedes or follows a C# code block, such as `@if` or `@foreach`.
 
-::: moniker-end
+:::moniker-end
 
 ### `@section`
 
@@ -755,7 +755,7 @@ The `@key` directive attribute causes the components diffing algorithm to guaran
 
 Component references (`@ref`) provide a way to reference a component instance so that you can issue commands to that instance. For more information, see <xref:blazor/components/index#capture-references-to-components>.
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 ### `@typeparam`
 
@@ -778,9 +778,9 @@ For more information, see the following articles:
 * <xref:blazor/components/index#generic-type-parameter-support>
 * <xref:blazor/components/templated-components>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 ### `@typeparam`
 
@@ -797,7 +797,7 @@ For more information, see the following articles:
 * <xref:blazor/components/index#generic-type-parameter-support>
 * <xref:blazor/components/templated-components>
 
-::: moniker-end
+:::moniker-end
 
 ## Templated Razor delegates
 

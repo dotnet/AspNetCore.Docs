@@ -64,21 +64,21 @@ You can manage your API credentials and usage in the [API Console](https://conso
 
 ## Configure Google authentication
 
-::: moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 Add the Authentication service to the `Startup.ConfigureServices`:
 
 [!code-csharp[](~/security/authentication/social/social-code/3.x/StartupGoogle3x.cs?highlight=11-19)]
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 Add the Authentication service to the `Program`:
 
 [!code-csharp[](~/security/authentication/social/social-code/6.x/ProgramGoogle.cs)]
 
-::: moniker-end
+:::moniker-end
 
 [!INCLUDE [default settings configuration](includes/default-settings2-2.md)]
 

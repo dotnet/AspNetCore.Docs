@@ -91,7 +91,7 @@ HubConnection hubConnection = HubConnectionBuilder.create("YOUR HUB URL HERE")
     })).build();
 ```
 
-::: moniker range=">= aspnetcore-5.0"
+:::moniker range=">= aspnetcore-5.0"
 
 ### Passing Class information in Java
 
@@ -114,30 +114,30 @@ hubConnection.<String, Foo<String>>on("func", (param1, param2) ->{
 
 This convention is necessary because we can not retrieve complete information about complex types with the `Object.getClass` method due to type erasure in Java. For example, calling `getClass` on an `ArrayList<String>` would not return `Class<ArrayList<String>>`, but rather `Class<ArrayList>`, which does not give the deserializer enough information to correctly deserialize an incoming message. The same is true for custom objects.
 
-::: moniker-end
+:::moniker-end
 
 ## Known limitations
 
-::: moniker range=">= aspnetcore-5.0"
+:::moniker range=">= aspnetcore-5.0"
 
 * Transport fallback and the Server Sent Events transport aren't supported.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
+:::moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
 * Transport fallback and the Server Sent Events transport aren't supported.
 * Only the JSON protocol is supported.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+:::moniker range="< aspnetcore-3.0"
 
 * Only the JSON protocol is supported.
 * Only the WebSockets transport is supported.
 * Streaming isn't supported yet.
 
-::: moniker-end
+:::moniker-end
 
 ## Additional resources
 

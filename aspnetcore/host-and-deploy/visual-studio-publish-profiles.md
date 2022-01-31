@@ -39,17 +39,17 @@ When the project is loaded, the [MSBuild project items](/visualstudio/msbuild/co
 
 The `Content` item list contains files that are published in addition to the build outputs. By default, files matching the patterns `wwwroot\**`, `**\*.config`, and `**\*.json` are included in the `Content` item list. For example, the `wwwroot\**` [globbing pattern](https://gruntjs.com/configuring-tasks#globbing-patterns) matches all files in the *wwwroot* folder and its subfolders.
 
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.0"
 
 The [Web SDK](xref:razor-pages/web-sdk) imports the [Razor SDK](xref:razor-pages/sdk). As a result, files matching the patterns `**\*.cshtml` and `**\*.razor` are also included in the `Content` item list.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-2.1 <= aspnetcore-2.2"
+:::moniker range=">= aspnetcore-2.1 <= aspnetcore-2.2"
 
 The [Web SDK](xref:razor-pages/web-sdk) imports the [Razor SDK](xref:razor-pages/sdk). As a result, files matching the `**\*.cshtml` pattern are also included in the `Content` item list.
 
-::: moniker-end
+:::moniker-end
 
 To explicitly add a file to the publish list, add the file directly in the *.csproj* file as shown in the [Include Files](#include-files) section.
 

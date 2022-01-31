@@ -15,7 +15,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 This tutorial shows how to call an ASP.NET Core web API with JavaScript, using the [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API).
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 ## Prerequisites
 
@@ -101,10 +101,10 @@ Advance to the next tutorial to learn how to generate web API help pages:
 > [!div class="nextstepaction"]
 > <xref:tutorials/get-started-with-swashbuckle>
 
-::: moniker-end
+:::moniker-end
 
 
-::: moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 ## Prerequisites
 
@@ -191,4 +191,4 @@ Advance to the next tutorial to learn how to generate web API help pages:
 > [!div class="nextstepaction"]
 > <xref:tutorials/get-started-with-swashbuckle>
 
-::: moniker-end
+:::moniker-end

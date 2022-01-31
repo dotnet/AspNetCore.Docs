@@ -12,7 +12,7 @@ uid: tutorials/razor-pages/new-field
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-::: moniker range="= aspnetcore-5.0"
+:::moniker range="= aspnetcore-5.0"
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50) ([how to download](xref:index#how-to-download-a-sample)).
 
@@ -172,9 +172,9 @@ Run the app and verify you can create/edit/display movies with a `Rating` field.
 > [Previous: Add Search](xref:tutorials/razor-pages/search)
 > [Next: Add Validation](xref:tutorials/razor-pages/validation)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-5.0"
+:::moniker range="< aspnetcore-5.0"
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30) ([how to download](xref:index#how-to-download-a-sample)).
 
@@ -314,9 +314,9 @@ Run the app and verify you can create/edit/display movies with a `Rating` field.
 > [Previous: Add Search](xref:tutorials/razor-pages/search)
 > [Next: Add Validation](xref:tutorials/razor-pages/validation)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 In this section [Entity Framework](/ef/core/get-started/aspnetcore/new-db) Code First Migrations is used to:
 
@@ -466,4 +466,4 @@ Run the app and verify you can create, edit, and display movies with a `Rating` 
 > [Previous: Add Search](xref:tutorials/razor-pages/search)
 > [Next: Add Validation](xref:tutorials/razor-pages/validation)
 
-::: moniker-end
+:::moniker-end

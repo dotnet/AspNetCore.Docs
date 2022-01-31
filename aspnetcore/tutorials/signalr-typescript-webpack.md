@@ -25,7 +25,7 @@ In this tutorial, you learn how to:
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/signalr-typescript-webpack/sample) ([how to download](xref:index#how-to-download-a-sample))
 
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.0"
 
 ## Prerequisites
 
@@ -280,9 +280,9 @@ Confirm that the app works with the following steps.
 
 ![message displayed in both browser windows](signalr-typescript-webpack/_static/browsers-message-broadcast.png)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+:::moniker range="< aspnetcore-3.0"
 
 ## Prerequisites
 
@@ -515,7 +515,7 @@ Confirm that the app works with the following steps.
 
 ![message displayed in both browser windows](signalr-typescript-webpack/_static/browsers-message-broadcast.png)
 
-::: moniker-end
+:::moniker-end
 
 ## Additional resources
 

@@ -11,7 +11,7 @@ uid: signalr/javascript-client
 ---
 # ASP.NET Core SignalR JavaScript client
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 By [Rachel Appel](https://twitter.com/rachelappel)
 
@@ -317,9 +317,9 @@ For the preceding code example:
 * [Azure SignalR Service serverless documentation](/azure/azure-signalr/signalr-concept-serverless-development-config)
 * [Troubleshoot connection errors](xref:signalr/troubleshoot)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 By [Rachel Appel](https://twitter.com/rachelappel)
 
@@ -625,4 +625,4 @@ For the preceding code example:
 * [Azure SignalR Service serverless documentation](/azure/azure-signalr/signalr-concept-serverless-development-config)
 * [Troubleshoot connection errors](xref:signalr/troubleshoot)
 
-::: moniker-end
+:::moniker-end

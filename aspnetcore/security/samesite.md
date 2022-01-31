@@ -30,7 +30,7 @@ Each ASP.NET Core component that emits cookies needs to decide if SameSite is ap
 
 ## SameSite test sample code
 
-::: moniker range=">= aspnetcore-2.1 < aspnetcore-3.0"
+:::moniker range=">= aspnetcore-2.1 < aspnetcore-3.0"
 
 The following samples can be downloaded and tested:
 
@@ -39,9 +39,9 @@ The following samples can be downloaded and tested:
 | [.NET Core MVC](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21MVC)  | <xref:security/samesite/mvc21> |
 | [.NET Core Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21RazorPages)  | <xref:security/samesite/rp21> |
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.0"
 
 The following sample can be downloaded and tested:
 
@@ -49,9 +49,9 @@ The following sample can be downloaded and tested:
 | ----------------- | ------------ |
 | [.NET Core Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages)  | <xref:security/samesite/rp31> |
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-2.2"
+:::moniker range=">= aspnetcore-2.2"
 
 ## .NET Core support for the sameSite attribute
 
@@ -62,9 +62,9 @@ The following sample can be downloaded and tested:
 .NET Core 3.1 and later support the updated SameSite values and adds an extra enum value, `SameSiteMode.Unspecified` to the `SameSiteMode` enum.
 This new value indicates no sameSite should be sent with the cookie.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="= aspnetcore-2.1"
+:::moniker range="= aspnetcore-2.1"
 
 ## December patch behavior changes
 
@@ -72,7 +72,7 @@ The specific behavior change for .NET Framework and .NET Core 2.1 is how the `Sa
 
 The default SameSite value for forms authentication and session state cookies was changed from `None` to `Lax`.
 
-::: moniker-end
+:::moniker-end
 
 ## API usage with SameSite
 
@@ -94,7 +94,7 @@ All ASP.NET Core components that emit cookies override the preceding defaults wi
 | <xref:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect*> | [OpenIdConnectOptions.NonceCookie](xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.NonceCookie)| `None` |
 | [HttpContext.Response.Cookies.Append](xref:Microsoft.AspNetCore.Http.IResponseCookies.Append*) | <xref:Microsoft.AspNetCore.Http.CookieOptions> | `Unspecified` |
 
-::: moniker range=">= aspnetcore-3.1"
+:::moniker range=">= aspnetcore-3.1"
 
 ASP.NET Core 3.1 and later provides the following SameSite support:
 
@@ -102,9 +102,9 @@ ASP.NET Core 3.1 and later provides the following SameSite support:
 * Adds a new value `SameSiteMode.Unspecified` to omit the SameSite attribute.
 * All cookies APIs default to `Unspecified`. Some components that use cookies set values more specific to their scenarios. See the table above for examples.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.0"
 
 In ASP.NET Core 3.0 and later the SameSite defaults were changed to avoid conflicting with inconsistent client defaults. The following APIs have changed the default from `SameSiteMode.Lax ` to `-1` to avoid emitting a SameSite attribute for these cookies:
 
@@ -112,7 +112,7 @@ In ASP.NET Core 3.0 and later the SameSite defaults were changed to avoid confli
 * <xref:Microsoft.AspNetCore.Http.CookieBuilder>  used as a factory for `CookieOptions`
 * [CookiePolicyOptions.MinimumSameSitePolicy](xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions.MinimumSameSitePolicy)
 
-::: moniker-end
+:::moniker-end
 
 ## History and changes
 
@@ -147,17 +147,17 @@ In `Startup.Configure`, add code that calls <xref:Microsoft.AspNetCore.Builder.C
 
 In `Startup.ConfigureServices`, add code similar to the following:
 
-::: moniker range=">= aspnetcore-3.1"
+:::moniker range=">= aspnetcore-3.1"
 
 [!code-csharp[](samesite/sample/Startup31.cs?name=snippet)]
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-3.1"
+:::moniker range="< aspnetcore-3.1"
 
 [!code-csharp[](samesite/sample/Startup.cs?name=snippet)]
 
-::: moniker-end
+:::moniker-end
 
 In the preceding sample, `MyUserAgentDetectionLib.DisallowsSameSiteNone` is a user supplied library that detects if the user agent doesn't support SameSite `None`:
 
@@ -218,19 +218,19 @@ Versions of Electron include older versions of Chromium. For example, the versio
 * [SameSite cookies explained](https://web.dev/samesite-cookies-explained/)
 * [November 2019 Patches](https://devblogs.microsoft.com/dotnet/net-core-November-2019/)
 
- ::: moniker range=">= aspnetcore-2.1 < aspnetcore-3.0"
+ :::moniker range=">= aspnetcore-2.1 < aspnetcore-3.0"
 
 | Sample               | Document |
 | ----------------- | ------------ |
 | [.NET Core MVC](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21MVC)  | <xref:security/samesite/mvc21> |
 | [.NET Core Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21RazorPages)  | <xref:security/samesite/rp21> |
 
-::: moniker-end
+:::moniker-end
 
- ::: moniker range=">= aspnetcore-3.0"
+ :::moniker range=">= aspnetcore-3.0"
 
 | Sample               | Document |
 | ----------------- | ------------ |
 | [.NET Core Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages)  | <xref:security/samesite/rp31> |
 
-::: moniker-end
+:::moniker-end

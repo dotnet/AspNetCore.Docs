@@ -13,7 +13,7 @@ uid: host-and-deploy/iis/development-time-iis-support
 
 By [Sourabh Shirhatti](https://twitter.com/sshirhatti)
 
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.0"
 
 This article describes [Visual Studio](https://visualstudio.microsoft.com) support for debugging ASP.NET Core apps running with IIS on Windows Server. This topic walks through enabling this scenario and setting up a project.
 
@@ -126,9 +126,9 @@ If an untrusted development certificate is used, the browser may require you to 
 * [Getting Started with the IIS Manager in IIS](/iis/get-started/getting-started-with-iis/getting-started-with-the-iis-manager-in-iis-7-and-iis-8)
 * <xref:security/enforcing-ssl>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+:::moniker range="< aspnetcore-3.0"
 
 This article describes [Visual Studio](https://visualstudio.microsoft.com) support for debugging ASP.NET Core apps running with IIS on Windows Server. This topic walks through enabling this scenario and setting up a project.
 
@@ -241,4 +241,4 @@ If an untrusted development certificate is used, the browser may require you to 
 * [Getting Started with the IIS Manager in IIS](/iis/get-started/getting-started-with-iis/getting-started-with-the-iis-manager-in-iis-7-and-iis-8)
 * <xref:security/enforcing-ssl>
 
-::: moniker-end
+:::moniker-end

@@ -13,7 +13,7 @@ ms.custom: contperf-fy21q3
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 In this section, you modify the `HelloWorldController` class to use [Razor](xref:mvc/views/razor) view files. This cleanly encapsulates the process of generating HTML responses to a client.
 
@@ -220,9 +220,9 @@ In the next tutorial, a database of movies is created.
 > [Previous: Add a Controller](adding-controller.md)
 > [Next: Add a Model](adding-model.md)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 
 In this section, you modify the `HelloWorldController` class to use [Razor](xref:mvc/views/razor) view files. This cleanly encapsulates the process of generating HTML responses to a client.
 
@@ -314,21 +314,21 @@ Find the `@RenderBody()` line. `RenderBody` is a placeholder where all the view-
 ## Change the title, footer, and menu link in the layout file
 
 Replace the content of the *Views/Shared/_Layout.cshtml* file with the following markup. The changes are highlighted:
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
+:::moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Views/Shared/_Layout.cshtml?highlight=6,14,40)]
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="= aspnetcore-5.0"
+:::moniker range="= aspnetcore-5.0"
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie5/Views/Shared/_Layout.cshtml?highlight=6,14,40)]
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 
 The preceding markup made the following changes:
 
@@ -438,4 +438,4 @@ In the next tutorial, a database of movies is created.
 > [Previous: Add a Controller](adding-controller.md)
 > [Next: Add a Model](adding-model.md)
 
-::: moniker-end
+:::moniker-end

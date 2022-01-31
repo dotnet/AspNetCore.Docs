@@ -1,7 +1,7 @@
 ---
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 ---
-::: moniker range=">= aspnetcore-2.1"
+:::moniker range=">= aspnetcore-2.1"
 
 This tutorial has not been upgraded to ASP.NET Core 2.1. It has been updated for ASP.NET Core 5.0.  The ASP.NET Core 2.0 version of this tutorial is available by selecting **ASP.NET Core 2.0** above the table of contents or at the top of the page:
 
@@ -16,4 +16,4 @@ The 2.0 tutorial teaches ASP.NET Core MVC and Entity Framework Core with control
 * Uses more efficient queries.
 * Uses the latest EF Core API.
 
-::: moniker-end
+:::moniker-end

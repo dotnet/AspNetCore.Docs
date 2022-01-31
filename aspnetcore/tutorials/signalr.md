@@ -14,7 +14,7 @@ uid: tutorials/signalr
 
 # Tutorial: Get started with ASP.NET Core SignalR
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 This tutorial teaches the basics of building a real-time app using SignalR. You learn how to:
 
@@ -258,9 +258,9 @@ The preceding highlighted code adds SignalR to the ASP.NET Core dependency injec
 >   dotnet dev-certs https --clean
 >   dotnet dev-certs https --trust
 >   ```
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 This tutorial teaches the basics of building a real-time app using SignalR. You learn how to:
 
@@ -480,4 +480,4 @@ The SignalR server must be configured to pass SignalR requests to SignalR.
 >   dotnet dev-certs https --trust
 >   ```
 
-::: moniker-end
+:::moniker-end

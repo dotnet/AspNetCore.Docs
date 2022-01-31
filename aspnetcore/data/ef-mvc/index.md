@@ -9,11 +9,11 @@ uid: data/ef-mvc/index
 ---
 # ASP.NET Core MVC with EF Core - tutorial series
 
-::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
+:::moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
 This tutorial has **not** been updated to ASP.NET Core 3.0. It has been updated for ASP.NET Core 5.0.
 
-::: moniker-end
+:::moniker-end
 
 [!INCLUDE [RP better than MVC](../../includes/RP-EF/rp-over-mvc.md)]
 

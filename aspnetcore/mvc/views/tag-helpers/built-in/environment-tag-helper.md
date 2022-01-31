@@ -32,7 +32,7 @@ The following example uses an Environment Tag Helper. The content is rendered if
 </environment>
 ```
 
-::: moniker range=">= aspnetcore-2.0"
+:::moniker range=">= aspnetcore-2.0"
 
 ## include and exclude attributes
 
@@ -58,7 +58,7 @@ In contrast to the `include` attribute, the content of the `<environment>` tag i
 </environment>
 ```
 
-::: moniker-end
+:::moniker-end
 
 ## Additional resources
 

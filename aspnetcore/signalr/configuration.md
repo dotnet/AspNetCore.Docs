@@ -12,7 +12,7 @@ uid: signalr/configuration
 
 # ASP.NET Core SignalR configuration
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 ## JSON/MessagePack serialization options
 
@@ -408,8 +408,8 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/c
 * <xref:signalr/messagepackhubprotocol>
 * <xref:signalr/supported-platforms>
 
-::: moniker-end
-::: moniker range="= aspnetcore-5.0"
+:::moniker-end
+:::moniker range="= aspnetcore-5.0"
 
 ## JSON/MessagePack serialization options
 
@@ -801,8 +801,8 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/c
 * <xref:signalr/messagepackhubprotocol>
 * <xref:signalr/supported-platforms>
 
-::: moniker-end
-::: moniker range="= aspnetcore-3.1"
+:::moniker-end
+:::moniker range="= aspnetcore-3.1"
 
 ## JSON/MessagePack serialization options
 
@@ -1188,8 +1188,8 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/c
 * <xref:signalr/messagepackhubprotocol>
 * <xref:signalr/supported-platforms>
 
-::: moniker-end
-::: moniker range="= aspnetcore-3.0"
+:::moniker-end
+:::moniker range="= aspnetcore-3.0"
 
 ## JSON/MessagePack serialization options
 
@@ -1574,8 +1574,8 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/c
 * <xref:signalr/messagepackhubprotocol>
 * <xref:signalr/supported-platforms>
 
-::: moniker-end
-::: moniker range="= aspnetcore-2.2"
+:::moniker-end
+:::moniker range="= aspnetcore-2.2"
 
 ## JSON/MessagePack serialization options
 
@@ -1924,8 +1924,8 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/c
 * <xref:signalr/messagepackhubprotocol>
 * <xref:signalr/supported-platforms>
 
-::: moniker-end
-::: moniker range="< aspnetcore-2.2"
+:::moniker-end
+:::moniker range="< aspnetcore-2.2"
 
 ## JSON/MessagePack serialization options
 
@@ -2268,4 +2268,4 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/c
 * <xref:signalr/messagepackhubprotocol>
 * <xref:signalr/supported-platforms>
 
-::: moniker-end
+:::moniker-end

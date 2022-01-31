@@ -29,7 +29,7 @@ This article explains SignalR-specific aspects of setting up a [Redis](https://r
   * [Redis documentation](https://redis.io/)
   * [Azure Redis Cache documentation](/azure/redis-cache/)
 
-::: moniker range="= aspnetcore-2.1"
+:::moniker range="= aspnetcore-2.1"
 
 * In the SignalR app, install the `Microsoft.AspNetCore.SignalR.Redis` NuGet package.
 * In the `Startup.ConfigureServices` method, call `AddRedis` after `AddSignalR`:
@@ -53,9 +53,9 @@ This article explains SignalR-specific aspects of setting up a [Redis](https://r
 
   In the preceding code, `options.Configuration` is initialized with whatever was specified in the connection string.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="= aspnetcore-2.2"
+:::moniker range="= aspnetcore-2.2"
 
 * In the SignalR app, install one of the following NuGet packages:
 
@@ -89,9 +89,9 @@ This article explains SignalR-specific aspects of setting up a [Redis](https://r
 
   For information about Redis options, see the [StackExchange Redis documentation](https://stackexchange.github.io/StackExchange.Redis/Configuration.html).
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.0"
 
 * In the SignalR app, install the following NuGet package:
 
@@ -120,7 +120,7 @@ This article explains SignalR-specific aspects of setting up a [Redis](https://r
 
   For information about Redis options, see the [StackExchange Redis documentation](https://stackexchange.github.io/StackExchange.Redis/Configuration.html).
 
-::: moniker-end
+:::moniker-end
 
 * If you're using one Redis server for multiple SignalR apps, use a different channel prefix for each SignalR app.
 
@@ -148,7 +148,7 @@ SignalR automatically reconnects when the Redis server is available again.
 
 Here's an example that shows how to handle Redis connection failure events.
 
-::: moniker range="= aspnetcore-2.1"
+:::moniker range="= aspnetcore-2.1"
 
 ```csharp
 services.AddSignalR()
@@ -178,9 +178,9 @@ services.AddSignalR()
         });
 ```
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="> aspnetcore-2.1"
+:::moniker range="> aspnetcore-2.1"
 
 ```csharp
 services.AddSignalR()
@@ -211,7 +211,7 @@ services.AddSignalR()
         });
 ```
 
-::: moniker-end
+:::moniker-end
 
 ## Redis Clustering
 

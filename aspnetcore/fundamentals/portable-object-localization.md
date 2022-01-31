@@ -9,7 +9,7 @@ uid: fundamentals/portable-object-localization
 ---
 # Configure portable object localization in ASP.NET Core
 
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.0"
 
 By [Sébastien Ros](https://github.com/sebastienros), [Scott Addie](https://twitter.com/Scott_Addie) and [Hisham Bin Ateya](https://github.com/hishamco)
 
@@ -223,9 +223,9 @@ The package includes a `Plural` extension method that's specific to two plural f
 
 You can use the more generic `Plural(int count, string[] pluralForms, params object[] arguments)` overload which accepts a string array of translations.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+:::moniker range="< aspnetcore-3.0"
 
 By [Sébastien Ros](https://github.com/sebastienros) and [Scott Addie](https://twitter.com/Scott_Addie)
 
@@ -439,4 +439,4 @@ The package includes a `Plural` extension method that's specific to two plural f
 
 You can use the more generic `Plural(int count, string[] pluralForms, params object[] arguments)` overload which accepts a string array of translations.
 
-::: moniker-end
+:::moniker-end

@@ -11,7 +11,7 @@ uid: test/razor-pages-tests
 ---
 # Razor Pages unit tests in ASP.NET Core
 
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.0"
 
 ASP.NET Core supports unit tests of Razor Pages apps. Tests of the data access layer (DAL) and page models help ensure:
 
@@ -193,9 +193,9 @@ Other tests in this group create page model objects that include the <xref:Micro
 * [Moq](https://github.com/moq/moq4)
 * [Moq Quickstart](https://github.com/Moq/moq4/wiki/Quickstart)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+:::moniker range="< aspnetcore-3.0"
 
 ASP.NET Core supports unit tests of Razor Pages apps. Tests of the data access layer (DAL) and page models help ensure:
 
@@ -378,4 +378,4 @@ Other tests in this group create page model objects that include the <xref:Micro
 * [Moq Quickstart](https://github.com/Moq/moq4/wiki/Quickstart)
 * [JustMockLite](https://github.com/telerik/JustMockLite): A mocking framework for .NET developers. (*Not maintained or supported by Microsoft.*)
 
-::: moniker-end
+:::moniker-end
