@@ -74,9 +74,17 @@ public class HomeController : Controller
 }
 ```
 
+## Use HttpContext from minimal APIs
+
+To use `HttpContext` from minimal APIs, add a `HttpContext` parameter:
+
+```csharp
+app.MapGet("/", (HttpContext context) => context.Response.WriteAsync("Hello World"));
+```
+
 ## Use HttpContext from middleware
 
-When working with custom middleware components, `HttpContext` is passed into the `Invoke` or `InvokeAsync` method:
+To use `HttpContext` from custom middleware components, use the `HttpContext` parameter passed into the `Invoke` or `InvokeAsync` method:
 
 ```csharp
 public class MyCustomMiddleware
@@ -89,6 +97,26 @@ public class MyCustomMiddleware
     }
 }
 ```
+
+## Use HttpContext from SignalR
+
+To use `HttpContext` from SignalR, use the <xref:Microsoft.AspNetCore.SignalR.GetHttpContextExtensions.GetHttpContext%2A> method on <xref:Microsoft.AspNetCore.SignalR.Hub.Context%2A?displayProperty=nameWithType>:
+
+```csharp
+public class MyHub : Hub
+{
+    public async Task SendMessage()
+    {
+        var httpContext = Context.GetHttpContext();
+
+        // ...
+    }
+}
+```
+
+## Use HttpContext from gRPC methods
+
+To use `HttpContext` from gRPC methods, see [Resolve HttpContext in gRPC methods](xref:grpc/aspnetcore#resolve-httpcontext-in-grpc-methods).
 
 ## Use HttpContext from custom components
 
