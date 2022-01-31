@@ -892,7 +892,7 @@ If the web server returns responses that don't match the expected SHA-256 hashes
 
 > Failed to find a valid digest in the 'integrity' attribute for resource 'https://myapp.example.com/\_framework/MyBlazorApp.dll' with computed SHA-256 integrity 'IIa70iwvmEg5WiDV17OpQ5eCztNYqL186J56852RpJY='. The resource has been blocked.
 
-In most cases, this is ***not*** a problem with integrity checking itself. Instead, it means there is some other problem, and the integrity check is warning you about that other problem.
+In most cases, the warning doesn't indicate a problem with integrity checking. Instead, the warning usually means that some other problem exists.
 
 For Blazor WebAssembly's boot reference source, see [the `Boot.WebAssembly.ts` file in the `dotnet/aspnetcore` GitHub repository](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Web.JS/src/Boot.WebAssembly.ts).
 
@@ -910,8 +910,8 @@ Common reasons why this fails are:
   * If some aspect of the deployment process modified the files. For example if you use a Git-based deployment mechanism, bear in mind that Git transparently converts Windows-style line endings to Unix-style line endings if you commit files on Windows and check them out on Linux. Changing file line endings change the SHA-256 hashes. To avoid this problem, consider [using `.gitattributes` to treat build artifacts as `binary` files](https://git-scm.com/book/en/v2/Customizing-Git-Git-Attributes).
   * The web server modifies the file contents as part of serving them. For example, some content distribution networks (CDNs) automatically attempt to [minify](xref:client-side/bundling-and-minification#minification) HTML, thereby modifying it. You may need to disable such features.
 * The `blazor.boot.json` file fails to load properly or is improperly cached on the client. Common causes include either of the following: 
-  * Incorrectly configured or malfunctioning custom developer code.
-  * One or more incorrectly configured intermediate caching layers.
+  * Misconfigured or malfunctioning custom developer code.
+  * One or more misconfigured intermediate caching layers.
 
 To diagnose which of these applies in your case:
 
@@ -1737,7 +1737,7 @@ If the web server returns responses that don't match the expected SHA-256 hashes
 
 > Failed to find a valid digest in the 'integrity' attribute for resource 'https://myapp.example.com/\_framework/MyBlazorApp.dll' with computed SHA-256 integrity 'IIa70iwvmEg5WiDV17OpQ5eCztNYqL186J56852RpJY='. The resource has been blocked.
 
-In most cases, this is ***not*** a problem with integrity checking itself. Instead, it means there is some other problem, and the integrity check is warning you about that other problem.
+In most cases, the warning doesn't indicate a problem with integrity checking. Instead, the warning usually means that some other problem exists.
 
 For Blazor WebAssembly's boot reference source, see [the `Boot.WebAssembly.ts` file in the `dotnet/aspnetcore` GitHub repository](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Web.JS/src/Boot.WebAssembly.ts).
 
@@ -1755,8 +1755,8 @@ Common reasons why this fails are:
   * If some aspect of the deployment process modified the files. For example if you use a Git-based deployment mechanism, bear in mind that Git transparently converts Windows-style line endings to Unix-style line endings if you commit files on Windows and check them out on Linux. Changing file line endings change the SHA-256 hashes. To avoid this problem, consider [using `.gitattributes` to treat build artifacts as `binary` files](https://git-scm.com/book/en/v2/Customizing-Git-Git-Attributes).
   * The web server modifies the file contents as part of serving them. For example, some content distribution networks (CDNs) automatically attempt to [minify](xref:client-side/bundling-and-minification#minification) HTML, thereby modifying it. You may need to disable such features.
 * The `blazor.boot.json` file fails to load properly or is improperly cached on the client. Common causes include either of the following: 
-  * Incorrectly configured or malfunctioning custom developer code.
-  * One or more incorrectly configured intermediate caching layers.
+  * Misconfigured or malfunctioning custom developer code.
+  * One or more misconfigured intermediate caching layers.
 
 To diagnose which of these applies in your case:
 
@@ -2582,7 +2582,7 @@ If the web server returns responses that don't match the expected SHA-256 hashes
 
 > Failed to find a valid digest in the 'integrity' attribute for resource 'https://myapp.example.com/\_framework/MyBlazorApp.dll' with computed SHA-256 integrity 'IIa70iwvmEg5WiDV17OpQ5eCztNYqL186J56852RpJY='. The resource has been blocked.
 
-In most cases, this is ***not*** a problem with integrity checking itself. Instead, it means there is some other problem, and the integrity check is warning you about that other problem.
+In most cases, the warning doesn't indicate a problem with integrity checking. Instead, the warning usually means that some other problem exists.
 
 For Blazor WebAssembly's boot reference source, see [the `Boot.WebAssembly.ts` file in the `dotnet/aspnetcore` GitHub repository](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Web.JS/src/Boot.WebAssembly.ts).
 
@@ -2600,8 +2600,8 @@ Common reasons why this fails are:
   * If some aspect of the deployment process modified the files. For example if you use a Git-based deployment mechanism, bear in mind that Git transparently converts Windows-style line endings to Unix-style line endings if you commit files on Windows and check them out on Linux. Changing file line endings change the SHA-256 hashes. To avoid this problem, consider [using `.gitattributes` to treat build artifacts as `binary` files](https://git-scm.com/book/en/v2/Customizing-Git-Git-Attributes).
   * The web server modifies the file contents as part of serving them. For example, some content distribution networks (CDNs) automatically attempt to [minify](xref:client-side/bundling-and-minification#minification) HTML, thereby modifying it. You may need to disable such features.
 * The `blazor.boot.json` file fails to load properly or is improperly cached on the client. Common causes include either of the following: 
-  * Incorrectly configured or malfunctioning custom developer code.
-  * One or more incorrectly configured intermediate caching layers.
+  * Misconfigured or malfunctioning custom developer code.
+  * One or more misconfigured intermediate caching layers.
 
 To diagnose which of these applies in your case:
 
