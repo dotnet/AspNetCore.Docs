@@ -894,6 +894,10 @@ If your web server returns responses that don't match the expected SHA-256 hashe
 
 In most cases, this is *not* a problem with integrity checking itself. Instead, it means there is some other problem, and the integrity check is warning you about that other problem.
 
+For Blazor WebAssembly's boot reference source, see [the `Boot.WebAssembly.ts` file in the `dotnet/aspnetcore` GitHub repository](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Web.JS/src/Boot.WebAssembly.ts).
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
 ### Diagnosing integrity problems
 
 When an app is built, the generated `blazor.boot.json` manifest describes the SHA-256 hashes of boot resources at the time that the build output is produced. The integrity check passes as long as the SHA-256 hashes in `blazor.boot.json` match the files delivered to the browser.
@@ -1735,6 +1739,10 @@ If your web server returns responses that don't match the expected SHA-256 hashe
 
 In most cases, this is *not* a problem with integrity checking itself. Instead, it means there is some other problem, and the integrity check is warning you about that other problem.
 
+For Blazor WebAssembly's boot reference source, see [the `Boot.WebAssembly.ts` file in the `dotnet/aspnetcore` GitHub repository](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Web.JS/src/Boot.WebAssembly.ts).
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
 ### Diagnosing integrity problems
 
 When an app is built, the generated `blazor.boot.json` manifest describes the SHA-256 hashes of your boot resources at the time that the build output is produced. The integrity check passes as long as the SHA-256 hashes in `blazor.boot.json` match the files delivered to the browser.
@@ -2575,6 +2583,10 @@ If your web server returns responses that don't match the expected SHA-256 hashe
 > Failed to find a valid digest in the 'integrity' attribute for resource 'https://myapp.example.com/\_framework/MyBlazorApp.dll' with computed SHA-256 integrity 'IIa70iwvmEg5WiDV17OpQ5eCztNYqL186J56852RpJY='. The resource has been blocked.
 
 In most cases, this is *not* a problem with integrity checking itself. Instead, it means there is some other problem, and the integrity check is warning you about that other problem.
+
+For Blazor WebAssembly's boot reference source, see [the `Boot.WebAssembly.ts` file in the `dotnet/aspnetcore` GitHub repository](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Web.JS/src/Boot.WebAssembly.ts).
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 ### Diagnosing integrity problems
 
