@@ -161,12 +161,9 @@ In *Program.cs* in the ASP.NET Core 6.0 ProductsCore app, <xref:Microsoft.AspNet
 
 Configure routing as follows:
 
-1. Mark the `ProductsController` class with the following attributes:
+1. Mark the `ProductsController` class with the following highlighted attributes:
 
-    ```csharp
-    [Route("api/[controller]")]
-    [ApiController]
-    ```
+[!code-csharp[](webapi/sample/6.x/ProductsCore/Controllers/ProductsController.cs?highlight=6,7)]
 
     The preceding [`[Route]`](xref:Microsoft.AspNetCore.Mvc.RouteAttribute) attribute configures the controller's attribute routing pattern. The [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute makes attribute routing a requirement for all actions in this controller.
 
