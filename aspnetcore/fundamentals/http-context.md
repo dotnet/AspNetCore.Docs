@@ -5,7 +5,7 @@ description: HttpContext in ASP.NET Core. HttpContext isn't thread-safe and can 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 5/5/2020
+ms.date: 01/31/2022
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/httpcontext
 ---
@@ -100,7 +100,7 @@ public class MyCustomMiddleware
 
 ## Use HttpContext from SignalR
 
-To use `HttpContext` from SignalR, use the <xref:Microsoft.AspNetCore.SignalR.GetHttpContextExtensions.GetHttpContext%2A> method on <xref:Microsoft.AspNetCore.SignalR.Hub.Context%2A?displayProperty=nameWithType>:
+To use `HttpContext` from SignalR, call the <xref:Microsoft.AspNetCore.SignalR.GetHttpContextExtensions.GetHttpContext%2A> method on <xref:Microsoft.AspNetCore.SignalR.Hub.Context%2A?displayProperty=nameWithType>:
 
 ```csharp
 public class MyHub : Hub
