@@ -11,8 +11,6 @@ uid: signalr/javascript-client
 ---
 # ASP.NET Core SignalR JavaScript client
 
-
-
 ::: moniker range=">= aspnetcore-6.0"
 
 By [Rachel Appel](https://twitter.com/rachelappel)
@@ -132,7 +130,7 @@ Set up client-side log tracing by passing a logger and type of event to log when
 * `signalR.LogLevel.Information`: Status messages without errors. Logs `Information`, `Warning`, and `Error` messages.
 * `signalR.LogLevel.Trace`: Trace messages. Logs everything, including data transported between hub and client.
 
-Use the [configureLogging](https://docs.microsoft.com/en-us/javascript/api/@microsoft/signalr/hubconnectionbuilder#@microsoft-signalr-hubconnectionbuilder-configurelogging-1) method on [HubConnectionBuilder](/javascript/api/@microsoft/signalr/hubconnectionbuilder) to configure the log level. Messages are logged to the browser console:
+Use the [configureLogging](/javascript/api/@microsoft/signalr/hubconnectionbuilder#@microsoft-signalr-hubconnectionbuilder-configurelogging-1) method on [HubConnectionBuilder](/javascript/api/@microsoft/signalr/hubconnectionbuilder) to configure the log level. Messages are logged to the browser console:
 
 [!code-javascript[](javascript-client/samples/3.x/SignalRChat/wwwroot/chat.js?name=snippet_Connection&highlight=3)]
 
