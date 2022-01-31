@@ -12,7 +12,7 @@ uid: grpc/index
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 [gRPC](https://grpc.io) is a language agnostic, high-performance Remote Procedure Call (RPC) framework.
 
 The main benefits of gRPC are:
@@ -130,9 +130,9 @@ For more information on creating clients, and calling different service methods,
 * <xref:grpc/clientfactory>
 * <xref:tutorials/grpc/grpc-start>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 [gRPC](https://grpc.io) is a language agnostic, high-performance Remote Procedure Call (RPC) framework.
 
 The main benefits of gRPC are:
@@ -253,4 +253,4 @@ For more information on creating clients, and calling different service methods,
 * <xref:grpc/clientfactory>
 * <xref:tutorials/grpc/grpc-start>
 
-::: moniker-end
+:::moniker-end

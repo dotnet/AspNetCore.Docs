@@ -11,11 +11,11 @@ uid: tutorials/publish-to-azure-webapp-using-vs
 # Publish an ASP.NET Core app to Azure with Visual Studio
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.0"
 
 [!INCLUDE [Azure App Service Preview Notice](../includes/azure-apps-preview-notice.md)]
 
-::: moniker-end
+:::moniker-end
 
 
 If you're working on macOS, see [Publish a Web app to Azure App Service using Visual Studio for Mac](/visualstudio/mac/publish-app-svc).

@@ -11,7 +11,7 @@ ms.custom: contperf-fy21q3
 
 # Part 5, work with a database in an ASP.NET Core MVC app
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Jon P Smith](https://twitter.com/thereformedprog).
 
@@ -128,9 +128,9 @@ The app shows the seeded data.
 > [Previous: Adding a model](adding-model.md)
 > [Next: Adding controller methods and views](controller-methods-views.md)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Jon P Smith](https://twitter.com/thereformedprog).
 
@@ -249,4 +249,4 @@ The app shows the seeded data.
 > [Previous: Adding a model](adding-model.md)
 > [Next: Adding controller methods and views](controller-methods-views.md)
 
-::: moniker-end
+:::moniker-end

@@ -13,7 +13,7 @@ uid: fundamentals/startup
 
 By [Kirk Larkin](https://twitter.com/serpent5) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 ASP.NET Core apps created with the web templates contain the application startup code in the `Program.cs` file.
 
@@ -28,9 +28,9 @@ The following app startup code supports:
 
 For more information on application startup, see <xref:fundamentals/index>.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 The `Startup` class configures services and the app's request pipeline.
 
@@ -164,4 +164,4 @@ An <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> implementation allows add
 * <xref:fundamentals/logging/index>
 * <xref:fundamentals/configuration/index>
 
-::: moniker-end
+:::moniker-end

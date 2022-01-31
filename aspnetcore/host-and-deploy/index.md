@@ -11,7 +11,7 @@ uid: host-and-deploy/index
 ---
 # Host and deploy ASP.NET Core
 
-::: moniker range=">= aspnetcore-2.2"
+:::moniker range=">= aspnetcore-2.2"
 
 In general, to deploy an ASP.NET Core app to a hosting environment:
 
@@ -57,17 +57,17 @@ An ASP.NET Core app is a console app that must be started when a server boots an
 
 If the app uses the [Kestrel](xref:fundamentals/servers/kestrel) server, [Nginx](xref:host-and-deploy/linux-nginx), [Apache](xref:host-and-deploy/linux-apache), or [IIS](xref:host-and-deploy/iis/index) can be used as a reverse proxy server. A reverse proxy server receives HTTP requests from the Internet and forwards them to Kestrel.
 
-::: moniker-end 
+:::moniker-end 
 
-::: moniker range=">= aspnetcore-5.0"
+:::moniker range=">= aspnetcore-5.0"
 Either configuration&mdash;with or without a reverse proxy server&mdash;is a supported hosting configuration. For more information, see [When to use Kestrel with a reverse proxy](xref:fundamentals/servers/kestrel/when-to-use-a-reverse-proxy).
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-2.2 < aspnetcore-5.0"
+:::moniker range=">= aspnetcore-2.2 < aspnetcore-5.0"
 Either configuration&mdash;with or without a reverse proxy server&mdash;is a supported hosting configuration. For more information, see [When to use Kestrel with a reverse proxy](xref:fundamentals/servers/kestrel#when-to-use-kestrel-with-a-reverse-proxy).
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-2.2"
+:::moniker range=">= aspnetcore-2.2"
 
 ## Proxy server and load balancer scenarios
 
@@ -108,9 +108,9 @@ Use Health Check Middleware to perform health checks on an app and its dependenc
 * <xref:test/troubleshoot>
 * [ASP.NET Hosting](https://dotnet.microsoft.com/apps/aspnet/hosting)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-2.2"
+:::moniker range="< aspnetcore-2.2"
 
 In general, to deploy an ASP.NET Core app to a hosting environment:
 
@@ -182,4 +182,4 @@ For more information, see <xref:host-and-deploy/docker/index>.
 * <xref:test/troubleshoot>
 * [ASP.NET Hosting](https://dotnet.microsoft.com/apps/aspnet/hosting)
 
-::: moniker-end
+:::moniker-end

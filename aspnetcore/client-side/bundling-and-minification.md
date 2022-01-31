@@ -83,7 +83,7 @@ Specify which files to include in your pages by using the [Environment Tag Helpe
 
 The following `environment` tag renders the unprocessed CSS files when running in the `Development` environment:
 
-::: moniker range=">= aspnetcore-2.0"
+:::moniker range=">= aspnetcore-2.0"
 
 ```cshtml
 <environment include="Development">
@@ -92,9 +92,9 @@ The following `environment` tag renders the unprocessed CSS files when running i
 </environment>
 ```
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="<= aspnetcore-1.1"
+:::moniker range="<= aspnetcore-1.1"
 
 ```cshtml
 <environment names="Staging,Production">
@@ -105,11 +105,11 @@ The following `environment` tag renders the unprocessed CSS files when running i
 </environment>
 ```
 
-::: moniker-end
+:::moniker-end
 
 The following `environment` tag renders the bundled and minified CSS files when running in an environment other than `Development`. For example, running in `Production` or `Staging` triggers the rendering of these stylesheets:
 
-::: moniker range=">= aspnetcore-2.0"
+:::moniker range=">= aspnetcore-2.0"
 
 ```cshtml
 <environment exclude="Development">
@@ -120,9 +120,9 @@ The following `environment` tag renders the bundled and minified CSS files when 
 </environment>
 ```
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="<= aspnetcore-1.1"
+:::moniker range="<= aspnetcore-1.1"
 
 ```cshtml
 <environment names="Staging,Production">
@@ -133,7 +133,7 @@ The following `environment` tag renders the bundled and minified CSS files when 
 </environment>
 ```
 
-::: moniker-end
+:::moniker-end
 
 ## Additional resources
 

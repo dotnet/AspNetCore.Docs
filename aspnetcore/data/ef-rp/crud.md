@@ -15,7 +15,7 @@ By [Tom Dykstra](https://github.com/tdykstra), [Jeremy Likness](https://twitter.
 
 [!INCLUDE [about the series](~/includes/RP-EF/intro.md)]
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 In this tutorial, the scaffolded CRUD (create, read, update, delete) code is reviewed and customized.
 
@@ -186,9 +186,9 @@ Run the app and delete a student to test the Delete page.
 > [Previous tutorial](xref:data/ef-rp/intro)
 > [Next tutorial](xref:data/ef-rp/sort-filter-page)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="= aspnetcore-3.1"
+:::moniker range="= aspnetcore-3.1"
 
 In this tutorial, the scaffolded CRUD (create, read, update, delete) code is reviewed and customized.
 
@@ -349,9 +349,9 @@ Run the app and delete a student to test the Delete page.
 > [Previous tutorial](xref:data/ef-rp/intro)
 > [Next tutorial](xref:data/ef-rp/sort-filter-page)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="= aspnetcore-5.0"
+:::moniker range="= aspnetcore-5.0"
 
 In this tutorial, the scaffolded CRUD (create, read, update, delete) code is reviewed and customized.
 
@@ -522,4 +522,4 @@ Run the app and delete a student to test the Delete page.
 > [Previous tutorial](xref:data/ef-rp/intro)
 > [Next tutorial](xref:data/ef-rp/sort-filter-page)
 
-::: moniker-end
+:::moniker-end

@@ -9,7 +9,7 @@ uid: security/authentication/identity
 ---
 # Introduction to Identity on ASP.NET Core
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -254,9 +254,9 @@ To prevent publishing static Identity assets (stylesheets and JavaScript files f
 * <xref:security/authentication/2fa>
 * <xref:host-and-deploy/web-farm>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -353,9 +353,9 @@ Run the app and register a user. Depending on your screen size, you might need t
 
 Services are added in `ConfigureServices`. The typical pattern is to call all the `Add{Service}` methods, and then call all the `services.Configure{Service}` methods.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
+:::moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
 [!code-csharp[](identity/sample/WebApp3/Startup.cs?name=snippet_configureservices&highlight=11-99)]
 
@@ -365,9 +365,9 @@ Identity is enabled by calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilder
 
 [!code-csharp[](identity/sample/WebApp3/Startup.cs?name=snippet_configure&highlight=19)]
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 [!code-csharp[](identity/sample/WebApp5x/Startup.cs?name=snippet_configureservices&highlight=12-99)]
 
@@ -377,9 +377,9 @@ Identity is enabled by calling [UseAuthentication](/dotnet/api/microsoft.aspnetc
 
 [!code-csharp[](identity/sample/WebApp5x/Startup.cs?name=snippet_configure&highlight=19)]
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-3.0  < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-3.0  < aspnetcore-6.0"
 
 The template-generated app doesn't use [authorization](xref:security/authorization/secure-data). `app.UseAuthorization` is included to ensure it's added in the correct order should the app add authorization. `UseRouting`, `UseAuthentication`, `UseAuthorization`, and `UseEndpoints` must be called in the order shown in the preceding code.
 
@@ -520,4 +520,4 @@ To prevent publishing static Identity assets (stylesheets and JavaScript files f
 * <xref:security/authentication/2fa>
 * <xref:host-and-deploy/web-farm>
 
-::: moniker-end
+:::moniker-end

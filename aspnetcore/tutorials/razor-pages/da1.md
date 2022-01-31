@@ -12,7 +12,7 @@ uid: tutorials/razor-pages/da1
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 The scaffolded movie app has a good start, but the presentation isn't ideal. **ReleaseDate** should be two words, **Release Date**.
 
@@ -135,9 +135,9 @@ The HTTP GET methods in the Index, Create, and Delete Razor pages follow a simil
 > [Previous: Work with a database](xref:tutorials/razor-pages/sql)
 > [Next: Add search](xref:tutorials/razor-pages/search)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 The scaffolded movie app has a good start, but the presentation isn't ideal. **ReleaseDate** should be two words, **Release Date**.
 
@@ -260,4 +260,4 @@ The HTTP GET methods in the Index, Create, and Delete Razor pages follow a simil
 > [Previous: Work with a database](xref:tutorials/razor-pages/sql)
 > [Next: Add search](xref:tutorials/razor-pages/search)
 
-::: moniker-end
+:::moniker-end

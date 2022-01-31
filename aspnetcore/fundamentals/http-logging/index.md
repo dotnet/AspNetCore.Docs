@@ -12,7 +12,7 @@ uid: fundamentals/http-logging/index
 
 # HTTP Logging in ASP.NET Core
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 HTTP Logging is a middleware that logs information about HTTP requests and HTTP responses. HTTP logging provides logs of:
 
@@ -84,4 +84,4 @@ To configure the HTTP logging middleware, call <xref:Microsoft.Extensions.Depend
 
 [!code-csharp[](samples/6.x/Program.cs?name=snippet_Addservices&highlight=11-12)]
 
-::: moniker-end
+:::moniker-end

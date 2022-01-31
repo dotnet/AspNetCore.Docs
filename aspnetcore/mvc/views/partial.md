@@ -14,11 +14,11 @@ By [Steve Smith](https://ardalis.com/), [Maher JENDOUBI](https://twitter.com/mah
 
 A partial view is a [Razor](xref:mvc/views/razor) markup file (*.cshtml*) without an [`@page`](xref:mvc/views/razor#page) directive that renders HTML output *within* another markup file's rendered output.
 
-::: moniker range=">= aspnetcore-2.1"
+:::moniker range=">= aspnetcore-2.1"
 
 The term *partial view* is used when developing either an MVC app, where markup files are called *views*, or a Razor Pages app, where markup files are called *pages*. This topic generically refers to MVC views and Razor Pages pages as *markup files*.
 
-::: moniker-end
+:::moniker-end
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/partial/sample) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -39,7 +39,7 @@ Don't use a partial view where complex rendering logic or code execution is requ
 
 ## Declare partial views
 
-::: moniker range=">= aspnetcore-2.0"
+:::moniker range=">= aspnetcore-2.0"
 
 A partial view is a *.cshtml* markup file without an [`@page`](xref:mvc/views/razor#page) directive maintained within the *Views* folder (MVC) or *Pages* folder (Razor Pages).
 
@@ -49,9 +49,9 @@ Unlike MVC view or page rendering, a partial view doesn't run *_ViewStart.cshtml
 
 Partial view file names often begin with an underscore (`_`). This naming convention isn't required, but it helps to visually differentiate partial views from views and pages.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-2.0"
+:::moniker range="< aspnetcore-2.0"
 
 A partial view is a *.cshtml* markup file maintained within the *Views* folder.
 
@@ -61,11 +61,11 @@ Unlike MVC view rendering, a partial view doesn't run *_ViewStart.cshtml*. For m
 
 Partial view file names often begin with an underscore (`_`). This naming convention isn't required, but it helps to visually differentiate partial views from views.
 
-::: moniker-end
+:::moniker-end
 
 ## Reference a partial view
 
-::: moniker range=">= aspnetcore-2.0"
+:::moniker range=">= aspnetcore-2.0"
 
 ### Use a partial view in a Razor Pages PageModel
 
@@ -80,28 +80,28 @@ public IActionResult OnGetPartial() =>
     };
 ```
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-2.2"
+:::moniker range=">= aspnetcore-2.2"
 
 In ASP.NET Core 2.2 or later, a handler method can alternatively call the <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageBase.Partial*> method to produce a `PartialViewResult` object:
 
 [!code-csharp[](partial/sample/PartialViewsSample/Pages/DiscoveryRP.cshtml.cs?name=snippet_OnGetPartial)]
 
-::: moniker-end
+:::moniker-end
 
 ### Use a partial view in a markup file
 
-::: moniker range=">= aspnetcore-2.1"
+:::moniker range=">= aspnetcore-2.1"
 
 Within a markup file, there are several ways to reference a partial view. We recommend that apps use one of the following asynchronous rendering approaches:
 
 * [Partial Tag Helper](#partial-tag-helper)
 * [Asynchronous HTML Helper](#asynchronous-html-helper)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-2.1"
+:::moniker range="< aspnetcore-2.1"
 
 Within a markup file, there are two ways to reference a partial view:
 
@@ -110,9 +110,9 @@ Within a markup file, there are two ways to reference a partial view:
 
 We recommend that apps use the [Asynchronous HTML Helper](#asynchronous-html-helper).
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-2.1"
+:::moniker range=">= aspnetcore-2.1"
 
 ### Partial Tag Helper
 
@@ -154,7 +154,7 @@ The following example references a partial view with a relative path:
 
 For more information, see <xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper>.
 
-::: moniker-end
+:::moniker-end
 
 ### Asynchronous HTML Helper
 
@@ -172,7 +172,7 @@ When the file extension is present, the HTML Helper references a partial view th
 
 The following example references a partial view from the app root. Paths that start with a tilde-slash (`~/`) or a slash (`/`) refer to the app root:
 
-::: moniker range=">= aspnetcore-2.1"
+:::moniker range=">= aspnetcore-2.1"
 
 **Razor Pages**
 
@@ -183,7 +183,7 @@ The following example references a partial view from the app root. Paths that st
 
 **MVC**
 
-::: moniker-end
+:::moniker-end
 
 ```cshtml
 @await Html.PartialAsync("~/Views/Folder/_PartialName.cshtml")
@@ -209,7 +209,7 @@ Since `RenderPartialAsync` streams rendered content, it provides better performa
 > [!IMPORTANT]
 > If you need to execute code, use a [view component](xref:mvc/views/view-components) instead of a partial view.
 
-::: moniker range=">= aspnetcore-2.1"
+:::moniker range=">= aspnetcore-2.1"
 
 Calling `Partial` or `RenderPartial` results in a Visual Studio analyzer warning. For example, the presence of `Partial` yields the following warning message:
 
@@ -217,13 +217,13 @@ Calling `Partial` or `RenderPartial` results in a Visual Studio analyzer warning
 
 Replace calls to `@Html.Partial` with `@await Html.PartialAsync` or the [Partial Tag Helper](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper). For more information on Partial Tag Helper migration, see [Migrate from an HTML Helper](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper#migrate-from-an-html-helper).
 
-::: moniker-end
+:::moniker-end
 
 ## Partial view discovery
 
 When a partial view is referenced by name without a file extension, the following locations are searched in the stated order:
 
-::: moniker range=">= aspnetcore-2.1"
+:::moniker range=">= aspnetcore-2.1"
 
 **Razor Pages**
 
@@ -235,24 +235,24 @@ When a partial view is referenced by name without a file extension, the followin
 
 **MVC**
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-2.0"
+:::moniker range=">= aspnetcore-2.0"
 
 1. `/Areas/<Area-Name>/Views/<Controller-Name>`
 1. `/Areas/<Area-Name>/Views/Shared`
 1. `/Views/Shared`
 1. `/Pages/Shared`
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-2.0"
+:::moniker range="< aspnetcore-2.0"
 
 1. `/Areas/<Area-Name>/Views/<Controller-Name>`
 1. `/Areas/<Area-Name>/Views/Shared`
 1. `/Views/Shared`
 
-::: moniker-end
+:::moniker-end
 
 The following conventions apply to partial view discovery:
 
@@ -279,7 +279,7 @@ You can pass a model into a partial view. The model can be a custom object. You 
 @await Html.PartialAsync("_PartialName", model)
 ```
 
-::: moniker range=">= aspnetcore-2.1"
+:::moniker range=">= aspnetcore-2.1"
 
 **Razor Pages**
 
@@ -297,7 +297,7 @@ The following markup in the sample app is from the *Pages/ArticlesRP/ReadRP.csht
 
 **MVC**
 
-::: moniker-end
+:::moniker-end
 
 The following markup in the sample app shows the *Views/Articles/Read.cshtml* view. The view contains two partial views. The second partial view passes in a model and `ViewData` to the partial view. The `ViewDataDictionary` constructor overload is used to pass a new `ViewData` dictionary while retaining the existing `ViewData` dictionary.
 
@@ -334,7 +334,7 @@ The second partial view renders the article's sections:
 
 ## Additional resources
 
-::: moniker range=">= aspnetcore-2.1"
+:::moniker range=">= aspnetcore-2.1"
 
 * <xref:mvc/views/razor>
 * <xref:mvc/views/tag-helpers/intro>
@@ -342,12 +342,12 @@ The second partial view renders the article's sections:
 * <xref:mvc/views/view-components>
 * <xref:mvc/controllers/areas>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-2.1"
+:::moniker range="< aspnetcore-2.1"
 
 * <xref:mvc/views/razor>
 * <xref:mvc/views/view-components>
 * <xref:mvc/controllers/areas>
 
-::: moniker-end
+:::moniker-end

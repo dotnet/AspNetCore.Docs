@@ -48,22 +48,22 @@ Add the WebSockets middleware in the `Configure` method of the `Startup` class:
 > [!NOTE]
 > If you would like to accept WebSocket requests in a controller, the call to `app.UseWebSockets` must occur before `app.UseEndpoints`.
 
-::: moniker range="< aspnetcore-2.2"
+:::moniker range="< aspnetcore-2.2"
 
 The following settings can be configured:
 
 * `KeepAliveInterval` - How frequently to send "ping" frames to the client to ensure proxies keep the connection open. The default is two minutes.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-2.2"
+:::moniker range=">= aspnetcore-2.2"
 
 The following settings can be configured:
 
 * `KeepAliveInterval` - How frequently to send "ping" frames to the client to ensure proxies keep the connection open. The default is two minutes.
 * `AllowedOrigins` - A list of allowed Origin header values for WebSocket requests. By default, all origins are allowed. See "WebSocket origin restriction" below for details.
 
-::: moniker-end
+:::moniker-end
 
 [!code-csharp[](websockets/samples/2.x/WebSocketsSample/Startup.cs?name=UseWebSocketsOptions)]
 
@@ -96,7 +96,7 @@ The WebSocket closed exception can also happen when returning too soon from an a
 
 Never use `Task.Wait`, `Task.Result`, or similar blocking calls to wait for the socket to complete, as that can cause serious threading issues. Always use `await`.
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 ### Compression
 
@@ -121,7 +121,7 @@ Compression is negotiated between the client and server when first establishing 
 > [!NOTE]
 > If the compression negotiation isn't accepted by either the server or client, the connection is still established. However, the connection doesn't use compression when sending and receiving messages.
 
-::: moniker-end
+:::moniker-end
 
 ## Send and receive messages
 
@@ -133,7 +133,7 @@ The code shown earlier that accepts the WebSocket request passes the `WebSocket`
 
 When accepting the WebSocket connection before beginning the loop, the middleware pipeline ends. Upon closing the socket, the pipeline unwinds. That is, the request stops moving forward in the pipeline when the WebSocket is accepted. When the loop is finished and the socket is closed, the request proceeds back up the pipeline.
 
-::: moniker range=">= aspnetcore-2.2"
+:::moniker range=">= aspnetcore-2.2"
 
 ## Handle client disconnects
 
@@ -157,7 +157,7 @@ If you're hosting your server on "https://server.com" and hosting your client on
 > [!NOTE]
 > The `Origin` header is controlled by the client and, like the `Referer` header, can be faked. Do **not** use these headers as an authentication mechanism.
 
-::: moniker-end
+:::moniker-end
 
 ## IIS/IIS Express support
 

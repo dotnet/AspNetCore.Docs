@@ -14,7 +14,7 @@ By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com
 
 [!INCLUDE [about the series](~/includes/RP-EF/intro.md)]
 
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.0"
 
 This tutorial introduces the EF Core migrations feature for managing data model changes.
 
@@ -155,9 +155,9 @@ The next tutorial builds out the data model, adding entity properties and new en
 > [Previous tutorial](xref:data/ef-rp/sort-filter-page)
 > [Next tutorial](xref:data/ef-rp/complex-data-model)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+:::moniker range="< aspnetcore-3.0"
 
 In this tutorial, the EF Core migrations feature for managing data model changes is used.
 
@@ -322,4 +322,4 @@ Solution: Run `dotnet ef database update`
 > [Previous](xref:data/ef-rp/sort-filter-page)
 > [Next](xref:data/ef-rp/complex-data-model)
 
-::: moniker-end
+:::moniker-end

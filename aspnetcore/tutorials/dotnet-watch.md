@@ -40,7 +40,7 @@ In a web browser, navigate to `http://localhost:<port number>/api/math/sum?a=4&b
 
 Navigate to the product API (`http://localhost:<port number>/api/math/product?a=4&b=5`). It returns `9`, not `20` as you'd expect. That problem is fixed later in the tutorial.
 
-::: moniker range="<= aspnetcore-2.0"
+:::moniker range="<= aspnetcore-2.0"
 
 ## Add `dotnet watch` to a project
 
@@ -60,7 +60,7 @@ The `dotnet watch` file watcher tool is included with version 2.1.300 of the .NE
     dotnet restore
     ```
 
-::: moniker-end
+:::moniker-end
 
 ## Run .NET Core CLI commands using `dotnet watch`
 
@@ -75,7 +75,7 @@ Any [.NET Core CLI command](/dotnet/core/tools#cli-commands) can be run with `do
 
 Run `dotnet watch run` in the *WebApp* folder. The console output indicates `watch` has started.
 
-::: moniker range=">= aspnetcore-5.0"
+:::moniker range=">= aspnetcore-5.0"
 Running `dotnet watch run` on a web app launches a browser that navigates to the app's URL once ready. `dotnet watch` does this by reading the app's console output and waiting for the ready message displayed by <xref:Microsoft.AspNetCore.WebHost>.
 
 `dotnet watch` refreshes the browser when it detects changes to watched files. To do this, the watch command injects a middleware to the app that modifies HTML responses created by the app. The middleware adds a JavaScript script block to the page that allows `dotnet watch` to instruct the browser to refresh. Currently, changes to all watched files, including static content such as *.html* and *.css* files cause the app to be rebuilt.
@@ -87,7 +87,7 @@ Running `dotnet watch run` on a web app launches a browser that navigates to the
 
 For more information on configuration, see [dotnet-watch configuration](#dotnet-watch-configuration) in this document.
 
-::: moniker-end
+:::moniker-end
 
 > [!NOTE]
 > You can use `dotnet watch --project <PROJECT>` to specify a project to watch. For example, running `dotnet watch --project WebApp run` from the root of the sample app will also run and watch the *WebApp* project.

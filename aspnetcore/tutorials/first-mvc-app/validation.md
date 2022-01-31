@@ -12,7 +12,7 @@ uid: tutorials/first-mvc-app/validation
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 In this section:
 
@@ -129,9 +129,9 @@ In the next part of the series, we review the app and make some improvements to 
 > [Previous](new-field.md)
 > [Next](details.md)  
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 In this section:
 
@@ -248,4 +248,4 @@ In the next part of the series, we review the app and make some improvements to 
 > [Previous](new-field.md)
 > [Next](details.md)  
 
-::: moniker-end
+:::moniker-end

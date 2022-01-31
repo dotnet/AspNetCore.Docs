@@ -15,7 +15,7 @@ ASP.NET Core SignalR isn't compatible with clients or servers for ASP.NET Signal
 
 ## How to identify the SignalR version
 
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.0"
 
 |                      | ASP.NET SignalR | ASP.NET Core SignalR |
 | -------------------- | --------------- | -------------------- |
@@ -26,9 +26,9 @@ ASP.NET Core SignalR isn't compatible with clients or servers for ASP.NET Signal
 | **Server app type** | ASP.NET (System.Web) or OWIN Self-Host | ASP.NET Core |
 | **Supported server platforms** | .NET Framework 4.5 or later | .NET Core 3.0 or later |
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="<= aspnetcore-2.2"
+:::moniker range="<= aspnetcore-2.2"
 
 |                      | ASP.NET SignalR | ASP.NET Core SignalR |
 | -------------------- | --------------- | -------------------- |
@@ -39,13 +39,13 @@ ASP.NET Core SignalR isn't compatible with clients or servers for ASP.NET Signal
 | **Server app type** | ASP.NET (System.Web) or OWIN Self-Host | ASP.NET Core |
 | **Supported server platforms** | .NET Framework 4.5 or later | .NET Framework 4.6.1 or later<br>.NET Core 2.1 or later |
 
-::: moniker-end
+:::moniker-end
 
 ## Feature differences
 
 ### Automatic reconnects
 
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.0"
 
 In ASP.NET SignalR:
 
@@ -69,13 +69,13 @@ const connection = new signalR.HubConnectionBuilder()
     .build();
 ```
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+:::moniker range="< aspnetcore-3.0"
 
 Prior to ASP.NET Core 3.0, SignalR doesn't support automatic reconnects. If the client is disconnected, the user must explicitly start a new connection to reconnect. In ASP.NET SignalR, SignalR attempts to reconnect to the server if the connection is dropped.
 
-::: moniker-end
+:::moniker-end
 
 ### Protocol support
 
@@ -95,7 +95,7 @@ ASP.NET Core SignalR is an ASP.NET Core middleware. It must be configured by cal
 services.AddSignalR()
 ```
 
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.0"
 
 To configure routing, map routes to hubs inside the <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> method call in the `Startup.Configure` method.
 
@@ -108,9 +108,9 @@ app.UseEndpoints(endpoints =>
 });
 ```
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="<= aspnetcore-2.2"
+:::moniker range="<= aspnetcore-2.2"
 
 To configure routing, map routes to hubs inside the <xref:Microsoft.AspNetCore.Builder.SignalRAppBuilderExtensions.UseSignalR%2A> method call in the `Startup.Configure` method.
 
@@ -121,7 +121,7 @@ app.UseSignalR(routes =>
 });
 ```
 
-::: moniker-end
+:::moniker-end
 
 ### Sticky sessions
 
@@ -159,7 +159,7 @@ The ASP.NET Core SignalR client is written in [TypeScript](https://www.typescrip
 
 ### The JavaScript client is hosted at npm
 
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.0"
 
 In ASP.NET versions, the JavaScript client was obtained through a NuGet package in Visual Studio. In the ASP.NET Core versions, the [`@microsoft/signalr`](https://www.npmjs.com/package/@microsoft/signalr) npm package contains the JavaScript libraries. This package isn't included in the **ASP.NET Core Web Application** template. Use npm to obtain and install the `@microsoft/signalr` npm package.
 
@@ -168,9 +168,9 @@ npm init -y
 npm install @microsoft/signalr
 ```
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="<= aspnetcore-2.2"
+:::moniker range="<= aspnetcore-2.2"
 
 In ASP.NET versions, the JavaScript client was obtained through a NuGet package in Visual Studio. In the ASP.NET Core versions, the [`@aspnet/signalr`](https://www.npmjs.com/package/@aspnet/signalr) npm package contains the JavaScript libraries. This package isn't included in the **ASP.NET Core Web Application** template. Use npm to obtain and install the `@aspnet/signalr` npm package.
 
@@ -179,7 +179,7 @@ npm init -y
 npm install @aspnet/signalr
 ```
 
-::: moniker-end
+:::moniker-end
 
 ### jQuery
 
@@ -192,7 +192,7 @@ For more information, see <xref:signalr/supported-platforms#javascript-client>.
 
 ### JavaScript client method syntax
 
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.0"
 
 The JavaScript syntax has changed from the ASP.NET version of SignalR. Rather than using the `$connection` object, create a connection using the [HubConnectionBuilder](/javascript/api/@aspnet/signalr/hubconnectionbuilder) API.
 
@@ -204,9 +204,9 @@ const connection = new signalR.HubConnectionBuilder()
 
 Use the [on](/javascript/api/@microsoft/signalr/HubConnection#@microsoft-signalr-hubconnection-on) method to specify client methods that the hub can call.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="<= aspnetcore-2.2"
+:::moniker range="<= aspnetcore-2.2"
 
 The JavaScript syntax has changed from the ASP.NET version of SignalR. Rather than using the `$connection` object, create a connection using the [HubConnectionBuilder](/javascript/api/@microsoft/signalr/hubconnectionbuilder) API.
 
@@ -218,7 +218,7 @@ const connection = new signalR.HubConnectionBuilder()
 
 Use the [on](/javascript/api/@aspnet/signalr/HubConnection#@microsoft-signalr-hubconnection-on) method to specify client methods that the hub can call.
 
-::: moniker-end
+:::moniker-end
 
 ```javascript
 connection.on("ReceiveMessage", (user, message) => {
@@ -236,17 +236,17 @@ connection.start().catch(err => console.error(err));
 
 ### Hub proxies
 
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.0"
 
 Hub proxies are no longer automatically generated. Instead, the method name is passed into the [invoke](/javascript/api/@microsoft/signalr/hubconnection#@microsoft-signalr-hubconnection-invoke) API as a string.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="<= aspnetcore-2.2"
+:::moniker range="<= aspnetcore-2.2"
 
 Hub proxies are no longer automatically generated. Instead, the method name is passed into the [invoke](/javascript/api/@aspnet/signalr/hubconnection#@microsoft-signalr-hubconnection-invoke) API as a string.
 
-::: moniker-end
+:::moniker-end
 
 ### .NET and other clients
 

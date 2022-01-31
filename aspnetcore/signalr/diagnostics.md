@@ -91,17 +91,17 @@ Once you've configured the verbosity, the logs will be written to the Browser Co
 
 If you want to send logs to a custom logging system, you can provide a JavaScript object implementing the `ILogger` interface. The only method that needs to be implemented is `log`, which takes the level of the event and the message associated with the event. For example:
 
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.0"
 
 [!code-typescript[](diagnostics/3.x/custom-logger.ts?highlight=3-7,13)]
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+:::moniker range="< aspnetcore-3.0"
 
 [!code-typescript[](diagnostics/2.x/custom-logger.ts?highlight=3-7,13)]
 
-::: moniker-end
+:::moniker-end
 
 ## .NET client logging
 

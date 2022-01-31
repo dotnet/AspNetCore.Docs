@@ -78,26 +78,26 @@ By default, the new middleware:
 ## Use WS-Federation without ASP.NET Core Identity
 
 The WS-Federation middleware can be used without Identity. For example:
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.0"
 [!code-csharp[](ws-federation/samples/StartupNon31.cs?name=snippet)]
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-2.1 < aspnetcore-3.0"
+:::moniker range=">= aspnetcore-2.1 < aspnetcore-3.0"
 [!code-csharp[](ws-federation/samples/StartupNon21.cs?name=snippet)]
-::: moniker-end
+:::moniker-end
 
 ## Add WS-Federation as an external login provider for ASP.NET Core Identity
 
 * Add a dependency on [Microsoft.AspNetCore.Authentication.WsFederation](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.WsFederation) to the project.
 * Add WS-Federation to `Startup.ConfigureServices`:
 
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.0"
 [!code-csharp[](ws-federation/samples/Startup31.cs?name=snippet)]
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-2.1 < aspnetcore-3.0"
+:::moniker range=">= aspnetcore-2.1 < aspnetcore-3.0"
 [!code-csharp[](ws-federation/samples/Startup21.cs?name=snippet)]
-::: moniker-end
+:::moniker-end
 
 [!INCLUDE [default settings configuration](social/includes/default-settings.md)]
 

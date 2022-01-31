@@ -78,7 +78,7 @@ The preceding Windows 10 Build versions may require the use of a [Windows Inside
 
 For more information about choosing the right server for an ASP.NET Core app, see <xref:fundamentals/servers/index>.
 
-::: moniker range=">= aspnetcore-5.0"
+:::moniker range=">= aspnetcore-5.0"
 
 ## Kestrel
 
@@ -132,9 +132,9 @@ IIS must be configured to use TLS and HTTP/2. For more information, see <xref:ho
 
 HTTP.sys must be configured to use TLS and HTTP/2. For more information, see  [HTTP.sys web server HTTP/2 support](xref:fundamentals/servers/httpsys#http2-support).
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-5.0"
+:::moniker range="< aspnetcore-5.0"
 
 ## Kestrel
 
@@ -176,7 +176,7 @@ For more information on enabling HTTP/2 and TLS with Kestrel, see [Kestrel endpo
 > [!NOTE]
 > macOS doesn't support ASP.NET Core gRPC with TLS. Additional configuration is required to successfully run gRPC services on macOS. For more information, see [Unable to start ASP.NET Core gRPC app on macOS](xref:grpc/troubleshoot#unable-to-start-aspnet-core-grpc-app-on-macos).
 
-::: moniker-end
+:::moniker-end
 
 ## Integration with ASP.NET Core APIs
 

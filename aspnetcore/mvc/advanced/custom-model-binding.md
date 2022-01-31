@@ -9,7 +9,7 @@ uid: mvc/advanced/custom-model-binding
 ---
 # Custom Model Binding in ASP.NET Core
 
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.0"
 
 By [Steve Smith](https://ardalis.com/) and [Kirk Larkin](https://twitter.com/serpent5)
 
@@ -133,8 +133,8 @@ Custom model binders:
 - Are most useful for eliminating repetitive code and cross-cutting concerns from action methods.
 - Typically shouldn't be used to convert a string into a custom type, a <xref:System.ComponentModel.TypeConverter> is usually a better option.
 
-::: moniker-end
-::: moniker range="< aspnetcore-3.0"
+:::moniker-end
+:::moniker range="< aspnetcore-3.0"
 
 By [Steve Smith](https://ardalis.com/)
 
@@ -256,4 +256,4 @@ Custom model binders:
 - Are most useful for eliminating repetitive code and cross-cutting concerns from action methods.
 - Typically shouldn't be used to convert a string into a custom type, a <xref:System.ComponentModel.TypeConverter> is usually a better option.
 
-::: moniker-end
+:::moniker-end

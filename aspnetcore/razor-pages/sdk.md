@@ -15,7 +15,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ## Overview
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 The [!INCLUDE[](~/includes/6.0-SDK.md)] includes the `Microsoft.NET.Sdk.Razor` MSBuild SDK (Razor SDK). The Razor SDK:
 
@@ -96,9 +96,9 @@ Razor's language version is tightly integrated with the version of the runtime t
 * [Additions to the csproj format for .NET Core](/dotnet/core/tools/csproj)
 * [Common MSBuild project items](/visualstudio/msbuild/common-msbuild-project-items)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 
 The [!INCLUDE[](~/includes/2.1-SDK.md)] includes the `Microsoft.NET.Sdk.Razor` MSBuild SDK (Razor SDK). The Razor SDK:
 
@@ -190,9 +190,9 @@ Razor's language version is tightly integrated with the version of the runtime t
 * [Additions to the csproj format for .NET Core](/dotnet/core/tools/csproj)
 * [Common MSBuild project items](/visualstudio/msbuild/common-msbuild-project-items)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+:::moniker range="< aspnetcore-3.0"
 
 
 
@@ -307,4 +307,4 @@ Razor's language version is tightly integrated with the version of the runtime t
 * [Additions to the csproj format for .NET Core](/dotnet/core/tools/csproj)
 * [Common MSBuild project items](/visualstudio/msbuild/common-msbuild-project-items)
 
-::: moniker-end
+:::moniker-end

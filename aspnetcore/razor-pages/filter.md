@@ -10,7 +10,7 @@ uid: razor-pages/filter
 ---
 # Filter methods for Razor Pages in ASP.NET Core
 
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.0"
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -100,9 +100,9 @@ The [Authorize](/dotnet/api/microsoft.aspnetcore.authorization.authorizeattribut
 
 [!code-csharp[Main](filter/sample/PageFilter/Pages/ModelWithAuthFilter.cshtml.cs?highlight=7)]
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+:::moniker range="< aspnetcore-3.0"
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -194,4 +194,4 @@ The [Authorize](/dotnet/api/microsoft.aspnetcore.authorization.authorizeattribut
 
 [!code-csharp[Main](filter/sample/PageFilter/Pages/ModelWithAuthFilter.cshtml.cs?highlight=7)]
 
-::: moniker-end
+:::moniker-end

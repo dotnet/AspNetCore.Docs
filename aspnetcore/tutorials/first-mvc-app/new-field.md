@@ -12,7 +12,7 @@ uid: tutorials/first-mvc-app/new-field
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 In this section [Entity Framework](/ef/core/get-started/aspnetcore/new-db) Code First Migrations is used to:
 
@@ -130,9 +130,9 @@ Run the app and verify you can create, edit, and display movies with a `Rating` 
 > [Previous](search.md)
 > [Next](validation.md)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="= aspnetcore-5.0"
+:::moniker range="= aspnetcore-5.0"
 
 In this section [Entity Framework](/ef/core/get-started/aspnetcore/new-db) Code First Migrations is used to:
 
@@ -250,9 +250,9 @@ Run the app and verify you can create, edit, and display movies with a `Rating` 
 > [Previous](search.md)
 > [Next](validation.md)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-5.0"
+:::moniker range="< aspnetcore-5.0"
 
 In this section [Entity Framework](/ef/core/get-started/aspnetcore/new-db) Code First Migrations is used to:
 
@@ -370,4 +370,4 @@ Run the app and verify you can create, edit, and display movies with a `Rating` 
 > [Previous](search.md)
 > [Next](validation.md)
 
-::: moniker-end
+:::moniker-end

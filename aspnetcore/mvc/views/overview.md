@@ -387,10 +387,10 @@ Generating custom HTML markup can be achieved with many built-in HTML Helpers. M
 
 Like many other aspects of ASP.NET Core, views support [dependency injection](xref:fundamentals/dependency-injection), allowing services to be [injected into views](xref:mvc/views/dependency-injection).
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 ## CSS isolation
 
 [!INCLUDE[](~/includes/css-isolation.md)]
 
-::: moniker-end
+:::moniker-end

@@ -13,7 +13,7 @@ uid: fundamentals/configuration/index
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://twitter.com/serpent5)
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 Configuration in ASP.NET Core is performed using one or more [configuration providers](#cp). Configuration providers read configuration data from key-value pairs using a variety of configuration sources:
 
@@ -863,9 +863,9 @@ An <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> implementation allows add
 * <xref:fundamentals/configuration/options>
 * <xref:blazor/fundamentals/configuration>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-3.1 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-3.1 < aspnetcore-6.0"
 
 Configuration in ASP.NET Core is performed using one or more [configuration providers](#cp). Configuration providers read configuration data from key-value pairs using a variety of configuration sources:
 
@@ -1426,8 +1426,8 @@ In the preceding code, `config.AddInMemoryCollection(Dict)` is added after the [
 
 See [Bind an array](#boa) for another example using `MemoryConfigurationProvider`.
 
-::: moniker-end
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker-end
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 <a name="kestrel"></a>
 
@@ -1455,8 +1455,8 @@ Consider the Kestrel specific endpoint configured as an environment variable:
 
 In the preceding environment variable, `Https` is the name of the Kestrel specific endpoint. The preceding *appsettings.json* file also defines a Kestrel specific endpoint named `Https`. By [default](#default-configuration), environment variables using the [Environment Variables configuration provider](#evcp) are read after *appsettings.*`Environment`*.json*, therefore, the preceding environment variable is used for the `Https` endpoint.
 
-::: moniker-end
-::: moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
+:::moniker-end
+:::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 
 ## GetValue
 
@@ -1711,4 +1711,4 @@ An <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> implementation allows add
 * <xref:fundamentals/configuration/options>
 * <xref:blazor/fundamentals/configuration>
 
-::: moniker-end
+:::moniker-end

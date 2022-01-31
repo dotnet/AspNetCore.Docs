@@ -14,7 +14,7 @@ uid: data/ef-rp/concurrency
 
 [!INCLUDE [about the series](../../includes/RP-EF/intro.md)]
 
-::: moniker range=">= aspnetcore-5.0"
+:::moniker range=">= aspnetcore-5.0"
 
 This tutorial shows how to handle conflicts when multiple users update an entity concurrently.
 
@@ -459,9 +459,9 @@ This is the last tutorial in the series. Additional topics are covered in the [M
 > [!div class="step-by-step"]
 > [Previous tutorial](xref:data/ef-rp/update-related-data)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
+:::moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
 This tutorial shows how to handle conflicts when multiple users update an entity concurrently (at the same time).
 
@@ -814,9 +814,9 @@ This is the last tutorial in the series. Additional topics are covered in the [M
 > [!div class="step-by-step"]
 > [Previous tutorial](xref:data/ef-rp/update-related-data)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+:::moniker range="< aspnetcore-3.0"
 
 This tutorial shows how to handle conflicts when multiple users update an entity concurrently (at the same time). If you run into problems you can't solve, [download or view the completed app.](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples) [Download instructions](xref:index#how-to-download-a-sample).
 
@@ -1112,4 +1112,4 @@ See [Inheritance](xref:data/ef-mvc/inheritance) on how to inherit a data model.
 > [!div class="step-by-step"]
 > [Previous](xref:data/ef-rp/update-related-data)
 
-::: moniker-end
+:::moniker-end
