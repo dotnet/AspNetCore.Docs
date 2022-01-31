@@ -5,7 +5,7 @@ description: HttpContext in ASP.NET Core. HttpContext isn't thread-safe and can 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 5/5/2020
+ms.date: 01/31/2022
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/httpcontext
 ---
@@ -74,9 +74,17 @@ public class HomeController : Controller
 }
 ```
 
+## Use HttpContext from minimal APIs
+
+To use `HttpContext` from minimal APIs, add a `HttpContext` parameter:
+
+```csharp
+app.MapGet("/", (HttpContext context) => context.Response.WriteAsync("Hello World"));
+```
+
 ## Use HttpContext from middleware
 
-When working with custom middleware components, `HttpContext` is passed into the `Invoke` or `InvokeAsync` method:
+To use `HttpContext` from custom middleware components, use the `HttpContext` parameter passed into the `Invoke` or `InvokeAsync` method:
 
 ```csharp
 public class MyCustomMiddleware
@@ -89,6 +97,26 @@ public class MyCustomMiddleware
     }
 }
 ```
+
+## Use HttpContext from SignalR
+
+To use `HttpContext` from SignalR, call the <xref:Microsoft.AspNetCore.SignalR.GetHttpContextExtensions.GetHttpContext%2A> method on <xref:Microsoft.AspNetCore.SignalR.Hub.Context%2A?displayProperty=nameWithType>:
+
+```csharp
+public class MyHub : Hub
+{
+    public async Task SendMessage()
+    {
+        var httpContext = Context.GetHttpContext();
+
+        // ...
+    }
+}
+```
+
+## Use HttpContext from gRPC methods
+
+To use `HttpContext` from gRPC methods, see [Resolve HttpContext in gRPC methods](xref:grpc/aspnetcore#resolve-httpcontext-in-grpc-methods).
 
 ## Use HttpContext from custom components
 
