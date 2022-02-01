@@ -3,6 +3,8 @@ items:
   href: index.yml
   expanded: true
   items:
+  - name: January 2022
+    href: dotnet-AspNetCore.Docs-2022-01-01.md
   - name: December 2021
     href: dotnet-AspNetCore.Docs-2021-12-01.md
   - name: November 2021
@@ -13,5 +15,3 @@ items:
     href: 21-09.md
   - name: August 2021
     href: 21-08.md
-  - name: July 2021
-    href: 21-07.md
