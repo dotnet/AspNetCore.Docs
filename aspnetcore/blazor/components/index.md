@@ -268,6 +268,12 @@ Assign a C# field, property, or result of a method to a component parameter as a
 > ```razor
 > <ParameterChild @Title="title" />
 > ```
+>
+> The only exception to the preceding convention is for the assignment of boolean values. Although assigning `@true` or `@false` is acceptable, we recommend not prefixing the boolean name, as the following example shows:
+>
+> ```razor
+> <ParameterChild Title="@title" IsEnabled="true" />
+> ```
 
 Unlike in Razor pages (`.cshtml`), Blazor can't perform asynchronous work in a Razor expression while rendering a component. This is because Blazor is designed for rendering interactive UIs. In an interactive UI, the screen must always display something, so it doesn't make sense to block the rendering flow. Instead, asynchronous work is performed during one of the [asynchronous lifecycle events](xref:blazor/components/lifecycle). After each asynchronous lifecycle event, the component may render again. The following Razor syntax is **not** supported:
 
@@ -1404,6 +1410,12 @@ Assign a C# field, property, or result of a method to a component parameter as a
 > ```razor
 > <ParameterChild @Title="title" />
 > ```
+>
+> The only exception to the preceding convention is for the assignment of boolean values. Although assigning `@true` or `@false` is acceptable, we recommend not prefixing the boolean name, as the following example shows:
+>
+> ```razor
+> <ParameterChild Title="@title" IsEnabled="true" />
+> ```
 
 Unlike in Razor pages (`.cshtml`), Blazor can't perform asynchronous work in a Razor expression while rendering a component. This is because Blazor is designed for rendering interactive UIs. In an interactive UI, the screen must always display something, so it doesn't make sense to block the rendering flow. Instead, asynchronous work is performed during one of the [asynchronous lifecycle events](xref:blazor/components/lifecycle). After each asynchronous lifecycle event, the component may render again. The following Razor syntax is **not** supported:
 
@@ -2350,6 +2362,12 @@ Assign a C# field, property, or result of a method to a component parameter as a
 >
 > ```razor
 > <ParameterChild @Title="title" />
+> ```
+>
+> The only exception to the preceding convention is for the assignment of boolean values. Although assigning `@true` or `@false` is acceptable, we recommend not prefixing the boolean name, as the following example shows:
+>
+> ```razor
+> <ParameterChild Title="@title" IsEnabled="true" />
 > ```
 
 Unlike in Razor pages (`.cshtml`), Blazor can't perform asynchronous work in a Razor expression while rendering a component. This is because Blazor is designed for rendering interactive UIs. In an interactive UI, the screen must always display something, so it doesn't make sense to block the rendering flow. Instead, asynchronous work is performed during one of the [asynchronous lifecycle events](xref:blazor/components/lifecycle). After each asynchronous lifecycle event, the component may render again. The following Razor syntax is **not** supported:
