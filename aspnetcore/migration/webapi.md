@@ -134,7 +134,7 @@ The following components don't exist in ASP.NET Core:
 
 1. Change `ApiController` to <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. Add `using Microsoft.AspNetCore.Mvc;` to resolve the `ControllerBase` reference.
 1. Delete `using System.Web.Http;`.
-1. Change the `GetProduct` action's return type from `IHttpActionResult` to `ActionResult<Product>`. For more info, see https://docs.microsoft.com/en-us/aspnet/core/web-api/action-return-types?view=aspnetcore-6.0
+1. Change the `GetProduct` action's return type from `IHttpActionResult` to `ActionResult<Product>`. For more info, see [Controller action return types](/aspnet/web-api/action-return-types).
 1. Simplify the `GetProduct` action's `return` statement to the following statement:
 
     ```csharp
