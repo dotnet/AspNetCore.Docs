@@ -13,17 +13,17 @@ This tutorial examines the Razor Pages created by scaffolding in the previous tu
 
 Examine the *Pages/Movies/Index.cshtml.cs* Page Model:
 
-::: moniker range="= aspnetcore-2.0"
+:::moniker range="= aspnetcore-2.0"
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Index.cshtml.cs)]
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-2.1"
+:::moniker range=">= aspnetcore-2.1"
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Index21.cshtml.cs)]
 
-::: moniker-end
+:::moniker-end
 
 Razor Pages are derived from `PageModel`. By convention, the `PageModel`-derived class is called `<PageName>Model`. The constructor uses [dependency injection](xref:fundamentals/dependency-injection) to add the `MovieContext` to the page. All the scaffolded pages follow this pattern. See [Asynchronous code](xref:data/ef-rp/intro#asynchronous-code) for more information on asynchronous programming with Entity Framework.
 
@@ -74,17 +74,17 @@ The preceding highlighted code is an example of Razor transitioning into C#. The
 
 The `PageModel` base class has a `ViewData` dictionary property that can be used to add data that you want to pass to a View. You add objects into the `ViewData` dictionary using a key/value pattern. In the preceding sample, the "Title" property is added to the `ViewData` dictionary.
 
-::: moniker range="= aspnetcore-2.0"
+:::moniker range="= aspnetcore-2.0"
 
 The "Title" property is used in the *Pages/Shared/_Layout.cshtml* file. The following markup shows the first few lines of the *Pages/Shared/_Layout.cshtml* file.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-2.1"
+:::moniker range=">= aspnetcore-2.1"
 
 The "Title" property is used in the *Pages/Shared/_Layout.cshtml* file. The following markup shows the first few lines of the *_Layout.cshtml* file.
 
-::: moniker-end
+:::moniker-end
 
 [!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/NU/_Layout1.cshtml?highlight=6-999)]
 
@@ -127,17 +127,17 @@ Save your changes, and test the app by clicking on the **RpMovie** link. See the
 
 Examine the *Pages/Movies/Create.cshtml.cs* page model:
 
-::: moniker range="= aspnetcore-2.0"
+:::moniker range="= aspnetcore-2.0"
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Create.cshtml.cs?name=snippetALL)]
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-2.1"
+:::moniker range=">= aspnetcore-2.1"
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Create21.cshtml.cs?name=snippetALL)]
 
-::: moniker-end
+:::moniker-end
 
 The `OnGet` method initializes any state needed for the page. The Create page doesn't have any state to initialize, so `Page` is returned. Later in the tutorial you see `OnGet` method initialize state. The `Page` method creates a `PageResult` object that renders the *Create.cshtml* page.
 

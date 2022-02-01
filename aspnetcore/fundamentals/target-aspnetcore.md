@@ -59,7 +59,7 @@ Use the **Razor Class Library** project template.
 
 ---
 
-::: moniker range=">= aspnetcore-5.0"
+:::moniker range=">= aspnetcore-5.0"
 
 The library generated from the project template:
 
@@ -141,9 +141,9 @@ In the preceding example:
 * The `{TARGET FRAMEWORKS}` placeholder represents the semicolon-separated TFMs list. For example, `netcoreapp3.1;net5.0`.
 * The `{VERSION}` placeholder is the version of the [`Microsoft.AspNetCore.Components.Web`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Web) package.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-5.0"
+:::moniker range="< aspnetcore-5.0"
 
 The project generated from the template:
 
@@ -168,7 +168,7 @@ For example:
 
 [!code-xml[](target-aspnetcore/samples/single-tfm/netcoreapp3.1-razor-components-library.csproj)]
 
-::: moniker-end
+:::moniker-end
 
 For more information on libraries containing Razor components, see <xref:blazor/components/class-libraries>.
 

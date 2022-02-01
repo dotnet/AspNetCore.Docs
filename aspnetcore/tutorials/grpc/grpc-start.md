@@ -9,7 +9,7 @@ uid: tutorials/grpc/grpc-start
 ---
 # Tutorial: Create a gRPC client and server in ASP.NET Core
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 This tutorial shows how to create a .NET Core [gRPC](xref:grpc/index) client and an ASP.NET Core gRPC Server. At the end, you'll have a gRPC client that communicates with the gRPC Greeter service.
 
 In this tutorial, you:
@@ -310,9 +310,9 @@ Update the *appsettings.Development.json* file by adding the following lines:
 * <xref:grpc/basics>
 * <xref:grpc/migration>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 This tutorial shows how to create a .NET Core [gRPC](xref:grpc/index) client and an ASP.NET Core gRPC Server.
 
 At the end, you'll have a gRPC client that communicates with the gRPC Greeter service.
@@ -603,9 +603,9 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
 * <xref:grpc/basics>
 * <xref:grpc/migration>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
+:::moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
 This tutorial shows how to create a .NET Core [gRPC](xref:grpc/index) client and an ASP.NET Core gRPC Server.
 
@@ -905,4 +905,4 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
 * <xref:grpc/basics>
 * <xref:grpc/migration>
 
-::: moniker-end
+:::moniker-end

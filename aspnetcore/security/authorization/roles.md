@@ -10,7 +10,7 @@ uid: security/authorization/roles
 ---
 # Role-based authorization in ASP.NET Core
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 <a name="security-authorization-role-based"></a>
 
@@ -87,9 +87,9 @@ Append [AddRoles](/dotnet/api/microsoft.aspnetcore.identity.identitybuilder.addr
 
 [!code-csharp[](~/security/authorization/roles/samples/6_0/WebAll/Program.cs?name=snippet_ef&highlight=12)]
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 <a name="security-authorization-role-based"></a>
 
@@ -196,4 +196,4 @@ This example authorizes users who belong to the `Administrator`, `PowerUser` or 
 Append [AddRoles](/dotnet/api/microsoft.aspnetcore.identity.identitybuilder.addroles) to add Role services:
 
 [!code-csharp[](roles/samples/3_0/Startup.cs?name=snippet&highlight=7)]
-::: moniker-end
+:::moniker-end

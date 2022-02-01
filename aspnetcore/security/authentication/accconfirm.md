@@ -20,7 +20,7 @@ This tutorial shows how to build an ASP.NET Core app with email confirmation and
 
 <!-- see C:/Dropbox/wrk/Code/SendGridConsole/Program.cs -->
 
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.0"
 
 ## Prerequisites
 
@@ -215,9 +215,9 @@ Enabling account confirmation on a site with users locks out all the existing us
 * Update the database to mark all existing users as being confirmed.
 * Confirm existing users. For example, batch-send emails with confirmation links.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+:::moniker range="< aspnetcore-3.0"
 
 ## Prerequisites
 
@@ -444,4 +444,4 @@ Enabling account confirmation on a site with users locks out all the existing us
 * Update the database to mark all existing users as being confirmed.
 * Confirm existing users. For example, batch-send emails with confirmation links.
 
-::: moniker-end
+:::moniker-end

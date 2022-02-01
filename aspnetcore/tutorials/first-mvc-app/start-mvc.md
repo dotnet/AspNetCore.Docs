@@ -12,7 +12,7 @@ ms.custom: contperf-fy21q3
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 [!INCLUDE [consider RP](~/includes/razor.md)]
 
@@ -197,9 +197,9 @@ In the next tutorial in this series, you learn about MVC and start writing some 
 > [!div class="step-by-step"]
 > [Next: Add a controller](adding-controller.md)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="= aspnetcore-5.0"
+:::moniker range="= aspnetcore-5.0"
 
 [!INCLUDE [consider RP](~/includes/razor.md)]
 
@@ -377,9 +377,9 @@ In the next part of this tutorial, you learn about MVC and start writing some co
 > [!div class="step-by-step"]
 > [Next: Add a controller](adding-controller.md)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-5.0"
+:::moniker range="< aspnetcore-5.0"
 
 [!INCLUDE [consider RP](~/includes/razor.md)]
 
@@ -554,4 +554,4 @@ In the next part of this tutorial, you learn about MVC and start writing some co
 > [!div class="step-by-step"]
 > [Next](adding-controller.md)
 
-::: moniker-end
+:::moniker-end

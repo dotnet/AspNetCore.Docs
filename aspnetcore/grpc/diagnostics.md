@@ -12,7 +12,7 @@ uid: grpc/diagnostics
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 This article provides guidance for gathering diagnostics from a gRPC app to help troubleshoot issues. Topics covered include:
 
 * **Logging** - Structured logs written to [.NET Core logging](xref:fundamentals/logging/index). <xref:Microsoft.Extensions.Logging.ILogger> is used by app frameworks to write logs, and by users for their own logging in an app.
@@ -234,9 +234,9 @@ Specify the gRPC counters for Application Insight to collect in *Startup.cs*:
 * <xref:grpc/configuration>
 * <xref:grpc/clientfactory>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 This article provides guidance for gathering diagnostics from a gRPC app to help troubleshoot issues. Topics covered include:
 
 * **Logging** - Structured logs written to [.NET Core logging](xref:fundamentals/logging/index). <xref:Microsoft.Extensions.Logging.ILogger> is used by app frameworks to write logs, and by users for their own logging in an app.
@@ -458,4 +458,4 @@ Specify the gRPC counters for Application Insight to collect in *Startup.cs*:
 * <xref:grpc/configuration>
 * <xref:grpc/clientfactory>
 
-::: moniker-end
+:::moniker-end

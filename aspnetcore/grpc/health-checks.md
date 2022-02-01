@@ -10,7 +10,7 @@ uid: grpc/health-checks
 ---
 # gRPC health checks in ASP.NET Core
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
@@ -80,9 +80,9 @@ var status = response.Status;
 * [`Grpc.AspNetCore.HealthChecks`](https://www.nuget.org/packages/Grpc.AspNetCore.HealthChecks)
 * [`Grpc.HealthCheck`](https://www.nuget.org/packages/Grpc.HealthCheck)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
@@ -163,4 +163,4 @@ var status = response.Status;
 * [`Grpc.AspNetCore.HealthChecks`](https://www.nuget.org/packages/Grpc.AspNetCore.HealthChecks)
 * [`Grpc.HealthCheck`](https://www.nuget.org/packages/Grpc.HealthCheck)
 
-::: moniker-end
+:::moniker-end

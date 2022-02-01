@@ -111,7 +111,7 @@ The parameters will be passed to the `InvokeAsync` method. The `PriorityList` vi
 
 [!code-cshtml[](view-components/sample/ViewCompFinal/Views/ToDo/IndexFinal.cshtml?range=35)]
 
-::: moniker range=">= aspnetcore-1.1"
+:::moniker range=">= aspnetcore-1.1"
 
 ## Invoking a view component as a Tag Helper
 
@@ -146,7 +146,7 @@ In Tag Helper markup:
 
 In the sample above, the `PriorityList` view component becomes `priority-list`. The parameters to the view component are passed as attributes in kebab case.
 
-::: moniker-end
+:::moniker-end
 
 ### Invoking a view component directly from a controller
 
@@ -300,7 +300,7 @@ The view component's Razor file lists the strings passed to the `Invoke` method 
 </ul>
 ```
 
-::: moniker range=">= aspnetcore-1.1"
+:::moniker range=">= aspnetcore-1.1"
 
 The view component is invoked in a Razor file (for example, *Views/Home/Index.cshtml*) using one of the following approaches:
 
@@ -309,21 +309,21 @@ The view component is invoked in a Razor file (for example, *Views/Home/Index.cs
 
 To use the <xref:Microsoft.AspNetCore.Mvc.IViewComponentHelper> approach, call `Component.InvokeAsync`:
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-1.1"
+:::moniker range="< aspnetcore-1.1"
 
 The view component is invoked in a Razor file (for example, *Views/Home/Index.cshtml*) with <xref:Microsoft.AspNetCore.Mvc.IViewComponentHelper>.
 
 Call `Component.InvokeAsync`:
 
-::: moniker-end
+:::moniker-end
 
 ```cshtml
 @await Component.InvokeAsync(nameof(PriorityList), new { maxPriority = 4, isDone = true })
 ```
 
-::: moniker range=">= aspnetcore-1.1"
+:::moniker range=">= aspnetcore-1.1"
 
 To use the Tag Helper, register the assembly containing the View Component using the `@addTagHelper` directive (the view component is in an assembly called `MyWebApp`):
 
@@ -338,7 +338,7 @@ Use the view component Tag Helper in the Razor markup file:
 </vc:priority-list>
 ```
 
-::: moniker-end
+:::moniker-end
 
 The method signature of `PriorityList.Invoke` is synchronous, but Razor finds and calls the method with `Component.InvokeAsync` in the markup file.
 

@@ -1,7 +1,7 @@
 ---
 title: ASP.NET Core MVC with EF Core - tutorial series
 author: rick-anderson
-description: 
+description: List of topics in ASP.NET Core MVC with EF Core
 ms.author: riande
 ms.date: 03/27/2017
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
@@ -9,11 +9,11 @@ uid: data/ef-mvc/index
 ---
 # ASP.NET Core MVC with EF Core - tutorial series
 
-::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
+:::moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
 This tutorial has **not** been updated to ASP.NET Core 3.0. It has been updated for ASP.NET Core 5.0.
 
-::: moniker-end
+:::moniker-end
 
 [!INCLUDE [RP better than MVC](../../includes/RP-EF/rp-over-mvc.md)]
 

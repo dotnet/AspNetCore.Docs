@@ -12,7 +12,7 @@ uid: tutorials/razor-pages/search
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 In the following sections, searching movies by *genre* or *name* is added.
 
@@ -119,9 +119,9 @@ Test the app by searching by genre, by movie title, and by both.
 > [Previous: Update the pages](xref:tutorials/razor-pages/da1)
 > [Next: Add a new field](xref:tutorials/razor-pages/new-field)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 In the following sections, searching movies by *genre* or *name* is added.
 
@@ -223,4 +223,4 @@ The `SelectList` of genres is created by projecting the distinct genres.
 > [Previous: Update the pages](xref:tutorials/razor-pages/da1)
 > [Next: Add a new field](xref:tutorials/razor-pages/new-field)
 
-::: moniker-end
+:::moniker-end

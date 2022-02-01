@@ -10,7 +10,7 @@ uid: fundamentals/change-tokens
 ---
 # Detect changes with change tokens in ASP.NET Core
 
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.0"
 
 A *change token* is a general-purpose, low-level building block used to track state changes.
 
@@ -206,9 +206,9 @@ var compositeChangeToken =
 
 `HasChanged` on the composite token reports `true` if any represented token `HasChanged` is `true`. `ActiveChangeCallbacks` on the composite token reports `true` if any represented token `ActiveChangeCallbacks` is `true`. If multiple concurrent change events occur, the composite change callback is invoked one time.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+:::moniker range="< aspnetcore-3.0"
 
 A *change token* is a general-purpose, low-level building block used to track state changes.
 
@@ -404,7 +404,7 @@ var compositeChangeToken =
 
 `HasChanged` on the composite token reports `true` if any represented token `HasChanged` is `true`. `ActiveChangeCallbacks` on the composite token reports `true` if any represented token `ActiveChangeCallbacks` is `true`. If multiple concurrent change events occur, the composite change callback is invoked one time.
 
-::: moniker-end
+:::moniker-end
 
 ## Additional resources
 

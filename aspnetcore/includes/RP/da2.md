@@ -49,7 +49,7 @@ A request to the page with the "{id:int}" route template that does **not** inclu
 @page "{id:int?}"
 ```
 
-::: moniker range="= aspnetcore-2.0"
+:::moniker range="= aspnetcore-2.0"
 
 ### Update concurrency exception handling
 

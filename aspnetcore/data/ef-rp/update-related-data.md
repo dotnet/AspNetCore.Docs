@@ -14,7 +14,7 @@ By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com
 
 [!INCLUDE [about the series](../../includes/RP-EF/intro.md)]
 
-::: moniker range=">= aspnetcore-5.0"
+:::moniker range=">= aspnetcore-5.0"
 
 This tutorial shows how to update related data. The following illustrations show some of the completed pages.
 
@@ -234,9 +234,9 @@ Run the app and test the Delete page.
 > [Previous tutorial](xref:data/ef-rp/read-related-data)
 > [Next tutorial](xref:data/ef-rp/concurrency)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
+:::moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
 
 This tutorial shows how to update related data. The following illustrations show some of the completed pages.
@@ -452,9 +452,9 @@ Run the app and test the Delete page.
 > [Previous tutorial](xref:data/ef-rp/read-related-data)
 > [Next tutorial](xref:data/ef-rp/concurrency)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+:::moniker range="< aspnetcore-3.0"
 
 This tutorial demonstrates updating related data. If you run into problems you can't solve, [download or view the completed app.](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples) [Download instructions](xref:index#how-to-download-a-sample).
 
@@ -672,4 +672,4 @@ The preceding code makes the following changes:
 > [Previous](xref:data/ef-rp/read-related-data)
 > [Next](xref:data/ef-rp/concurrency)
 
-::: moniker-end
+:::moniker-end

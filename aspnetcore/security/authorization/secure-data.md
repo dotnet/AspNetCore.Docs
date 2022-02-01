@@ -13,7 +13,7 @@ uid: security/authorization/secure-data
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Joe Audette](https://twitter.com/joeaudette)
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 This tutorial shows how to create an ASP.NET Core web app with user data protected by authorization. It displays a list of contacts that authenticated (registered) users have created. There are three security groups:
 
@@ -366,9 +366,9 @@ Call `SeedData.Initialize` from `Program.cs`:
 
 Test that the app seeded the database. If there are any rows in the contact DB, the seed method doesn't run.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 This tutorial shows how to create an ASP.NET Core web app with user data protected by authorization. It displays a list of contacts that authenticated (registered) users have created. There are three security groups:
 
@@ -726,7 +726,7 @@ Call `SeedData.Initialize` from `Main`:
 
 Test that the app seeded the database. If there are any rows in the contact DB, the seed method doesn't run.
 
-::: moniker-end
+:::moniker-end
 
 <a name="secure-data-add-resources-label"></a>
 

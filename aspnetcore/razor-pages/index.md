@@ -20,7 +20,7 @@ This document provides an introduction to Razor Pages. It's not a step by step t
 
 ## Prerequisites
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -613,9 +613,9 @@ Add <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcCoreBuilderEx
 * <xref:mvc/views/partial>
 * <xref:blazor/components/prerendering-and-integration>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="= aspnetcore-3.1"
+:::moniker range="= aspnetcore-3.1"
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -631,9 +631,9 @@ Add <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcCoreBuilderEx
 
 ---
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="= aspnetcore-5.0"
+:::moniker range="= aspnetcore-5.0"
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -648,9 +648,9 @@ Add <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcCoreBuilderEx
 [!INCLUDE[](~/includes/net-core-prereqs-mac-5.0.md)]
 
 ---
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 <a name="rpvs17"></a>
 
@@ -1219,4 +1219,4 @@ Add <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcCoreBuilderEx
 * <xref:mvc/views/partial>
 * <xref:blazor/components/prerendering-and-integration>
 
-::: moniker-end
+:::moniker-end

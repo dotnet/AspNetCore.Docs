@@ -14,17 +14,17 @@ Authorization strategy depends upon the resource being accessed. Consider a docu
 
 Attribute evaluation occurs before data binding and before execution of the page handler or action that loads the document. For these reasons, declarative authorization with an `[Authorize]` attribute doesn't suffice. Instead, you can invoke a custom authorization method&mdash;a style known as *imperative authorization*.
 
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.0"
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authorization/resourcebased/samples/3_0) ([how to download](xref:index#how-to-download-a-sample)).
-::: moniker-end
+:::moniker-end
 
- ::: moniker range=">= aspnetcore-2.0 < aspnetcore-3.0"
+ :::moniker range=">= aspnetcore-2.0 < aspnetcore-3.0"
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authorization/resourcebased/samples/2_2) ([how to download](xref:index#how-to-download-a-sample)).
-::: moniker-end
+:::moniker-end
 
-::: moniker range="<= aspnetcore-1.1"
+:::moniker range="<= aspnetcore-1.1"
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authorization/resourcebased/samples/1_1) ([how to download](xref:index#how-to-download-a-sample)).
-::: moniker-end
+:::moniker-end
 
 [Create an ASP.NET Core app with user data protected by authorization](xref:security/authorization/secure-data) contains a sample app that uses resource-based authorization.
 
@@ -36,7 +36,7 @@ Authorization is implemented as an [IAuthorizationService](/dotnet/api/microsoft
 
 `IAuthorizationService` has two `AuthorizeAsync` method overloads: one accepting the resource and the policy name and the other accepting the resource and a list of requirements to evaluate.
 
-::: moniker range=">= aspnetcore-2.0"
+:::moniker range=">= aspnetcore-2.0"
 
 ```csharp
 Task<AuthorizationResult> AuthorizeAsync(ClaimsPrincipal user,
@@ -47,9 +47,9 @@ Task<AuthorizationResult> AuthorizeAsync(ClaimsPrincipal user,
                           string policyName);
 ```
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="<= aspnetcore-1.1"
+:::moniker range="<= aspnetcore-1.1"
 
 ```csharp
 Task<bool> AuthorizeAsync(ClaimsPrincipal user,
@@ -60,7 +60,7 @@ Task<bool> AuthorizeAsync(ClaimsPrincipal user,
                           string policyName);
 ```
 
-::: moniker-end
+:::moniker-end
 
 <a name="security-authorization-resource-based-imperative"></a>
 
@@ -69,17 +69,17 @@ In the following example, the resource to be secured is loaded into a custom `Do
 > [!NOTE]
 > The following code samples assume authentication has run and set the `User` property.
 
-::: moniker range=">= aspnetcore-2.0"
+:::moniker range=">= aspnetcore-2.0"
 
 [!code-csharp[](resourcebased/samples/3_0/ResourceBasedAuthApp2/Pages/Document/Edit.cshtml.cs?name=snippet_DocumentEditHandler)]
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="<= aspnetcore-1.1"
+:::moniker range="<= aspnetcore-1.1"
 
 [!code-csharp[](resourcebased/samples/1_1/ResourceBasedAuthApp1/Controllers/DocumentController.cs?name=snippet_DocumentEditAction)]
 
-::: moniker-end
+:::moniker-end
 
 ## Write a resource-based handler
 
@@ -87,33 +87,33 @@ Writing a handler for resource-based authorization isn't much different than [wr
 
 The handler class specifies both the requirement and resource type. For example, a handler utilizing a `SameAuthorRequirement` and a `Document` resource follows:
 
-::: moniker range=">= aspnetcore-2.0"
+:::moniker range=">= aspnetcore-2.0"
 
 [!code-csharp[](resourcebased/samples/3_0/ResourceBasedAuthApp2/Services/DocumentAuthorizationHandler.cs?name=snippet_HandlerAndRequirement)]
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="<= aspnetcore-1.1"
+:::moniker range="<= aspnetcore-1.1"
 
 [!code-csharp[](resourcebased/samples/1_1/ResourceBasedAuthApp1/Services/DocumentAuthorizationHandler.cs?name=snippet_HandlerAndRequirement)]
 
-::: moniker-end
+:::moniker-end
 
 In the preceding example, imagine that `SameAuthorRequirement` is a special case of a more generic `SpecificAuthorRequirement` class. The `SpecificAuthorRequirement` class (not shown) contains a `Name` property representing the name of the author. The `Name` property could be set to the current user.
 
 Register the requirement and handler in `Startup.ConfigureServices`:
 
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.0"
 [!code-csharp[](resourcebased/samples/3_0/ResourceBasedAuthApp2/Startup.cs?name=snippet_ConfigureServicesSample&highlight=4-8,10)]
-::: moniker-end
+:::moniker-end
 
- ::: moniker range=">= aspnetcore-2.0 < aspnetcore-3.0"
+ :::moniker range=">= aspnetcore-2.0 < aspnetcore-3.0"
 [!code-csharp[](resourcebased/samples/2_2/ResourceBasedAuthApp2/Startup.cs?name=snippet_ConfigureServicesSample&highlight=3-7,9)]
-::: moniker-end
+:::moniker-end
 
-::: moniker range="<= aspnetcore-1.1"
+:::moniker range="<= aspnetcore-1.1"
 [!code-csharp[](resourcebased/samples/1_1/ResourceBasedAuthApp1/Startup.cs?name=snippet_ConfigureServicesSample&highlight=3-7,9)]
-::: moniker-end
+:::moniker-end
 
 ### Operational requirements
 
@@ -123,16 +123,16 @@ If you're making decisions based on the outcomes of CRUD (Create, Read, Update, 
 
 The handler is implemented as follows, using an `OperationAuthorizationRequirement` requirement and a `Document` resource:
 
- ::: moniker range=">= aspnetcore-2.0"
+ :::moniker range=">= aspnetcore-2.0"
 [!code-csharp[](resourcebased/samples/3_0/ResourceBasedAuthApp2/Services/DocumentAuthorizationCrudHandler.cs?name=snippet_Handler)]
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="<= aspnetcore-1.1"
+:::moniker range="<= aspnetcore-1.1"
 
 [!code-csharp[](resourcebased/samples/1_1/ResourceBasedAuthApp1/Services/DocumentAuthorizationCrudHandler.cs?name=snippet_Handler)]
 
-::: moniker-end
+:::moniker-end
 
 The preceding handler validates the operation using the resource, the user's identity, and the requirement's `Name` property.
 
@@ -145,18 +145,18 @@ To call an operational resource handler, specify the operation when invoking `Au
 > [!NOTE]
 > The following code samples assume authentication has run and set the `User` property.
 
-::: moniker range=">= aspnetcore-2.0"
+:::moniker range=">= aspnetcore-2.0"
 
 [!code-csharp[](resourcebased/samples/3_0/ResourceBasedAuthApp2/Pages/Document/View.cshtml.cs?name=snippet_DocumentViewHandler&highlight=10-11)]
 
 If authorization succeeds, the page for viewing the document is returned. If authorization fails but the user is authenticated, returning `ForbidResult` informs any authentication middleware that authorization failed. A `ChallengeResult` is returned when authentication must be performed. For interactive browser clients, it may be appropriate to redirect the user to a login page.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="<= aspnetcore-1.1"
+:::moniker range="<= aspnetcore-1.1"
 
 [!code-csharp[](resourcebased/samples/1_1/ResourceBasedAuthApp1/Controllers/DocumentController.cs?name=snippet_DocumentViewAction&highlight=11-12)]
 
 If authorization succeeds, the view for the document is returned. If authorization fails, returning `ChallengeResult` informs any authentication middleware that authorization failed, and the middleware can take the appropriate response. An appropriate response could be returning a 401 or 403 status code. For interactive browser clients, it could mean redirecting the user to a login page.
 
-::: moniker-end
+:::moniker-end

@@ -14,7 +14,7 @@ The data protection system [employs a discovery mechanism by default](xref:secur
 > [!WARNING]
 > If you specify an explicit [key persistence location](xref:security/data-protection/implementation/key-storage-providers), the data protection system deregisters the default key encryption at rest mechanism. Consequently, keys are no longer encrypted at rest. We recommend that you [specify an explicit key encryption mechanism](xref:security/data-protection/implementation/key-encryption-at-rest) for production deployments. The encryption-at-rest mechanism options are described in this topic.
 
-::: moniker range=">= aspnetcore-2.1"
+:::moniker range=">= aspnetcore-2.1"
 
 ## Azure Key Vault
 
@@ -31,7 +31,7 @@ public void ConfigureServices(IServiceCollection services)
 
 For more information, see [Configure ASP.NET Core Data Protection: ProtectKeysWithAzureKeyVault](xref:security/data-protection/configuration/overview#protectkeyswithazurekeyvault).
 
-::: moniker-end
+:::moniker-end
 
 ## Windows DPAPI
 
@@ -59,7 +59,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-::: moniker range=">= aspnetcore-2.0"
+:::moniker range=">= aspnetcore-2.0"
 
 ## X.509 certificate
 
@@ -75,7 +75,7 @@ public void ConfigureServices(IServiceCollection services)
 
 Due to .NET Framework limitations, only certificates with CAPI private keys are supported. See the content below for possible workarounds to these limitations.
 
-::: moniker-end
+:::moniker-end
 
 ## Windows DPAPI-NG
 

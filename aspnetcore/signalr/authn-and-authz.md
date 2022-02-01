@@ -20,7 +20,7 @@ SignalR can be used with [ASP.NET Core authentication](xref:security/authenticat
 
 The following is an example of `Startup.Configure` which uses SignalR and ASP.NET Core authentication:
 
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.0"
 
 ```csharp
 public void Configure(IApplicationBuilder app)
@@ -42,9 +42,9 @@ public void Configure(IApplicationBuilder app)
 }
 ```
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="<= aspnetcore-2.2"
+:::moniker range="<= aspnetcore-2.2"
 
 ```csharp
 public void Configure(IApplicationBuilder app)
@@ -70,21 +70,21 @@ public void Configure(IApplicationBuilder app)
 > [!NOTE]
 > The order in which you register the SignalR and ASP.NET Core authentication middleware matters. Always call `UseAuthentication` before `UseSignalR` so that SignalR has a user on the `HttpContext`.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 > [!NOTE]
 > If a token expires during the lifetime of a connection, the connection continues to work. `LongPolling` and `ServerSentEvent` connections fail on subsequent requests if they don't send new access tokens.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 > [!NOTE]
 > If a token expires during the lifetime of a connection, by default the connection continues to work. `LongPolling` and `ServerSentEvent` connections fail on subsequent requests if they don't send new access tokens. For connections to close when the authentication token expires, set [CloseOnAuthenticationExpiration](xref:signalr/configuration#advanced-http-configuration-options).
 
-::: moniker-end
+:::moniker-end
 
 ### Cookie authentication
 
@@ -266,7 +266,7 @@ public class ChatHub : Hub
 }
 ```
 
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.0"
 
 ### Use authorization handlers to customize hub method authorization
 
@@ -338,7 +338,7 @@ public void ConfigureServices(IServiceCollection services)
 
 In the preceding example, the `DomainRestrictedRequirement` class is both an `IAuthorizationRequirement` and its own `AuthorizationHandler` for that requirement. It's acceptable to split these two components into separate classes to separate concerns. A benefit of the example's approach is there's no need to inject the `AuthorizationHandler` during startup, as the requirement and the handler are the same thing.
 
-::: moniker-end
+:::moniker-end
 
 ## Additional resources
 

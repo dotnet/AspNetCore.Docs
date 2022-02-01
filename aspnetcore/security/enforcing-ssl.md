@@ -20,7 +20,7 @@ This document shows how to:
 
 No API can prevent a client from sending sensitive data on the first request.
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 > [!WARNING]
 > ## API projects
@@ -492,9 +492,9 @@ In some cases, group policy may prevent self-signed certificates from being trus
 * [How to Set Up SSL on IIS](/iis/manage/configuring-security/how-to-set-up-ssl-on-iis)
 * [OWASP HSTS browser support](https://www.owasp.org/index.php/HTTP_Strict_Transport_Security_Cheat_Sheet#Browser_Support)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 > [!WARNING]
 > ## API projects
@@ -1006,4 +1006,4 @@ To fix problems with the IIS Express certificate, select **Repair** from the Vis
 * [How to Set Up SSL on IIS](/iis/manage/configuring-security/how-to-set-up-ssl-on-iis)
 * [OWASP HSTS browser support](https://www.owasp.org/index.php/HTTP_Strict_Transport_Security_Cheat_Sheet#Browser_Support)
 
-::: moniker-end
+:::moniker-end

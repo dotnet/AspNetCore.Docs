@@ -12,7 +12,7 @@ uid: security/authentication/cookie
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 [ASP.NET Core Identity](xref:security/authentication/identity) is a complete, full-featured authentication provider for creating and maintaining logins. However, a cookie-based authentication provider without ASP.NET Core Identity can be used. For more information, see <xref:security/authentication/identity>.
 
@@ -180,8 +180,8 @@ await HttpContext.SignInAsync(
     });
 ```
 
-::: moniker-end
-::: moniker range="< aspnetcore-6.0"
+:::moniker-end
+:::moniker range="< aspnetcore-6.0"
 
 [ASP.NET Core Identity](xref:security/authentication/identity) is a complete, full-featured authentication provider for creating and maintaining logins. However, a cookie-based authentication provider without ASP.NET Core Identity can be used. For more information, see <xref:security/authentication/identity>.
 
@@ -400,4 +400,4 @@ await HttpContext.SignInAsync(
     });
 ```
 
-::: moniker-end
+:::moniker-end

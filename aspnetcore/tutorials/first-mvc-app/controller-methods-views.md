@@ -12,7 +12,7 @@ uid: tutorials/first-mvc-app/controller-methods-views
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 We have a good start to the movie app, but the presentation isn't ideal, for example, **ReleaseDate** should be two words.
 
@@ -128,9 +128,9 @@ All the `HttpGet` methods in the movie controller follow a similar pattern. They
 > [Previous](working-with-sql.md)
 > [Next](search.md)  
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 We have a good start to the movie app, but the presentation isn't ideal, for example, **ReleaseDate** should be two words.
 
@@ -246,4 +246,4 @@ All the `HttpGet` methods in the movie controller follow a similar pattern. They
 > [Previous](working-with-sql.md)
 > [Next](search.md)  
 
-::: moniker-end
+:::moniker-end

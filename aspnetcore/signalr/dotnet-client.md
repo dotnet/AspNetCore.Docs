@@ -48,7 +48,7 @@ To establish a connection, create a `HubConnectionBuilder` and call `Build`. The
 
 ## Handle lost connection
 
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.0"
 
 ### Automatically reconnect
 
@@ -193,16 +193,16 @@ HubConnection connection = new HubConnectionBuilder()
 
 Alternatively, you can write code that will reconnect your client manually as demonstrated in [Manually reconnect](#manually-reconnect).
 
-::: moniker-end
+:::moniker-end
 
 ### Manually reconnect
 
-::: moniker range="< aspnetcore-3.0"
+:::moniker range="< aspnetcore-3.0"
 
 > [!WARNING]
 > Prior to 3.0, the .NET client for SignalR doesn't automatically reconnect. You must write code that will reconnect your client manually.
 
-::: moniker-end
+:::moniker-end
 
 Use the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.Closed> event to respond to a lost connection. For example, you might want to automate reconnection.
 

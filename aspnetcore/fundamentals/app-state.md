@@ -10,7 +10,7 @@ uid: fundamentals/app-state
 ---
 # Session and state management in ASP.NET Core
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Kirk Larkin](https://twitter.com/serpent5), and [Diana LaRose](https://github.com/DianaLaRose)
 
@@ -283,9 +283,9 @@ SignalR apps should not use session state to store information. SignalR apps can
 
 <xref:host-and-deploy/web-farm>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Kirk Larkin](https://twitter.com/serpent5), and [Diana LaRose](https://github.com/DianaLaRose)
 
@@ -553,4 +553,4 @@ SignalR apps should not use session state to store information. SignalR apps can
 ## Additional resources
 
 <xref:host-and-deploy/web-farm>
-::: moniker-end
+:::moniker-end

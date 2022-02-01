@@ -1,7 +1,7 @@
 ---
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 ---
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 Run the Identity scaffolder:
 
@@ -65,9 +65,9 @@ If you run the Identity scaffolder without specifying the `--files` flag or the 
 
 ---
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 Run the Identity scaffolder:
 
@@ -131,4 +131,4 @@ If you run the Identity scaffolder without specifying the `--files` flag or the 
 
 ---
 
-::: moniker-end
+:::moniker-end

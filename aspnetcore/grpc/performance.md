@@ -41,7 +41,7 @@ HTTP/2 connections typically have a limit on the number of [maximum concurrent s
 
 A gRPC channel uses a single HTTP/2 connection, and concurrent calls are multiplexed on that connection. When the number of active calls reaches the connection stream limit, additional calls are queued in the client. Queued calls wait for active calls to complete before they are sent. Applications with high load, or long running streaming gRPC calls, could see performance issues caused by calls queuing because of this limit.
 
-::: moniker range=">= aspnetcore-5.0"
+:::moniker range=">= aspnetcore-5.0"
 
 .NET 5 introduces the `SocketsHttpHandler.EnableMultipleHttp2Connections` property. When set to `true`, additional HTTP/2 connections are created by a channel when the concurrent stream limit is reached. When a `GrpcChannel` is created its internal `SocketsHttpHandler` is automatically configured to create additional HTTP/2 connections. If an app configures its own handler, consider setting `EnableMultipleHttp2Connections` to `true`:
 
@@ -57,7 +57,7 @@ var channel = GrpcChannel.ForAddress("https://localhost", new GrpcChannelOptions
 });
 ```
 
-::: moniker-end
+:::moniker-end
 
 There are a couple of workarounds for .NET Core 3.1 apps:
 
@@ -104,7 +104,7 @@ There are many L7 proxies available. Some options are:
 * [Linkerd](https://linkerd.io/) - Service mesh for Kubernetes.
 * [YARP: A Reverse Proxy](https://microsoft.github.io/reverse-proxy/) - A preview open source proxy written in .NET.
 
-::: moniker range=">= aspnetcore-5.0"
+:::moniker range=">= aspnetcore-5.0"
 
 ## Inter-process communication
 
@@ -135,7 +135,7 @@ var channel = GrpcChannel.ForAddress("https://localhost:5001", new GrpcChannelOp
 
 The preceding code configures a channel that sends a keep alive ping to the server every 60 seconds during periods of inactivity. The ping ensures the server and any proxies in use won't close the connection because of inactivity.
 
-::: moniker-end
+:::moniker-end
 
 ## Streaming
 

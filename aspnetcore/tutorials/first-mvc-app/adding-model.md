@@ -21,7 +21,7 @@ The model classes created are known as ***POCO*** classes, from **P**lain **O**l
 
 In this tutorial,  model classes are created first, and EF Core creates the database.
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 ## Add a data model class
 
@@ -481,9 +481,9 @@ Because the `Model` object is strongly typed as an `IEnumerable<Movie>` object, 
 > [Previous: Adding a View](adding-view.md)
 > [Next: Working with SQL](working-with-sql.md)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="= aspnetcore-5.0"
+:::moniker range="= aspnetcore-5.0"
 
 ## Add a data model class
 
@@ -912,9 +912,9 @@ Because the `Model` object is strongly typed as an `IEnumerable<Movie>` object, 
 > [Previous: Adding a View](adding-view.md)
 > [Next: Working with SQL](working-with-sql.md)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
+:::moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
 ## Add a data model class
 
@@ -1298,4 +1298,4 @@ Because the `Model` object is strongly typed (as an `IEnumerable<Movie>` object)
 > [Previous Adding a View](adding-view.md)
 > [Next Working with SQL](working-with-sql.md)
 
-::: moniker-end
+:::moniker-end
