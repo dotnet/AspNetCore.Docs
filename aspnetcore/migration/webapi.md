@@ -117,7 +117,7 @@ public decimal Price { get; set; }
 Update the `ProductsController` for ASP.NET Core with the following highlighted code:
 
 
-[!code-csharp[](webapi/sample/6.x/ProductsCore/Controllers/ProductsController.cs?highlight=1,2,4,8,33,50,57)]
+[!code-csharp[](webapi/sample/6.x/ProductsCore/Controllers/ProductsController.cs?highlight=1,2,4,6,7,8,33,50,57)]
 
 1. Copy *Controllers/ProductsController.cs* and the *Models* folder from the original project to the new one.
 1. Change the copied files' root namespace to `ProductsCore`.
