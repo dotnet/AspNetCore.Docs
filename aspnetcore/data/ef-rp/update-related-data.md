@@ -660,7 +660,6 @@ Update the Delete page model with the following code:
 The preceding code makes the following changes:
 
 * Uses eager loading for the `CourseAssignments` navigation property. `CourseAssignments` must be included or they aren't deleted when the instructor is deleted. To avoid needing to read them, configure cascade delete in the database.
-
 * If the instructor to be deleted is assigned as administrator of any departments, removes the instructor assignment from those departments.
 
 ## Additional resources
