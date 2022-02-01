@@ -5,12 +5,12 @@ namespace ValidationSample.Models
 {
     public class User
     {
-        #region snippet_Email
+        // <snippet_Email>
         [Remote(action: "VerifyEmail", controller: "Users")]
         public string Email { get; set; }
-        #endregion
+        // </snippet_Email>
 
-        #region snippet_Name
+        // <snippet_Name>
         [Remote(action: "VerifyName", controller: "Users", AdditionalFields = nameof(LastName))]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
@@ -18,7 +18,7 @@ namespace ValidationSample.Models
         [Remote(action: "VerifyName", controller: "Users", AdditionalFields = nameof(FirstName))]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
-        #endregion
+        // </snippet_Name>
 
         [Remote(action: "VerifyPhone", controller: "Users")]
         public string Phone { get; set; }

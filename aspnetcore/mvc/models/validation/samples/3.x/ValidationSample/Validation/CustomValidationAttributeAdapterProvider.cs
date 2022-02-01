@@ -4,7 +4,7 @@ using Microsoft.Extensions.Localization;
 
 namespace ValidationSample.Validation
 {
-    #region snippet_Class
+    // <snippet_Class>
     public class CustomValidationAttributeAdapterProvider : IValidationAttributeAdapterProvider
     {
         private readonly IValidationAttributeAdapterProvider baseProvider =
@@ -21,5 +21,5 @@ namespace ValidationSample.Validation
             return baseProvider.GetAttributeAdapter(attribute, stringLocalizer);
         }
     }
-    #endregion
+    // </snippet_Class>
 }
