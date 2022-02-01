@@ -83,7 +83,7 @@ The following shows the application startup code in the ASP.NET Core *Program.cs
 
 [!code-csharp[](webapi/sample/6.x/ProductsCore/Program.cs)]
 
-## Migrate the model
+## Update the model
 
 By utilizing the [Nullable feature introduced in C# 8](/dotnet/csharp/whats-new/csharp-8#nullable-reference-types), ASP.NET Core can provide additional code flow analysis and compile-time safety in the handling of reference types. For example, protecting against `null` reference exceptions.
 
@@ -103,7 +103,7 @@ Examine *Models/Product.cs*. With nullable reference types enabled for the Produ
 
 In this case, the intent is that the `Name` and `Category` can be nullable types.
 
-1. Add the `?` annotation to declare the `Name` and `Category` properties as nullable types:
+Add the `?` annotation to declare the `Name` and `Category` properties as nullable reference types:
 
 ```diff
 public int Id { get; set; }
@@ -116,9 +116,8 @@ public decimal Price { get; set; }
 
 ## Migrate the controller
 
-Update the `ProductsController` for ASP.NET Core:
+Update the `ProductsController` for ASP.NET Core with the following highlighted code:
 
-The following code shows the updated ASP.NET Core `ProductsController`:
 
 [!code-csharp[](webapi/sample/6.x/ProductsCore/Controllers/ProductsController.cs?highlight=1,2,4,8,33,50,57)]
 
@@ -132,20 +131,19 @@ The following components don't exist in ASP.NET Core:
 * `System.Web.Http` namespace
 * `IHttpActionResult` interface
 
-Make the following changes:
 
 1. Change `ApiController` to <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. Add `using Microsoft.AspNetCore.Mvc;` to resolve the `ControllerBase` reference.
 1. Delete `using System.Web.Http;`.
-1. Change the `GetProduct` action's return type from `IHttpActionResult` to `ActionResult<Product>`.
+1. Change the `GetProduct` action's return type from `IHttpActionResult` to `ActionResult<Product>`. For more info, see https://docs.microsoft.com/en-us/aspnet/core/web-api/action-return-types?view=aspnetcore-6.0
 1. Simplify the `GetProduct` action's `return` statement to the following statement:
 
     ```csharp
     return product;
     ```
 
-## Configure routing
+## Routing
 
-The following code code in the App_Start/WebAPIConfig.cs added an endpoint for the ASP.NET Core 3.x ProductsApp app:
+The ASP.NET Web API 2 *App_Start/WebAPIConfig.cs* file contains an endpoint for the ProductsApp app:
 
 [!code-csharp[](webapi/sample/3.x/ProductsApp/App_Start/WebAPIConfig.cs?highlight=15, 17-21)]
 
@@ -161,7 +159,7 @@ In *Program.cs* in the ASP.NET Core 6.0 ProductsCore app, <xref:Microsoft.AspNet
 
 Configure routing as follows:
 
-1. Mark the `ProductsController` class with the following highlighted attributes:
+1. The migrated `ProductsController` contains the following highlighted attributes:
 
     [!code-csharp[](webapi/sample/6.x/ProductsCore/Controllers/ProductsController.cs?highlight=6,7)]
 
