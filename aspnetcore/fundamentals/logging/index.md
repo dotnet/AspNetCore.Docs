@@ -888,6 +888,7 @@ To create a custom logger, see [Implement a custom logging provider in .NET](/do
 
 ## Additional resources
 
+* [Microsoft.Extensions.Logging source on GitHub](https://github.com/dotnet/runtime/tree/main/src/libraries/Microsoft.Extensions.Logging)
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/logging/index/samples/6.x) ([how to download](xref:index#how-to-download-a-sample)).
 * <xref:fundamentals/logging/loggermessage>
 * Logging bugs should be created in the [`dotnet/runtime`](https://github.com/dotnet/runtime/issues) GitHub repository.
