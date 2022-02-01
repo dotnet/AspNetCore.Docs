@@ -269,7 +269,7 @@ Assign a C# field, property, or result of a method to a component parameter as a
 > <ParameterChild @Title="title" />
 > ```
 >
-> The only exception to the preceding convention is for the assignment of boolean values. Although assigning `@true` or `@false` is acceptable, we recommend not prefixing the boolean name, as the following example shows:
+> The only exception to the preceding convention is for the assignment of boolean values. Although assigning `@true` or `@false` is acceptable, we recommend not prefixing the boolean name with `@`, as the following example shows:
 >
 > ```razor
 > <ParameterChild Title="@title" IsEnabled="true" />
@@ -1411,7 +1411,7 @@ Assign a C# field, property, or result of a method to a component parameter as a
 > <ParameterChild @Title="title" />
 > ```
 >
-> The only exception to the preceding convention is for the assignment of boolean values. Although assigning `@true` or `@false` is acceptable, we recommend not prefixing the boolean name, as the following example shows:
+> The only exception to the preceding convention is for the assignment of boolean values. Although assigning `@true` or `@false` is acceptable, we recommend not prefixing the boolean name with `@`, as the following example shows:
 >
 > ```razor
 > <ParameterChild Title="@title" IsEnabled="true" />
@@ -2364,7 +2364,7 @@ Assign a C# field, property, or result of a method to a component parameter as a
 > <ParameterChild @Title="title" />
 > ```
 >
-> The only exception to the preceding convention is for the assignment of boolean values. Although assigning `@true` or `@false` is acceptable, we recommend not prefixing the boolean name, as the following example shows:
+> The only exception to the preceding convention is for the assignment of boolean values. Although assigning `@true` or `@false` is acceptable, we recommend not prefixing the boolean name with `@`, as the following example shows:
 >
 > ```razor
 > <ParameterChild Title="@title" IsEnabled="true" />
