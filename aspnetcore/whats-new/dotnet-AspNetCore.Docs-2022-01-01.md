@@ -94,7 +94,6 @@ Welcome to what's new in the ASP.NET Core docs from January 1, 2022 through Janu
 
 The following people contributed to the ASP.NET Core docs during this period. Thank you! Learn how to contribute by following the links under "Get involved" in the [what's new landing page](index.yml).
 
-- [guardrex](https://github.com/guardrex) - Luke Latham (29)
 - [celeronCoder](https://github.com/celeronCoder) - Khushal Bhardwaj (2)
 - [erhanalankus](https://github.com/erhanalankus) - Erhan Alankuş (2)
 - [explorest](https://github.com/explorest) - Mumtaz Ali Shah (2)
