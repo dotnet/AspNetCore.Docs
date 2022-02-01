@@ -62,8 +62,6 @@ public async Task UploadStream(IAsyncEnumerable<string> stream)
 }
 ```
 
-:::moniker-end
-
 ## .NET client
 
 ### Server-to-client streaming
