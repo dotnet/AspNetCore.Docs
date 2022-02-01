@@ -11,7 +11,7 @@ uid: mvc/controllers/areas
 
 By [Dhananjay Kumar](https://twitter.com/debug_mode) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.0"
 
 Areas are an ASP.NET feature used to organize related functionality into a group as a separate:
 
@@ -221,9 +221,9 @@ All *.cshtml files and files within the *wwwroot* directory are published to out
 
 In Solution Explorer, right click the project and select **ADD > New Scaffolded Item**, then select **MVC Area**.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+:::moniker range="< aspnetcore-3.0"
 
 Areas are an ASP.NET feature used to organize related functionality into a group as a separate namespace (for routing) and folder structure (for views). Using areas creates a hierarchy for the purpose of routing by adding another route parameter, `area`, to `controller` and `action` or a Razor Page `page`.
 
@@ -410,4 +410,4 @@ To share a common layout for the entire app, move the *_ViewStart.cshtml* to the
 ### Publishing Areas
 
 All *.cshtml files and files within the *wwwroot* directory are published to output when `<Project Sdk="Microsoft.NET.Sdk.Web">` is included in the *.csproj file.
-::: moniker-end
+:::moniker-end

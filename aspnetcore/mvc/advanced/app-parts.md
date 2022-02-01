@@ -10,7 +10,7 @@ uid: mvc/extensibility/app-parts
 
 # Share controllers, views, Razor Pages and more with Application Parts
 
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.0"
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -98,15 +98,15 @@ HTTP 404 errors are not uncommon when developing with application parts. These e
 * The root assembly needs to have a reference to the parts used for discovery. The reference can be direct or transitive.
 * The root assembly needs to reference the Web SDK. The framework has logic that stamps attributes into the root assembly that are used for discovery.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+:::moniker range="< aspnetcore-3.0"
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/advanced/app-parts) ([how to download](xref:index#how-to-download-a-sample))
 
-An *Application Part* is an abstraction over the resources of an app. Application Parts allow ASP.NET Core to discover controllers, view components, tag helpers, Razor Pages, razor compilation sources, and more. [AssemblyPart](/dotnet/api/microsoft.aspnetcore.mvc.applicationparts.assemblypart#Microsoft_AspNetCore_Mvc_ApplicationParts_AssemblyPart) is an Application part. `AssemblyPart` encapsulates an assembly reference and exposes types and compilation references.
+An *Application Part* is an abstraction over the resources of an app. Application Parts allow ASP.NET Core to discover controllers, view components, tag helpers, Razor Pages, razor compilation sources, and more. [AssemblyPart](/dotnet/api/microsoft.aspnetcore.mvc.applicationparts.assemblypart) is an Application part. `AssemblyPart` encapsulates an assembly reference and exposes types and compilation references.
 
 *Feature providers* work with application parts to populate the features of an ASP.NET Core app. The main use case for application parts is to configure an app to discover (or avoid loading) ASP.NET Core features from an assembly. For example, you might want to share common functionality between multiple apps. Using Application Parts, you can share an assembly (DLL) containing controllers, views, Razor Pages, razor compilation sources, Tag Helpers, and more with multiple apps. Sharing an assembly is preferred to duplicating code in multiple projects.
 
@@ -186,4 +186,4 @@ HTTP 404 errors are not uncommon when developing with application parts. These e
 * The root assembly needs to reference the Web SDK.
   * The ASP.NET Core framework has custom build logic that stamps attributes into the root assembly that are used for discovery.
 
-::: moniker-end
+:::moniker-end

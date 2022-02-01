@@ -15,7 +15,7 @@ By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com
 
 [!INCLUDE [about the series](../../includes/RP-EF/intro.md)]
 
-::: moniker range=">= aspnetcore-5.0"
+:::moniker range=">= aspnetcore-5.0"
 
 This tutorial shows how to read and display related data. Related data is data that EF Core loads into navigation properties.
 
@@ -285,9 +285,9 @@ The next tutorial shows how to update related data.
 >[Previous tutorial](xref:data/ef-rp/complex-data-model)
 >[Next tutorial](xref:data/ef-rp/update-related-data)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
+:::moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
 This tutorial shows how to read and display related data. Related data is data that EF Core loads into navigation properties.
 
@@ -596,9 +596,9 @@ The next tutorial shows how to update related data.
 >[Previous tutorial](xref:data/ef-rp/complex-data-model)
 >[Next tutorial](xref:data/ef-rp/update-related-data)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+:::moniker range="< aspnetcore-3.0"
 
 In this tutorial, related data is read and displayed. Related data is data that EF Core loads into navigation properties.
 
@@ -919,4 +919,4 @@ The next tutorial shows how to update related data.
 >[Previous](xref:data/ef-rp/complex-data-model)
 >[Next](xref:data/ef-rp/update-related-data)
 
-::: moniker-end
+:::moniker-end

@@ -10,7 +10,7 @@ uid: mvc/models/validation
 ---
 # Model validation in ASP.NET Core MVC and Razor Pages
 
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.0"
 
 By [Kirk Larkin](https://github.com/serpent5)
 
@@ -383,9 +383,9 @@ The preceding approach won't prevent client side validation of ASP.NET Core Iden
 * [System.ComponentModel.DataAnnotations namespace](xref:System.ComponentModel.DataAnnotations)
 * [Model Binding](model-binding.md)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+:::moniker range="< aspnetcore-3.0"
 
 This article explains how to validate user input in an ASP.NET Core MVC or Razor Pages app.
 
@@ -753,4 +753,4 @@ Another option for disabling client validation is to comment out the reference t
 * [System.ComponentModel.DataAnnotations namespace](xref:System.ComponentModel.DataAnnotations)
 * [Model Binding](model-binding.md)
 
-::: moniker-end
+:::moniker-end

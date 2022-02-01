@@ -12,7 +12,7 @@ uid: host-and-deploy/azure-iis-errors-reference
 
 # Common errors reference for Azure App Service and IIS with ASP.NET Core
 
-::: moniker range=">= aspnetcore-2.2"
+:::moniker range=">= aspnetcore-2.2"
 
 This topic describes common errors and provides troubleshooting advice for specific errors when hosting ASP.NET Core apps on Azure Apps Service and IIS.
 
@@ -298,9 +298,9 @@ For more information, see the following topics:
 * <xref:test/troubleshoot-azure-iis>
 * <xref:test/troubleshoot>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-2.2"
+:::moniker range="< aspnetcore-2.2"
 
 This topic describes common errors and provides troubleshooting advice for specific errors when hosting ASP.NET Core apps on Azure Apps Service and IIS.
 
@@ -550,4 +550,4 @@ For more information, see the following topics:
 * <xref:test/troubleshoot-azure-iis>
 * <xref:test/troubleshoot>
 
-::: moniker-end
+:::moniker-end

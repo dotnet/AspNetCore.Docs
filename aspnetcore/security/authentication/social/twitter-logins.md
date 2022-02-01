@@ -56,19 +56,19 @@ These tokens can be found on the **Keys and Access Tokens** tab after creating a
 
 ## Configure Twitter Authentication
 
-::: moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 Add the Authentication service to the `Startup.ConfigureServices`:
 
 [!code-csharp[](~/security/authentication/social/social-code/3.x/StartupTwitter3x.cs?name=snippet&highlight=10-15)]
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 [!code-csharp[](~/security/authentication/social/social-code/6.x/ProgramTwitter.cs)]
 
-::: moniker-end
+:::moniker-end
 
 
 [!INCLUDE [default settings configuration](includes/default-settings.md)]

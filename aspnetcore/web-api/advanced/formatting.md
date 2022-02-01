@@ -11,8 +11,6 @@ uid: web-api/advanced/formatting
 ---
 # Format response data in ASP.NET Core Web API
 
-By [Kirk Larkin](https://twitter.com/serpent5) and [Rick Anderson](https://twitter.com/RickAndMSFT)
-
 :::moniker range=">= aspnetcore-6.0"
 
 ASP.NET Core MVC supports formatting response data, using specified formats or in response to a client's request.

@@ -12,7 +12,7 @@ uid: tutorials/razor-pages/validation
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 In this section, validation logic is added to the `Movie` model. The validation rules are enforced any time a user creates or edits a movie.
 
@@ -30,7 +30,7 @@ The validation support provided by Razor Pages and Entity Framework is a good ex
 
 ## Add validation rules to the movie model
 
-The `DataAnnotations` namespace provides:
+The <xref:System.ComponentModel.DataAnnotations> namespace provides:
 
 * A set of built-in validation attributes that are applied declaratively to a class or property.
 * Formatting attributes like `[DataType]` that help with formatting and don't provide any validation.
@@ -253,9 +253,9 @@ Thanks for completing this introduction to Razor Pages. [Get started with Razor 
 
 > [!div class="step-by-step"]
 > [Previous: Add a new field](xref:tutorials/razor-pages/new-field)
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 In this section, validation logic is added to the `Movie` model. The validation rules are enforced any time a user creates or edits a movie.
 
@@ -481,4 +481,4 @@ Thanks for completing this introduction to Razor Pages. [Get started with Razor 
 
 > [!div class="step-by-step"]
 > [Previous: Add a new field](xref:tutorials/razor-pages/new-field)
-::: moniker-end
+:::moniker-end

@@ -13,7 +13,7 @@ uid: fundamentals/servers/httpsys
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Chris Ross](https://github.com/Tratcher)
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 [HTTP.sys](/iis/get-started/introduction-to-iis/introduction-to-iis-architecture#hypertext-transfer-protocol-stack-httpsys) is a [web server for ASP.NET Core](xref:fundamentals/servers/index) that only runs on Windows. HTTP.sys is an alternative to [Kestrel](xref:fundamentals/servers/kestrel) server and offers some features that Kestrel doesn't provide.
 
@@ -306,10 +306,10 @@ Requirements to run gRPC with HTTP.sys:
 * [The host](xref:fundamentals/index#host)
 * <xref:test/troubleshoot>
 
-::: moniker-end
+:::moniker-end
 
 
-::: moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 [HTTP.sys](/iis/get-started/introduction-to-iis/introduction-to-iis-architecture#hypertext-transfer-protocol-stack-httpsys) is a [web server for ASP.NET Core](xref:fundamentals/servers/index) that only runs on Windows. HTTP.sys is an alternative to [Kestrel](xref:fundamentals/servers/kestrel) server and offers some features that Kestrel doesn't provide.
 
@@ -578,4 +578,4 @@ Requirements to run gRPC with HTTP.sys:
 * [The host](xref:fundamentals/index#host)
 * <xref:test/troubleshoot>
 
-::: moniker-end
+:::moniker-end

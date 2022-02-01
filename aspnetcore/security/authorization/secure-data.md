@@ -13,7 +13,7 @@ uid: security/authorization/secure-data
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Joe Audette](https://twitter.com/joeaudette)
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 This tutorial shows how to create an ASP.NET Core web app with user data protected by authorization. It displays a list of contacts that authenticated (registered) users have created. There are three security groups:
 
@@ -94,7 +94,7 @@ dotnet ef database update
 
 ### Add Role services to Identity
 
-Append [AddRoles](/dotnet/api/microsoft.aspnetcore.identity.identitybuilder.addroles#Microsoft_AspNetCore_Identity_IdentityBuilder_AddRoles__1) to add Role services:
+Append [AddRoles](/dotnet/api/microsoft.aspnetcore.identity.identitybuilder.addroles) to add Role services:
 
 [!code-csharp[](secure-data/samples/final6/Program.cs?name=snippet&highlight=10)]
 
@@ -160,7 +160,7 @@ Create a `ContactIsOwnerAuthorizationHandler` class in the *Authorization* folde
 
 [!code-csharp[](secure-data/samples/final6/Authorization/ContactIsOwnerAuthorizationHandler.cs)]
 
-The `ContactIsOwnerAuthorizationHandler` calls [context.Succeed](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.succeed#Microsoft_AspNetCore_Authorization_AuthorizationHandlerContext_Succeed_Microsoft_AspNetCore_Authorization_IAuthorizationRequirement_) if the current authenticated user is the contact owner. Authorization handlers generally:
+The `ContactIsOwnerAuthorizationHandler` calls [context.Succeed](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.succeed) if the current authenticated user is the contact owner. Authorization handlers generally:
 
 * Call `context.Succeed` when the requirements are met.
 * Return `Task.CompletedTask` when requirements aren't met. Returning `Task.CompletedTask` without a prior call to `context.Success` or `context.Fail`, is not a success or failure, it allows other authorization handlers to run.
@@ -366,9 +366,9 @@ Call `SeedData.Initialize` from `Program.cs`:
 
 Test that the app seeded the database. If there are any rows in the contact DB, the seed method doesn't run.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 This tutorial shows how to create an ASP.NET Core web app with user data protected by authorization. It displays a list of contacts that authenticated (registered) users have created. There are three security groups:
 
@@ -451,7 +451,7 @@ dotnet ef database update
 
 ### Add Role services to Identity
 
-Append [AddRoles](/dotnet/api/microsoft.aspnetcore.identity.identitybuilder.addroles#Microsoft_AspNetCore_Identity_IdentityBuilder_AddRoles__1) to add Role services:
+Append [AddRoles](/dotnet/api/microsoft.aspnetcore.identity.identitybuilder.addroles) to add Role services:
 
 [!code-csharp[](secure-data/samples/final3/Startup.cs?name=snippet2&highlight=8)]
 
@@ -517,7 +517,7 @@ Create a `ContactIsOwnerAuthorizationHandler` class in the *Authorization* folde
 
 [!code-csharp[](secure-data/samples/final6/Authorization/ContactIsOwnerAuthorizationHandler.cs)]
 
-The `ContactIsOwnerAuthorizationHandler` calls [context.Succeed](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.succeed#Microsoft_AspNetCore_Authorization_AuthorizationHandlerContext_Succeed_Microsoft_AspNetCore_Authorization_IAuthorizationRequirement_) if the current authenticated user is the contact owner. Authorization handlers generally:
+The `ContactIsOwnerAuthorizationHandler` calls [context.Succeed](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.succeed) if the current authenticated user is the contact owner. Authorization handlers generally:
 
 * Call `context.Succeed` when the requirements are met.
 * Return `Task.CompletedTask` when requirements aren't met. Returning `Task.CompletedTask` without a prior call to `context.Success` or `context.Fail`, is not a success or failure, it allows other authorization handlers to run.
@@ -726,7 +726,7 @@ Call `SeedData.Initialize` from `Main`:
 
 Test that the app seeded the database. If there are any rows in the contact DB, the seed method doesn't run.
 
-::: moniker-end
+:::moniker-end
 
 <a name="secure-data-add-resources-label"></a>
 

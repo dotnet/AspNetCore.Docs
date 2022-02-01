@@ -11,7 +11,7 @@ uid: blazor/js-interop/call-javascript-from-dotnet
 ---
 # Call JavaScript functions from .NET methods in ASP.NET Core Blazor
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 This article covers invoking JavaScript (JS) functions from .NET. For information on how to call .NET methods from JS, see <xref:blazor/js-interop/call-dotnet-from-javascript>.
 
@@ -56,6 +56,12 @@ The following `CallJsExample1` component:
 `Pages/CallJsExample1.razor`:
 
 [!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample1.razor?highlight=2,34)]
+
+## JavaScript API restricted to user gestures
+
+*This section only applies to Blazor Server apps.*
+
+Some browser JavaScript (JS) APIs can only be executed in the context of a user gesture, such as using the [`Fullscreen API` (MDN documentation)](https://developer.mozilla.org/docs/Web/API/Fullscreen_API). These APIs can't be called through the JS interop mechanism in Blazor Server apps because UI event handling is performed asynchronously and generally no longer in the context of the user gesture. The app must handle the UI event completely in JavaScript, so use [`onclick` (MDN documentation)](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/onclick) instead of Blazor's `@onclick` directive attribute.
 
 ## Invoke JavaScript functions without reading a returned value (`InvokeVoidAsync`)
 
@@ -152,6 +158,7 @@ Load JavaScript (JS) code using any of approaches described by the [JavaScript (
 
 * [Load a script in `<head>` markup](xref:blazor/js-interop/index#load-a-script-in-head-markup) (*Not generally recommended*)
 * [Load a script in `<body>` markup](xref:blazor/js-interop/index#load-a-script-in-body-markup)
+* [Load a script from an external JavaScript file (`.js`) collocated with a component](xref:blazor/js-interop/index#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component)
 * [Load a script from an external JS file (`.js`)](xref:blazor/js-interop/index#load-a-script-from-an-external-js-file-js)
 * [Inject a script after Blazor starts](xref:blazor/js-interop/index#inject-a-script-after-blazor-starts)
 
@@ -716,9 +723,9 @@ In the following example, the `nonFunction` JS function doesn't exist. When the 
 * <xref:blazor/js-interop/call-dotnet-from-javascript>
 * [`InteropComponent.razor` example (dotnet/AspNetCore GitHub repository `main` branch)](https://github.com/dotnet/AspNetCore/blob/main/src/Components/test/testassets/BasicTestApp/InteropComponent.razor): The `main` branch represents the product unit's current development for the next release of ASP.NET Core. To select the branch for a different release (for example, `release/5.0`), use the **Switch branches or tags** dropdown list to select the branch.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 This article covers invoking JavaScript (JS) functions from .NET. For information on how to call .NET methods from JS, see <xref:blazor/js-interop/call-dotnet-from-javascript>.
 
@@ -763,6 +770,12 @@ The following `CallJsExample1` component:
 `Pages/CallJsExample1.razor`:
 
 [!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample1.razor?highlight=2,34)]
+
+## JavaScript API restricted to user gestures
+
+*This section only applies to Blazor Server apps.*
+
+Some browser JavaScript (JS) APIs can only be executed in the context of a user gesture, such as using the [`Fullscreen API` (MDN documentation)](https://developer.mozilla.org/docs/Web/API/Fullscreen_API). These APIs can't be called through the JS interop mechanism in Blazor Server apps because UI event handling is performed asynchronously and generally no longer in the context of the user gesture. The app must handle the UI event completely in JavaScript, so use [`onclick` (MDN documentation)](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/onclick) instead of Blazor's `@onclick` directive attribute.
 
 ## Invoke JavaScript functions without reading a returned value (`InvokeVoidAsync`)
 
@@ -1324,9 +1337,9 @@ In the following example, the `nonFunction` JS function doesn't exist. When the 
 * <xref:blazor/js-interop/call-dotnet-from-javascript>
 * [`InteropComponent.razor` example (dotnet/AspNetCore GitHub repository `main` branch)](https://github.com/dotnet/AspNetCore/blob/main/src/Components/test/testassets/BasicTestApp/InteropComponent.razor): The `main` branch represents the product unit's current development for the next release of ASP.NET Core. To select the branch for a different release (for example, `release/5.0`), use the **Switch branches or tags** dropdown list to select the branch.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-5.0"
+:::moniker range="< aspnetcore-5.0"
 
 This article covers invoking JavaScript (JS) functions from .NET. For information on how to call .NET methods from JS, see <xref:blazor/js-interop/call-dotnet-from-javascript>.
 
@@ -1371,6 +1384,12 @@ The following `CallJsExample1` component:
 `Pages/CallJsExample1.razor`:
 
 [!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample1.razor?highlight=2,34-35)]
+
+## JavaScript API restricted to user gestures
+
+*This section only applies to Blazor Server apps.*
+
+Some browser JavaScript (JS) APIs can only be executed in the context of a user gesture, such as using the [`Fullscreen API` (MDN documentation)](https://developer.mozilla.org/docs/Web/API/Fullscreen_API). These APIs can't be called through the JS interop mechanism in Blazor Server apps because UI event handling is performed asynchronously and generally no longer in the context of the user gesture. The app must handle the UI event completely in JavaScript, so use [`onclick` (MDN documentation)](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/onclick) instead of Blazor's `@onclick` directive attribute.
 
 ## Invoke JavaScript functions without reading a returned value (`InvokeVoidAsync`)
 
@@ -1727,4 +1746,4 @@ In the following example, the `nonFunction` JS function doesn't exist. When the 
 * <xref:blazor/file-downloads>
 * <xref:blazor/file-uploads>
 
-::: moniker-end
+:::moniker-end

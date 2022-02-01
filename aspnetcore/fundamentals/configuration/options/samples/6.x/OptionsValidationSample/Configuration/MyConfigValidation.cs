@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace OptionsValidationSample.Configuration
 {
-    #region snippet
+    // <snippet>
     public class MyConfigValidation : IValidateOptions<MyConfigOptions>
     {
         public MyConfigOptions _config { get; private set; }
@@ -48,5 +48,5 @@ namespace OptionsValidationSample.Configuration
             return ValidateOptionsResult.Success;
         }
     }
-    #endregion
+    // </snippet>
 }

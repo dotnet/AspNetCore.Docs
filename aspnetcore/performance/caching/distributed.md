@@ -13,7 +13,7 @@ uid: performance/caching/distributed
 
 By [Mohsin Nasir](https://github.com/mohsinnasir) and [smandia](https://github.com/smandia)
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 A distributed cache is a cache shared by multiple app servers, typically maintained as an external service to the app servers that access it. A distributed cache can improve the performance and scalability of an ASP.NET Core app, especially when the app is hosted by a cloud service or a server farm.
 
@@ -181,9 +181,9 @@ When SQL Server is used as a distributed cache backing store, use of the same da
 * <xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper>
 * <xref:host-and-deploy/web-farm>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 A distributed cache is a cache shared by multiple app servers, typically maintained as an external service to the app servers that access it. A distributed cache can improve the performance and scalability of an ASP.NET Core app, especially when the app is hosted by a cloud service or a server farm.
 
@@ -359,4 +359,4 @@ When SQL Server is used as a distributed cache backing store, use of the same da
 * <xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper>
 * <xref:host-and-deploy/web-farm>
 
-::: moniker-end
+:::moniker-end

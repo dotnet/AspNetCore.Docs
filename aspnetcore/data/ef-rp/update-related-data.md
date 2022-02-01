@@ -14,7 +14,7 @@ By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com
 
 [!INCLUDE [about the series](../../includes/RP-EF/intro.md)]
 
-::: moniker range=">= aspnetcore-5.0"
+:::moniker range=">= aspnetcore-5.0"
 
 This tutorial shows how to update related data. The following illustrations show some of the completed pages.
 
@@ -96,7 +96,7 @@ The page contains a hidden field (`<input type="hidden">`) for the course number
 
 ## Update the Course page models
 
-[AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_AsNoTracking__1_System_Linq_IQueryable___0__) can improve performance when tracking isn't required.
+[AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking) can improve performance when tracking isn't required.
 
 Update *Pages/Courses/Delete.cshtml.cs* and *Pages/Courses/Details.cshtml.cs* by adding `AsNoTracking` to the `OnGetAsync` methods:
 
@@ -234,9 +234,9 @@ Run the app and test the Delete page.
 > [Previous tutorial](xref:data/ef-rp/read-related-data)
 > [Next tutorial](xref:data/ef-rp/concurrency)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
+:::moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
 
 This tutorial shows how to update related data. The following illustrations show some of the completed pages.
@@ -319,7 +319,7 @@ The page contains a hidden field (`<input type="hidden">`) for the course number
 
 ## Update the Course Details and Delete pages
 
-[AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_AsNoTracking__1_System_Linq_IQueryable___0__) can improve performance when tracking isn't required.
+[AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking) can improve performance when tracking isn't required.
 
 ### Update the Course page models
 
@@ -452,9 +452,9 @@ Run the app and test the Delete page.
 > [Previous tutorial](xref:data/ef-rp/read-related-data)
 > [Next tutorial](xref:data/ef-rp/concurrency)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+:::moniker range="< aspnetcore-3.0"
 
 This tutorial demonstrates updating related data. If you run into problems you can't solve, [download or view the completed app.](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples) [Download instructions](xref:index#how-to-download-a-sample).
 
@@ -536,7 +536,7 @@ Test the updated code. Create, edit, and delete a course.
 
 ## Add AsNoTracking to the Details and Delete page models
 
-[AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_AsNoTracking__1_System_Linq_IQueryable___0__) can improve performance when tracking isn't required. Add `AsNoTracking` to the Delete and Details page model. The following code shows the updated Delete page model:
+[AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking) can improve performance when tracking isn't required. Add `AsNoTracking` to the Delete and Details page model. The following code shows the updated Delete page model:
 
 [!code-csharp[](intro/samples/cu/Pages/Courses/Delete.cshtml.cs?name=snippet&highlight=21,23,40,41)]
 
@@ -672,4 +672,4 @@ The preceding code makes the following changes:
 > [Previous](xref:data/ef-rp/read-related-data)
 > [Next](xref:data/ef-rp/concurrency)
 
-::: moniker-end
+:::moniker-end

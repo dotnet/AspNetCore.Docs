@@ -30,16 +30,16 @@ For more information on configuring CORS, see [Enable Cross-Origin Requests (COR
 * HTTP methods `GET` and `POST` must be allowed.
 * Credentials must be allowed in order for cookie-based sticky sessions to work correctly. They must be enabled even when authentication isn't used.
 
-::: moniker range=">= aspnetcore-5.0"
+:::moniker range=">= aspnetcore-5.0"
 
 However, in 5.0 we have provided an option in the TypeScript client to not use credentials.
 The option to not use credentials should only be used when you know 100% that credentials like Cookies are not needed in your app (cookies are used by azure app service when using multiple servers for sticky sessions).
 
-::: moniker-end
+:::moniker-end
 
 For example, the following CORS policy allows a SignalR browser client hosted on `https://example.com` to access the SignalR app hosted on `https://signalr.example.com`:
 
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.0"
 
 ```csharp
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -67,23 +67,23 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 }
 ```
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="<= aspnetcore-2.2"
+:::moniker range="<= aspnetcore-2.2"
 
 [!code-csharp[Main](security/sample/Startup.cs?name=snippet1)]
 
-::: moniker-end
+:::moniker-end
 
 ## WebSocket Origin Restriction
 
-::: moniker range=">= aspnetcore-2.2"
+:::moniker range=">= aspnetcore-2.2"
 
 The protections provided by CORS don't apply to WebSockets. For origin restriction on WebSockets, read [WebSockets origin restriction](xref:fundamentals/websockets#websocket-origin-restriction).
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-2.2"
+:::moniker range="< aspnetcore-2.2"
 
 The protections provided by CORS don't apply to WebSockets. Browsers do **not**:
 
@@ -99,7 +99,7 @@ In ASP.NET Core 2.1 and later, header validation can be achieved using a custom 
 > [!NOTE]
 > The `Origin` header is controlled by the client and, like the `Referer` header, can be faked. These headers should **not** be used as an authentication mechanism.
 
-::: moniker-end
+:::moniker-end
 
 ## ConnectionId
 

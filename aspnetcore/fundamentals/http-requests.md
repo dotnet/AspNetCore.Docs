@@ -219,7 +219,7 @@ The following delegating handler consumes and uses `IOperationScoped` to set the
 
 :::code language="csharp" source="http-requests/samples/6.x/HttpRequestsSample/Handlers/OperationHandler.cs" id="snippet_Class" highlight="5-6,11":::
 
-In the [`HttpRequestsSample` download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/http-requests/samples/6.0/HttpRequestsSample), navigate to `/Operation` and refresh the page. The request scope value changes for each request, but the handler scope value only changes every 5 seconds.
+In the [`HttpRequestsSample` download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/http-requests/samples/6.x/HttpRequestsSample), navigate to `/Operation` and refresh the page. The request scope value changes for each request, but the handler scope value only changes every 5 seconds.
 
 Handlers can depend upon services of any scope. Services that handlers depend upon are disposed when the handler is disposed.
 
@@ -790,7 +790,7 @@ Header propagation is an ASP.NET Core middleware to propagate HTTP headers from 
 * Reference the [Microsoft.AspNetCore.HeaderPropagation](https://www.nuget.org/packages/Microsoft.AspNetCore.HeaderPropagation) package.
 * Configure the middleware and `HttpClient` in `Startup`:
 
-  :::code language="csharp" source="http-requests/samples/3.x/Startup.cs" highlight="5-9,21&name=snippet":::
+  :::code language="csharp" source="http-requests/samples/3.x/Startup.cs" id="snippet" highlight="5-9,21":::
 
 * The client includes the configured headers on outbound requests:
 
@@ -1212,7 +1212,7 @@ Header propagation is an ASP.NET Core middleware to propagate HTTP headers from 
 * Reference the [Microsoft.AspNetCore.HeaderPropagation](https://www.nuget.org/packages/Microsoft.AspNetCore.HeaderPropagation) package.
 * Configure the middleware and `HttpClient` in `Startup`:
 
-  :::code language="csharp" source="http-requests/samples/3.x/Startup.cs" highlight="5-9,21&name=snippet":::
+  :::code language="csharp" source="http-requests/samples/3.x/Startup.cs" id="snippet" highlight="5-9,21":::
 
 * The client includes the configured headers on outbound requests:
 

@@ -13,7 +13,7 @@ uid: security/authentication/windowsauth
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://twitter.com/serpent5)
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 Windows Authentication (also known as Negotiate, Kerberos, or NTLM authentication) can be configured for ASP.NET Core apps hosted with [IIS](xref:host-and-deploy/iis/index), [Kestrel](xref:fundamentals/servers/kestrel), or [HTTP.sys](xref:fundamentals/servers/httpsys).
 
@@ -234,9 +234,9 @@ When hosting with IIS, <xref:Microsoft.AspNetCore.Authentication.AuthenticationS
 * <xref:host-and-deploy/aspnet-core-module>
 * <xref:host-and-deploy/visual-studio-publish-profiles>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 Windows Authentication (also known as Negotiate, Kerberos, or NTLM authentication) can be configured for ASP.NET Core apps hosted with [IIS](xref:host-and-deploy/iis/index), [Kestrel](xref:fundamentals/servers/kestrel), or [HTTP.sys](xref:fundamentals/servers/httpsys).
 
@@ -491,4 +491,4 @@ When hosting with IIS, <xref:Microsoft.AspNetCore.Authentication.AuthenticationS
 * <xref:host-and-deploy/aspnet-core-module>
 * <xref:host-and-deploy/visual-studio-publish-profiles>
 
-::: moniker-end
+:::moniker-end

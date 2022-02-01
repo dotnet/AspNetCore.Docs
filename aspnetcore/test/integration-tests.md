@@ -118,7 +118,7 @@ If the SUT's [environment](xref:fundamentals/environments) isn't set, the enviro
 
 ## Basic tests with the default WebApplicationFactory
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 ASP.NET Core 6 introduced [`WebApplication`](/dotnet/api/microsoft.aspnetcore.builder.webapplication) which removed the need for a `Startup` class. To test with `WebApplicationFactory` without a `Startup` class, an ASP.NET Core 6 app needs to expose the implicitly defined `Program` class to the test project by doing the following:
 
@@ -153,7 +153,7 @@ public async Task HelloWorldTest()
 }
 ```
 
-::: moniker-end
+:::moniker-end
 
 [`WebApplicationFactory<TEntryPoint>`](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1) is used to create a [`TestServer`](/dotnet/api/microsoft.aspnetcore.testhost.testserver) for the integration tests. `TEntryPoint` is the entry point class of the SUT, usually the `Startup` class.
 
@@ -215,7 +215,7 @@ Any POST request to the SUT must satisfy the antiforgery check that's automatica
 The `SendAsync` helper extension methods (`Helpers/HttpClientExtensions.cs`) and the `GetDocumentAsync` helper method (`Helpers/HtmlHelpers.cs`) in the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/test/integration-tests/samples/) use the [AngleSharp](https://anglesharp.github.io/) parser to handle the antiforgery check with the following methods:
 
 * `GetDocumentAsync`: Receives the [`HttpResponseMessage`](/dotnet/api/system.net.http.httpresponsemessage) and returns an `IHtmlDocument`. `GetDocumentAsync` uses a factory that prepares a *virtual response* based on the original `HttpResponseMessage`. For more information, see the [AngleSharp documentation](https://github.com/AngleSharp/AngleSharp#documentation).
-* `SendAsync` extension methods for the `HttpClient` compose an [`HttpRequestMessage`](/dotnet/api/system.net.http.httprequestmessage) and call [`SendAsync(HttpRequestMessage`)](/dotnet/api/system.net.http.httpclient.sendasync#System_Net_Http_HttpClient_SendAsync_System_Net_Http_HttpRequestMessage_) to submit requests to the SUT. Overloads for `SendAsync` accept the HTML form (`IHtmlFormElement`) and the following:
+* `SendAsync` extension methods for the `HttpClient` compose an [`HttpRequestMessage`](/dotnet/api/system.net.http.httprequestmessage) and call [`SendAsync(HttpRequestMessage`)](/dotnet/api/system.net.http.httpclient.sendasync#system-net-http-httpclient-sendasync(system-net-http-httprequestmessage)) to submit requests to the SUT. Overloads for `SendAsync` accept the HTML form (`IHtmlFormElement`) and the following:
   * Submit button of the form (`IHtmlElement`)
   * Form values collection (`IEnumerable<KeyValuePair<string, string>>`)
   * Submit button (`IHtmlElement`) and form values (`IEnumerable<KeyValuePair<string, string>>`)

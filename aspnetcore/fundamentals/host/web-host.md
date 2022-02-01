@@ -13,17 +13,17 @@ uid: fundamentals/host/web-host
 
 ASP.NET Core apps configure and launch a *host*. The host is responsible for app startup and lifetime management. At a minimum, the host configures a server and a request processing pipeline. The host can also set up logging, dependency injection, and configuration.
 
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.0"
 
 This article covers the Web Host, which remains available only for backward compatibility. The ASP.NET Core templates create a [.NET Generic Host](<xref:fundamentals/host/generic-host>), which is recommended for all app types.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+:::moniker range="< aspnetcore-3.0"
 
 This article covers the Web Host, which is for hosting web apps. For other kinds of apps, use the [Generic Host](xref:fundamentals/host/generic-host).
 
-::: moniker-end
+:::moniker-end
 
 ## Set up a host
 
@@ -49,12 +49,12 @@ The code that calls `CreateDefaultBuilder` is in a method named `CreateWebHostBu
 
 `CreateDefaultBuilder` performs the following tasks:
 
-::: moniker range=">= aspnetcore-5.0"
+:::moniker range=">= aspnetcore-5.0"
 * Configures [Kestrel](xref:fundamentals/servers/kestrel) server as the web server using the app's hosting configuration providers. For the Kestrel server's default options, see <xref:fundamentals/servers/kestrel/options>.
-::: moniker-end
-::: moniker range="< aspnetcore-5.0"
+:::moniker-end
+:::moniker range="< aspnetcore-5.0"
 * Configures [Kestrel](xref:fundamentals/servers/kestrel) server as the web server using the app's hosting configuration providers. For the Kestrel server's default options, see <xref:fundamentals/servers/kestrel#kestrel-options>.
-::: moniker-end
+:::moniker-end
 * Sets the [content root](xref:fundamentals/index#content-root) to the path returned by [Directory.GetCurrentDirectory](/dotnet/api/system.io.directory.getcurrentdirectory).
 * Loads [host configuration](#host-configuration-values) from:
   * Environment variables prefixed with `ASPNETCORE_` (for example, `ASPNETCORE_ENVIRONMENT`).
@@ -93,7 +93,7 @@ The configuration defined by `CreateDefaultBuilder` can be overridden and augmen
         ...
     ```
 
-::: moniker range=">= aspnetcore-2.2"
+:::moniker range=">= aspnetcore-2.2"
 
 * The following call to `ConfigureKestrel` overrides the default [Limits.MaxRequestBodySize](/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserverlimits.maxrequestbodysize) of 30,000,000 bytes established when Kestrel was configured by `CreateDefaultBuilder`:
 
@@ -105,9 +105,9 @@ The configuration defined by `CreateDefaultBuilder` can be overridden and augmen
         });
     ```
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-2.2"
+:::moniker range="< aspnetcore-2.2"
 
 * The following call to [UseKestrel](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderkestrelextensions.usekestrel) overrides the default [Limits.MaxRequestBodySize](/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserverlimits.maxrequestbodysize) of 30,000,000 bytes established when Kestrel was configured by `CreateDefaultBuilder`:
 
@@ -119,7 +119,7 @@ The configuration defined by `CreateDefaultBuilder` can be overridden and augmen
         });
     ```
 
-::: moniker-end
+:::moniker-end
 
 The [content root](xref:fundamentals/index#content-root) determines where the host searches for content files, such as MVC view files. When the app is started from the project's root folder, the project's root folder is used as the content root. This is the default used in [Visual Studio](https://visualstudio.microsoft.com) and the [dotnet new templates](/dotnet/core/tools/dotnet-new).
 
@@ -142,17 +142,17 @@ The host uses whichever option sets a value last. For more information, see [Ove
 
 ### Application Key (Name)
 
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.0"
 
 The `IWebHostEnvironment.ApplicationName` property is automatically set when [UseStartup](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderextensions.usestartup) or [Configure](/dotnet/api/microsoft.aspnetcore.hosting.istartup.configure) is called during host construction. The value is set to the name of the assembly containing the app's entry point. To set the value explicitly, use the [WebHostDefaults.ApplicationKey](/dotnet/api/microsoft.aspnetcore.hosting.webhostdefaults.applicationkey):
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+:::moniker range="< aspnetcore-3.0"
 
 The [IHostingEnvironment.ApplicationName](/dotnet/api/microsoft.extensions.hosting.ihostingenvironment.applicationname) property is automatically set when [UseStartup](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderextensions.usestartup) or [Configure](/dotnet/api/microsoft.aspnetcore.hosting.istartup.configure) is called during host construction. The value is set to the name of the assembly containing the app's entry point. To set the value explicitly, use the [WebHostDefaults.ApplicationKey](/dotnet/api/microsoft.aspnetcore.hosting.webhostdefaults.applicationkey):
 
-::: moniker-end
+:::moniker-end
 
 **Key**: applicationName  
 **Type**: *string*  
@@ -334,12 +334,12 @@ WebHost.CreateDefaultBuilder(args)
     .UseUrls("http://*:5000;http://localhost:5001;https://hostname:5002")
 ```
 
-::: moniker range=">= aspnetcore-5.0"
+:::moniker range=">= aspnetcore-5.0"
 Kestrel has its own endpoint configuration API. For more information, see <xref:fundamentals/servers/kestrel/endpoints>.
-::: moniker-end
-::: moniker range="< aspnetcore-5.0"
+:::moniker-end
+:::moniker range="< aspnetcore-5.0"
 Kestrel has its own endpoint configuration API. For more information, see <xref:fundamentals/servers/kestrel#endpoint-configuration>.
-::: moniker-end
+:::moniker-end
 
 ### Shutdown Timeout
 
@@ -629,7 +629,7 @@ using (var host = WebHost.StartWith("http://localhost:8080", app =>
 
 Produces the same result as **StartWith(Action\<IApplicationBuilder> app)**, except the app responds on `http://localhost:8080`.
 
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.0"
 
 ## IWebHostEnvironment interface
 
@@ -722,9 +722,9 @@ public async Task Invoke(HttpContext context, IWebHostEnvironment env)
 }
 ```
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+:::moniker range="< aspnetcore-3.0"
 
 ## IHostingEnvironment interface
 
@@ -817,9 +817,9 @@ public async Task Invoke(HttpContext context, IHostingEnvironment env)
 }
 ```
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.0"
 
 ## IHostApplicationLifetime interface
 
@@ -884,9 +884,9 @@ public class MyClass
 }
 ```
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+:::moniker range="< aspnetcore-3.0"
 
 ## IApplicationLifetime interface
 
@@ -951,7 +951,7 @@ public class MyClass
 }
 ```
 
-::: moniker-end
+:::moniker-end
 
 ## Scope validation
 

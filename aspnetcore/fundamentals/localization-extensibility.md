@@ -42,7 +42,7 @@ The preceding providers are described in detail in the [Localization Middleware]
 
 <xref:Microsoft.AspNetCore.Localization.CustomRequestCultureProvider> provides a custom <xref:Microsoft.AspNetCore.Localization.RequestCultureProvider> that uses a simple delegate to determine the current localization culture:
 
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.0"
 
 ```csharp
 options.AddInitialRequestCultureProvider(new CustomRequestCultureProvider(async context =>
@@ -62,9 +62,9 @@ options.AddInitialRequestCultureProvider(new CustomRequestCultureProvider(async 
 }));
 ```
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+:::moniker range="< aspnetcore-3.0"
 
 ```csharp
 options.RequestCultureProviders.Insert(0, new CustomRequestCultureProvider(async context =>
@@ -84,7 +84,7 @@ options.RequestCultureProviders.Insert(0, new CustomRequestCultureProvider(async
 }));
 ```
 
-::: moniker-end
+:::moniker-end
 
 ### Use a new implemetation of RequestCultureProvider
 

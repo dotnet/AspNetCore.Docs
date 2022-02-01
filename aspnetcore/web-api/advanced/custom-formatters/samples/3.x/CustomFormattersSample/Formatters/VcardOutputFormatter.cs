@@ -11,12 +11,12 @@ using Microsoft.Net.Http.Headers;
 
 namespace CustomFormattersSample.Formatters
 {
-    #region snippet_Class
-    #region snippet_ClassDeclaration
+    // <snippet_Class>
+    // <snippet_ClassDeclaration>
     public class VcardOutputFormatter : TextOutputFormatter
-    #endregion
+    // </snippet_ClassDeclaration>
     {
-        #region snippet_ctor
+        // <snippet_ctor>
         public VcardOutputFormatter()
         {
             SupportedMediaTypes.Add(MediaTypeHeaderValue.Parse("text/vcard"));
@@ -24,17 +24,17 @@ namespace CustomFormattersSample.Formatters
             SupportedEncodings.Add(Encoding.UTF8);
             SupportedEncodings.Add(Encoding.Unicode);
         }
-        #endregion
+        // </snippet_ctor>
 
-        #region snippet_CanWriteType
+        // <snippet_CanWriteType>
         protected override bool CanWriteType(Type type)
         {
             return typeof(Contact).IsAssignableFrom(type) ||
                 typeof(IEnumerable<Contact>).IsAssignableFrom(type);
         }
-        #endregion
+        // </snippet_CanWriteType>
 
-        #region snippet_WriteResponseBodyAsync
+        // <snippet_WriteResponseBodyAsync>
         public override async Task WriteResponseBodyAsync(
             OutputFormatterWriteContext context, Encoding selectedEncoding)
         {
@@ -72,7 +72,7 @@ namespace CustomFormattersSample.Formatters
             logger.LogInformation("Writing {FirstName} {LastName}",
                 contact.FirstName, contact.LastName);
         }
-        #endregion
+        // </snippet_WriteResponseBodyAsync>
     }
-    #endregion
+    // </snippet_Class>
 }

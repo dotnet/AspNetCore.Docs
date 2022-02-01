@@ -8,7 +8,7 @@ namespace CustomFormattersSample
 {
     public class Startup
     {
-        #region snippet_ConfigureServices
+        // <snippet_ConfigureServices>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers(options =>
@@ -17,7 +17,7 @@ namespace CustomFormattersSample
                 options.OutputFormatters.Insert(0, new VcardOutputFormatter());
             });
         }
-        #endregion
+        // </snippet_ConfigureServices>
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

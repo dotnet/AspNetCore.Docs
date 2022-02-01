@@ -12,7 +12,7 @@ uid: tutorials/first-mvc-app/search
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 In this section, you add search capability to the `Index` action method that lets you search movies by *genre* or *name*.
 
@@ -148,9 +148,9 @@ Test the app by searching by genre, by movie title, and by both:
 > [Previous](controller-methods-views.md)
 > [Next](new-field.md)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 In this section, you add search capability to the `Index` action method that lets you search movies by *genre* or *name*.
 
@@ -286,4 +286,4 @@ Test the app by searching by genre, by movie title, and by both:
 > [Previous](controller-methods-views.md)
 > [Next](new-field.md)
 
-::: moniker-end
+:::moniker-end

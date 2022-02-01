@@ -10,10 +10,10 @@ using Microsoft.Net.Http.Headers;
 
 namespace CustomFormattersSample.Formatters
 {
-    #region snippet_Class
+    // <snippet_Class>
     public class VcardInputFormatter : TextInputFormatter
     {
-        #region snippet_ctor
+        // <snippet_ctor>
         public VcardInputFormatter()
         {
             SupportedMediaTypes.Add(MediaTypeHeaderValue.Parse("text/vcard"));
@@ -21,7 +21,7 @@ namespace CustomFormattersSample.Formatters
             SupportedEncodings.Add(Encoding.UTF8);
             SupportedEncodings.Add(Encoding.Unicode);
         }
-        #endregion
+        // </snippet_ctor>
 
         protected override bool CanReadType(Type type)
         {
@@ -86,5 +86,5 @@ namespace CustomFormattersSample.Formatters
             return line;
         }
     }
-    #endregion
+    // </snippet_Class>
 }

@@ -11,8 +11,6 @@ uid: web-api/route-to-code
 ---
 # Basic JSON APIs with Route-to-code in ASP.NET Core
 
-By [James Newton-King](https://github.com/jamesnk)
-
 ASP.NET Core supports a number of ways of creating JSON web APIs:
 
 * [ASP.NET Core web API](xref:web-api/index) provides a complete framework for creating APIs. A service is created by inheriting from <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. Some features provided by the framework include model binding, validation, content negotiation, input and output formatting, and OpenAPI.

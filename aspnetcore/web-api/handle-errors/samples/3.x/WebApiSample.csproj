@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
-    <ProjectUiSubcaption>ASP.NET Core 3.0</ProjectUiSubcaption>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <ProjectUiSubcaption>ASP.NET Core 3.1</ProjectUiSubcaption>
   </PropertyGroup>
 
 </Project>

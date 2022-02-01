@@ -17,7 +17,7 @@ By [Tom Dykstra](https://github.com/tdykstra), [Jeremy Likness](https://twitter.
 
 [!INCLUDE [about the series](~/includes/RP-EF/intro.md)]
 
-::: moniker range=">= aspnetcore-5.0"
+:::moniker range=">= aspnetcore-5.0"
 
 The previous tutorials worked with a basic data model that was composed of three entities. In this tutorial:
 
@@ -734,9 +734,9 @@ The next two tutorials show how to read and update related data.
 > [Previous tutorial](xref:data/ef-rp/migrations)
 > [Next tutorial](xref:data/ef-rp/read-related-data)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
+:::moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
 The previous tutorials worked with a basic data model that was composed of three entities. In this tutorial:
 
@@ -1438,9 +1438,9 @@ The next two tutorials show how to read and update related data.
 > [Previous tutorial](xref:data/ef-rp/migrations)
 > [Next tutorial](xref:data/ef-rp/read-related-data)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+:::moniker range="< aspnetcore-3.0"
 
 The previous tutorials worked with a basic data model that was composed of three entities. In this tutorial:
 
@@ -2095,4 +2095,4 @@ The next tutorial covers related data.
 > [Previous](xref:data/ef-rp/migrations)
 > [Next](xref:data/ef-rp/read-related-data)
 
-::: moniker-end
+:::moniker-end

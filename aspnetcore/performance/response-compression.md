@@ -11,7 +11,7 @@ uid: performance/response-compression
 ---
 # Response compression in ASP.NET Core
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 Network bandwidth is a limited resource. Reducing the size of the response usually increases the responsiveness of an app, often dramatically. One way to reduce payload sizes is to compress an app's responses.
 
@@ -255,9 +255,9 @@ Use a tool like [Fiddler](https://www.telerik.com/fiddler), [Firefox Browser Dev
 * [RFC 7230 Section 4.2.3: Gzip Coding](https://tools.ietf.org/html/rfc7230#section-4.2.3)
 * [GZIP file format specification version 4.3](https://www.ietf.org/rfc/rfc1952.txt)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 Network bandwidth is a limited resource. Reducing the size of the response usually increases the responsiveness of an app, often dramatically. One way to reduce payload sizes is to compress an app's responses.
 
@@ -501,4 +501,4 @@ Use a tool like [Fiddler](https://www.telerik.com/fiddler), [Firefox Browser Dev
 * [RFC 7230 Section 4.2.3: Gzip Coding](https://tools.ietf.org/html/rfc7230#section-4.2.3)
 * [GZIP file format specification version 4.3](https://www.ietf.org/rfc/rfc1952.txt)
 
-::: moniker-end
+:::moniker-end

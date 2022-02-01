@@ -9,7 +9,7 @@ uid: tutorials/grpc/grpc-start
 ---
 # Tutorial: Create a gRPC client and server in ASP.NET Core
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 This tutorial shows how to create a .NET Core [gRPC](xref:grpc/index) client and an ASP.NET Core gRPC Server. At the end, you'll have a gRPC client that communicates with the gRPC Greeter service.
 
 In this tutorial, you:
@@ -95,10 +95,10 @@ info: Microsoft.Hosting.Lifetime[0]
 
 *GrpcGreeter* project files:
 
-* *Protos/greet.proto*: defines the `Greeter` gRPC and is used to generate the gRPC server assets. For more information, see [Introduction to gRPC](xref:grpc/index).
-* *Services* folder: Contains the implementation of the `Greeter` service.
-* *appSettings.json*: Contains configuration data such as the protocol used by Kestrel. For more information, see <xref:fundamentals/configuration/index>.
-* *Program.cs*, which contains:
+* `Protos/greet.proto`: defines the `Greeter` gRPC and is used to generate the gRPC server assets. For more information, see [Introduction to gRPC](xref:grpc/index).
+* `Services` folder: Contains the implementation of the `Greeter` service.
+* `appSettings.json`: Contains configuration data such as the protocol used by Kestrel. For more information, see <xref:fundamentals/configuration/index>.
+* `Program.cs`, which contains:
   * The entry point for the gRPC service. For more information, see <xref:fundamentals/host/generic-host>.
   * Code that configures app behavior. For more information, see [App startup](xref:fundamentals/startup).
 
@@ -217,7 +217,7 @@ dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 
 ### Create the Greeter client
 
-* Build the client project to create the types in the `GrpcGreeter` namespace. The `GrpcGreeter` types are generated automatically by the build process.
+* Build the client project to create the types in the `GrpcGreeterClient` namespace. The `GrpcGreeterClient` types are generated automatically by the build process.
 
 * Update the gRPC client *Program.cs* file with the following code:
 
@@ -310,9 +310,9 @@ Update the *appsettings.Development.json* file by adding the following lines:
 * <xref:grpc/basics>
 * <xref:grpc/migration>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 This tutorial shows how to create a .NET Core [gRPC](xref:grpc/index) client and an ASP.NET Core gRPC Server.
 
 At the end, you'll have a gRPC client that communicates with the gRPC Greeter service.
@@ -603,9 +603,9 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
 * <xref:grpc/basics>
 * <xref:grpc/migration>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
+:::moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
 This tutorial shows how to create a .NET Core [gRPC](xref:grpc/index) client and an ASP.NET Core gRPC Server.
 
@@ -905,4 +905,4 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
 * <xref:grpc/basics>
 * <xref:grpc/migration>
 
-::: moniker-end
+:::moniker-end

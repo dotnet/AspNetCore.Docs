@@ -19,17 +19,17 @@ Open the *Movie.cs* file. DataAnnotations provides a built-in set of validation 
 
 Update the `Movie` class to take advantage of the built-in `Required`, `StringLength`, `RegularExpression`, and `Range` validation attributes.
 
-::: moniker range=">= aspnetcore-2.1"
+:::moniker range=">= aspnetcore-2.1"
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie21/Models/MovieDateRatingDA.cs?name=snippet1)]
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="<= aspnetcore-2.0"
+:::moniker range="<= aspnetcore-2.0"
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Models/MovieDateRatingDA.cs?name=snippet1)]
 
-::: moniker-end
+:::moniker-end
 
 The validation attributes specify behavior that you want to enforce on the model properties they're applied to. The `Required` and `MinimumLength` attributes indicates that a property must have a value; but nothing prevents a user from entering white space to satisfy this validation. The `RegularExpression` attribute is used to limit what characters can be input. In the code above, `Genre` and `Rating` must use only letters (First letter uppercase, white space, numbers and special characters are not allowed). The `Range` attribute constrains a value to within a specified range. The `StringLength` attribute lets you set the maximum length of a string property, and optionally its minimum length. Value types (such as `decimal`, `int`, `float`, `DateTime`) are inherently required and don't need the `[Required]` attribute.
 
@@ -122,17 +122,17 @@ You will need to disable jQuery date validation to use the `Range` attribute wit
 
 The following code shows combining attributes on one line:
 
-::: moniker range=">= aspnetcore-2.1"
+:::moniker range=">= aspnetcore-2.1"
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie21/Models/MovieDateRatingDAmult.cs?name=snippet1)]
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="<= aspnetcore-2.0"
+:::moniker range="<= aspnetcore-2.0"
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Models/MovieDateRatingDAmult.cs?name=snippet1)]
 
-::: moniker-end
+:::moniker-end
 
 In the next part of the series, we'll review the application and make some improvements to the automatically generated `Details` and `Delete` methods.
 

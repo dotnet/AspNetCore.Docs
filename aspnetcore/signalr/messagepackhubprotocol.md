@@ -11,7 +11,7 @@ uid: signalr/messagepackhubprotocol
 ---
 
 # Use MessagePack Hub Protocol in SignalR for ASP.NET Core
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 This article assumes the reader is familiar with the topics covered in [Get Started](xref:tutorials/signalr).
 
@@ -185,9 +185,9 @@ In the java client, `char` objects will be serialized as one-character `String` 
 * [.NET client](xref:signalr/dotnet-client)
 * [JavaScript client](xref:signalr/javascript-client)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 This article assumes the reader is familiar with the topics covered in [Get Started](xref:tutorials/signalr).
 
@@ -377,9 +377,9 @@ In the java client, `char` objects will be serialized as one-character `String` 
 * [.NET client](xref:signalr/dotnet-client)
 * [JavaScript client](xref:signalr/javascript-client)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
+:::moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
 This article assumes the reader is familiar with the topics covered in [Get Started](xref:tutorials/signalr).
 
@@ -557,9 +557,9 @@ For more information on this limitation, see GitHub issue [aspnet/SignalR#2937](
 * [.NET client](xref:signalr/dotnet-client)
 * [JavaScript client](xref:signalr/javascript-client)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+:::moniker range="< aspnetcore-3.0"
 
 This article assumes the reader is familiar with the topics covered in [Get Started](xref:tutorials/signalr).
 
@@ -737,4 +737,4 @@ For more information on this limitation, see GitHub issue [aspnet/SignalR#2937](
 * [.NET client](xref:signalr/dotnet-client)
 * [JavaScript client](xref:signalr/javascript-client)
 
-::: moniker-end
+:::moniker-end

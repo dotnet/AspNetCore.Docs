@@ -13,7 +13,7 @@ uid: blazor/components/css-isolation
 
 By [Dave Brock](https://twitter.com/daveabrock)
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 Isolate CSS styles to individual pages, views, and components to reduce or avoid:
 
@@ -230,9 +230,9 @@ For more information on RCLs, see the following articles:
 * [Razor Pages CSS isolation](xref:razor-pages/index#css-isolation)
 * [MVC CSS isolation](xref:mvc/views/overview#css-isolation)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 CSS isolation simplifies an app's CSS footprint by preventing dependencies on global styles and helps to avoid styling conflicts among components and libraries.
 
@@ -441,4 +441,4 @@ For more information on RCLs, see the following articles:
 * <xref:blazor/components/class-libraries>
 * <xref:razor-pages/ui-class>
 
-::: moniker-end
+:::moniker-end

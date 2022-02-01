@@ -11,7 +11,7 @@ uid: blazor/forms-validation
 ---
 # ASP.NET Core Blazor forms and validation
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 The Blazor framework supports webforms with validation using the <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component bound to a model that uses [data annotations](xref:mvc/models/validation).
 
@@ -148,6 +148,10 @@ In the following example:
 
 > [!NOTE]
 > Changing the <xref:Microsoft.AspNetCore.Components.Forms.EditContext> after its assigned is **not** supported.
+
+## Preview an image provided by the `InputFile` component
+
+[!INCLUDE[](includes/inputfile-preview-images.md)]
 
 ## Multiple option selection with the `InputSelect` component
 
@@ -1058,9 +1062,9 @@ private ExampleModel exampleModel = new();
 * <xref:blazor/security/webassembly/hosted-with-azure-active-directory-b2c>
 * <xref:blazor/security/webassembly/hosted-with-identity-server>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 The Blazor framework supports webforms with validation using the <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component bound to a model that uses [data annotations](xref:mvc/models/validation).
 
@@ -2040,9 +2044,9 @@ private ExampleModel exampleModel = new();
 * <xref:blazor/security/webassembly/hosted-with-azure-active-directory-b2c>
 * <xref:blazor/security/webassembly/hosted-with-identity-server>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-5.0"
+:::moniker range="< aspnetcore-5.0"
 
 The Blazor framework supports webforms with validation using the <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component bound to a model that uses [data annotations](xref:mvc/models/validation).
 
@@ -2917,4 +2921,4 @@ private ExampleModel exampleModel = new ExampleModel();
 * <xref:blazor/security/webassembly/hosted-with-azure-active-directory-b2c>
 * <xref:blazor/security/webassembly/hosted-with-identity-server>
 
-::: moniker-end
+:::moniker-end

@@ -13,7 +13,7 @@ uid: data/ef-mvc/intro
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-::: moniker range=">= aspnetcore-5.0"
+:::moniker range=">= aspnetcore-5.0"
 
 [!INCLUDE [RP better than MVC](~/includes/RP-EF/rp-over-mvc.md)]
 
@@ -378,9 +378,9 @@ Advance to the next tutorial to learn how to perform basic CRUD (create, read, u
 > [!div class="nextstepaction"]
 > [Implement basic CRUD functionality](crud.md)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="<= aspnetcore-3.1"
+:::moniker range="<= aspnetcore-3.1"
 
 [!INCLUDE [RP better than MVC](~/includes/RP-EF/rp-over-mvc.md)]
 
@@ -698,4 +698,4 @@ Advance to the next tutorial to learn how to perform basic CRUD (create, read, u
 > [!div class="nextstepaction"]
 > [Implement basic CRUD functionality](crud.md)
 
-::: moniker-end
+:::moniker-end

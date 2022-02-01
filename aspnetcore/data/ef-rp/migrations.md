@@ -14,7 +14,7 @@ By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com
 
 [!INCLUDE [about the series](~/includes/RP-EF/intro.md)]
 
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.0"
 
 This tutorial introduces the EF Core migrations feature for managing data model changes.
 
@@ -80,7 +80,7 @@ dotnet ef database update
 
 ### Remove EnsureCreated
 
-This tutorial series started by using [EnsureCreated](/dotnet/api/microsoft.entityframeworkcore.infrastructure.databasefacade.ensurecreated#Microsoft_EntityFrameworkCore_Infrastructure_DatabaseFacade_EnsureCreated) . `EnsureCreated` doesn't create a migrations history table and so can't be used with migrations. It's designed for testing or rapid prototyping where the database is dropped and re-created frequently.
+This tutorial series started by using [EnsureCreated](/dotnet/api/microsoft.entityframeworkcore.infrastructure.databasefacade.ensurecreated) . `EnsureCreated` doesn't create a migrations history table and so can't be used with migrations. It's designed for testing or rapid prototyping where the database is dropped and re-created frequently.
 
 From this point forward, the tutorials will use migrations.
 
@@ -122,7 +122,7 @@ See [Resetting all migrations](/ef/core/managing-schemas/migrations/managing?tab
 
 ## Applying migrations in production
 
-We recommend that production apps **not** call [Database.Migrate](/dotnet/api/microsoft.entityframeworkcore.relationaldatabasefacadeextensions.migrate#Microsoft_EntityFrameworkCore_RelationalDatabaseFacadeExtensions_Migrate_Microsoft_EntityFrameworkCore_Infrastructure_DatabaseFacade_) at application startup. `Migrate` shouldn't be called from an app that is deployed to a server farm. If the app is scaled out to multiple server instances, it's hard to ensure database schema updates don't happen from multiple servers or conflict with read/write access.
+We recommend that production apps **not** call [Database.Migrate](/dotnet/api/microsoft.entityframeworkcore.relationaldatabasefacadeextensions.migrate) at application startup. `Migrate` shouldn't be called from an app that is deployed to a server farm. If the app is scaled out to multiple server instances, it's hard to ensure database schema updates don't happen from multiple servers or conflict with read/write access.
 
 Database migration should be done as part of deployment, and in a controlled way. Production database migration approaches include:
 
@@ -155,9 +155,9 @@ The next tutorial builds out the data model, adding entity properties and new en
 > [Previous tutorial](xref:data/ef-rp/sort-filter-page)
 > [Next tutorial](xref:data/ef-rp/complex-data-model)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+:::moniker range="< aspnetcore-3.0"
 
 In this tutorial, the EF Core migrations feature for managing data model changes is used.
 
@@ -286,7 +286,7 @@ Run the app and verify that everything works.
 
 ## Applying migrations in production
 
-We recommend production apps should **not** call [Database.Migrate](/dotnet/api/microsoft.entityframeworkcore.relationaldatabasefacadeextensions.migrate#Microsoft_EntityFrameworkCore_RelationalDatabaseFacadeExtensions_Migrate_Microsoft_EntityFrameworkCore_Infrastructure_DatabaseFacade_) at application startup. `Migrate` shouldn't be called from an app in server farm. For example, if the app has been cloud deployed with scale-out (multiple instances of the app are running).
+We recommend production apps should **not** call [Database.Migrate](/dotnet/api/microsoft.entityframeworkcore.relationaldatabasefacadeextensions.migrate) at application startup. `Migrate` shouldn't be called from an app in server farm. For example, if the app has been cloud deployed with scale-out (multiple instances of the app are running).
 
 Database migration should be done as part of deployment, and in a controlled way. Production database migration approaches include:
 
@@ -322,4 +322,4 @@ Solution: Run `dotnet ef database update`
 > [Previous](xref:data/ef-rp/sort-filter-page)
 > [Next](xref:data/ef-rp/complex-data-model)
 
-::: moniker-end
+:::moniker-end

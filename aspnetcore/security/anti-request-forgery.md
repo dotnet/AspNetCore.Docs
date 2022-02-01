@@ -1,6 +1,6 @@
 ---
 title: Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core
-author: steve-smith
+author: rick-anderson
 description: Discover how to prevent attacks against web apps where a malicious website can influence the interaction between a client browser and the app.
 ms.author: riande
 monikerRange: '>= aspnetcore-3.1'
@@ -49,9 +49,9 @@ CSRF attacks are possible against web apps that use cookies for authentication b
 * Stored cookies include session cookies for authenticated users.
 * Browsers send all of the cookies associated with a domain to the web app every request regardless of how the request to app was generated within the browser.
 
-However, CSRF attacks aren't limited to exploiting cookies. For example, Basic and Digest authentication are also vulnerable. After a user signs in with Basic or Digest authentication, the browser automatically sends the credentials until the session&dagger; ends.
+However, CSRF attacks aren't limited to exploiting cookies. For example, Basic and Digest authentication are also vulnerable. After a user signs in with Basic or Digest authentication, the browser automatically sends the credentials until the session ends.
 
-&dagger;In this context, *session* refers to the client-side session during which the user is authenticated. It's unrelated to server-side sessions or [ASP.NET Core Session Middleware](xref:fundamentals/app-state).
+In this context, *session* refers to the client-side session during which the user is authenticated. It's unrelated to server-side sessions or [ASP.NET Core Session Middleware](xref:fundamentals/app-state).
 
 Users can guard against CSRF vulnerabilities by taking precautions:
 
@@ -152,13 +152,13 @@ Customize <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions> in *Program
 
 :::code language="csharp" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Program.cs" id="snippet_AddAntiforgeryOptions":::
 
-&dagger;Set the antiforgery `Cookie` properties using the properties of the <xref:Microsoft.AspNetCore.Http.CookieBuilder> class:
+Set the antiforgery `Cookie` properties using the properties of the <xref:Microsoft.AspNetCore.Http.CookieBuilder> class, as shown in the following table.
 
-| Option                                                                                    | Description                                                                                                                                                      |
-|-------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.Cookie%2A>                      | Determines the settings used to create the antiforgery cookies.                                                                                                  |
-| <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.FormFieldName%2A>               | The name of the hidden form field used by the antiforgery system to render antiforgery tokens in views.                                                          |
-| <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.HeaderName%2A>                  | The name of the header used by the antiforgery system. If `null`, the system considers only form data.                                                           |
+| Option | Description |
+| --- | --- |
+| <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.Cookie%2A> | Determines the settings used to create the antiforgery cookies. |
+| <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.FormFieldName%2A> | The name of the hidden form field used by the antiforgery system to render antiforgery tokens in views. |
+| <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.HeaderName%2A> | The name of the header used by the antiforgery system. If `null`, the system considers only form data. |
 | <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.SuppressXFrameOptionsHeader%2A> | Specifies whether to suppress generation of the `X-Frame-Options` header. By default, the header is generated with a value of "SAMEORIGIN". Defaults to `false`. |
 
 For more information, see <xref:Microsoft.AspNetCore.Builder.CookieAuthenticationOptions>.
@@ -249,6 +249,7 @@ The <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryAdditionalDataProvider> t
 ## Additional resources
 
 * <xref:host-and-deploy/web-farm>
+
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
@@ -287,9 +288,9 @@ CSRF attacks are possible against web apps that use cookies for authentication b
 * Stored cookies include session cookies for authenticated users.
 * Browsers send all of the cookies associated with a domain to the web app every request regardless of how the request to app was generated within the browser.
 
-However, CSRF attacks aren't limited to exploiting cookies. For example, Basic and Digest authentication are also vulnerable. After a user signs in with Basic or Digest authentication, the browser automatically sends the credentials until the session&dagger; ends.
+However, CSRF attacks aren't limited to exploiting cookies. For example, Basic and Digest authentication are also vulnerable. After a user signs in with Basic or Digest authentication, the browser automatically sends the credentials until the session ends.
 
-&dagger;In this context, *session* refers to the client-side session during which the user is authenticated. It's unrelated to server-side sessions or [ASP.NET Core Session Middleware](xref:fundamentals/app-state).
+In this context, *session* refers to the client-side session during which the user is authenticated. It's unrelated to server-side sessions or [ASP.NET Core Session Middleware](xref:fundamentals/app-state).
 
 Users can guard against CSRF vulnerabilities by taking precautions:
 
@@ -418,27 +419,31 @@ Customize <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions> in `Startup
 ```csharp
 services.AddAntiforgery(options => 
 {
-    // Set Cookie properties using CookieBuilder properties†.
     options.FormFieldName = "AntiforgeryFieldname";
     options.HeaderName = "X-CSRF-TOKEN-HEADERNAME";
     options.SuppressXFrameOptionsHeader = false;
 });
 ```
 
-&dagger;Set the antiforgery `Cookie` properties using the properties of the <xref:Microsoft.AspNetCore.Http.CookieBuilder> class:
+Set the antiforgery `Cookie` properties using the properties of the <xref:Microsoft.AspNetCore.Http.CookieBuilder> class, as shown in the following table.
 
-| Option                                                                                    | Description                                                                                                                                                      |
-|-------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.Cookie%2A>                      | Determines the settings used to create the antiforgery cookies.                                                                                                  |
-| <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.FormFieldName%2A>               | The name of the hidden form field used by the antiforgery system to render antiforgery tokens in views.                                                          |
-| <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.HeaderName%2A>                  | The name of the header used by the antiforgery system. If `null`, the system considers only form data.                                                           |
+| Option | Description |
+| --- | --- |
+| <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.Cookie%2A> | Determines the settings used to create the antiforgery cookies. |
+| <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.FormFieldName%2A> | The name of the hidden form field used by the antiforgery system to render antiforgery tokens in views. |
+| <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.HeaderName%2A> | The name of the header used by the antiforgery system. If `null`, the system considers only form data. |
 | <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.SuppressXFrameOptionsHeader%2A> | Specifies whether to suppress generation of the `X-Frame-Options` header. By default, the header is generated with a value of "SAMEORIGIN". Defaults to `false`. |
 
 For more information, see <xref:Microsoft.AspNetCore.Builder.CookieAuthenticationOptions>.
 
 ## Configure antiforgery features with IAntiforgery
 
-<xref:Microsoft.AspNetCore.Antiforgery.IAntiforgery> provides the API to configure antiforgery features. `IAntiforgery` can be requested in the `Configure` method of the `Startup` class. The following example uses middleware from the app's home page to generate an antiforgery token and send it in the response as a cookie (using the default Angular naming convention described later in this article):
+<xref:Microsoft.AspNetCore.Antiforgery.IAntiforgery> provides the API to configure antiforgery features. `IAntiforgery` can be requested in the `Configure` method of the `Startup` class.
+
+In the following example:
+
+* Middleware from the app's home page is used to generate an antiforgery token and send it in the response as a cookie.
+* The request token is sent as a JavaScript-readable cookie with the default Angular naming convention described in the [AngularJS](#angularjs) section.
 
 ```csharp
 public void Configure(IApplicationBuilder app, IAntiforgery antiforgery)
@@ -447,12 +452,9 @@ public void Configure(IApplicationBuilder app, IAntiforgery antiforgery)
     {
         string path = context.Request.Path.Value;
 
-        if (
-            string.Equals(path, "/", StringComparison.OrdinalIgnoreCase) ||
+        if (string.Equals(path, "/", StringComparison.OrdinalIgnoreCase) ||
             string.Equals(path, "/index.html", StringComparison.OrdinalIgnoreCase))
         {
-            // The request token can be sent as a JavaScript-readable cookie, 
-            // and Angular uses it by default.
             var tokens = antiforgery.GetAndStoreTokens(context);
             context.Response.Cookies.Append("XSRF-TOKEN", tokens.RequestToken, 
                 new CookieOptions() { HttpOnly = false });
@@ -621,7 +623,7 @@ AngularJS uses a convention to address CSRF. If the server sends a cookie with t
 For ASP.NET Core API to work with this convention in your application startup:
 
 * Configure your app to provide a token in a cookie called `XSRF-TOKEN`.
-* Configure the antiforgery service to look for a header named `X-XSRF-TOKEN`.
+* Configure the antiforgery service to look for a header named `X-XSRF-TOKEN`, which is Angular's default header name for sending the XSRF token.
 
 ```csharp
 public void Configure(IApplicationBuilder app, IAntiforgery antiforgery)
@@ -634,8 +636,6 @@ public void Configure(IApplicationBuilder app, IAntiforgery antiforgery)
             string.Equals(path, "/", StringComparison.OrdinalIgnoreCase) ||
             string.Equals(path, "/index.html", StringComparison.OrdinalIgnoreCase))
         {
-            // The request token can be sent as a JavaScript-readable cookie, 
-            // and Angular uses it by default.
             var tokens = antiforgery.GetAndStoreTokens(context);
             context.Response.Cookies.Append("XSRF-TOKEN", tokens.RequestToken, 
                 new CookieOptions() { HttpOnly = false });
@@ -647,7 +647,6 @@ public void Configure(IApplicationBuilder app, IAntiforgery antiforgery)
 
 public void ConfigureServices(IServiceCollection services)
 {
-    // Angular's default header name for sending the XSRF token.
     services.AddAntiforgery(options => options.HeaderName = "X-XSRF-TOKEN");
 }
 ```
@@ -663,4 +662,5 @@ The <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryAdditionalDataProvider> t
 ## Additional resources
 
 * <xref:host-and-deploy/web-farm>
+
 :::moniker-end

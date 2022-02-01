@@ -80,8 +80,8 @@ To render an entire code file as a snippet:
 To render a portion of a file as a snippet by using line numbers:
 
 ```md
-[!code-csharp[](configuration/index/sample/Program.cs?range=1-10,20,30,40-50]
-[!code-html[](configuration/index/sample/Views/Home/Index.cshtml?range=1-10,20,30,40-50]
+[!code-csharp[](configuration/index/sample/Program.cs?range=1-10,20,30,40-50)]
+[!code-html[](configuration/index/sample/Views/Home/Index.cshtml?range=1-10,20,30,40-50)]
 ```
 
 For C# snippets, reference a [C# region](https://docs.microsoft.com/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-region). Whenever possible, use regions rather than line numbers because line numbers in a code file tend to change and become out of sync with line number references in Markdown. C# regions can be nested. If referencing the outer region, the inner `#region` and `#endregion` directives aren't rendered in a snippet. 
@@ -96,9 +96,48 @@ To highlight selected lines in a rendered snippet (usually renders as yellow bac
 
 ```md
 [!code-csharp[](configuration/index/sample/Program.cs?name=snippet_Example&highlight=1-3,10,20-25)]
-[!code-csharp[](configuration/index/sample/Program.cs?range=10-20&highlight=1-3]
-[!code-html[](configuration/index/sample/Views/Home/Index.cshtml?range=10-20&highlight=1-3]
-[!code-javascript[](configuration/index/sample/UsingOptionsSample.csproj?range=10-20&highlight=1-3]
+[!code-csharp[](configuration/index/sample/Program.cs?range=10-20&highlight=1-3)]
+[!code-html[](configuration/index/sample/Views/Home/Index.cshtml?range=10-20&highlight=1-3)]
+[!code-javascript[](configuration/index/sample/UsingOptionsSample.csproj?range=10-20&highlight=1-3)]
+```
+
+When highlighting lines within regions, use line numbers (or a range of line numbers) relative to the snippet's `#region` directive, as seen in the following example.
+
+The following partial C# code (`Movie.cs`) example includes a region named `FinalSnippet` with three `using` statements:
+
+```csharp
+        ...
+        public decimal Price { get; set; }
+        public string? Rating {  get; set; }
+    }
+}
+#endregion
+#endif
+#if Final
+#region FinalSnippet
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace MvcMovie.Models
+{
+    public class Movie
+    {
+        public int Id { get; set; }
+
+        ...
+    }
+}
+#endregion
+#endif
+```
+
+To highlight the three `using` statements from the preceding example, specify a `highlight` property in the query string with a value of `1-3`.
+
+Markdown:
+
+```md
+[!code-csharp[](sample/MvcMovie60/Models/Movie.cs?name=FinalSnippet&highlight=1-3)]
 ```
 
 ## Test changes with DocFX

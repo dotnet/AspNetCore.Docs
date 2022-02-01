@@ -7,7 +7,7 @@ using SampleApp.Models;
 
 namespace SampleApp.Pages
 {
-    #region snippet
+    // <snippet>
     public class TestSnapModel : PageModel
     {
         private readonly MyOptions _snapshotOptions;
@@ -23,5 +23,5 @@ namespace SampleApp.Pages
                            $"Option2: {_snapshotOptions.Option2}");
         }
     }
-    #endregion
+    // </snippet>
 }

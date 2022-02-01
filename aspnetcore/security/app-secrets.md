@@ -11,7 +11,7 @@ uid: security/app-secrets
 ---
 # Safe storage of app secrets in development in ASP.NET Core
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://twitter.com/serpent5)
 
@@ -280,9 +280,9 @@ To manage user secrets in Visual Studio, right click the project in solution exp
 * <xref:fundamentals/configuration/index>
 * <xref:security/key-vault-configuration>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Kirk Larkin](https://twitter.com/serpent5), [Daniel Roth](https://github.com/danroth27), and [Scott Addie](https://github.com/scottaddie)
 
@@ -553,4 +553,4 @@ To manage user secrets in Visual Studio, right click the project in solution exp
 * <xref:fundamentals/configuration/index>
 * <xref:security/key-vault-configuration>
 
-::: moniker-end
+:::moniker-end

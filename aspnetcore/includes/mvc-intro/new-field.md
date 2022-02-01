@@ -15,17 +15,17 @@ Once your app is deployed and you have data that you need to preserve, you can't
 
 Open the *Models/Movie.cs* file and add a `Rating` property:
 
-::: moniker range=">= aspnetcore-2.1"
+:::moniker range=">= aspnetcore-2.1"
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie21/Models/MovieDateRating.cs?highlight=12&name=snippet)]
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="<= aspnetcore-2.0"
+:::moniker range="<= aspnetcore-2.0"
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Models/MovieDateRating.cs?highlight=11&range=7-18)]
 
-::: moniker-end
+:::moniker-end
 
 Because you've added a new field to the `Movie` class, you also need to update the binding's included properties so this new property is included. In *MoviesController.cs*, update the `[Bind]` attribute for both the `Create` and `Edit` action methods to include the `Rating` property:
 

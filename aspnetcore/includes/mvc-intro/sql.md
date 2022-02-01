@@ -40,17 +40,17 @@ if (context.Movie.Any())
 
 Add the seed initializer to the `Main` method in the *Program.cs* file:
 
-::: moniker range=">= aspnetcore-2.1"
+:::moniker range=">= aspnetcore-2.1"
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie21/Program.cs)]
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="<= aspnetcore-2.0"
+:::moniker range="<= aspnetcore-2.0"
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Program.cs?highlight=6,16-32)]
 
-::: moniker-end
+:::moniker-end
 
 ### Test the app
 

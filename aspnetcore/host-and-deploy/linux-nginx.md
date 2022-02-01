@@ -13,7 +13,7 @@ uid: host-and-deploy/linux-nginx
 
 By [Sourabh Shirhatti](https://twitter.com/sshirhatti)
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 This guide explains setting up a production-ready ASP.NET Core environment on an Ubuntu 16.04 server. These instructions likely work with newer versions of Ubuntu, but the instructions haven't been tested with newer versions.
 
 For information on other Linux distributions supported by ASP.NET Core, see [Prerequisites for .NET Core on Linux](/dotnet/core/linux-prerequisites).
@@ -40,12 +40,28 @@ At any point in the future after upgrading the shared framework, restart the ASP
 
 Configure the app for a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd).
 
-If the app is run locally and isn't configured to make secure connections (HTTPS), adopt either of the following approaches:
+If the app is run locally in the [Development environment](xref:fundamentals/environments#configure-services-and-middleware-by-environment) and isn't configured by the server to make secure HTTPS connections, adopt either of the following approaches:
 
 * Configure the app to handle secure local connections. For more information, see the [HTTPS configuration](#https-configuration) section.
-* Remove `https://localhost:5001` (if present) from the `applicationUrl` property in the `Properties/launchSettings.json` file.
 
-Run [dotnet publish](/dotnet/core/tools/dotnet-publish) from the development environment to package an app into a directory (for example, `bin/Release/{TARGET FRAMEWORK MONIKER}/publish`, where the placeholder `{TARGET FRAMEWORK MONIKER}` is the Target Framework Moniker/TFM) that can run on the server:
+* Configure the app to run at the insecure endpoint:
+
+  * Deactivate HTTPS Redirection Middleware in the Development environment (`Program.cs`):
+
+    ```csharp
+    if (!app.Environment.IsDevelopment())
+    {
+        app.UseHttpsRedirection();
+    }
+    ```
+
+    For more information, see <xref:fundamentals/environments#configure-services-and-middleware-by-environment>.
+
+  * Remove `https://localhost:5001` (if present) from the `applicationUrl` property in the `Properties/launchSettings.json` file.
+
+For more information on configuration by environment, see <xref:fundamentals/environments>.
+
+Run [dotnet publish](/dotnet/core/tools/dotnet-publish) from the development environment to package an app into a directory (for example, `bin/Release/{TARGET FRAMEWORK MONIKER}/publish`, where the `{TARGET FRAMEWORK MONIKER}` placeholder is the [Target Framework Moniker (TFM)](/dotnet/standard/frameworks)) that can run on the server:
 
 ```dotnetcli
 dotnet publish --configuration Release
@@ -128,7 +144,7 @@ Verify a browser displays the default landing page for Nginx. The landing page i
 
 To configure Nginx as a reverse proxy to forward HTTP requests to your ASP.NET Core app, modify `/etc/nginx/sites-available/default`. Open it in a text editor, and replace the contents with the following snippet:
 
-```nginx
+```
 server {
     listen        80;
     server_name   example.com *.example.com;
@@ -149,7 +165,7 @@ If the app is a SignalR or Blazor Server app, see <xref:signalr/scale#linux-with
 
 When no `server_name` matches, Nginx uses the default server. If no default server is defined, the first server in the configuration file is the default server. As a best practice, add a specific default server that returns a status code of 444 in your configuration file. A default server configuration example is:
 
-```nginx
+```
 server {
     listen   80 default_server;
     # listen [::]:80 default_server deferred;
@@ -185,9 +201,9 @@ Create the service definition file:
 sudo nano /etc/systemd/system/kestrel-helloapp.service
 ```
 
-The following example is a service file for the app:
+The following example is an `.ini` service file for the app:
 
-```ini
+```
 [Unit]
 Description=Example .NET Web API App running on Ubuntu
 
@@ -440,9 +456,9 @@ After upgrading the shared framework on the server, restart the ASP.NET Core app
 * <xref:host-and-deploy/proxy-load-balancer>
 * [NGINX: Using the Forwarded header](https://www.nginx.com/resources/wiki/start/topics/examples/forwarded/)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="= aspnetcore-5.0"
+:::moniker range="= aspnetcore-5.0"
 This guide explains setting up a production-ready ASP.NET Core environment on an Ubuntu 16.04 server. These instructions likely work with newer versions of Ubuntu, but the instructions haven't been tested with newer versions.
 
 For information on other Linux distributions supported by ASP.NET Core, see [Prerequisites for .NET Core on Linux](/dotnet/core/linux-prerequisites).
@@ -469,10 +485,26 @@ At any point in the future after upgrading the shared framework, restart the ASP
 
 Configure the app for a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd).
 
-If the app is run locally and isn't configured to make secure connections (HTTPS), adopt either of the following approaches:
+If the app is run locally in the [Development environment](xref:fundamentals/environments#configure-services-and-middleware-by-environment) and isn't configured by the server to make secure HTTPS connections, adopt either of the following approaches:
 
 * Configure the app to handle secure local connections. For more information, see the [HTTPS configuration](#https-configuration) section.
-* Remove `https://localhost:5001` (if present) from the `applicationUrl` property in the `Properties/launchSettings.json` file.
+
+* Configure the app to run at the insecure endpoint:
+
+  * Deactivate HTTPS Redirection Middleware in the Development environment (`Program.cs`):
+
+    ```csharp
+    if (!app.Environment.IsDevelopment())
+    {
+        app.UseHttpsRedirection();
+    }
+    ```
+
+    For more information, see <xref:fundamentals/environments#configure-services-and-middleware-by-environment>.
+
+  * Remove `https://localhost:5001` (if present) from the `applicationUrl` property in the `Properties/launchSettings.json` file.
+
+For more information on configuration by environment, see <xref:fundamentals/environments>.
 
 Run [dotnet publish](/dotnet/core/tools/dotnet-publish) from the development environment to package an app into a directory (for example, `bin/Release/{TARGET FRAMEWORK MONIKER}/publish`, where the placeholder `{TARGET FRAMEWORK MONIKER}` is the Target Framework Moniker/TFM) that can run on the server:
 
@@ -866,9 +898,9 @@ After upgrading the shared framework on the server, restart the ASP.NET Core app
 * <xref:host-and-deploy/proxy-load-balancer>
 * [NGINX: Using the Forwarded header](https://www.nginx.com/resources/wiki/start/topics/examples/forwarded/)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="= aspnetcore-3.1"
+:::moniker range="= aspnetcore-3.1"
 
 This guide explains setting up a production-ready ASP.NET Core environment on an Ubuntu 16.04 server. These instructions likely work with newer versions of Ubuntu, but the instructions haven't been tested with newer versions.
 
@@ -896,10 +928,26 @@ At any point in the future after upgrading the shared framework, restart the ASP
 
 Configure the app for a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd).
 
-If the app is run locally and isn't configured to make secure connections (HTTPS), adopt either of the following approaches:
+If the app is run locally in the [Development environment](xref:fundamentals/environments#configure-services-and-middleware-by-environment) and isn't configured by the server to make secure HTTPS connections, adopt either of the following approaches:
 
 * Configure the app to handle secure local connections. For more information, see the [HTTPS configuration](#https-configuration) section.
-* Remove `https://localhost:5001` (if present) from the `applicationUrl` property in the `Properties/launchSettings.json` file.
+
+* Configure the app to run at the insecure endpoint:
+
+  * Deactivate HTTPS Redirection Middleware in the Development environment (`Program.cs`):
+
+    ```csharp
+    if (!app.Environment.IsDevelopment())
+    {
+        app.UseHttpsRedirection();
+    }
+    ```
+
+    For more information, see <xref:fundamentals/environments#configure-services-and-middleware-by-environment>.
+
+  * Remove `https://localhost:5001` (if present) from the `applicationUrl` property in the `Properties/launchSettings.json` file.
+
+For more information on configuration by environment, see <xref:fundamentals/environments>.
 
 Run [dotnet publish](/dotnet/core/tools/dotnet-publish) from the development environment to package an app into a directory (for example, `bin/Release/{TARGET FRAMEWORK MONIKER}/publish`, where the placeholder `{TARGET FRAMEWORK MONIKER}` is the Target Framework Moniker/TFM) that can run on the server:
 
@@ -1297,4 +1345,4 @@ After upgrading the shared framework on the server, restart the ASP.NET Core app
 * <xref:host-and-deploy/proxy-load-balancer>
 * [NGINX: Using the Forwarded header](https://www.nginx.com/resources/wiki/start/topics/examples/forwarded/)
 
-::: moniker-end
+:::moniker-end

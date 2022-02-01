@@ -102,7 +102,7 @@ public class ChatController : Controller
 
 See [Strongly typed hubs](xref:signalr/hubs#strongly-typed-hubs) for more information.
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 ### Use IHubContext in generic code
 
@@ -137,7 +137,7 @@ This is useful when:
 * Writing libraries that don't have a reference to the specific `Hub` type the app is using.
 * Writing code that is generic and can apply to multiple different `Hub` implementations
 
-::: moniker-end
+:::moniker-end
 
 ## Related resources
 

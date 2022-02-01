@@ -12,7 +12,7 @@ zone_pivot_groups: blazor-hosting-models
 ---
 # Use ASP.NET Core SignalR with Blazor
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 This tutorial teaches the basics of building a real-time app using SignalR with Blazor. You learn how to:
 
@@ -24,8 +24,6 @@ This tutorial teaches the basics of building a real-time app using SignalR with 
 > * Add Razor component code for chat
 
 At the end of this tutorial, you'll have a working chat app.
-
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/signalr-blazor/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Prerequisites
 
@@ -49,7 +47,13 @@ At the end of this tutorial, you'll have a working chat app.
 
 ---
 
-::: zone pivot="webassembly"
+## Sample app
+
+Downloading the tutorial's sample chat app isn't required for this tutorial. The sample app is the final, working app produced by following the steps of this tutorial.
+
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/signalr-blazor/samples/) ([how to download](xref:index#how-to-download-a-sample))
+
+:::zone pivot="webassembly"
 
 ## Create a hosted Blazor WebAssembly app
 
@@ -216,6 +220,9 @@ Follow the guidance for your tooling:
 
 1. In **Solution Explorer**, select the `BlazorWebAssemblySignalRApp.Server` project. Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows)/<kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
 
+   > [!IMPORTANT]
+   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
 1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
@@ -230,6 +237,9 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
 1. Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows)/<kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
 
+   > [!IMPORTANT]
+   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
 1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
@@ -241,6 +251,9 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 1. In the **Solution** sidebar, select the `BlazorWebAssemblySignalRApp.Server` project. Press <kbd>⌘</kbd>+<kbd>↩</kbd> to run the app with debugging or <kbd>⌥</kbd>+<kbd>⌘</kbd>+<kbd>↩</kbd> to run the app without debugging.
+
+   > [!IMPORTANT]
+   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -259,6 +272,9 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    dotnet run
    ```
 
+   > [!IMPORTANT]
+   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
 1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
@@ -269,9 +285,9 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
 ---
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="server"
+:::zone pivot="server"
 
 ## Create a Blazor Server app
 
@@ -478,7 +494,7 @@ Follow the guidance for your tooling:
 
 ---
 
-::: zone-end
+:::zone-end
 
 ## Next steps
 
@@ -505,9 +521,9 @@ To learn more about building Blazor apps, see the Blazor documentation:
 * <xref:blazor/debug>
 * <xref:blazor/security/server/threat-mitigation>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 This tutorial teaches the basics of building a real-time app using SignalR with Blazor. You learn how to:
 
@@ -519,8 +535,6 @@ This tutorial teaches the basics of building a real-time app using SignalR with 
 > * Add Razor component code for chat
 
 At the end of this tutorial, you'll have a working chat app.
-
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/signalr-blazor/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Prerequisites
 
@@ -544,7 +558,13 @@ At the end of this tutorial, you'll have a working chat app.
 
 ---
 
-::: zone pivot="webassembly"
+## Sample app
+
+Downloading the tutorial's sample chat app isn't required for this tutorial. The sample app is the final, working app produced by following the steps of this tutorial.
+
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/signalr-blazor/samples/) ([how to download](xref:index#how-to-download-a-sample))
+
+:::zone pivot="webassembly"
 
 ## Create a hosted Blazor WebAssembly app
 
@@ -709,6 +729,9 @@ Follow the guidance for your tooling:
 
 1. In **Solution Explorer**, select the `BlazorWebAssemblySignalRApp.Server` project. Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows)/<kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
 
+   > [!IMPORTANT]
+   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
 1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
@@ -723,6 +746,9 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
 1. Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows)/<kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
 
+   > [!IMPORTANT]
+   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
 1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
@@ -736,6 +762,9 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 1. In the **Solution** sidebar, select the `BlazorWebAssemblySignalRApp.Server` project. Press <kbd>⌘</kbd>+<kbd>↩</kbd> to run the app with debugging or <kbd>⌥</kbd>+<kbd>⌘</kbd>+<kbd>↩</kbd> to run the app without debugging.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
+
+   > [!IMPORTANT]
+   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
 
 1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
 
@@ -752,6 +781,9 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    dotnet run
    ```
 
+   > [!IMPORTANT]
+   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
 1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
@@ -762,9 +794,9 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
 ---
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="server"
+:::zone pivot="server"
 
 ## Create a Blazor Server app
 
@@ -971,7 +1003,7 @@ Follow the guidance for your tooling:
 
 ---
 
-::: zone-end
+:::zone-end
 
 ## Next steps
 
@@ -998,9 +1030,9 @@ To learn more about building Blazor apps, see the Blazor documentation:
 * <xref:blazor/debug>
 * <xref:blazor/security/server/threat-mitigation>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-5.0"
+:::moniker range="< aspnetcore-5.0"
 
 This tutorial teaches the basics of building a real-time app using SignalR with Blazor. You learn how to:
 
@@ -1012,8 +1044,6 @@ This tutorial teaches the basics of building a real-time app using SignalR with 
 > * Add Razor component code for chat
 
 At the end of this tutorial, you'll have a working chat app.
-
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/signalr-blazor/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Prerequisites
 
@@ -1037,7 +1067,13 @@ At the end of this tutorial, you'll have a working chat app.
 
 ---
 
-::: zone pivot="webassembly"
+## Sample app
+
+Downloading the tutorial's sample chat app isn't required for this tutorial. The sample app is the final, working app produced by following the steps of this tutorial.
+
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/signalr-blazor/samples/) ([how to download](xref:index#how-to-download-a-sample))
+
+:::zone pivot="webassembly"
 
 ## Create a hosted Blazor WebAssembly app
 
@@ -1202,6 +1238,9 @@ Follow the guidance for your tooling:
 
 1. In **Solution Explorer**, select the `BlazorWebAssemblySignalRApp.Server` project. Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows)/<kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
 
+   > [!IMPORTANT]
+   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
 1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
@@ -1216,6 +1255,9 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
 1. Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows)/<kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
 
+   > [!IMPORTANT]
+   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
 1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
@@ -1227,6 +1269,9 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 1. In the **Solution** sidebar, select the `BlazorWebAssemblySignalRApp.Server` project. Press <kbd>⌘</kbd>+<kbd>↩</kbd> to run the app with debugging or <kbd>⌥</kbd>+<kbd>⌘</kbd>+<kbd>↩</kbd> to run the app without debugging.
+
+   > [!IMPORTANT]
+   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -1245,6 +1290,9 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    dotnet run
    ```
 
+   > [!IMPORTANT]
+   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
 1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
@@ -1255,9 +1303,9 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
 ---
 
-::: zone-end
+:::zone-end
 
-::: zone pivot="server"
+:::zone pivot="server"
 
 ## Create a Blazor Server app
 
@@ -1520,7 +1568,7 @@ Follow the guidance for your tooling:
 
 ---
 
-::: zone-end
+:::zone-end
 
 ## Next steps
 
@@ -1547,4 +1595,4 @@ To learn more about building Blazor apps, see the Blazor documentation:
 * <xref:blazor/debug>
 * <xref:blazor/security/server/threat-mitigation>
 
-::: moniker-end
+:::moniker-end

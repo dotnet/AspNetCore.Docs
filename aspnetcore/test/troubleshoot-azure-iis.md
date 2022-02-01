@@ -13,7 +13,7 @@ uid: test/troubleshoot-azure-iis
 
 By [Justin Kotalik](https://github.com/jkotalik)
 
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.0"
 
 This article provides information on common app startup errors and instructions on how to diagnose errors when an app is deployed to Azure App Service or IIS:
 
@@ -576,9 +576,9 @@ A functioning app may fail immediately after upgrading either the .NET Core SDK 
 
 * [Debugging with Visual Studio Code](https://code.visualstudio.com/docs/editor/debugging)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="= aspnetcore-2.2"
+:::moniker range="= aspnetcore-2.2"
 
 This article provides information on common app startup errors and instructions on how to diagnose errors when an app is deployed to Azure App Service or IIS:
 
@@ -1070,9 +1070,9 @@ A functioning app may fail immediately after upgrading either the .NET Core SDK 
 
 * [Debugging with Visual Studio Code](https://code.visualstudio.com/docs/editor/debugging)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-2.2"
+:::moniker range="< aspnetcore-2.2"
 
 This article provides information on common app startup errors and instructions on how to diagnose errors when an app is deployed to Azure App Service or IIS:
 
@@ -1502,4 +1502,4 @@ A functioning app may fail immediately after upgrading either the .NET Core SDK 
 
 * [Debugging with Visual Studio Code](https://code.visualstudio.com/docs/editor/debugging)
 
-::: moniker-end
+:::moniker-end

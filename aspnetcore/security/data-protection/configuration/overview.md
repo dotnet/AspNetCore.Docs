@@ -22,16 +22,16 @@ For these scenarios, the Data Protection system offers a rich configuration API.
 >
 > The extension method [AddDataProtection](/dotnet/api/microsoft.extensions.dependencyinjection.dataprotectionservicecollectionextensions.adddataprotection) returns an [IDataProtectionBuilder](/dotnet/api/microsoft.aspnetcore.dataprotection.idataprotectionbuilder). `IDataProtectionBuilder` exposes extension methods that you can chain together to configure Data Protection options.
 
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.0"
 
 The following NuGet packages are required for the Data Protection extensions used in this article:
 
 * [Azure.Extensions.AspNetCore.DataProtection.Blobs](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.DataProtection.Blobs)
 * [Azure.Extensions.AspNetCore.DataProtection.Keys](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.DataProtection.Keys)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-2.1"
+:::moniker range=">= aspnetcore-2.1"
 
 ## ProtectKeysWithAzureKeyVault
 
@@ -59,8 +59,8 @@ The `keyIdentifier` is the key vault key identifier used for key encryption. For
 
 `ProtectKeysWithAzureKeyVault` overloads:
 
-* [ProtectKeysWithAzureKeyVault(IDataProtectionBuilder, Uri, TokenCredential)](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionkeyvaultkeybuilderextensions.protectkeyswithazurekeyvault#Microsoft_AspNetCore_DataProtection_AzureDataProtectionKeyVaultKeyBuilderExtensions_ProtectKeysWithAzureKeyVault_Microsoft_AspNetCore_DataProtection_IDataProtectionBuilder_System_Uri_Azure_Core_TokenCredential_) permits the use of a keyIdentifier Uri and a tokenCredential to enable the data protection system to use the key vault.
-* [ProtectKeysWithAzureKeyVault(IDataProtectionBuilder, string, IKeyEncryptionKeyResolver)](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionkeyvaultkeybuilderextensions.protectkeyswithazurekeyvault#Microsoft_AspNetCore_DataProtection_AzureDataProtectionKeyVaultKeyBuilderExtensions_ProtectKeysWithAzureKeyVault_Microsoft_AspNetCore_DataProtection_IDataProtectionBuilder_System_Uri_Azure_Core_TokenCredential_) permits the use of a keyIdentifier string and IKeyEncryptionKeyResolver to enable the data protection system to use the key vault.
+* [ProtectKeysWithAzureKeyVault(IDataProtectionBuilder, Uri, TokenCredential)](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionkeyvaultkeybuilderextensions.protectkeyswithazurekeyvault#microsoft-aspnetcore-dataprotection-azuredataprotectionkeyvaultkeybuilderextensions-protectkeyswithazurekeyvault(microsoft-aspnetcore-dataprotection-idataprotectionbuilder-system-uri-azure-core-tokencredential)) permits the use of a keyIdentifier Uri and a tokenCredential to enable the data protection system to use the key vault.
+* [ProtectKeysWithAzureKeyVault(IDataProtectionBuilder, string, IKeyEncryptionKeyResolver)](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionkeyvaultkeybuilderextensions.protectkeyswithazurekeyvault#microsoft-aspnetcore-dataprotection-azuredataprotectionkeyvaultkeybuilderextensions-protectkeyswithazurekeyvault(microsoft-aspnetcore-dataprotection-idataprotectionbuilder-system-string-azure-core-cryptography-ikeyencryptionkeyresolver)) permits the use of a keyIdentifier string and IKeyEncryptionKeyResolver to enable the data protection system to use the key vault.
 
 If the app uses the older Azure packages (Microsoft.AspNetCore.DataProtection.AzureStorage and Microsoft.AspNetCore.DataProtection.AzureKeyVault), we recommend ***removing*** these references and upgrading to the [Azure.Extensions.AspNetCore.DataProtection.Blobs](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.DataProtection.Blobs) and [Azure.Extensions.AspNetCore.DataProtection.Keys] https://www.nuget.org/packages/Azure.Extensions.AspNetCore.DataProtection.Keys). These packages are where new updates are provided, and address some key security and stability issues with the older packages.
 
@@ -72,7 +72,7 @@ services.AddDataProtection()
     .ProtectKeysWithAzureKeyVault(new Uri("<keyIdentifier>"), new DefaultAzureCredential());
 ```
 
-::: moniker-end
+:::moniker-end
 
 ## PersistKeysToFileSystem
 
@@ -122,7 +122,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-::: moniker range=">= aspnetcore-2.1"
+:::moniker range=">= aspnetcore-2.1"
 
 In ASP.NET Core 2.1 or later, you can provide an [X509Certificate2](/dotnet/api/system.security.cryptography.x509certificates.x509certificate2) to [ProtectKeysWithCertificate](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions.protectkeyswithcertificate), such as a certificate loaded from a file:
 
@@ -136,11 +136,11 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-::: moniker-end
+:::moniker-end
 
 See [Key Encryption At Rest](xref:security/data-protection/implementation/key-encryption-at-rest) for more examples and discussion on the built-in key encryption mechanisms.
 
-::: moniker range=">= aspnetcore-2.1"
+:::moniker range=">= aspnetcore-2.1"
 
 ## UnprotectKeysWithAnyCertificate
 
@@ -159,7 +159,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-::: moniker-end
+:::moniker-end
 
 ## SetDefaultKeyLifetime
 
@@ -239,7 +239,7 @@ Consider the following for app isolation:
 
 The Data Protection stack allows you to change the default algorithm used by newly-generated keys. The simplest way to do this is to call [UseCryptographicAlgorithms](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions.usecryptographicalgorithms) from the configuration callback:
 
-::: moniker range=">= aspnetcore-2.0"
+:::moniker range=">= aspnetcore-2.0"
 
 ```csharp
 services.AddDataProtection()
@@ -251,9 +251,9 @@ services.AddDataProtection()
     });
 ```
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-2.0"
+:::moniker range="< aspnetcore-2.0"
 
 ```csharp
 services.AddDataProtection()
@@ -265,7 +265,7 @@ services.AddDataProtection()
     });
 ```
 
-::: moniker-end
+:::moniker-end
 
 The default EncryptionAlgorithm is AES-256-CBC, and the default ValidationAlgorithm is HMACSHA256. The default policy can be set by a system administrator via a [machine-wide policy](xref:security/data-protection/configuration/machine-wide-policy), but an explicit call to `UseCryptographicAlgorithms` overrides the default policy.
 
@@ -278,7 +278,7 @@ You can manually specify an implementation via a call to [UseCustomCryptographic
 
 ### Specifying custom managed algorithms
 
-::: moniker range=">= aspnetcore-2.0"
+:::moniker range=">= aspnetcore-2.0"
 
 To specify custom managed algorithms, create a [ManagedAuthenticatedEncryptorConfiguration](/dotnet/api/microsoft.aspnetcore.dataprotection.authenticatedencryption.configurationmodel.managedauthenticatedencryptorconfiguration) instance that points to the implementation types:
 
@@ -298,9 +298,9 @@ serviceCollection.AddDataProtection()
     });
 ```
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-2.0"
+:::moniker range="< aspnetcore-2.0"
 
 To specify custom managed algorithms, create a [ManagedAuthenticatedEncryptionSettings](/dotnet/api/microsoft.aspnetcore.dataprotection.authenticatedencryption.managedauthenticatedencryptionsettings) instance that points to the implementation types:
 
@@ -320,7 +320,7 @@ serviceCollection.AddDataProtection()
     });
 ```
 
-::: moniker-end
+:::moniker-end
 
 Generally the \*Type properties must point to concrete, instantiable (via a public parameterless ctor) implementations of [SymmetricAlgorithm](/dotnet/api/system.security.cryptography.symmetricalgorithm) and [KeyedHashAlgorithm](/dotnet/api/system.security.cryptography.keyedhashalgorithm), though the system special-cases some values like `typeof(Aes)` for convenience.
 
@@ -329,7 +329,7 @@ Generally the \*Type properties must point to concrete, instantiable (via a publ
 
 ### Specifying custom Windows CNG algorithms
 
-::: moniker range=">= aspnetcore-2.0"
+:::moniker range=">= aspnetcore-2.0"
 
 To specify a custom Windows CNG algorithm using CBC-mode encryption with HMAC validation, create a [CngCbcAuthenticatedEncryptorConfiguration](/dotnet/api/microsoft.aspnetcore.dataprotection.authenticatedencryption.configurationmodel.cngcbcauthenticatedencryptorconfiguration) instance that contains the algorithmic information:
 
@@ -351,9 +351,9 @@ services.AddDataProtection()
     });
 ```
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-2.0"
+:::moniker range="< aspnetcore-2.0"
 
 To specify a custom Windows CNG algorithm using CBC-mode encryption with HMAC validation, create a [CngCbcAuthenticatedEncryptionSettings](/dotnet/api/microsoft.aspnetcore.dataprotection.authenticatedencryption.cngcbcauthenticatedencryptionsettings) instance that contains the algorithmic information:
 
@@ -375,12 +375,12 @@ services.AddDataProtection()
     });
 ```
 
-::: moniker-end
+:::moniker-end
 
 > [!NOTE]
 > The symmetric block cipher algorithm must have a key length of >= 128 bits, a block size of >= 64 bits, and it must support CBC-mode encryption with PKCS #7 padding. The hash algorithm must have a digest size of >= 128 bits and must support being opened with the BCRYPT\_ALG\_HANDLE\_HMAC\_FLAG flag. The \*Provider properties can be set to null to use the default provider for the specified algorithm. See the [BCryptOpenAlgorithmProvider](/windows/win32/api/bcrypt/nf-bcrypt-bcryptopenalgorithmprovider) documentation for more information.
 
-::: moniker range=">= aspnetcore-2.0"
+:::moniker range=">= aspnetcore-2.0"
 
 To specify a custom Windows CNG algorithm using Galois/Counter Mode encryption with validation, create a [CngGcmAuthenticatedEncryptorConfiguration](/dotnet/api/microsoft.aspnetcore.dataprotection.authenticatedencryption.configurationmodel.cnggcmauthenticatedencryptorconfiguration) instance that contains the algorithmic information:
 
@@ -398,9 +398,9 @@ services.AddDataProtection()
     });
 ```
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-2.0"
+:::moniker range="< aspnetcore-2.0"
 
 To specify a custom Windows CNG algorithm using Galois/Counter Mode encryption with validation, create a [CngGcmAuthenticatedEncryptionSettings](/dotnet/api/microsoft.aspnetcore.dataprotection.authenticatedencryption.cnggcmauthenticatedencryptionsettings) instance that contains the algorithmic information:
 
@@ -418,7 +418,7 @@ services.AddDataProtection()
     });
 ```
 
-::: moniker-end
+:::moniker-end
 
 > [!NOTE]
 > The symmetric block cipher algorithm must have a key length of >= 128 bits, a block size of exactly 128 bits, and it must support GCM encryption. You can set the [EncryptionAlgorithmProvider](/dotnet/api/microsoft.aspnetcore.dataprotection.authenticatedencryption.configurationmodel.cngcbcauthenticatedencryptorconfiguration.encryptionalgorithmprovider) property to null to use the default provider for the specified algorithm. See the [BCryptOpenAlgorithmProvider](/windows/win32/api/bcrypt/nf-bcrypt-bcryptopenalgorithmprovider) documentation for more information.

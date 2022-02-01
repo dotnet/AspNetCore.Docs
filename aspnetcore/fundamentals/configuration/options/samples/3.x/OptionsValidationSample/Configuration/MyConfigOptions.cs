@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace OptionsValidationSample.Configuration
 {
-    #region snippet
+    // <snippet>
     public class MyConfigOptions
     {
         public const string MyConfig = "MyConfig";
@@ -15,5 +15,5 @@ namespace OptionsValidationSample.Configuration
         public int Key2 { get; set; }
         public int Key3 { get; set; }
     }
-    #endregion
+    // </snippet>
 }

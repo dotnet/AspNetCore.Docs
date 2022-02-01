@@ -17,7 +17,7 @@ namespace SampleApp
         public IConfiguration Configuration { get; set; }
 
         // Used in TestAll
-        #region snippet_Example2
+        // <snippet_Example2>
         public void ConfigureServices(IServiceCollection services)
         {
             services.ConfigureAll<TopItemSettings>(options =>
@@ -27,7 +27,7 @@ namespace SampleApp
 
             services.AddRazorPages();
         }
-        #endregion
+        // </snippet_Example2>
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

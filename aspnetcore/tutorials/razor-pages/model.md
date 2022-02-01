@@ -13,7 +13,7 @@ uid: tutorials/razor-pages/model
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 <!-- In the next update on the CLI version, let the scaffolder do the same work the VS driven scaffolder does. That is, create the DB context, etc -->
 
@@ -248,13 +248,11 @@ In this section, the **Package Manager Console** (PMC) window is used to:
 
 ---
 
-The preceding commands install [the Entity Framework Core tools](https://docs.microsoft.com/ef/core/get-started/overview/install#get-the-entity-framework-core-tools) and run the `migrations` command to generate code that creates the initial database schema.
+The preceding commands install [the Entity Framework Core tools](/ef/core/get-started/overview/install#get-the-entity-framework-core-tools) and run the `migrations` command to generate code that creates the initial database schema.
 
 The following warning is displayed, which is addressed in a later step:
 
 > No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
-
-The database schema is based on the model specified in `DbContext`. The `InitialCreate` argument is used to name the migration. Any name can be used, but by convention a name is selected that describes the migration.
 
 The `migrations` command generates code to create the initial database schema. The schema is based on the model specified in `DbContext`. The `InitialCreate` argument is used to name the migrations. Any name can be used, but by convention a name is selected that describes the migration.
 
@@ -369,9 +367,9 @@ If you run into a problem you can't resolve, compare your code to the completed 
 > [Previous: Get Started](xref:tutorials/razor-pages/razor-pages-start)
 > [Next: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="= aspnetcore-5.0"
+:::moniker range="= aspnetcore-5.0"
 
 <!-- In the next update on the CLI version, let the scaffolder do the same work the VS driven scaffolder does. That is, create the DB context, etc -->
 
@@ -654,9 +652,9 @@ The next tutorial explains the files created by scaffolding.
 > [Previous: Get Started](xref:tutorials/razor-pages/razor-pages-start)
 > [Next: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-5.0"
+:::moniker range="< aspnetcore-5.0"
 
 <!-- In the next update on the CLI version, let the scaffolder do the same work the VS driven scaffolder does. That is, create the DB context, etc -->
 
@@ -1028,4 +1026,4 @@ The next tutorial explains the files created by scaffolding.
 > [Previous: Get Started](xref:tutorials/razor-pages/razor-pages-start)
 > [Next: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)
 
-::: moniker-end
+:::moniker-end

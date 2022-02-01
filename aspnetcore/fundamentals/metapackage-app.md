@@ -10,7 +10,7 @@ uid: fundamentals/metapackage-app
 ---
 # Microsoft.AspNetCore.App for ASP.NET Core
 
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.0"
 
  The ASP.NET Core shared framework (`Microsoft.AspNetCore.App`) contains assemblies that are developed and supported by Microsoft. `Microsoft.AspNetCore.App` is installed when the [.NET Core 3.0 or later SDK](https://dotnet.microsoft.com/download/dotnet-core/3.0) is installed. The *shared framework* is the set of assemblies (*.dll* files) that are installed on the machine and includes a runtime component and a targeting pack. For more information, see [The shared framework](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/).
 
@@ -32,9 +32,9 @@ The ASP.NET Core shared framework:
 * Doesn't include third-party dependencies.
 * Includes all supported packages by the ASP.NET Core team.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+:::moniker range="< aspnetcore-3.0"
 
 This feature requires ASP.NET Core 2.x targeting .NET Core 2.x.
 
@@ -78,9 +78,9 @@ The implicit version is set to `major.minor.0` for portable apps. The shared fra
 
 Specifying a version number on the `Microsoft.AspNetCore.App` reference does **not** guarantee that version of the shared framework will be chosen. For example, suppose version "2.2.1" is specified, but "2.2.3" is installed. In that case, the app will use "2.2.3". Although not recommended, you can disable roll forward (patch and/or minor). For more information regarding dotnet host roll-forward and how to configure its behavior, see [dotnet host roll forward](https://github.com/dotnet/core-setup/blob/master/Documentation/design-docs/roll-forward-on-no-candidate-fx.md).
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="= aspnetcore-2.1"
+:::moniker range="= aspnetcore-2.1"
 
 `<Project Sdk` must be set to `Microsoft.NET.Sdk.Web` to use the implicit version `Microsoft.AspNetCore.App`. When `<Project Sdk="Microsoft.NET.Sdk">` (without the trailing `.Web`) is used:
 
@@ -90,9 +90,9 @@ Specifying a version number on the `Microsoft.AspNetCore.App` reference does **n
 
 * This is a known issue with the .NET Core 2.1 SDK.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+:::moniker range="< aspnetcore-3.0"
 
 <a name="update"></a>
 
@@ -109,4 +109,4 @@ To update ASP.NET Core:
 
 If your application previously used `Microsoft.AspNetCore.All`, see [Migrating from Microsoft.AspNetCore.All to Microsoft.AspNetCore.App](xref:fundamentals/metapackage#migrate).
 
-::: moniker-end
+:::moniker-end

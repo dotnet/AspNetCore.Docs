@@ -12,7 +12,7 @@ uid: tutorials/first-mvc-app/details
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 Open the Movie controller and examine the `Details` method:
 
@@ -56,9 +56,9 @@ For information on deploying to Azure, see [Tutorial: Build an ASP.NET Core and 
 > [!div class="step-by-step"]
 > [Previous](validation.md)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 Open the Movie controller and examine the `Details` method:
 
@@ -102,4 +102,4 @@ For information on deploying to Azure, see [Tutorial: Build an ASP.NET Core and 
 > [!div class="step-by-step"]
 > [Previous](validation.md)
 
-::: moniker-end
+:::moniker-end

@@ -13,7 +13,7 @@ uid: mvc/models/file-uploads
 
 By [Steve Smith](https://ardalis.com/) and [Rutger Storm](https://github.com/rutix)
 
-::: moniker range=">= aspnetcore-5.0"
+:::moniker range=">= aspnetcore-5.0"
 
 ASP.NET Core supports uploading one or more files using buffered model binding for smaller files and unbuffered streaming for larger files.
 
@@ -735,9 +735,9 @@ If the controller is accepting uploaded files using <xref:Microsoft.AspNetCore.H
 
 The examples in this topic rely upon <xref:System.IO.MemoryStream> to hold the uploaded file's content. The size limit of a `MemoryStream` is `int.MaxValue`. If the app's file upload scenario requires holding file content larger than 50 MB, use an alternative approach that doesn't rely upon a single `MemoryStream` for holding an uploaded file's content.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
+:::moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
 ASP.NET Core supports uploading one or more files using buffered model binding for smaller files and unbuffered streaming for larger files.
 
@@ -1470,9 +1470,9 @@ If the controller is accepting uploaded files using <xref:Microsoft.AspNetCore.H
 
 The examples in this topic rely upon <xref:System.IO.MemoryStream> to hold the uploaded file's content. The size limit of a `MemoryStream` is `int.MaxValue`. If the app's file upload scenario requires holding file content larger than 50 MB, use an alternative approach that doesn't rely upon a single `MemoryStream` for holding an uploaded file's content.
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+:::moniker range="< aspnetcore-3.0"
 
 ASP.NET Core supports uploading one or more files using buffered model binding for smaller files and unbuffered streaming for larger files.
 
@@ -2200,17 +2200,17 @@ If the controller is accepting uploaded files using <xref:Microsoft.AspNetCore.H
 
 The examples in this topic rely upon <xref:System.IO.MemoryStream> to hold the uploaded file's content. The size limit of a `MemoryStream` is `int.MaxValue`. If the app's file upload scenario requires holding file content larger than 50 MB, use an alternative approach that doesn't rely upon a single `MemoryStream` for holding an uploaded file's content.
 
-::: moniker-end
+:::moniker-end
 
 
 ## Additional resources
 
-::: moniker range="< aspnetcore-5.0"
+:::moniker range="< aspnetcore-5.0"
 * [HTTP connection request draining](xref:fundamentals/servers/kestrel#http11-request-draining)
-::: moniker-end
-::: moniker range=">= aspnetcore-5.0"
+:::moniker-end
+:::moniker range=">= aspnetcore-5.0"
 * [HTTP connection request draining](xref:fundamentals/servers/kestrel/request-draining)
-::: moniker-end
+:::moniker-end
 
 * [Unrestricted File Upload](https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload)
 * [Azure Security: Security Frame: Input Validation | Mitigations](/azure/security/azure-security-threat-modeling-tool-input-validation)

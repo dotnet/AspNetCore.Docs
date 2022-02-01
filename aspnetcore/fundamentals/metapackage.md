@@ -11,11 +11,11 @@ uid: fundamentals/metapackage
 ---
 # Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.0
 
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.0"
 
 The `Microsoft.AspNetCore.All` metapackage isn't included in ASP.NET Core 3.0 and later. For more information, see [this GitHub issue](https://github.com/aspnet/Announcements/issues/314).
 
-::: moniker-end
+:::moniker-end
 
 > [!NOTE]
 > We recommend applications targeting ASP.NET Core 2.1 and later use the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) rather than this package. See [Migrating from Microsoft.AspNetCore.All to Microsoft.AspNetCore.App](#migrate) in this article.
@@ -38,7 +38,7 @@ The following *.csproj* file references the `Microsoft.AspNetCore.All` metapacka
 
 [!code-xml[](metapackage/samples/Metapackage.All.Example.csproj?highlight=8)]
 
-::: moniker range=">= aspnetcore-2.1"
+:::moniker range=">= aspnetcore-2.1"
 
 ## Implicit versioning
 
@@ -54,7 +54,7 @@ The project's SDK must be set to `Microsoft.NET.Sdk.Web` in the project file to 
 
 This is a known issue with the .NET Core 2.1 SDK and will be fixed in the .NET Core 2.2 SDK.
 
-::: moniker-end
+:::moniker-end
 
 <a name="migrate"></a>
 

@@ -15,7 +15,7 @@ By [Tom Dykstra](https://github.com/tdykstra), [Jeremy Likness](https://twitter.
 
 [!INCLUDE [about the series](~/includes/RP-EF/intro.md)]
 
-::: moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.0"
 
 This tutorial adds sorting, filtering, and paging functionality to the Students pages.
 
@@ -269,9 +269,9 @@ In the next tutorial, the app uses migrations to update the data model.
 > [Previous tutorial](xref:data/ef-rp/crud)
 > [Next tutorial](xref:data/ef-rp/migrations)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+:::moniker range="< aspnetcore-3.0"
 
 In this tutorial, sorting, filtering, grouping, and paging, functionality is added.
 
@@ -540,5 +540,5 @@ In the next tutorial, the app uses migrations to update the data model.
 > [Previous](xref:data/ef-rp/crud)
 > [Next](xref:data/ef-rp/migrations)
 
-::: moniker-end
+:::moniker-end
 

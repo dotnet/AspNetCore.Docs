@@ -10,25 +10,22 @@ using System.Threading.Tasks;
 
 namespace ContosoUniversity.Pages.Students
 {
-    #region snippet
     public class IndexModel : PageModel
     {
         private readonly SchoolContext _context;
-        private readonly MvcOptions _mvcOptions;
 
-        public IndexModel(SchoolContext context, IOptions<MvcOptions> mvcOptions)
+        public IndexModel(SchoolContext context)
         {
             _context = context;
-            _mvcOptions = mvcOptions.Value;
         }
 
         public IList<Student> Student { get;set; }
 
+        #region snippet
         public async Task OnGetAsync()
         {
-            Student = await _context.Students.Take(
-                _mvcOptions.MaxModelBindingCollectionSize).ToListAsync();
+            Student = await _context.Students.Take(10).ToListAsync();
         }
+        #endregion
     }
-    #endregion
 }
