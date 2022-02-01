@@ -14,7 +14,7 @@ An ASP.NET 4.x Web API is an HTTP service that reaches a broad range of clients,
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/migration/webapi/sample) ([how to download](xref:index#how-to-download-a-sample))
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 ## Prerequisites
 
@@ -180,9 +180,9 @@ Run the migrated project, and browse to `/api/products`.  For example: https://l
 * <xref:web-api/action-return-types>
 * <xref:mvc/compatibility-version>
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-5.0 >= aspnetcore-3.0"
+:::moniker range="< aspnetcore-5.0 >= aspnetcore-3.0"
 
 ## Prerequisites
 
@@ -302,9 +302,9 @@ Run the migrated project, and browse to `/api/products`. A full list of three pr
 * <xref:web-api/index>
 * <xref:web-api/action-return-types>
 * <xref:mvc/compatibility-version>
-::: moniker-end
+:::moniker-end
 
-::: moniker range="<= aspnetcore-2.2"
+:::moniker range="<= aspnetcore-2.2"
 ## Prerequisites
 
 [!INCLUDE [prerequisites](../includes/net-core-prereqs-vs2019-2.2.md)]
@@ -446,4 +446,4 @@ To use the compatibility shim:
 * <xref:web-api/index>
 * <xref:web-api/action-return-types>
 * <xref:mvc/compatibility-version>
-::: moniker-end
+:::moniker-end
