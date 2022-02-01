@@ -5,7 +5,7 @@ using Microsoft.Extensions.Localization;
 
 namespace ValidationSample.Validation
 {
-    #region snippet_Class
+    // <snippet_Class>
     public class ClassicMovieAttributeAdapter : AttributeAdapterBase<ClassicMovieAttribute>
     {
         public ClassicMovieAttributeAdapter(ClassicMovieAttribute attribute,
@@ -27,5 +27,5 @@ namespace ValidationSample.Validation
         public override string GetErrorMessage(ModelValidationContextBase validationContext) =>
             Attribute.GetErrorMessage();
     }
-    #endregion
+    // </snippet_Class>
 }

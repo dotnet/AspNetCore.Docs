@@ -23,7 +23,7 @@ namespace ValidationSample
 
             services.AddSingleton<IUserService, UserService>();
 
-            #region snippet_Configuration
+            // <snippet_Configuration>
             services.AddRazorPages()
                 .AddMvcOptions(options =>
                 {
@@ -34,24 +34,24 @@ namespace ValidationSample
 
             services.AddSingleton<IValidationAttributeAdapterProvider,
                 CustomValidationAttributeAdapterProvider>();
-            #endregion
+            // </snippet_Configuration>
 
             services.AddControllersWithViews();
 
 #if DisableValidation
-            #region snippet_DisableValidation
+            // <snippet_DisableValidation>
             services.AddSingleton<IObjectModelValidator, NullObjectModelValidator>();
-            #endregion
+            // </snippet_DisableValidation>
 #endif
 
 #if DisableClientValidation
-            #region snippet_DisableClientValidation
+            // <snippet_DisableClientValidation>
             services.AddRazorPages()
                 .AddViewOptions(options =>
                 {
                     options.HtmlHelperOptions.ClientValidationEnabled = false;
                 });
-            #endregion
+            // </snippet_DisableClientValidation>
 #endif
         }
 

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ValidationSample.Models
 {
-    #region snippet_Class
+    // <snippet_Class>
     public class ValidatableMovie : IValidatableObject
     {
         private const int _classicYear = 1960;
@@ -40,5 +40,5 @@ namespace ValidationSample.Models
             }
         }
     }
-    #endregion
+    // </snippet_Class>
 }

@@ -607,8 +607,6 @@ If a large number of buttons are rendered using the preceding approach, renderin
 }
 ```
 
-For more information, see [Blazor Binary message size send from server to client increases (dotnet/aspnetcore #17886)](https://github.com/dotnet/aspnetcore/issues/17886).
-
 ## Optimize JavaScript interop speed
 
 Calls between .NET and JavaScript require additional overhead because:
@@ -1366,8 +1364,6 @@ If a large number of buttons are rendered using the preceding approach, renderin
 }
 ```
 
-For more information, see [Blazor Binary message size send from server to client increases (dotnet/aspnetcore #17886)](https://github.com/dotnet/aspnetcore/issues/17886).
-
 ## Optimize JavaScript interop speed
 
 Calls between .NET and JavaScript require additional overhead because:
@@ -2108,8 +2104,6 @@ If a large number of buttons are rendered using the preceding approach, renderin
     }
 }
 ```
-
-For more information, see [Blazor Binary message size send from server to client increases (dotnet/aspnetcore #17886)](https://github.com/dotnet/aspnetcore/issues/17886).
 
 ## Optimize JavaScript interop speed
 

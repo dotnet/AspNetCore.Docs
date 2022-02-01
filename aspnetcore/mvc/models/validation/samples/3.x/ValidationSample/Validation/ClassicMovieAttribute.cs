@@ -4,7 +4,7 @@ using ValidationSample.Models;
 
 namespace ValidationSample.Validation
 {
-    #region snippet_Class
+    // <snippet_Class>
     public class ClassicMovieAttribute : ValidationAttribute
     {
         public ClassicMovieAttribute(int year)
@@ -31,5 +31,5 @@ namespace ValidationSample.Validation
             return ValidationResult.Success;
         }
     }
-    #endregion
+    // </snippet_Class>
 }

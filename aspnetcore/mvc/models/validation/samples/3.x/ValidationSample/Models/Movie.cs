@@ -4,7 +4,7 @@ using ValidationSample.Validation;
 
 namespace ValidationSample.Models
 {
-    #region snippet_Class
+    // <snippet_Class>
     public class Movie
     {
         public int Id { get; set; }
@@ -29,5 +29,5 @@ namespace ValidationSample.Models
 
         public bool Preorder { get; set; }
     }
-    #endregion
+    // </snippet_Class>
 }

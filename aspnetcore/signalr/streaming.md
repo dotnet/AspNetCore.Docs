@@ -2,7 +2,7 @@
 title: Use streaming in ASP.NET Core SignalR
 author: bradygaster
 description: Learn how to stream data between the client and the server.
-monikerRange: '>= aspnetcore-2.1'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: bradyg
 ms.custom: mvc, devx-track-js
 ms.date: 10/29/2020
@@ -13,45 +13,23 @@ uid: signalr/streaming
 
 By [Brennan Conroy](https://github.com/BrennanConroy)
 
-:::moniker range=">= aspnetcore-3.0"
+:::moniker range=">= aspnetcore-3.1"
 
 ASP.NET Core SignalR supports streaming from client to server and from server to client. This is useful for scenarios where fragments of data arrive over time. When streaming, each fragment is sent to the client or server as soon as it becomes available, rather than waiting for all of the data to become available.
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-3.0"
-
-ASP.NET Core SignalR supports streaming return values of server methods. This is useful for scenarios where fragments of data arrive over time. When a return value is streamed to the client, each fragment is sent to the client as soon as it becomes available, rather than waiting for all the data to become available.
-
-:::moniker-end
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/signalr/streaming/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Set up a hub for streaming
 
-:::moniker range=">= aspnetcore-3.0"
-
 A hub method automatically becomes a streaming hub method when it returns <xref:System.Collections.Generic.IAsyncEnumerable`1>, <xref:System.Threading.Channels.ChannelReader%601>, `Task<IAsyncEnumerable<T>>`, or `Task<ChannelReader<T>>`.
 
-:::moniker-end
-
-:::moniker range="< aspnetcore-3.0"
-
-A hub method automatically becomes a streaming hub method when it returns a <xref:System.Threading.Channels.ChannelReader%601> or a `Task<ChannelReader<T>>`.
-
-:::moniker-end
-
 ### Server-to-client streaming
-
-:::moniker range=">= aspnetcore-3.0"
 
 Streaming hub methods can return `IAsyncEnumerable<T>` in addition to `ChannelReader<T>`. The simplest way to return `IAsyncEnumerable<T>` is by making the hub method an async iterator method as the following sample demonstrates. Hub async iterator methods can accept a `CancellationToken` parameter that's triggered when the client unsubscribes from the stream. Async iterator methods avoid problems common with Channels, such as not returning the `ChannelReader` early enough or exiting the method without completing the <xref:System.Threading.Channels.ChannelWriter`1>.
 
 [!INCLUDE[](~/includes/csharp-8-required.md)]
 
 [!code-csharp[Streaming hub async iterator method](streaming/samples/3.0/Hubs/AsyncEnumerableHub.cs?name=snippet_AsyncIterator)]
-
-:::moniker-end
 
 The following sample shows the basics of streaming data to the client using Channels. Whenever an object is written to the <xref:System.Threading.Channels.ChannelWriter%601>, the object is immediately sent to the client. At the end, the `ChannelWriter` is completed to tell the client the stream is closed.
 
@@ -60,31 +38,9 @@ The following sample shows the basics of streaming data to the client using Chan
 >
 > Wrap logic in a [`try ... catch` statement](/dotnet/csharp/language-reference/keywords/try-catch). Complete the `Channel` in a [`finally` block](/dotnet/csharp/language-reference/keywords/try-catch-finally). If you want to flow an error, capture it inside the `catch` block and write it in the `finally` block.
 
-:::moniker range=">= aspnetcore-3.0"
-
 [!code-csharp[Streaming hub method](streaming/samples/3.0/Hubs/StreamHub.cs?name=snippet1)]
 
-:::moniker-end
-
-:::moniker range="= aspnetcore-2.2"
-
-[!code-csharp[Streaming hub method](streaming/samples/2.2/Hubs/StreamHub.cs?name=snippet1)]
-
-:::moniker-end
-
-:::moniker range="= aspnetcore-2.1"
-
-[!code-csharp[Streaming hub method](streaming/samples/2.1/Hubs/StreamHub.cs?name=snippet1)]
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-2.2"
-
 Server-to-client streaming hub methods can accept a `CancellationToken` parameter that's triggered when the client unsubscribes from the stream. Use this token to stop the server operation and release any resources if the client disconnects before the end of the stream.
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-3.0"
 
 ### Client-to-server streaming
 
@@ -106,14 +62,9 @@ public async Task UploadStream(IAsyncEnumerable<string> stream)
 }
 ```
 
-:::moniker-end
-
 ## .NET client
 
 ### Server-to-client streaming
-
-
-:::moniker range=">= aspnetcore-3.0"
 
 The `StreamAsync` and `StreamAsChannelAsync` methods on `HubConnection` are used to invoke server-to-client streaming methods. Pass the hub method name and arguments defined in the hub method to `StreamAsync` or `StreamAsChannelAsync`. The generic parameter on `StreamAsync<T>` and `StreamAsChannelAsync<T>` specifies the type of objects returned by the streaming method. An object of type `IAsyncEnumerable<T>` or `ChannelReader<T>` is returned from the stream invocation and represents the stream on the client.
 
@@ -156,10 +107,6 @@ while (await channel.WaitToReadAsync())
 Console.WriteLine("Streaming completed");
 ```
 
-:::moniker-end
-
-:::moniker range=">= aspnetcore-2.2"
-
 The `StreamAsChannelAsync` method on `HubConnection` is used to invoke a server-to-client streaming method. Pass the hub method name and arguments defined in the hub method to `StreamAsChannelAsync`. The generic parameter on `StreamAsChannelAsync<T>` specifies the type of objects returned by the streaming method. A `ChannelReader<T>` is returned from the stream invocation and represents the stream on the client.
 
 ```csharp
@@ -181,33 +128,6 @@ while (await channel.WaitToReadAsync())
 
 Console.WriteLine("Streaming completed");
 ```
-
-:::moniker-end
-
-:::moniker range="= aspnetcore-2.1"
-
-The `StreamAsChannelAsync` method on `HubConnection` is used to invoke a server-to-client streaming method. Pass the hub method name and arguments defined in the hub method to `StreamAsChannelAsync`. The generic parameter on `StreamAsChannelAsync<T>` specifies the type of objects returned by the streaming method. A `ChannelReader<T>` is returned from the stream invocation and represents the stream on the client.
-
-```csharp
-var channel = await hubConnection
-    .StreamAsChannelAsync<int>("Counter", 10, 500, CancellationToken.None);
-
-// Wait asynchronously for data to become available
-while (await channel.WaitToReadAsync())
-{
-    // Read all currently available data synchronously, before waiting for more data
-    while (channel.TryRead(out var count))
-    {
-        Console.WriteLine($"{count}");
-    }
-}
-
-Console.WriteLine("Streaming completed");
-```
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-3.0"
 
 ### Client-to-server streaming
 
@@ -243,8 +163,6 @@ await channel.Writer.WriteAsync("some more data");
 channel.Writer.Complete();
 ```
 
-:::moniker-end
-
 ## JavaScript client
 
 ### Server-to-client streaming
@@ -256,23 +174,9 @@ JavaScript clients call server-to-client streaming methods on hubs with `connect
 
 `connection.stream` returns an `IStreamResult`, which contains a `subscribe` method. Pass an `IStreamSubscriber` to `subscribe` and set the `next`, `error`, and `complete` callbacks to receive notifications from the `stream` invocation.
 
-:::moniker range=">= aspnetcore-2.2"
-
 [!code-javascript[Streaming javascript](streaming/samples/2.2/wwwroot/js/stream.js?range=19-36)]
 
 To end the stream from the client, call the `dispose` method on the `ISubscription` that's returned from the `subscribe` method. Calling this method causes cancellation of the `CancellationToken` parameter of the Hub method, if you provided one.
-
-:::moniker-end
-
-:::moniker range="= aspnetcore-2.1"
-
-[!code-javascript[Streaming javascript](streaming/samples/2.1/wwwroot/js/stream.js?range=19-36)]
-
-To end the stream from the client, call the `dispose` method on the `ISubscription` that's returned from the `subscribe` method.
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-3.0"
 
 ### Client-to-server streaming
 

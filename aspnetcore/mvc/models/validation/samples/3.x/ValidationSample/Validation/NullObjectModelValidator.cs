@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace ValidationSample.Validation
 {
-    #region snippet_Class
+    // <snippet_Class>
     public class NullObjectModelValidator : IObjectModelValidator
     {
         public void Validate(ActionContext actionContext,
@@ -12,5 +12,5 @@ namespace ValidationSample.Validation
 
         }
     }
-    #endregion
+    // </snippet_Class>
 }

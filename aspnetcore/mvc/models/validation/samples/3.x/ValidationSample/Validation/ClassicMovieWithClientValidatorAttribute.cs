@@ -7,7 +7,7 @@ using ValidationSample.Models;
 
 namespace ValidationSample.Validation
 {
-    #region snippet_Class
+    // <snippet_Class>
     public class ClassicMovieWithClientValidatorAttribute :
         ValidationAttribute, IClientModelValidator
     {
@@ -55,5 +55,5 @@ namespace ValidationSample.Validation
             return true;
         }
     }
-    #endregion
+    // </snippet_Class>
 }
