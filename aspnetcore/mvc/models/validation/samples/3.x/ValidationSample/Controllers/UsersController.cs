@@ -17,7 +17,7 @@ namespace ValidationSample.Controllers
         public IActionResult CheckEmail() =>
             View();
 
-        #region snippet_VerifyEmail
+        // <snippet_VerifyEmail>
         [AcceptVerbs("GET", "POST")]
         public IActionResult VerifyEmail(string email)
         {
@@ -28,12 +28,12 @@ namespace ValidationSample.Controllers
 
             return Json(true);
         }
-        #endregion
+        // </snippet_VerifyEmail>
 
         public IActionResult CheckName() =>
             View();
 
-        #region snippet_VerifyName
+        // <snippet_VerifyName>
         [AcceptVerbs("GET", "POST")]
         public IActionResult VerifyName(string firstName, string lastName)
         {
@@ -44,12 +44,12 @@ namespace ValidationSample.Controllers
 
             return Json(true);
         }
-        #endregion
+        // </snippet_VerifyName>
 
         public IActionResult CheckPhone() =>
             View();
 
-        #region snippet_VerifyPhone
+        // <snippet_VerifyPhone>
         [AcceptVerbs("GET", "POST")]
         public IActionResult VerifyPhone(
             [RegularExpression(@"^\d{3}-\d{3}-\d{4}$")] string phone)
@@ -61,16 +61,16 @@ namespace ValidationSample.Controllers
 
             return Json(true);
         }
-        #endregion
+        // </snippet_VerifyPhone>
 
         public IActionResult CheckAge() =>
             View();
 
-        #region snippet_CheckAgeSignature
+        // <snippet_CheckAgeSignature>
         [HttpPost]
         public IActionResult CheckAge([BindRequired, FromQuery] int age)
         {
-        #endregion
+        // </snippet_CheckAgeSignature>
             if (!ModelState.IsValid)
             {
                 ViewData["ValidationResult"] = "Validation failed.";
