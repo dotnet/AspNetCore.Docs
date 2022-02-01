@@ -99,8 +99,6 @@ For more information, see [Nullable reference types](/dotnet/csharp/nullable-ref
 
 Examine *Models/Product.cs*. With nullable reference types enabled for the ProductCore project, helpful `non-nullable property` warnings are visible for the `Name` and `Category` properties.
 
-![Nullable reference type warning](webapi/_static/non-nullable-warning.png)
-
 In this case, the intent is that the `Name` and `Category` can be nullable types.
 
 Add the `?` annotation to declare the `Name` and `Category` properties as nullable reference types:
