@@ -252,7 +252,7 @@ Assign a C# field, property, or result of a method to a component parameter as a
 
 The `@` prefix is required for string parameters. Otherwise, the framework assumes that a string literal is set.
 
-Outside of string parameters, we recommend use the use of the `@` prefix for nonliterals, even when they aren't strictly required. It's generally easier to remember a simple rule for their use with nonliterals.
+Outside of string parameters, we recommend use the use of the `@` prefix for nonliterals, even when they aren't strictly required.
 
 We don't recommend the use of the `@` prefix for literals (for example, boolean values), keywords (for example, `this`), or `null`, but you can choose to use them if you wish. For example, `IsFixed="@true"` is uncommon but supported.
 
@@ -261,7 +261,7 @@ Quotes around parameter attribute values are optional in most cases per the HTML
 Throughout the documentation, code examples:
 
 * Always use quotes. Example: `Value="this"`.
-* Nonliterals always use the `@`, even when it's optional. Examples: `Title="@title"`, where `title` is a string variable. `Count="@ct"`, where `ct` is an number type.
+* Nonliterals always use the `@` prefix, even when it's optional. Examples: `Title="@title"`, where `title` is a string-typed variable. `Count="@ct"`, where `ct` is a number-typed variable.
 * Literals, outside of Razor expressions, always avoid `@`. Example: `IsFixed="true"`.
 
 `Pages/ParameterParent2.razor`:
@@ -1402,7 +1402,7 @@ Assign a C# field, property, or result of a method to a component parameter as a
 
 The `@` prefix is required for string parameters. Otherwise, the framework assumes that a string literal is set.
 
-Outside of string parameters, we recommend use the use of the `@` prefix for nonliterals, even when they aren't strictly required. It's generally easier to remember a simple rule for their use with nonliterals.
+Outside of string parameters, we recommend use the use of the `@` prefix for nonliterals, even when they aren't strictly required.
 
 We don't recommend the use of the `@` prefix for literals (for example, boolean values), keywords (for example, `this`), or `null`, but you can choose to use them if you wish. For example, `IsFixed="@true"` is uncommon but supported.
 
@@ -1411,7 +1411,7 @@ Quotes around parameter attribute values are optional in most cases per the HTML
 Throughout the documentation, code examples:
 
 * Always use quotes. Example: `Value="this"`.
-* Nonliterals always use the `@`, even when it's optional. Examples: `Title="@title"`, where `title` is a string variable. `Count="@ct"`, where `ct` is an number type.
+* Nonliterals always use the `@` prefix, even when it's optional. Examples: `Title="@title"`, where `title` is a string-typed variable. `Count="@ct"`, where `ct` is a number-typed variable.
 * Literals, outside of Razor expressions, always avoid `@`. Example: `IsFixed="true"`.
 
 `Pages/ParameterParent2.razor`:
@@ -2363,7 +2363,7 @@ Assign a C# field, property, or result of a method to a component parameter as a
 
 The `@` prefix is required for string parameters. Otherwise, the framework assumes that a string literal is set.
 
-Outside of string parameters, we recommend use the use of the `@` prefix for nonliterals, even when they aren't strictly required. It's generally easier to remember a simple rule for their use with nonliterals.
+Outside of string parameters, we recommend use the use of the `@` prefix for nonliterals, even when they aren't strictly required.
 
 We don't recommend the use of the `@` prefix for literals (for example, boolean values), keywords (for example, `this`), or `null`, but you can choose to use them if you wish. For example, `IsFixed="@true"` is uncommon but supported.
 
@@ -2372,7 +2372,7 @@ Quotes around parameter attribute values are optional in most cases per the HTML
 Throughout the documentation, code examples:
 
 * Always use quotes. Example: `Value="this"`.
-* Nonliterals always use the `@`, even when it's optional. Examples: `Title="@title"`, where `title` is a string variable. `Count="@ct"`, where `ct` is an number type.
+* Nonliterals always use the `@` prefix, even when it's optional. Examples: `Title="@title"`, where `title` is a string-typed variable. `Count="@ct"`, where `ct` is a number-typed variable.
 * Literals, outside of Razor expressions, always avoid `@`. Example: `IsFixed="true"`.
 
 `Pages/ParameterParent2.razor`:
