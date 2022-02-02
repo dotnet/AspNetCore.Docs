@@ -15,7 +15,7 @@ An ASP.NET 4.x Web API is an HTTP service that reaches a broad range of clients,
 :::moniker range=">= aspnetcore-6.0"
 This article migrates a basic controller from ASP.NET 4.x to to ASP.NET Core 6.x.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/migration/webapi/sample/6.x) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/migration/webapi/sample/) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Create the destination project
 
@@ -23,17 +23,12 @@ This article migrates a basic controller from ASP.NET 4.x to to ASP.NET Core 6.x
 
 [!INCLUDE[](~/includes/net-prereqs-vs-6.0.md)]
 
-Create a new blank solution in Visual Studio and add the ASP.NET 4.x Web API project to migrate:
+Create an ASP.NET Core Web API project
 
 1. From the **File** menu, select **New** > **Project**.
-1. Select the **Blank Solution** template and select **Next**.
-1. Name the solution *WebAPIMigration*. Select **Create**.
-1. Add the existing *ProductsApp* project to the solution.
-
-Add a new API project to migrate to:
-
-1. Add a new **ASP.NET Core Web API** project to the solution, and select **Next**.
-1. In the **Configure your new project** dialog, name the project *ProductsCore*, and select **Next**.
+1. Enter `Web API` in the search box.
+1. Select the *ASP.NET Core Web API template and select Next.
+1. In the **Configure your new project** dialog, name the project *ProductsCore* and select **Next**.
 1. In the **Additional information** dialog:
    1. Confirm the **Framework** is **.NET 6.0 (Long-term support)**.
    1. Confirm the checkbox for **Use controllers(uncheck to use minimal APIs)** is checked.
@@ -43,9 +38,9 @@ Add a new API project to migrate to:
 1. Open *Properties\launchSettings.json*.
 1. Change `launchUrl` properties from `weatherforcast` to `productscore`.
 
-## Add an ASP.NET 4.x Web API controller and model to migrate to ASP.NET Core
+## Add an ASP.NET 4.x Web API controller and model to migrate
 
-Add the example model class:
+Add the example model class
 
 1. In *Solution Explorer*, right-click the project. Select Add > New Folder. Name the folder `Models`.
 1. Right-click the *Models* folder. Select Add > Class. Name the class `Product` and select *Add*.
@@ -53,7 +48,7 @@ Add the example model class:
 
    [!code-csharp[](webapi/sample/3.x/ProductsApp/Models/Product.cs)]
 
-Add the example controller:
+Add the example controller
 
 1. Right-click the *Controllers* folder.
 1. Select *Add > Controller...*
