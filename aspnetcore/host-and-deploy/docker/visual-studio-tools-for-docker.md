@@ -16,14 +16,14 @@ Visual Studio 2017 and later versions support building, debugging, and running c
 
 ## Prerequisites
 
-* [Docker for Windows](https://docs.docker.com/docker-for-windows/install/)
+* [Docker for Windows](https://docs.docker.com/desktop/windows/install/)
 * [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) with the **.NET Core cross-platform development** workload
 
 ## Installation and setup
 
-For Docker installation, first review the information at [Docker for Windows: What to know before you install](https://docs.docker.com/docker-for-windows/install/#what-to-know-before-you-install). Next, install [Docker For Windows](https://docs.docker.com/docker-for-windows/install/).
+For Docker installation, first review the information at [Docker for Windows: What to know before you install](https://docs.docker.com/desktop/windows/install/#what-to-know-before-you-install). Next, install [Docker For Windows](https://docs.docker.com/desktop/windows/install/).
 
-**[Shared Drives](https://docs.docker.com/docker-for-windows/#shared-drives)** in Docker for Windows must be configured to support volume mapping and debugging. Right-click the System Tray's Docker icon, select **Settings**, and select **Shared Drives**. Select the drive where Docker stores files. Click **Apply**.
+**[Shared Drives](https://docs.docker.com/desktop/windows/#resources)** in Docker for Windows must be configured to support volume mapping and debugging. Right-click the System Tray's Docker icon, select **Settings**, and select **Shared Drives**. Select the drive where Docker stores files. Click **Apply**.
 
 ![Dialog to select local C drive sharing for containers](visual-studio-tools-for-docker/_static/settings-shared-drives-win.png)
 
