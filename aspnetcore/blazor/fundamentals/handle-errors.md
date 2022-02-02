@@ -204,7 +204,7 @@ The following `Error` component example merely logs errors, but methods of the c
 @using Microsoft.Extensions.Logging
 @inject ILogger<Error> Logger
 
-<CascadingValue Value=this>
+<CascadingValue Value="this">
     @ChildContent
 </CascadingValue>
 
@@ -531,7 +531,7 @@ The following `Error` component passes itself as a [`CascadingValue`](xref:blazo
 @using Microsoft.Extensions.Logging
 @inject ILogger<Error> Logger
 
-<CascadingValue Value=this>
+<CascadingValue Value="this">
     @ChildContent
 </CascadingValue>
 
@@ -1025,7 +1025,7 @@ The following `Error` component passes itself as a [`CascadingValue`](xref:blazo
 @using Microsoft.Extensions.Logging
 @inject ILogger<Error> Logger
 
-<CascadingValue Value=this>
+<CascadingValue Value="this">
     @ChildContent
 </CascadingValue>
 
