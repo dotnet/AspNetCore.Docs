@@ -1,0 +1,35 @@
+@model User
+
+@{
+    ViewData["Title"] = "Check Phone";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<ol>
+    <li>Enter a phone number with a valid format (format: ###-###-####). Validate accepts the phone number.</li>
+    <li>Enter a different phone number with an invalid format (for example: too short or with non-numerical characters). Validation fails.</li>
+    <li>Because the <code>&lt;input&gt;</code> element for the phone number includes the <code>required</code> attribute, jQuery client-side validation requires the visitor to provide a value.</li>
+</ol>
+
+<div class="row">
+    <div class="col-md-4">
+        <form>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="mb-3">
+                <label asp-for="Phone" class="form-label"></label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <input type="button" value="Validate" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
