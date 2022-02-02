@@ -35,7 +35,7 @@ When you step into any .NET or ASP.NET Core code, Visual Studio displays the sou
 The preceding instructions work for basic stepping into functions, but the optimized .NET code often removes local variables and functions. To disable optimizations and allow better source debugging:
 
 * In **Tools -> Options -> Debugging -> General**, enable **Suppress JIT optimization on module load (Managed only)**:
-  ![Enable Just My Code](~/test/debug-aspnetcore-source/image/supressJIT.png)
+  ![Suppress JIT optimization on module load ](~/test/debug-aspnetcore-source/image/supressJIT.png)
 * Add the environment variable and value `COMPlus_ReadyToRun=0` to the *Properties/launchSettings.json* file:
   [!code-json[](~/test/debug-aspnetcore-source/code/launchSettings.json?highlight=18,26)]
 
