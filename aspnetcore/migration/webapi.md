@@ -27,7 +27,7 @@ Create an ASP.NET Core Web API project
 
 1. From the **File** menu, select **New** > **Project**.
 1. Enter `Web API` in the search box.
-1. Select the *ASP.NET Core Web API template and select Next.
+1. Select the *ASP.NET Core Web API* template and select Next.
 1. In the **Configure your new project** dialog, name the project *ProductsCore* and select **Next**.
 1. In the **Additional information** dialog:
    1. Confirm the **Framework** is **.NET 6.0 (Long-term support)**.
@@ -38,22 +38,22 @@ Create an ASP.NET Core Web API project
 1. Open *Properties\launchSettings.json*.
 1. Change `launchUrl` properties from `weatherforcast` to `productscore`.
 
-## Add an ASP.NET 4.x Web API controller and model to migrate
+## Add the ASP.NET 4.x Web API controller and model to migrate
 
 Add the example model class
 
-1. In *Solution Explorer*, right-click the project. Select Add > New Folder. Name the folder `Models`.
-1. Right-click the *Models* folder. Select Add > Class. Name the class `Product` and select *Add*.
+1. In **Solution Explorer**, right-click the project. Select Add > New Folder. Name the folder `Models`.
+1. Right-click the **Models** folder. Select **Add** > **Class**. Name the class `Product` and select **Add**.
 1. Replace the template model code with the following:
 
    [!code-csharp[](webapi/sample/3.x/ProductsApp/Models/Product.cs)]
 
 Add the example controller
 
-1. Right-click the *Controllers* folder.
-1. Select *Add > Controller...*
-1. In *Add New Scaffolded Item* select *Mvc Controller - Empty* then select *Add*.
-1. Name the controller `ProductsController` and select *Add*.
+1. Right-click the **Controllers** folder.
+1. Select **Add > Controller...**.
+1. In **Add New Scaffolded Item** dialog, select **Mvc Controller - Empty** then select **Add**.
+1. Name the controller `ProductsController` and select **Add**.
 1. Replace the template controller code with the following:
 
    [!code-csharp[](webapi/sample/3.x/ProductsApp/Controllers/ProductsController.cs)]
