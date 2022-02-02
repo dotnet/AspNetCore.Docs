@@ -10,35 +10,12 @@ uid: migration/webapi
 ---
 # Migrate from ASP.NET Web API to ASP.NET Core
 
-An ASP.NET 4.x Web API is an HTTP service that reaches a broad range of clients, including browsers and mobile devices. ASP.NET Core combines ASP.NET 4.x's MVC and Web API app models into a single programming model known as ASP.NET Core MVC. This article demonstrates the steps required to migrate from ASP.NET 4.x Web API to ASP.NET Core MVC.
-
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/migration/webapi/sample) ([how to download](xref:index#how-to-download-a-sample))
+An ASP.NET 4.x Web API is an HTTP service that reaches a broad range of clients, including browsers and mobile devices. ASP.NET Core combines ASP.NET 4.x's MVC and Web API app models into a single programming model known as ASP.NET Core MVC.
 
 :::moniker range=">= aspnetcore-6.0"
+This article migrates a basic controller from ASP.NET 4.x to to ASP.NET Core 6.x.
 
-## Prerequisites
-
-[!INCLUDE [prerequisites](../includes/net-core-prereqs-vs-3.1.md)]
-
-## Review ASP.NET 4.x Web API project
-
-This article uses the *ProductsApp* project created in [Getting Started with ASP.NET Web API 2](/aspnet/web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api). In that project, a basic ASP.NET 4.x Web API project is configured as follows.
-
-In *Global.asax.cs*, a call is made to `WebApiConfig.Register`:
-
-[!code-csharp[](webapi/sample/3.x/ProductsApp/Global.asax.cs?highlight=14)]
-
-The `WebApiConfig` class is found in the *App_Start* folder and has a static `Register` method:
-
-[!code-csharp[](webapi/sample/3.x/ProductsApp/App_Start/WebApiConfig.cs)]
-
-The preceding class:
-
-* Configures [attribute routing](/aspnet/web-api/overview/web-api-routing-and-actions/attribute-routing-in-web-api-2), although it's not actually being used.
-* Configures the routing table.
-The sample code expects URLs to match the format `/api/{controller}/{id}`, with `{id}` being optional.
-
-The following sections demonstrate migration of the Web API project to ASP.NET Core MVC.
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/migration/webapi/sample/6.x) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Create the destination project
 
@@ -66,7 +43,7 @@ Add a new API project to migrate to:
 1. Open *Properties\launchSettings.json*.
 1. Change `launchUrl` properties from `weatherforcast` to `productscore`.
 
-The solution now contains two projects. The following sections explain migrating the *ProductsApp* project's contents to the *ProductsCore* project.
+The following sections explain migrating the *ProductsApp* project's contents to the *ProductsCore* project.
 
 ## Migrate configuration
 
@@ -87,15 +64,7 @@ The following shows the application startup code in the ASP.NET Core *Program.cs
 
 By utilizing the [Nullable feature introduced in C# 8](/dotnet/csharp/whats-new/csharp-8#nullable-reference-types), ASP.NET Core can provide additional code flow analysis and compile-time safety in the handling of reference types. For example, protecting against `null` reference exceptions.
 
-ASP.NET Core 6.0 projects enable nullable reference types by default. Nullable reference types are enabled or disabled for the entire project with the following project files property:
-
-```xml
-<PropertyGroup>
-    <Nullable>enable</Nullable>
-</PropertyGroup>
-```
-
-For more information, see [Nullable reference types](/dotnet/csharp/nullable-references).
+ASP.NET Core 6.0 projects enable nullable reference types by default. For more information, see [Nullable reference types](/dotnet/csharp/nullable-references).
 
 Examine *Models/Product.cs*. With nullable reference types enabled for the ProductCore project, helpful `non-nullable property` warnings are visible for the `Name` and `Category` properties.
 
@@ -116,24 +85,22 @@ public decimal Price { get; set; }
 
 Update the `ProductsController` for ASP.NET Core with the following highlighted code:
 
-
 [!code-csharp[](webapi/sample/6.x/ProductsCore/Controllers/ProductsController.cs?highlight=1,2,4,6,7,8,33,50,57)]
 
-1. Copy *Controllers/ProductsController.cs* and the *Models* folder from the original project to the new one.
-1. Change the copied files' root namespace to `ProductsCore`.
-1. Update the `using ProductsApp.Models;` statement to `using ProductsCore.Models;`.
+The preceding highlighted code changes the following:
 
-The following components don't exist in ASP.NET Core:
+* Removes using statements for the following ASP.NET 4.x components that don't exist in ASP.NET Core:
 
-* `ApiController` class
-* `System.Web.Http` namespace
-* `IHttpActionResult` interface
+  * `ApiController` class
+  * `System.Web.Http` namespace
+  * `IHttpActionResult` interface
 
-
-1. Change `ApiController` to <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. Add `using Microsoft.AspNetCore.Mvc;` to resolve the `ControllerBase` reference.
-1. Delete `using System.Web.Http;`.
-1. Change the `GetProduct` action's return type from `IHttpActionResult` to `ActionResult<Product>`. For more info, see [Controller action return types](/aspnet/web-api/action-return-types).
-1. Simplify the `GetProduct` action's `return` statement to the following statement:
+* `using ProductsApp.Models;` statement to `using ProductsCore.Models;`.
+* The root namespace to `ProductsCore`.
+* `ApiController` to <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. 
+* Adds `using Microsoft.AspNetCore.Mvc;` to resolve the `ControllerBase` reference.
+* The `GetProduct` action's return type from `IHttpActionResult` to `ActionResult<Product>`. For more info, see [Controller action return types](/aspnet/web-api/action-return-types).
+* Simplifies the `GetProduct` action's `return` statement to the following statement:
 
     ```csharp
     return product;
@@ -181,6 +148,9 @@ Run the migrated project, and browse to `/api/products`.  For example: https://l
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0 >= aspnetcore-3.0"
+This article demonstrates the steps required to migrate from ASP.NET 4.x Web API to ASP.NET Core MVC.
+
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/migration/webapi/sample) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Prerequisites
 
@@ -303,6 +273,10 @@ Run the migrated project, and browse to `/api/products`. A full list of three pr
 :::moniker-end
 
 :::moniker range="<= aspnetcore-2.2"
+This article demonstrates the steps required to migrate from ASP.NET 4.x Web API to ASP.NET Core MVC.
+
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/migration/webapi/sample) ([how to download](xref:index#how-to-download-a-sample))
+
 ## Prerequisites
 
 [!INCLUDE [prerequisites](../includes/net-core-prereqs-vs2019-2.2.md)]
