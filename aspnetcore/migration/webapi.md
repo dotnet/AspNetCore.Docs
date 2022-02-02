@@ -51,7 +51,7 @@ Add the example model class:
 1. Right-click the *Models* folder. Select Add > Class. Name the class `Product` and select *Add*.
 1. Replace the template model code with the following:
 
-   [!code-csharp[](webapi/sample/3.x/ProductsAppCore/Models/Product.cs)]
+   [!code-csharp[](webapi/sample/3.x/ProductsApp/Models/Product.cs)]
 
 Add the example controller:
 
@@ -61,7 +61,7 @@ Add the example controller:
 1. Name the controller `ProductsController` and select *Add*.
 1. Replace the template controller code with the following:
 
-   [!code-csharp[](webapi/sample/3.x/ProductsAppCore/Controllers/ProductsController.cs)]
+   [!code-csharp[](webapi/sample/3.x/ProductsApp/Controllers/ProductsController.cs)]
 
 ## The configuration for ASP.NET Core Web API
 
