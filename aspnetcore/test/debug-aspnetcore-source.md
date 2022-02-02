@@ -25,9 +25,6 @@ To debug .NET and ASP.NET Core source code in Visual Studio:
 
 ![Microsoft Symbol Server](~/test/debug-aspnetcore-source/image/ms_symbol_servers.png)
 
-* See [The 'Suppress JIT optimization on module load' option](/visualstudio/debugger/jit-optimization-and-debugging#the-suppress-jit-optimization-on-module-load-managed-only-option) to disable JIT optimization.
-* See [Limitations of the 'Suppress JIT optimization' option](/visualstudio/debugger/jit-optimization-and-debugging#limitations-of-the-suppress-jit-optimization-option) to set `COMPlus_ReadyToRun` to `0`
-
 When you step into any .NET or ASP.NET Core code, Visual Studio displays the source code.  For example:
 
 * Set a break point in `OnGet` in *Pages/Privacy.cshtml.cs* and select the **Privacy** link.
@@ -47,5 +44,6 @@ If you have debugged an app before with the previous version of .NET, delete the
 ## Additional resources
 
 * [JIT Optimization and Debugging](/visualstudio/debugger/jit-optimization-and-debugging)
+* [Limitations of the 'Suppress JIT optimization' option](/visualstudio/debugger/jit-optimization-and-debugging#limitations-of-the-suppress-jit-optimization-option) To set `COMPlus_ReadyToRun` to `0`
 * <xref:test/hot-reload>
 * [Test Execution with Hot Reload](/visualstudio/test/test-execution-with-hot-reload)
