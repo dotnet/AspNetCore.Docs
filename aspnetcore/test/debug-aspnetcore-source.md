@@ -13,41 +13,39 @@ uid: test/debug-aspnetcore-source
 
 To debug .NET and ASP.NET Core source code in Visual Studio:
 
-* In Visual Studio 
- 
-* Un-check  **Enable Just My Code**  in **Tools -> Options -> Debugging -> General**
+* In **Tools -> Options -> Debugging -> General**, un-check  **Enable Just My Code**.
 
-![Enable Just My Code](https://user-images.githubusercontent.com/3605364/31796868-22accaba-b4c7-11e7-8d8c-cb37ef5e8879.png)
+![Enable Just My Code](~/test/debug-aspnetcore-source/image/justMyCode.png)
 
 * Verify **Enable Source Link support**  is checked.
 
-![Enable Source Link support](https://user-images.githubusercontent.com/3605364/31796932-691d53a2-b4c7-11e7-81f1-15ece80c67d0.png)
+![Enable Source Link support](~/test/debug-aspnetcore-source/image/sourceLinkSupport.png)
 
-* Enable **Microsoft Symbol Servers** in **Tool -> Options -> Debugging -> Symbols**
+* In **Tool -> Options -> Debugging -> Symbols**, enable **Microsoft Symbol Servers**.
 
-![Microsoft Symbol Server](https://user-images.githubusercontent.com/3605364/31797007-b753bb92-b4c7-11e7-982e-530608d8aa04.png)
+![Microsoft Symbol Server](~/test/debug-aspnetcore-source/image/ms_symbol_servers.png)
 
 * See [The 'Suppress JIT optimization on module load' option](/visualstudio/debugger/jit-optimization-and-debugging#the-suppress-jit-optimization-on-module-load-managed-only-option) to disable JIT optimization.
 * See [Limitations of the 'Suppress JIT optimization' option](/visualstudio/debugger/jit-optimization-and-debugging#limitations-of-the-suppress-jit-optimization-option) to set `COMPlus_ReadyToRun` to `0`
 
 When you step into any .NET or ASP.NET Core code, Visual Studio displays the source code.  For example:
 
-* Set a break point in `OnGet`  in *Pages\About.cshtml.cs *
-* Double click on a line in the **Call Stack**.
+* Set a break point in `OnGet` in *Pages/Privacy.cshtml.cs* and select the **Privacy** link.
+* Select one of the **Download Source and Continue Debugging** options.
 
 ![Step into source](https://user-images.githubusercontent.com/3605364/31798032-38eb5a52-b4cd-11e7-9073-cb12414c860a.png)
 
-If you step into CoreFX or CoreCLR code, you will be prompted to find the location of the source code (It has good PDBs, but not sourcelink information).  
+The preceding instructions works for basic stepping into functions, but the optimized .NET code often removes local variable and functions. To disable optimizations and allow better source debugging:
 
-Note that if you have debugged an app before with the previous version of .NET, you need to delete your `%TEMP%\SymbolCache` directory as it can have old PDBs that are out of date.
+* In **Tools -> Options -> Debugging -> General**, enable **Suppress JIT optimization on module load (Managed only)**:
+  ![Enable Just My Code](~/test/debug-aspnetcore-source/image/supressJIT.png)
+* Add `COMPlus_ReadyToRun=0` to the *Properties/launchSettings.json* file:
+  [!code-json[](~/test/debug-aspnetcore-source/code/launchSettings.json?highlight=18,26)]
 
-See dotnet/core#897 for more details.
-
-See [JIT Optimization and Debugging](/visualstudio/debugger/jit-optimization-and-debugging) for tips on dealing with the optimizations of ASP.NET Core.
+If you have debugged an app before with the previous version of .NET, delete the `%TEMP%/SymbolCache` directory as it can have old PDBs that are out of date.
 
 ## Additional resources
 
-For more information, see the following resources in the Visual Studio documentation:
-
+* [JIT Optimization and Debugging](/visualstudio/debugger/jit-optimization-and-debugging)
 * <xref:test/hot-reload>
 * [Test Execution with Hot Reload](/visualstudio/test/test-execution-with-hot-reload)
