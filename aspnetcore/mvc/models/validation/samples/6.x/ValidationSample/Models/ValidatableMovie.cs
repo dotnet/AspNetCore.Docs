@@ -11,7 +11,7 @@ public class ValidatableMovie : IValidatableObject
 
     [Required]
     [StringLength(100)]
-    public string Title { get; set; }
+    public string Title { get; set; } = null!;
 
     [DataType(DataType.Date)]
     [Display(Name = "Release Date")]
@@ -19,7 +19,7 @@ public class ValidatableMovie : IValidatableObject
 
     [Required]
     [StringLength(1000)]
-    public string Description { get; set; }
+    public string Description { get; set; } = null!;
 
     [Range(0, 999.99)]
     public decimal Price { get; set; }

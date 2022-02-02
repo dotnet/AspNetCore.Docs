@@ -10,7 +10,7 @@ public class Movie
 
     [Required]
     [StringLength(100)]
-    public string Title { get; set; }
+    public string Title { get; set; } = null!;
 
     [ClassicMovie(1960)]
     [DataType(DataType.Date)]
@@ -19,7 +19,7 @@ public class Movie
 
     [Required]
     [StringLength(1000)]
-    public string Description { get; set; }
+    public string Description { get; set; } = null!;
 
     [Range(0, 999.99)]
     public decimal Price { get; set; }

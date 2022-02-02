@@ -5,7 +5,7 @@ description: Learn about model validation in ASP.NET Core MVC and Razor Pages.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/15/2019
+ms.date: 02/02/2022
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/models/validation
 ---
@@ -159,7 +159,8 @@ When the user enters a first or last name, JavaScript makes a remote call to see
 To validate two or more additional fields, provide them as a comma-delimited list. For example, to add a `MiddleName` property to the model, set the `[Remote]` attribute as shown in the following example:
 
 ```csharp
-[Remote(action: "VerifyName", controller: "Users", AdditionalFields = nameof(FirstName) + "," + nameof(LastName))]
+[Remote(action: "VerifyName", controller: "Users",
+    AdditionalFields = nameof(FirstName) + "," + nameof(LastName))]
 public string MiddleName { get; set; }
 ```
 
