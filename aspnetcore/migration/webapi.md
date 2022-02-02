@@ -42,8 +42,8 @@ Create an ASP.NET Core Web API project
 
 Add the example model class
 
-1. In **Solution Explorer**, right-click the project. Select Add > New Folder. Name the folder `Models`.
-1. Right-click the **Models** folder. Select **Add** > **Class**. Name the class `Product` and select **Add**.
+1. In **Solution Explorer**, right-click the project. Select Add > New Folder. Name the folder *Models*.
+1. Right-click the **Models** folder. Select **Add** > **Class**. Name the class *Product* and select **Add**.
 1. Replace the template model code with the following:
 
    [!code-csharp[](webapi/sample/3.x/ProductsApp/Models/Product.cs)]
@@ -53,7 +53,7 @@ Add the example controller
 1. Right-click the **Controllers** folder.
 1. Select **Add > Controller...**.
 1. In **Add New Scaffolded Item** dialog, select **Mvc Controller - Empty** then select **Add**.
-1. Name the controller `ProductsController` and select **Add**.
+1. Name the controller *ProductsController* and select **Add**.
 1. Replace the template controller code with the following:
 
    [!code-csharp[](webapi/sample/3.x/ProductsApp/Controllers/ProductsController.cs)]
