@@ -43,9 +43,27 @@ Add a new API project to migrate to:
 1. Open *Properties\launchSettings.json*.
 1. Change `launchUrl` properties from `weatherforcast` to `productscore`.
 
-The following sections explain migrating the *ProductsApp* project's contents to the *ProductsCore* project.
+## Add an ASP.NET 4.x Web API controller and model to migrate to ASP.NET Core
 
-## Migrate configuration
+Add the example model class:
+
+1. In *Solution Explorer*, right-click the project. Select Add > New Folder. Name the folder `Models`.
+1. Right-click the *Models* folder. Select Add > Class. Name the class `Product` and select *Add*.
+1. Replace the template model code with the following:
+
+   [!code-csharp[](webapi/sample/3.x/ProductsAppCore/Models/Product.cs)]
+
+Add the example controller:
+
+1. Right-click the *Controllers* folder.
+1. Select *Add > Controller...*
+1. In *Add New Scaffolded Item* select *Mvc Controller - Empty* then select *Add*.
+1. Name the controller `ProductsController` and select *Add*.
+1. Replace the template controller code with the following:
+
+   [!code-csharp[](webapi/sample/3.x/ProductsAppCore/Controllers/ProductsController.cs)]
+
+## The configuration for ASP.NET Core Web API
 
 ASP.NET Core doesn't use the *App_Start* folder or the *Global.asax* file. The *web.config* file is added at publish time.
 
