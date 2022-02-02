@@ -14,7 +14,7 @@ uid: razor-pages/filter
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-Razor Page filters [IPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter) and [IAsyncPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter) allow Razor Pages to run code before and after a Razor Page handler is run. Razor Page filters are similar to [ASP.NET Core MVC action filters](xref:mvc/controllers/filters#action-filters), except they can't be applied to individual page handler methods.
+Razor Page filters <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter> and <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter> allow Razor Pages to run code before and after a Razor Page handler is run. Razor Page filters are similar to [ASP.NET Core MVC action filters](xref:mvc/controllers/filters#action-filters), except they can't be applied to individual page handler methods.
 
 Razor Page filters:
 
@@ -33,14 +33,14 @@ Razor Page filters provide the following methods, which can be applied globally 
 
 * Synchronous methods:
 
-  * [OnPageHandlerSelected](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter.onpagehandlerselected) : Called after a handler method has been selected, but before model binding occurs.
-  * [OnPageHandlerExecuting](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter.onpagehandlerexecuting) : Called before the handler method executes, after model binding is complete.
-  * [OnPageHandlerExecuted](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter.onpagehandlerexecuted) : Called after the handler method executes, before the action result.
+  * <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter.OnPageHandlerSelected%2A> : Called after a handler method has been selected, but before model binding occurs.
+  * <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter.OnPageHandlerExecuting%2A> : Called before the handler method executes, after model binding is complete.
+  * <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter.OnPageHandlerExecuted%2A> : Called after the handler method executes, before the action result.
 
 * Asynchronous methods:
 
-  * [OnPageHandlerSelectionAsync](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter.onpagehandlerselectionasync) : Called asynchronously after the handler method has been selected, but before model binding occurs.
-  * [OnPageHandlerExecutionAsync](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter.onpagehandlerexecutionasync) : Called asynchronously before the handler method is invoked, after model binding is complete.
+  * <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter.OnPageHandlerSelectionAsync%2A> : Called asynchronously after the handler method has been selected, but before model binding occurs.
+  * <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter.OnPageHandlerExecutionAsync%2A> : Called asynchronously before the handler method is invoked, after model binding is complete.
 
 Implement **either** the synchronous or the async version of a filter interface, **not** both. The framework checks first to see if the filter implements the async interface, and if so, it calls that. If not, it calls the synchronous interface's method(s). If both interfaces are implemented, only the async methods are called. The same rule applies to overrides in pages, implement the synchronous or the async version of the override, not both.
 
@@ -96,7 +96,7 @@ See [Cancellation and short circuiting](xref:mvc/controllers/filters#cancellatio
 
 ## Authorize filter attribute
 
-The [Authorize](/dotnet/api/microsoft.aspnetcore.authorization.authorizeattribute) attribute can be applied to a `PageModel`:
+The [Authorize](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute can be applied to a `PageModel`:
 
 [!code-csharp[Main](filter/sample/PageFilter/Pages/ModelWithAuthFilter.cshtml.cs?highlight=7)]
 
@@ -106,7 +106,7 @@ The [Authorize](/dotnet/api/microsoft.aspnetcore.authorization.authorizeattribut
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-Razor Page filters [IPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter) and [IAsyncPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter) allow Razor Pages to run code before and after a Razor Page handler is run. Razor Page filters are similar to [ASP.NET Core MVC action filters](xref:mvc/controllers/filters#action-filters), except they can't be applied to individual page handler methods.
+Razor Page filters <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter> and <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter> allow Razor Pages to run code before and after a Razor Page handler is run. Razor Page filters are similar to [ASP.NET Core MVC action filters](xref:mvc/controllers/filters#action-filters), except they can't be applied to individual page handler methods.
 
 Razor Page filters:
 
@@ -116,7 +116,7 @@ Razor Page filters:
 * Can be implemented on a page or globally.
 * Cannot be applied to specific page handler methods.
 
-Code can be run before a handler method executes using the page constructor or middleware, but only Razor Page filters have access to [HttpContext](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel.httpcontext). Filters have a [FilterContext](/dotnet/api/microsoft.aspnetcore.mvc.filters.filtercontext) derived parameter, which provides access to `HttpContext`. For example, the [Implement a filter attribute](#ifa) sample adds a header to the response, something that can't be done with constructors or middleware.
+Code can be run before a handler method executes using the page constructor or middleware, but only Razor Page filters have access to <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.HttpContext%2A>. Filters have a <xref:Microsoft.AspNetCore.Mvc.Filters.FilterContext> derived parameter, which provides access to `HttpContext`. For example, the [Implement a filter attribute](#ifa) sample adds a header to the response, something that can't be done with constructors or middleware.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/filter/sample/PageFilter) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -124,14 +124,14 @@ Razor Page filters provide the following methods, which can be applied globally 
 
 * Synchronous methods:
 
-  * [OnPageHandlerSelected](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter.onpagehandlerselected) : Called after a handler method has been selected, but before model binding occurs.
-  * [OnPageHandlerExecuting](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter.onpagehandlerexecuting) : Called before the handler method executes, after model binding is complete.
-  * [OnPageHandlerExecuted](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter.onpagehandlerexecuted) : Called after the handler method executes, before the action result.
+  * <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter.OnPageHandlerSelected%2A> : Called after a handler method has been selected, but before model binding occurs.
+  * <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter.OnPageHandlerExecuting%2A> : Called before the handler method executes, after model binding is complete.
+  * <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter.OnPageHandlerExecuted%2A> : Called after the handler method executes, before the action result.
 
 * Asynchronous methods:
 
-  * [OnPageHandlerSelectionAsync](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter.onpagehandlerselectionasync) : Called asynchronously after the handler method has been selected, but before model binding occurs.
-  * [OnPageHandlerExecutionAsync](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter.onpagehandlerexecutionasync) : Called asynchronously before the handler method is invoked, after model binding is complete.
+  * <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter.OnPageHandlerSelectionAsync%2A> : Called asynchronously after the handler method has been selected, but before model binding occurs.
+  * <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter.OnPageHandlerExecutionAsync%2A> : Called asynchronously before the handler method is invoked, after model binding is complete.
 
 > [!NOTE]
 > Implement **either** the synchronous or the async version of a filter interface, not both. The framework checks first to see if the filter implements the async interface, and if so, it calls that. If not, it calls the synchronous interface's method(s). If both interfaces are implemented, only the async methods are called. The same rule applies to overrides in pages, implement the synchronous or the async version of the override, not both.
@@ -142,7 +142,7 @@ The following code implements `IAsyncPageFilter`:
 
 [!code-csharp[Main](filter/sample/PageFilter/Filters/SampleAsyncPageFilter.cs?name=snippet1)]
 
-In the preceding code, [ILogger](/dotnet/api/microsoft.extensions.logging.ilogger) is not required. It's used in the sample to provide trace information for the application.
+In the preceding code, <xref:Microsoft.Extensions.Logging.ILogger> is not required. It's used in the sample to provide trace information for the application.
 
 The following code enables the `SampleAsyncPageFilter` in the `Startup` class:
 
@@ -174,7 +174,7 @@ The following code overrides the synchronous Razor Page filters:
 
 ## Implement a filter attribute
 
-The built-in attribute-based filter [OnResultExecutionAsync](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncresultfilter.onresultexecutionasync) filter can be subclassed. The following filter adds a header to the response:
+The built-in attribute-based filter <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncResultFilter.OnResultExecutionAsync%2A> filter can be subclassed. The following filter adds a header to the response:
 
 [!code-csharp[Main](filter/sample/PageFilter/Filters/AddHeaderAttribute.cs)]
 
@@ -190,7 +190,7 @@ See [Cancellation and short circuiting](xref:mvc/controllers/filters#cancellatio
 
 ## Authorize filter attribute
 
-The [Authorize](/dotnet/api/microsoft.aspnetcore.authorization.authorizeattribute) attribute can be applied to a `PageModel`:
+The [Authorize](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute can be applied to a `PageModel`:
 
 [!code-csharp[Main](filter/sample/PageFilter/Pages/ModelWithAuthFilter.cshtml.cs?highlight=7)]
 
