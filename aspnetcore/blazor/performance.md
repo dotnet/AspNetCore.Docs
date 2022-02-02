@@ -260,7 +260,7 @@ Setting `IsFixed` to `true` improves performance if there are a large number of 
 Where a component passes `this` as a cascaded value, `IsFixed` can also be set to `true`:
 
 ```razor
-<CascadingValue Value="@this" IsFixed="true">
+<CascadingValue Value="this" IsFixed="true">
     <SomeOtherComponents>
 </CascadingValue>
 ```
@@ -1019,7 +1019,7 @@ Setting `IsFixed` to `true` improves performance if there are a large number of 
 Where a component passes `this` as a cascaded value, `IsFixed` can also be set to `true`:
 
 ```razor
-<CascadingValue Value="@this" IsFixed="true">
+<CascadingValue Value="this" IsFixed="true">
     <SomeOtherComponents>
 </CascadingValue>
 ```
@@ -1762,7 +1762,7 @@ Setting `IsFixed` to `true` improves performance if there are a large number of 
 Where a component passes `this` as a cascaded value, `IsFixed` can also be set to `true`:
 
 ```razor
-<CascadingValue Value="@this" IsFixed="true">
+<CascadingValue Value="this" IsFixed="true">
     <SomeOtherComponents>
 </CascadingValue>
 ```
