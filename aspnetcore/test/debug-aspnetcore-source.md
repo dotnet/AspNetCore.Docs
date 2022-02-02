@@ -32,7 +32,7 @@ When you step into any .NET or ASP.NET Core code, Visual Studio displays the sou
 
   ![Source Link Will Download](~/test/debug-aspnetcore-source/image/download.png)
 
-The preceding instructions work for basic stepping into functions, but the optimized .NET code often removes local variable and functions. To disable optimizations and allow better source debugging:
+The preceding instructions work for basic stepping into functions, but the optimized .NET code often removes local variables and functions. To disable optimizations and allow better source debugging:
 
 * In **Tools -> Options -> Debugging -> General**, enable **Suppress JIT optimization on module load (Managed only)**:
   ![Enable Just My Code](~/test/debug-aspnetcore-source/image/supressJIT.png)
