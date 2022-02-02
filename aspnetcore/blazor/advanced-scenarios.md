@@ -65,14 +65,14 @@ if (someFlag)
 builder.AddContent(1, "Second");
 ```
 
-When the code executes for the first time, if `someFlag` is `true`, the builder receives:
+When the code executes for the first time and `someFlag` is `true`, the builder receives the sequence in the following table.
 
 | Sequence | Type      | Data   |
 | :------: | --------- | :----: |
 | 0        | Text node | First  |
 | 1        | Text node | Second |
 
-Imagine that `someFlag` becomes `false` and the markup is rendered again. This time, the builder receives:
+Imagine that `someFlag` becomes `false` and the markup is rendered again. This time, the builder receives the sequence in the following table.
 
 | Sequence | Type       | Data   |
 | :------: | ---------- | :----: |
@@ -97,14 +97,14 @@ if (someFlag)
 builder.AddContent(seq++, "Second");
 ```
 
-Now, the first output is:
+The first output is reflected in the following table.
 
 | Sequence | Type      | Data   |
 | :------: | --------- | :----: |
 | 0        | Text node | First  |
 | 1        | Text node | Second |
 
-This outcome is identical to the prior case, so no negative issues exist. `someFlag` is `false` on the second rendering, and the output is:
+This outcome is identical to the prior case, so no negative issues exist. `someFlag` is `false` on the second rendering, and the output is seen in the following table.
 
 | Sequence | Type      | Data   |
 | :------: | --------- | ------ |
@@ -183,14 +183,14 @@ if (someFlag)
 builder.AddContent(1, "Second");
 ```
 
-When the code executes for the first time, if `someFlag` is `true`, the builder receives:
+When the code executes for the first time and `someFlag` is `true`, the builder receives the sequence in the following table.
 
 | Sequence | Type      | Data   |
 | :------: | --------- | :----: |
 | 0        | Text node | First  |
 | 1        | Text node | Second |
 
-Imagine that `someFlag` becomes `false` and the markup is rendered again. This time, the builder receives:
+Imagine that `someFlag` becomes `false` and the markup is rendered again. This time, the builder receives the sequence in the following table.
 
 | Sequence | Type       | Data   |
 | :------: | ---------- | :----: |
@@ -215,14 +215,14 @@ if (someFlag)
 builder.AddContent(seq++, "Second");
 ```
 
-Now, the first output is:
+The first output is seen in the following table.
 
 | Sequence | Type      | Data   |
 | :------: | --------- | :----: |
 | 0        | Text node | First  |
 | 1        | Text node | Second |
 
-This outcome is identical to the prior case, so no negative issues exist. `someFlag` is `false` on the second rendering, and the output is:
+This outcome is identical to the prior case, so no negative issues exist. `someFlag` is `false` on the second rendering, and the output is seen in the following table.
 
 | Sequence | Type      | Data   |
 | :------: | --------- | ------ |
@@ -301,14 +301,14 @@ if (someFlag)
 builder.AddContent(1, "Second");
 ```
 
-When the code executes for the first time, if `someFlag` is `true`, the builder receives:
+When the code executes for the first time and `someFlag` is `true`, the builder receives the sequence in the following table.
 
 | Sequence | Type      | Data   |
 | :------: | --------- | :----: |
 | 0        | Text node | First  |
 | 1        | Text node | Second |
 
-Imagine that `someFlag` becomes `false` and the markup is rendered again. This time, the builder receives:
+Imagine that `someFlag` becomes `false` and the markup is rendered again. This time, the builder receives the sequence in the following table.
 
 | Sequence | Type       | Data   |
 | :------: | ---------- | :----: |
@@ -333,14 +333,14 @@ if (someFlag)
 builder.AddContent(seq++, "Second");
 ```
 
-Now, the first output is:
+The first output is seen in the following table.
 
 | Sequence | Type      | Data   |
 | :------: | --------- | :----: |
 | 0        | Text node | First  |
 | 1        | Text node | Second |
 
-This outcome is identical to the prior case, so no negative issues exist. `someFlag` is `false` on the second rendering, and the output is:
+This outcome is identical to the prior case, so no negative issues exist. `someFlag` is `false` on the second rendering, and the output is seen in the following table.
 
 | Sequence | Type      | Data   |
 | :------: | --------- | ------ |
