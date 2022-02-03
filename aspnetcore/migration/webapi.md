@@ -27,7 +27,7 @@ Create an ASP.NET Core Web API project
 
 1. From the **File** menu, select **New** > **Project**.
 1. Enter `Web API` in the search box.
-1. Select the *ASP.NET Core Web API* template and select Next.
+1. Select the *ASP.NET Core Web API* template and select **Next**.
 1. In the **Configure your new project** dialog, name the project *ProductsCore* and select **Next**.
 1. In the **Additional information** dialog:
    1. Confirm the **Framework** is **.NET 6.0 (Long-term support)**.
@@ -40,15 +40,15 @@ Create an ASP.NET Core Web API project
 
 ## Add the ASP.NET 4.x Web API controller and model to migrate
 
-Add the example model class
+Add the example model class:
 
-1. In **Solution Explorer**, right-click the project. Select Add > New Folder. Name the folder *Models*.
+1. In **Solution Explorer**, right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
 1. Right-click the **Models** folder. Select **Add** > **Class**. Name the class *Product* and select **Add**.
 1. Replace the template model code with the following:
 
    [!code-csharp[](webapi/sample/3.x/ProductsApp/Models/Product.cs)]
 
-Add the example controller
+Add the example controller:
 
 1. Right-click the **Controllers** folder.
 1. Select **Add > Controller...**.
@@ -119,6 +119,8 @@ The preceding highlighted code changes the following:
     return product;
     ```
 
+* Adds `[Route("api/[controller]")]` and `[ApiController]` attributes which are explained in the next section.
+
 ## Routing
 
 The ASP.NET Web API 2 *App_Start/WebAPIConfig.cs* file contains an endpoint for the ProductsApp app:
@@ -129,7 +131,7 @@ ASP.NET Core provides a minimal hosting model in which the endpoint routing midd
 
 `UseRouting` can still be used to specify where route matching happens, but `UseRouting` doesn't need to be explicitly called if routes should be matched at the beginning of the middleware pipeline.
 
-In *Program.cs* in the ASP.NET Core 6.0 ProductsCore app, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers%2A> is called inside `UseEndpoints` to map attribute routed controllers.
+In *Program.cs* in the ASP.NET Core ProductsCore app, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers%2A> is called inside `UseEndpoints` to map attribute routed controllers.
 
 [!code-csharp[](webapi/sample/6.x/ProductsCore/Program.cs?highlight=15)]
 
