@@ -24,7 +24,7 @@ Fundamental challenges exist to implementing security independent of ASP.NET Cor
 * ASP.NET Core Identity provides the UI layer using Razor Pages, which are designed to work in the context of a request-response model, contrary to Blazor, which works in a stateful model over a WebSocket connection.
 * <xref:Microsoft.AspNetCore.Identity.SignInManager%601>, <xref:Microsoft.AspNetCore.Identity.UserManager%601>, and other Identity abstractions expect an available HTTP request and response to function properly.
 * HTTP cookies and other implementations for authentication can't function over a WebSocket connection, which is a fundamental challenge to performing authentication in Blazor.
-* Creating a new Identity implementation with a new authentication process is difficult to justify when we consider the reusability ASP.NET Core Identity with all of the design and validation that it has received.
+* Creating a new Identity implementation with a new authentication process is difficult to justify when we consider the reusability of ASP.NET Core Identity with all of the design and validation that it has received.
 
 Use of a separate UI stack for part of an app and performing authentication outside of the Blazor portions of an app might be undesirable for some developers or for some app designs. However, the majority of SPA frameworks implement an authentication process where users are redirected to an external provider and returned to the app. In this regard, Blazor Server is similar to other SPA frameworks.
 
@@ -142,6 +142,19 @@ Specify the issuer explicitly when deploying to Azure App Service on Linux with 
 
 Blazor Server apps are configured for security in the same manner as ASP.NET Core apps. For more information, see the articles under <xref:security/index>. Topics under this overview apply specifically to Blazor Server.
 
+## Blazor Server uses ASP.NET Core Identity
+
+Blazor Server uses ASP.NET Core Identity and doesn't offer a separate authentication process within Blazor for authentication and authorization.
+
+Fundamental challenges exist to implementing security independent of ASP.NET Core Identity for Blazor Server:
+
+* ASP.NET Core Identity provides the UI layer using Razor Pages, which are designed to work in the context of a request-response model, contrary to Blazor, which works in a stateful model over a WebSocket connection.
+* <xref:Microsoft.AspNetCore.Identity.SignInManager%601>, <xref:Microsoft.AspNetCore.Identity.UserManager%601>, and other Identity abstractions expect an available HTTP request and response to function properly.
+* HTTP cookies and other implementations for authentication can't function over a WebSocket connection, which is a fundamental challenge to performing authentication in Blazor.
+* Creating a new Identity implementation with a new authentication process is difficult to justify when we consider the reusability of ASP.NET Core Identity with all of the design and validation that it has received.
+
+Use of a separate UI stack for part of an app and performing authentication outside of the Blazor portions of an app might be undesirable for some developers or for some app designs. However, the majority of SPA frameworks implement an authentication process where users are redirected to an external provider and returned to the app. In this regard, Blazor Server is similar to other SPA frameworks.
+
 ## Blazor Server project template
 
 The [Blazor Server project template](xref:blazor/project-structure) can be configured for authentication when the project is created.
@@ -258,6 +271,19 @@ Specify the issuer explicitly when deploying to Azure App Service on Linux with 
 :::moniker range="< aspnetcore-5.0"
 
 Blazor Server apps are configured for security in the same manner as ASP.NET Core apps. For more information, see the articles under <xref:security/index>. Topics under this overview apply specifically to Blazor Server.
+
+## Blazor Server uses ASP.NET Core Identity
+
+Blazor Server uses ASP.NET Core Identity and doesn't offer a separate authentication process within Blazor for authentication and authorization.
+
+Fundamental challenges exist to implementing security independent of ASP.NET Core Identity for Blazor Server:
+
+* ASP.NET Core Identity provides the UI layer using Razor Pages, which are designed to work in the context of a request-response model, contrary to Blazor, which works in a stateful model over a WebSocket connection.
+* <xref:Microsoft.AspNetCore.Identity.SignInManager%601>, <xref:Microsoft.AspNetCore.Identity.UserManager%601>, and other Identity abstractions expect an available HTTP request and response to function properly.
+* HTTP cookies and other implementations for authentication can't function over a WebSocket connection, which is a fundamental challenge to performing authentication in Blazor.
+* Creating a new Identity implementation with a new authentication process is difficult to justify when we consider the reusability of ASP.NET Core Identity with all of the design and validation that it has received.
+
+Use of a separate UI stack for part of an app and performing authentication outside of the Blazor portions of an app might be undesirable for some developers or for some app designs. However, the majority of SPA frameworks implement an authentication process where users are redirected to an external provider and returned to the app. In this regard, Blazor Server is similar to other SPA frameworks.
 
 ## Blazor Server project template
 
