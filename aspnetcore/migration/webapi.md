@@ -119,7 +119,7 @@ The preceding highlighted code changes the following:
     return product;
     ```
 
-* Adds `[Route("api/[controller]")]` and `[ApiController]` attributes which are explained in the next section.
+* Adds `[Route("api/[controller]")]` and `[ApiController]` attributes, which are explained in the next section.
 
 ## Routing
 
