@@ -26,8 +26,8 @@ This article migrates a basic controller from ASP.NET 4.x to to ASP.NET Core 6.x
 Create an ASP.NET Core Web API project
 
 1. From the **File** menu, select **New** > **Project**.
-1. Enter `Web API` in the search box.
-1. Select the *ASP.NET Core Web API* template and select **Next**.
+1. Enter *Web API* in the search box.
+1. Select the **ASP.NET Core Web API** template and select **Next**.
 1. In the **Configure your new project** dialog, name the project *ProductsCore* and select **Next**.
 1. In the **Additional information** dialog:
    1. Confirm the **Framework** is **.NET 6.0 (Long-term support)**.
@@ -108,11 +108,11 @@ The preceding highlighted code changes the following:
   * `System.Web.Http` namespace
   * `IHttpActionResult` interface
 
-* `using ProductsApp.Models;` statement to `using ProductsCore.Models;`.
-* The root namespace to `ProductsCore`.
-* `ApiController` to <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. 
+* Changes the `using ProductsApp.Models;` statement to `using ProductsCore.Models;`.
+* Sets the root namespace to `ProductsCore`.
+* Changes `ApiController` to <xref:Microsoft.AspNetCore.Mvc.ControllerBase>.
 * Adds `using Microsoft.AspNetCore.Mvc;` to resolve the `ControllerBase` reference.
-* The `GetProduct` action's return type from `IHttpActionResult` to `ActionResult<Product>`. For more info, see [Controller action return types](/aspnet/web-api/action-return-types).
+* Changes the `GetProduct` action's return type from `IHttpActionResult` to `ActionResult<Product>`. For more info, see [Controller action return types](/aspnet/web-api/action-return-types).
 * Simplifies the `GetProduct` action's `return` statement to the following statement:
 
     ```csharp
