@@ -1,0 +1,54 @@
+@model User
+
+@{
+    ViewData["Title"] = "Check Age";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h2>'Age' submitted via query string</h2>
+
+<ol>
+    <li>The 'Age' form value is provided as a query string value on this form.</code></li>
+    <li>Because the <code>age</code> parameter is required from the query string with <code>[FromQuery]</code>, validation passes when submitting this form.</li>
+</ol>
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" asp-route-Age="99">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="mb-3">
+                <input type="submit" value="Validate" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<h2>'Age' submitted via <code>&lt;body&gt;</code></h2>
+
+<ol>
+    <li>The 'Age' form value is set by a hidden <code>&lt;input&gt;</code> element on this form.</code></li>
+    <li>When this form submits, the 'Age' value is sent to the app in the <code>&lt;body&gt;</code> of the form.</li>
+    <li>Because the <code>age</code> parameter is required from the query string with <code>[FromQuery]</code>, validation fails when submitting this form.</li>
+</ol>
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" asp-action="CheckAge">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input asp-for="Age" type="hidden" value="99" />
+
+            <div class="mb-3">
+                <input type="submit" value="Validate" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div style="font-size:2em;color:@ViewData["ValidationResultColor"]">@ViewData["ValidationResult"]</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

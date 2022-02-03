@@ -5,7 +5,7 @@ description: Learn about model validation in ASP.NET Core MVC and Razor Pages.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/15/2019
+ms.date: 02/02/2022
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/models/validation
 ---
@@ -23,7 +23,7 @@ Model state represents errors that come from two subsystems: model binding and m
 
 Both model binding and model validation occur before the execution of a controller action or a Razor Pages handler method. For web apps, it's the app's responsibility to inspect `ModelState.IsValid` and react appropriately. Web apps typically redisplay the page with an error message:
 
-:::code language="csharp" source="validation/samples/3.x/ValidationSample/Pages/Movies/Create.cshtml.cs" id="snippet_OnPostAsync" highlight="3-6":::
+:::code language="csharp" source="validation/samples/6.x/ValidationSample/Pages/Movies/Create.cshtml.cs" id="snippet_OnPostAsync" highlight="3-6":::
 
 Web API controllers don't have to check `ModelState.IsValid` if they have the [[ApiController]](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute. In that case, an automatic HTTP 400 response containing error details is returned when model state is invalid. For more information, see [Automatic HTTP 400 responses](xref:web-api/index#automatic-http-400-responses).
 
@@ -31,13 +31,13 @@ Web API controllers don't have to check `ModelState.IsValid` if they have the [[
 
 Validation is automatic, but you might want to repeat it manually. For example, you might compute a value for a property and want to rerun validation after setting the property to the computed value. To rerun validation, call <xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.ClearValidationState%2A?displayProperty=nameWithType> to clear validation specific to the model being validated followed by `TryValidateModel`:
 
-:::code language="csharp" source="validation/samples/3.x/ValidationSample/Pages/Movies/Create.cshtml.cs" id="snippet_TryValidate" highlight="6-10":::
+:::code language="csharp" source="validation/samples/6.x/ValidationSample/Pages/Movies/Create.cshtml.cs" id="snippet_TryValidate" highlight="6-10":::
 
 ## Validation attributes
 
 Validation attributes let you specify validation rules for model properties. The following example from the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/validation/samples) shows a model class that is annotated with validation attributes. The `[ClassicMovie]` attribute is a custom validation attribute and the others are built in. Not shown is `[ClassicMovieWithClientValidator]`, which shows an alternative way to implement a custom attribute.
 
-:::code language="csharp" source="validation/samples/3.x/ValidationSample/Models/Movie.cs" id="snippet_Class":::
+:::code language="csharp" source="validation/samples/6.x/ValidationSample/Models/Movie.cs" id="snippet_Class":::
 
 ## Built-in attributes
 
@@ -95,10 +95,11 @@ public class Person
 }
 ```
 
-This behavior can be disabled by configuring <xref:Microsoft.AspNetCore.Mvc.MvcOptions.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes> in `Startup.ConfigureServices`:
+This behavior can be disabled by configuring <xref:Microsoft.AspNetCore.Mvc.MvcOptions.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes> in *Program.cs*:
 
 ```csharp
-services.AddControllers(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
+builder.Services.AddControllers(
+    options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
 ```
 
 ### [Required] validation on the server
@@ -110,7 +111,7 @@ However, model binding for a non-nullable property may fail, resulting in an err
 * Make the field nullable (for example, `decimal?` instead of `decimal`). [Nullable\<T>](/dotnet/csharp/programming-guide/nullable-types/) value types are treated like standard nullable types.
 * Specify the default error message to be used by model binding, as shown in the following example:
 
-  :::code language="csharp" source="validation/samples/3.x/ValidationSample/Startup.cs" id="snippet_Configuration" highlight="5-6":::
+  :::code language="csharp" source="validation/samples/6.x/ValidationSample/Program.cs" id="snippet_Configuration" highlight="5-6":::
 
   For more information about model binding errors that you can set default messages for, see <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DefaultModelBindingMessageProvider#methods>.
 
@@ -137,28 +138,29 @@ To implement remote validation:
 
    Here's an example of an action method that returns a custom error message:
 
-   :::code language="csharp" source="validation/samples/3.x/ValidationSample/Controllers/UsersController.cs" id="snippet_VerifyEmail":::
+   :::code language="csharp" source="validation/samples/6.x/ValidationSample/Controllers/UsersController.cs" id="snippet_VerifyEmail":::
 
 1. In the model class, annotate the property with a `[Remote]` attribute that points to the validation action method, as shown in the following example:
 
-   :::code language="csharp" source="validation/samples/3.x/ValidationSample/Models/User.cs" id="snippet_Email":::
+   :::code language="csharp" source="validation/samples/6.x/ValidationSample/Models/User.cs" id="snippet_Email":::
    
 ### Additional fields
 
 The <xref:Microsoft.AspNetCore.Mvc.RemoteAttribute.AdditionalFields%2A> property of the `[Remote]` attribute lets you validate combinations of fields against data on the server. For example, if the `User` model had `FirstName` and `LastName` properties, you might want to verify that no existing users already have that pair of names. The following example shows how to use `AdditionalFields`:
 
-:::code language="csharp" source="validation/samples/3.x/ValidationSample/Models/User.cs" id="snippet_Name" highlight="1,5":::
+:::code language="csharp" source="validation/samples/6.x/ValidationSample/Models/User.cs" id="snippet_Name" highlight="1,5":::
 
 `AdditionalFields` could be set explicitly to the strings "FirstName" and "LastName", but using the [nameof](/dotnet/csharp/language-reference/keywords/nameof) operator simplifies later refactoring. The action method for this validation must accept both `firstName` and `lastName` arguments:
 
-:::code language="csharp" source="validation/samples/3.x/ValidationSample/Controllers/UsersController.cs" id="snippet_VerifyName":::
+:::code language="csharp" source="validation/samples/6.x/ValidationSample/Controllers/UsersController.cs" id="snippet_VerifyName":::
 
 When the user enters a first or last name, JavaScript makes a remote call to see if that pair of names has been taken.
 
 To validate two or more additional fields, provide them as a comma-delimited list. For example, to add a `MiddleName` property to the model, set the `[Remote]` attribute as shown in the following example:
 
 ```csharp
-[Remote(action: "VerifyName", controller: "Users", AdditionalFields = nameof(FirstName) + "," + nameof(LastName))]
+[Remote(action: "VerifyName", controller: "Users",
+    AdditionalFields = nameof(FirstName) + "," + nameof(LastName))]
 public string MiddleName { get; set; }
 ```
 
@@ -182,7 +184,7 @@ The following example validates that the release date for a movie in the *Classi
 * Is only run on the server.
 * For Classic movies, validates the release date:
 
-:::code language="csharp" source="validation/samples/3.x/ValidationSample/Validation/ClassicMovieAttribute.cs" id="snippet_Class":::
+:::code language="csharp" source="validation/samples/6.x/ValidationSample/Validation/ClassicMovieAttribute.cs" id="snippet_Class":::
 
 The `movie` variable in the preceding example represents a `Movie` object that contains the data from the form submission. When validation fails, a <xref:System.ComponentModel.DataAnnotations.ValidationResult> with an error message is returned.
 
@@ -190,7 +192,7 @@ The `movie` variable in the preceding example represents a `Movie` object that c
 
 The preceding example works only with `Movie` types. Another option for class-level validation is to implement <xref:System.ComponentModel.DataAnnotations.IValidatableObject> in the model class, as shown in the following example:
 
-:::code language="csharp" source="validation/samples/3.x/ValidationSample/Models/ValidatableMovie.cs" id="snippet_Class" highlight="1,26-34":::
+:::code language="csharp" source="validation/samples/6.x/ValidationSample/Models/ValidatableMovie.cs" id="snippet_Class" highlight="1,26-34":::
 
 ## Top-level node validation
 
@@ -203,11 +205,11 @@ Top-level nodes include:
 
 Model-bound top-level nodes are validated in addition to validating model properties. In the following example from the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/validation/samples), the `VerifyPhone` method uses the <xref:System.ComponentModel.DataAnnotations.RegularExpressionAttribute> to validate the `phone` action parameter:
 
-:::code language="csharp" source="validation/samples/3.x/ValidationSample/Controllers/UsersController.cs" id="snippet_VerifyPhone":::
+:::code language="csharp" source="validation/samples/6.x/ValidationSample/Controllers/UsersController.cs" id="snippet_VerifyPhone":::
 
 Top-level nodes can use <xref:Microsoft.AspNetCore.Mvc.ModelBinding.BindRequiredAttribute> with validation attributes. In the following example from the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/validation/samples), the `CheckAge` method specifies that the `age` parameter must be bound from the query string when the form is submitted:
 
-:::code language="csharp" source="validation/samples/3.x/ValidationSample/Controllers/UsersController.cs" id="snippet_CheckAgeSignature":::
+:::code language="csharp" source="validation/samples/6.x/ValidationSample/Controllers/UsersController.cs" id="snippet_CheckAgeSignature":::
 
 In the Check Age page (*CheckAge.cshtml*), there are two forms. The first form submits an `Age` value of `99` as a query string parameter: `https://localhost:5001/Users/CheckAge?Age=99`.
 
@@ -217,9 +219,9 @@ The second form on the Check Age page submits the `Age` value in the body of the
 
 ## Maximum errors
 
-Validation stops when the maximum number of errors is reached (200 by default). You can configure this number with the following code in `Startup.ConfigureServices`:
+Validation stops when the maximum number of errors is reached (200 by default). You can configure this number with the following code in *Program.cs*:
 
-:::code language="csharp" source="validation/samples/3.x/ValidationSample/Startup.cs" id="snippet_Configuration" highlight="4":::
+:::code language="csharp" source="validation/samples/6.x/ValidationSample/Program.cs" id="snippet_Configuration" highlight="4":::
 
 ## Maximum recursion
 
@@ -235,13 +237,13 @@ Client-side validation prevents submission until the form is valid. The Submit b
 
 Client-side validation avoids an unnecessary round trip to the server when there are input errors on a form. The following script references in *_Layout.cshtml* and *_ValidationScriptsPartial.cshtml* support client-side validation:
 
-:::code language="cshtml" source="validation/samples/3.x/ValidationSample/Views/Shared/_Layout.cshtml" id="snippet_Scripts":::
+:::code language="cshtml" source="validation/samples/6.x/ValidationSample/Views/Shared/_Layout.cshtml" id="snippet_Scripts":::
 
-:::code language="cshtml" source="validation/samples/3.x/ValidationSample/Views/Shared/_ValidationScriptsPartial.cshtml" id="snippet_Scripts":::
+:::code language="cshtml" source="validation/samples/6.x/ValidationSample/Views/Shared/_ValidationScriptsPartial.cshtml" id="snippet_Scripts":::
 
 The [jQuery Unobtrusive Validation](https://github.com/aspnet/jquery-validation-unobtrusive) script is a custom Microsoft front-end library that builds on the popular [jQuery Validation](https://jqueryvalidation.org/) plugin. Without jQuery Unobtrusive Validation, you would have to code the same validation logic in two places: once in the server-side validation attributes on model properties, and then again in client-side scripts. Instead, [Tag Helpers](xref:mvc/views/tag-helpers/intro) and [HTML helpers](xref:mvc/views/overview) use the validation attributes and type metadata from model properties to render HTML 5 `data-` attributes for the form elements that need validation. jQuery Unobtrusive Validation parses the `data-` attributes and passes the logic to jQuery Validation, effectively "copying" the server-side validation logic to the client. You can display validation errors on the client using tag helpers as shown here:
 
-:::code language="cshtml" source="validation/samples/3.x/ValidationSample/Pages/Movies/Create.cshtml" id="snippet_ReleaseDate" highlight="3-4":::
+:::code language="cshtml" source="validation/samples/6.x/ValidationSample/Pages/Movies/Create.cshtml" id="snippet_ReleaseDate" highlight="3-4":::
 
 The preceding tag helpers render the following HTML:
 
@@ -312,7 +314,7 @@ $.get({
 
 Custom client-side validation is done by generating `data-` HTML attributes that work with a custom jQuery Validation adapter. The following sample adapter code was written for the `[ClassicMovie]` and `[ClassicMovieWithClientValidator]` attributes that were introduced earlier in this article:
 
-:::code language="javascript" source="validation/samples/3.x/ValidationSample/wwwroot/js/classicMovieValidator.js":::
+:::code language="javascript" source="validation/samples/6.x/ValidationSample/wwwroot/classicMovieValidator.js":::
 
 For information about how to write adapters, see the [jQuery Validation documentation](https://jqueryvalidation.org/documentation/).
 
@@ -344,15 +346,15 @@ This method of rendering `data-` attributes in HTML is used by the `ClassicMovie
 
 1. Create an attribute adapter class for the custom validation attribute. Derive the class from <xref:Microsoft.AspNetCore.Mvc.DataAnnotations.AttributeAdapterBase%601>. Create an `AddValidation` method that adds `data-` attributes to the rendered output, as shown in this example:
 
-   :::code language="csharp" source="validation/samples/3.x/ValidationSample/Validation/ClassicMovieAttributeAdapter.cs" id="snippet_Class":::
+   :::code language="csharp" source="validation/samples/6.x/ValidationSample/Validation/ClassicMovieAttributeAdapter.cs" id="snippet_Class":::
 
 1. Create an adapter provider class that implements <xref:Microsoft.AspNetCore.Mvc.DataAnnotations.IValidationAttributeAdapterProvider>. In the <xref:Microsoft.AspNetCore.Mvc.DataAnnotations.IValidationAttributeAdapterProvider.GetAttributeAdapter%2A> method pass in the custom attribute to the adapter's constructor, as shown in this example:
 
-   :::code language="csharp" source="validation/samples/3.x/ValidationSample/Validation/CustomValidationAttributeAdapterProvider.cs" id="snippet_Class":::
+   :::code language="csharp" source="validation/samples/6.x/ValidationSample/Validation/CustomValidationAttributeAdapterProvider.cs" id="snippet_Class":::
 
-1. Register the adapter provider for DI in `Startup.ConfigureServices`:
+1. Register the adapter provider for DI in *Program.cs*:
 
-   :::code language="csharp" source="validation/samples/3.x/ValidationSample/Startup.cs" id="snippet_Configuration" highlight="9-10":::
+   :::code language="csharp" source="validation/samples/6.x/ValidationSample/Program.cs" id="snippet_Configuration" highlight="9-10":::
 
 ### IClientModelValidator for client-side validation
 
@@ -360,13 +362,13 @@ This method of rendering `data-` attributes in HTML is used by the `ClassicMovie
 
 * In the custom validation attribute, implement the <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IClientModelValidator> interface and create an <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IClientModelValidator.AddValidation%2A> method. In the `AddValidation` method, add `data-` attributes for validation, as shown in the following example:
 
-  :::code language="csharp" source="validation/samples/3.x/ValidationSample/Validation/ClassicMovieWithClientValidatorAttribute.cs" id="snippet_Class":::
+  :::code language="csharp" source="validation/samples/6.x/ValidationSample/Validation/ClassicMovieWithClientValidatorAttribute.cs" id="snippet_Class":::
 
 ## Disable client-side validation
 
 The following code disables client validation in Razor Pages:
 
-:::code language="csharp" source="validation/samples/3.x/ValidationSample/Startup.cs" id="snippet_DisableClientValidation" highlight="2-5":::
+:::code language="csharp" source="validation/samples/6.x/ValidationSample/Snippets/Program.cs" id="snippet_DisableClientValidation" highlight="2-5":::
 
 Other options to disable client-side validation:
 
