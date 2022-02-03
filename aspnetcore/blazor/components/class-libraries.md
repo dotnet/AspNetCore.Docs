@@ -195,7 +195,7 @@ The background image is also included from the RCL project template and resides 
 
 ![Diagonally-striped background image from the RCL project template](~/blazor/components/class-libraries/_static/background.png)
 
-To provide additional library component styles from stylesheets in the library's `wwwroot` folder, link the stylesheets using the framework's `Link` component.
+To provide additional library component styles from stylesheets in the library's `wwwroot` folder, add stylesheet `<link>` tags with a [`HeadContent` component](xref:blazor/components/control-head-content).
 
 The following background image is used in the next example. If you implement the example shown in this section, right-click the image to save it locally.
 
@@ -221,7 +221,9 @@ Add a component to the RCL that uses the `extra-style` class.
 `ExtraStyles.razor` in the `ComponentLibrary` RCL:
 
 ```razor
-<Link href="_content/ComponentLibrary/additionalStyles.css" rel="stylesheet" />
+<HeadContent>
+    <link href="_content/ComponentLibrary/additionalStyles.css" rel="stylesheet" />
+</HeadContent>
 
 <div class="extra-style">
     <p>
@@ -243,9 +245,9 @@ Add a page to the app that uses the `ExtraStyles` component from the RCL.
 <ExtraStyles />
 ```
 
-When the `Link` component is used in a child component, the linked asset is also available to any other child component of the parent component if the child with the `Link` component is rendered.
+When the `HeadContent` component is used in a child component, the linked asset is also available to any other child component of the parent component if the child with the `HeadContent` component is rendered.
 
-An alternative to using the `Link` component is to link to the library's stylesheet in the app's `<head>` markup.
+An alternative to using the `HeadContent` component is to link to the library's stylesheet in the app's `<head>` markup.
 
 `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Layout.cshtml` file (Blazor Server):
 
@@ -253,7 +255,7 @@ An alternative to using the `Link` component is to link to the library's stylesh
 + <link href="_content/ComponentLibrary/additionalStyles.css" rel="stylesheet" />
 ```
 
-The distinction between using the `Link` component in a child component and placing a `<link>` HTML tag in `wwwroot/index.html` or `Pages/_Host.cshtml` is that a framework component's rendered HTML tag:
+The distinction between using the `HeadContent` component in a child component and placing a `<link>` HTML tag in `wwwroot/index.html` or `Pages/_Host.cshtml` is that a framework component's rendered HTML tag:
 
 * Can be modified by application state. A hard-coded `<link>` HTML tag can't be modified by application state.
 * Is removed from the HTML `<head>` when the parent component is no longer rendered.
