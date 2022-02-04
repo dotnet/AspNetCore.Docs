@@ -21,7 +21,7 @@ The <xref:Microsoft.AspNetCore.Identity.IdentityOptions> class represents the op
 <xref:Microsoft.AspNetCore.Identity.IdentityOptions.ClaimsIdentity?displayProperty=nameWithType> specifies the <xref:Microsoft.AspNetCore.Identity.ClaimsIdentityOptions> with the properties shown in the following table.
 
 | Property | Description | Default |
-| -------- | ----------- | :-----: |
+|--|--|:-:|
 | <xref:Microsoft.AspNetCore.Identity.ClaimsIdentityOptions.RoleClaimType%2A> | Gets or sets the claim type used for a role claim. | <xref:System.Security.Claims.ClaimTypes.Role?displayProperty=nameWithType> |
 | <xref:Microsoft.AspNetCore.Identity.ClaimsIdentityOptions.SecurityStampClaimType%2A> | Gets or sets the claim type used for the security stamp claim. | `AspNet.Identity.SecurityStamp` |
 | <xref:Microsoft.AspNetCore.Identity.ClaimsIdentityOptions.UserIdClaimType%2A> | Gets or sets the claim type used for the user identifier claim. | <xref:System.Security.Claims.ClaimTypes.NameIdentifier?displayProperty=nameWithType> |
@@ -46,10 +46,10 @@ A successful authentication resets the failed access attempts count and resets t
 <xref:Microsoft.AspNetCore.Identity.IdentityOptions.Lockout%2A?displayProperty=nameWithType> specifies the <xref:Microsoft.AspNetCore.Identity.LockoutOptions> with the properties shown in the table.
 
 | Property | Description | Default |
-| -------- | ----------- | :-----: |
+|--|--|:-:|
 | <xref:Microsoft.AspNetCore.Identity.LockoutOptions.AllowedForNewUsers%2A> | Determines if a new user can be locked out. | `true` |
 | <xref:Microsoft.AspNetCore.Identity.LockoutOptions.DefaultLockoutTimeSpan%2A> | The amount of time a user is locked out when a lockout occurs. | 5 minutes |
-| <xref:Microsoft.AspNetCore.Identity.LockoutOptions.MaxFailedAccessAttempts%2A| The number of failed access attempts until a user is locked out, if lockout is enabled. | 5 |
+| <xref:Microsoft.AspNetCore.Identity.LockoutOptions.MaxFailedAccessAttempts%2A> | The number of failed access attempts until a user is locked out, if lockout is enabled. | 5 |
 
 ### Password
 
@@ -67,7 +67,7 @@ Passwords are configured with:
 <xref:Microsoft.AspNetCore.Identity.IdentityOptions.Password%2A?displayProperty=nameWithType> specifies the <xref:Microsoft.AspNetCore.Identity.PasswordOptions> with the properties shown in the table.
 
 | Property | Description | Default |
-| -------- | ----------- | :-----: |
+|--|--|:-:|
 | <xref:Microsoft.AspNetCore.Identity.PasswordOptions.RequireDigit%2A> | Requires a number between 0-9 in the password. | `true` |
 | <xref:Microsoft.AspNetCore.Identity.PasswordOptions.RequiredLength%2A> | The minimum length of the password. | 6 |
 | <xref:Microsoft.AspNetCore.Identity.PasswordOptions.RequireLowercase%2A> | Requires a lowercase character in the password. | `true` |
@@ -84,7 +84,7 @@ The following code sets `SignIn` settings (to default values):
 <xref:Microsoft.AspNetCore.Identity.IdentityOptions.SignIn?displayProperty=nameWithType> specifies the <xref:Microsoft.AspNetCore.Identity.SignInOptions> with the properties shown in the table.
 
 | Property | Description | Default |
-| -------- | ----------- | :-----: |
+|--|--|:-:|
 | <xref:Microsoft.AspNetCore.Identity.SignInOptions.RequireConfirmedEmail%2A> | Requires a confirmed email to sign in. | `false` |
 | <xref:Microsoft.AspNetCore.Identity.SignInOptions.RequireConfirmedPhoneNumber%2A> | Requires a confirmed phone number to sign in. | `false` |
 
@@ -93,7 +93,7 @@ The following code sets `SignIn` settings (to default values):
 <xref:Microsoft.AspNetCore.Identity.IdentityOptions.Tokens%2A?displayProperty=nameWithType> specifies the <xref:Microsoft.AspNetCore.Identity.TokenOptions> with the properties shown in the table.
 
 | Property | Description |
-| -------- | ----------- |
+|--|--|
 | <xref:Microsoft.AspNetCore.Identity.TokenOptions.AuthenticatorTokenProvider%2A> | Gets or sets the `AuthenticatorTokenProvider` used to validate two-factor sign-ins with an authenticator. |
 | <xref:Microsoft.AspNetCore.Identity.TokenOptions.ChangeEmailTokenProvider%2A> | Gets or sets the `ChangeEmailTokenProvider` used to generate tokens used in email change confirmation emails. |
 | <xref:Microsoft.AspNetCore.Identity.TokenOptions.ChangePhoneNumberTokenProvider%2A> | Gets or sets the `ChangePhoneNumberTokenProvider` used to generate tokens used when changing phone numbers. |
@@ -108,7 +108,7 @@ The following code sets `SignIn` settings (to default values):
 <xref:Microsoft.AspNetCore.Identity.IdentityOptions.User%2A?displayProperty=nameWithType> specifies the <xref:Microsoft.AspNetCore.Identity.UserOptions> with the properties shown in the table.
 
 | Property | Description | Default |
-| -------- | ----------- | :-----: |
+|--|--|:-:|
 | <xref:Microsoft.AspNetCore.Identity.UserOptions.AllowedUserNameCharacters%2A> | Allowed characters in the username. | abcdefghijklmnopqrstuvwxyz<br>ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>0123456789<br>-.\_@+ |
 | <xref:Microsoft.AspNetCore.Identity.UserOptions.RequireUniqueEmail%2A> | Requires each user to have a unique email. | `false` |
 
@@ -125,7 +125,7 @@ For more information, see <xref:Microsoft.AspNetCore.Authentication.Cookies.Cook
 <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions> gets and sets options for password hashing.
 
 | Option | Description |
-| ------ | ----------- |
+|--|--|
 | <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions.CompatibilityMode> | The compatibility mode used when hashing new passwords. Defaults to <xref:Microsoft.AspNetCore.Identity.PasswordHasherCompatibilityMode.IdentityV3>. The first byte of a hashed password, called a *format marker*, specifies the version of the hashing algorithm used to hash the password. When verifying a password against a hash, the <xref:Microsoft.AspNetCore.Identity.PasswordHasher%601.VerifyHashedPassword%2A> method selects the correct algorithm based on the first byte. A client is able to authenticate regardless of which version of the algorithm was used to hash the password. Setting the compatibility mode affects the hashing of *new passwords*. |
 | <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions.IterationCount> | The number of iterations used when hashing passwords using PBKDF2. This value is only used when the <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions.CompatibilityMode> is set to <xref:Microsoft.AspNetCore.Identity.PasswordHasherCompatibilityMode.IdentityV3>. The value must be a positive integer and defaults to `10000`. |
 
