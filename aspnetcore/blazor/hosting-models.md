@@ -90,7 +90,7 @@ Blazor WebAssembly includes support for trimming unused code from .NET Core fram
 
 ## Should I use Blazor Server or Blazor WebAssembly (WASM)?
 
-Select the Blazor hosting model for app development based on the desired features and specifications for the app. The following table shows the primary considerations for selecting the hosting model and helps you decide which one you should use.
+Select the Blazor hosting model for app development based on the desired features and specifications for the app. The following table shows the primary considerations for selecting the hosting model to help you decide which one you should use.
 
 | Feature | Blazor Server | Blazor WebAssembly (WASM) |
 | --- | :---: | :---: |
