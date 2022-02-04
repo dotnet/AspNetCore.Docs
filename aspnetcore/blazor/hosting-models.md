@@ -1,7 +1,7 @@
 ---
 title: ASP.NET Core Blazor hosting models
 author: guardrex
-description: Understand Blazor WebAssembly and Blazor Server hosting models.
+description: Understand Blazor Server versus Blazor WebAssembly (WASM) and which hosting model you should use.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
@@ -11,7 +11,13 @@ uid: blazor/hosting-models
 ---
 # ASP.NET Core Blazor hosting models
 
-Blazor is a web framework designed to run server-side in ASP.NET Core (*Blazor Server*) or client-side in the browser on a [WebAssembly](https://webassembly.org/)-based .NET runtime (*Blazor WebAssembly*). Regardless of the hosting model, the app and component models *are the same*.
+Blazor is a web framework designed to run server-side in ASP.NET Core (*Blazor Server*) or client-side in the browser on a [WebAssembly](https://webassembly.org/)-based .NET runtime (*Blazor WebAssembly*, *Blazor WASM*). Regardless of the hosting model, the app and component models *are the same*.
+
+This article describes Blazor's hosting models and addresses the following questions:
+
+* *What are the differences in hosting models to decide on Blazor Server versus Blazor WebAssembly (WASM)?
+* *Should I use Blazor Server or Blazor WebAssembly (WASM)?*
+* *Which hosting model should I select?*
 
 ## Blazor Server
 
@@ -23,7 +29,7 @@ In a traditional server-rendered app, opening the same app in multiple browser s
 
 On the client, the Blazor script (`blazor.server.js`) establishes the SignalR connection with the server. The script is served to the client-side app from an embedded resource in the ASP.NET Core shared framework. The client-side app is responsible for persisting and restoring app state as required. 
 
-The Blazor Server hosting model offers several benefits:
+You should use the Blazor Server hosting model for the following benefits:
 
 * Download size is significantly smaller than a Blazor WebAssembly app, and the app loads much faster.
 * The app takes full advantage of server capabilities, including the use of .NET Core APIs.
@@ -42,7 +48,7 @@ We recommend using the [Azure SignalR Service](/azure/azure-signalr) for Blazor 
 
 ## Blazor WebAssembly
 
-Blazor WebAssembly apps run client-side in the browser on a WebAssembly-based .NET runtime. The Blazor app, its dependencies, and the .NET runtime are downloaded to the browser. The app is executed directly on the browser UI thread. UI updates and event handling occur within the same process. The app's assets are deployed as static files to a web server or service capable of serving static content to clients.
+Blazor WebAssembly (WASM) apps run client-side in the browser on a WebAssembly-based .NET runtime. The Blazor app, its dependencies, and the .NET runtime are downloaded to the browser. The app is executed directly on the browser UI thread. UI updates and event handling occur within the same process. The app's assets are deployed as static files to a web server or service capable of serving static content to clients.
 
 ![Blazor WebAssembly: The Blazor app runs on a UI thread inside the browser.](~/blazor/hosting-models/_static/blazor-webassembly.png)
 
@@ -55,7 +61,7 @@ The `blazor.webassembly.js` script is provided by the framework and handles:
 * Downloading the .NET runtime, the app, and the app's dependencies.
 * Initialization of the runtime to run the app.
 
-The Blazor WebAssembly hosting model offers several benefits:
+You should use the Blazor WebAssembly (WASM) hosting model for the following benefits:
 
 * There's no .NET server-side dependency after the app is downloaded from the server, so the app remains functional if the client goes offline.
 * Client resources and capabilities are fully leveraged.
@@ -86,11 +92,11 @@ Blazor WebAssembly includes support for trimming unused code from .NET Core fram
 
 :::moniker-end
 
-## Hosting model selection
+## Should I use Blazor Server or Blazor WebAssembly (WASM)?
 
-Choice of the Blazor hosting model is an early consideration for Blazor app development. The following table shows the primary considerations for selecting the hosting model.
+Select the Blazor hosting model for app development based on the desired features and specifications for the app. The following table shows the primary considerations for selecting the hosting model and helps you decide which one you should use.
 
-| &nbsp; | Blazor Server | Blazor WebAssembly |
+| Feature | Blazor Server | Blazor WebAssembly (WASM) |
 | --- | :---: | :---: |
 | Complete .NET Core API compatibility           | ✔️ | ❌ |
 | Direct access to server sources                | ✔️ | ❌ |
