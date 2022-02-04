@@ -82,9 +82,7 @@ For more information, see <xref:blazor/blazor-server-ef-core>.
 
 ### Blazor with SignalR
 
-Blazor SignalR sample app (ASP.NET Core 6.0):
-
-[Browse on GitHub](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/signalr-blazor/samples/6.0)
+Blazor SignalR sample app (ASP.NET Core 6.0): [Browse on GitHub](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/signalr-blazor/samples/6.0)
 
 For more information, see <xref:tutorials/signalr-blazor>.
 
