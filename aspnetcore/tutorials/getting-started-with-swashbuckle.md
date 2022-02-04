@@ -242,7 +242,7 @@ To inject additional CSS stylesheets, add them to the project's *wwwroot* folder
 ## Additional resources
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/) ([how to download](xref:index#how-to-download-a-sample))
-* [Swagger doesn't recognize comments on records](https://github.com/domaindrivendev/Swashbuckle.AspNetCore/issues/1920)
+* [Swagger doesn't recognize comments or attributes on records](https://github.com/domaindrivendev/Swashbuckle.AspNetCore/issues/1920)
 * [Microsoft Learn: Improve the developer experience of an API with Swagger documentation](/learn/modules/improve-api-developer-experience-with-swagger/)
 
 :::moniker-end
