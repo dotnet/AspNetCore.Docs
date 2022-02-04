@@ -76,15 +76,13 @@ Sample apps are available to assist with implementing guidance or for reference 
 Blazor Server EF Core sample app (ASP.NET Core 6.0):
 
 * [Browse on GitHub](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/blazor/samples/6.0/BlazorServerEFCoreSample)
-* [Download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/blazor/samples/6.0/BlazorServerDbContextExample.zip)
+* [Download](https://raw.githubusercontent.com/dotnet/AspNetCore.Docs/main/aspnetcore/blazor/samples/6.0/BlazorServerDbContextExample.zip)
 
 For more information, see <xref:blazor/blazor-server-ef-core>.
 
 ### Blazor with SignalR
 
-Blazor SignalR sample app (ASP.NET Core 6.0):
-
-[Browse on GitHub](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/signalr-blazor/samples/6.0)
+Blazor SignalR sample app (ASP.NET Core 6.0): [Browse on GitHub](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/signalr-blazor/samples/6.0)
 
 For more information, see <xref:tutorials/signalr-blazor>.
 
