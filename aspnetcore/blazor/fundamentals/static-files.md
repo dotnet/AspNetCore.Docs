@@ -327,4 +327,4 @@ To create additional file mappings with a <xref:Microsoft.AspNetCore.StaticFiles
 
 ## Code cross-link test
 
-:::code language="csharp" source="~/../../blazor-samples/6.0/BlazorSample_Server/ExampleModel.cs" highlight="6":::
+:::code language="csharp" source="~/../blazor-samples/6.0/BlazorSample_Server/ExampleModel.cs" highlight="6":::
