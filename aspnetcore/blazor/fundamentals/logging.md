@@ -23,6 +23,12 @@ Add the namespace for <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting?
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 ```
 
+Some logging features also require adding the namespace for <xref:Microsoft.Extensions.Logging?displayProperty=fullName> to `Program.cs`:
+
+```csharp
+using Microsoft.Extensions.Logging;
+```
+
 In `Program.cs`, set the minimum logging level with <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.SetMinimumLevel%2A?displayProperty=nameWithType> and add the custom logging provider:
 
 ```csharp
@@ -103,6 +109,12 @@ Add the namespace for <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting?
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 ```
 
+Some logging features also require adding the namespace for <xref:Microsoft.Extensions.Logging?displayProperty=fullName> to `Program.cs`:
+
+```csharp
+using Microsoft.Extensions.Logging;
+```
+
 In `Program.cs`, set the minimum logging level with <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.SetMinimumLevel%2A?displayProperty=nameWithType> and add the custom logging provider:
 
 ```csharp
@@ -181,6 +193,12 @@ Add the namespace for <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting?
 
 ```csharp
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+```
+
+Some logging features also require adding the namespace for <xref:Microsoft.Extensions.Logging?displayProperty=fullName> to `Program.cs`:
+
+```csharp
+using Microsoft.Extensions.Logging;
 ```
 
 In `Program.cs`, set the minimum logging level with <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.SetMinimumLevel%2A?displayProperty=nameWithType> and add the custom logging provider:
