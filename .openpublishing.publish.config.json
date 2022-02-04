@@ -48,6 +48,12 @@
       "url": "https://github.com/xamarin/xamarin-forms-samples",
       "branch": "main",
       "branch_mapping": {}
+    },
+    {
+      "path_to_root": "blazor-samples",
+      "url": "https://github.com/dotnet/blazor-samples",
+      "branch": "main",
+      "branch_mapping": {}
     }
   ],
   "branch_target_mapping": {
