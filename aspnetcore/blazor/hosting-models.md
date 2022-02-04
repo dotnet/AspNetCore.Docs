@@ -25,7 +25,7 @@ In a traditional server-rendered app, opening the same app in multiple browser s
 
 On the client, the Blazor script (`blazor.server.js`) establishes the SignalR connection with the server. The script is served to the client-side app from an embedded resource in the ASP.NET Core shared framework. The client-side app is responsible for persisting and restoring app state as required. 
 
-You should use the Blazor Server hosting model for the following benefits:
+The Blazor Server hosting model offers several benefits:
 
 * Download size is significantly smaller than a Blazor WebAssembly app, and the app loads much faster.
 * The app takes full advantage of server capabilities, including the use of .NET Core APIs.
@@ -57,7 +57,7 @@ The `blazor.webassembly.js` script is provided by the framework and handles:
 * Downloading the .NET runtime, the app, and the app's dependencies.
 * Initialization of the runtime to run the app.
 
-You should use the Blazor WebAssembly (WASM) hosting model for the following benefits:
+The Blazor WebAssembly (WASM) hosting model offers several benefits:
 
 * There's no .NET server-side dependency after the app is downloaded from the server, so the app remains functional if the client goes offline.
 * Client resources and capabilities are fully leveraged.
