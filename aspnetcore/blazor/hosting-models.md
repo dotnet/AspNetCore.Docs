@@ -104,6 +104,8 @@ Select the Blazor hosting model for app development based on the desired feature
 
 &dagger;Blazor WebAssembly apps can use server-hosted APIs to access functionality that must be kept private and secure.
 
+After you choose the app's hosting model, you can generate an app from a Blazor project template to begin development. For more information, see [Blazor template options](xref:blazor/tooling#blazor-template-options) in the *Tooling* article.
+
 ## Additional resources
 
 * <xref:blazor/tooling>
