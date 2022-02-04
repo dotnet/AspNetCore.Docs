@@ -22,25 +22,7 @@ SignalR can be used with [ASP.NET Core authentication](xref:security/authenticat
 
 The following is an example of `Startup.Configure` which uses SignalR and ASP.NET Core authentication:
 
-```csharp
-public void Configure(IApplicationBuilder app)
-{
-    ...
-
-    app.UseStaticFiles();
-
-    app.UseRouting();
-
-    app.UseAuthentication();
-    app.UseAuthorization();
-
-    app.UseEndpoints(endpoints =>
-    {
-        endpoints.MapHub<ChatHub>("/chat");
-        endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
-    });
-}
-```
+[!code-csharp[](authn-and-authz/6.0sample/SignalRAuthenticationSample/Program.cs?name=snippet&highlight=2,10)]
 
 > [!NOTE]
 > If a token expires during the lifetime of a connection, by default the connection continues to work. `LongPolling` and `ServerSentEvent` connections fail on subsequent requests if they don't send new access tokens. For connections to close when the authentication token expires, set [CloseOnAuthenticationExpiration](xref:signalr/configuration#advanced-http-configuration-options).
@@ -136,7 +118,7 @@ Cookies are specific to browsers. Sending them from other kinds of clients adds 
 
 If [Windows authentication](xref:security/authentication/windowsauth) is configured in your app, SignalR can use that identity to secure hubs. However, to send messages to individual users, you need to add a custom User ID provider. The Windows authentication system doesn't provide the "Name Identifier" claim. SignalR uses the claim to determine the user name.
 
-Add a new class that implements `IUserIdProvider` and retrieve one of the claims from the user to use as the identifier. For example, to use the "Name" claim (which is the Windows username in the form `[Domain]\[Username]`), create the following class:
+Add a new class that implements `IUserIdProvider` and retrieve one of the claims from the user to use as the identifier. For example, to use the "Name" claim (which is the Windows username in the form `[Domain]/[Username]`), create the following class:
 
 [!code-csharp[Name based provider](authn-and-authz/sample/nameuseridprovider.cs?name=NameUserIdProvider)]
 
@@ -426,7 +408,7 @@ Cookies are specific to browsers. Sending them from other kinds of clients adds 
 
 If [Windows authentication](xref:security/authentication/windowsauth) is configured in your app, SignalR can use that identity to secure hubs. However, to send messages to individual users, you need to add a custom User ID provider. The Windows authentication system doesn't provide the "Name Identifier" claim. SignalR uses the claim to determine the user name.
 
-Add a new class that implements `IUserIdProvider` and retrieve one of the claims from the user to use as the identifier. For example, to use the "Name" claim (which is the Windows username in the form `[Domain]\[Username]`), create the following class:
+Add a new class that implements `IUserIdProvider` and retrieve one of the claims from the user to use as the identifier. For example, to use the "Name" claim (which is the Windows username in the form `[Domain]/[Username]`), create the following class:
 
 [!code-csharp[Name based provider](authn-and-authz/sample/nameuseridprovider.cs?name=NameUserIdProvider)]
 
