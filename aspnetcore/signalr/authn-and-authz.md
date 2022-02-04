@@ -12,7 +12,7 @@ uid: signalr/authn-and-authz
 
 # Authentication and authorization in ASP.NET Core SignalR
 
-:::moniker range="> aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/authn-and-authz/sample/) [(how to download)](xref:index#how-to-download-a-sample)
 
@@ -303,7 +303,7 @@ In the preceding example, the `DomainRestrictedRequirement` class is both an `IA
 * [Bearer Token Authentication in ASP.NET Core](https://blogs.msdn.microsoft.com/webdev/2016/10/27/bearer-token-authentication-in-asp-net-core/)
 * [Resource-based Authorization](xref:security/authorization/resourcebased)
 
-::: moniker-end
+:::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
@@ -593,4 +593,4 @@ In the preceding example, the `DomainRestrictedRequirement` class is both an `IA
 * [Bearer Token Authentication in ASP.NET Core](https://blogs.msdn.microsoft.com/webdev/2016/10/27/bearer-token-authentication-in-asp-net-core/)
 * [Resource-based Authorization](xref:security/authorization/resourcebased)
 
-::: moniker-end
+:::moniker-end
