@@ -324,3 +324,7 @@ To create additional file mappings with a <xref:Microsoft.AspNetCore.StaticFiles
 * [Hosted deployment with multiple Blazor WebAssembly apps](xref:blazor/host-and-deploy/webassembly#hosted-deployment-with-multiple-blazor-webassembly-apps)
 
 :::moniker-end
+
+## Code cross-link test
+
+:::code language="csharp" source="~/../../blazor-samples/6.0/BlazorSample_Server/ExampleModel.cs" highlight="6":::
