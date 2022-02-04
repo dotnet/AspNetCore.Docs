@@ -43,9 +43,6 @@ public void Configure(IApplicationBuilder app)
 ```
 
 > [!NOTE]
-> If a token expires during the lifetime of a connection, the connection continues to work. `LongPolling` and `ServerSentEvent` connections fail on subsequent requests if they don't send new access tokens.
-
-> [!NOTE]
 > If a token expires during the lifetime of a connection, by default the connection continues to work. `LongPolling` and `ServerSentEvent` connections fail on subsequent requests if they don't send new access tokens. For connections to close when the authentication token expires, set [CloseOnAuthenticationExpiration](xref:signalr/configuration#advanced-http-configuration-options).
 
 ### Cookie authentication
