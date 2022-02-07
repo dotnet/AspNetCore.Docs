@@ -509,7 +509,7 @@ In `Program.cs`:
 builder.Services.AddHttpClient();
 ```
 
-The following Blazor Server Blazor component makes a request to a web API for GitHub branches similar to the *Basic Usage* example in the <xref:fundamentals/http-requests> article.
+The following Blazor Server component makes a request to a web API for GitHub branches similar to the *Basic Usage* example in the <xref:fundamentals/http-requests> article.
 
 `Pages/CallWebAPI.razor`:
 
@@ -519,7 +519,7 @@ The following Blazor Server Blazor component makes a request to a web API for Gi
 @using System.Text.Json.Serialization;
 @inject IHttpClientFactory ClientFactory
 
-<h1>Call web API from a Blazor Server Blazor component</h1>
+<h1>Call web API from a Blazor Server component</h1>
 
 @if (getBranchesError)
 {
@@ -1124,7 +1124,7 @@ In `Startup.ConfigureServices` of `Startup.cs`:
 services.AddHttpClient();
 ```
 
-The following Blazor Server Blazor component makes a request to a web API for GitHub branches similar to the *Basic Usage* example in the <xref:fundamentals/http-requests> article.
+The following Blazor Server component makes a request to a web API for GitHub branches similar to the *Basic Usage* example in the <xref:fundamentals/http-requests> article.
 
 `Pages/CallWebAPI.razor`:
 
@@ -1134,7 +1134,7 @@ The following Blazor Server Blazor component makes a request to a web API for Gi
 @using System.Text.Json.Serialization;
 @inject IHttpClientFactory ClientFactory
 
-<h1>Call web API from a Blazor Server Blazor component</h1>
+<h1>Call web API from a Blazor Server component</h1>
 
 @if (getBranchesError)
 {
@@ -1741,7 +1741,7 @@ In `Startup.ConfigureServices` of `Startup.cs`:
 services.AddHttpClient();
 ```
 
-The following Blazor Server Blazor component makes a request to a web API for GitHub branches similar to the *Basic Usage* example in the <xref:fundamentals/http-requests> article.
+The following Blazor Server component makes a request to a web API for GitHub branches similar to the *Basic Usage* example in the <xref:fundamentals/http-requests> article.
 
 `Pages/CallWebAPI.razor`:
 
@@ -1751,7 +1751,7 @@ The following Blazor Server Blazor component makes a request to a web API for Gi
 @using System.Text.Json.Serialization;
 @inject IHttpClientFactory ClientFactory
 
-<h1>Call web API from a Blazor Server Blazor component</h1>
+<h1>Call web API from a Blazor Server component</h1>
 
 @if (getBranchesError)
 {
