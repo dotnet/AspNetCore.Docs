@@ -50,19 +50,13 @@ This article shows how to migrate the Products controller created in [Getting St
 
 1. Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
 1. Change directories (`cd`) to the folder that will contain the project folder.
-1. Run the following commands:
+1. Run the following commands to create a new web API project and open it in Visual Studio Code:
 
    ```dotnetcli
    dotnet new webapi -o TodoApi
    cd TodoApi
-   dotnet add package Microsoft.EntityFrameworkCore.InMemory --prerelease
    code -r ../TodoApi
    ```
-
-  These commands:
-
-* Create a new web API project and open it in Visual Studio Code.
-* Add a NuGet package that is needed for the next section.
 
 * When a dialog box asks if you want to add required assets to the project, select **Yes**.
 
