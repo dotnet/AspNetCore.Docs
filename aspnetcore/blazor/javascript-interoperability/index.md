@@ -49,7 +49,7 @@ Load JavaScript (JS) code using any of the following approaches:
 * [Inject a script after Blazor starts](#inject-a-script-after-blazor-starts)
 
 > [!WARNING]
-> Don't place a `<script>` tag in a Razor component file (`.razor`) because the `<script>` tag can't be updated dynamically by Blazor.
+> Don't place a `<script>` tag in a Blazor component file (`.razor`) because the `<script>` tag can't be updated dynamically by Blazor.
 
 > [!NOTE]
 > Documentation examples usually place scripts in a `<script>` tag or load global scripts from external files. These approaches pollute the client with global functions. For production apps, we recommend placing JavaScript into separate [JavaScript modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules) that can be imported when needed. For more information, see the [JavaScript isolation in JavaScript modules](#javascript-isolation-in-javascript-modules) section.
@@ -245,7 +245,7 @@ Load JavaScript (JS) code using any of the following approaches:
 * [Inject a script after Blazor starts](#inject-a-script-after-blazor-starts)
 
 > [!WARNING]
-> Don't place a `<script>` tag in a Razor component file (`.razor`) because the `<script>` tag can't be updated dynamically by Blazor.
+> Don't place a `<script>` tag in a Blazor component file (`.razor`) because the `<script>` tag can't be updated dynamically by Blazor.
 
 > [!NOTE]
 > Documentation examples usually place scripts in a `<script>` tag or load global scripts from external files. These approaches pollute the client with global functions. For production apps, we recommend placing JavaScript into separate [JavaScript modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules) that can be imported when needed. For more information, see the [JavaScript isolation in JavaScript modules](#javascript-isolation-in-javascript-modules) section.
@@ -435,7 +435,7 @@ Load JavaScript (JS) code using any of the following approaches:
 * [Inject a script after Blazor starts](#inject-a-script-after-blazor-starts)
 
 > [!WARNING]
-> Don't place a `<script>` tag in a Razor component file (`.razor`) because the `<script>` tag can't be updated dynamically by Blazor.
+> Don't place a `<script>` tag in a Blazor component file (`.razor`) because the `<script>` tag can't be updated dynamically by Blazor.
 
 > [!NOTE]
 > Documentation examples place scripts into a `<script>` tag or load global scripts from external files. These approaches pollute the client with global functions. Placing JavaScript into separate [JavaScript modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules) that can be imported when needed is **not** supported in Blazor earlier than ASP.NET Core 5.0. If the app requires the use of JS modules for JS isolation, we recommend using ASP.NET Core 5.0 or later to build the app. For more information, use the **Version** dropdown list to select a 5.0 or later version of this article and see the *JavaScript isolation in JavaScript modules* section.

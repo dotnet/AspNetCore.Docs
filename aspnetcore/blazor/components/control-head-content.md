@@ -11,9 +11,9 @@ uid: blazor/components/control-head-content
 ---
 # Control `<head>` content in ASP.NET Core Blazor apps
 
-Razor components can modify the HTML `<head>` element content of a page, including setting the page's title (`<title>` element) and modifying metadata (`<meta>` elements).
+Blazor components can modify the HTML `<head>` element content of a page, including setting the page's title (`<title>` element) and modifying metadata (`<meta>` elements).
 
-## Control `<head>` content in a Razor component
+## Control `<head>` content in a Blazor component
 
 Specify the page's title with the <xref:Microsoft.AspNetCore.Components.Web.PageTitle> component, which enables rendering an HTML `<title>` element to a [`HeadOutlet` component](#headoutlet-component).
     
@@ -29,7 +29,7 @@ The following example sets the page's title and description using Razor.
 
 *This section applies to prerendered Blazor WebAssembly apps and Blazor Server apps.*
 
-When [Razor components are prerendered](xref:blazor/components/prerendering-and-integration), the use of a layout page (`_Layout.cshtml`) is required to control head (`<head>`) content with the <xref:Microsoft.AspNetCore.Components.Web.PageTitle> and <xref:Microsoft.AspNetCore.Components.Web.HeadContent> components. The reason for this requirement is that components that control head content must be rendered before the layout with the <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component. **This order of rendering is required to control head content.**
+When [Blazor components are prerendered](xref:blazor/components/prerendering-and-integration), the use of a layout page (`_Layout.cshtml`) is required to control head (`<head>`) content with the <xref:Microsoft.AspNetCore.Components.Web.PageTitle> and <xref:Microsoft.AspNetCore.Components.Web.HeadContent> components. The reason for this requirement is that components that control head content must be rendered before the layout with the <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component. **This order of rendering is required to control head content.**
 
 If the shared `_Layout.cshtml` file doesn't have a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component, add it to the `<head>` elements.
 
@@ -55,7 +55,7 @@ In an app created from the Blazor WebAssembly project template, the <xref:Micros
 builder.RootComponents.Add<HeadOutlet>("head::after");
 ```
 
-When the [`::after` pseudo-selector](https://developer.mozilla.org/docs/Web/CSS/::after) is specified, the contents of the root component are appended to the existing head contents instead of replacing the content. This allows the app to retain static head content in `wwwroot/index.html` without having to repeat the content in the app's Razor components.
+When the [`::after` pseudo-selector](https://developer.mozilla.org/docs/Web/CSS/::after) is specified, the contents of the root component are appended to the existing head contents instead of replacing the content. This allows the app to retain static head content in `wwwroot/index.html` without having to repeat the content in the app's Blazor components.
 
 In Blazor Server apps created from the Blazor Server project template, a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) renders `<head>` content for the <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component in `Pages/_Layout.cshtml`:
 

@@ -1,7 +1,7 @@
 ---
 title: ASP.NET Core Blazor component rendering
 author: guardrex
-description: Learn about Razor component rendering in ASP.NET Core Blazor apps, including when to call StateHasChanged.
+description: Learn about Blazor component rendering in ASP.NET Core Blazor apps, including when to call StateHasChanged.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
@@ -17,7 +17,7 @@ Components *must* render when they're first added to the component hierarchy by 
 
 ## Rendering conventions for `ComponentBase`
 
-By default, Razor components inherit from the <xref:Microsoft.AspNetCore.Components.ComponentBase> base class, which contains logic to trigger rerendering at the following times:
+By default, Blazor components inherit from the <xref:Microsoft.AspNetCore.Components.ComponentBase> base class, which contains logic to trigger rerendering at the following times:
 
 * After applying an updated set of [parameters](xref:blazor/components/data-binding#binding-with-component-parameters) from a parent component.
 * After applying an updated value for a [cascading parameter](xref:blazor/components/cascading-values-and-parameters).
@@ -112,7 +112,7 @@ Components *must* render when they're first added to the component hierarchy by 
 
 ## Rendering conventions for `ComponentBase`
 
-By default, Razor components inherit from the <xref:Microsoft.AspNetCore.Components.ComponentBase> base class, which contains logic to trigger rerendering at the following times:
+By default, Blazor components inherit from the <xref:Microsoft.AspNetCore.Components.ComponentBase> base class, which contains logic to trigger rerendering at the following times:
 
 * After applying an updated set of [parameters](xref:blazor/components/data-binding#binding-with-component-parameters) from a parent component.
 * After applying an updated value for a [cascading parameter](xref:blazor/components/cascading-values-and-parameters).
@@ -207,7 +207,7 @@ Components *must* render when they're first added to the component hierarchy by 
 
 ## Rendering conventions for `ComponentBase`
 
-By default, Razor components inherit from the <xref:Microsoft.AspNetCore.Components.ComponentBase> base class, which contains logic to trigger rerendering at the following times:
+By default, Blazor components inherit from the <xref:Microsoft.AspNetCore.Components.ComponentBase> base class, which contains logic to trigger rerendering at the following times:
 
 * After applying an updated set of [parameters](xref:blazor/components/data-binding#binding-with-component-parameters) from a parent component.
 * After applying an updated value for a [cascading parameter](xref:blazor/components/cascading-values-and-parameters).

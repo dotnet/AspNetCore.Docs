@@ -209,7 +209,7 @@ Customize this process by editing the service worker logic. None of the precedin
 
 As described in the [Cache-first fetch strategy](#cache-first-fetch-strategy) section, the default service worker uses a *cache-first* strategy, meaning that it tries to serve cached content when available. If there is no content cached for a certain URL, for example when requesting data from a backend API, the service worker falls back on a regular network request. The network request succeeds if the server is reachable. This logic is implemented inside `onFetch` function within `service-worker.published.js`.
 
-If the app's Razor components rely on requesting data from backend APIs and you want to provide a friendly user experience for failed requests due to network unavailability, implement logic within the app's components. For example, use `try/catch` around <xref:System.Net.Http.HttpClient> requests.
+If the app's Blazor components rely on requesting data from backend APIs and you want to provide a friendly user experience for failed requests due to network unavailability, implement logic within the app's components. For example, use `try/catch` around <xref:System.Net.Http.HttpClient> requests.
 
 ### Support server-rendered pages
 
@@ -565,7 +565,7 @@ Customize this process by editing the service worker logic. None of the precedin
 
 As described in the [Cache-first fetch strategy](#cache-first-fetch-strategy) section, the default service worker uses a *cache-first* strategy, meaning that it tries to serve cached content when available. If there is no content cached for a certain URL, for example when requesting data from a backend API, the service worker falls back on a regular network request. The network request succeeds if the server is reachable. This logic is implemented inside `onFetch` function within `service-worker.published.js`.
 
-If the app's Razor components rely on requesting data from backend APIs and you want to provide a friendly user experience for failed requests due to network unavailability, implement logic within the app's components. For example, use `try/catch` around <xref:System.Net.Http.HttpClient> requests.
+If the app's Blazor components rely on requesting data from backend APIs and you want to provide a friendly user experience for failed requests due to network unavailability, implement logic within the app's components. For example, use `try/catch` around <xref:System.Net.Http.HttpClient> requests.
 
 ### Support server-rendered pages
 
@@ -921,7 +921,7 @@ Customize this process by editing the service worker logic. None of the precedin
 
 As described in the [Cache-first fetch strategy](#cache-first-fetch-strategy) section, the default service worker uses a *cache-first* strategy, meaning that it tries to serve cached content when available. If there is no content cached for a certain URL, for example when requesting data from a backend API, the service worker falls back on a regular network request. The network request succeeds if the server is reachable. This logic is implemented inside `onFetch` function within `service-worker.published.js`.
 
-If the app's Razor components rely on requesting data from backend APIs and you want to provide a friendly user experience for failed requests due to network unavailability, implement logic within the app's components. For example, use `try/catch` around <xref:System.Net.Http.HttpClient> requests.
+If the app's Blazor components rely on requesting data from backend APIs and you want to provide a friendly user experience for failed requests due to network unavailability, implement logic within the app's components. For example, use `try/catch` around <xref:System.Net.Http.HttpClient> requests.
 
 ### Support server-rendered pages
 

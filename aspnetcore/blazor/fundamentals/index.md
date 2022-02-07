@@ -11,17 +11,17 @@ uid: blazor/fundamentals/index
 ---
 # ASP.NET Core Blazor fundamentals
 
-*Fundamentals* articles provide guidance on foundational Blazor concepts. Some of the concepts are connected to a basic understanding of *Razor components*, which are described further in the next section of this article and covered in detail in the *Components* articles.
+*Fundamentals* articles provide guidance on foundational Blazor concepts. Some of the concepts are connected to a basic understanding of *Blazor components*, which are described further in the next section of this article and covered in detail in the *Components* articles.
 
-## Razor components
+## Blazor components
 
-Blazor apps are based on *Razor components*, often referred to as just *components*. Components are covered in detail in the *Components* articles, but it's important to learn component basics and note conventions used in the articles before reading *Fundamentals* articles, which use components to demonstrate concepts.
+Blazor apps are based on *Blazor components*, often referred to as just *components*. Components are covered in detail in the *Components* articles, but it's important to learn component basics and note conventions used in the articles before reading *Fundamentals* articles, which use components to demonstrate concepts.
 
 A *component* is an element of UI, such as a page, dialog, or data entry form. Components are .NET C# classes built into [.NET assemblies](/dotnet/standard/assembly/).
 
 *Razor* refers to how components are usually written in the form of a [Razor](xref:mvc/views/razor) markup page for client-side UI logic and composition. Razor is a syntax for combining HTML markup with C# code designed for developer productivity. Razor files use the `.razor` file extension.
 
-Although some Blazor developers and online resources use the term "Blazor components," the documentation avoids that term and universally uses "Razor components" or "components."
+Although some Blazor developers and online resources use the term "Blazor components," the documentation avoids that term and universally uses "Blazor components" or "components."
 
 Blazor documentation adopts several conventions for showing and discussing components:
 

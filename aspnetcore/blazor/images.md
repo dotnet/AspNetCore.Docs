@@ -104,7 +104,7 @@ URL.revokeObjectURL(url);
 
 Sometimes, it's necessary to send an image directly to the client instead of hosting the image in a public directory. The following guidance explains how how to accomplish this goal using Blazor's streaming interop features.
 
-Add [`@inject`](xref:mvc/views/razor#inject) directives for the following services to a Razor component (`.razor`):
+Add [`@inject`](xref:mvc/views/razor#inject) directives for the following services to a Blazor component (`.razor`):
 
 * <xref:System.Net.Http.HttpClient?displayProperty=fullName>
 * <xref:Microsoft.JSInterop.IJSRuntime?displayProperty=fullName>

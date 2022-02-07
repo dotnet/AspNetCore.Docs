@@ -72,8 +72,8 @@ The `Virtualize` component:
 The item content for the `Virtualize` component can include:
 
 * Plain HTML and Razor code, as the preceding example shows.
-* One or more Razor components.
-* A mix of HTML/Razor and Razor components.
+* One or more Blazor components.
+* A mix of HTML/Razor and Blazor components.
 
 ## Item provider delegate
 
@@ -304,8 +304,8 @@ The `Virtualize` component:
 The item content for the `Virtualize` component can include:
 
 * Plain HTML and Razor code, as the preceding example shows.
-* One or more Razor components.
-* A mix of HTML/Razor and Razor components.
+* One or more Blazor components.
+* A mix of HTML/Razor and Blazor components.
 
 ## Item provider delegate
 

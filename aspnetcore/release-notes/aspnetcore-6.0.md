@@ -184,15 +184,15 @@ Binding supports multiple option selection with `<input>` elements. For more inf
 
 ### Head (`<head>`) content control
 
-Razor components can modify the HTML `<head>` element content of a page, including setting the page's title (`<title>` element) and modifying metadata (`<meta>` elements). For more information, see [Control `<head>` content in ASP.NET Core Blazor apps](xref:blazor/components/control-head-content?view=aspnetcore-6.0).
+Blazor components can modify the HTML `<head>` element content of a page, including setting the page's title (`<title>` element) and modifying metadata (`<meta>` elements). For more information, see [Control `<head>` content in ASP.NET Core Blazor apps](xref:blazor/components/control-head-content?view=aspnetcore-6.0).
 
 ### Generate Angular and React components
 
-Generate framework-specific JavaScript components from Razor components for web frameworks, such as Angular or React. For more information, see <xref:blazor/components/index?view=aspnetcore-6.0#generate-angular-and-react-components>.
+Generate framework-specific JavaScript components from Blazor components for web frameworks, such as Angular or React. For more information, see <xref:blazor/components/index?view=aspnetcore-6.0#generate-angular-and-react-components>.
 
 ### Render components from JavaScript
 
-Render Razor components dynamically from JavaScript for existing JavaScript apps. For more information, see <xref:blazor/components/index?view=aspnetcore-6.0#render-razor-components-from-javascript>.
+Render Blazor components dynamically from JavaScript for existing JavaScript apps. For more information, see <xref:blazor/components/index?view=aspnetcore-6.0#render-blazor-components-from-javascript>.
 
 ### Custom elements
 
@@ -220,7 +220,7 @@ Apply the new `[EditorRequired]` attribute to specify a required component param
 
 ### Collocation of JavaScript files with pages, views, and components
 
-Collocate JavaScript files for pages, views, and Razor components as a convenient way to organize scripts in an app. For more information, see <xref:blazor/js-interop/index?view=aspnetcore-6.0#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component>.
+Collocate JavaScript files for pages, views, and Blazor components as a convenient way to organize scripts in an app. For more information, see <xref:blazor/js-interop/index?view=aspnetcore-6.0#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component>.
 
 ### JavaScript initializers
 

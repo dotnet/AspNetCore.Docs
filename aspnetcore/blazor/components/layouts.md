@@ -15,7 +15,7 @@ uid: blazor/components/layouts
 
 Some app elements, such as menus, copyright messages, and company logos, are usually part of app's overall presentation. Placing a copy of the markup for these elements into all of the components of an app isn't efficient. Every time that one of these elements is updated, every component that uses the element must be updated. This approach is costly to maintain and can lead to inconsistent content if an update is missed. *Layouts* solve these problems.
 
-A Blazor layout is a Razor component that shares markup with components that reference it. Layouts can use [data binding](xref:blazor/components/data-binding), [dependency injection](xref:blazor/fundamentals/dependency-injection), and other features of components.
+A Blazor layout is a Blazor component that shares markup with components that reference it. Layouts can use [data binding](xref:blazor/components/data-binding), [dependency injection](xref:blazor/fundamentals/dependency-injection), and other features of components.
 
 ## Layout components
 
@@ -23,7 +23,7 @@ A Blazor layout is a Razor component that shares markup with components that ref
 
 To create a layout component:
 
-* Create a Razor component defined by a Razor template or C# code. Layout components based on a Razor template use the `.razor` file extension just like ordinary Razor components. Because layout components are shared across an app's components, they're usually placed in the app's `Shared` folder. However, layouts can be placed in any location accessible to the components that use it. For example, a layout can be placed in the same folder as the components that use it.
+* Create a Blazor component defined by a Razor template or C# code. Layout components based on a Razor template use the `.razor` file extension just like ordinary Blazor components. Because layout components are shared across an app's components, they're usually placed in the app's `Shared` folder. However, layouts can be placed in any location accessible to the components that use it. For example, a layout can be placed in the same folder as the components that use it.
 * Inherit the component from <xref:Microsoft.AspNetCore.Components.LayoutComponentBase>. The <xref:Microsoft.AspNetCore.Components.LayoutComponentBase> defines a <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body> property (<xref:Microsoft.AspNetCore.Components.RenderFragment> type) for the rendered content inside the layout.
 * Use the Razor syntax `@Body` to specify the location in the layout markup where the content is rendered.
 
@@ -49,7 +49,7 @@ In an app created from a [Blazor project template](xref:blazor/project-structure
 
 ### Apply a layout to a component
 
-Use the [`@layout`](xref:mvc/views/razor#layout) Razor directive to apply a layout to a routable Razor component that has an [`@page`](xref:mvc/views/razor#page) directive. The compiler converts `@layout` into a <xref:Microsoft.AspNetCore.Components.LayoutAttribute> and applies the attribute to the component class.
+Use the [`@layout`](xref:mvc/views/razor#layout) Razor directive to apply a layout to a routable Blazor component that has an [`@page`](xref:mvc/views/razor#page) directive. The compiler converts `@layout` into a <xref:Microsoft.AspNetCore.Components.LayoutAttribute> and applies the attribute to the component class.
 
 The content of the following `Episodes` component is inserted into the `DoctorWhoLayout` at the position of `@Body`.
 
@@ -98,7 +98,7 @@ Specifying the layout directly in a component overrides a *default layout*:
 
 ### Apply a layout to a folder of components
 
-Every folder of an app can optionally contain a template file named `_Imports.razor`. The compiler includes the directives specified in the imports file in all of the Razor templates in the same folder and recursively in all of its subfolders. Therefore, an `_Imports.razor` file containing `@layout DoctorWhoLayout` ensures that all of the components in a folder use the `DoctorWhoLayout` component. There's no need to repeatedly add `@layout DoctorWhoLayout` to all of the Razor components (`.razor`) within the folder and subfolders.
+Every folder of an app can optionally contain a template file named `_Imports.razor`. The compiler includes the directives specified in the imports file in all of the Razor templates in the same folder and recursively in all of its subfolders. Therefore, an `_Imports.razor` file containing `@layout DoctorWhoLayout` ensures that all of the components in a folder use the `DoctorWhoLayout` component. There's no need to repeatedly add `@layout DoctorWhoLayout` to all of the Blazor components (`.razor`) within the folder and subfolders.
 
 `_Imports.razor`:
 
@@ -107,7 +107,7 @@ Every folder of an app can optionally contain a template file named `_Imports.ra
 ...
 ```
 
-The `_Imports.razor` file is similar to the [_ViewImports.cshtml file for Razor views and pages](xref:mvc/views/layout#importing-shared-directives) but applied specifically to Razor component files.
+The `_Imports.razor` file is similar to the [_ViewImports.cshtml file for Razor views and pages](xref:mvc/views/layout#importing-shared-directives) but applied specifically to Blazor component files.
 
 Specifying a layout in `_Imports.razor` overrides a layout specified as the router's [default app layout](#apply-a-default-layout-to-an-app), which is described in the following section.
 
@@ -115,7 +115,7 @@ Specifying a layout in `_Imports.razor` overrides a layout specified as the rout
 > Do **not** add a Razor `@layout` directive to the root `_Imports.razor` file, which results in an infinite loop of layouts. To control the default app layout, specify the layout in the `Router` component. For more information, see the following [Apply a default layout to an app](#apply-a-default-layout-to-an-app) section.
 
 > [!NOTE]
-> The [`@layout`](xref:mvc/views/razor#layout) Razor directive only applies a layout to routable Razor components with an [`@page`](xref:mvc/views/razor#page) directive.
+> The [`@layout`](xref:mvc/views/razor#layout) Razor directive only applies a layout to routable Blazor components with an [`@page`](xref:mvc/views/razor#page) directive.
 
 ### Apply a default layout to an app
 
@@ -131,7 +131,7 @@ Specifying the layout as a default layout in the `Router` component is a useful 
 
 ### Apply a layout to arbitrary content (`LayoutView` component)
 
-To set a layout for arbitrary Razor template content, specify the layout with a <xref:Microsoft.AspNetCore.Components.LayoutView> component. You can use a <xref:Microsoft.AspNetCore.Components.LayoutView> in any Razor component. The following example sets a layout component named `ErrorLayout` for the `MainLayout` component's <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> template (`<NotFound>...</NotFound>`).
+To set a layout for arbitrary Razor template content, specify the layout with a <xref:Microsoft.AspNetCore.Components.LayoutView> component. You can use a <xref:Microsoft.AspNetCore.Components.LayoutView> in any Blazor component. The following example sets a layout component named `ErrorLayout` for the `MainLayout` component's <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> template (`<NotFound>...</NotFound>`).
 
 `App.razor`:
 
@@ -228,7 +228,7 @@ When routable components are integrated into a Razor Pages app, the app's shared
 
 Some app elements, such as menus, copyright messages, and company logos, are usually part of app's overall presentation. Placing a copy of the markup for these elements into all of the components of an app isn't efficient. Every time that one of these elements is updated, every component that uses the element must be updated. This approach is costly to maintain and can lead to inconsistent content if an update is missed. *Layouts* solve these problems.
 
-A Blazor layout is a Razor component that shares markup with components that reference it. Layouts can use [data binding](xref:blazor/components/data-binding), [dependency injection](xref:blazor/fundamentals/dependency-injection), and other features of components.
+A Blazor layout is a Blazor component that shares markup with components that reference it. Layouts can use [data binding](xref:blazor/components/data-binding), [dependency injection](xref:blazor/fundamentals/dependency-injection), and other features of components.
 
 ## Layout components
 
@@ -236,7 +236,7 @@ A Blazor layout is a Razor component that shares markup with components that ref
 
 To create a layout component:
 
-* Create a Razor component defined by a Razor template or C# code. Layout components based on a Razor template use the `.razor` file extension just like ordinary Razor components. Because layout components are shared across an app's components, they're usually placed in the app's `Shared` folder. However, layouts can be placed in any location accessible to the components that use it. For example, a layout can be placed in the same folder as the components that use it.
+* Create a Blazor component defined by a Razor template or C# code. Layout components based on a Razor template use the `.razor` file extension just like ordinary Blazor components. Because layout components are shared across an app's components, they're usually placed in the app's `Shared` folder. However, layouts can be placed in any location accessible to the components that use it. For example, a layout can be placed in the same folder as the components that use it.
 * Inherit the component from <xref:Microsoft.AspNetCore.Components.LayoutComponentBase>. The <xref:Microsoft.AspNetCore.Components.LayoutComponentBase> defines a <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body> property (<xref:Microsoft.AspNetCore.Components.RenderFragment> type) for the rendered content inside the layout.
 * Use the Razor syntax `@Body` to specify the location in the layout markup where the content is rendered.
 
@@ -262,7 +262,7 @@ In an app created from a [Blazor project template](xref:blazor/project-structure
 
 ### Apply a layout to a component
 
-Use the [`@layout`](xref:mvc/views/razor#layout) Razor directive to apply a layout to a routable Razor component that has an [`@page`](xref:mvc/views/razor#page) directive. The compiler converts `@layout` into a <xref:Microsoft.AspNetCore.Components.LayoutAttribute> and applies the attribute to the component class.
+Use the [`@layout`](xref:mvc/views/razor#layout) Razor directive to apply a layout to a routable Blazor component that has an [`@page`](xref:mvc/views/razor#page) directive. The compiler converts `@layout` into a <xref:Microsoft.AspNetCore.Components.LayoutAttribute> and applies the attribute to the component class.
 
 The content of the following `Episodes` component is inserted into the `DoctorWhoLayout` at the position of `@Body`.
 
@@ -311,7 +311,7 @@ Specifying the layout directly in a component overrides a *default layout*:
 
 ### Apply a layout to a folder of components
 
-Every folder of an app can optionally contain a template file named `_Imports.razor`. The compiler includes the directives specified in the imports file in all of the Razor templates in the same folder and recursively in all of its subfolders. Therefore, an `_Imports.razor` file containing `@layout DoctorWhoLayout` ensures that all of the components in a folder use the `DoctorWhoLayout` component. There's no need to repeatedly add `@layout DoctorWhoLayout` to all of the Razor components (`.razor`) within the folder and subfolders.
+Every folder of an app can optionally contain a template file named `_Imports.razor`. The compiler includes the directives specified in the imports file in all of the Razor templates in the same folder and recursively in all of its subfolders. Therefore, an `_Imports.razor` file containing `@layout DoctorWhoLayout` ensures that all of the components in a folder use the `DoctorWhoLayout` component. There's no need to repeatedly add `@layout DoctorWhoLayout` to all of the Blazor components (`.razor`) within the folder and subfolders.
 
 `_Imports.razor`:
 
@@ -320,7 +320,7 @@ Every folder of an app can optionally contain a template file named `_Imports.ra
 ...
 ```
 
-The `_Imports.razor` file is similar to the [_ViewImports.cshtml file for Razor views and pages](xref:mvc/views/layout#importing-shared-directives) but applied specifically to Razor component files.
+The `_Imports.razor` file is similar to the [_ViewImports.cshtml file for Razor views and pages](xref:mvc/views/layout#importing-shared-directives) but applied specifically to Blazor component files.
 
 Specifying a layout in `_Imports.razor` overrides a layout specified as the router's [default app layout](#apply-a-default-layout-to-an-app), which is described in the following section.
 
@@ -328,7 +328,7 @@ Specifying a layout in `_Imports.razor` overrides a layout specified as the rout
 > Do **not** add a Razor `@layout` directive to the root `_Imports.razor` file, which results in an infinite loop of layouts. To control the default app layout, specify the layout in the `Router` component. For more information, see the following [Apply a default layout to an app](#apply-a-default-layout-to-an-app) section.
 
 > [!NOTE]
-> The [`@layout`](xref:mvc/views/razor#layout) Razor directive only applies a layout to routable Razor components with an [`@page`](xref:mvc/views/razor#page) directive.
+> The [`@layout`](xref:mvc/views/razor#layout) Razor directive only applies a layout to routable Blazor components with an [`@page`](xref:mvc/views/razor#page) directive.
 
 ### Apply a default layout to an app
 
@@ -346,7 +346,7 @@ Specifying the layout as a default layout in the `Router` component is a useful 
 
 ### Apply a layout to arbitrary content (`LayoutView` component)
 
-To set a layout for arbitrary Razor template content, specify the layout with a <xref:Microsoft.AspNetCore.Components.LayoutView> component. You can use a <xref:Microsoft.AspNetCore.Components.LayoutView> in any Razor component. The following example sets a layout component named `ErrorLayout` for the `MainLayout` component's <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> template (`<NotFound>...</NotFound>`).
+To set a layout for arbitrary Razor template content, specify the layout with a <xref:Microsoft.AspNetCore.Components.LayoutView> component. You can use a <xref:Microsoft.AspNetCore.Components.LayoutView> in any Blazor component. The following example sets a layout component named `ErrorLayout` for the `MainLayout` component's <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> template (`<NotFound>...</NotFound>`).
 
 `App.razor`:
 
@@ -445,7 +445,7 @@ When routable components are integrated into a Razor Pages app, the app's shared
 
 Some app elements, such as menus, copyright messages, and company logos, are usually part of app's overall presentation. Placing a copy of the markup for these elements into all of the components of an app isn't efficient. Every time that one of these elements is updated, every component that uses the element must be updated. This approach is costly to maintain and can lead to inconsistent content if an update is missed. *Layouts* solve these problems.
 
-A Blazor layout is a Razor component that shares markup with components that reference it. Layouts can use [data binding](xref:blazor/components/data-binding), [dependency injection](xref:blazor/fundamentals/dependency-injection), and other features of components.
+A Blazor layout is a Blazor component that shares markup with components that reference it. Layouts can use [data binding](xref:blazor/components/data-binding), [dependency injection](xref:blazor/fundamentals/dependency-injection), and other features of components.
 
 ## Layout components
 
@@ -453,7 +453,7 @@ A Blazor layout is a Razor component that shares markup with components that ref
 
 To create a layout component:
 
-* Create a Razor component defined by a Razor template or C# code. Layout components based on a Razor template use the `.razor` file extension just like ordinary Razor components. Because layout components are shared across an app's components, they're usually placed in the app's `Shared` folder. However, layouts can be placed in any location accessible to the components that use it. For example, a layout can be placed in the same folder as the components that use it.
+* Create a Blazor component defined by a Razor template or C# code. Layout components based on a Razor template use the `.razor` file extension just like ordinary Blazor components. Because layout components are shared across an app's components, they're usually placed in the app's `Shared` folder. However, layouts can be placed in any location accessible to the components that use it. For example, a layout can be placed in the same folder as the components that use it.
 * Inherit the component from <xref:Microsoft.AspNetCore.Components.LayoutComponentBase>. The <xref:Microsoft.AspNetCore.Components.LayoutComponentBase> defines a <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body> property (<xref:Microsoft.AspNetCore.Components.RenderFragment> type) for the rendered content inside the layout.
 * Use the Razor syntax `@Body` to specify the location in the layout markup where the content is rendered.
 
@@ -475,7 +475,7 @@ In an app created from a [Blazor project template](xref:blazor/project-structure
 
 ### Apply a layout to a component
 
-Use the [`@layout`](xref:mvc/views/razor#layout) Razor directive to apply a layout to a routable Razor component that has an [`@page`](xref:mvc/views/razor#page) directive. The compiler converts `@layout` into a <xref:Microsoft.AspNetCore.Components.LayoutAttribute> and applies the attribute to the component class.
+Use the [`@layout`](xref:mvc/views/razor#layout) Razor directive to apply a layout to a routable Blazor component that has an [`@page`](xref:mvc/views/razor#page) directive. The compiler converts `@layout` into a <xref:Microsoft.AspNetCore.Components.LayoutAttribute> and applies the attribute to the component class.
 
 The content of the following `Episodes` component is inserted into the `DoctorWhoLayout` at the position of `@Body`.
 
@@ -524,7 +524,7 @@ Specifying the layout directly in a component overrides a *default layout*:
 
 ### Apply a layout to a folder of components
 
-Every folder of an app can optionally contain a template file named `_Imports.razor`. The compiler includes the directives specified in the imports file in all of the Razor templates in the same folder and recursively in all of its subfolders. Therefore, an `_Imports.razor` file containing `@layout DoctorWhoLayout` ensures that all of the components in a folder use the `DoctorWhoLayout` component. There's no need to repeatedly add `@layout DoctorWhoLayout` to all of the Razor components (`.razor`) within the folder and subfolders.
+Every folder of an app can optionally contain a template file named `_Imports.razor`. The compiler includes the directives specified in the imports file in all of the Razor templates in the same folder and recursively in all of its subfolders. Therefore, an `_Imports.razor` file containing `@layout DoctorWhoLayout` ensures that all of the components in a folder use the `DoctorWhoLayout` component. There's no need to repeatedly add `@layout DoctorWhoLayout` to all of the Blazor components (`.razor`) within the folder and subfolders.
 
 `_Imports.razor`:
 
@@ -533,14 +533,14 @@ Every folder of an app can optionally contain a template file named `_Imports.ra
 ...
 ```
 
-The `_Imports.razor` file is similar to the [_ViewImports.cshtml file for Razor views and pages](xref:mvc/views/layout#importing-shared-directives) but applied specifically to Razor component files.
+The `_Imports.razor` file is similar to the [_ViewImports.cshtml file for Razor views and pages](xref:mvc/views/layout#importing-shared-directives) but applied specifically to Blazor component files.
 
 Specifying a layout in `_Imports.razor` overrides a layout specified as the router's [default app layout](#apply-a-default-layout-to-an-app), which is described in the following section.
 
 > [!WARNING]
 > Do **not** add a Razor `@layout` directive to the root `_Imports.razor` file, which results in an infinite loop of layouts. To control the default app layout, specify the layout in the `Router` component. For more information, see the following [Apply a default layout to an app](#apply-a-default-layout-to-an-app) section.
 
-The [`@layout`](xref:mvc/views/razor#layout) Razor directive only applies a layout to routable Razor components with an [`@page`](xref:mvc/views/razor#page) directive.
+The [`@layout`](xref:mvc/views/razor#layout) Razor directive only applies a layout to routable Blazor components with an [`@page`](xref:mvc/views/razor#page) directive.
 
 ### Apply a default layout to an app
 
@@ -556,7 +556,7 @@ Specifying the layout as a default layout in the `Router` component is a useful 
 
 ### Apply a layout to arbitrary content (`LayoutView` component)
 
-To set a layout for arbitrary Razor template content, specify the layout with a <xref:Microsoft.AspNetCore.Components.LayoutView> component. You can use a <xref:Microsoft.AspNetCore.Components.LayoutView> in any Razor component. The following example sets a layout component named `ErrorLayout` for the `MainLayout` component's <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> template (`<NotFound>...</NotFound>`).
+To set a layout for arbitrary Razor template content, specify the layout with a <xref:Microsoft.AspNetCore.Components.LayoutView> component. You can use a <xref:Microsoft.AspNetCore.Components.LayoutView> in any Blazor component. The following example sets a layout component named `ErrorLayout` for the `MainLayout` component's <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> template (`<NotFound>...</NotFound>`).
 
 `App.razor`:
 

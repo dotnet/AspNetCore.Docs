@@ -22,29 +22,29 @@ Blazor is a new framework in ASP.NET Core for building interactive client-side w
 
 Blazor framework supported scenarios:
 
-* Reusable UI components (Razor components)
+* Reusable UI components (Blazor components)
 * Client-side routing
 * Component layouts
 * Support for dependency injection
 * Forms and validation
-* Supply Razor components in Razor class libraries
+* Supply Blazor components in Razor class libraries
 * JavaScript interop
 
 For more information, see <xref:blazor/index>.
 
 ### Blazor Server
 
-Blazor decouples component rendering logic from how UI updates are applied. Blazor Server provides support for hosting Razor components on the server in an ASP.NET Core app. UI updates are handled over a SignalR connection. Blazor Server is supported in ASP.NET Core 3.0.
+Blazor decouples component rendering logic from how UI updates are applied. Blazor Server provides support for hosting Blazor components on the server in an ASP.NET Core app. UI updates are handled over a SignalR connection. Blazor Server is supported in ASP.NET Core 3.0.
 
 ### Blazor WebAssembly (Preview)
 
 Blazor apps can also be run directly in the browser using a WebAssembly-based .NET runtime. Blazor WebAssembly is in preview and *not* supported in ASP.NET Core 3.0. Blazor WebAssembly will be supported in a future release of ASP.NET Core.
 
-### Razor components
+### Blazor components
 
 Blazor apps are built from components. Components are self-contained chunks of user interface (UI), such as a page, dialog, or form. Components are normal .NET classes that define UI rendering logic and client-side event handlers. You can create rich interactive web apps without JavaScript.
 
-Components in Blazor are typically authored using Razor syntax, a natural blend of HTML and C#. Razor components are similar to Razor Pages and MVC views in that they both use Razor. Unlike pages and views, which are based on a request-response model, components are used specifically for handling UI composition.
+Components in Blazor are typically authored using Razor syntax, a natural blend of HTML and C#. Blazor components are similar to Razor Pages and MVC views in that they both use Razor. Unlike pages and views, which are based on a request-response model, components are used specifically for handling UI composition.
 
 ## gRPC
 
@@ -394,7 +394,7 @@ The web UI templates (Razor Pages, MVC with controller and views) have the follo
 
 The Angular template updated to use Angular 8.
 
-The Razor class library (RCL) template defaults to Razor component development by default. A new template option in Visual Studio provides template support for pages and views. When creating an RCL from the template in a command shell, pass the `--support-pages-and-views` option (`dotnet new razorclasslib --support-pages-and-views`).
+The Razor class library (RCL) template defaults to Blazor component development by default. A new template option in Visual Studio provides template support for pages and views. When creating an RCL from the template in a command shell, pass the `--support-pages-and-views` option (`dotnet new razorclasslib --support-pages-and-views`).
 
 ## Generic Host
 

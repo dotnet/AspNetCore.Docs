@@ -11,7 +11,7 @@ uid: mvc/views/razor
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Taylor Mullen](https://twitter.com/ntaylormullen), and [Dan Vicarel](https://github.com/Rabadash8820)
 
-Razor is a markup syntax for embedding .NET based code into webpages. The Razor syntax consists of Razor markup, C#, and HTML. Files containing Razor generally have a `.cshtml` file extension. Razor is also found in [Razor component](xref:blazor/components/index) files (`.razor`). Razor syntax is similar to the templating engines of various JavaScript single-page application (SPA) frameworks, such as Angular, React, VueJs, and Svelte. For more information see, <xref:client-side/spa-services>.
+Razor is a markup syntax for embedding .NET based code into webpages. The Razor syntax consists of Razor markup, C#, and HTML. Files containing Razor generally have a `.cshtml` file extension. Razor is also found in [Blazor component](xref:blazor/components/index) files (`.razor`). Razor syntax is similar to the templating engines of various JavaScript single-page application (SPA) frameworks, such as Angular, React, VueJs, and Svelte. For more information see, <xref:client-side/spa-services>.
 
 [Introduction to ASP.NET Web Programming Using the Razor Syntax](/aspnet/web-pages/overview/getting-started/introducing-razor-syntax-c) provides many samples of programming with Razor syntax. Although the topic was written for ASP.NET rather than ASP.NET Core, most of the samples apply to ASP.NET Core.
 
@@ -469,9 +469,9 @@ The `@attribute` directive adds the given attribute to the class of the generate
 
 ### `@code`
 
-*This scenario only applies to Razor components (`.razor`).*
+*This scenario only applies to Blazor components (`.razor`).*
 
-The `@code` block enables a [Razor component](xref:blazor/components/index) to add C# members (fields, properties, and methods) to a component:
+The `@code` block enables a [Blazor component](xref:blazor/components/index) to add C# members (fields, properties, and methods) to a component:
 
 ```razor
 @code {
@@ -479,7 +479,7 @@ The `@code` block enables a [Razor component](xref:blazor/components/index) to a
 }
 ```
 
-For Razor components, `@code` is an alias of [`@functions`](#functions) and recommended over `@functions`. More than one `@code` block is permissible.
+For Blazor components, `@code` is an alias of [`@functions`](#functions) and recommended over `@functions`. More than one `@code` block is permissible.
 
 ### `@functions`
 
@@ -491,7 +491,7 @@ The `@functions` directive enables adding C# members (fields, properties, and me
 }
 ```
 
-In [Razor components](xref:blazor/components/index), use `@code` over `@functions` to add C# members.
+In [Blazor components](xref:blazor/components/index), use `@code` over `@functions` to add C# members.
 
 For example:
 
@@ -599,9 +599,9 @@ The `@inject` directive enables the Razor Page to inject a service from the [ser
 
 ### `@layout`
 
-*This scenario only applies to Razor components (`.razor`).*
+*This scenario only applies to Blazor components (`.razor`).*
 
-The `@layout` directive specifies a layout for routable Razor components that have an [`@page`](#page) directive. Layout components are used to avoid code duplication and inconsistency. For more information, see <xref:blazor/components/layouts>.
+The `@layout` directive specifies a layout for routable Blazor components that have an [`@page`](#page) directive. Layout components are used to avoid code duplication and inconsistency. For more information, see <xref:blazor/components/layouts>.
 
 ### `@model`
 
@@ -637,8 +637,8 @@ The `@model` directive specifies the type of the `Model` property. The directive
 
 The `@namespace` directive:
 
-* Sets the namespace of the class of the generated Razor page, MVC view, or Razor component.
-* Sets the root derived namespaces of a pages, views, or components classes from the closest imports file in the directory tree, `_ViewImports.cshtml` (views or pages) or *_Imports.razor* (Razor components).
+* Sets the namespace of the class of the generated Razor page, MVC view, or Blazor component.
+* Sets the root derived namespaces of a pages, views, or components classes from the closest imports file in the directory tree, `_ViewImports.cshtml` (views or pages) or *_Imports.razor* (Blazor components).
 
 ```cshtml
 @namespace Your.Namespace.Here
@@ -656,7 +656,7 @@ For the Razor Pages example shown in the following table:
 | `Pages/MorePages/Page.cshtml`               | `Hello.World.MorePages`               |
 | `Pages/MorePages/EvenMorePages/Page.cshtml` | `Hello.World.MorePages.EvenMorePages` |
 
-The preceding relationships apply to import files used with MVC views and Razor components.
+The preceding relationships apply to import files used with MVC views and Blazor components.
 
 When multiple import files have a `@namespace` directive, the file closest to the page, view, or component in the directory tree is used to set the root namespace.
 
@@ -673,15 +673,15 @@ If the `EvenMorePages` folder in the preceding example has an imports file with 
 The `@page` directive has different effects depending on the type of the file where it appears. The directive:
 
 * In a `.cshtml` file indicates that the file is a Razor Page. For more information, see [Custom routes](xref:razor-pages/index#custom-routes) and <xref:razor-pages/index>.
-* Specifies that a Razor component should handle requests directly. For more information, see <xref:blazor/fundamentals/routing>.
+* Specifies that a Blazor component should handle requests directly. For more information, see <xref:blazor/fundamentals/routing>.
 
 :::moniker range=">= aspnetcore-5.0"
 
 ### `@preservewhitespace`
 
-*This scenario only applies to Razor components (`.razor`).*
+*This scenario only applies to Blazor components (`.razor`).*
 
-When set to `false` (default), whitespace in the rendered markup from Razor components (`.razor`) is removed if:
+When set to `false` (default), whitespace in the rendered markup from Blazor components (`.razor`) is removed if:
 
 * Leading or trailing within an element.
 * Leading or trailing within a `RenderFragment` parameter. For example, child content passed to another component.
@@ -701,7 +701,7 @@ The `@using` directive adds the C# `using` directive to the generated view:
 
 [!code-cshtml[](razor/sample/Views/Home/Contact9.cshtml)]
 
-In [Razor components](xref:blazor/components/index), `@using` also controls which components are in scope.
+In [Blazor components](xref:blazor/components/index), `@using` also controls which components are in scope.
 
 ## Directive attributes
 
@@ -709,49 +709,49 @@ Razor directive attributes are represented by implicit expressions with reserved
 
 ### `@attributes`
 
-*This scenario only applies to Razor components (`.razor`).*
+*This scenario only applies to Blazor components (`.razor`).*
 
 `@attributes` allows a component to render non-declared attributes. For more information, see <xref:blazor/components/index#attribute-splatting-and-arbitrary-parameters>.
 
 ### `@bind`
 
-*This scenario only applies to Razor components (`.razor`).*
+*This scenario only applies to Blazor components (`.razor`).*
 
 Data binding in components is accomplished with the `@bind` attribute. For more information, see <xref:blazor/components/data-binding>.
 
 ### `@bind:culture`
 
-*This scenario only applies to Razor components (`.razor`).*
+*This scenario only applies to Blazor components (`.razor`).*
 
 Use the `@bind:culture` attribute with the [`@bind`](#bind) attribute to provide a <xref:System.Globalization.CultureInfo?displayProperty=fullName> for parsing and formatting a value. For more information, see <xref:blazor/globalization-localization#globalization>.
 
 ### `@on{EVENT}`
 
-*This scenario only applies to Razor components (`.razor`).*
+*This scenario only applies to Blazor components (`.razor`).*
 
 Razor provides event handling features for components. For more information, see <xref:blazor/components/event-handling>.
 
 ### `@on{EVENT}:preventDefault`
 
-*This scenario only applies to Razor components (`.razor`).*
+*This scenario only applies to Blazor components (`.razor`).*
 
 Prevents the default action for the event.
 
 ### `@on{EVENT}:stopPropagation`
 
-*This scenario only applies to Razor components (`.razor`).*
+*This scenario only applies to Blazor components (`.razor`).*
 
 Stops event propagation for the event.
 
 ### `@key`
 
-*This scenario only applies to Razor components (`.razor`).*
+*This scenario only applies to Blazor components (`.razor`).*
 
 The `@key` directive attribute causes the components diffing algorithm to guarantee preservation of elements or components based on the key's value. For more information, see <xref:blazor/components/index#use-key-to-control-the-preservation-of-elements-and-components>.
 
 ### `@ref`
 
-*This scenario only applies to Razor components (`.razor`).*
+*This scenario only applies to Blazor components (`.razor`).*
 
 Component references (`@ref`) provide a way to reference a component instance so that you can issue commands to that instance. For more information, see <xref:blazor/components/index#capture-references-to-components>.
 
@@ -759,7 +759,7 @@ Component references (`@ref`) provide a way to reference a component instance so
 
 ### `@typeparam`
 
-*This scenario only applies to Razor components (`.razor`).*
+*This scenario only applies to Blazor components (`.razor`).*
 
 The `@typeparam` directive declares a [generic type parameter](/dotnet/csharp/programming-guide/generics/generic-type-parameters) for the generated component class:
 
@@ -784,7 +784,7 @@ For more information, see the following articles:
 
 ### `@typeparam`
 
-*This scenario only applies to Razor components (`.razor`).*
+*This scenario only applies to Blazor components (`.razor`).*
 
 The `@typeparam` directive declares a [generic type parameter](/dotnet/csharp/programming-guide/generics/generic-type-parameters) for the generated component class:
 

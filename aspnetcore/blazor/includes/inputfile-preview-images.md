@@ -3,7 +3,7 @@ no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cook
 ---
 Use the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component to read browser file data into .NET code. In some apps, you may wish to show a preview of a selected image.
 
-Add an `<img>` tag for displaying the image preview in a Razor component (`.razor`):
+Add an `<img>` tag for displaying the image preview in a Blazor component (`.razor`):
 
 ```html
 <img id="showImageHere" />

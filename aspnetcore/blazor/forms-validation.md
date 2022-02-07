@@ -21,7 +21,7 @@ To demonstrate how an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> comp
 
 [!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/ExampleModel.cs?highlight=5-6)]
 
-A form is defined using the Blazor framework's <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component. The following Razor component demonstrates typical elements, components, and Razor code to render a webform using an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component, which is bound to the preceding `ExampleModel` type.
+A form is defined using the Blazor framework's <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component. The following Blazor component demonstrates typical elements, components, and Razor code to render a webform using an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component, which is bound to the preceding `ExampleModel` type.
 
 `Pages/FormExample1.razor`:
 
@@ -1074,7 +1074,7 @@ To demonstrate how an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> comp
 
 [!code-csharp[](~/blazor/samples/5.0/BlazorSample_WebAssembly/ExampleModel.cs?highlight=5-6)]
 
-A form is defined using the Blazor framework's <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component. The following Razor component demonstrates typical elements, components, and Razor code to render a webform using an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component, which is bound to the preceding `ExampleModel` type.
+A form is defined using the Blazor framework's <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component. The following Blazor component demonstrates typical elements, components, and Razor code to render a webform using an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component, which is bound to the preceding `ExampleModel` type.
 
 `Pages/FormExample1.razor`:
 
@@ -2056,7 +2056,7 @@ To demonstrate how an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> comp
 
 [!code-csharp[](~/blazor/samples/3.1/BlazorSample_WebAssembly/ExampleModel.cs?highlight=5-6)]
 
-A form is defined using the Blazor framework's <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component. The following Razor component demonstrates typical elements, components, and Razor code to render a webform using an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component, which is bound to the preceding `ExampleModel` type.
+A form is defined using the Blazor framework's <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component. The following Blazor component demonstrates typical elements, components, and Razor code to render a webform using an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component, which is bound to the preceding `ExampleModel` type.
 
 `Pages/FormExample1.razor`:
 

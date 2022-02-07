@@ -1,7 +1,7 @@
 ---
-title: ASP.NET Core Razor components
+title: ASP.NET Core Blazor components
 author: guardrex
-description: Learn how to create and use Razor components in Blazor apps, including guidance on Razor syntax in components, component naming, namespaces, and component parameters.
+description: Learn how to create and use Blazor components in Blazor apps, including guidance on Razor syntax in components, component naming, namespaces, and component parameters.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
@@ -9,11 +9,11 @@ ms.date: 11/09/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/index
 ---
-# ASP.NET Core Razor components
+# ASP.NET Core Blazor components
 
 :::moniker range=">= aspnetcore-6.0"
 
-Blazor apps are built using *Razor components*. A component is a self-contained portion of user interface (UI) with processing logic to enable dynamic behavior. Components can be nested, reused, shared among projects, and [used in MVC and Razor Pages apps](xref:blazor/components/prerendering-and-integration).
+Blazor apps are built using *Blazor components*. A component is a self-contained portion of user interface (UI) with processing logic to enable dynamic behavior. Components can be nested, reused, shared among projects, and [used in MVC and Razor Pages apps](xref:blazor/components/prerendering-and-integration).
 
 ## Component classes
 
@@ -407,7 +407,7 @@ public string? Title { get; set; }
 }
 ```
     
-Only ***unnamed tuples*** are supported for C# 7.0 or later in Razor components. [Named tuples](/dotnet/csharp/language-reference/builtin-types/value-tuples#tuple-field-names) support in Razor components is planned for a future ASP.NET Core release. For more information, see [Blazor Transpiler issue with named Tuples (dotnet/aspnetcore #28982)](https://github.com/dotnet/aspnetcore/issues/28982).
+Only ***unnamed tuples*** are supported for C# 7.0 or later in Blazor components. [Named tuples](/dotnet/csharp/language-reference/builtin-types/value-tuples#tuple-field-names) support in Blazor components is planned for a future ASP.NET Core release. For more information, see [Blazor Transpiler issue with named Tuples (dotnet/aspnetcore #28982)](https://github.com/dotnet/aspnetcore/issues/28982).
 
 Quote &copy;2005 [Universal Pictures](https://www.uphe.com): [Serenity](https://www.uphe.com/movies/serenity-2005) ([Nathan Fillion](https://www.imdb.com/name/nm0277213/))
 
@@ -531,7 +531,7 @@ Alternatively, use a [`foreach`](/dotnet/csharp/language-reference/keywords/fore
 ```
 
 > [!NOTE]
-> Assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate is only supported in Razor component files (`.razor`):
+> Assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate is only supported in Blazor component files (`.razor`):
 > 
 > ```razor
 > private RenderFragment RenderWelcomeInfo = __builder =>
@@ -982,7 +982,7 @@ Similarly, SVG images are supported in the CSS rules of a stylesheet file (`.css
 }
 ```
 
-Blazor supports the [`<foreignObject>`](https://developer.mozilla.org/docs/Web/SVG/Element/foreignObject) element to display arbitrary HTML within an SVG. The markup can represent arbitrary HTML, a <xref:Microsoft.AspNetCore.Components.RenderFragment>, or a Razor component.
+Blazor supports the [`<foreignObject>`](https://developer.mozilla.org/docs/Web/SVG/Element/foreignObject) element to display arbitrary HTML within an SVG. The markup can represent arbitrary HTML, a <xref:Microsoft.AspNetCore.Components.RenderFragment>, or a Blazor component.
 
 The following example demonstrates:
 
@@ -1056,11 +1056,11 @@ For more information, see the following articles:
 * <xref:mvc/views/razor#typeparam>
 * <xref:blazor/components/templated-components>
 
-## Render Razor components from JavaScript
+## Render Blazor components from JavaScript
 
-Razor components can be dynamically-rendered from JavaScript (JS) for existing JS apps.
+Blazor components can be dynamically-rendered from JavaScript (JS) for existing JS apps.
 
-To render a Razor component from JS, register the component as a root component for JS rendering and assign the component an identifier:
+To render a Blazor component from JS, register the component as a root component for JS rendering and assign the component an identifier:
 
 * In a Blazor Server app, modify the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A> in `Program.cs`:
 
@@ -1133,7 +1133,7 @@ For a complete example of how to create custom elements with Blazor, see the [Bl
 
 ## Generate Angular and React components
 
-Generate framework-specific JavaScript (JS) components from Razor components for web frameworks, such as Angular or React. This capability isn't included with .NET 6, but is enabled by the new support for rendering Razor components from JS. The [JS component generation sample on GitHub](https://github.com/aspnet/samples/tree/main/samples/aspnetcore/blazor/JSComponentGeneration) demonstrates how to generate Angular and React components from Razor components. See the GitHub sample app's `README.md` file for additional information.
+Generate framework-specific JavaScript (JS) components from Blazor components for web frameworks, such as Angular or React. This capability isn't included with .NET 6, but is enabled by the new support for rendering Blazor components from JS. The [JS component generation sample on GitHub](https://github.com/aspnet/samples/tree/main/samples/aspnetcore/blazor/JSComponentGeneration) demonstrates how to generate Angular and React components from Blazor components. See the GitHub sample app's `README.md` file for additional information.
 
 > [!WARNING]
 > The Angular and React component features are currently **experimental, unsupported, and subject to change or be removed at any time**. We welcome your feedback on how well this particular approach meets your requirements.
@@ -1142,7 +1142,7 @@ Generate framework-specific JavaScript (JS) components from Razor components for
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-Blazor apps are built using *Razor components*. A component is a self-contained portion of user interface (UI) with processing logic to enable dynamic behavior. Components can be nested, reused, shared among projects, and [used in MVC and Razor Pages apps](xref:blazor/components/prerendering-and-integration).
+Blazor apps are built using *Blazor components*. A component is a self-contained portion of user interface (UI) with processing logic to enable dynamic behavior. Components can be nested, reused, shared among projects, and [used in MVC and Razor Pages apps](xref:blazor/components/prerendering-and-integration).
 
 ## Component classes
 
@@ -1626,7 +1626,7 @@ Alternatively, use a [`foreach`](/dotnet/csharp/language-reference/keywords/fore
 ```
 
 > [!NOTE]
-> Assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate is only supported in Razor component files (`.razor`):
+> Assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate is only supported in Blazor component files (`.razor`):
 > 
 > ```razor
 > private RenderFragment RenderWelcomeInfo = __builder =>
@@ -2109,7 +2109,7 @@ For more information, see the following articles:
 
 :::moniker range="< aspnetcore-5.0"
 
-Blazor apps are built using *Razor components*. A component is a self-contained portion of user interface (UI) with processing logic to enable dynamic behavior. Components can be nested, reused, shared among projects, and [used in MVC and Razor Pages apps](xref:blazor/components/prerendering-and-integration).
+Blazor apps are built using *Blazor components*. A component is a self-contained portion of user interface (UI) with processing logic to enable dynamic behavior. Components can be nested, reused, shared among projects, and [used in MVC and Razor Pages apps](xref:blazor/components/prerendering-and-integration).
 
 ## Component classes
 
@@ -2587,7 +2587,7 @@ Alternatively, use a [`foreach`](/dotnet/csharp/language-reference/keywords/fore
 ```
 
 > [!NOTE]
-> Assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate is only supported in Razor component files (`.razor`):
+> Assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate is only supported in Blazor component files (`.razor`):
 > 
 > ```razor
 > private RenderFragment RenderWelcomeInfo = __builder =>

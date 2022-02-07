@@ -15,7 +15,7 @@ uid: blazor/security/server/additional-scenarios
 
 ## Pass tokens to a Blazor Server app
 
-Tokens available outside of the Razor components in a Blazor Server app can be passed to components with the approach described in this section.
+Tokens available outside of the Blazor components in a Blazor Server app can be passed to components with the approach described in this section.
 
 Authenticate the Blazor Server app as you would with a regular Razor Pages or MVC app. Provision and save the tokens to the authentication cookie. For example:
 
@@ -164,7 +164,7 @@ app.MapBlazorHub().RequireAuthorization(
 
 ## Pass tokens to a Blazor Server app
 
-Tokens available outside of the Razor components in a Blazor Server app can be passed to components with the approach described in this section.
+Tokens available outside of the Blazor components in a Blazor Server app can be passed to components with the approach described in this section.
 
 Authenticate the Blazor Server app as you would with a regular Razor Pages or MVC app. Provision and save the tokens to the authentication cookie. For example:
 
@@ -313,7 +313,7 @@ endpoints.MapBlazorHub().RequireAuthorization(
 
 ## Pass tokens to a Blazor Server app
 
-Tokens available outside of the Razor components in a Blazor Server app can be passed to components with the approach described in this section.
+Tokens available outside of the Blazor components in a Blazor Server app can be passed to components with the approach described in this section.
 
 Authenticate the Blazor Server app as you would with a regular Razor Pages or MVC app. Provision and save the tokens to the authentication cookie. For example:
 

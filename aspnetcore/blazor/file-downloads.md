@@ -16,7 +16,7 @@ uid: blazor/file-downloads
 
 The following example demonstrates how to download a file. Native `byte[]` streaming interop is used to ensure efficient transfer to the client.
 
-In a Razor component (`.razor`), add [`@using`](xref:mvc/views/razor#using) and [`@inject`](xref:mvc/views/razor#inject) directives for the following:
+In a Blazor component (`.razor`), add [`@using`](xref:mvc/views/razor#using) and [`@inject`](xref:mvc/views/razor#inject) directives for the following:
 
 * <xref:System.IO?displayProperty=fullName>
 * <xref:Microsoft.JSInterop.IJSRuntime?displayProperty=fullName>

@@ -161,7 +161,7 @@ dotnet aspnet-codegenerator identity -dc MvcAuth.Data.ApplicationDbContext  --fi
 Tokens can be passed to components:
 
 * When authentication tokens are provisioned and saved to the authentication cookie, they can be passed to components.
-* Razor components can't use `HttpContext` directly, so there's no way to obtain an [anti-request forgery (XSRF) token](xref:security/anti-request-forgery) to POST to Identity's logout endpoint at `/Identity/Account/Logout`. An XSRF token can be passed to components.
+* Blazor components can't use `HttpContext` directly, so there's no way to obtain an [anti-request forgery (XSRF) token](xref:security/anti-request-forgery) to POST to Identity's logout endpoint at `/Identity/Account/Logout`. An XSRF token can be passed to components.
 
 For more information, see <xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app>.
 
@@ -255,7 +255,7 @@ Because Blazor Server uses Razor Pages Identity pages, the styling of the UI cha
 
 #### Build Identity components
 
-An approach to using components for Identity instead of pages is to build Identity components. Because `SignInManager` and `UserManager` aren't supported in Razor components, use API endpoints in the Blazor Server app to process user account actions.
+An approach to using components for Identity instead of pages is to build Identity components. Because `SignInManager` and `UserManager` aren't supported in Blazor components, use API endpoints in the Blazor Server app to process user account actions.
 
 #### Use a custom layout with Blazor app styles
 
@@ -326,7 +326,7 @@ In the `Pages/Shared/Layout.cshtml` file, make the following changes:
 
 Client-side Blazor WebAssembly apps use their own Identity UI approaches and can't use ASP.NET Core Identity scaffolding. Server-side ASP.NET Core apps of hosted Blazor solutions can follow the Razor Pages/MVC guidance in this article and are configured just like any other type of ASP.NET Core app that supports Identity.
 
-The Blazor framework doesn't include Razor component versions of Identity UI pages. Identity UI Razor components can be custom built or obtained from unsupported third-party sources.
+The Blazor framework doesn't include Blazor component versions of Identity UI pages. Identity UI Blazor components can be custom built or obtained from unsupported third-party sources.
 
 For more information, see the [Blazor Security and Identity articles](xref:blazor/security/index).
 
@@ -595,7 +595,7 @@ Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*. For more i
 Tokens can be passed to components:
 
 * When authentication tokens are provisioned and saved to the authentication cookie, they can be passed to components.
-* Razor components can't use `HttpContext` directly, so there's no way to obtain an [anti-request forgery (XSRF) token](xref:security/anti-request-forgery) to POST to Identity's logout endpoint at `/Identity/Account/Logout`. An XSRF token can be passed to components.
+* Blazor components can't use `HttpContext` directly, so there's no way to obtain an [anti-request forgery (XSRF) token](xref:security/anti-request-forgery) to POST to Identity's logout endpoint at `/Identity/Account/Logout`. An XSRF token can be passed to components.
 
 For more information, see <xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app>.
 
@@ -695,7 +695,7 @@ Because Blazor Server uses Razor Pages Identity pages, the styling of the UI cha
 
 #### Build Identity components
 
-An approach to using components for Identity instead of pages is to build Identity components. Because `SignInManager` and `UserManager` aren't supported in Razor components, use API endpoints in the Blazor Server app to process user account actions.
+An approach to using components for Identity instead of pages is to build Identity components. Because `SignInManager` and `UserManager` aren't supported in Blazor components, use API endpoints in the Blazor Server app to process user account actions.
 
 #### Use a custom layout with Blazor app styles
 
@@ -772,7 +772,7 @@ Some Identity options are configured in *Areas/Identity/IdentityHostingStartup.c
 
 Client-side Blazor WebAssembly apps use their own Identity UI approaches and can't use ASP.NET Core Identity scaffolding. Server-side ASP.NET Core apps of hosted Blazor solutions can follow the Razor Pages/MVC guidance in this article and are configured just like any other type of ASP.NET Core app that supports Identity.
 
-The Blazor framework doesn't include Razor component versions of Identity UI pages. Identity UI Razor components can be custom built or obtained from unsupported third-party sources.
+The Blazor framework doesn't include Blazor component versions of Identity UI pages. Identity UI Blazor components can be custom built or obtained from unsupported third-party sources.
 
 For more information, see the [Blazor Security and Identity articles](xref:blazor/security/index).
 

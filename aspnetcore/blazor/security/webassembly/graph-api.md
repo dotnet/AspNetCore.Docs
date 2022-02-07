@@ -314,7 +314,7 @@ builder.Services.AddHttpClient("GraphAPI",
 
 This section uses the [Graph Authorization Message Handler (`GraphAuthorizationMessageHandler.cs`) and `Program.cs` additions to the app](#named-client-with-graph-api) described earlier in this article, which provides a named <xref:System.Net.Http.HttpClient> for Graph API.
 
-In a Razor component:
+In a Blazor component:
 
 * Create an <xref:System.Net.Http.HttpClient> for Graph API and issue a request for the user's profile data.
 * The `UserInfo.cs` class designates the required user profile properties with the <xref:System.Text.Json.Serialization.JsonPropertyNameAttribute> attribute and the JSON name used by AAD for those properties.
@@ -805,7 +805,7 @@ builder.Services.AddHttpClient("GraphAPI",
 
 This section uses the [Graph Authorization Message Handler (`GraphAuthorizationMessageHandler.cs`) and `Program.cs` additions to the app](#named-client-with-graph-api) described earlier in this article, which provides a named <xref:System.Net.Http.HttpClient> for Graph API.
 
-In a Razor component:
+In a Blazor component:
 
 * Create an <xref:System.Net.Http.HttpClient> for Graph API and issue a request for the user's profile data.
 * The `UserInfo.cs` class designates the required user profile properties with the <xref:System.Text.Json.Serialization.JsonPropertyNameAttribute> attribute and the JSON name used by AAD for those properties.
@@ -1041,7 +1041,7 @@ builder.Services.AddHttpClient("GraphAPI",
 
 This section uses the [Graph Authorization Message Handler (`GraphAuthorizationMessageHandler.cs`) and `Program.cs` additions to the app](#named-client-with-graph-api) described earlier in this article, which provides a named <xref:System.Net.Http.HttpClient> for Graph API.
 
-In a Razor component:
+In a Blazor component:
 
 * Create an <xref:System.Net.Http.HttpClient> for Graph API and issue a request for the user's profile data.
 * The `UserInfo.cs` class designates the required user profile properties with the <xref:System.Text.Json.Serialization.JsonPropertyNameAttribute> attribute and the JSON name used by AAD for those properties.

@@ -323,7 +323,7 @@ The `{CUSTOM SCOPE 1}` and `{CUSTOM SCOPE 2}` placeholders in the preceding exam
 
 The `IAccessTokenProvider.RequestToken` method provides an overload that allows an app to provision an access token with a given set of scopes.
 
-In a Razor component:
+In a Blazor component:
 
 ```razor
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
@@ -1364,7 +1364,7 @@ The `{CUSTOM SCOPE 1}` and `{CUSTOM SCOPE 2}` placeholders in the preceding exam
 
 The `IAccessTokenProvider.RequestToken` method provides an overload that allows an app to provision an access token with a given set of scopes.
 
-In a Razor component:
+In a Blazor component:
 
 ```razor
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
@@ -2415,7 +2415,7 @@ The `{CUSTOM SCOPE 1}` and `{CUSTOM SCOPE 2}` placeholders in the preceding exam
 
 The `IAccessTokenProvider.RequestToken` method provides an overload that allows an app to provision an access token with a given set of scopes.
 
-In a Razor component:
+In a Blazor component:
 
 ```razor
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication

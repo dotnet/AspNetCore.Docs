@@ -1,5 +1,5 @@
 ---
-title: Consume ASP.NET Core Razor components from Razor class libraries
+title: Consume ASP.NET Core Blazor components from Razor class libraries
 author: guardrex
 description: Discover how components can be included in Blazor apps from an external Razor class libraries.
 monikerRange: '>= aspnetcore-3.1'
@@ -9,7 +9,7 @@ ms.date: 11/09/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/class-libraries
 ---
-# Consume ASP.NET Core Razor components from Razor class libraries
+# Consume ASP.NET Core Blazor components from Razor class libraries
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -40,7 +40,7 @@ Just as components are regular .NET types, components provided by an RCL are nor
 
 If the **Support pages and views** checkbox is selected to support pages and views when generating the RCL from the template:
 
-* Add an `_Imports.razor` file to root of the generated RCL project with the following contents to enable Razor component authoring:
+* Add an `_Imports.razor` file to root of the generated RCL project with the following contents to enable Blazor component authoring:
 
   ```razor
   @using Microsoft.AspNetCore.Components.Web
@@ -73,7 +73,7 @@ If the **Support pages and views** checkbox is selected to support pages and vie
 
 If the **Support pages and views** checkbox is selected to support pages and views when generating the RCL from the template:
 
-* Add an `_Imports.razor` file to root of the generated RCL project with the following contents to enable Razor component authoring:
+* Add an `_Imports.razor` file to root of the generated RCL project with the following contents to enable Blazor component authoring:
 
   ```razor
   @using Microsoft.AspNetCore.Components.Web
@@ -105,7 +105,7 @@ If the **Support pages and views** checkbox is selected to support pages and vie
 
 If the `-s|--support-pages-and-views` option is used to support pages and views when generating the RCL from the template:
 
-* Add an `_Imports.razor` file to root of the generated RCL project with the following contents to enable Razor component authoring:
+* Add an `_Imports.razor` file to root of the generated RCL project with the following contents to enable Blazor component authoring:
 
   ```razor
   @using Microsoft.AspNetCore.Components.Web
@@ -123,7 +123,7 @@ If the `-s|--support-pages-and-views` option is used to support pages and views 
 
 ---
 
-## Consume a Razor component from an RCL
+## Consume a Blazor component from an RCL
 
 To consume components from an RCL in another project, use either of the following approaches:
 
@@ -366,7 +366,7 @@ For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#ja
 
 ## Build, pack, and ship to NuGet
 
-Because Razor class libraries that contain Razor components are standard .NET libraries, packing and shipping them to NuGet is no different from packing and shipping any library to NuGet. Packing is performed using the [`dotnet pack`](/dotnet/core/tools/dotnet-pack) command in a command shell:
+Because Razor class libraries that contain Blazor components are standard .NET libraries, packing and shipping them to NuGet is no different from packing and shipping any library to NuGet. Packing is performed using the [`dotnet pack`](/dotnet/core/tools/dotnet-pack) command in a command shell:
 
 ```dotnetcli
 dotnet pack
@@ -415,7 +415,7 @@ Just as components are regular .NET types, components provided by an RCL are nor
 
 If the **Support pages and views** checkbox is selected to support pages and views when generating the RCL from the template:
 
-* Add an `_Imports.razor` file to root of the generated RCL project with the following contents to enable Razor component authoring:
+* Add an `_Imports.razor` file to root of the generated RCL project with the following contents to enable Blazor component authoring:
 
   ```razor
   @using Microsoft.AspNetCore.Components.Web
@@ -448,7 +448,7 @@ If the **Support pages and views** checkbox is selected to support pages and vie
 
 If the **Support pages and views** checkbox is selected to support pages and views when generating the RCL from the template:
 
-* Add an `_Imports.razor` file to root of the generated RCL project with the following contents to enable Razor component authoring:
+* Add an `_Imports.razor` file to root of the generated RCL project with the following contents to enable Blazor component authoring:
 
   ```razor
   @using Microsoft.AspNetCore.Components.Web
@@ -478,7 +478,7 @@ If the **Support pages and views** checkbox is selected to support pages and vie
    dotnet add reference {PATH TO LIBRARY}
    ```
 
-If the `-s|--support-pages-and-views` option is used to support pages and views when generating the RCL from the template, add an `_Imports.razor` file to root of the generated RCL project with the following contents to enable Razor component authoring:
+If the `-s|--support-pages-and-views` option is used to support pages and views when generating the RCL from the template, add an `_Imports.razor` file to root of the generated RCL project with the following contents to enable Blazor component authoring:
 
 ```razor
 @using Microsoft.AspNetCore.Components.Web
@@ -486,7 +486,7 @@ If the `-s|--support-pages-and-views` option is used to support pages and views 
 
 ---
 
-## Consume a Razor component from an RCL
+## Consume a Blazor component from an RCL
 
 To consume components from an RCL in another project, use either of the following approaches:
 
@@ -656,7 +656,7 @@ For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#ja
 
 ## Build, pack, and ship to NuGet
 
-Because Razor class libraries that contain Razor components are standard .NET libraries, packing and shipping them to NuGet is no different from packing and shipping any library to NuGet. Packing is performed using the [`dotnet pack`](/dotnet/core/tools/dotnet-pack) command in a command shell:
+Because Razor class libraries that contain Blazor components are standard .NET libraries, packing and shipping them to NuGet is no different from packing and shipping any library to NuGet. Packing is performed using the [`dotnet pack`](/dotnet/core/tools/dotnet-pack) command in a command shell:
 
 ```dotnetcli
 dotnet pack
@@ -703,7 +703,7 @@ Just as components are regular .NET types, components provided by an RCL are nor
    1. Right-click the app project. Select **Add** > **Project Reference**.
    1. Select the RCL project. Select **OK**.
 
-If the **Support pages and views** checkbox is selected to support pages and views when generating the RCL from the template, add an `_Imports.razor` file to root of the generated RCL project with the following contents to enable Razor component authoring:
+If the **Support pages and views** checkbox is selected to support pages and views when generating the RCL from the template, add an `_Imports.razor` file to root of the generated RCL project with the following contents to enable Blazor component authoring:
 
 ```razor
 @using Microsoft.AspNetCore.Components.Web
@@ -724,7 +724,7 @@ If the **Support pages and views** checkbox is selected to support pages and vie
    1. Right-click the app project. Select **Add** > **Reference**.
    1. Select the RCL project. Select **OK**.
 
-If the **Support pages and views** checkbox is selected to support pages and views when generating the RCL from the template, add an `_Imports.razor` file to root of the generated RCL project with the following contents to enable Razor component authoring:
+If the **Support pages and views** checkbox is selected to support pages and views when generating the RCL from the template, add an `_Imports.razor` file to root of the generated RCL project with the following contents to enable Blazor component authoring:
 
 ```razor
 @using Microsoft.AspNetCore.Components.Web
@@ -744,7 +744,7 @@ If the **Support pages and views** checkbox is selected to support pages and vie
    dotnet add reference {PATH TO LIBRARY}
    ```
 
-If the `-s|--support-pages-and-views` option is used to support pages and views when generating the RCL from the template, add an `_Imports.razor` file to root of the generated RCL project with the following contents to enable Razor component authoring:
+If the `-s|--support-pages-and-views` option is used to support pages and views when generating the RCL from the template, add an `_Imports.razor` file to root of the generated RCL project with the following contents to enable Blazor component authoring:
 
 ```razor
 @using Microsoft.AspNetCore.Components.Web
@@ -752,7 +752,7 @@ If the `-s|--support-pages-and-views` option is used to support pages and views 
 
 ---
 
-## Consume a Razor component from an RCL
+## Consume a Blazor component from an RCL
 
 To consume components from an RCL in another project, use either of the following approaches:
 
@@ -889,7 +889,7 @@ For more information, see <xref:blazor/host-and-deploy/webassembly#static-assets
 
 ## Build, pack, and ship to NuGet
 
-Because Razor class libraries that contain Razor components are standard .NET libraries, packing and shipping them to NuGet is no different from packing and shipping any library to NuGet. Packing is performed using the [`dotnet pack`](/dotnet/core/tools/dotnet-pack) command in a command shell:
+Because Razor class libraries that contain Blazor components are standard .NET libraries, packing and shipping them to NuGet is no different from packing and shipping any library to NuGet. Packing is performed using the [`dotnet pack`](/dotnet/core/tools/dotnet-pack) command in a command shell:
 
 ```dotnetcli
 dotnet pack

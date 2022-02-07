@@ -35,11 +35,11 @@ To reference ASP.NET Core, add the following `<FrameworkReference>` element to y
 
 ## Include Blazor extensibility
 
-Blazor supports WebAssembly (WASM) and server-based [hosting models](xref:blazor/hosting-models). Unless there's a specific reason not to support both hosting models, a [Razor components](xref:blazor/components/index) library should support both hosting models. A Razor components library must use the [Microsoft.NET.Sdk.Razor SDK](xref:razor-pages/sdk).
+Blazor supports WebAssembly (WASM) and server-based [hosting models](xref:blazor/hosting-models). Unless there's a specific reason not to support both hosting models, a [Blazor components](xref:blazor/components/index) library should support both hosting models. A Blazor components library must use the [Microsoft.NET.Sdk.Razor SDK](xref:razor-pages/sdk).
 
 ### Support both hosting models
 
-To support Razor component consumption by [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) and [Blazor Server](xref:blazor/hosting-models#blazor-server) projects, use the following instructions for your editor.
+To support Blazor component consumption by [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) and [Blazor Server](xref:blazor/hosting-models#blazor-server) projects, use the following instructions for your editor.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -159,7 +159,7 @@ For example:
 
 ### Support a specific hosting model
 
-It's far less common to support a single Blazor hosting model. As an example, to support Razor component consumption from [Blazor Server](xref:blazor/hosting-models#blazor-server) projects only:
+It's far less common to support a single Blazor hosting model. As an example, to support Blazor component consumption from [Blazor Server](xref:blazor/hosting-models#blazor-server) projects only:
 
 * Target .NET Core 3.x.
 * Add a `<FrameworkReference>` element for the shared framework.
@@ -170,7 +170,7 @@ For example:
 
 :::moniker-end
 
-For more information on libraries containing Razor components, see <xref:blazor/components/class-libraries>.
+For more information on libraries containing Blazor components, see <xref:blazor/components/class-libraries>.
 
 ## Include MVC extensibility
 

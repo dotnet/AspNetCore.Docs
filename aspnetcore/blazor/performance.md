@@ -83,7 +83,7 @@ For more information, see <xref:blazor/components/virtualization>.
 
 ### Create lightweight, optimized components
 
-Most Razor components don't require aggressive optimization efforts because most components don't repeat in the UI and don't rerender at high frequency. For example, routable components with an `@page` directive and components used to render high-level pieces of the UI, such as dialogs or forms, most likely appear only one at a time and only rerender in response to a user gesture. These components don't usually create high rendering workload, so you can freely use any combination of framework features without much concern about rendering performance.
+Most Blazor components don't require aggressive optimization efforts because most components don't repeat in the UI and don't rerender at high frequency. For example, routable components with an `@page` directive and components used to render high-level pieces of the UI, such as dialogs or forms, most likely appear only one at a time and only rerender in response to a user gesture. These components don't usually create high rendering workload, so you can freely use any combination of framework features without much concern about rendering performance.
 
 However, there are common scenarios where components are repeated at scale and often result in poor UI performance:
 
@@ -168,7 +168,7 @@ You might be factoring out child components purely as a way of reusing rendering
 As demonstrated in the preceding example, components can emit markup from code within their `@code` blocks and outside of them. The <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate must accept a parameter called `__builder` of type <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> so that the Razor compiler can produce rendering instructions for the fragment.
 
 > [!NOTE]
-> Assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate is only supported in Razor component files (`.razor`), and [event callbacks](xref:blazor/components/event-handling#eventcallback) aren't supported.
+> Assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate is only supported in Blazor component files (`.razor`), and [event callbacks](xref:blazor/components/event-handling#eventcallback) aren't supported.
 
 To make <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> code reusable across multiple components, declare the <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate as `public` and `static`:
 
@@ -840,7 +840,7 @@ For more information, see <xref:blazor/components/virtualization>.
 
 ### Create lightweight, optimized components
 
-Most Razor components don't require aggressive optimization efforts because most components don't repeat in the UI and don't rerender at high frequency. For example, routable components with an `@page` directive and components used to render high-level pieces of the UI, such as dialogs or forms, most likely appear only one at a time and only rerender in response to a user gesture. These components don't usually create high rendering workload, so you can freely use any combination of framework features without much concern about rendering performance.
+Most Blazor components don't require aggressive optimization efforts because most components don't repeat in the UI and don't rerender at high frequency. For example, routable components with an `@page` directive and components used to render high-level pieces of the UI, such as dialogs or forms, most likely appear only one at a time and only rerender in response to a user gesture. These components don't usually create high rendering workload, so you can freely use any combination of framework features without much concern about rendering performance.
 
 However, there are common scenarios where components are repeated at scale and often result in poor UI performance:
 
@@ -925,7 +925,7 @@ You might be factoring out child components purely as a way of reusing rendering
 As demonstrated in the preceding example, components can emit markup from code within their `@code` blocks and outside of them. The <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate must accept a parameter called `__builder` of type <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> so that the Razor compiler can produce rendering instructions for the fragment.
 
 > [!NOTE]
-> Assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate is only supported in Razor component files (`.razor`), and [event callbacks](xref:blazor/components/event-handling#eventcallback) aren't supported.
+> Assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate is only supported in Blazor component files (`.razor`), and [event callbacks](xref:blazor/components/event-handling#eventcallback) aren't supported.
 
 To make <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> code reusable across multiple components, declare the <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate as `public` and `static`:
 
@@ -1581,7 +1581,7 @@ For more information, see the following resources:
 
 ### Create lightweight, optimized components
 
-Most Razor components don't require aggressive optimization efforts because most components don't repeat in the UI and don't rerender at high frequency. For example, routable components with an `@page` directive and components used to render high-level pieces of the UI, such as dialogs or forms, most likely appear only one at a time and only rerender in response to a user gesture. These components don't usually create high rendering workload, so you can freely use any combination of framework features without much concern about rendering performance.
+Most Blazor components don't require aggressive optimization efforts because most components don't repeat in the UI and don't rerender at high frequency. For example, routable components with an `@page` directive and components used to render high-level pieces of the UI, such as dialogs or forms, most likely appear only one at a time and only rerender in response to a user gesture. These components don't usually create high rendering workload, so you can freely use any combination of framework features without much concern about rendering performance.
 
 However, there are common scenarios where components are repeated at scale and often result in poor UI performance:
 
@@ -1666,7 +1666,7 @@ You might be factoring out child components purely as a way of reusing rendering
 As demonstrated in the preceding example, components can emit markup from code within their `@code` blocks and outside of them. The <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate must accept a parameter called `__builder` of type <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> so that the Razor compiler can produce rendering instructions for the fragment.
 
 > [!NOTE]
-> Assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate is only supported in Razor component files (`.razor`), and [event callbacks](xref:blazor/components/event-handling#eventcallback) aren't supported.
+> Assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate is only supported in Blazor component files (`.razor`), and [event callbacks](xref:blazor/components/event-handling#eventcallback) aren't supported.
 
 To make <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> code reusable across multiple components, declare the <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate as `public` and `static`:
 

@@ -1,7 +1,7 @@
 ---
 title: ASP.NET Core Blazor logging
 author: guardrex
-description: Learn about logging in Blazor apps, including log level configuration and how to write log messages from Razor components.
+description: Learn about logging in Blazor apps, including log level configuration and how to write log messages from Blazor components.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
@@ -73,7 +73,7 @@ var connection = new HubConnectionBuilder()
 
 For general ASP.NET Core logging guidance that pertains to Blazor Server, see <xref:fundamentals/logging/index>.
 
-## Razor component logging
+## Blazor component logging
 
 Loggers respect app startup configuration.
 
@@ -159,7 +159,7 @@ var connection = new HubConnectionBuilder()
 
 For general ASP.NET Core logging guidance that pertains to Blazor Server, see <xref:fundamentals/logging/index>.
 
-## Razor component logging
+## Blazor component logging
 
 Loggers respect app startup configuration.
 
@@ -245,7 +245,7 @@ var connection = new HubConnectionBuilder()
 
 For general ASP.NET Core logging guidance that pertains to Blazor Server, see <xref:fundamentals/logging/index>.
 
-## Razor component logging
+## Blazor component logging
 
 Loggers respect app startup configuration.
 

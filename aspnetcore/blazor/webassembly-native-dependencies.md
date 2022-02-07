@@ -62,7 +62,7 @@ Add a simple native C function to a Blazor WebAssembly app:
    </ItemGroup>
    ```
 
-1. In a Razor component, add a <xref:System.Runtime.InteropServices.DllImportAttribute> for the `fact` function in the generated `Test` library and call the `fact` method from .NET code in the component.
+1. In a Blazor component, add a <xref:System.Runtime.InteropServices.DllImportAttribute> for the `fact` function in the generated `Test` library and call the `fact` method from .NET code in the component.
 
    `Pages/NativeCTest.razor`:
 
@@ -90,7 +90,7 @@ When you build the app with the **.NET WebAssembly build tools** installed, the 
 
 Label managed methods that are passed to C++ with the `[UnmanagedCallersOnly]` attribute.
 
-The method marked with the `[UnmanagedCallersOnly]` attribute must be `static`. To call an instance method in a Razor component, pass a `GCHandle` for the instance to C++ and then pass it back to native. Alternatively, use some other method to identify the instance of the component.
+The method marked with the `[UnmanagedCallersOnly]` attribute must be `static`. To call an instance method in a Blazor component, pass a `GCHandle` for the instance to C++ and then pass it back to native. Alternatively, use some other method to identify the instance of the component.
 
 The method marked with `[DllImport]` must use a C# 9.0 function pointer rather than a delegate type for the callback argument.
 

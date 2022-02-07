@@ -24,7 +24,7 @@ Built-in filters handle tasks such as:
 
 Custom filters can be created to handle cross-cutting concerns. Examples of cross-cutting concerns include error handling, caching, configuration, authorization, and logging. Filters avoid duplicating code. For example, an error handling exception filter could consolidate error handling.
 
-This document applies to Razor Pages, API controllers, and controllers with views. Filters don't work directly with [Razor components](xref:blazor/components/index). A filter can only indirectly affect a component when:
+This document applies to Razor Pages, API controllers, and controllers with views. Filters don't work directly with [Blazor components](xref:blazor/components/index). A filter can only indirectly affect a component when:
 
 * The component is embedded in a page or view.
 * The page or controller and view uses the filter.
@@ -550,7 +550,7 @@ Built-in filters handle tasks such as:
 
 Custom filters can be created to handle cross-cutting concerns. Examples of cross-cutting concerns include error handling, caching, configuration, authorization, and logging.  Filters avoid duplicating code. For example, an error handling exception filter could consolidate error handling.
 
-This document applies to Razor Pages, API controllers, and controllers with views. Filters don't work directly with [Razor components](xref:blazor/components/index). A filter can only indirectly affect a component when:
+This document applies to Razor Pages, API controllers, and controllers with views. Filters don't work directly with [Blazor components](xref:blazor/components/index). A filter can only indirectly affect a component when:
 
 * The component is embedded in a page or view.
 * The page or controller and view uses the filter.

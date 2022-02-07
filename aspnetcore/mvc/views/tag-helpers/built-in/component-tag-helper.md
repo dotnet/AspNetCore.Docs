@@ -2,7 +2,7 @@
 title: Component Tag Helper in ASP.NET Core
 author: guardrex
 ms.author: riande
-description: Learn how to use the ASP.NET Core Component Tag Helper to render Razor components in pages and views.
+description: Learn how to use the ASP.NET Core Component Tag Helper to render Blazor components in pages and views.
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: mvc
 ms.date: 10/29/2020
@@ -17,8 +17,8 @@ uid: mvc/views/tag-helpers/builtin-th/component-tag-helper
 
 Follow the guidance in the *Configuration* section for either:
 
-* [Blazor Server](xref:blazor/components/prerendering-and-integration?pivots=server): Integrate routable and non-routable Razor components into Razor Pages and MVC apps.
-* [Blazor WebAssembly](xref:blazor/components/prerendering-and-integration?pivots=webassembly): Integrate Razor components from a hosted Blazor WebAssembly solution into Razor Pages and MVC apps.
+* [Blazor Server](xref:blazor/components/prerendering-and-integration?pivots=server): Integrate routable and non-routable Blazor components into Razor Pages and MVC apps.
+* [Blazor WebAssembly](xref:blazor/components/prerendering-and-integration?pivots=webassembly): Integrate Blazor components from a hosted Blazor WebAssembly solution into Razor Pages and MVC apps.
 
 :::moniker-end
 
@@ -33,7 +33,7 @@ Follow the guidance in the *Configuration* section of the <xref:blazor/component
 To render a component from a page or view, use the [Component Tag Helper](xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper) (`<component>` tag).
 
 > [!NOTE]
-> Integrating Razor components into Razor Pages and MVC apps in a *hosted Blazor WebAssembly app* is supported in ASP.NET Core in .NET 5.0 or later.
+> Integrating Blazor components into Razor Pages and MVC apps in a *hosted Blazor WebAssembly app* is supported in ASP.NET Core in .NET 5.0 or later.
 
 <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configures whether the component:
 
@@ -73,7 +73,7 @@ Blazor Server app render modes are shown in the following table.
 
 Additional characteristics include:
 
-* Multiple Component Tag Helpers rendering multiple Razor components is allowed.
+* Multiple Component Tag Helpers rendering multiple Blazor components is allowed.
 * Components can't be dynamically rendered after the app has started.
 * While pages and views can use components, the converse isn't true. Components can't use view- and page-specific features, such as partial views and sections. To use logic from a partial view in a component, factor out the partial view logic into a component.
 * Rendering server components from a static HTML page isn't supported.
@@ -150,7 +150,7 @@ All types of parameters are supported, except:
 * Non-serializable parameters.
 * Inheritance in collection parameters.
 * Parameters whose type is defined outside of the Blazor WebAssembly app or within a lazily-loaded assembly.
-* For receiving a [`RenderFragment` delegate for child content](xref:blazor/components/index#child-content) (for example, `param-ChildContent="..."`). For this scenario, we recommend creating a Razor component (`.razor`) that references the component you want to render with the child content you want to pass and then invoke the Razor component from the page or view with the Component Tag Helper.
+* For receiving a [`RenderFragment` delegate for child content](xref:blazor/components/index#child-content) (for example, `param-ChildContent="..."`). For this scenario, we recommend creating a Blazor component (`.razor`) that references the component you want to render with the child content you want to pass and then invoke the Blazor component from the page or view with the Component Tag Helper.
 
 The parameter type must be JSON serializable, which typically means that the type must have a default constructor and settable properties. For example, you can specify a value for `Size` and `Color` in the preceding example because the types of `Size` and `Color` are primitive types (`int` and `string`), which are supported by the JSON serializer.
 

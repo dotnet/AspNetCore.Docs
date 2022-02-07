@@ -12,9 +12,9 @@ uid: aspnetcore-3.1
 
 This article highlights the most significant changes in ASP.NET Core 3.1 with links to relevant documentation.
 
-## Partial class support for Razor components
+## Partial class support for Blazor components
 
-Razor components are now generated as partial classes. Code for a Razor component can be written using a code-behind file defined as a partial class rather than defining all the code for the component in a single file. For more information, see [Partial class support](xref:blazor/components/index#partial-class-support).
+Blazor components are now generated as partial classes. Code for a Blazor component can be written using a code-behind file defined as a partial class rather than defining all the code for the component in a single file. For more information, see [Partial class support](xref:blazor/components/index#partial-class-support).
 
 ## Blazor Component Tag Helper and pass parameters to top-level components
 

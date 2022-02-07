@@ -33,7 +33,7 @@ Two common approaches for testing Blazor components are end-to-end (E2E) testing
   * Triggering of event handlers and life cycle methods.
   * Assertions that component behavior is correct.
 
-  [bUnit](https://github.com/egil/bUnit) is an example of a library that enables Razor component unit testing.
+  [bUnit](https://github.com/egil/bUnit) is an example of a library that enables Blazor component unit testing.
 
 * **E2E testing**: A test runner runs a Blazor app containing the CUT and automates a browser instance. The testing tool inspects and interacts with the CUT through the browser. [Playwright for .NET](https://playwright.dev/dotnet/) is an example of an E2E testing framework that can be used with Blazor apps.
 
@@ -163,7 +163,7 @@ Two common approaches for testing Blazor components are end-to-end (E2E) testing
   * Triggering of event handlers and life cycle methods.
   * Assertions that component behavior is correct.
 
-  [bUnit](https://github.com/egil/bUnit) is an example of a library that enables Razor component unit testing.
+  [bUnit](https://github.com/egil/bUnit) is an example of a library that enables Blazor component unit testing.
 
 * **E2E testing**: A test runner runs a Blazor app containing the CUT and automates a browser instance. The testing tool inspects and interacts with the CUT through the browser. [Playwright for .NET](https://playwright.dev/dotnet/) is an example of an E2E testing framework that can be used with Blazor apps.
 
@@ -293,7 +293,7 @@ Two common approaches for testing Blazor components are end-to-end (E2E) testing
   * Triggering of event handlers and life cycle methods.
   * Assertions that component behavior is correct.
 
-  [bUnit](https://github.com/egil/bUnit) is an example of a library that enables Razor component unit testing.
+  [bUnit](https://github.com/egil/bUnit) is an example of a library that enables Blazor component unit testing.
 
 * **E2E testing**: A test runner runs a Blazor app containing the CUT and automates a browser instance. The testing tool inspects and interacts with the CUT through the browser. [Playwright for .NET](https://playwright.dev/dotnet/) is an example of an E2E testing framework that can be used with Blazor apps.
 

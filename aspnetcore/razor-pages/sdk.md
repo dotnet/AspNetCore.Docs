@@ -46,7 +46,7 @@ The properties and items in the following table are used to configure inputs and
 | Items | Description |
 | ----- | ----------- |
 | `RazorGenerate` | Item elements (*.cshtml* files) that are inputs to code generation. |
-| `RazorComponent` | Item elements (*.razor* files) that are inputs to Razor component code generation. |
+| `RazorComponent` | Item elements (*.razor* files) that are inputs to Blazor component code generation. |
 | `RazorCompile` | Item elements (*.cs* files) that are inputs to Razor compilation targets. Use this `ItemGroup` to specify additional files to be compiled into the Razor assembly. |
 | `RazorEmbeddedResource` | Item elements added as embedded resources to the generated Razor assembly. |
 
@@ -132,7 +132,7 @@ The properties and items in the following table are used to configure inputs and
 | Items | Description |
 | ----- | ----------- |
 | `RazorGenerate` | Item elements (*.cshtml* files) that are inputs to code generation. |
-| `RazorComponent` | Item elements (*.razor* files) that are inputs to Razor component code generation. |
+| `RazorComponent` | Item elements (*.razor* files) that are inputs to Blazor component code generation. |
 | `RazorCompile` | Item elements (*.cs* files) that are inputs to Razor compilation targets. Use this `ItemGroup` to specify additional files to be compiled into the Razor assembly. |
 | `RazorTargetAssemblyAttribute` | Item elements used to code generate attributes for the Razor assembly. For example:  <br>`RazorAssemblyAttribute`<br>`Include="System.Reflection.AssemblyMetadataAttribute"`<br>`_Parameter1="BuildSource" _Parameter2="https://docs.microsoft.com/">` |
 | `RazorEmbeddedResource` | Item elements added as embedded resources to the generated Razor assembly. |
@@ -248,7 +248,7 @@ The properties and items in the following table are used to configure inputs and
 | Items | Description |
 | ----- | ----------- |
 | `RazorGenerate` | Item elements (*.cshtml* files) that are inputs to code generation. |
-| `RazorComponent` | Item elements (*.razor* files) that are inputs to Razor component code generation. |
+| `RazorComponent` | Item elements (*.razor* files) that are inputs to Blazor component code generation. |
 | `RazorCompile` | Item elements (*.cs* files) that are inputs to Razor compilation targets. Use this `ItemGroup` to specify additional files to be compiled into the Razor assembly. |
 | `RazorTargetAssemblyAttribute` | Item elements used to code generate attributes for the Razor assembly. For example:  <br>`RazorAssemblyAttribute`<br>`Include="System.Reflection.AssemblyMetadataAttribute"`<br>`_Parameter1="BuildSource" _Parameter2="https://docs.microsoft.com/">` |
 | `RazorEmbeddedResource` | Item elements added as embedded resources to the generated Razor assembly. |

@@ -1,14 +1,14 @@
 ---
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 ---
-Collocation of JavaScript (JS) files for pages, views, and Razor components is a convenient way to organize scripts in an app.
+Collocation of JavaScript (JS) files for pages, views, and Blazor components is a convenient way to organize scripts in an app.
 
 Collocate JS files using the following filename extension conventions:
 
 * Pages of Razor Pages apps and views of MVC apps: `.cshtml.js`. Examples:
   * `Pages/Index.cshtml.js` for the `Index` page of a Razor Pages app at `Pages/Index.cshtml`.
   * `Views/Home/Index.cshtml.js` for the `Index` view of an MVC app at `Views/Home/Index.cshtml`.
-* Razor components of Blazor apps: `.razor.js`. Example: `Pages/Index.razor.js` for the `Index` component at `Pages/Index.razor`.
+* Blazor components of Blazor apps: `.razor.js`. Example: `Pages/Index.razor.js` for the `Index` component at `Pages/Index.razor`.
 
 Collocated JS files are publicly addressable using the ***path to the file in the project***:
 
@@ -58,7 +58,7 @@ Collocated JS files are publicly addressable using the ***path to the file in th
   `_content/{PACKAGE ID}/{PATH}/{PAGE, VIEW, OR COMPONENT}.{EXTENSION}.js`
 
   * The `{PACKAGE ID}` placeholder is the RCL's package identifier (or library name for a class library referenced by the app).
-  * The `{PATH}` placeholder is the path to the page, view, or component. If a Razor component is located at the root of the RCL, the path segment isn't included.
+  * The `{PATH}` placeholder is the path to the page, view, or component. If a Blazor component is located at the root of the RCL, the path segment isn't included.
   * The `{PAGE, VIEW, OR COMPONENT}` placeholder is the page, view, or component.
   * The `{EXTENSION}` placeholder matches the extension of page, view, or component, either `razor` or `cshtml`.
 

@@ -1,7 +1,7 @@
 ---
-title: ASP.NET Core built-in Razor components
+title: ASP.NET Core built-in Blazor components
 author: guardrex
-description: Find information on Razor components built-into the Blazor framework.
+description: Find information on Blazor components built-into the Blazor framework.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
@@ -9,11 +9,11 @@ ms.date: 11/09/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/built-in-components
 ---
-# ASP.NET Core built-in Razor components
+# ASP.NET Core built-in Blazor components
 
 :::moniker range=">= aspnetcore-6.0"
 
-The following built-in Razor components are provided by the Blazor framework:
+The following built-in Blazor components are provided by the Blazor framework:
 
 * [`App`](xref:blazor/project-structure)
 * [`Authentication`](xref:blazor/security/webassembly/index#authentication-component)
@@ -45,7 +45,7 @@ The following built-in Razor components are provided by the Blazor framework:
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-The following built-in Razor components are provided by ASP.NET Core:
+The following built-in Blazor components are provided by ASP.NET Core:
 
 * [`App`](xref:blazor/project-structure)
 * [`Authentication`](xref:blazor/security/webassembly/index#authentication-component)
@@ -71,7 +71,7 @@ The following built-in Razor components are provided by ASP.NET Core:
 
 :::moniker range="< aspnetcore-5.0"
 
-The following built-in Razor components are provided by the Blazor framework:
+The following built-in Blazor components are provided by the Blazor framework:
 
 * [`App`](xref:blazor/project-structure)
 * [`Authentication`](xref:blazor/security/webassembly/index#authentication-component)

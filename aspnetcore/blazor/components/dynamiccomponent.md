@@ -1,7 +1,7 @@
 ---
-title: Dynamically-rendered ASP.NET Core Razor components
+title: Dynamically-rendered ASP.NET Core Blazor components
 author: daveabrock
-description: Learn how to use dynamically-rendered Razor components in Blazor apps.
+description: Learn how to use dynamically-rendered Blazor components in Blazor apps.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
@@ -9,7 +9,7 @@ ms.date: 11/09/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/dynamiccomponent
 ---
-# Dynamically-rendered ASP.NET Core Razor components
+# Dynamically-rendered ASP.NET Core Blazor components
 
 By [Dave Brock](https://twitter.com/daveabrock)
 
@@ -57,9 +57,9 @@ In the preceding example:
 
 ## Example
 
-In the following example, a Razor component renders a component based on the user's selection from a dropdown list of four possible values.
+In the following example, a Blazor component renders a component based on the user's selection from a dropdown list of four possible values.
 
-| User spaceflight carrier selection | Shared Razor component to render    |
+| User spaceflight carrier selection | Shared Blazor component to render    |
 | ---------------------------------- | ----------------------------------- |
 | Rocket Lab&reg;                    | `Shared/RocketLab.razor`            |
 | SpaceX&reg;                        | `Shared/SpaceX.razor`               |

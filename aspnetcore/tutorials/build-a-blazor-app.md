@@ -18,7 +18,7 @@ This tutorial shows you how to build and modify a Blazor app. You learn how to:
 
 > [!div class="checklist"]
 > * Create a todo list Blazor app project
-> * Modify Razor components
+> * Modify Blazor components
 > * Use event handling and data binding in components
 > * Use routing in a Blazor app
 
@@ -56,16 +56,16 @@ cd TodoList
 
 ## Build a todo list Blazor app
 
-1. Add a new `Todo` Razor component to the app using the following command:
+1. Add a new `Todo` Blazor component to the app using the following command:
 
    ```dotnetcli
    dotnet new razorcomponent -n Todo -o Pages
    ```
 
-   The `-n|--name` option in the preceding command specifies the name of the new Razor component. The new component is created in the project's `Pages` folder with the `-o|--output` option.
+   The `-n|--name` option in the preceding command specifies the name of the new Blazor component. The new component is created in the project's `Pages` folder with the `-o|--output` option.
 
    > [!IMPORTANT]
-   > Razor component file names require a capitalized first letter. Open the `Pages` folder and confirm that the `Todo` component file name starts with a capital letter `T`. The file name should be `Todo.razor`.
+   > Blazor component file names require a capitalized first letter. Open the `Pages` folder and confirm that the `Todo` component file name starts with a capital letter `T`. The file name should be `Todo.razor`.
 
 1. Open the `Todo` component in any file editor and add an `@page` Razor directive to the top of the file with a relative URL of `/todo`.
 
@@ -178,7 +178,7 @@ In this tutorial, you learned how to:
 
 > [!div class="checklist"]
 > * Create a todo list Blazor app project
-> * Modify Razor components
+> * Modify Blazor components
 > * Use event handling and data binding in components
 > * Use routing in a Blazor app
 
@@ -195,7 +195,7 @@ This tutorial shows you how to build and modify a Blazor app. You learn how to:
 
 > [!div class="checklist"]
 > * Create a todo list Blazor app project
-> * Modify Razor components
+> * Modify Blazor components
 > * Use event handling and data binding in components
 > * Use routing in a Blazor app
 
@@ -233,16 +233,16 @@ cd TodoList
 
 ## Build a todo list Blazor app
 
-1. Add a new `Todo` Razor component to the app using the following command:
+1. Add a new `Todo` Blazor component to the app using the following command:
 
    ```dotnetcli
    dotnet new razorcomponent -n Todo -o Pages
    ```
 
-   The `-n|--name` option in the preceding command specifies the name of the new Razor component. The new component is created in the project's `Pages` folder with the `-o|--output` option.
+   The `-n|--name` option in the preceding command specifies the name of the new Blazor component. The new component is created in the project's `Pages` folder with the `-o|--output` option.
 
    > [!IMPORTANT]
-   > Razor component file names require a capitalized first letter. Open the `Pages` folder and confirm that the `Todo` component file name starts with a capital letter `T`. The file name should be `Todo.razor`.
+   > Blazor component file names require a capitalized first letter. Open the `Pages` folder and confirm that the `Todo` component file name starts with a capital letter `T`. The file name should be `Todo.razor`.
 
 1. Open the `Todo` component in any file editor and add an `@page` Razor directive to the top of the file with a relative URL of `/todo`.
 
@@ -355,7 +355,7 @@ In this tutorial, you learned how to:
 
 > [!div class="checklist"]
 > * Create a todo list Blazor app project
-> * Modify Razor components
+> * Modify Blazor components
 > * Use event handling and data binding in components
 > * Use routing in a Blazor app
 
@@ -372,7 +372,7 @@ This tutorial shows you how to build and modify a Blazor app. You learn how to:
 
 > [!div class="checklist"]
 > * Create a todo list Blazor app project
-> * Modify Razor components
+> * Modify Blazor components
 > * Use event handling and data binding in components
 > * Use routing in a Blazor app
 
@@ -410,16 +410,16 @@ cd TodoList
 
 ## Build a todo list Blazor app
 
-1. Add a new `Todo` Razor component to the app using the following command:
+1. Add a new `Todo` Blazor component to the app using the following command:
 
    ```dotnetcli
    dotnet new razorcomponent -n Todo -o Pages
    ```
 
-   The `-n|--name` option in the preceding command specifies the name of the new Razor component. The new component is created in the project's `Pages` folder with the `-o|--output` option.
+   The `-n|--name` option in the preceding command specifies the name of the new Blazor component. The new component is created in the project's `Pages` folder with the `-o|--output` option.
 
    > [!IMPORTANT]
-   > Razor component file names require a capitalized first letter. Open the `Pages` folder and confirm that the `Todo` component file name starts with a capital letter `T`. The file name should be `Todo.razor`.
+   > Blazor component file names require a capitalized first letter. Open the `Pages` folder and confirm that the `Todo` component file name starts with a capital letter `T`. The file name should be `Todo.razor`.
 
 1. Open the `Todo` component in any file editor and add an `@page` Razor directive to the top of the file with a relative URL of `/todo`.
 
@@ -532,7 +532,7 @@ In this tutorial, you learned how to:
 
 > [!div class="checklist"]
 > * Create a todo list Blazor app project
-> * Modify Razor components
+> * Modify Blazor components
 > * Use event handling and data binding in components
 > * Use routing in a Blazor app
 

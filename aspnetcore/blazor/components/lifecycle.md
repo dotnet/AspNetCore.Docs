@@ -1,7 +1,7 @@
 ---
-title: ASP.NET Core Razor component lifecycle
+title: ASP.NET Core Blazor component lifecycle
 author: guardrex
-description: Learn about the ASP.NET Core Razor component lifecycle and how to use lifecycle events.
+description: Learn about the ASP.NET Core Blazor component lifecycle and how to use lifecycle events.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
@@ -9,15 +9,15 @@ ms.date: 11/09/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/lifecycle
 ---
-# ASP.NET Core Razor component lifecycle
+# ASP.NET Core Blazor component lifecycle
 
 :::moniker range=">= aspnetcore-6.0"
 
-The Razor component processes Razor component lifecycle events in a set of synchronous and asynchronous lifecycle methods. The lifecycle methods can be overridden to perform additional operations in components during component initialization and rendering.
+The Blazor component processes Blazor component lifecycle events in a set of synchronous and asynchronous lifecycle methods. The lifecycle methods can be overridden to perform additional operations in components during component initialization and rendering.
 
 ## Lifecycle events
 
-The following diagrams illustrate Razor component lifecycle events. The C# methods associated with the lifecycle events are defined with examples in the following sections of this article.
+The following diagrams illustrate Blazor component lifecycle events. The C# methods associated with the lifecycle events are defined with examples in the following sections of this article.
 
 Component lifecycle events:
 
@@ -28,7 +28,7 @@ Component lifecycle events:
 1. Call [`OnParametersSet{Async}`](#after-parameters-are-set-onparameterssetasync). If an incomplete <xref:System.Threading.Tasks.Task> is returned, the <xref:System.Threading.Tasks.Task> is awaited and then the component is rerendered.
 1. Render for all synchronous work and complete <xref:System.Threading.Tasks.Task>s.
 
-![Component lifecycle events of a Razor component in Blazor](~/blazor/components/lifecycle/_static/lifecycle1.png)
+![Component lifecycle events of a Blazor component in Blazor](~/blazor/components/lifecycle/_static/lifecycle1.png)
 
 Document Object Model (DOM) event processing:
 
@@ -455,11 +455,11 @@ The component lifecycle events covered in this article operate separately from [
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-The Razor component processes Razor component lifecycle events in a set of synchronous and asynchronous lifecycle methods. The lifecycle methods can be overridden to perform additional operations in components during component initialization and rendering.
+The Blazor component processes Blazor component lifecycle events in a set of synchronous and asynchronous lifecycle methods. The lifecycle methods can be overridden to perform additional operations in components during component initialization and rendering.
 
 ## Lifecycle events
 
-The following diagrams illustrate Razor component lifecycle events. The C# methods associated with the lifecycle events are defined with examples in the following sections of this article.
+The following diagrams illustrate Blazor component lifecycle events. The C# methods associated with the lifecycle events are defined with examples in the following sections of this article.
 
 Component lifecycle events:
 
@@ -470,7 +470,7 @@ Component lifecycle events:
 1. Call [`OnParametersSet{Async}`](#after-parameters-are-set-onparameterssetasync). If an incomplete <xref:System.Threading.Tasks.Task> is returned, the <xref:System.Threading.Tasks.Task> is awaited and then the component is rerendered.
 1. Render for all synchronous work and complete <xref:System.Threading.Tasks.Task>s.
 
-![Component lifecycle events of a Razor component in Blazor](~/blazor/components/lifecycle/_static/lifecycle1.png)
+![Component lifecycle events of a Blazor component in Blazor](~/blazor/components/lifecycle/_static/lifecycle1.png)
 
 Document Object Model (DOM) event processing:
 
@@ -896,11 +896,11 @@ The component lifecycle events covered in this article operate separately from [
 
 :::moniker range="< aspnetcore-5.0"
 
-The Razor component processes Razor component lifecycle events in a set of synchronous and asynchronous lifecycle methods. The lifecycle methods can be overridden to perform additional operations in components during component initialization and rendering.
+The Blazor component processes Blazor component lifecycle events in a set of synchronous and asynchronous lifecycle methods. The lifecycle methods can be overridden to perform additional operations in components during component initialization and rendering.
 
 ## Lifecycle events
 
-The following diagrams illustrate Razor component lifecycle events. The C# methods associated with the lifecycle events are defined with examples in the following sections of this article.
+The following diagrams illustrate Blazor component lifecycle events. The C# methods associated with the lifecycle events are defined with examples in the following sections of this article.
 
 Component lifecycle events:
 
@@ -911,7 +911,7 @@ Component lifecycle events:
 1. Call [`OnParametersSet{Async}`](#after-parameters-are-set-onparameterssetasync). If an incomplete <xref:System.Threading.Tasks.Task> is returned, the <xref:System.Threading.Tasks.Task> is awaited and then the component is rerendered.
 1. Render for all synchronous work and complete <xref:System.Threading.Tasks.Task>s.
 
-![Component lifecycle events of a Razor component in Blazor](~/blazor/components/lifecycle/_static/lifecycle1.png)
+![Component lifecycle events of a Blazor component in Blazor](~/blazor/components/lifecycle/_static/lifecycle1.png)
 
 Document Object Model (DOM) event processing:
 

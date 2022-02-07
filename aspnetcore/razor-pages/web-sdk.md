@@ -39,4 +39,4 @@ Features enabled by using the Web SDK:
 | -------- | ----------- |
 | `DisableImplicitFrameworkReferences` | Disables implicit reference to the `Microsoft.AspNetCore.App` shared framework. |
 | `DisableImplicitAspNetCoreAnalyzers` | Disables implicit reference to ASP.NET Core analyzers. |
-| `DisableImplicitComponentsAnalyzers` | Disables implicit reference to Razor Components analyzers when building Blazor (server) applications. |
+| `DisableImplicitComponentsAnalyzers` | Disables implicit reference to Blazor components analyzers when building Blazor (server) applications. |

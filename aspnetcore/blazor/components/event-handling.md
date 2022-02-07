@@ -13,7 +13,7 @@ uid: blazor/components/event-handling
 
 :::moniker range=">= aspnetcore-6.0"
 
-Specify delegate event handlers in Razor component markup with [`@on{DOM EVENT}="{DELEGATE}"`](xref:mvc/views/razor#onevent) Razor syntax:
+Specify delegate event handlers in Blazor component markup with [`@on{DOM EVENT}="{DELEGATE}"`](xref:mvc/views/razor#onevent) Razor syntax:
 
 * The `{DOM EVENT}` placeholder is a [Document Object Model (DOM) event](https://developer.mozilla.org/docs/Web/Events) (for example, `click`).
 * The `{DELEGATE}` placeholder is the C# delegate event handler.
@@ -199,7 +199,7 @@ Event name conventions differ between .NET and JavaScript:
 * In .NET, event names are prefixed with "`on`".
 * In JavaScript, event names don't have a prefix.
 
-In a Razor component, attach the custom handler to an element.
+In a Blazor component, attach the custom handler to an element.
 
 `Pages/CustomPasteArguments.razor`:
 
@@ -340,7 +340,7 @@ Call <xref:Microsoft.AspNetCore.Components.ElementReferenceExtensions.FocusAsync
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-Specify delegate event handlers in Razor component markup with [`@on{DOM EVENT}="{DELEGATE}"`](xref:mvc/views/razor#onevent) Razor syntax:
+Specify delegate event handlers in Blazor component markup with [`@on{DOM EVENT}="{DELEGATE}"`](xref:mvc/views/razor#onevent) Razor syntax:
 
 * The `{DOM EVENT}` placeholder is a [Document Object Model (DOM) event](https://developer.mozilla.org/docs/Web/Events) (for example, `click`).
 * The `{DELEGATE}` placeholder is the C# delegate event handler.
@@ -516,7 +516,7 @@ Call <xref:Microsoft.AspNetCore.Components.ElementReferenceExtensions.FocusAsync
 
 :::moniker range="< aspnetcore-5.0"
 
-Specify delegate event handlers in Razor component markup with [`@on{DOM EVENT}="{DELEGATE}"`](xref:mvc/views/razor#onevent) Razor syntax:
+Specify delegate event handlers in Blazor component markup with [`@on{DOM EVENT}="{DELEGATE}"`](xref:mvc/views/razor#onevent) Razor syntax:
 
 * The `{DOM EVENT}` placeholder is a [Document Object Model (DOM) event](https://developer.mozilla.org/docs/Web/Events) (for example, `click`).
 * The `{DELEGATE}` placeholder is the C# delegate event handler.

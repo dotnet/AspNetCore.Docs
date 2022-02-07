@@ -17,13 +17,13 @@ In this article, learn how to manage request routing and how to use the <xref:Mi
 
 ## Route templates
 
-The <xref:Microsoft.AspNetCore.Components.Routing.Router> component enables routing to Razor components in a Blazor app. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component is used in the `App` component of Blazor apps.
+The <xref:Microsoft.AspNetCore.Components.Routing.Router> component enables routing to Blazor components in a Blazor app. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component is used in the `App` component of Blazor apps.
 
 `App.razor`:
 
 [!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/routing/App1.razor)]
 
-When a Razor component (`.razor`) with an [`@page` directive](xref:mvc/views/razor#page) is compiled, the generated component class is provided a <xref:Microsoft.AspNetCore.Components.RouteAttribute> specifying the component's route template.
+When a Blazor component (`.razor`) with an [`@page` directive](xref:mvc/views/razor#page) is compiled, the generated component class is provided a <xref:Microsoft.AspNetCore.Components.RouteAttribute> specifying the component's route template.
 
 When the app starts, the assembly specified as the Router's `AppAssembly` is scanned to gather route information for the app's components that have a <xref:Microsoft.AspNetCore.Components.RouteAttribute>.
 
@@ -665,13 +665,13 @@ In this article, learn how to manage request routing and how to use the <xref:Mi
 
 ## Route templates
 
-The <xref:Microsoft.AspNetCore.Components.Routing.Router> component enables routing to Razor components in a Blazor app. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component is used in the `App` component of Blazor apps.
+The <xref:Microsoft.AspNetCore.Components.Routing.Router> component enables routing to Blazor components in a Blazor app. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component is used in the `App` component of Blazor apps.
 
 `App.razor`:
 
 [!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/routing/App1.razor)]
 
-When a Razor component (`.razor`) with an [`@page` directive](xref:mvc/views/razor#page) is compiled, the generated component class is provided a <xref:Microsoft.AspNetCore.Components.RouteAttribute> specifying the component's route template.
+When a Blazor component (`.razor`) with an [`@page` directive](xref:mvc/views/razor#page) is compiled, the generated component class is provided a <xref:Microsoft.AspNetCore.Components.RouteAttribute> specifying the component's route template.
 
 When the app starts, the assembly specified as the Router's `AppAssembly` is scanned to gather route information for the app's components that have a <xref:Microsoft.AspNetCore.Components.RouteAttribute>.
 
@@ -1092,13 +1092,13 @@ In this article, learn how to manage request routing and how to use the <xref:Mi
 
 ## Route templates
 
-The <xref:Microsoft.AspNetCore.Components.Routing.Router> component enables routing to Razor components in a Blazor app. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component is used in the `App` component of Blazor apps.
+The <xref:Microsoft.AspNetCore.Components.Routing.Router> component enables routing to Blazor components in a Blazor app. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component is used in the `App` component of Blazor apps.
 
 `App.razor`:
 
 [!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/routing/App1.razor)]
 
-When a Razor component (`.razor`) with an [`@page` directive](xref:mvc/views/razor#page) is compiled, the generated component class is provided a <xref:Microsoft.AspNetCore.Components.RouteAttribute> specifying the component's route template.
+When a Blazor component (`.razor`) with an [`@page` directive](xref:mvc/views/razor#page) is compiled, the generated component class is provided a <xref:Microsoft.AspNetCore.Components.RouteAttribute> specifying the component's route template.
 
 When the app starts, the assembly specified as the Router's `AppAssembly` is scanned to gather route information for the app's components that have a <xref:Microsoft.AspNetCore.Components.RouteAttribute>.
 

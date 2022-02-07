@@ -13,7 +13,7 @@ uid: blazor/components/data-binding
 
 :::moniker range=">= aspnetcore-6.0"
 
-Razor components provide data binding features with the [`@bind`](xref:mvc/views/razor#bind) Razor directive attribute with a field, property, or Razor expression value.
+Blazor components provide data binding features with the [`@bind`](xref:mvc/views/razor#bind) Razor directive attribute with a field, property, or Razor expression value.
 
 The following example binds:
 
@@ -28,7 +28,7 @@ When an `<input>` element loses focus, its bound field or property is updated.
 
 The text box is updated in the UI only when the component is rendered, not in response to changing the field's or property's value. Since components render themselves after event handler code executes, field and property updates are usually reflected in the UI immediately after an event handler is triggered.
 
-As a demonstration of how data binding composes in HTML, the following example binds the `InputValue` property to the second `<input>` element's `value` and [`onchange`](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/onchange) attributes. *The second `<input>` element in the following example is a concept demonstration and isn't meant to suggest how you should bind data in Razor components.*
+As a demonstration of how data binding composes in HTML, the following example binds the `InputValue` property to the second `<input>` element's `value` and [`onchange`](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/onchange) attributes. *The second `<input>` element in the following example is a concept demonstration and isn't meant to suggest how you should bind data in Blazor components.*
 
 `Pages/BindTheory.razor`:
 
@@ -269,7 +269,7 @@ For an alternative approach suited to sharing data in memory and across componen
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-Razor components provide data binding features with the [`@bind`](xref:mvc/views/razor#bind) Razor directive attribute with a field, property, or Razor expression value.
+Blazor components provide data binding features with the [`@bind`](xref:mvc/views/razor#bind) Razor directive attribute with a field, property, or Razor expression value.
 
 The following example binds:
 
@@ -284,7 +284,7 @@ When an `<input>` element loses focus, its bound field or property is updated.
 
 The text box is updated in the UI only when the component is rendered, not in response to changing the field's or property's value. Since components render themselves after event handler code executes, field and property updates are usually reflected in the UI immediately after an event handler is triggered.
 
-As a demonstration of how data binding composes in HTML, the following example binds the `InputValue` property to the second `<input>` element's `value` and [`onchange`](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/onchange) attributes. *The second `<input>` element in the following example is a concept demonstration and isn't meant to suggest how you should bind data in Razor components.*
+As a demonstration of how data binding composes in HTML, the following example binds the `InputValue` property to the second `<input>` element's `value` and [`onchange`](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/onchange) attributes. *The second `<input>` element in the following example is a concept demonstration and isn't meant to suggest how you should bind data in Blazor components.*
 
 `Pages/BindTheory.razor`:
 
@@ -464,7 +464,7 @@ For an alternative approach suited to sharing data in memory and across componen
 
 :::moniker range="< aspnetcore-5.0"
 
-Razor components provide data binding features with the [`@bind`](xref:mvc/views/razor#bind) Razor directive attribute with a field, property, or Razor expression value.
+Blazor components provide data binding features with the [`@bind`](xref:mvc/views/razor#bind) Razor directive attribute with a field, property, or Razor expression value.
 
 The following example binds:
 
@@ -479,7 +479,7 @@ When an `<input>` element loses focus, its bound field or property is updated.
 
 The text box is updated in the UI only when the component is rendered, not in response to changing the field's or property's value. Since components render themselves after event handler code executes, field and property updates are usually reflected in the UI immediately after an event handler is triggered.
 
-As a demonstration of how data binding composes in HTML, the following example binds the `InputValue` property to the second `<input>` element's `value` and [`onchange`](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/onchange) attributes. *The second `<input>` element in the following example is a concept demonstration and isn't meant to suggest how you should bind data in Razor components.*
+As a demonstration of how data binding composes in HTML, the following example binds the `InputValue` property to the second `<input>` element's `value` and [`onchange`](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/onchange) attributes. *The second `<input>` element in the following example is a concept demonstration and isn't meant to suggest how you should bind data in Blazor components.*
 
 `Pages/BindTheory.razor`:
 

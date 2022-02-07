@@ -21,7 +21,7 @@ This tutorial teaches the basics of building a real-time app using SignalR with 
 > * Add the SignalR client library
 > * Add a SignalR hub
 > * Add SignalR services and an endpoint for the SignalR hub
-> * Add Razor component code for chat
+> * Add Blazor component code for chat
 
 At the end of this tutorial, you'll have a working chat app.
 
@@ -204,7 +204,7 @@ In the `BlazorWebAssemblySignalRApp.Server` project, create a `Hubs` (plural) fo
 
    [!code-csharp[](~/tutorials/signalr-blazor/samples/6.0/BlazorWebAssemblySignalRApp/Server/Program.cs?name=snippet_Configure)]
 
-## Add Razor component code for chat
+## Add Blazor component code for chat
 
 1. In the `BlazorWebAssemblySignalRApp.Client` project, open the `Pages/Index.razor` file.
 
@@ -428,7 +428,7 @@ Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/Cha
 
    [!code-csharp[](~/tutorials/signalr-blazor/samples/6.0/BlazorServerSignalRApp/Program.cs?name=snippet_Configure)]
 
-## Add Razor component code for chat
+## Add Blazor component code for chat
 
 1. Open the `Pages/Index.razor` file.
 
@@ -505,7 +505,7 @@ In this tutorial, you learned how to:
 > * Add the SignalR client library
 > * Add a SignalR hub
 > * Add SignalR services and an endpoint for the SignalR hub
-> * Add Razor component code for chat
+> * Add Blazor component code for chat
 
 To learn more about building Blazor apps, see the Blazor documentation:
 
@@ -532,7 +532,7 @@ This tutorial teaches the basics of building a real-time app using SignalR with 
 > * Add the SignalR client library
 > * Add a SignalR hub
 > * Add SignalR services and an endpoint for the SignalR hub
-> * Add Razor component code for chat
+> * Add Blazor component code for chat
 
 At the end of this tutorial, you'll have a working chat app.
 
@@ -713,7 +713,7 @@ In the `BlazorWebAssemblySignalRApp.Server` project, create a `Hubs` (plural) fo
 
    [!code-csharp[](~/tutorials/signalr-blazor/samples/5.0/BlazorWebAssemblySignalRApp/Server/Startup.cs?name=snippet_Configure&highlight=3,26)]
 
-## Add Razor component code for chat
+## Add Blazor component code for chat
 
 1. In the `BlazorWebAssemblySignalRApp.Client` project, open the `Pages/Index.razor` file.
 
@@ -937,7 +937,7 @@ Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/Cha
 
    [!code-csharp[](~/tutorials/signalr-blazor/samples/5.0/BlazorServerSignalRApp/Startup.cs?name=snippet_Configure&highlight=3,23)]
 
-## Add Razor component code for chat
+## Add Blazor component code for chat
 
 1. Open the `Pages/Index.razor` file.
 
@@ -1014,7 +1014,7 @@ In this tutorial, you learned how to:
 > * Add the SignalR client library
 > * Add a SignalR hub
 > * Add SignalR services and an endpoint for the SignalR hub
-> * Add Razor component code for chat
+> * Add Blazor component code for chat
 
 To learn more about building Blazor apps, see the Blazor documentation:
 
@@ -1041,7 +1041,7 @@ This tutorial teaches the basics of building a real-time app using SignalR with 
 > * Add the SignalR client library
 > * Add a SignalR hub
 > * Add SignalR services and an endpoint for the SignalR hub
-> * Add Razor component code for chat
+> * Add Blazor component code for chat
 
 At the end of this tutorial, you'll have a working chat app.
 
@@ -1222,7 +1222,7 @@ In the `BlazorWebAssemblySignalRApp.Server` project, create a `Hubs` (plural) fo
 
    [!code-csharp[](~/tutorials/signalr-blazor/samples/3.1/BlazorWebAssemblySignalRApp/Server/Startup.cs?name=snippet_Configure&highlight=3,25)]
 
-## Add Razor component code for chat
+## Add Blazor component code for chat
 
 1. In the `BlazorWebAssemblySignalRApp.Client` project, open the `Pages/Index.razor` file.
 
@@ -1502,7 +1502,7 @@ Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/Cha
 
    [!code-csharp[](~/tutorials/signalr-blazor/samples/3.1/BlazorServerSignalRApp/Startup.cs?name=snippet_Configure&highlight=3,23)]
 
-## Add Razor component code for chat
+## Add Blazor component code for chat
 
 1. Open the `Pages/Index.razor` file.
 
@@ -1579,7 +1579,7 @@ In this tutorial, you learned how to:
 > * Add the SignalR client library
 > * Add a SignalR hub
 > * Add SignalR services and an endpoint for the SignalR hub
-> * Add Razor component code for chat
+> * Add Blazor component code for chat
 
 To learn more about building Blazor apps, see the Blazor documentation:
 
