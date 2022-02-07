@@ -121,7 +121,7 @@ In the preceding markup, the `asp-area=""` [anchor Tag Helper attribute](xref:mv
 
 **Note**: The `Movies` controller hasn't been implemented. At this point, the `Movie App` link isn't functional.
 
-Save the changes and select the **Privacy** link. Notice how the title on the browser tab displays `**Privacy Policy - Movie App**` instead of `**Privacy Policy - MvcMovie**`
+Save the changes and select the **Privacy** link. Notice how the title on the browser tab displays **Privacy Policy - Movie App** instead of **Privacy Policy - MvcMovie**
 
 ![Privacy tab](~/tutorials/first-mvc-app/adding-view/_static/privacy50.png)
 
@@ -339,7 +339,7 @@ In the preceding markup, the `asp-area=""` [anchor Tag Helper attribute](xref:mv
 
 **Note**: The `Movies` controller hasn't been implemented. At this point, the `Movie App` link isn't functional.
 
-Save the changes and select the **Privacy** link. Notice how the title on the browser tab displays `**Privacy Policy - Movie App**` instead of `**Privacy Policy - MvcMovie**`
+Save the changes and select the **Privacy** link. Notice how the title on the browser tab displays **Privacy Policy - Movie App** instead of **Privacy Policy - MvcMovie**
 
 ![Privacy tab](~/tutorials/first-mvc-app/adding-view/_static/privacy50.png)
 
