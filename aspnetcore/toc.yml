@@ -336,6 +336,8 @@ items:
             uid: blazor/project-structure
           - name: Fundamentals
             items:
+              - name: Overview
+                uid: blazor/fundamentals/index
               - name: Routing and navigation
                 uid: blazor/fundamentals/routing
               - name: Configuration
@@ -810,6 +812,8 @@ items:
     items:
       - name: .NET Hot Reload
         uid: test/hot-reload
+      - name: Debug .NET and ASP.NET Core source code
+        uid: test/debug-aspnetcore-source
       - name: Razor Pages unit tests
         uid: test/razor-pages-tests
       - name: Test controllers
