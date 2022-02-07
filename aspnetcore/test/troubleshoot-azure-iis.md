@@ -549,6 +549,7 @@ A functioning app may fail immediately after upgrading either the .NET Core SDK 
 
 ## Additional resources
 
+* <xref:test/debug-aspnetcore-source>
 * <xref:test/troubleshoot>
 * <xref:host-and-deploy/azure-iis-errors-reference>
 * <xref:fundamentals/error-handling>
