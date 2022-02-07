@@ -146,7 +146,7 @@ The preceding code puts the custom value provider after all built-in value provi
 
 ## No source for a model property
 
-By default, a model state error isn't created if no value is found for a model property. The property is set to null or a default value:
+By default, a model state error isn't created if no value is found for a model property or the value is empty. The property is set to null or a default value:
 
 * Nullable simple types are set to `null`.
 * Non-nullable value types are set to `default(T)`. For example, a parameter `int id` is set to 0.
