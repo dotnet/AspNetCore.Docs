@@ -17,13 +17,21 @@ This article shows how to migrate the Products controller created in [Getting St
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/migration/webapi/sample/) ([how to download](xref:index#how-to-download-a-sample))
 
-## Create the destination project
+## Prerequisites
 
-### Prerequisites
+# [Visual Studio](#tab/visual-studio)
 
 [!INCLUDE[](~/includes/net-prereqs-vs-6.0.md)]
 
-Create an ASP.NET Core Web API project
+# [Visual Studio Code](#tab/visual-studio-code)
+
+[!INCLUDE[](~/includes/net-prereqs-vsc-6.0.md)]
+
+---
+
+## Create the new ASP.NET Core Web API project
+
+# [Visual Studio](#tab/visual-studio)
 
 1. From the **File** menu, select **New** > **Project**.
 1. Enter *Web API* in the search box.
@@ -38,7 +46,14 @@ Create an ASP.NET Core Web API project
 1. Open *Properties\launchSettings.json*.
 1. Change `launchUrl` properties from `weatherforcast` to `productscore`.
 
+# [Visual Studio Code](#tab/visual-studio-code)
+
+---
+
 ## Add the ASP.NET 4.x Web API controller and model to migrate
+
+
+# [Visual Studio](#tab/visual-studio)
 
 Add the example model class:
 
@@ -57,6 +72,10 @@ Add the example controller:
 1. Replace the template controller code with the following:
 
    [!code-csharp[](webapi/sample/3.x/ProductsApp/Controllers/ProductsController.cs)]
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+---
 
 ## The configuration for ASP.NET Core Web API
 
