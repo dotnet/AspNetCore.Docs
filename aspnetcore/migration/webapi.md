@@ -13,7 +13,7 @@ uid: migration/webapi
 An ASP.NET 4.x Web API is an HTTP service that reaches a broad range of clients, including browsers and mobile devices. ASP.NET Core combines ASP.NET 4.x's MVC and Web API app models into a single programming model known as ASP.NET Core MVC.
 
 :::moniker range=">= aspnetcore-6.0"
-This article migrates a basic controller from ASP.NET 4.x to to ASP.NET Core 6.x.
+This article shows how to migrate the Products controller created in [Getting Started with ASP.NET Web API 2](/aspnet/web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api) to ASP.NET Core.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/migration/webapi/sample/) ([how to download](xref:index#how-to-download-a-sample))
 
