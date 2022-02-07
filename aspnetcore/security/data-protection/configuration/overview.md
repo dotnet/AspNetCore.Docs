@@ -118,7 +118,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-In ASP.NET Core 2.1 or later, you can provide an <xref:System.Security.Cryptography.X509Certificates.X509Certificate2> to <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithCertificate%2A>, such as a certificate loaded from a file:
+You can provide an <xref:System.Security.Cryptography.X509Certificates.X509Certificate2> to <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithCertificate%2A>, such as a certificate loaded from a file:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -134,7 +134,7 @@ See [Key Encryption At Rest](xref:security/data-protection/implementation/key-en
 
 ## UnprotectKeysWithAnyCertificate
 
-In ASP.NET Core 2.1 or later, you can rotate certificates and decrypt keys at rest using an array of <xref:System.Security.Cryptography.X509Certificates.X509Certificate2> certificates with <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.UnprotectKeysWithAnyCertificate%2A>:
+You can rotate certificates and decrypt keys at rest using an array of <xref:System.Security.Cryptography.X509Certificates.X509Certificate2> certificates with <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.UnprotectKeysWithAnyCertificate%2A>:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -461,7 +461,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-In ASP.NET Core 2.1 or later, you can provide an <xref:System.Security.Cryptography.X509Certificates.X509Certificate2> to <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithCertificate%2A>, such as a certificate loaded from a file:
+You can provide an <xref:System.Security.Cryptography.X509Certificates.X509Certificate2> to <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithCertificate%2A>, such as a certificate loaded from a file:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -477,7 +477,7 @@ See [Key Encryption At Rest](xref:security/data-protection/implementation/key-en
 
 ## UnprotectKeysWithAnyCertificate
 
-In ASP.NET Core 2.1 or later, you can rotate certificates and decrypt keys at rest using an array of <xref:System.Security.Cryptography.X509Certificates.X509Certificate2> certificates with <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.UnprotectKeysWithAnyCertificate%2A>:
+You can rotate certificates and decrypt keys at rest using an array of <xref:System.Security.Cryptography.X509Certificates.X509Certificate2> certificates with <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.UnprotectKeysWithAnyCertificate%2A>:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
