@@ -1635,8 +1635,6 @@ For more information, see <xref:blazor/components/index#namespaces>.
 
 Integrating Razor components into Razor Pages and MVC apps in a hosted Blazor WebAssembly solution is supported in ASP.NET Core in .NET 5 or later. Select a .NET 5 or later version of this article.
 
-Prerendering can improve [Search Engine Optimization (SEO)](https://developer.mozilla.org/docs/Glossary/SEO) by rendering content for the initial HTTP response that search engines can use to calculate page rank.
-
 :::zone-end
 
 :::zone pivot="server"
