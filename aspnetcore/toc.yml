@@ -372,6 +372,8 @@ items:
                 uid: blazor/components/event-handling
               - name: Lifecycle
                 uid: blazor/components/lifecycle
+              - name: Virtualization
+                uid: blazor/components/virtualization
               - name: Rendering
                 uid: blazor/components/rendering
               - name: Templated components
@@ -438,6 +440,8 @@ items:
                     uid: blazor/security/webassembly/hosted-with-identity-server
                   - name: Additional scenarios
                     uid: blazor/security/webassembly/additional-scenarios
+                  - name: AAD groups and roles
+                    uid: blazor/security/webassembly/aad-groups-roles
                   - name: Graph API
                     uid: blazor/security/webassembly/graph-api
               - name: Content Security Policy
