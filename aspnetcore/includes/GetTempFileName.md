@@ -1,4 +1,0 @@
----
-no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
----
-**Warning**: The following code uses `GetTempFileName`, which throws an `IOException` if more than 65535 files are created without deleting previous temporary files. A real app should either delete temporary files or use `GetTempPath` and `GetRandomFileName` to create temporary file names. The 65535 files limit is per server, so another app on the server can use up all 65535 files. 
