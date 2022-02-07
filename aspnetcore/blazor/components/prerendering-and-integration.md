@@ -18,6 +18,8 @@ zone_pivot_groups: blazor-hosting-models
 
 Razor components can be integrated into Razor Pages and MVC apps in a hosted Blazor WebAssembly solution. When the page or view is rendered, components can be prerendered at the same time.
 
+Prerendering can improve [Search Engine Optimization (SEO)](https://developer.mozilla.org/docs/Glossary/SEO) by rendering content for the initial HTTP response that search engines can use to calculate page rank.
+
 ## Solution configuration
 
 ### Prerendering configuration
@@ -414,6 +416,8 @@ Additional work might be required depending on the static resources that compone
 :::zone pivot="server"
 
 Razor components can be integrated into Razor Pages and MVC apps. When the page or view is rendered, components can be prerendered at the same time.
+  
+Prerendering can improve [Search Engine Optimization (SEO)](https://developer.mozilla.org/docs/Glossary/SEO) by rendering content for the initial HTTP response that search engines can use to calculate page rank.
 
 After [configuring the project](#configuration), use the guidance in the following sections depending on the project's requirements:
 
@@ -945,6 +949,8 @@ By initializing components with the same state used during prerendering, any exp
 :::zone pivot="webassembly"
 
 Razor components can be integrated into Razor Pages and MVC apps in a hosted Blazor WebAssembly solution. When the page or view is rendered, components can be prerendered at the same time.
+  
+Prerendering can improve [Search Engine Optimization (SEO)](https://developer.mozilla.org/docs/Glossary/SEO) by rendering content for the initial HTTP response that search engines can use to calculate page rank.
 
 ## Solution configuration
 
@@ -1191,6 +1197,8 @@ Additional work might be required depending on the static resources that compone
 :::zone pivot="server"
 
 Razor components can be integrated into Razor Pages and MVC apps. When the page or view is rendered, components can be prerendered at the same time.
+
+Prerendering can improve [Search Engine Optimization (SEO)](https://developer.mozilla.org/docs/Glossary/SEO) by rendering content for the initial HTTP response that search engines can use to calculate page rank.
 
 After [configuring the project](#configuration), use the guidance in the following sections depending on the project's requirements:
 
@@ -1632,6 +1640,8 @@ Integrating Razor components into Razor Pages and MVC apps in a hosted Blazor We
 :::zone pivot="server"
 
 Razor components can be integrated into Razor Pages and MVC apps. When the page or view is rendered, components can be prerendered at the same time.
+
+Prerendering can improve [Search Engine Optimization (SEO)](https://developer.mozilla.org/docs/Glossary/SEO) by rendering content for the initial HTTP response that search engines can use to calculate page rank.
 
 After [configuring the project](#configuration), use the guidance in the following sections depending on the project's requirements:
 

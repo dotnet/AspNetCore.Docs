@@ -7,9 +7,8 @@ The following table details the ASP.NET Core code generator parameters:
 | ----------------- | ------------ |
 | -m  | The name of the model. |
 | -dc  | The data context. |
-| -udl | Use the default layout. |
 | --relativeFolderPath | The relative output folder path to create the files. |
-| --useDefaultLayout | The default layout should be used for the views. |
+| --useDefaultLayout\|-udl | The default layout should be used for the views. |
 | --referenceScriptLibraries | Adds `_ValidationScriptsPartial` to Edit and Create pages. |
 | -sqlite | Flag to specify if `DbContext` should use SQLite instead of SQL Server. |
 

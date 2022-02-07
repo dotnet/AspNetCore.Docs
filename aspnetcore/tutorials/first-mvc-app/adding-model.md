@@ -161,7 +161,7 @@ Scaffolding updates the following:
 
 Open a command window in the project directory. The project directory is the directory that contains the *Program.cs* and *.csproj* files.
 
-On Linux, export the scaffold tool path:
+On macOS and Linux, export the scaffold tool path:
 
 ```console
 export PATH=$HOME/.dotnet/tools:$PATH
@@ -611,7 +611,7 @@ Scaffolding updates the following:
 
 Open a command window in the project directory. The project directory is the directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files.
 
-On Linux, export the scaffold tool path:
+On macOS and Linux, export the scaffold tool path:
 
 ```console
 export PATH=$HOME/.dotnet/tools:$PATH
@@ -1080,7 +1080,7 @@ The automatic creation of these files is known as *scaffolding*.
 
 * Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
 
-* On Linux, export the scaffold tool path:
+* On macOS and Linux, export the scaffold tool path:
 
   ```console
   export PATH=$HOME/.dotnet/tools:$PATH
