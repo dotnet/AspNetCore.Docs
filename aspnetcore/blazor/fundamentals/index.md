@@ -5,7 +5,7 @@ description: Learn foundational concepts of the Blazor application framework.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/03/2022
+ms.date: 02/08/2022
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/fundamentals/index
 ---
@@ -69,49 +69,9 @@ The preceding `Counter` component:
 
 ## Sample apps
 
-Sample apps are available to assist with implementing guidance or for reference articles or tutorials.
+Documentation sample apps are available for inspection or download:
 
-### Blazor Server with EF Core
-
-Blazor Server EF Core sample app (ASP.NET Core 6.0):
-
-* [Browse on GitHub](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/blazor/samples/6.0/BlazorServerEFCoreSample)
-* [Download](https://raw.githubusercontent.com/dotnet/AspNetCore.Docs/main/aspnetcore/blazor/samples/6.0/BlazorServerDbContextExample.zip)
-
-For more information, see <xref:blazor/blazor-server-ef-core>.
-
-### Blazor with SignalR
-
-Blazor SignalR sample app (ASP.NET Core 6.0): [Browse on GitHub](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/signalr-blazor/samples/6.0)
-
-For more information, see <xref:tutorials/signalr-blazor>.
-
-### Snippet sample apps for article code examples
-
-Snippet sample apps for Blazor Server and Blazor WebAssembly provide the code examples that appear in Blazor articles. Snippet sample apps compile and run. However, several of the examples aren't fully working in their current form because either of the following are true for the article's examples:
-
-* The example requires extra Razor, C#, or other code to run correctly that the article's example doesn't require in order to explain Blazor concepts.
-* The example requires additional packages to use additional API, sometimes third-party packages, an account (token or key) for an external service, or another app (for example, a separate running web API app to interact with over a network). Usually, the article associated with the example provides additional guidance on how to make the example work in a live test app.
-
-> [!WARNING]
-> Always follow an article's security guidance when implementing sample code.
-
-The `dotnet/AspNetCore.Docs` GitHub repository location and a direct download link for snippet sample apps appear in the following table. Select the GitHub link to browse the sample app online at GitHub. Use the download link to obtain a ZIP archive of the sample app, which permits use of the sample app locally without requiring a [download of the entire `dotnet/AspNetCore.Docs` repository](xref:index#how-to-download-a-sample).
-
-> [!IMPORTANT]
-> The primary purpose of the snippet sample apps is to supply code examples to documentation, not to illustrate Blazor best practices. The best use of the sample app code is to facilitate copying examples into local test apps for experimentation and further customization for use in production apps. Namespaces, names, and locations of app resources are contrived in order to maintain the code efficiently for articles and make sure that the code compiles:
->
-> * Folder names and folder locations throughout the snippet sample apps roughly match the type of example and article subject. They aren't meant to represent the folder names and layout of a real production app.
-> * C# files (`.cs`) often appear in the root of the app's folder, which isn't normal for typical production apps.
-> * Some components create mock C# objects instead of using formal, correct code to create the objects. For example, a component that requires a list of `TodoItem` items might include an `@code` block as its first line (`@code{ private List<TodoItem> todos = new(); }`) to create a variable for use in the example ***that the article doesn't show to readers***. To implement these unfinished examples in a production app for users, finish the code and supply an `@code` block with formal, correct code to create the required objects. The purpose of using these mocked C# objects in the snippet sample apps is to make sure that the code compiles correctly for the documentation.
-> * Some components only show a portion of their Razor markup in an article. This is accomplished by surrounding the code for display with snippet HTML comments (for example, `<!-- <snippet> -->...<!-- </snippet> -->`). These comments can be removed or ignored, as they have no purpose in an ordinary Blazor app outside of the documentation.
-
-Blazor snippet sample apps (ASP.NET Core 6.0) appear in the following table.
-
-| Hosting model | GitHub location | Direct download link |
-| ------------- | --------------- | -------------------- |
-| Blazor Server | [Browse on GitHub](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/blazor/samples/6.0/BlazorSample_Server) | [Download](https://raw.githubusercontent.com/dotnet/AspNetCore.Docs/main/aspnetcore/blazor/samples/6.0/BlazorSample_Server.zip) |
-| Blazor WebAssembly | [Browse on GitHub](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/blazor/samples/6.0/BlazorSample_WebAssembly) | [Download](https://raw.githubusercontent.com/dotnet/AspNetCore.Docs/main/aspnetcore/blazor/samples/6.0/BlazorSample_WebAssembly.zip) |
+[`dotnet/blazor-samples` GitHub repository](https://github.com/dotnet/blazor-samples)
 
 ## Support requests
 
