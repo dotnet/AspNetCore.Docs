@@ -108,6 +108,8 @@ services
 
 Creating client scoped interceptors is useful when an interceptor requires [scoped or transient scoped services from DI](/dotnet/core/extensions/dependency-injection#service-lifetimes).
 
+A gRPC interceptor or channel credentials can be used to send `Authorization` metadata with each request. For more information about configuring authentication, see [Send a bearer token with gRPC client factory](xref:grpc/authn-and-authz#bearer-token-with-grpc-client-factory).
+
 ## Configure Channel
 
 Additional configuration can be applied to a channel using the `ConfigureChannel` method:
@@ -126,10 +128,12 @@ services
 
 `ConfigureChannel` is passed a `GrpcChannelOptions` instance. For more information, see [configure client options](xref:grpc/configuration#configure-client-options).
 
-A gRPC interceptor or channel credentials can be used to send `Authorization` metadata with each request. For more information about configuring authentication, see [Send a bearer token with gRPC client factory](xref:grpc/authn-and-authz#bearer-token-with-grpc-client-factory).
-
 > [!NOTE]
-> `ConfigureChannel` Calling gRPC over HTTP/2 with `Grpc.Net.Client` is currently not supported on Xamarin. We are working to improve HTTP/2 support in a future Xamarin release. [Grpc.Core](https://www.nuget.org/packages/Grpc.Core) and [gRPC-Web](xref:grpc/browser) are viable alternatives that work today.
+> Before the `ConfigureChannel` callback is run:
+> * `GrpcChannelOptions.HttpHandler` is set to the result from `ConfigurePrimaryHttpMessageHandler`
+> * `GrpcChannelOptions.LoggerFactory` is set to the `ILoggerFactory` resolved from DI.
+> 
+> These values can be overriden by `ConfigureChannel`.
 
 ## Deadline and cancellation propagation
 
