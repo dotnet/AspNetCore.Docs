@@ -53,17 +53,14 @@ This article shows how to migrate the Products controller created in [Getting St
 1. Run the following commands to create a new web API project and open it in Visual Studio Code:
 
    ```dotnetcli
-   dotnet new webapi -o TodoApi
-   cd TodoApi
-   code -r ../TodoApi
+   dotnet new webapi -o ProductsCore
+   cd ProductsCore
+   code -r ../ProductsCore
    ```
-
-* When a dialog box asks if you want to add required assets to the project, select **Yes**.
 
 ---
 
 ## Add the ASP.NET 4.x Web API controller and model to migrate
-
 
 # [Visual Studio](#tab/visual-studio)
 
