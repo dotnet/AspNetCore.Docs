@@ -129,9 +129,9 @@ services
 `ConfigureChannel` is passed a `GrpcChannelOptions` instance. For more information, see [configure client options](xref:grpc/configuration#configure-client-options).
 
 > [!NOTE]
-> Before the `ConfigureChannel` callback is run:
-> * `GrpcChannelOptions.HttpHandler` is set to the result from `ConfigurePrimaryHttpMessageHandler`
-> * `GrpcChannelOptions.LoggerFactory` is set to the `ILoggerFactory` resolved from DI.
+> Some properties are set on `GrpcChannelOptions` before the `ConfigureChannel` callback is run:
+> * `HttpHandler` is set to the result from <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A>.
+> * `LoggerFactory` is set to the <xref:Microsoft.Extensions.Logging.ILoggerFactory> resolved from DI.
 > 
 > These values can be overriden by `ConfigureChannel`.
 
