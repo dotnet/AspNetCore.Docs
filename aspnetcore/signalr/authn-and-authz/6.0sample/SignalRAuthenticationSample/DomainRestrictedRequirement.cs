@@ -11,11 +11,16 @@ public class DomainRestrictedRequirement :
         DomainRestrictedRequirement requirement,
         HubInvocationContext resource)
     {
-        var name = context.User.Identity!.Name!;
-        if (IsUserAllowedToDoThis(resource.HubMethodName, name) &&
-            name.EndsWith("@microsoft.com"))
+        if (context.User.Identity != null && 
+           !string.IsNullOrEmpty(context.User.Identity.Name))
         {
-            context.Succeed(requirement);
+            var name = context.User.Identity.Name;
+
+            if (IsUserAllowedToDoThis(resource.HubMethodName, name) &&
+                name.EndsWith("@microsoft.com"))
+            {
+                context.Succeed(requirement);
+            }
         }
         return Task.CompletedTask;
     }

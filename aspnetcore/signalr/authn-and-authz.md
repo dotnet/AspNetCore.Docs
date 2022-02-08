@@ -51,7 +51,7 @@ var connection = new HubConnectionBuilder()
 ```
 
 > [!NOTE]
-> The access token function you provide is called before **every** HTTP request made by SignalR. If you need to renew the token in order to keep the connection active (because it may expire during the connection), do so from within this function and return the updated token.
+> The access token function provided is called before **every** HTTP request made by SignalR. If the token needs to be renewed in order to keep the connection active, do so from within this function and return the updated token. The token may need to be renewed so it doesn't expire during the connection.
 
 In standard web APIs, bearer tokens are sent in an HTTP header. However, SignalR is unable to set these headers in browsers when using some transports. When using WebSockets and Server-Sent Events, the token is transmitted as a query string parameter. 
 
@@ -80,16 +80,16 @@ Cookies are specific to browsers. Sending them from other kinds of clients adds 
 
 ### Windows authentication
 
-If [Windows authentication](xref:security/authentication/windowsauth) is configured in your app, SignalR can use that identity to secure hubs. However, to send messages to individual users, you need to add a custom User ID provider. The Windows authentication system doesn't provide the "Name Identifier" claim. SignalR uses the claim to determine the user name.
+If [Windows authentication](xref:security/authentication/windowsauth) is configured in the app, SignalR can use that identity to secure hubs. However, to send messages to individual users, add a custom User ID provider. The Windows authentication system doesn't provide the "Name Identifier" claim. SignalR uses the claim to determine the user name.
 
 Add a new class that implements `IUserIdProvider` and retrieve one of the claims from the user to use as the identifier. For example, to use the "Name" claim (which is the Windows username in the form `[Domain]/[Username]`), create the following class:
 
 [!code-csharp[Name based provider](authn-and-authz/sample/nameuseridprovider.cs?name=NameUserIdProvider)]
 
-Rather than `ClaimTypes.Name`, you can use any value from the `User` (such as the Windows SID identifier, and so on).
+Rather than `ClaimTypes.Name`, use any value from the `User`, such as the Windows SID identifier, etc.
 
 > [!NOTE]
-> The value you choose must be unique among all the users in your system. Otherwise, a message intended for one user could end up going to a different user.
+> The value chosen must be unique among all the users in the system. Otherwise, a message intended for one user could end up going to a different user.
 
 Register this component in *Program.cs*:
 
@@ -113,10 +113,10 @@ Windows authentication is supported in Microsoft Edge, but not in all browsers. 
 
 An app that authenticates users can derive SignalR user IDs from user claims. To specify how SignalR creates user IDs, implement `IUserIdProvider` and register the implementation.
 
-The sample code demonstrates how you would use claims to select the user's email address as the identifying property.
+The sample code demonstrates how to use claims to select the user's email address as the identifying property.
 
 > [!NOTE]
-> The value you choose must be unique among all the users in your system. Otherwise, a message intended for one user could end up going to a different user.
+> The value chosen must be unique among all the users in the system. Otherwise, a message intended for one user could end up going to a different user.
 
 [!code-csharp[Email provider](authn-and-authz/6.0sample/SignalRAuthenticationSample/EmailBasedUserIdProvider.cs?name=EmailBasedUserIdProvider)]
 
