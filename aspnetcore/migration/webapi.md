@@ -84,6 +84,19 @@ Add the example controller:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
+Copy the *Product* model:
+
+1. Add a folder named *Models*.
+1. Add a *Product* class to the *Models* folder with the following code:
+
+   [!code-csharp[](webapi/sample/3.x/ProductsApp/Models/Product.cs)]
+
+Copy the *ProductsController*:
+
+1. Add a *ProductsController* class to the *Controllers* folder with the following code:
+
+   [!code-csharp[](webapi/sample/3.x/ProductsApp/Controllers/ProductsController.cs)]
+
 ---
 
 ## The configuration for ASP.NET Core Web API
@@ -150,10 +163,6 @@ The preceding highlighted code changes the following:
 * Adds `[Route("api/[controller]")]` and `[ApiController]` attributes, which are explained in the next section.
 
 ## Routing
-
-The ASP.NET Web API 2 *App_Start/WebAPIConfig.cs* file contains an endpoint for the ProductsApp app:
-
-[!code-csharp[](webapi/sample/3.x/ProductsApp/App_Start/WebAPIConfig.cs?highlight=15, 17-21)]
 
 ASP.NET Core provides a minimal hosting model in which the endpoint routing middleware wraps the entire middleware pipeline, therefore routes can be added directly to the <xref:Microsoft.AspNetCore.Builder.WebApplication> without an explicit call to <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> or <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A> to register routes.
 
