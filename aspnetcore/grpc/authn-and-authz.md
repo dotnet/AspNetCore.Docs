@@ -168,7 +168,7 @@ services
 The preceeding code:
 * Defines `AuthInterceptor` which is constructed using the user defined `ITokenProvider`.
 * Registers the `GreeterClient` type with client factory.
-* Configures the `AuthInterceptor` for this client using `InterceptorScope.Client`. A new interceptor is created for each client instance, so when a client is created for a gRPC service or Web API controller the scoped `ITokenProvider` is injected into the interceptor.
+* Configures the `AuthInterceptor` for this client using `InterceptorScope.Client`. A new interceptor is created for each client instance. When a client is created for a gRPC service or Web API controller, the scoped `ITokenProvider` is injected into the interceptor.
 
 ### Client certificate authentication
 
