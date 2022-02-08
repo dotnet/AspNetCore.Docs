@@ -2,9 +2,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 
 namespace SignalRAuthenticationSample.Hubs;
-
-[Authorize]
-public class ChatHub : Hub
+#region snippet
+[Authorize("MyAuthorizationPolicy")]
+public class ChatPolicyHub : Hub
 {
     public override async Task OnConnectedAsync()
     {
@@ -12,7 +12,8 @@ public class ChatHub : Hub
                                     $"{Context.UserIdentifier} joined.");
         await base.OnConnectedAsync();
     }
-
+    // Code removed for brevity.
+    #endregion
     public override async Task OnDisconnectedAsync(Exception? exception)
     {
         await Clients.All.SendAsync("ReceiveSystemMessage",

@@ -8,7 +8,7 @@ namespace SignalRAuthenticationSample
     {
         public virtual string GetUserId(HubConnectionContext connection)
         {
-            return connection.User?.FindFirst(ClaimTypes.Email)?.Value;
+            return connection.User?.FindFirst(ClaimTypes.Email)?.Value!;
         }
     }
 #endregion

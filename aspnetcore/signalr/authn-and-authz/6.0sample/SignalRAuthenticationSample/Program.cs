@@ -1,6 +1,7 @@
-#define FIRST // FIRST
+#define DRR // FIRST SECOND IDENTITY WIN DRR 
 #if NEVER
 #elif FIRST
+#region snippet1
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SignalRAuthenticationSample.Data;
@@ -41,7 +42,9 @@ app.MapRazorPages();
 app.MapHub<ChatHub>("/chat");
 
 app.Run();
+#endregion
 #elif SECOND
+#region snippet2
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
@@ -141,6 +144,146 @@ app.UseAuthorization();
 
 app.MapRazorPages();
 app.MapHub<ChatHub>("/chatHub");
+
+app.Run();
+#endregion
+#elif IDENTITY
+#region snippet_i
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using SignalRAuthenticationSample.Hubs;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddAuthentication()
+    .AddIdentityServerJwt();
+builder.Services.TryAddEnumerable(
+    ServiceDescriptor.Singleton<IPostConfigureOptions<JwtBearerOptions>,
+        ConfigureJwtBearerOptions>());
+
+builder.Services.AddRazorPages();
+
+var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseMigrationsEndPoint();
+}
+else
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.MapRazorPages();
+app.MapHub<ChatHub>("/chat");
+
+app.Run();
+#endregion
+#elif WIN
+#region snippet_win
+using Microsoft.AspNetCore.Authentication.Negotiate;
+using Microsoft.AspNetCore.SignalR;
+using SignalRAuthenticationSample;
+
+var builder = WebApplication.CreateBuilder(args);
+var services = builder.Services;
+
+services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
+   .AddNegotiate();
+
+services.AddAuthorization(options =>
+{
+    options.FallbackPolicy = options.DefaultPolicy;
+});
+services.AddRazorPages();
+
+services.AddSignalR();
+services.AddSingleton<IUserIdProvider, NameUserIdProvider>();
+
+var app = builder.Build();
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.MapRazorPages();
+
+app.Run();
+#endregion
+#elif DRR
+#region snippet_drr
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using SignalRAuthenticationSample;
+using SignalRAuthenticationSample.Data;
+using SignalRAuthenticationSample.Hubs;
+
+var builder = WebApplication.CreateBuilder(args);
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var services = builder.Services;
+
+services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(connectionString));
+services.AddDatabaseDeveloperPageExceptionFilter();
+
+services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<ApplicationDbContext>();
+
+services.AddAuthorization(options =>
+        {
+            options.AddPolicy("DomainRestricted", policy =>
+            {
+                policy.Requirements.Add(new DomainRestrictedRequirement());
+            });
+        });
+
+services.AddRazorPages();
+
+var app = builder.Build();
+
+// Code removed for brevity
+#endregion
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseMigrationsEndPoint();
+}
+else
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.MapRazorPages();
+app.MapHub<ChatHub>("/chat");
 
 app.Run();
 #endif
