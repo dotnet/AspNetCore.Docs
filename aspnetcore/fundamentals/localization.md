@@ -372,7 +372,7 @@ Use `RequestLocalizationOptions` to add or remove localization providers.
     });
 ```
 
-In the preceding example above, the  order of `QueryStringRequestCultureProvider` and `CookieRequestCultureProvider` is swithched, so the `RequestLocalizationMiddleware` looks for the cultures from the cookies first, then query string.
+In the preceding example above, the  order of `QueryStringRequestCultureProvider` and `CookieRequestCultureProvider` is switched, so the `RequestLocalizationMiddleware` looks for the cultures from the cookies first, then query string.
 
 As previously mentioned, add a custom provider via <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptionsExtensions.AddInitialRequestCultureProvider%2A> which sets the order to `0`, so this provider takes the precedence over the others.
 
