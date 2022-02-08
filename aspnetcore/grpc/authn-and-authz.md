@@ -128,6 +128,48 @@ services
     });
 ```
 
+A gRPC interceptor can also be used to configure a bearer token. An advantage to using an interceptor is the client factory can be configured to create a new interceptor for each client. This allows an interceptor to be [constructed from DI using scoped and transient services](/dotnet/core/extensions/dependency-injection#service-lifetimes).
+
+Consider an app that has:
+* A user-defined `ITokenProvider` for getting a bearer token. `ITokenProvider` is registered in DI with a scoped lifetime.
+* gRPC client factory is configured to create clients that are injected into gRPC services and Web API controllers.
+* gRPC calls should use `ITokenProvider` to get a bearer token.
+
+```csharp
+public class AuthInterceptor : Interceptor
+{
+    private readonly ITokenProvider _tokenProvider;
+    
+    public AuthInterceptor(ITokenProvider tokenProvider)
+    {
+        _tokenProvider = tokenProvider;
+    }
+    
+    public override AsyncUnaryCall<TResponse> AsyncUnaryCall<TRequest, TResponse>(
+        TRequest request,
+        ClientInterceptorContext<TRequest, TResponse> context,
+        AsyncUnaryCallContinuation<TRequest, TResponse> continuation)
+    {
+        context.Options.Metadata.Add("Authorization", $"Bearer {_tokenProvider.GetToken()}");
+        return continuation(request, context);
+    }
+}
+```
+
+```csharp
+services
+    .AddGrpcClient<Greeter.GreeterClient>(o =>
+    {
+        o.Address = new Uri("https://localhost:5001");
+    })
+    .AddInterceptor<AuthInterceptor>(InterceptorScope.Client);
+```
+
+The preceeding code:
+* Defines `AuthInterceptor` which is constructed using the user defined `ITokenProvider`.
+* Registers the `GreeterClient` type with client factory.
+* Configures the `AuthInterceptor` for this client using `InterceptorScope.Client`. A new interceptor is created for each client instance. When a client is created for a gRPC service or Web API controller, the scoped `ITokenProvider` is injected into the interceptor.
+
 ### Client certificate authentication
 
 A client could alternatively provide a client certificate for authentication. [Certificate authentication](https://tools.ietf.org/html/rfc5246#section-7.4.4) happens at the TLS level, long before it ever gets to ASP.NET Core. When the request enters ASP.NET Core, the [client certificate authentication package](xref:security/authentication/certauth) allows you to resolve the certificate to a `ClaimsPrincipal`.
