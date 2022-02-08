@@ -876,7 +876,12 @@ In the **`Server`** app's `Pages/_Host.cshtml` file, replace the `Component` Tag
 </div>
 ```
 
-In the preceding example, the placeholder `{CLIENT APP ASSEMBLY NAME}` is the client app's assembly name (for example `BlazorSample.Client`).
+In the preceding example:
+
+* The placeholder `{CLIENT APP ASSEMBLY NAME}` is the client app's assembly name (for example `BlazorSample.Client`).
+* The conditional check for the `/authentication` path segment:
+  * Avoids prerendering (`render-mode="WebAssembly"`) for authentication paths.
+  * Prerenders (`render-mode="WebAssemblyPrerendered"`) for non-authentication paths.
 
 ## Options for hosted apps and third-party login providers
 
@@ -1915,7 +1920,12 @@ In the **`Server`** app's `Pages/_Host.cshtml` file, replace the `Component` Tag
 </div>
 ```
 
-In the preceding example, the placeholder `{CLIENT APP ASSEMBLY NAME}` is the client app's assembly name (for example `BlazorSample.Client`).
+In the preceding example:
+
+* The placeholder `{CLIENT APP ASSEMBLY NAME}` is the client app's assembly name (for example `BlazorSample.Client`).
+* The conditional check for the `/authentication` path segment:
+  * Avoids prerendering (`render-mode="WebAssembly"`) for authentication paths.
+  * Prerenders (`render-mode="WebAssemblyPrerendered"`) for non-authentication paths.
 
 ## Options for hosted apps and third-party login providers
 
@@ -2954,7 +2964,12 @@ In the **`Server`** app's `Pages/_Host.cshtml` file, replace the `Component` Tag
 </div>
 ```
 
-In the preceding example, the placeholder `{CLIENT APP ASSEMBLY NAME}` is the client app's assembly name (for example `BlazorSample.Client`).
+In the preceding example:
+
+* The placeholder `{CLIENT APP ASSEMBLY NAME}` is the client app's assembly name (for example `BlazorSample.Client`).
+* The conditional check for the `/authentication` path segment:
+  * Avoids prerendering (`render-mode="WebAssembly"`) for authentication paths.
+  * Prerenders (`render-mode="WebAssemblyPrerendered"`) for non-authentication paths.
 
 ## Options for hosted apps and third-party login providers
 
