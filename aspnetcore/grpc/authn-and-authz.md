@@ -128,10 +128,10 @@ services
     });
 ```
 
-A gRPC interceptor can also be used to configure a bearer token. An advantage to using an interceptor is the client factory can be configured to create a new interceptor for each client. This allows an interceptor to be constructed from DI using scoped and transient services.
+A gRPC interceptor can also be used to configure a bearer token. An advantage to using an interceptor is the client factory can be configured to create a new interceptor for each client. This allows an interceptor to be [constructed from DI using scoped and transient services](/dotnet/core/extensions/dependency-injection#service-lifetimes).
 
 Consider an app that has:
-* A user defined `ITokenProvider` for getting a bearer token which is scoped per-request.
+* A user-defined `ITokenProvider` for getting a bearer token. `ITokenProvider` is registered in DI with a scoped lifetime.
 * gRPC client factory is configured to create clients that are injected into gRPC services and Web API controllers.
 * gRPC calls should use `ITokenProvider` to get a bearer token.
 
