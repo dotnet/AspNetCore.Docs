@@ -78,12 +78,9 @@ services
 
 For more information, see [Make HTTP requests using IHttpClientFactory](xref:fundamentals/http-requests).
 
-## Configure Channel and Interceptors
+## Configure Interceptors
 
-gRPC-specific methods are available to:
-
-* Configure a gRPC client's underlying channel.
-* Add `Interceptor` instances that the client will use when making gRPC calls.
+gRPC interceptors can be added to clients using the `AddInterceptor` method.
 
 ```csharp
 services
@@ -91,14 +88,48 @@ services
     {
         o.Address = new Uri("https://localhost:5001");
     })
-    .AddInterceptor(() => new LoggingInterceptor())
+    .AddInterceptor<LoggingInterceptor>();
+```
+
+The preceding code:
+* Registers the `GreeterClient` type.
+* Configures a `LoggingInterceptor` for this client. `LoggingInterceptor` is created once and shared between `GreeterClient` instances.
+
+By default, an interceptor is created once and shared between clients. This behavior can be overriden by specifing a scope when registering an intercepter. The client factory can be configured to create a new interceptor for each client by specifying `InterceptorScope.Client`.
+
+```csharp
+services
+    .AddGrpcClient<Greeter.GreeterClient>(o =>
+    {
+        o.Address = new Uri("https://localhost:5001");
+    })
+    .AddInterceptor<LoggingInterceptor>(InterceptorScope.Client);
+```
+
+Creating client scoped interceptors is useful when an interceptor requires [scoped or transient scoped services from DI](/dotnet/core/extensions/dependency-injection#service-lifetimes).
+
+## Configure Channel
+
+Additional configuration can be applied to a channel using the `ConfigureChannel` method:
+
+```csharp
+services
+    .AddGrpcClient<Greeter.GreeterClient>(o =>
+    {
+        o.Address = new Uri("https://localhost:5001");
+    })
     .ConfigureChannel(o =>
     {
         o.Credentials = new CustomCredentials();
     });
 ```
 
+`ConfigureChannel` is passed a `GrpcChannelOptions` instance. For more information, see [configure client options](xref:grpc/configuration#configure-client-options).
+
 A gRPC interceptor or channel credentials can be used to send `Authorization` metadata with each request. For more information about configuring authentication, see [Send a bearer token with gRPC client factory](xref:grpc/authn-and-authz#bearer-token-with-grpc-client-factory).
+
+> [!NOTE]
+> `ConfigureChannel` Calling gRPC over HTTP/2 with `Grpc.Net.Client` is currently not supported on Xamarin. We are working to improve HTTP/2 support in a future Xamarin release. [Grpc.Core](https://www.nuget.org/packages/Grpc.Core) and [gRPC-Web](xref:grpc/browser) are viable alternatives that work today.
 
 ## Deadline and cancellation propagation
 
