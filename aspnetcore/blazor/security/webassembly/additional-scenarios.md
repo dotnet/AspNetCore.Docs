@@ -859,34 +859,24 @@ builder.Services.AddScoped<SignOutSessionStateManager>();
 Client.Program.ConfigureCommonServices(services);
 ```
 
-In the **`Server`** app's `Program.cs` file, replace [`app.MapFallbackToFile("index.html")`](xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A) with [`app.MapFallbackToPage("/_Host")`](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A):
+In the **`Server`** app's `Pages/_Host.cshtml` file, replace the `Component` Tag Helper (`<component ... />`) with the following:
 
-```csharp
-app.MapControllers();
-app.MapFallbackToPage("/_Host");
+```cshtml
+<div id="app">
+    @if (HttpContext.Request.Path.StartsWithSegments("/authentication"))
+    {
+        <component type="typeof({CLIENT APP ASSEMBLY NAME}.App)" 
+            render-mode="WebAssembly" />
+    }
+    else
+    {
+        <component type="typeof({CLIENT APP ASSEMBLY NAME}.App)" 
+            render-mode="WebAssemblyPrerendered" />
+    }
+</div>
 ```
 
-In the **`Server`** app, create a `Pages` folder if it doesn't exist. Create a `_Host.cshtml` page inside the **`Server`** app's `Pages` folder. Paste the contents from the client app's `wwwroot/index.html` file into the `Pages/_Host.cshtml` file. Update the file's contents:
-
-* Add `@page "_Host"` to the top of the file.
-* Replace the `<div id="app">Loading...</div>` tag with the following:
-
-  ```cshtml
-  <div id="app">
-      @if (HttpContext.Request.Path.StartsWithSegments("/authentication"))
-      {
-          <component type="typeof({CLIENT APP ASSEMBLY NAME}.App)" 
-              render-mode="WebAssembly" />
-      }
-      else
-      {
-          <component type="typeof({CLIENT APP ASSEMBLY NAME}.App)" 
-              render-mode="WebAssemblyPrerendered" />
-      }
-  </div>
-  ```
-
-  In the preceding example, the placeholder `{CLIENT APP ASSEMBLY NAME}` is the client app's assembly name (for example `BlazorSample.Client`).
+In the preceding example, the placeholder `{CLIENT APP ASSEMBLY NAME}` is the client app's assembly name (for example `BlazorSample.Client`).
 
 ## Options for hosted apps and third-party login providers
 
@@ -1908,37 +1898,24 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-In the server app's `Startup.Configure` method, replace [`endpoints.MapFallbackToFile("index.html")`](xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A) with [`endpoints.MapFallbackToPage("/_Host")`](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A):
+In the **`Server`** app's `Pages/_Host.cshtml` file, replace the `Component` Tag Helper (`<component ... />`) with the following:
 
-```csharp
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllers();
-    endpoints.MapFallbackToPage("/_Host");
-});
+```cshtml
+<div id="app">
+    @if (HttpContext.Request.Path.StartsWithSegments("/authentication"))
+    {
+        <component type="typeof({CLIENT APP ASSEMBLY NAME}.App)" 
+            render-mode="WebAssembly" />
+    }
+    else
+    {
+        <component type="typeof({CLIENT APP ASSEMBLY NAME}.App)" 
+            render-mode="WebAssemblyPrerendered" />
+    }
+</div>
 ```
 
-In the server app, create a `Pages` folder if it doesn't exist. Create a `_Host.cshtml` page inside the server app's `Pages` folder. Paste the contents from the client app's `wwwroot/index.html` file into the `Pages/_Host.cshtml` file. Update the file's contents:
-
-* Add `@page "_Host"` to the top of the file.
-* Replace the `<div id="app">Loading...</div>` tag with the following:
-
-  ```cshtml
-  <div id="app">
-      @if (HttpContext.Request.Path.StartsWithSegments("/authentication"))
-      {
-          <component type="typeof({CLIENT APP ASSEMBLY NAME}.App)" 
-              render-mode="WebAssembly" />
-      }
-      else
-      {
-          <component type="typeof({CLIENT APP ASSEMBLY NAME}.App)" 
-              render-mode="WebAssemblyPrerendered" />
-      }
-  </div>
-  ```
-
-  In the preceding example, the placeholder `{CLIENT APP ASSEMBLY NAME}` is the client app's assembly name (for example `BlazorSample.Client`).
+In the preceding example, the placeholder `{CLIENT APP ASSEMBLY NAME}` is the client app's assembly name (for example `BlazorSample.Client`).
 
 ## Options for hosted apps and third-party login providers
 
@@ -2960,37 +2937,24 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-In the server app's `Startup.Configure` method, replace [`endpoints.MapFallbackToFile("index.html")`](xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A) with [`endpoints.MapFallbackToPage("/_Host")`](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A):
+In the **`Server`** app's `Pages/_Host.cshtml` file, replace the `Component` Tag Helper (`<component ... />`) with the following:
 
-```csharp
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllers();
-    endpoints.MapFallbackToPage("/_Host");
-});
+```cshtml
+<div id="app">
+    @if (HttpContext.Request.Path.StartsWithSegments("/authentication"))
+    {
+        <component type="typeof({CLIENT APP ASSEMBLY NAME}.App)" 
+            render-mode="WebAssembly" />
+    }
+    else
+    {
+        <component type="typeof({CLIENT APP ASSEMBLY NAME}.App)" 
+            render-mode="WebAssemblyPrerendered" />
+    }
+</div>
 ```
 
-In the server app, create a `Pages` folder if it doesn't exist. Create a `_Host.cshtml` page inside the server app's `Pages` folder. Paste the contents from the client app's `wwwroot/index.html` file into the `Pages/_Host.cshtml` file. Update the file's contents:
-
-* Add `@page "_Host"` to the top of the file.
-* Replace the `<app>Loading...</app>` tag with the following:
-
-  ```cshtml
-  <app>
-      @if (HttpContext.Request.Path.StartsWithSegments("/authentication"))
-      {
-          <component type="typeof({CLIENT APP ASSEMBLY NAME}.App)" 
-              render-mode="WebAssembly" />
-      }
-      else
-      {
-          <component type="typeof({CLIENT APP ASSEMBLY NAME}.App)" 
-              render-mode="WebAssemblyPrerendered" />
-      }
-  </app>
-  ```
-
-  In the preceding example, the placeholder `{CLIENT APP ASSEMBLY NAME}` is the client app's assembly name (for example `BlazorSample.Client`).
+In the preceding example, the placeholder `{CLIENT APP ASSEMBLY NAME}` is the client app's assembly name (for example `BlazorSample.Client`).
 
 ## Options for hosted apps and third-party login providers
 
