@@ -53,7 +53,7 @@ This article shows how to migrate the Products controller created in [Getting St
 1. Run the following commands to create a new web API project and open it in Visual Studio Code:
 
    ```dotnetcli
-   dotnet new webapi -o ProductsCore
+   dotnet new webapi -o ProductsCore --no-openapi
    cd ProductsCore
    code -r ../ProductsCore
    ```
