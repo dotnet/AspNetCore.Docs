@@ -14,22 +14,20 @@ uid: signalr/authn-and-authz
 
 :::moniker range=">= aspnetcore-6.0"
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/authn-and-authz/sample/) [(how to download)](xref:index#how-to-download-a-sample)
-
 ## Authenticate users connecting to a SignalR hub
 
 SignalR can be used with [ASP.NET Core authentication](xref:security/authentication/identity) to associate a user with each connection. In a hub, authentication data can be accessed from the [HubConnectionContext.User](/dotnet/api/microsoft.aspnetcore.signalr.hubconnectioncontext.user) property. Authentication allows the hub to call methods on all connections associated with a user. For more information, see [Manage users and groups in SignalR](xref:signalr/groups). Multiple connections may be associated with a single user.
 
 The following is an example of `Program.cs` which uses SignalR and ASP.NET Core authentication:
 
-[!code-csharp[](authn-and-authz/6.0sample/SignalRAuthenticationSample/Program.cs?name=snippet)]
+[!code-csharp[](authn-and-authz/6.0sample/SignalRAuthenticationSample/Program.cs?name=snippet1)]
 
 > [!NOTE]
 > If a token expires during the lifetime of a connection, by default the connection continues to work. `LongPolling` and `ServerSentEvent` connections fail on subsequent requests if they don't send new access tokens. For connections to close when the authentication token expires, set [CloseOnAuthenticationExpiration](xref:signalr/configuration#advanced-http-configuration-options).
 
 ### Cookie authentication
 
-In a browser-based app, cookie authentication allows your existing user credentials to -+2/utomatically flow to SignalR connections. When using the browser client, no additional configuration is needed. If the user is logged in to your app, the SignalR connection automatically inherits this authentication.
+In a browser-based app, cookie authentication allows existing user credentials to automatically flow to SignalR connections. When using the browser client, no additional configuration is needed. If the user is logged in to an app, the SignalR connection automatically inherits this authentication.
 
 Cookies are a browser-specific way to send access tokens, but non-browser clients can send them. When using the [.NET Client](xref:signalr/dotnet-client), the `Cookies` property can be configured in the `.WithUrl` call to provide a cookie. However, using cookie authentication from the .NET client requires the app to provide an API to exchange authentication data for a cookie.
 
@@ -165,7 +163,7 @@ public class ChatHub : Hub
 
 SignalR provides a custom resource to authorization handlers when a hub method requires authorization. The resource is an instance of <xref:Microsoft.AspNetCore.SignalR.HubInvocationContext>. The `HubInvocationContext` includes the <xref:Microsoft.AspNetCore.SignalR.HubCallerContext>, the name of the hub method being invoked, and the arguments to the hub method.
 
-Consider the example of a chat room allowing multiple organization sign-in via Azure Active Directory. Anyone with a Microsoft account can sign in to chat, but only members of the owning organization should be able to ban users or view users' chat histories. Furthermore, we might want to restrict some functionality from specific users. Note how the `DomainRestrictedRequirement` serves as a custom <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement>. Now that the `HubInvocationContext` resource parameter is being passed in, the internal logic can inspect the context in which the Hub is being called and make decisions on allowing the user to execute individual Hub methods.
+Consider the example of a chat room allowing multiple organization sign-in via Azure Active Directory. Anyone with a Microsoft account can sign in to chat, but only members of the owning organization should be able to ban users or view users' chat histories. Furthermore, we might want to restrict some functionality from specific users. Note how the `DomainRestrictedRequirement` serves as a custom <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement>. Now that the `HubInvocationContext` resource parameter is being passed in, the internal logic can inspect the context in which the Hub is being called and make decisions on allowing the user to execute individual Hub methods:
 
 ```csharp
 [Authorize]
@@ -200,6 +198,7 @@ In the preceding example, the `DomainRestrictedRequirement` class is both an `IA
 
 * [Bearer Token Authentication in ASP.NET Core](https://blogs.msdn.microsoft.com/webdev/2016/10/27/bearer-token-authentication-in-asp-net-core/)
 * [Resource-based Authorization](xref:security/authorization/resourcebased)
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/authn-and-authz/sample/) [(how to download)](xref:index#how-to-download-a-sample)
 
 :::moniker-end
 

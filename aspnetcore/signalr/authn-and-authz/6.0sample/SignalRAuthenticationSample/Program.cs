@@ -165,6 +165,8 @@ builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
+// Code removed for brevity.
+#endregion
 if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
@@ -187,7 +189,6 @@ app.MapRazorPages();
 app.MapHub<ChatHub>("/chat");
 
 app.Run();
-#endregion
 #elif WIN
 #region snippet_win
 using Microsoft.AspNetCore.Authentication.Negotiate;
@@ -211,6 +212,9 @@ services.AddSingleton<IUserIdProvider, NameUserIdProvider>();
 
 var app = builder.Build();
 
+// Code removed for brevity.
+#endregion
+
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
@@ -228,7 +232,7 @@ app.UseAuthorization();
 app.MapRazorPages();
 
 app.Run();
-#endregion
+
 #elif DRR
 #region snippet_drr
 using Microsoft.AspNetCore.Identity;
@@ -250,18 +254,18 @@ services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfi
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 services.AddAuthorization(options =>
-        {
-            options.AddPolicy("DomainRestricted", policy =>
-            {
-                policy.Requirements.Add(new DomainRestrictedRequirement());
-            });
-        });
+   {
+       options.AddPolicy("DomainRestricted", policy =>
+       {
+           policy.Requirements.Add(new DomainRestrictedRequirement());
+       });
+   });
 
 services.AddRazorPages();
 
 var app = builder.Build();
 
-// Code removed for brevity
+// Code removed for brevity.
 #endregion
 
 if (app.Environment.IsDevelopment())
