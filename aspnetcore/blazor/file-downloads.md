@@ -16,6 +16,9 @@ uid: blazor/file-downloads
 
 The following example demonstrates how to download a file. Native `byte[]` streaming interop is used to ensure efficient transfer to the client.
 
+> [!IMPORTANT]
+> The example in this article pertains to downloading files that pass Cross-Origin Resource Sharing (CORS) checks. For more information, see the [Cross-Origin Resource Sharing (CORS)](#cross-origin-resource-sharing-cors) section.
+
 In a Razor component (`.razor`), add [`@using`](xref:mvc/views/razor#using) and [`@inject`](xref:mvc/views/razor#inject) directives for the following:
 
 * <xref:System.IO?displayProperty=fullName>
@@ -125,8 +128,12 @@ In the preceding example, the call to `contentStreamReference.arrayBuffer` loads
 
 In the preceding example, replace the placeholders with the following values:
 
-* `{FILE URL}`: The URL of the file to download. Example: `https://www.contoso.com/files/log0001.txt`
+* `{FILE URL}`: The URL of the file to download at the same origin (same domain) that the app uses. Example: `https://www.contoso.com/files/log0001.txt` for a text file physically located at the path `/wwwroot/files/` in the app and for an app that loads from `https://www.contoso.com`. For more information, see the [Cross-Origin Resource Sharing (CORS)](#cross-origin-resource-sharing-cors) section.
 * `{FILE NAME}`: The file name to use for the saved file. Example: `log-0001.txt`
+
+## Cross-Origin Resource Sharing (CORS)
+
+Without taking further steps to enable cross-origin requests, downloading files from the same origin (same domain) must pass [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/docs/Web/HTTP/CORS) checks made by the browser. For more information, see <xref:security/cors>.
 
 ## File streams
 
