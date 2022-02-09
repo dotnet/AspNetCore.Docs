@@ -1,5 +1,5 @@
 ---
-title: ASP.NET Core Blazor hosting models
+title: ASP.NET Core Blazor Server and Blazor WebAssembly (WASM) hosting models
 author: guardrex
 description: Understand Blazor Server versus Blazor WebAssembly (WASM) and which hosting model you should use.
 monikerRange: '>= aspnetcore-3.1'
@@ -9,7 +9,7 @@ ms.date: 11/09/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/hosting-models
 ---
-# ASP.NET Core Blazor hosting models
+# ASP.NET Core Blazor Server and Blazor WebAssembly hosting models
 
 This article explains Blazor Server versus Blazor WebAssembly (WASM) and which hosting model you should use.
 
