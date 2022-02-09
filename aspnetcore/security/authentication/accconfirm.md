@@ -217,28 +217,6 @@ Enabling account confirmation on a site with users locks out all the existing us
 
 :::moniker-end
 
----
-title: Account confirmation and password recovery in ASP.NET Core
-author: rick-anderson
-description: Learn how to build an ASP.NET Core app with email confirmation and password reset.
-ms.author: riande
-ms.date: 2/9/2022
-no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
-uid: security/authentication/accconfirm
----
-
-# Account confirmation and password recovery in ASP.NET Core
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT), [Ponant](https://github.com/Ponant), and [Joe Audette](https://twitter.com/joeaudette)
-
-This tutorial shows how to build an ASP.NET Core app with email confirmation and password reset. This tutorial is **not** a beginning topic. You should be familiar with:
-
-* [ASP.NET Core](xref:tutorials/razor-pages/razor-pages-start)
-* [Authentication](xref:security/authentication/identity)
-* [Entity Framework Core](xref:data/ef-mvc/intro)
-
-<!-- see C:/Dropbox/wrk/Code/SendGridConsole/Program.cs -->
-
 :::moniker range="< aspnetcore-6.0"
 
 ## Prerequisites
