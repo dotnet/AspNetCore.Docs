@@ -431,7 +431,7 @@ In the sample app, validation checks are handled by `FileHelpers.ProcessStreamed
 
 ## Validation
 
-The sample app's `FileHelpers` class demonstrates a several checks for buffered <xref:Microsoft.AspNetCore.Http.IFormFile> and streamed file uploads. For processing <xref:Microsoft.AspNetCore.Http.IFormFile> buffered file uploads in the sample app, see the `ProcessFormFile` method in the *Utilities/FileHelpers.cs* file. For processing streamed files, see the `ProcessStreamedFile` method in the same file.
+The sample app's `FileHelpers` class demonstrates several checks for buffered <xref:Microsoft.AspNetCore.Http.IFormFile> and streamed file uploads. For processing <xref:Microsoft.AspNetCore.Http.IFormFile> buffered file uploads in the sample app, see the `ProcessFormFile` method in the *Utilities/FileHelpers.cs* file. For processing streamed files, see the `ProcessStreamedFile` method in the same file.
 
 > [!WARNING]
 > The validation processing methods demonstrated in the sample app don't scan the content of uploaded files. In most production scenarios, a virus/malware scanner API is used on the file before making the file available to users or other systems.
