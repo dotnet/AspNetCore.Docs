@@ -60,7 +60,7 @@ This article shows how to migrate the Products controller created in [Getting St
 
 ---
 
-## Add the ASP.NET 4.x Web API controller and model to migrate
+## Add the ASP.NET Web API 2 controller and model to migrate
 
 # [Visual Studio](#tab/visual-studio)
 
