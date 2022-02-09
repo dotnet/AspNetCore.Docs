@@ -13,7 +13,7 @@ uid: blazor/components/index
 
 :::moniker range=">= aspnetcore-6.0"
 
-Blazor apps are built using *Razor components*, also informally known as *Blazor components*. A component is a self-contained portion of user interface (UI) with processing logic to enable dynamic behavior. Components can be nested, reused, shared among projects, and [used in MVC and Razor Pages apps](xref:blazor/components/prerendering-and-integration).
+Blazor apps are built using *Razor components*, informally known as *Blazor components*. A component is a self-contained portion of user interface (UI) with processing logic to enable dynamic behavior. Components can be nested, reused, shared among projects, and [used in MVC and Razor Pages apps](xref:blazor/components/prerendering-and-integration).
 
 ## Component classes
 
@@ -1142,7 +1142,7 @@ Generate framework-specific JavaScript (JS) components from Razor components for
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-Blazor apps are built using *Razor components*, also informally known as *Blazor components*. A component is a self-contained portion of user interface (UI) with processing logic to enable dynamic behavior. Components can be nested, reused, shared among projects, and [used in MVC and Razor Pages apps](xref:blazor/components/prerendering-and-integration).
+Blazor apps are built using *Razor components*, informally known as *Blazor components*. A component is a self-contained portion of user interface (UI) with processing logic to enable dynamic behavior. Components can be nested, reused, shared among projects, and [used in MVC and Razor Pages apps](xref:blazor/components/prerendering-and-integration).
 
 ## Component classes
 
@@ -2109,7 +2109,7 @@ For more information, see the following articles:
 
 :::moniker range="< aspnetcore-5.0"
 
-Blazor apps are built using *Razor components*, also informally known as *Blazor components*. A component is a self-contained portion of user interface (UI) with processing logic to enable dynamic behavior. Components can be nested, reused, shared among projects, and [used in MVC and Razor Pages apps](xref:blazor/components/prerendering-and-integration).
+Blazor apps are built using *Razor components*, informally known as *Blazor components*. A component is a self-contained portion of user interface (UI) with processing logic to enable dynamic behavior. Components can be nested, reused, shared among projects, and [used in MVC and Razor Pages apps](xref:blazor/components/prerendering-and-integration).
 
 ## Component classes
 
