@@ -83,14 +83,7 @@ items:
               - name: Examine Details and Delete
                 uid: tutorials/first-mvc-app/details
           - name: Blazor
-            displayName: tutorial
-            items:
-              - name: Build your first Blazor app
-                href: https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro
-              - name: Build a Blazor todo list app
-                uid: tutorials/build-a-blazor-app
-              - name: SignalR with Blazor
-                uid: tutorials/signalr-blazor
+            href: blazor/tutorials/index.md
       - name: Web API apps
         items:
           - name: Create a web API with controllers
@@ -121,7 +114,7 @@ items:
             uid: tutorials/signalr-typescript-webpack
           - name: SignalR with Blazor
             displayName: tutorial
-            uid: tutorials/signalr-blazor
+            uid: blazor/tutorials/signalr-blazor
       - name: Remote Procedure Call apps
         items:
           - name: Get started with a gRPC service
@@ -324,12 +317,22 @@ items:
         items:
           - name: Overview
             uid: blazor/index
-          - name: Tutorials
-            uid: blazor/tutorials
           - name: Supported platforms
             uid: blazor/supported-platforms
           - name: Tooling
             uid: blazor/tooling
+          - name: Tutorials
+            items:
+              - name: Overview
+                uid: blazor/tutorials/index
+              - name: Build your first Blazor app
+                href: https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro
+              - name: Build a Blazor todo list app
+                uid: blazor/tutorials/build-a-blazor-app
+              - name: SignalR with Blazor
+                uid: blazor/tutorials/signalr-blazor
+              - name: Microsoft Learn modules
+                href: /learn/modules/build-blazor-webassembly-visual-studio-code/
           - name: Hosting models
             uid: blazor/hosting-models
           - name: Project structure
@@ -644,7 +647,7 @@ items:
           - name: SignalR with TypeScript
             uid: tutorials/signalr-typescript-webpack
           - name: SignalR with Blazor
-            uid: tutorials/signalr-blazor
+            uid: blazor/tutorials/signalr-blazor
       - name: Samples
         href: https://github.com/aspnet/SignalR-samples
         displayName: signalr

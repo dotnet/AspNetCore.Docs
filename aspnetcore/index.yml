@@ -67,7 +67,7 @@ conceptualContent:
         - url: https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro
           itemType: get-started
           text: "Build your first Blazor app"
-        - url: tutorials/build-a-blazor-app.md
+        - url: blazor/tutorials/build-a-blazor-app.md
           itemType: get-started
           text: "Build your first Blazor app with reusable components"
         - url: blazor/hosting-models.md
@@ -152,7 +152,7 @@ conceptualContent:
         - url: signalr/introduction.md
           itemType: get-started
           text: "Create your first SignalR app"
-        - url: tutorials/signalr-blazor.md
+        - url: blazor/tutorials/signalr-blazor.md
           itemType: tutorial
           text: "SignalR with Blazor WebAssembly"
         - url: tutorials/signalr-typescript-webpack.md

@@ -15,7 +15,7 @@ uid: blazor/fundamentals/signalr
 
 This article explains how to configure and manage SignalR connections in Blazor apps.
 
-For general guidance on ASP.NET Core SignalR configuration, see the topics in the <xref:signalr/introduction> area of the documentation. To configure SignalR [added to a hosted Blazor WebAssembly solution](xref:tutorials/signalr-blazor), see <xref:signalr/configuration#configure-server-options>.
+For general guidance on ASP.NET Core SignalR configuration, see the topics in the <xref:signalr/introduction> area of the documentation. To configure SignalR [added to a hosted Blazor WebAssembly solution](xref:blazor/tutorials/signalr-blazor), see <xref:signalr/configuration#configure-server-options>.
 
 ## SignalR cross-origin negotiation for authentication (Blazor WebAssembly)
 
@@ -57,7 +57,7 @@ To configure SignalR's underlying client to send credentials, such as cookies or
       }).Build();
   ```
 
-  The preceding example configures the hub connection URL to the absolute URI address at `/chathub`, which is the URL used in the [SignalR with Blazor tutorial](xref:tutorials/signalr-blazor) in the `Index` component (`Pages/Index.razor`). The URI can also be set via a string, for example `https://signalr.example.com`, or via [configuration](xref:blazor/fundamentals/configuration).
+  The preceding example configures the hub connection URL to the absolute URI address at `/chathub`, which is the URL used in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor) in the `Index` component (`Pages/Index.razor`). The URI can also be set via a string, for example `https://signalr.example.com`, or via [configuration](xref:blazor/fundamentals/configuration).
 
 For more information, see <xref:signalr/configuration#configure-additional-options>.
 
@@ -330,7 +330,7 @@ When a circuit ends because a user has disconnected and the framework is cleanin
 
 This article explains how to configure and manage SignalR connections in Blazor apps.
 
-For general guidance on ASP.NET Core SignalR configuration, see the topics in the <xref:signalr/introduction> area of the documentation. To configure SignalR [added to a hosted Blazor WebAssembly solution](xref:tutorials/signalr-blazor), see <xref:signalr/configuration#configure-server-options>.
+For general guidance on ASP.NET Core SignalR configuration, see the topics in the <xref:signalr/introduction> area of the documentation. To configure SignalR [added to a hosted Blazor WebAssembly solution](xref:blazor/tutorials/signalr-blazor), see <xref:signalr/configuration#configure-server-options>.
 
 ## SignalR cross-origin negotiation for authentication (Blazor WebAssembly)
 
@@ -372,7 +372,7 @@ To configure SignalR's underlying client to send credentials, such as cookies or
       }).Build();
   ```
 
-  The preceding example configures the hub connection URL to the absolute URI address at `/chathub`, which is the URL used in the [SignalR with Blazor tutorial](xref:tutorials/signalr-blazor) in the `Index` component (`Pages/Index.razor`). The URI can also be set via a string, for example `https://signalr.example.com`, or via [configuration](xref:blazor/fundamentals/configuration).
+  The preceding example configures the hub connection URL to the absolute URI address at `/chathub`, which is the URL used in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor) in the `Index` component (`Pages/Index.razor`). The URI can also be set via a string, for example `https://signalr.example.com`, or via [configuration](xref:blazor/fundamentals/configuration).
 
 For more information, see <xref:signalr/configuration#configure-additional-options>.
 
@@ -649,7 +649,7 @@ When a circuit ends because a user has disconnected and the framework is cleanin
 
 This article explains how to configure and manage SignalR connections in Blazor apps.
 
-For general guidance on ASP.NET Core SignalR configuration, see the topics in the <xref:signalr/introduction> area of the documentation. To configure SignalR [added to a hosted Blazor WebAssembly solution](xref:tutorials/signalr-blazor), see <xref:signalr/configuration#configure-server-options>.
+For general guidance on ASP.NET Core SignalR configuration, see the topics in the <xref:signalr/introduction> area of the documentation. To configure SignalR [added to a hosted Blazor WebAssembly solution](xref:blazor/tutorials/signalr-blazor), see <xref:signalr/configuration#configure-server-options>.
 
 ## SignalR cross-origin negotiation for authentication (Blazor WebAssembly)
 
@@ -691,7 +691,7 @@ To configure SignalR's underlying client to send credentials, such as cookies or
       }).Build();
   ```
 
-  The preceding example configures the hub connection URL to the absolute URI address at `/chathub`, which is the URL used in the [SignalR with Blazor tutorial](xref:tutorials/signalr-blazor) in the `Index` component (`Pages/Index.razor`). The URI can also be set via a string, for example `https://signalr.example.com`, or via [configuration](xref:blazor/fundamentals/configuration).
+  The preceding example configures the hub connection URL to the absolute URI address at `/chathub`, which is the URL used in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor) in the `Index` component (`Pages/Index.razor`). The URI can also be set via a string, for example `https://signalr.example.com`, or via [configuration](xref:blazor/fundamentals/configuration).
 
 For more information, see <xref:signalr/configuration#configure-additional-options>.
 

@@ -327,7 +327,7 @@ Renaming the connection string key to `SchoolContextSQLite` helps the author mai
 
 ## Update the database context class
 
-The main class that coordinates EF Core functionality for a given data model is the database context class. The context is derived from [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext). The context specifies which entities are included in the data model. In this project, the class is named `SchoolContext`.
+The main class that coordinates EF Core functionality for a given data model is the database context class. The context is derived from <xref:Microsoft.EntityFrameworkCore.DbContext?displayProperty=fullName>. The context specifies which entities are included in the data model. In this project, the class is named `SchoolContext`.
 
 Update *Data/SchoolContext.cs* with the following code:
 
@@ -344,7 +344,7 @@ Because an entity set contains multiple entities, many developers prefer the `DB
 
 The highlighted code:
 
-* Creates a [DbSet\<TEntity>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) property for each entity set. In EF Core terminology:
+* Creates a <xref:Microsoft.EntityFrameworkCore.DbSet%601> property for each entity set. In EF Core terminology:
   * An entity set typically corresponds to a database table.
   * An entity corresponds to a row in the table.
 * Calls <xref:Microsoft.EntityFrameworkCore.DbContext.OnModelCreating%2A>. `OnModelCreating`:
@@ -376,7 +376,7 @@ See [Use SQLite for development, SQL Server for production](xref:tutorials/razor
 
 ---
 
-The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* or the *appsettings.Developement.json* file.
+The name of the connection string is passed in to the context by calling a method on a <xref:Microsoft.EntityFrameworkCore.DbContextOptions> object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* or the *appsettings.Developement.json* file.
 
 <a name="dbx"></a>
 
@@ -420,7 +420,7 @@ Update *Program.cs* to create the database if it doesn't exist:
 
 ---
 
-The [EnsureCreated](/dotnet/api/microsoft.entityframeworkcore.infrastructure.databasefacade.ensurecreated) method takes no action if a database for the context exists. If no database exists, it creates the database and schema. `EnsureCreated` enables the following workflow for handling data model changes:
+The <xref:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreated%2A> method takes no action if a database for the context exists. If no database exists, it creates the database and schema. `EnsureCreated` enables the following workflow for handling data model changes:
 
 * Delete the database. Any existing data is lost.
 * Change the data model. For example, add an `EmailAddress` field.
@@ -838,7 +838,7 @@ Don't change the directory without making sure it's valid.
 
 ## Update the database context class
 
-The main class that coordinates EF Core functionality for a given data model is the database context class. The context is derived from [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext). The context specifies which entities are included in the data model. In this project, the class is named `SchoolContext`.
+The main class that coordinates EF Core functionality for a given data model is the database context class. The context is derived from <xref:Microsoft.EntityFrameworkCore.DbContext?displayProperty=fullName>. The context specifies which entities are included in the data model. In this project, the class is named `SchoolContext`.
 
 Update *Data/SchoolContext.cs* with the following code:
 
@@ -855,7 +855,7 @@ Because an entity set contains multiple entities, many developers prefer the `DB
 
 The highlighted code:
 
-* Creates a [DbSet\<TEntity>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) property for each entity set. In EF Core terminology:
+* Creates a <xref:Microsoft.EntityFrameworkCore.DbSet%601> property for each entity set. In EF Core terminology:
   * An entity set typically corresponds to a database table.
   * An entity corresponds to a row in the table.
 * Calls <xref:Microsoft.EntityFrameworkCore.DbContext.OnModelCreating%2A>. `OnModelCreating`:
@@ -887,7 +887,7 @@ See [Use SQLite for development, SQL Server for production](xref:tutorials/razor
 
 ---
 
-The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
+The name of the connection string is passed in to the context by calling a method on a <xref:Microsoft.EntityFrameworkCore.DbContextOptions> object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
 
 <a name="dbx"></a>
 
@@ -923,7 +923,7 @@ Update *Program.cs* to create the database if it doesn't exist:
 
 [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Program.cs?highlight=1-2,14-18,21-38)]
 
-The [EnsureCreated](/dotnet/api/microsoft.entityframeworkcore.infrastructure.databasefacade.ensurecreated) method takes no action if a database for the context exists. If no database exists, it creates the database and schema. `EnsureCreated` enables the following workflow for handling data model changes:
+The <xref:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreated%2A> method takes no action if a database for the context exists. If no database exists, it creates the database and schema. `EnsureCreated` enables the following workflow for handling data model changes:
 
 * Delete the database. Any existing data is lost.
 * Change the data model. For example, add an `EmailAddress` field.
@@ -1338,13 +1338,13 @@ Change the connection string to point to a SQLite database file named *CU.db*:
 
 ## Update the database context class
 
-The main class that coordinates EF Core functionality for a given data model is the database context class. The context is derived from [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext). The context specifies which entities are included in the data model. In this project, the class is named `SchoolContext`.
+The main class that coordinates EF Core functionality for a given data model is the database context class. The context is derived from <xref:Microsoft.EntityFrameworkCore.DbContext?displayProperty=fullName>. The context specifies which entities are included in the data model. In this project, the class is named `SchoolContext`.
 
 Update *Data/SchoolContext.cs* with the following code:
 
 [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Data/SchoolContext.cs?highlight=13-22)]
 
-The highlighted code creates a [DbSet\<TEntity>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) property for each entity set. In EF Core terminology:
+The highlighted code creates a <xref:Microsoft.EntityFrameworkCore.DbSet%601> property for each entity set. In EF Core terminology:
 
 * An entity set typically corresponds to a database table.
 * An entity corresponds to a row in the table.
@@ -1375,7 +1375,7 @@ The scaffolding tool automatically registered the context class with the depende
 
 ---
 
-The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
+The name of the connection string is passed in to the context by calling a method on a <xref:Microsoft.EntityFrameworkCore.DbContextOptions> object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
 
 ## Create the database
 
@@ -1383,7 +1383,7 @@ Update *Program.cs* to create the database if it doesn't exist:
 
 [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Program.cs?highlight=1-2,14-18,21-38)]
 
-The [EnsureCreated](/dotnet/api/microsoft.entityframeworkcore.infrastructure.databasefacade.ensurecreated) method takes no action if a database for the context exists. If no database exists, it creates the database and schema. `EnsureCreated` enables the following workflow for handling data model changes:
+The <xref:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreated%2A> method takes no action if a database for the context exists. If no database exists, it creates the database and schema. `EnsureCreated` enables the following workflow for handling data model changes:
 
 * Delete the database. Any existing data is lost.
 * Change the data model. For example, add an `EmailAddress` field.
