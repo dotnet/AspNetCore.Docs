@@ -874,14 +874,14 @@ Optimistic concurrency includes the following options:
 
 When a property is configured as a [concurrency token](/ef/core/modeling/concurrency):
 
-* EF Core verifies that property has not been modified after it was fetched. The check occurs when [SaveChanges](/dotnet/api/microsoft.entityframeworkcore.dbcontext.savechanges#Microsoft_EntityFrameworkCore_DbContext_SaveChanges) or [SaveChangesAsync](/dotnet/api/microsoft.entityframeworkcore.dbcontext.savechangesasync#Microsoft_EntityFrameworkCore_DbContext_SaveChangesAsync_System_Threading_CancellationToken_) is called.
-* If the property has been changed after it was fetched, a [DbUpdateConcurrencyException](/dotnet/api/microsoft.entityframeworkcore.dbupdateconcurrencyexception) is thrown. 
+* EF Core verifies that property has not been modified after it was fetched. The check occurs when <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChanges%2A> or <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync%2A> is called.
+* If the property has been changed after it was fetched, a <xref:Microsoft.EntityFrameworkCore.DbUpdateConcurrencyException> is thrown. 
 
 The DB and data model must be configured to support throwing `DbUpdateConcurrencyException`.
 
 ### Detecting concurrency conflicts on a property
 
-Concurrency conflicts can be detected at the property level with the [ConcurrencyCheck](/dotnet/api/system.componentmodel.dataannotations.concurrencycheckattribute) attribute. The attribute can be applied to multiple properties on the model. For more information, see [Data Annotations-ConcurrencyCheck](/ef/core/modeling/concurrency#data-annotations).
+Concurrency conflicts can be detected at the property level with the [ConcurrencyCheck](xref:System.ComponentModel.DataAnnotations.ConcurrencyCheckAttribute) attribute. The attribute can be applied to multiple properties on the model. For more information, see [Data Annotations-ConcurrencyCheck](/ef/core/modeling/concurrency#data-annotations).
 
 The `[ConcurrencyCheck]` attribute isn't used in this tutorial.
 
@@ -906,7 +906,7 @@ In *Models/Department.cs*, add a tracking property named RowVersion:
 
 [!code-csharp[](intro/samples/cu/Models/Department.cs?name=snippet_Final&highlight=26,27)]
 
-The [Timestamp](/dotnet/api/system.componentmodel.dataannotations.timestampattribute) attribute specifies that this column is included in the `Where` clause of `Update` and `Delete` commands. The attribute is called `Timestamp` because previous versions of SQL Server used a SQL `timestamp` data type before the SQL `rowversion` type replaced it.
+The [Timestamp](xref:System.ComponentModel.DataAnnotations.TimestampAttribute) attribute specifies that this column is included in the `Where` clause of `Update` and `Delete` commands. The attribute is called `Timestamp` because previous versions of SQL Server used a SQL `timestamp` data type before the SQL `rowversion` type replaced it.
 
 The fluent API can also specify the tracking property:
 
@@ -992,7 +992,7 @@ Update *Pages\Departments\Edit.cshtml.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu/Pages/Departments/Edit.cshtml.cs?name=snippet)]
 
-To detect a concurrency issue, the [OriginalValue](/dotnet/api/microsoft.entityframeworkcore.changetracking.propertyentry.originalvalue#Microsoft_EntityFrameworkCore_ChangeTracking_PropertyEntry_OriginalValue) is updated with the `rowVersion` value from the entity it was fetched. EF Core generates a SQL UPDATE command with a WHERE clause containing the original `RowVersion` value. If no rows are affected by the UPDATE command (no rows have the original `RowVersion` value), a `DbUpdateConcurrencyException` exception is thrown.
+To detect a concurrency issue, the <xref:Microsoft.EntityFrameworkCore.ChangeTracking.PropertyEntry.OriginalValue%2A> is updated with the `rowVersion` value from the entity it was fetched. EF Core generates a SQL UPDATE command with a WHERE clause containing the original `RowVersion` value. If no rows are affected by the UPDATE command (no rows have the original `RowVersion` value), a `DbUpdateConcurrencyException` exception is thrown.
 
 [!code-csharp[](intro/samples/cu/Pages/Departments/Edit.cshtml.cs?name=snippet_rv&highlight=24-999)]
 
