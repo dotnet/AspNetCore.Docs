@@ -462,7 +462,7 @@ For more information on trusting the ASP.NET Core HTTPS development certificate,
    * The `{SERVER APP FOLDER}` placeholder is the **`Server`** project's folder, typically "`Server`".
    * The `{PROJECT NAME}` placeholder is the app's name, typically based on the solution's name followed by "`.Server`" in an app generated from the [Blazor project template](xref:blazor/project-structure).
 
-   The following example from the [tutorial for using SignalR with a Blazor WebAssembly app](xref:tutorials/signalr-blazor) uses a project folder name of `Server` and a project name of `BlazorWebAssemblySignalRApp.Server`:
+   The following example from the [tutorial for using SignalR with a Blazor WebAssembly app](xref:blazor/tutorials/signalr-blazor) uses a project folder name of `Server` and a project name of `BlazorWebAssemblySignalRApp.Server`:
 
    ```json
    ...
@@ -693,7 +693,7 @@ When executing a hosted Blazor WebAssembly app, run the app from the solution's 
    * The `{SERVER APP FOLDER}` placeholder is the **`Server`** project's folder, typically "`Server`".
    * The `{PROJECT NAME}` placeholder is the app's name, typically based on the solution's name followed by "`.Server`" in an app generated from the [Blazor project template](xref:blazor/project-structure).
 
-   The following example from the [tutorial for using SignalR with a Blazor WebAssembly app](xref:tutorials/signalr-blazor) uses a project folder name of `Server` and a project name of `BlazorWebAssemblySignalRApp.Server`:
+   The following example from the [tutorial for using SignalR with a Blazor WebAssembly app](xref:blazor/tutorials/signalr-blazor) uses a project folder name of `Server` and a project name of `BlazorWebAssemblySignalRApp.Server`:
 
    ```json
    ...

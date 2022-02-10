@@ -582,7 +582,7 @@ If Microsoft Edge is used for debugging instead of Google Chrome, the `.vscode/l
 "browser": "edge"
 ```
 
-The `.vscode/tasks.json` file adds the **`Server`** app's project file path to the `dotnet build` arguments under `args`. The **`Server`** project's folder is typically named `Server` in a solution based on the hosted Blazor WebAssembly project template. The following example uses the project file for the **`Server`** app of the [Blazor-SignalR tutorial](xref:tutorials/signalr-blazor)), which has a project file named `BlazorWebAssemblySignalRApp.Server.csproj`:
+The `.vscode/tasks.json` file adds the **`Server`** app's project file path to the `dotnet build` arguments under `args`. The **`Server`** project's folder is typically named `Server` in a solution based on the hosted Blazor WebAssembly project template. The following example uses the project file for the **`Server`** app of the [Blazor-SignalR tutorial](xref:blazor/tutorials/signalr-blazor)), which has a project file named `BlazorWebAssemblySignalRApp.Server.csproj`:
 
 ```json
 {
@@ -603,7 +603,7 @@ The `.vscode/tasks.json` file adds the **`Server`** app's project file path to t
 }
 ```
 
-The **`Server`** project's `Properties/launchSettings.json` file includes the `inspectUri` property for the debugging proxy. The following example names the launch profile for the **`Server`** app of the [Blazor-SignalR tutorial](xref:tutorials/signalr-blazor)), which is `BlazorWebAssemblySignalRApp.Server`:
+The **`Server`** project's `Properties/launchSettings.json` file includes the `inspectUri` property for the debugging proxy. The following example names the launch profile for the **`Server`** app of the [Blazor-SignalR tutorial](xref:blazor/tutorials/signalr-blazor)), which is `BlazorWebAssemblySignalRApp.Server`:
 
 ```json
 {
@@ -997,7 +997,7 @@ If Microsoft Edge is used for debugging instead of Google Chrome, the `.vscode/l
 "browser": "edge"
 ```
 
-The `.vscode/tasks.json` file adds the **`Server`** app's project file path to the `dotnet build` arguments under `args`. The **`Server`** project's folder is typically named `Server` in a solution based on the hosted Blazor WebAssembly project template. The following example uses the project file for the **`Server`** app of the [Blazor-SignalR tutorial](xref:tutorials/signalr-blazor)), which has a project file named `BlazorWebAssemblySignalRApp.Server.csproj`:
+The `.vscode/tasks.json` file adds the **`Server`** app's project file path to the `dotnet build` arguments under `args`. The **`Server`** project's folder is typically named `Server` in a solution based on the hosted Blazor WebAssembly project template. The following example uses the project file for the **`Server`** app of the [Blazor-SignalR tutorial](xref:blazor/tutorials/signalr-blazor)), which has a project file named `BlazorWebAssemblySignalRApp.Server.csproj`:
 
 ```json
 {
@@ -1018,7 +1018,7 @@ The `.vscode/tasks.json` file adds the **`Server`** app's project file path to t
 }
 ```
 
-The **`Server`** project's `Properties/launchSettings.json` file includes the `inspectUri` property for the debugging proxy. The following example names the launch profile for the **`Server`** app of the [Blazor-SignalR tutorial](xref:tutorials/signalr-blazor)), which is `BlazorWebAssemblySignalRApp.Server`:
+The **`Server`** project's `Properties/launchSettings.json` file includes the `inspectUri` property for the debugging proxy. The following example names the launch profile for the **`Server`** app of the [Blazor-SignalR tutorial](xref:blazor/tutorials/signalr-blazor)), which is `BlazorWebAssemblySignalRApp.Server`:
 
 ```json
 {

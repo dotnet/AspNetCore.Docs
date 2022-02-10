@@ -154,7 +154,7 @@ APIs that aren't applicable inside of a web browser (for example, accessing the 
 
 * [WebAssembly](https://webassembly.org)
 * <xref:blazor/hosting-models>
-* <xref:tutorials/signalr-blazor>
+* <xref:blazor/tutorials/signalr-blazor>
 * <xref:blazor/js-interop/call-javascript-from-dotnet>
 * <xref:blazor/js-interop/call-dotnet-from-javascript>
 * [mono/mono GitHub repository](https://github.com/mono/mono)
