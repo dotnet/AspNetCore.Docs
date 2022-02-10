@@ -83,7 +83,7 @@ items:
               - name: Examine Details and Delete
                 uid: tutorials/first-mvc-app/details
           - name: Blazor
-            href: blazor/tutorials/index.md
+            uid: blazor/tutorials/index
       - name: Web API apps
         items:
           - name: Create a web API with controllers
