@@ -72,7 +72,7 @@ Add the example model class:
 
    [!code-csharp[](webapi/sample/3.x/ProductsApp/Models/Product.cs)]
 
-Add the example controller:
+Create a Products controller
 
 1. Right-click the **Controllers** folder.
 1. Select **Add > Controller...**.
@@ -101,7 +101,7 @@ Copy the *ProductsController*:
 
 ## The configuration for ASP.NET Core Web API
 
-ASP.NET Core doesn't use the *App_Start* folder or the *Global.asax* file. The *web.config* file is added at publish time.
+ASP.NET Core doesn't use the *App_Start* folder or the *Global.asax* file. The *web.config* file is added at publish time. For more information, see <xref:host-and-deploy/iis/web-config>.
 
 The *Program.cs* file:
 
@@ -114,7 +114,7 @@ The following shows the application startup code in the ASP.NET Core *Program.cs
 
 [!code-csharp[](webapi/sample/6.x/ProductsCore/Program.cs)]
 
-## Update the model
+## Copy the model
 
 By utilizing the [Nullable feature introduced in C# 8](/dotnet/csharp/whats-new/csharp-8#nullable-reference-types), ASP.NET Core can provide additional code flow analysis and compile-time safety in the handling of reference types. For example, protecting against `null` reference exceptions.
 
@@ -174,16 +174,16 @@ In *Program.cs* in the ASP.NET Core ProductsCore app, <xref:Microsoft.AspNetCore
 
 **Note:** Routes added directly to the <xref:Microsoft.AspNetCore.Builder.WebApplication> execute at the ***end*** of the pipeline.
 
-Configure routing as follows:
+## Routing in the migrated `ProductsController`
 
 1. The migrated `ProductsController` contains the following highlighted attributes:
 
     [!code-csharp[](webapi/sample/6.x/ProductsCore/Controllers/ProductsController.cs?highlight=6,7)]
 
-    The preceding [`[Route]`](xref:Microsoft.AspNetCore.Mvc.RouteAttribute) attribute configures the controller's attribute routing pattern. The [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute makes attribute routing a requirement for all actions in this controller.
+    The preceding [`[Route]`](xref:Microsoft.AspNetCore.Mvc.RouteAttribute) attribute [configures the controller's attribute routing](xref:fundamentals/routing) pattern. The [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute makes attribute routing a requirement for all actions in this controller.
 
     Attribute routing supports tokens, such as `[controller]` and `[action]`. At runtime, each token is replaced with the name of the controller or action, respectively, to which the attribute has been applied. The tokens:
-    * Reduce the number of magic strings in the project.
+    * Reduces or eliminates the need to use hard coded strings for the route.
     * Ensure routes remain synchronized with the corresponding controllers and actions when automatic rename refactorings are applied.
 1. Enable HTTP Get requests to the `ProductController` actions:
     * Apply the [`[HttpGet]`](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute) attribute to the `GetAllProducts` action.
