@@ -304,6 +304,7 @@ For more information, see the following resources:
 * <xref:test/hot-reload>
 * <xref:blazor/hosting-models>
 * <xref:blazor/project-structure>
+* <xref:blazor/hybrid/tutorials/index>
 
 :::moniker-end
 
