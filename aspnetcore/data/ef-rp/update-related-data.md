@@ -31,7 +31,7 @@ Create a *Pages/Courses/DepartmentNamePageModel.cs* file with the following code
 
 [!code-csharp[](intro/samples/cu50/Pages/Courses/DepartmentNamePageModel.cs)]
 
-The preceding code creates a [SelectList](/dotnet/api/microsoft.aspnetcore.mvc.rendering.selectlist) to contain the list of department names. If `selectedDepartment` is specified, that department is selected in the `SelectList`.
+The preceding code creates a <xref:Microsoft.AspNetCore.Mvc.Rendering.SelectList> to contain the list of department names. If `selectedDepartment` is specified, that department is selected in the `SelectList`.
 
 The Create and Edit page model classes will derive from `DepartmentNamePageModel`.
 
@@ -96,7 +96,7 @@ The page contains a hidden field (`<input type="hidden">`) for the course number
 
 ## Update the Course page models
 
-[AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking) can improve performance when tracking isn't required.
+<xref:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.AsNoTracking%2A> can improve performance when tracking isn't required.
 
 Update *Pages/Courses/Delete.cshtml.cs* and *Pages/Courses/Details.cshtml.cs* by adding `AsNoTracking` to the `OnGetAsync` methods:
 
@@ -138,7 +138,7 @@ Create the *Pages/Instructors/InstructorCoursesPageModel.cs* base class:
 
 [!code-csharp[](intro/samples/cu50/Pages/Instructors/InstructorCoursesPageModel.cs?name=snippet_All)]
 
-The `InstructorCoursesPageModel` is the base class for the Edit and Create page models. `PopulateAssignedCourseData` reads all `Course` entities to populate `AssignedCourseDataList`. For each course, the code sets the `CourseID`, title, and whether or not the instructor is assigned to the course. A [HashSet](/dotnet/api/system.collections.generic.hashset-1) is used for efficient lookups.
+The `InstructorCoursesPageModel` is the base class for the Edit and Create page models. `PopulateAssignedCourseData` reads all `Course` entities to populate `AssignedCourseDataList`. For each course, the code sets the `CourseID`, title, and whether or not the instructor is assigned to the course. A [HashSet](xref:System.Collections.Generic.HashSet%601) is used for efficient lookups.
 
 ### Handle office location
 
@@ -254,7 +254,7 @@ Create a *Pages/Courses/DepartmentNamePageModel.cs* file with the following code
 
 [!code-csharp[](intro/samples/cu30/Pages/Courses/DepartmentNamePageModel.cs)]
 
-The preceding code creates a [SelectList](/dotnet/api/microsoft.aspnetcore.mvc.rendering.selectlist) to contain the list of department names. If `selectedDepartment` is specified, that department is selected in the `SelectList`.
+The preceding code creates a <xref:Microsoft.AspNetCore.Mvc.Rendering.SelectList> to contain the list of department names. If `selectedDepartment` is specified, that department is selected in the `SelectList`.
 
 The Create and Edit page model classes will derive from `DepartmentNamePageModel`.
 
@@ -319,7 +319,7 @@ The page contains a hidden field (`<input type="hidden">`) for the course number
 
 ## Update the Course Details and Delete pages
 
-[AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking) can improve performance when tracking isn't required.
+<xref:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.AsNoTracking%2A> can improve performance when tracking isn't required.
 
 ### Update the Course page models
 
@@ -367,7 +367,7 @@ Create the *Pages/Instructors/InstructorCoursesPageModel.cs* base class:
 
 [!code-csharp[](intro/samples/cu30/Pages/Instructors/InstructorCoursesPageModel.cs?name=snippet_All)]
 
-The `InstructorCoursesPageModel` is the base class you will use for the Edit and Create page models. `PopulateAssignedCourseData` reads all `Course` entities to populate `AssignedCourseDataList`. For each course, the code sets the `CourseID`, title, and whether or not the instructor is assigned to the course. A [HashSet](/dotnet/api/system.collections.generic.hashset-1) is used for efficient lookups.
+The `InstructorCoursesPageModel` is the base class you will use for the Edit and Create page models. `PopulateAssignedCourseData` reads all `Course` entities to populate `AssignedCourseDataList`. For each course, the code sets the `CourseID`, title, and whether or not the instructor is assigned to the course. A [HashSet](xref:System.Collections.Generic.HashSet%601) is used for efficient lookups.
 
 Since the Razor page doesn't have a collection of Course entities, the model binder can't automatically update the `CourseAssignments` navigation property. Instead of using the model binder to update the `CourseAssignments` navigation property, you do that in the new `UpdateInstructorCourses` method. Therefore you need to exclude the `CourseAssignments` property from model binding. This doesn't require any change to the code that calls `TryUpdateModel` because you're using the overload with declared properties and `CourseAssignments` isn't in the include list.
 
@@ -471,7 +471,7 @@ The Courses/Create and Courses/Edit pages each need a list of department names. 
 
 [!code-csharp[](intro/samples/cu/Pages/Courses/DepartmentNamePageModel.cshtml.cs?highlight=9,11,20-21)]
 
-The preceding code creates a [SelectList](/dotnet/api/microsoft.aspnetcore.mvc.rendering.selectlist) to contain the list of department names. If `selectedDepartment` is specified, that department is selected in the `SelectList`.
+The preceding code creates a <xref:Microsoft.AspNetCore.Mvc.Rendering.SelectList> to contain the list of department names. If `selectedDepartment` is specified, that department is selected in the `SelectList`.
 
 The Create and Edit page model classes will derive from `DepartmentNamePageModel`.
 
@@ -536,7 +536,7 @@ Test the updated code. Create, edit, and delete a course.
 
 ## Add AsNoTracking to the Details and Delete page models
 
-[AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking) can improve performance when tracking isn't required. Add `AsNoTracking` to the Delete and Details page model. The following code shows the updated Delete page model:
+<xref:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.AsNoTracking%2A> can improve performance when tracking isn't required. Add `AsNoTracking` to the Delete and Details page model. The following code shows the updated Delete page model:
 
 [!code-csharp[](intro/samples/cu/Pages/Courses/Delete.cshtml.cs?name=snippet&highlight=21,23,40,41)]
 
@@ -611,7 +611,7 @@ Create the *Pages/Instructors/InstructorCoursesPageModel.cshtml.cs* base class:
 
 [!code-csharp[](intro/samples/cu/Pages/Instructors/InstructorCoursesPageModel.cshtml.cs)]
 
-The `InstructorCoursesPageModel` is the base class you will use for the Edit and Create page models. `PopulateAssignedCourseData` reads all `Course` entities to populate `AssignedCourseDataList`. For each course, the code sets the `CourseID`, title, and whether or not the instructor is assigned to the course. A [HashSet](/dotnet/api/system.collections.generic.hashset-1) is used to create efficient lookups.
+The `InstructorCoursesPageModel` is the base class you will use for the Edit and Create page models. `PopulateAssignedCourseData` reads all `Course` entities to populate `AssignedCourseDataList`. For each course, the code sets the `CourseID`, title, and whether or not the instructor is assigned to the course. A [HashSet](xref:System.Collections.Generic.HashSet%601) is used to create efficient lookups.
 
 ### Instructors Edit page model
 
