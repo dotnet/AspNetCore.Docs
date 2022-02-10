@@ -19,7 +19,7 @@ This tutorial shows how to build an ASP.NET Core app with email confirmation and
 * [Authentication](xref:security/authentication/identity)
 * [Entity Framework Core](xref:data/ef-mvc/intro)
 
-<!-- see C:/Dropbox/wrk/Code/SendGridConsole/Program.cs -->
+<!-- see Dropbox/wrk/Code/SendGridConsole/Program.cs -->
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -244,22 +244,22 @@ Run the app, select the **Register** link, and register a user. Once registered,
 
 ### Configure an email provider
 
-In this tutorial, [SendGrid](https://sendgrid.com) is used to send email. You need a SendGrid account and key to send email. You can use other email providers. We recommend you use SendGrid or another email service to send email. SMTP is difficult to secure and set up correctly.
+In this tutorial, [SendGrid](https://sendgrid.com) is used to send email. You can use other email providers. We recommend you use SendGrid or another email service to send email. SMTP is difficult to configure so mail is not marked a spam.
 
 The SendGrid account may require [adding a Sender](https://sendgrid.com/docs/ui/sending-email/senders/).
 
 Create a class to fetch the secure email key. For this sample, create *Services/AuthMessageSenderOptions.cs*:
 
-[!code-csharp[](accconfirm/sample/WebPWrecover30/Services/AuthMessageSenderOptions.cs?name=snippet1)]
+[!code-csharp[](accconfirm/sample/WebPWrecover60/Services/AuthMessageSenderOptions.cs)]
 
 #### Configure SendGrid user secrets
 
 Set the `SendGridKey` with the [secret-manager tool](xref:security/app-secrets). For example:
 
 ```dotnetcli
-dotnet user-secrets set SendGridKey <key>
+dotnet user-secrets set SendGridKey <SG.key>
 
-Successfully saved SendGridKey to the secret store.
+Successfully saved SendGridKey = SG.keyVal to the secret store.
 ```
 
 On Windows, Secret Manager stores keys/value pairs in a *secrets.json* file in the `%APPDATA%/Microsoft/UserSecrets/<WebAppName-userSecretsId>` directory.
@@ -304,7 +304,7 @@ See [Get Started with SendGrid for Free](https://sendgrid.com/free/) to register
 
 To Implement `IEmailSender`, create *Services/EmailSender.cs* with code similar to the following:
 
-[!code-csharp[](accconfirm/sample/WebPWrecover30/Services/EmailSender.cs)]
+[!code-csharp[](accconfirm/sample/WebPWrecover60/Services/EmailSender.cs)]
 
 ### Configure startup to support email
 
@@ -313,7 +313,8 @@ Add the following code to the `ConfigureServices` method in the *Startup.cs* fil
 * Add `EmailSender` as a transient service.
 * Register the `AuthMessageSenderOptions` configuration instance.
 
-[!code-csharp[](accconfirm/sample/WebPWrecover30/Startup.cs?name=snippet1&highlight=11-15)]
+
+[!code-csharp[](accconfirm/sample/WebPWrecover60/Program.cs?highlight=2,5,19-20)]
 
 ## Scaffold RegisterConfirmation
 

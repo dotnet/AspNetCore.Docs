@@ -15,4 +15,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.1" />
   </ItemGroup>
 
+	<ItemGroup>
+		<PackageReference Include="SendGrid" Version="9.25.2" />
+	</ItemGroup>
 </Project>
