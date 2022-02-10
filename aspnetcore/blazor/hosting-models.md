@@ -50,7 +50,7 @@ Blazor WebAssembly (WASM) apps run client-side in the browser on a WebAssembly-b
 
 When the Blazor WebAssembly app is created for deployment without a backend ASP.NET Core app to serve its files, the app is called a *standalone* Blazor WebAssembly app. When the app is created for deployment with a backend app to serve its files, the app is called a *hosted* Blazor WebAssembly app.
 
-Using hosted Blazor WebAssembly, you get a full-stack web development experience with .NET, including the ability to share code between the client and server apps, support for prerendering, and integration with MVC and Razor Pages. A hosted client app can interact with its backend server app over the network using a variety of messaging frameworks and protocols, such as [web API](xref:web-api/index), [gRPC-web](xref:grpc/index), and [SignalR](xref:signalr/introduction) (<xref:tutorials/signalr-blazor>).
+Using hosted Blazor WebAssembly, you get a full-stack web development experience with .NET, including the ability to share code between the client and server apps, support for prerendering, and integration with MVC and Razor Pages. A hosted client app can interact with its backend server app over the network using a variety of messaging frameworks and protocols, such as [web API](xref:web-api/index), [gRPC-web](xref:grpc/index), and [SignalR](xref:signalr/introduction) (<xref:blazor/tutorials/signalr-blazor>).
 
 The `blazor.webassembly.js` script is provided by the framework and handles:
 
@@ -112,4 +112,4 @@ After you choose the app's hosting model, you can generate an app from a Blazor 
 * <xref:blazor/project-structure>
 * <xref:signalr/introduction>
 * <xref:blazor/fundamentals/signalr>
-* <xref:tutorials/signalr-blazor>
+* <xref:blazor/tutorials/signalr-blazor>

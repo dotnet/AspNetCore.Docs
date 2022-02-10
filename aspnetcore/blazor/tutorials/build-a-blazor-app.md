@@ -7,7 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
-uid: tutorials/build-a-blazor-app
+uid: blazor/tutorials/build-a-blazor-app
 zone_pivot_groups: blazor-hosting-models
 ---
 # Build a Blazor todo list app

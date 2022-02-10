@@ -7,7 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
-uid: tutorials/signalr-blazor
+uid: blazor/tutorials/signalr-blazor
 zone_pivot_groups: blazor-hosting-models
 ---
 # Use ASP.NET Core SignalR with Blazor
@@ -181,7 +181,7 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 In the `BlazorWebAssemblySignalRApp.Server` project, create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/ChatHub.cs`):
 
-[!code-csharp[](~/tutorials/signalr-blazor/samples/6.0/BlazorWebAssemblySignalRApp/Server/Hubs/ChatHub.cs)]
+[!code-csharp[](signalr-blazor/samples/6.0/BlazorWebAssemblySignalRApp/Server/Hubs/ChatHub.cs)]
 
 ## Add services and an endpoint for the SignalR hub
 
@@ -195,14 +195,14 @@ In the `BlazorWebAssemblySignalRApp.Server` project, create a `Hubs` (plural) fo
 
 1. Add SignalR and Response Compression Middleware services to `Program.cs`:
 
-   [!code-csharp[](~/tutorials/signalr-blazor/samples/6.0/BlazorWebAssemblySignalRApp/Server/Program.cs?name=snippet_ConfigureServices)]
+   [!code-csharp[](signalr-blazor/samples/6.0/BlazorWebAssemblySignalRApp/Server/Program.cs?name=snippet_ConfigureServices)]
 
 1. In `Program.cs`:
 
    * Use Response Compression Middleware at the top of the processing pipeline's configuration.
    * Between the endpoints for controllers and the client-side fallback, add an endpoint for the hub.
 
-   [!code-csharp[](~/tutorials/signalr-blazor/samples/6.0/BlazorWebAssemblySignalRApp/Server/Program.cs?name=snippet_Configure)]
+   [!code-csharp[](signalr-blazor/samples/6.0/BlazorWebAssemblySignalRApp/Server/Program.cs?name=snippet_Configure)]
 
 ## Add Razor component code for chat
 
@@ -210,7 +210,7 @@ In the `BlazorWebAssemblySignalRApp.Server` project, create a `Hubs` (plural) fo
 
 1. Replace the markup with the following code:
 
-   [!code-razor[](~/tutorials/signalr-blazor/samples/6.0/BlazorWebAssemblySignalRApp/Client/Pages/Index.razor)]
+   [!code-razor[](signalr-blazor/samples/6.0/BlazorWebAssemblySignalRApp/Client/Pages/Index.razor)]
 
 ## Run the app
 
@@ -227,7 +227,7 @@ Follow the guidance for your tooling:
 
 1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
 
-   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](~/tutorials/signalr-blazor/_static/signalr-blazor-finished.png)
+   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](signalr-blazor/_static/signalr-blazor-finished.png)
 
    Quotes: *Star Trek VI: The Undiscovered Country* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 
@@ -244,7 +244,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
 1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
 
-   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](~/tutorials/signalr-blazor/_static/signalr-blazor-finished.png)
+   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](signalr-blazor/_static/signalr-blazor-finished.png)
 
    Quotes: *Star Trek VI: The Undiscovered Country* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 
@@ -259,7 +259,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
 1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
 
-   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](~/tutorials/signalr-blazor/_static/signalr-blazor-finished.png)
+   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](signalr-blazor/_static/signalr-blazor-finished.png)
 
    Quotes: *Star Trek VI: The Undiscovered Country* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 
@@ -279,7 +279,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
 1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
 
-   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](~/tutorials/signalr-blazor/_static/signalr-blazor-finished.png)
+   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](signalr-blazor/_static/signalr-blazor-finished.png)
 
    Quotes: *Star Trek VI: The Undiscovered Country* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 
@@ -404,7 +404,7 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/ChatHub.cs`):
 
-[!code-csharp[](~/tutorials/signalr-blazor/samples/6.0/BlazorServerSignalRApp/Hubs/ChatHub.cs)]
+[!code-csharp[](signalr-blazor/samples/6.0/BlazorServerSignalRApp/Hubs/ChatHub.cs)]
 
 ## Add services and an endpoint for the SignalR hub
 
@@ -419,14 +419,14 @@ Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/Cha
 
 1. Add Response Compression Middleware services to `Program.cs`:
 
-   [!code-csharp[](~/tutorials/signalr-blazor/samples/6.0/BlazorServerSignalRApp/Program.cs?name=snippet_ConfigureServices)]
+   [!code-csharp[](signalr-blazor/samples/6.0/BlazorServerSignalRApp/Program.cs?name=snippet_ConfigureServices)]
 
 1. In `Program.cs`:
 
    * Use Response Compression Middleware at the top of the processing pipeline's configuration.
    * Between the endpoints for mapping the Blazor hub and the client-side fallback, add an endpoint for the hub.
 
-   [!code-csharp[](~/tutorials/signalr-blazor/samples/6.0/BlazorServerSignalRApp/Program.cs?name=snippet_Configure)]
+   [!code-csharp[](signalr-blazor/samples/6.0/BlazorServerSignalRApp/Program.cs?name=snippet_Configure)]
 
 ## Add Razor component code for chat
 
@@ -434,7 +434,7 @@ Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/Cha
 
 1. Replace the markup with the following code:
 
-   [!code-razor[](~/tutorials/signalr-blazor/samples/6.0/BlazorServerSignalRApp/Pages/Index.razor)]
+   [!code-razor[](signalr-blazor/samples/6.0/BlazorServerSignalRApp/Pages/Index.razor)]
 
 ## Run the app
 
@@ -448,7 +448,7 @@ Follow the guidance for your tooling:
 
 1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
 
-   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](~/tutorials/signalr-blazor/_static/signalr-blazor-finished.png)
+   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](signalr-blazor/_static/signalr-blazor-finished.png)
 
    Quotes: *Star Trek VI: The Undiscovered Country* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 
@@ -460,7 +460,7 @@ Follow the guidance for your tooling:
 
 1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
 
-   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](~/tutorials/signalr-blazor/_static/signalr-blazor-finished.png)
+   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](signalr-blazor/_static/signalr-blazor-finished.png)
 
    Quotes: *Star Trek VI: The Undiscovered Country* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 
@@ -472,7 +472,7 @@ Follow the guidance for your tooling:
 
 1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
 
-   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](~/tutorials/signalr-blazor/_static/signalr-blazor-finished.png)
+   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](signalr-blazor/_static/signalr-blazor-finished.png)
 
    Quotes: *Star Trek VI: The Undiscovered Country* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 
@@ -488,7 +488,7 @@ Follow the guidance for your tooling:
 
 1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
 
-   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](~/tutorials/signalr-blazor/_static/signalr-blazor-finished.png)
+   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](signalr-blazor/_static/signalr-blazor-finished.png)
 
    Quotes: *Star Trek VI: The Undiscovered Country* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 
@@ -690,7 +690,7 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 In the `BlazorWebAssemblySignalRApp.Server` project, create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/ChatHub.cs`):
 
-[!code-csharp[](~/tutorials/signalr-blazor/samples/5.0/BlazorWebAssemblySignalRApp/Server/Hubs/ChatHub.cs)]
+[!code-csharp[](signalr-blazor/samples/5.0/BlazorWebAssemblySignalRApp/Server/Hubs/ChatHub.cs)]
 
 ## Add services and an endpoint for the SignalR hub
 
@@ -704,14 +704,14 @@ In the `BlazorWebAssemblySignalRApp.Server` project, create a `Hubs` (plural) fo
 
 1. Add SignalR and Response Compression Middleware services to `Startup.ConfigureServices`:
 
-   [!code-csharp[](~/tutorials/signalr-blazor/samples/5.0/BlazorWebAssemblySignalRApp/Server/Startup.cs?name=snippet_ConfigureServices&highlight=3,6-10)]
+   [!code-csharp[](signalr-blazor/samples/5.0/BlazorWebAssemblySignalRApp/Server/Startup.cs?name=snippet_ConfigureServices&highlight=3,6-10)]
 
 1. In `Startup.Configure`:
 
    * Use Response Compression Middleware at the top of the processing pipeline's configuration.
    * Between the endpoints for controllers and the client-side fallback, add an endpoint for the hub.
 
-   [!code-csharp[](~/tutorials/signalr-blazor/samples/5.0/BlazorWebAssemblySignalRApp/Server/Startup.cs?name=snippet_Configure&highlight=3,26)]
+   [!code-csharp[](signalr-blazor/samples/5.0/BlazorWebAssemblySignalRApp/Server/Startup.cs?name=snippet_Configure&highlight=3,26)]
 
 ## Add Razor component code for chat
 
@@ -719,7 +719,7 @@ In the `BlazorWebAssemblySignalRApp.Server` project, create a `Hubs` (plural) fo
 
 1. Replace the markup with the following code:
 
-   [!code-razor[](~/tutorials/signalr-blazor/samples/5.0/BlazorWebAssemblySignalRApp/Client/Pages/Index.razor)]
+   [!code-razor[](signalr-blazor/samples/5.0/BlazorWebAssemblySignalRApp/Client/Pages/Index.razor)]
 
 ## Run the app
 
@@ -736,7 +736,7 @@ Follow the guidance for your tooling:
 
 1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
 
-   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](~/tutorials/signalr-blazor/_static/signalr-blazor-finished.png)
+   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](signalr-blazor/_static/signalr-blazor-finished.png)
 
    Quotes: *Star Trek VI: The Undiscovered Country* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 
@@ -753,7 +753,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
 1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
 
-   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](~/tutorials/signalr-blazor/_static/signalr-blazor-finished.png)
+   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](signalr-blazor/_static/signalr-blazor-finished.png)
 
    Quotes: *Star Trek VI: The Undiscovered Country* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 
@@ -768,7 +768,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
 1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
 
-   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](~/tutorials/signalr-blazor/_static/signalr-blazor-finished.png)
+   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](signalr-blazor/_static/signalr-blazor-finished.png)
 
    Quotes: *Star Trek VI: The Undiscovered Country* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 
@@ -788,7 +788,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
 1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
 
-   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](~/tutorials/signalr-blazor/_static/signalr-blazor-finished.png)
+   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](signalr-blazor/_static/signalr-blazor-finished.png)
 
    Quotes: *Star Trek VI: The Undiscovered Country* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 
@@ -913,7 +913,7 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/ChatHub.cs`):
 
-[!code-csharp[](~/tutorials/signalr-blazor/samples/5.0/BlazorServerSignalRApp/Hubs/ChatHub.cs)]
+[!code-csharp[](signalr-blazor/samples/5.0/BlazorServerSignalRApp/Hubs/ChatHub.cs)]
 
 ## Add services and an endpoint for the SignalR hub
 
@@ -928,14 +928,14 @@ Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/Cha
 
 1. Add Response Compression Middleware services to `Startup.ConfigureServices`:
 
-   [!code-csharp[](~/tutorials/signalr-blazor/samples/5.0/BlazorServerSignalRApp/Startup.cs?name=snippet_ConfigureServices&highlight=6-10)]
+   [!code-csharp[](signalr-blazor/samples/5.0/BlazorServerSignalRApp/Startup.cs?name=snippet_ConfigureServices&highlight=6-10)]
 
 1. In `Startup.Configure`:
 
    * Use Response Compression Middleware at the top of the processing pipeline's configuration.
    * Between the endpoints for mapping the Blazor hub and the client-side fallback, add an endpoint for the hub.
 
-   [!code-csharp[](~/tutorials/signalr-blazor/samples/5.0/BlazorServerSignalRApp/Startup.cs?name=snippet_Configure&highlight=3,23)]
+   [!code-csharp[](signalr-blazor/samples/5.0/BlazorServerSignalRApp/Startup.cs?name=snippet_Configure&highlight=3,23)]
 
 ## Add Razor component code for chat
 
@@ -943,7 +943,7 @@ Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/Cha
 
 1. Replace the markup with the following code:
 
-   [!code-razor[](~/tutorials/signalr-blazor/samples/5.0/BlazorServerSignalRApp/Pages/Index.razor)]
+   [!code-razor[](signalr-blazor/samples/5.0/BlazorServerSignalRApp/Pages/Index.razor)]
 
 ## Run the app
 
@@ -957,7 +957,7 @@ Follow the guidance for your tooling:
 
 1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
 
-   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](~/tutorials/signalr-blazor/_static/signalr-blazor-finished.png)
+   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](signalr-blazor/_static/signalr-blazor-finished.png)
 
    Quotes: *Star Trek VI: The Undiscovered Country* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 
@@ -969,7 +969,7 @@ Follow the guidance for your tooling:
 
 1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
 
-   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](~/tutorials/signalr-blazor/_static/signalr-blazor-finished.png)
+   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](signalr-blazor/_static/signalr-blazor-finished.png)
 
    Quotes: *Star Trek VI: The Undiscovered Country* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 
@@ -981,7 +981,7 @@ Follow the guidance for your tooling:
 
 1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
 
-   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](~/tutorials/signalr-blazor/_static/signalr-blazor-finished.png)
+   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](signalr-blazor/_static/signalr-blazor-finished.png)
 
    Quotes: *Star Trek VI: The Undiscovered Country* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 
@@ -997,7 +997,7 @@ Follow the guidance for your tooling:
 
 1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
 
-   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](~/tutorials/signalr-blazor/_static/signalr-blazor-finished.png)
+   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](signalr-blazor/_static/signalr-blazor-finished.png)
 
    Quotes: *Star Trek VI: The Undiscovered Country* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 
@@ -1199,7 +1199,7 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 In the `BlazorWebAssemblySignalRApp.Server` project, create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/ChatHub.cs`):
 
-[!code-csharp[](~/tutorials/signalr-blazor/samples/3.1/BlazorWebAssemblySignalRApp/Server/Hubs/ChatHub.cs)]
+[!code-csharp[](signalr-blazor/samples/3.1/BlazorWebAssemblySignalRApp/Server/Hubs/ChatHub.cs)]
 
 ## Add services and an endpoint for the SignalR hub
 
@@ -1213,14 +1213,14 @@ In the `BlazorWebAssemblySignalRApp.Server` project, create a `Hubs` (plural) fo
 
 1. Add SignalR and Response Compression Middleware services to `Startup.ConfigureServices`:
 
-   [!code-csharp[](~/tutorials/signalr-blazor/samples/3.1/BlazorWebAssemblySignalRApp/Server/Startup.cs?name=snippet_ConfigureServices&highlight=3,5-9)]
+   [!code-csharp[](signalr-blazor/samples/3.1/BlazorWebAssemblySignalRApp/Server/Startup.cs?name=snippet_ConfigureServices&highlight=3,5-9)]
 
 1. In `Startup.Configure`:
 
    * Use Response Compression Middleware at the top of the processing pipeline's configuration.
    * Between the endpoints for controllers and the client-side fallback, add an endpoint for the hub.
 
-   [!code-csharp[](~/tutorials/signalr-blazor/samples/3.1/BlazorWebAssemblySignalRApp/Server/Startup.cs?name=snippet_Configure&highlight=3,25)]
+   [!code-csharp[](signalr-blazor/samples/3.1/BlazorWebAssemblySignalRApp/Server/Startup.cs?name=snippet_Configure&highlight=3,25)]
 
 ## Add Razor component code for chat
 
@@ -1228,7 +1228,7 @@ In the `BlazorWebAssemblySignalRApp.Server` project, create a `Hubs` (plural) fo
 
 1. Replace the markup with the following code:
 
-   [!code-razor[](~/tutorials/signalr-blazor/samples/3.1/BlazorWebAssemblySignalRApp/Client/Pages/Index.razor)]
+   [!code-razor[](signalr-blazor/samples/3.1/BlazorWebAssemblySignalRApp/Client/Pages/Index.razor)]
 
 ## Run the app
 
@@ -1245,7 +1245,7 @@ Follow the guidance for your tooling:
 
 1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
 
-   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](~/tutorials/signalr-blazor/_static/signalr-blazor-finished.png)
+   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](signalr-blazor/_static/signalr-blazor-finished.png)
 
    Quotes: *Star Trek VI: The Undiscovered Country* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 
@@ -1262,7 +1262,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
 1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
 
-   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](~/tutorials/signalr-blazor/_static/signalr-blazor-finished.png)
+   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](signalr-blazor/_static/signalr-blazor-finished.png)
 
    Quotes: *Star Trek VI: The Undiscovered Country* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 
@@ -1277,7 +1277,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
 1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
 
-   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](~/tutorials/signalr-blazor/_static/signalr-blazor-finished.png)
+   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](signalr-blazor/_static/signalr-blazor-finished.png)
 
    Quotes: *Star Trek VI: The Undiscovered Country* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 
@@ -1297,7 +1297,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
 1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
 
-   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](~/tutorials/signalr-blazor/_static/signalr-blazor-finished.png)
+   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](signalr-blazor/_static/signalr-blazor-finished.png)
 
    Quotes: *Star Trek VI: The Undiscovered Country* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 
@@ -1478,7 +1478,7 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/ChatHub.cs`):
 
-[!code-csharp[](~/tutorials/signalr-blazor/samples/3.1/BlazorServerSignalRApp/Hubs/ChatHub.cs)]
+[!code-csharp[](signalr-blazor/samples/3.1/BlazorServerSignalRApp/Hubs/ChatHub.cs)]
 
 ## Add services and an endpoint for the SignalR hub
 
@@ -1493,14 +1493,14 @@ Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/Cha
 
 1. Add Response Compression Middleware services to `Startup.ConfigureServices`:
 
-   [!code-csharp[](~/tutorials/signalr-blazor/samples/3.1/BlazorServerSignalRApp/Startup.cs?name=snippet_ConfigureServices&highlight=6-10)]
+   [!code-csharp[](signalr-blazor/samples/3.1/BlazorServerSignalRApp/Startup.cs?name=snippet_ConfigureServices&highlight=6-10)]
 
 1. In `Startup.Configure`:
 
    * Use Response Compression Middleware at the top of the processing pipeline's configuration.
    * Between the endpoints for mapping the Blazor hub and the client-side fallback, add an endpoint for the hub.
 
-   [!code-csharp[](~/tutorials/signalr-blazor/samples/3.1/BlazorServerSignalRApp/Startup.cs?name=snippet_Configure&highlight=3,23)]
+   [!code-csharp[](signalr-blazor/samples/3.1/BlazorServerSignalRApp/Startup.cs?name=snippet_Configure&highlight=3,23)]
 
 ## Add Razor component code for chat
 
@@ -1508,7 +1508,7 @@ Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/Cha
 
 1. Replace the markup with the following code:
 
-   [!code-razor[](~/tutorials/signalr-blazor/samples/3.1/BlazorServerSignalRApp/Pages/Index.razor)]
+   [!code-razor[](signalr-blazor/samples/3.1/BlazorServerSignalRApp/Pages/Index.razor)]
 
 ## Run the app
 
@@ -1522,7 +1522,7 @@ Follow the guidance for your tooling:
 
 1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
 
-   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](~/tutorials/signalr-blazor/_static/signalr-blazor-finished.png)
+   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](signalr-blazor/_static/signalr-blazor-finished.png)
 
    Quotes: *Star Trek VI: The Undiscovered Country* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 
@@ -1534,7 +1534,7 @@ Follow the guidance for your tooling:
 
 1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
 
-   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](~/tutorials/signalr-blazor/_static/signalr-blazor-finished.png)
+   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](signalr-blazor/_static/signalr-blazor-finished.png)
 
    Quotes: *Star Trek VI: The Undiscovered Country* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 
@@ -1546,7 +1546,7 @@ Follow the guidance for your tooling:
 
 1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
 
-   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](~/tutorials/signalr-blazor/_static/signalr-blazor-finished.png)
+   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](signalr-blazor/_static/signalr-blazor-finished.png)
 
    Quotes: *Star Trek VI: The Undiscovered Country* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 
@@ -1562,7 +1562,7 @@ Follow the guidance for your tooling:
 
 1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
 
-   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](~/tutorials/signalr-blazor/_static/signalr-blazor-finished.png)
+   ![SignalR Blazor sample app open in two browser windows showing exchanged messages.](signalr-blazor/_static/signalr-blazor-finished.png)
 
    Quotes: *Star Trek VI: The Undiscovered Country* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 

@@ -802,12 +802,12 @@
         },
         {
             "source_path": "aspnetcore/razor-components/get-started.md",
-            "redirect_url": "https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro",
+            "redirect_url": "/aspnet/core/blazor/tutorials/",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/client-side/spa/blazor/get-started.md",
-            "redirect_url": "https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro",
+            "redirect_url": "/aspnet/core/blazor/tutorials/",
             "redirect_document_id": false
         },
         {
@@ -882,7 +882,7 @@
         },
         {
             "source_path": "aspnetcore/tutorials/build-your-first-razor-components-app.md",
-            "redirect_url": "/aspnet/core/tutorials/build-a-blazor-app",
+            "redirect_url": "/aspnet/core/blazor/tutorials/",
             "redirect_document_id": false
         },
         {
@@ -1087,12 +1087,12 @@
         },
         {
             "source_path": "aspnetcore/tutorials/build-your-first-blazor-app.md",
-            "redirect_url": "https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro",
+            "redirect_url": "/aspnet/core/blazor/tutorials/",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/blazor/get-started.md",
-            "redirect_url": "https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro",
+            "redirect_url": "/aspnet/core/blazor/tutorials/",
             "redirect_document_id": false
         },
         {
@@ -1157,6 +1157,21 @@
         {
             "source_path": "aspnetcore/blazor/webassembly-performance-best-practices.md",
             "redirect_url": "/aspnet/core/blazor/performance",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/tutorials.md",
+            "redirect_url": "/aspnet/core/blazor/tutorials/",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/tutorials/build-a-blazor-app.md",
+            "redirect_url": "/aspnet/core/blazor/tutorials/build-a-blazor-app",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/tutorials/signalr-blazor.md",
+            "redirect_url": "/aspnet/core/blazor/tutorials/signalr-blazor",
             "redirect_document_id": false
         }
     ]

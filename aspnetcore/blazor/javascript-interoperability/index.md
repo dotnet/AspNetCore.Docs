@@ -1,5 +1,5 @@
 ---
-title: Blazor JavaScript interoperability (JS interop)
+title: ASP.NET Core Blazor JavaScript interoperability (JS interop)
 author: guardrex
 description: Learn how to interact with JavaScript in Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
@@ -9,7 +9,7 @@ ms.date: 11/09/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, JS, Promise]
 uid: blazor/js-interop/index
 ---
-# Blazor JavaScript interoperability (JS interop)
+# ASP.NET Core Blazor JavaScript interoperability (JS interop)
 
 :::moniker range=">= aspnetcore-6.0"
 
