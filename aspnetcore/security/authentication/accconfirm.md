@@ -25,7 +25,8 @@ This tutorial shows how to build an ASP.NET Core app with email confirmation and
 
 ## Prerequisites
 
-[.NET Core 6.0 SDK or later](https://dotnet.microsoft.com/download/dotnet/6.0)
+* [.NET Core 6.0 SDK or later](https://dotnet.microsoft.com/download/dotnet/6.0)
+* Successfully [send email from a C# console app](https://www.twilio.com/blog/send-emails-using-the-sendgrid-api-with-dotnetnet-6-and-csharp).
 
 ## Create and test a web app with authentication
 
