@@ -25,7 +25,7 @@ Blazor Hybrid support is built into the [.NET Multi-platform App UI (.NET MAUI)]
 
 ## Blazor Hybrid apps with WPF and Windows Forms
 
-Blazor Hybrid apps can also be built with [Windows Presentation Foundation (WPF)](/dotnet/desktop/wpf/overview/) and [Windows Forms](/dotnet/desktop/winforms/overview/). Blazor provides `BlazorWebView` controls for both of these frameworks. Razor components run natively in the Windows desktop and render to an embedded web view. Using Blazor in WPF and Windows Forms enables you to add new UI to your existing Windows desktop apps that can be reused across platforms with .NET MAUI or on the web.
+Blazor Hybrid apps can be built with [Windows Presentation Foundation (WPF)](/dotnet/desktop/wpf/overview/) and [Windows Forms](/dotnet/desktop/winforms/overview/). Blazor provides `BlazorWebView` controls for both of these frameworks. Razor components run natively in the Windows desktop and render to an embedded web view. Using Blazor in WPF and Windows Forms enables you to add new UI to your existing Windows desktop apps that can be reused across platforms with .NET MAUI or on the web.
 
 ## Additional resources
 
