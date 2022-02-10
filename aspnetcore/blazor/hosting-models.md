@@ -112,19 +112,19 @@ After you choose the app's hosting model, you can generate an app from a Blazor 
 
 [!INCLUDE[](~/blazor/includes/blazor-hybrid-preview-notice.md)]
 
-Hybrid apps are native apps that leverage web technologies for their functionality. For example, a hybrid app might use an embedded web view control to render web UI. This means you can write your app UI using web technologies like HTML and CSS, while also leveraging native device capabilities.
+Hybrid apps are native apps that leverage web technologies for their functionality. For example, a hybrid app might use an embedded web view control to render web UI. This means that you can write app UI using web technologies like HTML and CSS, while also leveraging native device capabilities.
 
 ![Hybrid apps are native desktop apps and native mobile apps that embed content in a web view control to render UI.](~/blazor/hosting-models/_static/hybrid-apps-1.png)
 
 For web developers, building hybrid apps has many benefits. To build native apps, you can reuse existing web development skills, existing code, even entire existing web apps. You get full access to the native capabilities of the device, including using native UI elements together with your web UI. Not every app must be a hybrid app; but for many scenarios, the hybrid model can significantly reduce app development time.
 
-You can build hybrid desktop and mobile apps with .NET and Blazor. Blazor Hybrid apps combine all the benefits of the web, native apps, and the .NET platform. In a Blazor Hybrid app, [Razor components](xref:blazor/components/index) run natively on the device. Components don't run in the browser, and WebAssembly isn't involved. Razor components load and execute code quickly, and components have full access to the native capabilities of the device through the .NET platform. Components render to an embedded web view control through a local interop channel.
+You can build hybrid desktop and mobile apps with .NET and Blazor. *Blazor Hybrid* apps combine all the benefits of the web, native apps, and the .NET platform.
 
 ![Hybrid apps with .NET and Blazor render UI in a web view control, where the HTML Document Object Model (DOM) interacts with Blazor and .NET of the native desktop or mobile app.](~/blazor/hosting-models/_static/hybrid-apps-2.png)
 
 For more information, see <xref:blazor/hybrid/index>.
 
-For more information on the native client frameworks, see the following documentation sets:
+For more information on Microsoft native client frameworks, see the following resources:
 
 * [.NET Multi-platform App UI (.NET MAUI)](/dotnet/maui/what-is-maui)
 * [Windows Presentation Foundation (WPF)](/dotnet/desktop/wpf/overview/)

@@ -24,7 +24,7 @@ Blazor WebAssembly and Blazor Server are supported in the browsers shown in the 
 
 &dagger;*Current* refers to the latest version of the browser.
 
-For [Blazor Hybrid apps](xref:blazor/hybrid/index), we test on and support the latest platform webview control versions:
+For [Blazor Hybrid apps](xref:blazor/hybrid/index), we test on and support the latest platform web view control versions:
 
 * [Microsoft Edge WebView2 on Windows](/microsoft-edge/webview2/)
 * [Chrome on Android](https://play.google.com/store/apps/details?id=com.android.chrome)

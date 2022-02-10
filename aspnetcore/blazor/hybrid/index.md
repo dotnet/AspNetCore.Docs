@@ -13,6 +13,8 @@ uid: blazor/hybrid/index
 
 [!INCLUDE[](~/blazor/includes/blazor-hybrid-preview-notice.md)]
 
+Build hybrid desktop and mobile apps with .NET and Blazor. In a *Blazor Hybrid* app, [Razor components](xref:blazor/components/index) run natively on the device. Components render to an embedded web view control through a local interop channel, so they don't run in the browser, and WebAssembly isn't involved. Razor components load and execute code quickly, and components have full access to the native capabilities of the device through the .NET platform.
+
 [Blazor Hybrid](xref:blazor/hosting-models#blazor-hybrid) articles cover subjects pertaining to integrating [Razor components](xref:blazor/components/index) into native client frameworks.
 
 ## Blazor Hybrid apps with .NET MAUI
