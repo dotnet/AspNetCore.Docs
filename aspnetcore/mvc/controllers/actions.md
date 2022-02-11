@@ -1,7 +1,7 @@
 ---
 title: Handle requests with controllers in ASP.NET Core MVC
 author: ardalis
-description: 
+description: Learn how ASP.NET Core MVC controllers and Actions handle requests and return responses.
 ms.author: riande
 ms.date: 12/05/2019
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
