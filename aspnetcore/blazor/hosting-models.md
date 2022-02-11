@@ -1,7 +1,7 @@
 ---
-title: ASP.NET Core Blazor Server and Blazor WebAssembly (WASM) hosting models
+title: ASP.NET Core Blazor hosting models
 author: guardrex
-description: Understand Blazor Server versus Blazor WebAssembly (WASM) and which hosting model you should use.
+description: Understand the different Blazor hosting models and how pick which one to use.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
@@ -9,11 +9,11 @@ ms.date: 02/10/2022
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/hosting-models
 ---
-# ASP.NET Core Blazor Server and Blazor WebAssembly (WASM) hosting models
+# ASP.NET Core Blazor hosting models
 
-This article explains Blazor Server versus Blazor WebAssembly (WASM) and which hosting model you should use.
+This article explains the different hosting models for Blazor components and how to choose which one to use.
 
-Blazor is a web framework designed to run server-side in ASP.NET Core (*Blazor Server*) versus client-side in the browser on a [WebAssembly](https://webassembly.org/)-based .NET runtime (*Blazor WebAssembly*, *Blazor WASM*). Regardless of the hosting model, the app and component models *are the same*.
+Blazor is a web framework for building web UI components that can be hosted in multiple different ways. Blazor components can run server-side in ASP.NET Core (*Blazor Server*) versus client-side in the browser on a [WebAssembly](https://webassembly.org/)-based .NET runtime (*Blazor WebAssembly*, *Blazor WASM*). You can also host Blazor components in native mobile and desktop apps that render to an embedded web view control (*Blazor Hybrid*). Regardless of the hosting model, the way you build the components *is the same*. The same Blazor components can be used with any of the hosting models unchanged.
 
 ## Blazor Server
 
@@ -88,39 +88,29 @@ Blazor WebAssembly includes support for trimming unused code from .NET Core fram
 
 :::moniker-end
 
-## Should I use Blazor Server or Blazor WebAssembly (WASM)?
-
-Select the Blazor hosting model for app development based on the desired features and specifications for the app. The following table shows the primary considerations for selecting the hosting model to help you decide which one you should use.
-
-| Feature | Blazor Server | Blazor WebAssembly (WASM) |
-| --- | :---: | :---: |
-| Complete .NET Core API compatibility           | ✔️ | ❌ |
-| Direct access to server sources                | ✔️ | ❌ |
-| Small payload size with fast initial load time | ✔️ | ❌ |
-| App code secure and private on the server      | ✔️ | ❌&dagger; |
-| Run apps offline once downloaded               | ❌ | ✔️ |
-| Static site hosting                            | ❌ | ✔️ |
-| Offloads processing to clients                 | ❌ | ✔️ |
-
-&dagger;Blazor WebAssembly apps can use server-hosted APIs to access functionality that must be kept private and secure.
-
-After you choose the app's hosting model, you can generate an app from a Blazor project template to begin development. For more information, see [Blazor template options](xref:blazor/tooling#blazor-template-options) in the *Tooling* article.
-
 :::moniker range=">= aspnetcore-6.0"
 
 ## Blazor Hybrid
 
 [!INCLUDE[](~/blazor/includes/blazor-hybrid-preview-notice.md)]
 
-Hybrid apps are native apps that leverage web technologies for their functionality. For example, a hybrid app might use an embedded web view control to render web UI. This means that you can write app UI using web technologies like HTML and CSS, while also leveraging native device capabilities.
-
-![Hybrid apps are native desktop apps and native mobile apps that embed content in a web view control to render UI.](~/blazor/hosting-models/_static/hybrid-apps-1.png)
-
-For web developers, building hybrid apps has many benefits. To build native apps, you can reuse existing web development skills, existing code, even entire existing web apps. You get full access to the native capabilities of the device, including using native UI elements together with your web UI. Not every app must be a hybrid app; but for many scenarios, the hybrid model can significantly reduce app development time.
-
-You can build hybrid desktop and mobile apps with .NET and Blazor. *Blazor Hybrid* apps combine all the benefits of the web, native apps, and the .NET platform.
+Blazor can also be used to to build native client apps using a hybrid approach. Hybrid apps are native apps that leverage web technologies for their functionality. In a Blazor Hybrid app, the components run directly in the native app (not on WebAssembly) along with any other .NET code and render web UI based on HTML and CSS to an embedded web view control though a local interop channel.
 
 ![Hybrid apps with .NET and Blazor render UI in a web view control, where the HTML Document Object Model (DOM) interacts with Blazor and .NET of the native desktop or mobile app.](~/blazor/hosting-models/_static/hybrid-apps-2.png)
+
+Blazor Hybrid apps can be built using different .NET native app frameworks, including .NET MAUI, WPF, and Windows Forms. Blazor provides `BlazorWebView` controls for adding Blazor components to apps build with these frameworks. Using Blazor with .NET MAUI offers a convenient way to build cross-platform Blazor Hybrid apps for mobile and desktop, while Blazor integration with WPF and Windows Forms can be a great way to modernize existing apps.
+
+Because Blazor Hybrid apps are native apps, they can support functionality that isn't available with just the web platform. Blazor Hybrid apps have full access to native platform capabilities through normal .NET APIs. Blazor Hybrid apps can also share and reuse components with existing Blazor Server or Blazor WebAssembly apps. Blazor Hybrid apps combine the benefits of the web, native apps, and the .NET platform.
+
+The Blazor Hybrid hosting model offers several benefits:
+
+* Reuse existing components that can be shared across mobile, desktop, and Web
+* Leverage web development skills, experience, and resources
+* Full access to the native capabilities of the device
+
+The Blazor WebAssembly hosting model has the following limitations:
+
+* Separate native client apps must be built, deployed, and maintained for each target platfrom.
 
 For more information, see <xref:blazor/hybrid/index>.
 
@@ -131,6 +121,25 @@ For more information on Microsoft native client frameworks, see the following re
 * [Windows Forms](/dotnet/desktop/winforms/overview/)
 
 :::moniker-end
+
+## Which Blazor hosting model should I choose?
+
+Select the Blazor hosting model for app development based on the desired features and specifications for the app. The following table shows the primary considerations for selecting the hosting model to help you decide which one you should use.
+
+| Feature | Blazor Server | Blazor WebAssembly (WASM) | Blazor Hybrid |
+| --- | :---: | :---: | :---: |
+| Complete .NET API compatibility                | ✔️ | ❌ | ✔️ |
+| Direct access to server sources                | ✔️ | ❌ | ❌ |
+| Small payload size with fast initial load time | ✔️ | ❌ | ✔️ |
+| App code secure and private on the server      | ✔️ | ❌&dagger; | ❌ |
+| Run apps offline once downloaded               | ❌ | ✔️ | ✔️ |
+| Static site hosting                            | ❌ | ✔️ | ❌ |
+| Offloads processing to clients                 | ❌ | ✔️ | ✔️ |
+| Full access to native client capabilites       | ❌ | ❌ | ✔️ |
+
+&dagger;Blazor WebAssembly apps can use server-hosted APIs to access functionality that must be kept private and secure.
+
+After you choose the app's hosting model, you can generate an app from a Blazor project template to begin development. For more information, see [Blazor template options](xref:blazor/tooling#blazor-template-options) in the *Tooling* article.
 
 ## Additional resources
 
