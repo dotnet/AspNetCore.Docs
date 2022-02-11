@@ -10,12 +10,10 @@ uid: migration/webapi
 ---
 # Migrate from ASP.NET Web API to ASP.NET Core
 
-An ASP.NET 4.x Web API is an HTTP service that reaches a broad range of clients, including browsers and mobile devices. ASP.NET Core combines ASP.NET 4.x's MVC and Web API app models into a single programming model known as ASP.NET Core MVC.
+ASP.NET Core combines ASP.NET 4.x's MVC and Web API app models into a single programming model known as ASP.NET Core MVC.
 
 :::moniker range=">= aspnetcore-6.0"
 This article shows how to migrate the Products controller created in [Getting Started with ASP.NET Web API 2](/aspnet/web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api) to ASP.NET Core.
-
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/migration/webapi/sample/) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Prerequisites
 
@@ -168,8 +166,6 @@ ASP.NET Core provides a minimal hosting model in which the endpoint routing midd
 
 `UseRouting` can still be used to specify where route matching happens, but `UseRouting` doesn't need to be explicitly called if routes should be matched at the beginning of the middleware pipeline.
 
-In *Program.cs* in the ASP.NET Core ProductsCore app, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers%2A> is called inside `UseEndpoints` to map attribute routed controllers.
-
 [!code-csharp[](webapi/sample/6.x/ProductsCore/Program.cs?highlight=15)]
 
 **Note:** Routes added directly to the <xref:Microsoft.AspNetCore.Builder.WebApplication> execute at the ***end*** of the pipeline.
@@ -182,7 +178,7 @@ In *Program.cs* in the ASP.NET Core ProductsCore app, <xref:Microsoft.AspNetCore
 
     The preceding [`[Route]`](xref:Microsoft.AspNetCore.Mvc.RouteAttribute) attribute [configures the controller's attribute routing](xref:fundamentals/routing) pattern. The [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute makes attribute routing a requirement for all actions in this controller.
 
-    Attribute routing supports tokens, such as `[controller]` and `[action]`. At runtime, each token is replaced with the name of the controller or action, respectively, to which the attribute has been applied. The tokens:
+    Attribute routing supports tokens, such as `[controller]` and [action](xref:mvc/controllers/routing#action). At runtime, each token is replaced with the name of the controller or action, respectively, to which the attribute has been applied. The tokens:
     * Reduces or eliminates the need to use hard coded strings for the route.
     * Ensure routes remain synchronized with the corresponding controllers and actions when automatic rename refactorings are applied.
 1. Enable HTTP Get requests to the `ProductController` actions:
@@ -190,6 +186,8 @@ In *Program.cs* in the ASP.NET Core ProductsCore app, <xref:Microsoft.AspNetCore
     * Apply the `[HttpGet("{id}")]` attribute to the `GetProduct` action.
 
 Run the migrated project, and browse to `/api/products`.  For example: https://localhost:`<port>`/api/products. A full list of three products appears. Browse to `/api/products/1`. The first product appears.
+
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/migration/webapi/sample/) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Additional resources
 
