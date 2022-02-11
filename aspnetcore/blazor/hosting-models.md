@@ -11,9 +11,9 @@ uid: blazor/hosting-models
 ---
 # ASP.NET Core Blazor hosting models
 
-This article explains the different hosting models for Blazor components and how to choose which one to use.
+This article explains the different hosting models for Blazor and how to choose which one to use.
 
-Blazor is a web framework for building web UI components that can be hosted in multiple different ways. Blazor components can run server-side in ASP.NET Core (*Blazor Server*) versus client-side in the browser on a [WebAssembly](https://webassembly.org/)-based .NET runtime (*Blazor WebAssembly*, *Blazor WASM*). You can also host Blazor components in native mobile and desktop apps that render to an embedded web view control (*Blazor Hybrid*). Regardless of the hosting model, the way you build the components *is the same*. The same Blazor components can be used with any of the hosting models unchanged.
+Blazor is a web framework for building web UI components ([Razor components](xref:blazor/components/index)) that can be hosted in multiple different ways. Razor components can run server-side in ASP.NET Core (*Blazor Server*) versus client-side in the browser on a [WebAssembly](https://webassembly.org/)-based .NET runtime (*Blazor WebAssembly*, *Blazor WASM*). You can also host Razor components in native mobile and desktop apps that render to an embedded web view control (*Blazor Hybrid*). Regardless of the hosting model, the way you build Razor components *is the same*. The same Razor components can be used with any of the hosting models unchanged.
 
 ## Blazor Server
 
@@ -98,7 +98,7 @@ Blazor can also be used to to build native client apps using a hybrid approach. 
 
 ![Hybrid apps with .NET and Blazor render UI in a web view control, where the HTML Document Object Model (DOM) interacts with Blazor and .NET of the native desktop or mobile app.](~/blazor/hosting-models/_static/hybrid-apps-2.png)
 
-Blazor Hybrid apps can be built using different .NET native app frameworks, including .NET MAUI, WPF, and Windows Forms. Blazor provides `BlazorWebView` controls for adding Blazor components to apps build with these frameworks. Using Blazor with .NET MAUI offers a convenient way to build cross-platform Blazor Hybrid apps for mobile and desktop, while Blazor integration with WPF and Windows Forms can be a great way to modernize existing apps.
+Blazor Hybrid apps can be built using different .NET native app frameworks, including .NET MAUI, WPF, and Windows Forms. Blazor provides `BlazorWebView` controls for adding Razor components to apps build with these frameworks. Using Blazor with .NET MAUI offers a convenient way to build cross-platform Blazor Hybrid apps for mobile and desktop, while Blazor integration with WPF and Windows Forms can be a great way to modernize existing apps.
 
 Because Blazor Hybrid apps are native apps, they can support functionality that isn't available with just the web platform. Blazor Hybrid apps have full access to native platform capabilities through normal .NET APIs. Blazor Hybrid apps can also share and reuse components with existing Blazor Server or Blazor WebAssembly apps. Blazor Hybrid apps combine the benefits of the web, native apps, and the .NET platform.
 
