@@ -27,10 +27,10 @@ The Partial Tag Helper is used for rendering a [partial view](xref:mvc/views/par
 
 The HTML Helper options for rendering a partial view include:
 
-* [`@await Html.PartialAsync`](/dotnet/api/microsoft.aspnetcore.mvc.rendering.htmlhelperpartialextensions.partialasync)
-* [`@await Html.RenderPartialAsync`](/dotnet/api/microsoft.aspnetcore.mvc.rendering.htmlhelperpartialextensions.renderpartialasync)
-* [`@Html.Partial`](/dotnet/api/microsoft.aspnetcore.mvc.rendering.htmlhelperpartialextensions.partial)
-* [`@Html.RenderPartial`](/dotnet/api/microsoft.aspnetcore.mvc.rendering.htmlhelperpartialextensions.renderpartial)
+* [`@await Html.PartialAsync`](xref:Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.PartialAsync%2A)
+* [`@await Html.RenderPartialAsync`](xref:Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.RenderPartialAsync%2A)
+* [`@Html.Partial`](xref:Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.Partial%2A)
+* [`@Html.RenderPartial`](xref:Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.RenderPartial%2A)
 
 The *Product* model is used in samples throughout this document:
 
@@ -48,7 +48,7 @@ The following markup uses an explicit path, indicating that *_ProductPartial.csh
 
 ## for
 
-The `for` attribute assigns a [ModelExpression](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.modelexpression) to be evaluated against the current model. A `ModelExpression` infers the `@Model.` syntax. For example, `for="Product"` can be used instead of `for="@Model.Product"`. This default inference behavior is overridden by using the `@` symbol to define an inline expression.
+The `for` attribute assigns a <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExpression> to be evaluated against the current model. A `ModelExpression` infers the `@Model.` syntax. For example, `for="Product"` can be used instead of `for="@Model.Product"`. This default inference behavior is overridden by using the `@` symbol to define an inline expression.
 
 The following markup loads *_ProductPartial.cshtml*:
 
@@ -68,7 +68,7 @@ In the following markup, a new `Product` object is instantiated and passed to th
 
 ## view-data
 
-The `view-data` attribute assigns a [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary) to pass to the partial view. The following markup makes the entire ViewData collection accessible to the partial view:
+The `view-data` attribute assigns a <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary> to pass to the partial view. The following markup makes the entire ViewData collection accessible to the partial view:
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Pages/Product.cshtml?name=snippet_ViewData&highlight=5-)]
 

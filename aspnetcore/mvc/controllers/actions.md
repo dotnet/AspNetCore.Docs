@@ -48,7 +48,7 @@ Actions can return anything, but frequently return an instance of `IActionResult
 
 ### Controller Helper Methods
 
-Controllers usually inherit from [Controller](/dotnet/api/microsoft.aspnetcore.mvc.controller), although this isn't required. Deriving from `Controller` provides access to three categories of helper methods:
+Controllers usually inherit from <xref:Microsoft.AspNetCore.Mvc.Controller>, although this isn't required. Deriving from `Controller` provides access to three categories of helper methods:
 
 #### 1. Methods resulting in an empty response body
 
@@ -80,11 +80,11 @@ There are two result types within this category: [View](xref:mvc/views/overview)
 
     This type returns JSON or a similar data exchange format to represent an object in a specific manner. For example, `return Json(customer);` serializes the provided object into JSON format.
     
-    Other common methods of this type include `File` and `PhysicalFile`. For example, `return PhysicalFile(customerFilePath, "text/xml");` returns [PhysicalFileResult](/dotnet/api/microsoft.aspnetcore.mvc.physicalfileresult).
+    Other common methods of this type include `File` and `PhysicalFile`. For example, `return PhysicalFile(customerFilePath, "text/xml");` returns <xref:Microsoft.AspNetCore.Mvc.PhysicalFileResult>.
 
 #### 3. Methods resulting in a non-empty response body formatted in a content type negotiated with the client
 
-This category is better known as **Content Negotiation**. [Content negotiation](xref:web-api/advanced/formatting#content-negotiation) applies whenever an action returns an [ObjectResult](/dotnet/api/microsoft.aspnetcore.mvc.objectresult) type or something other than an [IActionResult](/dotnet/api/microsoft.aspnetcore.mvc.iactionresult) implementation. An action that returns a non-`IActionResult` implementation (for example, `object`) also returns a Formatted Response.
+This category is better known as **Content Negotiation**. [Content negotiation](xref:web-api/advanced/formatting#content-negotiation) applies whenever an action returns an <xref:Microsoft.AspNetCore.Mvc.ObjectResult> type or something other than an <xref:Microsoft.AspNetCore.Mvc.IActionResult> implementation. An action that returns a non-`IActionResult` implementation (for example, `object`) also returns a Formatted Response.
 
 Some helper methods of this type include `BadRequest`, `CreatedAtRoute`, and `Ok`. Examples of these methods include `return BadRequest(modelState);`, `return CreatedAtRoute("routename", values, newobject);`, and `return Ok(value);`, respectively. Note that `BadRequest` and `Ok` perform content negotiation only when passed a value; without being passed a value, they instead serve as HTTP Status Code result types. The `CreatedAtRoute` method, on the other hand, always performs content negotiation since its overloads all require that a value be passed.
 
