@@ -94,7 +94,7 @@ Blazor WebAssembly includes support for trimming unused code from .NET Core fram
 
 [!INCLUDE[](~/blazor/includes/blazor-hybrid-preview-notice.md)]
 
-Blazor can also be used to to build native client apps using a hybrid approach. Hybrid apps are native apps that leverage web technologies for their functionality. In a Blazor Hybrid app, the components run directly in the native app (not on WebAssembly) along with any other .NET code and render web UI based on HTML and CSS to an embedded web view control though a local interop channel.
+Blazor can also be used to to build native client apps using a hybrid approach. Hybrid apps are native apps that leverage web technologies for their functionality. In a Blazor Hybrid app, the components run directly in the native app (not on WebAssembly) along with any other .NET code and render web UI based on HTML and CSS to an embedded web view control through a local interop channel.
 
 ![Hybrid apps with .NET and Blazor render UI in a web view control, where the HTML Document Object Model (DOM) interacts with Blazor and .NET of the native desktop or mobile app.](~/blazor/hosting-models/_static/hybrid-apps-2.png)
 
