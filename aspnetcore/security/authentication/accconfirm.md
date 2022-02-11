@@ -33,10 +33,14 @@ This tutorial shows how to build an ASP.NET Core app with email confirmation and
 Run the following commands to create a web app with authentication.
 
 ```dotnetcli
-dotnet new webapp -au Individual -uld -o WebPWrecover
+dotnet new webapp -au Individual -o WebPWrecover
 cd WebPWrecover
 dotnet run
 ```
+
+<a name="regsim"></a>
+
+### Register user with simulated email confirmation
 
 Run the app, select the **Register** link, and register a user. Once registered, you are redirected to the to `/Identity/Account/RegisterConfirmation` page which contains a link to simulate email confirmation:
 
@@ -53,7 +57,7 @@ The SendGrid account may require [adding a Sender](https://sendgrid.com/docs/ui/
 
 Create a class to fetch the secure email key. For this sample, create *Services/AuthMessageSenderOptions.cs*:
 
-[!code-csharp[](accconfirm/sample/WebPWrecover30/Services/AuthMessageSenderOptions.cs?name=snippet1)]
+[!code-csharp[](accconfirm/sample/WebPWrecover60/Services/AuthMessageSenderOptions.cs)]
 
 #### Configure SendGrid user secrets
 

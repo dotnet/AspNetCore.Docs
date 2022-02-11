@@ -5,19 +5,18 @@ using WebPWrecover.Data;
 using WebPWrecover.Services;
 
 var builder = WebApplication.CreateBuilder(args);
-var services = builder.Services;    
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));
-services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>();services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));
-services.AddDatabaseDeveloperPageExceptionFilter();
-services.AddRazorPages();
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlite(connectionString));
+builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-services.AddTransient<IEmailSender, EmailSender>();
-services.Configure<AuthMessageSenderOptions>(builder.Configuration);
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddRazorPages();
+
+builder.Services.AddTransient<IEmailSender, EmailSender>();
+builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
 
 var app = builder.Build();
 
