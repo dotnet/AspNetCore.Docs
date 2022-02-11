@@ -10,10 +10,11 @@ var services = builder.Services;
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<ApplicationDbContext>();services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(connectionString));
 services.AddDatabaseDeveloperPageExceptionFilter();
 
-services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
 services.AddRazorPages();
 
 services.AddTransient<IEmailSender, EmailSender>();

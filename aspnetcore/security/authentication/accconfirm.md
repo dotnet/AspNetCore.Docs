@@ -313,18 +313,17 @@ Add the following code to the `ConfigureServices` method in the *Startup.cs* fil
 * Add `EmailSender` as a transient service.
 * Register the `AuthMessageSenderOptions` configuration instance.
 
-
 [!code-csharp[](accconfirm/sample/WebPWrecover60/Program.cs?highlight=2,5,19-20)]
 
 ## Scaffold RegisterConfirmation
 
-Follow the instructions for [Scaffold Identity](xref:security/authentication/scaffold-identity) and scaffold `RegisterConfirmation`.
+Follow the instructions for [Scaffold Identity](xref:security/authentication/scaffold-identity) and scaffold `Account\RegisterConfirmation`.
 
 <!-- .NET 5 fixes this, see
 https://github.com/dotnet/aspnetcore/blob/main/src/Identity/UI/src/Areas/Identity/Pages/V4/Account/RegisterConfirmation.cshtml.cs#L74-L77
 -->
 
-[!INCLUDE[](~/includes/disableVer.md)]
+[!INCLUDE[](~/includes/disableVer6.md)]
 
 ## Register, confirm email, and reset password
 
