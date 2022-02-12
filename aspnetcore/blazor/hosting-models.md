@@ -111,6 +111,7 @@ The Blazor Hybrid hosting model offers several benefits:
 The Blazor Hybrid hosting model has the following limitations:
 
 * Separate native client apps must be built, deployed, and maintained for each target platform.
+* Native client apps usually take longer to find, download, and install than accessing a web app in a browser.
 
 For more information, see <xref:blazor/hybrid/index>.
 
