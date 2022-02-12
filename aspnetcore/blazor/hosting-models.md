@@ -110,7 +110,7 @@ The Blazor Hybrid hosting model offers several benefits:
 
 The Blazor Hybrid hosting model has the following limitations:
 
-* Separate native client apps must be built, deployed, and maintained for each target platfrom.
+* Separate native client apps must be built, deployed, and maintained for each target platform.
 
 For more information, see <xref:blazor/hybrid/index>.
 
@@ -135,7 +135,7 @@ Select the Blazor hosting model for app development based on the desired feature
 | Run apps offline once downloaded               | ❌ | ✔️ | ✔️ |
 | Static site hosting                            | ❌ | ✔️ | ❌ |
 | Offloads processing to clients                 | ❌ | ✔️ | ✔️ |
-| Full access to native client capabilites       | ❌ | ❌ | ✔️ |
+| Full access to native client capabilities      | ❌ | ❌ | ✔️ |
 
 &dagger;Blazor WebAssembly apps can use server-hosted APIs to access functionality that must be kept private and secure.
 
