@@ -1,13 +1,11 @@
 ﻿using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using System;
 
-namespace WebPWrecover.TokenProviders
-{
-    #region snippet1
-    public class CustomEmailConfirmationTokenProvider<TUser>
+namespace WebPWrecover.TokenProviders;
+
+#region snippet1
+public class CustomEmailConfirmationTokenProvider<TUser>
                                            : DataProtectorTokenProvider<TUser> where TUser : class
     {
         public CustomEmailConfirmationTokenProvider(IDataProtectionProvider dataProtectionProvider,
@@ -46,4 +44,4 @@ namespace WebPWrecover.TokenProviders
             TokenLifespan = TimeSpan.FromHours(3);
         }
     }
-}
+

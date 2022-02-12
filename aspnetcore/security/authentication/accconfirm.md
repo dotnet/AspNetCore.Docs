@@ -170,11 +170,11 @@ The default token lifespan of [the Identity user tokens](https://github.com/dotn
 
 Add a custom [DataProtectorTokenProvider\<TUser>](/dotnet/api/microsoft.aspnetcore.identity.dataprotectortokenprovider-1) and <xref:Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions>:
 
-[!code-csharp[](accconfirm/sample/WebPWrecover30/TokenProviders/CustomTokenProvider.cs?name=snippet1)]
+[!code-csharp[](accconfirm/sample/WebPWrecover60/TokenProviders/CustomTokenProvider.cs?name=snippet1)]
 
 Add the custom provider to the service container:
 
-[!code-csharp[](accconfirm/sample/WebPWrecover30/StartupEmail.cs?name=snippet1&highlight=10-16)]
+[!code-csharp[](accconfirm/sample/WebPWrecover60/Program.cs?name=snippet_etl&highlight=21-22)]
 
 <a name="debug"></a>
 
