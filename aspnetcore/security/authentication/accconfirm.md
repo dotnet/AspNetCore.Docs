@@ -122,7 +122,7 @@ Add the following code to the `ConfigureServices` method in the *Startup.cs* fil
 * Add `EmailSender` as a transient service.
 * Register the `AuthMessageSenderOptions` configuration instance.
 
-[!code-csharp[](accconfirm/sample/WebPWrecover30/Startup.cs?name=snippet1&highlight=11-15)]
+[!code-csharp[](accconfirm/sample/WebPWrecover60/Program.cs?name=snippet1&highlight=2,5,19-20)]
 
 <!-- instructions when you scaffold RegisterConfirmation -->
 [!INCLUDE[](~/includes/disableVer6.md)]
@@ -154,13 +154,13 @@ Select the **Resend email confirmation** link on the **Login** page.
 
 The default inactivity timeout is 14 days. The following code sets the inactivity timeout to 5 days:
 
-[!code-csharp[](accconfirm/sample/WebPWrecover30/StartupAppCookie.cs?name=snippet1)]
+[!code-csharp[](accconfirm/sample/WebPWrecover60/Program.cs?name=snippet_timeout&highlight=21-24)]
 
 ### Change all data protection token lifespans
 
 The following code changes all data protection tokens timeout period to 3 hours:
 
-[!code-csharp[](accconfirm/sample/WebPWrecover30/StartupAllTokens.cs?name=snippet1&highlight=11-12)]
+[!code-csharp[](accconfirm/sample/WebPWrecover60/Program.cs?name=snippet_dpt&highlight=21-22)]
 
 The built in Identity user tokens (see [AspNetCore/src/Identity/Extensions.Core/src/TokenOptions.cs](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) )have a [one day timeout](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs).
 
@@ -312,7 +312,7 @@ Add the following code to the `ConfigureServices` method in the *Startup.cs* fil
 * Add `EmailSender` as a transient service.
 * Register the `AuthMessageSenderOptions` configuration instance.
 
-[!code-csharp[](accconfirm/sample/WebPWrecover60/Program.cs?highlight=2,5,19-20)]
+[!code-csharp[](accconfirm/sample/WebPWrecover60/Program.cs?name=snippet1&highlight=2,5,19-20)]
 
 ## Scaffold RegisterConfirmation
 
