@@ -5,7 +5,7 @@ description: Explore ASP.NET Core Blazor, a way to build interactive client-side
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: "mvc, seoapril2019"
-ms.date: 11/09/2021
+ms.date: 02/10/2022
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/index
 ---
@@ -15,10 +15,24 @@ uid: blazor/index
 
 Blazor is a framework for building interactive client-side web UI with [.NET](/dotnet/standard/tour):
 
+:::moniker range=">= aspnetcore-6.0"
+
 * Create rich interactive UIs using [C#](/dotnet/csharp/) instead of [JavaScript](https://www.javascript.com).
 * Share server-side and client-side app logic written in .NET.
 * Render the UI as HTML and CSS for wide browser support, including mobile browsers.
 * Integrate with modern hosting platforms, such as [Docker](/dotnet/standard/microservices-architecture/container-docker-introduction/index).
+* Build hybrid desktop and mobile apps with .NET and Blazor.
+
+:::moniker-end
+
+* Create rich interactive UIs using [C#](/dotnet/csharp/) instead of [JavaScript](https://www.javascript.com).
+* Share server-side and client-side app logic written in .NET.
+* Render the UI as HTML and CSS for wide browser support, including mobile browsers.
+* Integrate with modern hosting platforms, such as [Docker](/dotnet/standard/microservices-architecture/container-docker-introduction/index).
+
+:::moniker range="< aspnetcore-6.0"
+
+:::moniker-end
 
 Using .NET for client-side web development offers the following advantages:
 
@@ -139,6 +153,25 @@ The size of the published app, its *payload size*, is a critical performance fac
 * Unused code is stripped out of the app when it's published by the [Intermediate Language (IL) Trimmer](xref:blazor/host-and-deploy/configure-trimmer).
 * HTTP responses are compressed.
 * The .NET runtime and assemblies are cached in the browser.
+
+:::moniker range=">= aspnetcore-6.0"
+
+## Blazor Hybrid
+
+[!INCLUDE[](~/blazor/includes/blazor-hybrid-preview-notice.md)]
+
+Hybrid apps use a blend of native and web technologies. A *Blazor Hybrid* app uses Blazor in a native client app. Razor components run natively in the .NET process and render web UI to an embedded web view control using a local interop channel. WebAssembly isn't used in Hybrid apps. Hybrid apps encompass the following technologies:
+
+* [.NET Multi-platform App UI (.NET MAUI)](/dotnet/maui/what-is-maui): A cross-platform framework for creating native mobile and desktop apps with C# and XAML.
+* [Windows Presentation Foundation (WPF)](/dotnet/desktop/wpf/overview/): A UI framework that is resolution-independent and uses a vector-based rendering engine, built to take advantage of modern graphics hardware. 
+* [Windows Forms](/dotnet/desktop/winforms/overview/): A UI framework that creates rich desktop client apps for Windows. The Windows Forms development platform supports a broad set of app development features, including controls, graphics, data binding, and user input.
+
+For more information on creating Blazor Hybrid apps with the preceding frameworks, see the following articles:
+
+* <xref:blazor/hosting-models>
+* <xref:blazor/hybrid/index>
+
+:::moniker-end
 
 ## JavaScript interop
 

@@ -1,7 +1,7 @@
 ---
 title: ASP.NET Core Blazor tutorials
 author: guardrex
-description: Learn how to build Blazor apps with the tutorials described by this article.
+description: Learn how to build Blazor apps with the tutorials listed in this article.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
@@ -18,6 +18,8 @@ The following tutorials are available for ASP.NET Core Blazor:
 * <xref:blazor/tutorials/build-a-blazor-app> (Blazor Server or Blazor WebAssembly)
 
 * <xref:blazor/tutorials/signalr-blazor> (Blazor Server or Blazor WebAssembly)
+
+* <xref:blazor/hybrid/tutorials/index>
 
 * [Microsoft Learn modules](/learn/paths/build-web-apps-with-blazor/)
 
