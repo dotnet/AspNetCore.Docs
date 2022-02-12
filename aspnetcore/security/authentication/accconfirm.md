@@ -49,7 +49,7 @@ Run the app, select the **Register** link, and register a user. Once registered,
 * Select the `Hello YourEmail@provider.com!` link, which redirects you to the `/Identity/Account/Manage/PersonalData` page.
 * Select the **Personal data** tab on the left, and then select **Delete**.
 
-The `Click here to confirm your account` link is displayed because an [IEmailSender](https://github.com/dotnet/aspnetcore/blob/1dcf7acfacf0fe154adcc23270cb0da11ff44ace/src/Identity/UI/src/Areas/Identity/Services/EmailSender.cs) has not been implemented and registered with the [directory injection container](xref:fundamentals/dependency-injection). See the [RegisterConfirmation source](https://github.com/dotnet/aspnetcore/blob/1dcf7acfacf0fe154adcc23270cb0da11ff44ace/src/Identity/UI/src/Areas/Identity/Pages/V4/Account/RegisterConfirmation.cshtml.cs#L74-L87).
+The `Click here to confirm your account` link is displayed because an [IEmailSender](https://github.com/dotnet/aspnetcore/blob/1dcf7acfacf0fe154adcc23270cb0da11ff44ace/src/Identity/UI/src/Areas/Identity/Services/EmailSender.cs) has not been implemented and registered with the [directory injection container](xref:fundamentals/dependency-injection). See the [RegisterConfirmation source](https://github.com/dotnet/aspnetcore/blob/1dcf7acfacf0fe154adcc23270cb0da11ff44ace/src/Identity/UI/src/Areas/Identity/Pages/V4/Account/RegisterConfirmation.cshtml.cs#L74-L77).
 
 ### Configure an email provider
 
@@ -122,7 +122,7 @@ Add the following code to the `ConfigureServices` method in the *Startup.cs* fil
 * Add `EmailSender` as a transient service.
 * Register the `AuthMessageSenderOptions` configuration instance.
 
-[!code-csharp[](accconfirm/sample/WebPWrecover60/Program.cs?name=snippet1&highlight=2,5,19-20)]
+[!code-csharp[](accconfirm/sample/WebPWrecover60/Program.cs?name=snippet1&highlight=2,5,18-19)]
 
 <!-- instructions when you scaffold RegisterConfirmation -->
 [!INCLUDE[](~/includes/disableVer6.md)]
@@ -174,7 +174,7 @@ Add a custom [DataProtectorTokenProvider\<TUser>](/dotnet/api/microsoft.aspnetco
 
 Add the custom provider to the service container:
 
-[!code-csharp[](accconfirm/sample/WebPWrecover60/Program.cs?name=snippet_etl&highlight=21-22)]
+[!code-csharp[](accconfirm/sample/WebPWrecover60/Program.cs?name=snippet_etl&highlight=18-24)]
 
 <a name="debug"></a>
 
