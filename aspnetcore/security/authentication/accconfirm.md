@@ -49,6 +49,8 @@ Run the app, select the **Register** link, and register a user. Once registered,
 * Select the `Hello YourEmail@provider.com!` link, which redirects you to the `/Identity/Account/Manage/PersonalData` page.
 * Select the **Personal data** tab on the left, and then select **Delete**.
 
+The `Click here to confirm your account` link is displayed because an [IEmailSender](https://github.com/dotnet/aspnetcore/blob/1dcf7acfacf0fe154adcc23270cb0da11ff44ace/src/Identity/UI/src/Areas/Identity/Services/EmailSender.cs) has not been implemented and registered with the [directory injection container](xref:fundamentals/dependency-injection). See the [RegisterConfirmation source](https://github.com/dotnet/aspnetcore/blob/1dcf7acfacf0fe154adcc23270cb0da11ff44ace/src/Identity/UI/src/Areas/Identity/Pages/V4/Account/RegisterConfirmation.cshtml.cs#L74-L87).
+
 ### Configure an email provider
 
 In this tutorial, [SendGrid](https://sendgrid.com) is used to send email. You need a SendGrid account and key to send email. You can use other email providers. We recommend you use SendGrid or another email service to send email. SMTP is difficult to secure and set up correctly.
@@ -111,7 +113,7 @@ See [Get Started with SendGrid for Free](https://sendgrid.com/free/) to register
 
 To Implement `IEmailSender`, create *Services/EmailSender.cs* with code similar to the following:
 
-[!code-csharp[](accconfirm/sample/WebPWrecover30/Services/EmailSender.cs)]
+[!code-csharp[](accconfirm/sample/WebPWrecover60/Services/EmailSender.cs)]
 
 ### Configure startup to support email
 
@@ -122,15 +124,8 @@ Add the following code to the `ConfigureServices` method in the *Startup.cs* fil
 
 [!code-csharp[](accconfirm/sample/WebPWrecover30/Startup.cs?name=snippet1&highlight=11-15)]
 
-## Scaffold RegisterConfirmation
-
-Follow the instructions for [Scaffold Identity](xref:security/authentication/scaffold-identity) and scaffold `RegisterConfirmation`.
-
-<!-- .NET 5 fixes this, see
-https://github.com/dotnet/aspnetcore/blob/main/src/Identity/UI/src/Areas/Identity/Pages/V4/Account/RegisterConfirmation.cshtml.cs#L74-L77
--->
-
-[!INCLUDE[](~/includes/disableVer.md)]
+<!-- instructions when you scaffold RegisterConfirmation -->
+[!INCLUDE[](~/includes/disableVer6.md)]
 
 ## Register, confirm email, and reset password
 
@@ -153,7 +148,7 @@ Run the web app, and test the account confirmation and password recovery flow.
 
 ## Resend email confirmation
 
-In ASP.NET Core 5.0 and later, select the **Resend email confirmation** link on the **Login** page.
+Select the **Resend email confirmation** link on the **Login** page.
 
 ### Change email and activity timeout
 
