@@ -20,9 +20,15 @@ Blazor WebAssembly and Blazor Server are supported in the browsers shown in the 
 | Apple Safari, including iOS      | Current&dagger; |
 | Google Chrome, including Android | Current&dagger; |
 | Microsoft Edge                   | Current&dagger; |
-| Mozilla Firefox                  | Current&dagger; |  
+| Mozilla Firefox                  | Current&dagger; |
 
-&dagger;*Current* refers to the latest version of the browser.  
+&dagger;*Current* refers to the latest version of the browser.
+
+For [Blazor Hybrid apps](xref:blazor/hybrid/index), we test on and support the latest platform web view control versions:
+
+* [Microsoft Edge WebView2 on Windows](/microsoft-edge/webview2/)
+* [Chrome on Android](https://play.google.com/store/apps/details?id=com.android.chrome)
+* [Safari on iOS and macOS](https://www.apple.com/safari/)
 
 ## Additional resources
 
@@ -40,9 +46,9 @@ Blazor WebAssembly and Blazor Server are supported in the browsers shown in the 
 | Apple Safari, including iOS      | Current&dagger; |
 | Google Chrome, including Android | Current&dagger; |
 | Microsoft Edge                   | Current&dagger; |
-| Mozilla Firefox                  | Current&dagger; |  
+| Mozilla Firefox                  | Current&dagger; |
 
-&dagger;*Current* refers to the latest version of the browser.  
+&dagger;*Current* refers to the latest version of the browser.
 
 ## Additional resources
 
@@ -61,7 +67,7 @@ Blazor WebAssembly and Blazor Server are supported in the browsers shown in the 
 | Google Chrome, including Android | Current&dagger;       |
 | Microsoft Edge                   | Current&dagger;       |
 | Microsoft Internet Explorer      | Not Supported&Dagger; |
-| Mozilla Firefox                  | Current&dagger;       |  
+| Mozilla Firefox                  | Current&dagger;       |
 
 &dagger;*Current* refers to the latest version of the browser.  
 &Dagger;Microsoft Internet Explorer doesn't support [WebAssembly](https://webassembly.org).
