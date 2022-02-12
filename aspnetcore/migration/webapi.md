@@ -172,18 +172,22 @@ ASP.NET Core provides a minimal hosting model in which the endpoint routing midd
 
 ## Routing in the migrated `ProductsController`
 
-1. The migrated `ProductsController` contains the following highlighted attributes:
+The migrated `ProductsController` contains the following highlighted attributes:
 
-    [!code-csharp[](webapi/sample/6.x/ProductsCore/Controllers/ProductsController.cs?highlight=6,7)]
+[!code-csharp[](webapi/sample/6.x/ProductsCore/Controllers/ProductsController.cs?highlight=6,7,26,32)]
 
-    The preceding [`[Route]`](xref:Microsoft.AspNetCore.Mvc.RouteAttribute) attribute [configures the controller's attribute routing](xref:fundamentals/routing) pattern. The [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute makes attribute routing a requirement for all actions in this controller.
+* The [`[Route]`](xref:Microsoft.AspNetCore.Mvc.RouteAttribute) attribute [configures the controller's attribute routing](xref:fundamentals/routing) pattern.
+* The [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute makes attribute routing a requirement for all actions in this controller.
 
-    [Attribute routing supports tokens](xref:mvc/controllers/routing#token-replacement-in-route-templates-controller-action-area), such as `[controller]` and [action]`. At runtime, each token is replaced with the name of the controller or action, respectively, to which the attribute has been applied. The tokens:
-    * Reduces or eliminates the need to use hard coded strings for the route.
-    * Ensure routes remain synchronized with the corresponding controllers and actions when automatic rename refactorings are applied.
-1. Enable HTTP Get requests to the `ProductController` actions:
-    * Apply the [`[HttpGet]`](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute) attribute to the `GetAllProducts` action.
-    * Apply the `[HttpGet("{id}")]` attribute to the `GetProduct` action.
+* [Attribute routing supports tokens](xref:mvc/controllers/routing#token-replacement-in-route-templates-controller-action-area), such as `[controller]` and `[action]`. At runtime, each token is replaced with the name of the controller or action, respectively, to which the attribute has been applied. The tokens:
+
+  * Reduces or eliminates the need to use hard coded strings for the route.
+  * Ensure routes remain synchronized with the corresponding controllers and actions when automatic rename refactorings are applied.
+
+* HTTP Get requests are enabled for `ProductController` actions with the following attributes:
+
+  * [`[HttpGet]`](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute) attribute applied to the `GetAllProducts` action.
+  * `[HttpGet("{id}")]` attribute applied to the `GetProduct` action.
 
 Run the migrated project, and browse to `/api/products`.  For example: https://localhost:`<port>`/api/products. A full list of three products appears. Browse to `/api/products/1`. The first product appears.
 
