@@ -13,6 +13,6 @@ uid: blazor/hybrid/tutorials/index
 
 [!INCLUDE[](~/blazor/includes/blazor-hybrid-preview-notice.md)]
 
-***COMING SOON!***
+* <xref:blazor/hybrid/tutorials/maui>
 
 For more information on Blazor hosting models, see <xref:blazor/hosting-models>.
