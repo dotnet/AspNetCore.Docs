@@ -23,29 +23,24 @@ At the end of this tutorial, you'll have a working app.
 ## Prerequisites
 
 * [Supported platforms (.NET MAUI documentation)](/dotnet/maui/supported-platforms)
-* [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/) with the following workloads:
-  * **Mobile development with .NET**
-  * **Universal Windows Platform development**
+* [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/) with the **Mobile development with .NET** workload
 * [Microsoft Edge WebView2](https://developer.microsoft.com/microsoft-edge/webview2/): WebView2 is required on Windows when running a native app. When developing .NET MAUI Blazor apps and only running them in Visual Studio's emulators, WebView2 isn't required.
-
-## Installation
-
-Follow the guidance in [Installation (.NET MAUI documentation)](/dotnet/maui/get-started/installation).
 
 ## Create a .NET MAUI Blazor app
 
-Launch Visual Studio 2022 17.1 Preview, and in the start window click **Create a new project** to create a new project:
+Launch Visual Studio 2022 Preview. In the start window, select **Create a new project**:
 
 :::image type="content" source="maui/_static/new-solution.png" alt-text="New solution.":::
 
-In the **Create a new project** window, select **MAUI** in the **Project type** drop-down, select the **.NET MAUI App (Preview)** template, and click the **Next** button:
+In the **Create a new project** window, use the **Project type** drop-down to filter **MAUI** templates:
 
-:::image type="content" source="maui/_static/new-project.png" alt-text="Choose a template.":::
+:::image type="content" source="maui/_static/new-project-1.png" alt-text="Filter templates to .NET MAUI.":::
 
-> [!NOTE]
-> If the **.NET MAUI App (Preview)** project template does not appear in the **Create a new project** window, open the Developer Command Prompt for VS 2022 Preview and run the following command: `devenv.exe /updateConfiguration`. Then, restart Visual Studio.
+Select the **.NET MAUI Blazor App (Preview)** template and then select the **Next** button:
 
-In the **Configure your new project** window, name your project, choose a suitable location for it, and click the **Create** button:
+:::image type="content" source="maui/_static/new-project-2.png" alt-text="Choose a template.":::
+
+In the **Configure your new project** window, name your project, choose a suitable location for it, and select the **Create** button:
 
 :::image type="content" source="maui/_static/configure-project.png" alt-text="Configure the project.":::
 
@@ -62,28 +57,6 @@ In the **User Account Control** dialog, select the **Yes** button:
 :::image type="content" source="maui/_static/user-account-control.png" alt-text="User Account Control dialog.":::
 
 Wait for Visual Studio to download the Android SDK and Android Emulator.
-
-## Run the app in the Windows Machine Emulator
-
-In the Visual Studio toolbar, select the **Windows Machine** button to build the app:
-
-:::image type="content" source="maui/_static/windows-machine-button.png" alt-text="Windows Machine button.":::
-
-In the **User Account Control** dialog, select the **Yes** button:
-
-:::image type="content" source="maui/_static/user-account-control.png" alt-text="User Account Control dialog.":::
-
-If Developer Mode isn't enabled, you're prompted to enable it in **Settings** > **For developers** > **Developer Mode**. Set the switch to **On**:
-
-:::image type="content" source="maui/_static/windows-developer-mode.png" alt-text="Windows Developer Mode enabled.":::
-
-The running app in the Windows Machine Emulator:
-
-:::image type="content" source="maui/_static/running-app-windows-1.png" alt-text="App running in the Windows Machine Emulator.":::
-
-Navigate to the **`Counter`** page. Select the **`Click me`** button to increment the counter:
-
-:::image type="content" source="maui/_static/running-app-windows-2.png" alt-text="Counter page running in the Windows Machine Emulator.":::
 
 ## Run the app in the Android Emulator
 
@@ -105,19 +78,31 @@ In the **License Acceptance** window, select the **Accept** button:
 
 Wait for Visual Studio to download, unzip, and create an Android Emulator.
 
-Close the **Android Device Manager** window:
+Close the **Android Device Manager** window.
 
-:::image type="content" source="maui/_static/android-device-manager.png" alt-text="Android Device Manager window.":::
-
-In the Visual Studio toolbar, select the **Pixel 5 - API 30 (Android 11.0 - API 30)** button to build and run the app:
+In the Visual Studio toolbar, select the **Pixel 5 - {VERSION}** button to build and run the app, where the `{VERSION}` placeholder is the Android version. In the following example, the Android version is `API 30 (Android 11.0 - API 30)`, and a later version appears depending on the Android SDK installed:
 
 :::image type="content" source="maui/_static/pixel5-api30.png" alt-text="Pixel 5 API 30 emulator button.":::
 
 Visual Studio starts the Android Emulator, builds the app, and deploys the app to the emulator.
 
-In the running app in the Android Emulator, select the **CLICK ME** button several times and observe that the count of the number of button clicks is incremented.
+## Run the app locally on Windows
 
-:::image type="content" source="maui/_static/running-app-android.png" alt-text="App running in the Android Emulator.":::
+In the Visual Studio toolbar, select the start configuration drop-down button:
+
+:::image type="content" source="maui/_static/windows-machine-button-1.png" alt-text="Start configuration button.":::
+
+Select the **Windows Machine** button to build the app:
+
+:::image type="content" source="maui/_static/windows-machine-button-2.png" alt-text="Windows Machine button.":::
+
+If Developer Mode isn't enabled, you're prompted to enable it in **Settings** > **For developers** > **Developer Mode**. Set the switch to **On**:
+
+:::image type="content" source="maui/_static/windows-developer-mode.png" alt-text="Windows Developer Mode enabled.":::
+
+The app running as a Windows desktop app:
+
+:::image type="content" source="maui/_static/running-app-windows.png" alt-text="App running in the Windows Machine Emulator.":::
 
 ## Next steps
 
