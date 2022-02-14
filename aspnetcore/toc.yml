@@ -335,6 +335,16 @@ items:
                 href: /learn/modules/build-blazor-webassembly-visual-studio-code/
           - name: Hosting models
             uid: blazor/hosting-models
+          - name: Blazor Hybrid
+            items:
+              - name: Overview
+                uid: blazor/hybrid/index
+              - name: Tutorials
+                items:
+                  - name: Overview
+                    uid: blazor/hybrid/tutorials/index
+                  - name: .NET MAUI
+                    uid: blazor/hybrid/tutorials/maui
           - name: Project structure
             uid: blazor/project-structure
           - name: Fundamentals

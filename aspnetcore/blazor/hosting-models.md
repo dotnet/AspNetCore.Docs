@@ -59,7 +59,7 @@ The `blazor.webassembly.js` script is provided by the framework and handles:
 
 The Blazor WebAssembly (WASM) hosting model offers several benefits:
 
-* There's no .NET server-side dependency after the app is downloaded from the server, so the app remains functional if the client goes offline.
+* There's no .NET server-side dependency after the app is downloaded from the server, so the app remains functional if the server goes offline.
 * Client resources and capabilities are fully leveraged.
 * Work is offloaded from the server to the client.
 * An ASP.NET Core web server isn't required to host the app. Serverless deployment scenarios are possible, such as serving the app from a Content Delivery Network (CDN).
@@ -111,6 +111,7 @@ The Blazor Hybrid hosting model offers several benefits:
 The Blazor Hybrid hosting model has the following limitations:
 
 * Separate native client apps must be built, deployed, and maintained for each target platform.
+* Native client apps usually take longer to find, download, and install than accessing a web app in a browser.
 
 For more information, see <xref:blazor/hybrid/index>.
 
