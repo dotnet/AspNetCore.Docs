@@ -38,7 +38,7 @@ Sign in to Azure using the CLI, for example:
 az login
 ``` 
 
-To store keys in [Azure Key Vault](https://azure.microsoft.com/services/key-vault/), configure the system with <xref:Microsoft.AspNetCore.DataProtection.AzureDataProtectionBuilderExtensions.ProtectKeysWithAzureKeyVault%2A> in the `Startup` class. `blobUriWithSasToken` is the full URI where the key file should be stored. The URI must contain the SAS token as a query string parameter:
+To store keys in [Azure Key Vault](https://azure.microsoft.com/services/key-vault/), configure the system with <xref:Microsoft.AspNetCore.DataProtection.AzureDataProtectionBuilderExtensions.ProtectKeysWithAzureKeyVault%2A> in *Program.cs*. `blobUriWithSasToken` is the full URI where the key file should be stored. The URI must contain the SAS token as a query string parameter:
 
 :::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionProtectKeysWithAzureKeyVault":::
 
