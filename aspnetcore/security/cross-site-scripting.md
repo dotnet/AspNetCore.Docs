@@ -201,7 +201,7 @@ By default encoders use a safe list limited to the Basic Latin Unicode range and
 The reasoning behind this is to protect against unknown or future browser bugs (previous browser bugs have tripped up parsing based on the processing of non-English characters). If your web site makes heavy use of non-Latin characters, such as Chinese, Cyrillic or others this is probably not the behavior you want.
 
 :::moniker range=">= aspnetcore-6.0"
-The encoder safe lists can be customized to include Unicode ranges appropriate to the app during startup, in `Program.cs`.:
+The encoder safe lists can be customized to include Unicode ranges appropriate to the app during startup, in `Program.cs`:
 
 For example, using the default configuration using a Razor HtmlHelper similar to the following:
 
