@@ -6,12 +6,13 @@ namespace WebPWrecover.TokenProviders;
 
 #region snippet1
 public class CustomEmailConfirmationTokenProvider<TUser>
-                                      :  DataProtectorTokenProvider<TUser> where TUser : class
+                              :  DataProtectorTokenProvider<TUser> where TUser : class
 {
-    public CustomEmailConfirmationTokenProvider(IDataProtectionProvider dataProtectionProvider,
+    public CustomEmailConfirmationTokenProvider(
+        IDataProtectionProvider dataProtectionProvider,
         IOptions<EmailConfirmationTokenProviderOptions> options,
         ILogger<DataProtectorTokenProvider<TUser>> logger)
-                                          : base(dataProtectionProvider, options, logger)
+                                       : base(dataProtectionProvider, options, logger)
     {
 
     }
