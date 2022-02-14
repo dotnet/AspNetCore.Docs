@@ -3,7 +3,8 @@ title: Prevent Cross-Site Scripting (XSS) in ASP.NET Core
 author: rick-anderson
 description: Learn about Cross-Site Scripting (XSS) and techniques for addressing this vulnerability in an ASP.NET Core app.
 ms.author: riande
-ms.date: 10/02/2018
+monikerRange: '>= aspnetcore-3.1'
+ms.date: 2/15/2020
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/cross-site-scripting
 ---
@@ -199,6 +200,32 @@ By default encoders use a safe list limited to the Basic Latin Unicode range and
 
 The reasoning behind this is to protect against unknown or future browser bugs (previous browser bugs have tripped up parsing based on the processing of non-English characters). If your web site makes heavy use of non-Latin characters, such as Chinese, Cyrillic or others this is probably not the behavior you want.
 
+:::moniker range=">= aspnetcore-6.0"
+The encoder safe lists can be customized to include Unicode ranges appropriate to the app during startup, in `Program.cs`.:
+
+For example, using the default configuration using a Razor HtmlHelper similar to the following:
+
+```html
+<p>This link text is in Chinese: @Html.ActionLink("汉语/漢語", "Index")</p>
+```
+
+The preceding markup is rendered with Chinese text encoded:
+
+```html
+<p>This link text is in Chinese: <a href="/">&#x6C49;&#x8BED;/&#x6F22;&#x8A9E;</a></p>
+```
+
+To widen the characters treated as safe by the encoder, insert the following line into `Program.cs`.:
+
+```csharp
+builder.Services.AddSingleton<HtmlEncoder>(
+     HtmlEncoder.Create(allowedRanges: new[] { UnicodeRanges.BasicLatin,
+                                               UnicodeRanges.CjkUnifiedIdeographs }));
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
 You can customize the encoder safe lists to include Unicode ranges appropriate to your application during startup, in `ConfigureServices()`.
 
 For example, using the default configuration you might use a Razor HtmlHelper like so;
@@ -221,6 +248,7 @@ services.AddSingleton<HtmlEncoder>(
                                                UnicodeRanges.CjkUnifiedIdeographs }));
 ```
 
+:::moniker-end
 This example widens the safe list to include the Unicode Range CjkUnifiedIdeographs. The rendered output would now become
 
 ```html
