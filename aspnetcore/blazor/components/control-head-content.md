@@ -1,7 +1,7 @@
 ---
-title: Control &lt;head&gt; content in ASP.NET Core Blazor apps
+title: Control `head` content in ASP.NET Core Blazor apps
 author: guardrex
-description: Learn how to control &lt;head&gt; content in Blazor apps, including how to set the page title from a component.
+description: Learn how to control `head` content in Blazor apps, including how to set the page title from a component.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
@@ -25,11 +25,11 @@ The following example sets the page's title and description using Razor.
 
 [!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/control-head-content/ControlHeadContent.razor?highlight=13,15-17)]
 
-## Control head content during prerendering
+## Control `<head>` content during prerendering
 
 *This section applies to prerendered Blazor WebAssembly apps and Blazor Server apps.*
 
-When [Razor components are prerendered](xref:blazor/components/prerendering-and-integration), the use of a layout page (`_Layout.cshtml`) is required to control head (`<head>`) content with the <xref:Microsoft.AspNetCore.Components.Web.PageTitle> and <xref:Microsoft.AspNetCore.Components.Web.HeadContent> components. The reason for this requirement is that components that control head content must be rendered before the layout with the <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component. **This order of rendering is required to control head content.**
+When [Razor components are prerendered](xref:blazor/components/prerendering-and-integration), the use of a layout page (`_Layout.cshtml`) is required to control `<head>` content with the <xref:Microsoft.AspNetCore.Components.Web.PageTitle> and <xref:Microsoft.AspNetCore.Components.Web.HeadContent> components. The reason for this requirement is that components that control `<head>` content must be rendered before the layout with the <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component. **This order of rendering is required to control head content.**
 
 If the shared `_Layout.cshtml` file doesn't have a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component, add it to the `<head>` elements.
 
