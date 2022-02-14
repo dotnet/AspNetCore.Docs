@@ -116,7 +116,7 @@ if (context.Movie.Any())
 
 ### Add the seed initializer
 
-Replace the contents of the *Program.cs* with the following code:
+Replace the contents of the `Program.cs` with the following code:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie50/Program.cs)]
 
@@ -270,7 +270,7 @@ if (context.Movie.Any())
 
 ### Add the seed initializer
 
-Replace the contents of the *Program.cs* with the following code:
+Replace the contents of the `Program.cs` with the following code:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Program.cs)]
 
@@ -321,7 +321,7 @@ The app shows the seeded data:
 
 :::moniker range=">= aspnetcore-6.0"
 
-The `RazorPagesMovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records. The database context is registered with the [Dependency Injection](xref:fundamentals/dependency-injection) container in *Program.cs*:
+The `RazorPagesMovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records. The database context is registered with the [Dependency Injection](xref:fundamentals/dependency-injection) container in `Program.cs`:
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -422,7 +422,7 @@ if (context.Movie.Any())
 
 ### Add the seed initializer
 
-Update the *Program.cs* with the following highlighted code:
+Update the `Program.cs` with the following highlighted code:
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -434,7 +434,7 @@ Update the *Program.cs* with the following highlighted code:
 
 ---
 
-In the previous code, *Program.cs* has been modified to do the following:
+In the previous code, `Program.cs` has been modified to do the following:
 
 * Get a database context instance from the dependency injection (DI) container.
 * Call the `seedData.Initialize` method, passing to it the database context instance.

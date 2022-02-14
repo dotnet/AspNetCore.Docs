@@ -102,7 +102,7 @@ Run the app and register a user. Depending on your screen size, you might need t
 
 ### Configure Identity services
 
-Services are added in *Program.cs*. The typical pattern is to call methods in the following order:
+Services are added in `Program.cs`. The typical pattern is to call methods in the following order:
 
 1. `Add{Service}`
 1. `Services.Configure{Service}`

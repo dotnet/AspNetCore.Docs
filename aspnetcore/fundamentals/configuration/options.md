@@ -188,7 +188,7 @@ The following class implements <xref:Microsoft.Extensions.Options.IValidateOptio
 
 `IValidateOptions` enables moving the validation code out of `Program.cs` and into a class.
 
-Using the preceding code, validation is enabled in *Program.cs* with the following code:
+Using the preceding code, validation is enabled in `Program.cs` with the following code:
 
 :::code language="csharp" source="options/samples/6.x/OptionsValidationSample/Program.cs" id="snippet_xm":::
 
@@ -232,9 +232,9 @@ Use <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExten
 
 :::code language="csharp" source="options/samples/6.x/OptionsValidationSample/Program.cs" id="snippet_p3" highlight="10-99":::
 
-## Access options in *Program.cs*
+## Access options in `Program.cs`
 
-To access <xref:Microsoft.Extensions.Options.IOptions%601> or <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> in *Program.cs*, call <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService%2A> on <xref:Microsoft.AspNetCore.Builder.WebApplication.Services%2A?displayProperty=nameWithType>:
+To access <xref:Microsoft.Extensions.Options.IOptions%601> or <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> in `Program.cs`, call <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService%2A> on <xref:Microsoft.AspNetCore.Builder.WebApplication.Services%2A?displayProperty=nameWithType>:
 
 :::code language="csharp" source="options/samples/6.x/OptionsSample/program.cs" id="snippet_grs":::
 

@@ -103,7 +103,7 @@ In production, TLS must be explicitly configured. In the following *appsettings.
 
 [!code-json[](~/grpc/aspnetcore/sample/appsettings.json?highlight=4)]
 
-Alternatively, Kestrel endpoints can be configured in *Program.cs*:
+Alternatively, Kestrel endpoints can be configured in `Program.cs`:
 
 [!code-csharp[](~/grpc/aspnetcore/sample/Program.cs?highlight=7&name=snippet)]
 
@@ -159,7 +159,7 @@ In production, TLS must be explicitly configured. In the following *appsettings.
 
 [!code-json[](~/grpc/aspnetcore/sample/appsettings.json?highlight=4)]
 
-Alternatively, Kestrel endpoints can be configured in *Program.cs*:
+Alternatively, Kestrel endpoints can be configured in `Program.cs`:
 
 [!code-csharp[](~/grpc/aspnetcore/sample/Program.cs?highlight=7&name=snippet)]
 

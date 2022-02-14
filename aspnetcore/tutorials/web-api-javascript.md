@@ -30,7 +30,7 @@ The `fetch` function returns a [Promise](https://developer.mozilla.org/docs/Web/
 
 The simplest `fetch` call accepts a single parameter representing the route. A second parameter, known as the `init` object, is optional. `init` is used to configure the HTTP request.
 
-1. Configure the app to [serve static files](xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles(Microsoft.AspNetCore.Builder.IApplicationBuilder)) and [enable default file mapping](xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles(Microsoft.AspNetCore.Builder.IApplicationBuilder)). The following highlighted code is needed in *Program.cs*:
+1. Configure the app to [serve static files](xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles(Microsoft.AspNetCore.Builder.IApplicationBuilder)) and [enable default file mapping](xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles(Microsoft.AspNetCore.Builder.IApplicationBuilder)). The following highlighted code is needed in `Program.cs`:
 :::code language="csharp" source="first-web-api/samples/6.0/TodoApi/ProgramJavaScript.cs" id="snippet" highlight="17-18":::
 
 1. Create a *wwwroot* folder in the project root.

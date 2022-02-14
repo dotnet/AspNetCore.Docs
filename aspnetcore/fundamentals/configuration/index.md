@@ -770,7 +770,7 @@ An `AddEFConfiguration` extension method permits adding the configuration source
 
 [!code-csharp[](index/samples/6.x/EfconfigSample/Extensions/EntityFrameworkExtensions.cs?name=snippet1)]
 
-The following code shows how to use the custom `EFConfigurationProvider` in *Program.cs*:
+The following code shows how to use the custom `EFConfigurationProvider` in `Program.cs`:
 
 [!code-csharp[](index/samples_snippets/6.x/EfconfigSample/Program.cs?highlight=5-6)]
 
@@ -1615,7 +1615,7 @@ An `AddEFConfiguration` extension method permits adding the configuration source
 
 [!code-csharp[](index/samples/3.x/ConfigurationSample/Extensions/EntityFrameworkExtensions.cs?name=snippet1)]
 
-The following code shows how to use the custom `EFConfigurationProvider` in *Program.cs*:
+The following code shows how to use the custom `EFConfigurationProvider` in `Program.cs`:
 
 [!code-csharp[](index/samples_snippets/3.x/ConfigurationSample/Program.cs?highlight=7-8)]
 

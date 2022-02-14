@@ -114,7 +114,7 @@ This tutorial creates the following API:
 
 ### Examine the code
 
-The *Program.cs* file contains the following code:
+The `Program.cs` file contains the following code:
 
 [!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_default)]
 
@@ -196,7 +196,7 @@ Copy and paste the **Request URL** in the browser: `https://localhost:<port>/Wea
 
 ## Update the generated code
 
-This tutorial focuses on creating a web API, so we'll delete the Swagger code and the `WeatherForecast` code. Replace the contents of the *Program.cs* file with the following:
+This tutorial focuses on creating a web API, so we'll delete the Swagger code and the `WeatherForecast` code. Replace the contents of the `Program.cs` file with the following:
 
 [!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_min)]
 
@@ -214,7 +214,7 @@ app.MapGet("/", () => "Hello World!");
 
 Remove the two `"launchUrl": "swagger",` lines from the *Properties/launchSettings.json* file. When the `launchUrl` isn't specified, the web browser requests the `/` endpoint.
 
-Run the app. `Hello World!` is displayed. The updated *Program.cs* file contains a minimal but complete app.
+Run the app. `Hello World!` is displayed. The updated `Program.cs` file contains a minimal but complete app.
 
 ## Add NuGet packages
 
@@ -250,7 +250,7 @@ Open a command terminal in the project folder and run the following command:
 
 ## Add the API code
 
-Replace the contents of the *Program.cs* file with the following code:
+Replace the contents of the `Program.cs` file with the following code:
 
 [!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_all)]
 

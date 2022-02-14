@@ -455,7 +455,7 @@ Or
 [assembly: InternalsVisibleTo("MyTestProject")]
 ```
 
-An alternative solution is to make the `Program` class public. `Program` can be made public with  [Top-level statements](/dotnet/csharp/fundamentals/program-structure/top-level-statements) by defining a `public partial Program` class in the project or in *Program.cs*:
+An alternative solution is to make the `Program` class public. `Program` can be made public with  [Top-level statements](/dotnet/csharp/fundamentals/program-structure/top-level-statements) by defining a `public partial Program` class in the project or in `Program.cs`:
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);

@@ -29,7 +29,7 @@ This article covers the Web Host, which is for hosting web apps. For other kinds
 
 Create a host using an instance of <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder>. This is typically performed in the app's entry point, the `Main` method.
 
-In the project templates, `Main` is located in *Program.cs*. A typical app calls <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> to start setting up a host:
+In the project templates, `Main` is located in `Program.cs`. A typical app calls <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> to start setting up a host:
 
 ```csharp
 public class Program

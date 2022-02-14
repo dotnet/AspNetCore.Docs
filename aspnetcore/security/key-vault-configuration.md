@@ -27,7 +27,7 @@ Add package references for the following packages:
 
 ## Sample app
 
-The [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/key-vault-configuration/samples) runs in either of two modes determined by the `#define` preprocessor directive at the top of *Program.cs*:
+The [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/key-vault-configuration/samples) runs in either of two modes determined by the `#define` preprocessor directive at the top of `Program.cs`:
 
 * `Certificate`: Demonstrates using an Azure Key Vault Client ID and X.509 certificate to access secrets stored in Azure Key Vault. This sample can be run from any location, whether deployed to Azure App Service or any host that can serve an ASP.NET Core app.
 * `Managed`: Demonstrates how to use [Managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview). The managed identity authenticates the app to Azure Key Vault with Azure Active Directory (AD) authentication without storing credentials in the app's code or configuration. The `Managed` version of the sample must be deployed to Azure. Follow the guidance in the [Use the managed identities for Azure resources](#use-managed-identities-for-azure-resources) section.
@@ -109,7 +109,7 @@ Configure Azure AD, Azure Key Vault, and the app to use an Azure AD Application 
 > [!NOTE]
 > Although using an Application ID and X.509 certificate is supported for apps hosted in Azure, it's not recommended. Instead, use [Managed identities for Azure resources](#use-managed-identities-for-azure-resources) when hosting an app in Azure. Managed identities don't require storing a certificate in the app or in the development environment.
 
-The sample app uses an Application ID and X.509 certificate when the `#define` preprocessor directive at the top of *Program.cs* is set to `Certificate`.
+The sample app uses an Application ID and X.509 certificate when the `#define` preprocessor directive at the top of `Program.cs` is set to `Certificate`.
 
 1. Create a PKCS#12 archive (*.pfx*) certificate. Options for creating certificates include [MakeCert on Windows](/windows/desktop/seccrypto/makecert) and [OpenSSL](https://www.openssl.org/).
 1. Install the certificate into the current user's personal certificate store. Marking the key as exportable is optional. Note the certificate's thumbprint, which is used later in this process.
@@ -157,7 +157,7 @@ When you run the app, a webpage shows the loaded secret values. In the Developme
 
 **An app deployed to Azure** can take advantage of [Managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview). A managed identity allows the app to authenticate with Azure Key Vault using Azure AD authentication without storing credentials in the app's code or configuration.
 
-The sample app uses a system-assigned managed identity when the `#define` preprocessor directive at the top of *Program.cs* is set to `Managed`. To create a managed identity for an Azure App Service app, see [How to use managed identities for App Service and Azure Functions](/azure/app-service/overview-managed-identity). Once the managed identity has been created, note the app's Object ID shown in the Azure portal on the **Identity** panel of the App Service.
+The sample app uses a system-assigned managed identity when the `#define` preprocessor directive at the top of `Program.cs` is set to `Managed`. To create a managed identity for an Azure App Service app, see [How to use managed identities for App Service and Azure Functions](/azure/app-service/overview-managed-identity). Once the managed identity has been created, note the app's Object ID shown in the Azure portal on the **Identity** panel of the App Service.
 
 Enter the vault name into the app's *appsettings.json* file. The sample app doesn't require an Application ID and Password (Client Secret) when set to the `Managed` version, so you can ignore those configuration entries. The app is deployed to Azure, and Azure authenticates the app to access Azure Key Vault only using the vault name stored in the *appsettings.json* file.
 
@@ -379,7 +379,7 @@ Add package references for the following packages:
 
 ## Sample app
 
-The sample app runs in either of two modes determined by the `#define` preprocessor directive at the top of *Program.cs*:
+The sample app runs in either of two modes determined by the `#define` preprocessor directive at the top of `Program.cs`:
 
 * `Certificate`: Demonstrates using an Azure Key Vault Client ID and X.509 certificate to access secrets stored in Azure Key Vault. This sample can be run from any location, whether deployed to Azure App Service or any host that can serve an ASP.NET Core app.
 * `Managed`: Demonstrates how to use [Managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview). The managed identity authenticates the app to Azure Key Vault with Azure Active Directory (AD) authentication without credentials stored in the app's code or configuration. When using managed identities to authenticate, an Azure AD Application ID and Password (Client Secret) aren't required. The `Managed` version of the sample must be deployed to Azure. Follow the guidance in the [Use the managed identities for Azure resources](#use-managed-identities-for-azure-resources) section.
@@ -459,7 +459,7 @@ Configure Azure AD, Azure Key Vault, and the app to use an Azure AD Application 
 > [!NOTE]
 > Although using an Application ID and X.509 certificate is supported for apps hosted in Azure, it's not recommended. Instead, use [Managed identities for Azure resources](#use-managed-identities-for-azure-resources) when hosting an app in Azure. Managed identities don't require storing a certificate in the app or in the development environment.
 
-The sample app uses an Application ID and X.509 certificate when the `#define` preprocessor directive at the top of *Program.cs* is set to `Certificate`.
+The sample app uses an Application ID and X.509 certificate when the `#define` preprocessor directive at the top of `Program.cs` is set to `Certificate`.
 
 1. Create a PKCS#12 archive (*.pfx*) certificate. Options for creating certificates include [MakeCert on Windows](/windows/desktop/seccrypto/makecert) and [OpenSSL](https://www.openssl.org/).
 1. Install the certificate into the current user's personal certificate store. Marking the key as exportable is optional. Note the certificate's thumbprint, which is used later in this process.
@@ -507,7 +507,7 @@ When you run the app, a webpage shows the loaded secret values. In the Developme
 
 **An app deployed to Azure** can take advantage of [Managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview). A managed identity allows the app to authenticate with Azure Key Vault using Azure AD authentication without credentials (Application ID and Password/Client Secret) stored in the app.
 
-The sample app uses managed identities for Azure resources when the `#define` preprocessor directive at the top of *Program.cs* is set to `Managed`.
+The sample app uses managed identities for Azure resources when the `#define` preprocessor directive at the top of `Program.cs` is set to `Managed`.
 
 Enter the vault name into the app's *appsettings.json* file. The sample app doesn't require an Application ID and Password (Client Secret) when set to the `Managed` version, so you can ignore those configuration entries. The app is deployed to Azure, and Azure authenticates the app to access Azure Key Vault only using the vault name stored in the *appsettings.json* file.
 

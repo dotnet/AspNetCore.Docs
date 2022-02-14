@@ -15,7 +15,7 @@ uid: security/authorization/policies
 
 Underneath the covers, [role-based authorization](xref:security/authorization/roles) and [claims-based authorization](xref:security/authorization/claims) use a requirement, a requirement handler, and a preconfigured policy. These building blocks support the expression of authorization evaluations in code. The result is a richer, reusable, testable authorization structure.
 
-An authorization policy consists of one or more requirements. Register it as part of the authorization service configuration, in the app's *Program.cs* file:
+An authorization policy consists of one or more requirements. Register it as part of the authorization service configuration, in the app's `Program.cs` file:
 
 :::code language="csharp" source="policies/samples/6.0/AuthorizationPoliciesSample/Program.cs" range="20-23,29":::
 

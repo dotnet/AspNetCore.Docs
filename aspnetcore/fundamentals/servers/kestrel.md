@@ -30,7 +30,7 @@ Kestrel is supported on all platforms and versions that .NET Core supports.
 
 ## Get started
 
-ASP.NET Core project templates use Kestrel by default when not hosted with IIS. In *Program.cs*, the <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A?displayProperty=nameWithType> method calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel%2A>:
+ASP.NET Core project templates use Kestrel by default when not hosted with IIS. In `Program.cs`, the <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A?displayProperty=nameWithType> method calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel%2A>:
 
 :::code language="csharp" source="kestrel/samples/6.x/KestrelSample/Program.cs" id="snippet_CreateBuilder" highlight="1":::
 
@@ -82,7 +82,7 @@ Kestrel is supported on all platforms and versions that .NET Core supports.
 
 ## Get started
 
-ASP.NET Core project templates use Kestrel by default when not hosted with IIS. In *Program.cs*, the <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults%2A> method calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel%2A>:
+ASP.NET Core project templates use Kestrel by default when not hosted with IIS. In `Program.cs`, the <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults%2A> method calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel%2A>:
 
 :::code language="csharp" source="kestrel/samples/5.x/KestrelSample/Program.cs" id="snippet_DefaultBuilder" highlight="8":::
 
@@ -180,7 +180,7 @@ A reverse proxy:
 
 ## Kestrel in ASP.NET Core apps
 
-ASP.NET Core project templates use Kestrel by default. In *Program.cs*, the <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults%2A> method calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel%2A>:
+ASP.NET Core project templates use Kestrel by default. In `Program.cs`, the <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults%2A> method calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel%2A>:
 
 :::code language="csharp" source="kestrel/samples/3.x/KestrelSample/Program.cs" id="snippet_DefaultBuilder" highlight="8":::
 
@@ -264,7 +264,7 @@ Use **one** of the following approaches:
 
 * Configure Kestrel when building the host:
 
-  In *Program.cs*, load the `Kestrel` section of configuration into Kestrel's configuration:
+  In `Program.cs`, load the `Kestrel` section of configuration into Kestrel's configuration:
 
   ```csharp
   // using Microsoft.Extensions.DependencyInjection;
@@ -343,7 +343,7 @@ The default minimum rate is 240 bytes/second with a 5 second grace period.
 
 A minimum rate also applies to the response. The code to set the request limit and the response limit is the same except for having `RequestBody` or `Response` in the property and interface names.
 
-Here's an example that shows how to configure the minimum data rates in *Program.cs*:
+Here's an example that shows how to configure the minimum data rates in `Program.cs`:
 
 :::code language="csharp" source="kestrel/samples/3.x/KestrelSample/Program.cs" id="snippet_Limits" highlight="6-11":::
 

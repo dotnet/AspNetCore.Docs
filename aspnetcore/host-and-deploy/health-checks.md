@@ -31,7 +31,7 @@ For many apps, a basic health probe configuration that reports the app's availab
 
 The basic configuration registers health check services and calls the Health Checks Middleware to respond at a URL endpoint with a health response. By default, no specific health checks are registered to test any particular dependency or subsystem. The app is considered healthy if it can respond at the health endpoint URL. The default response writer writes <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus> as a plaintext response to the client. The `HealthStatus` is <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Healthy?displayProperty=nameWithType>, <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Degraded?displayProperty=nameWithType>, or <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy?displayProperty=nameWithType>.
 
-Register health check services with <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks%2A> in *Program.cs*. Create a health check endpoint by calling <xref:Microsoft.AspNetCore.Builder.HealthCheckEndpointRouteBuilderExtensions.MapHealthChecks%2A>.
+Register health check services with <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks%2A> in `Program.cs`. Create a health check endpoint by calling <xref:Microsoft.AspNetCore.Builder.HealthCheckEndpointRouteBuilderExtensions.MapHealthChecks%2A>.
 
 The following example creates a health check endpoint at `/healthz`:
 
@@ -61,7 +61,7 @@ If <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck.CheckHealthA
 
 ## Register health check services
 
-To register a health check service, call <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck%2A> in *Program.cs*:
+To register a health check service, call <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck%2A> in `Program.cs`:
 
 :::code language="csharp" source="health-checks/samples/6.x/HealthChecksSample/Snippets/Program.cs" id="snippet_AddHealthChecks":::
 
@@ -85,7 +85,7 @@ To register the preceding health check, call `AddTypeActivatedCheck` with the in
 
 ## Use Health Checks Routing
 
-In *Program.cs*, call `MapHealthChecks` on the endpoint builder with the endpoint URL or relative path:
+In `Program.cs`, call `MapHealthChecks` on the endpoint builder with the endpoint URL or relative path:
 
 :::code language="csharp" source="health-checks/samples/6.x/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecks":::
 
@@ -203,7 +203,7 @@ The `StartupHealthCheck` reports the completion of the long-running startup task
 
 :::code language="csharp" source="health-checks/samples/6.x/HealthChecksSample/HealthChecks/StartupHealthCheck.cs" id="snippet_Class" highlight="5-9":::
 
-The health check is registered with <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck%2A> in *Program.cs* along with the hosted service. Because the hosted service must set the property on the health check, the health check is also registered in the service container as a singleton:
+The health check is registered with <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck%2A> in `Program.cs` along with the hosted service. Because the hosted service must set the property on the health check, the health check is also registered in the service container as a singleton:
 
 :::code language="csharp" source="health-checks/samples/6.x/HealthChecksSample/Snippets/Program.cs" id="snippet_AddHealthChecksReadinessLiveness":::
 
@@ -247,7 +247,7 @@ To distribute a health check as a library:
 
 1. Write a health check that implements the <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck> interface as a standalone class. The class can rely on [dependency injection (DI)](xref:fundamentals/dependency-injection), type activation, and [named options](xref:fundamentals/configuration/options) to access configuration data.
 
-1. Write an extension method with parameters that the consuming app calls in its *Program.cs* method. Consider the following example health check, which accepts `arg1` and `arg2` as constructor parameters:
+1. Write an extension method with parameters that the consuming app calls in its `Program.cs` method. Consider the following example health check, which accepts `arg1` and `arg2` as constructor parameters:
 
    :::code language="csharp" source="health-checks/samples/6.x/HealthChecksSample/HealthChecks/SampleHealthCheckWithArgs.cs" id="snippet_ctor":::
 

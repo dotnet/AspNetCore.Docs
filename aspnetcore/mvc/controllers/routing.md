@@ -15,7 +15,7 @@ By [Ryan Nowak](https://github.com/rynowak), [Kirk Larkin](https://twitter.com/s
 
 ASP.NET Core controllers use the Routing [middleware](xref:fundamentals/middleware/index) to match the URLs of incoming requests and map them to [actions](#action).  Route templates:
 
-* Are defined at startup in *Program.cs* or in attributes.
+* Are defined at startup in `Program.cs` or in attributes.
 * Describe how URL paths are matched to [actions](#action).
 * Are used to generate URLs for links. The generated links are typically returned in responses.
 
@@ -584,7 +584,7 @@ The preceding `Get` method returns `Order = 2, Template = api/MyTestApi`.
 
 The application model:
 
-* Is an object model created at startup in *Program.cs*.
+* Is an object model created at startup in `Program.cs`.
 * Contains all of the metadata used by ASP.NET Core to route and execute the actions in an app.
 
 The application model includes all of the data gathered from route attributes. The data from route attributes is provided by the `IRouteTemplateProvider` implementation. Conventions:
@@ -609,7 +609,7 @@ The `NamespaceRoutingConvention.Apply` method:
 * Does nothing if the controller is attribute routed.
 * Sets the controllers template based on the `namespace`, with the base `namespace` removed.
 
-The `NamespaceRoutingConvention` can be applied in *Program.cs*:
+The `NamespaceRoutingConvention` can be applied in `Program.cs`:
 
 [!code-csharp[](routing/samples/6.x/nsrc/Program.cs?name=snippet_nrc)]
 

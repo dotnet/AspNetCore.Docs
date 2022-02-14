@@ -56,7 +56,7 @@ We recommend that production ASP.NET Core web apps use:
 
 ### UseHttpsRedirection
 
-The following code calls <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A> in the *Program.cs* file:
+The following code calls <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A> in the `Program.cs` file:
 
 [!code-csharp[](enforcing-ssl/sample-snapshot/6.x/Program.cs?highlight=13)]
 
@@ -128,7 +128,7 @@ The preceding highlighted code:
 
 The middleware defaults to sending a <xref:Microsoft.AspNetCore.Http.StatusCodes.Status307TemporaryRedirect> with all redirects. If you prefer to send a permanent redirect status code when the app is in a non-Development environment, wrap the middleware options configuration in a conditional check for a non-Development environment.
 
-When configuring services in *Program.cs*:
+When configuring services in `Program.cs`:
 
 [!code-csharp[](enforcing-ssl/sample-snapshot/6.x/Program3.cs?highlight=7-14)]
 

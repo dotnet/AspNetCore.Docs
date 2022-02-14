@@ -99,7 +99,7 @@ public class Person
 }
 ```
 
-This behavior can be disabled by configuring <xref:Microsoft.AspNetCore.Mvc.MvcOptions.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes> in *Program.cs*:
+This behavior can be disabled by configuring <xref:Microsoft.AspNetCore.Mvc.MvcOptions.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes> in `Program.cs`:
 
 ```csharp
 builder.Services.AddControllers(
@@ -223,7 +223,7 @@ The second form on the Check Age page submits the `Age` value in the body of the
 
 ## Maximum errors
 
-Validation stops when the maximum number of errors is reached (200 by default). You can configure this number with the following code in *Program.cs*:
+Validation stops when the maximum number of errors is reached (200 by default). You can configure this number with the following code in `Program.cs`:
 
 :::code language="csharp" source="validation/samples/6.x/ValidationSample/Program.cs" id="snippet_Configuration" highlight="4":::
 
@@ -356,7 +356,7 @@ This method of rendering `data-` attributes in HTML is used by the `ClassicMovie
 
    :::code language="csharp" source="validation/samples/6.x/ValidationSample/Validation/CustomValidationAttributeAdapterProvider.cs" id="snippet_Class":::
 
-1. Register the adapter provider for DI in *Program.cs*:
+1. Register the adapter provider for DI in `Program.cs`:
 
    :::code language="csharp" source="validation/samples/6.x/ValidationSample/Program.cs" id="snippet_Configuration" highlight="9-10":::
 

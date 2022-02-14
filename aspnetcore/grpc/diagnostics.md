@@ -34,7 +34,7 @@ gRPC adds logs under the `Grpc` category. To enable detailed logs from gRPC, con
 
 [!code-json[](diagnostics/sample/logging-config.json?highlight=7)]
 
-Logging can also be configured in *Program.cs* with `ConfigureLogging`:
+Logging can also be configured in `Program.cs` with `ConfigureLogging`:
 
 [!code-csharp[](diagnostics/sample/logging-config-code.cs?highlight=5)]
 
