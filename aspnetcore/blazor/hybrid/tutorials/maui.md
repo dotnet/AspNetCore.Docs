@@ -52,10 +52,6 @@ In the **Android SDK License Acceptance** window, select the **Accept** button:
 
 :::image type="content" source="maui/_static/android-sdk-license.png" alt-text="Android SDK License Acceptance window.":::
 
-In the **User Account Control** dialog, select the **Yes** button:
-
-:::image type="content" source="maui/_static/user-account-control.png" alt-text="User Account Control dialog.":::
-
 Wait for Visual Studio to download the Android SDK and Android Emulator.
 
 ## Run the app in the Android Emulator
@@ -63,10 +59,6 @@ Wait for Visual Studio to download the Android SDK and Android Emulator.
 In the Visual Studio toolbar, select the **Android Emulator** button to build the app:
 
 :::image type="content" source="maui/_static/android-emulator-button.png" alt-text="Android Emulator button.":::
-
-In the **User Account Control** dialog, select the **Yes** button:
-
-:::image type="content" source="maui/_static/user-account-control.png" alt-text="User Account Control dialog.":::
 
 In the **New Device** window, select the **Create** button:
 
