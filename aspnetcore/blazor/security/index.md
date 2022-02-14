@@ -118,6 +118,8 @@ For more information on dependency injection (DI) and services, see <xref:blazor
 
 ## Implement a custom AuthenticationStateProvider
 
+*This section only applies to Blazor Server.*
+
 If the app requires a custom provider, implement <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> and override `GetAuthenticationStateAsync`:
 
 ```csharp
@@ -141,17 +143,7 @@ public class CustomAuthStateProvider : AuthenticationStateProvider
 }
 ```
 
-In a Blazor WebAssembly app, the `CustomAuthStateProvider` service is registered in `Main` of `Program.cs`:
-
-```csharp
-using Microsoft.AspNetCore.Components.Authorization;
-
-...
-
-builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
-```
-
-In a Blazor Server app, the `CustomAuthStateProvider` service is registered in `Program.cs`:
+The `CustomAuthStateProvider` service is registered in `Program.cs`:
 
 ```csharp
 using Microsoft.AspNetCore.Components.Authorization;
