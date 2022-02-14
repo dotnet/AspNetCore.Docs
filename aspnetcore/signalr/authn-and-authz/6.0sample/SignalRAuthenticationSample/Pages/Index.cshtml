@@ -1,0 +1,41 @@
+@page
+@model IndexModel
+@inject SignInManager<IdentityUser> SignInManager
+
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div id="errorDiv" class="row alert alert-danger" style="display: none"></div>
+
+<div class="row alert alert-warning">This sample does not include code to acquire the actual JWT token. See the "TODO" comments in 'wwwroot/js/chat.ts' for more information.</div>
+
+<!-- TODO: Add UI to allow the user to log-in, if necessary -->
+
+<div id="chatDiv" class="row" style="display: none">
+    <h1>Chat</h1>
+
+    <div id="connectingDiv">Connecting...</div>
+
+    <div id="connectedDiv">
+        <h2>Send a message</h2>
+        <form id="messageForm">
+            <input type="text" placeholder="message" id="messageInput" name="message" />
+            <button type="submit">Send</button>
+        </form>
+
+        <h2>Send a message to a specific user</h2>
+        <form id="directMessageForm">
+            <input type="text" placeholder="username" id="toUserInput" name="message" />
+            <input type="text" placeholder="message" id="directMessageInput" name="message" />
+            <button type="submit">Send</button>
+        </form>
+
+        <h2>Messages</h2>
+        <ul id="messageList"></ul>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="js/chat.js"></script>
+}
