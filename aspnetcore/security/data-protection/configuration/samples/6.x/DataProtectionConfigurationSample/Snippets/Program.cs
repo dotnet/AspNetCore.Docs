@@ -152,9 +152,9 @@ public static class Program
         // </snippet_AddDataProtectionUseCustomCryptographicAlgorithmsCngCbc>
     }
 
-    public static void AddDataProtectionUseCustomCryptographicAlgorithmsCngCbcGaloisCounter(WebApplicationBuilder builder)
+    public static void AddDataProtectionUseCustomCryptographicAlgorithmsCngGcm(WebApplicationBuilder builder)
     {
-        // <snippet_AddDataProtectionUseCustomCryptographicAlgorithmsCngCbcGaloisCounter>
+        // <snippet_AddDataProtectionUseCustomCryptographicAlgorithmsCngGcm>
         builder.Services.AddDataProtection()
             .UseCustomCryptographicAlgorithms(new CngGcmAuthenticatedEncryptorConfiguration
             {
@@ -165,7 +165,7 @@ public static class Program
                 // Specified in bits
                 EncryptionAlgorithmKeySize = 256
             });
-        // </snippet_AddDataProtectionUseCustomCryptographicAlgorithmsCngCbcGaloisCounter>
+        // </snippet_AddDataProtectionUseCustomCryptographicAlgorithmsCngGcm>
     }
 #pragma warning restore CA1416 // Validate platform compatibility
 }
