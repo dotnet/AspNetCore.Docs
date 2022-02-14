@@ -54,7 +54,7 @@ The <xref:System.ComponentModel.DataAnnotations.DataType> attribute on `ReleaseD
 * The user isn't required to enter time information in the date field.
 * Only the date is displayed, not time information.
 
-[DataAnnotations](/dotnet/api/system.componentmodel.dataannotations) are covered in a later tutorial.
+[DataAnnotations](xref:System.ComponentModel.DataAnnotations) are covered in a later tutorial.
 
 The question mark after `string` indicates that the property is nullable. For more information, see [Nullable reference types](/dotnet/csharp/nullable-references). 
 
@@ -334,7 +334,7 @@ Scaffolding creates the *Data/MvcMovieContext.cs* database context class:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Data/MvcMovieContext.cs?name=First)]
 
-The preceding code creates a [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) property that represents the movies in the database.
+The preceding code creates a [DbSet\<Movie>](xref:Microsoft.EntityFrameworkCore.DbSet%601) property that represents the movies in the database.
 
 ### Dependency injection
 
@@ -512,7 +512,7 @@ The <xref:System.ComponentModel.DataAnnotations.DataType> attribute on `ReleaseD
 * The user isn't required to enter time information in the date field.
 * Only the date is displayed, not time information.
 
-[DataAnnotations](/dotnet/api/system.componentmodel.dataannotations) are covered in a later tutorial.
+[DataAnnotations](xref:System.ComponentModel.DataAnnotations) are covered in a later tutorial.
 
 ## Add NuGet packages
 
@@ -769,7 +769,7 @@ Scaffolding creates the *Data/MvcMovieContext.cs* database context class:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/zDocOnly/MvcMovieContext.cs?name=snippet)]
 
-The preceding code creates a [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) property that represents the movies in the database.
+The preceding code creates a [DbSet\<Movie>](xref:Microsoft.EntityFrameworkCore.DbSet%601) property that represents the movies in the database.
 
 ASP.NET Core is built with [dependency injection (DI)](xref:fundamentals/dependency-injection). Services, such as the database context, must be registered with DI in `Startup`. Components that require these services are provided via constructor parameters.
 
@@ -943,7 +943,7 @@ The <xref:System.ComponentModel.DataAnnotations.DataType> attribute on `ReleaseD
 * The user is not required to enter time information in the date field.
 * Only the date is displayed, not time information.
 
-[DataAnnotations](/dotnet/api/system.componentmodel.dataannotations) are covered in a later tutorial.
+[DataAnnotations](xref:System.ComponentModel.DataAnnotations) are covered in a later tutorial.
 
 ## Add NuGet packages
 
@@ -989,7 +989,7 @@ Repeat the above steps to install the following NuGet packages:
 
 ## Create a database context class
 
-A database context class is needed to coordinate EF Core functionality (Create, Read, Update, Delete) for the `Movie` model. The database context is derived from [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext) and specifies the entities to include in the data model.
+A database context class is needed to coordinate EF Core functionality (Create, Read, Update, Delete) for the `Movie` model. The database context is derived from <xref:Microsoft.EntityFrameworkCore.DbContext?displayProperty=fullName> and specifies the entities to include in the data model.
 
 Create a *Data* folder.
 
@@ -997,7 +997,7 @@ Add a *Data/MvcMovieContext.cs* file with the following code:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/zDocOnly/MvcMovieContext.cs?name=snippet)]
 
-The preceding code creates a [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
+The preceding code creates a [DbSet\<Movie>](xref:Microsoft.EntityFrameworkCore.DbSet%601) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
 
 <a name="reg"></a>
 
@@ -1024,7 +1024,7 @@ Add the following highlighted code in `Startup.ConfigureServices`:
 
 ---
 
-The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
+The name of the connection string is passed in to the context by calling a method on a <xref:Microsoft.EntityFrameworkCore.DbContextOptions> object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
 
 <a name="cs"></a>
 
