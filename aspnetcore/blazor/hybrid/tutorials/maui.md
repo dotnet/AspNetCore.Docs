@@ -5,26 +5,25 @@ description: Build a .NET MAUI Blazor app step-by-step.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/12/2022
+ms.date: 02/14/2022
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/hybrid/tutorials/maui
 ---
 # Build a .NET MAUI Blazor app
 
-This tutorial shows you how to build and modify a .NET MAUI Blazor app. You learn how to:
+This tutorial shows you how to build and run a .NET MAUI Blazor app. You learn how to:
 
 > [!div class="checklist"]
 > * Create a .NET MAUI Blazor app project
-> * Run the project in the Windows Machine emulator
-> * Run the project in the Android emulator
-
-At the end of this tutorial, you'll have a working app.
+> * Run the app on Windows
+> * Run the app in the Android emulator
 
 ## Prerequisites
 
 * [Supported platforms (.NET MAUI documentation)](/dotnet/maui/supported-platforms)
 * [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/) with the **Mobile development with .NET** workload
 * [Microsoft Edge WebView2](https://developer.microsoft.com/microsoft-edge/webview2/): WebView2 is required on Windows when running a native app. When developing .NET MAUI Blazor apps and only running them in Visual Studio's emulators, WebView2 isn't required.
+* [Enable hardware acceleration](/xamarin/android/get-started/installation/android-emulator/hardware-acceleration) to improve the performance of the Android emulator.
 
 ## Create a .NET MAUI Blazor app
 
@@ -56,7 +55,7 @@ Wait for Visual Studio to download the Android SDK and Android Emulator.
 
 ## Run the app in the Android Emulator
 
-In the Visual Studio toolbar, select the **Android Emulator** button to build the app:
+In the Visual Studio toolbar, select the **Android Emulator** button to build the project:
 
 :::image type="content" source="maui/_static/android-emulator-button.png" alt-text="Android Emulator button.":::
 
@@ -70,21 +69,28 @@ In the **License Acceptance** window, select the **Accept** button:
 
 Wait for Visual Studio to download, unzip, and create an Android Emulator.
 
+> [!NOTE]
+> [Enable hardware acceleration](/xamarin/android/get-started/installation/android-emulator/hardware-acceleration) to improve the performance of the Android emulator.
+
 Close the **Android Device Manager** window.
 
-In the Visual Studio toolbar, select the **Pixel 5 - {VERSION}** button to build and run the app, where the `{VERSION}` placeholder is the Android version. In the following example, the Android version is `API 30 (Android 11.0 - API 30)`, and a later version appears depending on the Android SDK installed:
+In the Visual Studio toolbar, select the **Pixel 5 - {VERSION}** button to build and run the project, where the `{VERSION}` placeholder is the Android version. In the following example, the Android version is `API 30 (Android 11.0 - API 30)`, and a later version appears depending on the Android SDK installed:
 
 :::image type="content" source="maui/_static/pixel5-api30.png" alt-text="Pixel 5 API 30 emulator button.":::
 
-Visual Studio starts the Android Emulator, builds the app, and deploys the app to the emulator.
+Visual Studio starts the Android Emulator, builds the project, and deploys the app to the emulator.
 
-## Run the app locally on Windows
+The app running in the Android Emulator:
+
+:::image type="content" source="maui/_static/running-app-android.png" alt-text="App running in the Android Emulator.":::
+
+## Run the app on Windows
 
 In the Visual Studio toolbar, select the start configuration drop-down button:
 
 :::image type="content" source="maui/_static/windows-machine-button-1.png" alt-text="Start configuration button.":::
 
-Select the **Windows Machine** button to build the app:
+Select the **Windows Machine** button to build and start the project:
 
 :::image type="content" source="maui/_static/windows-machine-button-2.png" alt-text="Windows Machine button.":::
 
@@ -94,7 +100,7 @@ If Developer Mode isn't enabled, you're prompted to enable it in **Settings** > 
 
 The app running as a Windows desktop app:
 
-:::image type="content" source="maui/_static/running-app-windows.png" alt-text="App running in the Windows Machine Emulator.":::
+:::image type="content" source="maui/_static/running-app-windows.png" alt-text="App running on Windows.":::
 
 ## Next steps
 
@@ -102,8 +108,8 @@ In this tutorial, you learned how to:
 
 > [!div class="checklist"]
 > * Create a .NET MAUI Blazor app project
-> * Run the project in the Windows Machine emulator
-> * Run the project in the Android emulator
+> * Run the app on Windows
+> * Run the app in the Android Emulator
 
 Learn more about Blazor Hybrid apps:
 
