@@ -4,7 +4,7 @@ no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cook
 <a name="ddav"></a>
 ### Disable default account verification when Account.RegisterConfirmation has been scaffolded
 
-This section only applies when `Account.RegisterConfirmation` is scaffolded.
+This section only applies when `Account.RegisterConfirmation` is scaffolded. Skip this section if you have not scaffolded `Account.RegisterConfirmation`.
 
 The user is redirected to the `Account.RegisterConfirmation` where they can select a link to have the account confirmed. The default `Account.RegisterConfirmation` is used ***only*** for testing, automatic account verification should be disabled in a production app.
 

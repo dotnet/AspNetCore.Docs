@@ -6,42 +6,43 @@ namespace WebPWrecover.TokenProviders;
 
 #region snippet1
 public class CustomEmailConfirmationTokenProvider<TUser>
-                                           : DataProtectorTokenProvider<TUser> where TUser : class
+                                      :  DataProtectorTokenProvider<TUser> where TUser : class
+{
+    public CustomEmailConfirmationTokenProvider(IDataProtectionProvider dataProtectionProvider,
+        IOptions<EmailConfirmationTokenProviderOptions> options,
+        ILogger<DataProtectorTokenProvider<TUser>> logger)
+                                          : base(dataProtectionProvider, options, logger)
     {
-        public CustomEmailConfirmationTokenProvider(IDataProtectionProvider dataProtectionProvider,
-            IOptions<EmailConfirmationTokenProviderOptions> options,
-            ILogger<DataProtectorTokenProvider<TUser>> logger)
-                                              : base(dataProtectionProvider, options, logger)
-        {
 
-        }
     }
-    public class EmailConfirmationTokenProviderOptions : DataProtectionTokenProviderOptions
+}
+public class EmailConfirmationTokenProviderOptions : DataProtectionTokenProviderOptions
+{
+    public EmailConfirmationTokenProviderOptions()
     {
-        public EmailConfirmationTokenProviderOptions()
-        {
-            Name = "EmailDataProtectorTokenProvider";
-            TokenLifespan = TimeSpan.FromHours(4);
-        }
+        Name = "EmailDataProtectorTokenProvider";
+        TokenLifespan = TimeSpan.FromHours(4);
     }
-    #endregion
+}
+#endregion
 
-    public class CustomPasswordResetTokenProvider<TUser> : DataProtectorTokenProvider<TUser> where TUser : class
+public class CustomPasswordResetTokenProvider<TUser> 
+    : DataProtectorTokenProvider<TUser> where TUser : class
+{
+    public CustomPasswordResetTokenProvider(IDataProtectionProvider dataProtectionProvider,
+        IOptions<PasswordResetTokenProviderOptions> options,
+        ILogger<DataProtectorTokenProvider<TUser>> logger)
+        : base(dataProtectionProvider, options, logger)
     {
-        public CustomPasswordResetTokenProvider(IDataProtectionProvider dataProtectionProvider,
-            IOptions<PasswordResetTokenProviderOptions> options, 
-            ILogger<DataProtectorTokenProvider<TUser>> logger) 
-            : base(dataProtectionProvider, options, logger)
-        {
 
-        }
     }
-    public class PasswordResetTokenProviderOptions : DataProtectionTokenProviderOptions
+}
+public class PasswordResetTokenProviderOptions : DataProtectionTokenProviderOptions
+{
+    public PasswordResetTokenProviderOptions()
     {
-        public PasswordResetTokenProviderOptions()
-        {
-            Name = "PasswordResetDataProtectorTokenProvider";
-            TokenLifespan = TimeSpan.FromHours(3);
-        }
+        Name = "PasswordResetDataProtectorTokenProvider";
+        TokenLifespan = TimeSpan.FromHours(3);
     }
+}
 

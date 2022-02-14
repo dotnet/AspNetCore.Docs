@@ -46,14 +46,14 @@ Run the app, select the **Register** link, and register a user. Once registered,
 
 * Select the `Click here to confirm your account` link.
 * Select the **Login** link and sign-in with the same credentials.
-* Select the `Hello YourEmail@provider.com!` link, which redirects you to the `/Identity/Account/Manage/PersonalData` page.
+* Select the `Hello YourEmail@provider.com!` link, which redirects to the `/Identity/Account/Manage/PersonalData` page.
 * Select the **Personal data** tab on the left, and then select **Delete**.
 
 The `Click here to confirm your account` link is displayed because an [IEmailSender](https://github.com/dotnet/aspnetcore/blob/1dcf7acfacf0fe154adcc23270cb0da11ff44ace/src/Identity/UI/src/Areas/Identity/Services/EmailSender.cs) has not been implemented and registered with the [directory injection container](xref:fundamentals/dependency-injection). See the [RegisterConfirmation source](https://github.com/dotnet/aspnetcore/blob/1dcf7acfacf0fe154adcc23270cb0da11ff44ace/src/Identity/UI/src/Areas/Identity/Pages/V4/Account/RegisterConfirmation.cshtml.cs#L74-L77).
 
 ### Configure an email provider
 
-In this tutorial, [SendGrid](https://sendgrid.com) is used to send email. You need a SendGrid account and key to send email. You can use other email providers. We recommend you use SendGrid or another email service to send email. SMTP is difficult to secure and set up correctly.
+In this tutorial, [SendGrid](https://sendgrid.com) is used to send email. A SendGrid account and key is needed to send email. Other email providers. We recommend using SendGrid or another email service to send email rather than SMTP. SMTP is difficult to secure and set up correctly.
 
 The SendGrid account may require [adding a Sender](https://sendgrid.com/docs/ui/sending-email/senders/).
 
@@ -85,7 +85,7 @@ For more information, see the [Options pattern](xref:fundamentals/configuration/
 
 ### Install SendGrid
 
-This tutorial shows how to add email notifications through [SendGrid](https://sendgrid.com/), but you can send email using SMTP and other mechanisms.
+This tutorial shows how to add email notifications through [SendGrid](https://sendgrid.com/), but other email providers can be used.
 
 Install the `SendGrid` NuGet package:
 
@@ -115,9 +115,9 @@ To Implement `IEmailSender`, create *Services/EmailSender.cs* with code similar 
 
 [!code-csharp[](accconfirm/sample/WebPWrecover60/Services/EmailSender.cs)]
 
-### Configure startup to support email
+### Configure app to support email
 
-Add the following code to the `ConfigureServices` method in the *Startup.cs* file:
+Add the following code to the *Program.cs* file:
 
 * Add `EmailSender` as a transient service.
 * Register the `AuthMessageSenderOptions` configuration instance.
