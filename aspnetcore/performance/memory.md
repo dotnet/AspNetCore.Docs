@@ -33,7 +33,7 @@ The preceding memory allocations are done for performance reasons. The performan
 
 ### Call GC.Collect
 
-Calling [GC.Collect](xref:System.GC.Collect*) explicitly:
+Calling [GC.Collect](xref:System.GC.Collect%2A) explicitly:
 
 * Should **not** be done by production ASP.NET Core apps.
 * Is useful when investigating memory leaks.
@@ -192,7 +192,7 @@ Some scenarios, such as caching, require object references to be held until memo
 
 Some .NET Core objects rely on native memory. Native memory can **not** be collected by the GC. The .NET object using native memory must free it using native code.
 
-.NET provides the <xref:System.IDisposable> interface to let developers release native memory. Even if <xref:System.IDisposable.Dispose*> is not called, correctly implemented classes call `Dispose` when the [finalizer](/dotnet/csharp/programming-guide/classes-and-structs/destructors) runs.
+.NET provides the <xref:System.IDisposable> interface to let developers release native memory. Even if <xref:System.IDisposable.Dispose%2A> is not called, correctly implemented classes call `Dispose` when the [finalizer](/dotnet/csharp/programming-guide/classes-and-structs/destructors) runs.
 
 Consider the following code:
 
@@ -205,7 +205,7 @@ public void GetFileProvider()
 }
 ```
 
-[PhysicalFileProvider](/dotnet/api/microsoft.extensions.fileproviders.physicalfileprovider?view=dotnet-plat-ext-3.0) is a managed class, so any instance will be collected at the end of the request.
+<xref:Microsoft.Extensions.FileProviders.PhysicalFileProvider> is a managed class, so any instance will be collected at the end of the request.
 
 The following image shows the memory profile while invoking the `fileprovider` API continuously.
 
@@ -289,7 +289,7 @@ Incorrectly using <xref:System.Net.Http.HttpClient> can result in a resource lea
 * Are more scarce than memory.
 * Are more problematic when leaked than memory.
 
-Experienced .NET developers know to call <xref:System.IDisposable.Dispose*> on objects that implement <xref:System.IDisposable>. Not disposing objects that implement `IDisposable` typically results in leaked memory or leaked system resources.
+Experienced .NET developers know to call <xref:System.IDisposable.Dispose%2A> on objects that implement <xref:System.IDisposable>. Not disposing objects that implement `IDisposable` typically results in leaked memory or leaked system resources.
 
 `HttpClient` implements `IDisposable`, but should **not** be disposed on every invocation. Rather, `HttpClient` should be reused.
 
@@ -376,7 +376,7 @@ The following chart display calling the preceding API with moderate load:
 
 In the preceding chart, generation 0 collections happen approximately once per second.
 
-The preceding code can be optimized by pooling the `byte` buffer by using [ArrayPool\<T>](xref:System.Buffers.ArrayPool`1). A static instance is reused across requests.
+The preceding code can be optimized by pooling the `byte` buffer by using [ArrayPool\<T>](xref:System.Buffers.ArrayPool%601). A static instance is reused across requests.
 
 What's different with this approach is that a pooled object is returned from the API. That means:
 
@@ -386,7 +386,7 @@ What's different with this approach is that a pooled object is returned from the
 To set up disposal of the object:
 
 * Encapsulate the pooled array in a disposable object.
-* Register the pooled object with [HttpContext.Response.RegisterForDispose](xref:Microsoft.AspNetCore.Http.HttpResponse.RegisterForDispose*).
+* Register the pooled object with [HttpContext.Response.RegisterForDispose](xref:Microsoft.AspNetCore.Http.HttpResponse.RegisterForDispose%2A).
 
 `RegisterForDispose` will take care of calling `Dispose`on the target object so that it's only released when the HTTP request is complete.
 

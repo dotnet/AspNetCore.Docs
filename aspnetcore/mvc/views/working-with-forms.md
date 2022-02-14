@@ -168,11 +168,11 @@ The Input Tag Helper:
 
 * Generates the `id` and `name` HTML attributes for the expression name specified in the `asp-for` attribute. `asp-for="Property1.Property2"` is equivalent to `m => m.Property1.Property2`. The name of the expression is what is used for the `asp-for` attribute value. See the [Expression names](#expression-names) section for additional information.
 
-* Sets the HTML `type` attribute value based on the model type and  [data annotation](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.iattributeadapter) attributes applied to the model property
+* Sets the HTML `type` attribute value based on the model type and  [data annotation](xref:Microsoft.AspNetCore.Mvc.DataAnnotations.IAttributeAdapter) attributes applied to the model property
 
 * Won't overwrite the HTML `type` attribute value when one is specified
 
-* Generates [HTML5](https://developer.mozilla.org/docs/Web/Guide/HTML/HTML5)  validation attributes from [data annotation](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.iattributeadapter) attributes applied to model properties
+* Generates [HTML5](https://developer.mozilla.org/docs/Web/Guide/HTML/HTML5)  validation attributes from [data annotation](xref:Microsoft.AspNetCore.Mvc.DataAnnotations.IAttributeAdapter) attributes applied to model properties
 
 * Has an HTML Helper feature overlap with `Html.TextBoxFor` and `Html.EditorFor`. See the **HTML Helper alternatives to Input Tag Helper** section for details.
 
@@ -200,7 +200,7 @@ The `Input` Tag Helper sets the HTML `type` attribute based on the .NET type. Th
 |Int|type="number"|
 |Single, Double|type="number"|
 
-The following table shows some common [data annotations](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.iattributeadapter) attributes that the input tag helper will map to specific input types (not every validation attribute is listed):
+The following table shows some common [data annotations](xref:Microsoft.AspNetCore.Mvc.DataAnnotations.IAttributeAdapter) attributes that the input tag helper will map to specific input types (not every validation attribute is listed):
 
 |Attribute|Input Type|
 |---|---|
@@ -705,5 +705,5 @@ The correct `<option>` element will be selected ( contain the `selected="selecte
 * [Request Verification Token](/aspnet/mvc/overview/security/xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages)
 * <xref:mvc/models/model-binding>
 * <xref:mvc/models/validation>
-* [IAttributeAdapter Interface](/dotnet/api/Microsoft.AspNetCore.Mvc.DataAnnotations.IAttributeAdapter)
+* [IAttributeAdapter Interface](xref:Microsoft.AspNetCore.Mvc.DataAnnotations.IAttributeAdapter)
 * [Code snippets for this document](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/working-with-forms/sample/final)
