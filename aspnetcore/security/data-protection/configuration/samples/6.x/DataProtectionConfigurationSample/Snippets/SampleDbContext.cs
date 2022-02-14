@@ -8,5 +8,7 @@ public class SampleDbContext : DbContext, IDataProtectionKeyContext
     public SampleDbContext(DbContextOptions<SampleDbContext> dbContextOptions)
         : base(dbContextOptions) { }
 
+    // <snippet_DataProtectionKeys>
     public DbSet<DataProtectionKey> DataProtectionKeys { get; set; } = null!;
+    // </snippet_DataProtectionKeys>
 }

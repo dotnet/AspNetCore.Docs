@@ -85,6 +85,14 @@ public static class Program
         // </snippet_AddDataProtectionSetDefaultKeyLifetime>
     }
 
+    public static void AddDataProtectionSetApplicationName(WebApplicationBuilder builder)
+    {
+        // <snippet_AddDataProtectionSetApplicationName>
+        builder.Services.AddDataProtection()
+            .SetApplicationName("<sharedApplicationName>");
+        // </snippet_AddDataProtectionSetApplicationName>
+    }
+
     public static void AddDataProtectionDisableAutomaticKeyGeneration(WebApplicationBuilder builder)
     {
         // <snippet_AddDataProtectionDisableAutomaticKeyGeneration>
@@ -123,9 +131,9 @@ public static class Program
         // </snippet_AddDataProtectionUseCustomCryptographicAlgorithms>
     }
 
+#pragma warning disable CA1416 // Validate platform compatibility
     public static void AddDataProtectionUseCustomCryptographicAlgorithmsCngCbc(WebApplicationBuilder builder)
     {
-#pragma warning disable CA1416 // Validate platform compatibility
         // <snippet_AddDataProtectionUseCustomCryptographicAlgorithmsCngCbc>
         builder.Services.AddDataProtection()
             .UseCustomCryptographicAlgorithms(new CngCbcAuthenticatedEncryptorConfiguration
@@ -142,6 +150,22 @@ public static class Program
                 HashAlgorithmProvider = null
             });
         // </snippet_AddDataProtectionUseCustomCryptographicAlgorithmsCngCbc>
-#pragma warning restore CA1416 // Validate platform compatibility
     }
+
+    public static void AddDataProtectionUseCustomCryptographicAlgorithmsCngCbcGaloisCounter(WebApplicationBuilder builder)
+    {
+        // <snippet_AddDataProtectionUseCustomCryptographicAlgorithmsCngCbcGaloisCounter>
+        builder.Services.AddDataProtection()
+            .UseCustomCryptographicAlgorithms(new CngGcmAuthenticatedEncryptorConfiguration
+            {
+                // Passed to BCryptOpenAlgorithmProvider
+                EncryptionAlgorithm = "AES",
+                EncryptionAlgorithmProvider = null,
+
+                // Specified in bits
+                EncryptionAlgorithmKeySize = 256
+            });
+        // </snippet_AddDataProtectionUseCustomCryptographicAlgorithmsCngCbcGaloisCounter>
+    }
+#pragma warning restore CA1416 // Validate platform compatibility
 }
