@@ -16,7 +16,7 @@ gRPC calls between a client and service are usually sent over TCP sockets. TCP w
 
 ## Server configuration
 
-Custom transports are supported by [Kestrel](xref:fundamentals/servers/kestrel). Kestrel is configured in *Program.cs*:
+Custom transports are supported by [Kestrel](xref:fundamentals/servers/kestrel). Kestrel is configured in `Program.cs`:
 
 ```csharp
 public static readonly string SocketPath = Path.Combine(Path.GetTempPath(), "socket.tmp");

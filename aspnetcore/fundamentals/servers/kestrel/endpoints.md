@@ -838,7 +838,7 @@ SNI can be configured in two ways:
 
 ### SNI with `ServerCertificateSelector`
 
-Kestrel supports SNI via the `ServerCertificateSelector` callback. The callback is invoked once per connection to allow the app to inspect the host name and select the appropriate certificate. The following callback code can be used in the `ConfigureWebHostDefaults` method call of a project's *Program.cs* file:
+Kestrel supports SNI via the `ServerCertificateSelector` callback. The callback is invoked once per connection to allow the app to inspect the host name and select the appropriate certificate. The following callback code can be used in the `ConfigureWebHostDefaults` method call of a project's `Program.cs` file:
 
 ```csharp
 // using System.Security.Cryptography.X509Certificates;

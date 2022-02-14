@@ -782,7 +782,7 @@ For more information on hosting, see [Host in ASP.NET Core](xref:fundamentals/in
 
 ### Enable the IISIntegration components
 
-When building a host in `CreateWebHostBuilder` (*Program.cs*), call <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> to enable IIS integration:
+When building a host in `CreateWebHostBuilder` (`Program.cs`), call <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> to enable IIS integration:
 
 ```csharp
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
@@ -1363,7 +1363,7 @@ For more information on hosting, see [Host in ASP.NET Core](xref:fundamentals/in
 
 ### Enable the IISIntegration components
 
-When building a host in `CreateWebHostBuilder` (*Program.cs*), call <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> to enable IIS integration:
+When building a host in `CreateWebHostBuilder` (`Program.cs`), call <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> to enable IIS integration:
 
 ```csharp
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>

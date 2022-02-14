@@ -45,7 +45,7 @@ The class creates and directly depends on the `MyDependency` class. Code depende
 Dependency injection addresses these problems through:
 
 * The use of an interface or base class to abstract the dependency implementation.
-* Registration of the dependency in a service container. ASP.NET Core provides a built-in service container, <xref:System.IServiceProvider>. Services are typically registered in the app's *Program.cs* file.
+* Registration of the dependency in a service container. ASP.NET Core provides a built-in service container, <xref:System.IServiceProvider>. Services are typically registered in the app's `Program.cs` file.
 * *Injection* of the service into the constructor of the class where it's used. The framework takes on the responsibility of creating an instance of the dependency and disposing of it when it's no longer needed.
 
 In the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/dependency-injection/samples/6.x), the `IMyDependency` interface defines the `WriteMessage` method:
@@ -73,7 +73,7 @@ The implementation of the `IMyDependency` interface can be improved by using the
 
 [!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/Services/MyDependency.cs?name=snippet2)]
 
-The updated *Program.cs* registers the new `IMyDependency` implementation:
+The updated `Program.cs` registers the new `IMyDependency` implementation:
 
 [!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/Program.cs?name=snippet2)]
 
@@ -92,11 +92,11 @@ The framework provides a robust [logging](xref:fundamentals/logging/index) syste
 
 [!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/Pages/About.cshtml.cs?name=snippet)]
 
-Using the preceding code, there is no need to update *Program.cs*, because [logging](xref:fundamentals/logging/index) is provided by the framework.
+Using the preceding code, there is no need to update `Program.cs`, because [logging](xref:fundamentals/logging/index) is provided by the framework.
 
 ## Services injected into Program.cs
 
-Any service registered with the DI container can be resolved from `app.Services` in *Program.cs*:
+Any service registered with the DI container can be resolved from `app.Services` in `Program.cs`:
 
 [!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/Program.cs?name=snippet1)]
 
@@ -329,7 +329,7 @@ See the [Orchard Core samples](https://github.com/OrchardCMS/OrchardCore.Samples
 
 ## Framework-provided services
 
-*Program.cs* registers services that the app uses, including platform features, such as Entity Framework Core and ASP.NET Core MVC. Initially, the `IServiceCollection` provided to *Program.cs* has services defined by the framework depending on [how the host was configured](xref:fundamentals/index#host). For apps based on the ASP.NET Core templates, the framework registers more than 250 services.
+`Program.cs` registers services that the app uses, including platform features, such as Entity Framework Core and ASP.NET Core MVC. Initially, the `IServiceCollection` provided to `Program.cs` has services defined by the framework depending on [how the host was configured](xref:fundamentals/index#host). For apps based on the ASP.NET Core templates, the framework registers more than 250 services.
 
 The following table lists a small sample of these framework-registered services:
 

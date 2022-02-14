@@ -207,13 +207,13 @@ Use the mongo Shell in the following steps to create a database, make collection
 
    The preceding `BookStoreDatabaseSettings` class is used to store the *appsettings.json* file's `BookStoreDatabase` property values. The JSON and C# property names are named identically to ease the mapping process.
 
-1. Add the following highlighted code to *Program.cs*:
+1. Add the following highlighted code to `Program.cs`:
 
    :::code language="csharp" source="first-mongo-app/samples/6.x/BookStoreApi/Program.cs" id="snippet_BookStoreDatabaseSettings" highlight="4-5":::
 
    In the preceding code, the configuration instance to which the *appsettings.json* file's `BookStoreDatabase` section binds is registered in the Dependency Injection (DI) container. For example, the `BookStoreDatabaseSettings` object's `ConnectionString` property is populated with the `BookStoreDatabase:ConnectionString` property in *appsettings.json*.
 
-1. Add the following code to the top of *Program.cs* to resolve the `BookStoreDatabaseSettings` reference:
+1. Add the following code to the top of `Program.cs` to resolve the `BookStoreDatabaseSettings` reference:
 
    :::code language="csharp" source="first-mongo-app/samples/6.x/BookStoreApi/Program.cs" id="snippet_UsingModels":::
 
@@ -226,13 +226,13 @@ Use the mongo Shell in the following steps to create a database, make collection
 
    In the preceding code, a `BookStoreDatabaseSettings` instance is retrieved from DI via constructor injection. This technique provides access to the *appsettings.json* configuration values that were added in the [Add a configuration model](#add-a-configuration-model) section.
 
-1. Add the following highlighted code to *Program.cs*:
+1. Add the following highlighted code to `Program.cs`:
 
    :::code language="csharp" source="first-mongo-app/samples/6.x/BookStoreApi/Program.cs" id="snippet_BooksService" highlight="7":::
 
    In the preceding code, the `BooksService` class is registered with DI to support constructor injection in consuming classes. The singleton service lifetime is most appropriate because `BooksService` takes a direct dependency on `MongoClient`. Per the official [Mongo Client reuse guidelines](https://mongodb.github.io/mongo-csharp-driver/2.14/reference/driver/connecting/#re-use), `MongoClient` should be registered in DI with a singleton service lifetime.
 
-1. Add the following code to the top of *Program.cs* to resolve the `BooksService` reference:
+1. Add the following code to the top of `Program.cs` to resolve the `BooksService` reference:
 
    :::code language="csharp" source="first-mongo-app/samples/6.x/BookStoreApi/Program.cs" id="snippet_UsingServices":::
 
@@ -312,7 +312,7 @@ There are two details to change about the JSON responses returned in the [Test t
 
 To satisfy the preceding requirements, make the following changes:
 
-1. In *Program.cs*, chain the following highlighted code on to the `AddControllers` method call:
+1. In `Program.cs`, chain the following highlighted code on to the `AddControllers` method call:
 
    :::code language="csharp" source="first-mongo-app/samples/6.x/BookStoreApi/Program.cs" id="snippet_AddControllers" highlight="10-11":::
 

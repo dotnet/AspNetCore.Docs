@@ -250,7 +250,7 @@ Loggers are available from DI. However, avoid creating and using filters purely 
 
 ### ServiceFilterAttribute
 
-Service filter implementation types are registered in *Program.cs*. A <xref:Microsoft.AspNetCore.Mvc.ServiceFilterAttribute> retrieves an instance of the filter from DI.
+Service filter implementation types are registered in `Program.cs`. A <xref:Microsoft.AspNetCore.Mvc.ServiceFilterAttribute> retrieves an instance of the filter from DI.
 
 The following code shows the `LoggingResponseHeaderFilterService` class, which uses DI:
 

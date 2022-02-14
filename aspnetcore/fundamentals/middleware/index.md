@@ -88,9 +88,9 @@ The **Routing** middleware in the preceding diagram is shown following **Static 
 
 ![ASP.NET Core filter pipeline](index/_static/mvc-endpoint.svg)
 
-The order that middleware components are added in the *Program.cs* file defines the order in which the middleware components are invoked on requests and the reverse order for the response. The order is **critical** for security, performance, and functionality.
+The order that middleware components are added in the `Program.cs` file defines the order in which the middleware components are invoked on requests and the reverse order for the response. The order is **critical** for security, performance, and functionality.
 
-The following highlighted code in *Program.cs* adds security-related middleware components in the typical recommended order:
+The following highlighted code in `Program.cs` adds security-related middleware components in the typical recommended order:
 
 [!code-csharp[](index/snapshot/Program60All3.cs?highlight=19-43)]
 
@@ -119,7 +119,7 @@ app.UseResponseCompression();
 app.UseStaticFiles();
 ```
 
-The following *Program.cs* code adds middleware components for common app scenarios:
+The following `Program.cs` code adds middleware components for common app scenarios:
 
 1. Exception/error handling
    * When the app runs in the Development environment:

@@ -41,7 +41,7 @@ Navigate to `/Movies/Index`. Append a query string such as `?searchString=Ghost`
 
 ![Index view](~/tutorials/first-mvc-app/search/_static/ghost.png)
 
-If you change the signature of the `Index` method to have a parameter named `id`, the `id` parameter will match the optional `{id}` placeholder for the default routes set in *Program.cs*.
+If you change the signature of the `Index` method to have a parameter named `id`, the `id` parameter will match the optional `{id}` placeholder for the default routes set in `Program.cs`.
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Program.cs?highlight=3&name=MapControllerRoute)]
 

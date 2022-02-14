@@ -47,7 +47,7 @@ HTTP/3 isn't currently supported on macOS and may be available in a future relea
 
 ## Getting started
 
-HTTP/3 is not enabled by default. Add configuration to *Program.cs* to enable HTTP/3.
+HTTP/3 is not enabled by default. Add configuration to `Program.cs` to enable HTTP/3.
 
 :::code language="csharp" source="samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_Http3" highlight="7-8":::
 

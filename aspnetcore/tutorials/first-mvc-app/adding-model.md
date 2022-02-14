@@ -154,12 +154,12 @@ If you get an error message, select **Add** a second time to try it again.
 Scaffolding updates the following:
 
 * Inserts required package references in the *MvcMovie.csproj* project file.
-* Registers the database context in the *Program.cs* file.
+* Registers the database context in the `Program.cs` file.
 * Adds a database connection string to the *appsettings.json* file.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Open a command window in the project directory. The project directory is the directory that contains the *Program.cs* and *.csproj* files.
+Open a command window in the project directory. The project directory is the directory that contains the `Program.cs` and *.csproj* files.
 
 On macOS and Linux, export the scaffold tool path:
 
@@ -187,7 +187,7 @@ The following highlighted code in `Program.cs` shows how to use SQLite in develo
 
 Scaffolding updates the following:
 
-* Registers the database context in the *Program.cs* file
+* Registers the database context in the `Program.cs` file
 * Adds a database connection string to the *appsettings.json* file.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
@@ -195,7 +195,7 @@ Scaffolding updates the following:
 For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 
 <!--
-Open a command window in the project directory. The project directory is the directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files.
+Open a command window in the project directory. The project directory is the directory that contains the `Program.cs`, *Startup.cs*, and *.csproj* files.
 
 Export the scaffold tool path:
 
@@ -338,11 +338,11 @@ The preceding code creates a [DbSet\<Movie>](xref:Microsoft.EntityFrameworkCore.
 
 ### Dependency injection
 
-ASP.NET Core is built with [dependency injection (DI)](xref:fundamentals/dependency-injection). Services, such as the database context, are registered with DI in *Program.cs*. These services are provided to components that require them via constructor parameters.
+ASP.NET Core is built with [dependency injection (DI)](xref:fundamentals/dependency-injection). Services, such as the database context, are registered with DI in `Program.cs`. These services are provided to components that require them via constructor parameters.
 
 In the *Controllers/MoviesController.cs* file, the constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the `MvcMovieContext` database context into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
 
-Scaffolding generated the following highlighted code in *Program.cs*:
+Scaffolding generated the following highlighted code in `Program.cs`:
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -609,7 +609,7 @@ Scaffolding updates the following:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Open a command window in the project directory. The project directory is the directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files.
+Open a command window in the project directory. The project directory is the directory that contains the `Program.cs`, *Startup.cs*, and *.csproj* files.
 
 On macOS and Linux, export the scaffold tool path:
 
@@ -642,7 +642,7 @@ Scaffolding updates the following:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Open a command window in the project directory. The project directory is the directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files.
+Open a command window in the project directory. The project directory is the directory that contains the `Program.cs`, *Startup.cs*, and *.csproj* files.
 
 Export the scaffold tool path:
 
@@ -1078,7 +1078,7 @@ The automatic creation of these files is known as *scaffolding*.
 
 # [Visual Studio Code](#tab/visual-studio-code) 
 
-* Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
+* Open a command window in the project directory (The directory that contains the `Program.cs`, *Startup.cs*, and *.csproj* files).
 
 * On macOS and Linux, export the scaffold tool path:
 
@@ -1096,7 +1096,7 @@ The automatic creation of these files is known as *scaffolding*.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
+* Open a command window in the project directory (The directory that contains the `Program.cs`, *Startup.cs*, and *.csproj* files).
 
 * Run the following command:
 

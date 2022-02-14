@@ -93,7 +93,7 @@ A timed background task makes use of the [System.Threading.Timer](xref:System.Th
 
 The <xref:System.Threading.Timer> doesn't wait for previous executions of `DoWork` to finish, so the approach shown might not be suitable for every scenario. [Interlocked.Increment](xref:System.Threading.Interlocked.Increment%2A) is used to increment the execution counter as an atomic operation, which ensures that multiple threads don't update `executionCount` concurrently.
 
-The service is registered in `IHostBuilder.ConfigureServices` (*Program.cs*) with the `AddHostedService` extension method:
+The service is registered in `IHostBuilder.ConfigureServices` (`Program.cs`) with the `AddHostedService` extension method:
 
 :::code language="csharp" source="hosted-services/samples/6.0/BackgroundTasksSample/Program.cs" id="snippet1":::
 
@@ -112,7 +112,7 @@ The hosted service creates a scope to resolve the scoped background task service
 
 :::code language="csharp" source="hosted-services/samples/6.0/BackgroundTasksSample/Services/ConsumeScopedServiceHostedService.cs" id="snippet1" highlight="19,22-35":::
 
-The services are registered in `IHostBuilder.ConfigureServices` (*Program.cs*). The hosted service is registered with the `AddHostedService` extension method:
+The services are registered in `IHostBuilder.ConfigureServices` (`Program.cs`). The hosted service is registered with the `AddHostedService` extension method:
 
 :::code language="csharp" source="hosted-services/samples/3.x/BackgroundTasksSample/Program.cs" id="snippet2":::
 
@@ -140,11 +140,11 @@ A `MonitorLoop` service handles enqueuing tasks for the hosted service whenever 
 
 :::code language="csharp" source="hosted-services/samples/6.0/BackgroundTasksSample/Services/MonitorLoop.cs" id="snippet_Monitor" highlight="7,33":::
 
-The services are registered in `IHostBuilder.ConfigureServices` (*Program.cs*). The hosted service is registered with the `AddHostedService` extension method:
+The services are registered in `IHostBuilder.ConfigureServices` (`Program.cs`). The hosted service is registered with the `AddHostedService` extension method:
 
 :::code language="csharp" source="hosted-services/samples/6.0/BackgroundTasksSample/Program.cs" id="snippet3":::
 
-`MonitorLoop` is started in *Program.cs*:
+`MonitorLoop` is started in `Program.cs`:
 
 :::code language="csharp" source="hosted-services/samples/6.0/BackgroundTasksSample/Program.cs" id="snippet4":::
 
@@ -263,7 +263,7 @@ A timed background task makes use of the [System.Threading.Timer](xref:System.Th
 
 The <xref:System.Threading.Timer> doesn't wait for previous executions of `DoWork` to finish, so the approach shown might not be suitable for every scenario. [Interlocked.Increment](xref:System.Threading.Interlocked.Increment%2A) is used to increment the execution counter as an atomic operation, which ensures that multiple threads don't update `executionCount` concurrently.
 
-The service is registered in `IHostBuilder.ConfigureServices` (*Program.cs*) with the `AddHostedService` extension method:
+The service is registered in `IHostBuilder.ConfigureServices` (`Program.cs`) with the `AddHostedService` extension method:
 
 :::code language="csharp" source="hosted-services/samples/3.x/BackgroundTasksSample/Program.cs" id="snippet1":::
 
@@ -282,7 +282,7 @@ The hosted service creates a scope to resolve the scoped background task service
 
 :::code language="csharp" source="hosted-services/samples/3.x/BackgroundTasksSample/Services/ConsumeScopedServiceHostedService.cs" id="snippet1" highlight="19,22-35":::
 
-The services are registered in `IHostBuilder.ConfigureServices` (*Program.cs*). The hosted service is registered with the `AddHostedService` extension method:
+The services are registered in `IHostBuilder.ConfigureServices` (`Program.cs`). The hosted service is registered with the `AddHostedService` extension method:
 
 :::code language="csharp" source="hosted-services/samples/3.x/BackgroundTasksSample/Program.cs" id="snippet2":::
 
@@ -310,7 +310,7 @@ A `MonitorLoop` service handles enqueuing tasks for the hosted service whenever 
 
 :::code language="csharp" source="hosted-services/samples/3.x/BackgroundTasksSample/Services/MonitorLoop.cs" id="snippet_Monitor" highlight="7,33":::
 
-The services are registered in `IHostBuilder.ConfigureServices` (*Program.cs*). The hosted service is registered with the `AddHostedService` extension method:
+The services are registered in `IHostBuilder.ConfigureServices` (`Program.cs`). The hosted service is registered with the `AddHostedService` extension method:
 
 :::code language="csharp" source="hosted-services/samples/3.x/BackgroundTasksSample/Program.cs" id="snippet3":::
 

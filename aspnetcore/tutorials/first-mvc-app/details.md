@@ -18,7 +18,7 @@ Open the Movie controller and examine the `Details` method:
 
 [!code-csharp[](start-mvc/sample/MvcMovie60/Controllers/MoviesController.cs?name=Details)]
 
-The MVC scaffolding engine that created this action method adds a comment showing an HTTP request that invokes the method. In this case it's a GET request with three URL segments, the `Movies` controller, the `Details` method, and an `id` value. Recall these segments are defined in *Program.cs*.
+The MVC scaffolding engine that created this action method adds a comment showing an HTTP request that invokes the method. In this case it's a GET request with three URL segments, the `Movies` controller, the `Details` method, and an `id` value. Recall these segments are defined in `Program.cs`.
 
 [!code-csharp[](start-mvc/sample/MvcMovie60/Program.cs?highlight=3&name=MapControllerRoute)]
 

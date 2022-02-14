@@ -135,7 +135,7 @@ The [Microsoft.AspNetCore.Authentication.Negotiate](https://www.nuget.org/packag
 > [!NOTE]
 > The Negotiate handler detects if the underlying server supports Windows Authentication natively and if it is enabled. If the server supports Windows Authentication but it is disabled, an error is thrown asking you to enable the server implementation. When Windows Authentication is enabled in the server, the Negotiate handler transparently forwards authentication requests to it.
 
-Authentication is enabled by the following highlighted code to *Program.cs*:
+Authentication is enabled by the following highlighted code to `Program.cs`:
 
 [!code-csharp[](windowsauth/6.0samples/WebRPwinAuth/Program.cs?name=snippet1&highlight=1,4-11,27-28)]
 
@@ -447,7 +447,7 @@ Add authentication services by invoking <xref:Microsoft.Extensions.DependencyInj
 services.AddAuthentication(HttpSysDefaults.AuthenticationScheme);
 ```
 
-Configure the app's web host to use HTTP.sys with Windows Authentication (*Program.cs*). <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderHttpSysExtensions.UseHttpSys*> is in the <xref:Microsoft.AspNetCore.Server.HttpSys?displayProperty=fullName> namespace.
+Configure the app's web host to use HTTP.sys with Windows Authentication (`Program.cs`). <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderHttpSysExtensions.UseHttpSys*> is in the <xref:Microsoft.AspNetCore.Server.HttpSys?displayProperty=fullName> namespace.
 
 [!code-csharp[](windowsauth/sample_snapshot/Program_GenericHost.cs?highlight=13-19)]
 

@@ -34,7 +34,7 @@ Including all of the app's interdependent resources in one object enables contro
 
 ## Set up a host
 
-The host is typically configured, built, and run by code in the *Program.cs*. The following code creates a host with an `IHostedService` implementation added to the DI container:
+The host is typically configured, built, and run by code in the `Program.cs`. The following code creates a host with an `IHostedService` implementation added to the DI container:
 
 :::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Program.cs" id="snippet_Host":::
 

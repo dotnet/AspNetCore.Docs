@@ -84,7 +84,7 @@ This tutorial series started by using <xref:Microsoft.EntityFrameworkCore.Infras
 
 From this point forward, the tutorials will use migrations.
 
-In *Program.cs*, delete the following line:
+In `Program.cs`, delete the following line:
 
 ```csharp
 context.Database.EnsureCreated();

@@ -49,7 +49,7 @@ Routing uses a pair of middleware, registered by <xref:Microsoft.AspNetCore.Buil
 * `UseRouting` adds route matching to the middleware pipeline. This middleware looks at the set of endpoints defined in the app, and selects the [best match](#urlm) based on the request.
 * `UseEndpoints` adds endpoint execution to the middleware pipeline. It runs the delegate associated with the selected endpoint.
 
-Apps typically don't need to call `UseRouting` or `UseEndpoints`. <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> configures a middleware pipeline that wraps middleware added in *Program.cs* with `UseRouting` and `UseEndpoints`. However, apps can change the order in which `UseRouting` and `UseEndpoints` run by calling these methods explicitly. For example, the following code makes an explicit call to `UseRouting`:
+Apps typically don't need to call `UseRouting` or `UseEndpoints`. <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> configures a middleware pipeline that wraps middleware added in `Program.cs` with `UseRouting` and `UseEndpoints`. However, apps can change the order in which `UseRouting` and `UseEndpoints` run by calling these methods explicitly. For example, the following code makes an explicit call to `UseRouting`:
 
 :::code language="csharp" source="routing/samples/6.0/RoutingSample/Snippets/Program.cs" id="snippet_UseRouting" highlight="7":::
 
@@ -573,7 +573,7 @@ Custom route constraints are rarely needed. Before implementing a custom route c
 
 The ASP.NET Core [Constraints](https://github.com/dotnet/aspnetcore/tree/main/src/Http/Routing/src/Constraints) folder provides good examples of creating a constraints. For example, [GuidRouteConstraint](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Routing/src/Constraints/GuidRouteConstraint.cs#L18).
 
-To use a custom `IRouteConstraint`, the route constraint type must be registered with the app's <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> in the service container. A `ConstraintMap` is a dictionary that maps route constraint keys to `IRouteConstraint` implementations that validate those constraints. An app's `ConstraintMap` can be updated in *Program.cs* either as part of an <xref:Microsoft.Extensions.DependencyInjection.RoutingServiceCollectionExtensions.AddRouting%2A> call or by configuring <xref:Microsoft.AspNetCore.Routing.RouteOptions> directly with `builder.Services.Configure<RouteOptions>`. For example:
+To use a custom `IRouteConstraint`, the route constraint type must be registered with the app's <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> in the service container. A `ConstraintMap` is a dictionary that maps route constraint keys to `IRouteConstraint` implementations that validate those constraints. An app's `ConstraintMap` can be updated in `Program.cs` either as part of an <xref:Microsoft.Extensions.DependencyInjection.RoutingServiceCollectionExtensions.AddRouting%2A> call or by configuring <xref:Microsoft.AspNetCore.Routing.RouteOptions> directly with `builder.Services.Configure<RouteOptions>`. For example:
 
 :::code language="csharp" source="routing/samples/6.0/RoutingSample/Snippets/Program.cs" id="snippet_AddRoutingConstraintMap":::
 
@@ -617,7 +617,7 @@ Consider the following `IOutboundParameterTransformer` implementation:
 
 :::code language="csharp" source="routing/samples/6.0/RoutingSample/Routing/SlugifyParameterTransformer.cs" id="snippet_Class":::
 
-To use a parameter transformer in a route pattern, configure it using <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> in *Program.cs*:
+To use a parameter transformer in a route pattern, configure it using <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> in `Program.cs`:
 
 :::code language="csharp" source="routing/samples/6.0/RoutingSample/Snippets/Program.cs" id="snippet_AddRouting":::
 
@@ -1023,7 +1023,7 @@ The endpoint routing system described in this document applies to ASP.NET Core 3
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/routing/samples/3.x) ([how to download](xref:index#how-to-download-a-sample))
 
-The download samples for this document are enabled by a specific `Startup` class. To run a specific sample, modify *Program.cs* to call the desired `Startup` class.
+The download samples for this document are enabled by a specific `Startup` class. To run a specific sample, modify `Program.cs` to call the desired `Startup` class.
 
 ## Routing basics
 

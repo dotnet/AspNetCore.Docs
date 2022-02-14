@@ -1637,7 +1637,7 @@ For more information, see each provider's documentation. Third-party logging pro
 
 ## Non-host console app
 
-For an example of how to use the Generic Host in a non-web console app, see the *Program.cs* file of the [Background Tasks sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/host/hosted-services/samples) (<xref:fundamentals/host/hosted-services>).
+For an example of how to use the Generic Host in a non-web console app, see the `Program.cs` file of the [Background Tasks sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/host/hosted-services/samples) (<xref:fundamentals/host/hosted-services>).
 
 Logging code for apps without Generic Host differs in the way providers are added and [loggers are created](#create-logs).
 

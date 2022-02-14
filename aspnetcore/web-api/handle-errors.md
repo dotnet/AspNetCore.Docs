@@ -78,7 +78,7 @@ To request an HTML-formatted response, set the `Accept` HTTP request header to `
 
 In non-development environments, use [Exception Handling Middleware](xref:fundamentals/error-handling) to produce an error payload:
 
-1. In *Program.cs*, call <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A> to add the Exception Handling Middleware:
+1. In `Program.cs`, call <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A> to add the Exception Handling Middleware:
 
     :::code language="csharp" source="handle-errors/samples/6.x/HandleErrorsSample/Program.cs" id="snippet_Middleware" highlight="7":::
 
@@ -101,7 +101,7 @@ The preceding `HandleError` action sends an [RFC 7807](https://tools.ietf.org/ht
 
 Exception Handling Middleware can also be used in the Development environment to produce a consistent payload format across all environments:
 
-1. In *Program.cs*, register environment-specific Exception Handling Middleware instances:
+1. In `Program.cs`, register environment-specific Exception Handling Middleware instances:
 
     :::code language="csharp" source="handle-errors/samples/6.x/HandleErrorsSample/Snippets/Program.cs" id="snippet_ConsistentEnvironments":::
 
@@ -129,13 +129,13 @@ The contents of the response can be modified from outside of the controller usin
 
     The preceding filter specifies an `Order` of the maximum integer value minus 10. This `Order` allows other filters to run at the end of the pipeline.
 
-1. In *Program.cs*, add the action filter to the filters collection:
+1. In `Program.cs`, add the action filter to the filters collection:
 
     :::code language="csharp" source="handle-errors/samples/6.x/HandleErrorsSample/Snippets/Program.cs" id="snippet_AddHttpResponseExceptionFilter":::
 
 ## Validation failure error response
 
-For web API controllers, MVC responds with a <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails> response type when model validation fails. MVC uses the results of <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.InvalidModelStateResponseFactory> to construct the error response for a validation failure. The following example replaces the default factory with an implementation that also supports formatting responses as XML, in *Program.cs*:
+For web API controllers, MVC responds with a <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails> response type when model validation fails. MVC uses the results of <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.InvalidModelStateResponseFactory> to construct the error response for a validation failure. The following example replaces the default factory with an implementation that also supports formatting responses as XML, in `Program.cs`:
 
 :::code language="csharp" source="handle-errors/samples/6.x/HandleErrorsSample/Snippets/Program.cs" id="snippet_ConfigureInvalidModelStateResponseFactory":::
 
@@ -156,13 +156,13 @@ MVC uses <xref:Microsoft.AspNetCore.Mvc.Infrastructure.ProblemDetailsFactory?dis
 * Validation failure error responses
 * <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Problem%2A?displayProperty=nameWithType> and <xref:Microsoft.AspNetCore.Mvc.ControllerBase.ValidationProblem%2A?displayProperty=nameWithType>
 
-To customize the problem details response, register a custom implementation of <xref:Microsoft.AspNetCore.Mvc.Infrastructure.ProblemDetailsFactory> in *Program.cs*:
+To customize the problem details response, register a custom implementation of <xref:Microsoft.AspNetCore.Mvc.Infrastructure.ProblemDetailsFactory> in `Program.cs`:
 
 :::code language="csharp" source="handle-errors/samples/6.x/HandleErrorsSample/Snippets/Program.cs" id="snippet_ReplaceProblemDetailsFactory":::
 
 ### Use `ApiBehaviorOptions.ClientErrorMapping`
 
-Use the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.ClientErrorMapping%2A> property to configure the contents of the `ProblemDetails` response. For example, the following code in *Program.cs* updates the <xref:Microsoft.AspNetCore.Mvc.ClientErrorData.Link%2A> property for 404 responses:
+Use the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.ClientErrorMapping%2A> property to configure the contents of the `ProblemDetails` response. For example, the following code in `Program.cs` updates the <xref:Microsoft.AspNetCore.Mvc.ClientErrorData.Link%2A> property for 404 responses:
 
 :::code language="csharp" source="handle-errors/samples/6.x/HandleErrorsSample/Snippets/Program.cs" id="snippet_ClientErrorMapping":::
 
