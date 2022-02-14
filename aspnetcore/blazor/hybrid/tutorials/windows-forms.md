@@ -144,7 +144,7 @@ Add the following `Main` component to the Windows Forms project's `Pages` folder
 </Router>
 ```
 
-Open the `Form1.Designer.cs` file:
+Open the `Form1.Designer.cs` file from **Solution Explorer**:
 
 :::image type="content" source="windows-forms/_static/solution-explorer-1.png" alt-text="The Form1.Designer.cs file in Solution Explorer.":::
 
@@ -199,7 +199,7 @@ namespace WinFormsBlazor
 }
 ```
 
-Right-click the `Form1.cs` file in **Solution Explorer** and select **View Code**:
+In **Solution Explorer**, right-click the `Form1.cs` file and select **View Code**:
 
 :::image type="content" source="windows-forms/_static/solution-explorer-2.png" alt-text="The Form1.cs file in Solution Explorer.":::
 
