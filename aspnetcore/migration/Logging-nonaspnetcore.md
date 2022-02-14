@@ -1,8 +1,8 @@
 ---
 title: Migrate from Microsoft.Extensions.Logging 2.1 to 2.2 or 3.0
-author: pakrym
+author: rick-anderson
 description: Learn how to migrate a non-ASP.NET Core application that uses Microsoft.Extensions.Logging from 2.1 to 2.2 or 3.0.
-ms.author: pakrym
+ms.author: riande
 ms.custom: mvc
 ms.date: 01/04/2019
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
