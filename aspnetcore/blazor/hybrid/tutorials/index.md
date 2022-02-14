@@ -15,4 +15,6 @@ uid: blazor/hybrid/tutorials/index
 
 * <xref:blazor/hybrid/tutorials/maui>
 
+* <xref:blazor/hybrid/tutorials/windows-forms>
+
 For more information on Blazor hosting models, see <xref:blazor/hosting-models>.
