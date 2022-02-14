@@ -66,7 +66,7 @@ namespace BooksApi.Controllers
                 return NotFound();
             }
 
-            _bookService.Remove(book.Id);
+            _bookService.Remove(id);
 
             return NoContent();
         }
