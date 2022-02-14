@@ -309,7 +309,7 @@ For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 
 In ASP.NET Core, services such as the DB context must be registered with the [dependency injection (DI)](xref:fundamentals/dependency-injection) container. The container provides the service to controllers.
 
-Update *Program.cs* with the following code:
+Update `Program.cs` with the following code:
 
 [!code-csharp[](first-web-api/samples/6.0/TodoApi/Program.cs?highlight=1-2,10-15,23-24)]
 

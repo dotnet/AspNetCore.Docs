@@ -71,11 +71,11 @@ dotnet add TodoApi.csproj package Swashbuckle.AspNetCore -v 6.2.3
 
 ## Add and configure Swagger middleware
 
-Add the Swagger generator to the services collection in *Program.cs*:
+Add the Swagger generator to the services collection in `Program.cs`:
 
 :::code language="csharp" source="web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/Snippets/Program.cs" id="snippet_ServicesDefault" highlight="4":::
 
-Enable the middleware for serving the generated JSON document and the Swagger UI, also in *Program.cs*:
+Enable the middleware for serving the generated JSON document and the Swagger UI, also in `Program.cs`:
 
 :::code language="csharp" source="web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/Program.cs" id="snippet_Middleware" highlight="3,4":::
 
@@ -93,7 +93,7 @@ The Swagger UI can be found at `https://localhost:<port>/swagger`. Explore the A
 If using directories with IIS or a reverse proxy, set the Swagger endpoint to a relative path using the `./` prefix. For example, `./swagger/v1/swagger.json`. Using `/swagger/v1/swagger.json` instructs the app to look for the JSON file at the true root of the URL (plus the route prefix, if used). For example, use `https://localhost:<port>/<route_prefix>/swagger/v1/swagger.json` instead of `https://localhost:<port>/<virtual_directory>/<route_prefix>/swagger/v1/swagger.json`.
 
 > [!NOTE]
-> By default, Swashbuckle generates and exposes Swagger JSON in version 3.0 of the specification&mdash;officially called the OpenAPI Specification. To support backwards compatibility, you can opt into exposing JSON in the 2.0 format instead. This 2.0 format is important for integrations such as Microsoft Power Apps and Microsoft Flow that currently support OpenAPI version 2.0. To opt into the 2.0 format, set the `SerializeAsV2` property in *Program.cs*:
+> By default, Swashbuckle generates and exposes Swagger JSON in version 3.0 of the specification&mdash;officially called the OpenAPI Specification. To support backwards compatibility, you can opt into exposing JSON in the 2.0 format instead. This 2.0 format is important for integrations such as Microsoft Power Apps and Microsoft Flow that currently support OpenAPI version 2.0. To opt into the 2.0 format, set the `SerializeAsV2` property in `Program.cs`:
 >
 > :::code language="csharp" source="web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/Snippets/Program.cs" id="snippet_MiddlewareJsonV2" highlight="3":::
 
@@ -105,7 +105,7 @@ Swagger provides options for documenting the object model and customizing the UI
 
 The configuration action passed to the `AddSwaggerGen` method adds information such as the author, license, and description.
 
-In *Program.cs*, import the following namespace to use the `OpenApiInfo` class:
+In `Program.cs`, import the following namespace to use the `OpenApiInfo` class:
 
 :::code language="csharp" source="web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/Program.cs" id="snippet_UsingOpenApiModels":::
 

@@ -32,7 +32,7 @@ Acquire an HTTPS certificate, apply it, and [configure your server](#configure-y
 In the web app:
 
 * Add a reference to the [Microsoft.AspNetCore.Authentication.Certificate](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Certificate) NuGet package.
-* In *Program.cs*, call
+* In `Program.cs`, call
 `builder.Services.AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme).AddCertificate(...);`. Provide a delegate for `OnCertificateValidated` to do any supplementary validation on the client certificate sent with requests. Turn that information into a `ClaimsPrincipal` and set it on the `context.Principal` property.
 
 If authentication fails, this handler returns a `403 (Forbidden)` response rather a `401 (Unauthorized)`, as you might expect. The reasoning is that the authentication should happen during the initial TLS connection. By the time it reaches the handler, it's too late. There's no way to upgrade the connection from an anonymous connection to one with a certificate.
@@ -110,7 +110,7 @@ Conceptually, the validation of the certificate is an authorization concern. Add
 
 ### Kestrel
 
-In *Program.cs*, configure Kestrel as follows:
+In `Program.cs`, configure Kestrel as follows:
 
 :::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Program.cs" id="snippet_ConfigureKestrelServerOptions":::
 
@@ -147,7 +147,7 @@ The `AddCertificateForwarding` method is used to specify:
 * The client header name.
 * How the certificate is to be loaded (using the `HeaderConverter` property).
 
-In custom web proxies, the certificate is passed as a custom request header, for example `X-SSL-CERT`. To use it, configure certificate forwarding in *Program.cs*:
+In custom web proxies, the certificate is passed as a custom request header, for example `X-SSL-CERT`. To use it, configure certificate forwarding in `Program.cs`:
 
 :::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Snippets/Program.cs" id="snippet_AddCertificateForwarding":::
 
@@ -155,7 +155,7 @@ If the app is reverse proxied by NGINX with the configuration `proxy_set_header 
 
 :::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Snippets/Program.cs" id="snippet_AddCertificateForwardingUrlEncoded":::
 
-Add the middleware in *Program.cs*. `UseCertificateForwarding` is called before the calls to `UseAuthentication` and `UseAuthorization`:
+Add the middleware in `Program.cs`. `UseCertificateForwarding` is called before the calls to `UseAuthentication` and `UseAuthorization`:
 
 :::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Snippets/Program.cs" id="snippet_UseCertificateForwarding" highlight="3":::
 
@@ -165,11 +165,11 @@ A separate class can be used to implement validation logic. Because the same sel
 
 #### Implement an HttpClient using a certificate and IHttpClientFactory 
 
-In the following example, a client certificate is added to a `HttpClientHandler` using the `ClientCertificates` property from the handler. This handler can then be used in a named instance of an `HttpClient` using the `ConfigurePrimaryHttpMessageHandler` method. This is setup in *Program.cs*:
+In the following example, a client certificate is added to a `HttpClientHandler` using the `ClientCertificates` property from the handler. This handler can then be used in a named instance of an `HttpClient` using the `ConfigurePrimaryHttpMessageHandler` method. This is setup in `Program.cs`:
 
 :::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Snippets/Program.cs" id="snippet_AddHttpClient":::
 
-The `IHttpClientFactory` can then be used to get the named instance with the handler and the certificate. The `CreateClient` method with the name of the client defined in *Program.cs* is used to get the instance. The HTTP request can be sent using the client as required:
+The `IHttpClientFactory` can then be used to get the named instance with the handler and the certificate. The `CreateClient` method with the name of the client defined in `Program.cs` is used to get the instance. The HTTP request can be sent using the client as required:
 
 :::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Snippets/SampleHttpService.cs" id="snippet_Class":::
 
@@ -287,7 +287,7 @@ When using the root, intermediate, or child certificates, the certificates can b
 
 ASP.NET Core 5.0 and later versions support the ability to enable caching of validation results. The caching dramatically improves performance of certificate authentication, as validation is an expensive operation.
 
-By default, certificate authentication disables caching. To enable caching, call `AddCertificateCache` in *Program.cs*:
+By default, certificate authentication disables caching. To enable caching, call `AddCertificateCache` in `Program.cs`:
 
 :::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Snippets/Program.cs" id="snippet_AddCertificateCaching":::
 
@@ -554,7 +554,7 @@ Conceptually, the validation of the certificate is an authorization concern. Add
 
 ### Kestrel
 
-In *Program.cs*, configure Kestrel as follows:
+In `Program.cs`, configure Kestrel as follows:
 
 ```csharp
 public static void Main(string[] args)
@@ -1210,7 +1210,7 @@ Conceptually, the validation of the certificate is an authorization concern. Add
 
 ### Kestrel
 
-In *Program.cs*, configure Kestrel as follows:
+In `Program.cs`, configure Kestrel as follows:
 
 ```csharp
 public static void Main(string[] args)

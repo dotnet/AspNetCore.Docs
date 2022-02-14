@@ -26,7 +26,7 @@ In addition to build-time compilation, updating Razor views and Razor Pages is s
 To enable runtime compilation for all environments:
 
 1. Install the [Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation/) NuGet package.
-1. Call <xref:Microsoft.Extensions.DependencyInjection.RazorRuntimeCompilationMvcBuilderExtensions.AddRazorRuntimeCompilation%2A> in *Program.cs*:
+1. Call <xref:Microsoft.Extensions.DependencyInjection.RazorRuntimeCompilationMvcBuilderExtensions.AddRazorRuntimeCompilation%2A> in `Program.cs`:
 
    :::code language="csharp" source="view-compilation/samples/6.x/ViewCompilationSample/Snippets/Program.cs" id="snippet_AddRazorRuntimeCompilation" highlight="4":::
 
@@ -40,7 +40,7 @@ Runtime compilation can be enabled conditionally, which ensures that the publish
 To enable runtime compilation only for the Development environment:
 
 1. Install the [Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation/) NuGet package.
-1. Call <xref:Microsoft.Extensions.DependencyInjection.RazorRuntimeCompilationMvcBuilderExtensions.AddRazorRuntimeCompilation%2A> in *Program.cs* when the current environment is set to Development:
+1. Call <xref:Microsoft.Extensions.DependencyInjection.RazorRuntimeCompilationMvcBuilderExtensions.AddRazorRuntimeCompilation%2A> in `Program.cs` when the current environment is set to Development:
 
    :::code language="csharp" source="view-compilation/samples/6.x/ViewCompilationSample/Snippets/Program.cs" id="snippet_AddRazorRuntimeCompilationDevelopment" highlight="5-8":::
 
@@ -56,14 +56,14 @@ Runtime compilation can also be enabled with a [hosting startup assembly](xref:f
 > [!WARNING]
 > This approach is currently broken in ASP.NET Core 6.0 and will be fixed in the next patch release. For more information, see [Allow runtime compilation to be configured via the hosting startup](https://github.com/dotnet/aspnetcore/pull/39381).
 
-With this approach, no code changes are needed in *Program.cs*. At runtime, ASP.NET Core searches for an [assembly-level HostingStartup attribute](xref:fundamentals/configuration/platform-specific-configuration#hostingstartup-attribute) in `Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation`. The `HostingStartup` attribute specifies the app startup code to execute and that startup code enables runtime compilation.
+With this approach, no code changes are needed in `Program.cs`. At runtime, ASP.NET Core searches for an [assembly-level HostingStartup attribute](xref:fundamentals/configuration/platform-specific-configuration#hostingstartup-attribute) in `Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation`. The `HostingStartup` attribute specifies the app startup code to execute and that startup code enables runtime compilation.
 
 ## Enable runtime compilation for a Razor Class Library
 
 Consider a scenario in which a Razor Pages project references a [Razor Class Library (RCL)](xref:razor-pages/ui-class) named *MyClassLib*. The RCL contains a *_Layout.cshtml* file consumed by MVC and Razor Pages projects. To enable runtime compilation for the *_Layout.cshtml* file in that RCL, make the following changes in the Razor Pages project:
 
 1. Enable runtime compilation with the instructions at [Enable runtime compilation conditionally](#enable-runtime-compilation-conditionally).
-1. Configure <xref:Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.MvcRazorRuntimeCompilationOptions> in *Program.cs*:
+1. Configure <xref:Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.MvcRazorRuntimeCompilationOptions> in `Program.cs`:
 
     :::code language="csharp" source="view-compilation/samples/6.x/ViewCompilationSample/Snippets/Program.cs" id="snippet_ConfigureMvcRazorRuntimeCompilationOptions" highlight="5-11":::
 

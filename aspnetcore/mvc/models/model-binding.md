@@ -136,9 +136,9 @@ Source data is provided to the model binding system by *value providers*. You ca
 
 * Create a class that implements `IValueProvider`.
 * Create a class that implements `IValueProviderFactory`.
-* Register the factory class in *Program.cs*.
+* Register the factory class in `Program.cs`.
 
-The sample includes a [value provider](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/mvc/models/model-binding/samples/6.x/ModelBindingSample/CookieValueProvider.cs) and [factory](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/mvc/models/model-binding/samples/6.x/ModelBindingSample/CookieValueProviderFactory.cs) example that gets values from cookies. Register custom value provider factories in *Program.cs*:
+The sample includes a [value provider](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/mvc/models/model-binding/samples/6.x/ModelBindingSample/CookieValueProvider.cs) and [factory](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/mvc/models/model-binding/samples/6.x/ModelBindingSample/CookieValueProviderFactory.cs) example that gets values from cookies. Register custom value provider factories in `Program.cs`:
 
 :::code language="csharp" source="model-binding/samples/6.x/ModelBindingSample/Snippets/Program.cs" id="snippet_AddValueProviderFactory" highlight="3":::
 
@@ -560,7 +560,7 @@ ASP.NET Core selects input formatters based on the [Consumes](xref:Microsoft.Asp
 
 To use the built-in XML input formatters:
 
-* In *Program.cs*, call <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcCoreBuilderExtensions.AddXmlSerializerFormatters%2A> or <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcCoreBuilderExtensions.AddXmlDataContractSerializerFormatters%2A>.
+* In `Program.cs`, call <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcCoreBuilderExtensions.AddXmlSerializerFormatters%2A> or <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcCoreBuilderExtensions.AddXmlDataContractSerializerFormatters%2A>.
 
   :::code language="csharp" source="model-binding/samples/6.x/ModelBindingSample/Snippets/Program.cs" id="snippet_AddXmlSerializerFormatters":::
 
@@ -596,11 +596,11 @@ For more information, see [How to write custom converters](/dotnet/standard/seri
 
 The model binding and validation systems' behavior is driven by <xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata>. You can customize `ModelMetadata` by adding a details provider to [MvcOptions.ModelMetadataDetailsProviders](xref:Microsoft.AspNetCore.Mvc.MvcOptions.ModelMetadataDetailsProviders). Built-in details providers are available for disabling model binding or validation for specified types.
 
-To disable model binding on all models of a specified type, add an <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ExcludeBindingMetadataProvider> in *Program.cs*. For example, to disable model binding on all models of type `System.Version`:
+To disable model binding on all models of a specified type, add an <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ExcludeBindingMetadataProvider> in `Program.cs`. For example, to disable model binding on all models of type `System.Version`:
 
 :::code language="csharp" source="model-binding/samples/6.x/ModelBindingSample/Snippets/Program.cs" id="snippet_ModelMetadataDetailsProviders" highlight="4-5":::
 
-To disable validation on properties of a specified type, add a <xref:Microsoft.AspNetCore.Mvc.ModelBinding.SuppressChildValidationMetadataProvider> in *Program.cs*. For example, to disable validation on properties of type `System.Guid`:
+To disable validation on properties of a specified type, add a <xref:Microsoft.AspNetCore.Mvc.ModelBinding.SuppressChildValidationMetadataProvider> in `Program.cs`. For example, to disable validation on properties of type `System.Guid`:
 
 :::code language="csharp" source="model-binding/samples/6.x/ModelBindingSample/Snippets/Program.cs" id="snippet_ModelMetadataDetailsProviders" highlight="6-7":::
 

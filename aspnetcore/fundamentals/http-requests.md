@@ -37,7 +37,7 @@ The best approach depends upon the app's requirements.
 
 ### Basic usage
 
-Register `IHttpClientFactory` by calling `AddHttpClient` in *Program.cs*:
+Register `IHttpClientFactory` by calling `AddHttpClient` in `Program.cs`:
 
 :::code language="csharp" source="http-requests/samples/6.x/HttpRequestsSample/Program.cs" id="snippet_AddHttpClientBasic" highlight="4":::
 
@@ -54,7 +54,7 @@ Named clients are a good choice when:
 * The app requires many distinct uses of `HttpClient`.
 * Many `HttpClient`s have different configuration.
 
-Specify configuration for a named `HttpClient` during its registration in *Program.cs*:
+Specify configuration for a named `HttpClient` during its registration in `Program.cs`:
 
 :::code language="csharp" source="http-requests/samples/6.x/HttpRequestsSample/Program.cs" id="snippet_AddHttpClientNamed":::
 
@@ -98,7 +98,7 @@ In the preceding code:
 
 API-specific methods can be created that expose `HttpClient` functionality. For example, the `GetAspNetCoreDocsBranches` method encapsulates code to retrieve docs GitHub branches.
 
-The following code calls <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions.AddHttpClient%2A> in *Program.cs* to register the `GitHubService` typed client class:
+The following code calls <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions.AddHttpClient%2A> in `Program.cs` to register the `GitHubService` typed client class:
 
 :::code language="csharp" source="http-requests/samples/6.x/HttpRequestsSample/Program.cs" id="snippet_AddHttpClientTyped":::
 
@@ -111,7 +111,7 @@ The typed client can be injected and consumed directly:
 
 :::code language="csharp" source="http-requests/samples/6.x/HttpRequestsSample/Pages/Consumption/TypedClient.cshtml.cs" id="snippet_Class" highlight="5-6,14":::
 
-The configuration for a typed client can also be specified during its registration in *Program.cs*, rather than in the typed client's constructor:
+The configuration for a typed client can also be specified during its registration in `Program.cs`, rather than in the typed client's constructor:
 
 :::code language="csharp" source="http-requests/samples/6.x/HttpRequestsSample/Snippets/Program.cs" id="snippet_AddHttpClientTypedInline":::
 
@@ -367,7 +367,7 @@ In the following example:
 Header propagation is an ASP.NET Core middleware to propagate HTTP headers from the incoming request to the outgoing `HttpClient` requests. To use header propagation:
 
 * Install the [Microsoft.AspNetCore.HeaderPropagation](https://www.nuget.org/packages/Microsoft.AspNetCore.HeaderPropagation) package.
-* Configure the `HttpClient` and middleware pipeline in *Program.cs*:
+* Configure the `HttpClient` and middleware pipeline in `Program.cs`:
 
   :::code language="csharp" source="http-requests/samples/6.x/HttpRequestsSample/Snippets/Program.cs" id="snippet_AddHttpClientHeaderPropagation" highlight="4-10,17":::
 

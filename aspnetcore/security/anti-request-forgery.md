@@ -148,7 +148,7 @@ ASP.NET Core includes three [filters](xref:mvc/controllers/filters) for working 
 
 ## Configure antiforgery with `AntiforgeryOptions`
 
-Customize <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions> in *Program.cs*:
+Customize <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions> in `Program.cs`:
 
 :::code language="csharp" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Program.cs" id="snippet_AddAntiforgeryOptions":::
 
@@ -165,7 +165,7 @@ For more information, see <xref:Microsoft.AspNetCore.Builder.CookieAuthenticatio
 
 ## Generate antiforgery tokens with `IAntiforgery`
 
-<xref:Microsoft.AspNetCore.Antiforgery.IAntiforgery> provides the API to configure antiforgery features. `IAntiforgery` can be requested in *Program.cs* using <xref:Microsoft.AspNetCore.Builder.WebApplication.Services%2A?displayProperty=nameWithType>. The following example uses middleware from the app's home page to generate an antiforgery token and send it in the response as a cookie:
+<xref:Microsoft.AspNetCore.Antiforgery.IAntiforgery> provides the API to configure antiforgery features. `IAntiforgery` can be requested in `Program.cs` using <xref:Microsoft.AspNetCore.Builder.WebApplication.Services%2A?displayProperty=nameWithType>. The following example uses middleware from the app's home page to generate an antiforgery token and send it in the response as a cookie:
 
 :::code language="csharp" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Program.cs" id="snippet_Middleware" highlight="5,7-20":::
 

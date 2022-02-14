@@ -49,7 +49,7 @@ By default, W3CLogger logs common properties such as path, status-code, date, ti
 
 ## W3CLogger options
 
-To configure the W3CLogger middleware, call <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddW3CLogging%2A> in *Program.cs*:
+To configure the W3CLogger middleware, call <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddW3CLogging%2A> in `Program.cs`:
 
 :::code language="csharp" source="samples/6.x/Program.cs" id="snippet_AddW3CLogging" highlight="3":::
 

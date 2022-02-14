@@ -298,7 +298,7 @@ The scaffolding process:
   * *Edit.cshtml* and *Edit.cshtml.cs*
   * *Index.cshtml* and *Index.cshtml.cs*
 * Creates *Data/SchoolContext.cs*.
-* Adds the context to dependency injection in *Program.cs*.
+* Adds the context to dependency injection in `Program.cs`.
 * Adds a database connection string to *appsettings.json*.
 
 ## Database connection string
@@ -407,7 +407,7 @@ The `AddDatabaseDeveloperPageExceptionFilter` provides helpful error information
 
 ## Create the database
 
-Update *Program.cs* to create the database if it doesn't exist:
+Update `Program.cs` to create the database if it doesn't exist:
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -447,7 +447,7 @@ Create *Data/DbInitializer.cs* with the following code:
 
 The code checks if there are any students in the database. If there are no students, it adds test data to the database. It creates the test data in arrays rather than `List<T>` collections to optimize performance.
 
-* In *Program.cs*, remove `//` from the `DbInitializer.Initialize` line:
+* In `Program.cs`, remove `//` from the `DbInitializer.Initialize` line:
 
  [!code-csharp[Main](intro/samples/cu60/Program.cs?name=snippet_ensure&highlight=6)]
 
@@ -919,7 +919,7 @@ The `AddDatabaseDeveloperPageExceptionFilter` provides helpful error information
 
 ## Create the database
 
-Update *Program.cs* to create the database if it doesn't exist:
+Update `Program.cs` to create the database if it doesn't exist:
 
 [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Program.cs?highlight=1-2,14-18,21-38)]
 
@@ -950,7 +950,7 @@ Create *Data/DbInitializer.cs* with the following code:
 
 The code checks if there are any students in the database. If there are no students, it adds test data to the database. It creates the test data in arrays rather than `List<T>` collections to optimize performance.
 
-* In *Program.cs*, remove `//` from the `DbInitializer.Initialize` line:
+* In `Program.cs`, remove `//` from the `DbInitializer.Initialize` line:
 
   ```csharp
     context.Database.EnsureCreated();
@@ -1117,7 +1117,7 @@ To run the app after downloading the completed project:
 To run the app after downloading the completed project:
 
 * Delete *ContosoUniversity.csproj*, and rename *ContosoUniversitySQLite.csproj* to *ContosoUniversity.csproj*.
-* In *Program.cs*, comment out `#define Startup` so `StartupSQLite` is used.
+* In `Program.cs`, comment out `#define Startup` so `StartupSQLite` is used.
 * Delete *appSettings.json*, and rename *appSettingsSQLite.json* to *appSettings.json*.
 * Delete the *Migrations* folder, and rename *MigrationsSQL* to *Migrations*.
 * Do a global search for `#if SQLiteVersion` and remove `#if SQLiteVersion` and the associated `#endif` statement.
@@ -1379,7 +1379,7 @@ The name of the connection string is passed in to the context by calling a metho
 
 ## Create the database
 
-Update *Program.cs* to create the database if it doesn't exist:
+Update `Program.cs` to create the database if it doesn't exist:
 
 [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Program.cs?highlight=1-2,14-18,21-38)]
 
@@ -1410,7 +1410,7 @@ Create *Data/DbInitializer.cs* with the following code:
 
   The code checks if there are any students in the database. If there are no students, it adds test data to the database. It creates the test data in arrays rather than `List<T>` collections to optimize performance.
 
-* In *Program.cs*, replace the `EnsureCreated` call with a `DbInitializer.Initialize` call:
+* In `Program.cs`, replace the `EnsureCreated` call with a `DbInitializer.Initialize` call:
 
   ```csharp
   // context.Database.EnsureCreated();

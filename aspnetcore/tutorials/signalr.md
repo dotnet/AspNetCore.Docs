@@ -195,7 +195,7 @@ A *hub* is a class that serves as a high-level pipeline that handles client-serv
 
 ## Configure SignalR
 
-The SignalR server must be configured to pass SignalR requests to SignalR. Add the following highlighted code to the *Program.cs* file.
+The SignalR server must be configured to pass SignalR requests to SignalR. Add the following highlighted code to the `Program.cs` file.
 
 [!code-csharp[Startup](signalr/samples/SignalRChat/Program.cs?highlight=1,6,24)]
 

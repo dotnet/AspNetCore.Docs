@@ -93,11 +93,11 @@ Rename both the node and variable to `AssetTargetFallback`:
 
 ## Update Main method in Program.cs
 
-In 1.x projects, the `Main` method of *Program.cs* looked like this:
+In 1.x projects, the `Main` method of `Program.cs` looked like this:
 
 [!code-csharp[](../1x-to-2x/samples/AspNetCoreDotNetCore1App/AspNetCoreDotNetCore1App/Program.cs?name=snippet_ProgramCs&highlight=8-19)]
 
-In 2.0 projects, the `Main` method of *Program.cs* has been simplified:
+In 2.0 projects, the `Main` method of `Program.cs` has been simplified:
 
 [!code-csharp[](../1x-to-2x/samples/AspNetCoreDotNetCore2App/AspNetCoreDotNetCore2App/Program.cs?highlight=8-11)]
 
@@ -121,7 +121,7 @@ In 2.0 projects, the boilerplate configuration code inherent to 1.x projects run
 
 [!code-csharp[](../1x-to-2x/samples/AspNetCoreDotNetFx2.0App/AspNetCoreDotNetFx2.0App/Startup.cs?name=snippet_2xStartup)]
 
-To remove the default providers added by `WebHostBuilder.CreateDefaultBuilder`, invoke the `Clear` method on the `IConfigurationBuilder.Sources` property inside of `ConfigureAppConfiguration`. To add providers back, utilize the `ConfigureAppConfiguration` method in *Program.cs*:
+To remove the default providers added by `WebHostBuilder.CreateDefaultBuilder`, invoke the `Clear` method on the `IConfigurationBuilder.Sources` property inside of `ConfigureAppConfiguration`. To add providers back, utilize the `ConfigureAppConfiguration` method in `Program.cs`:
 
 [!code-csharp[](../1x-to-2x/samples/AspNetCoreDotNetFx2.0App/AspNetCoreDotNetFx2.0App/Program.cs?name=snippet_ProgramMainConfigProviders&highlight=9-14)]
 
@@ -145,11 +145,11 @@ Consider the following 1.x seed initialization code in the `Configure` method of
 
 [!code-csharp[](../1x-to-2x/samples/AspNetCoreDotNetCore1App/AspNetCoreDotNetCore1App/Startup.cs?name=snippet_ConfigureSeedData&highlight=8)]
 
-In 2.0 projects, move the `SeedData.Initialize` call to the `Main` method of *Program.cs*:
+In 2.0 projects, move the `SeedData.Initialize` call to the `Main` method of `Program.cs`:
 
 [!code-csharp[](../1x-to-2x/samples/AspNetCoreDotNetCore2App/AspNetCoreDotNetCore2App/Program2.cs?name=snippet_Main2Code&highlight=10)]
 
-As of 2.0, it's bad practice to do anything in `BuildWebHost` except build and configure the web host. Anything that's about running the application should be handled outside of `BuildWebHost` &mdash; typically in the `Main` method of *Program.cs*.
+As of 2.0, it's bad practice to do anything in `BuildWebHost` except build and configure the web host. Anything that's about running the application should be handled outside of `BuildWebHost` &mdash; typically in the `Main` method of `Program.cs`.
 
 <a name="view-compilation"></a>
 
@@ -169,13 +169,13 @@ When targeting .NET Framework, you still need to explicitly reference the [Micro
 
 Effortless setup of application performance instrumentation is important. You can now rely on the new [Application Insights](/azure/application-insights/app-insights-overview) "light-up" features available in the Visual Studio 2017 tooling.
 
-ASP.NET Core 1.1 projects created in Visual Studio 2017 added Application Insights by default. If you're not using the Application Insights SDK directly, outside of *Program.cs* and *Startup.cs*, follow these steps:
+ASP.NET Core 1.1 projects created in Visual Studio 2017 added Application Insights by default. If you're not using the Application Insights SDK directly, outside of `Program.cs` and *Startup.cs*, follow these steps:
 
 1. If targeting .NET Core, remove the following `<PackageReference />` node from the *.csproj* file:
 
     [!code-xml[](../1x-to-2x/samples/AspNetCoreDotNetCore1App/AspNetCoreDotNetCore1App/AspNetCoreDotNetCore1App.csproj?range=10)]
 
-2. If targeting .NET Core, remove the `UseApplicationInsights` extension method invocation from *Program.cs*:
+2. If targeting .NET Core, remove the `UseApplicationInsights` extension method invocation from `Program.cs`:
 
     [!code-csharp[](../1x-to-2x/samples/AspNetCoreDotNetCore1App/AspNetCoreDotNetCore1App/Program.cs?name=snippet_ProgramCsMain&highlight=8)]
 

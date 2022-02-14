@@ -193,7 +193,7 @@ This section describes the various options that can be set in a CORS policy:
 * [Credentials in cross-origin requests](#credentials-in-cross-origin-requests)
 * [Set the preflight expiration time](#set-the-preflight-expiration-time)
 
-<xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsOptions.AddPolicy*> is called in *Program.cs*. For some options, it may be helpful to read the [How CORS works](#how-cors) section first.
+<xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsOptions.AddPolicy*> is called in `Program.cs`. For some options, it may be helpful to read the [How CORS works](#how-cors) section first.
 
 ## Set the allowed origins
 
@@ -383,7 +383,7 @@ Browsers aren't consistent in how they set `Access-Control-Request-Headers`. If 
 
 When the CORS policy is applied either:
 
-* Globally by calling `app.UseCors` in  *Program.cs*.
+* Globally by calling `app.UseCors` in  `Program.cs`.
 * Using the `[EnableCors]` attribute.
 
 ASP.NET Core responds to the preflight OPTIONS request.

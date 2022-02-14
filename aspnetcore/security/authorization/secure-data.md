@@ -132,7 +132,7 @@ Add [AllowAnonymous](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttri
 
 ### Configure the test account
 
-The `SeedData` class creates two accounts: administrator and manager. Use the [Secret Manager tool](xref:security/app-secrets) to set a password for these accounts. Set the password from the project directory (the directory containing *Program.cs*):
+The `SeedData` class creates two accounts: administrator and manager. Use the [Secret Manager tool](xref:security/app-secrets) to set a password for these accounts. Set the password from the project directory (the directory containing `Program.cs`):
 
 ```dotnetcli
 dotnet user-secrets set SeedUserPW <PW>
@@ -489,7 +489,7 @@ Add [AllowAnonymous](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttri
 
 ### Configure the test account
 
-The `SeedData` class creates two accounts: administrator and manager. Use the [Secret Manager tool](xref:security/app-secrets) to set a password for these accounts. Set the password from the project directory (the directory containing *Program.cs*):
+The `SeedData` class creates two accounts: administrator and manager. Use the [Secret Manager tool](xref:security/app-secrets) to set a password for these accounts. Set the password from the project directory (the directory containing `Program.cs`):
 
 ```dotnetcli
 dotnet user-secrets set SeedUserPW <PW>

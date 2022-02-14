@@ -15,7 +15,7 @@ ms.custom: contperf-fy21q3
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Jon P Smith](https://twitter.com/thereformedprog).
 
-The `MvcMovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records. The database context is registered with the [Dependency Injection](xref:fundamentals/dependency-injection) container in the *Program.cs* file:
+The `MvcMovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records. The database context is registered with the [Dependency Injection](xref:fundamentals/dependency-injection) container in the `Program.cs` file:
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -100,17 +100,17 @@ if (context.Movie.Any())
 
 # [Visual Studio](#tab/visual-studio)
 
-Replace the contents of *Program.cs* with the following code. The new code is highlighted.
+Replace the contents of `Program.cs` with the following code. The new code is highlighted.
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Program.cs?name=SQLServerSeedData&highlight=4,16-21)]
 
 Delete all the records in the database. You can do this with the delete links in the browser or from SSOX.
 
-Test the app. Force the app to initialize, calling the code in the *Program.cs* file, so the seed method runs. To force initialization, close the command prompt window that Visual Studio opened, and restart by pressing Ctrl+F5.
+Test the app. Force the app to initialize, calling the code in the `Program.cs` file, so the seed method runs. To force initialization, close the command prompt window that Visual Studio opened, and restart by pressing Ctrl+F5.
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-Update *Program.cs* with the following highlighted code:
+Update `Program.cs` with the following highlighted code:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Program.cs?name=SQLiteSeedData&highlight=4,16-21)]
 
@@ -214,7 +214,7 @@ if (context.Movie.Any())
 
 ### Add the seed initializer
 
-Replace the contents of *Program.cs* with the following code:
+Replace the contents of `Program.cs` with the following code:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Program.cs)]
 

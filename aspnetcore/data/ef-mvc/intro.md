@@ -240,11 +240,11 @@ The preceding code checks if the database exists:
   * It is created and loaded with test data. It loads test data into arrays rather than `List<T>` collections to optimize performance.
 * If the database is found, it takes no action.
 
-Update *Program.cs* with the following code:
+Update `Program.cs` with the following code:
 
 [!code-csharp[Program file](intro/samples/5cu-snap/Program.cs?highlight=1-2,14-18,21-37)]
 
-*Program.cs* does the following on app startup:
+`Program.cs` does the following on app startup:
 
 * Get a database context instance from the dependency injection container.
 * Call the `DbInitializer.Initialize` method.
@@ -576,7 +576,7 @@ In the *Data* folder, create a new class file named *DbInitializer.cs* and repla
 
 The code checks if there are any students in the database, and if not, it assumes the database is new and needs to be seeded with test data. It loads test data into arrays rather than `List<T>` collections to optimize performance.
 
-In *Program.cs*, modify the `Main` method to do the following on application startup:
+In `Program.cs`, modify the `Main` method to do the following on application startup:
 
 * Get a database context instance from the dependency injection container.
 * Call the seed method, passing to it the context.

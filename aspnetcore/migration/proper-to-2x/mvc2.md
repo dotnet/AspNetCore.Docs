@@ -61,7 +61,7 @@ This approach couples the application and the server to which it's deployed in a
 
 This configures your default routes, and defaults to XmlSerialization over Json. Add other Middleware to this pipeline as needed (loading services, configuration settings, static files, etc.).
 
-ASP.NET Core uses a similar approach, but doesn't rely on OWIN to handle the entry. Instead, that's done through the *Program.cs* `Main` method (similar to console applications) and `Startup` is loaded through there.
+ASP.NET Core uses a similar approach, but doesn't rely on OWIN to handle the entry. Instead, that's done through the `Program.cs` `Main` method (similar to console applications) and `Startup` is loaded through there.
 
 [!code-csharp[](samples/program.cs)]
 

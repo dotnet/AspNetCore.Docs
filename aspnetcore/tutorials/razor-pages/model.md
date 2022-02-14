@@ -131,7 +131,7 @@ The *appsettings.json* file is updated with the connection string used to connec
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Open a command shell to the project directory, which contains the *Program.cs* and *.csproj* files. Run the following command:
+* Open a command shell to the project directory, which contains the `Program.cs` and *.csproj* files. Run the following command:
 
   ```dotnetcli
   dotnet-aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries -sqlite
@@ -194,7 +194,7 @@ The scaffold process creates the following files:
 
 The created files are explained in the next tutorial.
 
-The scaffold process adds the following highlighted code to the *Program.cs* file:
+The scaffold process adds the following highlighted code to the `Program.cs` file:
 
 # [Visual Studio](#tab/visual-studio)
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program.cs?name=snippet_all&highlight=1-3,9-10)]
@@ -203,7 +203,7 @@ The scaffold process adds the following highlighted code to the *Program.cs* fil
 
 ---
 
-The *Program.cs* changes are explained later in this tutorial.
+The `Program.cs` changes are explained later in this tutorial.
 
 <a name="pmc6"></a>
 
@@ -262,7 +262,7 @@ The `update` command runs the `Up` method in migrations that have not been appli
 
 ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-injection). Services, such as the EF Core database context, are registered with dependency injection during application startup. Components that require these services (such as Razor Pages) are provided via constructor parameters. The constructor code that gets a database context instance is shown later in the tutorial.
 
-The scaffolding tool automatically created a database context and registered it with the dependency injection container. The following highlighted code is added to the *Program.cs* file by the scaffolder:
+The scaffolding tool automatically created a database context and registered it with the dependency injection container. The following highlighted code is added to the `Program.cs` file by the scaffolder:
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -477,7 +477,7 @@ The *appsettings.json* file is updated with the connection string used to connec
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Open a command shell to the project directory, which contains the *Program.cs*, *Startup.cs*, and *.csproj* files. Run the following command:
+* Open a command shell to the project directory, which contains the `Program.cs`, *Startup.cs*, and *.csproj* files. Run the following command:
 
   ```dotnetcli
   dotnet-aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries -sqlite
@@ -805,7 +805,7 @@ The *appsettings.json* file is updated with the connection string used to connec
 <!--  Until https://github.com/aspnet/Scaffolding/issues/582 is fixed windows needs backslash or the namespace is namespace RazorPagesMovie.Pages_Movies rather than namespace RazorPagesMovie.Pages.Movies
 -->
 
-* Open a command window in the project directory, which contains the *Program.cs*, *Startup.cs*, and *.csproj* files.
+* Open a command window in the project directory, which contains the `Program.cs`, *Startup.cs*, and *.csproj* files.
 
 * **For Windows**: Run the following command:
 
