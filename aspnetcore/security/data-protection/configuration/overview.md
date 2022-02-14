@@ -38,16 +38,9 @@ Sign in to Azure using the CLI, for example:
 az login
 ``` 
 
-To store keys in [Azure Key Vault](https://azure.microsoft.com/services/key-vault/), configure the system with <xref:Microsoft.AspNetCore.DataProtection.AzureDataProtectionBuilderExtensions.ProtectKeysWithAzureKeyVault%2A> in the `Startup` class. `blobUriWithSasToken` is the full URI where the key file should be stored. The URI must contain the SAS token as a query string parameter:
+To store keys in [Azure Key Vault](https://azure.microsoft.com/services/key-vault/), configure the system with <xref:Microsoft.AspNetCore.DataProtection.AzureDataProtectionBuilderExtensions.ProtectKeysWithAzureKeyVault%2A> in `Program.cs`. `blobUriWithSasToken` is the full URI where the key file should be stored. The URI must contain the SAS token as a query string parameter:
 
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddDataProtection()
-        .PersistKeysToAzureBlobStorage(new Uri("<blobUriWithSasToken>"))
-        .ProtectKeysWithAzureKeyVault(new Uri("<keyIdentifier>"), new DefaultAzureCredential());
-}
-```
+:::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionProtectKeysWithAzureKeyVault":::
 
 For an app to communicate and authorize itself with KeyVault,  the [Azure.Identity](https://www.nuget.org/packages/Azure.Identity/) package  must be added.
 
@@ -62,25 +55,13 @@ The `keyIdentifier` is the key vault key identifier used for key encryption. For
 
 If the app uses the older Azure packages (Microsoft.AspNetCore.DataProtection.AzureStorage and Microsoft.AspNetCore.DataProtection.AzureKeyVault), we recommend ***removing*** these references and upgrading to the [Azure.Extensions.AspNetCore.DataProtection.Blobs](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.DataProtection.Blobs) and [Azure.Extensions.AspNetCore.DataProtection.Keys](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.DataProtection.Keys). These packages are where new updates are provided, and address some key security and stability issues with the older packages.
 
-```csharp
-services.AddDataProtection()
-    //This blob must already exist before the application is run
-    .PersistKeysToAzureBlobStorage("<storage account connection string", "<key store container name>", "<key store blob name>")
-    //Removing this line below for an initial run will ensure the file is created correctly
-    .ProtectKeysWithAzureKeyVault(new Uri("<keyIdentifier>"), new DefaultAzureCredential());
-```
+:::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionProtectKeysWithAzureKeyVaultConnectionString":::
 
 ## PersistKeysToFileSystem
 
 To store keys on a UNC share instead of at the *%LOCALAPPDATA%* default location, configure the system with <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.PersistKeysToFileSystem%2A>:
 
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddDataProtection()
-        .PersistKeysToFileSystem(new DirectoryInfo(@"\\server\share\directory\"));
-}
-```
+:::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionPersistKeysToFileSystem":::
 
 > [!WARNING]
 > If you change the key persistence location, the system no longer automatically encrypts keys at rest, since it doesn't know whether DPAPI is an appropriate encryption mechanism.
@@ -89,19 +70,11 @@ public void ConfigureServices(IServiceCollection services)
 
 To store keys in a database using EntityFramework, configure the system with the [Microsoft.AspNetCore.DataProtection.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.EntityFrameworkCore/) package:
 
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddDataProtection()
-        .PersistKeysToDbContext<DbContext>()
-}
-```
+:::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionPersistKeysToDbContext":::
 
 The preceding code stores the keys in the configured database. The database context being used must implement `IDataProtectionKeyContext`.  `IDataProtectionKeyContext` exposes the property `DataProtectionKeys` 
 
-```csharp
-public DbSet<DataProtectionKey> DataProtectionKeys { get; set; }
-```
+:::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/SampleDbContext.cs" id="snippet_DataProtectionKeys":::
 
 This property represents the table in which the keys are stored. Create the table manually or with `DbContext` Migrations. For more information, see <xref:Microsoft.AspNetCore.DataProtection.EntityFrameworkCore.DataProtectionKey>.
 
@@ -109,26 +82,11 @@ This property represents the table in which the keys are stored. Create the tabl
 
 You can configure the system to protect keys at rest by calling any of the [ProtectKeysWith\*](xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions) configuration APIs. Consider the example below, which stores keys on a UNC share and encrypts those keys at rest with a specific X.509 certificate:
 
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddDataProtection()
-        .PersistKeysToFileSystem(new DirectoryInfo(@"\\server\share\directory\"))
-        .ProtectKeysWithCertificate(Configuration["Thumbprint"]);
-}
-```
+:::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionProtectKeysWithCertificate":::
 
 You can provide an <xref:System.Security.Cryptography.X509Certificates.X509Certificate2> to <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithCertificate%2A>, such as a certificate loaded from a file:
 
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddDataProtection()
-        .PersistKeysToFileSystem(new DirectoryInfo(@"\\server\share\directory\"))
-        .ProtectKeysWithCertificate(
-            new X509Certificate2("certificate.pfx", Configuration["Thumbprint"]));
-}
-```
+:::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionProtectKeysWithCertificateX509Certificate2":::
 
 See [Key Encryption At Rest](xref:security/data-protection/implementation/key-encryption-at-rest) for more examples and discussion on the built-in key encryption mechanisms.
 
@@ -136,30 +94,13 @@ See [Key Encryption At Rest](xref:security/data-protection/implementation/key-en
 
 You can rotate certificates and decrypt keys at rest using an array of <xref:System.Security.Cryptography.X509Certificates.X509Certificate2> certificates with <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.UnprotectKeysWithAnyCertificate%2A>:
 
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddDataProtection()
-        .PersistKeysToFileSystem(new DirectoryInfo(@"\\server\share\directory\"))
-        .ProtectKeysWithCertificate(
-            new X509Certificate2("certificate.pfx", Configuration["MyPasswordKey"));
-        .UnprotectKeysWithAnyCertificate(
-            new X509Certificate2("certificate_old_1.pfx", Configuration["MyPasswordKey_1"]),
-            new X509Certificate2("certificate_old_2.pfx", Configuration["MyPasswordKey_2"]));
-}
-```
+:::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionUnprotectKeysWithAnyCertificate":::
 
 ## SetDefaultKeyLifetime
 
 To configure the system to use a key lifetime of 14 days instead of the default 90 days, use <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetDefaultKeyLifetime%2A>:
 
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddDataProtection()
-        .SetDefaultKeyLifetime(TimeSpan.FromDays(14));
-}
-```
+:::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionSetDefaultKeyLifetime":::
 
 ## SetApplicationName
 
@@ -172,25 +113,13 @@ To share protected payloads among apps:
   * Reference the same shared framework version via the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
   * Reference the same [Data Protection package](xref:security/data-protection/introduction#package-layout) version.
 
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddDataProtection()
-        .SetApplicationName("shared app name");
-}
-```
+:::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionSetApplicationName":::
 
 ## DisableAutomaticKeyGeneration
 
 You may have a scenario where you don't want an app to automatically roll keys (create new keys) as they approach expiration. One example of this scenario might be apps set up in a primary/secondary relationship, where only the primary app is responsible for key management concerns and secondary apps simply have a read-only view of the key ring. The secondary apps can be configured to treat the key ring as read-only by configuring the system with <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.DisableAutomaticKeyGeneration%2A>:
 
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddDataProtection()
-        .DisableAutomaticKeyGeneration();
-}
-```
+:::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionDisableAutomaticKeyGeneration":::
 
 ## Per-application isolation
 
@@ -225,15 +154,7 @@ Consider the following points for app isolation:
 
 The Data Protection stack allows you to change the default algorithm used by newly generated keys. The simplest way to do this is to call <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.UseCryptographicAlgorithms%2A> from the configuration callback:
 
-```csharp
-services.AddDataProtection()
-    .UseCryptographicAlgorithms(
-        new AuthenticatedEncryptorConfiguration()
-    {
-        EncryptionAlgorithm = EncryptionAlgorithm.AES_256_CBC,
-        ValidationAlgorithm = ValidationAlgorithm.HMACSHA256
-    });
-```
+:::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionUseCryptographicAlgorithms":::
 
 The default EncryptionAlgorithm is AES-256-CBC, and the default ValidationAlgorithm is HMACSHA256. The default policy can be set by a system administrator via a [machine-wide policy](xref:security/data-protection/configuration/machine-wide-policy), but an explicit call to `UseCryptographicAlgorithms` overrides the default policy.
 
@@ -248,21 +169,7 @@ You can manually specify an implementation via a call to <xref:Microsoft.AspNetC
 
 To specify custom managed algorithms, create a <xref:Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.ManagedAuthenticatedEncryptorConfiguration> instance that points to the implementation types:
 
-```csharp
-serviceCollection.AddDataProtection()
-    .UseCustomCryptographicAlgorithms(
-        new ManagedAuthenticatedEncryptorConfiguration()
-    {
-        // A type that subclasses SymmetricAlgorithm
-        EncryptionAlgorithmType = typeof(Aes),
-
-        // Specified in bits
-        EncryptionAlgorithmKeySize = 256,
-
-        // A type that subclasses KeyedHashAlgorithm
-        ValidationAlgorithmType = typeof(HMACSHA256)
-    });
-```
+:::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionUseCustomCryptographicAlgorithms":::
 
 Generally the \*Type properties must point to concrete, instantiable (via a public parameterless ctor) implementations of <xref:System.Security.Cryptography.SymmetricAlgorithm> and <xref:System.Security.Cryptography.KeyedHashAlgorithm>, though the system special-cases some values like `typeof(Aes)` for convenience.
 
@@ -273,42 +180,14 @@ Generally the \*Type properties must point to concrete, instantiable (via a publ
 
 To specify a custom Windows CNG algorithm using CBC-mode encryption with HMAC validation, create a <xref:Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.CngCbcAuthenticatedEncryptorConfiguration> instance that contains the algorithmic information:
 
-```csharp
-services.AddDataProtection()
-    .UseCustomCryptographicAlgorithms(
-        new CngCbcAuthenticatedEncryptorConfiguration()
-    {
-        // Passed to BCryptOpenAlgorithmProvider
-        EncryptionAlgorithm = "AES",
-        EncryptionAlgorithmProvider = null,
-
-        // Specified in bits
-        EncryptionAlgorithmKeySize = 256,
-
-        // Passed to BCryptOpenAlgorithmProvider
-        HashAlgorithm = "SHA256",
-        HashAlgorithmProvider = null
-    });
-```
+:::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionUseCustomCryptographicAlgorithmsCngCbc":::
 
 > [!NOTE]
 > The symmetric block cipher algorithm must have a key length of >= 128 bits, a block size of >= 64 bits, and it must support CBC-mode encryption with PKCS #7 padding. The hash algorithm must have a digest size of >= 128 bits and must support being opened with the BCRYPT\_ALG\_HANDLE\_HMAC\_FLAG flag. The \*Provider properties can be set to null to use the default provider for the specified algorithm. For more information, see the [BCryptOpenAlgorithmProvider](/windows/win32/api/bcrypt/nf-bcrypt-bcryptopenalgorithmprovider) documentation.
 
 To specify a custom Windows CNG algorithm using Galois/Counter Mode encryption with validation, create a <xref:Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.CngGcmAuthenticatedEncryptorConfiguration> instance that contains the algorithmic information:
 
-```csharp
-services.AddDataProtection()
-    .UseCustomCryptographicAlgorithms(
-        new CngGcmAuthenticatedEncryptorConfiguration()
-    {
-        // Passed to BCryptOpenAlgorithmProvider
-        EncryptionAlgorithm = "AES",
-        EncryptionAlgorithmProvider = null,
-
-        // Specified in bits
-        EncryptionAlgorithmKeySize = 256
-    });
-```
+:::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionUseCustomCryptographicAlgorithmsCngGcm":::
 
 > [!NOTE]
 > The symmetric block cipher algorithm must have a key length of >= 128 bits, a block size of exactly 128 bits, and it must support GCM encryption. You can set the <xref:Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.CngCbcAuthenticatedEncryptorConfiguration.EncryptionAlgorithmProvider> property to null to use the default provider for the specified algorithm. For more information, see the [BCryptOpenAlgorithmProvider](/windows/win32/api/bcrypt/nf-bcrypt-bcryptopenalgorithmprovider) documentation.
@@ -332,15 +211,7 @@ Only Redis versions supporting [Redis Data Persistence](/azure/azure-cache-for-r
 
 Enable `Information` level logging of DataProtection to help diagnosis problem. The following *appsetting.json* file enables information logging of the DataProtection API:
 
-```JSON
-{
-  "Logging": {
-    "LogLevel": {
-      "Microsoft.AspNetCore.DataProtection": "Information"
-    }
-  }
-}
-```
+:::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/appsettings.json" highlight="6":::
 
 For more information on logging, see [Logging in .NET Core and ASP.NET Core](xref:fundamentals/logging/index).
 
