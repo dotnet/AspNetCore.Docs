@@ -179,11 +179,13 @@ Locate the `BlazorWebView` control under `Microsoft.AspNetCore.Components.WebVie
 
 :::image type="content" source="windows-forms/_static/toolbox.png" alt-text="BlazorWebView in the Toolbox.":::
 
-Drag `BlazorWebView` into the `Form1` designer:
+Drag `BlazorWebView` from the **Toolbox** into the `Form1` designer:
 
 :::image type="content" source="windows-forms/_static/form1.png" alt-text="BlazorWebView in the Form1 designer.":::
 
-In `Form1`, select the `BlazorWebView` item. In the `BlazorWebView` **Properties**, change its **Dock** value to **Fill**:
+In `Form1`, select `BlazorWebView` with a single click.
+
+In `BlazorWebView`'s **Properties**, change its **Dock** value to **Fill**:
 
 :::image type="content" source="windows-forms/_static/properties.png" alt-text="BlazorWebView properties with Dock set to Fill.":::
 
