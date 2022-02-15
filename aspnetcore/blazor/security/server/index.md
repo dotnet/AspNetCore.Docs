@@ -299,11 +299,11 @@ To store additional claims from external providers, see <xref:security/authentic
 
 Specify the issuer explicitly when deploying to Azure App Service on Linux with Identity Server. For more information, see <xref:security/authentication/identity/spa#azure-app-service-on-linux>.
 
-## Notification about authentication state changes
+## Notification about authentication state changes (ASP.NET Core 5.x)
 
 If the app determines that the underlying authentication state data has changed (for example, because the user signed out or another user has changed their roles), a [custom `AuthenticationStateProvider`](#implement-a-custom-authenticationstateprovider) can optionally invoke the method <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged%2A> on the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> base class. This notifies consumers of the authentication state data (for example, <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView>) to rerender using the new data.
 
-## Implement a custom `AuthenticationStateProvider`
+## Implement a custom `AuthenticationStateProvider` (ASP.NET Core 5.x)
 
 If the app requires a custom provider, implement <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> and override `GetAuthenticationStateAsync`:
 
@@ -340,11 +340,11 @@ builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>
 
 Using the `CustomAuthStateProvider` in the preceding example, all users are authenticated with the username `mrfibuli`.
 
-## Notification about authentication state changes
+## Notification about authentication state changes (ASP.NET Core 3.x)
 
 If the app determines that the underlying authentication state data has changed (for example, because the user signed out or another user has changed their roles), a [custom `AuthenticationStateProvider`](#implement-a-custom-authenticationstateprovider) can optionally invoke the method <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged%2A> on the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> base class. This notifies consumers of the authentication state data (for example, <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView>) to rerender using the new data.
 
-## Implement a custom `AuthenticationStateProvider`
+## Implement a custom `AuthenticationStateProvider` (ASP.NET Core 3.x)
 
 If the app requires a custom provider, implement <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> and override `GetAuthenticationStateAsync`:
 
