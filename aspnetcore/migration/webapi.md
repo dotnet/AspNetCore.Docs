@@ -55,7 +55,7 @@ This article shows how to migrate the Products controller created in [Getting St
 
 ---
 
-## Remove the *WeatherForecast* template files and change the `launchURL` property
+## Remove the *WeatherForecast* template files
 
 1. Remove the *WeatherForecast.cs* and *Controllers/WeatherForecastController.cs* example files from the new *ProductsCore* project.
 1. Open *Properties\launchSettings.json*.
@@ -84,18 +84,16 @@ The following shows the application startup code in the ASP.NET Core *Program.cs
 1. Right-click the **Models** folder. Select **Add** > **Class**. Name the class *Product* and select **Add**.
 1. Replace the template model code with the following:
 
-   [!code-csharp[](webapi/sample/6.x/ProductsCore/Models/Product.cs)]
-
 # [Visual Studio Code](#tab/visual-studio-code)
 
 1. Add a folder named *Models*.
 1. Add a *Product* class to the *Models* folder with the following code:
 
-   [!code-csharp[](webapi/sample/6.x/ProductsCore/Models/Product.cs)]
-
 ---
 
-The preceding highlighted code changes the following:
+   [!code-csharp[](webapi/sample/6.x/ProductsCore/Models/Product.cshighlight=6,7)]
+
+The preceding highlighted code changes the following to update to ASP.NET Core:
 
 * The `?` annotation has been added to declare the `Name` and `Category` properties as nullable reference types.
 
