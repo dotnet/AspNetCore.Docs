@@ -14,7 +14,7 @@ uid: spa/react-with-redux
 :::moniker range=">= aspnetcore-6.0"
 
 > [!IMPORTANT]
-> As of ASP.NET Core 6.0, the React-with-Redux project template is no longer included. For more information, see [this announcement](https://github.com/aspnet/Announcements/issues/465).
+> As of ASP.NET Core 6.0, the React-with-Redux project template is no longer included. For more information, see [React Redux: Dropping support in ASP.NET Core 6.0 (aspnet/Announcements #465)](https://github.com/aspnet/Announcements/issues/465).
 
 :::moniker-end
 
