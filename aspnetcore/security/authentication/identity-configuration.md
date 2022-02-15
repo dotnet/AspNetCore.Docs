@@ -34,11 +34,11 @@ The <xref:Microsoft.AspNetCore.Identity.IdentityOptions> class represents the op
 
 Lockout is set in the [PasswordSignInAsync](xref:Microsoft.AspNetCore.Identity.SignInManager%601.PasswordSignInAsync(System.String,System.String,System.Boolean,System.Boolean)) method:
 
-[!code-csharp[](identity-configuration/sample/Areas/Identity/Pages/Account/Login.cshtml.cs?name=snippet&highlight=9)]
+[!code-csharp[](identity-configuration/sample6/Areas/Identity/Pages/Account/Login.cshtml.cs?name=snippet&highlight=13)]
 
-The preceding code is based on the `Login` Identity template. 
+The preceding code is based on the `Login` Identity template.
 
-Lockout options are set in `StartUp.ConfigureServices`: zz
+Lockout options are set in `Program.cs`:
 
 [!code-csharp[](identity-configuration/sample/Startup.cs?name=snippet_lock)]
 
@@ -65,7 +65,7 @@ Passwords are configured with:
   * `Areas/Identity/Pages/Account/Register.cshtml.cs`
   * `Areas/Identity/Pages/Account/ResetPassword.cshtml.cs`
 
-[!code-csharp[](identity-configuration/sample/Startup.cs?name=snippet_pw)]
+[!code-csharp[](identity-configuration/sample6/Program.cs?name=&highlight=16-22)]
 
 <xref:Microsoft.AspNetCore.Identity.IdentityOptions.Password%2A?displayProperty=nameWithType> specifies the <xref:Microsoft.AspNetCore.Identity.PasswordOptions> with the properties shown in the table.
 
