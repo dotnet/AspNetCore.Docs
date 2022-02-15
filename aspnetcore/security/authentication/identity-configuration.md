@@ -36,7 +36,7 @@ Lockout is set in the [PasswordSignInAsync](xref:Microsoft.AspNetCore.Identity.S
 
 [!code-csharp[](identity-configuration/sample6/RPauth/Areas/Identity/Pages/Account/Login.cshtml.cs?name=snippet&highlight=13)]
 
-The preceding code is based on the `Login` Identity template.
+The preceding code is based on the [`Login` Identity template](https://github.com/dotnet/aspnetcore/blob/1dcf7acfacf0fe154adcc23270cb0da11ff44ace/src/Identity/UI/src/Areas/Identity/Pages/V5/Account/Login.cshtml.cs#L131-L132).
 
 Lockout options are set in `Program.cs`:
 
