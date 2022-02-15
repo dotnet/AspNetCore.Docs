@@ -163,7 +163,7 @@ To restrict the response formats, apply the [`[Produces]`](xref:Microsoft.AspNet
 
 The preceding [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) filter:
 
-* Forces all actions within the controller to return JSON-formatted responses.
+* Forces all actions within the controller to return JSON-formatted responses for POCOs (Plain Old CLR Objects) or <xref:Microsoft.AspNetCore.Mvc.ObjectResult> and its derived types.
 * Return JSON-formatted responses even if other formatters are configured and the client specifies a different format.
 
 For more information, see [Filters](xref:mvc/controllers/filters).
@@ -400,7 +400,7 @@ To restrict the response formats, apply the [`[Produces]`](xref:Microsoft.AspNet
 
 The preceding [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) filter:
 
-* Forces all actions within the controller to return JSON-formatted responses.
+* Forces all actions within the controller to return JSON-formatted responses for POCOs (Plain Old CLR Objects) or <xref:Microsoft.AspNetCore.Mvc.ObjectResult> and its derived types.
 * If other formatters are configured and the client specifies a different format, JSON is returned.
 
 For more information, see [Filters](xref:mvc/controllers/filters).

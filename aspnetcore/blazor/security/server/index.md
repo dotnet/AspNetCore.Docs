@@ -128,6 +128,47 @@ To store additional claims from external providers, see <xref:security/authentic
 
 Specify the issuer explicitly when deploying to Azure App Service on Linux with Identity Server. For more information, see <xref:security/authentication/identity/spa#azure-app-service-on-linux>.
 
+## Notification about authentication state changes
+
+If the app determines that the underlying authentication state data has changed (for example, because the user signed out or another user has changed their roles), a [custom `AuthenticationStateProvider`](#implement-a-custom-authenticationstateprovider) can optionally invoke the method <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged%2A> on the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> base class. This notifies consumers of the authentication state data (for example, <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView>) to rerender using the new data.
+
+## Implement a custom `AuthenticationStateProvider`
+
+If the app requires a custom provider, implement <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> and override `GetAuthenticationStateAsync`:
+
+```csharp
+using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components.Authorization;
+
+public class CustomAuthStateProvider : AuthenticationStateProvider
+{
+    public override Task<AuthenticationState> GetAuthenticationStateAsync()
+    {
+        var identity = new ClaimsIdentity(new[]
+        {
+            new Claim(ClaimTypes.Name, "mrfibuli"),
+        }, "Fake authentication type");
+
+        var user = new ClaimsPrincipal(identity);
+
+        return Task.FromResult(new AuthenticationState(user));
+    }
+}
+```
+
+The `CustomAuthStateProvider` service is registered in `Program.cs`:
+
+```csharp
+using Microsoft.AspNetCore.Components.Authorization;
+
+...
+
+builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
+```
+
+Using the `CustomAuthStateProvider` in the preceding example, all users are authenticated with the username `mrfibuli`.
+
 ## Additional resources
 
 * [Quickstart: Add sign-in with Microsoft to an ASP.NET Core web app](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp)
@@ -257,6 +298,88 @@ To store additional claims from external providers, see <xref:security/authentic
 ## Azure App Service on Linux with Identity Server
 
 Specify the issuer explicitly when deploying to Azure App Service on Linux with Identity Server. For more information, see <xref:security/authentication/identity/spa#azure-app-service-on-linux>.
+
+## Notification about authentication state changes (ASP.NET Core 5.x)
+
+If the app determines that the underlying authentication state data has changed (for example, because the user signed out or another user has changed their roles), a [custom `AuthenticationStateProvider`](#implement-a-custom-authenticationstateprovider-aspnet-core-5x) can optionally invoke the method <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged%2A> on the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> base class. This notifies consumers of the authentication state data (for example, <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView>) to rerender using the new data.
+
+## Implement a custom `AuthenticationStateProvider` (ASP.NET Core 5.x)
+
+If the app requires a custom provider, implement <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> and override `GetAuthenticationStateAsync`:
+
+```csharp
+using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components.Authorization;
+
+public class CustomAuthStateProvider : AuthenticationStateProvider
+{
+    public override Task<AuthenticationState> GetAuthenticationStateAsync()
+    {
+        var identity = new ClaimsIdentity(new[]
+        {
+            new Claim(ClaimTypes.Name, "mrfibuli"),
+        }, "Fake authentication type");
+
+        var user = new ClaimsPrincipal(identity);
+
+        return Task.FromResult(new AuthenticationState(user));
+    }
+}
+```
+
+The `CustomAuthStateProvider` service is registered in `Program.cs`:
+
+```csharp
+using Microsoft.AspNetCore.Components.Authorization;
+
+...
+
+builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
+```
+
+Using the `CustomAuthStateProvider` in the preceding example, all users are authenticated with the username `mrfibuli`.
+
+## Notification about authentication state changes (ASP.NET Core 3.x)
+
+If the app determines that the underlying authentication state data has changed (for example, because the user signed out or another user has changed their roles), a [custom `AuthenticationStateProvider`](#implement-a-custom-authenticationstateprovider-aspnet-core-3x) can optionally invoke the method <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged%2A> on the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> base class. This notifies consumers of the authentication state data (for example, <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView>) to rerender using the new data.
+
+## Implement a custom `AuthenticationStateProvider` (ASP.NET Core 3.x)
+
+If the app requires a custom provider, implement <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> and override `GetAuthenticationStateAsync`:
+
+```csharp
+using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components.Authorization;
+
+public class CustomAuthStateProvider : AuthenticationStateProvider
+{
+    public override Task<AuthenticationState> GetAuthenticationStateAsync()
+    {
+        var identity = new ClaimsIdentity(new[]
+        {
+            new Claim(ClaimTypes.Name, "mrfibuli"),
+        }, "Fake authentication type");
+
+        var user = new ClaimsPrincipal(identity);
+
+        return Task.FromResult(new AuthenticationState(user));
+    }
+}
+```
+
+The `CustomAuthStateProvider` service is registered in `Program.cs`:
+
+```csharp
+using Microsoft.AspNetCore.Components.Authorization;
+
+...
+
+builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
+```
+
+Using the `CustomAuthStateProvider` in the preceding example, all users are authenticated with the username `mrfibuli`.
 
 ## Additional resources
 

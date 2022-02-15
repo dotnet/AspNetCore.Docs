@@ -116,45 +116,6 @@ If `user.Identity.IsAuthenticated` is `true` and because the user is a <xref:Sys
 
 For more information on dependency injection (DI) and services, see <xref:blazor/fundamentals/dependency-injection> and <xref:fundamentals/dependency-injection>.
 
-## Implement a custom AuthenticationStateProvider
-
-*This section only applies to Blazor Server.*
-
-If the app requires a custom provider, implement <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> and override `GetAuthenticationStateAsync`:
-
-```csharp
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Components.Authorization;
-
-public class CustomAuthStateProvider : AuthenticationStateProvider
-{
-    public override Task<AuthenticationState> GetAuthenticationStateAsync()
-    {
-        var identity = new ClaimsIdentity(new[]
-        {
-            new Claim(ClaimTypes.Name, "mrfibuli"),
-        }, "Fake authentication type");
-
-        var user = new ClaimsPrincipal(identity);
-
-        return Task.FromResult(new AuthenticationState(user));
-    }
-}
-```
-
-The `CustomAuthStateProvider` service is registered in `Program.cs`:
-
-```csharp
-using Microsoft.AspNetCore.Components.Authorization;
-
-...
-
-builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
-```
-
-Using the `CustomAuthStateProvider` in the preceding example, all users are authenticated with the username `mrfibuli`.
-
 ## Expose the authentication state as a cascading parameter
 
 If authentication state data is required for procedural logic, such as when performing an action triggered by the user, obtain the authentication state data by defining a cascading parameter of type `Task<`<xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState>`>`:
@@ -530,10 +491,6 @@ If the `<NotAuthorized>` tag isn't specified, the <xref:Microsoft.AspNetCore.Com
 ```html
 Not authorized.
 ```
-
-## Notification about authentication state changes
-
-If the app determines that the underlying authentication state data has changed (for example, because the user signed out or another user has changed their roles), a [custom `AuthenticationStateProvider`](#implement-a-custom-authenticationstateprovider) can optionally invoke the method <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged%2A> on the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> base class. This notifies consumers of the authentication state data (for example, <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView>) to rerender using the new data.
 
 ## Procedural logic
 
@@ -723,53 +680,6 @@ If `user.Identity.IsAuthenticated` is `true` and because the user is a <xref:Sys
 
 For more information on dependency injection (DI) and services, see <xref:blazor/fundamentals/dependency-injection> and <xref:fundamentals/dependency-injection>.
 
-## Implement a custom AuthenticationStateProvider
-
-If the app requires a custom provider, implement <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> and override `GetAuthenticationStateAsync`:
-
-```csharp
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Components.Authorization;
-
-public class CustomAuthStateProvider : AuthenticationStateProvider
-{
-    public override Task<AuthenticationState> GetAuthenticationStateAsync()
-    {
-        var identity = new ClaimsIdentity(new[]
-        {
-            new Claim(ClaimTypes.Name, "mrfibuli"),
-        }, "Fake authentication type");
-
-        var user = new ClaimsPrincipal(identity);
-
-        return Task.FromResult(new AuthenticationState(user));
-    }
-}
-```
-
-In a Blazor WebAssembly app, the `CustomAuthStateProvider` service is registered in `Main` of `Program.cs`:
-
-```csharp
-using Microsoft.AspNetCore.Components.Authorization;
-
-...
-
-builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
-```
-
-In a Blazor Server app, the `CustomAuthStateProvider` service is registered in `Startup.ConfigureServices`:
-
-```csharp
-using Microsoft.AspNetCore.Components.Authorization;
-
-...
-
-services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
-```
-
-Using the `CustomAuthStateProvider` in the preceding example, all users are authenticated with the username `mrfibuli`.
-
 ## Expose the authentication state as a cascading parameter
 
 If authentication state data is required for procedural logic, such as when performing an action triggered by the user, obtain the authentication state data by defining a cascading parameter of type `Task<`<xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState>`>`:
@@ -1149,10 +1059,6 @@ If the `<NotAuthorized>` tag isn't specified, the <xref:Microsoft.AspNetCore.Com
 ```html
 Not authorized.
 ```
-
-## Notification about authentication state changes
-
-If the app determines that the underlying authentication state data has changed (for example, because the user signed out or another user has changed their roles), a [custom `AuthenticationStateProvider`](#implement-a-custom-authenticationstateprovider) can optionally invoke the method <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged%2A> on the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> base class. This notifies consumers of the authentication state data (for example, <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView>) to rerender using the new data.
 
 ## Procedural logic
 
@@ -1344,53 +1250,6 @@ If `user.Identity.IsAuthenticated` is `true` and because the user is a <xref:Sys
 
 For more information on dependency injection (DI) and services, see <xref:blazor/fundamentals/dependency-injection> and <xref:fundamentals/dependency-injection>.
 
-## Implement a custom AuthenticationStateProvider
-
-If the app requires a custom provider, implement <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> and override `GetAuthenticationStateAsync`:
-
-```csharp
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Components.Authorization;
-
-public class CustomAuthStateProvider : AuthenticationStateProvider
-{
-    public override Task<AuthenticationState> GetAuthenticationStateAsync()
-    {
-        var identity = new ClaimsIdentity(new[]
-        {
-            new Claim(ClaimTypes.Name, "mrfibuli"),
-        }, "Fake authentication type");
-
-        var user = new ClaimsPrincipal(identity);
-
-        return Task.FromResult(new AuthenticationState(user));
-    }
-}
-```
-
-In a Blazor WebAssembly app, the `CustomAuthStateProvider` service is registered in `Main` of `Program.cs`:
-
-```csharp
-using Microsoft.AspNetCore.Components.Authorization;
-
-...
-
-builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
-```
-
-In a Blazor Server app, the `CustomAuthStateProvider` service is registered in `Startup.ConfigureServices`:
-
-```csharp
-using Microsoft.AspNetCore.Components.Authorization;
-
-...
-
-services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
-```
-
-Using the `CustomAuthStateProvider` in the preceding example, all users are authenticated with the username `mrfibuli`.
-
 ## Expose the authentication state as a cascading parameter
 
 If authentication state data is required for procedural logic, such as when performing an action triggered by the user, obtain the authentication state data by defining a cascading parameter of type `Task<`<xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState>`>`:
@@ -1692,10 +1551,6 @@ If the `<NotAuthorized>` tag isn't specified, the <xref:Microsoft.AspNetCore.Com
 ```html
 Not authorized.
 ```
-
-## Notification about authentication state changes
-
-If the app determines that the underlying authentication state data has changed (for example, because the user signed out or another user has changed their roles), a [custom `AuthenticationStateProvider`](#implement-a-custom-authenticationstateprovider) can optionally invoke the method <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged%2A> on the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> base class. This notifies consumers of the authentication state data (for example, <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView>) to rerender using the new data.
 
 ## Procedural logic
 

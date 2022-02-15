@@ -39,7 +39,7 @@ namespace EchoApp
                 app.UseDeveloperExceptionPage();
             }
 
-            #region AcceptWebSocket
+            // <snippet_AcceptWebSocket>
             app.Use(async (context, next) =>
             {
                 using (WebSocket webSocket = await context.WebSockets.AcceptWebSocketAsync())
@@ -51,7 +51,7 @@ namespace EchoApp
                     await socketFinishedTcs.Task;
                 }
             });
-            #endregion
+            // </snippet_AcceptWebSocket>
             app.UseFileServer();
         }
     }
