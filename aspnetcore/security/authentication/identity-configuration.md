@@ -34,13 +34,13 @@ The <xref:Microsoft.AspNetCore.Identity.IdentityOptions> class represents the op
 
 Lockout is set in the [PasswordSignInAsync](xref:Microsoft.AspNetCore.Identity.SignInManager%601.PasswordSignInAsync(System.String,System.String,System.Boolean,System.Boolean)) method:
 
-[!code-csharp[](identity-configuration/sample6/Areas/Identity/Pages/Account/Login.cshtml.cs?name=snippet&highlight=13)]
+[!code-csharp[](identity-configuration/sample6/RPauth/Areas/Identity/Pages/Account/Login.cshtml.cs?name=snippet&highlight=13)]
 
 The preceding code is based on the `Login` Identity template.
 
 Lockout options are set in `Program.cs`:
 
-[!code-csharp[](identity-configuration/sample6/Program.cs?name=snippet_lock&highlight=16-22)]
+[!code-csharp[](identity-configuration/sample6/RPauth/Program.cs?name=snippet_lock&highlight=16-22)]
 
 The preceding code sets the <xref:Microsoft.AspNetCore.Identity.IdentityOptions> <xref:Microsoft.AspNetCore.Identity.LockoutOptions> with default values.
 
@@ -65,7 +65,7 @@ Passwords are configured with:
   * `Areas/Identity/Pages/Account/Register.cshtml.cs`
   * `Areas/Identity/Pages/Account/ResetPassword.cshtml.cs`
 
-[!code-csharp[](identity-configuration/sample6/Program.cs?name=snippet_pw&highlight=17-26)]
+[!code-csharp[](identity-configuration/sample6/RPauth/Program.cs?name=snippet_pw&highlight=17-26)]
 
 <xref:Microsoft.AspNetCore.Identity.IdentityOptions.Password%2A?displayProperty=nameWithType> specifies the <xref:Microsoft.AspNetCore.Identity.PasswordOptions> with the properties shown in the table.
 
@@ -82,7 +82,7 @@ Passwords are configured with:
 
 The following code sets `SignIn` settings (to default values):
 
-[!code-csharp[](identity-configuration/sample6/Program.cs?name=snippet_si)]
+[!code-csharp[](identity-configuration/sample6/RPauth/Program.cs?name=snippet_si)]
 
 <xref:Microsoft.AspNetCore.Identity.IdentityOptions.SignIn?displayProperty=nameWithType> specifies the <xref:Microsoft.AspNetCore.Identity.SignInOptions> with the properties shown in the table.
 
@@ -106,7 +106,7 @@ The following code sets `SignIn` settings (to default values):
 
 ### User
 
-[!code-csharp[](identity-configuration/sample6/Program.cs?name=snippet_user)]
+[!code-csharp[](identity-configuration/sample6/RPauth/Program.cs?name=snippet_user)]
 
 <xref:Microsoft.AspNetCore.Identity.IdentityOptions.User%2A?displayProperty=nameWithType> specifies the <xref:Microsoft.AspNetCore.Identity.UserOptions> with the properties shown in the table.
 
@@ -119,7 +119,7 @@ The following code sets `SignIn` settings (to default values):
 
 Configure the app's cookie in `Program.cs`. [ConfigureApplicationCookie](xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.ConfigureApplicationCookie(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions})) must be called **after** calling `AddIdentity` or `AddDefaultIdentity`.
 
-[!code-csharp[](identity-configuration/sample6/Program.cs?name=snippet_cookie)]
+[!code-csharp[](identity-configuration/sample6/RPauth/Program.cs?name=snippet_cookie)]
 
 For more information, see <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions>.
 
