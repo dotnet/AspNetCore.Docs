@@ -67,7 +67,7 @@ A WebSocket request could come in on any URL, but this sample code only accepts 
 
 A similar approach can be taken in a controller method:
 
-:::code language="csharp" source="websockets/samples/6.x/WebSocketsSample/Controllers/WebSocketController.cs" id="snippet_snippet":::
+:::code language="csharp" source="websockets/samples/6.x/WebSocketsSample/Controllers/WebSocketController.cs" id="snippet":::
 
 When using a WebSocket, you **must** keep the middleware pipeline running for the duration of the connection. If you attempt to send or receive a WebSocket message after the middleware pipeline ends, you may get an exception like the following:
 
@@ -249,7 +249,7 @@ A WebSocket request could come in on any URL, but this sample code only accepts 
 
 A similar approach can be taken in a controller method:
 
-:::code language="csharp" source="websockets/samples/6.x/WebSocketsSample/Controllers/WebSocketController.cs" id="snippet_snippet":::
+:::code language="csharp" source="websockets/samples/6.x/WebSocketsSample/Controllers/WebSocketController.cs" id="snippet":::
 
 When using a WebSocket, you **must** keep the middleware pipeline running for the duration of the connection. If you attempt to send or receive a WebSocket message after the middleware pipeline ends, you may get an exception like the following:
 
