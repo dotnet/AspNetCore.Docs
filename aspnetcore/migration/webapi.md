@@ -91,7 +91,7 @@ The following shows the application startup code in the ASP.NET Core *Program.cs
 
 ---
 
-   [!code-csharp[](webapi/sample/6.x/ProductsCore/Models/Product.cshighlight=6,7)]
+   [!code-csharp[](webapi/sample/6.x/ProductsCore/Models/Product.cs?highlight=6,7)]
 
 The preceding highlighted code changes the following to update to ASP.NET Core:
 
