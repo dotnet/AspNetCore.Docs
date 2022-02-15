@@ -5,7 +5,7 @@ description: Understand ASP.NET Core Identity default values and learn how to co
 ms.author: riande
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: mvc
-ms.date: 02/11/2019
+ms.date: 2/15/2020
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/identity-configuration
 ---
