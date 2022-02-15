@@ -345,6 +345,8 @@ items:
                     uid: blazor/hybrid/tutorials/index
                   - name: .NET MAUI
                     uid: blazor/hybrid/tutorials/maui
+                  - name: Windows Forms
+                    uid: blazor/hybrid/tutorials/windows-forms
           - name: Project structure
             uid: blazor/project-structure
           - name: Fundamentals
