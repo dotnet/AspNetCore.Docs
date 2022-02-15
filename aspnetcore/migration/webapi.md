@@ -40,9 +40,6 @@ This article shows how to migrate the Products controller created in [Getting St
    1. Confirm the checkbox for **Use controllers(uncheck to use minimal APIs)** is checked.
    1. Uncheck **Enable OpenAPI support**.
    1. Select **Create**.
-1. Remove the *WeatherForecast.cs* and *Controllers/WeatherForecastController.cs* example files from the new *ProductsCore* project.
-1. Open *Properties\launchSettings.json*.
-1. Change `launchUrl` properties from `weatherforcast` to `productscore`.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -57,6 +54,8 @@ This article shows how to migrate the Products controller created in [Getting St
    ```
 
 ---
+
+## Remove the *WeatherForecast* template files and change the `launchURL` property
 
 1. Remove the *WeatherForecast.cs* and *Controllers/WeatherForecastController.cs* example files from the new *ProductsCore* project.
 1. Open *Properties\launchSettings.json*.
