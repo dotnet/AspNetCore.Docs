@@ -85,7 +85,7 @@ Add an `index.html` file to the `wwwroot` folder with the following markup.
     <title>WinFormsBlazor</title>
     <base href="/" />
     <link href="css/app.css" rel="stylesheet" />
-    <link href="WinFormsApp1.styles.css" rel="stylesheet" />
+    <link href="WinFormsBlazor.styles.css" rel="stylesheet" />
 </head>
 
 <body>
