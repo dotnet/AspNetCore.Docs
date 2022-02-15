@@ -56,7 +56,7 @@ For more information about this change, see [the related announcement issue](htt
 Many changes were made to reduce allocations and improve performance across the stack:
 
 * Non-allocating [app.Use](xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.Use%2A) extension method. The new overload of `app.Use` requires passing the context to `next` which saves two internal per-request allocations that are required when using the other overload.
-* Reduced memory allocations when accessing the [HttpRequest.Cookies](xref:System.Web.HttpRequest.Cookies). For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/10030).
+* Reduced memory allocations when accessing <xref:Microsoft.AspNetCore.Http.HttpRequest.Cookies%2A?displayProperty=nameWithType>. For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/10030).
 * Use [LoggerMessage.Define](xref:Microsoft.Extensions.Logging.LoggerMessage.Define%2A) for the windows only [HTTP.sys web server](xref:fundamentals/servers/httpsys). The <xref:Microsoft.Extensions.Logging.ILogger> extension methods calls have been replaced with calls to `LoggerMessage.Define`.
 * Reduce the per connection overhead in [SocketConnection](https://github.com/dotnet/aspnetcore/blob/main/src/Servers/Kestrel/Transport.Sockets/src/Internal/SocketConnection.cs) by ~30%. For more information, see [this GitHub pull request](https://github.com/dotnet/aspnetcore/pull/31308).
 * Reduce allocations by removing logging delegates in generic types. For more information, see [this GitHub pull request](https://github.com/dotnet/aspnetcore/issues/31340).

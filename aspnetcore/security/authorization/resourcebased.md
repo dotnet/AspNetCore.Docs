@@ -30,7 +30,7 @@ Attribute evaluation occurs before data binding and before execution of the page
 
 ## Use imperative authorization
 
-Authorization is implemented as an [IAuthorizationService](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationservice) service and is registered in the service collection within the `Startup` class. The service is made available via [dependency injection](xref:fundamentals/dependency-injection) to page handlers or actions.
+Authorization is implemented as an <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> service and is registered in the service collection within the `Startup` class. The service is made available via [dependency injection](xref:fundamentals/dependency-injection) to page handlers or actions.
 
 [!code-csharp[](resourcebased/samples/3_0/ResourceBasedAuthApp2/Controllers/DocumentController.cs?name=snippet_IAuthServiceDI&highlight=6)]
 
@@ -117,7 +117,7 @@ Register the requirement and handler in `Startup.ConfigureServices`:
 
 ### Operational requirements
 
-If you're making decisions based on the outcomes of CRUD (Create, Read, Update, Delete) operations, use the [OperationAuthorizationRequirement](/dotnet/api/microsoft.aspnetcore.authorization.infrastructure.operationauthorizationrequirement) helper class. This class enables you to write a single handler instead of an individual class for each operation type. To use it, provide some operation names:
+If you're making decisions based on the outcomes of CRUD (Create, Read, Update, Delete) operations, use the <xref:Microsoft.AspNetCore.Authorization.Infrastructure.OperationAuthorizationRequirement> helper class. This class enables you to write a single handler instead of an individual class for each operation type. To use it, provide some operation names:
 
 [!code-csharp[](resourcebased/samples/3_0/ResourceBasedAuthApp2/Services/DocumentAuthorizationCrudHandler.cs?name=snippet_OperationsClass)]
 

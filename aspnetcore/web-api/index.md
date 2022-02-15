@@ -150,7 +150,7 @@ The `ValidationProblemDetails` type:
 * Provides a machine-readable format for specifying errors in web API responses.
 * Complies with the [RFC 7807 specification](https://tools.ietf.org/html/rfc7807).
 
-To make automatic and custom responses consistent, call the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.ValidationProblem%2A> method instead of <xref:System.Web.Http.ApiController.BadRequest%2A>. `ValidationProblem` returns a <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails> object as well as the automatic response.
+To make automatic and custom responses consistent, call the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.ValidationProblem%2A> method instead of <xref:Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest%2A>. `ValidationProblem` returns a <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails> object as well as the automatic response.
 
 ### Log automatic 400 responses
 

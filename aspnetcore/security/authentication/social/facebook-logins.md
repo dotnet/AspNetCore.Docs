@@ -49,7 +49,7 @@ This tutorial with code examples shows how to enable your users to sign in with 
 * Enter your development URI with */signin-facebook* appended into the **Valid OAuth Redirect URIs** field (for example: `https://localhost:44320/signin-facebook`). The Facebook authentication configured later in this tutorial will automatically handle requests at */signin-facebook* route to implement the OAuth flow.
 
 > [!NOTE]
-> The URI */signin-facebook* is set as the default callback of the Facebook authentication provider. You can change the default callback URI while configuring the Facebook authentication middleware via the inherited [RemoteAuthenticationOptions.CallbackPath](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) property of the [FacebookOptions](/dotnet/api/microsoft.aspnetcore.authentication.facebook.facebookoptions) class.
+> The URI */signin-facebook* is set as the default callback of the Facebook authentication provider. You can change the default callback URI while configuring the Facebook authentication middleware via the inherited <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.CallbackPath%2A?displayProperty=nameWithType> property of the <xref:Microsoft.AspNetCore.Authentication.Facebook.FacebookOptions> class.
 
 * Select **Save Changes**.
 
@@ -121,7 +121,7 @@ The following code sets the `AccessDeniedPath` to `"/AccessDeniedPathInfo"`:
 
 We recommend the `AccessDeniedPath` page contains the following information:
 
-*  Remote authentication was canceled.
+* Remote authentication was canceled.
 * This app requires authentication.
 * To try sign-in again, select the Login link.
 
@@ -137,7 +137,7 @@ We recommend the `AccessDeniedPath` page contains the following information:
 
 [!INCLUDE[](includes/chain-auth-providers.md)]
 
- For more information on configuration options supported by Facebook authentication, see the [FacebookOptions](/dotnet/api/microsoft.aspnetcore.builder.facebookoptions) API reference. Configuration options can be used to:
+ For more information on configuration options supported by Facebook authentication, see the <xref:Microsoft.AspNetCore.Builder.FacebookOptions> API reference. Configuration options can be used to:
 
 * Request different information about the user.
 * Add query string arguments to customize the login experience.
