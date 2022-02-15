@@ -110,7 +110,7 @@ An *Application Part* is an abstraction over the resources of an app. Applicatio
 
 *Feature providers* work with application parts to populate the features of an ASP.NET Core app. The main use case for application parts is to configure an app to discover (or avoid loading) ASP.NET Core features from an assembly. For example, you might want to share common functionality between multiple apps. Using Application Parts, you can share an assembly (DLL) containing controllers, views, Razor Pages, razor compilation sources, Tag Helpers, and more with multiple apps. Sharing an assembly is preferred to duplicating code in multiple projects.
 
-ASP.NET Core apps load features from <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPart>. The `<xref:Microsoft.AspNetCore.Mvc.ApplicationParts.`AssemblyPart` class represents an application part that's backed by an assembly.
+ASP.NET Core apps load features from <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPart>. The `AssemblyPart` class represents an application part that's backed by an assembly.
 
 ## Load ASP.NET Core features
 
