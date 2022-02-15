@@ -126,19 +126,19 @@ There are four built-in concrete types which implement `IXmlRepository`:
 
 :::moniker range=">= aspnetcore-2.2"
 
-* [FileSystemXmlRepository](/dotnet/api/microsoft.aspnetcore.dataprotection.repositories.filesystemxmlrepository)
-* [RegistryXmlRepository](/dotnet/api/microsoft.aspnetcore.dataprotection.repositories.registryxmlrepository)
-* [AzureStorage.AzureBlobXmlRepository](/dotnet/api/microsoft.aspnetcore.dataprotection.azurestorage.azureblobxmlrepository)
-* [RedisXmlRepository](/dotnet/api/microsoft.aspnetcore.dataprotection.stackexchangeredis.redisxmlrepository)
+* <xref:Microsoft.AspNetCore.DataProtection.Repositories.FileSystemXmlRepository>
+* <xref:Microsoft.AspNetCore.DataProtection.Repositories.RegistryXmlRepository>
+* [AzureStorage.AzureBlobXmlRepository](xref:Microsoft.AspNetCore.DataProtection.AzureStorage.AzureBlobXmlRepository)
+* <xref:Microsoft.AspNetCore.DataProtection.StackExchangeRedis.RedisXmlRepository>
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-2.2"
 
-* [FileSystemXmlRepository](/dotnet/api/microsoft.aspnetcore.dataprotection.repositories.filesystemxmlrepository)
-* [RegistryXmlRepository](/dotnet/api/microsoft.aspnetcore.dataprotection.repositories.registryxmlrepository)
-* [AzureStorage.AzureBlobXmlRepository](/dotnet/api/microsoft.aspnetcore.dataprotection.azurestorage.azureblobxmlrepository)
-* [RedisXmlRepository](/dotnet/api/microsoft.aspnetcore.dataprotection.redisxmlrepository)
+* <xref:Microsoft.AspNetCore.DataProtection.Repositories.FileSystemXmlRepository>
+* <xref:Microsoft.AspNetCore.DataProtection.Repositories.RegistryXmlRepository>
+* [AzureStorage.AzureBlobXmlRepository](xref:Microsoft.AspNetCore.DataProtection.AzureStorage.AzureBlobXmlRepository)
+* <xref:Microsoft.AspNetCore.DataProtection.RedisXmlRepository>
 
 :::moniker-end
 
@@ -174,10 +174,10 @@ If a serialized `IAuthenticatedEncryptorDescriptor` contains any elements marked
 
 There are four built-in concrete types which implement `IXmlEncryptor`:
 
-* [CertificateXmlEncryptor](/dotnet/api/microsoft.aspnetcore.dataprotection.xmlencryption.certificatexmlencryptor)
-* [DpapiNGXmlEncryptor](/dotnet/api/microsoft.aspnetcore.dataprotection.xmlencryption.dpapingxmlencryptor)
-* [DpapiXmlEncryptor](/dotnet/api/microsoft.aspnetcore.dataprotection.xmlencryption.dpapixmlencryptor)
-* [NullXmlEncryptor](/dotnet/api/microsoft.aspnetcore.dataprotection.xmlencryption.nullxmlencryptor)
+* <xref:Microsoft.AspNetCore.DataProtection.XmlEncryption.CertificateXmlEncryptor>
+* <xref:Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiNGXmlEncryptor>
+* <xref:Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlEncryptor>
+* <xref:Microsoft.AspNetCore.DataProtection.XmlEncryption.NullXmlEncryptor>
 
 See the [key encryption at rest document](xref:security/data-protection/implementation/key-encryption-at-rest) for more information.
 

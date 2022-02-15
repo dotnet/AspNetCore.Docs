@@ -40,7 +40,7 @@ If you don't have a Microsoft account, select **Create one**. After signing in, 
   * Select the **Add** button.
 * Under **Client secrets**, copy the value of the client secret.
 
-The URI segment `/signin-microsoft` is set as the default callback of the Microsoft authentication provider. You can change the default callback URI while configuring the Microsoft authentication middleware via the inherited [RemoteAuthenticationOptions.CallbackPath](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) property of the [MicrosoftAccountOptions](/dotnet/api/microsoft.aspnetcore.authentication.microsoftaccount.microsoftaccountoptions) class.
+The URI segment `/signin-microsoft` is set as the default callback of the Microsoft authentication provider. You can change the default callback URI while configuring the Microsoft authentication middleware via the inherited <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.CallbackPath%2A?displayProperty=nameWithType> property of the <xref:Microsoft.AspNetCore.Authentication.MicrosoftAccount.MicrosoftAccountOptions> class.
 
 ## Store the Microsoft client ID and secret
 
@@ -64,7 +64,7 @@ Add the Authentication service to the `Program`:
 
 [!INCLUDE [default settings configuration](includes/default-settings.md)]
 
-For more information about configuration options supported by Microsoft Account authentication, see the [MicrosoftAccountOptions](/dotnet/api/microsoft.aspnetcore.builder.microsoftaccountoptions) API reference. This can be used to request different information about the user.
+For more information about configuration options supported by Microsoft Account authentication, see the <xref:Microsoft.AspNetCore.Builder.MicrosoftAccountOptions> API reference. This can be used to request different information about the user.
 
 ## Sign in with Microsoft Account
 
@@ -123,7 +123,7 @@ If you don't have a Microsoft account, select **Create one**. After signing in, 
   * Select the **Add** button.
 * Under **Client secrets**, copy the value of the client secret.
 
-The URI segment `/signin-microsoft` is set as the default callback of the Microsoft authentication provider. You can change the default callback URI while configuring the Microsoft authentication middleware via the inherited [RemoteAuthenticationOptions.CallbackPath](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) property of the [MicrosoftAccountOptions](/dotnet/api/microsoft.aspnetcore.authentication.microsoftaccount.microsoftaccountoptions) class.
+The URI segment `/signin-microsoft` is set as the default callback of the Microsoft authentication provider. You can change the default callback URI while configuring the Microsoft authentication middleware via the inherited <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.CallbackPath%2A?displayProperty=nameWithType> property of the <xref:Microsoft.AspNetCore.Authentication.MicrosoftAccount.MicrosoftAccountOptions> class.
 
 ## Store the Microsoft client ID and secret
 
@@ -147,7 +147,7 @@ Add the Microsoft Account service to the `Startup.ConfigureServices`:
 
 [!INCLUDE [default settings configuration](includes/default-settings.md)]
 
-For more information about configuration options supported by Microsoft Account authentication, see the [MicrosoftAccountOptions](/dotnet/api/microsoft.aspnetcore.builder.microsoftaccountoptions) API reference. This can be used to request different information about the user.
+For more information about configuration options supported by Microsoft Account authentication, see the <xref:Microsoft.AspNetCore.Builder.MicrosoftAccountOptions> API reference. This can be used to request different information about the user.
 
 ## Sign in with Microsoft Account
 

@@ -15,7 +15,7 @@ Authentication policy schemes make it easier to have a single logical authentica
 * Easy to forward any authentication action to another scheme.
 * Forward dynamically based on the request.
 
-All authentication schemes that use derived <xref:Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions> and the associated [AuthenticationHandler\<TOptions>](/dotnet/api/microsoft.aspnetcore.authentication.authenticationhandler-1):
+All authentication schemes that use derived <xref:Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions> and the associated <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler%601>:
 
 * Are automatically policy schemes in ASP.NET Core 2.1 and later.
 * Can be enabled via configuring the scheme's options.

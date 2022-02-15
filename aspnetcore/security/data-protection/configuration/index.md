@@ -21,4 +21,4 @@ Visit these topics to learn about Data Protection configuration in ASP.NET Core:
   Details on setting a default machine-wide policy for all apps that use Data Protection.
 
 * [Non-DI aware scenarios for Data Protection in ASP.NET Core](xref:security/data-protection/configuration/non-di-scenarios)  
-  How to use the [DataProtectionProvider](/dotnet/api/Microsoft.AspNetCore.DataProtection.DataProtectionProvider) concrete type to use Data Protection without going through DI-specific code paths.
+  How to use the <xref:Microsoft.AspNetCore.DataProtection.DataProtectionProvider> concrete type to use Data Protection without going through DI-specific code paths.
