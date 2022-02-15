@@ -40,7 +40,7 @@ The preceding code is based on the [`Login` Identity template](https://github.co
 
 Lockout options are set in `Program.cs`:
 
-[!code-csharp[](identity-configuration/sample6/RPauth/Program.cs?name=snippet_lock&highlight=16-22)]
+[!code-csharp[](identity-configuration/sample6/RPauth/Program.cs?name=snippet_lock&highlight=17-23)]
 
 The preceding code sets the <xref:Microsoft.AspNetCore.Identity.IdentityOptions> <xref:Microsoft.AspNetCore.Identity.LockoutOptions> with default values.
 
