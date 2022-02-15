@@ -65,7 +65,7 @@ public class BooksController : ControllerBase
             return NotFound();
         }
 
-        await _booksService.RemoveAsync(book.Id);
+        await _booksService.RemoveAsync(id);
 
         return NoContent();
     }
