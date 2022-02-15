@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WebSocketsSample.Controllers
 {
-    #region snippet
+    // <snippet>
     public class WebSocketController : ControllerBase
     {
         [HttpGet("/ws")]
@@ -16,7 +16,7 @@ namespace WebSocketsSample.Controllers
         {
             if (HttpContext.WebSockets.IsWebSocketRequest)
             {
-                using WebSocket webSocket = await 
+                using WebSocket webSocket = await
                                    HttpContext.WebSockets.AcceptWebSocketAsync();
                 await Echo(HttpContext, webSocket);
             }
@@ -25,7 +25,7 @@ namespace WebSocketsSample.Controllers
                 HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
             }
         }
-        #endregion
+        // </snippet>
 
         private async Task Echo(HttpContext httpContext, WebSocket webSocket)
         {

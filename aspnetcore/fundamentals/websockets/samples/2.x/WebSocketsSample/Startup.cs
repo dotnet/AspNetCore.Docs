@@ -40,23 +40,23 @@ namespace EchoApp
             }
 
 #if NoOptions
-            #region UseWebSockets
+            // <snippet_UseWebSockets>
             app.UseWebSockets();
-            #endregion
+            // </snippet_UseWebSockets>
 #endif
 #if UseOptions
-            #region UseWebSocketsOptions
-            var webSocketOptions = new WebSocketOptions() 
+            // <snippet_UseWebSocketsOptions>
+            var webSocketOptions = new WebSocketOptions()
             {
                 KeepAliveInterval = TimeSpan.FromSeconds(120),
             };
 
             app.UseWebSockets(webSocketOptions);
-            #endregion
+            // </snippet_UseWebSocketsOptions>
 #endif
 
 #if UseOptionsAO
-            #region UseWebSocketsOptionsAO
+            // <snippet_UseWebSocketsOptionsAO>
             var webSocketOptions = new WebSocketOptions()
             {
                 KeepAliveInterval = TimeSpan.FromSeconds(120),
@@ -65,10 +65,10 @@ namespace EchoApp
             webSocketOptions.AllowedOrigins.Add("https://www.client.com");
 
             app.UseWebSockets(webSocketOptions);
-            #endregion
+            // </snippet_UseWebSocketsOptionsAO>
 #endif
 
-            #region AcceptWebSocket
+            // <snippet_AcceptWebSocket>
             app.Use(async (context, next) =>
             {
                 if (context.Request.Path == "/ws")
@@ -91,10 +91,10 @@ namespace EchoApp
                 }
 
             });
-#endregion
+            // </snippet_AcceptWebSocket>
             app.UseFileServer();
         }
-#region Echo
+        // <snippet_Echo>
         private async Task Echo(HttpContext context, WebSocket webSocket)
         {
             var buffer = new byte[1024 * 4];
@@ -107,6 +107,6 @@ namespace EchoApp
             }
             await webSocket.CloseAsync(result.CloseStatus.Value, result.CloseStatusDescription, CancellationToken.None);
         }
-#endregion
+        // </snippet_Echo>
     }
 }
