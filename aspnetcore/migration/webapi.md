@@ -85,7 +85,7 @@ The following shows the application startup code in the ASP.NET Core *Program.cs
 1. Right-click the **Models** folder. Select **Add** > **Class**. Name the class *Product* and select **Add**.
 1. Replace the template model code with the following:
 
-   [!code-csharp[](webapi/sample/6.x/Products/Models/Product.cs)]
+   [!code-csharp[](webapi/sample/6.x/ProductsCore/Models/Product.cs)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
