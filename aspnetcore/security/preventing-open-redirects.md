@@ -53,7 +53,7 @@ public IActionResult SomeAction(string redirectUrl)
 
 ### IsLocalUrl
 
-Use the [IsLocalUrl](/dotnet/api/Microsoft.AspNetCore.Mvc.IUrlHelper.islocalurl) method to test URLs before redirecting:
+Use the <xref:Microsoft.AspNetCore.Mvc.IUrlHelper.IsLocalUrl%2A> method to test URLs before redirecting:
 
 The following example shows how to check whether a URL is local before redirecting.
 

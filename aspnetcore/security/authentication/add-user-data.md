@@ -142,7 +142,7 @@ Update the `IdentityUser` derived class with custom properties. If you named the
 
 :::moniker-end
 
-Properties with the [PersonalData](/dotnet/api/microsoft.aspnetcore.identity.personaldataattribute) attribute are:
+Properties with the [PersonalData](xref:Microsoft.AspNetCore.Identity.PersonalDataAttribute) attribute are:
 
 * Deleted when the *Areas/Identity/Pages/Account/Manage/DeletePersonalData.cshtml* Razor Page calls `UserManager.Delete`.
 * Included in the downloaded data by the *Areas/Identity/Pages/Account/Manage/DownloadPersonalData.cshtml* Razor Page.
@@ -236,12 +236,12 @@ Additional claims can be added to ASP.NET Core Identity by using the `IUserClaim
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
-	services.AddIdentity<ApplicationUser, IdentityRole>()
-		.AddEntityFrameworkStores<ApplicationDbContext>()
-		.AddDefaultTokenProviders();
+    services.AddIdentity<ApplicationUser, IdentityRole>()
+        .AddEntityFrameworkStores<ApplicationDbContext>()
+        .AddDefaultTokenProviders();
 
-	services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>, 
-		AdditionalUserClaimsPrincipalFactory>();
+    services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>, 
+        AdditionalUserClaimsPrincipalFactory>();
 ```
 
 The demo code uses the `ApplicationUser` class. This class adds an `IsAdmin` property which is used to add the additional claim.
@@ -249,7 +249,7 @@ The demo code uses the `ApplicationUser` class. This class adds an `IsAdmin` pro
 ```csharp
 public class ApplicationUser : IdentityUser
 {
-	public bool IsAdmin { get; set; }
+    public bool IsAdmin { get; set; }
 }
 ```
 
@@ -257,33 +257,33 @@ The `AdditionalUserClaimsPrincipalFactory` implements the `UserClaimsPrincipalFa
 
 ```csharp
 public class AdditionalUserClaimsPrincipalFactory 
-		: UserClaimsPrincipalFactory<ApplicationUser, IdentityRole>
+        : UserClaimsPrincipalFactory<ApplicationUser, IdentityRole>
 {
-	public AdditionalUserClaimsPrincipalFactory( 
-		UserManager<ApplicationUser> userManager,
-		RoleManager<IdentityRole> roleManager, 
-		IOptions<IdentityOptions> optionsAccessor) 
-		: base(userManager, roleManager, optionsAccessor)
-	{}
+    public AdditionalUserClaimsPrincipalFactory( 
+        UserManager<ApplicationUser> userManager,
+        RoleManager<IdentityRole> roleManager, 
+        IOptions<IdentityOptions> optionsAccessor) 
+        : base(userManager, roleManager, optionsAccessor)
+    {}
 
-	public async override Task<ClaimsPrincipal> CreateAsync(ApplicationUser user)
-	{
-		var principal = await base.CreateAsync(user);
-		var identity = (ClaimsIdentity)principal.Identity;
+    public async override Task<ClaimsPrincipal> CreateAsync(ApplicationUser user)
+    {
+        var principal = await base.CreateAsync(user);
+        var identity = (ClaimsIdentity)principal.Identity;
 
-		var claims = new List<Claim>();
-		if (user.IsAdmin)
-		{
-			claims.Add(new Claim(JwtClaimTypes.Role, "admin"));
-		}
-		else
-		{
-			claims.Add(new Claim(JwtClaimTypes.Role, "user"));
-		}
+        var claims = new List<Claim>();
+        if (user.IsAdmin)
+        {
+            claims.Add(new Claim(JwtClaimTypes.Role, "admin"));
+        }
+        else
+        {
+            claims.Add(new Claim(JwtClaimTypes.Role, "user"));
+        }
 
-		identity.AddClaims(claims);
-		return principal;
-	}
+        identity.AddClaims(claims);
+        return principal;
+    }
 }
 ```
 
@@ -295,10 +295,10 @@ The additional claim can then be used in the app. In a Razor Page, the `IAuthori
 
 @if ((await AuthorizationService.AuthorizeAsync(User, "IsAdmin")).Succeeded)
 {
-	<ul class="mr-auto navbar-nav">
-		<li class="nav-item">
-			<a class="nav-link" asp-controller="Admin" asp-action="Index">ADMIN</a>
-		</li>
-	</ul>
+    <ul class="mr-auto navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="Admin" asp-action="Index">ADMIN</a>
+        </li>
+    </ul>
 }
 ```
