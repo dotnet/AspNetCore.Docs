@@ -746,7 +746,7 @@ The following sample uses [policy-based authorization](xref:security/authorizati
 
 ### Allow unauthenticated users to access an endpoint
 
-The [`[AllowAnonymous]`](xref:System.Web.Mvc.AllowAnonymousAttribute)
+The [`[AllowAnonymous]`](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute)
 allows unauthenticated users to access endpoints:
 
 [!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_auth4)]
