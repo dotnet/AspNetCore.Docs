@@ -58,44 +58,9 @@ This article shows how to migrate the Products controller created in [Getting St
 
 ---
 
-## Add the ASP.NET Web API 2 controller and model to migrate
-
-# [Visual Studio](#tab/visual-studio)
-
-Add the example model class:
-
-1. In **Solution Explorer**, right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
-1. Right-click the **Models** folder. Select **Add** > **Class**. Name the class *Product* and select **Add**.
-1. Replace the template model code with the following:
-
-   [!code-csharp[](webapi/sample/3.x/ProductsApp/Models/Product.cs)]
-
-Create a Products controller
-
-1. Right-click the **Controllers** folder.
-1. Select **Add > Controller...**.
-1. In **Add New Scaffolded Item** dialog, select **Mvc Controller - Empty** then select **Add**.
-1. Name the controller *ProductsController* and select **Add**.
-1. Replace the template controller code with the following:
-
-   [!code-csharp[](webapi/sample/3.x/ProductsApp/Controllers/ProductsController.cs)]
-
-# [Visual Studio Code](#tab/visual-studio-code)
-
-Copy the *Product* model:
-
-1. Add a folder named *Models*.
-1. Add a *Product* class to the *Models* folder with the following code:
-
-   [!code-csharp[](webapi/sample/3.x/ProductsApp/Models/Product.cs)]
-
-Copy the *ProductsController*:
-
-1. Add a *ProductsController* class to the *Controllers* folder with the following code:
-
-   [!code-csharp[](webapi/sample/3.x/ProductsApp/Controllers/ProductsController.cs)]
-
----
+1. Remove the *WeatherForecast.cs* and *Controllers/WeatherForecastController.cs* example files from the new *ProductsCore* project.
+1. Open *Properties\launchSettings.json*.
+1. Change `launchUrl` properties from `weatherforcast` to `productscore`.
 
 ## The configuration for ASP.NET Core Web API
 
@@ -112,34 +77,54 @@ The following shows the application startup code in the ASP.NET Core *Program.cs
 
 [!code-csharp[](webapi/sample/6.x/ProductsCore/Program.cs)]
 
-## Copy the model
+## Copy the *Product* model
+
+# [Visual Studio](#tab/visual-studio)
+
+1. In **Solution Explorer**, right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
+1. Right-click the **Models** folder. Select **Add** > **Class**. Name the class *Product* and select **Add**.
+1. Replace the template model code with the following:
+
+   [!code-csharp[](webapi/sample/6.x/Products/Models/Product.cs)]
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+1. Add a folder named *Models*.
+1. Add a *Product* class to the *Models* folder with the following code:
+
+   [!code-csharp[](webapi/sample/6.x/ProductsCore/Models/Product.cs)]
+
+---
+
+The preceding highlighted code changes the following:
+
+* The `?` annotation has been added to declare the `Name` and `Category` properties as nullable reference types.
 
 By utilizing the [Nullable feature introduced in C# 8](/dotnet/csharp/whats-new/csharp-8#nullable-reference-types), ASP.NET Core can provide additional code flow analysis and compile-time safety in the handling of reference types. For example, protecting against `null` reference exceptions.
 
-ASP.NET Core 6.0 projects enable nullable reference types by default. For more information, see [Nullable reference types](/dotnet/csharp/nullable-references).
-
-Examine *Models/Product.cs*. With nullable reference types enabled for the ProductCore project, helpful `non-nullable property` warnings are visible for the `Name` and `Category` properties.
-
 In this case, the intent is that the `Name` and `Category` can be nullable types.
 
-Add the `?` annotation to declare the `Name` and `Category` properties as nullable reference types:
+ASP.NET Core 6.0 projects enable nullable reference types by default. For more information, see [Nullable reference types](/dotnet/csharp/nullable-references).
 
-```diff
-public int Id { get; set; }
-- public string Name { get; set; }
-+ public string? Name { get; set; }
-- public string Category { get; set; }
-+ public string? Category { get; set; }
-public decimal Price { get; set; }
-```
+## Copy the *ProductsController*
 
-## Migrate the controller
+# [Visual Studio](#tab/visual-studio)
 
-Update the `ProductsController` for ASP.NET Core with the following highlighted code:
+1. Right-click the **Controllers** folder.
+1. Select **Add > Controller...**.
+1. In **Add New Scaffolded Item** dialog, select **Mvc Controller - Empty** then select **Add**.
+1. Name the controller *ProductsController* and select **Add**.
+1. Replace the template controller code with the following:
 
-[!code-csharp[](webapi/sample/6.x/ProductsCore/Controllers/ProductsController.cs?highlight=1,2,4,6,7,8,33,50,57)]
+# [Visual Studio Code](#tab/visual-studio-code)
 
-The preceding highlighted code changes the following:
+1. Add a *ProductsController* class to the *Controllers* folder with the following code:
+
+---
+
+   [!code-csharp[](webapi/sample/6.x/ProductsCore/Controllers/ProductsController.cs?highlight=1,2,4,6,7,8,33,50,57,64)]
+
+The preceding highlighted code changes the following to migrate to ASP.NET Core:
 
 * Removes using statements for the following ASP.NET 4.x components that don't exist in ASP.NET Core:
 
