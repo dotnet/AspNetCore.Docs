@@ -5,7 +5,7 @@ description: Build a Windows Forms Blazor app step-by-step.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/14/2022
+ms.date: 02/15/2022
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/hybrid/tutorials/windows-forms
 ---
@@ -28,27 +28,6 @@ If the **.NET desktop development** workload isn't installed, use the Visual Stu
 
 :::image type="content" source="windows-forms/_static/install-workload.png" alt-text="Visual Studio installer .NET desktop development workload selection.":::
 
-## Create Blazor projects to obtain assets
-
-Using the .NET CLI, create a pair of Blazor projects. These donor Blazor projects are used later in the tutorial to supply assets to the Windows Forms project. Both donor Blazor projects are created with the name `WinFormsBlazor`. Later in the tutorial, the Windows Forms project is also created with the project name, `WinFormsBlazor`. By using the same name for the donor projects and the Windows Forms project, the namespaces match among the projects, which makes it possible to import donor assets into the Windows Forms project without the need to update namespaces.
-
-Create two folders to hold Blazor projects for donating assets to the Windows Forms project:
-
-* `BlazorServerDonor`
-* `BlazorWebAssemblyDonor`
-
-In a command shell open to the **`BlazorServerDonor` folder**, execute the following command. The command creates a folder named `WinFormsBlazor` with the `-n|--name` option and provides the project with the same project name:
-
-```dotnetcli
-dotnet new blazorserver -n WinFormsBlazor
-```
-
-In a command shell open to the **`BlazorWebAssemblyDonor` folder**, execute the following command. The command creates a folder named `WinFormsBlazor` with the `-n|--name` option and provides the project with the same project name:
-
-```dotnetcli
-dotnet new blazorwasm -o WinFormsBlazor
-```
-
 ## Create a Windows Forms Blazor project
 
 Start Visual Studio 2022 Preview. Select **Create a new project**.
@@ -63,153 +42,175 @@ In the **Configure your new project** dialog, set the **Project name** to **`Win
 
 In the **Additional information** dialog, select the framework version, which must be .NET 6.0 or later. Select the **Create** button.
 
+Use [NuGet Package Manager](/nuget/consume-packages/install-use-packages-visual-studio) to install the [`Microsoft.AspNetCore.Components.WebView.WindowsForms`](https://nuget.org/packages/Microsoft.AspNetCore.Components.WebView.WindowsForms) NuGet package.
+
 In **Solution Explorer**, right-click the project's name, `WinFormsBlazor` and select **Edit Project File** to open the project file (`WinFormsBlazor.csproj`).
 
-Make the following changes to the project file:
+At the top of the project file, change the SDK to `Microsoft.NET.Sdk.Razor`:
 
-* Change the SDK to `Microsoft.NET.Sdk.Razor`:
+```xml
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+```
 
-  ```xml
-  <Project Sdk="Microsoft.NET.Sdk.Razor">
-  ```
+Add the following [MSBuild `Content` item](/visualstudio/msbuild/common-msbuild-project-items#content) to the project file, which copies the contents of the `wwwroot` folder to the output directory without compiling the assets in the folder:
 
-* Add the following configuration inside of the closing `</Project>` tag. 
+```xml
+<ItemGroup>
+  <Content Update="wwwroot\**" CopyToOutputDirectory="PreserveNewest" />
+</ItemGroup>
+```
 
-  ```xml
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebView.WindowsForms" Version="6.0.200-preview.12.2441" />
-  </ItemGroup>
+Save the changes to the project file (`WinFormsBlazor.csproj`).
 
-  <ItemGroup>
-    <Content Update="wwwroot\**">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  ```
-
-Add a `Pages` folder to the Windows Forms project.
-
-Add the following imports file to the root of the Windows Forms project.
+Add an `_Imports.razor` file to the root of the project with an [`@using`](xref:mvc/views/razor#using) directive for <xref:Microsoft.AspNetCore.Components.Web?displayProperty=fullName>.
 
 `_Imports.razor`:
 
 ```razor
-@using System.Net.Http
-@using System.Net.Http.Json
-@using Microsoft.AspNetCore.Components.Forms
-@using Microsoft.AspNetCore.Components.Routing
 @using Microsoft.AspNetCore.Components.Web
-@using Microsoft.AspNetCore.Components.Web.Virtualization
-@using Microsoft.JSInterop
-@using WinFormsBlazor
-@using WinFormsBlazor.Data
-@using WinFormsBlazor.Shared
 ```
 
-From the `BlazorWebAssemblyDonor` folder project, import the following folders into the root of the Windows Forms project:
+Add a `wwwroot` folder to the project.
 
-* `Shared`
-* `wwwroot`
+Add an `index.html` file to the `wwwroot` folder with the following markup.
 
-In the Windows Forms project, delete the `wwwroot/sample-data` folder, which isn't used.
-
-Open the `wwwroot/index.html` file in the Windows Forms project and change the Blazor script to the following:
+`wwwroot\index.html`:
 
 ```html
-<script src="_framework/blazor.webview.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WinFormsBlazor</title>
+    <base href="/" />
+    <link href="css/app.css" rel="stylesheet" />
+    <link href="WinFormsApp1.styles.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <div id="app">Loading...</div>
+
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+
+    <script src="_framework/blazor.webview.js"></script>
+
+</body>
+
+</html>
 ```
 
-From the `BlazorServerDonor` folder project:
+Inside the `wwwroot` folder, create a `css` folder to hold stylesheets.
 
-* Import the `Data` folder into the root of the Windows Forms project.
-* From the donor project's `Pages` folder, import the following components into the Windows Forms project's `Pages` folder:
-  * `Counter.razor`
-  * `FetchData.razor`
-  * `Index.razor`
+Add an `app.css` stylesheet to the `wwwroot/css` folder with the following content.
 
-Add the following `Main` component to the Windows Forms project's `Pages` folder.
+`wwwroot/css/app.css`:
 
-`Pages/Main.razor`:
+```css
+html, body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.valid.modified:not([type=checkbox]) {
+    outline: 1px solid #26b050;
+}
+
+.invalid {
+    outline: 1px solid red;
+}
+
+.validation-message {
+    color: red;
+}
+
+#blazor-error-ui {
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+    #blazor-error-ui .dismiss {
+        cursor: pointer;
+        position: absolute;
+        right: 0.75rem;
+        top: 0.5rem;
+    }
+```
+
+Add the following `Counter` component to the root of the project, which is the default `Counter` component found in Blazor project templates.
+
+`Counter.razor`:
 
 ```razor
-<Router AppAssembly="@typeof(Program).Assembly" PreferExactMatches="@true">
-    <Found Context="routeData">
-        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
-    </Found>
-    <NotFound>
-        <LayoutView Layout="@typeof(MainLayout)">
-            <p>Sorry, there's nothing at this address.</p>
-        </LayoutView>
-    </NotFound>
-</Router>
-```
+<h1>Counter</h1>
 
-Open the `Form1.Designer.cs` file from **Solution Explorer**:
+<p>Current count: @currentCount</p>
 
-:::image type="content" source="windows-forms/_static/solution-explorer-1.png" alt-text="The Form1.Designer.cs file in Solution Explorer.":::
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
-Replace the contents of the file with the following code:
+@code {
+    private int currentCount = 0;
 
-```csharp
-namespace WinFormsBlazor
-{
-    partial class Form1
+    private void IncrementCount()
     {
-        /// <summary>
-        ///  Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
-
-        /// <summary>
-        ///  Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        #region Windows Form Designer generated code
-
-        /// <summary>
-        ///  Required method for Designer support - do not modify
-        ///  the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-            this.SuspendLayout();
-            // 
-            // Form1
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "Form1";
-            this.Text = "Form1";
-            this.ResumeLayout(false);
-
-        }
-
-        #endregion
+        currentCount++;
     }
 }
 ```
 
-In **Solution Explorer**, right-click the `Form1.cs` file and select **View Code**:
+In **Solution Explorer**, double-click on the `Form1.cs` file to open the designer:
 
-:::image type="content" source="windows-forms/_static/solution-explorer-2.png" alt-text="The Form1.cs file in Solution Explorer.":::
+:::image type="content" source="windows-forms/_static/solution-explorer-1.png" alt-text="The Form1.cs file in Solution Explorer.":::
 
-Replace the contents of the file with the following code:
+Open the **Toolbox** by either selecting the **Toolbox** button along the left edge of the Visual Studio window or selecting the **View** > **Toolbox** menu item.
+
+Locate the `BlazorWebView` control under `Microsoft.AspNetCore.Components.WebView.WindowsForms`:
+
+:::image type="content" source="windows-forms/_static/toolbox.png" alt-text="BlazorWebView in the Toolbox.":::
+
+Drag `BlazorWebView` into the `Form1` designer:
+
+:::image type="content" source="windows-forms/_static/form1.png" alt-text="BlazorWebView in the Form1 designer.":::
+
+In `Form1`, select the `BlazorWebView` item. In the `BlazorWebView` **Properties**, change its **Dock** value to **Fill**:
+
+:::image type="content" source="windows-forms/_static/properties.png" alt-text="BlazorWebView properties with Dock set to Fill.":::
+
+In the `Form1` designer, right-click `Form1` and select **View Code**.
+
+Add namespaces for `Microsoft.AspNetCore.Components.WebView.WindowsForms` and <xref:Microsoft.Extensions.DependencyInjection?displayProperty=fullName> to the top of the `Form1.cs` file:
 
 ```csharp
 using Microsoft.AspNetCore.Components.WebView.WindowsForms;
 using Microsoft.Extensions.DependencyInjection;
-using WinFormsBlazor.Data;
-using WinFormsBlazor.Pages;
+```
+
+Inside the `Form1` constructor, below the `InitializeComponent()` method call, add the following code:
+
+```csharp
+var services = new ServiceCollection();
+services.AddBlazorWebView();
+blazorWebView1.HostPage = "wwwroot\\index.html";
+blazorWebView1.Services = services.BuildServiceProvider();
+blazorWebView1.RootComponents.Add<Counter>("#app");
+```
+
+The final, complete C# code of `Form1.cs`:
+
+```csharp
+using Microsoft.AspNetCore.Components.WebView.WindowsForms;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace WinFormsBlazor
 {
@@ -219,31 +220,14 @@ namespace WinFormsBlazor
         {
             InitializeComponent();
 
-            var serviceCollection = new ServiceCollection();
-            serviceCollection.AddBlazorWebView();
-            serviceCollection.AddSingleton<WeatherForecastService>();
-
-            var blazor = new BlazorWebView()
-            {
-                Dock = DockStyle.Fill,
-                HostPage = "wwwroot/index.html",
-                Services = serviceCollection.BuildServiceProvider(),
-            };
-            blazor.RootComponents.Add<Main>("#app");
-            Controls.Add(blazor);
+            var services = new ServiceCollection();
+            services.AddBlazorWebView();
+            blazorWebView1.HostPage = "wwwroot\\index.html";
+            blazorWebView1.Services = services.BuildServiceProvider();
+            blazorWebView1.RootComponents.Add<Counter>("#app");
         }
-
     }
 }
-```
-
-In the `Program.cs` file, replace the code in the `Main` method with the following:
-
-```csharp
-Application.SetHighDpiMode(HighDpiMode.SystemAware);
-Application.EnableVisualStyles();
-Application.SetCompatibleTextRenderingDefault(false);
-Application.Run(new Form1());
 ```
 
 ## Run the app
