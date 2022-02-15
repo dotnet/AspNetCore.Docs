@@ -40,7 +40,7 @@ The preceding code is based on the `Login` Identity template.
 
 Lockout options are set in `Program.cs`:
 
-[!code-csharp[](identity-configuration/sample/Startup.cs?name=snippet_lock)]
+[!code-csharp[](identity-configuration/sample6/Program.cs?name=snippet_lock&highlight=16-22)]
 
 The preceding code sets the <xref:Microsoft.AspNetCore.Identity.IdentityOptions> <xref:Microsoft.AspNetCore.Identity.LockoutOptions> with default values.
 
@@ -65,7 +65,7 @@ Passwords are configured with:
   * `Areas/Identity/Pages/Account/Register.cshtml.cs`
   * `Areas/Identity/Pages/Account/ResetPassword.cshtml.cs`
 
-[!code-csharp[](identity-configuration/sample6/Program.cs?name=&highlight=16-22)]
+[!code-csharp[](identity-configuration/sample6/Program.cs?name=snippet_pw&highlight=17-26)]
 
 <xref:Microsoft.AspNetCore.Identity.IdentityOptions.Password%2A?displayProperty=nameWithType> specifies the <xref:Microsoft.AspNetCore.Identity.PasswordOptions> with the properties shown in the table.
 
@@ -82,7 +82,7 @@ Passwords are configured with:
 
 The following code sets `SignIn` settings (to default values):
 
-[!code-csharp[](identity-configuration/sample/Startup.cs?name=snippet_si)]
+[!code-csharp[](identity-configuration/sample6/Program.cs?name=snippet_si)]
 
 <xref:Microsoft.AspNetCore.Identity.IdentityOptions.SignIn?displayProperty=nameWithType> specifies the <xref:Microsoft.AspNetCore.Identity.SignInOptions> with the properties shown in the table.
 
