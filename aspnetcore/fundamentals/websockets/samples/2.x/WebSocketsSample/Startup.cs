@@ -42,7 +42,7 @@ namespace EchoApp
 #if NoOptions
             // <snippet_UseWebSockets>
             app.UseWebSockets();
-            // <snippet_UseWebSockets>
+            // </snippet_UseWebSockets>
 #endif
 #if UseOptions
             // <snippet_UseWebSocketsOptions>
@@ -52,7 +52,7 @@ namespace EchoApp
             };
 
             app.UseWebSockets(webSocketOptions);
-            // <snippet_UseWebSocketsOptions>
+            // </snippet_UseWebSocketsOptions>
 #endif
 
 #if UseOptionsAO
@@ -65,7 +65,7 @@ namespace EchoApp
             webSocketOptions.AllowedOrigins.Add("https://www.client.com");
 
             app.UseWebSockets(webSocketOptions);
-            // <snippet_UseWebSocketsOptionsAO>
+            // </snippet_UseWebSocketsOptionsAO>
 #endif
 
             // <snippet_AcceptWebSocket>
@@ -91,7 +91,7 @@ namespace EchoApp
                 }
 
             });
-            // <snippet_AcceptWebSocket>
+            // </snippet_AcceptWebSocket>
             app.UseFileServer();
         }
         // <snippet_Echo>
@@ -107,6 +107,6 @@ namespace EchoApp
             }
             await webSocket.CloseAsync(result.CloseStatus.Value, result.CloseStatusDescription, CancellationToken.None);
         }
-        // <snippet_Echo>
+        // </snippet_Echo>
     }
 }
