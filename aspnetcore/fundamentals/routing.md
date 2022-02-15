@@ -367,7 +367,7 @@ The link generator can link to controllers and Razor Pages via the following ext
 * <xref:Microsoft.AspNetCore.Routing.PageLinkGeneratorExtensions.GetPathByPage%2A>
 * <xref:Microsoft.AspNetCore.Routing.PageLinkGeneratorExtensions.GetUriByPage%2A>
 
-Overloads of these methods accept arguments that include the `HttpContext`. These methods are functionally equivalent to [Url.Action](xref:System.Web.Mvc.UrlHelper.Action%2A) and [Url.Page](xref:Microsoft.AspNetCore.Mvc.UrlHelperExtensions.Page%2A), but offer additional flexibility and options.
+Overloads of these methods accept arguments that include the `HttpContext`. These methods are functionally equivalent to [Url.Action](xref:Microsoft.AspNetCore.Mvc.Routing.UrlHelper.Action%2A) and [Url.Page](xref:Microsoft.AspNetCore.Mvc.UrlHelperExtensions.Page%2A), but offer additional flexibility and options.
 
 The `GetPath*` methods are most similar to `Url.Action` and `Url.Page`, in that they generate a URI containing an absolute path. The `GetUri*` methods always generate an absolute URI containing a scheme and host. The methods that accept an `HttpContext` generate a URI in the context of the executing request. The [ambient](#ambient) route values, URL base path, scheme, and host from the executing request are used unless overridden.
 
@@ -567,7 +567,7 @@ To constrain a parameter to a known set of possible values, use a regular expres
 
 ### Custom route constraints
 
-Custom route constraints can be created by implementing the <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> interface. The `IRouteConstraint` interface contains <xref:System.Web.Routing.IRouteConstraint.Match%2A>, which returns `true` if the constraint is satisfied and `false` otherwise.
+Custom route constraints can be created by implementing the <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> interface. The `IRouteConstraint` interface contains <xref:Microsoft.AspNetCore.Routing.IRouteConstraint.Match%2A>, which returns `true` if the constraint is satisfied and `false` otherwise.
 
 Custom route constraints are rarely needed. Before implementing a custom route constraint, consider alternatives, such as model binding.
 
@@ -1352,7 +1352,7 @@ The link generator can link to controllers and Razor Pages via the following ext
 * <xref:Microsoft.AspNetCore.Routing.PageLinkGeneratorExtensions.GetPathByPage%2A>
 * <xref:Microsoft.AspNetCore.Routing.PageLinkGeneratorExtensions.GetUriByPage%2A>
 
-Overloads of these methods accept arguments that include the `HttpContext`. These methods are functionally equivalent to [Url.Action](xref:System.Web.Mvc.UrlHelper.Action%2A) and [Url.Page](xref:Microsoft.AspNetCore.Mvc.UrlHelperExtensions.Page%2A), but offer additional flexibility and options.
+Overloads of these methods accept arguments that include the `HttpContext`. These methods are functionally equivalent to [Url.Action](xref:Microsoft.AspNetCore.Mvc.Routing.UrlHelper.Action%2A) and [Url.Page](xref:Microsoft.AspNetCore.Mvc.UrlHelperExtensions.Page%2A), but offer additional flexibility and options.
 
 The `GetPath*` methods are most similar to `Url.Action` and `Url.Page`, in that they generate a URI containing an absolute path. The `GetUri*` methods always generate an absolute URI containing a scheme and host. The methods that accept an `HttpContext` generate a URI in the context of the executing request. The [ambient](#ambient) route values, URL base path, scheme, and host from the executing request are used unless overridden.
 
@@ -1552,7 +1552,7 @@ To constrain a parameter to a known set of possible values, use a regular expres
 
 ### Custom route constraints
 
-Custom route constraints can be created by implementing the <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> interface. The `IRouteConstraint` interface contains <xref:System.Web.Routing.IRouteConstraint.Match%2A>, which returns `true` if the constraint is satisfied and `false` otherwise.
+Custom route constraints can be created by implementing the <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> interface. The `IRouteConstraint` interface contains <xref:Microsoft.AspNetCore.Routing.IRouteConstraint.Match%2A>, which returns `true` if the constraint is satisfied and `false` otherwise.
 
 Custom route constraints are rarely needed. Before implementing a custom route constraint, consider alternatives, such as model binding.
 
