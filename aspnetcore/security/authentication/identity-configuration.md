@@ -5,7 +5,7 @@ description: Understand ASP.NET Core Identity default values and learn how to co
 ms.author: riande
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: mvc
-ms.date: 02/11/2019
+ms.date: 2/15/2020
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/identity-configuration
 ---
@@ -13,11 +13,11 @@ uid: security/authentication/identity-configuration
 
 :::moniker range=">= aspnetcore-6.0"
 
-ASP.NET Core Identity uses default values for settings such as password policy, lockout, and cookie configuration. These settings can be overridden in the `Startup` class.
+ASP.NET Core Identity uses default values for settings such as password policy, lockout, and cookie configuration. These settings can be overridden at application startup.
 
 ## Identity options
 
-The <xref:Microsoft.AspNetCore.Identity.IdentityOptions> class represents the options that can be used to configure the Identity system. `IdentityOptions` must be set **after** calling `AddIdentity` or `AddDefaultIdentity`.
+The <xref:Microsoft.AspNetCore.Identity.IdentityOptions> class represents the options that can be used to configure the Identity system. <xref:Microsoft.AspNetCore.Identity.IdentityOptions> must be set **after** calling <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentity%2A> or <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionUIExtensions.AddDefaultIdentity%2A>.
 
 ### Claims Identity
 
@@ -34,13 +34,13 @@ The <xref:Microsoft.AspNetCore.Identity.IdentityOptions> class represents the op
 
 Lockout is set in the [PasswordSignInAsync](xref:Microsoft.AspNetCore.Identity.SignInManager%601.PasswordSignInAsync(System.String,System.String,System.Boolean,System.Boolean)) method:
 
-[!code-csharp[](identity-configuration/sample/Areas/Identity/Pages/Account/Login.cshtml.cs?name=snippet&highlight=9)]
+[!code-csharp[](identity-configuration/sample6/RPauth/Areas/Identity/Pages/Account/Login.cshtml.cs?name=snippet&highlight=13)]
 
-The preceding code is based on the `Login` Identity template. 
+The preceding code is based on the [`Login` Identity template](https://github.com/dotnet/aspnetcore/blob/1dcf7acfacf0fe154adcc23270cb0da11ff44ace/src/Identity/UI/src/Areas/Identity/Pages/V5/Account/Login.cshtml.cs#L131-L132).
 
-Lockout options are set in `StartUp.ConfigureServices`:
+Lockout options are set in `Program.cs`:
 
-[!code-csharp[](identity-configuration/sample/Startup.cs?name=snippet_lock)]
+[!code-csharp[](identity-configuration/sample6/RPauth/Program.cs?name=snippet_lock&highlight=17-23)]
 
 The preceding code sets the <xref:Microsoft.AspNetCore.Identity.IdentityOptions> <xref:Microsoft.AspNetCore.Identity.LockoutOptions> with default values.
 
@@ -60,12 +60,12 @@ By default, Identity requires that passwords contain an uppercase character, low
 
 Passwords are configured with:
 
-* <xref:Microsoft.AspNetCore.Identity.PasswordOptions> in `Startup.ConfigureServices`.
+* <xref:Microsoft.AspNetCore.Identity.PasswordOptions> in `Program.cs`.
 * [`[StringLength]` attributes](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute) of `Password` properties if Identity is [scaffolded into the app](xref:security/authentication/scaffold-identity). `InputModel` `Password` properties are found in the following files:
   * `Areas/Identity/Pages/Account/Register.cshtml.cs`
   * `Areas/Identity/Pages/Account/ResetPassword.cshtml.cs`
 
-[!code-csharp[](identity-configuration/sample/Startup.cs?name=snippet_pw)]
+[!code-csharp[](identity-configuration/sample6/RPauth/Program.cs?name=snippet_pw&highlight=17-26)]
 
 <xref:Microsoft.AspNetCore.Identity.IdentityOptions.Password%2A?displayProperty=nameWithType> specifies the <xref:Microsoft.AspNetCore.Identity.PasswordOptions> with the properties shown in the table.
 
@@ -82,7 +82,7 @@ Passwords are configured with:
 
 The following code sets `SignIn` settings (to default values):
 
-[!code-csharp[](identity-configuration/sample/Startup.cs?name=snippet_si)]
+[!code-csharp[](identity-configuration/sample6/RPauth/Program.cs?name=snippet_si)]
 
 <xref:Microsoft.AspNetCore.Identity.IdentityOptions.SignIn?displayProperty=nameWithType> specifies the <xref:Microsoft.AspNetCore.Identity.SignInOptions> with the properties shown in the table.
 
@@ -106,7 +106,7 @@ The following code sets `SignIn` settings (to default values):
 
 ### User
 
-[!code-csharp[](identity-configuration/sample/Startup.cs?name=snippet_user)]
+[!code-csharp[](identity-configuration/sample6/RPauth/Program.cs?name=snippet_user)]
 
 <xref:Microsoft.AspNetCore.Identity.IdentityOptions.User%2A?displayProperty=nameWithType> specifies the <xref:Microsoft.AspNetCore.Identity.UserOptions> with the properties shown in the table.
 
@@ -117,9 +117,9 @@ The following code sets `SignIn` settings (to default values):
 
 ### Cookie settings
 
-Configure the app's cookie in `Startup.ConfigureServices`. [ConfigureApplicationCookie](xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.ConfigureApplicationCookie(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions})) must be called **after** calling `AddIdentity` or `AddDefaultIdentity`.
+Configure the app's cookie in `Program.cs`. [ConfigureApplicationCookie](xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.ConfigureApplicationCookie(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions})) must be called **after** calling `AddIdentity` or `AddDefaultIdentity`.
 
-[!code-csharp[](identity-configuration/sample/Startup.cs?name=snippet_cookie)]
+[!code-csharp[](identity-configuration/sample6/RPauth/Program.cs?name=snippet_cookie)]
 
 For more information, see <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions>.
 
@@ -132,12 +132,12 @@ For more information, see <xref:Microsoft.AspNetCore.Authentication.Cookies.Cook
 | <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions.CompatibilityMode> | The compatibility mode used when hashing new passwords. Defaults to <xref:Microsoft.AspNetCore.Identity.PasswordHasherCompatibilityMode.IdentityV3>. The first byte of a hashed password, called a *format marker*, specifies the version of the hashing algorithm used to hash the password. When verifying a password against a hash, the <xref:Microsoft.AspNetCore.Identity.PasswordHasher%601.VerifyHashedPassword%2A> method selects the correct algorithm based on the first byte. A client is able to authenticate regardless of which version of the algorithm was used to hash the password. Setting the compatibility mode affects the hashing of *new passwords*. |
 | <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions.IterationCount> | The number of iterations used when hashing passwords using PBKDF2. This value is only used when the <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions.CompatibilityMode> is set to <xref:Microsoft.AspNetCore.Identity.PasswordHasherCompatibilityMode.IdentityV3>. The value must be a positive integer and defaults to `10000`. |
 
-In the following example, the <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions.IterationCount> is set to `12000` in `Startup.ConfigureServices`:
+In the following example, the <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions.IterationCount> is set to `12000` in `Program.cs`:
 
 ```csharp
 // using Microsoft.AspNetCore.Identity;
 
-services.Configure<PasswordHasherOptions>(option =>
+builder.Services.Configure<PasswordHasherOptions>(option =>
 {
     option.IterationCount = 12000;
 });
