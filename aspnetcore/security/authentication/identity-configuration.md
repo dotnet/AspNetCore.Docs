@@ -106,7 +106,7 @@ The following code sets `SignIn` settings (to default values):
 
 ### User
 
-[!code-csharp[](identity-configuration/sample/Startup.cs?name=snippet_user)]
+[!code-csharp[](identity-configuration/sample6/Program.cs?name=snippet_user)]
 
 <xref:Microsoft.AspNetCore.Identity.IdentityOptions.User%2A?displayProperty=nameWithType> specifies the <xref:Microsoft.AspNetCore.Identity.UserOptions> with the properties shown in the table.
 
@@ -119,7 +119,7 @@ The following code sets `SignIn` settings (to default values):
 
 Configure the app's cookie in `Program.cs`. [ConfigureApplicationCookie](xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.ConfigureApplicationCookie(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions})) must be called **after** calling `AddIdentity` or `AddDefaultIdentity`.
 
-[!code-csharp[](identity-configuration/sample/Startup.cs?name=snippet_cookie)]
+[!code-csharp[](identity-configuration/sample6/Program.cs?name=snippet_cookie)]
 
 For more information, see <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions>.
 
@@ -137,7 +137,7 @@ In the following example, the <xref:Microsoft.AspNetCore.Identity.PasswordHasher
 ```csharp
 // using Microsoft.AspNetCore.Identity;
 
-services.Configure<PasswordHasherOptions>(option =>
+builder.Services.Configure<PasswordHasherOptions>(option =>
 {
     option.IterationCount = 12000;
 });
