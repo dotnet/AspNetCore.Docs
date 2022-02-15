@@ -201,7 +201,7 @@ Run the migrated project, and browse to `/api/products`.  For example: https://l
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-6.0
+:::moniker range="< aspnetcore-6.0"
 This article demonstrates the steps required to migrate from ASP.NET 4.x Web API to ASP.NET Core MVC.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/migration/webapi/sample) ([how to download](xref:index#how-to-download-a-sample))
@@ -325,3 +325,4 @@ Run the migrated project, and browse to `/api/products`. A full list of three pr
 * <xref:web-api/action-return-types>
 * <xref:mvc/compatibility-version>
 :::moniker-end
+
