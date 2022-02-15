@@ -134,8 +134,6 @@ If the app determines that the underlying authentication state data has changed 
 
 ## Implement a custom `AuthenticationStateProvider`
 
-*This section only applies to Blazor Server.*
-
 If the app requires a custom provider, implement <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> and override `GetAuthenticationStateAsync`:
 
 ```csharp
@@ -307,8 +305,6 @@ If the app determines that the underlying authentication state data has changed 
 
 ## Implement a custom `AuthenticationStateProvider`
 
-*This section only applies to Blazor Server.*
-
 If the app requires a custom provider, implement <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> and override `GetAuthenticationStateAsync`:
 
 ```csharp
@@ -349,8 +345,6 @@ Using the `CustomAuthStateProvider` in the preceding example, all users are auth
 If the app determines that the underlying authentication state data has changed (for example, because the user signed out or another user has changed their roles), a [custom `AuthenticationStateProvider`](#implement-a-custom-authenticationstateprovider) can optionally invoke the method <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged%2A> on the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> base class. This notifies consumers of the authentication state data (for example, <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView>) to rerender using the new data.
 
 ## Implement a custom `AuthenticationStateProvider`
-
-*This section only applies to Blazor Server.*
 
 If the app requires a custom provider, implement <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> and override `GetAuthenticationStateAsync`:
 
