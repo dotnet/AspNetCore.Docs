@@ -276,7 +276,10 @@ The app running on Windows:
 
 
 XXXXXXXXXXXXXXXXXXXXX UPDATE THE IMAGE XXXXXXXXXXXXXXXXXXXX
+
+<!--
 :::image type="content" source="wpf/_static/running-app.png" alt-text="The app running on Windows.":::
+-->
 
 
 
