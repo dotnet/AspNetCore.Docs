@@ -15,7 +15,7 @@ ASP.NET Core apps configure and launch a *host*. The host is responsible for app
 
 :::moniker range=">= aspnetcore-3.0"
 
-This article covers the Web Host, which remains available only for backward compatibility. The ASP.NET Core templates create a [.NET Generic Host](<xref:fundamentals/host/generic-host>), which is recommended for all app types.
+This article covers the Web Host, which remains available only for backward compatibility. The ASP.NET Core templates create a [.NET Generic Host](xref:fundamentals/host/generic-host), which is recommended for all app types.
 
 :::moniker-end
 

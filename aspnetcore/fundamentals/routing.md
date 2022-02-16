@@ -274,7 +274,7 @@ The metadata system was created in response to the problems encountered by exten
 
 When a routing middleware executes, it sets an `Endpoint` and route values to a [request feature](xref:fundamentals/request-features) on the <xref:Microsoft.AspNetCore.Http.HttpContext> from the current request:
 
-* Calling [HttpContext.GetEndpoint](<xref:Microsoft.AspNetCore.Http.EndpointHttpContextExtensions.GetEndpoint%2A>) gets the endpoint.
+* Calling [HttpContext.GetEndpoint](xref:Microsoft.AspNetCore.Http.EndpointHttpContextExtensions.GetEndpoint%2A) gets the endpoint.
 * `HttpRequest.RouteValues` gets the collection of route values.
 
 [Middleware](xref:fundamentals/middleware/index) running after the routing middleware can inspect the endpoint and take action. For example, an authorization middleware can interrogate the endpoint's metadata collection for an authorization policy. After all of the middleware in the request processing pipeline is executed, the selected endpoint's delegate is invoked.
@@ -1257,7 +1257,7 @@ The metadata system was created in response to the problems encountered by exten
 
 When a routing middleware executes, it sets an `Endpoint` and route values to a [request feature](xref:fundamentals/request-features) on the <xref:Microsoft.AspNetCore.Http.HttpContext> from the current request:
 
-* Calling [HttpContext.GetEndpoint](<xref:Microsoft.AspNetCore.Http.EndpointHttpContextExtensions.GetEndpoint%2A>) gets the endpoint.
+* Calling [HttpContext.GetEndpoint](xref:Microsoft.AspNetCore.Http.EndpointHttpContextExtensions.GetEndpoint%2A) gets the endpoint.
 * `HttpRequest.RouteValues` gets the collection of route values.
 
 [Middleware](xref:fundamentals/middleware/index) running after the routing middleware can inspect the endpoint and take action. For example, an authorization middleware can interrogate the endpoint's metadata collection for an authorization policy. After all of the middleware in the request processing pipeline is executed, the selected endpoint's delegate is invoked.

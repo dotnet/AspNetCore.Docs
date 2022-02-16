@@ -47,13 +47,13 @@ The <xref:Microsoft.AspNetCore.Mvc> namespace provides attributes that can be us
 
 Here are some more examples of attributes that are available.
 
-|Attribute|Notes|
-|---------|-----|
-|[`[Route]`](<xref:Microsoft.AspNetCore.Mvc.RouteAttribute>)      |Specifies URL pattern for a controller or action.|
-|[`[Bind]`](<xref:Microsoft.AspNetCore.Mvc.BindAttribute>)        |Specifies prefix and properties to include for model binding.|
-|[`[HttpGet]`](<xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute>)  |Identifies an action that supports the HTTP GET action verb.|
-|[`[Consumes]`](<xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute>)|Specifies data types that an action accepts.|
-|[`[Produces]`](<xref:Microsoft.AspNetCore.Mvc.ProducesAttribute>)|Specifies data types that an action returns.|
+| Attribute | Notes |
+|--|--|
+| [`[Route]`](xref:Microsoft.AspNetCore.Mvc.RouteAttribute) | Specifies URL pattern for a controller or action. |
+| [`[Bind]`](xref:Microsoft.AspNetCore.Mvc.BindAttribute) | Specifies prefix and properties to include for model binding. |
+| [`[HttpGet]`](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute) | Identifies an action that supports the HTTP GET action verb. |
+| [`[Consumes]`](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) | Specifies data types that an action accepts. |
+| [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) | Specifies data types that an action returns. |
 
 For a list that includes the available attributes, see the <xref:Microsoft.AspNetCore.Mvc> namespace.
 
@@ -268,7 +268,7 @@ The automatic creation of a `ProblemDetails` for error status codes is disabled 
 
 By default, an action supports all available request content types. For example, if an app is configured to support both JSON and XML [input formatters](xref:mvc/models/model-binding#input-formatters), an action supports multiple content types, including `application/json` and `application/xml`.
 
-The [[Consumes]](<xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute>) attribute allows an action to limit the supported request content types. Apply the `[Consumes]` attribute to an action or controller, specifying one or more content types:
+The [[Consumes]](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute allows an action to limit the supported request content types. Apply the `[Consumes]` attribute to an action or controller, specifying one or more content types:
 
 ```csharp
 [HttpPost]
