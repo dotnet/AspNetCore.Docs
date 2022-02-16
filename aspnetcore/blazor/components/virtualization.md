@@ -233,8 +233,7 @@ The placeholder elements internally use an [Intersection Observer](https://devel
   * Scroll container styling requires a `display` with any of the following values:
     * `block` (the default for a `div`).
     * `table-row-group` (the default for a `tbody`).
-    * `flex` with `flex-direction` set to `column`.
-      * Note that in this case, you must also ensure that immediate children of `Virtualize` don't shrink under flex rules. For example, add `.mycontainer > div { flex-shrink: 0 }`.
+    * `flex` with `flex-direction` set to `column`. Ensure that immediate children of the `Virtualize` component don't shrink under flex rules. For example, add `.mycontainer > div { flex-shrink: 0 }`.
   * Content row styling requires a `display` with either of the following values:
     * `block` (the default for a `div`).
     * `table-row` (the default for a `tr`).
