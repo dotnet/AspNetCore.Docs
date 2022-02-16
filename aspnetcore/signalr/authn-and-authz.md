@@ -16,7 +16,7 @@ uid: signalr/authn-and-authz
 
 ## Authenticate users connecting to a SignalR hub
 
-SignalR can be used with [ASP.NET Core authentication](xref:security/authentication/identity) to associate a user with each connection. In a hub, authentication data can be accessed from the [HubConnectionContext.User](/dotnet/api/microsoft.aspnetcore.signalr.hubconnectioncontext.user) property. Authentication allows the hub to call methods on all connections associated with a user. For more information, see [Manage users and groups in SignalR](xref:signalr/groups). Multiple connections may be associated with a single user.
+SignalR can be used with [ASP.NET Core authentication](xref:security/authentication/identity) to associate a user with each connection. In a hub, authentication data can be accessed from the <xref:Microsoft.AspNetCore.SignalR.HubConnectionContext.User?displayProperty=nameWithType> property. Authentication allows the hub to call methods on all connections associated with a user. For more information, see [Manage users and groups in SignalR](xref:signalr/groups). Multiple connections may be associated with a single user.
 
 The following code is an example that uses SignalR and ASP.NET Core authentication:
 
@@ -95,7 +95,7 @@ Register this component in *Program.cs*:
 
 [!code-csharp[](authn-and-authz/6.0sample/SignalRAuthenticationSample/Program.cs?name=snippet_win&highlight=17-18)]
 
-In the .NET Client, Windows Authentication must be enabled by setting the [UseDefaultCredentials](/dotnet/api/microsoft.aspnetcore.http.connections.client.httpconnectionoptions.usedefaultcredentials) property:
+In the .NET Client, Windows Authentication must be enabled by setting the <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.UseDefaultCredentials%2A> property:
 
 ```csharp
 var connection = new HubConnectionBuilder()
@@ -132,7 +132,7 @@ builder.Services.AddSingleton<IUserIdProvider, EmailBasedUserIdProvider>();
 
 ## Authorize users to access hubs and hub methods
 
-By default, all methods in a hub can be called by an unauthenticated user. To require authentication, apply the [Authorize](/dotnet/api/microsoft.aspnetcore.authorization.authorizeattribute) attribute to the hub:
+By default, all methods in a hub can be called by an unauthenticated user. To require authentication, apply the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> attribute to the hub:
 
 [!code-csharp[Restrict a hub to only authorized users](authn-and-authz/sample/Hubs/ChatHub.cs?range=8-10,32)]
 
@@ -208,7 +208,7 @@ In the preceding example, the `DomainRestrictedRequirement` class is both an `IA
 
 ## Authenticate users connecting to a SignalR hub
 
-SignalR can be used with [ASP.NET Core authentication](xref:security/authentication/identity) to associate a user with each connection. In a hub, authentication data can be accessed from the [HubConnectionContext.User](/dotnet/api/microsoft.aspnetcore.signalr.hubconnectioncontext.user) property. Authentication allows the hub to call methods on all connections associated with a user. For more information, see [Manage users and groups in SignalR](xref:signalr/groups). Multiple connections may be associated with a single user.
+SignalR can be used with [ASP.NET Core authentication](xref:security/authentication/identity) to associate a user with each connection. In a hub, authentication data can be accessed from the <xref:Microsoft.AspNetCore.SignalR.HubConnectionContext.User?displayProperty=nameWithType> property. Authentication allows the hub to call methods on all connections associated with a user. For more information, see [Manage users and groups in SignalR](xref:signalr/groups). Multiple connections may be associated with a single user.
 
 The following is an example of `Startup.Configure` which uses SignalR and ASP.NET Core authentication:
 
@@ -347,7 +347,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-In the .NET Client, Windows Authentication must be enabled by setting the [UseDefaultCredentials](/dotnet/api/microsoft.aspnetcore.http.connections.client.httpconnectionoptions.usedefaultcredentials) property:
+In the .NET Client, Windows Authentication must be enabled by setting the <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.UseDefaultCredentials%2A> property:
 
 ```csharp
 var connection = new HubConnectionBuilder()
@@ -383,7 +383,7 @@ services.AddSingleton<IUserIdProvider, EmailBasedUserIdProvider>();
 
 ## Authorize users to access hubs and hub methods
 
-By default, all methods in a hub can be called by an unauthenticated user. To require authentication, apply the [Authorize](/dotnet/api/microsoft.aspnetcore.authorization.authorizeattribute) attribute to the hub:
+By default, all methods in a hub can be called by an unauthenticated user. To require authentication, apply the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> attribute to the hub:
 
 [!code-csharp[Restrict a hub to only authorized users](authn-and-authz/sample/Hubs/ChatHub.cs?range=8-10,32)]
 

@@ -256,7 +256,7 @@ Make the following changes in *Startup.cs*:
 
 ### Setting default authentication schemes
 
-In 1.x, the `AutomaticAuthenticate` and `AutomaticChallenge` properties of the [AuthenticationOptions](/dotnet/api/Microsoft.AspNetCore.Builder.AuthenticationOptions?view=aspnetcore-1.1) base class were intended to be set on a single authentication scheme. There was no good way to enforce this.
+In 1.x, the `AutomaticAuthenticate` and `AutomaticChallenge` properties of the <xref:Microsoft.AspNetCore.Builder.AuthenticationOptions?view=aspnetcore-1.1> base class were intended to be set on a single authentication scheme. There was no good way to enforce this.
 
 In 2.0, these two properties have been removed as properties on the individual `AuthenticationOptions` instance. They can be configured in the `AddAuthentication` method call within the `ConfigureServices` method of *Startup.cs*:
 
@@ -302,8 +302,8 @@ In 2.0 projects, import the `Microsoft.AspNetCore.Authentication` namespace, and
 
 There are two variations of Windows authentication:
 
-* The host only allows authenticated users. This variation isn't affected by the 2.0 changes.
-* The host allows both anonymous and authenticated users. This variation is affected by the 2.0 changes. For example, the app should allow anonymous users at the [IIS](xref:host-and-deploy/iis/index) or [HTTP.sys](xref:fundamentals/servers/httpsys) layer but authorize users at the controller level. In this scenario, set the default scheme in the `Startup.ConfigureServices` method.
+- The host only allows authenticated users. This variation isn't affected by the 2.0 changes.
+- The host allows both anonymous and authenticated users. This variation is affected by the 2.0 changes. For example, the app should allow anonymous users at the [IIS](xref:host-and-deploy/iis/index) or [HTTP.sys](xref:fundamentals/servers/httpsys) layer but authorize users at the controller level. In this scenario, set the default scheme in the `Startup.ConfigureServices` method.
 
   For [Microsoft.AspNetCore.Server.IISIntegration](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.IISIntegration/), set the default scheme to `IISDefaults.AuthenticationScheme`:
 
@@ -421,7 +421,7 @@ This method appears in *Views/Account/Login.cshtml* too:
 
 [!code-cshtml[](../1x-to-2x/samples/AspNetCoreDotNetCore1App/AspNetCoreDotNetCore1App/Views/Account/Login.cshtml?name=snippet_GetExtAuthNSchemes&highlight=2)]
 
-In 2.0 projects, use the <xref:Microsoft.AspNetCore.Identity.SignInManager`1.GetExternalAuthenticationSchemesAsync*> method. The change in *ManageController.cs* resembles the following code:
+In 2.0 projects, use the <xref:Microsoft.AspNetCore.Identity.SignInManager%601.GetExternalAuthenticationSchemesAsync%2A> method. The change in *ManageController.cs* resembles the following code:
 
 [!code-csharp[](../1x-to-2x/samples/AspNetCoreDotNetCore2App/AspNetCoreDotNetCore2App/Controllers/ManageController.cs?name=snippet_GetExternalAuthenticationSchemesAsync)]
 

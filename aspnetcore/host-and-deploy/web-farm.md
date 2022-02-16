@@ -35,7 +35,7 @@ Learn about configuration for apps hosted behind proxy servers and load balancer
 
 ## App data
 
-When an app is scaled to multiple instances, there might be app state that requires sharing across nodes. If the state is transient, consider sharing an [IDistributedCache](/dotnet/api/microsoft.extensions.caching.distributed.idistributedcache). If the shared state requires persistence, consider storing the shared state in a database.
+When an app is scaled to multiple instances, there might be app state that requires sharing across nodes. If the state is transient, consider sharing an <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache>. If the shared state requires persistence, consider storing the shared state in a database.
 
 ## Required configuration
 
