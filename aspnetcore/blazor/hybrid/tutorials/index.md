@@ -17,4 +17,6 @@ uid: blazor/hybrid/tutorials/index
 
 * <xref:blazor/hybrid/tutorials/windows-forms>
 
+* <xref:blazor/hybrid/tutorials/wpf>
+
 For more information on Blazor hosting models, see <xref:blazor/hosting-models>.

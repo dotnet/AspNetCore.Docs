@@ -24,7 +24,7 @@ This tutorial shows you how to build and run a Windows Forms Blazor app. You lea
 
 ## Visual Studio workload
 
-If the **.NET desktop development** workload isn't installed, use the Visual Studio installer to install the workload:
+If the **.NET desktop development** workload isn't installed, use the Visual Studio installer to install the workload. For more information, see [Modify Visual Studio workloads, components, and language packs](/visualstudio/install/modify-visual-studio).
 
 :::image type="content" source="windows-forms/_static/install-workload.png" alt-text="Visual Studio installer .NET desktop development workload selection.":::
 
@@ -32,11 +32,11 @@ If the **.NET desktop development** workload isn't installed, use the Visual Stu
 
 Start Visual Studio 2022 Preview. Select **Create a new project**.
 
-In the **Create a new project** dialog, select the C# project template **Windows Forms App** and select the **Next** button:
+In the **Create a new project** dialog, select the C# project template **Windows Forms App** (C#) and select the **Next** button:
 
 :::image type="content" source="windows-forms/_static/create-project.png" alt-text="Create a new project in Visual Studio.":::
 
-In the **Configure your new project** dialog, set the **Project name** to **`WinFormsBlazor`**, choose a suitable location for the project, and select the **Next** button. Using `WinFormsBlazor` as the project name matches the donor Blazor project names created in the preceding section, which aligns the namespaces of the three projects.
+In the **Configure your new project** dialog, set the **Project name** to **`WinFormsBlazor`**, choose a suitable location for the project, and select the **Next** button.
 
 :::image type="content" source="windows-forms/_static/configure-project.png" alt-text="Configure the project.":::
 

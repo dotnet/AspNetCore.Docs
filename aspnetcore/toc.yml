@@ -347,6 +347,8 @@ items:
                     uid: blazor/hybrid/tutorials/maui
                   - name: Windows Forms
                     uid: blazor/hybrid/tutorials/windows-forms
+                  - name: web-api/advanced/formatting
+                    uid: blazor/hybrid/tutorials/wpf
           - name: Project structure
             uid: blazor/project-structure
           - name: Fundamentals
