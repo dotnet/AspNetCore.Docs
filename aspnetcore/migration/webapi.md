@@ -93,7 +93,7 @@ The following shows the application startup code in the ASP.NET Core *Program.cs
 
    [!code-csharp[](webapi/sample/6.x/ProductsCore/Models/Product.cs?highlight=6,7)]
 
-The preceding highlighted code changes the following to update to ASP.NET Core:
+The preceding highlighted code changes the following:
 
 * The `?` annotation has been added to declare the `Name` and `Category` properties as nullable reference types.
 
@@ -119,9 +119,9 @@ ASP.NET Core 6.0 projects enable nullable reference types by default. For more i
 
 ---
 
-   [!code-csharp[](webapi/sample/6.x/ProductsCore/Controllers/ProductsController.cs?highlight=1,2,4,6,7,8,33,50,57,64)]
+   [!code-csharp[](webapi/sample/6.x/ProductsCore/Controllers/ProductsController.cs?highlight=1,2,4,6,7,8,26,32,33,40)]
 
-The preceding highlighted code changes the following to migrate to ASP.NET Core:
+The preceding highlighted code changes the following, to migrate to ASP.NET Core:
 
 * Removes using statements for the following ASP.NET 4.x components that don't exist in ASP.NET Core:
 
@@ -140,7 +140,11 @@ The preceding highlighted code changes the following to migrate to ASP.NET Core:
     return product;
     ```
 
-* Adds `[Route("api/[controller]")]` and `[ApiController]` attributes, which are explained in the next section.
+* Adds the following attributes which are explained in the next section:
+  * `[Route("api/[controller]")]`
+  * `[ApiController]`
+  * `[HttpGet]`
+  * `[HttpGet("{id}")]`
 
 ## Routing
 
