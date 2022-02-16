@@ -140,7 +140,7 @@ The preceding highlighted code changes the following, to migrate to ASP.NET Core
     return product;
     ```
 
-* Adds the following attributes which are explained in the next section:
+* Adds the following attributes which are explained in the next sections:
   * `[Route("api/[controller]")]`
   * `[ApiController]`
   * `[HttpGet]`
