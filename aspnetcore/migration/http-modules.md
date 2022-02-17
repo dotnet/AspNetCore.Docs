@@ -19,7 +19,7 @@ Before proceeding to ASP.NET Core middleware, let's first recap how HTTP modules
 
 **Handlers are:**
 
-* Classes that implement [IHttpHandler](/dotnet/api/system.web.ihttphandler)
+* Classes that implement <xref:System.Web.IHttpHandler>
 
 * Used to handle requests with a given file name or extension, such as *.report*
 
@@ -27,7 +27,7 @@ Before proceeding to ASP.NET Core middleware, let's first recap how HTTP modules
 
 **Modules are:**
 
-* Classes that implement [IHttpModule](/dotnet/api/system.web.ihttpmodule)
+* Classes that implement <xref:System.Web.IHttpModule>
 
 * Invoked for every request
 
@@ -242,7 +242,7 @@ You saw earlier that the `Invoke` method in your middleware takes a parameter of
 public async Task Invoke(HttpContext context)
 ```
 
-`HttpContext` has significantly changed in ASP.NET Core. This section shows how to translate the most commonly used properties of [System.Web.HttpContext](/dotnet/api/system.web.httpcontext) to the new `Microsoft.AspNetCore.Http.HttpContext`.
+`HttpContext` has significantly changed in ASP.NET Core. This section shows how to translate the most commonly used properties of <xref:System.Web.HttpContext?displayProperty=fullName> to the new `Microsoft.AspNetCore.Http.HttpContext`.
 
 ### HttpContext
 

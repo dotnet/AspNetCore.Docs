@@ -30,14 +30,14 @@ A common performance problem in ASP.NET Core apps is blocking calls that could b
 
 **Do not**:
 
-* Block asynchronous execution by calling [Task.Wait](/dotnet/api/system.threading.tasks.task.wait) or [Task.Result](/dotnet/api/system.threading.tasks.task-1.result).
+* Block asynchronous execution by calling <xref:System.Threading.Tasks.Task.Wait%2A?displayProperty=nameWithType> or <xref:System.Threading.Tasks.Task%601.Result%2A?displayProperty=nameWithType>.
 * Acquire locks in common code paths. ASP.NET Core apps are most performant when architected to run code in parallel.
-* Call [Task.Run](/dotnet/api/system.threading.tasks.task.run) and immediately await it. ASP.NET Core already runs app code on normal Thread Pool threads, so calling Task.Run only results in extra unnecessary Thread Pool scheduling. Even if the scheduled code would block a thread, Task.Run does not prevent that.
+* Call <xref:System.Threading.Tasks.Task.Run%2A?displayProperty=nameWithType> and immediately await it. ASP.NET Core already runs app code on normal Thread Pool threads, so calling Task.Run only results in extra unnecessary Thread Pool scheduling. Even if the scheduled code would block a thread, Task.Run does not prevent that.
 
 **Do**:
 
 * Make [hot code paths](#understand-hot-code-paths) asynchronous.
-* Call data access, I/O, and long-running operations APIs asynchronously if an asynchronous API is available. Do **not** use [Task.Run](/dotnet/api/system.threading.tasks.task.run) to make a synchronous API asynchronous.
+* Call data access, I/O, and long-running operations APIs asynchronously if an asynchronous API is available. Do **not** use <xref:System.Threading.Tasks.Task.Run%2A?displayProperty=nameWithType> to make a synchronous API asynchronous.
 * Make controller/Razor Page actions asynchronous. The entire call stack is asynchronous in order to benefit from [async/await](/dotnet/csharp/programming-guide/concepts/async/) patterns.
 
 A profiler, such as [PerfView](https://github.com/Microsoft/perfview), can be used to find threads frequently added to the [Thread Pool](/windows/desktop/procthread/thread-pools). The `Microsoft-Windows-DotNETRuntime/ThreadPoolWorkerThread/Start` event indicates a thread added to the thread pool. <!--  For more information, see [async guidance docs](TBD-Link_To_Davifowl_Doc)  -->
@@ -55,8 +55,9 @@ A webpage shouldn't load large amounts of data all at once. When returning a col
 
 For more information on paging and limiting the number of returned records, see:
 
-  * [Performance considerations](xref:data/ef-rp/intro#performance-considerations) 
-  * [Add paging to an ASP.NET Core app](xref:data/ef-rp/sort-filter-page#add-paging)
+* [Performance considerations](xref:data/ef-rp/intro#performance-considerations) 
+* [Add paging to an ASP.NET Core app](xref:data/ef-rp/sort-filter-page#add-paging)
+
 ### Return `IEnumerable<T>` or `IAsyncEnumerable<T>`
 
 Returning `IEnumerable<T>` from an action results in synchronous collection iteration by the serializer. The result is the blocking of calls and a potential for thread pool starvation. To avoid synchronous enumeration, use `ToListAsync` before returning the enumerable.
@@ -70,7 +71,7 @@ The [.NET Core garbage collector](/dotnet/standard/garbage-collection/) manages 
 Recommendations:
 
 * **Do** consider caching large objects that are frequently used. Caching large objects prevents expensive allocations.
-* **Do** pool buffers by using an [ArrayPool\<T>](/dotnet/api/system.buffers.arraypool-1) to store large arrays.
+* **Do** pool buffers by using an <xref:System.Buffers.ArrayPool%601> to store large arrays.
 * **Do not** allocate many, short-lived large objects on [hot code paths](#understand-hot-code-paths).
 
 Memory issues, such as the preceding, can be diagnosed by reviewing garbage collection (GC) stats in [PerfView](https://github.com/Microsoft/perfview) and examining:
@@ -107,7 +108,7 @@ Query issues can be detected by reviewing the time spent accessing data with [Ap
 
 ## Pool HTTP connections with HttpClientFactory
 
-Although [HttpClient](/dotnet/api/system.net.http.httpclient) implements the `IDisposable` interface, it's designed for reuse. Closed `HttpClient` instances leave sockets open in the `TIME_WAIT` state for a short period of time. If a code path that creates and disposes of `HttpClient` objects is frequently used, the app may exhaust available sockets. [HttpClientFactory](/dotnet/standard/microservices-architecture/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests) was introduced in ASP.NET Core 2.1 as a solution to this problem. It handles pooling HTTP connections to optimize performance and reliability.
+Although <xref:System.Net.Http.HttpClient> implements the `IDisposable` interface, it's designed for reuse. Closed `HttpClient` instances leave sockets open in the `TIME_WAIT` state for a short period of time. If a code path that creates and disposes of `HttpClient` objects is frequently used, the app may exhaust available sockets. [HttpClientFactory](/dotnet/standard/microservices-architecture/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests) was introduced in ASP.NET Core 2.1 as a solution to this problem. It handles pooling HTTP connections to optimize performance and reliability.
 
 Recommendations:
 
@@ -176,14 +177,14 @@ The following sections provide performance tips and known reliability problems a
 
 All I/O in ASP.NET Core is asynchronous. Servers implement the `Stream` interface, which has both synchronous and asynchronous overloads. The asynchronous ones should be preferred to avoid blocking thread pool threads. Blocking threads can lead to thread pool starvation.
 
-**Do not do this:** The following example uses the <xref:System.IO.StreamReader.ReadToEnd*>. It blocks the current thread to wait for the result. This is an example of [sync over async](https://github.com/davidfowl/AspNetCoreDiagnosticScenarios/blob/master/AsyncGuidance.md#warning-sync-over-async
+**Do not do this:** The following example uses the <xref:System.IO.StreamReader.ReadToEnd%2A>. It blocks the current thread to wait for the result. This is an example of [sync over async](https://github.com/davidfowl/AspNetCoreDiagnosticScenarios/blob/master/AsyncGuidance.md#warning-sync-over-async
 ).
 
 [!code-csharp[](performance-best-practices/samples/3.0/Controllers/MyFirstController.cs?name=snippet1)]
 
 In the preceding code, `Get` synchronously reads the entire HTTP request body into memory. If the client is slowly uploading, the app is doing sync over async. The app does sync over async because Kestrel does **NOT** support synchronous reads.
 
-**Do this:** The following example uses <xref:System.IO.StreamReader.ReadToEndAsync*> and does not block the thread while reading.
+**Do this:** The following example uses <xref:System.IO.StreamReader.ReadToEndAsync%2A> and does not block the thread while reading.
 
 [!code-csharp[](performance-best-practices/samples/3.0/Controllers/MyFirstController.cs?name=snippet2)]
 

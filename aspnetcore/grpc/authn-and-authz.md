@@ -57,7 +57,7 @@ public override Task<BuyTicketsResponse> BuyTickets(
 
 The client can provide an access token for authentication. The server validates the token and uses it to identify the user.
 
-On the server, bearer token authentication is configured using the [JWT Bearer middleware](/dotnet/api/microsoft.extensions.dependencyinjection.jwtbearerextensions.addjwtbearer).
+On the server, bearer token authentication is configured using the [JWT Bearer middleware](xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A).
 
 In the .NET gRPC client, the token can be sent with calls by using the `Metadata` collection. Entries in the `Metadata` collection are sent with a gRPC call as HTTP headers:
 
@@ -214,7 +214,7 @@ For more information on configuring authentication on the server, see [ASP.NET C
 
 Configuring the gRPC client to use authentication will depend on the authentication mechanism you are using. The previous bearer token and client certificate examples show a couple of ways the gRPC client can be configured to send authentication metadata with gRPC calls:
 
-* Strongly typed gRPC clients use `HttpClient` internally. Authentication can be configured on [HttpClientHandler](/dotnet/api/system.net.http.httpclienthandler), or by adding custom [HttpMessageHandler](/dotnet/api/system.net.http.httpmessagehandler) instances to the `HttpClient`.
+* Strongly typed gRPC clients use `HttpClient` internally. Authentication can be configured on <xref:System.Net.Http.HttpClientHandler>, or by adding custom <xref:System.Net.Http.HttpMessageHandler> instances to the `HttpClient`.
 * Each gRPC call has an optional `CallOptions` argument. Custom headers can be sent using the option's headers collection.
 
 > [!NOTE]
