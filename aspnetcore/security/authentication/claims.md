@@ -27,28 +27,7 @@ This article covers the following areas:
 
 The profile claims can be returned in the `id_token`, which is returned after a successful authentication. The ASP.NET Core client app only requires the profile scope. When using the `id_token` for claims, no extra claims mapping is required.
 
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddAuthentication(options =>
-    {
-        options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-        options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
-    })
-   .AddCookie()
-   .AddOpenIdConnect(options =>
-   {
-       options.SignInScheme = "Cookies";
-       options.Authority = "-your-identity-provider-";
-       options.RequireHttpsMetadata = true;
-       options.ClientId = "-your-clientid-";
-       options.ClientSecret = "-your-client-secret-from-user-secrets-or-keyvault";
-       options.ResponseType = "code";
-       options.UsePkce = true;
-       options.Scope.Add("profile");
-       options.SaveTokens = true;
-   });
-```
+:::code language="csharp" source="~/security/authentication/claims/sample6/WebRPmapClaims/Program.cs" name="snippet1:::
 
 Another way to get the user claims is to use the OpenID Connect User Info API. The ASP.NET Core client application uses the `GetClaimsFromUserInfoEndpoint` property to configure this. One important difference from the first settings, is that you must specify the claims you require using the `MapUniqueJsonKey` method, otherwise only the `name`, `given_name` and `email` standard claims will be available in the client application. The claims included in the `id_token` are mapped per default. This is the major difference to the first option. You must explicitly define some of the claims you require.
 
