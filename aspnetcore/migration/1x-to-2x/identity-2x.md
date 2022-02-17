@@ -78,14 +78,14 @@ Below are 2.0 migration instructions for each major authentication scheme.
 Select one of the two options below, and make the necessary changes in *Startup.cs*:
 
 1. Use cookies with Identity
-    - Replace `UseIdentity` with `UseAuthentication` in the `Configure` method:
+    * Replace `UseIdentity` with `UseAuthentication` in the `Configure` method:
 
         ```csharp
         app.UseAuthentication();
         ```
 
-    - Invoke the `AddIdentity` method in the `ConfigureServices` method to add the cookie authentication services.
-    - Optionally, invoke the `ConfigureApplicationCookie` or `ConfigureExternalCookie` method in the `ConfigureServices` method to tweak the Identity cookie settings.
+    * Invoke the `AddIdentity` method in the `ConfigureServices` method to add the cookie authentication services.
+    * Optionally, invoke the `ConfigureApplicationCookie` or `ConfigureExternalCookie` method in the `ConfigureServices` method to tweak the Identity cookie settings.
 
         ```csharp
         services.AddIdentity<ApplicationUser, IdentityRole>()
@@ -96,13 +96,13 @@ Select one of the two options below, and make the necessary changes in *Startup.
         ```
 
 2. Use cookies without Identity
-    - Replace the `UseCookieAuthentication` method call in the `Configure` method with `UseAuthentication`:
+    * Replace the `UseCookieAuthentication` method call in the `Configure` method with `UseAuthentication`:
 
         ```csharp
         app.UseAuthentication();
         ```
 
-    - Invoke the `AddAuthentication` and `AddCookie` methods in the `ConfigureServices` method:
+    * Invoke the `AddAuthentication` and `AddCookie` methods in the `ConfigureServices` method:
 
         ```csharp
         // If you don't want the cookie to be automatically authenticated and assigned to HttpContext.User,
@@ -118,13 +118,13 @@ Select one of the two options below, and make the necessary changes in *Startup.
 ### JWT Bearer Authentication
 
 Make the following changes in *Startup.cs*:
-- Replace the `UseJwtBearerAuthentication` method call in the `Configure` method with `UseAuthentication`:
+* Replace the `UseJwtBearerAuthentication` method call in the `Configure` method with `UseAuthentication`:
 
     ```csharp
     app.UseAuthentication();
     ```
 
-- Invoke the `AddJwtBearer` method in the `ConfigureServices` method:
+* Invoke the `AddJwtBearer` method in the `ConfigureServices` method:
 
     ```csharp
     services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -141,13 +141,13 @@ Make the following changes in *Startup.cs*:
 
 Make the following changes in *Startup.cs*:
 
-- Replace the `UseOpenIdConnectAuthentication` method call in the `Configure` method with `UseAuthentication`:
+* Replace the `UseOpenIdConnectAuthentication` method call in the `Configure` method with `UseAuthentication`:
 
     ```csharp
     app.UseAuthentication();
     ```
 
-- Invoke the `AddOpenIdConnect` method in the `ConfigureServices` method:
+* Invoke the `AddOpenIdConnect` method in the `ConfigureServices` method:
 
     ```csharp
     services.AddAuthentication(options =>
@@ -163,7 +163,7 @@ Make the following changes in *Startup.cs*:
     });
     ```
 
-- Replace the `PostLogoutRedirectUri` property in the `OpenIdConnectOptions` action with `SignedOutRedirectUri`:
+* Replace the `PostLogoutRedirectUri` property in the `OpenIdConnectOptions` action with `SignedOutRedirectUri`:
 
     ```csharp
     .AddOpenIdConnect(options =>
@@ -175,13 +175,13 @@ Make the following changes in *Startup.cs*:
 ### Facebook authentication
 
 Make the following changes in *Startup.cs*:
-- Replace the `UseFacebookAuthentication` method call in the `Configure` method with `UseAuthentication`:
+* Replace the `UseFacebookAuthentication` method call in the `Configure` method with `UseAuthentication`:
 
     ```csharp
     app.UseAuthentication();
     ```
 
-- Invoke the `AddFacebook` method in the `ConfigureServices` method:
+* Invoke the `AddFacebook` method in the `ConfigureServices` method:
 
     ```csharp
     services.AddAuthentication()
@@ -195,13 +195,13 @@ Make the following changes in *Startup.cs*:
 ### Google authentication
 
 Make the following changes in *Startup.cs*:
-- Replace the `UseGoogleAuthentication` method call in the `Configure` method with `UseAuthentication`:
+* Replace the `UseGoogleAuthentication` method call in the `Configure` method with `UseAuthentication`:
 
     ```csharp
     app.UseAuthentication();
     ```
 
-- Invoke the `AddGoogle` method in the `ConfigureServices` method:
+* Invoke the `AddGoogle` method in the `ConfigureServices` method:
 
     ```csharp
     services.AddAuthentication()
@@ -217,13 +217,13 @@ Make the following changes in *Startup.cs*:
 For more information on Microsoft account authentication, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/14455).
 
 Make the following changes in *Startup.cs*:
-- Replace the `UseMicrosoftAccountAuthentication` method call in the `Configure` method with `UseAuthentication`:
+* Replace the `UseMicrosoftAccountAuthentication` method call in the `Configure` method with `UseAuthentication`:
 
     ```csharp
     app.UseAuthentication();
     ```
 
-- Invoke the `AddMicrosoftAccount` method in the `ConfigureServices` method:
+* Invoke the `AddMicrosoftAccount` method in the `ConfigureServices` method:
 
     ```csharp
     services.AddAuthentication()
@@ -237,13 +237,13 @@ Make the following changes in *Startup.cs*:
 ### Twitter authentication
 
 Make the following changes in *Startup.cs*:
-- Replace the `UseTwitterAuthentication` method call in the `Configure` method with `UseAuthentication`:
+* Replace the `UseTwitterAuthentication` method call in the `Configure` method with `UseAuthentication`:
 
     ```csharp
     app.UseAuthentication();
     ```
 
-- Invoke the `AddTwitter` method in the `ConfigureServices` method:
+* Invoke the `AddTwitter` method in the `ConfigureServices` method:
 
     ```csharp
     services.AddAuthentication()
@@ -256,7 +256,7 @@ Make the following changes in *Startup.cs*:
 
 ### Setting default authentication schemes
 
-In 1.x, the `AutomaticAuthenticate` and `AutomaticChallenge` properties of the [AuthenticationOptions](/dotnet/api/Microsoft.AspNetCore.Builder.AuthenticationOptions?view=aspnetcore-1.1) base class were intended to be set on a single authentication scheme. There was no good way to enforce this.
+In 1.x, the `AutomaticAuthenticate` and `AutomaticChallenge` properties of the <xref:Microsoft.AspNetCore.Builder.AuthenticationOptions?view=aspnetcore-1.1> base class were intended to be set on a single authentication scheme. There was no good way to enforce this.
 
 In 2.0, these two properties have been removed as properties on the individual `AuthenticationOptions` instance. They can be configured in the `AddAuthentication` method call within the `ConfigureServices` method of *Startup.cs*:
 
@@ -277,8 +277,8 @@ services.AddAuthentication(options =>
 ```
 
 Define a default scheme in 2.0 if one of the following conditions is true:
-- You want the user to be automatically signed in
-- You use the `[Authorize]` attribute or authorization policies without specifying schemes
+* You want the user to be automatically signed in
+* You use the `[Authorize]` attribute or authorization policies without specifying schemes
 
 An exception to this rule is the `AddIdentity` method. This method adds cookies for you and sets the default authenticate and challenge schemes to the application cookie `IdentityConstants.ApplicationScheme`. Additionally, it sets the default sign-in scheme to the external cookie `IdentityConstants.ExternalScheme`.
 
@@ -421,7 +421,7 @@ This method appears in *Views/Account/Login.cshtml* too:
 
 [!code-cshtml[](../1x-to-2x/samples/AspNetCoreDotNetCore1App/AspNetCoreDotNetCore1App/Views/Account/Login.cshtml?name=snippet_GetExtAuthNSchemes&highlight=2)]
 
-In 2.0 projects, use the <xref:Microsoft.AspNetCore.Identity.SignInManager`1.GetExternalAuthenticationSchemesAsync*> method. The change in *ManageController.cs* resembles the following code:
+In 2.0 projects, use the <xref:Microsoft.AspNetCore.Identity.SignInManager%601.GetExternalAuthenticationSchemesAsync%2A> method. The change in *ManageController.cs* resembles the following code:
 
 [!code-csharp[](../1x-to-2x/samples/AspNetCoreDotNetCore2App/AspNetCoreDotNetCore2App/Controllers/ManageController.cs?name=snippet_GetExternalAuthenticationSchemesAsync)]
 

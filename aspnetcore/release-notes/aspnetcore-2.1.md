@@ -78,7 +78,7 @@ A new package is introduced that streamlines test creation and execution. The [M
 
 * Copies the dependency file (*\*.deps*) from the tested app into the test project's *bin* folder.
 * Sets the content root to the tested app's project root so that static files and pages/views are found when the tests are executed.
-* Provides the [WebApplicationFactory](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1) class to streamline bootstrapping the tested app with [TestServer](/dotnet/api/microsoft.aspnetcore.testhost.testserver).
+* Provides the <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601> class to streamline bootstrapping the tested app with <xref:Microsoft.AspNetCore.TestHost.TestServer>.
 
 The following test uses [xUnit](https://github.com/xunit/xunit) to check that the Index page loads with a success status code and with the correct Content-Type header:
 
@@ -160,7 +160,7 @@ Razor Pages now support [areas](xref:mvc/controllers/areas). To see an example o
 
 ## MVC compatibility version
 
-The <xref:Microsoft.Extensions.DependencyInjection.MvcCoreMvcBuilderExtensions.SetCompatibilityVersion*> method allows an app to opt-in or opt-out of potentially breaking behavior changes introduced in ASP.NET Core MVC 2.1 or later.
+The <xref:Microsoft.Extensions.DependencyInjection.MvcCoreMvcBuilderExtensions.SetCompatibilityVersion%2A> method allows an app to opt-in or opt-out of potentially breaking behavior changes introduced in ASP.NET Core MVC 2.1 or later.
 
 For more information, see <xref:mvc/compatibility-version>.
 

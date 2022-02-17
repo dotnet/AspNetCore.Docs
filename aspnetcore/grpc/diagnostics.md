@@ -90,7 +90,7 @@ To get logs from the .NET client, set the `GrpcChannelOptions.LoggerFactory` pro
 
 An alternative way to enable client logging is to use the [gRPC client factory](xref:grpc/clientfactory) to create the client. A gRPC client registered with the client factory and resolved from DI will automatically use the app's configured logging.
 
-If the app isn't using DI, then create a new `ILoggerFactory` instance with [LoggerFactory.Create](xref:Microsoft.Extensions.Logging.LoggerFactory.Create*). To access this method, add the [Microsoft.Extensions.Logging](https://www.nuget.org/packages/microsoft.extensions.logging/) package to your app.
+If the app isn't using DI, then create a new `ILoggerFactory` instance with <xref:Microsoft.Extensions.Logging.LoggerFactory.Create%2A?displayProperty=nameWithType>. To access this method, add the [Microsoft.Extensions.Logging](https://www.nuget.org/packages/microsoft.extensions.logging/) package to your app.
 
 [!code-csharp[](diagnostics/sample/net-client-loggerfactory-create.cs?highlight=1,8)]
 
@@ -118,7 +118,7 @@ dbug: Grpc.Net.Client.Internal.GrpcCall[4]
 
 ## Tracing
 
-gRPC services and the gRPC client provide information about gRPC calls using [DiagnosticSource](/dotnet/api/system.diagnostics.diagnosticsource) and [Activity](/dotnet/api/system.diagnostics.activity).
+gRPC services and the gRPC client provide information about gRPC calls using <xref:System.Diagnostics.DiagnosticSource> and <xref:System.Diagnostics.Activity>.
 
 * .NET gRPC uses an activity to represent a gRPC call.
 * Tracing events are written to the diagnostic source at the start and stop of the gRPC call activity.
@@ -314,7 +314,7 @@ To get logs from the .NET client, set the `GrpcChannelOptions.LoggerFactory` pro
 
 An alternative way to enable client logging is to use the [gRPC client factory](xref:grpc/clientfactory) to create the client. A gRPC client registered with the client factory and resolved from DI will automatically use the app's configured logging.
 
-If your app isn't using DI, then you can create a new `ILoggerFactory` instance with [LoggerFactory.Create](xref:Microsoft.Extensions.Logging.LoggerFactory.Create*). To access this method, add the [Microsoft.Extensions.Logging](https://www.nuget.org/packages/microsoft.extensions.logging/) package to your app.
+If your app isn't using DI, then you can create a new `ILoggerFactory` instance with <xref:Microsoft.Extensions.Logging.LoggerFactory.Create%2A?displayProperty=nameWithType>. To access this method, add the [Microsoft.Extensions.Logging](https://www.nuget.org/packages/microsoft.extensions.logging/) package to your app.
 
 [!code-csharp[](diagnostics/sample/net-client-loggerfactory-create.cs?highlight=1,8)]
 
@@ -342,7 +342,7 @@ dbug: Grpc.Net.Client.Internal.GrpcCall[4]
 
 ## Tracing
 
-gRPC services and the gRPC client provide information about gRPC calls using [DiagnosticSource](/dotnet/api/system.diagnostics.diagnosticsource) and [Activity](/dotnet/api/system.diagnostics.activity).
+gRPC services and the gRPC client provide information about gRPC calls using <xref:System.Diagnostics.DiagnosticSource> and <xref:System.Diagnostics.Activity>.
 
 * .NET gRPC uses an activity to represent a gRPC call.
 * Tracing events are written to the diagnostic source at the start and stop of the gRPC call activity.

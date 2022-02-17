@@ -381,7 +381,7 @@ The `Products2ApiController.GetProduct(int)` action:
 * Is run with URL path like `/products2/3`
 * Isn't run with the URL path `/products2`.
 
-The [[Consumes]](<xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute>) attribute allows an action to limit the supported request content types. For more information, see [Define supported request content types with the Consumes attribute](xref:web-api/index#consumes).
+The [[Consumes]](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute allows an action to limit the supported request content types. For more information, see [Define supported request content types with the Consumes attribute](xref:web-api/index#consumes).
 
  See [Routing](xref:fundamentals/routing) for a full description of route templates and related options.
 
@@ -1220,7 +1220,7 @@ The `Products2ApiController.GetProduct(int)` action:
 * Is run with URL path like `/products2/3`
 * Isn't run with the URL path `/products2`.
 
-The [[Consumes]](<xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute>) attribute allows an action to limit the supported request content types. For more information, see [Define supported request content types with the Consumes attribute](xref:web-api/index#consumes).
+The [[Consumes]](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute allows an action to limit the supported request content types. For more information, see [Define supported request content types with the Consumes attribute](xref:web-api/index#consumes).
 
  See [Routing](xref:fundamentals/routing) for a full description of route templates and related options.
 

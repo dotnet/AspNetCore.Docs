@@ -56,7 +56,7 @@ To create logs, use an <xref:Microsoft.Extensions.Logging.ILogger%601> object fr
 The following example:
 
 * Creates a logger, `ILogger<AboutModel>`, which uses a log *category* of the fully qualified name of the type `AboutModel`. The log category is a string that is associated with each log.
-* Calls <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation*> to log at the `Information` level. The Log *level* indicates the severity of the logged event.
+* Calls <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation%2A> to log at the `Information` level. The Log *level* indicates the severity of the logged event.
 
 [!code-csharp[](index/samples/6.x/TodoApiDTO/Pages/About.cshtml.cs?name=snippet_CallLogMethods&highlight=5,14)]
 
@@ -460,7 +460,7 @@ The `Console` provider logs output to the console. For more information on viewi
 
 ### Debug
 
-The `Debug` provider writes log output by using the [System.Diagnostics.Debug](/dotnet/api/system.diagnostics.debug) class. Calls to `System.Diagnostics.Debug.WriteLine` write to the `Debug` provider.
+The `Debug` provider writes log output by using the <xref:System.Diagnostics.Debug?displayProperty=fullName> class. Calls to `System.Diagnostics.Debug.WriteLine` write to the `Debug` provider.
 
 On Linux, the `Debug` provider log location is distribution-dependent and may be one of the following:
 
@@ -820,7 +820,7 @@ To configure a service that depends on `ILogger<T>`, use constructor injection o
 
 [!code-csharp[](index/samples/3.x/TodoApiSample/Startup2.cs?name=snippet_ConfigureServices&highlight=6-10)]
 
-The preceding highlighted code is a [`Func`](/dotnet/api/system.func-2) that runs the first time the DI container needs to construct an instance of `MyService`. You can access any of the registered services in this way.
+The preceding highlighted code is a <xref:System.Func%602> that runs the first time the DI container needs to construct an instance of `MyService`. You can access any of the registered services in this way.
 -->
 
 ### No asynchronous logger methods
@@ -1311,7 +1311,7 @@ To view more categories in the console window, set **appsettings.Development.jso
 
 A scope:
 
-* Is an <xref:System.IDisposable> type that's returned by the <xref:Microsoft.Extensions.Logging.ILogger.BeginScope*> method.
+* Is an <xref:System.IDisposable> type that's returned by the <xref:Microsoft.Extensions.Logging.ILogger.BeginScope%2A> method.
 * Lasts until it's disposed.
 
 The following providers support scopes:
@@ -1350,7 +1350,7 @@ The `Console` provider logs output to the console. For more information on viewi
 
 ### Debug
 
-The `Debug` provider writes log output by using the [System.Diagnostics.Debug](/dotnet/api/system.diagnostics.debug) class. Calls to `System.Diagnostics.Debug.WriteLine` write to the `Debug` provider.
+The `Debug` provider writes log output by using the <xref:System.Diagnostics.Debug?displayProperty=fullName> class. Calls to `System.Diagnostics.Debug.WriteLine` write to the `Debug` provider.
 
 On Linux, the `Debug` provider log location is distribution-dependent and may be one of the following:
 
@@ -1738,7 +1738,7 @@ To configure a service that depends on `ILogger<T>`, use constructor injection o
 
 [!code-csharp[](index/samples/3.x/TodoApiSample/Startup2.cs?name=snippet_ConfigureServices&highlight=6-10)]
 
-The preceding highlighted code is a [Func](/dotnet/api/system.func-2) that runs the first time the DI container needs to construct an instance of `MyService`. You can access any of the registered services in this way.
+The preceding highlighted code is a <xref:System.Func%602> that runs the first time the DI container needs to construct an instance of `MyService`. You can access any of the registered services in this way.
 
 <a name="clms"></a>
 
@@ -1771,7 +1771,7 @@ Logging should be so fast that it isn't worth the performance cost of asynchrono
 
 ## Change log levels in a running app
 
-The Logging API doesn't include a scenario to change log levels while an app is running. However, some configuration providers are capable of reloading configuration, which takes immediate effect on logging configuration. For example, the [File Configuration Provider](xref:fundamentals/configuration/index#file-configuration-provider), reloads logging configuration by default. If configuration is changed in code while an app is running, the app can call [IConfigurationRoot.Reload](xref:Microsoft.Extensions.Configuration.IConfigurationRoot.Reload*) to update the app's logging configuration.
+The Logging API doesn't include a scenario to change log levels while an app is running. However, some configuration providers are capable of reloading configuration, which takes immediate effect on logging configuration. For example, the [File Configuration Provider](xref:fundamentals/configuration/index#file-configuration-provider), reloads logging configuration by default. If configuration is changed in code while an app is running, the app can call <xref:Microsoft.Extensions.Configuration.IConfigurationRoot.Reload%2A?displayProperty=nameWithType> to update the app's logging configuration.
 
 ## ILogger and ILoggerFactory
 
