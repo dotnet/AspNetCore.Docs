@@ -27,7 +27,7 @@ This article covers the following areas:
 
 The profile claims can be returned in the `id_token`, which is returned after a successful authentication. The ASP.NET Core client app only requires the profile scope. When using the `id_token` for claims, no extra claims mapping is required.
 
-:::code language="csharp" source="~/security/authentication/claims/sample6/WebRPmapClaims/Program.cs" name="snippet1":::
+[!code-csharp[](~/security/authentication/claims/sample6/WebRPmapClaims/Program.cs?name=snippet1)]
 
 The preceding code require the NuGet package [Microsoft.AspNetCore.Authentication.OpenIdConnect](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.OpenIdConnect).
 
