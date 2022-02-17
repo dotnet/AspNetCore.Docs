@@ -27,37 +27,13 @@ This article covers the following areas:
 
 The profile claims can be returned in the `id_token`, which is returned after a successful authentication. The ASP.NET Core client app only requires the profile scope. When using the `id_token` for claims, no extra claims mapping is required.
 
-[!code-csharp[](~/security/authentication/claims/sample6/WebRPmapClaims/Program.cs?name=snippet1)]
+[!code-csharp[](~/security/authentication/claims/sample6/WebRPmapClaims/Program.cs?name=snippet1&highlight=9-26)]
 
 The preceding code require the NuGet package [Microsoft.AspNetCore.Authentication.OpenIdConnect](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.OpenIdConnect).
 
 Another way to get the user claims is to use the OpenID Connect User Info API. The ASP.NET Core client app uses the `GetClaimsFromUserInfoEndpoint` property to configure this. One important difference from the first settings, is that you must specify the claims you require using the `MapUniqueJsonKey` method, otherwise only the `name`, `given_name` and `email` standard claims will be available in the client app. The claims included in the `id_token` are mapped per default. This is the major difference to the first option. You must explicitly define some of the claims you require.
 
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddAuthentication(options =>
-    {
-        options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-        options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
-    })
-   .AddCookie()
-   .AddOpenIdConnect(options =>
-   {
-       options.SignInScheme = "Cookies";
-       options.Authority = "-your-identity-provider-";
-       options.RequireHttpsMetadata = true;
-       options.ClientId = "-your-clientid-";
-       options.ClientSecret = "-your-client-secret-from-user-secrets-or-keyvault";
-       options.ResponseType = "code";
-       options.UsePkce = true;
-       options.Scope.Add("profile");
-       options.SaveTokens = true;
-       options.GetClaimsFromUserInfoEndpoint = true;
-       options.ClaimActions.MapUniqueJsonKey("preferred_username", "preferred_username");
-       options.ClaimActions.MapUniqueJsonKey("gender", "gender");
-   }); 
-```
+[!code-csharp[](~/security/authentication/claims/sample6/WebRPmapClaims/Program.cs?name=snippet2&highlight=10-31)]
 
 ## Name claim and role claim mapping
 
@@ -65,35 +41,13 @@ The **Name** claim and the **Role** claim are mapped to default properties in th
 
 If the `User.Identity.Name` has no value or the roles are missing, please check the values in the returned claims and set the `NameClaimType` and the `RoleClaimType` values. The returned claims from the client authentication can be viewed in the HTTP context.
 
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddAuthentication(options =>
-    {
-        options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-        options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
-    })
-   .AddCookie()
-   .AddOpenIdConnect(options =>
-   {
-       // other options...
-       options.TokenValidationParameters = new TokenValidationParameters
-       {
-         NameClaimType = "email", 
-         // RoleClaimType = "role"
-       };
-   });
-```
+[!code-csharp[](~/security/authentication/claims/sample6/WebRPmapClaims/Program.cs?name=snippet_name&highlight=10-24)]
 
 ## Claims namespaces, default namespaces
 
 ASP.NET Core adds default namespaces to some known claims, which might not be required in the app. Optionally, disable these added namespaces and use the exact claims that the OpenID Connect server created.
 
-```csharp
-public void Configure(IApplicationBuilder app)
-{
-    JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
-```
+[!code-csharp[](~/security/authentication/claims/sample6/WebRPmapClaims/Program.cs?name=snippet_NS&highlight=31)]
 
 ## Extend or add custom claims using `IClaimsTransformation`
 
