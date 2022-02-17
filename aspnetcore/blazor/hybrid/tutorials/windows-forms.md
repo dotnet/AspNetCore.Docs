@@ -30,9 +30,13 @@ If the **.NET desktop development** workload isn't installed, use the Visual Stu
 
 ## Create a Windows Forms Blazor project
 
-Start Visual Studio 2022 Preview. Select **Create a new project**.
+Start Visual Studio 2022 Preview.
 
-In the **Create a new project** dialog, select the C# project template **Windows Forms App** (C#) and select the **Next** button:
+In the Start Window, select **Create a new project**:
+
+:::image type="content" source="windows-forms/_static/new-solution.png" alt-text="Create a new solution in Visual Studio.":::
+
+In the **Create a new project** dialog, filter the **Project type** drop-down to **Desktop**. Select the C# project template for **Windows Forms App** and select the **Next** button:
 
 :::image type="content" source="windows-forms/_static/create-project.png" alt-text="Create a new project in Visual Studio.":::
 
@@ -40,7 +44,9 @@ In the **Configure your new project** dialog, set the **Project name** to **`Win
 
 :::image type="content" source="windows-forms/_static/configure-project.png" alt-text="Configure the project.":::
 
-In the **Additional information** dialog, select the framework version, which must be .NET 6.0 or later. Select the **Create** button.
+In the **Additional information** dialog, select the framework version, which must be .NET 6.0 or later. Select the **Create** button:
+
+:::image type="content" source="windows-forms/_static/additional-information.png" alt-text="The Additional Information dialog.":::
 
 Use [NuGet Package Manager](/nuget/consume-packages/install-use-packages-visual-studio) to install the [`Microsoft.AspNetCore.Components.WebView.WindowsForms`](https://nuget.org/packages/Microsoft.AspNetCore.Components.WebView.WindowsForms) preview NuGet package.
 
@@ -74,7 +80,7 @@ Add a `wwwroot` folder to the project.
 
 Add an `index.html` file to the `wwwroot` folder with the following markup.
 
-`wwwroot\index.html`:
+`wwwroot/index.html`:
 
 ```html
 <!DOCTYPE html>
