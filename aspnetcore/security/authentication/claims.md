@@ -51,32 +51,14 @@ ASP.NET Core adds default namespaces to some known claims, which might not be re
 
 ## Extend or add custom claims using `IClaimsTransformation`
 
-The `IClaimsTransformation` interface can be used to add extra claims to the `ClaimsPrincipal` class. The interface requires a single method `TransformAsync`. This method might get called multiple times. Only add a new claim if it does not already exist in the `ClaimsPrincipal`. A `ClaimsIdentity` is created to add the new claims and this can be added to the `ClaimsPrincipal`.
+The <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> interface can be used to add extra claims to the <xref:System.Security.Claims.ClaimsPrincipal> class. The interface requires a single method <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation.TransformAsync%2A>. This method might get called multiple times. Only add a new claim if it does not already exist in the `ClaimsPrincipal`. A `ClaimsIdentity` is created to add the new claims and this can be added to the `ClaimsPrincipal`.
+
+[!code-csharp[](~/security/authentication/claims/sample6/WebRPmapClaims/MyClaimsTransformation.cs)]
+
+The <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> interface and the `MyClaimsTransformation` class can be added in the ConfigureServices method as a service.
 
 ```csharp
-public class MyClaimsTransformation : IClaimsTransformation
-{
-    public Task<ClaimsPrincipal> TransformAsync(ClaimsPrincipal principal)
-    {
-       ClaimsIdentity claimsIdentity = new ClaimsIdentity();
-       var claimType = "myNewClaim";
-       if (!principal.HasClaim(claim => claim.Type == claimType))
-       {		   
-          claimsIdentity.AddClaim(new Claim(claimType, "myClaimValue"));
-       }
-
-       principal.AddIdentity(claimsIdentity);
-       return Task.FromResult(principal);
-    }
-}
-```
-
-The `IClaimsTransformation` interface and the `MyClaimsTransformation` class can be added in the ConfigureServices method as a service.
-
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddTransient<IClaimsTransformation, MyClaimsTransformation>();
+services.AddTransient<IClaimsTransformation, MyClaimsTransformation>();
 ```
 
 ## Extend or add custom claims in ASP.NET Core Identity
