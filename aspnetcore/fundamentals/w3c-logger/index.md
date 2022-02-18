@@ -5,7 +5,7 @@ description: Learn how to create server logs in the W3C standard format.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: wigodbe
 ms.date: 01/21/2022
-no-loc: ["Blazor Hybrid", Home, Privacy, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/w3c-logger/index
 ---
 
