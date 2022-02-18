@@ -102,7 +102,7 @@ In other hosting scenarios, such as GitHub Pages and IIS sub-apps, the app base 
 
   **The trailing slash is required.**
 
-  In the **`Server`** project, call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> in the app's request pipeline (`Program.cs`):
+  In the **`Server`** project, call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> ***early*** in the app's request processing pipeline (`Program.cs`) to configure the base path for any following middleware that interacts with the request path:
 
   ```csharp
   app.UsePathBase("/CoolApp");
@@ -118,7 +118,7 @@ In other hosting scenarios, such as GitHub Pages and IIS sub-apps, the app base 
 
     **The trailing slash is required.**
 
-  * Option 2: Call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> in the app's request pipeline (`Program.cs`):
+  * Option 2: Call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> ***early*** in the app's request processing pipeline (`Program.cs`) to configure the base path for any following middleware that interacts with the request path:
 
     ```csharp
     app.UsePathBase("/CoolApp");
@@ -304,7 +304,7 @@ In other hosting scenarios, such as GitHub Pages and IIS sub-apps, the app base 
 
   **The trailing slash is required.**
 
-  In the **`Server`** project, call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> in the app's request pipeline (`Startup.cs`):
+  In the **`Server`** project, call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> ***early*** in the app's request processing pipeline (`Startup.cs`) to configure the base path for any following middleware that interacts with the request path:
 
   ```csharp
   app.UsePathBase("/CoolApp");
@@ -320,7 +320,7 @@ In other hosting scenarios, such as GitHub Pages and IIS sub-apps, the app base 
 
     **The trailing slash is required.**
 
-  * Option 2: Call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> in the app's request pipeline (`Startup.cs`):
+  * Option 2: Call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> ***early*** in the app's request processing pipeline (`Startup.cs`) to configure the base path for any following middleware that interacts with the request path:
 
     ```csharp
     app.UsePathBase("/CoolApp");
@@ -497,7 +497,7 @@ In other hosting scenarios, such as GitHub Pages and IIS sub-apps, the app base 
 
   **The trailing slash is required.**
 
-  In the **`Server`** project, call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> in the app's request pipeline (`Startup.cs`):
+  In the **`Server`** project, call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> ***early*** in the app's request processing pipeline (`Startup.cs`) to configure the base path for any following middleware that interacts with the request path:
 
   ```csharp
   app.UsePathBase("/CoolApp");
@@ -513,7 +513,7 @@ In other hosting scenarios, such as GitHub Pages and IIS sub-apps, the app base 
 
     **The trailing slash is required.**
 
-  * Option 2: Call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> in the app's request pipeline (`Startup.cs`):
+  * Option 2: Call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> ***early*** in the app's request processing pipeline (`Startup.cs`) to configure the base path for any following middleware that interacts with the request path:
 
     ```csharp
     app.UsePathBase("/CoolApp");
