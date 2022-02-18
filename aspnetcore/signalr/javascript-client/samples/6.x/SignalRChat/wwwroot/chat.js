@@ -15,8 +15,8 @@
     // </snippet_ReceiveMessage>
 
     document.getElementById("send").addEventListener("click", async () => {
-        const user = document.getElementById("user").value;
-        const message = document.getElementById("message").value;
+        const user = document.getElementById("userInput").value;
+        const message = document.getElementById("messageInput").value;
 
         // <snippet_Invoke>
         try {

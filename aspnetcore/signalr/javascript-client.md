@@ -167,7 +167,7 @@ connection.onreconnecting(error => {
 
     const li = document.createElement("li");
     li.textContent = `Connection lost due to error "${error}". Reconnecting.`;
-    document.getElementById("messagesList").appendChild(li);
+    document.getElementById("messageList").appendChild(li);
 });
 ```
 
@@ -185,7 +185,7 @@ connection.onreconnected(connectionId => {
 
     const li = document.createElement("li");
     li.textContent = `Connection reestablished. Connected with connectionId "${connectionId}".`;
-    document.getElementById("messagesList").appendChild(li);
+    document.getElementById("messageList").appendChild(li);
 });
 ```
 
@@ -218,7 +218,7 @@ connection.onclose(error => {
 
     const li = document.createElement("li");
     li.textContent = `Connection closed due to error "${error}". Try refreshing this page to restart the connection.`;
-    document.getElementById("messagesList").appendChild(li);
+    document.getElementById("messageList").appendChild(li);
 });
 ```
 
@@ -477,7 +477,7 @@ connection.onreconnecting(error => {
 
     const li = document.createElement("li");
     li.textContent = `Connection lost due to error "${error}". Reconnecting.`;
-    document.getElementById("messagesList").appendChild(li);
+    document.getElementById("messageList").appendChild(li);
 });
 ```
 
@@ -496,7 +496,7 @@ connection.onreconnected(connectionId => {
 
     const li = document.createElement("li");
     li.textContent = `Connection reestablished. Connected with connectionId "${connectionId}".`;
-    document.getElementById("messagesList").appendChild(li);
+    document.getElementById("messageList").appendChild(li);
 });
 ```
 
@@ -526,7 +526,7 @@ connection.onclose(error => {
 
     const li = document.createElement("li");
     li.textContent = `Connection closed due to error "${error}". Try refreshing this page to restart the connection.`;
-    document.getElementById("messagesList").appendChild(li);
+    document.getElementById("messageList").appendChild(li);
 });
 ```
 
