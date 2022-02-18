@@ -13,7 +13,7 @@ public class TimerService : IDisposable
         this.logger = logger;
     }
 
-    public async void Start()
+    public async Task Start()
     {
         if (timer is null)
         {
