@@ -298,7 +298,7 @@ A policy check can also be [performed in code with procedural logic](xref:blazor
     [CascadingParameter]
     private Task<AuthenticationState> authenticationStateTask { get; set; }
 
-    private async void CheckPolicy()
+    private async Task CheckPolicy()
     {
         var user = (await authenticationStateTask).User;
 
@@ -840,7 +840,7 @@ A policy check can also be [performed in code with procedural logic](xref:blazor
     [CascadingParameter]
     private Task<AuthenticationState> authenticationStateTask { get; set; }
 
-    private async void CheckPolicy()
+    private async Task CheckPolicy()
     {
         var user = (await authenticationStateTask).User;
 
