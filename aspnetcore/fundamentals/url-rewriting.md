@@ -175,7 +175,7 @@ Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRewrite*> to 
 
 Original Request: `/rewrite-rule/1234/5678`
 
-![Browser window with developer tools tracking the request and response](url-rewriting/_static/add_rewrite.png)
+![Browser window with developer tools tracking the request and response: Add rewrite](url-rewriting/_static/add_rewrite.png)
 
 The carat (`^`) at the beginning of the expression means that matching starts at the beginning of the URL path.
 
@@ -267,7 +267,7 @@ The sample app rewrites requests from `/iis-rules-rewrite/(.*)` to `/rewritten?i
 
 Original Request: `/iis-rules-rewrite/1234`
 
-![Browser window with developer tools tracking the request and response](url-rewriting/_static/add_iis_url_rewrite.png)
+![Browser window with developer tools tracking the request and response: Add IIS URL rewrite](url-rewriting/_static/add_iis_url_rewrite.png)
 
 If you have an active IIS Rewrite Module with server-level rules configured that would impact your app in undesirable ways, you can disable the IIS Rewrite Module for an app. For more information, see [Disabling IIS modules](xref:host-and-deploy/iis/modules#disabling-iis-modules).
 
@@ -529,7 +529,7 @@ Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRewrite*> to 
 
 Original Request: `/rewrite-rule/1234/5678`
 
-![Browser window with developer tools tracking the request and response](url-rewriting/_static/add_rewrite.png)
+![Add rewrite: Browser window with developer tools tracking the request and response](url-rewriting/_static/add_rewrite.png)
 
 The carat (`^`) at the beginning of the expression means that matching starts at the beginning of the URL path.
 
@@ -621,7 +621,7 @@ The sample app rewrites requests from `/iis-rules-rewrite/(.*)` to `/rewritten?i
 
 Original Request: `/iis-rules-rewrite/1234`
 
-![Browser window with developer tools tracking the request and response](url-rewriting/_static/add_iis_url_rewrite.png)
+![Add IIS URL rewrite: Browser window with developer tools tracking the request and response](url-rewriting/_static/add_iis_url_rewrite.png)
 
 If you have an active IIS Rewrite Module with server-level rules configured that would impact your app in undesirable ways, you can disable the IIS Rewrite Module for an app. For more information, see [Disabling IIS modules](xref:host-and-deploy/iis/modules#disabling-iis-modules).
 
