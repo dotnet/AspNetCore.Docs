@@ -988,7 +988,9 @@ Placeholders:
 
 In most cases, don't disable integrity checking. Disabling integrity checking doesn't solve the underlying problem that has caused the unexpected responses and results in losing the benefits listed earlier.
 
-There may be cases where the web server can't be relied upon to return consistent responses, and you have no choice but to disable integrity checks. To disable integrity checks, add the following to a property group in the Blazor WebAssembly project's `.csproj` file:
+There may be cases where the web server can't be relied upon to return consistent responses, and you have no choice but to temporarily disable integrity checks until the underlying problem is resolved.
+
+To disable integrity checks, add the following to a property group in the Blazor WebAssembly app's project file (`.csproj`):
 
 ```xml
 <BlazorCacheBootResources>false</BlazorCacheBootResources>
@@ -998,6 +1000,14 @@ There may be cases where the web server can't be relied upon to return consisten
 
 > [!NOTE]
 > The `BlazorCacheBootResources` property doesn't disable integrity checks for [Progressive Web Applications (PWAs)](xref:blazor/progressive-web-app). For guidance pertaining to PWAs, see the [Disable integrity checking for PWAs](#disable-integrity-checking-for-pwas) section.
+
+We can't provide an exhaustive list of scenarios where disabling integrity checking is required. Servers can answer a request in arbitrary ways outside of the scope of the Blazor framework. The framework provides the `BlazorCacheBootResources` setting to make the app runnable at the cost of *losing a guarantee of integrity that the app can provide*. Again, we don't recommend disabling integrity checking, especially for production deployments. Developers should seek to solve the underlying integrity problem that's causing integrity checking to fail.
+
+A few general cases that can cause integrity issues are:
+
+* Running on HTTP where integrity can't be checked.
+* If your deployment process modifies the files after publish in any way.
+* If your host modifies the files in any way.
 
 ### Disable integrity checking for PWAs
 
@@ -1833,7 +1843,9 @@ Placeholders:
 
 In most cases, don't disable integrity checking. Disabling integrity checking doesn't solve the underlying problem that has caused the unexpected responses and results in losing the benefits listed earlier.
 
-There may be cases where the web server can't be relied upon to return consistent responses, and you have no choice but to disable integrity checks. To disable integrity checks, add the following to a property group in the Blazor WebAssembly project's `.csproj` file:
+There may be cases where the web server can't be relied upon to return consistent responses, and you have no choice but to temporarily disable integrity checks until the underlying problem is resolved.
+
+To disable integrity checks, add the following to a property group in the Blazor WebAssembly app's project file (`.csproj`):
 
 ```xml
 <BlazorCacheBootResources>false</BlazorCacheBootResources>
@@ -1843,6 +1855,14 @@ There may be cases where the web server can't be relied upon to return consisten
 
 > [!NOTE]
 > The `BlazorCacheBootResources` property doesn't disable integrity checks for [Progressive Web Applications (PWAs)](xref:blazor/progressive-web-app). For guidance pertaining to PWAs, see the [Disable integrity checking for PWAs](#disable-integrity-checking-for-pwas) section.
+
+We can't provide an exhaustive list of scenarios where disabling integrity checking is required. Servers can answer a request in arbitrary ways outside of the scope of the Blazor framework. The framework provides the `BlazorCacheBootResources` setting to make the app runnable at the cost of *losing a guarantee of integrity that the app can provide*. Again, we don't recommend disabling integrity checking, especially for production deployments. Developers should seek to solve the underlying integrity problem that's causing integrity checking to fail.
+
+A few general cases that can cause integrity issues are:
+
+* Running on HTTP where integrity can't be checked.
+* If your deployment process modifies the files after publish in any way.
+* If your host modifies the files in any way.
 
 ### Disable integrity checking for PWAs
 
@@ -2678,7 +2698,9 @@ Placeholders:
 
 In most cases, don't disable integrity checking. Disabling integrity checking doesn't solve the underlying problem that has caused the unexpected responses and results in losing the benefits listed earlier.
 
-There may be cases where the web server can't be relied upon to return consistent responses, and you have no choice but to disable integrity checks. To disable integrity checks, add the following to a property group in the Blazor WebAssembly project's `.csproj` file:
+There may be cases where the web server can't be relied upon to return consistent responses, and you have no choice but to temporarily disable integrity checks until the underlying problem is resolved.
+
+To disable integrity checks, add the following to a property group in the Blazor WebAssembly app's project file (`.csproj`):
 
 ```xml
 <BlazorCacheBootResources>false</BlazorCacheBootResources>
@@ -2688,6 +2710,14 @@ There may be cases where the web server can't be relied upon to return consisten
 
 > [!NOTE]
 > The `BlazorCacheBootResources` property doesn't disable integrity checks for [Progressive Web Applications (PWAs)](xref:blazor/progressive-web-app). For guidance pertaining to PWAs, see the [Disable integrity checking for PWAs](#disable-integrity-checking-for-pwas) section.
+
+We can't provide an exhaustive list of scenarios where disabling integrity checking is required. Servers can answer a request in arbitrary ways outside of the scope of the Blazor framework. The framework provides the `BlazorCacheBootResources` setting to make the app runnable at the cost of *losing a guarantee of integrity that the app can provide*. Again, we don't recommend disabling integrity checking, especially for production deployments. Developers should seek to solve the underlying integrity problem that's causing integrity checking to fail.
+
+A few general cases that can cause integrity issues are:
+
+* Running on HTTP where integrity can't be checked.
+* If your deployment process modifies the files after publish in any way.
+* If your host modifies the files in any way.
 
 ### Disable integrity checking for PWAs
 
