@@ -6,7 +6,7 @@ description: Learn how to use the ASP.NET Core Component Tag Helper to render Ra
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: mvc
 ms.date: 10/29/2020
-no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/views/tag-helpers/builtin-th/component-tag-helper
 ---
 # Component Tag Helper in ASP.NET Core

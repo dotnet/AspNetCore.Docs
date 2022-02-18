@@ -5,7 +5,7 @@ description: Learn how to optimize static resources in an ASP.NET Core web appli
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 03/14/2021
-no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: client-side/bundling-and-minification
 ---
 # Bundle and minify static assets in ASP.NET Core

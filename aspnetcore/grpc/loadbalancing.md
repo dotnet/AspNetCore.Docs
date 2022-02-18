@@ -5,7 +5,7 @@ description: Learn how to make scalable, high-performance gRPC apps with client-
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 08/07/2021
-no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, "service config"]
+no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, "service config"]
 uid: grpc/loadbalancing
 ---
 # gRPC client-side load balancing

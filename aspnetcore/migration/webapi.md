@@ -5,7 +5,7 @@ description: Learn how to migrate a web API implementation from ASP.NET 4.x Web 
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 01/31/2022
-no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: migration/webapi
 ---
 # Migrate from ASP.NET Web API to ASP.NET Core

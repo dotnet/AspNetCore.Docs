@@ -5,7 +5,7 @@ description: Overview of caching in ASP.NET Core
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.date: 1/11/2022
-no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: performance/caching/overview
 ---
 # Overview of caching in ASP.NET Core

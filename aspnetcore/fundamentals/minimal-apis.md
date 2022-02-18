@@ -5,7 +5,7 @@ description: Provides an overview of minimal APIs in ASP.NET Core 6.0.
 ms.author: riande
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 01/27/2022
-no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/minimal-apis
 ---
 

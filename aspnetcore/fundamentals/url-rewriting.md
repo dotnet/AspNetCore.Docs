@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 08/16/2019
-no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/url-rewriting
 ---
 # URL Rewriting Middleware in ASP.NET Core
@@ -117,7 +117,7 @@ A round trip is made to the server when a URL is *redirected*.
 
 Original Request: `/redirect-rule/1234/5678`
 
-![Browser window with developer tools tracking the requests and responses](url-rewriting/_static/add_redirect.png)
+![Browser window with developer tools tracking the requests and responses: Add redirect](url-rewriting/_static/add_redirect.png)
 
 The part of the expression contained within parentheses is called a *capture group*. The dot (`.`) of the expression means *match any character*. The asterisk (`*`) indicates *match the preceding character zero or more times*. Therefore, the last two path segments of the URL, `1234/5678`, are captured by capture group `(.*)`. Any value you provide in the request URL after `redirect-rule/` is captured by this single capture group.
 
@@ -161,11 +161,11 @@ The sample app is capable of demonstrating how to use `AddRedirectToHttps` or `A
 
 Original Request using `AddRedirectToHttps(301, 5001)`: `http://localhost:5000/secure`
 
-![Browser window with developer tools tracking the requests and responses](url-rewriting/_static/add_redirect_to_https.png)
+![Browser window with developer tools tracking the requests and responses: Add redirect to HTTPS](url-rewriting/_static/add_redirect_to_https.png)
 
 Original Request using `AddRedirectToHttpsPermanent`: `http://localhost:5000/secure`
 
-![Browser window with developer tools tracking the requests and responses](url-rewriting/_static/add_redirect_to_https_permanent.png)
+![Browser window with developer tools tracking the requests and responses: Add redirect to HTTPS permanent](url-rewriting/_static/add_redirect_to_https_permanent.png)
 
 ### URL rewrite
 
@@ -175,7 +175,7 @@ Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRewrite*> to 
 
 Original Request: `/rewrite-rule/1234/5678`
 
-![Browser window with developer tools tracking the request and response](url-rewriting/_static/add_rewrite.png)
+![Browser window with developer tools tracking the request and response: Add rewrite](url-rewriting/_static/add_rewrite.png)
 
 The carat (`^`) at the beginning of the expression means that matching starts at the beginning of the URL path.
 
@@ -219,7 +219,7 @@ The sample app redirects requests from `/apache-mod-rules-redirect/(.\*)` to `/r
 
 Original Request: `/apache-mod-rules-redirect/1234`
 
-![Browser window with developer tools tracking the requests and responses](url-rewriting/_static/add_apache_mod_redirect.png)
+![Browser window with developer tools tracking the requests and responses: Add Apache mod redirect](url-rewriting/_static/add_apache_mod_redirect.png)
 
 The middleware supports the following Apache mod_rewrite server variables:
 
@@ -267,7 +267,7 @@ The sample app rewrites requests from `/iis-rules-rewrite/(.*)` to `/rewritten?i
 
 Original Request: `/iis-rules-rewrite/1234`
 
-![Browser window with developer tools tracking the request and response](url-rewriting/_static/add_iis_url_rewrite.png)
+![Browser window with developer tools tracking the request and response: Add IIS URL rewrite](url-rewriting/_static/add_iis_url_rewrite.png)
 
 If you have an active IIS Rewrite Module with server-level rules configured that would impact your app in undesirable ways, you can disable the IIS Rewrite Module for an app. For more information, see [Disabling IIS modules](xref:host-and-deploy/iis/modules#disabling-iis-modules).
 
@@ -471,7 +471,7 @@ A round trip is made to the server when a URL is *redirected*.
 
 Original Request: `/redirect-rule/1234/5678`
 
-![Browser window with developer tools tracking the requests and responses](url-rewriting/_static/add_redirect.png)
+![Add redirect: Browser window with developer tools tracking the requests and responses](url-rewriting/_static/add_redirect.png)
 
 The part of the expression contained within parentheses is called a *capture group*. The dot (`.`) of the expression means *match any character*. The asterisk (`*`) indicates *match the preceding character zero or more times*. Therefore, the last two path segments of the URL, `1234/5678`, are captured by capture group `(.*)`. Any value you provide in the request URL after `redirect-rule/` is captured by this single capture group.
 
@@ -515,11 +515,11 @@ The sample app is capable of demonstrating how to use `AddRedirectToHttps` or `A
 
 Original Request using `AddRedirectToHttps(301, 5001)`: `http://localhost:5000/secure`
 
-![Browser window with developer tools tracking the requests and responses](url-rewriting/_static/add_redirect_to_https.png)
+![Add redirect to HTTPS: Browser window with developer tools tracking the requests and responses](url-rewriting/_static/add_redirect_to_https.png)
 
 Original Request using `AddRedirectToHttpsPermanent`: `http://localhost:5000/secure`
 
-![Browser window with developer tools tracking the requests and responses](url-rewriting/_static/add_redirect_to_https_permanent.png)
+![Add redirect to HTTPS permanent: Browser window with developer tools tracking the requests and responses](url-rewriting/_static/add_redirect_to_https_permanent.png)
 
 ### URL rewrite
 
@@ -529,7 +529,7 @@ Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRewrite*> to 
 
 Original Request: `/rewrite-rule/1234/5678`
 
-![Browser window with developer tools tracking the request and response](url-rewriting/_static/add_rewrite.png)
+![Add rewrite: Browser window with developer tools tracking the request and response](url-rewriting/_static/add_rewrite.png)
 
 The carat (`^`) at the beginning of the expression means that matching starts at the beginning of the URL path.
 
@@ -573,7 +573,7 @@ The sample app redirects requests from `/apache-mod-rules-redirect/(.\*)` to `/r
 
 Original Request: `/apache-mod-rules-redirect/1234`
 
-![Browser window with developer tools tracking the requests and responses](url-rewriting/_static/add_apache_mod_redirect.png)
+![Add Apache mod redirect: Browser window with developer tools tracking the requests and responses](url-rewriting/_static/add_apache_mod_redirect.png)
 
 The middleware supports the following Apache mod_rewrite server variables:
 
@@ -621,7 +621,7 @@ The sample app rewrites requests from `/iis-rules-rewrite/(.*)` to `/rewritten?i
 
 Original Request: `/iis-rules-rewrite/1234`
 
-![Browser window with developer tools tracking the request and response](url-rewriting/_static/add_iis_url_rewrite.png)
+![Add IIS URL rewrite: Browser window with developer tools tracking the request and response](url-rewriting/_static/add_iis_url_rewrite.png)
 
 If you have an active IIS Rewrite Module with server-level rules configured that would impact your app in undesirable ways, you can disable the IIS Rewrite Module for an app. For more information, see [Disabling IIS modules](xref:host-and-deploy/iis/modules#disabling-iis-modules).
 
@@ -700,11 +700,11 @@ The values of the parameters in the sample app for the `extension` and the `newP
 
 Original Request: `/image.png`
 
-![Browser window with developer tools tracking the requests and responses for image.png](url-rewriting/_static/add_redirect_png_requests.png)
+![For image.png: Browser window with developer tools tracking the requests and responses](url-rewriting/_static/add_redirect_png_requests.png)
 
 Original Request: `/image.jpg`
 
-![Browser window with developer tools tracking the requests and responses for image.jpg](url-rewriting/_static/add_redirect_jpg_requests.png)
+![For image.jpg: Browser window with developer tools tracking the requests and responses](url-rewriting/_static/add_redirect_jpg_requests.png)
 
 ## Regex examples
 

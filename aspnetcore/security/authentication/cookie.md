@@ -5,7 +5,7 @@ description: Learn how to use cookie authentication without ASP.NET Core Identit
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.date: 1/1/2022
-no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/cookie
 ---
 # Use cookie authentication without ASP.NET Core Identity

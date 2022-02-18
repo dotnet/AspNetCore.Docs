@@ -5,7 +5,7 @@ description: Learn how views handle the app's data presentation and user interac
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.date: 12/05/2019
-no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/views/overview
 ---
 # Views in ASP.NET Core MVC

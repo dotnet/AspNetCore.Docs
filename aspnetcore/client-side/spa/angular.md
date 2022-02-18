@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: stevesa
 ms.custom: mvc
 ms.date: 02/06/2020
-no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: spa/angular
 ---
 # Use the Angular project template with ASP.NET Core
