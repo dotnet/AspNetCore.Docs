@@ -102,6 +102,14 @@ When testing and troubleshooting a hosted Blazor solution, make sure that you're
 * Use **Debug** > **Start Debugging** from the menu.
 * Press <kbd>F5</kbd>.
 
+### Inspect the user
+
+The [ASP.NET Core framework's test assets](https://github.com/dotnet/aspnetcore/tree/main/src/Components/WebAssembly/testassets) include a [Blazor WebAssembly client app](https://github.com/dotnet/aspnetcore/tree/main/src/Components/WebAssembly/testassets/Wasm.Authentication.Client) with a `User` component that can be useful in troubleshooting. The `User` component can be used directly in apps or serve as the basis for further customization:
+
+[`User` test component in the `dotnet/aspnetcore` GitHub repository](https://github.com/dotnet/aspnetcore/blob/main/src/Components/WebAssembly/testassets/Wasm.Authentication.Client/Pages/User.razor)
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
 ### Inspect the content of a JSON Web Token (JWT)
 
 To decode a JSON Web Token (JWT), use Microsoft's [jwt.ms](https://jwt.ms/) tool. Values in the UI never leave your browser.
