@@ -6,7 +6,7 @@ ms.author: riande
 ms.date: 1/7/2022
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: contperf-fy21q2
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, Index]
+no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, Index, Models]
 uid: tutorials/razor-pages/model
 ---
 # Part 2, add a model to a Razor Pages app in ASP.NET Core
