@@ -27,7 +27,9 @@ This tutorial shows you how to build and run a .NET MAUI Blazor app. You learn h
 
 ## Create a .NET MAUI Blazor app
 
-Launch Visual Studio 2022 Preview. In the start window, select **Create a new project**:
+Launch Visual Studio 2022 Preview.
+
+In the Start Window, select **Create a new project**:
 
 :::image type="content" source="maui/_static/new-solution.png" alt-text="New solution.":::
 
