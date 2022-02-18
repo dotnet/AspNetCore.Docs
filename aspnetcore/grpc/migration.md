@@ -5,7 +5,7 @@ description: Learn how to move an existing C-core based gRPC app to run on top o
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 01/18/2022
-no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/migration
 ---
 # Migrate gRPC from C-core to gRPC for .NET

@@ -5,7 +5,7 @@ description: Learn about the supported platforms for gRPC on .NET.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 3/11/2021
-no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/supported-platforms
 ---
 # gRPC on .NET supported platforms

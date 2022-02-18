@@ -5,7 +5,7 @@ description: Learn how to use gRPC health checks in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: jamesnk
 ms.date: 01/16/2022
-no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/health-checks
 ---
 # gRPC health checks in ASP.NET Core

@@ -5,7 +5,7 @@ description: Learn how to build a minimal web API with ASP.NET Core.
 ms.author: riande
 ms.date: 11/12/2021
 monikerRange: '>= aspnetcore-6.0'
-no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, Models]
+no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, Models]
 uid: tutorials/min-web-api
 ---
 

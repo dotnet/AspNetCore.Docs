@@ -4,7 +4,7 @@ author: wadepickett
 description: Understand when to use the various ASP.NET Core web UI technologies Microsoft provides and supports.
 ms.author: wpickett
 ms.date: 07/29/2021
-no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/choose-web-ui
 ---
 # Choose an ASP.NET Core web UI

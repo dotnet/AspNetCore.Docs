@@ -5,7 +5,7 @@ description: Part 3 of Razor Pages and Entity Framework tutorial series.
 ms.author: riande
 ms.custom: mvc
 ms.date: 3/3/2021
-no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: data/ef-rp/sort-filter-page
 ---
 

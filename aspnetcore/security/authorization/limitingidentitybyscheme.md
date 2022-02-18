@@ -5,7 +5,7 @@ description: This article explains how to limit identity to a specific scheme wh
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.date: 1/11/2022
-no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authorization/limitingidentitybyscheme
 ---
 # Authorize with a specific scheme in ASP.NET Core

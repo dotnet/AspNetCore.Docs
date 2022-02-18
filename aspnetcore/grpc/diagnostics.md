@@ -5,7 +5,7 @@ description: Learn how to gather diagnostics from your gRPC app on .NET.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 10/01/2021
-no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/diagnostics
 ---
 # Logging and diagnostics in gRPC on .NET

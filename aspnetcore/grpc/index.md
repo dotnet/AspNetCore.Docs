@@ -5,7 +5,7 @@ description: Learn about gRPC services with Kestrel server and the ASP.NET Core 
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 09/28/2021
-no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/index
 ---
 # Introduction to gRPC on .NET

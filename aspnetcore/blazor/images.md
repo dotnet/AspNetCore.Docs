@@ -5,7 +5,7 @@ description: Learn how to work with images in ASP.NET Core Blazor apps.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: taparik
 ms.custom: mvc
-no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 ms.date: 11/09/2021
 uid: blazor/images
 ---

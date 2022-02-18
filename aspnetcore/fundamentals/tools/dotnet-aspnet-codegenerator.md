@@ -5,7 +5,7 @@ description: The dotnet-aspnet-codegenerator command scaffolds ASP.NET Core proj
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 11/16/2020
-no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/tools/dotnet-aspnet-codegenerator
 ---
 

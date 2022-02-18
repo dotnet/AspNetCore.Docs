@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: scaddie
 ms.custom: "mvc, seodec18"
 ms.date: 11/09/2021
-no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mongo-app
 ---
 # Create a web API with ASP.NET Core and MongoDB

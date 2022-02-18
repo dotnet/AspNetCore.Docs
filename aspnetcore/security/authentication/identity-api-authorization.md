@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 10/27/2020
-no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/identity/spa
 ---
 # Authentication and authorization for SPAs

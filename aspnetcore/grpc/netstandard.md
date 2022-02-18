@@ -5,7 +5,7 @@ description: Learn how to use the .NET gRPC client in apps and libraries that su
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 3/11/2021
-no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/netstandard
 ---
 # Use gRPC client with .NET Standard 2.0
