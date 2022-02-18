@@ -5,7 +5,7 @@ description: Learn about the new features in ASP.NET Core 6.0.
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/29/2021
-no-loc: [Home, Privacy, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, Kestrel]
+no-loc: ["Blazor Hybrid", Home, Privacy, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, Kestrel]
 uid: aspnetcore-6.0
 ---
 # What's new in ASP.NET Core 6.0

@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-5.0'
 ms.author: jamesnk
 ms.custom: mvc
 ms.date: 11/30/2020
-no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, "Route-to-code"]
+no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, "Route-to-code"]
 uid: web-api/route-to-code
 ---
 # Basic JSON APIs with Route-to-code in ASP.NET Core

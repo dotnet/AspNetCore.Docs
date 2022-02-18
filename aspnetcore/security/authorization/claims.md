@@ -5,7 +5,7 @@ description: Learn how to add claims checks for authorization in an ASP.NET Core
 ms.author: riande
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/26/2021
-no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authorization/claims
 ---
 # Claims-based authorization in ASP.NET Core

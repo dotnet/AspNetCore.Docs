@@ -5,7 +5,7 @@ description: Learn how to configure certificate authentication in ASP.NET Core f
 monikerRange: '>= aspnetcore-3.1'
 ms.author: bdorrans
 ms.date: 01/10/2022
-no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/certauth
 ---
 # Configure certificate authentication in ASP.NET Core

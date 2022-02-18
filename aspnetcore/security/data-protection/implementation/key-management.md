@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn implementation details of the ASP.NET Core Data Protection key management APIs.
 ms.author: riande
 ms.date: 10/14/2016
-no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/data-protection/implementation/key-management
 ---
 # Key management in ASP.NET Core

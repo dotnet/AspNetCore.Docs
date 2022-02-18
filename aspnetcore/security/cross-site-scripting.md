@@ -5,7 +5,7 @@ description: Learn about Cross-Site Scripting (XSS) and techniques for addressin
 ms.author: riande
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 2/15/2020
-no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/cross-site-scripting
 ---
 # Prevent Cross-Site Scripting (XSS) in ASP.NET Core

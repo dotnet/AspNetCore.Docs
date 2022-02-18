@@ -6,7 +6,7 @@ description: Learn how to use the ASP.NET Core Persist Component State Tag Helpe
 monikerRange: '>= aspnetcore-6.0'
 ms.custom: mvc
 ms.date: 07/16/2021
-no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper
 ---
 # Persist Component State Tag Helper in ASP.NET Core
