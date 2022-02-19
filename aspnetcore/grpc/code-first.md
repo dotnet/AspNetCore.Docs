@@ -98,6 +98,8 @@ A code-first gRPC client is created from a channel. Just like a regular client, 
 
 :::moniker range="< aspnetcore-6.0"
 
+Code-first gRPC uses .NET types to define service and message contracts.
+
 Code-first is a good choice when an entire system uses .NET:
 
 * .NET service and data contract types can be shared between the .NET server and clients.
