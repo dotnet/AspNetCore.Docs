@@ -273,6 +273,7 @@ ASP.NET Core ships with the following middleware components. The *Order* column 
 * [Lifetime and registration options](xref:fundamentals/dependency-injection#lifetime-and-registration-options) contains a complete sample of middleware with *scoped*, *transient*, and *singleton* lifetime services.
 * <xref:fundamentals/middleware/write>
 * <xref:test/middleware>
+* [Configure gRPC-Web in ASP.NET Core](grpc/browser#configure-grpc-web-in-aspnet-core)
 * <xref:migration/http-modules>
 * <xref:fundamentals/startup>
 * <xref:fundamentals/request-features>
