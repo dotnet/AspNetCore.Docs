@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using BlazorServerSignalRApp.Data;
-using BlazorServerSignalRApp.Server.Hubs;
 using Microsoft.AspNetCore.ResponseCompression;
+using BlazorServerSignalRApp.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
