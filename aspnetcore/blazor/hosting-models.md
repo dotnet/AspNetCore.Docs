@@ -5,7 +5,7 @@ description: Understand the different Blazor hosting models and how to pick whic
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/10/2022
+ms.date: 02/22/2022
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/hosting-models
 ---
@@ -88,8 +88,6 @@ Blazor WebAssembly includes support for trimming unused code from .NET Core fram
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-6.0"
-
 ## Blazor Hybrid
 
 [!INCLUDE[](~/blazor/includes/blazor-hybrid-preview-notice.md)]
@@ -121,26 +119,58 @@ For more information on Microsoft native client frameworks, see the following re
 * [Windows Presentation Foundation (WPF)](/dotnet/desktop/wpf/overview/)
 * [Windows Forms](/dotnet/desktop/winforms/overview/)
 
-:::moniker-end
-
 ## Which Blazor hosting model should I choose?
 
-Select the Blazor hosting model for app development based on the desired features and specifications for the app. The following table shows the primary considerations for selecting the hosting model to help you decide which one you should use.
+[!INCLUDE[](~/blazor/includes/blazor-hybrid-preview-notice.md)]
+
+Select the Blazor hosting model for app development based on the desired features and specifications for the app. The following table shows the primary considerations for selecting the hosting model to help you decide which one you should use. Following the table, each feature is discussed in further detail.
 
 | Feature | Blazor Server | Blazor WebAssembly (WASM) | Blazor Hybrid |
 | --- | :---: | :---: | :---: |
 | Complete .NET API compatibility                | ✔️ | ❌ | ✔️ |
-| Direct access to server sources                | ✔️ | ❌ | ❌ |
+| Direct access to server and network resources  | ✔️ | ❌ | ❌ |
 | Small payload size with fast initial load time | ✔️ | ❌ | ✔️ |
-| App code secure and private on the server      | ✔️ | ❌&dagger; | ❌ |
+| App code secure and private on the server      | ✔️ | ❌&dagger; | ❌&dagger; |
 | Run apps offline once downloaded               | ❌ | ✔️ | ✔️ |
 | Static site hosting                            | ❌ | ✔️ | ❌ |
 | Offloads processing to clients                 | ❌ | ✔️ | ✔️ |
 | Full access to native client capabilities      | ❌ | ❌ | ✔️ |
 
-&dagger;Blazor WebAssembly apps can use server-hosted APIs to access functionality that must be kept private and secure.
+&dagger;Blazor WebAssembly and Blazor Hybrid apps can use server-hosted APIs to access functionality that must be kept private and secure.
 
-After you choose the app's hosting model, you can generate a Blazor Server or Blazor WebAssembly app from a Blazor project template to begin development. For more information, see [Blazor template options](xref:blazor/tooling#blazor-template-options) in the *Tooling* article. To create a Blazor Hybrid app, see the articles under <xref:blazor/hybrid/tutorials/index>.
+After you choose the app's hosting model, you can generate a Blazor Server or Blazor WebAssembly app from a Blazor project template. For more information, see [Blazor template options](xref:blazor/tooling#blazor-template-options) in the *Tooling* article. To create a Blazor Hybrid app, see the articles under <xref:blazor/hybrid/tutorials/index>.
+
+### Complete .NET API compatibility
+
+Blazor Server and Blazor Hybrid apps have complete .NET API compatibility, while Blazor WebAssembly apps are limited to a subset of .NET APIs. When an app's specification requires a particular .NET API, or set of APIs, that are unavailable to Blazor WebAssembly apps, then choose Blazor Server or Blazor Hybrid.
+
+### Direct access to server and network resources
+
+Blazor Server apps have direct access to server and network resources where the app is executing. Because Blazor WebAssembly and Blazor Hybrid apps execute on a client, they don't have direct access to server resources. Blazor WebAssembly and Blazor Hybrid apps can access server and network resources *indirectly* via protected server-based APIs.
+
+### Small payload size with fast initial load time
+
+Blazor Server and Blazor Hybrid apps have relatively small payload sizes with faster initial load times. When fast initial startup time is desired, consider adopting Blazor Server or Blazor Hybrid.
+
+### App code secure and private on the server
+
+Maintaining app code securely and privately on the server is a built-in feature of Blazor Server. Blazor WebAssembly and Blazor Hybrid apps can use server-hosted APIs to access functionality that must be kept private and secure, but building and maintaining separate server APIs can be time consuming costly when the server APIs are only used by one or a few apps.
+
+### Run apps offline once downloaded
+
+Blazor WebAssembly and Blazor Hybrid apps can run offline, which is particularly useful when clients aren't able to connect to the Internet, such as while travelling or in remote environments where the Internet isn't available. Blazor Server apps fail to run when the connection to the server is lost. If app must run offline, Blazor WebAssembly is the best choice.
+
+### Static site hosting
+
+Static site hosting is possible with Blazor WebAssembly apps because they're downloaded to clients as a set of static files. Blazor WebAssembly apps don't require a server to execute server-side code in order to download and run. Blazor WebAssembly apps can be delivered via a [Content Delivery Network (CDN)](https://developer.mozilla.org/docs/Glossary/CDN) (for example, [Azure CDN](https://azure.microsoft.com/services/cdn/)). Blazor Server apps require a server to execute app and framework code. Although Blazor Hybrid apps are compiled into one or more self-contained deployment assets, the assets are usually provided to clients through a third-party app store.
+
+### Offloads processing to clients
+
+Blazor WebAssembly and Blazor Hybrid apps execute on clients and thus offload processing to clients. Blazor Server apps execute on a server, so server resource demand increases with both the size/complexity of the app and the number of users. When it's possible to offload most or all of an app's processing to clients is possible, Blazor WebAssembly is the best choice.
+
+### Full access to native client capabilities
+
+Blazor Hybrid apps have full access to native client capabilities. In Blazor Hybrid apps, Razor components run directly in the native app, not on [WebAssembly](https://developer.mozilla.org/docs/WebAssembly). Razor components have access to native API via .NET native app frameworks. When client capabilities are a requirement, Blazor Hybrid is the best choice among the hosting models.
 
 ## Additional resources
 
