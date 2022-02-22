@@ -1128,7 +1128,7 @@ Include the following `<script>` tag in the app's HTML ***before*** the Blazor s
 
 ```html
 <script src="/_content/Microsoft.AspNetCore.Components.CustomElements/BlazorCustomElements.js"></script>
-````
+```
 
 Use the custom element with any web framework. For example, the preceding counter custom element is used in a React app with the following markup:
 
