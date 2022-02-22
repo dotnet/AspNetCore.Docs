@@ -190,7 +190,8 @@ In the following example, the `[FromQuery]` attribute indicates that the `discon
 
 The `[ApiController]` attribute applies inference rules for the default data sources of action parameters. These rules save you from having to identify binding sources manually by applying attributes to the action parameters. The binding source inference rules behave as follows:
 
-* `[FromBody]` is inferred for complex type parameters. An exception to the `[FromBody]` inference rule is any complex, built-in type with a special meaning, such as <xref:Microsoft.AspNetCore.Http.IFormCollection> and <xref:System.Threading.CancellationToken>. The binding source inference code ignores those special types.
+* `[FromServices]` is inferred for complex type parameters registered in the DI Container.
+* `[FromBody]` is inferred for complex type parameters not registered in the DI Container. An exception to the `[FromBody]` inference rule is any complex, built-in type with a special meaning, such as <xref:Microsoft.AspNetCore.Http.IFormCollection> and <xref:System.Threading.CancellationToken>. The binding source inference code ignores those special types.
 * `[FromForm]` is inferred for action parameters of type <xref:Microsoft.AspNetCore.Http.IFormFile> and <xref:Microsoft.AspNetCore.Http.IFormFileCollection>. It's not inferred for any simple or user-defined types.
 * `[FromRoute]` is inferred for any action parameter name matching a parameter in the route template. When more than one route matches an action parameter, any route value is considered `[FromRoute]`.
 * `[FromQuery]` is inferred for any other action parameters.
@@ -221,6 +222,14 @@ When an action has more than one parameter bound from the request body, an excep
   [HttpPost]
   public IActionResult Action3([FromBody] Product product, [FromBody] Order order)
   ```
+
+### FromServices inference notes
+
+`[FromServices]` inference could, in rare cases, affect the application if a parameter type is registered in the Dependency Injection container and also expected to be bound from a different source, eg. `FromBody`.
+
+In those cases, is possible to avoid the inference adding the desired binding source attribute to the Action parameter, or disabling the `[FromServices]` inference rule, setting <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.DisableImplicitFromServicesParameters> to `true` in `Startup.ConfigureServices`:
+
+[!code-csharp[](index/samples/3.x/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=2,10)]
 
 ### Disable inference rules
 
