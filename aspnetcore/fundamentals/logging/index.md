@@ -2,6 +2,7 @@
 title: Logging in .NET Core and ASP.NET Core
 author: rick-anderson
 description: Learn how to use the logging framework provided by the Microsoft.Extensions.Logging NuGet package.
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/28/2020
@@ -896,7 +897,7 @@ To create a custom logger, see [Implement a custom logging provider in .NET](/do
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 By [Kirk Larkin](https://twitter.com/serpent5), [Juergen Gutsch](https://github.com/JuergenGutsch), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -1826,7 +1827,7 @@ If the `traceparent` http request header is set, the `ParentId` in the log scope
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 ## Create a custom logger
 
@@ -1837,4 +1838,5 @@ To create a custom logger, see [Implement a custom logging provider in .NET](/do
 * <xref:fundamentals/logging/loggermessage>
 * Logging bugs should be created in the [github.com/dotnet/runtime/](https://github.com/dotnet/runtime/issues) repo.
 * <xref:blazor/fundamentals/logging>
+
 :::moniker-end

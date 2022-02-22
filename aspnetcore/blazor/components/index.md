@@ -1124,6 +1124,12 @@ Register a root component as a custom element:
   > [!NOTE]
   > The preceding code example requires a namespace for the app's components (for example, `using BlazorSample.Pages;`) in the `Program.cs` file.
 
+Include the following `<script>` tag in the app's HTML ***before*** the Blazor script tag:
+
+```html
+<script src="/_content/Microsoft.AspNetCore.Components.CustomElements/BlazorCustomElements.js"></script>
+```
+
 Use the custom element with any web framework. For example, the preceding counter custom element is used in a React app with the following markup:
 
 ```html
