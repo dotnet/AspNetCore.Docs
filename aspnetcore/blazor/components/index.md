@@ -1124,9 +1124,7 @@ Register a root component as a custom element:
   > [!NOTE]
   > The preceding code example requires a namespace for the app's components (for example, `using BlazorSample.Pages;`) in the `Program.cs` file.
 
-Include the following script tag.
-
-`Pages/Layout.cshtml` (Blazor Server) or `wwwroot/index.html` (Blazor WebAssembly):
+Include the following `<script>` tag in the app's HTML ***before*** the Blazor script tag:
 
 ```html
 <script src="/_content/Microsoft.AspNetCore.Components.CustomElements/BlazorCustomElements.js"></script>
