@@ -83,7 +83,7 @@ For Visual Studio for Mac, see the .NET 5 version of this tutorial.
    ```dotnetcli
    dotnet new webapi -o TodoApi
    cd TodoApi
-   dotnet add package Microsoft.EntityFrameworkCore.InMemory --prerelease
+   dotnet add package Microsoft.EntityFrameworkCore.InMemory
    code -r ../TodoApi
    ```
 
@@ -123,6 +123,8 @@ Open a command terminal in the project folder and run the following command:
 -->
 
 ---
+
+[!INCLUDE[](~/includes/package-reference.md)]
 
 ### Test the project
 
@@ -343,10 +345,10 @@ Make sure that all of your changes so far are saved.
 Run the following commands from the project folder, that is, the `TodoApi` folder:
 
 ```dotnetcli
-dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --prerelease
-dotnet add package Microsoft.EntityFrameworkCore.Design --prerelease
-dotnet add package Microsoft.EntityFrameworkCore.SqlServer --prerelease
-dotnet tool install -g dotnet-aspnet-codegenerator --version 6.0.1
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet tool install -g dotnet-aspnet-codegenerator
 dotnet aspnet-codegenerator controller -name TodoItemsController -async -api -m TodoItem -dc TodoContext -outDir Controllers
 ```
 
@@ -709,6 +711,8 @@ Open a command terminal in the project folder and run the following command:
 
 ---
 
+[!INCLUDE[](~/includes/package-reference.md)]
+
 ### Test the project
 
 The project template creates a `WeatherForecast` API with support for [Swagger](xref:tutorials/web-api-help-pages-using-swagger).
@@ -935,7 +939,7 @@ The preceding code is an HTTP POST method, as indicated by the [`[HttpPost]`](xr
 
 For more information, see [Attribute routing with Http[Verb] attributes](xref:mvc/controllers/routing#verb).
 
-The <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction*> method:
+The <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction%2A> method:
 
 * Returns an [HTTP 201 status code](https://developer.mozilla.org/docs/Web/HTTP/Status/201) if successful. HTTP 201 is the standard response for an HTTP POST method that creates a new resource on the server.
 * Adds a [Location](https://developer.mozilla.org/docs/Web/HTTP/Headers/Location) header to the response. The `Location` header specifies the [URI](https://developer.mozilla.org/docs/Glossary/URI) of the newly created to-do item. For more information, see [10.2.2 201 Created](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
@@ -1230,6 +1234,8 @@ Open a command terminal in the project folder and run the following command:
 
 ---
 
+[!INCLUDE[](~/includes/package-reference.md)]
+
 ### Test the API
 
 The project template creates a `WeatherForecast` API. Call the `Get` method from a browser to test the app.
@@ -1423,7 +1429,7 @@ The preceding code is an HTTP POST method, as indicated by the [`[HttpPost]`](xr
 
 For more information, see [Attribute routing with Http[Verb] attributes](xref:mvc/controllers/routing#attribute-routing-with-httpverb-attributes).
 
-The <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction*> method:
+The <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction%2A> method:
 
 * Returns an HTTP 201 status code if successful. HTTP 201 is the standard response for an HTTP POST method that creates a new resource on the server.
 * Adds a [Location](https://developer.mozilla.org/docs/Web/HTTP/Headers/Location) header to the response. The `Location` header specifies the [URI](https://developer.mozilla.org/docs/Glossary/URI) of the newly created to-do item. For more information, see [10.2.2 201 Created](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
