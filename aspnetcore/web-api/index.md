@@ -83,7 +83,7 @@ One approach to using the attribute on more than one controller is to create a c
 
 ### Attribute on an assembly
 
-The `[ApiController]` attribute can be applied to an assembly. Annotation in this manner applies web API behavior to all controllers in the assembly. There's no way to opt out for individual controllers. Apply the assembly-level attribute to the namespace declaration surrounding the `Startup` class:
+The `[ApiController]` attribute can be applied to an assembly. When the `[ApiController]` attribute is applied to an assembly, all controllers in the assembly have the `[ApiController]` attribute applied. There's no way to opt out for individual controllers. Apply the assembly-level attribute to the `Program.cs` file:
 
 [!code-csharp[](index/samples/6.x/Program.cs?name=snippet_global&highlight=1-3)]
 

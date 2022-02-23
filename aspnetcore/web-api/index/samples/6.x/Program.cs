@@ -19,7 +19,6 @@ app.Run();
 #elif GLOBAL
 #region snippet_global
 using Microsoft.AspNetCore.Mvc;
-
 [assembly: ApiController]
 
 var builder = WebApplication.CreateBuilder(args);
