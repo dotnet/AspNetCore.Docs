@@ -625,8 +625,12 @@ For more information, see [TryUpdateModelAsync](xref:data/ef-rp/crud#TryUpdateMo
 
 This attribute's name follows the pattern of model binding attributes that specify a data source. But it's not about binding data from a value provider. It gets an instance of a type from the [dependency injection](xref:fundamentals/dependency-injection) container. Its purpose is to provide an alternative to constructor injection for when you need a service only if a particular method is called.
 
-> [!TIP]
-> The binding will fail when obtaining an instance of a type, **not registered**, from the dependency injection container. If the service is expected to be **optional** then the parameter must be marked as nullable, including `?`, or set a default value. In this case, the method is responsible for the required check before the usage.
+If an instance of the type isn't registered in the dependency injection container, the app throws an exception when attempting to bind the parameter. To make the parameter optional, use one of the following approaches:
+
+* Make the parameter nullable.
+* Set a default value for the parameter.
+
+For nullable parameters, ensure that the parameter isn't `null` before accessing it.
 
 ## Additional resources
 
