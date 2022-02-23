@@ -1,5 +1,5 @@
 ---
-title: Test components in ASP.NET Core Blazor
+title: Test Razor components in ASP.NET Core Blazor
 author: guardrex
 description: Learn how to test components in Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
@@ -9,7 +9,7 @@ ms.date: 11/09/2021
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/test
 ---
-# Test components in ASP.NET Core Blazor
+# Test Razor components in ASP.NET Core Blazor
 
 By: [Egil Hansen](https://egilhansen.com/)
 
@@ -17,7 +17,7 @@ By: [Egil Hansen](https://egilhansen.com/)
 
 Testing is an important aspect of building stable and maintainable software.
 
-To test a Blazor component, the *Component Under Test* (CUT) is:
+To test a Razor component, the *Component Under Test* (CUT) is:
 
 * Rendered with relevant input for the test.
 * Depending on the type of test performed, possibly subject to interaction or modification. For example, event handlers can be triggered, such as an `onclick` event for a button.
@@ -25,7 +25,7 @@ To test a Blazor component, the *Component Under Test* (CUT) is:
 
 ## Test approaches
 
-Two common approaches for testing Blazor components are end-to-end (E2E) testing and unit testing:
+Two common approaches for testing Razor components are end-to-end (E2E) testing and unit testing:
 
 * **Unit testing**: [Unit tests](/dotnet/core/testing/) are written with a unit testing library that provides:
   * Component rendering.
@@ -37,7 +37,7 @@ Two common approaches for testing Blazor components are end-to-end (E2E) testing
 
 * **E2E testing**: A test runner runs a Blazor app containing the CUT and automates a browser instance. The testing tool inspects and interacts with the CUT through the browser. [Playwright for .NET](https://playwright.dev/dotnet/) is an example of an E2E testing framework that can be used with Blazor apps.
 
-In unit testing, only the Blazor component (Razor/C#) is involved. External dependencies, such as services and JS interop, must be mocked. In E2E testing, the Blazor component and all of its auxiliary infrastructure are part of the test, including CSS, JS, and the DOM and browser APIs.
+In unit testing, only the Razor component (Razor/C#) is involved. External dependencies, such as services and JS interop, must be mocked. In E2E testing, the Razor component and all of its auxiliary infrastructure are part of the test, including CSS, JS, and the DOM and browser APIs.
 
 *Test scope* describes how extensive the tests are. Test scope typically has an influence on the speed of the tests. Unit tests run on a subset of the app's subsystems and usually execute in milliseconds. E2E tests, which test a broad group of the app's subsystems, can take several seconds to complete. 
 
@@ -49,13 +49,13 @@ E2E testing involves launching multiple processes, network and disk I/O, and oth
 
 The following table summarizes the difference between the two testing approaches.
 
-| Capability                       | Unit testing                     | E2E testing                             |
-| -------------------------------- | -------------------------------- | --------------------------------------- |
-| Test scope                       | Blazor component (Razor/C#) only | Blazor component (Razor/C#) with CSS/JS |
-| Test execution time              | Milliseconds                     | Seconds                                 |
-| Access to the component instance | Yes                              | No                                      |
-| Sensitive to the environment     | No                               | Yes                                     |
-| Reliability                      | More reliable                    | Less reliable                           |
+| Capability                       | Unit testing                    | E2E testing                            |
+| -------------------------------- | ------------------------------- | -------------------------------------- |
+| Test scope                       | Razor component (Razor/C#) only | Razor component (Razor/C#) with CSS/JS |
+| Test execution time              | Milliseconds                    | Seconds                                |
+| Access to the component instance | Yes                             | No                                     |
+| Sensitive to the environment     | No                              | Yes                                    |
+| Reliability                      | More reliable                   | Less reliable                          |
 
 ## Choose the most appropriate test approach
 
@@ -63,15 +63,15 @@ Consider the scenario when choosing the type of testing to perform. Some conside
 
 | Scenario | Suggested approach | Remarks |
 | -------- | ------------------ | ------- |
-| Component without JS interop logic | Unit testing | When there's no dependency on JS interop in a Blazor component, the component can be tested without access to JS or the DOM API. In this scenario, there are no disadvantages to choosing unit testing. |
+| Component without JS interop logic | Unit testing | When there's no dependency on JS interop in a Razor component, the component can be tested without access to JS or the DOM API. In this scenario, there are no disadvantages to choosing unit testing. |
 | Component with simple JS interop logic | Unit testing | It's common for components to query the DOM or trigger animations through JS interop. Unit testing is usually preferred in this scenario, since it's straightforward to mock the JS interaction through the <xref:Microsoft.JSInterop.IJSRuntime> interface. |
-| Component that depends on complex JS code | Unit testing and separate JS testing | If a component uses JS interop to call a large or complex JS library but the interaction between the Blazor component and JS library is simple, then the best approach is likely to treat the component and JS library or code as two separate parts and test each individually. Test the Blazor component with a unit testing library, and test the JS with a JS testing library. |
-| Component with logic that depends on JS manipulation of the browser DOM | E2E testing | When a component's functionality is dependent on JS and its manipulation of the DOM, verify both the JS and Blazor code together in an E2E test. This is the approach that the Blazor framework developers have taken with Blazor's browser rendering logic, which has tightly-coupled C# and JS code. The C# and JS code must work together to correctly render Blazor components in a browser.
+| Component that depends on complex JS code | Unit testing and separate JS testing | If a component uses JS interop to call a large or complex JS library but the interaction between the Razor component and JS library is simple, then the best approach is likely to treat the component and JS library or code as two separate parts and test each individually. Test the Razor component with a unit testing library, and test the JS with a JS testing library. |
+| Component with logic that depends on JS manipulation of the browser DOM | E2E testing | When a component's functionality is dependent on JS and its manipulation of the DOM, verify both the JS and Blazor code together in an E2E test. This is the approach that the Blazor framework developers have taken with Blazor's browser rendering logic, which has tightly-coupled C# and JS code. The C# and JS code must work together to correctly render Razor components in a browser.
 | Component that depends on 3rd party class library with hard-to-mock dependencies | E2E testing | When a component's functionality is dependent on a 3rd party class library that has hard-to-mock dependencies, such as JS interop, E2E testing might be the only option to test the component. |
 
 ## Test components with bUnit
 
-There's no official Microsoft testing framework for Blazor, but the community-driven project [bUnit](https://github.com/egil/bUnit) provides a convenient way to unit test Blazor components.
+There's no official Microsoft testing framework for Blazor, but the community-driven project [bUnit](https://github.com/egil/bUnit) provides a convenient way to unit test Razor components.
 
 > [!NOTE]
 > bUnit is a third-party testing library and isn't supported or maintained by Microsoft.
@@ -147,7 +147,7 @@ The following actions take place at each step of the test:
 
 Testing is an important aspect of building stable and maintainable software.
 
-To test a Blazor component, the *Component Under Test* (CUT) is:
+To test a Razor component, the *Component Under Test* (CUT) is:
 
 * Rendered with relevant input for the test.
 * Depending on the type of test performed, possibly subject to interaction or modification. For example, event handlers can be triggered, such as an `onclick` event for a button.
@@ -155,7 +155,7 @@ To test a Blazor component, the *Component Under Test* (CUT) is:
 
 ## Test approaches
 
-Two common approaches for testing Blazor components are end-to-end (E2E) testing and unit testing:
+Two common approaches for testing Razor components are end-to-end (E2E) testing and unit testing:
 
 * **Unit testing**: [Unit tests](/dotnet/core/testing/) are written with a unit testing library that provides:
   * Component rendering.
@@ -167,7 +167,7 @@ Two common approaches for testing Blazor components are end-to-end (E2E) testing
 
 * **E2E testing**: A test runner runs a Blazor app containing the CUT and automates a browser instance. The testing tool inspects and interacts with the CUT through the browser. [Playwright for .NET](https://playwright.dev/dotnet/) is an example of an E2E testing framework that can be used with Blazor apps.
 
-In unit testing, only the Blazor component (Razor/C#) is involved. External dependencies, such as services and JS interop, must be mocked. In E2E testing, the Blazor component and all of its auxiliary infrastructure are part of the test, including CSS, JS, and the DOM and browser APIs.
+In unit testing, only the Razor component (Razor/C#) is involved. External dependencies, such as services and JS interop, must be mocked. In E2E testing, the Razor component and all of its auxiliary infrastructure are part of the test, including CSS, JS, and the DOM and browser APIs.
 
 *Test scope* describes how extensive the tests are. Test scope typically has an influence on the speed of the tests. Unit tests run on a subset of the app's subsystems and usually execute in milliseconds. E2E tests, which test a broad group of the app's subsystems, can take several seconds to complete. 
 
@@ -179,13 +179,13 @@ E2E testing involves launching multiple processes, network and disk I/O, and oth
 
 The following table summarizes the difference between the two testing approaches.
 
-| Capability                       | Unit testing                     | E2E testing                             |
-| -------------------------------- | -------------------------------- | --------------------------------------- |
-| Test scope                       | Blazor component (Razor/C#) only | Blazor component (Razor/C#) with CSS/JS |
-| Test execution time              | Milliseconds                     | Seconds                                 |
-| Access to the component instance | Yes                              | No                                      |
-| Sensitive to the environment     | No                               | Yes                                     |
-| Reliability                      | More reliable                    | Less reliable                           |
+| Capability                       | Unit testing                    | E2E testing                            |
+| -------------------------------- | ------------------------------- | -------------------------------------- |
+| Test scope                       | Razor component (Razor/C#) only | Razor component (Razor/C#) with CSS/JS |
+| Test execution time              | Milliseconds                    | Seconds                                |
+| Access to the component instance | Yes                             | No                                     |
+| Sensitive to the environment     | No                              | Yes                                    |
+| Reliability                      | More reliable                   | Less reliable                          |
 
 ## Choose the most appropriate test approach
 
@@ -193,15 +193,15 @@ Consider the scenario when choosing the type of testing to perform. Some conside
 
 | Scenario | Suggested approach | Remarks |
 | -------- | ------------------ | ------- |
-| Component without JS interop logic | Unit testing | When there's no dependency on JS interop in a Blazor component, the component can be tested without access to JS or the DOM API. In this scenario, there are no disadvantages to choosing unit testing. |
+| Component without JS interop logic | Unit testing | When there's no dependency on JS interop in a Razor component, the component can be tested without access to JS or the DOM API. In this scenario, there are no disadvantages to choosing unit testing. |
 | Component with simple JS interop logic | Unit testing | It's common for components to query the DOM or trigger animations through JS interop. Unit testing is usually preferred in this scenario, since it's straightforward to mock the JS interaction through the <xref:Microsoft.JSInterop.IJSRuntime> interface. |
-| Component that depends on complex JS code | Unit testing and separate JS testing | If a component uses JS interop to call a large or complex JS library but the interaction between the Blazor component and JS library is simple, then the best approach is likely to treat the component and JS library or code as two separate parts and test each individually. Test the Blazor component with a unit testing library, and test the JS with a JS testing library. |
-| Component with logic that depends on JS manipulation of the browser DOM | E2E testing | When a component's functionality is dependent on JS and its manipulation of the DOM, verify both the JS and Blazor code together in an E2E test. This is the approach that the Blazor framework developers have taken with Blazor's browser rendering logic, which has tightly-coupled C# and JS code. The C# and JS code must work together to correctly render Blazor components in a browser.
+| Component that depends on complex JS code | Unit testing and separate JS testing | If a component uses JS interop to call a large or complex JS library but the interaction between the Razor component and JS library is simple, then the best approach is likely to treat the component and JS library or code as two separate parts and test each individually. Test the Razor component with a unit testing library, and test the JS with a JS testing library. |
+| Component with logic that depends on JS manipulation of the browser DOM | E2E testing | When a component's functionality is dependent on JS and its manipulation of the DOM, verify both the JS and Blazor code together in an E2E test. This is the approach that the Blazor framework developers have taken with Blazor's browser rendering logic, which has tightly-coupled C# and JS code. The C# and JS code must work together to correctly render Razor components in a browser.
 | Component that depends on 3rd party class library with hard-to-mock dependencies | E2E testing | When a component's functionality is dependent on a 3rd party class library that has hard-to-mock dependencies, such as JS interop, E2E testing might be the only option to test the component. |
 
 ## Test components with bUnit
 
-There's no official Microsoft testing framework for Blazor, but the community-driven project [bUnit](https://github.com/egil/bUnit) provides a convenient way to unit test Blazor components.
+There's no official Microsoft testing framework for Blazor, but the community-driven project [bUnit](https://github.com/egil/bUnit) provides a convenient way to unit test Razor components.
 
 > [!NOTE]
 > bUnit is a third-party testing library and isn't supported or maintained by Microsoft.
@@ -277,7 +277,7 @@ The following actions take place at each step of the test:
 
 Testing is an important aspect of building stable and maintainable software.
 
-To test a Blazor component, the *Component Under Test* (CUT) is:
+To test a Razor component, the *Component Under Test* (CUT) is:
 
 * Rendered with relevant input for the test.
 * Depending on the type of test performed, possibly subject to interaction or modification. For example, event handlers can be triggered, such as an `onclick` event for a button.
@@ -285,7 +285,7 @@ To test a Blazor component, the *Component Under Test* (CUT) is:
 
 ## Test approaches
 
-Two common approaches for testing Blazor components are end-to-end (E2E) testing and unit testing:
+Two common approaches for testing Razor components are end-to-end (E2E) testing and unit testing:
 
 * **Unit testing**: [Unit tests](/dotnet/core/testing/) are written with a unit testing library that provides:
   * Component rendering.
@@ -297,7 +297,7 @@ Two common approaches for testing Blazor components are end-to-end (E2E) testing
 
 * **E2E testing**: A test runner runs a Blazor app containing the CUT and automates a browser instance. The testing tool inspects and interacts with the CUT through the browser. [Playwright for .NET](https://playwright.dev/dotnet/) is an example of an E2E testing framework that can be used with Blazor apps.
 
-In unit testing, only the Blazor component (Razor/C#) is involved. External dependencies, such as services and JS interop, must be mocked. In E2E testing, the Blazor component and all of its auxiliary infrastructure are part of the test, including CSS, JS, and the DOM and browser APIs.
+In unit testing, only the Razor component (Razor/C#) is involved. External dependencies, such as services and JS interop, must be mocked. In E2E testing, the Razor component and all of its auxiliary infrastructure are part of the test, including CSS, JS, and the DOM and browser APIs.
 
 *Test scope* describes how extensive the tests are. Test scope typically has an influence on the speed of the tests. Unit tests run on a subset of the app's subsystems and usually execute in milliseconds. E2E tests, which test a broad group of the app's subsystems, can take several seconds to complete. 
 
@@ -309,13 +309,13 @@ E2E testing involves launching multiple processes, network and disk I/O, and oth
 
 The following table summarizes the difference between the two testing approaches.
 
-| Capability                       | Unit testing                     | E2E testing                             |
-| -------------------------------- | -------------------------------- | --------------------------------------- |
-| Test scope                       | Blazor component (Razor/C#) only | Blazor component (Razor/C#) with CSS/JS |
-| Test execution time              | Milliseconds                     | Seconds                                 |
-| Access to the component instance | Yes                              | No                                      |
-| Sensitive to the environment     | No                               | Yes                                     |
-| Reliability                      | More reliable                    | Less reliable                           |
+| Capability                       | Unit testing                    | E2E testing                            |
+| -------------------------------- | ------------------------------- | -------------------------------------- |
+| Test scope                       | Razor component (Razor/C#) only | Razor component (Razor/C#) with CSS/JS |
+| Test execution time              | Milliseconds                    | Seconds                                |
+| Access to the component instance | Yes                             | No                                     |
+| Sensitive to the environment     | No                              | Yes                                    |
+| Reliability                      | More reliable                   | Less reliable                          |
 
 ## Choose the most appropriate test approach
 
@@ -323,15 +323,15 @@ Consider the scenario when choosing the type of testing to perform. Some conside
 
 | Scenario | Suggested approach | Remarks |
 | -------- | ------------------ | ------- |
-| Component without JS interop logic | Unit testing | When there's no dependency on JS interop in a Blazor component, the component can be tested without access to JS or the DOM API. In this scenario, there are no disadvantages to choosing unit testing. |
+| Component without JS interop logic | Unit testing | When there's no dependency on JS interop in a Razor component, the component can be tested without access to JS or the DOM API. In this scenario, there are no disadvantages to choosing unit testing. |
 | Component with simple JS interop logic | Unit testing | It's common for components to query the DOM or trigger animations through JS interop. Unit testing is usually preferred in this scenario, since it's straightforward to mock the JS interaction through the <xref:Microsoft.JSInterop.IJSRuntime> interface. |
-| Component that depends on complex JS code | Unit testing and separate JS testing | If a component uses JS interop to call a large or complex JS library but the interaction between the Blazor component and JS library is simple, then the best approach is likely to treat the component and JS library or code as two separate parts and test each individually. Test the Blazor component with a unit testing library, and test the JS with a JS testing library. |
-| Component with logic that depends on JS manipulation of the browser DOM | E2E testing | When a component's functionality is dependent on JS and its manipulation of the DOM, verify both the JS and Blazor code together in an E2E test. This is the approach that the Blazor framework developers have taken with Blazor's browser rendering logic, which has tightly-coupled C# and JS code. The C# and JS code must work together to correctly render Blazor components in a browser.
+| Component that depends on complex JS code | Unit testing and separate JS testing | If a component uses JS interop to call a large or complex JS library but the interaction between the Razor component and JS library is simple, then the best approach is likely to treat the component and JS library or code as two separate parts and test each individually. Test the Razor component with a unit testing library, and test the JS with a JS testing library. |
+| Component with logic that depends on JS manipulation of the browser DOM | E2E testing | When a component's functionality is dependent on JS and its manipulation of the DOM, verify both the JS and Blazor code together in an E2E test. This is the approach that the Blazor framework developers have taken with Blazor's browser rendering logic, which has tightly-coupled C# and JS code. The C# and JS code must work together to correctly render Razor components in a browser.
 | Component that depends on 3rd party class library with hard-to-mock dependencies | E2E testing | When a component's functionality is dependent on a 3rd party class library that has hard-to-mock dependencies, such as JS interop, E2E testing might be the only option to test the component. |
 
 ## Test components with bUnit
 
-There's no official Microsoft testing framework for Blazor, but the community-driven project [bUnit](https://github.com/egil/bUnit) provides a convenient way to unit test Blazor components.
+There's no official Microsoft testing framework for Blazor, but the community-driven project [bUnit](https://github.com/egil/bUnit) provides a convenient way to unit test Razor components.
 
 > [!NOTE]
 > bUnit is a third-party testing library and isn't supported or maintained by Microsoft.
