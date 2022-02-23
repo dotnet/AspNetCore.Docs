@@ -13,6 +13,8 @@ uid: spa/react
 
 :::moniker range=">= aspnetcore-6.0"
 
+<!-- This section needs to be updated to 6.0 -->
+
 The updated React project template provides a convenient starting point for ASP.NET Core apps using React and [create-react-app](https://github.com/facebookincubator/create-react-app) (CRA) conventions to implement a rich, client-side user interface (UI).
 
 The template is equivalent to creating both an ASP.NET Core project to act as an API backend, and a standard CRA React project to act as a UI, but with the convenience of hosting both in a single app project that can be built and published as a single unit.

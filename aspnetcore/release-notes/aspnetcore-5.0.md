@@ -147,7 +147,7 @@ Custom validation CSS class attributes are useful when integrating with CSS fram
 
 ### IAsyncDisposable support
 
-Blazor components now support the <xref:System.IAsyncDisposable> interface for the asynchronous release of allocated resources.
+Razor components now support the <xref:System.IAsyncDisposable> interface for the asynchronous release of allocated resources.
 
 ### JavaScript isolation and object references
 

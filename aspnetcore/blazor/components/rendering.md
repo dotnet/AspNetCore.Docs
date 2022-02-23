@@ -1,5 +1,5 @@
 ---
-title: ASP.NET Core Blazor component rendering
+title: ASP.NET Core Razor component rendering
 author: guardrex
 description: Learn about Razor component rendering in ASP.NET Core Blazor apps, including when to call StateHasChanged.
 monikerRange: '>= aspnetcore-3.1'
@@ -9,7 +9,7 @@ ms.date: 11/09/2021
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/rendering
 ---
-# ASP.NET Core Blazor component rendering
+# ASP.NET Core Razor component rendering
 
 :::moniker range=">= aspnetcore-6.0"
 
