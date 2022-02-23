@@ -1,5 +1,5 @@
 ---
-title: ASP.NET Core Blazor component virtualization
+title: ASP.NET Core Razor component virtualization
 author: guardrex
 description: Learn how to use component virtualization in ASP.NET Core Blazor apps.
 monikerRange: '>= aspnetcore-5.0'
@@ -9,7 +9,7 @@ ms.date: 11/09/2021
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/virtualization
 ---
-# ASP.NET Core Blazor component virtualization
+# ASP.NET Core Razor component virtualization
 
 :::moniker range=">= aspnetcore-6.0"
 
