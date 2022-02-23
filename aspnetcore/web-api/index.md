@@ -19,15 +19,15 @@ ASP.NET Core supports creating RESTful services, also known as web APIs, using C
 
 A controller based web API consists of one or more controller classes that derive from <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. The web API project template provides a starter controller:
 
-[!code-csharp[](index/samples/3.x/Controllers/WeatherForecastController.cs?name=snippet_ControllerSignature&highlight=3)]
+[!code-csharp[](index/samples/6.x/Controllers/WeatherForecastController.cs?name=snippet_ControllerSignature&highlight=3)]
 
-Don't create a web API controller by deriving from the <xref:Microsoft.AspNetCore.Mvc.Controller> class. `Controller` derives from `ControllerBase` and adds support for views, so it's for handling web pages, not web API requests. There's an exception to this rule: if you plan to use the same controller for both views and web APIs, derive it from `Controller`.
+Web API controllers should typically derive from <xref:Microsoft.AspNetCore.Mvc.ControllerBase> rather from <xref:Microsoft.AspNetCore.Mvc.Controller>. `Controller` derives from <xref:Microsoft.AspNetCore.Mvc.ControllerBase> and adds support for views, so it's for handling web pages, not web API requests. If the same controller must support views and web APIs, derive from `Controller`.
 
-The `ControllerBase` class provides many properties and methods that are useful for handling HTTP requests. For example, `ControllerBase.CreatedAtAction` returns a 201 status code:
+The `ControllerBase` class provides many properties and methods that are useful for handling HTTP requests. For example, <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction%2A> returns a 201 status code:
 
-[!code-csharp[](index/samples/3.x/Controllers/PetsController.cs?name=snippet_400And201&highlight=10)]
+[!code-csharp[](index/samples/6.x/Controllers/PetsController.cs?name=snippet_400And201&highlight=10)]
 
-Here are some more examples of methods that `ControllerBase` provides.
+The following table contains examples of methods in `ControllerBase`.
 
 |Method   |Notes    |
 |---------|---------|
@@ -43,7 +43,7 @@ For a list of all available methods and properties, see <xref:Microsoft.AspNetCo
 
 The <xref:Microsoft.AspNetCore.Mvc> namespace provides attributes that can be used to configure the behavior of web API controllers and action methods. The following example uses attributes to specify the supported HTTP action verb and any known HTTP status codes that could be returned:
 
-[!code-csharp[](index/samples/3.x/Controllers/PetsController.cs?name=snippet_400And201&highlight=1-3)]
+[!code-csharp[](index/samples/6.x/Controllers/PetsController.cs?name=snippet_400And201&highlight=1-3)]
 
 Here are some more examples of attributes that are available.
 
@@ -71,30 +71,21 @@ The [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) at
 
 The `[ApiController]` attribute can be applied to specific controllers, as in the following example from the project template:
 
-[!code-csharp[](index/samples/3.x/Controllers/WeatherForecastController.cs?name=snippet_ControllerSignature&highlight=2])]
+[!code-csharp[](index/samples/6.x/Controllers/WeatherForecastController.cs?name=snippet_ControllerSignature&highlight=2])]
 
 ### Attribute on multiple controllers
 
 One approach to using the attribute on more than one controller is to create a custom base controller class annotated with the `[ApiController]` attribute. The following example shows a custom base class and a controller that derives from it:
 
-[!code-csharp[](index/samples/3.x/Controllers/MyControllerBase.cs?name=snippet_MyControllerBase)]
+[!code-csharp[](index/samples/6.x/Controllers/MyControllerBase.cs?name=snippet_MyControllerBase)]
 
-[!code-csharp[](index/samples/3.x/Controllers/PetsController.cs?name=snippet_Inherit)]
+[!code-csharp[](index/samples/6.x/Controllers/PetsController.cs?name=snippet_Inherit)]
 
 ### Attribute on an assembly
 
 The `[ApiController]` attribute can be applied to an assembly. Annotation in this manner applies web API behavior to all controllers in the assembly. There's no way to opt out for individual controllers. Apply the assembly-level attribute to the namespace declaration surrounding the `Startup` class:
 
-```csharp
-[assembly: ApiController]
-namespace WebApiSample
-{
-    public class Startup
-    {
-        ...
-    }
-}
-```
+[!code-csharp[](index/samples/6.x/Program.cs?name=snippet_global&highlight=1-3)]
 
 ## Attribute routing requirement
 
