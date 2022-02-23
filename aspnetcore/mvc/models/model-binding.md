@@ -625,6 +625,9 @@ For more information, see [TryUpdateModelAsync](xref:data/ef-rp/crud#TryUpdateMo
 
 This attribute's name follows the pattern of model binding attributes that specify a data source. But it's not about binding data from a value provider. It gets an instance of a type from the [dependency injection](xref:fundamentals/dependency-injection) container. Its purpose is to provide an alternative to constructor injection for when you need a service only if a particular method is called.
 
+> [!TIP]
+> The binding will fail when obtaining an instance of a type, **not registered**, from the dependency injection container. If the service is expected to be **optional** then the parameter must be marked as nullable, including `?`, or set a default value. In this case, the method is responsible for the required check before the usage.
+
 ## Additional resources
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/model-binding/samples) ([how to download](xref:index#how-to-download-a-sample))
