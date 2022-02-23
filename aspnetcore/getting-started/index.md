@@ -26,7 +26,7 @@ At the end, you'll have a working web app running on your local machine.
 
 ## Prerequisites
 
-[!INCLUDE[](~/includes/3.1-SDK.md)]
+[!INCLUDE[](~/includes/6.0-SDK.md)]
 
 ## Create a web app project
 
