@@ -48,7 +48,7 @@ dotnet new webapp -o aspnetcoreapp
 The preceding command:
 
 * Creates a new web app.  
-* The `-o aspnetcoreapp` parameter creates a directory named *aspnetcoreapp* with the source files for the app.
+* The `-o aspnetcoreapp` parameter creates a directory named `aspnetcoreapp` with the source files for the app.
 
 ### Trust the development certificate
 
@@ -99,7 +99,7 @@ After the command shell indicates that the app has started, browse to `https://l
 
 ## Edit a Razor page
 
-Open *Pages/Index.cshtml* and modify and save the page with the following highlighted markup:
+Open `Pages/Index.cshtml` and modify and save the page with the following highlighted markup:
 
 :::code language="cshtml" source="sample/index.cshtml" highlight="9":::
 
