@@ -1,10 +1,11 @@
 ---
 title: Get started with ASP.NET Core
 author: rick-anderson
-description: A short tutorial that creates and runs a basic Hello World app using ASP.NET Core. 
+description: A short tutorial that creates and runs a basic Hello World app using ASP.NET Core.
+monikerRange: ">= aspnetcore-3.1"
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/07/2020
+ms.date: 02/23/2022
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: getting-started
 ---
@@ -22,11 +23,19 @@ You'll learn how to:
 
 At the end, you'll have a working web app running on your local machine.
 
-![Web app home page](_static/home-page.png)
+:::image source="_static/home-page.png" alt-text="Web app home page":::
 
 ## Prerequisites
 
+:::moniker range=">= aspnetcore-6.0"
 [!INCLUDE[](~/includes/6.0-SDK.md)]
+:::moniker-end
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+[!INCLUDE[](~/includes/5.0-SDK.md)]
+:::moniker-end
+:::moniker range="< aspnetcore-5.0"
+[!INCLUDE[](~/includes/3.1-SDK.md)]
+:::moniker-end
 
 ## Create a web app project
 
@@ -53,7 +62,7 @@ dotnet dev-certs https --trust
 
 The preceding command displays the following dialog:
 
-![Security warning dialog](~/getting-started/_static/cert.png)
+:::image source="~/getting-started/_static/cert.png" alt-text="Security warning dialog":::
 
 Select **Yes** if you agree to trust the development certificate.
 
@@ -65,7 +74,7 @@ dotnet dev-certs https --trust
 
 The preceding command displays the following message:
 
-*Trusting the HTTPS development certificate was requested. If the certificate is not already trusted, we will run the following command:* `'sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain <<certificate>>'`
+*Trusting the HTTPS development certificate was requested. If the certificate isn't already trusted, we'll run the following command:* `'sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain <<certificate>>'`
 
 This command might prompt you for your password to install the certificate on the system keychain. Enter your password if you agree to trust the development certificate.
 
@@ -92,7 +101,7 @@ After the command shell indicates that the app has started, browse to `https://l
 
 Open *Pages/Index.cshtml* and modify and save the page with the following highlighted markup:
 
-[!code-cshtml[](sample/index.cshtml?highlight=9)]
+:::code language="cshtml" source="sample/index.cshtml" highlight="9":::
 
 Browse to `https://localhost:5001`, refresh the page, and verify the changes are displayed.
 
