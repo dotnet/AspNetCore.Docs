@@ -77,7 +77,7 @@ A code-first gRPC client uses the service contract to call gRPC services. To cal
 * Add a reference to the shared code-contract project.
 * Add a [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client) package reference.
 
-[!code-csharp[](code-first/samples/6.x/GrpcGreeterClient/Program.cs?highlight=2,4-5)]
+[!code-csharp[](code-first/samples/6.x/GrpcGreeterClient/Program.cs?highlight=12,14-15)]
 
 The preceding code:
 
