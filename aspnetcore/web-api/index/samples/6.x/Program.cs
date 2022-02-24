@@ -69,7 +69,7 @@ app.MapControllers();
 app.Run();
 #endregion
 #elif D400
-#region snippet_d400
+#region snippet_d400D6
 using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -83,19 +83,36 @@ builder.Services.AddControllers()
         options.SuppressMapClientErrors = true;
         options.ClientErrorMapping[StatusCodes.Status404NotFound].Link =
             "https://httpstatuses.com/404";
-   //'ApiBehaviorOptions' does not contain a definition for 'DisableImplicitFromServicesParameters'
-   //and no accessible extension method 'DisableImplicitFromServicesParameters' accepting a first
-   //argument of type 'ApiBehaviorOptions' could be found(are you missing a using directive or an assembly reference ?)  WebApiSample C:\GH\aspnet\docs\3\AspNetCore.Docs\aspnetcore\web - api\index\samples\6.x\Program.cs 86  Active
-
-    //options.DisableImplicitFromServicesParameters = true;
     });
 
+var app = builder.Build();
 
-builder.Services.Configure<ApiBehaviorOptions>(options => {
-  //'ApiBehaviorOptions' does not contain a definition for 'DisableImplicitFromServicesParameters' and no accessible extension method 'DisableImplicitFromServicesParameters' accepting a first argument of type 'ApiBehaviorOptions' could be found(are you missing a using directive or an assembly reference ?)  WebApiSample C:\GH\aspnet\docs\3\AspNetCore.Docs\aspnetcore\web - api\index\samples\6.x\Program.cs 91  Active
-  // options.DisableImplicitFromServicesParameters = true;
-});
+app.UseHttpsRedirection();
 
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.Run();
+#endregion
+// DisableImplicitFromServicesParameters requires .NET 7 SDK preview 2 or later
+#elif D400_D7
+#region snippet_d400D7
+using Microsoft.AspNetCore.Mvc;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllers()
+    .ConfigureApiBehaviorOptions(options =>
+    {
+        options.SuppressConsumesConstraintForFormFileParameters = true;
+        options.SuppressInferBindingSourcesForParameters = true;
+        options.SuppressModelStateInvalidFilter = true;
+        options.SuppressMapClientErrors = true;
+        options.ClientErrorMapping[StatusCodes.Status404NotFound].Link =
+            "https://httpstatuses.com/404";
+        options.DisableImplicitFromServicesParameters = true;
+    });
 
 var app = builder.Build();
 

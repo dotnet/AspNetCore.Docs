@@ -155,8 +155,12 @@ The following example shows how to retrieve an instance of <xref:Microsoft.Exten
 
 To disable the automatic 400 behavior, set the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressModelStateInvalidFilter> property to `true`. Add the following highlighted code in `Startup.ConfigureServices`:
 
-[!code-csharp[](index/samples/6.x/Program.cs?name=snippet_d400&highlight=2-20)]
+[!code-csharp[](index/samples/6.x/Program.cs?name=snippet_d400D6&highlight=2-20)]
 
+<!-- .NET 7 version 
+[!code-csharp[](index/samples/6.x/Program.cs?name=snippet_d400D7&highlight=2-20)]
+
+-->
 ## Binding source parameter inference
 
 A binding source attribute defines the location at which an action parameter's value is found. The following binding source attributes exist:
@@ -218,12 +222,12 @@ When an action has more than one parameter bound from the request body, an excep
 
 `[FromServices]` inference could, in rare cases, affect the app if a parameter type is registered in the Dependency Injection container and also expected to be bound from a different source, eg. `FromBody`.
 
-In .NET 7 and late, it's possible to avoid the inference. For more information, see the .NET 7 version of this document.
+In .NET 7 and later, it's possible to avoid the inference. For more information, see the .NET 7 version of this document.
 
 <!--
 `[FromServices]` inference could, in rare cases, affect the app if a parameter type is registered in the Dependency Injection container and also expected to be bound from a different source, eg. `FromBody`.
 
-In .NET 7 and late, it's possible to avoid the inference adding the desired binding source attribute to the Action parameter, or disabling the `[FromServices]` inference rule, setting `Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.DisableImplicitFromServicesParameters` to `true` in `Program.cs`:
+It's possible to avoid the inference adding the desired binding source attribute to the Action parameter, or disabling the `[FromServices]` inference rule, setting `Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.DisableImplicitFromServicesParameters` to `true` in `Program.cs`:
 
 [!code-csharp[](index/samples/3.x/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=2,10)]
 
@@ -233,7 +237,7 @@ In .NET 7 and late, it's possible to avoid the inference adding the desired bind
 
 To disable binding source inference, set <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressInferBindingSourcesForParameters> to `true`. Add the following code in `Startup.ConfigureServices`:
 
-[!code-csharp[](index/samples/3.x/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=2,5)]
+[!code-csharp[](index/samples/6.x/Program.cs?name=snippet_d400D6&highlight=9)]
 
 ## Multipart/form-data request inference
 
@@ -241,7 +245,7 @@ The `[ApiController]` attribute applies an inference rule when an action paramet
 
 To disable the default behavior, set the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressConsumesConstraintForFormFileParameters> property to `true` in `Startup.ConfigureServices`:
 
-[!code-csharp[](index/samples/3.x/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=2,4)]
+[!code-csharp[](index/samples/6.x/Program.cs?name=snippet_d400D6&highlight=8)]
 
 ## Problem details for error status codes
 
@@ -249,7 +253,7 @@ MVC transforms an error result (a result with status code 400 or higher) to a re
 
 Consider the following code in a controller action:
 
-[!code-csharp[](index/samples/3.x/Controllers/PetsController.cs?name=snippet_ProblemDetailsStatusCode)]
+[!code-csharp[](index/samples/6.x/Controllers/PetsController.cs?name=snippet_ProblemDetailsStatusCode)]
 
 The `NotFound` method produces an HTTP 404 status code with a `ProblemDetails` body. For example:
 
@@ -266,8 +270,7 @@ The `NotFound` method produces an HTTP 404 status code with a `ProblemDetails` b
 
 The automatic creation of a `ProblemDetails` for error status codes is disabled when the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressMapClientErrors%2A> property is set to `true`. Add the following code in `Startup.ConfigureServices`:
 
-
-[!code-csharp[](index/samples/3.x/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=2,7)]
+[!code-csharp[](index/samples/6.x/Program.cs?name=snippet_d400D6&highlight=11)]
 
 <a name="consumes"></a>
 
