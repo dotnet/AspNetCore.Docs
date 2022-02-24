@@ -11,7 +11,7 @@ uid: test/hot-reload
 ---
 # .NET Hot Reload support for ASP.NET Core
 
-.NET Hot Reload applies code changes, including changes to stylesheets, to a running app without restarting the app and without losing app state. Hot Reload is supported for all ASP.NET Core projects.
+.NET Hot Reload applies code changes, including changes to stylesheets, to a running app without restarting the app and without losing app state. Hot Reload is supported for all ASP.NET Core 6.0 and later projects.
 
 Generally, updated code is rerun to take effect with the following conditions:
 
@@ -63,6 +63,8 @@ dotnet watch --no-hot-reload
 
 For more information, see the following resources in the Visual Studio documentation:
 
-* [Visual Studio 2022 version 17.0 RC and Preview Release Notes: .NET Hot Reload](/visualstudio/releases/2022/release-notes-preview#net-hot-reload)
+* YouTube video [.NET 6 Hot Reload in Visual Studio 2022, VS Code, and NOTEPAD?!?](https://www.youtube.com/watch?v=4S3vPzawnoQ)
+* [Introducing the .NET Hot Reload experience for editing code at runtime](https://devblogs.microsoft.com/dotnet/introducing-net-hot-reload/)
+* <!--I can't find hot in that link.[Visual Studio 2022 version 17.0 RC and Preview Release Notes: .NET Hot Reload](/visualstudio/releases/2022/release-notes-preview#net-hot-reload) -->
 * [Updates for Blazor & Razor editors + Hot Reload for ASP.NET](/visualstudio/ide/whats-new-visual-studio-2022#updates-for-blazor--razor-editors--hot-reload-for-aspnet)
 * [Test Execution with Hot Reload](/visualstudio/test/test-execution-with-hot-reload)
