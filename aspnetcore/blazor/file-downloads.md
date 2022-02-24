@@ -138,9 +138,17 @@ In the preceding example, replace the placeholders with the following values:
 
 ## Cross-Origin Resource Sharing (CORS)
 
-Without taking further steps to enable cross-origin requests, downloading files from the same origin (same domain) must pass [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/docs/Web/HTTP/CORS) checks made by the browser.
+Without taking further steps to enable cross-origin requests, downloading files won't pass [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/docs/Web/HTTP/CORS) checks made by the browser.
 
-For more information on CORS with ASP.NET Core apps and Microsoft services that host files for download, see <xref:security/cors>. For more information on CORS with non-ASP.NET Core apps and non-Microsoft services, consult the CORS documentation of external framework or service.
+For more information on CORS with ASP.NET Core apps and other Microsoft products and services that host files for download, see the following resources:
+
+* <xref:security/cors>
+* [Using Azure CDN with CORS (Azure documentation)](/azure/cdn/cdn-cors)
+* [Cross-Origin Resource Sharing (CORS) support for Azure Storage (REST documentation)](/rest/api/storageservices/cross-origin-resource-sharing--cors--support-for-the-azure-storage-services)
+* [Core Cloud Services - Set up CORS for your website and storage assets (Learn Module)](/learn/modules/set-up-cors-website-storage/)
+* [IIS CORS module Configuration Reference (IIS documentation)](/iis/extensions/cors-module/cors-module-configuration-reference)
+
+For more information on CORS with non-ASP.NET Core apps and non-Microsoft services, consult the external framework or service CORS documentation.
 
 ## Security considerations
 
