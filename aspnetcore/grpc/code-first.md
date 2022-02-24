@@ -34,16 +34,23 @@ The first step to creating a code-first gRPC service is defining the code contra
 
 * Create a new project that will be shared by the server and client.
 * Add a [protobuf-net.Grpc](https://www.nuget.org/packages/protobuf-net.Grpc) package reference.
-* Create service and data contract types.
+* Create service and data contract types, such as in the following `Contracts.cs` service contract example:
 
-[!code-csharp[](code-first/samples/6.x/Shared/Contracts.cs?)]
+[!code-csharp[](code-first/samples/6.x/Shared/Contracts.cs)]
 
 The preceding code:
 
 * Defines `HelloRequest` and `HelloReply` messages.
 * Defines the `IGreeterService` contract interface with the unary `SayHelloAsync` gRPC method.
 
-The service contract is implemented on the server and called from the client. Methods defined on service interfaces must match certain signatures depending on whether they're unary, server streaming, client streaming, or bidirectional streaming.
+The service contract is implemented on the server and called from the client.
+
+Methods defined on service interfaces must match certain signatures depending on whether they're:
+
+* Unary
+* Server streaming
+* Client streaming
+* Bidirectional streaming
 
 For more information on defining service contracts, see the [protobuf-net.Grpc getting started documentation](https://protobuf-net.github.io/protobuf-net.Grpc/gettingstarted).
 
@@ -54,18 +61,19 @@ To add gRPC code-first service to an ASP.NET Core app:
 * Add a [protobuf-net.Grpc.AspNetCore](https://www.nuget.org/packages/protobuf-net.Grpc.AspNetCore) package reference.
 * Add a reference to the shared code-contract project.
 
-Create a new `GreeterService.cs` file and implement the `IGreeterService` service interface:
+  The following is a `GrpcGreeter.csproj` example:
+  [!code-csharp[](code-first/samples/6.x/GrpcGreeter/Program.cs?highlight=9-11,13-15)]
 
-[!code-csharp[](code-first/samples/6.x/GrpcGreeter/Services/GreeterService.cs?highlight=4)]
+* Create a new `GreeterService.cs` file and implement the `IGreeterService` service interface:
 
-Update the `Program.cs` file:
+  [!code-csharp[](code-first/samples/6.x/GrpcGreeter/Services/GreeterService.cs?highlight=4)]
 
-[!code-csharp[](code-first/samples/6.x/GrpcGreeter/Program.cs?highlight=9,14)]
+* Update the `Program.cs` file:
 
-In the preceding code:
+  [!code-csharp[](code-first/samples/6.x/GrpcGreeter/Program.cs?highlight=9,14)]
 
-* `AddCodeFirstGrpc` registers services that enable code-first.
-* `MapGrpcService<GreeterService>` adds the code-first service endpoint.
+  * `AddCodeFirstGrpc` registers services that enable code-first.
+  * `MapGrpcService<GreeterService>` adds the code-first service endpoint.
 
 gRPC services implemented with code-first and `.proto` files can co-exist in the same app. All gRPC services use [gRPC service configuration](xref:grpc/configuration#configure-services-options).
 
@@ -74,8 +82,8 @@ gRPC services implemented with code-first and `.proto` files can co-exist in the
 A code-first gRPC client uses the service contract to call gRPC services. To call a gRPC service using a code-first client:
 
 * Add a [protobuf-net.Grpc](https://www.nuget.org/packages/protobuf-net.Grpc) package reference.
-* Add a reference to the shared code-contract project.
 * Add a [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client) package reference.
+* Add a reference to the shared code-contract project.
 
 [!code-csharp[](code-first/samples/6.x/GrpcGreeterClient/Program.cs?highlight=13,15-16)]
 
