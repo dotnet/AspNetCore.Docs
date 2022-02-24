@@ -11,6 +11,11 @@ uid: blazor/file-downloads
 ---
 # ASP.NET Core Blazor file downloads
 
+This article covers downloading files in Blazor apps. The guidance in this article:
+
+* Addresses downloading files from the app's own static assets or from any other location. When downloading files, [Cross-Origin Resource Sharing (CORS)](#cross-origin-resource-sharing-cors) considerations apply.
+* Applies to any [Blazor hosting model](xref:blazor/hosting-models).
+
 > [!WARNING]
 > Always follow security best practices when allowing users to download files. For more information, see the [Security considerations](#security-considerations) section.
 
@@ -133,11 +138,9 @@ In the preceding example, replace the placeholders with the following values:
 
 ## Cross-Origin Resource Sharing (CORS)
 
-Without taking further steps to enable cross-origin requests, downloading files from the same origin (same domain) must pass [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/docs/Web/HTTP/CORS) checks made by the browser. For more information, see <xref:security/cors>.
+Without taking further steps to enable cross-origin requests, downloading files from the same origin (same domain) must pass [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/docs/Web/HTTP/CORS) checks made by the browser.
 
-## File streams
-
-In Blazor WebAssembly apps, file data is streamed directly from .NET code into the browser. In Blazor Server apps, file data is streamed over the SignalR connection from .NET code into the browser.
+For more information on CORS with ASP.NET Core apps and Microsoft services that host files for download, see <xref:security/cors>. For more information on CORS with non-ASP.NET Core apps and non-Microsoft services, consult the CORS documentation of external framework or service.
 
 ## Security considerations
 
