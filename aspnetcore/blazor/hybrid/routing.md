@@ -13,7 +13,7 @@ uid: blazor/hybrid/routing
 
 [!INCLUDE[](~/blazor/includes/blazor-hybrid-preview-notice.md)]
 
-Register to the `ExternalNavigationStarting` event and set the `ExternalLinkNavigationEventArgs.ExternalLinkNavigationPolicy` property to change link handling behavior. The `ExternalLinkNavigationPolicy` enumeration (`enum`) allows setting link handling behavior to `OpenInExternalBrowser`, `OpenInWebView`, and `CancelNavigation`. The `ExternalLinkNavigationEventArgs.Uri` property can be used to dynamically set link handling behavior.
+Register to the `ExternalNavigationStarting` event and set the `ExternalLinkNavigationEventArgs.ExternalLinkNavigationPolicy` property to change link handling behavior. The `ExternalLinkNavigationPolicy` enumeration (`enum`) allows setting link handling behavior to `OpenInExternalBrowser`, `InsecureOpenInWebView`, and `CancelNavigation`. The `ExternalLinkNavigationEventArgs.Uri` property can be used to dynamically set link handling behavior.
 
 External links are opened in the device default browser by default. Opening external links within the Blazor WebView isn't recommended unless the content is fully trusted.
 
@@ -26,7 +26,7 @@ blazorWebView.ExternalNavigationStarting +=
     (sender, externalLinkNavigationEventArgs) =>
     {
         externalLinkNavigationEventArgs.ExternalLinkNavigationPolicy = 
-            ExternalLinkNavigationPolicy.OpenInWebView;
+            ExternalLinkNavigationPolicy.InsecureOpenInWebView;
     };
 ```
 
@@ -48,7 +48,7 @@ private void Handle_ExternalNavigationStarting(
     object sender, ExternalLinkNavigationEventArgs externalLinkNavigationEventArgs)
 {
     externalLinkNavigationEventArgs.ExternalLinkNavigationPolicy = 
-        ExternalLinkNavigationPolicy.OpenInWebView;
+        ExternalLinkNavigationPolicy.InsecureOpenInWebView;
 }
 ```
 
@@ -61,6 +61,6 @@ blazorWebView.ExternalNavigationStarting +=
     (sender, externalLinkNavigationEventArgs) =>
     {
         externalLinkNavigationEventArgs.ExternalLinkNavigationPolicy = 
-            ExternalLinkNavigationPolicy.OpenInWebView;
+            ExternalLinkNavigationPolicy.InsecureOpenInWebView;
     };
 ```
