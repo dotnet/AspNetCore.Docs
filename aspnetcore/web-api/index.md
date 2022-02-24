@@ -213,12 +213,6 @@ When an action has more than one parameter bound from the request body, an excep
   public IActionResult Action3([FromBody] Product product, [FromBody] Order order)
   ```
 
-### FromServices inference notes
-
-`[FromServices]` inference could, in rare cases, affect the app if a parameter type is registered in the Dependency Injection container and also expected to be bound from a different source, eg. `FromBody`.
-
-In ASP.NET Core 7 and later, it's possible to avoid the inference. For more information, see [FromServices inference](?view=aspnetcore-7.0#FSI7) in the ASP.NET Core 7 version of this document.
-
 ### Disable inference rules
 
 To disable binding source inference, set <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressInferBindingSourcesForParameters> to `true`:
@@ -513,7 +507,7 @@ It's possible to avoid the inference by one of the following approaches:
 
 ### Disable inference rules
 
-To disable binding source inference, set <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressInferBindingSourcesForParameters> to `true`. Add the following code:
+To disable binding source inference, set <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressInferBindingSourcesForParameters> to `true`:
 
 [!code-csharp[](index/samples/6.x/Program.cs?name=snippet_d400D7&highlight=9)]
 
@@ -798,12 +792,6 @@ When an action has more than one parameter bound from the request body, an excep
   [HttpPost]
   public IActionResult Action3([FromBody] Product product, [FromBody] Order order)
   ```
-
-### FromServices inference notes
-
-`[FromServices]` inference could, in rare cases, affect the app if a parameter type is registered in the Dependency Injection container and also expected to be bound from a different source, eg. `FromBody`.
-
-In ASP.NET Core 7 and later, it's possible to avoid the inference. For more information, see [FromServices inference](?view=aspnetcore-7.0#FSI7) in the ASP.NET Core 7 version of this document.
 
 ### Disable inference rules
 
