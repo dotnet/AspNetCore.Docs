@@ -145,17 +145,17 @@ To make automatic and custom responses consistent, call the <xref:Microsoft.AspN
 
 ### Log automatic 400 responses
 
-To log automatic 400 responses, set the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.InvalidModelStateResponseFactory%2A> delegate property to perform custom processing in `Startup.ConfigureServices`. By default, `InvalidModelStateResponseFactory` uses <xref:Microsoft.AspNetCore.Mvc.Infrastructure.ProblemDetailsFactory> to create an instance of <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>.
+To log automatic 400 responses, set the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.InvalidModelStateResponseFactory%2A> delegate property to perform custom processing. By default, `InvalidModelStateResponseFactory` uses <xref:Microsoft.AspNetCore.Mvc.Infrastructure.ProblemDetailsFactory> to create an instance of <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>.
 
 The following example shows how to retrieve an instance of <xref:Microsoft.Extensions.Logging.ILogger%601> to log information about an automatic 400 response:
 
-[!code-csharp[](index/samples/3.x/Startup.cs?name=snippet_AutomaticBadRequestLogging)]
+[!code-csharp[](index/samples/6.x/Program.cs?name=snippet_l400&highlight=2-20)]
 
 ### Disable automatic 400 response
 
 To disable the automatic 400 behavior, set the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressModelStateInvalidFilter> property to `true`. Add the following highlighted code in `Startup.ConfigureServices`:
 
-[!code-csharp[](index/samples/3.x/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=2,6)]
+[!code-csharp[](index/samples/6.x/Program.cs?name=snippet_d400&highlight=2-20)]
 
 ## Binding source parameter inference
 

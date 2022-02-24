@@ -2,7 +2,7 @@
 // InvalidOperationException: Action 'WebApiSample.Controllers.WeatherForecast2Controller.Get
 // (WebApiSample)' does not have an attribute route. Action methods on controllers annotated with
 // ApiControllerAttribute must be attribute routed.
-#define TEST_assembly
+// #define TEST_assembly
 #if TEST_assembly
 using Microsoft.AspNetCore.Mvc;
 
