@@ -4,7 +4,7 @@ author: jamesnk
 description: Learn the basic concepts when writing code-first gRPC with .NET.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 01/04/2021
+ms.date: 02/23/2022
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/code-first
 ---
@@ -36,7 +36,7 @@ The first step to creating a code-first gRPC service is defining the code contra
 * Add a [protobuf-net.Grpc](https://www.nuget.org/packages/protobuf-net.Grpc) package reference.
 * Create service and data contract types.
 
-[!code-csharp[](code-first/samples/5.x/Shared/Contracts.cs?name=snippet)]
+[!code-csharp[](code-first/samples/6.x/Shared/Contracts.cs?)]
 
 The preceding code:
 
@@ -56,11 +56,11 @@ To add gRPC code-first service to an ASP.NET Core app:
 
 Create a new `GreeterService.cs` file and implement the `IGreeterService` service interface:
 
-[!code-csharp[](code-first/samples/5.x/GrpcGreeter/Services/GreeterService.cs?name=snippet&highlight=1)]
+[!code-csharp[](code-first/samples/6.x/GrpcGreeter/Services/GreeterService.cs?highlight=4)]
 
-Update the `Startup.cs` file:
+Update the `Program.cs` file:
 
-[!code-csharp[](code-first/samples/5.x/GrpcGreeter/Startup.cs?name=snippet&highlight=3,17)]
+[!code-csharp[](code-first/samples/6.x/GrpcGreeter/Startup.cs?highlight=3,17)]
 
 In the preceding code:
 
@@ -77,7 +77,7 @@ A code-first gRPC client uses the service contract to call gRPC services. To cal
 * Add a reference to the shared code-contract project.
 * Add a [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client) package reference.
 
-[!code-csharp[](code-first/samples/5.x/GrpcGreeterClient/Program.cs?name=snippet&highlight=2,4-5)]
+[!code-csharp[](code-first/samples/6.x/GrpcGreeterClient/Program.cs?highlight=2,4-5)]
 
 The preceding code:
 
@@ -87,7 +87,7 @@ The preceding code:
 
 A code-first gRPC client is created from a channel. Just like a regular client, a code-first client uses its [channel configuration](xref:grpc/configuration#configure-client-options).
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/grpc/code-first/samples/5.x) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/grpc/code-first/samples/6.x) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Additional resources
 
