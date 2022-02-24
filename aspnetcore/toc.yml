@@ -349,6 +349,8 @@ items:
                     uid: blazor/hybrid/tutorials/windows-forms
                   - name: WPF
                     uid: blazor/hybrid/tutorials/wpf
+              - name: Routing and navigation
+                uid: blazor/hybrid/routing
           - name: Project structure
             uid: blazor/project-structure
           - name: Fundamentals
