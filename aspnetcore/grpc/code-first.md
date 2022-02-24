@@ -60,7 +60,7 @@ Create a new `GreeterService.cs` file and implement the `IGreeterService` servic
 
 Update the `Program.cs` file:
 
-[!code-csharp[](code-first/samples/6.x/GrpcGreeter/Startup.cs?highlight=3,17)]
+[!code-csharp[](code-first/samples/6.x/GrpcGreeter/Program.cs?highlight=9,14)]
 
 In the preceding code:
 
