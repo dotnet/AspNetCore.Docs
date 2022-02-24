@@ -83,10 +83,12 @@ gRPC services implemented with code-first and `.proto` files can co-exist in the
 A code-first gRPC client uses the service contract to call gRPC services. To call a gRPC service using a code-first client:
 
 * Add a [protobuf-net.Grpc](https://www.nuget.org/packages/protobuf-net.Grpc) package reference.
+
 * Add a [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client) package reference.
+
 * Add a reference to the shared code-contract project.
 
-  [!code-csharp[](code-first/samples/6.x/GrpcGreeterClient/GrpcGreeterClient.csproj?highlight=10-13,15-17)]
+[!code-csharp[](code-first/samples/6.x/GrpcGreeterClient/GrpcGreeterClient.csproj?highlight=10-13,15-17)]
 
 The preceding gRPC client `.csproj` file highlights the required package and shared-code project references.
 
