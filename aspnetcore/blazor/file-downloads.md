@@ -11,10 +11,18 @@ uid: blazor/file-downloads
 ---
 # ASP.NET Core Blazor file downloads
 
+This article covers downloading files in Blazor apps. The guidance in this article:
+
+* Addresses downloading files from the app's own static assets or from any other location. When downloading files, [Cross-Origin Resource Sharing (CORS)](#cross-origin-resource-sharing-cors) considerations apply.
+* Applies to any [Blazor hosting model](xref:blazor/hosting-models).
+
 > [!WARNING]
 > Always follow security best practices when allowing users to download files. For more information, see the [Security considerations](#security-considerations) section.
 
 The following example demonstrates how to download a file. Native `byte[]` streaming interop is used to ensure efficient transfer to the client.
+
+> [!IMPORTANT]
+> The example in this article pertains to downloading files that pass Cross-Origin Resource Sharing (CORS) checks. For more information, see the [Cross-Origin Resource Sharing (CORS)](#cross-origin-resource-sharing-cors) section.
 
 In a Razor component (`.razor`), add [`@using`](xref:mvc/views/razor#using) and [`@inject`](xref:mvc/views/razor#inject) directives for the following:
 
@@ -125,12 +133,22 @@ In the preceding example, the call to `contentStreamReference.arrayBuffer` loads
 
 In the preceding example, replace the placeholders with the following values:
 
-* `{FILE URL}`: The URL of the file to download. Example: `https://www.contoso.com/files/log0001.txt`
+* `{FILE URL}`: The URL of the file to download at the same origin (same domain) that the app uses. Example: `https://www.contoso.com/files/log0001.txt` for a text file physically located at the path `/wwwroot/files/` in the app and for an app that loads from `https://www.contoso.com`. For more information, see the [Cross-Origin Resource Sharing (CORS)](#cross-origin-resource-sharing-cors) section.
 * `{FILE NAME}`: The file name to use for the saved file. Example: `log-0001.txt`
 
-## File streams
+## Cross-Origin Resource Sharing (CORS)
 
-In Blazor WebAssembly apps, file data is streamed directly from .NET code into the browser. In Blazor Server apps, file data is streamed over the SignalR connection from .NET code into the browser.
+Without taking further steps to enable cross-origin requests, downloading files won't pass [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/docs/Web/HTTP/CORS) checks made by the browser.
+
+For more information on CORS with ASP.NET Core apps and other Microsoft products and services that host files for download, see the following resources:
+
+* <xref:security/cors>
+* [Using Azure CDN with CORS (Azure documentation)](/azure/cdn/cdn-cors)
+* [Cross-Origin Resource Sharing (CORS) support for Azure Storage (REST documentation)](/rest/api/storageservices/cross-origin-resource-sharing--cors--support-for-the-azure-storage-services)
+* [Core Cloud Services - Set up CORS for your website and storage assets (Learn Module)](/learn/modules/set-up-cors-website-storage/)
+* [IIS CORS module Configuration Reference (IIS documentation)](/iis/extensions/cors-module/cors-module-configuration-reference)
+
+For more information on CORS with non-ASP.NET Core apps and non-Microsoft services, consult the external framework or service CORS documentation.
 
 ## Security considerations
 
