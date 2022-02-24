@@ -65,6 +65,7 @@ For more information, see the following resources in the Visual Studio documenta
 
 * YouTube video [.NET 6 Hot Reload in Visual Studio 2022, VS Code, and NOTEPAD?!?](https://www.youtube.com/watch?v=4S3vPzawnoQ)
 * [Introducing the .NET Hot Reload experience for editing code at runtime](https://devblogs.microsoft.com/dotnet/introducing-net-hot-reload/)
-* <!--I can't find hot in that link.[Visual Studio 2022 version 17.0 RC and Preview Release Notes: .NET Hot Reload](/visualstudio/releases/2022/release-notes-preview#net-hot-reload) -->
+* [Write and debug running code with Hot Reload in Visual Studio](/visualstudio/debugger/hot-reload)
+*  <!--I can't find hot in that link.[Visual Studio 2022 version 17.0 RC and Preview Release Notes: .NET Hot Reload](/visualstudio/releases/2022/release-notes-preview#net-hot-reload) -->
 * [Updates for Blazor & Razor editors + Hot Reload for ASP.NET](/visualstudio/ide/whats-new-visual-studio-2022#updates-for-blazor--razor-editors--hot-reload-for-aspnet)
 * [Test Execution with Hot Reload](/visualstudio/test/test-execution-with-hot-reload)
