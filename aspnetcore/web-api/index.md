@@ -498,10 +498,9 @@ When an action has more than one parameter bound from the request body, an excep
 
 `[FromServices]` inference could, in rare cases, affect the app if a parameter type is registered in the Dependency Injection container and also expected to be bound from a different source, eg. `FromBody`.
 
-It's possible to avoid the inference by one of the following approaches:
+To disable `[FromServices]` inference for a single action parameter, apply the desired binding source attribute to the parameter. For example, apply the `[FromBody]` attribute to an action parameter that should be bound from the body of the request.
 
-* Adding the desired binding source attribute to the Action parameter.
-* Disabling the `[FromServices]` inference rule by setting `Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.DisableImplicitFromServicesParameters` to `true`:
+To disable `[FromServices]` inference globally, set the `Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.DisableImplicitFromServicesParameters` property to `true`:
 
 [!code-csharp[](index/samples/6.x/Program.cs?name=snippet_d400D7&highlight=14)]
 
