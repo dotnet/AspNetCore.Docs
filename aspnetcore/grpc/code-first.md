@@ -71,6 +71,8 @@ To add gRPC code-first service to an ASP.NET Core app:
 
   [!code-csharp[](code-first/samples/6.x/GrpcGreeter/Program.cs?highlight=9,14)]
 
+  The preceding highlighted code updates the following:
+
   * `AddCodeFirstGrpc` registers services that enable code-first.
   * `MapGrpcService<GreeterService>` adds the code-first service endpoint.
 
@@ -79,6 +81,8 @@ gRPC services implemented with code-first and `.proto` files can co-exist in the
 ## Create a code-first gRPC client
 
 A code-first gRPC client uses the service contract to call gRPC services. To call a gRPC service using a code-first client:
+
+[!code-csharp[](code-first/samples/6.x/GrpcGreeterClient/GrpcGreeterClient.csproj?highlight=10-13,15-17)]
 
 * Add a [protobuf-net.Grpc](https://www.nuget.org/packages/protobuf-net.Grpc) package reference.
 * Add a [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client) package reference.
