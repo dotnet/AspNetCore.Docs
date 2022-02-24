@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 
 namespace Shared.Contracts
 {
-    #region snippet
     [DataContract]
     public class HelloReply
     {
@@ -27,5 +26,4 @@ namespace Shared.Contracts
         Task<HelloReply> SayHelloAsync(HelloRequest request,
             CallContext context = default);
     }
-    #endregion
 }
