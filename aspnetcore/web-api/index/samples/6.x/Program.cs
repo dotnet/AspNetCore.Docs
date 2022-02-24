@@ -47,13 +47,16 @@ builder.Services.AddControllers()
 
         options.InvalidModelStateResponseFactory = context =>
         {
-            var logger = context.HttpContext.RequestServices.GetRequiredService<ILogger<Program>>();
+            var logger = context.HttpContext.RequestServices
+                                .GetRequiredService<ILogger<Program>>();
 
             // Perform logging here.
             // ...
 
-            // Invoke the default behavior, which produces a ValidationProblemDetails response.
-            // To produce a custom response, return a different implementation of IActionResult instead.
+            // Invoke the default behavior, which produces a ValidationProblemDetails
+            // response.
+            // To produce a custom response, return a different implementation of I
+            // ActionResult instead.
             return builtInFactory(context);
         };
     });
@@ -68,7 +71,7 @@ app.MapControllers();
 
 app.Run();
 #endregion
-#elif D400
+#elif D400  // .NET SDK 6, doesn't contain DisableImplicitFromServicesParameters
 #region snippet_d400D6
 using Microsoft.AspNetCore.Mvc;
 
