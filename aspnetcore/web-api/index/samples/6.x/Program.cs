@@ -42,7 +42,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers()
     .ConfigureApiBehaviorOptions(options =>
     {
-        // To preserve the default behavior, capture the original delegate to call later.
+      // To preserve the default behavior, capture the original delegate to call later.
         var builtInFactory = options.InvalidModelStateResponseFactory;
 
         options.InvalidModelStateResponseFactory = context =>
@@ -55,8 +55,8 @@ builder.Services.AddControllers()
 
             // Invoke the default behavior, which produces a ValidationProblemDetails
             // response.
-            // To produce a custom response, return a different implementation of I
-            // ActionResult instead.
+            // To produce a custom response, return a different implementation of 
+            // IActionResult instead.
             return builtInFactory(context);
         };
     });
