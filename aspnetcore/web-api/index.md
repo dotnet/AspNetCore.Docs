@@ -181,7 +181,6 @@ In the following example, the `[FromQuery]` attribute indicates that the `discon
 
 The `[ApiController]` attribute applies inference rules for the default data sources of action parameters. These rules save you from having to identify binding sources manually by applying attributes to the action parameters. The binding source inference rules behave as follows:
 
-* `[FromServices]` is inferred for complex type parameters registered in the DI Container.
 * `[FromBody]` is inferred for complex type parameters not registered in the DI Container. An exception to the `[FromBody]` inference rule is any complex, built-in type with a special meaning, such as <xref:Microsoft.AspNetCore.Http.IFormCollection> and <xref:System.Threading.CancellationToken>. The binding source inference code ignores those special types.
 * `[FromForm]` is inferred for action parameters of type <xref:Microsoft.AspNetCore.Http.IFormFile> and <xref:Microsoft.AspNetCore.Http.IFormFileCollection>. It's not inferred for any simple or user-defined types.
 * `[FromRoute]` is inferred for any action parameter name matching a parameter in the route template. When more than one route matches an action parameter, any route value is considered `[FromRoute]`.
@@ -218,7 +217,7 @@ When an action has more than one parameter bound from the request body, an excep
 
 `[FromServices]` inference could, in rare cases, affect the app if a parameter type is registered in the Dependency Injection container and also expected to be bound from a different source, eg. `FromBody`.
 
-In .NET 7 and later, it's possible to avoid the inference. For more information, see the .NET 7 version of this document.
+In ASP.NET Core 7 and later, it's possible to avoid the inference. For more information, see [FromServices inference](?view=aspnetcore-7.0#FSI7) in the ASP.NET Core 7 version of this document.
 
 ### Disable inference rules
 
@@ -230,7 +229,7 @@ To disable binding source inference, set <xref:Microsoft.AspNetCore.Mvc.ApiBehav
 
 The `[ApiController]` attribute applies an inference rule when an action parameter is annotated with the [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) attribute. The `multipart/form-data` request content type is inferred.
 
-To disable the default behavior, set the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressConsumesConstraintForFormFileParameters> property to `true` in `Startup.ConfigureServices`:
+To disable the default behavior, set the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressConsumesConstraintForFormFileParameters> property to `true`:
 
 [!code-csharp[](index/samples/6.x/Program.cs?name=snippet_d400D6&highlight=8)]
 
@@ -499,17 +498,22 @@ When an action has more than one parameter bound from the request body, an excep
   public IActionResult Action3([FromBody] Product product, [FromBody] Order order)
   ```
 
+<a name="FSI7"></a>
+
 ### FromServices inference notes
 
 `[FromServices]` inference could, in rare cases, affect the app if a parameter type is registered in the Dependency Injection container and also expected to be bound from a different source, eg. `FromBody`.
 
-It's possible to avoid the inference adding the desired binding source attribute to the Action parameter, or disabling the `[FromServices]` inference rule, setting `Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.DisableImplicitFromServicesParameters` to `true`:
+It's possible to avoid the inference by one of the following approaches:
+
+* Adding the desired binding source attribute to the Action parameter.
+* Disabling the `[FromServices]` inference rule by setting `Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.DisableImplicitFromServicesParameters` to `true`:
 
 [!code-csharp[](index/samples/6.x/Program.cs?name=snippet_d400D7&highlight=14)]
 
 ### Disable inference rules
 
-To disable binding source inference, set <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressInferBindingSourcesForParameters> to `true`. Add the following code in `Startup.ConfigureServices`:
+To disable binding source inference, set <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressInferBindingSourcesForParameters> to `true`. Add the following code:
 
 [!code-csharp[](index/samples/6.x/Program.cs?name=snippet_d400D7&highlight=9)]
 
@@ -517,7 +521,7 @@ To disable binding source inference, set <xref:Microsoft.AspNetCore.Mvc.ApiBehav
 
 The `[ApiController]` attribute applies an inference rule when an action parameter is annotated with the [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) attribute. The `multipart/form-data` request content type is inferred.
 
-To disable the default behavior, set the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressConsumesConstraintForFormFileParameters> property to `true` in `Startup.ConfigureServices`:
+To disable the default behavior, set the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressConsumesConstraintForFormFileParameters> property to `true`:
 
 [!code-csharp[](index/samples/6.x/Program.cs?name=snippet_d400D6&highlight=8)]
 
@@ -542,7 +546,7 @@ The `NotFound` method produces an HTTP 404 status code with a `ProblemDetails` b
 
 ### Disable ProblemDetails response
 
-The automatic creation of a `ProblemDetails` for error status codes is disabled when the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressMapClientErrors%2A> property is set to `true`. Add the following code in `Startup.ConfigureServices`:
+The automatic creation of a `ProblemDetails` for error status codes is disabled when the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressMapClientErrors%2A> property is set to `true`. Add the following code:
 
 [!code-csharp[](index/samples/6.x/Program.cs?name=snippet_d400D6&highlight=11)]
 
@@ -763,7 +767,6 @@ In the following example, the `[FromQuery]` attribute indicates that the `discon
 
 The `[ApiController]` attribute applies inference rules for the default data sources of action parameters. These rules save you from having to identify binding sources manually by applying attributes to the action parameters. The binding source inference rules behave as follows:
 
-* `[FromServices]` is inferred for complex type parameters registered in the DI Container.
 * `[FromBody]` is inferred for complex type parameters not registered in the DI Container. An exception to the `[FromBody]` inference rule is any complex, built-in type with a special meaning, such as <xref:Microsoft.AspNetCore.Http.IFormCollection> and <xref:System.Threading.CancellationToken>. The binding source inference code ignores those special types.
 * `[FromForm]` is inferred for action parameters of type <xref:Microsoft.AspNetCore.Http.IFormFile> and <xref:Microsoft.AspNetCore.Http.IFormFileCollection>. It's not inferred for any simple or user-defined types.
 * `[FromRoute]` is inferred for any action parameter name matching a parameter in the route template. When more than one route matches an action parameter, any route value is considered `[FromRoute]`.
@@ -800,7 +803,7 @@ When an action has more than one parameter bound from the request body, an excep
 
 `[FromServices]` inference could, in rare cases, affect the app if a parameter type is registered in the Dependency Injection container and also expected to be bound from a different source, eg. `FromBody`.
 
-In .NET 7 and late, it's possible to avoid the inference. For more information, see the .NET 7 version of this document.
+In ASP.NET Core 7 and later, it's possible to avoid the inference. For more information, see [FromServices inference](?view=aspnetcore-7.0#FSI7) in the ASP.NET Core 7 version of this document.
 
 ### Disable inference rules
 
