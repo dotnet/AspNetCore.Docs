@@ -62,7 +62,13 @@ The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.d
 
 ## Prerequisites
 
-:::moniker range=">= aspnetcore-5.0"
+:::moniker range=">= aspnetcore-6.0"
+
+* [.NET SDK 6.0](https://dotnet.microsoft.com/download)
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 * [.NET SDK 5.0](https://dotnet.microsoft.com/download)
 
@@ -204,7 +210,46 @@ In some scenarios, you might want to deploy an app to a container by copying its
 
 To use the manually published app within a Docker container, create a new *Dockerfile* and use the `docker build .` command to build an image.
 
-:::moniker range=">= aspnetcore-5.0"
+:::moniker range=">= aspnetcore-6.0"
+
+```dockerfile
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS runtime
+WORKDIR /app
+COPY published/aspnetapp.dll ./
+ENTRYPOINT ["dotnet", "aspnetapp.dll"]
+```
+
+To see the new image use the `docker images` command.
+
+### The Dockerfile
+
+Here's the *Dockerfile* used by the `docker build` command you ran earlier.  It uses `dotnet publish` the same way you did in this section to build and deploy.  
+
+```dockerfile
+# https://hub.docker.com/_/microsoft-dotnet
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+WORKDIR /source
+
+# copy csproj and restore as distinct layers
+COPY *.sln .
+COPY aspnetapp/*.csproj ./aspnetapp/
+RUN dotnet restore
+
+# copy everything else and build app
+COPY aspnetapp/. ./aspnetapp/
+WORKDIR /source/aspnetapp
+RUN dotnet publish -c release -o /app --no-restore
+
+# final stage/image
+FROM mcr.microsoft.com/dotnet/aspnet:6.0
+WORKDIR /app
+COPY --from=build /app ./
+ENTRYPOINT ["dotnet", "aspnetapp.dll"]
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 ```dockerfile
 FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS runtime
@@ -240,6 +285,10 @@ WORKDIR /app
 COPY --from=build /app ./
 ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 ```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-5.0"
 
 In the preceding *Dockerfile*, the `*.csproj` files are copied and restored as distinct *layers*. When the `docker build` command builds an image, it uses a built-in cache. If the `*.csproj` files haven't changed since the `docker build` command last ran, the `dotnet restore` command doesn't need to run again. Instead, the built-in cache for the corresponding `dotnet restore` layer is reused. For more information, see [Best practices for writing Dockerfiles](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#leverage-build-cache).
 
