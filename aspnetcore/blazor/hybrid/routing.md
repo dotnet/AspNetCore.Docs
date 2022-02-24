@@ -15,20 +15,29 @@ uid: blazor/hybrid/routing
 
 Register to the `ExternalNavigationStarting` event and set the `ExternalLinkNavigationEventArgs.ExternalLinkNavigationPolicy` property to change link handling behavior. The `ExternalLinkNavigationPolicy` enumeration (`enum`) allows setting link handling behavior to `OpenInExternalBrowser`, `InsecureOpenInWebView`, and `CancelNavigation`. The `ExternalLinkNavigationEventArgs.Uri` property can be used to dynamically set link handling behavior.
 
-External links are opened in the device default browser by default. Opening external links within the Blazor WebView isn't recommended unless the content is fully trusted.
+> [!WARNING]
+> External links are opened in the device's default browser by default. Opening external links within a `BlazorWebView` can introduce security vulnerabilities and should ***not*** be enabled unless you can ensure that the external links are fully trusted.
 
 ## .NET MAUI
 
-Add the event handler to the constructor of the `Page` where the `BlazorWebView` is constructed:
+For the `Page` with the `BlazorWebView`:
 
-```csharp
-blazorWebView.ExternalNavigationStarting += 
-    (sender, externalLinkNavigationEventArgs) =>
-    {
-        externalLinkNavigationEventArgs.ExternalLinkNavigationPolicy = 
-            ExternalLinkNavigationPolicy.InsecureOpenInWebView;
-    };
-```
+* Add the `Microsoft.AspNetCore.Components.WebView` namespace:
+
+  ```csharp
+  using Microsoft.AspNetCore.Components.WebView;
+  ```
+
+* Add the following event handler to the constructor:
+
+  ```csharp
+  blazorWebView.ExternalNavigationStarting += 
+      (sender, externalLinkNavigationEventArgs) =>
+      {
+          externalLinkNavigationEventArgs.ExternalLinkNavigationPolicy = 
+              ExternalLinkNavigationPolicy.InsecureOpenInWebView;
+      };
+  ```
 
 ## WPF
 
