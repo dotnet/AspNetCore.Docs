@@ -1,4 +1,4 @@
-#define NS // FIRST SECOND NAME NS 
+#define NAME // FIRST SECOND NAME NS 
 #if NEVER
 #elif FIRST
 #region snippet1
@@ -6,11 +6,10 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 
 var builder = WebApplication.CreateBuilder(args);
-var services = builder.Services;
 
-services.AddRazorPages();
+builder.Services.AddRazorPages();
 
-services.AddAuthentication(options =>
+builder.Services.AddAuthentication(options =>
 {
     options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
@@ -55,11 +54,10 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 
 var builder = WebApplication.CreateBuilder(args);
-var services = builder.Services;
 
-services.AddRazorPages();
+builder.Services.AddRazorPages();
 
-services.AddAuthentication(options =>
+builder.Services.AddAuthentication(options =>
 {
     options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
@@ -104,17 +102,16 @@ app.MapRazorPages();
 
 app.Run();
 #elif NAME
-#region snippet_name
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
-var services = builder.Services;
 
-services.AddRazorPages();
+builder.Services.AddRazorPages();
 
-services.AddAuthentication(options =>
+#region snippet_name
+builder.Services.AddAuthentication(options =>
 {
     options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
@@ -129,11 +126,11 @@ services.AddAuthentication(options =>
        //, RoleClaimType = "role"
        };
   });
-
+#endregion
 var app = builder.Build();
 
 // Code removed for brevity.
-#endregion
+
 
 if (!app.Environment.IsDevelopment())
 {
@@ -158,11 +155,10 @@ using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using System.IdentityModel.Tokens.Jwt;
 
 var builder = WebApplication.CreateBuilder(args);
-var services = builder.Services;
 
-services.AddRazorPages();
+builder.Services.AddRazorPages();
 
-services.AddAuthentication(options =>
+builder.Services.AddAuthentication(options =>
 {
     options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
