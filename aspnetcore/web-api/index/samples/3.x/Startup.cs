@@ -40,6 +40,7 @@ namespace WebApiSample
                     options.SuppressMapClientErrors = true;
                     options.ClientErrorMapping[StatusCodes.Status404NotFound].Link =
                         "https://httpstatuses.com/404";
+                    options.DisableImplicitFromServicesParameters = true;
                 });
             #endregion
 #endif

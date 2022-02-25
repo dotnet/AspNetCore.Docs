@@ -18,26 +18,26 @@ Register to the `ExternalNavigationStarting` event and set the `ExternalLinkNavi
 > [!WARNING]
 > External links are opened in the device's default browser by default. Opening external links within a `BlazorWebView` can introduce security vulnerabilities and should ***not*** be enabled unless you can ensure that the external links are fully trusted.
 
+## Namespace
+
+The `Microsoft.AspNetCore.Components.WebView` namespace is required for the examples in this article:
+
+```csharp
+using Microsoft.AspNetCore.Components.WebView;
+```
+  
 ## .NET MAUI
 
-For the `Page` with the `BlazorWebView`:
+Add the event handler to the constructor of the `Page` where the `BlazorWebView` is constructed:
 
-* Add the `Microsoft.AspNetCore.Components.WebView` namespace:
-
-  ```csharp
-  using Microsoft.AspNetCore.Components.WebView;
-  ```
-
-* Add the following event handler to the constructor:
-
-  ```csharp
-  blazorWebView.ExternalNavigationStarting += 
-      (sender, externalLinkNavigationEventArgs) =>
-      {
-          externalLinkNavigationEventArgs.ExternalLinkNavigationPolicy = 
-              ExternalLinkNavigationPolicy.InsecureOpenInWebView;
-      };
-  ```
+```csharp
+blazorWebView.ExternalNavigationStarting += 
+    (sender, externalLinkNavigationEventArgs) =>
+    {
+        externalLinkNavigationEventArgs.ExternalLinkNavigationPolicy = 
+            ExternalLinkNavigationPolicy.InsecureOpenInWebView;
+    };
+```
 
 ## WPF
 
