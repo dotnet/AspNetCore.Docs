@@ -5,7 +5,7 @@ description: Learn how to handle JSON Patch requests in an ASP.NET Core web API.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/02/2020
+ms.date: 2/22/2022
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: web-api/jsonpatch
 ---
@@ -17,16 +17,12 @@ This article explains how to handle JSON Patch requests in an ASP.NET Core web A
 
 ## Package installation
 
-To enable JSON Patch support in your app, complete the following steps:
+To enable JSON Patch support:
 
-1. Install the [`Microsoft.AspNetCore.Mvc.NewtonsoftJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/) NuGet package.
-1. Update the project's `Startup.ConfigureServices` method to call <xref:Microsoft.Extensions.DependencyInjection.NewtonsoftJsonMvcBuilderExtensions.AddNewtonsoftJson%2A>. For example:
+* Install the [`Microsoft.AspNetCore.Mvc.NewtonsoftJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/) NuGet package.
+* Call <xref:Microsoft.Extensions.DependencyInjection.NewtonsoftJsonMvcBuilderExtensions.AddNewtonsoftJson%2A>. For example:
 
-    ```csharp
-    services
-        .AddControllersWithViews()
-        .AddNewtonsoftJson();
-    ```
+[!code-csharp[](jsonpatch/samples/6.x/api/Program.cs?name=snippet1)]
 
 `AddNewtonsoftJson` is compatible with the MVC service registration methods:
 
