@@ -42,6 +42,10 @@ For getting started with hosting a website on IIS, see our [getting started guid
 
 For getting started with hosting a website on Azure App Services, see our [deploying to Azure App Service guide](xref:host-and-deploy/azure-apps/index).
 
+## Configuration
+
+For configuration guidance, see <xref:host-and-deploy/iis/advanced>.
+
 ## Deployment resources for IIS administrators
 
 * [IIS documentation](/iis)
