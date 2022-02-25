@@ -58,7 +58,7 @@ The <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> interface c
 The <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> interface and the `MyClaimsTransformation` class can be registered as a service:
 
 ```csharp
-services.AddTransient<IClaimsTransformation, MyClaimsTransformation>();
+builder.Services.AddTransient<IClaimsTransformation, MyClaimsTransformation>();
 ```
 
 ## Extend or add custom claims in ASP.NET Core Identity
