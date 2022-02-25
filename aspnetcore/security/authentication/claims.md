@@ -33,7 +33,7 @@ The preceding code requires the [Microsoft.AspNetCore.Authentication.OpenIdConne
 
 Another way to get the user claims is to use the OpenID Connect User Info API. The ASP.NET Core client app uses the `GetClaimsFromUserInfoEndpoint` property to configure this. One important difference from the first settings, is that you must specify the claims you require using the `MapUniqueJsonKey` method, otherwise only the `name`, `given_name` and `email` standard claims will be available in the client app. The claims included in the `id_token` are mapped per default. This is the major difference to the first option. You must explicitly define some of the claims you require.
 
-[!code-csharp[](~/security/authentication/claims/sample6/WebRPmapClaims/Program.cs?name=snippet2&highlight=10-31)]
+[!code-csharp[](~/security/authentication/claims/sample6/WebRPmapClaims/Program.cs?name=snippet2&highlight=26-29)]
 
 ## Name claim and role claim mapping
 

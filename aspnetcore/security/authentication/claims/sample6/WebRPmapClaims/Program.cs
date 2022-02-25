@@ -1,4 +1,4 @@
-#define NS // FIRST SECOND NAME NS 
+#define FIRST // FIRST SECOND NAME NS 
 #if NEVER
 #elif FIRST
 #region snippet1
