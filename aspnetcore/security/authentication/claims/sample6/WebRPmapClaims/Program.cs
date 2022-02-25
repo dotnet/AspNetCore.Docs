@@ -1,4 +1,4 @@
-#define NAME // FIRST SECOND NAME NS 
+#define NS // FIRST SECOND NAME NS 
 #if NEVER
 #elif FIRST
 #region snippet1
@@ -146,14 +146,15 @@ app.MapRazorPages();
 
 app.Run();
 #elif NS
-#region snippet_NS
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using System.IdentityModel.Tokens.Jwt;
-
+#region snippet_NS
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
+
+JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
 builder.Services.AddAuthentication(options =>
 {
@@ -176,7 +177,8 @@ builder.Services.AddAuthentication(options =>
 
 var app = builder.Build();
 
-JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+// Code removed for brevity.
+#endregion
 
 if (!app.Environment.IsDevelopment())
 {
@@ -193,5 +195,4 @@ app.UseAuthorization();
 app.MapRazorPages();
 
 app.Run();
-#endregion
 #endif
