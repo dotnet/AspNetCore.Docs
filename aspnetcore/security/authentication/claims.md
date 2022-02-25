@@ -41,7 +41,7 @@ The **Name** claim and the **Role** claim are mapped to default properties in th
 
 If the `User.Identity.Name` has no value or the roles are missing, please check the values in the returned claims and set the `NameClaimType` and the `RoleClaimType` values. The returned claims from the client authentication can be viewed in the HTTP context.
 
-[!code-csharp[](~/security/authentication/claims/sample6/WebRPmapClaims/Program.cs?name=snippet_name&highlight=10-24)]
+[!code-csharp[](~/security/authentication/claims/sample6/WebRPmapClaims/Program.cs?name=snippet_name&highlight=10-14)]
 
 ## Claims namespaces, default namespaces
 
