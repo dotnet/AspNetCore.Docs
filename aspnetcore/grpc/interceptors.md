@@ -4,11 +4,13 @@ author: erni27
 description: Learn how to use gRPC interceptors on .NET.
 monikerRange: '>= aspnetcore-3.0'
 ms.author:
-ms.date: 02/06/2022
+ms.date: 02/26/2022
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/interceptors
 ---
 # gRPC interceptors on .NET
+
+By [Ernest Nguyen](https://github.com/erni27)
 
 Interceptors allow you to intercept incoming or outgoing gRPC requests. They offer a way to enrich the request processing pipeline. Since they are transparent for the user's application logic and once applied are triggered automatically, interceptors became a perfect solution for common cases like logging, monitoring, authentication, validation, etc.
 
@@ -62,9 +64,9 @@ Overridden `AsyncUnaryCall` does the following:
 
 Although the interceptors for each kind of service method are slightly different, the concept behind `continuation` and `context` parameters remains the same.
 
-`continuation` is a delegate which invokes the next interceptor in the chain or the underlying call invoker (if there is no interceptor left in the chain). It is not an error to call it zero or multiple times. Interceptors don't even have to return `AsyncUnaryCall` returned from `continuation` delegate. Notice that in the preceding example a new instance of `AsyncUnaryCall` is constructed. Omitting the delegate call and returning your own instance of call representation breaks the interceptors' chain and returns the associated response immediately.
+`continuation` is a delegate which invokes the next interceptor in the chain or the underlying call invoker (if there is no interceptor left in the chain). It is not an error to call it zero or multiple times. Interceptors don't even have to return call representation (`AsyncUnaryCall` in case of unary RPC) returned from `continuation` delegate. Notice that in the preceding example a new instance of call representation is constructed. Omitting the delegate call and returning your own instance of call representation breaks the interceptors' chain and returns the associated response immediately.
 
-`context` on the other hand, carries scoped-values associated with the client side call. You can use it to pass metadata like security principals, credentials or tracing data. Moreover, `context` carries information about deadlines and cancellation. For more information, see [Reliable gRPC services with deadlines and cancellation](xref:grpc/deadlines-cancellation#deadlines>).
+On the other hand, `context` carries scoped-values associated with the client side call. You can use it to pass metadata like security principals, credentials or tracing data. Moreover, `context` carries information about deadlines and cancellation. For more information, see [Reliable gRPC services with deadlines and cancellation](xref:grpc/deadlines-cancellation#deadlines>).
 
 The following code shows how to add caller metadata through the context.
 
@@ -168,8 +170,33 @@ public override async Task<TResponse> UnaryServerHandler<TRequest, TResponse>(
 }
 ```
 
-Overridden `UnaryServerHandler` logs call to the console and logs an exception if occurred.
-For complete implementation, see an [example how to use gRPC on the client and server](https://github.com/grpc/grpc-dotnet/tree/master/examples#interceptor).
+Note that the signature of both client and server interceptors methods are similar.
+
+`continuation` stands for a delegate for an incoming RPC calling the next interceptor in the chain or the service handler (if there is no interceptor left in the chain). Like for the client interceptors, you can call it any time and there is no need to return a response from the continuation delegate.
+
+And `context` carries metadata associated with the server-side call like request metadata, deadlines and cancellation or RPC result.
+
+The following code shows how to retrieve request metadata from the context.
+
+```csharp
+private void LogCall<TRequest, TResponse>(MethodType methodType, ServerCallContext context)
+    where TRequest : class
+    where TResponse : class
+{
+    _logger.LogWarning($"Starting call. Type: {methodType}. Request: {typeof(TRequest)}. Response: {typeof(TResponse)}");
+    WriteMetadata(context.RequestHeaders, "caller-user");
+    WriteMetadata(context.RequestHeaders, "caller-machine");
+    WriteMetadata(context.RequestHeaders, "caller-os");
+
+    void WriteMetadata(Metadata headers, string key)
+    {
+        var headerValue = headers.SingleOrDefault(h => h.Key == key)?.Value;
+        _logger.LogWarning($"{key}: {headerValue ?? "(unknown)"}");
+    }
+}
+```
+
+For complete implementation of introduced `ServerLoggerInterceptor`, see an [example of server interceptor](https://github.com/grpc/grpc-dotnet/blob/master/examples/Interceptor/Server/ServerLoggerInterceptor.cs).
 
 ### Configure server interceptors
 
