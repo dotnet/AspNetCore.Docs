@@ -5,7 +5,7 @@ description: Learn how to handle JSON Patch requests in an ASP.NET Core web API.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/02/2020
+ms.date: 2/22/2022
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: web-api/jsonpatch
 ---
@@ -17,16 +17,12 @@ This article explains how to handle JSON Patch requests in an ASP.NET Core web A
 
 ## Package installation
 
-To enable JSON Patch support in your app, complete the following steps:
+To enable JSON Patch support:
 
-1. Install the [`Microsoft.AspNetCore.Mvc.NewtonsoftJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/) NuGet package.
-1. Update the project's `Startup.ConfigureServices` method to call <xref:Microsoft.Extensions.DependencyInjection.NewtonsoftJsonMvcBuilderExtensions.AddNewtonsoftJson%2A>. For example:
+* Install the [`Microsoft.AspNetCore.Mvc.NewtonsoftJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/) NuGet package.
+* Call <xref:Microsoft.Extensions.DependencyInjection.NewtonsoftJsonMvcBuilderExtensions.AddNewtonsoftJson%2A>. For example:
 
-    ```csharp
-    services
-        .AddControllersWithViews()
-        .AddNewtonsoftJson();
-    ```
+[!code-csharp[](jsonpatch/samples/6.x/api/Program.cs?name=snippet1&highlight=4)]
 
 `AddNewtonsoftJson` is compatible with the MVC service registration methods:
 
@@ -36,14 +32,13 @@ To enable JSON Patch support in your app, complete the following steps:
 
 ## JSON Patch, AddNewtonsoftJson, and System.Text.Json
 
-`AddNewtonsoftJson` replaces the `System.Text.Json`-based input and output formatters used for formatting **all** JSON content. To add support for JSON Patch using `Newtonsoft.Json`, while leaving the other formatters unchanged, update the project's `Startup.ConfigureServices` method as follows:
+`AddNewtonsoftJson` replaces the `System.Text.Json` based input and output formatters used for formatting ***all*** JSON content. To add support for JSON Patch using `Newtonsoft.Json`, while leaving the other formatters unchanged, update `Program.cs`:
 
-[!code-csharp[](jsonpatch/samples/3.x/WebApp1/Startup.cs?name=snippet)]
+[!code-csharp[](jsonpatch/samples/6.x/api/Program.cs?name=snippet_both&highlight=5-8)]
 
-The preceding code requires the `Microsoft.AspNetCore.Mvc.NewtonsoftJson` package and the following `using` statements:
+[!code-csharp[](jsonpatch/samples/6.x/api/MyJPIF.cs)]
 
-[!code-csharp[](jsonpatch/samples/3.x/WebApp1/Startup.cs?name=snippet1)]
-
+The preceding code requires the `Microsoft.AspNetCore.Mvc.NewtonsoftJson` package.
 Use the `Newtonsoft.Json.JsonConvert.SerializeObject` method to serialize a JsonPatchDocument.
 
 ## PATCH HTTP request method
@@ -124,8 +119,8 @@ The ASP.NET Core implementation of JSON Patch is provided in the [Microsoft.AspN
 In an API controller, an action method for JSON Patch:
 
 * Is annotated with the `HttpPatch` attribute.
-* Accepts a `JsonPatchDocument<T>`, typically with `[FromBody]`.
-* Calls `ApplyTo` on the patch document to apply the changes.
+* Accepts a <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument%601>, typically with [`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute).
+* Calls <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument.ApplyTo(System.Object)> on the patch document to apply the changes.
 
 Here's an example:
 
@@ -133,9 +128,9 @@ Here's an example:
 
 This code from the sample app works with the following `Customer` model:
 
-[!code-csharp[](jsonpatch/samples/3.x/api/Models/Customer.cs?name=snippet_Customer)]
+[!code-csharp[](jsonpatch/samples/6.x/api/Models/Customer.cs)]
 
-[!code-csharp[](jsonpatch/samples/3.x/api/Models/Order.cs?name=snippet_Order)]
+[!code-csharp[](jsonpatch/samples/6.x/api/Models/Order.cs)]
 
 The sample action method:
 
@@ -151,9 +146,9 @@ The preceding action method example calls an overload of `ApplyTo` that takes mo
 
 ```json
 {
-    "Customer": [
-        "The current value 'John' at path 'customerName' is not equal to the test value 'Nancy'."
-    ]
+  "Customer": [
+    "The current value 'John' at path 'customerName' != test value 'Nancy'."
+  ]
 }
 ```
 
@@ -161,7 +156,7 @@ The preceding action method example calls an overload of `ApplyTo` that takes mo
 
 The following action method example shows how to apply a patch to a dynamic object:
 
-[!code-csharp[](jsonpatch/samples/3.x/api/Controllers/HomeController.cs?name=snippet_Dynamic)]
+[!code-csharp[](jsonpatch/samples/6.x/api/Controllers/HomeController.cs?name=snippet_Dynamic)]
 
 ## The add operation
 
