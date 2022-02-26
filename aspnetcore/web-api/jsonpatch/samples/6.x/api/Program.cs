@@ -24,7 +24,7 @@ using Microsoft.AspNetCore.Mvc.Formatters;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllersWithViews(options =>
+builder.Services.AddControllers(options =>
 {
     options.InputFormatters.Insert(0, MyJPIF.GetJsonPatchInputFormatter());
 });

@@ -147,7 +147,7 @@ The preceding action method example calls an overload of `ApplyTo` that takes mo
 ```json
 {
   "Customer": [
-      "The current value 'John' at path 'customerName' isn't equal to the test value 'Nancy'."
+    "The current value 'John' at path 'customerName' != test value 'Nancy'."
   ]
 }
 ```
