@@ -3,7 +3,7 @@ title: gRPC interceptors on .NET
 author: erni27
 description: Learn how to use gRPC interceptors on .NET.
 monikerRange: '>= aspnetcore-3.0'
-ms.author: TODO
+ms.author:
 ms.date: 02/06/2022
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/interceptors
@@ -12,7 +12,7 @@ uid: grpc/interceptors
 
 Interceptors allow you to intercept incoming or outgoing gRPC requests. They offer a way to enrich the request processing pipeline. Since they are transparent for the user's application logic and once applied are triggered automatically, interceptors became a perfect solution for common cases like logging, monitoring, authentication, validation, etc.
 
-Interceptors can be implemented for both gRPC servers and clients by creating a class that inherits from `Interceptor`.
+Interceptors can be implemented for both gRPC servers and clients by creating a class that inherits from `Interceptor` type.
 
 ```csharp
 public class ExemplaryInterceptor : Interceptor
@@ -38,7 +38,7 @@ gRPC client interceptors intercept outgoing RPC invocations. They provide access
 
 ### Create a client gRPC interceptor
 
-The following code presents an example of an intercepting an asynchronous invocation of a simple remote call.
+The following code presents an example of intercepting an asynchronous invocation of a simple remote call.
 
 ```csharp
 public override AsyncUnaryCall<TResponse> AsyncUnaryCall<TRequest, TResponse>(
@@ -60,7 +60,38 @@ Overridden `AsyncUnaryCall` does the following:
 * Adds caller metadata to call headers
 * Handles response in a custom way (logs if an exception occurred)
 
-`LogCall`, `AddCallerMetadata` and `HandleResponse` methods are private methods embedded in exemplary `ClientLoggerInterceptor` class. For complete implementation, see an [example how to use gRPC on the client and server](https://github.com/grpc/grpc-dotnet/tree/master/examples#interceptor).
+Although the interceptors for each kind of service method are slightly different, the concept behind `continuation` and `context` parameters remains the same.
+
+`continuation` is a delegate which invokes the next interceptor in the chain or the underlying call invoker (if there is no interceptor left in the chain). It is not an error to call it zero or multiple times. Interceptors don't even have to return `AsyncUnaryCall` returned from `continuation` delegate. Notice that in the preceding example a new instance of `AsyncUnaryCall` is constructed. Omitting the delegate call and returning your own instance of call representation breaks the interceptors' chain and returns the associated response immediately.
+
+`context` on the other hand, carries scoped-values associated with the client side call. You can use it to pass metadata like security principals, credentials or tracing data. Moreover, `context` carries information about deadlines and cancellation. For more information, see [Reliable gRPC services with deadlines and cancellation](xref:grpc/deadlines-cancellation#deadlines>).
+
+The following code shows how to add caller metadata through the context.
+
+```csharp
+private void AddCallerMetadata<TRequest, TResponse>(ref ClientInterceptorContext<TRequest, TResponse> context)
+    where TRequest : class
+    where TResponse : class
+{
+    var headers = context.Options.Headers;
+
+    // Call doesn't have a headers collection to add to.
+    // Need to create a new context with headers for the call.
+    if (headers == null)
+    {
+        headers = new Metadata();
+        var options = context.Options.WithHeaders(headers);
+        context = new ClientInterceptorContext<TRequest, TResponse>(context.Method, context.Host, options);
+    }
+
+    // Add caller metadata to call headers
+    headers.Add("caller-user", Environment.UserName);
+    headers.Add("caller-machine", Environment.MachineName);
+    headers.Add("caller-os", Environment.OSVersion.ToString());
+}
+```
+
+`LogCall`, `AddCallerMetadata` and `HandleResponse` methods are private methods embedded in the exemplary `ClientLoggerInterceptor` class. For complete implementation, see an [example of client interceptor](https://github.com/grpc/grpc-dotnet/blob/master/examples/Interceptor/Client/ClientLoggerInterceptor.cs).
 
 ### Configure client interceptors
 
@@ -88,7 +119,9 @@ var invoker = channel.Intercept(
     new ClientTokenInterceptor());
 ```
 
-The order of the parameters matters so in the preceding code, interceptors will be invoked as follow `ClientLoggerInterceptor`, `ClientMonitoringInterceptor` and then `ClientTokenInterceptor`. The same result can be achieved by building a chain of interceptors.
+The order of the parameters matters so in the preceding code, interceptors will be invoked as follow `ClientLoggerInterceptor`, `ClientMonitoringInterceptor` and then `ClientTokenInterceptor`.
+
+The same result can be achieved by building a chain of interceptors.
 
 ```csharp
 var invoker = channel
@@ -97,7 +130,7 @@ var invoker = channel
     .Intercept(new ClientLoggerInterceptor());
 ```
 
-For information on configuring interceptors with gRPC client factory, see [Configure Channel and Interceptors](xref:grpc/clientfactory#configure-channel-and-interceptors).
+For information on how to configure interceptors with gRPC client factory, see [Configure Channel and Interceptors](xref:grpc/clientfactory#configure-channel-and-interceptors).
 
 ## Server interceptors
 
@@ -135,7 +168,8 @@ public override async Task<TResponse> UnaryServerHandler<TRequest, TResponse>(
 }
 ```
 
-Overridden `UnaryServerHandler` logs call to the console and logs an exception if occurred. For complete implementation, see an [example how to use gRPC on the client and server](https://github.com/grpc/grpc-dotnet/tree/master/examples#interceptor).
+Overridden `UnaryServerHandler` logs call to the console and logs an exception if occurred.
+For complete implementation, see an [example how to use gRPC on the client and server](https://github.com/grpc/grpc-dotnet/tree/master/examples#interceptor).
 
 ### Configure server interceptors
 
