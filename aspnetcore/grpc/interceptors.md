@@ -29,11 +29,11 @@ By default `Interceptor` base class doesn't do anything. Its virtual methods jus
 gRPC client interceptors intercept outgoing RPC invocations. They provide access to the sent request, the incoming response and the context for a client-side call.
 
 `Interceptor` methods to override for client:
-* `BlockingUnaryCall`- intercepts a blocking invocation of an unary RPC
-* `AsyncUnaryCall` - intercepts an asynchronous invocation of an unary RPC
-* `AsyncClientStreamingCall` - intercepts an asynchronous invocation of a client streaming RPC
-* `AsyncServerStreamingCall` - intercepts an asynchronous invocation of a server streaming RPC
-* `AsyncDuplexStreamingCall` - intercepts an asynchronous invocation of a bidirectional streaming RPC
+* `BlockingUnaryCall`- intercepts a blocking invocation of an unary RPC.
+* `AsyncUnaryCall` - intercepts an asynchronous invocation of an unary RPC.
+* `AsyncClientStreamingCall` - intercepts an asynchronous invocation of a client streaming RPC.
+* `AsyncServerStreamingCall` - intercepts an asynchronous invocation of a server streaming RPC.
+* `AsyncDuplexStreamingCall` - intercepts an asynchronous invocation of a bidirectional streaming RPC.
 
 > [!WARNING]
 > Although both `BlockingUnaryCall` and `AsyncUnaryCall` refer to unary RPCs, they can't be used interchangeably. A blocking invocation would not be intercepted by `AsyncUnaryCall` and an asynchronous one by `BlockingUnaryCall`.
@@ -58,15 +58,14 @@ public override AsyncUnaryCall<TResponse> AsyncUnaryCall<TRequest, TResponse>(
 ```
 
 Overridden `AsyncUnaryCall` does the following:
-* Logs call to the console
-* Adds caller metadata to call headers
-* Handles response in a custom way (logs if an exception occurred)
+* Logs call to the console.
+* Adds caller metadata to call headers.
+* Handles response in a custom way (logs if an exception occurred).
 
 Although the interceptors for each kind of service method are slightly different, the concept behind `continuation` and `context` parameters remains the same.
 
-`continuation` is a delegate which invokes the next interceptor in the chain or the underlying call invoker (if there is no interceptor left in the chain). It is not an error to call it zero or multiple times. Interceptors don't even have to return call representation (`AsyncUnaryCall` in case of unary RPC) returned from `continuation` delegate. Notice that in the preceding example a new instance of call representation is constructed. Omitting the delegate call and returning your own instance of call representation breaks the interceptors' chain and returns the associated response immediately.
-
-On the other hand, `context` carries scoped-values associated with the client side call. You can use it to pass metadata like security principals, credentials or tracing data. Moreover, `context` carries information about deadlines and cancellation. For more information, see [Reliable gRPC services with deadlines and cancellation](xref:grpc/deadlines-cancellation#deadlines>).
+* `continuation` is a delegate which invokes the next interceptor in the chain or the underlying call invoker (if there is no interceptor left in the chain). It is not an error to call it zero or multiple times. Interceptors don't even have to return call representation (`AsyncUnaryCall` in case of unary RPC) returned from `continuation` delegate. Notice that in the preceding example a new instance of call representation is constructed. Omitting the delegate call and returning your own instance of call representation breaks the interceptors' chain and returns the associated response immediately.
+* `context` carries scoped-values associated with the client side call. You can use it to pass metadata like security principals, credentials or tracing data. Moreover, `context` carries information about deadlines and cancellation. For more information, see [Reliable gRPC services with deadlines and cancellation](xref:grpc/deadlines-cancellation#deadlines>).
 
 The following code shows how to add caller metadata through the context.
 
@@ -101,9 +100,9 @@ gRPC client interceptors are configured by creating a call invoker from a channe
 creating a client from that invoker.
 
 The following code:
-* Creates a channel by using `GrpcChannel.ForAddress`
-* Creates an invoker by using `Intercept` method on the created channel
-* Creates a client from the invoker
+* Creates a channel by using `GrpcChannel.ForAddress`.
+* Creates an invoker by using `Intercept` method on the created channel.
+* Creates a client from the invoker.
 
 ```csharp
 using var channel = GrpcChannel.ForAddress("https://localhost:5001");
@@ -139,10 +138,10 @@ For information on how to configure interceptors with gRPC client factory, see [
 gRPC server interceptors intercept incoming RPC requests. They provide access to the incoming request, the outgoing response and the context for a server-side call.
 
 `Interceptor` methods to override for server:
-* `UnaryServerHandler` - intercepts an incoming unary RPC
-* `ClientStreamingServerHandler` - intercepts a client streaming RPC
-* `ServerStreamingServerHandler` - intercepts a server streaming RPC
-* `DuplexStreamingServerHandler` - intercepts a bidirectional streaming RPC
+* `UnaryServerHandler` - intercepts an incoming unary RPC.
+* `ClientStreamingServerHandler` - intercepts a client streaming RPC.
+* `ServerStreamingServerHandler` - intercepts a server streaming RPC.
+* `DuplexStreamingServerHandler` - intercepts a bidirectional streaming RPC.
 
 ### Create a server gRPC interceptor
 
@@ -172,9 +171,8 @@ public override async Task<TResponse> UnaryServerHandler<TRequest, TResponse>(
 
 Note that the signature of both client and server interceptors methods are similar.
 
-`continuation` stands for a delegate for an incoming RPC calling the next interceptor in the chain or the service handler (if there is no interceptor left in the chain). Like for the client interceptors, you can call it any time and there is no need to return a response from the continuation delegate.
-
-And `context` carries metadata associated with the server-side call like request metadata, deadlines and cancellation or RPC result.
+* `continuation` stands for a delegate for an incoming RPC calling the next interceptor in the chain or the service handler (if there is no interceptor left in the chain). Like for the client interceptors, you can call it any time and there is no need to return a response directly from the continuation delegate.
+* `context` carries metadata associated with the server-side call like request metadata, deadlines and cancellation or RPC result.
 
 The following code shows how to retrieve request metadata from the context.
 
