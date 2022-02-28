@@ -1,6 +1,7 @@
 ---
 title: gRPC interceptors on .NET
 author: erni27
+ms.author: jamesnk
 description: Learn how to use gRPC interceptors on .NET.
 monikerRange: '>= aspnetcore-3.0'
 ms.author:
