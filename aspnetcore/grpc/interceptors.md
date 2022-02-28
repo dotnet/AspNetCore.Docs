@@ -12,7 +12,9 @@ uid: grpc/interceptors
 
 By [Ernest Nguyen](https://github.com/erni27)
 
-Interceptors allow you to intercept incoming or outgoing gRPC requests. They offer a way to enrich the request processing pipeline. Since they are transparent for the user's application logic and once applied are triggered automatically, interceptors became a perfect solution for common cases like logging, monitoring, authentication, validation, etc.
+Interceptors are a gRPC concept that allows apps to interact with incoming or outgoing gRPC calls. They offer a way to enrich the request processing pipeline.
+
+Interceptors are configured for a channel or service and executed automatically for each gRPC call. Since interceptors are transparent to the user's application logic, they are an excellent solution for common cases like logging, monitoring, authentication, validation, etc.
 
 Interceptors can be implemented for both gRPC servers and clients by creating a class that inherits from `Interceptor` type.
 
@@ -96,13 +98,12 @@ private void AddCallerMetadata<TRequest, TResponse>(ref ClientInterceptorContext
 
 ### Configure client interceptors
 
-gRPC client interceptors are configured by creating a call invoker from a channel and then 
-creating a client from that invoker.
+gRPC client interceptors are configured on a channel.
 
 The following code:
 * Creates a channel by using `GrpcChannel.ForAddress`.
-* Creates an invoker by using `Intercept` method on the created channel.
-* Creates a client from the invoker.
+* Uses the `Intercept(...)` extension method to configure the channel to use the interceptor. Note that this method returns a `CallInvoker`. Strongly typed gRPC clients may be created from an invoker just like a channel.
+* Creates a client from the invoker. gRPC calls made by the client automatically execute the interceptor.
 
 ```csharp
 using var channel = GrpcChannel.ForAddress("https://localhost:5001");
@@ -111,18 +112,7 @@ var invoker = channel.Intercept(new ClientLoggerInterceptor());
 var client = new Greeter.GreeterClient(invoker);
 ```
 
-A call invoker intercepts the channel with the given interceptor. If you want to intercept the channel with multiple interceptors use overloaded `Intercept` method. Any number of interceptors may be used for a single RPC.
-
-```csharp
-var invoker = channel.Intercept(
-    new ClientLoggerInterceptor(),
-    new ClientMonitoringInterceptor(),
-    new ClientTokenInterceptor());
-```
-
-The order of the parameters matters so in the preceding code, interceptors will be invoked as follow `ClientLoggerInterceptor`, `ClientMonitoringInterceptor` and then `ClientTokenInterceptor`.
-
-The same result can be achieved by building a chain of interceptors.
+The `Intercept(...)` extension method can be chained together to configure multiple interceptors for a channel. Alternatively, there is an `Intercept` overload that accepts multiple interceptors. Any number of interceptors can be executed for a single gRPC call.
 
 ```csharp
 var invoker = channel
@@ -131,7 +121,9 @@ var invoker = channel
     .Intercept(new ClientLoggerInterceptor());
 ```
 
-For information on how to configure interceptors with gRPC client factory, see [Configure Channel and Interceptors](xref:grpc/clientfactory#configure-channel-and-interceptors).
+The order of the parameters matters so in the preceding code, interceptors will be invoked as follow `ClientLoggerInterceptor`, `ClientMonitoringInterceptor` and then `ClientTokenInterceptor`.
+
+For information on how to configure interceptors with gRPC client factory, see [Configure Interceptors](xref:grpc/clientfactory#configure-interceptors).
 
 ## Server interceptors
 
@@ -198,7 +190,9 @@ For complete implementation of introduced `ServerLoggerInterceptor`, see an [exa
 
 ### Configure server interceptors
 
-gRPC server interceptors can be configured for all services by providing an appropriate options delegate to the `AddGrpc` call in `Startup.ConfigureServices`.
+gRPC server interceptors are configured at startup. The following code:
+* Adds gRPC to the app with `AddGrpc`.
+* Configures `ServerLoggerInterceptor` for all services by adding it to the service option's `Interceptors` collection.
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -210,7 +204,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-If a particular interceptor is dedicated for one specific service, then configure options for a single service.
+An interceptor can also be configured for a specific service by using `AddServiceOptions` and specifying the service type.
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
