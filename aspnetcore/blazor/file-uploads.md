@@ -115,7 +115,7 @@ The following example demonstrates multiple file upload in a component. <xref:Mi
 > The following example merely processes file bytes and doesn't send (upload) files to a destination outside of the app. For an example of a Razor component that sends a file to a server or service, see the following sections:
 > 
 > * [Upload files to a server](#upload-files-to-a-server)
-> * [Upload files to an external service](#upload-files-to-an-external-service) section.
+> * [Upload files to an external service](#upload-files-to-an-external-service)
 
 [!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload1.razor)]
 
