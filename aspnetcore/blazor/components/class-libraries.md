@@ -197,6 +197,9 @@ The background image is also included from the RCL project template and resides 
 
 To provide additional library component styles from stylesheets in the library's `wwwroot` folder, add stylesheet `<link>` tags to the RCL's consumer, as the next example demonstrates.
 
+> [!IMPORTANT]
+> Generally, library components use [CSS isolation](xref:blazor/components/css-isolation) to bundle and provide component styles. Component styles that rely upon CSS isolation are automatically made available to the app that uses the RCL. There's no need to manually link or import the library's individual component stylesheets or its bundled CSS file in the app that consumes the library. The following example is for providing global stylesheets *outside of CSS isolation*, which usually isn't a requirement for typical apps that consume RCLs.
+
 The following background image is used in the next example. If you implement the example shown in this section, right-click the image to save it locally.
 
 `wwwroot/extra-background.png` in the `ComponentLibrary` RCL:
