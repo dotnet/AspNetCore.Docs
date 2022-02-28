@@ -195,7 +195,10 @@ The background image is also included from the RCL project template and resides 
 
 ![Diagonally-striped background image from the RCL project template](~/blazor/components/class-libraries/_static/background.png)
 
-To provide additional library component styles from stylesheets in the library's `wwwroot` folder, add stylesheet `<link>` tags with a [`HeadContent` component](xref:blazor/components/control-head-content).
+To provide additional library component styles from stylesheets in the library's `wwwroot` folder, add stylesheet `<link>` tags to the RCL's consumer, as the next example demonstrates.
+
+> [!IMPORTANT]
+> Generally, library components use [CSS isolation](xref:blazor/components/css-isolation) to bundle and provide component styles. Component styles that rely upon CSS isolation are automatically made available to the app that uses the RCL. There's no need to manually link or import the library's individual component stylesheets or its bundled CSS file in the app that consumes the library. The following example is for providing global stylesheets *outside of CSS isolation*, which usually isn't a requirement for typical apps that consume RCLs.
 
 The following background image is used in the next example. If you implement the example shown in this section, right-click the image to save it locally.
 
@@ -221,10 +224,6 @@ Add a component to the RCL that uses the `extra-style` class.
 `ExtraStyles.razor` in the `ComponentLibrary` RCL:
 
 ```razor
-<HeadContent>
-    <link href="_content/ComponentLibrary/additionalStyles.css" rel="stylesheet" />
-</HeadContent>
-
 <div class="extra-style">
     <p>
         This component is defined in the <strong>ComponentLibrary</strong> package.
@@ -245,20 +244,13 @@ Add a page to the app that uses the `ExtraStyles` component from the RCL.
 <ExtraStyles />
 ```
 
-When the `HeadContent` component is used in a child component, the linked asset is also available to any other child component of the parent component if the child with the `HeadContent` component is rendered.
-
-An alternative to using the `HeadContent` component is to link to the library's stylesheet in the app's `<head>` markup.
+Link to the library's stylesheet in the app's `<head>` markup.
 
 `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Layout.cshtml` file (Blazor Server):
 
-```diff
-+ <link href="_content/ComponentLibrary/additionalStyles.css" rel="stylesheet" />
+```html
+<link href="_content/ComponentLibrary/additionalStyles.css" rel="stylesheet" />
 ```
-
-The distinction between using the `HeadContent` component in a child component and placing a `<link>` HTML tag in `wwwroot/index.html` or `Pages/_Host.cshtml` is that a framework component's rendered HTML tag:
-
-* Can be modified by application state. A hard-coded `<link>` HTML tag can't be modified by application state.
-* Is removed from the HTML `<head>` when the parent component is no longer rendered.
 
 ## Create an RCL with static assets in the `wwwroot` folder
 
