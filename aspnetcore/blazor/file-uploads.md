@@ -47,7 +47,7 @@ To read data from a user-selected file, call <xref:Microsoft.AspNetCore.Componen
 
 If you need access to a <xref:System.IO.Stream> that represents the file's bytes, use <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream%2A?displayProperty=nameWithType>. Avoid reading the incoming file stream directly into memory all at once. For example, don't copy all of the file's bytes into a <xref:System.IO.MemoryStream> or read the entire stream into a byte array all at once. These approaches can result in performance and security problems, especially for Blazor Server apps. Instead, consider adopting either of the following approaches:
 
-* Copy the stream directly to a file on disk without reading it into memory.
+* On the server of a hosted Blazor WebAssembly app or a Blazor Server app, copy the stream directly to a file on disk without reading it into memory. Note that Blazor apps aren't able to access the client's file system directly. 
 * Upload files from the client directly to an external service. For more information, see the [Upload files to an external service](#upload-files-to-an-external-service) section.
 
 In the following examples, `browserFile` represents the uploaded file and implements <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile>:
@@ -110,6 +110,12 @@ The following example demonstrates multiple file upload in a component. <xref:Mi
 `Pages/FileUpload1.razor`:
 
 :::zone pivot="webassembly"
+
+> [!NOTE]
+> The following example merely processes file bytes and doesn't send (upload) files to a destination outside of the app. For an example of a Razor component that sends a file to a server or service, see the following sections:
+> 
+> * [Upload files to a server](#upload-files-to-a-server)
+> * [Upload files to an external service](#upload-files-to-an-external-service) section.
 
 [!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload1.razor)]
 
