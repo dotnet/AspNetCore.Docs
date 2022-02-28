@@ -31,6 +31,7 @@ By default `Interceptor` base class doesn't do anything. Its virtual methods jus
 gRPC client interceptors intercept outgoing RPC invocations. They provide access to the sent request, the incoming response and the context for a client-side call.
 
 `Interceptor` methods to override for client:
+
 * `BlockingUnaryCall`- intercepts a blocking invocation of an unary RPC.
 * `AsyncUnaryCall` - intercepts an asynchronous invocation of an unary RPC.
 * `AsyncClientStreamingCall` - intercepts an asynchronous invocation of a client streaming RPC.
@@ -45,62 +46,44 @@ gRPC client interceptors intercept outgoing RPC invocations. They provide access
 The following code presents an example of intercepting an asynchronous invocation of a simple remote call.
 
 ```csharp
-public override AsyncUnaryCall<TResponse> AsyncUnaryCall<TRequest, TResponse>(
-    TRequest request,
-    ClientInterceptorContext<TRequest, TResponse> context,
-    AsyncUnaryCallContinuation<TRequest, TResponse> continuation)
+public class ClientLoggingInterceptor : Interceptor
 {
-    LogCall(context.Method);
-    AddCallerMetadata(ref context);
+    private readonly ILogger _logger;
 
-    var call = continuation(request, context);
+    public ClientLoggingInterceptor(ILoggerFactory loggerFactory)
+    {
+        _logger = loggerFactory.CreateLogger<ClientLoggingInterceptor>();
+    }
 
-    return new AsyncUnaryCall<TResponse>(HandleResponse(call.ResponseAsync), call.ResponseHeadersAsync, call.GetStatus, call.GetTrailers, call.Dispose);
+    public override AsyncUnaryCall<TResponse> AsyncUnaryCall<TRequest, TResponse>(
+        TRequest request,
+        ClientInterceptorContext<TRequest, TResponse> context,
+        AsyncUnaryCallContinuation<TRequest, TResponse> continuation)
+    {
+        _logger.LogInformation($"Starting call. Type: {context.Method.Type}. Method: {context.Method.Name}. Request: {typeof(TRequest)}. Response: {typeof(TResponse)}");
+        return continuation(request, context);
+    }
 }
 ```
 
 Overridden `AsyncUnaryCall` does the following:
-* Logs call to the console.
-* Adds caller metadata to call headers.
-* Handles response in a custom way (logs if an exception occurred).
+
+* Intercepts an asynchronous unary call.
+* Logs the call.
 
 Although the interceptors for each kind of service method are slightly different, the concept behind `continuation` and `context` parameters remains the same.
 
-* `continuation` is a delegate which invokes the next interceptor in the chain or the underlying call invoker (if there is no interceptor left in the chain). It is not an error to call it zero or multiple times. Interceptors don't even have to return call representation (`AsyncUnaryCall` in case of unary RPC) returned from `continuation` delegate. Notice that in the preceding example a new instance of call representation is constructed. Omitting the delegate call and returning your own instance of call representation breaks the interceptors' chain and returns the associated response immediately.
-* `context` carries scoped-values associated with the client side call. You can use it to pass metadata like security principals, credentials or tracing data. Moreover, `context` carries information about deadlines and cancellation. For more information, see [Reliable gRPC services with deadlines and cancellation](xref:grpc/deadlines-cancellation#deadlines>).
+* `continuation` is a delegate which invokes the next interceptor in the chain or the underlying call invoker (if there is no interceptor left in the chain). It is not an error to call it zero or multiple times. Interceptors don't even have to return call representation (`AsyncUnaryCall` in case of unary RPC) returned from `continuation` delegate. Omitting the delegate call and returning your own instance of call representation breaks the interceptors' chain and returns the associated response immediately.
+* `context` carries scoped-values associated with the client side call. You can use it to pass metadata like security principals, credentials or tracing data. Moreover, `context` carries information about deadlines and cancellation. For more, see [Reliable gRPC services with deadlines and cancellation](xref:grpc/deadlines-cancellation#deadlines>).
 
-The following code shows how to add caller metadata through the context.
-
-```csharp
-private void AddCallerMetadata<TRequest, TResponse>(ref ClientInterceptorContext<TRequest, TResponse> context)
-    where TRequest : class
-    where TResponse : class
-{
-    var headers = context.Options.Headers;
-
-    // Call doesn't have a headers collection to add to.
-    // Need to create a new context with headers for the call.
-    if (headers == null)
-    {
-        headers = new Metadata();
-        var options = context.Options.WithHeaders(headers);
-        context = new ClientInterceptorContext<TRequest, TResponse>(context.Method, context.Host, options);
-    }
-
-    // Add caller metadata to call headers
-    headers.Add("caller-user", Environment.UserName);
-    headers.Add("caller-machine", Environment.MachineName);
-    headers.Add("caller-os", Environment.OSVersion.ToString());
-}
-```
-
-`LogCall`, `AddCallerMetadata` and `HandleResponse` methods are private methods embedded in the exemplary `ClientLoggerInterceptor` class. For complete implementation, see an [example of client interceptor](https://github.com/grpc/grpc-dotnet/blob/master/examples/Interceptor/Client/ClientLoggerInterceptor.cs).
+For more information on how to create a client interceptor, see an [example](https://github.com/grpc/grpc-dotnet/blob/master/examples/Interceptor/Client/ClientLoggerInterceptor.cs).
 
 ### Configure client interceptors
 
 gRPC client interceptors are configured on a channel.
 
 The following code:
+
 * Creates a channel by using `GrpcChannel.ForAddress`.
 * Uses the `Intercept(...)` extension method to configure the channel to use the interceptor. Note that this method returns a `CallInvoker`. Strongly typed gRPC clients may be created from an invoker just like a channel.
 * Creates a client from the invoker. gRPC calls made by the client automatically execute the interceptor.
@@ -130,6 +113,7 @@ For information on how to configure interceptors with gRPC client factory, see [
 gRPC server interceptors intercept incoming RPC requests. They provide access to the incoming request, the outgoing response and the context for a server-side call.
 
 `Interceptor` methods to override for server:
+
 * `UnaryServerHandler` - intercepts an incoming unary RPC.
 * `ClientStreamingServerHandler` - intercepts a client streaming RPC.
 * `ServerStreamingServerHandler` - intercepts a server streaming RPC.
@@ -140,53 +124,46 @@ gRPC server interceptors intercept incoming RPC requests. They provide access to
 The following code presents an example of an intercepting an incoming unary RPC.
 
 ```csharp
-public override async Task<TResponse> UnaryServerHandler<TRequest, TResponse>(
-    TRequest request,
-    ServerCallContext context,
-    UnaryServerMethod<TRequest, TResponse> continuation)
+public class ServerLoggingInterceptor : Interceptor
 {
-    LogCall<TRequest, TResponse>(MethodType.Unary, context);
+    private readonly ILogger _logger;
 
-    try
+    public ServerLoggingInterceptor(ILogger<ServerLoggingInterceptor> logger)
     {
-        return await continuation(request, context);
+        _logger = logger;
     }
-    catch (Exception ex)
-    {
-        // Note: The gRPC framework also logs exceptions thrown by handlers to .NET Core logging.
-        _logger.LogError(ex, $"Error thrown by {context.Method}.");
 
-        throw;
+    public override async Task<TResponse> UnaryServerHandler<TRequest, TResponse>(
+        TRequest request,
+        ServerCallContext context,
+        UnaryServerMethod<TRequest, TResponse> continuation)
+    {
+        _logger.LogWarning($"Starting receiving call. Type: {MethodType.Unary}. Method: {context.Method}. Request: {typeof(TRequest)}. Response: {typeof(TResponse)}");
+        try
+        {
+            return await continuation(request, context);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, $"Error thrown by {context.Method}.");
+            throw;
+        }
     }
 }
 ```
+
+Overridden `UnaryServerHandler` does the following:
+
+* Intercepts an incoming unary call.
+* Logs the call.
+* Logs an exception if occured.
 
 Note that the signature of both client and server interceptors methods are similar.
 
 * `continuation` stands for a delegate for an incoming RPC calling the next interceptor in the chain or the service handler (if there is no interceptor left in the chain). Like for the client interceptors, you can call it any time and there is no need to return a response directly from the continuation delegate.
 * `context` carries metadata associated with the server-side call like request metadata, deadlines and cancellation or RPC result.
 
-The following code shows how to retrieve request metadata from the context.
-
-```csharp
-private void LogCall<TRequest, TResponse>(MethodType methodType, ServerCallContext context)
-    where TRequest : class
-    where TResponse : class
-{
-    _logger.LogWarning($"Starting call. Type: {methodType}. Request: {typeof(TRequest)}. Response: {typeof(TResponse)}");
-    WriteMetadata(context.RequestHeaders, "caller-user");
-    WriteMetadata(context.RequestHeaders, "caller-machine");
-    WriteMetadata(context.RequestHeaders, "caller-os");
-
-    void WriteMetadata(Metadata headers, string key)
-    {
-        var headerValue = headers.SingleOrDefault(h => h.Key == key)?.Value;
-        _logger.LogWarning($"{key}: {headerValue ?? "(unknown)"}");
-    }
-}
-```
-
-For complete implementation of introduced `ServerLoggerInterceptor`, see an [example of server interceptor](https://github.com/grpc/grpc-dotnet/blob/master/examples/Interceptor/Server/ServerLoggerInterceptor.cs).
+For more information on how to create a server interceptor, see an [example](https://github.com/grpc/grpc-dotnet/blob/master/examples/Interceptor/Server/ServerLoggerInterceptor.cs).
 
 ### Configure server interceptors
 
