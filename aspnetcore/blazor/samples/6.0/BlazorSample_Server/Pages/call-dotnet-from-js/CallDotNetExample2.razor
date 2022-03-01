@@ -23,12 +23,12 @@
 @code {
     private string? name;
     private string? result;
-    private DotNetObjectReference<CallDotNetExample2>? objRef;
+    private DotNetObjectReference<CallDotNetExample2>? dotNetHelper;
 
     public async Task TriggerDotNetInstanceMethod()
     {
-        objRef = DotNetObjectReference.Create(this);
-        result = await JS.InvokeAsync<string>("sayHello1", objRef);
+        dotNetHelper = DotNetObjectReference.Create(this);
+        result = await JS.InvokeAsync<string>("sayHello1", dotNetHelper);
     }
 
     [JSInvokable]
@@ -36,6 +36,6 @@
 
     public void Dispose()
     {
-        objRef?.Dispose();
+        dotNetHelper?.Dispose();
     }
 }
