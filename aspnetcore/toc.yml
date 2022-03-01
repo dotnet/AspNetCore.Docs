@@ -803,6 +803,8 @@ items:
         uid: grpc/configuration
       - name: Authentication and authorization
         uid: grpc/authn-and-authz
+      - name: gRPC interceptors
+        uid: grpc/interceptors
       - name: Logging and diagnostics
         uid: grpc/diagnostics
       - name: Security considerations
