@@ -103,7 +103,6 @@ Welcome to what's new in the ASP.NET Core docs from February 1, 2022 through Feb
 
 The following people contributed to the ASP.NET Core docs during this period. Thank you! Learn how to contribute by following the links under "Get involved" in the [what's new landing page](index.yml).
 
-- [guardrex](https://github.com/guardrex) - Luke Latham (48)
 - [yecril71pl](https://github.com/yecril71pl) - Christopher Yeleighton (3)
 - [ptfw](https://github.com/ptfw) (2)
 - [Bouke](https://github.com/Bouke) - Bouke Haarsma (1)
