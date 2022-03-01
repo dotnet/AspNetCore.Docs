@@ -579,7 +579,8 @@ The `[Consumes]` attribute is applied to both actions. The `PostJson` action han
 * [Microsoft Learn: Create a web API with ASP.NET Core](/learn/modules/build-web-api-aspnet-core/)
 
 :::moniker-end
-:::moniker range="< aspnetcore-6.0"
+
+:::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 
 ASP.NET Core supports creating RESTful services, also known as web APIs, using C#. To handle requests, a web API uses controllers. *Controllers* in a web API are classes that derive from `ControllerBase`. This article shows how to use controllers for handling web API requests.
 
