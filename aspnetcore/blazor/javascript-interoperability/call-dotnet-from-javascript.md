@@ -117,7 +117,7 @@ To invoke an instance .NET method from JavaScript (JS):
 
 ### Component instance examples
 
-In the following sections, examples demonstrate how to pass a `DotNetObjectReference`:
+In the following sections, examples demonstrate how to pass a <xref:Microsoft.JSInterop.DotNetObjectReference>:
 
 * To a single JavaScript function.
 * That multiple JavaScript functions can use.
