@@ -16,19 +16,21 @@ Interceptors are a gRPC concept that allows apps to interact with incoming or ou
 
 Interceptors are configured for a channel or service and executed automatically for each gRPC call. Since interceptors are transparent to the user's application logic, they are an excellent solution for common cases like logging, monitoring, authentication, validation, etc.
 
+## `Interceptor` type
+
 Interceptors can be implemented for both gRPC servers and clients by creating a class that inherits from `Interceptor` type.
 
 ```csharp
-public class ExemplaryInterceptor : Interceptor
+public class ExampleInterceptor : Interceptor
 {
 }
 ```
 
-By default `Interceptor` base class doesn't do anything. Its virtual methods just passes the calls through. Thus, implementing your own interceptor comes down to overriding appropriate methods.
+By default, the `Interceptor` base class doesn't do anything. Add behavior to an interceptor by overriding the appropriate methods on an interceptor implementation.
 
 ## Client interceptors
 
-gRPC client interceptors intercept outgoing RPC invocations. They provide access to the sent request, the incoming response and the context for a client-side call.
+gRPC client interceptors intercept outgoing RPC invocations. They provide access to the sent request, the incoming response, and the context for a client-side call.
 
 `Interceptor` methods to override for client:
 
@@ -60,7 +62,7 @@ public class ClientLoggingInterceptor : Interceptor
         ClientInterceptorContext<TRequest, TResponse> context,
         AsyncUnaryCallContinuation<TRequest, TResponse> continuation)
     {
-        _logger.LogInformation($"Starting call. Type: {context.Method.Type}. Method: {context.Method.Name}. Request: {typeof(TRequest)}. Response: {typeof(TResponse)}");
+        _logger.LogInformation($"Starting call. Type: {context.Method.Type}. Method: {context.Method.Name}.");
         return continuation(request, context);
     }
 }
@@ -69,9 +71,10 @@ public class ClientLoggingInterceptor : Interceptor
 Overridden `AsyncUnaryCall` does the following:
 
 * Intercepts an asynchronous unary call.
-* Logs the call.
+* Logs details about the call.
+* Calls the `continuation` parameter passed into the method. This invokes the next interceptor in the chain or the underlying call invoker if this is the last interceptor.
 
-Although the interceptors for each kind of service method are slightly different, the concept behind `continuation` and `context` parameters remains the same.
+Methods on `Interceptor` for each kind of service method have different signatures. However, the concept behind `continuation` and `context` parameters remains the same:
 
 * `continuation` is a delegate which invokes the next interceptor in the chain or the underlying call invoker (if there is no interceptor left in the chain). It is not an error to call it zero or multiple times. Interceptors don't even have to return call representation (`AsyncUnaryCall` in case of unary RPC) returned from `continuation` delegate. Omitting the delegate call and returning your own instance of call representation breaks the interceptors' chain and returns the associated response immediately.
 * `context` carries scoped-values associated with the client side call. You can use it to pass metadata like security principals, credentials or tracing data. Moreover, `context` carries information about deadlines and cancellation. For more, see [Reliable gRPC services with deadlines and cancellation](xref:grpc/deadlines-cancellation#deadlines>).
@@ -114,7 +117,7 @@ gRPC server interceptors intercept incoming RPC requests. They provide access to
 
 `Interceptor` methods to override for server:
 
-* `UnaryServerHandler` - intercepts an incoming unary RPC.
+* `UnaryServerHandler` - intercepts a unary RPC.
 * `ClientStreamingServerHandler` - intercepts a client streaming RPC.
 * `ServerStreamingServerHandler` - intercepts a server streaming RPC.
 * `DuplexStreamingServerHandler` - intercepts a bidirectional streaming RPC.
@@ -138,7 +141,7 @@ public class ServerLoggingInterceptor : Interceptor
         ServerCallContext context,
         UnaryServerMethod<TRequest, TResponse> continuation)
     {
-        _logger.LogWarning($"Starting receiving call. Type: {MethodType.Unary}. Method: {context.Method}. Request: {typeof(TRequest)}. Response: {typeof(TResponse)}");
+        _logger.LogInformation($"Starting receiving call. Type: {MethodType.Unary}. Method: {context.Method}.");
         try
         {
             return await continuation(request, context);
@@ -155,7 +158,8 @@ public class ServerLoggingInterceptor : Interceptor
 Overridden `UnaryServerHandler` does the following:
 
 * Intercepts an incoming unary call.
-* Logs the call.
+* Logs details about the call.
+* Calls the `continuation` parameter passed into the method. This invokes the next interceptor in the chain or the service handler if this is the last interceptor.
 * Logs an exception if occured.
 
 Note that the signature of both client and server interceptors methods are similar.
