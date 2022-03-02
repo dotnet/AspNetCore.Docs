@@ -82,7 +82,7 @@ Methods on `Interceptor` for each kind of service method have different signatur
 
 ### Awaiting response in client interceptor
 
-An interceptor can await the response in unary and client streaming calls by updating the `AsyncUnaryCall<TResponse>.ResponseAsync` or `AsyncClientStreamingCall<TRequest, TResponse>.ResponseAsync`value.
+An interceptor can await the response in unary and client streaming calls by updating the `AsyncUnaryCall<TResponse>.ResponseAsync` or `AsyncClientStreamingCall<TRequest, TResponse>.ResponseAsync` value.
 
 ```csharp
 public class ErrorHandlerInterceptor : Interceptor
@@ -123,7 +123,7 @@ The preceding code:
   * Calls the `continuation` parameter to invoke the next item in the interceptor chain.
   * Creates a new `AsyncUnaryCall<TResponse>` instance based on the result of the continuation.
   * Wraps the `ResponseAsync` task using the `HandleResponse` method.
-  * `HandleResponse` awaits the response.
+  * Awaits the response with `HandleResponse`.
 
 For more information on how to create a client interceptor, see the [`ClientLoggerInterceptor.cs` example in the `grpc/grpc-dotnet` GitHub repository](https://github.com/grpc/grpc-dotnet/blob/master/examples/Interceptor/Client/ClientLoggerInterceptor.cs).
 
@@ -156,8 +156,8 @@ var invoker = channel
 Interceptors are invoked in reverse order of the chained `Intercept` extension methods. In the preceding code, interceptors are invoked in the following order:
 
 1. `ClientLoggerInterceptor`
-2. `ClientMonitoringInterceptor`
-3. `ClientTokenInterceptor`
+1. `ClientMonitoringInterceptor`
+1. `ClientTokenInterceptor`
 
 For information on how to configure interceptors with gRPC client factory, see <xref:grpc/clientfactory#configure-interceptors>.
 

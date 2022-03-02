@@ -110,7 +110,7 @@ C-core-based apps configure HTTPS through the [Server.Ports property](https://gr
 
 ## gRPC Interceptors
 
-ASP.NET Core [middleware](xref:fundamentals/middleware/index) offers similar functionalities compared to interceptors in C-core-based gRPC apps. Both are supported by ASP.NET Core gRPC apps so there is no need to rewrite interceptors.
+ASP.NET Core [middleware](xref:fundamentals/middleware/index) offers similar functionalities compared to interceptors in C-core-based gRPC apps. Both are supported by ASP.NET Core gRPC apps, so there's no need to rewrite interceptors.
 
 For more information on how these features compare to each other, see [gRPC Interceptors versus Middleware](xref:grpc/interceptors#grpc-interceptors-versus-middleware).
 
