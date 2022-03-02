@@ -23,7 +23,7 @@ The factory offers the following benefits:
 
 ## Register gRPC clients
 
-To register a gRPC client, the generic `AddGrpcClient` extension method can be used within an instance of <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder>, specifying the gRPC typed client class and service address:
+To register a gRPC client, the generic `AddGrpcClient` extension method can be used within an instance of <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> at the app's entry point in `Program.cs`, specifying the gRPC typed client class and service address:
 
 ```csharp
 builder.Services.AddGrpcClient<Greeter.GreeterClient>(o =>
@@ -77,7 +77,7 @@ builder.Services
     });
 ```
 
-For more information, see [Make HTTP requests using IHttpClientFactory](xref:fundamentals/http-requests).
+For more information, see [Make HTTP request using IHttpClientFactory](xref:fundamentals/http-requests).
 
 ## Configure Interceptors
 
@@ -166,7 +166,7 @@ For more information about deadlines and RPC cancellation, see <xref:grpc/deadli
 
 ## Named clients
 
-Typically, a gRPC client type is registered once and then injected directly into a type's constructor by DI. However, there are scenarios where it is useful to have multiple configurations for one client. For example, a client that makes gRPC calls with and without authentication.
+Typically, a gRPC client type is registered once and then injected directly into a type's constructor by DI. However, there are scenarios where it's useful to have multiple configurations for one client. For example, a client that makes gRPC calls with and without authentication.
 
 Multiple clients with the same type can be registered by giving each client a name. Each named client can have its own configuration. The generic `AddGrpcClient` extension method has an overload that includes a name parameter:
 
