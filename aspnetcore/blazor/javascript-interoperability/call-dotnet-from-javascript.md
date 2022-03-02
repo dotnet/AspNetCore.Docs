@@ -117,7 +117,7 @@ To invoke an instance .NET method from JavaScript (JS):
 
 ### Component instance examples
 
-In the following sections, examples demonstrate how to pass a <xref:Microsoft.JSInterop.DotNetObjectReference> to an individual JavaScript function and to a class with multiple JavaScript functions.
+In the following sections, examples demonstrate how to pass a <xref:Microsoft.JSInterop.DotNetObjectReference> to an individual JavaScript function and to a JavaScript class with multiple functions.
 
 #### Pass a `DotNetObjectReference` to an individual JavaScript function
 
@@ -175,9 +175,9 @@ To pass arguments to an instance method:
 
 #### Pass a `DotNetObjectReference` to a class with multiple JavaScript functions
 
-Create a pass a <xref:Microsoft.JSInterop.DotNetObjectReference> from the [`OnAfterRenderAsync` lifecycle method](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync) to a JavaScript class for multiple functions to use. Make sure that the .NET code disposes of the <xref:Microsoft.JSInterop.DotNetObjectReference>, as the following example shows.
+Create a pass a <xref:Microsoft.JSInterop.DotNetObjectReference> from the [`OnAfterRenderAsync` lifecycle method](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync) to a JavaScript (JS) class for multiple functions to use. Make sure that the .NET code disposes of the <xref:Microsoft.JSInterop.DotNetObjectReference>, as the following example shows.
 
-In the following `CallDotNetExampleOneHelper` component, the `Trigger JS function` buttons call JavaScript functions setting JavaScript's [`onclick` property](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/onclick), ***not*** Blazor's `@onclick` directive attribute.
+In the following `CallDotNetExampleOneHelper` component, the `Trigger JS function` buttons call JS functions by setting the [JS `onclick` property](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/onclick), ***not*** Blazor's `@onclick` directive attribute.
 
 `Pages/CallDotNetExampleOneHelper.razor`:
 
@@ -188,7 +188,7 @@ In the following `CallDotNetExampleOneHelper` component, the `Trigger JS functio
 
 <PageTitle>Call .NET Example</PageTitle>
 
-<h1>Call .NET Example with one helper <code>DotNetObjectReference</code></h1>
+<h1>Pass <code>DotNetObjectReference</code> to a JavaScript class</h1>
 
 <p>
     <label>
@@ -217,7 +217,7 @@ In the following `CallDotNetExampleOneHelper` component, the `Trigger JS functio
         if (firstRender)
         {
             dotNetHelper = DotNetObjectReference.Create(this);
-            await JS.InvokeVoidAsync("MyHelpers.setDotNetHelper", 
+            await JS.InvokeVoidAsync("GreetingHelpers.setDotNetHelper", 
                 dotNetHelper);
         }
     }
@@ -244,20 +244,22 @@ Inside the closing </body> tag of wwwroot/index.html (Blazor WebAssembly) or Pag
 
 ```html
 <script>
-  class MyHelpers {
+  class GreetingHelpers {
     static dotNetHelper;
 
     static setDotNetHelper(value) {
-      MyHelpers.dotNetHelper = value;
+      GreetingHelpers.dotNetHelper = value;
     }
 
     static async sayHello() {
-      const msg = await MyHelpers.dotNetHelper.invokeMethodAsync('GetHelloMessage');
+      const msg = 
+        await GreetingHelpers.dotNetHelper.invokeMethodAsync('GetHelloMessage');
       alert(`Message from .NET: "${msg}"`);
     }
 
     static async welcomeVisitor() {
-      const msg = await MyHelpers.dotNetHelper.invokeMethodAsync('GetWelcomeMessage');
+      const msg = 
+        await GreetingHelpers.dotNetHelper.invokeMethodAsync('GetWelcomeMessage');
       alert(`Message from .NET: "${msg}"`);
     }
   }
