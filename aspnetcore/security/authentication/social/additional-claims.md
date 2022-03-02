@@ -59,7 +59,7 @@ In the provider's options, specify a <xref:Microsoft.AspNetCore.Authentication.C
 
 The sample app creates locale (`urn:google:locale`) and picture (`urn:google:picture`) claims from the `locale` and `picture` keys in Google user data:
 
-[!code-csharp[](additional-claims/samples/6.x/ClaimsSample/Program.cs?name=snippet_AddGoogle2&highlight=15-16)]
+[!code-csharp[](additional-claims/samples/6.x/ClaimsSample/Program.cs?name=snippet_AddGoogle2&highlight=6-7)]
 
 In `Microsoft.AspNetCore.Identity.UI.Pages.Account.Internal.ExternalLoginModel.OnPostConfirmationAsync`, an <xref:Microsoft.AspNetCore.Identity.IdentityUser> (`ApplicationUser`) is signed into the app with <xref:Microsoft.AspNetCore.Identity.SignInManager%601.SignInAsync*>. During the sign in process, the <xref:Microsoft.AspNetCore.Identity.UserManager%601> can store an `ApplicationUser` claims for user data available from the <xref:Microsoft.AspNetCore.Identity.ExternalLoginInfo.Principal*>.
 
@@ -83,7 +83,7 @@ If a large amount of user data is required for processing user requests:
 
 The sample app sets the value of `SaveTokens` to `true` in <xref:Microsoft.AspNetCore.Authentication.Google.GoogleOptions>:
 
-[!code-csharp[](additional-claims/samples/6.x/ClaimsSample/Program.cs?name=snippet_AddGoogle2&highlight=17)]
+[!code-csharp[](additional-claims/samples/6.x/ClaimsSample/Program.cs?name=snippet_AddGoogle2&highlight=9)]
 
 When `OnPostConfirmationAsync` executes, store the access token ([ExternalLoginInfo.AuthenticationTokens](xref:Microsoft.AspNetCore.Identity.ExternalLoginInfo.AuthenticationTokens*)) from the external provider in the `ApplicationUser`'s `AuthenticationProperties`.
 
@@ -98,7 +98,7 @@ The sample app saves the access token in `OnPostConfirmationAsync` (new user reg
 
 To demonstrate how to add a custom token, which is stored as part of `SaveTokens`, the sample app adds an <xref:Microsoft.AspNetCore.Authentication.AuthenticationToken> with the current <xref:System.DateTime> for an [AuthenticationToken.Name](xref:Microsoft.AspNetCore.Authentication.AuthenticationToken.Name*) of `TicketCreated`:
 
-[!code-csharp[](additional-claims/samples/6.x/ClaimsSample/Program.cs?name=snippet_AddGoogle2&highlight=19-32)]
+[!code-csharp[](additional-claims/samples/6.x/ClaimsSample/Program.cs?name=snippet_AddGoogle2&highlight=11-24)]
 
 ## Creating and adding claims
 
