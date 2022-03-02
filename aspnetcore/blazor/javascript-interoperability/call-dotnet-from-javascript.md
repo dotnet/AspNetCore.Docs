@@ -117,7 +117,10 @@ To invoke an instance .NET method from JavaScript (JS):
 
 ### Component instance examples
 
-In the following sections, examples demonstrate how to pass a <xref:Microsoft.JSInterop.DotNetObjectReference> to an individual JavaScript function and to a JavaScript class with multiple functions.
+The examples in this section demonstrate how to pass a <xref:Microsoft.JSInterop.DotNetObjectReference> to an individual JavaScript function and to a JavaScript class with multiple functions:
+
+* [Pass a `DotNetObjectReference` to an individual JavaScript function](#pass-a-dotnetobjectreference-to-an-individual-javascript-function)
+* [Pass a `DotNetObjectReference` to a class with multiple JavaScript functions](#pass-a-dotnetobjectreference-to-a-class-with-multiple-javascript-functions)
 
 #### Pass a `DotNetObjectReference` to an individual JavaScript function
 
@@ -175,7 +178,7 @@ To pass arguments to an instance method:
 
 #### Pass a `DotNetObjectReference` to a class with multiple JavaScript functions
 
-Create a pass a <xref:Microsoft.JSInterop.DotNetObjectReference> from the [`OnAfterRenderAsync` lifecycle method](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync) to a JavaScript (JS) class for multiple functions to use. Make sure that the .NET code disposes of the <xref:Microsoft.JSInterop.DotNetObjectReference>, as the following example shows.
+Create and pass a <xref:Microsoft.JSInterop.DotNetObjectReference> from the [`OnAfterRenderAsync` lifecycle method](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync) to a JavaScript (JS) class for multiple functions to use. Make sure that the .NET code disposes of the <xref:Microsoft.JSInterop.DotNetObjectReference>, as the following example shows.
 
 In the following `CallDotNetExampleOneHelper` component, the `Trigger JS function` buttons call JS functions by setting the [JS `onclick` property](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/onclick), ***not*** Blazor's `@onclick` directive attribute.
 
