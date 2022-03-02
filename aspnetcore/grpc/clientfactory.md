@@ -23,7 +23,7 @@ The factory offers the following benefits:
 
 ## Register gRPC clients
 
-To register a gRPC client, the generic `AddGrpcClient` extension method can be used within a `WebApplicationBuilder` instance, specifying the gRPC typed client class and service address:
+To register a gRPC client, the generic `AddGrpcClient` extension method can be used within an instance of <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder>, specifying the gRPC typed client class and service address:
 
 ```csharp
 builder.Services.AddGrpcClient<Greeter.GreeterClient>(o =>
