@@ -21,7 +21,7 @@ Decide which external authentication providers to support in the app. For each p
 
 ## Set the client ID and client secret
 
-The OAuth authentication provider establishes a trust relationship with an app using a client ID and client secret. Client ID and client secret values are created for the app by the external authentication provider when the app is registered with the provider. Each external provider that the app uses must be configured independently with the provider's client ID and client secret. For more information, see the external authentication provider topics that apply to your scenario:
+The OAuth authentication provider establishes a trust relationship with an app using a client ID and client secret. Client ID and client secret values are created for the app by the external authentication provider when the app is registered with the provider. Each external provider that the app uses must be configured independently with the provider's client ID and client secret. For more information, see the external authentication provider topics that apply:
 
 * [Facebook authentication](xref:security/authentication/facebook-logins)
 * [Google authentication](xref:security/authentication/google-logins)
@@ -133,7 +133,7 @@ A similar approach is taken when claims change while a user is signed in but a b
 
 ## Sample app output
 
-Run the sample app and select the **MyClaims** link:
+Run the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/social/additional-claims/samples) and select the **MyClaims** link:
 
 ```text
 User Claims

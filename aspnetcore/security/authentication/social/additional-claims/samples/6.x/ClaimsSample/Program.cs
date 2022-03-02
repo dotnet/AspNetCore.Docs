@@ -8,17 +8,17 @@ var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 
 #region snippet_AddGoogle2
-builder.Services.AddAuthentication().AddGoogle(options =>
+builder.Services.AddAuthentication().AddGoogle(googleOptions =>
 {
-    options.ClientId = configuration["Authentication:Google:ClientId"];
-    options.ClientSecret = configuration["Authentication:Google:ClientSecret"];
+    googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
+    googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
 
-    options.ClaimActions.MapJsonKey("urn:google:picture", "picture", "url");
-    options.ClaimActions.MapJsonKey("urn:google:locale", "locale", "string");
+    googleOptions.ClaimActions.MapJsonKey("urn:google:picture", "picture", "url");
+    googleOptions.ClaimActions.MapJsonKey("urn:google:locale", "locale", "string");
 
-    options.SaveTokens = true;
+    googleOptions.SaveTokens = true;
 
-    options.Events.OnCreatingTicket = ctx =>
+    googleOptions.Events.OnCreatingTicket = ctx =>
     {
         List<AuthenticationToken> tokens = ctx.Properties.GetTokens().ToList();
 
@@ -34,13 +34,15 @@ builder.Services.AddAuthentication().AddGoogle(options =>
     };
 });
 #endregion
+
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddDefaultIdentity<IdentityUser>(options => 
+                                  options.SignIn.RequireConfirmedAccount = true)
+                                 .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
