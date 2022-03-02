@@ -117,12 +117,9 @@ To invoke an instance .NET method from JavaScript (JS):
 
 ### Component instance examples
 
-In the following sections, examples demonstrate how to pass a <xref:Microsoft.JSInterop.DotNetObjectReference>:
+In the following sections, examples demonstrate how to pass a <xref:Microsoft.JSInterop.DotNetObjectReference> to an individual JavaScript function and to a class with multiple JavaScript functions.
 
-* To a single JavaScript function.
-* That multiple JavaScript functions can use.
-
-#### Pass a `DotNetObjectReference` to a single JavaScript function
+#### Pass a `DotNetObjectReference` to an individual JavaScript function
 
 The following `sayHello1` JS function receives a <xref:Microsoft.JSInterop.DotNetObjectReference> and calls `invokeMethodAsync` to call the `GetHelloMethod` .NET method of a component.
 
@@ -176,9 +173,9 @@ To pass arguments to an instance method:
 
    In the preceding example, the variable name `dotNetHelper` is arbitrary and can be changed to any preferred name.
 
-#### Pass a `DotNetObjectReference` that multiple JavaScript functions can use
+#### Pass a `DotNetObjectReference` to a class with multiple JavaScript functions
 
-Create a pass a <xref:Microsoft.JSInterop.DotNetObjectReference> from the [`OnAfterRenderAsync` lifecycle method](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync) for multiple JavaScript functions to use. Make sure that the .NET code properly disposes of the reference, as the following example shows.
+Create a pass a <xref:Microsoft.JSInterop.DotNetObjectReference> from the [`OnAfterRenderAsync` lifecycle method](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync) to a JavaScript class for multiple functions to use. Make sure that the .NET code disposes of the <xref:Microsoft.JSInterop.DotNetObjectReference>, as the following example shows.
 
 In the following `CallDotNetExampleOneHelper` component, the `Trigger JS function` buttons call JavaScript functions setting JavaScript's [`onclick` property](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/onclick), ***not*** Blazor's `@onclick` directive attribute.
 
@@ -213,7 +210,7 @@ In the following `CallDotNetExampleOneHelper` component, the `Trigger JS functio
 
 @code {
     private string? name;
-    private DotNetObjectReference<Index>? dotNetHelper;
+    private DotNetObjectReference<CallDotNetExampleOneHelper>? dotNetHelper;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
