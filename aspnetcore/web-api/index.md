@@ -875,7 +875,8 @@ The `[Consumes]` attribute is applied to both actions. The `PostJson` action han
 Don't create a web API controller by deriving from the <xref:Microsoft.AspNetCore.Mvc.Controller> class. `Controller` derives from `ControllerBase` and adds support for views, so it's for handling web pages, not web API requests. There's an exception to this rule: if you plan to use the same controller for both views and web APIs, derive it from `Controller`.
 The `ControllerBase` class provides many properties and methods that are useful for handling HTTP requests. For example, `ControllerBase.CreatedAtAction` returns a 201 status code:
 [!code-csharp[](index/samples/2.x/2.2/Controllers/PetsController.cs?name=snippet_400And201&highlight=10)]
-Here are some more examples of methods that `ControllerBase` provides.
+Here are some more examples of methods that `ControllerBase` provides:
+
 |Method   |Notes    |
 |---------|---------|
 |<xref:Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest%2A>| Returns 400 status code.|
@@ -883,6 +884,7 @@ Here are some more examples of methods that `ControllerBase` provides.
 |<xref:Microsoft.AspNetCore.Mvc.ControllerBase.PhysicalFile%2A>|Returns a file.|
 |<xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync%2A>|Invokes [model binding](xref:mvc/models/model-binding).|
 |<xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryValidateModel%2A>|Invokes [model validation](xref:mvc/models/validation).|
+
 For a list of all available methods and properties, see <xref:Microsoft.AspNetCore.Mvc.ControllerBase>.
 ## Attributes
 The <xref:Microsoft.AspNetCore.Mvc> namespace provides attributes that can be used to configure the behavior of web API controllers and action methods. The following example uses attributes to specify the supported HTTP action verb and any known HTTP status codes that could be returned:
