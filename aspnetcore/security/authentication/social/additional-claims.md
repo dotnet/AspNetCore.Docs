@@ -36,7 +36,7 @@ Optional claims sent in the ID or access token from the authentication provider 
 
 The sample app configures the Google authentication provider with a client ID and client secret provided by Google:
 
-[!code-csharp[](additional-claims/samples/3.x/ClaimsSample/Startup.cs?name=snippet_AddGoogle&highlight=4,9)]
+[!code-csharp[](additional-claims/samples/6.x/ClaimsSample/Program.cs?name=snippet_AddGoogle&highlight=11-12)]
 
 ## Establish the authentication scope
 

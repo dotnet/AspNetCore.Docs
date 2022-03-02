@@ -1,3 +1,4 @@
+#region snippet_AddGoogle
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ builder.Services.AddAuthentication().AddGoogle(options =>
 {
     options.ClientId = configuration["Authentication:Google:ClientId"];
     options.ClientSecret = configuration["Authentication:Google:ClientSecret"];
+
     options.ClaimActions.MapJsonKey("urn:google:picture", "picture", "url");
     options.ClaimActions.MapJsonKey("urn:google:locale", "locale", "string");
     options.SaveTokens = true;
@@ -62,3 +64,4 @@ app.UseAuthorization();
 app.MapRazorPages();
 
 app.Run();
+#endregion
