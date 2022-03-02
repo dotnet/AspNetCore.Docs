@@ -45,7 +45,7 @@ gRPC client interceptors intercept outgoing RPC invocations. They provide access
 
 ### Create a client gRPC interceptor
 
-The following code presents a simple example of intercepting an asynchronous invocation of a unary call:
+The following code presents a basic example of intercepting an asynchronous invocation of a unary call:
 
 ```csharp
 public class ClientLoggingInterceptor : Interceptor
@@ -120,7 +120,7 @@ The preceding code:
 
 * Creates a new interceptor that overrides `AsyncUnaryCall`.
 * Overriding `AsyncUnaryCall`:
-  * Calls the `continuation` parameter to invoke the next item in the chain.
+  * Calls the `continuation` parameter to invoke the next item in the interceptor chain.
   * Creates a new `AsyncUnaryCall<TResponse>` instance based on the result of the continuation.
   * Wraps the `ResponseAsync` task using the `HandleResponse` method.
   * `HandleResponse` awaits the response.
