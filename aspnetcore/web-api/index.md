@@ -889,7 +889,8 @@ For a list of all available methods and properties, see <xref:Microsoft.AspNetCo
 ## Attributes
 The <xref:Microsoft.AspNetCore.Mvc> namespace provides attributes that can be used to configure the behavior of web API controllers and action methods. The following example uses attributes to specify the supported HTTP action verb and any known HTTP status codes that could be returned:
 [!code-csharp[](index/samples/2.x/2.2/Controllers/PetsController.cs?name=snippet_400And201&highlight=1-3)]
-Here are some more examples of attributes that are available.
+Here are some more examples of attributes that are available:
+
 |Attribute|Notes|
 |---------|-----|
 |[`[Route]`](<xref:Microsoft.AspNetCore.Mvc.RouteAttribute>)      |Specifies URL pattern for a controller or action.|
