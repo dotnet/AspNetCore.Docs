@@ -38,7 +38,7 @@ This tutorial shows you how to enable users to sign in with their Google account
 
 ## Store the Google client ID and secret
 
-Add the [Microsoft.AspNetCore.Authentication.Google](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google) NuGet package to the app.
+Add the [`Microsoft.AspNetCore.Authentication.Google`](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google) NuGet package to the app.
 
 Store sensitive settings such as the Google client ID and secret values with [Secret Manager](xref:security/app-secrets). For this sample, use the following steps:
 
