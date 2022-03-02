@@ -23,16 +23,16 @@
 @code {
     private string? name;
     private string? result;
-    private DotNetObjectReference<HelloHelper>? objRef;
+    private DotNetObjectReference<HelloHelper>? dotNetHelper;
 
     public async Task TriggerDotNetInstanceMethod()
     {
-        objRef = DotNetObjectReference.Create(new HelloHelper(name));
-        result = await JS.InvokeAsync<string>("sayHello1", objRef);
+        dotNetHelper = DotNetObjectReference.Create(new HelloHelper(name));
+        result = await JS.InvokeAsync<string>("sayHello1", dotNetHelper);
     }
 
     public void Dispose()
     {
-        objRef?.Dispose();
+        dotNetHelper?.Dispose();
     }
 }
