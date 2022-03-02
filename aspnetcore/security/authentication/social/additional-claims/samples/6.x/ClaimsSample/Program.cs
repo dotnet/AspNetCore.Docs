@@ -7,6 +7,7 @@ using WebGoogOauth.Data;
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 
+#region snippet_AddGoogle2
 builder.Services.AddAuthentication().AddGoogle(options =>
 {
     options.ClientId = configuration["Authentication:Google:ClientId"];
@@ -32,7 +33,7 @@ builder.Services.AddAuthentication().AddGoogle(options =>
         return Task.CompletedTask;
     };
 });
-
+#endregion
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
@@ -43,6 +44,9 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
+
+// Remaining code removed for brevity.
+#endregion
 
 if (app.Environment.IsDevelopment())
 {
@@ -65,4 +69,3 @@ app.UseAuthorization();
 app.MapRazorPages();
 
 app.Run();
-#endregion
