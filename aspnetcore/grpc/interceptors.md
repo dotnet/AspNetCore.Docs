@@ -45,7 +45,7 @@ gRPC client interceptors intercept outgoing RPC invocations. They provide access
 
 ### Create a client gRPC interceptor
 
-The following code presents an example of intercepting an asynchronous invocation of a simple remote call:
+The following code presents a basic example of intercepting an asynchronous invocation of a unary call:
 
 ```csharp
 public class ClientLoggingInterceptor : Interceptor
@@ -80,6 +80,51 @@ Methods on `Interceptor` for each kind of service method have different signatur
 * `continuation` is a delegate which invokes the next interceptor in the chain or the underlying call invoker (if there is no interceptor left in the chain). It isn't an error to call it zero or multiple times. Interceptors aren't required to return a call representation (`AsyncUnaryCall` in case of unary RPC) returned from the `continuation` delegate. Omitting the delegate call and returning your own instance of call representation breaks the interceptors' chain and returns the associated response immediately.
 * `context` carries scoped values associated with the client-side call. Use `context` to pass metadata, such as security principals, credentials, or tracing data. Moreover, `context` carries information about deadlines and cancellation. For more information, see <xref:grpc/deadlines-cancellation#deadlines>.
 
+### Awaiting response in client interceptor
+
+An interceptor can await the response in unary and client streaming calls by updating the `AsyncUnaryCall<TResponse>.ResponseAsync` or `AsyncClientStreamingCall<TRequest, TResponse>.ResponseAsync` value.
+
+```csharp
+public class ErrorHandlerInterceptor : Interceptor
+{
+    public override AsyncUnaryCall<TResponse> AsyncUnaryCall<TRequest, TResponse>(
+        TRequest request,
+        ClientInterceptorContext<TRequest, TResponse> context,
+        AsyncUnaryCallContinuation<TRequest, TResponse> continuation)
+    {
+        var call = continuation(request, context);
+
+        return new AsyncUnaryCall<TResponse>(
+            HandleResponse(call.ResponseAsync),
+            call.ResponseHeadersAsync,
+            call.GetStatus,
+            call.GetTrailers,
+            call.Dispose);
+    }
+
+    private async Task<TResponse> HandleResponse<TResponse>(Task<TResponse> inner)
+    {
+        try
+        {
+            return await inner;
+        }
+        catch (Exception ex)
+        {
+            throw new InvalidOperationException("Custom error", inner);
+        }
+    }
+}
+```
+
+The preceding code:
+
+* Creates a new interceptor that overrides `AsyncUnaryCall`.
+* Overriding `AsyncUnaryCall`:
+  * Calls the `continuation` parameter to invoke the next item in the interceptor chain.
+  * Creates a new `AsyncUnaryCall<TResponse>` instance based on the result of the continuation.
+  * Wraps the `ResponseAsync` task using the `HandleResponse` method.
+  * Awaits the response with `HandleResponse`.
+
 For more information on how to create a client interceptor, see the [`ClientLoggerInterceptor.cs` example in the `grpc/grpc-dotnet` GitHub repository](https://github.com/grpc/grpc-dotnet/blob/master/examples/Interceptor/Client/ClientLoggerInterceptor.cs).
 
 ### Configure client interceptors
@@ -108,7 +153,11 @@ var invoker = channel
     .Intercept(new ClientLoggerInterceptor());
 ```
 
-Interceptors are invoked in reverse order of the chained `Intercept` extension methods. In the preceding code, interceptors are invoked in the following order: `ClientLoggerInterceptor`, `ClientMonitoringInterceptor`, `ClientTokenInterceptor`.
+Interceptors are invoked in reverse order of the chained `Intercept` extension methods. In the preceding code, interceptors are invoked in the following order:
+
+1. `ClientLoggerInterceptor`
+1. `ClientMonitoringInterceptor`
+1. `ClientTokenInterceptor`
 
 For information on how to configure interceptors with gRPC client factory, see <xref:grpc/clientfactory#configure-interceptors>.
 
@@ -237,6 +286,7 @@ gRPC Interceptor differences from ASP.NET Core Middleware:
     * The message returned from the call before it's serialized.
   * Can catch and handle exceptions thrown from gRPC services.
 * Middleware:
+  * Runs for all HTTP requests.
   * Runs before gRPC interceptors.
   * Operates on the underlying HTTP/2 messages.
   * Can only access bytes from the request and response streams.
