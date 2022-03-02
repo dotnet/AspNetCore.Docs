@@ -108,28 +108,11 @@ C-core-based apps configure HTTPS through the [Server.Ports property](https://gr
 C-core-based apps configure HTTPS through the [Server.Ports property](https://grpc.io/grpc/csharp/api/Grpc.Core.Server.html#Grpc_Core_Server_Ports). A similar concept is used to configure servers in ASP.NET Core. For example, Kestrel uses [endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration) for this functionality.
 :::moniker-end
 
-## gRPC Interceptors vs Middleware
+## gRPC Interceptors
 
-ASP.NET Core [middleware](xref:fundamentals/middleware/index) offers similar functionalities compared to interceptors in C-core-based gRPC apps. ASP.NET Core middleware and interceptors are conceptually similar. Both:
+ASP.NET Core [middleware](xref:fundamentals/middleware/index) offers similar functionalities compared to interceptors in C-core-based gRPC apps. Both are supported by ASP.NET Core gRPC apps so there is no need to rewrite interceptors.
 
-* Are used to construct a pipeline that handles a gRPC request.
-* Allow work to be performed before or after the next component in the pipeline.
-* Provide access to `HttpContext`:
-  * In middleware the `HttpContext` is a parameter.
-  * In interceptors the `HttpContext` can be accessed using the `ServerCallContext` parameter with the `ServerCallContext.GetHttpContext` extension method. Note that this feature is specific to interceptors running in ASP.NET Core.
-
-gRPC Interceptor differences from ASP.NET Core Middleware:
-
-* Interceptors:
-  * Operate on the gRPC layer of abstraction using the [ServerCallContext](https://grpc.io/grpc/csharp/api/Grpc.Core.ServerCallContext.html).
-  * Provide access to:
-    * The deserialized message sent to a call.
-    * The message being returned from the call before it is serialized.
-  * Can catch and handle exceptions thrown from gRPC services.
-* Middleware:
-  * Runs before gRPC interceptors.
-  * Operates on the underlying HTTP/2 messages.
-  * Can only access bytes from the request and response streams.
+For more information on how these features compare to each other, see [gRPC Interceptors versus Middleware](xref:grpc/interceptors#grpc-interceptors-versus-middleware).
 
 ## Additional resources
 
