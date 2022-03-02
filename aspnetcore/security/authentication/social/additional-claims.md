@@ -118,7 +118,6 @@ Add a dictionary of added claims. Use the dictionary keys to hold the claim type
 
 [!code-csharp[](additional-claims/samples/6.x/ClaimsSample/Areas/Identity/Pages/Account/ExternalLogin.cshtml.cs?name=snippet_dict&highlight=49-53)]
 
-
 Replace the default code of the `OnGetCallbackAsync` method with the following code. The code loops through the claims dictionary. Claims are added (backfilled) or updated for each user. When claims are added or updated, the user sign-in is refreshed using the <xref:Microsoft.AspNetCore.Identity.SignInManager%601>, preserving the existing authentication properties (`AuthenticationProperties`).
 
 [!code-csharp[](additional-claims/samples/6.x/ClaimsSample/Areas/Identity/Pages/Account/ExternalLogin.cshtml.cs?name=snippet_both&highlight=27-69)]
@@ -134,7 +133,9 @@ A similar approach is taken when claims change while a user is signed in but a b
 
 ## Sample app output
 
-```
+Run the sample app and select the **MyClaims** link:
+
+```text
 User Claims
 
 http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier
