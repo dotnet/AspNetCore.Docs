@@ -898,6 +898,7 @@ Here are some more examples of attributes that are available:
 |[`[HttpGet]`](<xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute>)  |Identifies an action that supports the HTTP GET action verb.|
 |[`[Consumes]`](<xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute>)|Specifies data types that an action accepts.|
 |[`[Produces]`](<xref:Microsoft.AspNetCore.Mvc.ProducesAttribute>)|Specifies data types that an action returns.|
+
 For a list that includes the available attributes, see the <xref:Microsoft.AspNetCore.Mvc> namespace.
 ## ApiController attribute
 The [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute can be applied to a controller class to enable the following opinionated, API-specific behaviors:
