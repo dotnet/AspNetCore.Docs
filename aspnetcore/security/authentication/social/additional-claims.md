@@ -57,17 +57,17 @@ options.Scope.Add("https://www.googleapis.com/auth/user.birthday.read");
 
 ## Map user data keys and create claims
 
-In the provider's options, specify a <xref:Microsoft.AspNetCore.Authentication.ClaimActionCollectionMapExtensions.MapJsonKey*> or <xref:Microsoft.AspNetCore.Authentication.ClaimActionCollectionMapExtensions.MapJsonSubKey*> for each key/subkey in the external provider's JSON user data for the app identity to read on sign in. For more information on claim types, see <xref:System.Security.Claims.ClaimTypes>.
+In the provider's options, specify a <xref:Microsoft.AspNetCore.Authentication.ClaimActionCollectionMapExtensions.MapJsonKey*> or <xref:Microsoft.AspNetCore.Authentication.ClaimActionCollectionMapExtensions.MapJsonSubKey*> for each key or subkey in the external provider's JSON user data for the app identity to read on sign in. For more information on claim types, see <xref:System.Security.Claims.ClaimTypes>.
 
 The sample app creates locale (`urn:google:locale`) and picture (`urn:google:picture`) claims from the `locale` and `picture` keys in Google user data:
 
-[!code-csharp[](additional-claims/samples/3.x/ClaimsSample/Startup.cs?name=snippet_AddGoogle&highlight=13-14)]
+[!code-csharp[](additional-claims/samples/6.x/ClaimsSample/Program.cs?name=snippet_AddGoogle&highlight=15-16)]
 
 In `Microsoft.AspNetCore.Identity.UI.Pages.Account.Internal.ExternalLoginModel.OnPostConfirmationAsync`, an <xref:Microsoft.AspNetCore.Identity.IdentityUser> (`ApplicationUser`) is signed into the app with <xref:Microsoft.AspNetCore.Identity.SignInManager%601.SignInAsync*>. During the sign in process, the <xref:Microsoft.AspNetCore.Identity.UserManager%601> can store an `ApplicationUser` claims for user data available from the <xref:Microsoft.AspNetCore.Identity.ExternalLoginInfo.Principal*>.
 
 In the sample app, `OnPostConfirmationAsync` (*Account/ExternalLogin.cshtml.cs*) establishes the locale (`urn:google:locale`) and picture (`urn:google:picture`) claims for the signed in `ApplicationUser`, including a claim for <xref:System.Security.Claims.ClaimTypes.GivenName>:
 
-[!code-csharp[](additional-claims/samples/3.x/ClaimsSample/Areas/Identity/Pages/Account/ExternalLogin.cshtml.cs?name=snippet_OnPostConfirmationAsync&highlight=35-51)]
+[!code-csharp[](additional-claims/samples/6.x/ClaimsSample/Areas/Identity/Pages/Account/ExternalLogin.cshtml.cs?name=snippet_OnPostConfirmationAsync&highlight=27-47)]
 
 By default, a user's claims are stored in the authentication cookie. If the authentication cookie is too large, it can cause the app to fail because:
 
@@ -85,13 +85,13 @@ If a large amount of user data is required for processing user requests:
 
 The sample app sets the value of `SaveTokens` to `true` in <xref:Microsoft.AspNetCore.Authentication.Google.GoogleOptions>:
 
-[!code-csharp[](additional-claims/samples/3.x/ClaimsSample/Startup.cs?name=snippet_AddGoogle&highlight=15)]
+[!code-csharp[](additional-claims/samples/6.x/ClaimsSample/Program.cs?name=snippet_AddGoogle&highlight=17)]
 
 When `OnPostConfirmationAsync` executes, store the access token ([ExternalLoginInfo.AuthenticationTokens](xref:Microsoft.AspNetCore.Identity.ExternalLoginInfo.AuthenticationTokens*)) from the external provider in the `ApplicationUser`'s `AuthenticationProperties`.
 
 The sample app saves the access token in `OnPostConfirmationAsync` (new user registration) and `OnGetCallbackAsync` (previously registered user) in *Account/ExternalLogin.cshtml.cs*:
 
-[!code-csharp[](additional-claims/samples/3.x/ClaimsSample/Areas/Identity/Pages/Account/ExternalLogin.cshtml.cs?name=snippet_OnPostConfirmationAsync&highlight=54-56)]
+[!code-csharp[](additional-claims/samples/6.x/ClaimsSample/Areas/Identity/Pages/Account/ExternalLogin.cshtml.cs?name=snippet_OnPostConfirmationAsync&highlight=49-53)]
 
 > [!NOTE]
 > For information on passing tokens to the Razor components of a Blazor Server app, see <xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app>.
@@ -100,7 +100,7 @@ The sample app saves the access token in `OnPostConfirmationAsync` (new user reg
 
 To demonstrate how to add a custom token, which is stored as part of `SaveTokens`, the sample app adds an <xref:Microsoft.AspNetCore.Authentication.AuthenticationToken> with the current <xref:System.DateTime> for an [AuthenticationToken.Name](xref:Microsoft.AspNetCore.Authentication.AuthenticationToken.Name*) of `TicketCreated`:
 
-[!code-csharp[](additional-claims/samples/3.x/ClaimsSample/Startup.cs?name=snippet_AddGoogle&highlight=17-30)]
+[!code-csharp[](additional-claims/samples/6.x/ClaimsSample/Program.cs?name=snippet_AddGoogle&highlight=19-32)]
 
 ## Creating and adding claims
 
@@ -114,121 +114,16 @@ For more information, see <xref:Microsoft.AspNetCore.Authentication.OAuth.Claims
 
 Claims are copied from external providers to the user database on first registration, not on sign in. If additional claims are enabled in an app after a user registers to use the app, call [SignInManager.RefreshSignInAsync](xref:Microsoft.AspNetCore.Identity.SignInManager%601) on a user to force the generation of a new authentication cookie.
 
-In the Development environment working with test user accounts, you can simply delete and recreate the user account. For production systems, new claims added to the app can be backfilled into user accounts. After [scaffolding the `ExternalLogin` page](xref:security/authentication/scaffold-identity) into the app at `Areas/Pages/Identity/Account/Manage`, add the following code to the `ExternalLoginModel` in the `ExternalLogin.cshtml.cs` file.
+In the Development environment working with test user accounts, delete and recreate the user account. For production systems, new claims added to the app can be backfilled into user accounts. After [scaffolding the `ExternalLogin` page](xref:security/authentication/scaffold-identity) into the app at `Areas/Pages/Identity/Account/Manage`, add the following code to the `ExternalLoginModel` in the `ExternalLogin.cshtml.cs` file.
 
 Add a dictionary of added claims. Use the dictionary keys to hold the claim types, and use the values to hold a default value. Add the following line to the top of the class. The following example assumes that one claim is added for the user's Google picture with a generic headshot image as the default value:
 
-```csharp
-private readonly IReadOnlyDictionary<string, string> _claimsToSync = 
-    new Dictionary<string, string>()
-    {
-        { "urn:google:picture", "https://localhost:5001/headshot.png" },
-    };
-```
+[!code-csharp[](additional-claims/samples/6.x/ClaimsSample/Areas/Identity/Pages/Account/ExternalLogin.cshtml.cs?name=snippet_dict&highlight=49-53)]
+
 
 Replace the default code of the `OnGetCallbackAsync` method with the following code. The code loops through the claims dictionary. Claims are added (backfilled) or updated for each user. When claims are added or updated, the user sign-in is refreshed using the <xref:Microsoft.AspNetCore.Identity.SignInManager%601>, preserving the existing authentication properties (`AuthenticationProperties`).
 
-```csharp
-public async Task<IActionResult> OnGetCallbackAsync(
-    string returnUrl = null, string remoteError = null)
-{
-    returnUrl = returnUrl ?? Url.Content("~/");
-
-    if (remoteError != null)
-    {
-        ErrorMessage = $"Error from external provider: {remoteError}";
-
-        return RedirectToPage("./Login", new {ReturnUrl = returnUrl });
-    }
-
-    var info = await _signInManager.GetExternalLoginInfoAsync();
-
-    if (info == null)
-    {
-        ErrorMessage = "Error loading external login information.";
-        return RedirectToPage("./Login", new { ReturnUrl = returnUrl });
-    }
-
-    // Sign in the user with this external login provider if the user already has a 
-    // login.
-    var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, 
-        info.ProviderKey, isPersistent: false, bypassTwoFactor : true);
-
-    if (result.Succeeded)
-    {
-        _logger.LogInformation("{Name} logged in with {LoginProvider} provider.", 
-            info.Principal.Identity.Name, info.LoginProvider);
-
-        if (_claimsToSync.Count > 0)
-        {
-            var user = await _userManager.FindByLoginAsync(info.LoginProvider, 
-                info.ProviderKey);
-            var userClaims = await _userManager.GetClaimsAsync(user);
-            bool refreshSignIn = false;
-
-            foreach (var addedClaim in _claimsToSync)
-            {
-                var userClaim = userClaims
-                    .FirstOrDefault(c => c.Type == addedClaim.Key);
-
-                if (info.Principal.HasClaim(c => c.Type == addedClaim.Key))
-                {
-                    var externalClaim = info.Principal.FindFirst(addedClaim.Key);
-
-                    if (userClaim == null)
-                    {
-                        await _userManager.AddClaimAsync(user, 
-                            new Claim(addedClaim.Key, externalClaim.Value));
-                        refreshSignIn = true;
-                    }
-                    else if (userClaim.Value != externalClaim.Value)
-                    {
-                        await _userManager
-                            .ReplaceClaimAsync(user, userClaim, externalClaim);
-                        refreshSignIn = true;
-                    }
-                }
-                else if (userClaim == null)
-                {
-                    // Fill with a default value
-                    await _userManager.AddClaimAsync(user, new Claim(addedClaim.Key, 
-                        addedClaim.Value));
-                    refreshSignIn = true;
-                }
-            }
-
-            if (refreshSignIn)
-            {
-                await _signInManager.RefreshSignInAsync(user);
-            }
-        }
-
-        return LocalRedirect(returnUrl);
-    }
-
-    if (result.IsLockedOut)
-    {
-        return RedirectToPage("./Lockout");
-    }
-    else
-    {
-        // If the user does not have an account, then ask the user to create an 
-        // account.
-        ReturnUrl = returnUrl;
-        ProviderDisplayName = info.ProviderDisplayName;
-
-        if (info.Principal.HasClaim(c => c.Type == ClaimTypes.Email))
-        {
-            Input = new InputModel
-            {
-                Email = info.Principal.FindFirstValue(ClaimTypes.Email)
-            };
-        }
-
-        return Page();
-    }
-}
-```
+[!code-csharp[](additional-claims/samples/6.x/ClaimsSample/Areas/Identity/Pages/Account/ExternalLogin.cshtml.cs?name=snippet_both&highlight=27-69)]
 
 A similar approach is taken when claims change while a user is signed in but a backfill step isn't required. To update a user's claims, call the following on the user:
 

@@ -86,7 +86,7 @@ namespace WebGoogOauth.Areas.Identity.Pages.Account
             [EmailAddress]
             public string Email { get; set; }
         }
-        
+
         public IActionResult OnGet() => RedirectToPage("./Login");
 
         public IActionResult OnPost(string provider, string returnUrl = null)
@@ -96,6 +96,15 @@ namespace WebGoogOauth.Areas.Identity.Pages.Account
             var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
             return new ChallengeResult(provider, properties);
         }
+
+        #region snippet_both
+        #region snippet_dict
+        private readonly IReadOnlyDictionary<string, string> _claimsToSync =
+             new Dictionary<string, string>()
+             {
+                     { "urn:google:picture", "https://localhost:5001/headshot.png" },
+             };
+        #endregion
 
         public async Task<IActionResult> OnGetCallbackAsync(string returnUrl = null, string remoteError = null)
         {
@@ -117,6 +126,50 @@ namespace WebGoogOauth.Areas.Identity.Pages.Account
             if (result.Succeeded)
             {
                 _logger.LogInformation("{Name} logged in with {LoginProvider} provider.", info.Principal.Identity.Name, info.LoginProvider);
+                if (_claimsToSync.Count > 0)
+                {
+                    var user = await _userManager.FindByLoginAsync(info.LoginProvider,
+                        info.ProviderKey);
+                    var userClaims = await _userManager.GetClaimsAsync(user);
+                    bool refreshSignIn = false;
+
+                    foreach (var addedClaim in _claimsToSync)
+                    {
+                        var userClaim = userClaims
+                            .FirstOrDefault(c => c.Type == addedClaim.Key);
+
+                        if (info.Principal.HasClaim(c => c.Type == addedClaim.Key))
+                        {
+                            var externalClaim = info.Principal.FindFirst(addedClaim.Key);
+
+                            if (userClaim == null)
+                            {
+                                await _userManager.AddClaimAsync(user,
+                                    new Claim(addedClaim.Key, externalClaim.Value));
+                                refreshSignIn = true;
+                            }
+                            else if (userClaim.Value != externalClaim.Value)
+                            {
+                                await _userManager
+                                    .ReplaceClaimAsync(user, userClaim, externalClaim);
+                                refreshSignIn = true;
+                            }
+                        }
+                        else if (userClaim == null)
+                        {
+                            // Fill with a default value
+                            await _userManager.AddClaimAsync(user, new Claim(addedClaim.Key,
+                                addedClaim.Value));
+                            refreshSignIn = true;
+                        }
+                    }
+
+                    if (refreshSignIn)
+                    {
+                        await _signInManager.RefreshSignInAsync(user);
+                    }
+                }
+
                 return LocalRedirect(returnUrl);
             }
             if (result.IsLockedOut)
@@ -138,7 +191,9 @@ namespace WebGoogOauth.Areas.Identity.Pages.Account
                 return Page();
             }
         }
+        #endregion
 
+        #region snippet_OnPostConfirmationAsync
         public async Task<IActionResult> OnPostConfirmationAsync(string returnUrl = null)
         {
             returnUrl = returnUrl ?? Url.Content("~/");
@@ -225,6 +280,8 @@ namespace WebGoogOauth.Areas.Identity.Pages.Account
             ReturnUrl = returnUrl;
             return Page();
         }
+        #endregion
+
 
         private IdentityUser CreateUser()
         {

@@ -14,6 +14,7 @@ builder.Services.AddAuthentication().AddGoogle(options =>
 
     options.ClaimActions.MapJsonKey("urn:google:picture", "picture", "url");
     options.ClaimActions.MapJsonKey("urn:google:locale", "locale", "string");
+
     options.SaveTokens = true;
 
     options.Events.OnCreatingTicket = ctx =>
