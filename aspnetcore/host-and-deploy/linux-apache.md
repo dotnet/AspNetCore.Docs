@@ -4,10 +4,11 @@ author: rick-anderson
 description: Learn how to set up Apache as a reverse proxy server on CentOS to redirect HTTP traffic to an ASP.NET Core web app running on Kestrel.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: shboyer
-ms.custom: mvc
+ms.custom: mvc, team=cloud_advocates
 ms.date: 04/10/2020
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: host-and-deploy/linux-apache
+ms.contributors: shboyer-01182022
 ---
 # Host ASP.NET Core on Linux with Apache
 

@@ -4,10 +4,11 @@ author: JeremyLikness
 description: Guidance for using EF Core in Blazor Server apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: jeliknes
-ms.custom: mvc
+ms.custom: mvc, team=cloud_advocates
 ms.date: 11/09/2021
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/blazor-server-ef-core
+ms.contributors: jeliknes-01142022
 ---
 # ASP.NET Core Blazor Server with Entity Framework Core (EFCore)
 

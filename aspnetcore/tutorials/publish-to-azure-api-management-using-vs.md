@@ -3,9 +3,10 @@ title: Publish an ASP.NET Core web API to Azure API Management with Visual Studi
 author: codemillmatt
 description: Learn how to publish an ASP.NET Core web API to Azure API Management using Visual Studio.
 ms.author: masoucou
-ms.custom: "devx-track-csharp, mvc"
+ms.custom: devx-track-csharp, mvc, team=cloud_advocates
 ms.date: 11/22/2020
 uid: tutorials/publish-to-azure-api-management-using-vs
+ms.contributors: masoucou-05122021
 ---
 # Publish an ASP.NET Core web API to Azure API Management with Visual Studio
 
