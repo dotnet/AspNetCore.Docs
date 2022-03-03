@@ -5,7 +5,7 @@ description: Learn about Web Host in ASP.NET Core, which is responsible for app 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/07/2019
+ms.date: 02/22/2022
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/host/web-host
 ---
@@ -15,13 +15,11 @@ uid: fundamentals/host/web-host
 
 ASP.NET Core apps configure and launch a *host*. The host is responsible for app startup and lifetime management. At a minimum, the host configures a server and a request processing pipeline. The host can also set up logging, dependency injection, and configuration.
 
-This article covers the Web Host, which remains available only for backward compatibility. The ASP.NET Core templates create a [.NET Generic Host](xref:fundamentals/host/generic-host), which is recommended for all app types.
+This article covers the Web Host, which remains available only for backward compatibility. The ASP.NET Core templates create a <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> and <xref:Microsoft.AspNetCore.Builder.WebApplication>, which is recommended for web apps. For more information on `WebApplicationBuilder` and `WebApplication`, see <xref:migration/50-to-60#new-hosting-model>
 
 ## Set up a host
 
-Create a host using an instance of <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder>. This is typically performed in the app's entry point, the `Main` method.
-
-In the project templates, `Main` is located in `Program.cs`. A typical app calls <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> to start setting up a host:
+Create a host using an instance of <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder>. This is typically performed in the app's entry point, the `Main` method in `Program.cs`. A typical app calls <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> to start setting up a host:
 
 ```csharp
 public class Program
