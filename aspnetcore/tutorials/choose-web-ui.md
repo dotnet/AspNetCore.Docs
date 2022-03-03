@@ -3,7 +3,7 @@ title: Choose an ASP.NET Core UI
 author: wadepickett
 description: Learn when to use which ASP.NET Core web UI technologies. Understand the server vs client vs hybrid options.
 ms.author: wpickett
-ms.date: 03/03/2022
+ms.date: 03/02/2022
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/choose-web-ui
 ---
