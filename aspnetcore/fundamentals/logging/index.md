@@ -57,7 +57,7 @@ To create logs, use an <xref:Microsoft.Extensions.Logging.ILogger%601> object fr
 The following example:
 
 * Creates a logger, `ILogger<AboutModel>`, which uses a log *category* of the fully qualified name of the type `AboutModel`. The log category is a string that is associated with each log.
-* Calls <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation%2A> to log at the `Information` level. The Log *level* indicates the severity of the logged event.
+* Calls <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation%2A> to log at the <xref:Microsoft.Extensions.Logging.LogLevel.Information> level. The Log *level* indicates the severity of the logged event.
 
 [!code-csharp[](index/samples/6.x/TodoApiDTO/Pages/About.cshtml.cs?name=snippet_CallLogMethods&highlight=5,14)]
 
