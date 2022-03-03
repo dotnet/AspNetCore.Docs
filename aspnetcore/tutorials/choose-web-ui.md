@@ -11,7 +11,7 @@ uid: tutorials/choose-web-ui
 
 ASP.NET Core is a complete UI framework. Choose which functionalities to combine that fit the app's web UI needs.
 
-## The benefits and costs of server and client rendered UI
+## Benefits vs. costs of server and client rendered UI
 
 There are three general approaches to building modern web UI with ASP.NET Core:
 
