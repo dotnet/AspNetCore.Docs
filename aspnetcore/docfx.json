@@ -65,6 +65,9 @@
         "**/getting-started/**/**.md": "tutorial",
         "**/tutorials/**/**.md": "tutorial"
       },
+      "no-loc": {
+        "**/blazor/no-loc-test.md": "[ computer, cat ]"
+      },
       "recommendations": {
         "**/tutorials/**/**.md": "false"
       }
