@@ -1,9 +1,9 @@
 ---
 title: Choose an ASP.NET Core UI
 author: wadepickett
-description: Understand when to use the various ASP.NET Core web UI technologies Microsoft provides and supports.
+description: Learn when to use which ASP.NET Core web UI technologies. Understand the server vs client vs hybrid options.
 ms.author: wpickett
-ms.date: 07/29/2021
+ms.date: 03/03/2022
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/choose-web-ui
 ---
@@ -139,6 +139,7 @@ Benefits of ASP.NET Core SPA with JavaScript Frameworks, in addition to the clie
 * Build client-side logic for ASP.NET Core apps using popular JS frameworks, like Angular and React.
 
 Downsides:
+
 * More coding languages, frameworks, and tools required.
 * Difficult to share code so some logic may be duplicated.
 
