@@ -1,20 +1,22 @@
 ---
-title: Introduction to ASP.NET Core
+title: Overview of ASP.NET Core
 author: rick-anderson
-description: Get an introduction to ASP.NET Core, a cross-platform, high-performance, open-source framework for building modern, cloud-enabled, Internet-connected apps.
+description: Get an overview of ASP.NET Core, a cross-platform, high-performance, open-source framework for building modern, cloud-enabled, Internet-connected apps.
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/17/2020
+ms.date: 03/02/2022
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: index
 ---
-# Introduction to ASP.NET Core
+# Overview to ASP.NET Core
 
 By [Daniel Roth](https://github.com/danroth27), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Shaun Luttin](https://mvp.microsoft.com/en-us/PublicProfile/5001182)
 
 :::moniker range=">= aspnetcore-3.0"
 
-ASP.NET Core is a cross-platform, high-performance, [open-source](https://github.com/dotnet/aspnetcore) framework for building modern, cloud-enabled, Internet-connected apps. With ASP.NET Core, you can:
+ASP.NET Core is a cross-platform, high-performance, [open-source](https://github.com/dotnet/aspnetcore) framework for building modern, cloud-enabled, Internet-connected apps.
+
+With ASP.NET Core, you can:
 
 * Build web apps and services, [Internet of Things (IoT)](https://www.microsoft.com/internet-of-things/) apps, and mobile backends.
 * Use your favorite development tools on Windows, macOS, and Linux.
