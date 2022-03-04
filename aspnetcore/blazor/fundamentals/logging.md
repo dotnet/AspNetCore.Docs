@@ -19,7 +19,7 @@ Logging configuration can be loaded from app settings files. For more informatio
 
 ## Razor component logging
 
-Loggers respect app startup configuration.
+Loggers respect app startup configuration. For configuration information, see <xref:#Logging configuration>.
 
 The `using` directive for <xref:Microsoft.Extensions.Logging> is required to support [IntelliSense](/visualstudio/ide/using-intellisense) completions for APIs, such as <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogWarning%2A> and <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogError%2A>.
 
@@ -56,13 +56,18 @@ For general ASP.NET Core logging guidance that pertains to Blazor Server, see <x
 
 Not every feature of [ASP.NET Core logging](xref:fundamentals/logging/index) is available in a Blazor WebAssembly app. For example, Blazor WebAssembly apps don't have access to the client's file system or network, so writing logs to the client's physical or network storage isn't possible. When using a third-party logging service designed to work with single-page apps (SPAs), follow the service's security guidance. Keep in mind that every piece of data, including keys or secrets stored in the Blazor WebAssembly app are ***insecure*** and can be easily discovered by malicious users.
 
-Configure logging in Blazor WebAssembly apps with the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.Logging?displayProperty=nameWithType> property. The `Logging` property is of type <xref:Microsoft.Extensions.Logging.ILoggingBuilder>, so all of the extension methods available on <xref:Microsoft.Extensions.Logging.ILoggingBuilder> are available on `Logging`.
-
-
-Some logging features may require adding the namespace for <xref:Microsoft.Extensions.Logging?displayProperty=fullName> to `Program.cs`:
+Depending on the framework version and logging features, logging implementations may require adding the namespace for <xref:Microsoft.Extensions.Logging?displayProperty=fullName> to `Program.cs`:
 
 ```csharp
 using Microsoft.Extensions.Logging;
+```
+
+Configure logging in Blazor WebAssembly apps with the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.Logging?displayProperty=nameWithType> property. The `Logging` property is of type <xref:Microsoft.Extensions.Logging.ILoggingBuilder>, so all of the extension methods available on <xref:Microsoft.Extensions.Logging.ILoggingBuilder> are available on `Logging`.
+
+To set the minimum logging level, call <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.SetMinimumLevel%2A?displayProperty=nameWithType> on the host builder in `Program.cs` with the <xref:Microsoft.Extensions.Logging.LogLevel>. The following example sets the minimum log level to <xref:Microsoft.Extensions.Logging.LogLevel.Warning>:
+
+```csharp
+builder.Logging.SetMinimumLevel(LogLevel.Warning);
 ```
 
 ### Custom logger provider in Blazor WebAssembly apps
@@ -70,6 +75,8 @@ using Microsoft.Extensions.Logging;
 The example in this section demonstrates a custom logger provider for further customization.
 
 Add a package reference to the app for the [`Microsoft.Extensions.Logging.Configuration`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration) package.
+
+[!INCLUDE[](~/includes/package-reference.md)]
 
 Add the following custom logger configuration. The configuration establishes a `LogLevels` dictionary that matches a custom log format for three log levels: <xref:Microsoft.Extensions.Logging.LogLevel.Information>, <xref:Microsoft.Extensions.Logging.LogLevel.Warning>, and <xref:Microsoft.Extensions.Logging.LogLevel.Error>.
 
@@ -82,14 +89,16 @@ public class CustomLoggerConfiguration
 {
     public int EventId { get; set; }
 
-    public Dictionary<LogLevel, string> LogLevels { get; set; } = new()
+    public Dictionary<LogLevel, int> LogLevels { get; set; } = new()
     {
-        [LogLevel.Information] = "Format1",
-        [LogLevel.Warning] = "Format2",
-        [LogLevel.Error] = "Format3"
+        [LogLevel.Information] = 1,
+        [LogLevel.Warning] = 2,
+        [LogLevel.Error] = 3
     };
 }
 ```
+
+The `LogLevels` dictionary is used later by the custom logger to provide log formats for each log level. An integer value (1, 2, or 3) represents the format for a log level. Setting integer values for the log levels permits logging configuration, for example via an `appsettings.json` file, to set or change log formats without requiring code changes to the custom logger.
 
 Add the following custom logger to the app. The `CustomLogger` outputs custom log formats based on the `logLevel` values defined in the preceding `CustomLoggerConfiguration` configuration.
 
@@ -129,23 +138,14 @@ public sealed class CustomLogger : ILogger
         {
             switch (config.LogLevels[logLevel])
             {
-                case "Format1":
-                    Console.WriteLine($"[{eventId.Id,2}: {logLevel,-12}]");
-                    Console.Write($"    FORMAT 1 {name} - ");
-                    Console.Write($"{formatter(state, exception)}");
-                    Console.WriteLine();
+                case 1:
+                    Console.WriteLine($"[{eventId.Id, 2}: {logLevel, -12}] {name} - {formatter(state, exception)}");
                     break;
-                case "Format2":
-                    Console.WriteLine($"[{eventId.Id,2}: {logLevel,-12}]");
-                    Console.Write($"    FORMAT 2 {name} - ");
-                    Console.Write($"{formatter(state, exception)}");
-                    Console.WriteLine();
+                case 2:
+                    Console.WriteLine($"{name}: {formatter(state, exception)}");
                     break;
-                case "Format3":
-                    Console.WriteLine($"[{eventId.Id,2}: {logLevel,-12}]");
-                    Console.Write($"    FORMAT 3 {name} - ");
-                    Console.Write($"{formatter(state, exception)}");
-                    Console.WriteLine();
+                case 3:
+                    Console.WriteLine($"{logLevel, -12}:{eventId.Id, 2}:{formatter(state, exception)}:{name}");
                     break;
                 default:
                     // No-op
@@ -220,27 +220,18 @@ public static class CustomLoggerExtensions
 }
 ```
 
-In `Program.cs`, set the minimum logging level with <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.SetMinimumLevel%2A?displayProperty=nameWithType> and add the custom logging provider:
+In `Program.cs` on the host builder, clear the existing provider by calling <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.ClearProviders%2A> and add the custom logging provider:
 
 ```csharp
-...
-
-var builder = WebAssemblyHostBuilder.CreateDefault(args);
-
-...
-
-builder.Logging.SetMinimumLevel(LogLevel.Trace);
 builder.Logging.ClearProviders().AddCustomLogger();
-
-await builder.Build().RunAsync();
 ```
 
 In the following `Index` component:
 
 * The debug message isn't logged.
-* The information message is logged in `Format1`.
-* The warning message is logged in `Format2`.
-* The error message is logged in `Format3`.
+* The information message is logged in format `1`.
+* The warning message is logged in format `2`.
+* The error message is logged in format `3`.
 * The trace message isn't logged.
 
 `Pages/Index.razor`:
@@ -266,14 +257,46 @@ In the following `Index` component:
 }
 ```
 
-Output when the **`Log Messages`** button is selected:
+The following output is seen in the browser's developer tools console when the **`Log Messages`** button is selected. The log entries reflect the appropriate formats applied by the custom logger:
 
-> [ 3: Information ]
-> FORMAT 1 LoggingTest.Pages.Index - This is an information message.
-> [ 5: Warning     ]
-> FORMAT 2 LoggingTest.Pages.Index - This is a warning message.
-> [ 7: Error       ]
-> FORMAT 3 LoggingTest.Pages.Index - This is an error message.
+> [ 3: Information ] LoggingTest.Pages.Index - This is an information message.
+> LoggingTest.Pages.Index: This is a warning message.
+> Error       : 7:This is an error message.:LoggingTest.Pages.Index
+
+From a casual inspection of the preceding example, it's apparent that setting the log line formats via the dictionary in `CustomLoggerConfiguration` isn't strictly necessary. The line formats applied by the custom logger (`CustomLogger`) could have been applied by merely checking the `logLevel` in the `Log` method. The value of assigning the log format via configuration is that one can change the log format easily via app configuration using the preceding approach.
+
+In the `wwwroot` folder, add or update the `appsettings.json` file to include logging configuration. Set the log format to `3` for the three log levels:
+
+```json
+{
+  "Logging": {
+    "CustomLog": {
+      "LogLevels": {
+        "Information": 3,
+        "Warning": 3,
+        "Error": 3
+      }
+    }
+  }
+}
+```
+
+In the preceding example, notice that the entry for the custom logger configuration is `CustomLog`, which was applied to the custom logger provider (`CustomLoggerProvider`) as an alias with `[ProviderAlias("CustomLog")]`. The logging configuration could have been applied with the name `CustomLoggerProvider` instead of `CustomLog`, but use of the alias `CustomLog` is more user friendly.
+
+In `Program.cs` consume the logging configuration. Add the following code:
+
+```csharp
+builder.Logging.AddConfiguration(
+    builder.Configuration.GetSection("Logging"));
+```
+
+The call to <xref:Microsoft.Extensions.Logging.Configuration.LoggingBuilderConfigurationExtensions.AddConfiguration%2A?displayProperty=nameWithType> can be placed either before or after adding the custom logger provider.
+
+Run the app again. Select the the **`Log Messages`** button and notice that the logging configuration is applied. All of the log entries are in log format `3`:
+
+> Information : 3:This is an information message.:LoggingTest.Pages.Index
+> Warning     : 5:This is a warning message.:LoggingTest.Pages.Index
+> Error       : 7:This is an error message.:LoggingTest.Pages.Index
 
 ## Hosted Blazor WebAssembly logging
 
