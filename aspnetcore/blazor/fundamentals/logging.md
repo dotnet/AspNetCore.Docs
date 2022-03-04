@@ -19,7 +19,7 @@ Logging configuration can be loaded from app settings files. For more informatio
 
 ## Razor component logging
 
-Loggers respect app startup configuration. For configuration information, see <xref:#Logging configuration>.
+Loggers respect app startup configuration. For configuration information, see <xref:blazor/fundamentals/configuration#logging-configuration>.
 
 The `using` directive for <xref:Microsoft.Extensions.Logging> is required to support [IntelliSense](/visualstudio/ide/using-intellisense) completions for APIs, such as <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogWarning%2A> and <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogError%2A>.
 
