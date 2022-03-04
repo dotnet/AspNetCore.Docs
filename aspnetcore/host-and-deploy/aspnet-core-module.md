@@ -1,22 +1,20 @@
 ---
-title: ASP.NET Core Module
+title: ASP.NET Core Module (ANCM) for IIS
 author: rick-anderson
-description: Learn about the ASP.NET Core Module for hosting ASP.NET Core apps with IIS.
+description: Learn about the ASP.NET Core Module (ANCM) for hosting ASP.NET Core apps with IIS.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/13/2020
+ms.date: 03/04/2022
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: host-and-deploy/aspnet-core-module
 ---
 
-# ASP.NET Core Module
-
-By [Tom Dykstra](https://github.com/tdykstra), [Rick Strahl](https://github.com/RickStrahl), [Chris Ross](https://github.com/Tratcher), [Rick Anderson](https://twitter.com/RickAndMSFT), [Sourabh Shirhatti](https://twitter.com/sshirhatti), and [Justin Kotalik](https://github.com/jkotalik)
+# ASP.NET Core Module (ANCM) for IIS
 
 :::moniker range=">= aspnetcore-5.0"
 
-The ASP.NET Core Module is a native IIS module that plugs into the IIS pipeline, allowing ASP.NET Core applications to work with IIS. Run ASP.NET Core apps with IIS by either: 
+The ASP.NET Core Module (ANCM) is a native IIS module that plugs into the IIS pipeline, allowing ASP.NET Core applications to work with IIS. Run ASP.NET Core apps with IIS by either: 
 
 * Hosting an ASP.NET Core app inside of the IIS worker process (`w3wp.exe`), called the [in-process hosting model](xref:host-and-deploy/iis/in-process-hosting).
 * Forwarding web requests to a backend ASP.NET Core app running the Kestrel server, called the [out-of-process hosting model](xref:host-and-deploy/iis/out-of-process-hosting).
@@ -26,9 +24,9 @@ There are trade-offs between each of the hosting models. By default, the in-proc
 For more information and configuration guidance, see the following topics:
 * <xref:fundamentals/servers/index>
 
-## Install ASP.NET Core Module
+## Install ASP.NET Core Module (ANCM)
 
-The ASP.NET Core Module is installed with the .NET Core Runtime from the [.NET Core Hosting Bundle](xref:host-and-deploy/iis/hosting-bundle). The ASP.NET Core Module is forward and backward compatible with LTS releases of .NET.
+The ASP.NET Core Module (ANCM) is installed with the .NET Core Runtime from the [.NET Core Hosting Bundle](xref:host-and-deploy/iis/hosting-bundle). The ASP.NET Core Module is forward and backward compatible with LTS releases of .NET.
 
 [!INCLUDE[](~/includes/announcements.md)]
 
@@ -44,7 +42,7 @@ For a tutorial experience on publishing an ASP.NET Core app to an IIS server, se
 
 :::moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
-The ASP.NET Core Module is a native IIS module that plugs into the IIS pipeline to either:
+The ASP.NET Core Module (ANCM) is a native IIS module that plugs into the IIS pipeline to either:
 
 * Host an ASP.NET Core app inside of the IIS worker process (`w3wp.exe`), called the [in-process hosting model](#in-process-hosting-model).
 * Forward web requests to a backend ASP.NET Core app running the [Kestrel server](xref:fundamentals/servers/kestrel), called the [out-of-process hosting model](#out-of-process-hosting-model).
@@ -142,7 +140,7 @@ The ASP.NET Core Module can also:
 * Log stdout output to file storage for troubleshooting startup issues.
 * Forward Windows authentication tokens.
 
-## How to install and use the ASP.NET Core Module
+## How to install and use the ASP.NET Core Module (ANCM)
 
 For instructions on how to install the ASP.NET Core Module, see [Install the .NET Core Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle). The ASP.NET Core Module is forward and backward compatible with LTS releases of .NET.
 
@@ -450,7 +448,7 @@ The files can be found by searching for `aspnetcore` in the `applicationHost.con
 
 :::moniker range="= aspnetcore-2.2"
 
-The ASP.NET Core Module is a native IIS module that plugs into the IIS pipeline to either:
+The ASP.NET Core Module (ANCM) is a native IIS module that plugs into the IIS pipeline to either:
 
 * Host an ASP.NET Core app inside of the IIS worker process (`w3wp.exe`), called the [in-process hosting model](#in-process-hosting-model).
 * Forward web requests to a backend ASP.NET Core app running the [Kestrel server](xref:fundamentals/servers/kestrel), called the [out-of-process hosting model](#out-of-process-hosting-model).
@@ -559,7 +557,7 @@ The ASP.NET Core Module can also:
 * Log stdout output to file storage for troubleshooting startup issues.
 * Forward Windows authentication tokens.
 
-## How to install and use the ASP.NET Core Module
+## How to install and use the ASP.NET Core Module (ANCM)
 
 For instructions on how to install the ASP.NET Core Module, see [Install the .NET Core Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle). The ASP.NET Core Module is forward and backward compatible with LTS releases of .NET.
 
@@ -847,7 +845,7 @@ The files can be found by searching for `aspnetcore` in the `applicationHost.con
 
 :::moniker range="< aspnetcore-2.2"
 
-The ASP.NET Core Module is a native IIS module that plugs into the IIS pipeline to forward web requests to backend ASP.NET Core apps.
+The ASP.NET Core Module (ANCM) is a native IIS module that plugs into the IIS pipeline to forward web requests to backend ASP.NET Core apps.
 
 Supported Windows versions:
 
@@ -876,7 +874,7 @@ The ASP.NET Core Module can also:
 * Log stdout output to file storage for troubleshooting startup issues.
 * Forward Windows authentication tokens.
 
-## How to install and use the ASP.NET Core Module
+## How to install and use the ASP.NET Core Module (ANCM)
 
 For instructions on how to install the ASP.NET Core Module, see [Install the .NET Core Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle).
 
