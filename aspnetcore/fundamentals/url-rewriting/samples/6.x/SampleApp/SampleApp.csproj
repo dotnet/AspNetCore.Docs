@@ -5,5 +5,8 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
-
+	<ItemGroup>
+		<Content Include="ApacheModRewrite.txt;IISUrlRewrite.xml;" CopyToPublishDirectory="PreserveNewest" CopyToOutputDirectory="PreserveNewest" />
+	</ItemGroup>
+	
 </Project>

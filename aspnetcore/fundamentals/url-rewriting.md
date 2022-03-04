@@ -361,11 +361,6 @@ Original Request: `/image.jpg`
 | Rearrange URL segments | `path/(.*)/(.*)/(.*)`<br>`path/1/2/3` | `path/$3/$2/$1`<br>`path/3/2/1` |
 | Replace a URL segment | `^(.*)/segment2/(.*)`<br>`/segment1/segment2/segment3` | `$1/replaced/$2`<br>`/segment1/replaced/segment3` |
 
-## Additional resources
-
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/url-rewriting/samples/) ([how to download](xref:index#how-to-download-a-sample))
-* [RewriteMiddleware source on GitHub](https://github.com/dotnet/aspnetcore/blob/v6.0.2/src/Middleware/Rewrite/src/RewriteMiddleware.cs)
-
 <!-- Test the app 
 https://localhost:7167/iis-rules-rewrite/xyz Rewritten or Redirected Url: /rewritten?id=xyz
 https://localhost:7167/apache-mod-rules-redirect/xyz Rewritten or Redirected Url: /redirected?id=xyz
@@ -1080,6 +1075,8 @@ Original Request: `/image.jpg`
 
 ## Additional resources
 
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/url-rewriting/samples/) ([how to download](xref:index#how-to-download-a-sample))
+* [RewriteMiddleware source on GitHub](https://github.com/dotnet/aspnetcore/blob/v6.0.2/src/Middleware/Rewrite/src/RewriteMiddleware.cs)
 * <xref:fundamentals/startup>
 * <xref:fundamentals/middleware/index>
 * [Regular expressions in .NET](/dotnet/articles/standard/base-types/regular-expressions)
