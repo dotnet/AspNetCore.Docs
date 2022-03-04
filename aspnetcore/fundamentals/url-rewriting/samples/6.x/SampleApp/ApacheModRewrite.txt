@@ -1,0 +1,2 @@
+# Rewrite path with additional sub directory
+RewriteRule ^/apache-mod-rules-redirect/(.*) /redirected?id=$1 [L,R=302]
