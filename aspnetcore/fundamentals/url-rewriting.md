@@ -86,7 +86,7 @@ URL Rewriting Middleware is provided by the [Microsoft.AspNetCore.Rewrite](https
 
 Establish URL rewrite and redirect rules by creating an instance of the [RewriteOptions](xref:Microsoft.AspNetCore.Rewrite.RewriteOptions) class with extension methods for each of your rewrite rules. Chain multiple rules in the order that you would like them processed. The `RewriteOptions` are passed into the URL Rewriting Middleware as it's added to the request pipeline with <xref:Microsoft.AspNetCore.Builder.RewriteBuilderExtensions.UseRewriter*>:
 
-[!code-csharp[](url-rewriting\samples\6.x\SampleApp\Program.cs)]
+[!code-csharp[](url-rewriting/samples/6.x/SampleApp/Program.cs)]
 
 ### Redirect non-www to www
 
@@ -360,8 +360,15 @@ Original Request: `/image.jpg`
 | Rearrange URL segments | `path/(.*)/(.*)/(.*)`<br>`path/1/2/3` | `path/$3/$2/$1`<br>`path/3/2/1` |
 | Replace a URL segment | `^(.*)/segment2/(.*)`<br>`/segment1/segment2/segment3` | `$1/replaced/$2`<br>`/segment1/replaced/segment3` |
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/url-rewriting/samples/) ([how to download](xref:index#how-to-download-a-sample))
+## Additional resources
 
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/url-rewriting/samples/) ([how to download](xref:index#how-to-download-a-sample))
+* [RewriteMiddleware source on GitHub](https://github.com/dotnet/aspnetcore/blob/v6.0.2/src/Middleware/Rewrite/src/RewriteMiddleware.cs)
+
+<!-- Test the app 
+https://localhost:7167/iis-rules-rewrite/xyz Rewritten or Redirected Url: /rewritten?id=xyz
+https://localhost:7167/apache-mod-rules-redirect/xyz Rewritten or Redirected Url: /redirected?id=xyz
+-->
 :::moniker-end
 
 :::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
