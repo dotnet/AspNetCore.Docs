@@ -57,9 +57,9 @@ Although the client might be able to retrieve the resource at the rewritten URL,
 
 ## URL rewriting sample app
 
-You can explore the features of the URL Rewriting Middleware with the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/url-rewriting/samples/). The app applies redirect and rewrite rules and shows the redirected or rewritten URL for several scenarios.
+Explore the features of the URL Rewriting Middleware with the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/url-rewriting/samples/). The app applies redirect and rewrite rules and shows the redirected or rewritten URL for several scenarios.
 
-## When to use URL Rewriting Middleware
+## When to use URL rewriting middleware
 
 Use URL Rewriting Middleware when you're unable to use the following approaches:
 
@@ -67,7 +67,7 @@ Use URL Rewriting Middleware when you're unable to use the following approaches:
 * [Apache mod_rewrite module on Apache Server](https://httpd.apache.org/docs/2.4/rewrite/)
 * [URL rewriting on Nginx](https://www.nginx.com/blog/creating-nginx-rewrite-rules/)
 
-Also, use the middleware when the app is hosted on [HTTP.sys server](xref:fundamentals/servers/httpsys) (formerly called WebListener).
+Use the URL rewriting middleware when the app is hosted on [HTTP.sys server](xref:fundamentals/servers/httpsys).
 
 The main reasons to use the server-based URL rewriting technologies in IIS, Apache, and Nginx are:
 
@@ -78,15 +78,11 @@ The main reasons to use the server-based URL rewriting technologies in IIS, Apac
 
   Benchmarking is the only way to know for sure which approach degrades performance the most or if degraded performance is negligible.
 
-## Package
-
-URL Rewriting Middleware is provided by the [Microsoft.AspNetCore.Rewrite](https://www.nuget.org/packages/Microsoft.AspNetCore.Rewrite) package, which is implicitly included in ASP.NET Core apps.
-
 ## Extension and options
 
-Establish URL rewrite and redirect rules by creating an instance of the [RewriteOptions](xref:Microsoft.AspNetCore.Rewrite.RewriteOptions) class with extension methods for each of your rewrite rules. Chain multiple rules in the order that you would like them processed. The `RewriteOptions` are passed into the URL Rewriting Middleware as it's added to the request pipeline with <xref:Microsoft.AspNetCore.Builder.RewriteBuilderExtensions.UseRewriter*>:
+Establish URL rewrite and redirect rules by creating an instance of the [RewriteOptions](xref:Microsoft.AspNetCore.Rewrite.RewriteOptions) class with extension methods for each of the rewrite rules. Chain multiple rules in the order that they should be processed. The `RewriteOptions` are passed into the URL Rewriting Middleware as it's added to the request pipeline with <xref:Microsoft.AspNetCore.Builder.RewriteBuilderExtensions.UseRewriter*>:
 
-[!code-csharp[](url-rewriting/samples/6.x/SampleApp/Program.cs)]
+[!code-csharp[](url-rewriting/samples/6.x/SampleApp/Program.cs?highlight=7-24)]
 
 ### Redirect non-www to www
 
@@ -100,7 +96,7 @@ Three options permit the app to redirect non-`www` requests to `www`:
 
 Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirect*> to redirect requests. The first parameter contains your regex for matching on the path of the incoming URL. The second parameter is the replacement string. The third parameter, if present, specifies the status code. If you don't specify the status code, the status code defaults to *302 - Found*, which indicates that the resource is temporarily moved or replaced.
 
-[!code-csharp[](url-rewriting/samples/3.x/SampleApp/Startup.cs?name=snippet1&highlight=9)]
+[!code-csharp[](url-rewriting/samples/6.x/SampleApp/Program.cs?highlight=13)]
 
 In a browser with developer tools enabled, make a request to the sample app with the path `/redirect-rule/1234/5678`. The regex matches the request path on `redirect-rule/(.*)`, and the path is replaced with `/redirected/1234/5678`. The redirect URL is sent back to the client with a *302 - Found* status code. The browser makes a new request at the redirect URL, which appears in the browser's address bar. Since no rules in the sample app match on the redirect URL:
 
@@ -110,7 +106,7 @@ In a browser with developer tools enabled, make a request to the sample app with
 A round trip is made to the server when a URL is *redirected*.
 
 > [!WARNING]
-> Be cautious when establishing redirect rules. Redirect rules are evaluated on every request to the app, including after a redirect. It's easy to accidentally create a *loop of infinite redirects*.
+> Be cautious when establishing redirect rules. Redirect rules are evaluated on every request to the app, including after a redirect. It's easy to accidentally create a loop of ***infinite*** redirects.
 
 Original Request: `/redirect-rule/1234/5678`
 
@@ -139,6 +135,11 @@ public void Configure(IApplicationBuilder app)
 }
 ```
 
+<!-- 
+To test HTTP on localhost, you must use the HTTP port found in *Properties/launchSettings.json*
+
+
+-->
 Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToHttpsPermanent*> to redirect insecure requests to the same host and path with secure HTTPS protocol on port 443. The middleware sets the status code to *301 - Moved Permanently*.
 
 ```csharp
@@ -420,7 +421,7 @@ Although the client might be able to retrieve the resource at the rewritten URL,
 
 You can explore the features of the URL Rewriting Middleware with the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/url-rewriting/samples/). The app applies redirect and rewrite rules and shows the redirected or rewritten URL for several scenarios.
 
-## When to use URL Rewriting Middleware
+## When to use URL rewriting middleware
 
 Use URL Rewriting Middleware when you're unable to use the following approaches:
 
@@ -428,7 +429,7 @@ Use URL Rewriting Middleware when you're unable to use the following approaches:
 * [Apache mod_rewrite module on Apache Server](https://httpd.apache.org/docs/2.4/rewrite/)
 * [URL rewriting on Nginx](https://www.nginx.com/blog/creating-nginx-rewrite-rules/)
 
-Also, use the middleware when the app is hosted on [HTTP.sys server](xref:fundamentals/servers/httpsys) (formerly called WebListener).
+Use the URL rewriting middleware when the app is hosted on [HTTP.sys server](xref:fundamentals/servers/httpsys).
 
 The main reasons to use the server-based URL rewriting technologies in IIS, Apache, and Nginx are:
 
