@@ -309,7 +309,7 @@ These are unusual scenarios. For objects that are implemented correctly and beha
 
 ### Event handlers
 
-Unsubscribe event handlers from .NET events. The following [Blazor form](xref:blazor/forms-validation) examples show how to unsubscribe an event handler in the `Dispose` method:
+Always unsubscribe event handlers from .NET events. The following [Blazor form](xref:blazor/forms-validation) examples show how to unsubscribe an event handler in the `Dispose` method:
 
 * Private field and lambda approach
 
@@ -375,6 +375,8 @@ Unsubscribe event handlers from .NET events. The following [Blazor form](xref:bl
       }
   }
   ```
+  
+For more information, see the [Component disposal with `IDisposable` and `IAsyncDisposable`](#component-disposal-with-idisposable-and-iasyncdisposable) section.
 
 ### Anonymous functions, methods, and expressions
 
@@ -751,7 +753,7 @@ These are unusual scenarios. For objects that are implemented correctly and beha
 
 ### Event handlers
 
-Unsubscribe event handlers from .NET events. The following [Blazor form](xref:blazor/forms-validation) examples show how to unsubscribe an event handler in the `Dispose` method:
+Always unsubscribe event handlers from .NET events. The following [Blazor form](xref:blazor/forms-validation) examples show how to unsubscribe an event handler in the `Dispose` method:
 
 * Private field and lambda approach
 
@@ -816,6 +818,8 @@ Unsubscribe event handlers from .NET events. The following [Blazor form](xref:bl
       }
   }
   ```
+  
+For more information, see the [Component disposal with `IDisposable` and `IAsyncDisposable`](#component-disposal-with-idisposable-and-iasyncdisposable) section.
 
 ### Anonymous functions, methods, and expressions
 
@@ -1189,7 +1193,7 @@ These are unusual scenarios. For objects that are implemented correctly and beha
 
 ### Event handlers
 
-Unsubscribe event handlers from .NET events. The following [Blazor form](xref:blazor/forms-validation) examples show how to unsubscribe an event handler in the `Dispose` method:
+Always unsubscribe event handlers from .NET events. The following [Blazor form](xref:blazor/forms-validation) examples show how to unsubscribe an event handler in the `Dispose` method:
 
 * Private field and lambda approach
 
@@ -1254,6 +1258,8 @@ Unsubscribe event handlers from .NET events. The following [Blazor form](xref:bl
       }
   }
   ```
+  
+For more information, see the [Component disposal with `IDisposable` and `IAsyncDisposable`](#component-disposal-with-idisposable-and-iasyncdisposable) section.
 
 ### Anonymous functions, methods, and expressions
 
