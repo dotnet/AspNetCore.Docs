@@ -1,9 +1,7 @@
-using System;
-using System.Net;
-using System.Text.RegularExpressions;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.Net.Http.Headers;
+using System.Net;
+using System.Text.RegularExpressions;
 
 namespace RewriteRules;
 
@@ -16,7 +14,8 @@ public class MethodRules
 
         // Because the client is redirecting back to the same app, stop 
         // processing if the request has already been redirected.
-        if (request.Path.StartsWithSegments(new PathString("/xmlfiles")))
+        if (request.Path.StartsWithSegments(new PathString("/xmlfiles")) ||
+            request.Path.Value==null)
         {
             return;
         }
@@ -37,7 +36,8 @@ public class MethodRules
     {
         var request = context.HttpContext.Request;
 
-        if (request.Path.Value.EndsWith(".txt", StringComparison.OrdinalIgnoreCase))
+        if (request.Path.Value != null &&
+            request.Path.Value.EndsWith(".txt", StringComparison.OrdinalIgnoreCase))
         {
             context.Result = RuleResult.SkipRemainingRules;
             request.Path = "/file.txt";
@@ -79,7 +79,8 @@ public class RedirectImageRequests : IRule
 
         // Because we're redirecting back to the same app, stop 
         // processing if the request has already been redirected
-        if (request.Path.StartsWithSegments(new PathString(_newPath)))
+        if (request.Path.StartsWithSegments(new PathString(_newPath)) ||
+            request.Path.Value == null)
         {
             return;
         }

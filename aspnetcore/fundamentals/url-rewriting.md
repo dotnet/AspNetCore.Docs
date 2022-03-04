@@ -135,11 +135,6 @@ public void Configure(IApplicationBuilder app)
 }
 ```
 
-<!-- 
-To test HTTP on localhost, you must use the HTTP port found in *Properties/launchSettings.json*
-
-
--->
 Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToHttpsPermanent*> to redirect insecure requests to the same host and path with secure HTTPS protocol on port 443. The middleware sets the status code to *301 - Moved Permanently*.
 
 ```csharp
@@ -362,8 +357,9 @@ Original Request: `/image.jpg`
 | Replace a URL segment | `^(.*)/segment2/(.*)`<br>`/segment1/segment2/segment3` | `$1/replaced/$2`<br>`/segment1/replaced/segment3` |
 
 <!-- Test the app 
-https://localhost:7167/iis-rules-rewrite/xyz Rewritten or Redirected Url: /rewritten?id=xyz
-https://localhost:7167/apache-mod-rules-redirect/xyz Rewritten or Redirected Url: /redirected?id=xyz
+To test HTTP on localhost, you must use the HTTP port found in *Properties/launchSettings.json*
+https://localhost:HTTPSport/iis-rules-rewrite/xyz Rewritten or Redirected Url: /rewritten?id=xyz
+https://localhost:HTTPSport/apache-mod-rules-redirect/xyz Rewritten or Redirected Url: /redirected?id=xyz
 -->
 :::moniker-end
 

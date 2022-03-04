@@ -42,6 +42,8 @@ using RewriteRules;
 
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
+var localhostHTTPport = Int32.Parse(
+    Environment.GetEnvironmentVariable("ASPNETCORE_URLS")?.Split(";")[1].Split(":")[2]!);
 
 using (StreamReader apacheModRewriteStreamReader =
     File.OpenText("ApacheModRewrite.txt"))
@@ -58,7 +60,8 @@ using (StreamReader iisUrlRewriteStreamReader =
         .Add(MethodRules.RewriteTextFileRequests)
         .Add(new RedirectImageRequests(".png", "/png-images"))
         .Add(new RedirectImageRequests(".jpg", "/jpg-images"))
-        .AddRedirectToHttps(301, 5167);  // 5167 is localhost HTTP port
+        // localhostHTTPport not needed for production, used only with localhost.
+        .AddRedirectToHttps(301, localhostHTTPport);
 
     app.UseRewriter(options);
 }
