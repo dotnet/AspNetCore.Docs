@@ -988,7 +988,7 @@ items:
           - name: Continuous deployment with Azure Pipelines
             displayName: azure, deploy, publish
             href: /azure/devops/pipelines/get-started-yaml
-          - name: ASP.NET Core Module
+          - name: ASP.NET Core Module (ANCM) for IIS
             displayName: azure, deploy, publish
             uid: host-and-deploy/aspnet-core-module
           - name: Troubleshoot
