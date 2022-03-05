@@ -144,11 +144,9 @@ The following image shows the F12 browse tools image of a request to http://redi
 
 Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRewrite*> to create a rule for rewriting URLs. The first parameter contains the regex for matching on the incoming URL path. The second parameter is the replacement string. The third parameter, `skipRemainingRules: {true|false}`, indicates to the middleware whether or not to skip additional rewrite rules if the current rule is applied.
 
-[!code-csharp[](url-rewriting/samples/3.x/SampleApp/Startup.cs?name=snippet1&highlight=10-11)]
+[!code-csharp[](url-rewriting/samples/6.x/SampleApp/Program.cs?name=snippet_redirect2&highlight=13)]
 
-Original Request: `/rewrite-rule/1234/5678`
-
-![Browser window with developer tools tracking the request and response: Add rewrite](url-rewriting/_static/add_rewrite.png)
+Try the request to http://redirect6.azurewebsites.net/rewrite-rule/1234/5678
 
 The carat (`^`) at the beginning of the expression means that matching starts at the beginning of the URL path.
 
@@ -188,11 +186,9 @@ A <xref:System.IO.StreamReader> is used to read the rules from the *ApacheModRew
 
 The sample app redirects requests from `/apache-mod-rules-redirect/(.\*)` to `/redirected?id=$1`. The response status code is *302 - Found*.
 
-[!code[](url-rewriting/samples/3.x/SampleApp/ApacheModRewrite.txt)]
+[!code[](url-rewriting/samples/6.x/SampleApp/ApacheModRewrite.txt)]
 
-Original Request: `/apache-mod-rules-redirect/1234`
-
-![Browser window with developer tools tracking the requests and responses: Add Apache mod redirect](url-rewriting/_static/add_apache_mod_redirect.png)
+Try the request to https://redirect66.azurewebsites.net/apache-mod-rules-redirect/1234
 
 The middleware supports the following Apache mod_rewrite server variables:
 
@@ -232,17 +228,18 @@ To use the same rule set that applies to the IIS URL Rewrite Module, use <xref:M
 
 A <xref:System.IO.StreamReader> is used to read the rules from the *IISUrlRewrite.xml* rules file:
 
-[!code-csharp[](url-rewriting/samples/3.x/SampleApp/Startup.cs?name=snippet1&highlight=5-6,13)]
+[!code-csharp[](url-rewriting/samples/6.x/SampleApp/Program.cs?name=snippet_redirect2&highlight=13)]
 
 The sample app rewrites requests from `/iis-rules-rewrite/(.*)` to `/rewritten?id=$1`. The response is sent to the client with a *200 - OK* status code.
 
-[!code-xml[](url-rewriting/samples/3.x/SampleApp/IISUrlRewrite.xml)]
+[!code-xml[](url-rewriting/samples/6.x/SampleApp/IISUrlRewrite.xml)]
 
-Original Request: `/iis-rules-rewrite/1234`
+Try the request to http://redirect6.azurewebsites.net/iis-rules-rewrite/xyz 
 
-![Browser window with developer tools tracking the request and response: Add IIS URL rewrite](url-rewriting/_static/add_iis_url_rewrite.png)
+Apps that have an active IIS Rewrite Module with server-level rules configured that impacts the app in undesirable ways:
 
-If you have an active IIS Rewrite Module with server-level rules configured that would impact your app in undesirable ways, you can disable the IIS Rewrite Module for an app. For more information, see [Disabling IIS modules](xref:host-and-deploy/iis/modules#disabling-iis-modules).
+* Consider disabling the IIS Rewrite Module for the app.
+* For more information, see [Disabling IIS modules](xref:host-and-deploy/iis/modules#disabling-iis-modules).
 
 #### Unsupported features
 
