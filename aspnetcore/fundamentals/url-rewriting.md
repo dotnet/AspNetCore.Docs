@@ -41,7 +41,7 @@ If `/resource` is *redirected* to `/different-resource`, the server responds tha
 
 When redirecting requests to a different URL, indicate whether the redirect is permanent or temporary by specifying the status code with the response:
 
-* The *301 - Moved Permanently* status code is used where the resource has a new, permanent URL and you wish to instruct the client that all future requests for the resource should use the new URL. *The client may cache and reuse the response when a 301 status code is received.*
+* The `301 - Moved Permanently` status code is used where the resource has a new, permanent URL and you wish to instruct the client that all future requests for the resource should use the new URL. *The client may cache and reuse the response when a 301 status code is received.*
 
 * The *302 - Found* status code is used where the redirection is temporary or generally subject to change. The 302 status code indicates to the client not to store the URL and use it in the future.
 
@@ -108,9 +108,7 @@ A round trip is made to the server when a URL is *redirected*.
 > [!WARNING]
 > Be cautious when establishing redirect rules. Redirect rules are evaluated on every request to the app, including after a redirect. It's easy to accidentally create a loop of ***infinite*** redirects.
 
-Original Request: `/redirect-rule/1234/5678`
-
-![Browser window with developer tools tracking the requests and responses: Add redirect](url-rewriting/_static/add_redirect.png)
+Try [`/redirect-rule/1234/5678`]](https://redirect6.azurewebsites.net)
 
 The part of the expression contained within parentheses is called a *capture group*. The dot (`.`) of the expression means *match any character*. The asterisk (`*`) indicates *match the preceding character zero or more times*. Therefore, the last two path segments of the URL, `1234/5678`, are captured by capture group `(.*)`. Any value you provide in the request URL after `redirect-rule/` is captured by this single capture group.
 
@@ -123,11 +121,11 @@ Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToHtt
 * The middleware defaults to `null`.
 * The scheme changes to `https` (HTTPS protocol), and the client accesses the resource on port 443.
 
-The following example shows how to set the status code to *301 - Moved Permanently* and change the port to the HTTPS port used by Kestrel on localhost. In productions, the HTTPS port is set to null:
+The following example shows how to set the status code to `301 - Moved Permanently` and change the port to the HTTPS port used by Kestrel on localhost. In productions, the HTTPS port is set to null:
 
 [!code-csharp[](url-rewriting/samples/6.x/SampleApp/Program.cs?name=snippet_redirect&highlight=7-12,20-21)]
 
-Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToHttpsPermanent*> to redirect insecure requests to the same host and path with secure HTTPS protocol on port 443. The middleware sets the status code to *301 - Moved Permanently*.
+Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToHttpsPermanent*> to redirect insecure requests to the same host and path with secure HTTPS protocol on port 443. The middleware sets the status code to `301 - Moved Permanently`.
 
 [!code-csharp[](url-rewriting/samples/6.x/SampleApp/Program.cs?name=snippet_redirect2&highlight=13)]
 
@@ -136,7 +134,7 @@ Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToHtt
 
 The sample app demonstrates how to use `AddRedirectToHttps` or `AddRedirectToHttpsPermanent`. Make an [insecure HTTP request to the app](http://redirect6.azurewebsites.net/iis-rules-rewrite/xyz). When testing HTTP to HTTPS redirection with localhost, use the HTTP URL, which has a different port than the HTTPS URL.
 
-The following image shows the F12 browse tools image of a request to http://redirect6.azurewebsites.net/iis-rules-rewrite/xyz using the preceeding code:
+The following image shows the F12 browse tools image of a request to [http://redirect6.azurewebsites.net/iis-rules-rewrite/xyz](http://redirect6.azurewebsites.net/iis-rules-rewrite/xyz) using the preceding code:
 
 ![Browser window with developer tools tracking the requests and responses: Add redirect to HTTPS](url-rewriting/_static/add_redirect_to_https6.png)
 
@@ -144,9 +142,9 @@ The following image shows the F12 browse tools image of a request to http://redi
 
 Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRewrite*> to create a rule for rewriting URLs. The first parameter contains the regex for matching on the incoming URL path. The second parameter is the replacement string. The third parameter, `skipRemainingRules: {true|false}`, indicates to the middleware whether or not to skip additional rewrite rules if the current rule is applied.
 
-[!code-csharp[](url-rewriting/samples/6.x/SampleApp/Program.cs?name=snippet_redirect2&highlight=13)]
+[!code-csharp[](url-rewriting/samples/6.x/SampleApp/Program.cs?name=snippet_redirect2&highlight=15-16)]
 
-Try the request to http://redirect6.azurewebsites.net/rewrite-rule/1234/5678
+Try the request to https://redirect6.azurewebsites.net/rewrite-rule/1234/5678
 
 The carat (`^`) at the beginning of the expression means that matching starts at the beginning of the URL path.
 
@@ -154,27 +152,28 @@ In the earlier example with the redirect rule, `redirect-rule/(.*)`, there's no 
 
 | Path                               | Match |
 | ---------------------------------- | :---: |
-| `/redirect-rule/1234/5678`         | Yes   |
-| `/my-cool-redirect-rule/1234/5678` | Yes   |
-| `/anotherredirect-rule/1234/5678`  | Yes   |
+| [`/redirect-rule/1234/5678`](https://redirect6.azurewebsites.net/redirect-rule/1234/5678)         | Yes   |
+| [`/my-cool-redirect-rule/1234/5678`](https://redirect6.azurewebsites.net/my-cool-redirect-rule/1234/5678) | Yes   |
+| [`/anotherredirect-rule/1234/5678`](https://redirect6.azurewebsites.net/anotherredirect-rule/1234/5678)  | Yes   |
 
 The rewrite rule, `^rewrite-rule/(\d+)/(\d+)`, only matches paths if they start with `rewrite-rule/`. In the following table, note the difference in matching.
 
 | Path                              | Match |
 | --------------------------------- | :---: |
-| `/rewrite-rule/1234/5678`         | Yes   |
-| `/my-cool-rewrite-rule/1234/5678` | No    |
-| `/anotherrewrite-rule/1234/5678`  | No    |
+| [`/rewrite-rule/1234/5678`](https://redirect6.azurewebsites.net/rewrite-rule/1234/5678)         | Yes   |
+| [`/my-cool-rewrite-rule/1234/5678`](https://redirect6.azurewebsites.net/my-cool-rewrite-rule/1234/5678) | No    |
+| [`/anotherrewrite-rule/1234/5678`](https://redirect6.azurewebsites.net/anotherrewrite-rule/1234/5678)  | No    |
 
 Following the `^rewrite-rule/` portion of the expression, there are two capture groups, `(\d+)/(\d+)`. The `\d` signifies *match a digit (number)*. The plus sign (`+`) means *match one or more of the preceding character*. Therefore, the URL must contain a number followed by a forward-slash followed by another number. These capture groups are injected into the rewritten URL as `$1` and `$2`. The rewrite rule replacement string places the captured groups into the query string. The requested path of `/rewrite-rule/1234/5678` is rewritten to obtain the resource at `/rewritten?var1=1234&var2=5678`. If a query string is present on the original request, it's preserved when the URL is rewritten.
 
 There's no round trip to the server to obtain the resource. If the resource exists, it's fetched and returned to the client with a *200 - OK* status code. Because the client isn't redirected, the URL in the browser's address bar doesn't change. Clients can't detect that a URL rewrite operation occurred on the server.
 
-> [!NOTE]
-> Use `skipRemainingRules: true` whenever possible because matching rules is computationally expensive and increases app response time. For the fastest app response:
->
-> * Order rewrite rules from the most frequently matched rule to the least frequently matched rule.
-> * Skip the processing of the remaining rules when a match occurs and no additional rule processing is required.
+### Performance tips for URL rewrite
+
+For the fastest response:
+
+* Order rewrite rules from the most frequently matched rule to the least frequently matched rule.
+* Use `skipRemainingRules: true` whenever possible because matching rules is computationally expensive and increases app response time. Skip the processing of the remaining rules when a match occurs and no additional rule processing is required.
 
 ### Apache mod_rewrite
 
@@ -182,15 +181,15 @@ Apply Apache mod_rewrite rules with <xref:Microsoft.AspNetCore.Rewrite.ApacheMod
 
 A <xref:System.IO.StreamReader> is used to read the rules from the *ApacheModRewrite.txt* rules file:
 
-[!code-csharp[](url-rewriting/samples/3.x/SampleApp/Startup.cs?name=snippet1&highlight=3-4,12)]
+[!code-csharp[](url-rewriting/samples/6.x/SampleApp/Program.cs?name=snippet_redirect2&highlight=7-8,17)]
 
 The sample app redirects requests from `/apache-mod-rules-redirect/(.\*)` to `/redirected?id=$1`. The response status code is *302 - Found*.
 
 [!code[](url-rewriting/samples/6.x/SampleApp/ApacheModRewrite.txt)]
 
-Try the request to https://redirect66.azurewebsites.net/apache-mod-rules-redirect/1234
+Try the request to https://redirect6.azurewebsites.net/apache-mod-rules-redirect/1234
 
-The middleware supports the following Apache mod_rewrite server variables:
+The [Apache middleware](https://github.com/dotnet/aspnetcore/blob/v6.0.2/src/Middleware/Rewrite/src/ApacheModRewrite/ServerVariables.cs) supports the following Apache mod_rewrite server variables:
 
 * CONN_REMOTE_ADDR
 * HTTP_ACCEPT
@@ -228,13 +227,13 @@ To use the same rule set that applies to the IIS URL Rewrite Module, use <xref:M
 
 A <xref:System.IO.StreamReader> is used to read the rules from the *IISUrlRewrite.xml* rules file:
 
-[!code-csharp[](url-rewriting/samples/6.x/SampleApp/Program.cs?name=snippet_redirect2&highlight=13)]
+[!code-csharp[](url-rewriting/samples/6.x/SampleApp/Program.cs?name=snippet_redirect2&highlight=9-10,18)]
 
 The sample app rewrites requests from `/iis-rules-rewrite/(.*)` to `/rewritten?id=$1`. The response is sent to the client with a *200 - OK* status code.
 
 [!code-xml[](url-rewriting/samples/6.x/SampleApp/IISUrlRewrite.xml)]
 
-Try the request to http://redirect6.azurewebsites.net/iis-rules-rewrite/xyz 
+Try the request to https://redirect6.azurewebsites.net/iis-rules-rewrite/xyz 
 
 Apps that have an active IIS Rewrite Module with server-level rules configured that impacts the app in undesirable ways:
 
@@ -252,7 +251,7 @@ The middleware doesn't support the following IIS URL Rewrite Module features:
 
 #### Supported server variables
 
-The middleware supports the following IIS URL Rewrite Module server variables:
+The [middleware](https://github.com/dotnet/aspnetcore/blob/v6.0.2/src/Middleware/Rewrite/src/IISUrlRewrite/ServerVariables.cs) supports the following IIS URL Rewrite Module server variables:
 
 * CONTENT_LENGTH
 * CONTENT_TYPE
@@ -271,16 +270,16 @@ The middleware supports the following IIS URL Rewrite Module server variables:
 * REQUEST_FILENAME
 * REQUEST_URI
 
-> [!NOTE]
-> You can also obtain an <xref:Microsoft.Extensions.FileProviders.IFileProvider> via a <xref:Microsoft.Extensions.FileProviders.PhysicalFileProvider>. This approach may provide greater flexibility for the location of your rewrite rules files. Make sure that your rewrite rules files are deployed to the server at the path you provide.
->
-> ```csharp
-> PhysicalFileProvider fileProvider = new PhysicalFileProvider(Directory.GetCurrentDirectory());
-> ```
+The <xref:Microsoft.Extensions.FileProviders.IFileProvider> can be obtained via a <xref:Microsoft.Extensions.FileProviders.PhysicalFileProvider>. This approach may provide greater flexibility for the location of rewrite rules files. Make sure that the rewrite rules files are deployed to the server at the path provided.
+
+ ```csharp
+ PhysicalFileProvider fileProvider = 
+                new PhysicalFileProvider(Directory.GetCurrentDirectory());
+ ```
 
 ### Method-based rule
 
-Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.Add*> to implement your own rule logic in a method. `Add` exposes the <xref:Microsoft.AspNetCore.Rewrite.RewriteContext>, which makes available the <xref:Microsoft.AspNetCore.Http.HttpContext> for use in your method. The [RewriteContext.Result](xref:Microsoft.AspNetCore.Rewrite.RewriteContext.Result*) determines how additional pipeline processing is handled. Set the value to one of the <xref:Microsoft.AspNetCore.Rewrite.RuleResult> fields described in the following table.
+Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.Add*> to implement custom rule logic in a method. `Add` exposes the <xref:Microsoft.AspNetCore.Rewrite.RewriteContext>, which makes available the <xref:Microsoft.AspNetCore.Http.HttpContext> for use in redirect methods. The [RewriteContext.Result](xref:Microsoft.AspNetCore.Rewrite.RewriteContext.Result*) determines how additional pipeline processing is handled. Set the value to one of the <xref:Microsoft.AspNetCore.Rewrite.RuleResult> fields described in the following table.
 
 | Rewrite context result               | Action                                                           |
 | ------------------------------------ | ---------------------------------------------------------------- |
@@ -290,7 +289,10 @@ Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.Add*> to impleme
 
 [!code-csharp[](url-rewriting/samples/6.x/SampleApp/Program.cs?name=snippet_redirect2&highlight=13)]
 
-The sample app demonstrates a method that redirects requests for paths that end with *.xml*. If a request is made for `/file.xml`, the request is redirected to `/xmlfiles/file.xml`. The status code is set to *301 - Moved Permanently*. When the browser makes a new request for */xmlfiles/file.xml*, Static File Middleware serves the file to the client from the *wwwroot/xmlfiles* folder. For a redirect, explicitly set the status code of the response. Otherwise, a *200 - OK* status code is returned, and the redirect doesn't occur on the client.
+The sample app demonstrates a method that redirects requests for paths that end with *.xml*. When a request is made for [`/file.xml`](https://redirect6.azurewebsites.net/file.xml):
+
+* The request is redirected to `/xmlfiles/file.xml`
+* The status code is set to `301 - Moved Permanently`. When the browser makes a new request for */xmlfiles/file.xml*, Static File Middleware serves the file to the client from the *wwwroot/xmlfiles* folder. For a redirect, explicitly set the status code of the response. Otherwise, a *200 - OK* status code is returned, and the redirect doesn't occur on the client.
 
 *RewriteRules.cs*:
 
@@ -298,7 +300,8 @@ The sample app demonstrates a method that redirects requests for paths that end 
 
 This approach can also rewrite requests. The sample app demonstrates rewriting the path for any text file request to serve the *file.txt* text file from the *wwwroot* folder. Static File Middleware serves the file based on the updated request path:
 
-[!code-csharp[](url-rewriting/samples/6.x/SampleApp/Program.cs?name=snippet_redirect2&highlight=13)]
+[!code-csharp[](url-rewriting/samples/6.x/SampleApp/Program.cs?name=snippet_redirect2&highlight=20)]
+
 *RewriteRules.cs*:
 
 [!code-csharp[](url-rewriting/samples/6.x/SampleApp/RewriteRules.cs?name=snippet_RewriteTextFileRequests&highlight=7-8)]
@@ -307,24 +310,24 @@ This approach can also rewrite requests. The sample app demonstrates rewriting t
 
 Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.Add*> to use rule logic in a class that implements the <xref:Microsoft.AspNetCore.Rewrite.IRule> interface. `IRule` provides greater flexibility over using the method-based rule approach. Your implementation class may include a constructor that allows you can pass in parameters for the <xref:Microsoft.AspNetCore.Rewrite.IRule.ApplyRule*> method.
 
-[!code-csharp[](url-rewriting/samples/6.x/SampleApp/Program.cs?name=snippet_redirect2&highlight=13)]
+[!code-csharp[](url-rewriting/samples/6.x/SampleApp/Program.cs?name=snippet_redirect2&highlight=21-22)]
 
-The values of the parameters in the sample app for the `extension` and the `newPath` are checked to meet several conditions. The `extension` must contain a value, and the value must be *.png*, *.jpg*, or *.gif*. If the `newPath` isn't valid, an <xref:System.ArgumentException> is thrown. If a request is made for *image.png*, the request is redirected to `/png-images/image.png`. If a request is made for *image.jpg*, the request is redirected to `/jpg-images/image.jpg`. The status code is set to *301 - Moved Permanently*, and the `context.Result` is set to stop processing rules and send the response.
+The values of the parameters in the sample app for the `extension` and the `newPath` are checked to meet several conditions. The `extension` must contain a value, and the value must be *.png*, *.jpg*, or *.gif*. If the `newPath` isn't valid, an <xref:System.ArgumentException> is thrown. If a request is made for *image.png*, the request is redirected to `/png-images/image.png`. If a request is made for *image.jpg*, the request is redirected to `/jpg-images/image.jpg`. The status code is set to `301 - Moved Permanently`, and the `context.Result` is set to stop processing rules and send the response.
 
 [!code-csharp[](url-rewriting/samples/6.x/SampleApp/RewriteRules.cs?name=snippet_RedirectImageRequests)]
 
 Try:
 
-* PNG request: http://redirect6.azurewebsites.net/image.png
-* JPG request: http://redirect6.azurewebsites.net/image.jpg
+* PNG request: https://redirect6.azurewebsites.net/image.png
+* JPG request: https://redirect6.azurewebsites.net/image.jpg
 
 ## Regex examples
 
 | Goal | Regex String &<br>Match Example | Replacement String &<br>Output Example |
 | ---- | ------------------------------- | -------------------------------------- |
 | Rewrite path into querystring | `^path/(.*)/(.*)`<br>[`/path/abc/123`](https://redirect6.azurewebsites.net/path/abc/123) | `path?var1=$1&var2=$2`<br>`/path?var1=abc&var2=123` |
-| Strip trailing slash | `(.*)/$`<br>[`/path/`](https://redirect6.azurewebsites.net/path/) | `$1`<br>`/path` |
-| Enforce trailing slash | `(.*[^/])$`<br>[`/path`](https://redirect6.azurewebsites.net) | `$1/`<br>`/path/` |
+| Strip trailing slash | `^path/(.*)/$`<br>[`/path/xyz/`](https://redirect6.azurewebsites.net/path/xyz/) | `$1`<br>`/path` |
+| Enforce trailing slash | `(.*[^/])$`<br>[`/path/xyz`](https://redirect6.azurewebsites.net/path/xyz) | `$1/`<br>`/path/` |
 | Avoid rewriting specific requests | `^(.*)(?<!\.axd)$` or `^(?!.*\.axd$)(.*)$`<br>Yes: [`/resource.htm`](https://redirect6.azurewebsites.net/resource.htm)<br>No: [`/resource.axd`](https://redirect6.azurewebsites.net/resource.axd) | `rewritten/$1`<br>`/rewritten/resource.htm`<br>`/resource.axd` |
 | Rearrange URL segments | `path/(.*)/(.*)/(.*)`<br>[`path/1/2/3`](https://redirect6.azurewebsites.net/path/1/2/3) | `path/$3/$2/$1`<br>`path/3/2/1` |
 | Replace a URL segment | `^(.*)/segment2/(.*)`<br>[`/segment1/segment2/segment3`](https://redirect6.azurewebsites.net/segment1/segment2/segment3) | `$1/replaced/$2`<br>`/segment1/replaced/segment3` |
@@ -367,7 +370,7 @@ If `/resource` is *redirected* to `/different-resource`, the server responds tha
 
 When redirecting requests to a different URL, indicate whether the redirect is permanent or temporary by specifying the status code with the response:
 
-* The *301 - Moved Permanently* status code is used where the resource has a new, permanent URL and you wish to instruct the client that all future requests for the resource should use the new URL. *The client may cache and reuse the response when a 301 status code is received.*
+* The `301 - Moved Permanently` status code is used where the resource has a new, permanent URL and you wish to instruct the client that all future requests for the resource should use the new URL. *The client may cache and reuse the response when a 301 status code is received.*
 
 * The *302 - Found* status code is used where the redirection is temporary or generally subject to change. The 302 status code indicates to the client not to store the URL and use it in the future.
 
@@ -453,7 +456,7 @@ Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToHtt
 * The middleware defaults to `null`.
 * The scheme changes to `https` (HTTPS protocol), and the client accesses the resource on port 443.
 
-The following example shows how to set the status code to *301 - Moved Permanently* and change the port to 5001.
+The following example shows how to set the status code to `301 - Moved Permanently` and change the port to 5001.
 
 ```csharp
 public void Configure(IApplicationBuilder app)
@@ -465,7 +468,7 @@ public void Configure(IApplicationBuilder app)
 }
 ```
 
-Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToHttpsPermanent*> to redirect insecure requests to the same host and path with secure HTTPS protocol on port 443. The middleware sets the status code to *301 - Moved Permanently*.
+Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToHttpsPermanent*> to redirect insecure requests to the same host and path with secure HTTPS protocol on port 443. The middleware sets the status code to `301 - Moved Permanently`.
 
 ```csharp
 public void Configure(IApplicationBuilder app)
@@ -643,7 +646,7 @@ Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.Add*> to impleme
 
 [!code-csharp[](url-rewriting/samples/3.x/SampleApp/Startup.cs?name=snippet1&highlight=14)]
 
-The sample app demonstrates a method that redirects requests for paths that end with *.xml*. If a request is made for `/file.xml`, the request is redirected to `/xmlfiles/file.xml`. The status code is set to *301 - Moved Permanently*. When the browser makes a new request for */xmlfiles/file.xml*, Static File Middleware serves the file to the client from the *wwwroot/xmlfiles* folder. For a redirect, explicitly set the status code of the response. Otherwise, a *200 - OK* status code is returned, and the redirect doesn't occur on the client.
+The sample app demonstrates a method that redirects requests for paths that end with *.xml*. If a request is made for `/file.xml`, the request is redirected to `/xmlfiles/file.xml`. The status code is set to `301 - Moved Permanently`. When the browser makes a new request for */xmlfiles/file.xml*, Static File Middleware serves the file to the client from the *wwwroot/xmlfiles* folder. For a redirect, explicitly set the status code of the response. Otherwise, a *200 - OK* status code is returned, and the redirect doesn't occur on the client.
 
 *RewriteRules.cs*:
 
@@ -663,7 +666,7 @@ Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.Add*> to use rul
 
 [!code-csharp[](url-rewriting/samples/3.x/SampleApp/Startup.cs?name=snippet1&highlight=16-17)]
 
-The values of the parameters in the sample app for the `extension` and the `newPath` are checked to meet several conditions. The `extension` must contain a value, and the value must be *.png*, *.jpg*, or *.gif*. If the `newPath` isn't valid, an <xref:System.ArgumentException> is thrown. If a request is made for *image.png*, the request is redirected to `/png-images/image.png`. If a request is made for *image.jpg*, the request is redirected to `/jpg-images/image.jpg`. The status code is set to *301 - Moved Permanently*, and the `context.Result` is set to stop processing rules and send the response.
+The values of the parameters in the sample app for the `extension` and the `newPath` are checked to meet several conditions. The `extension` must contain a value, and the value must be *.png*, *.jpg*, or *.gif*. If the `newPath` isn't valid, an <xref:System.ArgumentException> is thrown. If a request is made for *image.png*, the request is redirected to `/png-images/image.png`. If a request is made for *image.jpg*, the request is redirected to `/jpg-images/image.jpg`. The status code is set to `301 - Moved Permanently`, and the `context.Result` is set to stop processing rules and send the response.
 
 [!code-csharp[](url-rewriting/samples/3.x/SampleApp/RewriteRules.cs?name=snippet_RedirectImageRequests)]
 
@@ -719,7 +722,7 @@ If `/resource` is *redirected* to `/different-resource`, the server responds tha
 
 When redirecting requests to a different URL, indicate whether the redirect is permanent or temporary by specifying the status code with the response:
 
-* The *301 - Moved Permanently* status code is used where the resource has a new, permanent URL and you wish to instruct the client that all future requests for the resource should use the new URL. *The client may cache and reuse the response when a 301 status code is received.*
+* The `301 - Moved Permanently` status code is used where the resource has a new, permanent URL and you wish to instruct the client that all future requests for the resource should use the new URL. *The client may cache and reuse the response when a 301 status code is received.*
 
 * The *302 - Found* status code is used where the redirection is temporary or generally subject to change. The 302 status code indicates to the client not to store the URL and use it in the future.
 
@@ -807,7 +810,7 @@ Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToHtt
 * The middleware defaults to `null`.
 * The scheme changes to `https` (HTTPS protocol), and the client accesses the resource on port 443.
 
-The following example shows how to set the status code to *301 - Moved Permanently* and change the port to 5001.
+The following example shows how to set the status code to `301 - Moved Permanently` and change the port to 5001.
 
 ```csharp
 public void Configure(IApplicationBuilder app)
@@ -819,7 +822,7 @@ public void Configure(IApplicationBuilder app)
 }
 ```
 
-Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToHttpsPermanent*> to redirect insecure requests to the same host and path with secure HTTPS protocol on port 443. The middleware sets the status code to *301 - Moved Permanently*.
+Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToHttpsPermanent*> to redirect insecure requests to the same host and path with secure HTTPS protocol on port 443. The middleware sets the status code to `301 - Moved Permanently`.
 
 ```csharp
 public void Configure(IApplicationBuilder app)
@@ -997,7 +1000,7 @@ Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.Add*> to impleme
 
 [!code-csharp[](url-rewriting/samples/2.x/SampleApp/Startup.cs?name=snippet1&highlight=14)]
 
-The sample app demonstrates a method that redirects requests for paths that end with *.xml*. If a request is made for `/file.xml`, the request is redirected to `/xmlfiles/file.xml`. The status code is set to *301 - Moved Permanently*. When the browser makes a new request for */xmlfiles/file.xml*, Static File Middleware serves the file to the client from the *wwwroot/xmlfiles* folder. For a redirect, explicitly set the status code of the response. Otherwise, a *200 - OK* status code is returned, and the redirect doesn't occur on the client.
+The sample app demonstrates a method that redirects requests for paths that end with *.xml*. If a request is made for `/file.xml`, the request is redirected to `/xmlfiles/file.xml`. The status code is set to `301 - Moved Permanently`. When the browser makes a new request for */xmlfiles/file.xml*, Static File Middleware serves the file to the client from the *wwwroot/xmlfiles* folder. For a redirect, explicitly set the status code of the response. Otherwise, a *200 - OK* status code is returned, and the redirect doesn't occur on the client.
 
 *RewriteRules.cs*:
 
@@ -1017,7 +1020,7 @@ Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.Add*> to use rul
 
 [!code-csharp[](url-rewriting/samples/2.x/SampleApp/Startup.cs?name=snippet1&highlight=16-17)]
 
-The values of the parameters in the sample app for the `extension` and the `newPath` are checked to meet several conditions. The `extension` must contain a value, and the value must be *.png*, *.jpg*, or *.gif*. If the `newPath` isn't valid, an <xref:System.ArgumentException> is thrown. If a request is made for *image.png*, the request is redirected to `/png-images/image.png`. If a request is made for *image.jpg*, the request is redirected to `/jpg-images/image.jpg`. The status code is set to *301 - Moved Permanently*, and the `context.Result` is set to stop processing rules and send the response.
+The values of the parameters in the sample app for the `extension` and the `newPath` are checked to meet several conditions. The `extension` must contain a value, and the value must be *.png*, *.jpg*, or *.gif*. If the `newPath` isn't valid, an <xref:System.ArgumentException> is thrown. If a request is made for *image.png*, the request is redirected to `/png-images/image.png`. If a request is made for *image.jpg*, the request is redirected to `/jpg-images/image.jpg`. The status code is set to `301 - Moved Permanently`, and the `context.Result` is set to stop processing rules and send the response.
 
 [!code-csharp[](url-rewriting/samples/2.x/SampleApp/RewriteRules.cs?name=snippet_RedirectImageRequests)]
 
