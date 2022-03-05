@@ -140,7 +140,7 @@ using (StreamReader iisUrlRewriteStreamReader =
         .AddRewrite(@"^path2/(.*)/$", "path2/$1",   // Skip trailing slash
             skipRemainingRules: true)
 
-         .AddRewrite(@"^path3/(.*[^/])$", "path2/$1", // Enforce trailing slash
+         .AddRewrite(@"^path3/(.*[^/])$", "path3/$1/", // Enforce trailing slash
             skipRemainingRules: true)
 
         .AddApacheModRewrite(apacheModRewriteStreamReader)
