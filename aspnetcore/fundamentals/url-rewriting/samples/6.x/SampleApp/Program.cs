@@ -1,4 +1,4 @@
-#define REDIRECT // FIRST REDIRECT
+#define REDIRECT2 // FIRST REDIRECT REDIRECT2
 #if NEVER
 #elif FIRST
 #region snippet1
@@ -58,6 +58,42 @@ using (StreamReader iisUrlRewriteStreamReader =
     var options = new RewriteOptions()
         // localhostHTTPport not needed for production, used only with localhost.
         .AddRedirectToHttps(301, localhostHTTPSport)
+        .AddRedirect("redirect-rule/(.*)", "redirected/$1")
+        .AddRewrite(@"^rewrite-rule/(\d+)/(\d+)", "rewritten?var1=$1&var2=$2",
+            skipRemainingRules: true)
+        .AddApacheModRewrite(apacheModRewriteStreamReader)
+        .AddIISUrlRewrite(iisUrlRewriteStreamReader)
+        .Add(MethodRules.RedirectXmlFileRequests)
+        .Add(MethodRules.RewriteTextFileRequests)
+        .Add(new RedirectImageRequests(".png", "/png-images"))
+        .Add(new RedirectImageRequests(".jpg", "/jpg-images"));
+
+    app.UseRewriter(options);
+}
+
+app.UseStaticFiles();
+
+app.Run(context => context.Response.WriteAsync(
+    $"Rewritten or Redirected Url: " +
+    $"{context.Request.Path + context.Request.QueryString}"));
+
+app.Run();
+#endregion
+#elif REDIRECT2
+#region snippet_redirect2
+using Microsoft.AspNetCore.Rewrite;
+using RewriteRules;
+
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+using (StreamReader apacheModRewriteStreamReader =
+    File.OpenText("ApacheModRewrite.txt"))
+using (StreamReader iisUrlRewriteStreamReader =
+    File.OpenText("IISUrlRewrite.xml"))
+{
+    var options = new RewriteOptions()
+        .AddRedirectToHttpsPermanent()
         .AddRedirect("redirect-rule/(.*)", "redirected/$1")
         .AddRewrite(@"^rewrite-rule/(\d+)/(\d+)", "rewritten?var1=$1&var2=$2",
             skipRemainingRules: true)

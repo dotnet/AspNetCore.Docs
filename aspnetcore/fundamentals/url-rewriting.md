@@ -129,28 +129,16 @@ The following example shows how to set the status code to *301 - Moved Permanent
 
 Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToHttpsPermanent*> to redirect insecure requests to the same host and path with secure HTTPS protocol on port 443. The middleware sets the status code to *301 - Moved Permanently*.
 
-```csharp
-public void Configure(IApplicationBuilder app)
-{
-    var options = new RewriteOptions()
-        .AddRedirectToHttpsPermanent();
-
-    app.UseRewriter(options);
-}
-```
+[!code-csharp[](url-rewriting/samples/6.x/SampleApp/Program.cs?name=snippet_redirect2&highlight=13)]
 
 > [!NOTE]
 > When redirecting to a secure endpoint without the requirement for additional redirect rules, we recommend using HTTPS Redirection Middleware. For more information, see the [Enforce HTTPS](xref:security/enforcing-ssl#require-https) topic.
 
-The sample app is capable of demonstrating how to use `AddRedirectToHttps` or `AddRedirectToHttpsPermanent`. Add the extension method to the `RewriteOptions`. Make an insecure request to the app at any URL. Dismiss the browser security warning that the self-signed certificate is untrusted or create an exception to trust the certificate.
+The sample app demonstrates how to use `AddRedirectToHttps` or `AddRedirectToHttpsPermanent`. Make an [insecure HTTP request to the app](http://redirect6.azurewebsites.net/iis-rules-rewrite/xyz). When testing HTTP to HTTPS redirection with localhost, use the HTTP URL, which has a different port than the HTTPS URL.
 
-Original Request using `AddRedirectToHttps(301, 5001)`: `http://localhost:5000/secure`
+The following image shows the F12 browse tools image of a request to http://redirect6.azurewebsites.net/iis-rules-rewrite/xyz using the preceeding code:
 
-![Browser window with developer tools tracking the requests and responses: Add redirect to HTTPS](url-rewriting/_static/add_redirect_to_https.png)
-
-Original Request using `AddRedirectToHttpsPermanent`: `http://localhost:5000/secure`
-
-![Browser window with developer tools tracking the requests and responses: Add redirect to HTTPS permanent](url-rewriting/_static/add_redirect_to_https_permanent.png)
+![Browser window with developer tools tracking the requests and responses: Add redirect to HTTPS](url-rewriting/_static/add_redirect_to_https6.png)
 
 ### URL rewrite
 
