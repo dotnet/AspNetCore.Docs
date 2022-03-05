@@ -42,8 +42,13 @@ using RewriteRules;
 
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
-var localhostHTTPport = Int32.Parse(
-    Environment.GetEnvironmentVariable("ASPNETCORE_URLS")?.Split(";")[1].Split(":")[2]!);
+
+int ? localhostHTTPSport = null;
+if (app.Environment.IsDevelopment())
+{
+    localhostHTTPSport = Int32.Parse(
+    Environment.GetEnvironmentVariable("ASPNETCORE_URLS")!.Split(new Char[] { ':', ';' })[2]);
+}
 
 using (StreamReader apacheModRewriteStreamReader =
     File.OpenText("ApacheModRewrite.txt"))
@@ -51,6 +56,8 @@ using (StreamReader iisUrlRewriteStreamReader =
     File.OpenText("IISUrlRewrite.xml"))
 {
     var options = new RewriteOptions()
+        // localhostHTTPport not needed for production, used only with localhost.
+        .AddRedirectToHttps(301, localhostHTTPSport)
         .AddRedirect("redirect-rule/(.*)", "redirected/$1")
         .AddRewrite(@"^rewrite-rule/(\d+)/(\d+)", "rewritten?var1=$1&var2=$2",
             skipRemainingRules: true)
@@ -59,9 +66,7 @@ using (StreamReader iisUrlRewriteStreamReader =
         .Add(MethodRules.RedirectXmlFileRequests)
         .Add(MethodRules.RewriteTextFileRequests)
         .Add(new RedirectImageRequests(".png", "/png-images"))
-        .Add(new RedirectImageRequests(".jpg", "/jpg-images"))
-        // localhostHTTPport not needed for production, used only with localhost.
-        .AddRedirectToHttps(301, localhostHTTPport);
+        .Add(new RedirectImageRequests(".jpg", "/jpg-images"));
 
     app.UseRewriter(options);
 }

@@ -82,7 +82,7 @@ The main reasons to use the server-based URL rewriting technologies in IIS, Apac
 
 Establish URL rewrite and redirect rules by creating an instance of the [RewriteOptions](xref:Microsoft.AspNetCore.Rewrite.RewriteOptions) class with extension methods for each of the rewrite rules. Chain multiple rules in the order that they should be processed. The `RewriteOptions` are passed into the URL Rewriting Middleware as it's added to the request pipeline with <xref:Microsoft.AspNetCore.Builder.RewriteBuilderExtensions.UseRewriter*>:
 
-[!code-csharp[](url-rewriting/samples/6.x/SampleApp/Program.cs?highlight=7-24)]
+[!code-csharp[](url-rewriting/samples/6.x/SampleApp/Program.cs?name=snippet1&highlight=7-24)]
 
 ### Redirect non-www to www
 
@@ -96,7 +96,7 @@ Three options permit the app to redirect non-`www` requests to `www`:
 
 Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirect*> to redirect requests. The first parameter contains your regex for matching on the path of the incoming URL. The second parameter is the replacement string. The third parameter, if present, specifies the status code. If you don't specify the status code, the status code defaults to *302 - Found*, which indicates that the resource is temporarily moved or replaced.
 
-[!code-csharp[](url-rewriting/samples/6.x/SampleApp/Program.cs?highlight=13)]
+[!code-csharp[](url-rewriting/samples/6.x/SampleApp/Program.cs?name=snippet1&highlight=13)]
 
 In a browser with developer tools enabled, make a request to the sample app with the path `/redirect-rule/1234/5678`. The regex matches the request path on `redirect-rule/(.*)`, and the path is replaced with `/redirected/1234/5678`. The redirect URL is sent back to the client with a *302 - Found* status code. The browser makes a new request at the redirect URL, which appears in the browser's address bar. Since no rules in the sample app match on the redirect URL:
 
@@ -123,17 +123,9 @@ Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToHtt
 * The middleware defaults to `null`.
 * The scheme changes to `https` (HTTPS protocol), and the client accesses the resource on port 443.
 
-The following example shows how to set the status code to *301 - Moved Permanently* and change the port to 5001.
+The following example shows how to set the status code to *301 - Moved Permanently* and change the port to the HTTPS port used by Kestrel on localhost. In productions, the HTTPS port is set to null:
 
-```csharp
-public void Configure(IApplicationBuilder app)
-{
-    var options = new RewriteOptions()
-        .AddRedirectToHttps(301, 5001);
-
-    app.UseRewriter(options);
-}
-```
+[!code-csharp[](url-rewriting/samples/6.x/SampleApp/Program.cs?name=snippet_redirect&highlight=7-12,20-21)]
 
 Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToHttpsPermanent*> to redirect insecure requests to the same host and path with secure HTTPS protocol on port 443. The middleware sets the status code to *301 - Moved Permanently*.
 
