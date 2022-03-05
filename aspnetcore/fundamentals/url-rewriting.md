@@ -328,9 +328,9 @@ Try:
 | Rewrite path into querystring | `^path/(.*)/(.*)`<br>[`/path/abc/123`](https://redirect6.azurewebsites.net/path/abc/123) | `path?var1=$1&var2=$2`<br>`/path?var1=abc&var2=123` |
 | Strip trailing slash | `^path2/(.*)/$`<br>[`/path2/xyz/`](https://redirect6.azurewebsites.net/path2/xyz/) | `$1`<br>`/path2/xyz` |
 | Enforce trailing slash | `^path3/(.*[^/])$`<br>[`/path3/xyz`](https://redirect6.azurewebsites.net/path3/xyz) | `$1/`<br>`/path3/xyz/` |
-| Avoid rewriting specific requests | `^(.*)(?<!\.axd)$` or `^(?!.*\.axd$)(.*)$`<br>Yes: [`/resource.htm`](https://redirect6.azurewebsites.net/resource.htm)<br>No: [`/resource.axd`](https://redirect6.azurewebsites.net/resource.axd) | `rewritten/$1`<br>`/rewritten/resource.htm`<br>`/resource.axd` |
-| Rearrange URL segments | `path/(.*)/(.*)/(.*)`<br>[`path/1/2/3`](https://redirect6.azurewebsites.net/path/1/2/3) | `path/$3/$2/$1`<br>`path/3/2/1` |
-| Replace a URL segment | `^(.*)/segment2/(.*)`<br>[`/segment1/segment2/segment3`](https://redirect6.azurewebsites.net/segment1/segment2/segment3) | `$1/replaced/$2`<br>`/segment1/replaced/segment3` |
+| Avoid rewriting specific requests | `^(.*)(?<!\.axd)$` or <br> `^(?!.*\.axd$)(.*)$`<br>Yes: [`/path4/resource.htm`](https://redirect6.azurewebsites.net/path4/resource.htm)<br>No: [`/path4/resource.axd`](https://redirect6.azurewebsites.net/path4/resource.axd) | `rewritten/$1`<br>`/rewritten/resource.htm`<br>`/resource.axd` |
+| Rearrange URL segments | `path5/(.*)/(.*)/(.*)`<br>[`path5/1/2/3`](https://redirect6.azurewebsites.net/path5/1/2/3) | `path5/$3/$2/$1`<br>`path5/3/2/1` |
+| Replace a URL segment | `^path6/(.*)/segment2/(.*)`<br>[`^path6/segment1/segment2/segment3`](https://redirect6.azurewebsites.net/path6/segment1/segment2/segment3) | `path6/$1/replaced/$2`<br>`/path6/segment1/replaced/segment3` |
 
 <!-- Test the app 
 To test HTTP on localhost, you must use the HTTP port found in *Properties/launchSettings.json*
