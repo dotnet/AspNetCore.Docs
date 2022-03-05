@@ -134,7 +134,7 @@ using (StreamReader iisUrlRewriteStreamReader =
         .AddRewrite(@"^rewrite-rule/(\d+)/(\d+)", "rewritten?var1=$1&var2=$2",
             skipRemainingRules: true)
 
-        .AddRewrite(@"^path1/(.*)/(.*)", "path?var1=$1&var2=$2",  // rewrite path to QS
+        .AddRewrite(@"^path/(.*)/(.*)", "path?var1=$1&var2=$2",  // rewrite path to QS
             skipRemainingRules: true)
 
         .AddRewrite(@"^path2/(.*)/$", "path2/$1",   // Skip trailing slash

@@ -326,8 +326,8 @@ Try:
 | Goal | Regex String &<br>Match Example | Replacement String &<br>Output Example |
 | ---- | ------------------------------- | -------------------------------------- |
 | Rewrite path into querystring | `^path/(.*)/(.*)`<br>[`/path/abc/123`](https://redirect6.azurewebsites.net/path/abc/123) | `path?var1=$1&var2=$2`<br>`/path?var1=abc&var2=123` |
-| Strip trailing slash | `^path/(.*)/$`<br>[`/path/xyz/`](https://redirect6.azurewebsites.net/path/xyz/) | `$1`<br>`/path` |
-| Enforce trailing slash | `(.*[^/])$`<br>[`/path/xyz`](https://redirect6.azurewebsites.net/path/xyz) | `$1/`<br>`/path/` |
+| Strip trailing slash | `^path/(.*)/$`<br>[`/path2/xyz/`](https://redirect6.azurewebsites.net/path2/xyz/) | `$1`<br>`/path` |
+| Enforce trailing slash | `(.*[^/])$`<br>[`/path3/xyz`](https://redirect6.azurewebsites.net/path3/xyz) | `$1/`<br>`/path/` |
 | Avoid rewriting specific requests | `^(.*)(?<!\.axd)$` or `^(?!.*\.axd$)(.*)$`<br>Yes: [`/resource.htm`](https://redirect6.azurewebsites.net/resource.htm)<br>No: [`/resource.axd`](https://redirect6.azurewebsites.net/resource.axd) | `rewritten/$1`<br>`/rewritten/resource.htm`<br>`/resource.axd` |
 | Rearrange URL segments | `path/(.*)/(.*)/(.*)`<br>[`path/1/2/3`](https://redirect6.azurewebsites.net/path/1/2/3) | `path/$3/$2/$1`<br>`path/3/2/1` |
 | Replace a URL segment | `^(.*)/segment2/(.*)`<br>[`/segment1/segment2/segment3`](https://redirect6.azurewebsites.net/segment1/segment2/segment3) | `$1/replaced/$2`<br>`/segment1/replaced/segment3` |
