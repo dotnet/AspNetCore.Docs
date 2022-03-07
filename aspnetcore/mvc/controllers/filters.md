@@ -78,11 +78,11 @@ Filters support both synchronous and asynchronous implementations through differ
 
 Synchronous filters run before and after their pipeline stage. For example, <xref:Microsoft.AspNetCore.Mvc.Filters.IActionFilter.OnActionExecuting%2A> is called before the action method is called. <xref:Microsoft.AspNetCore.Mvc.Filters.IActionFilter.OnActionExecuted%2A> is called after the action method returns:
 
-:::code language="csharp" source="filters/samples/6.0/FiltersSample/Filters/SampleActionFilter.cs" id="snippet_Class":::
+:::code language="csharp" source="filters/samples/6.x/FiltersSample/Filters/SampleActionFilter.cs" id="snippet_Class":::
 
 Asynchronous filters define an `On-Stage-ExecutionAsync` method. For example, <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncActionFilter.OnActionExecutionAsync%2A>:
 
-:::code language="csharp" source="filters/samples/6.0/FiltersSample/Filters/SampleAsyncActionFilter.cs" id="snippet_Class":::
+:::code language="csharp" source="filters/samples/6.x/FiltersSample/Filters/SampleAsyncActionFilter.cs" id="snippet_Class":::
 
 In the preceding code, the `SampleAsyncActionFilter` has an <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutionDelegate>, `next`, which executes the action method.
 
@@ -102,17 +102,17 @@ ASP.NET Core includes built-in attribute-based filters that can be subclassed an
 
 <a name="response-header-attribute"></a>
 
-:::code language="csharp" source="filters/samples/6.0/FiltersSample/Filters/ResponseHeaderAttribute.cs" id="snippet_Class":::
+:::code language="csharp" source="filters/samples/6.x/FiltersSample/Filters/ResponseHeaderAttribute.cs" id="snippet_Class":::
 
 Attributes allow filters to accept arguments, as shown in the preceding example. Apply the `ResponseHeaderAttribute` to a controller or action method and specify the name and value of the HTTP header:
 
-:::code language="csharp" source="filters/samples/6.0/FiltersSample/Controllers/ResponseHeaderController.cs" id="snippet_ClassIndex" highlight="1":::
+:::code language="csharp" source="filters/samples/6.x/FiltersSample/Controllers/ResponseHeaderController.cs" id="snippet_ClassIndex" highlight="1":::
 
 Use a tool such as the [browser developer tools](https://developer.mozilla.org/docs/Learn/Common_questions/What_are_browser_developer_tools) to examine the headers. Under **Response Headers**, `filter-header: Filter Value` is displayed.
 
 The following code applies `ResponseHeaderAttribute` to both a controller and an action:
 
-:::code language="csharp" source="filters/samples/6.0/FiltersSample/Controllers/ResponseHeaderController.cs" id="snippet_Class" highlight="1,9":::
+:::code language="csharp" source="filters/samples/6.x/FiltersSample/Controllers/ResponseHeaderController.cs" id="snippet_Class" highlight="1,9":::
 
 Responses from the `Multiple` action include the following headers:
 
@@ -139,7 +139,7 @@ A filter can be added to the pipeline at one of three *scopes*:
 * Using an attribute on a controller or Razor Page.
 * Using an attribute on a controller action. Filter attributes cannot be applied to Razor Pages handler methods.
 * Globally for all controllers, actions, and Razor Pages as shown in the following code:
-  :::code language="csharp" source="filters/samples/6.0/FiltersSample/Program.cs" id="snippet_GlobalFilter" highlight="6":::
+  :::code language="csharp" source="filters/samples/6.x/FiltersSample/Program.cs" id="snippet_GlobalFilter" highlight="6":::
 
 ### Default order of execution
 
@@ -178,7 +178,7 @@ The following `ControllerFiltersController` class:
 * Applies the `SampleActionFilterAttribute` (`[SampleActionFilter]`) to the controller.
 * Overrides `OnActionExecuting` and `OnActionExecuted`.
 
-:::code language="csharp" source="filters/samples/6.0/FiltersSample/Controllers/ControllerFiltersController.cs" id="snippet_Class" highlight="1,4,12":::
+:::code language="csharp" source="filters/samples/6.x/FiltersSample/Controllers/ControllerFiltersController.cs" id="snippet_Class" highlight="1,4,12":::
 
 Navigating to `https://localhost:<port>/ControllerFilters` runs the following code:
 
@@ -203,11 +203,11 @@ The default sequence of execution can be overridden by implementing <xref:Micros
 
 In the [Controller level filters](#controller-level-filters) example, `GlobalSampleActionFilter` has global scope so it runs before `SampleActionFilterAttribute`, which has controller scope. To make `SampleActionFilterAttribute` run first, set its order to `int.MinValue`:
 
-:::code language="csharp" source="filters/samples/6.0/FiltersSample/Snippets/Controllers/ControllerFiltersController.cs" id="snippet_Class" highlight="1":::
+:::code language="csharp" source="filters/samples/6.x/FiltersSample/Snippets/Controllers/ControllerFiltersController.cs" id="snippet_Class" highlight="1":::
 
 To make the global filter `GlobalSampleActionFilter` run first, set its `Order` to `int.MinValue`:
 
-:::code language="csharp" source="filters/samples/6.0/FiltersSample/Snippets/Program.cs" id="snippet_AddFilterOrder" highlight="3":::
+:::code language="csharp" source="filters/samples/6.x/FiltersSample/Snippets/Program.cs" id="snippet_AddFilterOrder" highlight="3":::
 
 ## Cancellation and short-circuiting
 
@@ -215,7 +215,7 @@ The filter pipeline can be short-circuited by setting the <xref:Microsoft.AspNet
 
 <a name="short-circuiting-resource-filter"></a>
 
-:::code language="csharp" source="filters/samples/6.0/FiltersSample/Filters/ShortCircuitingResourceFilterAttribute.cs" id="snippet_Class" highlight="5-8":::
+:::code language="csharp" source="filters/samples/6.x/FiltersSample/Filters/ShortCircuitingResourceFilterAttribute.cs" id="snippet_Class" highlight="5-8":::
 
 In the following code, both the `[ShortCircuitingResourceFilter]` and the `[ResponseHeader]` filter target the `Index` action method. The `ShortCircuitingResourceFilterAttribute` filter:
 
@@ -224,7 +224,7 @@ In the following code, both the `[ShortCircuitingResourceFilter]` and the `[Resp
 
 Therefore the `ResponseHeaderAttribute` filter never runs for the `Index` action. This behavior would be the same if both filters were applied at the action method level, provided the `ShortCircuitingResourceFilterAttribute` ran first. The `ShortCircuitingResourceFilterAttribute` runs first because of its filter type:
 
-:::code language="csharp" source="filters/samples/6.0/FiltersSample/Controllers/ShortCircuitingController.cs" id="snippet_Class":::
+:::code language="csharp" source="filters/samples/6.x/FiltersSample/Controllers/ShortCircuitingController.cs" id="snippet_Class":::
 
 ## Dependency injection
 
@@ -254,15 +254,15 @@ Service filter implementation types are registered in `Program.cs`. A <xref:Micr
 
 The following code shows the `LoggingResponseHeaderFilterService` class, which uses DI:
 
-:::code language="csharp" source="filters/samples/6.0/FiltersSample/Filters/LoggingResponseHeaderFilterService.cs" id="snippet_Class" highlight="5-6":::
+:::code language="csharp" source="filters/samples/6.x/FiltersSample/Filters/LoggingResponseHeaderFilterService.cs" id="snippet_Class" highlight="5-6":::
 
 In the following code, `LoggingResponseHeaderFilterService` is added to the DI container:
 
-:::code language="csharp" source="filters/samples/6.0/FiltersSample/Program.cs" id="snippet_ResponseHeaderFilterService":::
+:::code language="csharp" source="filters/samples/6.x/FiltersSample/Program.cs" id="snippet_ResponseHeaderFilterService":::
 
 In the following code, the `ServiceFilter` attribute retrieves an instance of the `LoggingResponseHeaderFilterService` filter from DI:
 
-:::code language="csharp" source="filters/samples/6.0/FiltersSample/Controllers/FilterDependenciesController.cs" id="snippet_ServiceFilter" highlight="1":::
+:::code language="csharp" source="filters/samples/6.x/FiltersSample/Controllers/FilterDependenciesController.cs" id="snippet_ServiceFilter" highlight="1":::
 
 When using `ServiceFilterAttribute`, setting <xref:Microsoft.AspNetCore.Mvc.ServiceFilterAttribute.IsReusable?displayProperty=nameWithType>:
 
@@ -289,7 +289,7 @@ When using `TypeFilterAttribute`, setting <xref:Microsoft.AspNetCore.Mvc.TypeFil
 
 The following example shows how to pass arguments to a type using `TypeFilterAttribute`:
 
-:::code language="csharp" source="filters/samples/6.0/FiltersSample/Controllers/FilterDependenciesController.cs" id="snippet_TypeFilter" highlight="1-2":::
+:::code language="csharp" source="filters/samples/6.x/FiltersSample/Controllers/FilterDependenciesController.cs" id="snippet_TypeFilter" highlight="1-2":::
 
 ## Authorization filters
 
@@ -342,7 +342,7 @@ Action filters:
 
 The following code shows a sample action filter:
 
-:::code language="csharp" source="filters/samples/6.0/FiltersSample/Filters/SampleActionFilter.cs" id="snippet_Class":::
+:::code language="csharp" source="filters/samples/6.x/FiltersSample/Filters/SampleActionFilter.cs" id="snippet_Class":::
 
 The <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext> provides the following properties:
 
@@ -376,7 +376,7 @@ The `OnActionExecuting` action filter can be used to:
 * Validate model state.
 * Return an error if the state is invalid.
 
-:::code language="csharp" source="filters/samples/6.0/FiltersSample/Filters/ValidateModelAttribute.cs" id="snippet_Class":::
+:::code language="csharp" source="filters/samples/6.x/FiltersSample/Filters/ValidateModelAttribute.cs" id="snippet_Class":::
 
 > [!NOTE]
 > Controllers annotated with the `[ApiController]` attribute automatically validate model state and return a 400 response. For more information, see [Automatic HTTP 400 responses](xref:web-api/index#automatic-http-400-responses).
@@ -398,11 +398,11 @@ Exception filters:
 
 The following sample exception filter displays details about exceptions that occur when the app is in development:
 
-:::code language="csharp" source="filters/samples/6.0/FiltersSample/Filters/SampleExceptionFilter.cs" id="snippet_Class":::
+:::code language="csharp" source="filters/samples/6.x/FiltersSample/Filters/SampleExceptionFilter.cs" id="snippet_Class":::
 
 The following code tests the exception filter:
 
-:::code language="csharp" source="filters/samples/6.0/FiltersSample/Controllers/ExceptionController.cs" id="snippet_Class" highlight="1":::
+:::code language="csharp" source="filters/samples/6.x/FiltersSample/Controllers/ExceptionController.cs" id="snippet_Class" highlight="1":::
 
 Exception filters:
 
@@ -433,7 +433,7 @@ Result filters:
 
 The following code shows a sample result filter:
 
-:::code language="csharp" source="filters/samples/6.0/FiltersSample/Snippets/Filters/SampleResultFilter.cs" id="snippet_Class":::
+:::code language="csharp" source="filters/samples/6.x/FiltersSample/Snippets/Filters/SampleResultFilter.cs" id="snippet_Class":::
 
 The kind of result being executed depends on the action. An action returning a view includes all razor processing as part of the <xref:Microsoft.AspNetCore.Mvc.ViewResult> being executed. An API method might perform some serialization as part of the execution of the result. Learn more about [action results](xref:mvc/controllers/actions).
 
@@ -455,7 +455,7 @@ When the <xref:Microsoft.AspNetCore.Mvc.Filters.IResultFilter.OnResultExecuted%2
 
 For an <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncResultFilter>, a call to `await next` on the <xref:Microsoft.AspNetCore.Mvc.Filters.ResultExecutionDelegate> executes any subsequent result filters and the action result. To short-circuit, set <xref:Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext.Cancel?displayProperty=nameWithType> to `true` and don't call the `ResultExecutionDelegate`:
 
-:::code language="csharp" source="filters/samples/6.0/FiltersSample/Snippets/Filters/SampleAsyncResultFilter.cs" id="snippet_Class":::
+:::code language="csharp" source="filters/samples/6.x/FiltersSample/Snippets/Filters/SampleAsyncResultFilter.cs" id="snippet_Class":::
 
 The framework provides an abstract `ResultFilterAttribute` that can be subclassed. The [ResponseHeaderAttribute](#response-header-attribute) class shown previously is an example of a result filter attribute.
 
@@ -468,7 +468,7 @@ The <xref:Microsoft.AspNetCore.Mvc.Filters.IAlwaysRunResultFilter> and <xref:Mic
 
 For example, the following filter always runs and sets an action result (<xref:Microsoft.AspNetCore.Mvc.ObjectResult>) with a *422 Unprocessable Entity* status code when content negotiation fails:
 
-:::code language="csharp" source="filters/samples/6.0/FiltersSample/Snippets/Filters/UnprocessableResultFilter.cs" id="snippet_Class":::
+:::code language="csharp" source="filters/samples/6.x/FiltersSample/Snippets/Filters/UnprocessableResultFilter.cs" id="snippet_Class":::
 
 ## IFilterFactory
 
@@ -489,11 +489,11 @@ The ASP.NET Core runtime doesn't guarantee:
 
 `IFilterFactory` can be implemented using custom attribute implementations as another approach to creating filters:
 
-:::code language="csharp" source="filters/samples/6.0/FiltersSample/Filters/ResponseHeaderFactoryAttribute.cs" id="snippet_Class" highlight="1,5-6":::
+:::code language="csharp" source="filters/samples/6.x/FiltersSample/Filters/ResponseHeaderFactoryAttribute.cs" id="snippet_Class" highlight="1,5-6":::
 
 The filter is applied in the following code:
 
-:::code language="csharp" source="filters/samples/6.0/FiltersSample/Controllers/FilterFactoryController.cs" id="snippet_Index" highlight="1":::
+:::code language="csharp" source="filters/samples/6.x/FiltersSample/Controllers/FilterFactoryController.cs" id="snippet_Index" highlight="1":::
 
 ### IFilterFactory implemented on an attribute
 
@@ -504,11 +504,11 @@ Filters that implement `IFilterFactory` are useful for filters that:
 
 <xref:Microsoft.AspNetCore.Mvc.TypeFilterAttribute> implements <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory>. `IFilterFactory` exposes the <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory.CreateInstance%2A> method for creating an <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata> instance. `CreateInstance` loads the specified type from the services container (DI).
 
-:::code language="csharp" source="filters/samples/6.0/FiltersSample/Filters/SampleActionTypeFilterAttribute.cs" id="snippet_Class" highlight="1,3-4":::
+:::code language="csharp" source="filters/samples/6.x/FiltersSample/Filters/SampleActionTypeFilterAttribute.cs" id="snippet_Class" highlight="1,3-4":::
 
 The following code shows three approaches to applying the filter:
 
-:::code language="csharp" source="filters/samples/6.0/FiltersSample/Controllers/FilterFactoryController.cs" id="snippet_TypeFilterAttribute" highlight="1,5,9":::
+:::code language="csharp" source="filters/samples/6.x/FiltersSample/Controllers/FilterFactoryController.cs" id="snippet_TypeFilterAttribute" highlight="1,5,9":::
 
 In the preceding code, the first approach to applying the filter is preferred.
 
@@ -518,11 +518,11 @@ Resource filters work like [middleware](xref:fundamentals/middleware/index) in t
 
 To use middleware as a filter, create a type with a `Configure` method that specifies the middleware to inject into the filter pipeline. The following example uses middleware to set a response header:
 
-:::code language="csharp" source="filters/samples/6.0/FiltersSample/FilterMiddlewarePipeline.cs" id="snippet_Class":::
+:::code language="csharp" source="filters/samples/6.x/FiltersSample/FilterMiddlewarePipeline.cs" id="snippet_Class":::
 
 Use the <xref:Microsoft.AspNetCore.Mvc.MiddlewareFilterAttribute> to run the middleware:
 
-:::code language="csharp" source="filters/samples/6.0/FiltersSample/Controllers/FilterMiddlewareController.cs" id="snippet_Class" highlight="1":::
+:::code language="csharp" source="filters/samples/6.x/FiltersSample/Controllers/FilterMiddlewareController.cs" id="snippet_Class" highlight="1":::
 
 Middleware filters run at the same stage of the filter pipeline as Resource filters, before model binding and after the rest of the pipeline.
 
@@ -1084,7 +1084,7 @@ The filter is applied in the following code:
 
 :::code language="csharp" source="filters/samples/3.x/FiltersSample/Controllers/SampleController.cs" id="snippet3" highlight="21":::
 
-Test the preceding code by running the [download sample](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/filters/3.1sample):
+Test the preceding code by running the [download sample](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/filters/samples):
 
 * Invoke the F12 developer tools.
 * Navigate to `https://localhost:5001/Sample/HeaderWithFactory`.
@@ -1140,6 +1140,6 @@ When passing an *instance* of a filter into `Add`, instead of its `Type`, the fi
 ## Next actions
 
 * See [Filter methods for Razor Pages](xref:razor-pages/filter).
-* To experiment with filters, [download, test, and modify the GitHub sample](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/filters/3.1sample).
+* To experiment with filters, [download, test, and modify the GitHub sample](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/filters/samples).
 
 :::moniker-end
