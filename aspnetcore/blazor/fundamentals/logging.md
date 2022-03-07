@@ -78,7 +78,7 @@ Add a package reference to the app for the [`Microsoft.Extensions.Logging.Config
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-Add the following custom logger configuration. The configuration establishes a `LogLevels` dictionary that sets a custom log format for three log levels: <xref:Microsoft.Extensions.Logging.LogLevel.Information>, <xref:Microsoft.Extensions.Logging.LogLevel.Warning>, and <xref:Microsoft.Extensions.Logging.LogLevel.Error>. A `LogFormat` [`enum`](/dotnet/csharp/language-reference/builtin-types/enum) is used to describe short and long formats.
+Add the following custom logger configuration. The configuration establishes a `LogLevels` dictionary that sets a custom log format for three log levels: <xref:Microsoft.Extensions.Logging.LogLevel.Information>, <xref:Microsoft.Extensions.Logging.LogLevel.Warning>, and <xref:Microsoft.Extensions.Logging.LogLevel.Error>. A `LogFormat` [`enum`](/dotnet/csharp/language-reference/builtin-types/enum) is used to describe short (`LogFormat.Short`) and long (`LogFormat.Long`) formats.
 
 `CustomLoggerConfiguration.cs`:
 
@@ -295,7 +295,7 @@ builder.Logging.AddConfiguration(
 
 The call to <xref:Microsoft.Extensions.Logging.Configuration.LoggingBuilderConfigurationExtensions.AddConfiguration%2A?displayProperty=nameWithType> can be placed either before or after adding the custom logger provider.
 
-Run the app again. Select the the **`Log Messages`** button. Notice that the logging configuration is applied from the `appsettings.json` file. All three log level formats are in the long format (`LogFormat.Long`):
+Run the app again. Select the the **`Log Messages`** button. Notice that the logging configuration is applied from the `appsettings.json` file. All three log entries are in the long (`LogFormat.Long`) format:
 
 > [ 3: Information ] LoggingTest.Pages.Index - This is an information message.
 > [ 5: Warning     ] LoggingTest.Pages.Index - This is a warning message.
