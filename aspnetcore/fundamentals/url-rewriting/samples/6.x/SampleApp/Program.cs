@@ -134,22 +134,23 @@ using (StreamReader iisUrlRewriteStreamReader =
         .AddRewrite(@"^rewrite-rule/(\d+)/(\d+)", "rewritten?var1=$1&var2=$2",
             skipRemainingRules: true)
 
-        .AddRewrite(@"^path/(.*)/(.*)", "path?var1=$1&var2=$2",  // Rewrite path to QS
+        // Rewrite path to QS.
+        .AddRewrite(@"^path/(.*)/(.*)", "path?var1=$1&var2=$2",
             skipRemainingRules: true)
-
-        .AddRewrite(@"^path2/(.*)/$", "path2/$1",   // Skip trailing slash
+        // Skip trailing slash.
+        .AddRewrite(@"^path2/(.*)/$", "path2/$1",
             skipRemainingRules: true)
-
-         .AddRewrite(@"^path3/(.*[^/])$", "path3/$1/", // Enforce trailing slash
+         // Enforce trailing slash.
+         .AddRewrite(@"^path3/(.*[^/])$", "path3/$1/",
             skipRemainingRules: true)
-
-         .AddRewrite(@"^path4/(.*)(?<!\.axd)$", "rewritten/$1", // Avoid rewriting specific requests
+         // Avoid rewriting specific requests.
+         .AddRewrite(@"^path4/(.*)(?<!\.axd)$", "rewritten/$1",
             skipRemainingRules: true)
-
-         .AddRewrite(@"^path5/(.*)/(.*)/(.*)", "path5/$3/$2/$1", // Rearrange URL segments
+         // Rearrange URL segments
+         .AddRewrite(@"^path5/(.*)/(.*)/(.*)", "path5/$3/$2/$1",
             skipRemainingRules: true)
-
-          .AddRewrite(@"^path6/(.*)/segment2/(.*)", "path6/$1/replaced/$2", // Replace a URL segment
+          // Replace a URL segment
+          .AddRewrite(@"^path6/(.*)/segment2/(.*)", "path6/$1/replaced/$2",
             skipRemainingRules: true)
 
         .AddApacheModRewrite(apacheModRewriteStreamReader)

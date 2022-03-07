@@ -321,6 +321,8 @@ Try:
 * PNG request: https://redirect6.azurewebsites.net/image.png
 * JPG request: https://redirect6.azurewebsites.net/image.jpg
 
+<a name="regex6"></a>
+
 ## Regex examples
 
 | Goal | Regex String &<br>Match Example | Replacement String &<br>Output Example |
@@ -332,7 +334,12 @@ Try:
 | Rearrange URL segments | `path5/(.*)/(.*)/(.*)`<br>[`path5/1/2/3`](https://redirect6.azurewebsites.net/path5/1/2/3) | `path5/$3/$2/$1`<br>`path5/3/2/1` |
 | Replace a URL segment | `^path6/(.*)/segment2/(.*)`<br>[`^path6/segment1/segment2/segment3`](https://redirect6.azurewebsites.net/path6/segment1/segment2/segment3) | `path6/$1/replaced/$2`<br>`/path6/segment1/replaced/segment3` |
 
-<!-- Test the app 
+The links in the preceding table use the following code deployed to Azure:
+
+[!code-csharp[](url-rewriting/samples/6.x/SampleApp/RewriteRules.cs?name=snippet_redirect3&highlight=18-35)]
+
+In most of the preceding Regex samples, the literal `path` is used to make unique testable rewrite rules. Typically the Regex wouldn't include `path`. For example, see this [Regex examples](#regex5?view=aspnetcore-5.0) table
+<!-- Test the app
 To test HTTP on localhost, you must use the HTTP port found in *Properties/launchSettings.json*
 https://localhost:HTTPSport/iis-rules-rewrite/xyz Rewritten or Redirected Url: /rewritten?id=xyz
 https://localhost:HTTPSport/apache-mod-rules-redirect/xyz Rewritten or Redirected Url: /redirected?id=xyz
@@ -677,6 +684,8 @@ Original Request: `/image.png`
 Original Request: `/image.jpg`
 
 ![Browser window with developer tools tracking the requests and responses for image.jpg](url-rewriting/_static/add_redirect_jpg_requests.png)
+
+<a name="regex5"></a>
 
 ## Regex examples
 
