@@ -105,8 +105,6 @@ public class CustomLoggerConfiguration
 }
 ```
 
-The `LogLevels` dictionary is used later by the custom logger to provide log formats for each log level. Adopting an approach based on a configuration type permits the app to configure the logger formats via built-in logging configuration features. For example, the app can set or change log formats via an `appsettings.json` file without requiring code changes to the custom logger, which is demonstrated at the end of this section.
-
 Add the following custom logger to the app. The `CustomLogger` outputs custom log formats based on the `logLevel` values defined in the preceding `CustomLoggerConfiguration` configuration.
 
 ```csharp
@@ -161,7 +159,7 @@ public sealed class CustomLogger : ILogger
 }
 ```
 
-Add the following custom logger provider to the app.
+Add the following custom logger provider to the app. `CustomLoggerProvider` adopts an [`Options`-based approach](xref:fundamentals/configuration/options) to configure the logger via built-in logging configuration features. For example, the app can set or change log formats via an `appsettings.json` file without requiring code changes to the custom logger, which is demonstrated at the end of this section.
 
 `CustomLoggerProvider.cs`:
 
@@ -268,7 +266,7 @@ The following output is seen in the browser's developer tools console when the *
 > LoggingTest.Pages.Index: This is a warning message.
 > [ 7: Error       ] LoggingTest.Pages.Index - This is an error message.
 
-From a casual inspection of the preceding example, it's apparent that setting the log line formats via the dictionary in `CustomLoggerConfiguration` isn't strictly necessary. The line formats applied by the custom logger (`CustomLogger`) could have been applied by merely checking the `logLevel` in the `Log` method. The value of assigning the log format via configuration is that one can change the log format easily via app configuration, as the following example demonstrates.
+From a casual inspection of the preceding example, it's apparent that setting the log line formats via the dictionary in `CustomLoggerConfiguration` isn't strictly necessary. The line formats applied by the custom logger (`CustomLogger`) could have been applied by merely checking the `logLevel` in the `Log` method. The purpose of assigning the log format via configuration is that the developer can change the log format easily via app configuration, as the following example demonstrates.
 
 In the `wwwroot` folder, add or update the `appsettings.json` file to include logging configuration. Set the log format to `Long` for all three log levels:
 
@@ -288,7 +286,7 @@ In the `wwwroot` folder, add or update the `appsettings.json` file to include lo
 
 In the preceding example, notice that the entry for the custom logger configuration is `CustomLog`, which was applied to the custom logger provider (`CustomLoggerProvider`) as an alias with `[ProviderAlias("CustomLog")]`. The logging configuration could have been applied with the name `CustomLoggerProvider` instead of `CustomLog`, but use of the alias `CustomLog` is more user friendly.
 
-In `Program.cs` consume the logger configuration. Add the following code:
+In `Program.cs` consume the logging configuration. Add the following code:
 
 ```csharp
 builder.Logging.AddConfiguration(
