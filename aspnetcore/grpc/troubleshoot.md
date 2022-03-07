@@ -199,6 +199,7 @@ public class SubdirectoryHandler : DelegatingHandler
         HttpRequestMessage request, CancellationToken cancellationToken)
     {
         var old = request.RequestUri;
+
         var url = $"{old.Scheme}://{old.Host}:{old:Port}";
         url += $"{_subdirectory}{request.RequestUri.AbsolutePath}";
         request.RequestUri = new Uri(url, UriKind.Absolute);
