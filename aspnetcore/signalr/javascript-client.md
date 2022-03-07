@@ -320,7 +320,7 @@ For the preceding code example:
 ## Additional resources
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/javascript-client/samples) ([how to download](xref:index#how-to-download-a-sample))
-* [JavaScript API reference](/javascript/api/&preserve-view=true )
+* [JavaScript API reference](/javascript/api/@microsoft/signalr)
 * [JavaScript tutorial](xref:tutorials/signalr)
 * [WebPack and TypeScript tutorial](xref:tutorials/signalr-typescript-webpack)
 * [Hubs](xref:signalr/hubs)
@@ -628,7 +628,7 @@ For the preceding code example:
 
 ## Additional resources
 
-* [JavaScript API reference](/javascript/api/&preserve-view=true )
+* [JavaScript API reference](/javascript/api/@microsoft/signalr)
 * [JavaScript tutorial](xref:tutorials/signalr)
 * [WebPack and TypeScript tutorial](xref:tutorials/signalr-typescript-webpack)
 * [Hubs](xref:signalr/hubs)

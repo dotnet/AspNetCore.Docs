@@ -218,6 +218,10 @@ Although the content in this section focuses on Blazor Server and stateful Signa
 
 If a component implements <xref:System.IDisposable>, <xref:System.IAsyncDisposable>, or both, the framework calls for unmanaged resource disposal when the component is removed from the UI. Disposal can occur at any time, including during [component initialization](#component-initialization-oninitializedasync).
 
+Components shouldn't need to implement <xref:System.IDisposable> and <xref:System.IAsyncDisposable> simultaneously. If both are implemented, the framework only executes the asynchronous overload.
+
+Developer code must ensure that <xref:System.IAsyncDisposable> implementations don't take a long time to complete.
+
 ### Synchronous `IDisposable`
 
 For synchronous disposal tasks, use <xref:System.IDisposable.Dispose%2A?displayProperty=nameWithType>.
@@ -309,7 +313,7 @@ These are unusual scenarios. For objects that are implemented correctly and beha
 
 ### Event handlers
 
-Unsubscribe event handlers from .NET events. The following [Blazor form](xref:blazor/forms-validation) examples show how to unsubscribe an event handler in the `Dispose` method:
+Always unsubscribe event handlers from .NET events. The following [Blazor form](xref:blazor/forms-validation) examples show how to unsubscribe an event handler in the `Dispose` method:
 
 * Private field and lambda approach
 
@@ -375,6 +379,8 @@ Unsubscribe event handlers from .NET events. The following [Blazor form](xref:bl
       }
   }
   ```
+  
+For more information, see the [Component disposal with `IDisposable` and `IAsyncDisposable`](#component-disposal-with-idisposable-and-iasyncdisposable) section.
 
 ### Anonymous functions, methods, and expressions
 
@@ -660,6 +666,10 @@ Although the content in this section focuses on Blazor Server and stateful Signa
 
 If a component implements <xref:System.IDisposable>, <xref:System.IAsyncDisposable>, or both, the framework calls for unmanaged resource disposal when the component is removed from the UI. Disposal can occur at any time, including during [component initialization](#component-initialization-oninitializedasync).
 
+Components shouldn't need to implement <xref:System.IDisposable> and <xref:System.IAsyncDisposable> simultaneously. If both are implemented, the framework only executes the asynchronous overload.
+
+Developer code must ensure that <xref:System.IAsyncDisposable> implementations don't take a long time to complete.
+
 ### Synchronous `IDisposable`
 
 For synchronous disposal tasks, use <xref:System.IDisposable.Dispose%2A?displayProperty=nameWithType>.
@@ -751,7 +761,7 @@ These are unusual scenarios. For objects that are implemented correctly and beha
 
 ### Event handlers
 
-Unsubscribe event handlers from .NET events. The following [Blazor form](xref:blazor/forms-validation) examples show how to unsubscribe an event handler in the `Dispose` method:
+Always unsubscribe event handlers from .NET events. The following [Blazor form](xref:blazor/forms-validation) examples show how to unsubscribe an event handler in the `Dispose` method:
 
 * Private field and lambda approach
 
@@ -816,6 +826,8 @@ Unsubscribe event handlers from .NET events. The following [Blazor form](xref:bl
       }
   }
   ```
+  
+For more information, see the [Component disposal with `IDisposable` and `IAsyncDisposable`](#component-disposal-with-idisposable-and-iasyncdisposable) section.
 
 ### Anonymous functions, methods, and expressions
 
@@ -1098,6 +1110,10 @@ Although the content in this section focuses on Blazor Server and stateful Signa
 
 If a component implements <xref:System.IDisposable>, <xref:System.IAsyncDisposable>, or both, the framework calls for unmanaged resource disposal when the component is removed from the UI. Disposal can occur at any time, including during [component initialization](#component-initialization-oninitializedasync).
 
+Components shouldn't need to implement <xref:System.IDisposable> and <xref:System.IAsyncDisposable> simultaneously. If both are implemented, the framework only executes the asynchronous overload.
+
+Developer code must ensure that <xref:System.IAsyncDisposable> implementations don't take a long time to complete.
+
 ### Synchronous `IDisposable`
 
 For synchronous disposal tasks, use <xref:System.IDisposable.Dispose%2A?displayProperty=nameWithType>.
@@ -1189,7 +1205,7 @@ These are unusual scenarios. For objects that are implemented correctly and beha
 
 ### Event handlers
 
-Unsubscribe event handlers from .NET events. The following [Blazor form](xref:blazor/forms-validation) examples show how to unsubscribe an event handler in the `Dispose` method:
+Always unsubscribe event handlers from .NET events. The following [Blazor form](xref:blazor/forms-validation) examples show how to unsubscribe an event handler in the `Dispose` method:
 
 * Private field and lambda approach
 
@@ -1254,6 +1270,8 @@ Unsubscribe event handlers from .NET events. The following [Blazor form](xref:bl
       }
   }
   ```
+  
+For more information, see the [Component disposal with `IDisposable` and `IAsyncDisposable`](#component-disposal-with-idisposable-and-iasyncdisposable) section.
 
 ### Anonymous functions, methods, and expressions
 
