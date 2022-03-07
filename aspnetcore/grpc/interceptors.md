@@ -211,7 +211,7 @@ Overriding `UnaryServerHandler`:
 * Intercepts an incoming unary call.
 * Logs details about the call.
 * Calls the `continuation` parameter passed into the method. This invokes the next interceptor in the chain or the service handler if this is the last interceptor.
-* Logs any exceptions. Awaiting the continuation allows logic to be added after the service method has executed. By awaiting the continuation in a try/catch block, errors from methods can be logged.
+* Logs any exceptions. Awaiting the continuation allows logic to be added after the service method has executed. By awaiting the continuation in a try-catch block, errors from methods can be logged.
 
 The signature of both client and server interceptors methods are similar:
 
