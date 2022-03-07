@@ -11,7 +11,7 @@ uid: fundamentals/url-rewriting
 ---
 # URL Rewriting Middleware in ASP.NET Core
 
-By [Mikael Mengistu](https://github.com/mikaelm12)
+By [Kirk Larkin](https://twitter.com/serpent5) and [Rick Anderson](https://twitter.com/RickAndMSFT) 
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -57,11 +57,11 @@ Although the client might be able to retrieve the resource at the rewritten URL,
 
 ## URL rewriting sample app
 
-Explore the features of the URL Rewriting Middleware with the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/url-rewriting/samples/). The app applies redirect and rewrite rules and shows the redirected or rewritten URL for several scenarios.
+Explore the features of the URL Rewriting Middleware with the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/url-rewriting/samples/). The app applies redirect and rewrite rules and shows the redirected or rewritten URL for several scenarios. The [sample app, deployed to Azure](https://redirect6.azurewebsites.net), can be used for testing.
 
 ## When to use URL rewriting middleware
 
-Use URL Rewriting Middleware when you're unable to use the following approaches:
+Use URL Rewriting Middleware the following approaches aren't satisfactory:
 
 * [URL Rewrite module with IIS on Windows Server](https://www.iis.net/downloads/microsoft/url-rewrite)
 * [Apache mod_rewrite module on Apache Server](https://httpd.apache.org/docs/2.4/rewrite/)
@@ -76,11 +76,11 @@ The main reasons to use the server-based URL rewriting technologies in IIS, Apac
   Some of the features of the server modules don't work with ASP.NET Core projects, such as the `IsFile` and `IsDirectory` constraints of the IIS Rewrite module. In these scenarios, use the middleware instead.
 * The performance of the middleware probably doesn't match that of the modules.
 
-  Benchmarking is the only way to know for sure which approach degrades performance the most or if degraded performance is negligible.
+  Benchmarking is the only way to know with certainty which approach degrades performance the most or if degraded performance is negligible.
 
 ## Extension and options
 
-Establish URL rewrite and redirect rules by creating an instance of the [RewriteOptions](xref:Microsoft.AspNetCore.Rewrite.RewriteOptions) class with extension methods for each of the rewrite rules. Chain multiple rules in the order that they should be processed. The `RewriteOptions` are passed into the URL Rewriting Middleware as it's added to the request pipeline with <xref:Microsoft.AspNetCore.Builder.RewriteBuilderExtensions.UseRewriter*>:
+Establish URL rewrite and redirect rules by creating an instance of the [RewriteOptions](xref:Microsoft.AspNetCore.Rewrite.RewriteOptions) class with extension methods for each of the rewrite rules. Chain multiple rules ***in the order that they should be processed***. The `RewriteOptions` are passed into the URL Rewriting Middleware as it's added to the request pipeline with <xref:Microsoft.AspNetCore.Builder.RewriteBuilderExtensions.UseRewriter*>:
 
 [!code-csharp[](url-rewriting/samples/6.x/SampleApp/Program.cs?name=snippet1&highlight=7-24)]
 
@@ -98,7 +98,7 @@ Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirect*> to
 
 [!code-csharp[](url-rewriting/samples/6.x/SampleApp/Program.cs?name=snippet1&highlight=13)]
 
-In a browser with developer tools enabled, make a request to the sample app with the path `/redirect-rule/1234/5678`. The regex matches the request path on `redirect-rule/(.*)`, and the path is replaced with `/redirected/1234/5678`. The redirect URL is sent back to the client with a *302 - Found* status code. The browser makes a new request at the redirect URL, which appears in the browser's address bar. Since no rules in the sample app match on the redirect URL:
+In a browser with developer tools enabled, make a request to the sample app with the path [`/redirect-rule/1234/5678`](https://redirect6.azurewebsites.net/redirect-rule/1234/5678). The regex matches the request path on `redirect-rule/(.*)`, and the path is replaced with `/redirected/1234/5678`. The redirect URL is sent back to the client with a *302 - Found* status code. The browser makes a new request at the redirect URL, which appears in the browser's address bar. Since no rules in the sample app match on the redirect URL:
 
 * The second request receives a *200 - OK* response from the app.
 * The body of the response shows the redirect URL.
@@ -108,11 +108,11 @@ A round trip is made to the server when a URL is *redirected*.
 > [!WARNING]
 > Be cautious when establishing redirect rules. Redirect rules are evaluated on every request to the app, including after a redirect. It's easy to accidentally create a loop of ***infinite*** redirects.
 
-Try [`/redirect-rule/1234/5678`]](https://redirect6.azurewebsites.net)
+The part of the expression contained within parentheses is called a [capture group](/dotnet/standard/base-types/grouping-constructs-in-regular-expressions). The dot (`.`) of the expression means *match any character*. The asterisk (`*`) indicates *match the preceding character zero or more times*. Therefore, the last two path segments of the URL, `1234/5678`, are captured by capture group `(.*)`. Any value provided in the request URL after `redirect-rule/` is captured by this single capture group.
 
-The part of the expression contained within parentheses is called a *capture group*. The dot (`.`) of the expression means *match any character*. The asterisk (`*`) indicates *match the preceding character zero or more times*. Therefore, the last two path segments of the URL, `1234/5678`, are captured by capture group `(.*)`. Any value you provide in the request URL after `redirect-rule/` is captured by this single capture group.
+In the replacement string, captured groups are injected into the string with the dollar sign (`$`) followed by the sequence number of the capture. The first capture group value is obtained with `$1`, the second with `$2`, and they continue in sequence for the capture groups in the regex. There's only one captured group in the redirect rule regex in `redirect-rule/(.*)`, so there's only one injected group in the replacement string, which is `$1`. When the rule is applied, the URL becomes `/redirected/1234/5678`.
 
-In the replacement string, captured groups are injected into the string with the dollar sign (`$`) followed by the sequence number of the capture. The first capture group value is obtained with `$1`, the second with `$2`, and they continue in sequence for the capture groups in your regex. There's only one captured group in the redirect rule regex in the sample app, so there's only one injected group in the replacement string, which is `$1`. When the rule is applied, the URL becomes `/redirected/1234/5678`.
+Try [`/redirect-rule/1234/5678`](https://redirect6.azurewebsites.net/redirect-rule/1234/5678) with the browser tools on the network tab.
 
 ### URL redirect to a secure endpoint
 
@@ -338,12 +338,8 @@ The links in the preceding table use the following code deployed to Azure:
 
 [!code-csharp[](url-rewriting/samples/6.x/SampleApp/RewriteRules.cs?name=snippet_redirect3&highlight=18-35)]
 
-In most of the preceding Regex samples, the literal `path` is used to make unique testable rewrite rules. Typically the Regex wouldn't include `path`. For example, see this [Regex examples](#regex5?view=aspnetcore-5.0) table
-<!-- Test the app
-To test HTTP on localhost, you must use the HTTP port found in *Properties/launchSettings.json*
-https://localhost:HTTPSport/iis-rules-rewrite/xyz Rewritten or Redirected Url: /rewritten?id=xyz
-https://localhost:HTTPSport/apache-mod-rules-redirect/xyz Rewritten or Redirected Url: /redirected?id=xyz
--->
+In most of the preceding Regex samples, the literal `path` is used to make unique testable rewrite rules for the deployed sample. Typically the Regex wouldn't include `path`. For example, see this [Regex examples](#regex5?view=aspnetcore-5.0) table.
+
 :::moniker-end
 
 :::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
