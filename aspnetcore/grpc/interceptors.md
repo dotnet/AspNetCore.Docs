@@ -123,7 +123,7 @@ The preceding code:
   * Calls the `continuation` parameter to invoke the next item in the interceptor chain.
   * Creates a new `AsyncUnaryCall<TResponse>` instance based on the result of the continuation.
   * Wraps the `ResponseAsync` task using the `HandleResponse` method.
-  * Awaits the response with `HandleResponse`. Awaiting the response allows logic to be added after the client received the response. By awaiting the response in a try/catch block, errors from the call can be logged.
+  * Awaits the response with `HandleResponse`. Awaiting the response allows logic to be added after the client received the response. By awaiting the response in a try/catch block, errors from calls can be logged.
 
 For more information on how to create a client interceptor, see the [`ClientLoggerInterceptor.cs` example in the `grpc/grpc-dotnet` GitHub repository](https://github.com/grpc/grpc-dotnet/blob/master/examples/Interceptor/Client/ClientLoggerInterceptor.cs).
 
