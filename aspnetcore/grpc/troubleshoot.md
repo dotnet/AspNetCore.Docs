@@ -200,7 +200,7 @@ public class SubdirectoryHandler : DelegatingHandler
     {
         var old = request.RequestUri;
 
-        var url = $"{old.Scheme}://{old.Host}:{old:Port}";
+        var url = $"{old.Scheme}://{old.Host}:{old.Port}";
         url += $"{_subdirectory}{request.RequestUri.AbsolutePath}";
         request.RequestUri = new Uri(url, UriKind.Absolute);
 
