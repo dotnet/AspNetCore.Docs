@@ -198,7 +198,9 @@ public class SubdirectoryHandler : DelegatingHandler
     protected override Task<HttpResponseMessage> SendAsync(
         HttpRequestMessage request, CancellationToken cancellationToken)
     {
-        var url = $"{request.RequestUri.Scheme}://{request.RequestUri.Host}";
+        var old = request.RequestUri;
+
+        var url = $"{old.Scheme}://{old.Host}:{old.Port}";
         url += $"{_subdirectory}{request.RequestUri.AbsolutePath}";
         request.RequestUri = new Uri(url, UriKind.Absolute);
 
