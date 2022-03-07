@@ -27,7 +27,7 @@ The following example:
 
 * [Injects](xref:blazor/fundamentals/dependency-injection) an <xref:Microsoft.Extensions.Logging.ILogger> (`ILogger<Counter>`) object to create a logger. The log's *category* is the fully qualified name of the component's type, `Counter`.
 * Calls <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogWarning%2A> to log at the <xref:Microsoft.Extensions.Logging.LogLevel.Warning> level.
-* Doesn't require any additional setup in the app in order to log to the browser's [developer tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) console.
+* Doesn't require additional setup in the app in order to log to the browser's [developer tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) console.
 
 `Pages/Counter.razor`:
 
@@ -62,7 +62,7 @@ Depending on the framework version and logging features, logging implementations
 using Microsoft.Extensions.Logging;
 ```
 
-Configure logging in Blazor WebAssembly apps with the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.Logging?displayProperty=nameWithType> property. The `Logging` property is of type <xref:Microsoft.Extensions.Logging.ILoggingBuilder>, so all of the extension methods available on <xref:Microsoft.Extensions.Logging.ILoggingBuilder> are available on `Logging`.
+Configure logging in Blazor WebAssembly apps with the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.Logging?displayProperty=nameWithType> property. The <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.Logging> property is of type <xref:Microsoft.Extensions.Logging.ILoggingBuilder>, so the extension methods available on <xref:Microsoft.Extensions.Logging.ILoggingBuilder> are available.
 
 To set the minimum logging level, call <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.SetMinimumLevel%2A?displayProperty=nameWithType> on the host builder in `Program.cs` with the <xref:Microsoft.Extensions.Logging.LogLevel>. The following example sets the minimum log level to <xref:Microsoft.Extensions.Logging.LogLevel.Warning>:
 
@@ -78,7 +78,7 @@ Add a package reference to the app for the [`Microsoft.Extensions.Logging.Config
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-Add the following custom logger configuration. The configuration establishes a `LogLevels` dictionary that matches a custom log format for three log levels: <xref:Microsoft.Extensions.Logging.LogLevel.Information>, <xref:Microsoft.Extensions.Logging.LogLevel.Warning>, and <xref:Microsoft.Extensions.Logging.LogLevel.Error>.
+Add the following custom logger configuration. The configuration establishes a `LogLevels` dictionary that sets a custom log format for three log levels: <xref:Microsoft.Extensions.Logging.LogLevel.Information>, <xref:Microsoft.Extensions.Logging.LogLevel.Warning>, and <xref:Microsoft.Extensions.Logging.LogLevel.Error>. A `LogFormat` [`enum`](/dotnet/csharp/language-reference/builtin-types/enum) is used to describe short and long formats.
 
 `CustomLoggerConfiguration.cs`:
 
@@ -89,21 +89,29 @@ public class CustomLoggerConfiguration
 {
     public int EventId { get; set; }
 
-    public Dictionary<LogLevel, int> LogLevels { get; set; } = new()
+    public Dictionary<LogLevel, LogFormat> LogLevels { get; set; } = 
+        new()
+        {
+            [LogLevel.Information] = LogFormat.Short,
+            [LogLevel.Warning] = LogFormat.Short,
+            [LogLevel.Error] = LogFormat.Long
+        };
+
+    public enum LogFormat
     {
-        [LogLevel.Information] = 1,
-        [LogLevel.Warning] = 2,
-        [LogLevel.Error] = 3
-    };
+        Short,
+        Long
+    }
 }
 ```
 
-The `LogLevels` dictionary is used later by the custom logger to provide log formats for each log level. An integer value (1, 2, or 3) represents the format for a log level. Setting integer values for the log levels permits logging configuration, for example via an `appsettings.json` file, to set or change log formats without requiring code changes to the custom logger.
+The `LogLevels` dictionary is used later by the custom logger to provide log formats for each log level. Adopting an approach based on a configuration type permits the app to configure the logger formats via built-in logging configuration features. For example, the app can set or change log formats via an `appsettings.json` file without requiring code changes to the custom logger, which is demonstrated at the end of this section.
 
 Add the following custom logger to the app. The `CustomLogger` outputs custom log formats based on the `logLevel` values defined in the preceding `CustomLoggerConfiguration` configuration.
 
 ```csharp
 using Microsoft.Extensions.Logging;
+using static CustomLoggerConfiguration;
 
 public sealed class CustomLogger : ILogger
 {
@@ -138,14 +146,11 @@ public sealed class CustomLogger : ILogger
         {
             switch (config.LogLevels[logLevel])
             {
-                case 1:
-                    Console.WriteLine($"[{eventId.Id, 2}: {logLevel, -12}] {name} - {formatter(state, exception)}");
-                    break;
-                case 2:
+                case LogFormat.Short:
                     Console.WriteLine($"{name}: {formatter(state, exception)}");
                     break;
-                case 3:
-                    Console.WriteLine($"{logLevel, -12}:{eventId.Id, 2}:{formatter(state, exception)}:{name}");
+                case LogFormat.Long:
+                    Console.WriteLine($"[{eventId.Id, 2}: {logLevel, -12}] {name} - {formatter(state, exception)}");
                     break;
                 default:
                     // No-op
@@ -229,9 +234,9 @@ builder.Logging.ClearProviders().AddCustomLogger();
 In the following `Index` component:
 
 * The debug message isn't logged.
-* The information message is logged in format `1`.
-* The warning message is logged in format `2`.
-* The error message is logged in format `3`.
+* The information message is logged in the short format (`LogFormat.Short`).
+* The warning message is logged in the short format (`LogFormat.Short`).
+* The error message is logged in the long format  (`LogFormat.Long`).
 * The trace message isn't logged.
 
 `Pages/Index.razor`:
@@ -259,22 +264,22 @@ In the following `Index` component:
 
 The following output is seen in the browser's developer tools console when the **`Log Messages`** button is selected. The log entries reflect the appropriate formats applied by the custom logger:
 
-> [ 3: Information ] LoggingTest.Pages.Index - This is an information message.
+> LoggingTest.Pages.Index: This is an information message.
 > LoggingTest.Pages.Index: This is a warning message.
-> Error       : 7:This is an error message.:LoggingTest.Pages.Index
+> [ 7: Error       ] LoggingTest.Pages.Index - This is an error message.
 
-From a casual inspection of the preceding example, it's apparent that setting the log line formats via the dictionary in `CustomLoggerConfiguration` isn't strictly necessary. The line formats applied by the custom logger (`CustomLogger`) could have been applied by merely checking the `logLevel` in the `Log` method. The value of assigning the log format via configuration is that one can change the log format easily via app configuration using the preceding approach.
+From a casual inspection of the preceding example, it's apparent that setting the log line formats via the dictionary in `CustomLoggerConfiguration` isn't strictly necessary. The line formats applied by the custom logger (`CustomLogger`) could have been applied by merely checking the `logLevel` in the `Log` method. The value of assigning the log format via configuration is that one can change the log format easily via app configuration, as the following example demonstrates.
 
-In the `wwwroot` folder, add or update the `appsettings.json` file to include logging configuration. Set the log format to `3` for the three log levels:
+In the `wwwroot` folder, add or update the `appsettings.json` file to include logging configuration. Set the log format to `Long` for all three log levels:
 
 ```json
 {
   "Logging": {
     "CustomLog": {
       "LogLevels": {
-        "Information": 3,
-        "Warning": 3,
-        "Error": 3
+        "Information": "Long",
+        "Warning": "Long",
+        "Error": "Long"
       }
     }
   }
@@ -283,7 +288,7 @@ In the `wwwroot` folder, add or update the `appsettings.json` file to include lo
 
 In the preceding example, notice that the entry for the custom logger configuration is `CustomLog`, which was applied to the custom logger provider (`CustomLoggerProvider`) as an alias with `[ProviderAlias("CustomLog")]`. The logging configuration could have been applied with the name `CustomLoggerProvider` instead of `CustomLog`, but use of the alias `CustomLog` is more user friendly.
 
-In `Program.cs` consume the logging configuration. Add the following code:
+In `Program.cs` consume the logger configuration. Add the following code:
 
 ```csharp
 builder.Logging.AddConfiguration(
@@ -292,11 +297,11 @@ builder.Logging.AddConfiguration(
 
 The call to <xref:Microsoft.Extensions.Logging.Configuration.LoggingBuilderConfigurationExtensions.AddConfiguration%2A?displayProperty=nameWithType> can be placed either before or after adding the custom logger provider.
 
-Run the app again. Select the the **`Log Messages`** button and notice that the logging configuration is applied. All of the log entries are in log format `3`:
+Run the app again. Select the the **`Log Messages`** button. Notice that the logging configuration is applied from the `appsettings.json` file. All three log level formats are in the long format (`LogFormat.Long`):
 
-> Information : 3:This is an information message.:LoggingTest.Pages.Index
-> Warning     : 5:This is a warning message.:LoggingTest.Pages.Index
-> Error       : 7:This is an error message.:LoggingTest.Pages.Index
+> [ 3: Information ] LoggingTest.Pages.Index - This is an information message.
+> [ 5: Warning     ] LoggingTest.Pages.Index - This is a warning message.
+> [ 7: Error       ] LoggingTest.Pages.Index - This is an error message.
 
 ## Hosted Blazor WebAssembly logging
 
