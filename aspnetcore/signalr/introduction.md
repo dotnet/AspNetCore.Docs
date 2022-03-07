@@ -1,15 +1,15 @@
 ---
-title: Introduction to ASP.NET Core SignalR
+title: Overiew of ASP.NET Core SignalR
 author: bradygaster
 description: Learn how the ASP.NET Core SignalR library simplifies adding real-time functionality to apps.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 9/16/2021
+ms.date: 03/07/2022
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: signalr/introduction
 ---
-# Introduction to ASP.NET Core SignalR
+# Overview of ASP.NET Core SignalR
 
 ## What is SignalR?
 
