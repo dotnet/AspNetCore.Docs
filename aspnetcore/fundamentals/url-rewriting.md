@@ -94,11 +94,11 @@ Three options permit the app to redirect non-`www` requests to `www`:
 
 ### URL redirect
 
-Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirect*> to redirect requests. The first parameter contains your regex for matching on the path of the incoming URL. The second parameter is the replacement string. The third parameter, if present, specifies the status code. If you don't specify the status code, the status code defaults to *302 - Found*, which indicates that the resource is temporarily moved or replaced.
+Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirect*> to redirect requests. The first parameter contains the [.NET regular expression](/dotnet/standard/base-types/regular-expressions) (Regex) for matching on the path of the incoming URL. The second parameter is the replacement string. The third parameter, if present, specifies the status code. If you don't specify the status code, the status code defaults to *302 - Found*, which indicates that the resource is temporarily moved or replaced.
 
 [!code-csharp[](url-rewriting/samples/6.x/SampleApp/Program.cs?name=snippet1&highlight=13)]
 
-In a browser with developer tools enabled, make a request to the sample app with the path [`/redirect-rule/1234/5678`](https://redirect6.azurewebsites.net/redirect-rule/1234/5678). The regex matches the request path on `redirect-rule/(.*)`, and the path is replaced with `/redirected/1234/5678`. The redirect URL is sent back to the client with a *302 - Found* status code. The browser makes a new request at the redirect URL, which appears in the browser's address bar. Since no rules in the sample app match on the redirect URL:
+In a browser with developer tools enabled, make a request to the sample app with the path [`/redirect-rule/1234/5678`](https://redirect6.azurewebsites.net/redirect-rule/1234/5678). The Regex matches the request path on `redirect-rule/(.*)`, and the path is replaced with `/redirected/1234/5678`. The redirect URL is sent back to the client with a *302 - Found* status code. The browser makes a new request at the redirect URL, which appears in the browser's address bar. Since no rules in the sample app match on the redirect URL:
 
 * The second request receives a *200 - OK* response from the app.
 * The body of the response shows the redirect URL.
@@ -110,7 +110,7 @@ A round trip is made to the server when a URL is *redirected*.
 
 The part of the expression contained within parentheses is called a [capture group](/dotnet/standard/base-types/grouping-constructs-in-regular-expressions). The dot (`.`) of the expression means *match any character*. The asterisk (`*`) indicates *match the preceding character zero or more times*. Therefore, the last two path segments of the URL, `1234/5678`, are captured by capture group `(.*)`. Any value provided in the request URL after `redirect-rule/` is captured by this single capture group.
 
-In the replacement string, captured groups are injected into the string with the dollar sign (`$`) followed by the sequence number of the capture. The first capture group value is obtained with `$1`, the second with `$2`, and they continue in sequence for the capture groups in the regex. There's only one captured group in the redirect rule regex in `redirect-rule/(.*)`, so there's only one injected group in the replacement string, which is `$1`. When the rule is applied, the URL becomes `/redirected/1234/5678`.
+In the replacement string, captured groups are injected into the string with the dollar sign (`$`) followed by the sequence number of the capture. The first capture group value is obtained with `$1`, the second with `$2`, and they continue in sequence for the capture groups in the Regex. There's only one captured group in the redirect rule Regex in `redirect-rule/(.*)`, so there's only one injected group in the replacement string, which is `$1`. When the rule is applied, the URL becomes `/redirected/1234/5678`.
 
 Try [`/redirect-rule/1234/5678`](https://redirect6.azurewebsites.net/redirect-rule/1234/5678) with the browser tools on the network tab.
 
@@ -121,13 +121,15 @@ Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToHtt
 * The middleware defaults to `null`.
 * The scheme changes to `https` (HTTPS protocol), and the client accesses the resource on port 443.
 
-The following example shows how to set the status code to `301 - Moved Permanently` and change the port to the HTTPS port used by Kestrel on localhost. In productions, the HTTPS port is set to null:
+The following example shows how to set the status code to `301 - Moved Permanently` and change the port to the HTTPS port used by Kestrel on localhost. In productions the HTTPS port is set to null:
 
 [!code-csharp[](url-rewriting/samples/6.x/SampleApp/Program.cs?name=snippet_redirect&highlight=7-12,20-21)]
 
 Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToHttpsPermanent*> to redirect insecure requests to the same host and path with secure HTTPS protocol on port 443. The middleware sets the status code to `301 - Moved Permanently`.
 
 [!code-csharp[](url-rewriting/samples/6.x/SampleApp/Program.cs?name=snippet_redirect2&highlight=13)]
+
+<!-- Note: something wrong with project because the localhostHTTPSport is correctly calculated but not used in the redirect. The exact same code at https://github.com/Rick-Anderson/WebRedirect does work. -->
 
 > [!NOTE]
 > When redirecting to a secure endpoint without the requirement for additional redirect rules, we recommend using HTTPS Redirection Middleware. For more information, see the [Enforce HTTPS](xref:security/enforcing-ssl#require-https) topic.
@@ -140,7 +142,7 @@ The following image shows the F12 browse tools image of a request to [http://red
 
 ### URL rewrite
 
-Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRewrite*> to create a rule for rewriting URLs. The first parameter contains the regex for matching on the incoming URL path. The second parameter is the replacement string. The third parameter, `skipRemainingRules: {true|false}`, indicates to the middleware whether or not to skip additional rewrite rules if the current rule is applied.
+Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRewrite*> to create a rule for rewriting URLs. The first parameter contains the Regex for matching on the incoming URL path. The second parameter is the replacement string. The third parameter, `skipRemainingRules: {true|false}`, indicates to the middleware whether or not to skip additional rewrite rules if the current rule is applied.
 
 [!code-csharp[](url-rewriting/samples/6.x/SampleApp/Program.cs?name=snippet_redirect2&highlight=15-16)]
 
@@ -148,7 +150,7 @@ Try the request to https://redirect6.azurewebsites.net/rewrite-rule/1234/5678
 
 The carat (`^`) at the beginning of the expression means that matching starts at the beginning of the URL path.
 
-In the earlier example with the redirect rule, `redirect-rule/(.*)`, there's no carat (`^`) at the start of the regex. Therefore, any characters may precede `redirect-rule/` in the path for a successful match.
+In the earlier example with the redirect rule, `redirect-rule/(.*)`, there's no carat (`^`) at the start of the Regex. Therefore, any characters may precede `redirect-rule/` in the path for a successful match.
 
 | Path                               | Match |
 | ---------------------------------- | :---: |
@@ -175,6 +177,7 @@ For the fastest response:
 * Order rewrite rules from the most frequently matched rule to the least frequently matched rule.
 * Use `skipRemainingRules: true` whenever possible because matching rules is computationally expensive and increases app response time. Skip the processing of the remaining rules when a match occurs and no additional rule processing is required.
 
+<!-- zz Should we state that using RegEx to rewrite rules makes the app suseptable to DOS attacts. It's not difficult to craft an expensive URL to process with RegEx. Provide link to source with timeout rule.  -->
 ### Apache mod_rewrite
 
 Apply Apache mod_rewrite rules with <xref:Microsoft.AspNetCore.Rewrite.ApacheModRewriteOptionsExtensions.AddApacheModRewrite*>. Make sure that the rules file is deployed with the app. For more information and examples of mod_rewrite rules, see [Apache mod_rewrite](https://httpd.apache.org/docs/2.4/rewrite/).
@@ -337,6 +340,7 @@ Try:
 The links in the preceding table use the following code deployed to Azure:
 
 [!code-csharp[](url-rewriting/samples/6.x/SampleApp/RewriteRules.cs?name=snippet_redirect3&highlight=18-35)]
+[!code-csharp[](url-rewriting/samples/6.x/SampleApp/RewriteRules.cs)]
 
 In most of the preceding Regex samples, the literal `path` is used to make unique testable rewrite rules for the deployed sample. Typically the Regex wouldn't include `path`. For example, see this [Regex examples](#regex5?view=aspnetcore-5.0) table.
 
@@ -430,7 +434,7 @@ Three options permit the app to redirect non-`www` requests to `www`:
 
 ### URL redirect
 
-Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirect*> to redirect requests. The first parameter contains your regex for matching on the path of the incoming URL. The second parameter is the replacement string. The third parameter, if present, specifies the status code. If you don't specify the status code, the status code defaults to *302 - Found*, which indicates that the resource is temporarily moved or replaced.
+Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirect*> to redirect requests. The first parameter contains your Regex for matching on the path of the incoming URL. The second parameter is the replacement string. The third parameter, if present, specifies the status code. If you don't specify the status code, the status code defaults to *302 - Found*, which indicates that the resource is temporarily moved or replaced.
 
 [!code-csharp[](url-rewriting/samples/3.x/SampleApp/Startup.cs?name=snippet1&highlight=9)]
 
