@@ -123,7 +123,7 @@ The preceding code:
   * Calls the `continuation` parameter to invoke the next item in the interceptor chain.
   * Creates a new `AsyncUnaryCall<TResponse>` instance based on the result of the continuation.
   * Wraps the `ResponseAsync` task using the `HandleResponse` method.
-  * Awaits the response with `HandleResponse`.
+  * Awaits the response with `HandleResponse`. Awaiting the response allows logic to be added after the client received the response. By awaiting the response in a try-catch block, errors from calls can be logged.
 
 For more information on how to create a client interceptor, see the [`ClientLoggerInterceptor.cs` example in the `grpc/grpc-dotnet` GitHub repository](https://github.com/grpc/grpc-dotnet/blob/master/examples/Interceptor/Client/ClientLoggerInterceptor.cs).
 
@@ -211,11 +211,11 @@ Overriding `UnaryServerHandler`:
 * Intercepts an incoming unary call.
 * Logs details about the call.
 * Calls the `continuation` parameter passed into the method. This invokes the next interceptor in the chain or the service handler if this is the last interceptor.
-* Logs any exceptions.
+* Logs any exceptions. Awaiting the continuation allows logic to be added after the service method has executed. By awaiting the continuation in a try-catch block, errors from methods can be logged.
 
 The signature of both client and server interceptors methods are similar:
 
-* `continuation` stands for a delegate for an incoming RPC calling the next interceptor in the chain or the service handler (if there is no interceptor left in the chain). Similar to client interceptors, you can call it any time and there's no need to return a response directly from the continuation delegate.
+* `continuation` stands for a delegate for an incoming RPC calling the next interceptor in the chain or the service handler (if there is no interceptor left in the chain). Similar to client interceptors, you can call it any time and there's no need to return a response directly from the continuation delegate. Outbound logic can be added after a service handler has executed by awaiting the continuation.
 * `context` carries metadata associated with the server-side call, such as request metadata, deadlines and cancellation, or RPC result.
 
 For more information on how to create a server interceptor, see the [`ServerLoggerInterceptor.cs` example in the `grpc/grpc-dotnet` GitHub repository](https://github.com/grpc/grpc-dotnet/blob/master/examples/Interceptor/Server/ServerLoggerInterceptor.cs).
