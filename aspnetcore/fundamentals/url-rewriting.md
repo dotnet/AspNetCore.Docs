@@ -177,6 +177,9 @@ For the fastest response:
 * Order rewrite rules from the most frequently matched rule to the least frequently matched rule.
 * Use `skipRemainingRules: true` whenever possible because matching rules is computationally expensive and increases app response time. Skip the processing of the remaining rules when a match occurs and no additional rule processing is required.
 
+> [!WARNING]
+> A malicious user can provide expensive to process input to `RegularExpressions` causing a [Denial-of-Service attack](https://www.us-cert.gov/ncas/tips/ST04-015). ASP.NET Core framework APIs that use `RegularExpressions` pass a timeout. For example, 
+
 <!-- zz Should we state that using RegEx to rewrite rules makes the app suseptable to DOS attacts. It's not difficult to craft an expensive URL to process with RegEx. Provide link to source with timeout rule.  -->
 ### Apache mod_rewrite
 
@@ -341,7 +344,7 @@ The links in the preceding table use the following code deployed to Azure:
 
 [!code-csharp[](url-rewriting/samples/6.x/SampleApp/Program.cs?name=snippet_redirect3&highlight=18-35)]
 
-In most of the preceding Regex samples, the literal `path` is used to make unique testable rewrite rules for the deployed sample. Typically the Regex wouldn't include `path`. For example, see this [Regex examples](#regex5?view=aspnetcore-5.0) table.
+In most of the preceding Regex samples, the literal `path` is used to make unique testable rewrite rules for the deployed sample. Typically the Regex wouldn't include `path`. For example, see this [Regex examples](?view=aspnetcore-5.0&preserve-view=true#regex5) table.
 
 :::moniker-end
 
