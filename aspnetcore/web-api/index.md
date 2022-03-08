@@ -17,7 +17,7 @@ ASP.NET Core supports creating web APIs using controllers or using minimal APIs.
 
 ## ControllerBase class
 
-A controller based web API consists of one or more controller classes that derive from <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. The web API project template provides a starter controller:
+A controller-based web API consists of one or more controller classes that derive from <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. The web API project template provides a starter controller:
 
 [!code-csharp[](index/samples/6.x/Controllers/WeatherForecastController.cs?name=snippet_ControllerSignature&highlight=3)]
 
