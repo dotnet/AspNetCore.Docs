@@ -1328,6 +1328,18 @@ When cascading the data in the following example, the type must be provided to t
 }
 ```
 
+When multiple generic types are cascaded, values for all generic types in the set must be passed. In the following example, `TItem`, `TValue`, and `TEdit` are `GridColumn` generic types, but the parent component that places `GridColumn` doesn't specify the `TItem` type:
+
+```razor
+<GridColumn TValue="string" TEdit="@TextEdit" />
+```
+
+The preceding example generates a compile-time error that the `GridColumn` component is missing the `TItem` type parameter. Valid code specifies all of the types:
+
+```razor
+<GridColumn TValue="string" TEdit="@TextEdit" TItem="@User" />
+```
+
 ### Infer generic types based on ancestor components
 
 <!--
