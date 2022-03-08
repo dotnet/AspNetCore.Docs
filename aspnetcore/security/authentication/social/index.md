@@ -1,10 +1,10 @@
 ---
-title: Facebook, Google, and external provider authentication in ASP.NET Core
+title: External provider authentication in ASP.NET Core for Facebook and Google
 author: rick-anderson
-description: This tutorial demonstrates how to build an ASP.NET Core app using OAuth 2.0 with external authentication providers.
+description: Create an ASP.NET Core app using OAuth 2.0 with external authentication providers such as Facebook, Twitter, Google and Microsoft.
 ms.author: riande
 ms.custom: mvc
-ms.date: 1/11/2022
+ms.date: 03/07/2022
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/social/index
 ---
