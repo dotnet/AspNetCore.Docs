@@ -88,6 +88,8 @@ In **API permissions**:
 1. Select **Add permissions**.
 1. Select the **Grant admin consent for {TENANT NAME}** button. Select **Yes** to confirm.
 
+[!INCLUDE[](~/blazor/security/includes/authorize-client-app.md)]
+
 ### Create the app
 
 In an empty folder, replace the placeholders in the following command with the information recorded earlier and execute the command in a command shell:
@@ -483,6 +485,8 @@ In **API permissions**:
 1. Select **Add permissions**.
 1. Select the **Grant admin consent for {TENANT NAME}** button. Select **Yes** to confirm.
 
+[!INCLUDE[](~/blazor/security/includes/authorize-client-app.md)]
+
 ### Create the app
 
 In an empty folder, replace the placeholders in the following command with the information recorded earlier and execute the command in a command shell:
@@ -874,6 +878,8 @@ In **API permissions**:
 1. Enable access to the API (for example, `API.Access`).
 1. Select **Add permissions**.
 1. Select the **Grant admin consent for {TENANT NAME}** button. Select **Yes** to confirm.
+
+[!INCLUDE[](~/blazor/security/includes/authorize-client-app.md)]
 
 ### Create the app
 

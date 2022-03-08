@@ -83,6 +83,8 @@ In **API permissions**:
 1. Select **Add permissions**.
 1. Select the **Grant admin consent for {TENANT NAME}** button. Select **Yes** to confirm.
 
+[!INCLUDE[](~/blazor/security/includes/authorize-client-app.md)]
+
 In **Home** > **Azure AD B2C** > **User flows**:
 
 [Create a sign-up and sign-in user flow](/azure/active-directory-b2c/tutorial-create-user-flows)
@@ -482,6 +484,8 @@ In **API permissions**:
 1. Select **Add permissions**.
 1. Select the **Grant admin consent for {TENANT NAME}** button. Select **Yes** to confirm.
 
+[!INCLUDE[](~/blazor/security/includes/authorize-client-app.md)]
+
 In **Home** > **Azure AD B2C** > **User flows**:
 
 [Create a sign-up and sign-in user flow](/azure/active-directory-b2c/tutorial-create-user-flows)
@@ -878,6 +882,8 @@ In **API permissions**:
 1. Enable access to the API (for example, `API.Access`).
 1. Select **Add permissions**.
 1. Select the **Grant admin consent for {TENANT NAME}** button. Select **Yes** to confirm.
+
+[!INCLUDE[](~/blazor/security/includes/authorize-client-app.md)]
 
 In **Home** > **Azure AD B2C** > **User flows**:
 
