@@ -1,7 +1,7 @@
 ---
 title: External provider authentication in ASP.NET Core for Facebook and Google
 author: rick-anderson
-description: Create an ASP.NET Core app using OAuth 2.0 with external authentication providers such as Facebook, Twitter, Google and Microsoft.
+description: Create an ASP.NET Core app using OAuth 2.0 with external authentication providers such as Facebook, Twitter, Google, and Microsoft.
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/07/2022
