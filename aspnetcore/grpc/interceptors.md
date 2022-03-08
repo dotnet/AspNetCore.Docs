@@ -110,7 +110,7 @@ public class ErrorHandlerInterceptor : Interceptor
         }
         catch (Exception ex)
         {
-            throw new InvalidOperationException("Custom error", inner);
+            throw new InvalidOperationException("Custom error", ex);
         }
     }
 }
