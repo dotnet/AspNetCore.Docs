@@ -339,8 +339,7 @@ Try:
 
 The links in the preceding table use the following code deployed to Azure:
 
-[!code-csharp[](url-rewriting/samples/6.x/SampleApp/RewriteRules.cs?name=snippet_redirect3&highlight=18-35)]
-[!code-csharp[](url-rewriting/samples/6.x/SampleApp/RewriteRules.cs)]
+[!code-csharp[](url-rewriting/samples/6.x/SampleApp/Program.cs?name=snippet_redirect3&highlight=18-35)]
 
 In most of the preceding Regex samples, the literal `path` is used to make unique testable rewrite rules for the deployed sample. Typically the Regex wouldn't include `path`. For example, see this [Regex examples](#regex5?view=aspnetcore-5.0) table.
 
