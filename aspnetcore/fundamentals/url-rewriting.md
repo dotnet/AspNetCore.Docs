@@ -27,7 +27,7 @@ URL rewriting is the act of modifying request URLs based on one or more predefin
 * Redirect insecure requests to secure endpoints.
 * Prevent hotlinking, where an external site uses a hosted static asset on another site by linking the asset into its own content.
 
-***URL rewriting can reduce the performance of an app***. Where feasible, limit the number and complexity of rules.
+***URL rewriting can reduce the performance of an app***. Limit the number and complexity of rules.
 
 ## URL redirect and URL rewrite
 
@@ -41,7 +41,7 @@ If `/resource` is *redirected* to `/different-resource`, the server responds tha
 
 When redirecting requests to a different URL, indicate whether the redirect is permanent or temporary by specifying the status code with the response:
 
-* The `301 - Moved Permanently` status code is used where the resource has a new, permanent URL and you wish to instruct the client that all future requests for the resource should use the new URL. *The client may cache and reuse the response when a 301 status code is received.*
+* The [`301 - Moved Permanently`](https://developer.mozilla.org/docs/Web/HTTP/Status/301) status code is used where the resource has a new, permanent URL and that all future requests for the resource should use the new URL. *The client may cache and reuse the response when a 301 status code is received.*
 
 * The *302 - Found* status code is used where the redirection is temporary or generally subject to change. The 302 status code indicates to the client not to store the URL and use it in the future.
 
@@ -90,11 +90,11 @@ Three options permit the app to redirect non-`www` requests to `www`:
 
 * <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToWwwPermanent*>: Permanently redirect the request to the `www` subdomain if the request is non-`www`. Redirects with a [Status308PermanentRedirect](xref:Microsoft.AspNetCore.Http.StatusCodes.Status308PermanentRedirect) status code.
 
-* <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToWww*>: Redirect the request to the `www` subdomain if the incoming request is non-`www`. Redirects with a [Status307TemporaryRedirect](xref:Microsoft.AspNetCore.Http.StatusCodes.Status307TemporaryRedirect) status code. An overload permits you to provide the status code for the response. Use a field of the <xref:Microsoft.AspNetCore.Http.StatusCodes> class for a status code assignment.
+* <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToWww*>: Redirect the request to the `www` subdomain if the incoming request is non-`www`. Redirects with a [Status307TemporaryRedirect](xref:Microsoft.AspNetCore.Http.StatusCodes.Status307TemporaryRedirect) status code. An overload permits  providing the status code for the response. Use a field of the <xref:Microsoft.AspNetCore.Http.StatusCodes> class for a status code assignment.
 
 ### URL redirect
 
-Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirect*> to redirect requests. The first parameter contains the [.NET regular expression](/dotnet/standard/base-types/regular-expressions) (Regex) for matching on the path of the incoming URL. The second parameter is the replacement string. The third parameter, if present, specifies the status code. If you don't specify the status code, the status code defaults to *302 - Found*, which indicates that the resource is temporarily moved or replaced.
+Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirect*> to redirect requests. The first parameter contains the [.NET regular expression](/dotnet/standard/base-types/regular-expressions) (Regex) for matching on the path of the incoming URL. The second parameter is the replacement string. The third parameter, if present, specifies the status code. If the status code isn't specified, the status code defaults to [302 - Found](https://developer.mozilla.org/docs/Web/HTTP/Status/302), which indicates that the resource is temporarily moved or replaced.
 
 [!code-csharp[](url-rewriting/samples/6.x/SampleApp/Program.cs?name=snippet1&highlight=13)]
 
