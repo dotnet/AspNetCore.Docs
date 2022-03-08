@@ -1043,32 +1043,6 @@ In the following example, the `ListGenericTypeItems1` component is generically t
 
 [!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Shared/index/ListGenericTypeItems1.razor)]
 
-<!--
-
-* Leaving this ListGenericTypeItems1.razor file content here for quick review. I'll remove this comment later.
-* This section "Generic type parameter support" is repeated exactly in two other spots in the doc to cover 5.0 and 3.1. You only need to look at this first instance.
-
-```razor
-@typeparam TExample
-
-@if (ExampleList is not null)
-{
-    <ul>
-        @foreach (var item in ExampleList)
-        {
-            <li>@item</li>
-        }
-    </ul>
-}
-
-@code {
-    [Parameter]
-    public IEnumerable<TExample>? ExampleList{ get; set; }
-}
-```
-
--->
-
 The following `GenericTypeExample1` component renders two `ListGenericTypeItems1` components:
 
 * String or integer data is assigned to the `ExampleList` parameter of each component.
@@ -1078,37 +1052,9 @@ The following `GenericTypeExample1` component renders two `ListGenericTypeItems1
 
 [!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/index/GenericTypeExample1.razor)]
 
-<!--
-
-Leaving this GenericTypeExample1.razor file content here for quick review. I'll remove this comment later.
-
-```razor
-@page "/generic-type-example-1"
-
-<h1>Generic Type Example 1</h1>
-
-<ListGenericTypeItems1 ExampleList="@(new List<string> { "Item 1", "Item 2" })" 
-                       TExample="string" />
-
-<ListGenericTypeItems1 ExampleList="@(new List<int> { 1, 2, 3 })" 
-                       TExample="int" />
-```
-
--->
-
 For more information, see <xref:mvc/views/razor#typeparam>. For an example of generic typing with templated components, see <xref:blazor/components/templated-components>.
 
 ## Cascaded generic type support
-
-<!--
-
-This "Cascaded generic type support" section only appears once for 6.0 or later coverage. The coverage plan here is ...
-
-1. Explain the cascading concept with the [CascadingTypeParameter] attribute.
-2. Explain that devs can either explicitly set types or infer types.
-3. Provide two demo components (`ListDisplay1` and `ListDisplay2`) that will be used in the upcoming sections.
-
--->
 
 An ancestor component can cascade a type parameter by name to descendants using the [`[CascadingTypeParameter]` attribute](xref:Microsoft.AspNetCore.Components.CascadingTypeParameterAttribute). This attribute allows a generic type inference to use the specified type parameter automatically with descendants that have a type parameter with the same name.
 
@@ -1172,12 +1118,6 @@ The following subsections provide examples of the preceding approaches using the
 ```
 
 ### Explicit generic types based on ancestor components
-
-<!--
-
-This section explains how to explicitly set the type for the cascaded type param.
-
--->
 
 The demonstration in this section cascades a type explicitly for `TExample`.
 
@@ -1341,15 +1281,6 @@ The preceding example generates a compile-time error that the `GridColumn` compo
 ```
 
 ### Infer generic types based on ancestor components
-
-<!--
-
-This section explains how to infer the type for the cascaded type param. There are two demonstrations for the data supplied for display ...
-
-1. Each component receives different data.
-2. Each component receives the same data.
-
--->
 
 The demonstration in this section cascades a type inferred for `TExample`.
 
