@@ -1,11 +1,11 @@
 ---
 title: Get started with ASP.NET Core
 author: rick-anderson
-description: A short tutorial that creates and runs a basic Hello World app using ASP.NET Core.
+description: A short tutorial using the .NET CLI to create and run a basic Hello World app using ASP.NET Core.
 monikerRange: ">= aspnetcore-3.1"
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/23/2022
+ms.date: 03/07/2022
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: getting-started
 ---
@@ -115,7 +115,7 @@ In this tutorial, you learned how to:
 > * Run the project.
 > * Make a change.
 
-To learn more about ASP.NET Core, see the recommended learning path in the introduction:
+To learn more about ASP.NET Core, see the following:
 
 > [!div class="nextstepaction"]
 > <xref:index#recommended-learning-path>
