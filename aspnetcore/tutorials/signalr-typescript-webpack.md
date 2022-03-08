@@ -1,18 +1,18 @@
 ---
-title: Use ASP.NET Core SignalR with TypeScript and Webpack
+title: "Tutorial: Get started with ASP.NET Core SignalR using TypeScript and Webpack"
 author: ssougnez
-description: In this tutorial, you configure Webpack to bundle and build an ASP.NET Core SignalR web app whose client is written in TypeScript.
+description: This tutorial provides a walkthrough of bundling and building an ASP.NET Core SignalR web app using TypeScript and Webpack.
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 02/10/2020
+ms.date: 03/08/2022
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/signalr-typescript-webpack
 ---
-# Use ASP.NET Core SignalR with TypeScript and Webpack
+# Tutorial: Get started with ASP.NET Core SignalR using TypeScript and Webpack
 
 By [Sébastien Sougnez](https://twitter.com/ssougnez) and [Scott Addie](https://twitter.com/Scott_Addie)
 
-[Webpack](https://webpack.js.org/) enables developers to bundle and build the client-side resources of a web app. This tutorial demonstrates using Webpack in an ASP.NET Core SignalR web app whose client is written in [TypeScript](https://www.typescriptlang.org/).
+This tutorial demonstrates using [Webpack](https://webpack.js.org/) in an ASP.NET Core SignalR web app to bundle and build a client written in [TypeScript](https://www.typescriptlang.org/). Webpack enables developers to bundle and build the client-side resources of a web app.
 
 In this tutorial, you learn how to:
 

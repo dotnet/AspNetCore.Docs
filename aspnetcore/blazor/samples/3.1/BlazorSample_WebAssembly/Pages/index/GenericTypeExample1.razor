@@ -1,0 +1,9 @@
+@page "/generic-type-example-1"
+
+<h1>Generic Type Example 1</h1>
+
+<ListGenericTypeItems1 ExampleList="@(new List<string> { "Item 1", "Item 2" })" 
+                       TExample="string" />
+
+<ListGenericTypeItems1 ExampleList="@(new List<int> { 1, 2, 3 })" 
+                       TExample="int" />

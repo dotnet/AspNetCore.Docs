@@ -1,16 +1,18 @@
 ---
-title: ASP.NET Core Data Protection
+title: ASP.NET Core Data Protection Overview
 author: rick-anderson
 description: Learn about the concept of data protection and the design principles of the ASP.NET Core Data Protection APIs.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/24/2018
+ms.date: 03/07/2022
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/data-protection/introduction
 ---
-# ASP.NET Core Data Protection
+# ASP.NET Core Data Protection Overview
 
-Web applications often need to store security-sensitive data. Windows provides a data protection API (DPAPI) for desktop applications, but Windows DPAPI isn't intended for use in web applications. The ASP.NET Core data protection stack provides a simple, easy to use cryptographic API a developer can use to protect data, including key management and rotation.
+The ASP.NET Core data protection stack provides a simple, easy to use cryptographic API a developer can use to protect data, including key management and rotation.
+
+Web applications often need to store security-sensitive data. Windows provides a data protection API (DPAPI) for desktop applications, but Windows DPAPI isn't intended for use in web applications.
 
 The ASP.NET Core data protection stack is designed to serve as the long-term replacement for the &lt;machineKey&gt; element in ASP.NET 1.x - 4.x. It was designed to address many of the shortcomings of the old cryptographic stack while providing an out-of-the-box solution for the majority of use cases modern applications are likely to encounter.
 
@@ -74,4 +76,5 @@ The data protection stack consists of five packages.
 
 ## Additional resources
 
-<xref:host-and-deploy/web-farm>
+* <xref:security/data-protection/using-data-protection>
+* <xref:host-and-deploy/web-farm>
