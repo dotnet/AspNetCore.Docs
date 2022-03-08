@@ -43,7 +43,7 @@ using RewriteRules;
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
-int ? localhostHTTPSport = null;
+int? localhostHTTPSport = null;
 if (app.Environment.IsDevelopment())
 {
     localhostHTTPSport = Int32.Parse(Environment.GetEnvironmentVariable(

@@ -15,7 +15,7 @@ By [Kirk Larkin](https://twitter.com/serpent5) and [Rick Anderson](https://twitt
 
 :::moniker range=">= aspnetcore-6.0"
 
-This document introduces URL rewriting with instructions on how to use URL Rewriting Middleware in ASP.NET Core apps.
+This article introduces URL rewriting with instructions on how to use URL Rewriting Middleware in ASP.NET Core apps.
 
 URL rewriting is the act of modifying request URLs based on one or more predefined rules. URL rewriting creates an abstraction between resource locations and their addresses so that the locations and addresses aren't tightly linked. URL rewriting is valuable in several scenarios to:
 
@@ -43,7 +43,7 @@ When redirecting requests to a different URL, indicate whether the redirect is p
 
 * The [`301 - Moved Permanently`](https://developer.mozilla.org/docs/Web/HTTP/Status/301) status code is used where the resource has a new, permanent URL and that all future requests for the resource should use the new URL. *The client may cache and reuse the response when a 301 status code is received.*
 
-* The *302 - Found* status code is used where the redirection is temporary or generally subject to change. The 302 status code indicates to the client not to store the URL and use it in the future.
+* The [`302 - Found`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/302) status code is used where the redirection is temporary or generally subject to change. The 302 status code indicates to the client not to store the URL and use it in the future.
 
 For more information on status codes, see [RFC 2616: Status Code Definitions](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
 
@@ -61,7 +61,7 @@ Explore the features of the URL Rewriting Middleware with the [sample app](https
 
 ## When to use URL rewriting middleware
 
-Use URL Rewriting Middleware the following approaches aren't satisfactory:
+Use URL Rewriting Middleware when the following approaches aren't satisfactory:
 
 * [URL Rewrite module with IIS on Windows Server](https://www.iis.net/downloads/microsoft/url-rewrite)
 * [Apache mod_rewrite module on Apache Server](https://httpd.apache.org/docs/2.4/rewrite/)
@@ -132,14 +132,14 @@ Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToHtt
 <!-- Note: something wrong with project because the localhostHTTPSport is correctly calculated but not used in the redirect. The exact same code at https://github.com/Rick-Anderson/WebRedirect does work. -->
 
 > [!NOTE]
-> When redirecting to a secure endpoint without the requirement for additional redirect rules, we recommend using HTTPS Redirection Middleware. For more information, see the [Enforce HTTPS](xref:security/enforcing-ssl#require-https) topic.
+> When redirecting to a secure endpoint without the requirement for additional redirect rules, we recommend using HTTPS Redirection Middleware. For more information, see [Enforce HTTPS](xref:security/enforcing-ssl#require-https).
 
 The sample app demonstrates how to use `AddRedirectToHttps` or `AddRedirectToHttpsPermanent`. Make an [insecure HTTP request to the app](http://redirect6.azurewebsites.net/iis-rules-rewrite/xyz). When testing HTTP to HTTPS redirection with localhost:
 
 * Use the HTTP URL, which has a different port than the HTTPS URL. The HTTP URL is in the *Properties/launchSettings.json* file.
 * Removing the `s` from `https://localhost/{port}` fails because localhost doesn't respond on HTTP to the HTTPS port.
 
-The following image shows the F12 browse tools image of a request to [http://redirect6.azurewebsites.net/iis-rules-rewrite/xyz](http://redirect6.azurewebsites.net/iis-rules-rewrite/xyz) using the preceding code:
+The following image shows the F12 browser tools image of a request to [http://redirect6.azurewebsites.net/iis-rules-rewrite/xyz](http://redirect6.azurewebsites.net/iis-rules-rewrite/xyz) using the preceding code:
 
 ![Browser window with developer tools tracking the requests and responses: Add redirect to HTTPS](url-rewriting/_static/add_redirect_to_https6.png)
 
@@ -151,9 +151,9 @@ Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRewrite*> to 
 
 Try the request to https://redirect6.azurewebsites.net/rewrite-rule/1234/5678
 
-The carat (`^`) at the beginning of the expression means that matching starts at the beginning of the URL path.
+The caret (`^`) at the beginning of the expression means that matching starts at the beginning of the URL path.
 
-In the earlier example with the redirect rule, `redirect-rule/(.*)`, there's no carat (`^`) at the start of the regular expression. Therefore, any characters may precede `redirect-rule/` in the path for a successful match.
+In the earlier example with the redirect rule, `redirect-rule/(.*)`, there's no caret (`^`) at the start of the regular expression. Therefore, any characters may precede `redirect-rule/` in the path for a successful match.
 
 | Path                               | Match |
 | ---------------------------------- | :---: |
@@ -181,7 +181,7 @@ For the fastest response:
 * Use `skipRemainingRules: true` whenever possible because matching rules is computationally expensive and increases app response time. Skip the processing of the remaining rules when a match occurs and no additional rule processing is required.
 
 > [!WARNING]
-> A malicious user can provide expensive to process input to `RegularExpressions` causing a [Denial-of-Service attack](https://www.us-cert.gov/ncas/tips/ST04-015). ASP.NET Core framework APIs that use `RegularExpressions` pass a timeout. For example, the [RedirectRule](https://github.com/dotnet/aspnetcore/blob/v6.0.2/src/Middleware/Rewrite/src/RedirectRule.cs#L15) and [RewriteRule](https://github.com/dotnet/aspnetcore/blob/v6.0.2/src/Middleware/Rewrite/src/RewriteRule.cs#L14) class both pass in a one second timeout.
+> A malicious user can provide expensive to process input to `RegularExpressions` causing a [Denial-of-Service attack](https://www.us-cert.gov/ncas/tips/ST04-015). ASP.NET Core framework APIs that use `RegularExpressions` pass a timeout. For example, the [RedirectRule](https://github.com/dotnet/aspnetcore/blob/v6.0.2/src/Middleware/Rewrite/src/RedirectRule.cs#L15) and [RewriteRule](https://github.com/dotnet/aspnetcore/blob/v6.0.2/src/Middleware/Rewrite/src/RewriteRule.cs#L14) classes both pass in a one second timeout.
 
 ### Apache mod_rewrite
 
@@ -278,16 +278,15 @@ The [middleware](https://github.com/dotnet/aspnetcore/blob/v6.0.2/src/Middleware
 * REQUEST_FILENAME
 * REQUEST_URI
 
-The <xref:Microsoft.Extensions.FileProviders.IFileProvider> can be obtained via a <xref:Microsoft.Extensions.FileProviders.PhysicalFileProvider>. This approach may provide greater flexibility for the location of rewrite rules files. Make sure that the rewrite rules files are deployed to the server at the path provided.
+<xref:Microsoft.Extensions.FileProviders.IFileProvider> can be obtained via a <xref:Microsoft.Extensions.FileProviders.PhysicalFileProvider>. This approach may provide greater flexibility for the location of rewrite rules files. Make sure that the rewrite rules files are deployed to the server at the path provided.
 
  ```csharp
- PhysicalFileProvider fileProvider = 
-                new PhysicalFileProvider(Directory.GetCurrentDirectory());
+ var fileProvider = new PhysicalFileProvider(Directory.GetCurrentDirectory());
  ```
 
 ### Method-based rule
 
-Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.Add*> to implement custom rule logic in a method. `Add` exposes the <xref:Microsoft.AspNetCore.Rewrite.RewriteContext>, which makes available the <xref:Microsoft.AspNetCore.Http.HttpContext> for use in redirect methods. The [RewriteContext.Result](xref:Microsoft.AspNetCore.Rewrite.RewriteContext.Result*) determines how additional pipeline processing is handled. Set the value to one of the <xref:Microsoft.AspNetCore.Rewrite.RuleResult> fields described in the following table.
+Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.Add*> to implement custom rule logic in a method. `Add` exposes the <xref:Microsoft.AspNetCore.Rewrite.RewriteContext>, which makes available the <xref:Microsoft.AspNetCore.Http.HttpContext> for use in redirect methods. The <xref:Microsoft.AspNetCore.Rewrite.RewriteContext.Result%2A?displayProperty=nameWithType> property determines how additional pipeline processing is handled. Set the value to one of the <xref:Microsoft.AspNetCore.Rewrite.RuleResult> fields described in the following table.
 
 | Rewrite context result               | Action                                                           |
 | ------------------------------------ | ---------------------------------------------------------------- |
@@ -304,7 +303,7 @@ The sample app demonstrates a method that redirects requests for paths that end 
 
 *RewriteRules.cs*:
 
-[!code-csharp[](url-rewriting/samples/6.x/SampleApp/RewriteRules.cs?name=snippet_RedirectXmlFileRequests&highlight=14-18)]
+[!code-csharp[](url-rewriting/samples/6.x/SampleApp/RewriteRules.cs?name=snippet_RedirectXmlFileRequests&highlight=15-19)]
 
 This approach can also rewrite requests. The sample app demonstrates rewriting the path for any text file request to serve the *file.txt* text file from the *wwwroot* folder. Static File Middleware serves the file based on the updated request path:
 
@@ -312,7 +311,7 @@ This approach can also rewrite requests. The sample app demonstrates rewriting t
 
 *RewriteRules.cs*:
 
-[!code-csharp[](url-rewriting/samples/6.x/SampleApp/RewriteRules.cs?name=snippet_RewriteTextFileRequests&highlight=7-8)]
+[!code-csharp[](url-rewriting/samples/6.x/SampleApp/RewriteRules.cs?name=snippet_RewriteTextFileRequests&highlight=8-9)]
 
 ### IRule-based rule
 
@@ -346,7 +345,7 @@ The links in the preceding table use the following code deployed to Azure:
 
 [!code-csharp[](url-rewriting/samples/6.x/SampleApp/Program.cs?name=snippet_redirect3&highlight=18-35)]
 
-In most of the preceding regular expression samples, the literal `path` is used to make unique testable rewrite rules for the deployed sample. Typically the regular expression wouldn't include `path`. For example, see this [regular expression examples](?view=aspnetcore-5.0&preserve-view=true#regex5) table.
+In most of the preceding regular expression samples, the literal `path` is used to make unique testable rewrite rules for the deployed sample. Typically the regular expression wouldn't include `path`. For example, see these [regular expression examples](?view=aspnetcore-5.0&preserve-view=true#regex5) table.
 
 :::moniker-end
 
