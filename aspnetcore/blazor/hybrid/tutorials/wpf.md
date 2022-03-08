@@ -207,7 +207,7 @@ If the `MainWindow` designer isn't open, open it by double-clicking the `MainWin
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfBlazor;assembly=ComponentLibrary"
+        xmlns:local="clr-namespace:ComponentLibrary;assembly=ComponentLibrary"
         xmlns:blazor="clr-namespace:Microsoft.AspNetCore.Components.WebView.Wpf;assembly=Microsoft.AspNetCore.Components.WebView.Wpf"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
