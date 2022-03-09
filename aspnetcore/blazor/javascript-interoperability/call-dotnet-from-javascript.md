@@ -243,7 +243,7 @@ In the preceding example:
 * The variable name `dotNetHelper` is arbitrary and can be changed to any preferred name.
 * The component must explicitly dispose of the <xref:Microsoft.JSInterop.DotNetObjectReference> to permit garbage collection and prevent a memory leak.
 
-Inside the closing `</body>` tag of wwwroot/index.html (Blazor WebAssembly) or Pages/_Layout.cshtml (Blazor Server):
+Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server):
 
 ```html
 <script>
