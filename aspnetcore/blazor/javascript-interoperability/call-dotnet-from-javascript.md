@@ -271,7 +271,10 @@ Inside the closing `</body>` tag of wwwroot/index.html (Blazor WebAssembly) or P
 </script>
 ```
 
-In the preceding example, the variable name `dotNetHelper` is arbitrary and can be changed to any preferred name.
+In the preceding example:
+
+* The `GreetingHelpers` class is added to the `window` object to globally define the class, which permits Blazor to locate the class for JS interop.
+* The variable name `dotNetHelper` is arbitrary and can be changed to any preferred name.
 
 ### Class instance examples
 
