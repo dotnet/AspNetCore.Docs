@@ -1,7 +1,7 @@
 ---
 title: ASP.NET Core fundamentals overview
 author: rick-anderson
-description: Learn the fundamentals for building ASP.NET Core apps, including Dependency Injection (DI), configuration, middleware, and more.
+description: Learn the fundamentals for building ASP.NET Core apps, including dependency injection (DI), configuration, middleware, and more.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
@@ -13,7 +13,7 @@ uid: fundamentals/index
 
 :::moniker range=">= aspnetcore-6.0"
 
-This article provides an overview of the fundamentals for building ASP.NET Core apps, including Dependency Injection (DI), configuration, middleware, and more.
+This article provides an overview of the fundamentals for building ASP.NET Core apps, including dependency injection (DI), configuration, middleware, and more.
 
 ## Program.cs
 
@@ -230,7 +230,7 @@ For more information, see <xref:fundamentals/static-files>.
 
 :::moniker range="< aspnetcore-6.0"
 
-This article provides an overview of key topics for understanding how to develop ASP.NET Core apps.
+This article provides an overview of the fundamentals for building ASP.NET Core apps, including dependency injection (DI), configuration, middleware, and more.
 
 ## The Startup class
 
