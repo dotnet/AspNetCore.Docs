@@ -109,6 +109,8 @@ In the `App` component (`App.razor`), resolve the service and initialize it with
 
 Add a package reference to the app for the [`Microsoft.AspNet.WebApi.Client`](https://www.nuget.org/packages/Microsoft.AspNet.WebApi.Client) NuGet package.
 
+[!INCLUDE[](~/includes/package-reference.md)]
+
 In the service that makes a secure API request, inject the token provider and retrieve the token for the API request:
 
 ```csharp
@@ -257,6 +259,8 @@ In the `App` component (`App.razor`), resolve the service and initialize it with
 ```
 
 Add a package reference to the app for the [`Microsoft.AspNet.WebApi.Client`](https://www.nuget.org/packages/Microsoft.AspNet.WebApi.Client) NuGet package.
+
+[!INCLUDE[](~/includes/package-reference.md)]
 
 In the service that makes a secure API request, inject the token provider and retrieve the token for the API request:
 
@@ -413,6 +417,8 @@ In the `App` component (`App.razor`), resolve the service and initialize it with
 ```
 
 Add a package reference to the app for the [`Microsoft.AspNet.WebApi.Client`](https://www.nuget.org/packages/Microsoft.AspNet.WebApi.Client) NuGet package.
+
+[!INCLUDE[](~/includes/package-reference.md)]
 
 In the service that makes a secure API request, inject the token provider and retrieve the token for the API request:
 

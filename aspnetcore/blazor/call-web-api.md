@@ -49,7 +49,9 @@ For guidance on how to create a server-side web API, see <xref:tutorials/first-w
 
 ## Packages
 
-Reference the [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json) NuGet package in the project file.
+Add a package reference for [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json).
+
+[!INCLUDE[](~/includes/package-reference.md)]
 
 ## Add the `HttpClient` service
 
@@ -664,7 +666,9 @@ For guidance on how to create a server-side web API, see <xref:tutorials/first-w
 
 ## Packages
 
-Reference the [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json) NuGet package in the project file.
+Add a package reference for [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json).
+
+[!INCLUDE[](~/includes/package-reference.md)]
 
 ## Add the `HttpClient` service
 
@@ -1281,7 +1285,9 @@ For guidance on how to create a server-side web API, see <xref:tutorials/first-w
 
 ## Packages
 
-Reference the [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json) NuGet package in the project file.
+Add a package reference for [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json).
+
+[!INCLUDE[](~/includes/package-reference.md)]
 
 ## Add the `HttpClient` service
 

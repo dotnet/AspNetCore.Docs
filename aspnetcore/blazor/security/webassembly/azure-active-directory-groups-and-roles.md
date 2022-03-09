@@ -96,7 +96,9 @@ public class CustomUserAccount : RemoteUserAccount
 }
 ```
 
-Add a package reference to the **CLIENT** app's project file for [`Microsoft.Graph`](https://www.nuget.org/packages/Microsoft.Graph).
+Add a package reference to the **CLIENT** app for [`Microsoft.Graph`](https://www.nuget.org/packages/Microsoft.Graph).
+
+[!INCLUDE[](~/includes/package-reference.md)]
 
 Add the Graph SDK utility classes and configuration in the *Graph SDK* section of the <xref:blazor/security/webassembly/graph-api#graph-sdk> article. In the `GraphClientExtensions` class, specify the `User.Read` scope for the access token in the `AuthenticateRequestAsync` method:
 
@@ -638,7 +640,9 @@ public class CustomUserAccount : RemoteUserAccount
 }
 ```
 
-Add a package reference to the **CLIENT** app's project file for [`Microsoft.Graph`](https://www.nuget.org/packages/Microsoft.Graph).
+Add a package reference to the **CLIENT** app for [`Microsoft.Graph`](https://www.nuget.org/packages/Microsoft.Graph).
+
+[!INCLUDE[](~/includes/package-reference.md)]
 
 Add the Graph SDK utility classes and configuration in the *Graph SDK* section of the <xref:blazor/security/webassembly/graph-api#graph-sdk> article. In the `GraphClientExtensions` class, specify the `User.Read` scope for the access token in the `AuthenticateRequestAsync` method:
 
