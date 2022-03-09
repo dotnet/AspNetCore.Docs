@@ -17,7 +17,7 @@ This article explains how to handle JSON Patch requests in an ASP.NET Core web A
 
 ## Package installation
 
-JSON patch support in ASP.NET Core web API requires the [`Microsoft.AspNetCore.Mvc.NewtonsoftJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/) NuGet package. To enable JSON Patch support:
+JSON patch support in ASP.NET Core web API is based on `Newtonsoft.Json` and requires the [`Microsoft.AspNetCore.Mvc.NewtonsoftJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/) NuGet package. To enable JSON Patch support:
 
 * Install the [`Microsoft.AspNetCore.Mvc.NewtonsoftJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/) NuGet package.
 * Call <xref:Microsoft.Extensions.DependencyInjection.NewtonsoftJsonMvcBuilderExtensions.AddNewtonsoftJson%2A>. For example:
@@ -32,7 +32,7 @@ JSON patch support in ASP.NET Core web API requires the [`Microsoft.AspNetCore.M
 
 ## Add support for JSON Patch when using System.Text.Json
 
-To add support for JSON Patch using `Newtonsoft.Json`, while leaving the other formatters unchanged:
+The `System.Text.Json`-based input formatter doesn't support JSON Patch. To add support for JSON Patch using `Newtonsoft.Json`, while leaving the other input and output formatters unchanged:
 
 * Install the [`Microsoft.AspNetCore.Mvc.NewtonsoftJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/) NuGet package.
 * Update `Program.cs`:
@@ -42,8 +42,8 @@ To add support for JSON Patch using `Newtonsoft.Json`, while leaving the other f
 
 The preceding code creates an instance of <xref:Microsoft.AspNetCore.Mvc.Formatters.NewtonsoftJsonPatchInputFormatter> and inserts it as the first entry in the <xref:Microsoft.AspNetCore.Mvc.MvcOptions.InputFormatters%2A?displayProperty=nameWithType> collection. This order of registration ensures that:
 
-* `NewtonsoftJsonPatchInputFormatter` is used to process JSON Patch requests.
-* The existing `System.Text.Json`-based input and formatters to process all other JSON requests and responses.
+* `NewtonsoftJsonPatchInputFormatter` processes JSON Patch requests.
+* The existing `System.Text.Json`-based input and formatters process all other JSON requests and responses.
 
 Use the `Newtonsoft.Json.JsonConvert.SerializeObject` method to serialize a <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument>.
 
