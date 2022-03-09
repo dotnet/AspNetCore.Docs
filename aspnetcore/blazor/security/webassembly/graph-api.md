@@ -19,10 +19,12 @@ uid: blazor/security/webassembly/graph-api
 
 [Microsoft Graph SDKs](/graph/sdks/sdks-overview) are designed to simplify building high-quality, efficient, and resilient applications that access Microsoft Graph.
 
-The examples in this section require package references for the following packages in the project file of the standalone or **`Client`** app's project file:
+The examples in this section require package references for the standalone or **`Client`** app:
 
 * [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http)
 * [`Microsoft.Graph`](https://www.nuget.org/packages/Microsoft.Graph)
+
+[!INCLUDE[](~/includes/package-reference.md)]
 
 The following utility classes and configuration are used in each of the following subsections of this article:
 
@@ -272,7 +274,9 @@ builder.Services.AddMsalAuthentication<RemoteAuthenticationState,
 
 The examples in this section use a named <xref:System.Net.Http.HttpClient> for Graph API to obtain a user's mobile phone number to process a call.
 
-The examples in this section require a package reference for [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) in the project file of the standalone or **`Client`** app's project file.
+The examples in this section require a package reference for [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) for the standalone or **`Client`** app.
+
+[!INCLUDE[](~/includes/package-reference.md)]
 
 Create the following class and project configuration for working with Graph API. The following class and configuration are used in each of the following subsections of this article:
 
@@ -510,10 +514,12 @@ The preceding example is for an app that uses AAD authentication with MSAL. Simi
 
 [Microsoft Graph SDKs](/graph/sdks/sdks-overview) are designed to simplify building high-quality, efficient, and resilient applications that access Microsoft Graph.
 
-The examples in this section require package references for the following packages in the project file of the standalone or **`Client`** app's project file:
+The examples in this section require package references for the standalone or **`Client`** app:
 
 * [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http)
 * [`Microsoft.Graph`](https://www.nuget.org/packages/Microsoft.Graph)
+
+[!INCLUDE[](~/includes/package-reference.md)]
 
 The following utility classes and configuration are used in each of the following subsections of this article:
 
@@ -763,7 +769,9 @@ builder.Services.AddMsalAuthentication<RemoteAuthenticationState,
 
 The examples in this section use a named <xref:System.Net.Http.HttpClient> for Graph API to obtain a user's mobile phone number to process a call.
 
-The examples in this section require a package reference for [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) in the project file of the standalone or **`Client`** app's project file.
+The examples in this section require a package reference for [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) for the standalone or **`Client`** app.
+
+[!INCLUDE[](~/includes/package-reference.md)]
 
 Create the following class and project configuration for working with Graph API. The following class and configuration are used in each of the following subsections of this article:
 
@@ -999,7 +1007,9 @@ The preceding example is for an app that uses AAD authentication with MSAL. Simi
 
 The examples in this section use a named <xref:System.Net.Http.HttpClient> for Graph API to obtain a user's mobile phone number to process a call.
 
-The examples in this section require a package reference for [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) in the project file of the standalone or **`Client`** app's project file.
+The examples in this section require a package reference for [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) for the standalone or **`Client`** app.
+
+[!INCLUDE[](~/includes/package-reference.md)]
 
 Create the following class and project configuration for working with Graph API. The following class and configuration are used in each of the following subsections of this article:
 

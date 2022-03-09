@@ -1,26 +1,26 @@
 ---
-title: Common errors reference for Azure App Service and IIS with ASP.NET Core
+title: Common error troubleshooting for Azure App Service and IIS with ASP.NET Core
 author: rick-anderson
-description: Obtain troubleshooting advice for common errors when hosting ASP.NET Core apps on Azure Apps Service and IIS.
+description: Provides troubleshooting advice for the most common errors when hosting ASP.NET Core apps on Azure Apps Service and IIS.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/07/2020
+ms.date: 3/07/2022
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: host-and-deploy/azure-iis-errors-reference
 ---
 
-# Common errors reference for Azure App Service and IIS with ASP.NET Core
+# Common error troubleshooting for Azure App Service and IIS with ASP.NET Core
 
 :::moniker range=">= aspnetcore-2.2"
 
-This topic describes common errors and provides troubleshooting advice for specific errors when hosting ASP.NET Core apps on Azure Apps Service and IIS.
+This topic describes the most common errors and provides troubleshooting advice when hosting ASP.NET Core apps on Azure Apps Service and IIS.
 
-For general troubleshooting guidance, see <xref:test/troubleshoot-azure-iis>.
+See <xref:test/troubleshoot-azure-iis> information on common app startup errors and instructions on how to diagnose errors.
 
 Collect the following information:
 
-* Browser behavior (status code and error message)
+* Browser behavior such as status code and error message.
 * Application Event Log entries
   * Azure App Service: See <xref:test/troubleshoot-azure-iis>.
   * IIS

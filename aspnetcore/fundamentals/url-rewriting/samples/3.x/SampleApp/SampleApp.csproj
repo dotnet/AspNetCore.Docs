@@ -4,8 +4,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Content Include="ApacheModRewrite.txt;IISUrlRewrite.xml;testCert.pfx" CopyToPublishDirectory="PreserveNewest" CopyToOutputDirectory="PreserveNewest" />
-  </ItemGroup>
-
+	<ItemGroup>
+		<Content Include="ApacheModRewrite.txt;IISUrlRewrite.xml;testCert.pfx" CopyToPublishDirectory="PreserveNewest" CopyToOutputDirectory="PreserveNewest" />
+	</ItemGroup>
 </Project>

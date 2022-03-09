@@ -1,22 +1,22 @@
 ---
-title: Overview of ASP.NET Core Security
+title: ASP.NET Core security topics
 author: rick-anderson
-description: Learn about authentication, authorization, and security basics in ASP.NET Core.
+description: Provides links to articles on authentication, authorization, and security in ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/24/2018
+ms.date: 3/9/2022
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/index
 ---
-# Overview of ASP.NET Core Security
+# ASP.NET Core security topics
 
-ASP.NET Core enables developers to easily configure and manage security for their apps. ASP.NET Core contains features for managing:
+ASP.NET Core enables developers to configure and manage security. The following list provides links to security topics:
 
 * [Authentication](xref:security/authentication/index)
 * [Authorization](xref:security/authorization/introduction)
 * [Data protection](xref:security/data-protection/introduction)
 * [HTTPS enforcement](xref:security/enforcing-ssl)
-* [App secrets](xref:security/app-secrets)
+* [Safe storage of app secrets in development](xref:security/app-secrets)
 * [XSRF/CSRF prevention](xref:security/anti-request-forgery)
 * [Cross Origin Resource Sharing (CORS)](xref:security/cors)
 * [Cross-Site Scripting (XSS) attacks](xref:security/cross-site-scripting)
@@ -25,7 +25,7 @@ These security features allow you to build robust and secure ASP.NET Core apps.
 
 ## ASP.NET Core security features
 
-ASP.NET Core provides many tools and libraries to secure your apps including built-in identity providers, but you can use third-party identity services such as Facebook, Twitter, and LinkedIn. With ASP.NET Core, you can easily manage app secrets, which are a way to store and use confidential information without having to expose it in the code.
+ASP.NET Core provides many tools and libraries to secure ASP.NET Core apps such as built-in identity providers and third-party identity services such as Facebook, Twitter, and LinkedIn. ASP.NET Core provides several approaches to store app secrets.
 
 ## Authentication vs. Authorization
 

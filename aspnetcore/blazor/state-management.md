@@ -1107,6 +1107,9 @@ ASP.NET Core Protected Browser Storage leverages [ASP.NET Core Data Protection](
 ### Configuration
 
 1. Add a package reference to [`Microsoft.AspNetCore.ProtectedBrowserStorage`](https://www.nuget.org/packages/Microsoft.AspNetCore.ProtectedBrowserStorage).
+
+   [!INCLUDE[](~/includes/package-reference.md)]
+
 1. In the `Pages/_Host.cshtml` file, add the following script inside the closing `</body>` tag:
 
    ```cshtml

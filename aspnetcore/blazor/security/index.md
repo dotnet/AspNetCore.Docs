@@ -40,7 +40,10 @@ In Blazor WebAssembly apps, authentication checks can be bypassed because all cl
 
 Add the following:
 
-* A package reference for [`Microsoft.AspNetCore.Components.Authorization`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Authorization) to the app's project file.
+* A package reference for [`Microsoft.AspNetCore.Components.Authorization`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Authorization).
+
+  [!INCLUDE[](~/includes/package-reference.md)]
+
 * The `Microsoft.AspNetCore.Components.Authorization` namespace to the app's `_Imports.razor` file.
 
 To handle authentication, use of a built-in or custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> service is covered in the following sections.
@@ -604,7 +607,10 @@ In Blazor WebAssembly apps, authentication checks can be bypassed because all cl
 
 Add the following:
 
-* A package reference for [`Microsoft.AspNetCore.Components.Authorization`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Authorization) to the app's project file.
+* A package reference for [`Microsoft.AspNetCore.Components.Authorization`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Authorization).
+
+  [!INCLUDE[](~/includes/package-reference.md)]
+
 * The `Microsoft.AspNetCore.Components.Authorization` namespace to the app's `_Imports.razor` file.
 
 To handle authentication, use of a built-in or custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> service is covered in the following sections.
@@ -1174,7 +1180,10 @@ In Blazor WebAssembly apps, authentication checks can be bypassed because all cl
 
 Add the following:
 
-* A package reference for [`Microsoft.AspNetCore.Components.Authorization`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Authorization) to the app's project file.
+* A package reference for [`Microsoft.AspNetCore.Components.Authorization`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Authorization).
+
+  [!INCLUDE[](~/includes/package-reference.md)]
+
 * The `Microsoft.AspNetCore.Components.Authorization` namespace to the app's `_Imports.razor` file.
 
 To handle authentication, use of a built-in or custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> service is covered in the following sections.

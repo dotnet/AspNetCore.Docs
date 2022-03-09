@@ -110,7 +110,7 @@ NuGet packages can contain native dependencies for use on WebAssembly. These lib
 
 To use SkiaSharp in a Blazor WebAssembly app:
 
-1. Add a package reference to the [`SkiaSharp.Views.Blazor`](https://www.nuget.org/packages/SkiaSharp.Views.Blazor) package in a Blazor WebAssembly project. Use Visual Studio's process for adding packages to an app (**Manage NuGet Packages**) or execute the [`dotnet add package`](/dotnet/core/tools/dotnet-add-package) command in a command shell:
+1. Add a package reference to the [`SkiaSharp.Views.Blazor`](https://www.nuget.org/packages/SkiaSharp.Views.Blazor) package in a Blazor WebAssembly project. Use Visual Studio's process for adding packages to an app (**Manage NuGet Packages** with **Include prerelease** selected) or execute the [`dotnet add package`](/dotnet/core/tools/dotnet-add-package) command in a command shell:
 
    ```dotnetcli
    dotnet add package –-prerelease SkiaSharp.Views.Blazor
@@ -118,6 +118,8 @@ To use SkiaSharp in a Blazor WebAssembly app:
 
    > [!WARNING]
    > The [`SkiaSharp.Views.Blazor`](https://www.nuget.org/packages/SkiaSharp.Views.Blazor) package is a prerelease NuGet package not supported for production use.
+
+   [!INCLUDE[](~/includes/package-reference.md)]
 
 1. Add a `SKCanvasView` component to the app with the following:
 
