@@ -14,7 +14,8 @@ Static File Middleware serves the file after the request URL is rewritten by the
   - Example (redirect): **/redirect-rule/{capture_group}** to **/redirected/{capture_group}**
 * `AddRewrite(@"^rewrite-rule/(\d+)/(\d+)", "rewritten?var1=$1&var2=$2", skipRemainingRules: true)`
   - Success status code: 200 (OK)
-  - Example (rewrite): **/rewrite-rule/{capture_group_1}/{capture_group_2}** to **/rewritten?var1={capture_group_1}&var2={capture_group_2}**
+  - Example (rewrite): **/rewrite-rule/{capture_group_1}/{capture_group_2}** 
+                   to **/rewritten?var1={capture_group_1}&var2={capture_group_2}**
 * `AddApacheModRewrite(env.ContentRootFileProvider, "ApacheModRewrite.txt")`
   - Success status code: 302 (Found)
   - Example (redirect): **/apache-mod-rules-redirect/{capture_group}** to **/redirected?id={capture_group}**

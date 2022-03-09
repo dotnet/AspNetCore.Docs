@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+	<ItemGroup>
+		<Content Include="ApacheModRewrite.txt;IISUrlRewrite.xml;" CopyToPublishDirectory="PreserveNewest" CopyToOutputDirectory="PreserveNewest" />
+	</ItemGroup>
+
+</Project>
