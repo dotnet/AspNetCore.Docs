@@ -200,13 +200,13 @@ In the following `CallDotNetExampleOneHelper` component, the `Trigger JS functio
 </p>
 
 <p>
-    <button onclick="sayHello()">
+    <button onclick="GreetingHelpers.sayHello()">
         Trigger JS function <code>sayHello</code>
     </button>
 </p>
 
 <p>
-    <button onclick="welcomeVisitor()">
+    <button onclick="GreetingHelpers.welcomeVisitor()">
         Trigger JS function <code>welcomeVisitor</code>
     </button>
 </p>
@@ -266,10 +266,15 @@ Inside the closing `</body>` tag of wwwroot/index.html (Blazor WebAssembly) or P
       alert(`Message from .NET: "${msg}"`);
     }
   }
+    
+  window.GreetingHelpers = GreetingHelpers;
 </script>
 ```
 
-In the preceding example, the variable name `dotNetHelper` is arbitrary and can be changed to any preferred name.
+In the preceding example:
+
+* The `GreetingHelpers` class is added to the `window` object to globally define the class, which permits Blazor to locate the class for JS interop.
+* The variable name `dotNetHelper` is arbitrary and can be changed to any preferred name.
 
 ### Class instance examples
 
