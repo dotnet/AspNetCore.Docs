@@ -13,7 +13,7 @@
     private bool expanded;
 
     [Parameter]
-    public bool Expanded { get; set; }
+    public bool Expanded { private get; set; }
 
     [Parameter]
     public RenderFragment ChildContent { get; set; }
