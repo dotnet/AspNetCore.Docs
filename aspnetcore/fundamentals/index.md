@@ -1,19 +1,19 @@
 ---
-title: ASP.NET Core fundamentals
+title: ASP.NET Core fundamentals overview
 author: rick-anderson
-description: Learn the foundational concepts for building ASP.NET Core apps.
+description: Learn the fundamentals for building ASP.NET Core apps, including Dependency Injection (DI), configuration, middleware, and more.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/15/2021
+ms.date: 03/09/2022
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/index
 ---
-# ASP.NET Core fundamentals
+# ASP.NET Core fundamentals overview
 
 :::moniker range=">= aspnetcore-6.0"
 
-This article provides an overview of key topics for understanding how to develop ASP.NET Core apps.
+This article provides an overview of the fundamentals for building ASP.NET Core apps, including Dependency Injection (DI), configuration, middleware, and more.
 
 ## Program.cs
 
@@ -147,7 +147,7 @@ ASP.NET Core supports a logging API that works with a variety of built-in and th
 * Azure App Service
 * Azure Application Insights
 
-To create logs, resolve an <xref:Microsoft.Extensions.Logging.ILogger%601> service from dependency injection (DI) and call logging methods such as <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation*>. For example:
+To create logs, resolve an <xref:Microsoft.Extensions.Logging.ILogger%601> service from dependency injection (DI) and call logging methods such as <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation%2A>. For example:
 
 [!code-csharp[](~/fundamentals/index/samples/6.0/RazorPagesMovie/Pages/Movies/Index.cshtml.cs?name=snippet&highlight=3-10, 16-17)]
 
@@ -368,7 +368,7 @@ ASP.NET Core supports a logging API that works with a variety of built-in and th
 * Azure App Service
 * Azure Application Insights
 
-To create logs, resolve an <xref:Microsoft.Extensions.Logging.ILogger%601> service from dependency injection (DI) and call logging methods such as <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation*>. For example:
+To create logs, resolve an <xref:Microsoft.Extensions.Logging.ILogger%601> service from dependency injection (DI) and call logging methods such as <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation%2A>. For example:
 
 [!code-csharp[](index/samples_snapshot/3.x/TodoController.cs?highlight=5,13,19)]
 
