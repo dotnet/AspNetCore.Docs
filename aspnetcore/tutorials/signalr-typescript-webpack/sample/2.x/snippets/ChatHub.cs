@@ -2,7 +2,7 @@
 #define NEVER
 
 #if ALWAYS
-#region snippet_ChatHubStubClass
+// <snippet_ChatHubStubClass>
 using Microsoft.AspNetCore.SignalR;
 using System.Threading.Tasks;
 
@@ -12,5 +12,5 @@ namespace SignalRWebPack.Hubs
     {
     }
 }
-#endregion
+// </snippet_ChatHubStubClass>
 #endif
