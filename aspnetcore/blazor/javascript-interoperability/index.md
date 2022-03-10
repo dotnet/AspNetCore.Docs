@@ -34,6 +34,27 @@ For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#ca
 
 JS interop calls are asynchronous by default, regardless of whether the called code is synchronous or asynchronous. Calls are asynchronous by default to ensure that components are compatible across both Blazor hosting models, Blazor Server and Blazor WebAssembly. On Blazor Server, JS interop calls must be asynchronous because they're sent over a network connection. For apps that exclusively adopt the Blazor WebAssembly hosting model, synchronous JS interop calls are supported. For more information, see <xref:blazor/performance?pivots=webassembly#consider-the-use-of-synchronous-calls>.
 
+## Object serialization
+
+Blazor uses serialization algorithms in <xref:System.Text.Json?displayProperty=fullName>, which has been the default JSON serializer in ASP.NET Core since the [release of ASP.NET Core 3.0](xref:migration/22-to-30#newtonsoftjson-jsonnet-support).
+
+Serialization exhibits the following behaviors:
+
+* Types must have a default constructor, [accessors](/dotnet/csharp/programming-guide/classes-and-structs/using-properties) (`get`/`set`) must be public, and fields are never serialized.
+* Global default serialization isn't customizable to avoid breaking existing component libraries, impacts on performance and security, and reductions in reliability.
+* When serializing .NET member names, the names are changed to match JS naming conventions. For example, a `Name` property of a .NET object is serialized for JSON payload as `name`.
+* .NET objects are deserialized as <xref:System.Text.Json.JsonElement> instances. <xref:System.Text.Json.JsonElement> is a C# representation of the JSON payload and has mixed casing. When deserializing a `name` element of the JSON payload, the C# representation as a <xref:System.Text.Json.JsonElement> retains the lowercase `name`. However, binding to .NET object names isn't affected by case, so binding to `Name` of a .NET object works as expected.
+
+For more information, see the articles under [JSON serialization and deserialization (marshalling and unmarshalling) in .NET (.NET Standard documentation)](/dotnet/standard/serialization/system-text-json-overview).
+
+In .NET 6 or later, Blazor supports optimized byte array JS interop that avoids encoding/decoding byte arrays into Base64, so the app can apply custom serialization and pass the resulting bytes.  For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#byte-array-support>.
+
+In ASP.NET Core 5.0 or later, Blazor supports unmarshalled JavaScript interop when a high volume of .NET objects are rapidly serialized or when large .NET objects or many .NET objects must be serialized. For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#unmarshalled-javascript-interop>.
+
+For custom serialization with <xref:System.Text.Json?displayProperty=fullName>, you can use the <xref:System.Text.Json.Serialization.JsonConverter> API. Properties can be annotated with a [`[JsonConverter]` attribute](xref:System.Text.Json.Serialization.JsonConverterAttribute) to override default serialization for an existing data type. For more information, see [How to write custom converters for JSON serialization (marshalling) in .NET](/dotnet/standard/serialization/system-text-json-converters-how-to).
+
+JSON serializer support for <xref:System.DateOnly?displayProperty=fullName> and <xref:System.TimeOnly> is planned for ASP.NET Core 7.0, which is scheduled for release by the end of 2022. For more information, see [Support DateOnly and TimeOnly in JsonSerializer (dotnet/runtime #53539)](https://github.com/dotnet/runtime/issues/53539).
+
 ## JavaScript initializers
 
 [!INCLUDE[](~/blazor/includes/js-initializers.md)]
