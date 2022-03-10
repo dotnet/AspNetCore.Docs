@@ -5,7 +5,7 @@ description: Learn how to use the logging framework provided by the Microsoft.Ex
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/28/2020
+ms.date: 03/10/2022
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/logging/index
 ---
@@ -27,7 +27,7 @@ Logging providers store logs, except for the `Console` provider which displays l
 The default ASP.NET Core web app templates:
 
 * Use the [Generic Host](xref:fundamentals/host/generic-host).
-* Call `WebApplication.CreateBuilder`, which adds the following logging providers:
+* Call <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A?displayProperty=nameWithType>, which adds the following logging providers:
   * [Console](#console)
   * [Debug](#debug)
   * [EventSource](#event-source)
@@ -624,7 +624,7 @@ Use the `dotnet trace` tooling to collect a trace from an app:
 
 1. Open the trace with [Perfview](#perfview). Open the `trace.nettrace` file and explore the trace events.
 
-If the app doesn't build the host with `CreateDefaultBuilder`, add the Event Source provider to the app's logging configuration.
+If the app doesn't build the host with <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A?displayProperty=nameWithType>, add the Event Source provider to the app's logging configuration.
 
 For more information, see:
 
