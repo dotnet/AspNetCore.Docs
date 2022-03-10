@@ -1,8 +1,7 @@
-﻿namespace JsonPatchSample.Models
+namespace JsonPatchSample.Models;
+
+public class Order
 {
-    public class Order
-    {
-        public string OrderName { get; set; }
-        public string OrderType { get; set; }
-    }
+    public string OrderName { get; set; }
+    public string OrderType { get; set; }
 }

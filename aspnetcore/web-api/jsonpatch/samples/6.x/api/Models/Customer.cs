@@ -1,4 +1,4 @@
-﻿namespace JsonPatchSample.Models;
+namespace JsonPatchSample.Models;
 
 public class Customer
 {
