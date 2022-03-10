@@ -134,9 +134,9 @@ Here's an example:
 
 This code from the sample app works with the following `Customer` model:
 
-[!code-csharp[](jsonpatch/samples/3.x/api/Models/Customer.cs)]
+[!code-csharp[](jsonpatch/samples/6.x/api/Models/Customer.cs)]
 
-[!code-csharp[](jsonpatch/samples/3.x/api/Models/Order.cs)]
+[!code-csharp[](jsonpatch/samples/6.x/api/Models/Order.cs)]
 
 The sample action method:
 
