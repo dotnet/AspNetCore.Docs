@@ -7,9 +7,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-#region snippet_HubsNamespace
+// <snippet_HubsNamespace>
 using SignalRWebPack.Hubs;
-#endregion
+// </snippet_HubsNamespace>
 
 namespace SignalRWebPack
 {
@@ -19,13 +19,13 @@ namespace SignalRWebPack
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            #region snippet_AddSignalR
+            // <snippet_AddSignalR>
             services.AddSignalR();
-            #endregion
+            // </snippet_AddSignalR>
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        #region snippet_UseStaticDefaultFiles
+        // <snippet_UseStaticDefaultFiles>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -37,14 +37,14 @@ namespace SignalRWebPack
             app.UseDefaultFiles();
             app.UseStaticFiles();
             
-            #region snippet_UseSignalR
+            // <snippet_UseSignalR>
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapHub<ChatHub>("/hub");
             });
-            #endregion
+            // </snippet_UseSignalR>
                 
         }
-        #endregion
+        // </snippet_UseStaticDefaultFiles>
     }
 }

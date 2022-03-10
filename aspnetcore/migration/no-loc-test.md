@@ -14,11 +14,11 @@ uid: blazor/no-loc-test
 
 ```json
 "no-loc": {
-  "**/blazor/no-loc-test.md": "[ computer, cat ]"
+  "**/migration/no-loc-test.md": "[ computer, cat ]"
 }
 ```
 
-`Entries from the existing no-loc list`:
+`Entries from the existing no-loc list (these should be localized in this doc)`:
 
 * Blazor Hybrid
 * Home
@@ -36,12 +36,12 @@ uid: blazor/no-loc-test
 * Razor
 * SignalR
 
-`Entries in the docfx.json fileMetadata no-loc list`:
+`Entries in the docfx.json fileMetadata no-loc list (these should NOT be localized in this doc)`:
 
 * computer
 * cat
 
-`Sentences`:
+`Sentences ("computer" and "cat" should NOT be localized in this doc)`:
 
 * The computer is ten years old.
 * The cat ate the mouse.
