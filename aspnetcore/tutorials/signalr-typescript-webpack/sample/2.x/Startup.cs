@@ -34,7 +34,7 @@ namespace SignalRWebPack
             // <snippet_UseStaticDefaultFiles>
             app.UseDefaultFiles();
             app.UseStaticFiles();
-            // </snippet_UseStaticDefaultFiles
+            // </snippet_UseStaticDefaultFiles>
 
             // <snippet_UseSignalR>
             app.UseSignalR(options =>
