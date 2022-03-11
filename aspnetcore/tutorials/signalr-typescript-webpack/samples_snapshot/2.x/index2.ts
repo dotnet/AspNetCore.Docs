@@ -1,6 +1,4 @@
-﻿// This code exists only for inclusion in the associated doc.
-// <snippet_IndexTsPhase2File>
-import "./css/main.css";
+﻿import "./css/main.css";
 import * as signalR from "@aspnet/signalr";
 
 const divMessages: HTMLDivElement = document.querySelector("#divMessages");
@@ -34,4 +32,3 @@ btnSend.addEventListener("click", send);
 
 function send() {
 }
-// </snippet_IndexTsPhase2File>

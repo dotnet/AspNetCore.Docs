@@ -105,7 +105,7 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
 1. Add the highlighted property to the *package.json* file and save the file changes:
 
-    :::code language="json" source="signalr-typescript-webpack/sample/3.x/snippets/package1.json" highlight="4":::
+    :::code language="json" source="signalr-typescript-webpack/samples_snapshot/3.x/package1.json" highlight="4":::
 
     Setting the `private` property to `true` prevents package installation warnings in the next step.
 
@@ -140,7 +140,7 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
 1. Create a file named *webpack.config.js*, in the project root, with the following code:
 
-    :::code language="javascript" source="signalr-typescript-webpack/sample/3.x/webpack.config.js":::
+    :::code language="javascript" source="signalr-typescript-webpack/samples/3.x/webpack.config.js":::
 
     The preceding file configures the Webpack compilation. Some configuration details to note:
 
@@ -151,7 +151,7 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
 1. Create *src/index.html* with the following markup.
 
-    :::code language="html" source="signalr-typescript-webpack/sample/3.x/src/index.html":::
+    :::code language="html" source="signalr-typescript-webpack/samples/3.x/src/index.html":::
 
     The preceding HTML defines the homepage's boilerplate markup.
 
@@ -159,19 +159,19 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
 1. Create *src/css/main.css* with the following CSS:
 
-    :::code language="css" source="signalr-typescript-webpack/sample/3.x/src/css/main.css":::
+    :::code language="css" source="signalr-typescript-webpack/samples/3.x/src/css/main.css":::
 
     The preceding *main.css* file styles the app.
 
 1. Create *src/tsconfig.json* with the following JSON:
 
-    :::code language="json" source="signalr-typescript-webpack/sample/3.x/src/tsconfig.json":::
+    :::code language="json" source="signalr-typescript-webpack/samples/3.x/src/tsconfig.json":::
 
     The preceding code configures the TypeScript compiler to produce [ECMAScript](https://wikipedia.org/wiki/ECMAScript) 5-compatible JavaScript.
 
 1. Create *src/index.ts* with the following code:
 
-    :::code language="typescript" source="signalr-typescript-webpack/sample/3.x/snippets/index1.ts" id="snippet_IndexTsPhase1File":::
+    :::code language="typescript" source="signalr-typescript-webpack/samples_snapshot/3.x/index1.ts":::
 
     The preceding TypeScript retrieves references to DOM elements and attaches two event handlers:
 
@@ -182,27 +182,27 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
 1. In `Startup.Configure`, add calls to <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles(Microsoft.AspNetCore.Builder.IApplicationBuilder)> and <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles(Microsoft.AspNetCore.Builder.IApplicationBuilder)>.
 
-   :::code language="csharp" source="signalr-typescript-webpack/sample/3.x/Startup.cs" id="snippet_UseStaticDefaultFiles" highlight="9-10":::
+   :::code language="csharp" source="signalr-typescript-webpack/samples/3.x/Startup.cs" id="snippet_UseStaticDefaultFiles" highlight="9-10":::
 
    The preceding code allows the server to locate and serve the *index.html* file.  The file is served whether the user enters its full URL or the root URL of the web app.
 
 1. At the end of `Startup.Configure`, map a */hub* route to the `ChatHub` hub. Replace the code that displays *Hello World!* with the following line: 
 
-   :::code language="csharp" source="signalr-typescript-webpack/sample/3.x/Startup.cs" id="snippet_UseSignalR" highlight="3":::
+   :::code language="csharp" source="signalr-typescript-webpack/samples/3.x/Startup.cs" id="snippet_UseSignalR" highlight="3":::
 
 1. In `Startup.ConfigureServices`, call <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddSignalR%2A>.
 
-   :::code language="csharp" source="signalr-typescript-webpack/sample/3.x/Startup.cs" id="snippet_AddSignalR":::
+   :::code language="csharp" source="signalr-typescript-webpack/samples/3.x/Startup.cs" id="snippet_AddSignalR":::
 
 1. Create a new directory named *Hubs* in the project root *SignalRWebPack/* to store the SignalR hub.
 
 1. Create hub *Hubs/ChatHub.cs* with the following code:
 
-    :::code language="csharp" source="signalr-typescript-webpack/sample/3.x/snippets/ChatHub.cs" id="snippet_ChatHubStubClass":::
+    :::code language="csharp" source="signalr-typescript-webpack/samples_snapshot/3.x/ChatHub.cs":::
 
 1. Add the following `using` statement at the top of the *Startup.cs* file to resolve the `ChatHub` reference:
 
-    :::code language="csharp" source="signalr-typescript-webpack/sample/3.x/Startup.cs" id="snippet_HubsNamespace":::
+    :::code language="csharp" source="signalr-typescript-webpack/samples/3.x/Startup.cs" id="snippet_HubsNamespace":::
 
 ## Enable client and server communication
 
@@ -221,7 +221,7 @@ The app currently displays a basic form to send messages, but isn't yet function
 
 1. Add the highlighted code to the *src/index.ts* file:
 
-    :::code language="typescript" source="signalr-typescript-webpack/sample/3.x/snippets/index2.ts" id="snippet_IndexTsPhase2File" highlight="2,9-23":::
+    :::code language="typescript" source="signalr-typescript-webpack/samples_snapshot/3.x/index2.ts" highlight="2,9-23":::
 
     The preceding code supports receiving messages from the server. The `HubConnectionBuilder` class creates a new builder for configuring the server connection. The `withUrl` function configures the hub URL.
 
@@ -229,13 +229,13 @@ The app currently displays a basic form to send messages, but isn't yet function
 
 1. Now that the client can receive a message, configure it to send messages. Add the highlighted code to the *src/index.ts* file:
 
-    :::code language="typescript" source="signalr-typescript-webpack/sample/3.x/src/index.ts" highlight="34-35":::
+    :::code language="typescript" source="signalr-typescript-webpack/samples/3.x/src/index.ts" highlight="34-35":::
 
     Sending a message through the WebSockets connection requires calling the `send` method. The method's first parameter is the message name. The message data inhabits the other parameters. In this example, a message identified as `newMessage` is sent to the server. The message consists of the username and the user input from a text box. If the send works, the text box value is cleared.
 
 1. Add the `NewMessage` method to the `ChatHub` class:
 
-    :::code language="csharp" source="signalr-typescript-webpack/sample/3.x/Hubs/ChatHub.cs" highlight="8-11":::
+    :::code language="csharp" source="signalr-typescript-webpack/samples/3.x/Hubs/ChatHub.cs" highlight="8-11":::
 
     The preceding code broadcasts received messages to all connected users once the server receives them. It's unnecessary to have a generic `on` method to receive all the messages. A method named after the message name suffices.
 
@@ -380,7 +380,7 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
 1. Add the highlighted property to the *package.json* file and save the file changes:
 
-    :::code language="json" source="signalr-typescript-webpack/sample/3.x/snippets/package1.json" highlight="4":::
+    :::code language="json" source="signalr-typescript-webpack/samples_snapshot/3.x/package1.json" highlight="4":::
 
     Setting the `private` property to `true` prevents package installation warnings in the next step.
 
@@ -415,7 +415,7 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
 1. Create a file named *webpack.config.js*, in the project root, with the following code:
 
-    :::code language="javascript" source="signalr-typescript-webpack/sample/3.x/webpack.config.js":::
+    :::code language="javascript" source="signalr-typescript-webpack/samples/3.x/webpack.config.js":::
 
     The preceding file configures the Webpack compilation. Some configuration details to note:
 
@@ -426,7 +426,7 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
 1. Create *src/index.html* with the following markup.
 
-    :::code language="html" source="signalr-typescript-webpack/sample/3.x/src/index.html":::
+    :::code language="html" source="signalr-typescript-webpack/samples/3.x/src/index.html":::
 
     The preceding HTML defines the homepage's boilerplate markup.
 
@@ -434,19 +434,19 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
 1. Create *src/css/main.css* with the following CSS:
 
-    :::code language="css" source="signalr-typescript-webpack/sample/3.x/src/css/main.css":::
+    :::code language="css" source="signalr-typescript-webpack/samples/3.x/src/css/main.css":::
 
     The preceding *main.css* file styles the app.
 
 1. Create *src/tsconfig.json* with the following JSON:
 
-    :::code language="json" source="signalr-typescript-webpack/sample/3.x/src/tsconfig.json":::
+    :::code language="json" source="signalr-typescript-webpack/samples/3.x/src/tsconfig.json":::
 
     The preceding code configures the TypeScript compiler to produce [ECMAScript](https://wikipedia.org/wiki/ECMAScript) 5-compatible JavaScript.
 
 1. Create *src/index.ts* with the following code:
 
-    :::code language="typescript" source="signalr-typescript-webpack/sample/3.x/snippets/index1.ts" id="snippet_IndexTsPhase1File":::
+    :::code language="typescript" source="signalr-typescript-webpack/samples_snapshot/3.x/index1.ts":::
 
     The preceding TypeScript retrieves references to DOM elements and attaches two event handlers:
 
@@ -457,27 +457,27 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
 1. In `Startup.Configure`, add calls to <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles(Microsoft.AspNetCore.Builder.IApplicationBuilder)> and <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles(Microsoft.AspNetCore.Builder.IApplicationBuilder)>.
 
-   :::code language="csharp" source="signalr-typescript-webpack/sample/3.x/Startup.cs" id="snippet_UseStaticDefaultFiles" highlight="9-10":::
+   :::code language="csharp" source="signalr-typescript-webpack/samples/3.x/Startup.cs" id="snippet_UseStaticDefaultFiles" highlight="9-10":::
 
    The preceding code allows the server to locate and serve the *index.html* file.  The file is served whether the user enters its full URL or the root URL of the web app.
 
 1. At the end of `Startup.Configure`, map a */hub* route to the `ChatHub` hub. Replace the code that displays *Hello World!* with the following line: 
 
-   :::code language="csharp" source="signalr-typescript-webpack/sample/3.x/Startup.cs" id="snippet_UseSignalR" highlight="3":::
+   :::code language="csharp" source="signalr-typescript-webpack/samples/3.x/Startup.cs" id="snippet_UseSignalR" highlight="3":::
 
 1. In `Startup.ConfigureServices`, call <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddSignalR%2A>.
 
-   :::code language="csharp" source="signalr-typescript-webpack/sample/3.x/Startup.cs" id="snippet_AddSignalR":::
+   :::code language="csharp" source="signalr-typescript-webpack/samples/3.x/Startup.cs" id="snippet_AddSignalR":::
 
 1. Create a new directory named *Hubs* in the project root *SignalRWebPack/* to store the SignalR hub.
 
 1. Create hub *Hubs/ChatHub.cs* with the following code:
 
-    :::code language="csharp" source="signalr-typescript-webpack/sample/3.x/snippets/ChatHub.cs" id="snippet_ChatHubStubClass":::
+    :::code language="csharp" source="signalr-typescript-webpack/samples_snapshot/3.x/ChatHub.cs":::
 
 1. Add the following `using` statement at the top of the *Startup.cs* file to resolve the `ChatHub` reference:
 
-    :::code language="csharp" source="signalr-typescript-webpack/sample/3.x/Startup.cs" id="snippet_HubsNamespace":::
+    :::code language="csharp" source="signalr-typescript-webpack/samples/3.x/Startup.cs" id="snippet_HubsNamespace":::
 
 ## Enable client and server communication
 
@@ -496,7 +496,7 @@ The app currently displays a basic form to send messages, but isn't yet function
 
 1. Add the highlighted code to the *src/index.ts* file:
 
-    :::code language="typescript" source="signalr-typescript-webpack/sample/3.x/snippets/index2.ts" id="snippet_IndexTsPhase2File" highlight="2,9-23":::
+    :::code language="typescript" source="signalr-typescript-webpack/samples_snapshot/3.x/index2.ts" highlight="2,9-23":::
 
     The preceding code supports receiving messages from the server. The `HubConnectionBuilder` class creates a new builder for configuring the server connection. The `withUrl` function configures the hub URL.
 
@@ -504,13 +504,13 @@ The app currently displays a basic form to send messages, but isn't yet function
 
 1. Now that the client can receive a message, configure it to send messages. Add the highlighted code to the *src/index.ts* file:
 
-    :::code language="typescript" source="signalr-typescript-webpack/sample/3.x/src/index.ts" highlight="34-35":::
+    :::code language="typescript" source="signalr-typescript-webpack/samples/3.x/src/index.ts" highlight="34-35":::
 
     Sending a message through the WebSockets connection requires calling the `send` method. The method's first parameter is the message name. The message data inhabits the other parameters. In this example, a message identified as `newMessage` is sent to the server. The message consists of the username and the user input from a text box. If the send works, the text box value is cleared.
 
 1. Add the `NewMessage` method to the `ChatHub` class:
 
-    :::code language="csharp" source="signalr-typescript-webpack/sample/3.x/Hubs/ChatHub.cs" highlight="8-11":::
+    :::code language="csharp" source="signalr-typescript-webpack/samples/3.x/Hubs/ChatHub.cs" highlight="8-11":::
 
     The preceding code broadcasts received messages to all connected users once the server receives them. It's unnecessary to have a generic `on` method to receive all the messages. A method named after the message name suffices.
 
@@ -638,7 +638,7 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
 1. Add the highlighted property to the *package.json* file:
 
-    :::code language="json" source="signalr-typescript-webpack/sample/2.x/snippets/package1.json" highlight="4":::
+    :::code language="json" source="signalr-typescript-webpack/samples_snapshot/2.x/package1.json" highlight="4":::
 
     Setting the `private` property to `true` prevents package installation warnings in the next step.
 
@@ -673,7 +673,7 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
 1. Create a file named *webpack.config.js* in the project root, with the following code:
 
-    :::code language="javascript" source="signalr-typescript-webpack/sample/2.x/webpack.config.js":::
+    :::code language="javascript" source="signalr-typescript-webpack/samples/2.x/webpack.config.js":::
 
     The preceding file configures the Webpack compilation. Some configuration details to note:
 
@@ -684,7 +684,7 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
 1. Create *src/index.html* with the following markup.
 
-    :::code language="html" source="signalr-typescript-webpack/sample/2.x/src/index.html":::
+    :::code language="html" source="signalr-typescript-webpack/samples/2.x/src/index.html":::
 
     The preceding HTML defines the homepage's boilerplate markup.
 
@@ -692,19 +692,19 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
 1. Create *src/css/main.css* with the following markup:
 
-    :::code language="css" source="signalr-typescript-webpack/sample/2.x/src/css/main.css":::
+    :::code language="css" source="signalr-typescript-webpack/samples/2.x/src/css/main.css":::
 
     The preceding *main.css* file styles the app.
 
 1. Create *src/tsconfig.json* with the following JSON:
 
-    :::code language="json" source="signalr-typescript-webpack/sample/2.x/src/tsconfig.json":::
+    :::code language="json" source="signalr-typescript-webpack/samples/2.x/src/tsconfig.json":::
 
     The preceding code configures the TypeScript compiler to produce [ECMAScript](https://wikipedia.org/wiki/ECMAScript) 5-compatible JavaScript.
 
 1. Create *src/index.ts* with the following code:
 
-    :::code language="typescript" source="signalr-typescript-webpack/sample/2.x/snippets/index1.ts" id="snippet_IndexTsPhase1File":::
+    :::code language="typescript" source="signalr-typescript-webpack/samples_snapshot/2.x/index1.ts":::
 
     The preceding TypeScript retrieves references to DOM elements and attaches two event handlers:
 
@@ -715,27 +715,27 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
 1. The code provided in the `Startup.Configure` method displays *Hello World!*. Replace the `app.Run` method call with calls to <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles(Microsoft.AspNetCore.Builder.IApplicationBuilder)> and <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles(Microsoft.AspNetCore.Builder.IApplicationBuilder)>.
 
-    :::code language="csharp" source="signalr-typescript-webpack/sample/2.x/Startup.cs" id="snippet_UseStaticDefaultFiles":::
+    :::code language="csharp" source="signalr-typescript-webpack/samples/2.x/Startup.cs" id="snippet_UseStaticDefaultFiles":::
 
     The preceding code allows the server to locate and serve the *index.html* file, whether the user enters its full URL or the root URL of the web app.
 
 1. Call <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddSignalR%2A> in `Startup.ConfigureServices`. It adds the SignalR services to the project.
 
-    :::code language="csharp" source="signalr-typescript-webpack/sample/2.x/Startup.cs" id="snippet_AddSignalR":::
+    :::code language="csharp" source="signalr-typescript-webpack/samples/2.x/Startup.cs" id="snippet_AddSignalR":::
 
 1. Map a */hub* route to the `ChatHub` hub. Add the following lines at the end of `Startup.Configure`:
 
-    :::code language="csharp" source="signalr-typescript-webpack/sample/2.x/Startup.cs" id="snippet_UseSignalR":::
+    :::code language="csharp" source="signalr-typescript-webpack/samples/2.x/Startup.cs" id="snippet_UseSignalR":::
 
 1. Create a new directory, called *Hubs*, in the project root. Its purpose is to store the SignalR hub, which is created in the next step.
 
 1. Create hub *Hubs/ChatHub.cs* with the following code:
 
-    :::code language="csharp" source="signalr-typescript-webpack/sample/2.x/snippets/ChatHub.cs" id="snippet_ChatHubStubClass":::
+    :::code language="csharp" source="signalr-typescript-webpack/samples_snapshot/2.x/ChatHub.cs":::
 
 1. Add the following code at the top of the *Startup.cs* file to resolve the `ChatHub` reference:
 
-    :::code language="csharp" source="signalr-typescript-webpack/sample/2.x/Startup.cs" id="snippet_HubsNamespace":::
+    :::code language="csharp" source="signalr-typescript-webpack/samples/2.x/Startup.cs" id="snippet_HubsNamespace":::
 
 ## Enable client and server communication
 
@@ -751,7 +751,7 @@ The app currently displays a simple form to send messages. Nothing happens when 
 
 1. Add the highlighted code to the *src/index.ts* file:
 
-    :::code language="typescript" source="signalr-typescript-webpack/sample/2.x/snippets/index2.ts" id="snippet_IndexTsPhase2File" highlight="2,9-23":::
+    :::code language="typescript" source="signalr-typescript-webpack/samples_snapshot/2.x/index2.ts" highlight="2,9-23":::
 
     The preceding code supports receiving messages from the server. The `HubConnectionBuilder` class creates a new builder for configuring the server connection. The `withUrl` function configures the hub URL.
 
@@ -759,13 +759,13 @@ The app currently displays a simple form to send messages. Nothing happens when 
 
 1. Now that the client can receive a message, configure it to send messages. Add the highlighted code to the *src/index.ts* file:
 
-    :::code language="typescript" source="signalr-typescript-webpack/sample/2.x/src/index.ts" highlight="34-35":::
+    :::code language="typescript" source="signalr-typescript-webpack/samples/2.x/src/index.ts" highlight="34-35":::
 
     Sending a message through the WebSockets connection requires calling the `send` method. The method's first parameter is the message name. The message data inhabits the other parameters. In this example, a message identified as `newMessage` is sent to the server. The message consists of the username and the user input from a text box. If the send works, the text box value is cleared.
 
 1. Add the `NewMessage` method to the `ChatHub` class:
 
-    :::code language="csharp" source="signalr-typescript-webpack/sample/2.x/Hubs/ChatHub.cs" highlight="8-11":::
+    :::code language="csharp" source="signalr-typescript-webpack/samples/2.x/Hubs/ChatHub.cs" highlight="8-11":::
 
     The preceding code broadcasts received messages to all connected users once the server receives them. It's unnecessary to have a generic `on` method to receive all the messages. A method named after the message name suffices.
 
