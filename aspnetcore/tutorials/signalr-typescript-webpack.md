@@ -30,14 +30,15 @@ In this tutorial, you learn how to:
 
 ## Prerequisites
 
+* [Node.js](https://nodejs.org/) with [npm](https://www.npmjs.com/)
+
+
 # [Visual Studio](#tab/visual-studio)
 
-* [Node.js](https://nodejs.org/) with [npm](https://www.npmjs.com/)
 [!INCLUDE[](~/includes/net-prereqs-vs-6.0.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* [Node.js](https://nodejs.org/) with [npm](https://www.npmjs.com/)
 [!INCLUDE[](~/includes/net-prereqs-vsc-6.0.md)]
 
 ---
@@ -304,18 +305,18 @@ In this tutorial, you learn how to:
 
 ## Prerequisites
 
-* [Node.js](https://nodejs.org/) with [npm](https://www.npmjs.com/)
-
 # [Visual Studio](#tab/visual-studio)
 
 * [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) with the **ASP.NET and web development** workload
 * [.NET Core SDK 3.0 or later](https://dotnet.microsoft.com/download/dotnet-core)
+* [Node.js](https://nodejs.org/) with [npm](https://www.npmjs.com/)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
 * [Visual Studio Code](https://code.visualstudio.com/download)
 * [.NET Core SDK 3.0 or later](https://dotnet.microsoft.com/download/dotnet-core)
 * [C# for Visual Studio Code version 1.17.1 or later](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)
+* [Node.js](https://nodejs.org/) with [npm](https://www.npmjs.com/)
 
 ---
 
