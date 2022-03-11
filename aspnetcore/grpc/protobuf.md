@@ -200,6 +200,9 @@ The `nanos` field represents values from `0.999_999_999` to `-0.999_999_999`. Fo
 > [!NOTE]
 > There are multiple other algorithms for encoding `decimal` values as byte strings, but this message is easier to understand than any of them. The values are not affected by big-endian or little-endian on different platforms.
 
+> [!WARNING]
+> This algorithm can't encode the full range of a `decimal`. It's limited to values in the range `9,223,372,036,854,775,808.999999999` to `9,223,372,036,854,775,807.999999999` and only with a precision of maximum 9&nbsp;decimals.
+
 Conversion between this type and the BCL `decimal` type might be implemented in C# like this:
 
 ```csharp
