@@ -198,10 +198,11 @@ message DecimalValue {
 The `nanos` field represents values from `0.999_999_999` to `-0.999_999_999`. For example, the `decimal` value `1.5m` would be represented as `{ units = 1, nanos = 500_000_000 }`. This is why the `nanos` field in this example uses the `sfixed32` type, which encodes more efficiently than `int32` for larger values. If the `units` field is negative, the `nanos` field should also be negative.
 
 > [!NOTE]
-> There are multiple other algorithms for encoding `decimal` values as byte strings. This algorithm:
+> Additional algorithms are available for encoding `decimal` values as byte strings. The Protobuf algorithm:
+> 
 > * Is easy to understand.
 > * Not affected by big-endian or little-endian on different platforms.
-> * Supports values in the range `9,223,372,036,854,775,808.999999999` to `9,223,372,036,854,775,807.999999999` and with a precision of maximum 9&nbsp;decimals. This isn't the full range of a `decimal`.
+> * Supports values in the range `9,223,372,036,854,775,808.999999999` to `9,223,372,036,854,775,807.999999999` and with a precision of maximum nine decimal places, which isn't the full range of a `decimal`.
 
 Conversion between this type and the BCL `decimal` type might be implemented in C# like this:
 
