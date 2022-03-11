@@ -198,7 +198,7 @@ message DecimalValue {
 The `nanos` field represents values from `0.999_999_999` to `-0.999_999_999`. For example, the `decimal` value `1.5m` would be represented as `{ units = 1, nanos = 500_000_000 }`. This is why the `nanos` field in this example uses the `sfixed32` type, which encodes more efficiently than `int32` for larger values. If the `units` field is negative, the `nanos` field should also be negative.
 
 > [!NOTE]
-> Additional algorithms are available for encoding `decimal` values as byte strings. The Protobuf algorithm:
+> Additional algorithms are available for encoding `decimal` values as byte strings. The algorithm used by `DecimalValue`:
 > 
 > * Is easy to understand.
 > * Isn't affected by big-endian or little-endian on different platforms.
