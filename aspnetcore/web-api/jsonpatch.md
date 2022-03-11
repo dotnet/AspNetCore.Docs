@@ -37,7 +37,7 @@ The `System.Text.Json`-based input formatter doesn't support JSON Patch. To add 
 * Install the [`Microsoft.AspNetCore.Mvc.NewtonsoftJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/) NuGet package.
 * Update `Program.cs`:
 
-  [!code-csharp[](jsonpatch/samples/6.x/api/Program.cs?name=snippet_both&highlight=5-8)]
+  [!code-csharp[](jsonpatch/samples/6.x/api/Program.cs?name=snippet_both&highlight=6-9)]
   [!code-csharp[](jsonpatch/samples/6.x/api/MyJPIF.cs)]
 
 The preceding code creates an instance of <xref:Microsoft.AspNetCore.Mvc.Formatters.NewtonsoftJsonPatchInputFormatter> and inserts it as the first entry in the <xref:Microsoft.AspNetCore.Mvc.MvcOptions.InputFormatters%2A?displayProperty=nameWithType> collection. This order of registration ensures that:
