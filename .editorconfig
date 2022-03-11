@@ -1,0 +1,23 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = crlf
+indent_size = 2
+indent_style = space
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.md]
+max_line_length = off
+trim_trailing_whitespace = false
+
+[*.cs]
+indent_size = 4
+dotnet_sort_system_directives_first = true
+
+[*.cshtml]
+indent_size = 4
+
+[*.razor]
+indent_size = 4
