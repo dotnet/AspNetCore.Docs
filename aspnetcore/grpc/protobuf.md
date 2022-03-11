@@ -202,7 +202,7 @@ The `nanos` field represents values from `0.999_999_999` to `-0.999_999_999`. Fo
 > 
 > * Is easy to understand.
 > * Isn't affected by big-endian or little-endian on different platforms.
-> * Supports values in the range `9,223,372,036,854,775,808.999999999` to `9,223,372,036,854,775,807.999999999` with a maximum precision of nine decimal places, which isn't the full range of a `decimal`.
+> * Supports decimal numbers ranging from positive `9,223,372,036,854,775,807.999999999` to negative `9,223,372,036,854,775,808.999999999` with a maximum precision of nine decimal places, which isn't the full range of a `decimal`.
 
 Conversion between this type and the BCL `decimal` type might be implemented in C# like this:
 
