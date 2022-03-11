@@ -15,35 +15,30 @@ By [Sébastien Sougnez](https://twitter.com/ssougnez) and [Scott Addie](https://
 
 :::moniker range=">= aspnetcore-6.0"
 
-<!-- This section needs to be updated to 6.0 -->
-
 This tutorial demonstrates using [Webpack](https://webpack.js.org/) in an ASP.NET Core SignalR web app to bundle and build a client written in [TypeScript](https://www.typescriptlang.org/). Webpack enables developers to bundle and build the client-side resources of a web app.
 
 In this tutorial, you learn how to:
 
 > [!div class="checklist"]
-> * Scaffold a starter ASP.NET Core SignalR app
+> * Create an ASP.NET Core SignalR app
 > * Configure the SignalR TypeScript client
 > * Configure a build pipeline using Webpack
 > * Configure the SignalR server
-> * Enable communication between client and server
+> * Enable communication between the client and the server
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/signalr-typescript-webpack/sample) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/signalr-typescript-webpack/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Prerequisites
 
 # [Visual Studio](#tab/visual-studio)
 
-* [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) with the **ASP.NET and web development** workload
-* [.NET Core SDK 3.0 or later](https://dotnet.microsoft.com/download/dotnet-core)
 * [Node.js](https://nodejs.org/) with [npm](https://www.npmjs.com/)
+[!INCLUDE[](~/includes/net-prereqs-vs-6.0.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* [Visual Studio Code](https://code.visualstudio.com/download)
-* [.NET Core SDK 3.0 or later](https://dotnet.microsoft.com/download/dotnet-core)
-* [C# for Visual Studio Code version 1.17.1 or later](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)
 * [Node.js](https://nodejs.org/) with [npm](https://www.npmjs.com/)
+[!INCLUDE[](~/includes/net-prereqs-vsc-6.0.md)]
 
 ---
 
@@ -51,39 +46,39 @@ In this tutorial, you learn how to:
 
 # [Visual Studio](#tab/visual-studio)
 
-Configure Visual Studio to look for npm in the *PATH* environment variable. By default, Visual Studio uses the version of npm found in its installation directory. Follow these instructions in Visual Studio:
+By default, Visual Studio uses the version of npm found in its installation directory. To configure Visual Studio to look for npm in the `PATH` environment variable:
 
 1. Launch Visual Studio. At the start window, select **Continue without code**.
 1. Navigate to **Tools** > **Options** > **Projects and Solutions** > **Web Package Management** > **External Web Tools**.
-1. Select the *$(PATH)* entry from the list. Select the up arrow to move the entry to the second position in the list, and select **OK**.
+1. Select the `$(PATH)` entry from the list. Select the up arrow to move the entry to the second position in the list, and select **OK**:
 
     :::image source="signalr-typescript-webpack/_static/signalr-configure-path-visual-studio.png" alt-text="Visual Studio Configuration":::
 
-Visual Studio configuration is complete.
+To create a new ASP.NET Core web app:
 
-1. Use the **File** > **New** > **Project** menu option and choose the **ASP.NET Core Web Application** template. Select **Next**.
-1. Name the project *SignalRWebPack*, and select **Create**.
-1. Select *.NET Core* from the target framework drop-down, and select *ASP.NET Core 3.1* from the framework selector drop-down. Select the **Empty** template, and select **Create**.
+1. Use the **File** > **New** > **Project** menu option and choose the **ASP.NET Core Empty** template. Select **Next**.
+1. Name the project `SignalRWebpack`, and select **Create**.
+1. Select `.NET 6.0 (Long-term support)` from the **Framework** drop-down. Select **Create**.
 
-Add the `Microsoft.TypeScript.MSBuild` package to the project:
+Add the [Microsoft.TypeScript.MSBuild](https://www.nuget.org/packages/Microsoft.TypeScript.MSBuild/) NuGet package to the project:
 
-1. In **Solution Explorer** (right pane), right-click the project node and select **Manage NuGet Packages**. In the **Browse** tab, search for `Microsoft.TypeScript.MSBuild`, and then click **Install** on the right to install the package.
+1. In **Solution Explorer**, right-click the project node and select **Manage NuGet Packages**. In the **Browse** tab, search for `Microsoft.TypeScript.MSBuild` and then select **Install** on the right to install the package.
 
 Visual Studio adds the NuGet package under the **Dependencies** node in **Solution Explorer**, enabling TypeScript compilation in the project.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Run the following command in the **Integrated Terminal**:
+Run the following commands in the **Integrated Terminal**:
 
 ```dotnetcli
-dotnet new web -o SignalRWebPack
-code -r SignalRWebPack
+dotnet new web -o SignalRWebpack
+code -r SignalRWebpack
 ```
 
-* The `dotnet new` command creates an empty ASP.NET Core web app in a *SignalRWebPack* directory.
-* The `code` command opens the *SignalRWebPack* folder in the current instance of Visual Studio Code.
+* The `dotnet new` command creates an empty ASP.NET Core web app in a *SignalRWebpack* directory.
+* The `code` command opens the *SignalRWebpack* directory in the current instance of Visual Studio Code.
 
-Run the following .NET Core CLI command in the **Integrated Terminal**:
+Run the following .NET CLI command in the **Integrated Terminal**:
 
 ```dotnetcli
 dotnet add package Microsoft.TypeScript.MSBuild
@@ -94,6 +89,8 @@ The preceding command adds the [Microsoft.TypeScript.MSBuild](https://www.nuget.
 ---
 
 ## Configure Webpack and TypeScript
+
+<!-- This section needs to be updated to 6.0 -->
 
 The following steps configure the conversion of TypeScript to JavaScript and the bundling of client-side resources.
 
@@ -194,7 +191,7 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
    :::code language="csharp" source="signalr-typescript-webpack/samples/3.x/Startup.cs" id="snippet_AddSignalR":::
 
-1. Create a new directory named *Hubs* in the project root *SignalRWebPack/* to store the SignalR hub.
+1. Create a new directory named *Hubs* in the project root *SignalRWebpack/* to store the SignalR hub.
 
 1. Create hub *Hubs/ChatHub.cs* with the following code:
 
@@ -247,7 +244,7 @@ Confirm that the app works with the following steps.
 
 # [Visual Studio](#tab/visual-studio)
 
-1. Run Webpack in *release* mode. Using the **Package Manager Console** window, run the following command in the project root. If you aren't in the project root, enter `cd SignalRWebPack` before entering the command.
+1. Run Webpack in *release* mode. Using the **Package Manager Console** window, run the following command in the project root. If you aren't in the project root, enter `cd SignalRWebpack` before entering the command.
 
     [!INCLUDE [npm-run-release](../includes/signalr-typescript-webpack/npm-run-release.md)]
 
@@ -303,7 +300,7 @@ In this tutorial, you learn how to:
 > * Configure the SignalR server
 > * Enable communication between client and server
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/signalr-typescript-webpack/sample) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/signalr-typescript-webpack/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Prerequisites
 
@@ -578,7 +575,7 @@ In this tutorial, you learn how to:
 > * Configure the SignalR server
 > * Enable communication between client and server
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/signalr-typescript-webpack/sample) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/signalr-typescript-webpack/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Prerequisites
 
