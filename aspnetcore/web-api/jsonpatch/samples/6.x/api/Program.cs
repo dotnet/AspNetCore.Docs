@@ -1,7 +1,7 @@
 #define BOTH // FIRST BOTH 
 #if NEVER
 #elif FIRST
-#region snippet1
+// <snippet1>
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers()
@@ -16,9 +16,9 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-#endregion
+// </snippet1>
 #elif BOTH
-#region snippet_both
+// <snippet_both>
 using JsonPatchSample;
 using Microsoft.AspNetCore.Mvc.Formatters;
 
@@ -38,6 +38,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-#endregion
+// </snippet_both>
 #endif
-
