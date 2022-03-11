@@ -4,6 +4,9 @@
     "blanks-around-lists": false,
     "blanks-around-fences": false,
     "blanks-around-headers": true,
+    "emphasis-style": {
+      "style": "asterisk"
+    },
     "fenced-code-language": true,
     "first-header-h1": false,
     "first-line-h1": false,
@@ -14,9 +17,6 @@
     },
     "hr-style": {
         "style": "---"
-    },
-    "emphasis-style": {
-      "style": "asterisk"
     },
     "line-length": false,
     "list-indent": true,
