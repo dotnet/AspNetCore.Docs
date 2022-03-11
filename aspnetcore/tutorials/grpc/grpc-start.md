@@ -188,6 +188,8 @@ dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 * Update the namespace inside the `greet.proto` file to the project's namespace:
 
   ```
+  syntax = "proto3";
+  
   option csharp_namespace = "GrpcGreeterClient";
   ```
 
