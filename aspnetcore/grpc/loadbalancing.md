@@ -236,7 +236,7 @@ public class FileResolverFactory : ResolverFactory
 In the preceding code:
 
 * `FileResolverFactory` implements `ResolverFactory`. It maps to the `file` scheme and creates `FileResolver` instances.
-* `FileResolver` implements `PollingResolver`, an abstract base type that makes it easy to implement a resolver with asynchronous logic by overriding `ResolveAsync`.
+* `FileResolver` implements `PollingResolver`. `PollingResolver` is an abstract base type that makes it easy to implement a resolver with asynchronous logic by overriding `ResolveAsync`.
 * In `ResolveAsync`:
   * The file URI is converted to a local path. For example, `file:///c:/addresses.json` becomes `c:\addresses.json`.
   * JSON is loaded from disk and converted into a collection of addresses.
