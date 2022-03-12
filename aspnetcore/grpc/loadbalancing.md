@@ -197,7 +197,7 @@ A resolver:
 * Can optionally provide a service configuration.
 
 ```csharp
-public class FileResolver : AsyncResolver
+public class FileResolver : PollingResolver
 {
     private readonly Uri _address;
     private readonly int _port;
@@ -236,7 +236,8 @@ public class FileResolverFactory : ResolverFactory
 In the preceding code:
 
 * `FileResolverFactory` implements `ResolverFactory`. It maps to the `file` scheme and creates `FileResolver` instances.
-* `FileResolver` implements `Resolver`. In `RefreshAsync`:
+* `FileResolver` implements `PollingResolver`, an abstract base type that makes it easy to implement a resolver with asynchronous logic by overriding `ResolveAsync`.
+* In `ResolveAsync`:
   * The file URI is converted to a local path. For example, `file:///c:/addresses.json` becomes `c:\addresses.json`.
   * JSON is loaded from disk and converted into a collection of addresses.
   * Listener is called with results to let the channel know that addresses are available.
