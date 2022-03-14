@@ -11,9 +11,9 @@ uid: blazor/fundamentals/handle-errors
 ---
 # Handle errors in ASP.NET Core Blazor apps
 
-:::moniker range=">= aspnetcore-6.0"
-
 This article describes how Blazor manages unhandled exceptions and how to develop apps that detect and handle errors.
+
+:::moniker range=">= aspnetcore-6.0"
 
 ## Detailed errors during development
 
@@ -486,8 +486,6 @@ Consider manual render tree builder logic on the same level of complexity and wi
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
-
-This article describes how Blazor manages unhandled exceptions and how to develop apps that detect and handle errors.
 
 ## Detailed errors during development for Blazor WebAssembly apps
 
@@ -980,8 +978,6 @@ Consider manual render tree builder logic on the same level of complexity and wi
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
-
-This article describes how Blazor manages unhandled exceptions and how to develop apps that detect and handle errors.
 
 ## Detailed errors during development for Blazor WebAssembly apps
 

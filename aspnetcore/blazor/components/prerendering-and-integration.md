@@ -12,6 +12,8 @@ zone_pivot_groups: blazor-hosting-models
 ---
 # Prerender and integrate ASP.NET Core Razor components
 
+This article explains Razor component integration scenarios for Blazor apps, including prerendering of Razor components on the server.
+
 :::moniker range=">= aspnetcore-6.0"
 
 :::zone pivot="webassembly"

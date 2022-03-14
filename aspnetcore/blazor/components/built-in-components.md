@@ -11,6 +11,8 @@ uid: blazor/components/built-in-components
 ---
 # ASP.NET Core built-in Razor components
 
+This article lists the Razor components that are built-into the Blazor framework.
+
 :::moniker range=">= aspnetcore-6.0"
 
 The following built-in Razor components are provided by the Blazor framework:

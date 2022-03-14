@@ -1,7 +1,7 @@
 ---
 title: ASP.NET Core Blazor cascading values and parameters
 author: guardrex
-description: Learn how to flow data from an ancestor component to descendent components.
+description: Learn how to flow data from an ancestor Razor component to descendent components.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
@@ -10,6 +10,8 @@ no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Cor
 uid: blazor/components/cascading-values-and-parameters
 ---
 # ASP.NET Core Blazor cascading values and parameters
+
+This article explains how to flow data from an ancestor Razor component to descendent components.
 
 :::moniker range=">= aspnetcore-6.0"
 

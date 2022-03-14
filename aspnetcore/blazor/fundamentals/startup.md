@@ -1,5 +1,5 @@
 ---
-title: ASP.NET Core Blazor Startup
+title: ASP.NET Core Blazor startup
 author: guardrex
 description: Learn how to configure Blazor startup.
 monikerRange: '>= aspnetcore-3.1'
@@ -9,7 +9,9 @@ ms.date: 11/09/2021
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/fundamentals/startup
 ---
-# ASP.NET Core Blazor Startup
+# ASP.NET Core Blazor startup
+
+This article explains how to configure Blazor startup.
 
 :::moniker range=">= aspnetcore-6.0"
 

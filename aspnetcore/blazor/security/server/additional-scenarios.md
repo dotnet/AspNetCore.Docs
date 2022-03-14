@@ -11,6 +11,8 @@ uid: blazor/security/server/additional-scenarios
 ---
 # ASP.NET Core Blazor Server additional security scenarios
 
+This article explains how to configure Blazor Server for additional security scenarios, including how to pass tokens to a Blazor Server app.
+
 :::moniker range=">= aspnetcore-6.0"
 
 ## Pass tokens to a Blazor Server app

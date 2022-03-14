@@ -12,9 +12,11 @@ zone_pivot_groups: blazor-hosting-models
 ---
 # ASP.NET Core Blazor globalization and localization
 
+Razor components can render globalized and localized content to users in different cultures and languages.
+
 :::moniker range=">= aspnetcore-6.0"
 
-Razor components can render globalized and localized content to users in different cultures and languages. For [globalization](/dotnet/standard/globalization-localization/globalization), Blazor provides number and date formatting. For [localization](/dotnet/standard/globalization-localization/localization), Blazor renders content using the [.NET Resources system](/dotnet/framework/resources/).
+For [globalization](/dotnet/standard/globalization-localization/globalization), Blazor provides number and date formatting. For [localization](/dotnet/standard/globalization-localization/localization), Blazor renders content using the [.NET Resources system](/dotnet/framework/resources/).
 
 A limited set of ASP.NET Core's localization features are supported:
 
@@ -896,7 +898,7 @@ To further understand how the Blazor framework processes localization, see the [
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-Razor components can render globalized and localized content to users in different cultures and languages. For [globalization](/dotnet/standard/globalization-localization/globalization), Blazor provides number and date formatting. For [localization](/dotnet/standard/globalization-localization/localization), Blazor renders content using the [.NET Resources system](/dotnet/framework/resources/).
+For [globalization](/dotnet/standard/globalization-localization/globalization), Blazor provides number and date formatting. For [localization](/dotnet/standard/globalization-localization/localization), Blazor renders content using the [.NET Resources system](/dotnet/framework/resources/).
 
 A limited set of ASP.NET Core's localization features are supported:
 
@@ -1768,7 +1770,7 @@ To further understand how the Blazor framework processes localization, see the [
 
 :::moniker range="< aspnetcore-5.0"
 
-Razor components can render globalized and localized content to users in different cultures and languages. For [globalization](/dotnet/standard/globalization-localization/globalization), Blazor provides number and date formatting. For [localization](/dotnet/standard/globalization-localization/localization), Blazor renders content using the [.NET Resources system](/dotnet/framework/resources/).
+For [globalization](/dotnet/standard/globalization-localization/globalization), Blazor provides number and date formatting. For [localization](/dotnet/standard/globalization-localization/localization), Blazor renders content using the [.NET Resources system](/dotnet/framework/resources/).
 
 A limited set of ASP.NET Core's localization features are supported:
 

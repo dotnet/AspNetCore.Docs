@@ -1,7 +1,7 @@
 ---
 title: Debug ASP.NET Core Blazor WebAssembly
 author: guardrex
-description: Learn how to debug Blazor apps.
+description: Learn how to debug Blazor WebAssembly with browser developer tools and integrated development environments (IDEs).
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
@@ -11,9 +11,11 @@ uid: blazor/debug
 ---
 # Debug ASP.NET Core Blazor WebAssembly
 
+This article describes how to debug Blazor WebAssembly with browser developer tools and integrated development environments (IDEs).
+
 :::moniker range=">= aspnetcore-6.0"
 
-Blazor WebAssembly apps can be debugged using the browser dev tools in Chromium-based browsers (Edge/Chrome). You can also debug your app using the following integrated development environments (IDEs):
+Blazor WebAssembly apps can be debugged using the browser developer tools in Chromium-based browsers (Edge/Chrome). You can also debug your app using the following IDEs:
 
 * Visual Studio
 * Visual Studio for Mac
@@ -380,7 +382,7 @@ The `{TIMEOUT}` placeholder in the preceding command is in milliseconds. For exa
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-Blazor WebAssembly apps can be debugged using the browser dev tools in Chromium-based browsers (Edge/Chrome). You can also debug your app using the following integrated development environments (IDEs):
+Blazor WebAssembly apps can be debugged using the browser developer tools in Chromium-based browsers (Edge/Chrome). You can also debug your app using the following IDEs:
 
 * Visual Studio
 * Visual Studio for Mac
@@ -795,7 +797,7 @@ The `{TIMEOUT}` placeholder in the preceding command is in milliseconds. For exa
 
 :::moniker range="< aspnetcore-5.0"
 
-Blazor WebAssembly apps can be debugged using the browser dev tools in Chromium-based browsers (Edge/Chrome). You can also debug your app using the following integrated development environments (IDEs):
+Blazor WebAssembly apps can be debugged using the browser developer tools in Chromium-based browsers (Edge/Chrome). You can also debug your app using the following IDEs:
 
 * Visual Studio
 * Visual Studio for Mac

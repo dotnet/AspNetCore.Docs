@@ -11,6 +11,8 @@ uid: blazor/components/templated-components
 ---
 # ASP.NET Core Blazor templated components
 
+This article explains how templated components can accept one or more UI templates as parameters, which can then be used as part of the component's rendering logic.
+
 :::moniker range=">= aspnetcore-6.0"
 
 Templated components are components that accept one or more UI templates as parameters, which can then be used as part of the component's rendering logic. Templated components allow you to author higher-level components that are more reusable than regular components. A couple of examples include:

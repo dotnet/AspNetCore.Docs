@@ -1,7 +1,7 @@
 ---
 title: ASP.NET Core Blazor CSS isolation
 author: guardrex
-description: Learn how CSS isolation allows you to scope CSS to your components, which can simplify your CSS and avoid collisions with other components or libraries.
+description: Learn how CSS isolation scopes CSS to Razor components, which can simplify CSS and avoid collisions with other components or libraries.
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
@@ -12,6 +12,8 @@ uid: blazor/components/css-isolation
 # ASP.NET Core Blazor CSS isolation
 
 By [Dave Brock](https://twitter.com/daveabrock)
+
+This article explains how CSS isolation scopes CSS to Razor components, which can simplify CSS and avoid collisions with other components or libraries.
 
 :::moniker range=">= aspnetcore-6.0"
 

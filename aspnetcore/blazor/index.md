@@ -1,5 +1,5 @@
 ---
-title: ASP.NET Core Blazor overview
+title: ASP.NET Core Blazor
 author: guardrex
 description: Explore ASP.NET Core Blazor, a way to build interactive client-side web UI with .NET in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-3.1'
@@ -9,7 +9,7 @@ ms.date: 02/10/2022
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/index
 ---
-# ASP.NET Core Blazor overview
+# ASP.NET Core Blazor
 
 *Welcome to Blazor!*
 

@@ -13,6 +13,8 @@ uid: blazor/fundamentals/dependency-injection
 
 By [Rainer Stropek](https://www.timecockpit.com) and [Mike Rousos](https://github.com/mjrousos)
 
+This article explains how Blazor apps can inject services into components.
+
 :::moniker range=">= aspnetcore-6.0"
 
 [Dependency injection (DI)](xref:fundamentals/dependency-injection) is a technique for accessing services configured in a central location:

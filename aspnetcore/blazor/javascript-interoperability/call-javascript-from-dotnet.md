@@ -11,9 +11,11 @@ uid: blazor/js-interop/call-javascript-from-dotnet
 ---
 # Call JavaScript functions from .NET methods in ASP.NET Core Blazor
 
+This article explains how to invoke JavaScript (JS) functions from .NET.
+
 :::moniker range=">= aspnetcore-6.0"
 
-This article covers invoking JavaScript (JS) functions from .NET. For information on how to call .NET methods from JS, see <xref:blazor/js-interop/call-dotnet-from-javascript>.
+For information on how to call .NET methods from JS, see <xref:blazor/js-interop/call-dotnet-from-javascript>.
 
 To call into JS from .NET, inject the <xref:Microsoft.JSInterop.IJSRuntime> abstraction and call one of the following methods:
 
@@ -727,7 +729,7 @@ In the following example, the `nonFunction` JS function doesn't exist. When the 
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-This article covers invoking JavaScript (JS) functions from .NET. For information on how to call .NET methods from JS, see <xref:blazor/js-interop/call-dotnet-from-javascript>.
+For information on how to call .NET methods from JS, see <xref:blazor/js-interop/call-dotnet-from-javascript>.
 
 To call into JS from .NET, inject the <xref:Microsoft.JSInterop.IJSRuntime> abstraction and call one of the following methods:
 
@@ -1341,7 +1343,7 @@ In the following example, the `nonFunction` JS function doesn't exist. When the 
 
 :::moniker range="< aspnetcore-5.0"
 
-This article covers invoking JavaScript (JS) functions from .NET. For information on how to call .NET methods from JS, see <xref:blazor/js-interop/call-dotnet-from-javascript>.
+For information on how to call .NET methods from JS, see <xref:blazor/js-interop/call-dotnet-from-javascript>.
 
 To call into JS from .NET, inject the <xref:Microsoft.JSInterop.IJSRuntime> abstraction and call one of the following methods:
 

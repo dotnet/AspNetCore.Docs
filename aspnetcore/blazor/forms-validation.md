@@ -11,9 +11,9 @@ uid: blazor/forms-validation
 ---
 # ASP.NET Core Blazor forms and validation
 
-:::moniker range=">= aspnetcore-6.0"
+The Blazor framework supports forms and validation using the <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component bound to a model that uses [data annotations](xref:mvc/models/validation).
 
-The Blazor framework supports webforms with validation using the <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component bound to a model that uses [data annotations](xref:mvc/models/validation).
+:::moniker range=">= aspnetcore-6.0"
 
 To demonstrate how an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component works with [data annotations](xref:mvc/models/validation) validation, consider the following `ExampleModel` type. The `Name` property is marked required with the <xref:System.ComponentModel.DataAnnotations.RequiredAttribute> and specifies a <xref:System.ComponentModel.DataAnnotations.StringLengthAttribute> maximum string length limit and error message.
 
@@ -1066,8 +1066,6 @@ private ExampleModel exampleModel = new();
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-The Blazor framework supports webforms with validation using the <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component bound to a model that uses [data annotations](xref:mvc/models/validation).
-
 To demonstrate how an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component works with [data annotations](xref:mvc/models/validation) validation, consider the following `ExampleModel` type. The `Name` property is marked required with the <xref:System.ComponentModel.DataAnnotations.RequiredAttribute> and specifies a <xref:System.ComponentModel.DataAnnotations.StringLengthAttribute> maximum string length limit and error message.
 
 `ExampleModel.cs`:
@@ -2047,8 +2045,6 @@ private ExampleModel exampleModel = new();
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
-
-The Blazor framework supports webforms with validation using the <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component bound to a model that uses [data annotations](xref:mvc/models/validation).
 
 To demonstrate how an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component works with [data annotations](xref:mvc/models/validation) validation, consider the following `ExampleModel` type. The `Name` property is marked required with the <xref:System.ComponentModel.DataAnnotations.RequiredAttribute> and specifies a <xref:System.ComponentModel.DataAnnotations.StringLengthAttribute> maximum string length limit and error message.
 

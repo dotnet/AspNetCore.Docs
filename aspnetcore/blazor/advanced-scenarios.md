@@ -1,7 +1,7 @@
 ---
-title: ASP.NET Core Blazor advanced scenarios
+title: ASP.NET Core Blazor advanced scenarios, including how to build render trees
 author: guardrex
-description: Learn about advanced scenarios in Blazor, including how to incorporate manual RenderTreeBuilder logic into an app.
+description: Learn about advanced scenarios in Blazor, including how to incorporate manual logic for building Blazor render trees (RenderTreeBuilder).
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
@@ -9,11 +9,13 @@ ms.date: 11/09/2021
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/advanced-scenarios
 ---
-# ASP.NET Core Blazor advanced scenarios
+# ASP.NET Core Blazor advanced scenarios, including how to build render trees
+
+This article describes advanced scenarios in Blazor, including how to incorporate manual logic for building Blazor render trees (<xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder>).
 
 :::moniker range=">= aspnetcore-6.0"
 
-## Manual RenderTreeBuilder logic
+## Manually build a render tree (`RenderTreeBuilder`)
 
 <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> provides methods for manipulating components and elements, including building components manually in C# code.
 
@@ -131,7 +133,7 @@ This is a trivial example. In more realistic cases with complex and deeply neste
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-## Manual RenderTreeBuilder logic
+## Manually build a render tree (`RenderTreeBuilder`)
 
 <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> provides methods for manipulating components and elements, including building components manually in C# code.
 
@@ -249,7 +251,7 @@ This is a trivial example. In more realistic cases with complex and deeply neste
 
 :::moniker range="< aspnetcore-5.0"
 
-## Manual RenderTreeBuilder logic
+## Manually build a render tree (`RenderTreeBuilder`)
 
 <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> provides methods for manipulating components and elements, including building components manually in C# code.
 

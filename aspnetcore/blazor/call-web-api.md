@@ -1,7 +1,7 @@
 ---
-title: Call a web API in an ASP.NET Core Blazor app
+title: Call a web API from an ASP.NET Core Blazor app
 author: guardrex
-description: Learn how to call a web API in Blazor apps.
+description: Learn how to call a web API from Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
@@ -11,6 +11,8 @@ uid: blazor/call-web-api
 zone_pivot_groups: blazor-hosting-models
 ---
 # Call a web API from ASP.NET Core Blazor
+
+This article describes how to call a web API from a Blazor app.
 
 :::moniker range=">= aspnetcore-6.0"
 
