@@ -65,9 +65,6 @@
         "**/getting-started/**/**.md": "tutorial",
         "**/tutorials/**/**.md": "tutorial"
       },
-      "no-loc": {
-        "**/migration/no-loc-test.md": "[ computer, cat ]"
-      },
       "recommendations": {
         "**/tutorials/**/**.md": "false"
       }
