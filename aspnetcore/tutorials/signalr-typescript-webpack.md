@@ -26,7 +26,7 @@ In this tutorial, you learn how to:
 > * Configure the SignalR TypeScript client
 > * Enable communication between the client and the server
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/signalr-typescript-webpack/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/serpent5-24650/tutorials/signalr-typescript-webpack/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Prerequisites
 
@@ -165,7 +165,7 @@ In this section, you create a [Node.js](https://nodejs.org/) project to convert 
     * The `output` property overrides the default value of `dist`. The bundle is instead emitted in the `wwwroot` directory.
     * The `resolve.extensions` array includes `.js` to import the SignalR client JavaScript.
 
-1. Copy the `src` directory from the [sample project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/~/../AspNetCore.Docs.Samples/tutorials/signalr-typescript-webpack/samples/6.x/SignalRWebpack/src/) into the project root. The `src` directory contains the following files:
+1. Copy the `src` directory from the [sample project](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/serpent5-24650/tutorials/signalr-typescript-webpack/samples/6.x/SignalRWebpack/src/) into the project root. The `src` directory contains the following files:
 
    * `index.html`, which defines the homepage's boilerplate markup:
 
