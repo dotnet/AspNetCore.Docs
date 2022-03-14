@@ -5,7 +5,7 @@ description: Learn about Kestrel, the cross-platform web server for ASP.NET Core
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/04/2020
+ms.date: 03/14/2022
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/servers/kestrel
 ---
@@ -153,7 +153,12 @@ Starting with .NET Core 3.0, HTTP/2 is enabled by default. For more information 
 
 ## When to use Kestrel with a reverse proxy
 
-Kestrel can be used by itself or with a *reverse proxy server*, such as [Internet Information Services (IIS)](https://www.iis.net/), [Nginx](https://nginx.org), or [Apache](https://httpd.apache.org/). A reverse proxy server receives HTTP requests from the network and forwards them to Kestrel.
+Kestrel can be used by itself or with a *reverse proxy server*. A reverse proxy server receives HTTP requests from the network and forwards them to Kestrel. Examples of a reverse proxy server include:
+
+* [Internet Information Services (IIS)](https://www.iis.net/)
+* [Nginx](https://nginx.org)
+* [Apache](https://httpd.apache.org/)
+* [YARP: Yet Another Reverse Proxy](https://microsoft.github.io/reverse-proxy/)
 
 Kestrel used as an edge (Internet-facing) web server:
 
