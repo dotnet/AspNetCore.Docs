@@ -12,7 +12,7 @@ uid: security/data-protection/introduction
 
 The ASP.NET Core data protection provides a cryptographic API to protect data, including key management and rotation.
 
-Web applications often need to store security-sensitive data. Windows provides a data protection API, [DPAPI](/dotnet/standard/security/how-to-use-data-protection for desktop applications), but Windows DPAPI isn't intended for use in web applications.
+Web applications often need to store security-sensitive data. Windows provides a data protection API, [DPAPI](/dotnet/standard/security/how-to-use-data-protection), but Windows DPAPI isn't intended for use in web applications.
 
 The ASP.NET Core data protection stack is designed to serve as the long-term replacement for the &lt;machineKey&gt; element in ASP.NET 1.x - 4.x. It was designed to address many of the shortcomings of the old cryptographic stack while providing an out-of-the-box solution for the majority of use cases modern applications are likely to encounter.
 
