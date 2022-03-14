@@ -94,11 +94,11 @@ In this section, you configure the ASP.NET Core web app to send and receive Sign
 
 1. In `Program.cs`, call <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddSignalR%2A>:
 
-   :::code language="csharp" source="signalr-typescript-webpack/samples/3.x/Startup.cs" id="snippet_AddSignalR":::
+   :::code language="csharp" source="~/../AspNetCore.Docs.Samples/tutorials/signalr-typescript-webpack/samples/6.x/SignalRWebpack/Program.cs" id="snippet_AddSignalR":::
 
 1. Again, in `Program.cs`, call <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles%2A> and <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>:
 
-   :::code language="csharp" source="signalr-typescript-webpack/samples/6.x/SignalRWebpack/Program.cs" id="snippet_FilesMiddleware":::
+   :::code language="csharp" source="~/../AspNetCore.Docs.Samples/tutorials/signalr-typescript-webpack/samples/6.x/SignalRWebpack/Program.cs" id="snippet_FilesMiddleware":::
 
    The preceding code allows the server to locate and serve the `index.html` file. The file is served whether the user enters its full URL or the root URL of the web app.
 
@@ -106,7 +106,7 @@ In this section, you configure the ASP.NET Core web app to send and receive Sign
 
 1. Create a new file, `Hubs/ChatHub.cs`, with the following code:
 
-    :::code language="csharp" source="signalr-typescript-webpack/samples/6.x/SignalRWebpack/Hubs/ChatHub.cs":::
+    :::code language="csharp" source="~/../AspNetCore.Docs.Samples/tutorials/signalr-typescript-webpack/samples/6.x/SignalRWebpack/Hubs/ChatHub.cs":::
 
     The preceding code broadcasts received messages to all connected users once the server receives them. It's unnecessary to have a generic `on` method to receive all the messages. A method named after the message name is enough.
 
@@ -114,11 +114,11 @@ In this section, you configure the ASP.NET Core web app to send and receive Sign
 
 1. Add the following `using` statement at the top of `Program.cs` to resolve the `ChatHub` reference:
 
-    :::code language="csharp" source="signalr-typescript-webpack/samples/6.x/SignalRWebpack/Program.cs" id="snippet_HubsNamespace":::
+    :::code language="csharp" source="~/../AspNetCore.Docs.Samples/tutorials/signalr-typescript-webpack/samples/6.x/SignalRWebpack/Program.cs" id="snippet_HubsNamespace":::
 
 1. In `Program.cs`, map the `/hub` route to the `ChatHub` hub. Replace the code that displays `Hello World!` with the following code:
 
-   :::code language="csharp" source="signalr-typescript-webpack/samples/6.x/SignalRWebpack/Program.cs" id="snippet_MapHub":::
+   :::code language="csharp" source="~/../AspNetCore.Docs.Samples/tutorials/signalr-typescript-webpack/samples/6.x/SignalRWebpack/Program.cs" id="snippet_MapHub":::
 
 ## Configure the client
 
@@ -148,7 +148,7 @@ In this section, you create a [Node.js](https://nodejs.org/) project to convert 
 
 1. Replace the `scripts` property of `package.json` file with the following code:
 
-    :::code language="json" source="signalr-typescript-webpack/samples/6.x/SignalRWebpack/package.json" range="7-11":::
+    :::code language="json" source="~/../AspNetCore.Docs.Samples/tutorials/signalr-typescript-webpack/samples/6.x/SignalRWebpack/package.json" range="7-11":::
 
     The following scripts are defined:
 
@@ -158,30 +158,30 @@ In this section, you create a [Node.js](https://nodejs.org/) project to convert 
 
 1. Create a file named `webpack.config.js` in the project root, with the following code:
 
-    :::code language="JavaScript" source="signalr-typescript-webpack/samples/6.x/SignalRWebpack/webpack.config.js":::
+    :::code language="JavaScript" source="~/../AspNetCore.Docs.Samples/tutorials/signalr-typescript-webpack/samples/6.x/SignalRWebpack/webpack.config.js":::
 
     The preceding file configures the Webpack compilation process:
 
     * The `output` property overrides the default value of `dist`. The bundle is instead emitted in the `wwwroot` directory.
     * The `resolve.extensions` array includes `.js` to import the SignalR client JavaScript.
 
-1. Copy the `src` directory from the [sample project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/signalr-typescript-webpack/samples/6.x/SignalRWebpack/src/) into the project root. The `src` directory contains the following files:
+1. Copy the `src` directory from the [sample project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/~/../AspNetCore.Docs.Samples/tutorials/signalr-typescript-webpack/samples/6.x/SignalRWebpack/src/) into the project root. The `src` directory contains the following files:
 
    * `index.html`, which defines the homepage's boilerplate markup:
 
-      :::code language="html" source="signalr-typescript-webpack/samples/6.x/SignalRWebpack/src/index.html":::
+      :::code language="html" source="~/../AspNetCore.Docs.Samples/tutorials/signalr-typescript-webpack/samples/6.x/SignalRWebpack/src/index.html":::
 
    * `css/main.css`, which provides CSS styles for the homepage:
 
-      :::code language="css" source="signalr-typescript-webpack/samples/6.x/SignalRWebpack/src/css/main.css":::
+      :::code language="css" source="~/../AspNetCore.Docs.Samples/tutorials/signalr-typescript-webpack/samples/6.x/SignalRWebpack/src/css/main.css":::
 
    * `tsconfig.json`, which configures the TypeScript compiler to produce [ECMAScript](https://wikipedia.org/wiki/ECMAScript) 5-compatible JavaScript:
 
-      :::code language="json" source="signalr-typescript-webpack/samples/6.x/SignalRWebpack/src/tsconfig.json":::
+      :::code language="json" source="~/../AspNetCore.Docs.Samples/tutorials/signalr-typescript-webpack/samples/6.x/SignalRWebpack/src/tsconfig.json":::
 
    * `index.ts`:
 
-      :::code language="TypeScript" source="signalr-typescript-webpack/samples/6.x/SignalRWebpack/src/index.ts":::
+      :::code language="TypeScript" source="~/../AspNetCore.Docs.Samples/tutorials/signalr-typescript-webpack/samples/6.x/SignalRWebpack/src/index.ts":::
 
       The preceding code retrieves references to DOM elements and attaches two event handlers:
 

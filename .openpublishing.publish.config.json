@@ -54,6 +54,12 @@
       "url": "https://github.com/dotnet/blazor-samples",
       "branch": "main",
       "branch_mapping": {}
+    },
+    {
+      "path_to_root": "AspNetCore.Docs.Samples",
+      "url": "https://github.com/dotnet/AspNetCore.Docs.Samples",
+      "branch": "serpent5-24650",
+      "branch_mapping": {}
     }
   ],
   "branch_target_mapping": {
