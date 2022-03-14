@@ -11,7 +11,7 @@ uid: blazor/file-downloads
 ---
 # ASP.NET Core Blazor file downloads
 
-This article covers downloading files in Blazor Server and Blazor WebAssembly apps.
+This article explains how to download files in Blazor Server and Blazor WebAssembly apps.
 
 Files can be downloaded from the app's own static assets or from any other location. When downloading files, [Cross-Origin Resource Sharing (CORS)](#cross-origin-resource-sharing-cors) considerations apply.
 
