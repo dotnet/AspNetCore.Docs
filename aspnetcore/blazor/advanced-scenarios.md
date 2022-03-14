@@ -1,5 +1,5 @@
 ---
-title: ASP.NET Core Blazor advanced scenarios, including how to build render trees
+title: ASP.NET Core Blazor advanced scenarios and how to build render trees
 author: guardrex
 description: Learn about advanced scenarios in Blazor, including how to incorporate manual logic for building Blazor render trees (RenderTreeBuilder).
 monikerRange: '>= aspnetcore-3.1'
@@ -9,7 +9,7 @@ ms.date: 11/09/2021
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/advanced-scenarios
 ---
-# ASP.NET Core Blazor advanced scenarios, including how to build render trees
+# ASP.NET Core Blazor advanced scenarios and how to build render trees
 
 This article describes advanced scenarios in Blazor, including how to incorporate manual logic for building Blazor render trees (<xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder>).
 
