@@ -92,21 +92,15 @@ The preceding command adds the [Microsoft.TypeScript.MSBuild](https://www.nuget.
 
 In this section, you configure the ASP.NET Core web app to send and receive SignalR messages.
 
-1. In `Program.cs`:
+1. In `Program.cs`, call <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddSignalR%2A>:
 
-   1. Call <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddSignalR%2A>.
+   :::code language="csharp" source="signalr-typescript-webpack/samples/3.x/Startup.cs" id="snippet_AddSignalR":::
 
-      :::code language="csharp" source="signalr-typescript-webpack/samples/3.x/Startup.cs" id="snippet_AddSignalR":::
+1. Again, in `Program.cs`, Call <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles%2A> and <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>:
 
-   1. Call <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles%2A> and <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>:
+   :::code language="csharp" source="signalr-typescript-webpack/samples/6.x/SignalRWebpack/Program.cs" id="snippet_FilesMiddleware":::
 
-      :::code language="csharp" source="signalr-typescript-webpack/samples/6.x/SignalRWebpack/Program.cs" id="snippet_FilesMiddleware":::
-
-      The preceding code allows the server to locate and serve the `index.html` file. The file is served whether the user enters its full URL or the root URL of the web app.
-
-   1. Map a `/hub` route to the `ChatHub` hub. Replace the code that displays `Hello World!` with the following code:
-
-      :::code language="csharp" source="signalr-typescript-webpack/samples/6.x/SignalRWebpack/Program.cs" id="snippet_MapHub":::
+   The preceding code allows the server to locate and serve the `index.html` file. The file is served whether the user enters its full URL or the root URL of the web app.
 
 1. Create a new directory named `Hubs` in the project root, `SignalRWebpack/`, for the SignalR hub class.
 
@@ -121,6 +115,10 @@ In this section, you configure the ASP.NET Core web app to send and receive Sign
 1. Add the following `using` statement at the top of `Program.cs` to resolve the `ChatHub` reference:
 
     :::code language="csharp" source="signalr-typescript-webpack/samples/6.x/SignalRWebpack/Program.cs" id="snippet_HubsNamespace":::
+
+1. In `Program.cs`, map the `/hub` route to the `ChatHub` hub. Replace the code that displays `Hello World!` with the following code:
+
+   :::code language="csharp" source="signalr-typescript-webpack/samples/6.x/SignalRWebpack/Program.cs" id="snippet_MapHub":::
 
 ## Configure the client
 
