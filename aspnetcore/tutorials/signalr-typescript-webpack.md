@@ -132,7 +132,7 @@ In this section, you create a [Node.js](https://nodejs.org/) project to convert 
 
 1. Add the highlighted property to the `package.json` file and save the file changes:
 
-    :::code language="json" source="signalr-typescript-webpack/samples_snapshot/6.x/package.json" highlight="4":::
+    :::code language="json" source="~/../AspNetCore.Docs.Samples/tutorials/signalr-typescript-webpack/samples_snapshot/6.x/package.json" highlight="4":::
 
     Setting the `private` property to `true` prevents package installation warnings in the next step.
 
