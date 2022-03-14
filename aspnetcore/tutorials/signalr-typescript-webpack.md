@@ -96,7 +96,7 @@ In this section, you configure the ASP.NET Core web app to send and receive Sign
 
    :::code language="csharp" source="signalr-typescript-webpack/samples/3.x/Startup.cs" id="snippet_AddSignalR":::
 
-1. Again, in `Program.cs`, Call <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles%2A> and <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>:
+1. Again, in `Program.cs`, call <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles%2A> and <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>:
 
    :::code language="csharp" source="signalr-typescript-webpack/samples/6.x/SignalRWebpack/Program.cs" id="snippet_FilesMiddleware":::
 
@@ -169,19 +169,19 @@ In this section, you create a [Node.js](https://nodejs.org/) project to convert 
 
    * `index.html`, which defines the homepage's boilerplate markup:
 
-      :::code language="JavaScript" source="signalr-typescript-webpack/samples/6.x/SignalRWebpack/src/index.html":::
+      :::code language="html" source="signalr-typescript-webpack/samples/6.x/SignalRWebpack/src/index.html":::
 
    * `css/main.css`, which provides CSS styles for the homepage:
 
-      :::code language="JavaScript" source="signalr-typescript-webpack/samples/6.x/SignalRWebpack/src/css/main.css":::
+      :::code language="css" source="signalr-typescript-webpack/samples/6.x/SignalRWebpack/src/css/main.css":::
 
    * `tsconfig.json`, which configures the TypeScript compiler to produce [ECMAScript](https://wikipedia.org/wiki/ECMAScript) 5-compatible JavaScript:
 
-      :::code language="JavaScript" source="signalr-typescript-webpack/samples/6.x/SignalRWebpack/src/tsconfig.json":::
+      :::code language="json" source="signalr-typescript-webpack/samples/6.x/SignalRWebpack/src/tsconfig.json":::
 
    * `index.ts`:
 
-      :::code language="JavaScript" source="signalr-typescript-webpack/samples/6.x/SignalRWebpack/src/index.ts":::
+      :::code language="TypeScript" source="signalr-typescript-webpack/samples/6.x/SignalRWebpack/src/index.ts":::
 
       The preceding code retrieves references to DOM elements and attaches two event handlers:
 
