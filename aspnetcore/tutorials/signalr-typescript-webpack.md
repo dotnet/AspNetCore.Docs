@@ -32,7 +32,6 @@ In this tutorial, you learn how to:
 
 * [Node.js](https://nodejs.org/) with [npm](https://www.npmjs.com/)
 
-
 # [Visual Studio](#tab/visual-studio)
 
 [!INCLUDE[](~/includes/net-prereqs-vs-6.0.md)]
@@ -103,14 +102,14 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
 1. Add the highlighted property to the *package.json* file and save the file changes:
 
-    :::code language="json" source="signalr-typescript-webpack/samples_snapshot/3.x/package1.json" highlight="4":::
+    :::code language="json" source="signalr-typescript-webpack/samples_snapshot/6.x/package.json" highlight="4":::
 
     Setting the `private` property to `true` prevents package installation warnings in the next step.
 
 1. Install the required npm packages. Run the following command from the project root:
 
     ```console
-    npm i -D -E clean-webpack-plugin@3.0.0 css-loader@3.4.2 html-webpack-plugin@3.2.0 mini-css-extract-plugin@0.9.0 ts-loader@6.2.1 typescript@3.7.5 webpack@4.41.5 webpack-cli@3.3.10
+    npm i -D -E clean-webpack-plugin css-loader html-webpack-plugin mini-css-extract-plugin ts-loader typescript webpack webpack-cli
     ```
 
     Some command details to note:
@@ -122,13 +121,7 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
 1. Replace the `scripts` property of the *package.json* file with the following code:
 
-    ```json
-    "scripts": {
-      "build": "webpack --mode=development --watch",
-      "release": "webpack --mode=production",
-      "publish": "npm run release && dotnet publish -c Release"
-    },
-    ```
+    :::code language="json" source="signalr-typescript-webpack/samples/6.x/SignalRWebpack/package.json" range="7-11":::
 
     Some explanation of the scripts:
 
@@ -138,7 +131,7 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
 1. Create a file named *webpack.config.js*, in the project root, with the following code:
 
-    :::code language="javascript" source="signalr-typescript-webpack/samples/3.x/webpack.config.js":::
+    :::code language="javascript" source="signalr-typescript-webpack/samples/6.x/SignalRWebpack/webpack.config.js":::
 
     The preceding file configures the Webpack compilation. Some configuration details to note:
 
