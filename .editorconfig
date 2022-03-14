@@ -6,7 +6,6 @@ end_of_line = crlf
 indent_size = 2
 indent_style = space
 insert_final_newline = true
-trim_trailing_whitespace = true
 
 [*.{cs,cshtml,html,razor}]
 indent_size = 4
@@ -16,4 +15,3 @@ dotnet_sort_system_directives_first = true
 
 [*.md]
 max_line_length = off
-trim_trailing_whitespace = false
