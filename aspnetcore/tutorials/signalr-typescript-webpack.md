@@ -5,7 +5,7 @@ description: This tutorial provides a walkthrough of bundling and building an AS
 monikerRange: ">= aspnetcore-2.1"
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 03/10/2022
+ms.date: 03/14/2022
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/signalr-typescript-webpack
 ---
@@ -94,13 +94,13 @@ The preceding command adds the [Microsoft.TypeScript.MSBuild](https://www.nuget.
 
 The following steps configure the conversion of TypeScript to JavaScript and the bundling of client-side resources.
 
-1. Run the following command in the project root to create a *package.json* file:
+1. Run the following command in the project root to create a `package.json` file:
 
     ```console
     npm init -y
     ```
 
-1. Add the highlighted property to the *package.json* file and save the file changes:
+1. Add the highlighted property to the `package.json` file and save the file changes:
 
     :::code language="json" source="signalr-typescript-webpack/samples_snapshot/6.x/package.json" highlight="4":::
 
@@ -112,31 +112,33 @@ The following steps configure the conversion of TypeScript to JavaScript and the
     npm i -D -E clean-webpack-plugin css-loader html-webpack-plugin mini-css-extract-plugin ts-loader typescript webpack webpack-cli
     ```
 
-    Some command details to note:
+    The `-E` option disables npm's default behavior of writing [semantic versioning](https://semver.org/) range operators to *package`json`. For example, `"webpack": "5.70.0"` is used instead of `"webpack": "^5.70.0"`. This option prevents unintended upgrades to newer package versions.
 
-    * A version number follows the `@` sign for each package name. npm installs those specific package versions.
-    * The `-E` option disables npm's default behavior of writing [semantic versioning](https://semver.org/) range operators to *package.json*. For example, `"webpack": "4.41.5"` is used instead of `"webpack": "^4.41.5"`. This option prevents unintended upgrades to newer package versions.
+    For more information, see the [npm-install](https://docs.npmjs.com/cli/install) documentation.
 
-    See the [npm-install](https://docs.npmjs.com/cli/install) docs for more detail.
-
-1. Replace the `scripts` property of the *package.json* file with the following code:
+1. Replace the `scripts` property of `package.json` file with the following code:
 
     :::code language="json" source="signalr-typescript-webpack/samples/6.x/SignalRWebpack/package.json" range="7-11":::
 
-    Some explanation of the scripts:
+    The following scripts are defined:
 
-    * `build`: Bundles the client-side resources in development mode and watches for file changes. The file watcher causes the bundle to regenerate each time a project file changes. The `mode` option disables production optimizations, such as tree shaking and minification. Only use `build` in development.
+    * `build`: Bundles the client-side resources in development mode and watches for file changes. The file watcher causes the bundle to regenerate each time a project file changes. The `mode` option disables production optimizations, such as tree shaking and minification. use `build` in development only.
     * `release`: Bundles the client-side resources in production mode.
-    * `publish`: Runs the `release` script to bundle the client-side resources in production mode. It calls the .NET Core CLI's [publish](/dotnet/core/tools/dotnet-publish) command to publish the app.
+    * `publish`: Runs the `release` script to bundle the client-side resources in production mode. It calls the .NET CLI's [publish](/dotnet/core/tools/dotnet-publish) command to publish the app.
 
-1. Create a file named *webpack.config.js*, in the project root, with the following code:
+1. Create a file named `webpack.config.js` in the project root, with the following code:
 
     :::code language="javascript" source="signalr-typescript-webpack/samples/6.x/SignalRWebpack/webpack.config.js":::
 
-    The preceding file configures the Webpack compilation. Some configuration details to note:
+    The preceding file configures the Webpack compilation. For example:
 
-    * The `output` property overrides the default value of *dist*. The bundle is instead emitted in the *wwwroot* directory.
-    * The `resolve.extensions` array includes *.js* to import the SignalR client JavaScript.
+    * The `output` property overrides the default value of `dist`. The bundle is instead emitted in the `wwwroot` directory.
+    * The `resolve.extensions` array includes `.js` to import the SignalR client JavaScript.
+
+1. Copy the `src` directory from the [sample project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/signalr-typescript-webpack/samples/6.x/SignalRWebpack/src/).
+
+<!-- Explain src directory contents here --->
+<!--
 
 1. Create a new *src* directory in the project root to store the project's client-side assets.
 
@@ -168,34 +170,39 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
     * `keyup`: This event fires when the user types in the `tbMessage`textbox. The `send` function is called when the user presses the **Enter** key.
     * `click`: This event fires when the user selects the **Send** button. The `send` function is called.
+-->
 
-## Configure the app
+## Configure the server
 
-1. In `Startup.Configure`, add calls to <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles(Microsoft.AspNetCore.Builder.IApplicationBuilder)> and <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles(Microsoft.AspNetCore.Builder.IApplicationBuilder)>.
+1. In `Program.cs`:
 
-   :::code language="csharp" source="signalr-typescript-webpack/samples/3.x/Startup.cs" id="snippet_UseStaticDefaultFiles" highlight="9-10":::
+   1. Call <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddSignalR%2A>.
 
-   The preceding code allows the server to locate and serve the *index.html* file.  The file is served whether the user enters its full URL or the root URL of the web app.
+      :::code language="csharp" source="signalr-typescript-webpack/samples/3.x/Startup.cs" id="snippet_AddSignalR":::
 
-1. At the end of `Startup.Configure`, map a */hub* route to the `ChatHub` hub. Replace the code that displays *Hello World!* with the following line: 
+   1. Call <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles%2A> and <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>:
 
-   :::code language="csharp" source="signalr-typescript-webpack/samples/3.x/Startup.cs" id="snippet_UseSignalR" highlight="3":::
+      :::code language="csharp" source="signalr-typescript-webpack/samples/6.x/SignalRWebpack/Program.cs" id="snippet_FilesMiddleware":::
 
-1. In `Startup.ConfigureServices`, call <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddSignalR%2A>.
+      The preceding code allows the server to locate and serve the `index.html` file. The file is served whether the user enters its full URL or the root URL of the web app.
 
-   :::code language="csharp" source="signalr-typescript-webpack/samples/3.x/Startup.cs" id="snippet_AddSignalR":::
+   1. At the end of `Program.cs`, map a `/hub` route to the `ChatHub` hub. Replace the code that displays `Hello World!` with the following code:
 
-1. Create a new directory named *Hubs* in the project root *SignalRWebpack/* to store the SignalR hub.
+      :::code language="csharp" source="signalr-typescript-webpack/samples/6.x/SignalRWebpack/Program.cs" id="snippet_MapHub":::
 
-1. Create hub *Hubs/ChatHub.cs* with the following code:
+1. Create a new directory named `Hubs` in the project root, `SignalRWebpack/`, for the SignalR hub class.
 
-    :::code language="csharp" source="signalr-typescript-webpack/samples_snapshot/3.x/ChatHub.cs":::
+1. Create a new file, `Hubs/ChatHub.cs`, with the following SignalR Hub code:
 
-1. Add the following `using` statement at the top of the *Startup.cs* file to resolve the `ChatHub` reference:
+    :::code language="csharp" source="signalr-typescript-webpack/samples_snapshot/6.x/ChatHub.cs":::
 
-    :::code language="csharp" source="signalr-typescript-webpack/samples/3.x/Startup.cs" id="snippet_HubsNamespace":::
+1. Add the following `using` statement at the top of `Program.cs` to resolve the `ChatHub` reference:
 
-## Enable client and server communication
+    :::code language="csharp" source="signalr-typescript-webpack/samples/6.x/SignalRWebpack/Program.cs" id="snippet_HubsNamespace":::
+
+## Configure the client
+
+<!-- Reframe for index.ts already being complete -->
 
 The app currently displays a basic form to send messages, but isn't yet functional. The server is listening to a specific route but does nothing with sent messages.
 
@@ -224,35 +231,35 @@ The app currently displays a basic form to send messages, but isn't yet function
 
     Sending a message through the WebSockets connection requires calling the `send` method. The method's first parameter is the message name. The message data inhabits the other parameters. In this example, a message identified as `newMessage` is sent to the server. The message consists of the username and the user input from a text box. If the send works, the text box value is cleared.
 
-1. Add the `NewMessage` method to the `ChatHub` class:
+1. Add a `NewMessage` method to the `ChatHub` class:
 
-    :::code language="csharp" source="signalr-typescript-webpack/samples/3.x/Hubs/ChatHub.cs" highlight="8-11":::
+    :::code language="csharp" source="signalr-typescript-webpack/samples/6.x/SignalRWebpack/Hubs/ChatHub.cs" highlight="7-8":::
 
-    The preceding code broadcasts received messages to all connected users once the server receives them. It's unnecessary to have a generic `on` method to receive all the messages. A method named after the message name suffices.
+    The preceding code broadcasts received messages to all connected users once the server receives them. It's unnecessary to have a generic `on` method to receive all the messages. A method named after the message name is enough.
 
     In this example, the TypeScript client sends a message identified as `newMessage`. The C# `NewMessage` method expects the data sent by the client. A call is made to <xref:Microsoft.AspNetCore.SignalR.ClientProxyExtensions.SendAsync%2A> on [Clients.All](xref:Microsoft.AspNetCore.SignalR.IHubClients%601.All). The received messages are sent to all clients connected to the hub.
 
 ## Test the app
 
-Confirm that the app works with the following steps.
+Confirm that the app works with the following steps:
 
 # [Visual Studio](#tab/visual-studio)
 
-1. Run Webpack in *release* mode. Using the **Package Manager Console** window, run the following command in the project root. If you aren't in the project root, enter `cd SignalRWebpack` before entering the command.
+1. Run Webpack in `release` mode. Using the **Package Manager Console** window, run the following command in the project root. If you aren't in the project root, enter `cd SignalRWebpack` before entering the command.
 
     [!INCLUDE [npm-run-release](../includes/signalr-typescript-webpack/npm-run-release.md)]
 
-1. Select **Debug** > **Start without debugging** to launch the app in a browser without attaching the debugger. The *wwwroot/index.html* file is served at `http://localhost:<port_number>`.
+1. Select **Debug** > **Start without debugging** to launch the app in a browser without attaching the debugger. The `wwwroot/index.html` file is served at `https://localhost:<port>`.
 
    If you get compile errors, try closing and reopening the solution. 
 
-1. Open another browser instance (any browser). Paste the URL in the address bar.
+1. Open another browser instance (any browser) and paste the URL in the address bar.
 
 1. Choose either browser, type something in the **Message** text box, and select the **Send** button. The unique user name and message are displayed on both pages instantly.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-1. Run Webpack in *release* mode by executing the following command in the project root:
+1. Run Webpack in `release` mode by executing the following command in the project root:
 
     [!INCLUDE [npm-run-release](../includes/signalr-typescript-webpack/npm-run-release.md)]
 
@@ -264,7 +271,7 @@ Confirm that the app works with the following steps.
 
     The web server starts the app and makes it available on localhost.
 
-1. Open a browser to `http://localhost:<port_number>`. The *wwwroot/index.html* file is served. Copy the URL from the address bar.
+1. Open a browser to `https://localhost:<port>`. The `wwwroot/index.html` file is served. Copy the URL from the address bar.
 
 1. Open another browser instance (any browser). Paste the URL in the address bar.
 
@@ -363,13 +370,13 @@ The preceding command adds the [Microsoft.TypeScript.MSBuild](https://www.nuget.
 
 The following steps configure the conversion of TypeScript to JavaScript and the bundling of client-side resources.
 
-1. Run the following command in the project root to create a *package.json* file:
+1. Run the following command in the project root to create a `package.json` file:
 
     ```console
     npm init -y
     ```
 
-1. Add the highlighted property to the *package.json* file and save the file changes:
+1. Add the highlighted property to the `package.json` file and save the file changes:
 
     :::code language="json" source="signalr-typescript-webpack/samples_snapshot/3.x/package1.json" highlight="4":::
 
@@ -384,11 +391,11 @@ The following steps configure the conversion of TypeScript to JavaScript and the
     Some command details to note:
 
     * A version number follows the `@` sign for each package name. npm installs those specific package versions.
-    * The `-E` option disables npm's default behavior of writing [semantic versioning](https://semver.org/) range operators to *package.json*. For example, `"webpack": "4.41.5"` is used instead of `"webpack": "^4.41.5"`. This option prevents unintended upgrades to newer package versions.
+    * The `-E` option disables npm's default behavior of writing [semantic versioning](https://semver.org/) range operators to *package`json`. For example, `"webpack": "4.41.5"` is used instead of `"webpack": "^4.41.5"`. This option prevents unintended upgrades to newer package versions.
 
     See the [npm-install](https://docs.npmjs.com/cli/install) docs for more detail.
 
-1. Replace the `scripts` property of the *package.json* file with the following code:
+1. Replace the `scripts` property of the `package.json` file with the following code:
 
     ```json
     "scripts": {
@@ -404,14 +411,14 @@ The following steps configure the conversion of TypeScript to JavaScript and the
     * `release`: Bundles the client-side resources in production mode.
     * `publish`: Runs the `release` script to bundle the client-side resources in production mode. It calls the .NET Core CLI's [publish](/dotnet/core/tools/dotnet-publish) command to publish the app.
 
-1. Create a file named *webpack.config.js*, in the project root, with the following code:
+1. Create a file named `webpack.config.js`, in the project root, with the following code:
 
     :::code language="javascript" source="signalr-typescript-webpack/samples/3.x/webpack.config.js":::
 
     The preceding file configures the Webpack compilation. Some configuration details to note:
 
-    * The `output` property overrides the default value of *dist*. The bundle is instead emitted in the *wwwroot* directory.
-    * The `resolve.extensions` array includes *.js* to import the SignalR client JavaScript.
+    * The `output` property overrides the default value of `dist`. The bundle is instead emitted in the `wwwroot` directory.
+    * The `resolve.extensions` array includes `.js` to import the SignalR client JavaScript.
 
 1. Create a new *src* directory in the project root to store the project's client-side assets.
 
@@ -621,13 +628,13 @@ An empty ASP.NET Core web app, targeting .NET Core, is created in a *SignalRWebP
 
 The following steps configure the conversion of TypeScript to JavaScript and the bundling of client-side resources.
 
-1. Run the following command in the project root to create a *package.json* file:
+1. Run the following command in the project root to create a `package.json` file:
 
     ```console
     npm init -y
     ```
 
-1. Add the highlighted property to the *package.json* file:
+1. Add the highlighted property to the `package.json` file:
 
     :::code language="json" source="signalr-typescript-webpack/samples_snapshot/2.x/package1.json" highlight="4":::
 
@@ -642,11 +649,11 @@ The following steps configure the conversion of TypeScript to JavaScript and the
     Some command details to note:
 
     * A version number follows the `@` sign for each package name. npm installs those specific package versions.
-    * The `-E` option disables npm's default behavior of writing [semantic versioning](https://semver.org/) range operators to *package.json*. For example, `"webpack": "4.29.3"` is used instead of `"webpack": "^4.29.3"`. This option prevents unintended upgrades to newer package versions.
+    * The `-E` option disables npm's default behavior of writing [semantic versioning](https://semver.org/) range operators to *package`json`. For example, `"webpack": "4.29.3"` is used instead of `"webpack": "^4.29.3"`. This option prevents unintended upgrades to newer package versions.
 
     See the [npm-install](https://docs.npmjs.com/cli/install) docs for more detail.
 
-1. Replace the `scripts` property of the *package.json* file with the following code:
+1. Replace the `scripts` property of the `package.json` file with the following code:
 
     ```json
     "scripts": {
@@ -662,14 +669,14 @@ The following steps configure the conversion of TypeScript to JavaScript and the
     * `release`: Bundles the client-side resources in production mode.
     * `publish`: Runs the `release` script to bundle the client-side resources in production mode. It calls the .NET Core CLI's [publish](/dotnet/core/tools/dotnet-publish) command to publish the app.
 
-1. Create a file named *webpack.config.js* in the project root, with the following code:
+1. Create a file named`*webpack.config.js` in the project root, with the following code:
 
     :::code language="javascript" source="signalr-typescript-webpack/samples/2.x/webpack.config.js":::
 
     The preceding file configures the Webpack compilation. Some configuration details to note:
 
-    * The `output` property overrides the default value of *dist*. The bundle is instead emitted in the *wwwroot* directory.
-    * The `resolve.extensions` array includes *.js* to import the SignalR client JavaScript.
+    * The `output` property overrides the default value of `dist`. The bundle is instead emitted in the `wwwroot` directory.
+    * The `resolve.extensions` array includes `.js` to import the SignalR client JavaScript.
 
 1. Create a new *src* directory in the project root to store the project's client-side assets.
 
