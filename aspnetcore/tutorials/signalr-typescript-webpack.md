@@ -167,43 +167,32 @@ In this section, you create a [Node.js](https://nodejs.org/) project to convert 
 
 1. Copy the `src` directory from the [sample project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/signalr-typescript-webpack/samples/6.x/SignalRWebpack/src/) into the project root. The `src` directory contains the following files:
 
-   <!-- TODO: Explain src directory contents here --->
+   * `index.html`, which defines the homepage's boilerplate markup:
 
-   |Column1  |Column2  |
-   |---------|---------|
-   |Row1     |         |
+      :::code language="JavaScript" source="signalr-typescript-webpack/samples/6.x/SignalRWebpack/src/index.html":::
 
-<!--
+   * `css/main.css`, which provides CSS styles for the homepage:
 
-1. Create *src/index.html* with the following markup.
+      :::code language="JavaScript" source="signalr-typescript-webpack/samples/6.x/SignalRWebpack/src/css/main.css":::
 
-    :::code language="html" source="signalr-typescript-webpack/samples/3.x/src/index.html":::
+   * `tsconfig.json`, which configures the TypeScript compiler to produce [ECMAScript](https://wikipedia.org/wiki/ECMAScript) 5-compatible JavaScript:
 
-    The preceding HTML defines the homepage's boilerplate markup.
+      :::code language="JavaScript" source="signalr-typescript-webpack/samples/6.x/SignalRWebpack/src/tsconfig.json":::
 
-1. Create a new *src/css* directory. Its purpose is to store the project's *.css* files.
+   * `index.ts`:
 
-1. Create *src/css/main.css* with the following CSS:
+      :::code language="JavaScript" source="signalr-typescript-webpack/samples/6.x/SignalRWebpack/src/index.ts":::
 
-    :::code language="css" source="signalr-typescript-webpack/samples/3.x/src/css/main.css":::
+      The preceding code retrieves references to DOM elements and attaches two event handlers:
 
-    The preceding *main.css* file styles the app.
+      * `keyup`: Fires when the user types in the `tbMessage` textbox and calls the `send` function when the user presses the **Enter** key.
+      * `click`: Fires when the user selects the **Send** button and calls `send` function is called.
 
-1. Create *src/tsconfig.json* with the following JSON:
+      The `HubConnectionBuilder` class creates a new builder for configuring the server connection. The `withUrl` function configures the hub URL.
 
-    :::code language="json" source="signalr-typescript-webpack/samples/3.x/src/tsconfig.json":::
+      SignalR enables the exchange of messages between a client and a server. Each message has a specific name. For example, messages with the name `messageReceived` can run the logic responsible for displaying the new message in the messages zone. Listening to a specific message can be done via the `on` function. Any number of message names can be listened to. It's also possible to pass parameters to the message, such as the author's name and the content of the message received. Once the client receives a message, a new `div` element is created with the author's name and the message content in its `innerHTML` attribute. It's added to the main `div` element displaying the messages.
 
-    The preceding code configures the TypeScript compiler to produce [ECMAScript](https://wikipedia.org/wiki/ECMAScript) 5-compatible JavaScript.
-
-1. Create *src/index.ts* with the following code:
-
-    :::code language="typescript" source="signalr-typescript-webpack/samples_snapshot/3.x/index1.ts":::
-
-    The preceding TypeScript retrieves references to DOM elements and attaches two event handlers:
-
-    * `keyup`: This event fires when the user types in the `tbMessage`textbox. The `send` function is called when the user presses the **Enter** key.
-    * `click`: This event fires when the user selects the **Send** button. The `send` function is called.
--->
+      Sending a message through the WebSockets connection requires calling the `send` method. The method's first parameter is the message name. The message data inhabits the other parameters. In this example, a message identified as `newMessage` is sent to the server. The message consists of the username and the user input from a text box. If the send works, the text box value is cleared.
 
 1. Run the following command at the project root:
 
@@ -215,27 +204,6 @@ In this section, you create a [Node.js](https://nodejs.org/) project to convert 
 
      * The [SignalR TypeScript client](https://www.npmjs.com/package/@microsoft/signalr), which allows the client to send messages to the server.
      * The TypeScript type definitions for Node.js, which enables compile-time checking of Node.js types.
-
-<!-- TODO: Describe relevant parts of index.ts -->
-
-<!--
-The app currently displays a basic form to send messages, but isn't yet functional. The server is listening to a specific route but does nothing with sent messages.
-
-1. Add the highlighted code to the `src/index.ts` file:
-
-    :::code language="typescript" source="signalr-typescript-webpack/samples_snapshot/3.x/index2.ts" highlight="2,9-23":::
-
-    The preceding code supports receiving messages from the server. The `HubConnectionBuilder` class creates a new builder for configuring the server connection. The `withUrl` function configures the hub URL.
-
-    SignalR enables the exchange of messages between a client and a server. Each message has a specific name. For example, messages with the name `messageReceived` can run the logic responsible for displaying the new message in the messages zone. Listening to a specific message can be done via the `on` function. Any number of message names can be listened to. It's also possible to pass parameters to the message, such as the author's name and the content of the message received. Once the client receives a message, a new `div` element is created with the author's name and the message content in its `innerHTML` attribute. It's added to the main `div` element displaying the messages.
-
-1. Now that the client can receive a message, configure it to send messages. Add the highlighted code to the `src/index.ts` file:
-
-    :::code language="typescript" source="signalr-typescript-webpack/samples/3.x/src/index.ts" highlight="34-35":::
-
-    Sending a message through the WebSockets connection requires calling the `send` method. The method's first parameter is the message name. The message data inhabits the other parameters. In this example, a message identified as `newMessage` is sent to the server. The message consists of the username and the user input from a text box. If the send works, the text box value is cleared.
-
--->
 
 ## Test the app
 
