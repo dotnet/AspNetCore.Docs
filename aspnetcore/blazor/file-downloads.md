@@ -1,7 +1,7 @@
 ---
 title: ASP.NET Core Blazor file downloads
 author: TanayParikh
-description: Learn how to download files using Blazor Server or Blazor WebAssembly.
+description: Learn how to download files using Blazor Server and Blazor WebAssembly.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: taparik
 ms.custom: mvc

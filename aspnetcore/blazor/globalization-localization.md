@@ -1,7 +1,7 @@
 ---
 title: ASP.NET Core Blazor globalization and localization
 author: guardrex
-description: Learn how to make Razor components accessible to users in multiple cultures and languages.
+description: Learn how to render globalized and localized content to users in different cultures and languages.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
@@ -12,7 +12,7 @@ zone_pivot_groups: blazor-hosting-models
 ---
 # ASP.NET Core Blazor globalization and localization
 
-Razor components can render globalized and localized content to users in different cultures and languages.
+This article explains how to render globalized and localized content to users in different cultures and languages.
 
 :::moniker range=">= aspnetcore-6.0"
 

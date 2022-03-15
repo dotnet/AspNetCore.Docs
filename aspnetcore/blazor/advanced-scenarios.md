@@ -1,7 +1,7 @@
 ---
-title: ASP.NET Core Blazor advanced scenarios and how to build render trees
+title: ASP.NET Core Blazor advanced scenarios (render tree construction)
 author: guardrex
-description: Learn about advanced scenarios in Blazor, including how to incorporate manual logic for building Blazor render trees (RenderTreeBuilder).
+description: Learn how to incorporate manual logic for building Blazor render trees (RenderTreeBuilder).
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
@@ -9,18 +9,18 @@ ms.date: 11/09/2021
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/advanced-scenarios
 ---
-# ASP.NET Core Blazor advanced scenarios and how to build render trees
+# ASP.NET Core Blazor advanced scenarios (render tree construction)
 
-This article describes advanced scenarios in Blazor, including how to incorporate manual logic for building Blazor render trees (<xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder>).
+This article describes the advanced scenario for building Blazor render trees manually with <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder>.
+
+> [!WARNING]
+> Use of <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> to create components is an *advanced scenario*. A malformed component (for example, an unclosed markup tag) can result in undefined behavior. Undefined behavior includes broken content rendering, loss of app features, and ***compromised security***.
 
 :::moniker range=">= aspnetcore-6.0"
 
 ## Manually build a render tree (`RenderTreeBuilder`)
 
 <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> provides methods for manipulating components and elements, including building components manually in C# code.
-
-> [!WARNING]
-> Use of <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> to create components is an *advanced scenario*. A malformed component (for example, an unclosed markup tag) can result in undefined behavior. Undefined behavior includes broken content rendering, loss of app features, and **_compromised security_**.
 
 Consider the following `PetDetails` component, which can be manually rendered in another component.
 
@@ -137,9 +137,6 @@ This is a trivial example. In more realistic cases with complex and deeply neste
 
 <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> provides methods for manipulating components and elements, including building components manually in C# code.
 
-> [!WARNING]
-> Use of <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> to create components is an *advanced scenario*. A malformed component (for example, an unclosed markup tag) can result in undefined behavior. Undefined behavior includes broken content rendering, loss of app features, and **_compromised security_**.
-
 Consider the following `PetDetails` component, which can be manually rendered in another component.
 
 `Shared/PetDetails.razor`:
@@ -254,9 +251,6 @@ This is a trivial example. In more realistic cases with complex and deeply neste
 ## Manually build a render tree (`RenderTreeBuilder`)
 
 <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> provides methods for manipulating components and elements, including building components manually in C# code.
-
-> [!WARNING]
-> Use of <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> to create components is an *advanced scenario*. A malformed component (for example, an unclosed markup tag) can result in undefined behavior. Undefined behavior includes broken content rendering, loss of app features, and **_compromised security_**.
 
 Consider the following `PetDetails` component, which can be manually rendered in another component.
 

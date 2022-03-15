@@ -1,7 +1,7 @@
 ---
 title: Debug ASP.NET Core Blazor WebAssembly
 author: guardrex
-description: Learn how to debug Blazor WebAssembly with browser developer tools and integrated development environments (IDEs).
+description: Learn how to debug Blazor WebAssembly with browser developer tools and an integrated development environment (IDE).
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
@@ -11,7 +11,7 @@ uid: blazor/debug
 ---
 # Debug ASP.NET Core Blazor WebAssembly
 
-This article describes how to debug Blazor WebAssembly with browser developer tools and integrated development environments (IDEs).
+This article describes how to debug Blazor WebAssembly with browser developer tools and an integrated development environment (IDE).
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -247,7 +247,7 @@ The following launch configuration options are supported for the `blazorwasm` de
 
 To debug a Blazor WebAssembly app in Visual Studio for Mac:
 
-1. Create a new ASP.NET Core hosted Blazor WebAssembly app.
+1. Create a new hosted Blazor WebAssembly app.
 1. Press <kbd>&#8984;</kbd>+<kbd>&#8617;</kbd> to run the app in the debugger.
 
    > [!NOTE]
@@ -662,7 +662,7 @@ The following launch configuration options are supported for the `blazorwasm` de
 
 To debug a Blazor WebAssembly app in Visual Studio for Mac:
 
-1. Create a new ASP.NET Core hosted Blazor WebAssembly app.
+1. Create a new hosted Blazor WebAssembly app.
 1. Press <kbd>&#8984;</kbd>+<kbd>&#8617;</kbd> to run the app in the debugger.
 
    > [!NOTE]
@@ -1077,7 +1077,7 @@ The following launch configuration options are supported for the `blazorwasm` de
 
 To debug a Blazor WebAssembly app in Visual Studio for Mac:
 
-1. Create a new ASP.NET Core hosted Blazor WebAssembly app.
+1. Create a new hosted Blazor WebAssembly app.
 1. Press <kbd>&#8984;</kbd>+<kbd>&#8617;</kbd> to run the app in the debugger.
 
    > [!NOTE]
