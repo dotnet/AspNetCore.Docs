@@ -1,7 +1,7 @@
 ---
 title: Test Razor components in ASP.NET Core Blazor
 author: guardrex
-description: Learn how to test components in Blazor apps.
+description: Learn how to test Razor components in Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
@@ -15,13 +15,13 @@ By: [Egil Hansen](https://egilhansen.com/)
 
 :::moniker range=">= aspnetcore-6.0"
 
-Testing is an important aspect of building stable and maintainable software.
+Testing Razor components is an important aspect of releasing stable and maintainable Blazor apps.
 
-To test a Razor component, the *Component Under Test* (CUT) is:
+To test a Razor component, the *component under test* (CUT) is:
 
 * Rendered with relevant input for the test.
 * Depending on the type of test performed, possibly subject to interaction or modification. For example, event handlers can be triggered, such as an `onclick` event for a button.
-* Inspected for expected values.
+* Inspected for expected values. A test passes when one or more inspected values matches the expected values for the test.
 
 ## Test approaches
 
@@ -147,7 +147,7 @@ The following actions take place at each step of the test:
 
 Testing is an important aspect of building stable and maintainable software.
 
-To test a Razor component, the *Component Under Test* (CUT) is:
+To test a Razor component, the *component under test* (CUT) is:
 
 * Rendered with relevant input for the test.
 * Depending on the type of test performed, possibly subject to interaction or modification. For example, event handlers can be triggered, such as an `onclick` event for a button.
@@ -277,7 +277,7 @@ The following actions take place at each step of the test:
 
 Testing is an important aspect of building stable and maintainable software.
 
-To test a Razor component, the *Component Under Test* (CUT) is:
+To test a Razor component, the *component under test* (CUT) is:
 
 * Rendered with relevant input for the test.
 * Depending on the type of test performed, possibly subject to interaction or modification. For example, event handlers can be triggered, such as an `onclick` event for a button.

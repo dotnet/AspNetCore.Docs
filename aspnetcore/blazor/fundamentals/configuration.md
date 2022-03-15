@@ -11,6 +11,8 @@ uid: blazor/fundamentals/configuration
 ---
 # ASP.NET Core Blazor configuration
 
+This article explains configuration of Blazor apps, including app settings, authentication, and logging configuration.
+
 :::moniker range=">= aspnetcore-6.0"
 
 > [!NOTE]

@@ -185,6 +185,7 @@ ClientBin/
 node_modules/
 bower_components/
 blazor-samples/
+AspNetCore.Docs.Samples/
 
 # RIA/Silverlight projects
 Generated_Code/

@@ -11,6 +11,8 @@ uid: blazor/host-and-deploy/server
 ---
 # Host and deploy Blazor Server
 
+This article explains how to host and deploy a Blazor Server app using ASP.NET Core.
+
 :::moniker range=">= aspnetcore-6.0"
 
 ## Host configuration values

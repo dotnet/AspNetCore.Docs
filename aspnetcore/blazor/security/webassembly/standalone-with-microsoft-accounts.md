@@ -11,9 +11,9 @@ uid: blazor/security/webassembly/standalone-with-microsoft-accounts
 ---
 # Secure an ASP.NET Core Blazor WebAssembly standalone app with Microsoft Accounts
 
-:::moniker range=">= aspnetcore-6.0"
+This article explains how to create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [Microsoft Accounts with Azure Active Directory (AAD)](/azure/active-directory/develop/quickstart-register-app#register-a-new-application-using-the-azure-portal) for authentication.
 
-This article covers how to create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [Microsoft Accounts with Azure Active Directory (AAD)](/azure/active-directory/develop/quickstart-register-app#register-a-new-application-using-the-azure-portal) for authentication.
+:::moniker range=">= aspnetcore-6.0"
 
 Register an AAD app:
 
@@ -177,8 +177,6 @@ For more information, see the following sections of the *Additional scenarios* a
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-This article covers how to create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [Microsoft Accounts with Azure Active Directory (AAD)](/azure/active-directory/develop/quickstart-register-app#register-a-new-application-using-the-azure-portal) for authentication.
-
 Register an AAD app:
 
 1. Navigate to **Azure Active Directory** in the Azure portal. Select **App registrations** in the sidebar. Select the **New registration** button.
@@ -340,8 +338,6 @@ For more information, see the following sections of the *Additional scenarios* a
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
-
-This article covers how to create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [Microsoft Accounts with Azure Active Directory (AAD)](/azure/active-directory/develop/quickstart-register-app#register-a-new-application-using-the-azure-portal) for authentication.
 
 Register an AAD app:
 

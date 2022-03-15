@@ -1,7 +1,7 @@
 ---
 title: ASP.NET Core Razor component rendering
 author: guardrex
-description: Learn about Razor component rendering in ASP.NET Core Blazor apps, including when to call StateHasChanged.
+description: Learn about Razor component rendering in ASP.NET Core Blazor apps, including when to manually trigger a component to render.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
@@ -10,6 +10,8 @@ no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Cor
 uid: blazor/components/rendering
 ---
 # ASP.NET Core Razor component rendering
+
+This article explains Razor component rendering in ASP.NET Core Blazor apps, including when to call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> to manually trigger a component to render.
 
 :::moniker range=">= aspnetcore-6.0"
 

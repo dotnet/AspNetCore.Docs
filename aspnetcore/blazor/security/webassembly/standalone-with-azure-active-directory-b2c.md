@@ -11,9 +11,9 @@ uid: blazor/security/webassembly/standalone-with-azure-active-directory-b2c
 ---
 # Secure an ASP.NET Core Blazor WebAssembly standalone app with Azure Active Directory B2C
 
-:::moniker range=">= aspnetcore-6.0"
+This article explains how to create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD) B2C](/azure/active-directory-b2c/overview) for authentication.
 
-This article covers how to create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD) B2C](/azure/active-directory-b2c/overview) for authentication.
+:::moniker range=">= aspnetcore-6.0"
 
 Create a tenant or identify an existing B2C tenant for the app to use in the Azure portal by following the guidance in the [Create an AAD B2C tenant (Azure documentation)](/azure/active-directory-b2c/tutorial-create-tenant) article. Return to this article immediately after creating or identifying a tenant to use.
 
@@ -200,8 +200,6 @@ For more information, see the following sections of the *Additional scenarios* a
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-This article covers how to create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD) B2C](/azure/active-directory-b2c/overview) for authentication.
-
 Create a tenant or identify an existing B2C tenant for the app to use in the Azure portal by following the guidance in the [Create an AAD B2C tenant (Azure documentation)](/azure/active-directory-b2c/tutorial-create-tenant) article. Return to this article immediately after creating or identifying a tenant to use.
 
 Record the following information:
@@ -384,8 +382,6 @@ For more information, see the following sections of the *Additional scenarios* a
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
-
-This article covers how to create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD) B2C](/azure/active-directory-b2c/overview) for authentication.
 
 Create a tenant or identify an existing B2C tenant for the app to use in the Azure portal by following the guidance in the [Create an AAD B2C tenant (Azure documentation)](/azure/active-directory-b2c/tutorial-create-tenant) article. Return to this article immediately after creating or identifying a tenant to use.
 

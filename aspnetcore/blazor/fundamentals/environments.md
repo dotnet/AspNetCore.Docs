@@ -11,6 +11,8 @@ uid: blazor/fundamentals/environments
 ---
 # ASP.NET Core Blazor environments
 
+This article explains [ASP.NET Core environments](xref:fundamentals/environments) in Blazor, including how to set the environment.
+
 :::moniker range=">= aspnetcore-6.0"
 
 > [!NOTE]

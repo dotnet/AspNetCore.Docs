@@ -1,7 +1,7 @@
 ---
 title: ASP.NET Core built-in Razor components
 author: guardrex
-description: Find information on Razor components built-into the Blazor framework.
+description: Find information on Razor components provided by the Blazor framework.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
@@ -10,6 +10,8 @@ no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Cor
 uid: blazor/components/built-in-components
 ---
 # ASP.NET Core built-in Razor components
+
+This article lists the Razor components that are provided by the Blazor framework.
 
 :::moniker range=">= aspnetcore-6.0"
 

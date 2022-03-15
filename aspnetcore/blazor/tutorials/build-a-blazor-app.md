@@ -12,9 +12,11 @@ zone_pivot_groups: blazor-hosting-models
 ---
 # Build a Blazor todo list app
 
+This tutorial shows you how to build and modify a Blazor app.
+
 :::moniker range=">= aspnetcore-6.0"
 
-This tutorial shows you how to build and modify a Blazor app. You learn how to:
+Learn how to:
 
 > [!div class="checklist"]
 > * Create a todo list Blazor app project
@@ -191,7 +193,7 @@ Learn about tooling for ASP.NET Core Blazor:
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-This tutorial shows you how to build and modify a Blazor app. You learn how to:
+Learn how to:
 
 > [!div class="checklist"]
 > * Create a todo list Blazor app project
@@ -368,7 +370,7 @@ Learn about tooling for ASP.NET Core Blazor:
 
 :::moniker range="< aspnetcore-5.0"
 
-This tutorial shows you how to build and modify a Blazor app. You learn how to:
+Learn how to:
 
 > [!div class="checklist"]
 > * Create a todo list Blazor app project

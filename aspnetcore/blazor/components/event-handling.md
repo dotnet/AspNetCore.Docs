@@ -11,6 +11,8 @@ uid: blazor/components/event-handling
 ---
 # ASP.NET Core Blazor event handling
 
+This article explains Blazor's event handling features, including event argument types, event callbacks, and managing default browser events.
+
 :::moniker range=">= aspnetcore-6.0"
 
 Specify delegate event handlers in Razor component markup with [`@on{DOM EVENT}="{DELEGATE}"`](xref:mvc/views/razor#onevent) Razor syntax:

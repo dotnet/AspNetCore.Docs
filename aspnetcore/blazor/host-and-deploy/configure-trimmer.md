@@ -11,6 +11,8 @@ uid: blazor/host-and-deploy/configure-trimmer
 ---
 # Configure the Trimmer for ASP.NET Core Blazor
 
+This article explains how to control the Intermediate Language (IL) Linker (Trimmer) when building a Blazor app.
+
 :::moniker range=">= aspnetcore-6.0"
 
 Blazor WebAssembly performs [Intermediate Language (IL)](/dotnet/standard/managed-code#intermediate-language--execution) trimming to reduce the size of the published output. By default, trimming occurs when publishing an app.
