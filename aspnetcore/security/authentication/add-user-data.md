@@ -681,4 +681,5 @@ The additional claim can then be used in the app. In a Razor Page, the `IAuthori
     </ul>
 }
 ```
+
 :::moniker-end
