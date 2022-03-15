@@ -51,11 +51,21 @@ In the **Additional information** dialog, select the framework version, which mu
 
 :::image type="content" source="wpf/_static/additional-information-1.png" alt-text="The Additional Information dialog for the WPF project.":::
 
-## Add a Razor component
+Use [NuGet Package Manager](/nuget/consume-packages/install-use-packages-visual-studio) to install the [`Microsoft.AspNetCore.Components.WebView.Wpf`](https://nuget.org/packages/Microsoft.AspNetCore.Components.WebView.Wpf) preview NuGet package.
 
-Add the following `Counter` component to `Pages` folder, which is the default `Counter` component found in Blazor project templates.
+In **Solution Explorer**, right-click the `WpfBlazor` project and select **Edit Project File** to open the project file (`WpfBlazor.csproj`).
 
-`Pages/Counter.razor`:
+At the top of the project file, change the SDK to `Microsoft.NET.Sdk.Razor`:
+
+```xml
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+```
+
+Save the changes to the project file (`WpfBlazor.csproj`).
+
+Add the following `Counter` component to the root of the project, which is the default `Counter` component found in Blazor project templates.
+
+`Counter.razor`:
 
 ```razor
 <h1>Counter</h1>
@@ -73,20 +83,6 @@ Add the following `Counter` component to `Pages` folder, which is the default `C
     }
 }
 ```
-
-## Configure the `WpfBlazor` solution
-
-Use [NuGet Package Manager](/nuget/consume-packages/install-use-packages-visual-studio) to install the [`Microsoft.AspNetCore.Components.WebView.Wpf`](https://nuget.org/packages/Microsoft.AspNetCore.Components.WebView.Wpf) preview NuGet package.
-
-In **Solution Explorer**, right-click the `WpfBlazor` project and select **Edit Project File** to open the project file (`WpfBlazor.csproj`).
-
-At the top of the project file, change the SDK to `Microsoft.NET.Sdk.Razor`:
-
-```xml
-<Project Sdk="Microsoft.NET.Sdk.Razor">
-```
-
-Save the changes to the project file (`WpfBlazor.csproj`).
 
 Add a `wwwroot` folder to the project.
 
