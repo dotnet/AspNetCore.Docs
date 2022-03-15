@@ -5,7 +5,7 @@ description: Build a Windows Presentation Foundation (WPF) app step-by-step.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/17/2022
+ms.date: 03/15/2022
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/hybrid/tutorials/wpf
 ---
@@ -15,7 +15,7 @@ This tutorial shows you how to build and run a WPF Blazor app. You learn how to:
 
 > [!div class="checklist"]
 > * Create a WPF Blazor app project
-> * Supply Razor components with a Razor class library (RCL)
+> * Add a Razor component to the project
 > * Run the app on Windows
 
 ## Prerequisites
@@ -51,33 +51,11 @@ In the **Additional information** dialog, select the framework version, which mu
 
 :::image type="content" source="wpf/_static/additional-information-1.png" alt-text="The Additional Information dialog for the WPF project.":::
 
-## Add a component via a Razor class library (RCL)
+## Add a Razor component
 
-Add a Razor class library (RCL) project to the solution:
+Add the following `Counter` component to `Pages` folder, which is the default `Counter` component found in Blazor project templates.
 
-In **Solution Explorer**, right-click the `WpfBlazor` solution and select **Add** > **New Project**:
-
-:::image type="content" source="wpf/_static/add-rcl-project.png" alt-text="Add a new RCL project to the solution in Visual Studio.":::
-
-In the **Create a new project** dialog, set the **Project types** drop-down to **Library**. Select the **Razor Class Library** project template and select the **Next** button:
-
-:::image type="content" source="wpf/_static/create-project-rcl.png" alt-text="Create a new RCL project in Visual Studio.":::
-
-In the **Configure your new project** dialog, set the **Project name** to **`ComponentLibrary`**. Confirm that the **Location** field is set to the solution's folder. Select the **Next** button:
-
-:::image type="content" source="wpf/_static/configure-project-rcl.png" alt-text="Configure the RCL project.":::
-
-In the **Additional information** dialog:
-
-* Select the framework version, which must be .NET 6.0 or later.
-* Do ***not*** select the **Support pages and views** checkbox.
-* Select the **Create** button.
-
-:::image type="content" source="wpf/_static/additional-information-2.png" alt-text="The Additional Information dialog for the Razor class library (RCL).":::
-
-Add the following `Counter` component to the root of the RCL, which is the default `Counter` component found in Blazor project templates.
-
-`Counter.razor`:
+`Pages/Counter.razor`:
 
 ```razor
 <h1>Counter</h1>
@@ -95,18 +73,6 @@ Add the following `Counter` component to the root of the RCL, which is the defau
     }
 }
 ```
-
-Add a project reference for the RCL to the `WpfBlazor` project:
-
-* In **Solution Explorer**, right-click the `WpfBlazor` project and select **Add** > **Project Reference**:
-
-  :::image type="content" source="wpf/_static/add-rcl-project-reference.png" alt-text="Add a project reference to the WpfBlazor project.":::
-
-* Select the `ComponentLibrary`'s checkbox and select the **OK** button:
-
-  :::image type="content" source="wpf/_static/add-componentlibrary.png" alt-text="Select the ComponentLibrary RCL project.":::
-
-For more information on RCLs for Blazor apps, see <xref:blazor/components/class-libraries>.
 
 ## Configure the `WpfBlazor` solution
 
@@ -207,7 +173,6 @@ If the `MainWindow` designer isn't open, open it by double-clicking the `MainWin
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ComponentLibrary;assembly=ComponentLibrary"
         xmlns:blazor="clr-namespace:Microsoft.AspNetCore.Components.WebView.Wpf;assembly=Microsoft.AspNetCore.Components.WebView.Wpf"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
@@ -293,7 +258,7 @@ In this tutorial, you learned how to:
 
 > [!div class="checklist"]
 > * Create a WPF Blazor app project
-> * Supply Razor components with a Razor class library (RCL)
+> * Add a Razor component to the project
 > * Run the app on Windows
 
 Learn more about Blazor Hybrid apps:
