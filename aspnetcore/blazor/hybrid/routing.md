@@ -11,6 +11,8 @@ uid: blazor/hybrid/routing
 ---
 # ASP.NET Core Blazor Hybrid routing and navigation
 
+This article explains how to manage request routing and navigation in Blazor Hybrid apps.
+
 [!INCLUDE[](~/blazor/includes/blazor-hybrid-preview-notice.md)]
 
 Register to the `ExternalNavigationStarting` event and set the `ExternalLinkNavigationEventArgs.ExternalLinkNavigationPolicy` property to change link handling behavior. The `ExternalLinkNavigationPolicy` enumeration (`enum`) allows setting link handling behavior to `OpenInExternalBrowser`, `InsecureOpenInWebView`, and `CancelNavigation`. The `ExternalLinkNavigationEventArgs.Uri` property can be used to dynamically set link handling behavior.

@@ -11,11 +11,13 @@ uid: blazor/js-interop/index
 ---
 # ASP.NET Core Blazor JavaScript interoperability (JS interop)
 
+This article explains general concepts on how to interact with JavaScript in Blazor apps.
+
 :::moniker range=">= aspnetcore-6.0"
 
 A Blazor app can invoke JavaScript (JS) functions from .NET methods and .NET methods from JS functions. These scenarios are called *JavaScript interoperability* (*JS interop*).
 
-This overview article covers general concepts. Further JS interop guidance is provided in the following articles:
+Further JS interop guidance is provided in the following articles:
 
 * <xref:blazor/js-interop/call-javascript-from-dotnet>
 * <xref:blazor/js-interop/call-dotnet-from-javascript>

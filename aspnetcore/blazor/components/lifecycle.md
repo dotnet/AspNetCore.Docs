@@ -11,6 +11,8 @@ uid: blazor/components/lifecycle
 ---
 # ASP.NET Core Razor component lifecycle
 
+This article explains the ASP.NET Core Razor component lifecycle and how to use lifecycle events.
+
 :::moniker range=">= aspnetcore-6.0"
 
 The Razor component processes Razor component lifecycle events in a set of synchronous and asynchronous lifecycle methods. The lifecycle methods can be overridden to perform additional operations in components during component initialization and rendering.

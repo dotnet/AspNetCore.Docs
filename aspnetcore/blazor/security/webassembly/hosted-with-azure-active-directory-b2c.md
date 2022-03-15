@@ -1,7 +1,7 @@
 ---
-title: Secure an ASP.NET Core Blazor WebAssembly hosted app with Azure Active Directory B2C
+title: Secure a hosted ASP.NET Core Blazor WebAssembly app with Azure Active Directory B2C
 author: guardrex
-description: Learn how to secure an ASP.NET Core Blazor WebAssembly hosted app with Azure Active Directory B2C.
+description: Learn how to secure a hosted ASP.NET Core Blazor WebAssembly app with Azure Active Directory B2C.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
@@ -9,11 +9,11 @@ ms.date: 11/09/2021
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/security/webassembly/hosted-with-azure-active-directory-b2c
 ---
-# Secure an ASP.NET Core Blazor WebAssembly hosted app with Azure Active Directory B2C
+# Secure a hosted ASP.NET Core Blazor WebAssembly app with Azure Active Directory B2C
+
+This article explains how to create a [hosted Blazor WebAssembly solution](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD) B2C](/azure/active-directory-b2c/overview) for authentication.
 
 :::moniker range=">= aspnetcore-6.0"
-
-This article describes how to create a [hosted Blazor WebAssembly solution](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD) B2C](/azure/active-directory-b2c/overview) for authentication.
 
 ## Register apps in AAD B2C and create solution
 
@@ -414,8 +414,6 @@ Run the app from the Server project. When using Visual Studio, either:
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-This article describes how to create a [hosted Blazor WebAssembly solution](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD) B2C](/azure/active-directory-b2c/overview) for authentication.
-
 ## Register apps in AAD B2C and create solution
 
 ### Create a tenant
@@ -812,8 +810,6 @@ Run the app from the Server project. When using Visual Studio, either:
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
-
-This article describes how to create a [hosted Blazor WebAssembly solution](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD) B2C](/azure/active-directory-b2c/overview) for authentication.
 
 ## Register apps in AAD B2C and create solution
 

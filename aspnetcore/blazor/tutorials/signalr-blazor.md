@@ -12,9 +12,11 @@ zone_pivot_groups: blazor-hosting-models
 ---
 # Use ASP.NET Core SignalR with Blazor
 
+This tutorial teaches the basics of building a real-time app using SignalR with Blazor.
+
 :::moniker range=">= aspnetcore-6.0"
 
-This tutorial teaches the basics of building a real-time app using SignalR with Blazor. You learn how to:
+Learn how to:
 
 > [!div class="checklist"]
 > * Create a Blazor project
@@ -529,7 +531,7 @@ To learn more about building Blazor apps, see the Blazor documentation:
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-This tutorial teaches the basics of building a real-time app using SignalR with Blazor. You learn how to:
+Learn how to:
 
 > [!div class="checklist"]
 > * Create a Blazor project
@@ -1038,7 +1040,7 @@ To learn more about building Blazor apps, see the Blazor documentation:
 
 :::moniker range="< aspnetcore-5.0"
 
-This tutorial teaches the basics of building a real-time app using SignalR with Blazor. You learn how to:
+Learn how to:
 
 > [!div class="checklist"]
 > * Create a Blazor project

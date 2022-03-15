@@ -12,6 +12,8 @@ zone_pivot_groups: blazor-hosting-models
 ---
 # ASP.NET Core Blazor file uploads
 
+This article explains how to upload files in Blazor with the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component.
+
 :::moniker range=">= aspnetcore-6.0"
 
 > [!WARNING]
@@ -109,6 +111,12 @@ The following example demonstrates multiple file upload in a component. <xref:Mi
 
 `Pages/FileUpload1.razor`:
 
+:::zone pivot="server"
+
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_Server/Pages/file-uploads/FileUpload1.razor)]
+
+:::zone-end
+
 :::zone pivot="webassembly"
 
 > [!NOTE]
@@ -118,12 +126,6 @@ The following example demonstrates multiple file upload in a component. <xref:Mi
 > * [Upload files to an external service](#upload-files-to-an-external-service)
 
 [!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload1.razor)]
-
-:::zone-end
-
-:::zone pivot="server"
-
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_Server/Pages/file-uploads/FileUpload1.razor)]
 
 :::zone-end
 
@@ -138,15 +140,6 @@ The following example demonstrates multiple file upload in a component. <xref:Mi
 * <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.ContentType>
 
 ## Upload files to a server
-
-:::zone pivot="webassembly"
-
-The following example demonstrates uploading files to a web API controller in the **`Server`** app of a hosted Blazor WebAssembly solution.
-
-> [!IMPORTANT]
-> When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
-
-:::zone-end
 
 :::zone pivot="server"
 
@@ -171,7 +164,34 @@ For testing, the preceding URLs are configured in the projects' `Properties/laun
 
 :::zone-end
 
+:::zone pivot="webassembly"
+
+The following example demonstrates uploading files to a web API controller in the **`Server`** app of a hosted Blazor WebAssembly solution.
+
+> [!IMPORTANT]
+> When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+
+:::zone-end
+
 ### Upload result class
+
+:::zone pivot="server"
+
+The following `UploadResult` class is placed in the client project and in the web API project to maintain the result of an uploaded file. When a file fails to upload on the server, an error code is returned in `ErrorCode` for display to the user. A safe file name is generated on the server for each file and returned to the client in `StoredFileName` for display. Files are keyed between the client and server using the unsafe/untrusted file name in `FileName`.
+
+`UploadResult.cs`:
+
+```csharp
+public class UploadResult
+{
+    public bool Uploaded { get; set; }
+    public string? FileName { get; set; }
+    public string? StoredFileName { get; set; }
+    public int ErrorCode { get; set; }
+}
+```
+
+:::zone-end
 
 :::zone pivot="webassembly"
 
@@ -200,24 +220,6 @@ To make the `UploadResult` class available to the **`Client`** project, add an i
 
 :::zone-end
 
-:::zone pivot="server"
-
-The following `UploadResult` class is placed in the client project and in the web API project to maintain the result of an uploaded file. When a file fails to upload on the server, an error code is returned in `ErrorCode` for display to the user. A safe file name is generated on the server for each file and returned to the client in `StoredFileName` for display. Files are keyed between the client and server using the unsafe/untrusted file name in `FileName`.
-
-`UploadResult.cs`:
-
-```csharp
-public class UploadResult
-{
-    public bool Uploaded { get; set; }
-    public string? FileName { get; set; }
-    public string? StoredFileName { get; set; }
-    public int ErrorCode { get; set; }
-}
-```
-
-:::zone-end
-
 > [!NOTE]
 > A security best practice for production apps is to avoid sending error messages to clients that might reveal sensitive information about an app, server, or network. Providing detailed error messages can aid a malicious user in devising attacks on an app, server, or network. The example code in this section only sends back an error code number (`int`) for display by the component client-side if a server-side error occurs. If a user requires assistance with a file upload, they provide the error code to support personnel for support ticket resolution without ever knowing the exact cause of the error.
 
@@ -236,14 +238,6 @@ The following `FileUpload2` component:
 >
 > For more information on security considerations when uploading files to a server, see <xref:mvc/models/file-uploads#security-considerations>.
 
-:::zone pivot="webassembly"
-
-`Pages/FileUpload2.razor` in the **`Client`** project:
-
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload2.razor)]
-
-:::zone-end
-
 :::zone pivot="server"
 
 `Pages/FileUpload2.razor` in the Blazor Server app:
@@ -252,13 +246,21 @@ The following `FileUpload2` component:
 
 :::zone-end
 
-### Upload controller
-
 :::zone pivot="webassembly"
 
-The following controller in the **`Server`** project saves uploaded files from the client.
+`Pages/FileUpload2.razor` in the **`Client`** project:
 
-To use the following code, create a `Development/unsafe_uploads` folder at the root of the **`Server`** project for the app running in the `Development` environment. Because the example uses the app's [environment](xref:blazor/fundamentals/environments) as part of the path where files are saved, additional folders are required if other environments are used in testing and production. For example, create a `Staging/unsafe_uploads` folder for the `Staging` environment. Create a `Production/unsafe_uploads` folder for the `Production` environment.
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload2.razor)]
+
+:::zone-end
+
+### Upload controller
+
+:::zone pivot="server"
+
+The following controller in the web API project saves uploaded files from the client.
+
+To use the following code, create a `Development/unsafe_uploads` folder at the root of the web API project for the app running in the `Development` environment. Because the example uses the app's [environment](xref:blazor/fundamentals/environments) as part of the path where files are saved, additional folders are required if other environments are used in testing and production. For example, create a `Staging/unsafe_uploads` folder for the `Staging` environment. Create a `Production/unsafe_uploads` folder for the `Production` environment.
 
 > [!WARNING]
 > The example saves files without scanning their contents. In production scenarios, use an anti-virus/anti-malware scanner API on uploaded files before making them available for download or for use by other systems. For more information on security considerations when uploading files to a server, see <xref:mvc/models/file-uploads#security-considerations>.
@@ -275,7 +277,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using BlazorSample.Shared;
 
 [ApiController]
 [Route("[controller]")]
@@ -370,11 +371,11 @@ public class FilesaveController : ControllerBase
 
 :::zone-end
 
-:::zone pivot="server"
+:::zone pivot="webassembly"
 
-The following controller in the web API project saves uploaded files from the client.
+The following controller in the **`Server`** project saves uploaded files from the client.
 
-To use the following code, create a `Development/unsafe_uploads` folder at the root of the web API project for the app running in the `Development` environment. Because the example uses the app's [environment](xref:blazor/fundamentals/environments) as part of the path where files are saved, additional folders are required if other environments are used in testing and production. For example, create a `Staging/unsafe_uploads` folder for the `Staging` environment. Create a `Production/unsafe_uploads` folder for the `Production` environment.
+To use the following code, create a `Development/unsafe_uploads` folder at the root of the **`Server`** project for the app running in the `Development` environment. Because the example uses the app's [environment](xref:blazor/fundamentals/environments) as part of the path where files are saved, additional folders are required if other environments are used in testing and production. For example, create a `Staging/unsafe_uploads` folder for the `Staging` environment. Create a `Production/unsafe_uploads` folder for the `Production` environment.
 
 > [!WARNING]
 > The example saves files without scanning their contents. In production scenarios, use an anti-virus/anti-malware scanner API on uploaded files before making them available for download or for use by other systems. For more information on security considerations when uploading files to a server, see <xref:mvc/models/file-uploads#security-considerations>.
@@ -391,6 +392,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using BlazorSample.Shared;
 
 [ApiController]
 [Route("[controller]")]
@@ -512,15 +514,15 @@ For more information, see the following API resources:
 
 ## File streams
 
-:::zone pivot="webassembly"
-
-In Blazor WebAssembly, file data is streamed directly into the .NET code within the browser.
-
-:::zone-end
-
 :::zone pivot="server"
 
 In Blazor Server, file data is streamed over the SignalR connection into .NET code on the server as the file is read.
+
+:::zone-end
+
+:::zone pivot="webassembly"
+
+In Blazor WebAssembly, file data is streamed directly into the .NET code within the browser.
 
 :::zone-end
 
@@ -651,15 +653,15 @@ The following example demonstrates multiple file upload in a component. <xref:Mi
 
 `Pages/FileUpload1.razor`:
 
-:::zone pivot="webassembly"
-
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload1.razor)]
-
-:::zone-end
-
 :::zone pivot="server"
 
 [!code-razor[](~/blazor/samples/5.0/BlazorSample_Server/Pages/file-uploads/FileUpload1.razor)]
+
+:::zone-end
+
+:::zone pivot="webassembly"
+
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload1.razor)]
 
 :::zone-end
 
@@ -674,15 +676,6 @@ The following example demonstrates multiple file upload in a component. <xref:Mi
 * <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.ContentType>
 
 ## Upload files to a server
-
-:::zone pivot="webassembly"
-
-The following example demonstrates uploading files to a web API controller in the **`Server`** app of a hosted Blazor WebAssembly solution.
-
-> [!IMPORTANT]
-> When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
-
-:::zone-end
 
 :::zone pivot="server"
 
@@ -707,7 +700,34 @@ For testing, the preceding URLs are configured in the projects' `Properties/laun
 
 :::zone-end
 
+:::zone pivot="webassembly"
+
+The following example demonstrates uploading files to a web API controller in the **`Server`** app of a hosted Blazor WebAssembly solution.
+
+> [!IMPORTANT]
+> When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+
+:::zone-end
+
 ### Upload result class
+
+:::zone pivot="server"
+
+The following `UploadResult` class is placed in the client project and in the web API project to maintain the result of an uploaded file. When a file fails to upload on the server, an error code is returned in `ErrorCode` for display to the user. A safe file name is generated on the server for each file and returned to the client in `StoredFileName` for display. Files are keyed between the client and server using the unsafe/untrusted file name in `FileName`.
+
+`UploadResult.cs`:
+
+```csharp
+public class UploadResult
+{
+    public bool Uploaded { get; set; }
+    public string FileName { get; set; }
+    public string StoredFileName { get; set; }
+    public int ErrorCode { get; set; }
+}
+```
+
+:::zone-end
 
 :::zone pivot="webassembly"
 
@@ -736,24 +756,6 @@ To make the `UploadResult` class available to the **`Client`** project, add an i
 
 :::zone-end
 
-:::zone pivot="server"
-
-The following `UploadResult` class is placed in the client project and in the web API project to maintain the result of an uploaded file. When a file fails to upload on the server, an error code is returned in `ErrorCode` for display to the user. A safe file name is generated on the server for each file and returned to the client in `StoredFileName` for display. Files are keyed between the client and server using the unsafe/untrusted file name in `FileName`.
-
-`UploadResult.cs`:
-
-```csharp
-public class UploadResult
-{
-    public bool Uploaded { get; set; }
-    public string FileName { get; set; }
-    public string StoredFileName { get; set; }
-    public int ErrorCode { get; set; }
-}
-```
-
-:::zone-end
-
 > [!NOTE]
 > A security best practice for production apps is to avoid sending error messages to clients that might reveal sensitive information about an app, server, or network. Providing detailed error messages can aid a malicious user in devising attacks on an app, server, or network. The example code in this section only sends back an error code number (`int`) for display by the component client-side if a server-side error occurs. If a user requires assistance with a file upload, they provide the error code to support personnel for support ticket resolution without ever knowing the exact cause of the error.
 
@@ -772,14 +774,6 @@ The following `FileUpload2` component:
 >
 > For more information on security considerations when uploading files to a server, see <xref:mvc/models/file-uploads#security-considerations>.
 
-:::zone pivot="webassembly"
-
-`Pages/FileUpload2.razor` in the **`Client`** project:
-
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload2.razor)]
-
-:::zone-end
-
 :::zone pivot="server"
 
 `Pages/FileUpload2.razor` in the Blazor Server app:
@@ -788,7 +782,130 @@ The following `FileUpload2` component:
 
 :::zone-end
 
+:::zone pivot="webassembly"
+
+`Pages/FileUpload2.razor` in the **`Client`** project:
+
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload2.razor)]
+
+:::zone-end
+
 ### Upload controller
+
+:::zone pivot="server"
+
+The following controller in the web API project saves uploaded files from the client.
+
+To use the following code, create a `Development/unsafe_uploads` folder at the root of the web API project for the app running in the `Development` environment. Because the example uses the app's [environment](xref:blazor/fundamentals/environments) as part of the path where files are saved, additional folders are required if other environments are used in testing and production. For example, create a `Staging/unsafe_uploads` folder for the `Staging` environment. Create a `Production/unsafe_uploads` folder for the `Production` environment.
+
+> [!WARNING]
+> The example saves files without scanning their contents. In production scenarios, use an anti-virus/anti-malware scanner API on uploaded files before making them available for download or for use by other systems. For more information on security considerations when uploading files to a server, see <xref:mvc/models/file-uploads#security-considerations>.
+
+`Controllers/FilesaveController.cs`:
+
+```csharp
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+
+[ApiController]
+[Route("[controller]")]
+public class FilesaveController : ControllerBase
+{
+    private readonly IWebHostEnvironment env;
+    private readonly ILogger<FilesaveController> logger;
+
+    public FilesaveController(IWebHostEnvironment env,
+        ILogger<FilesaveController> logger)
+    {
+        this.env = env;
+        this.logger = logger;
+    }
+
+    [HttpPost]
+    public async Task<ActionResult<IList<UploadResult>>> PostFile(
+        [FromForm] IEnumerable<IFormFile> files)
+    {
+        var maxAllowedFiles = 3;
+        long maxFileSize = 1024 * 1024 * 15;
+        var filesProcessed = 0;
+        var resourcePath = new Uri($"{Request.Scheme}://{Request.Host}/");
+        List<UploadResult> uploadResults = new();
+
+        foreach (var file in files)
+        {
+            var uploadResult = new UploadResult();
+            string trustedFileNameForFileStorage;
+            var untrustedFileName = file.FileName;
+            uploadResult.FileName = untrustedFileName;
+            var trustedFileNameForDisplay =
+                WebUtility.HtmlEncode(untrustedFileName);
+
+            if (filesProcessed < maxAllowedFiles)
+            {
+                if (file.Length == 0)
+                {
+                    logger.LogInformation("{FileName} length is 0 (Err: 1)",
+                        trustedFileNameForDisplay);
+                    uploadResult.ErrorCode = 1;
+                }
+                else if (file.Length > maxFileSize)
+                {
+                    logger.LogInformation("{FileName} of {Length} bytes is " +
+                        "larger than the limit of {Limit} bytes (Err: 2)",
+                        trustedFileNameForDisplay, file.Length, maxFileSize);
+                    uploadResult.ErrorCode = 2;
+                }
+                else
+                {
+                    try
+                    {
+                        trustedFileNameForFileStorage = Path.GetRandomFileName();
+                        var path = Path.Combine(env.ContentRootPath,
+                            env.EnvironmentName, "unsafe_uploads",
+                            trustedFileNameForFileStorage);
+
+                        await using FileStream fs = new(path, FileMode.Create);
+                        await file.CopyToAsync(fs);
+
+                        logger.LogInformation("{FileName} saved at {Path}",
+                            trustedFileNameForDisplay, path);
+                        uploadResult.Uploaded = true;
+                        uploadResult.StoredFileName = trustedFileNameForFileStorage;
+                    }
+                    catch (IOException ex)
+                    {
+                        logger.LogError("{FileName} error on upload (Err: 3): {Message}",
+                            trustedFileNameForDisplay, ex.Message);
+                        uploadResult.ErrorCode = 3;
+                    }
+                }
+
+                filesProcessed++;
+            }
+            else
+            {
+                logger.LogInformation("{FileName} not uploaded because the " +
+                    "request exceeded the allowed {Count} of files (Err: 4)",
+                    trustedFileNameForDisplay, maxAllowedFiles);
+                uploadResult.ErrorCode = 4;
+            }
+
+            uploadResults.Add(uploadResult);
+        }
+
+        return new CreatedResult(resourcePath, uploadResults);
+    }
+}
+```
+
+:::zone-end
 
 :::zone pivot="webassembly"
 
@@ -908,121 +1025,6 @@ public class FilesaveController : ControllerBase
 
 :::zone pivot="server"
 
-The following controller in the web API project saves uploaded files from the client.
-
-To use the following code, create a `Development/unsafe_uploads` folder at the root of the web API project for the app running in the `Development` environment. Because the example uses the app's [environment](xref:blazor/fundamentals/environments) as part of the path where files are saved, additional folders are required if other environments are used in testing and production. For example, create a `Staging/unsafe_uploads` folder for the `Staging` environment. Create a `Production/unsafe_uploads` folder for the `Production` environment.
-
-> [!WARNING]
-> The example saves files without scanning their contents. In production scenarios, use an anti-virus/anti-malware scanner API on uploaded files before making them available for download or for use by other systems. For more information on security considerations when uploading files to a server, see <xref:mvc/models/file-uploads#security-considerations>.
-
-`Controllers/FilesaveController.cs`:
-
-```csharp
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Net;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-
-[ApiController]
-[Route("[controller]")]
-public class FilesaveController : ControllerBase
-{
-    private readonly IWebHostEnvironment env;
-    private readonly ILogger<FilesaveController> logger;
-
-    public FilesaveController(IWebHostEnvironment env,
-        ILogger<FilesaveController> logger)
-    {
-        this.env = env;
-        this.logger = logger;
-    }
-
-    [HttpPost]
-    public async Task<ActionResult<IList<UploadResult>>> PostFile(
-        [FromForm] IEnumerable<IFormFile> files)
-    {
-        var maxAllowedFiles = 3;
-        long maxFileSize = 1024 * 1024 * 15;
-        var filesProcessed = 0;
-        var resourcePath = new Uri($"{Request.Scheme}://{Request.Host}/");
-        List<UploadResult> uploadResults = new();
-
-        foreach (var file in files)
-        {
-            var uploadResult = new UploadResult();
-            string trustedFileNameForFileStorage;
-            var untrustedFileName = file.FileName;
-            uploadResult.FileName = untrustedFileName;
-            var trustedFileNameForDisplay =
-                WebUtility.HtmlEncode(untrustedFileName);
-
-            if (filesProcessed < maxAllowedFiles)
-            {
-                if (file.Length == 0)
-                {
-                    logger.LogInformation("{FileName} length is 0 (Err: 1)",
-                        trustedFileNameForDisplay);
-                    uploadResult.ErrorCode = 1;
-                }
-                else if (file.Length > maxFileSize)
-                {
-                    logger.LogInformation("{FileName} of {Length} bytes is " +
-                        "larger than the limit of {Limit} bytes (Err: 2)",
-                        trustedFileNameForDisplay, file.Length, maxFileSize);
-                    uploadResult.ErrorCode = 2;
-                }
-                else
-                {
-                    try
-                    {
-                        trustedFileNameForFileStorage = Path.GetRandomFileName();
-                        var path = Path.Combine(env.ContentRootPath,
-                            env.EnvironmentName, "unsafe_uploads",
-                            trustedFileNameForFileStorage);
-
-                        await using FileStream fs = new(path, FileMode.Create);
-                        await file.CopyToAsync(fs);
-
-                        logger.LogInformation("{FileName} saved at {Path}",
-                            trustedFileNameForDisplay, path);
-                        uploadResult.Uploaded = true;
-                        uploadResult.StoredFileName = trustedFileNameForFileStorage;
-                    }
-                    catch (IOException ex)
-                    {
-                        logger.LogError("{FileName} error on upload (Err: 3): {Message}",
-                            trustedFileNameForDisplay, ex.Message);
-                        uploadResult.ErrorCode = 3;
-                    }
-                }
-
-                filesProcessed++;
-            }
-            else
-            {
-                logger.LogInformation("{FileName} not uploaded because the " +
-                    "request exceeded the allowed {Count} of files (Err: 4)",
-                    trustedFileNameForDisplay, maxAllowedFiles);
-                uploadResult.ErrorCode = 4;
-            }
-
-            uploadResults.Add(uploadResult);
-        }
-
-        return new CreatedResult(resourcePath, uploadResults);
-    }
-}
-```
-
-:::zone-end
-
-:::zone pivot="server"
-
 ## Upload files with progress
 
 The following example demonstrates how to upload files in a Blazor Server app with upload progress displayed to the user.
@@ -1046,15 +1048,15 @@ For more information, see the following API resources:
 
 ## File streams
 
-:::zone pivot="webassembly"
-
-In Blazor WebAssembly, file data is streamed directly into the .NET code within the browser.
-
-:::zone-end
-
 :::zone pivot="server"
 
 In Blazor Server, file data is streamed over the SignalR connection into .NET code on the server as the file is read from the stream. <xref:Microsoft.AspNetCore.Components.Forms.RemoteBrowserFileStreamOptions> allows configuring file upload characteristics for Blazor Server.
+
+:::zone-end
+
+:::zone pivot="webassembly"
+
+In Blazor WebAssembly, file data is streamed directly into the .NET code within the browser.
 
 :::zone-end
 

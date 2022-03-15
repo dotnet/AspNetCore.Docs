@@ -11,9 +11,11 @@ uid: blazor/js-interop/call-dotnet-from-javascript
 ---
 # Call .NET methods from JavaScript functions in ASP.NET Core Blazor
 
+This article explains how to invoke .NET methods from JavaScript (JS).
+
 :::moniker range=">= aspnetcore-6.0"
 
-This article covers invoking .NET methods from JavaScript (JS). For information on how to call JS functions from .NET, see <xref:blazor/js-interop/call-javascript-from-dotnet>.
+For information on how to call JS functions from .NET, see <xref:blazor/js-interop/call-javascript-from-dotnet>.
 
 ## Invoke a static .NET method
 
@@ -541,7 +543,7 @@ In the preceding example:
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-This article covers invoking .NET methods from JavaScript (JS). For information on how to call JS functions from .NET, see <xref:blazor/js-interop/call-javascript-from-dotnet>.
+For information on how to call JS functions from .NET, see <xref:blazor/js-interop/call-javascript-from-dotnet>.
 
 ## Invoke a static .NET method
 
@@ -856,7 +858,7 @@ For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#ja
 
 :::moniker range="< aspnetcore-5.0"
 
-This article covers invoking .NET methods from JavaScript (JS). For information on how to call JS functions from .NET, see <xref:blazor/js-interop/call-javascript-from-dotnet>.
+For information on how to call JS functions from .NET, see <xref:blazor/js-interop/call-javascript-from-dotnet>.
 
 ## Invoke a static .NET method
 

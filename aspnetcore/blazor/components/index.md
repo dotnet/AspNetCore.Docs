@@ -1,7 +1,7 @@
 ---
 title: ASP.NET Core Razor components
 author: guardrex
-description: Learn how to create and use Razor components in Blazor apps, including guidance on Razor syntax in components, component naming, namespaces, and component parameters.
+description: Learn how to create and use Razor components in Blazor apps, including guidance on Razor syntax, component naming, namespaces, and component parameters.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
@@ -10,6 +10,8 @@ no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Cor
 uid: blazor/components/index
 ---
 # ASP.NET Core Razor components
+
+This article explains how to create and use Razor components in Blazor apps, including guidance on Razor syntax, component naming, namespaces, and component parameters.
 
 :::moniker range=">= aspnetcore-6.0"
 

@@ -11,6 +11,8 @@ uid: blazor/host-and-deploy/index
 ---
 # Host and deploy ASP.NET Core Blazor
 
+This article explains how to host and deploy Blazor apps.
+
 :::moniker range=">= aspnetcore-6.0"
 
 ## Publish the app

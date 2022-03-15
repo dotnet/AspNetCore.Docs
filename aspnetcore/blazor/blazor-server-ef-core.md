@@ -1,7 +1,7 @@
 ---
-title: ASP.NET Core Blazor Server with Entity Framework Core (EFCore)
+title: ASP.NET Core Blazor Server with Entity Framework Core (EF Core)
 author: JeremyLikness
-description: Guidance for using EF Core in Blazor Server apps.
+description: Learn how to use Entity Framework Core (EF Core) in Blazor Server apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: jeliknes
 ms.custom: mvc
@@ -9,7 +9,9 @@ ms.date: 11/09/2021
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/blazor-server-ef-core
 ---
-# ASP.NET Core Blazor Server with Entity Framework Core (EFCore)
+# ASP.NET Core Blazor Server with Entity Framework Core (EF Core)
+
+This article explains how to use [Entity Framework Core (EF Core)](/ef/core/) in Blazor Server apps.
 
 :::moniker range=">= aspnetcore-6.0"
 

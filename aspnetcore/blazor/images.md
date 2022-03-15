@@ -1,5 +1,5 @@
 ---
-title: Work with images in ASP.NET Core Blazor apps
+title: Work with images in ASP.NET Core Blazor
 author: TanayParikh
 description: Learn how to work with images in ASP.NET Core Blazor apps.
 monikerRange: '>= aspnetcore-6.0'
@@ -9,7 +9,7 @@ no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Cor
 ms.date: 11/09/2021
 uid: blazor/images
 ---
-# Work with images in ASP.NET Core Blazor apps
+# Work with images in ASP.NET Core Blazor
 
 This article describes common scenarios for working with images in Blazor apps. 
 
