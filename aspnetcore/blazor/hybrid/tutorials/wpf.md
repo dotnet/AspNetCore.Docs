@@ -177,7 +177,7 @@ If the `MainWindow` designer isn't open, open it by double-clicking the `MainWin
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <blazor:BlazorWebView HostPage="index.html" Services="{DynamicResource services}">
+        <blazor:BlazorWebView HostPage="wwwroot/index.html" Services="{DynamicResource services}">
             <blazor:BlazorWebView.RootComponents>
                 <blazor:RootComponent Selector="#app" ComponentType="{x:Type local:Counter}" />
             </blazor:BlazorWebView.RootComponents>
