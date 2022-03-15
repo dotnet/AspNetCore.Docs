@@ -241,6 +241,8 @@ The additional claim can then be used in the app. In a Razor Page, the `IAuthori
 }
 ```
 
+:::moniker-end
+
 :::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 
 [!INCLUDE [](~/includes/3.0-SDK.md)]
@@ -458,6 +460,8 @@ The additional claim can then be used in the app. In a Razor Page, the `IAuthori
     </ul>
 }
 ```
+
+:::moniker-end
 
 :::moniker range="< aspnetcore-3.0"
 
@@ -677,3 +681,4 @@ The additional claim can then be used in the app. In a Razor Page, the `IAuthori
     </ul>
 }
 ```
+:::moniker-end
