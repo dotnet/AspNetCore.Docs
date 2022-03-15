@@ -117,17 +117,17 @@ Properties with the [PersonalData](xref:Microsoft.AspNetCore.Identity.PersonalDa
 
 Update the `InputModel` in *Areas/Identity/Pages/Account/Manage/Index.cshtml.cs* with the following highlighted code:
 
-[!code-csharp[](add-user-data/samples/6.x/SampleApp/Areas/Identity/Pages/Account/Manage/Index.cshtml.cs?name=snippet&highlight=24-32,48-49,96-104,106)]
+[!code-csharp[](add-user-data/samples/6.x/SampleApp/Areas/Identity/Pages/Account/Manage/Index.cshtml.cs?name=snippet&highlight=30-38,54-55,97-107)]
 
 Update the *Areas/Identity/Pages/Account/Manage/Index.cshtml* with the following highlighted markup:
 
-[!code-cshtml[](add-user-data/samples/6.x/SampleApp/Areas/Identity/Pages/Account/Manage/Index.cshtml?highlight=18-25)]
+[!code-cshtml[](add-user-data/samples/6.x/SampleApp/Areas/Identity/Pages/Account/Manage/Index.cshtml?highlight=18-25,81-82)]
 
 ### Update the `Account/Register.cshtml` page
 
 Update the `InputModel` in *Areas/Identity/Pages/Account/Register.cshtml.cs* with the following highlighted code:
 
-[!code-csharp[](add-user-data/samples/6.x/SampleApp/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=30-38,70-71)]
+[!code-csharp[](add-user-data/samples/6.x/SampleApp/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=39-47)]
 
 Update the *Areas/Identity/Pages/Account/Register.cshtml* with the following highlighted markup:
 
@@ -166,7 +166,7 @@ Test the app:
 * Register a new user.
 * View the custom user data on the `/Identity/Account/Manage` page.
 * Download and view the users personal data from the `/Identity/Account/Manage/PersonalData` page.
-
+<!-- 
 ## Add claims to Identity using `IUserClaimsPrincipalFactory<ApplicationUser>`
 
 > [!NOTE]
@@ -684,4 +684,5 @@ The additional claim can then be used in the app. In a Razor Page, the `IAuthori
 }
 ```
 
+-->
 :::moniker-end
