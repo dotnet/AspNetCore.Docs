@@ -21,15 +21,13 @@ This tutorial shows you how to build and run a WPF Blazor app. You learn how to:
 ## Prerequisites
 
 * [Supported platforms (WPF documentation)](/dotnet/desktop/wpf/overview/)
-* [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/) with the following workloads:
-  * **ASP.NET and web development**
-  * **.NET desktop development**
+* [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/) with the **.NET desktop development** workload
 
 ## Visual Studio workload
 
-If the **ASP.NET and web development** and **.NET desktop development** workloads aren't installed, use the Visual Studio installer to install the workloads. For more information, see [Modify Visual Studio workloads, components, and language packs](/visualstudio/install/modify-visual-studio).
+If the **.NET desktop development** workload isn't installed, use the Visual Studio installer to install the workload. For more information, see [Modify Visual Studio workloads, components, and language packs](/visualstudio/install/modify-visual-studio).
 
-:::image type="content" source="wpf/_static/install-workloads.png" alt-text="Visual Studio installer workload selection.":::
+:::image type="content" source="wpf/_static/install-workload.png" alt-text="Visual Studio installer workload selection.":::
 
 ## Create a WPF Blazor project
 
@@ -49,7 +47,7 @@ In the **Configure your new project** dialog, set the **Project name** to **`Wpf
 
 In the **Additional information** dialog, select the framework version, which must be .NET 6.0 or later. Select the **Create** button:
 
-:::image type="content" source="wpf/_static/additional-information-1.png" alt-text="The Additional Information dialog for the WPF project.":::
+:::image type="content" source="wpf/_static/additional-information.png" alt-text="The Additional Information dialog for the WPF project.":::
 
 Use [NuGet Package Manager](/nuget/consume-packages/install-use-packages-visual-studio) to install the [`Microsoft.AspNetCore.Components.WebView.Wpf`](https://nuget.org/packages/Microsoft.AspNetCore.Components.WebView.Wpf) preview NuGet package.
 
@@ -63,25 +61,12 @@ At the top of the project file, change the SDK to `Microsoft.NET.Sdk.Razor`:
 
 Save the changes to the project file (`WpfBlazor.csproj`).
 
-Add the following `Counter` component to the root of the project, which is the default `Counter` component found in Blazor project templates.
+Add an `_Imports.razor` file to the root of the project with an [`@using`](xref:mvc/views/razor#using) directive for <xref:Microsoft.AspNetCore.Components.Web?displayProperty=fullName>.
 
-`Counter.razor`:
+`_Imports.razor`:
 
 ```razor
-<h1>Counter</h1>
-
-<p>Current count: @currentCount</p>
-
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
-
-@code {
-    private int currentCount = 0;
-
-    private void IncrementCount()
-    {
-        currentCount++;
-    }
-}
+@using Microsoft.AspNetCore.Components.Web
 ```
 
 Add a `wwwroot` folder to the project.
@@ -161,6 +146,27 @@ html, body {
     }
 ```
 
+Add the following `Counter` component to the root of the project, which is the default `Counter` component found in Blazor project templates.
+
+`Counter.razor`:
+
+```razor
+<h1>Counter</h1>
+
+<p>Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}
+```
+
 If the `MainWindow` designer isn't open, open it by double-clicking the `MainWindow.xaml` file in **Solution Explorer**. In the `MainWindow` designer, replace the XAML code with the following:
 
 ```xaml
@@ -173,7 +179,7 @@ If the `MainWindow` designer isn't open, open it by double-clicking the `MainWin
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <blazor:BlazorWebView HostPage="wwwroot/index.html" Services="{DynamicResource services}">
+        <blazor:BlazorWebView HostPage="wwwroot\index.html" Services="{DynamicResource services}">
             <blazor:BlazorWebView.RootComponents>
                 <blazor:RootComponent Selector="#app" ComponentType="{x:Type local:Counter}" />
             </blazor:BlazorWebView.RootComponents>
@@ -245,6 +251,8 @@ Select the start button in the Visual Studio toolbar:
 :::image type="content" source="wpf/_static/start-button.png" alt-text="Start button of the Visual Studio toolbar.":::
 
 The app running on Windows:
+
+########## UPDATE THE IMAGE
 
 :::image type="content" source="wpf/_static/running-app.png" alt-text="The app running on Windows.":::
 
