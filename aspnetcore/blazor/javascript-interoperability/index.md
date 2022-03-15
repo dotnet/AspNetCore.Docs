@@ -36,6 +36,29 @@ For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#ca
 
 JS interop calls are asynchronous by default, regardless of whether the called code is synchronous or asynchronous. Calls are asynchronous by default to ensure that components are compatible across both Blazor hosting models, Blazor Server and Blazor WebAssembly. On Blazor Server, JS interop calls must be asynchronous because they're sent over a network connection. For apps that exclusively adopt the Blazor WebAssembly hosting model, synchronous JS interop calls are supported. For more information, see <xref:blazor/performance?pivots=webassembly#consider-the-use-of-synchronous-calls>.
 
+## Object serialization
+
+Blazor uses <xref:System.Text.Json?displayProperty=fullName> for serialization with the following requirements and default behaviors:
+
+* Types must have a default constructor, [`get`/`set` accessors](/dotnet/csharp/programming-guide/classes-and-structs/using-properties) must be public, and fields are never serialized.
+* Global default serialization isn't customizable to avoid breaking existing component libraries, impacts on performance and security, and reductions in reliability.
+* Serializing .NET member names results in lowercase JSON key names.
+* JSON is deserialized as <xref:System.Text.Json.JsonElement> C# instances, which permit mixed casing. Internal casting for assignment to C# model properties works as expected in spite of any case differences between JSON key names and C# property names.
+
+<xref:System.Text.Json.Serialization.JsonConverter> API is available for custom serialization. Properties can be annotated with a [`[JsonConverter]` attribute](xref:System.Text.Json.Serialization.JsonConverterAttribute) to override default serialization for an existing data type.
+
+For more information, see the following resources in the .NET documentation:
+
+* [JSON serialization and deserialization (marshalling and unmarshalling) in .NET](/dotnet/standard/serialization/system-text-json-overview)
+* [How to customize property names and values with `System.Text.Json`](/dotnet/standard/serialization/system-text-json-customize-properties)
+* [How to write custom converters for JSON serialization (marshalling) in .NET](/dotnet/standard/serialization/system-text-json-converters-how-to)
+
+JSON serializer support for <xref:System.DateOnly?displayProperty=fullName> and <xref:System.TimeOnly?displayProperty=fullName> is planned for ASP.NET Core 7.0, which is scheduled for release by the end of 2022. For more information, see [Support `DateOnly` and `TimeOnly` in `JsonSerializer` (dotnet/runtime #53539)](https://github.com/dotnet/runtime/issues/53539).
+
+Blazor supports optimized byte array JS interop that avoids encoding/decoding byte arrays into Base64. The app can apply custom serialization and pass the resulting bytes. For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#byte-array-support>.
+
+Blazor supports unmarshalled JS interop when a high volume of .NET objects are rapidly serialized or when large .NET objects or many .NET objects must be serialized. For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#unmarshalled-javascript-interop>.
+
 ## JavaScript initializers
 
 [!INCLUDE[](~/blazor/includes/js-initializers.md)]
@@ -237,6 +260,27 @@ For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#ca
 
 JS interop calls are asynchronous by default, regardless of whether the called code is synchronous or asynchronous. Calls are asynchronous by default to ensure that components are compatible across both Blazor hosting models, Blazor Server and Blazor WebAssembly. On Blazor Server, JS interop calls must be asynchronous because they're sent over a network connection. For apps that exclusively adopt the Blazor WebAssembly hosting model, synchronous JS interop calls are supported. For more information, see <xref:blazor/performance?pivots=webassembly#consider-the-use-of-synchronous-calls>.
 
+## Object serialization
+
+Blazor uses <xref:System.Text.Json?displayProperty=fullName> for serialization with the following requirements and default behaviors:
+
+* Types must have a default constructor, [`get`/`set` accessors](/dotnet/csharp/programming-guide/classes-and-structs/using-properties) must be public, and fields are never serialized.
+* Global default serialization isn't customizable to avoid breaking existing component libraries, impacts on performance and security, and reductions in reliability.
+* Serializing .NET member names results in lowercase JSON key names.
+* JSON is deserialized as <xref:System.Text.Json.JsonElement> C# instances, which permit mixed casing. Internal casting for assignment to C# model properties works as expected in spite of any case differences between JSON key names and C# property names.
+
+<xref:System.Text.Json.Serialization.JsonConverter> API is available for custom serialization. Properties can be annotated with a [`[JsonConverter]` attribute](xref:System.Text.Json.Serialization.JsonConverterAttribute) to override default serialization for an existing data type.
+
+For more information, see the following resources in the .NET documentation:
+
+* [JSON serialization and deserialization (marshalling and unmarshalling) in .NET](/dotnet/standard/serialization/system-text-json-overview)
+* [How to customize property names and values with `System.Text.Json`](/dotnet/standard/serialization/system-text-json-customize-properties)
+* [How to write custom converters for JSON serialization (marshalling) in .NET](/dotnet/standard/serialization/system-text-json-converters-how-to)
+
+JSON serializer support for <xref:System.DateOnly?displayProperty=fullName> and <xref:System.TimeOnly?displayProperty=fullName> is planned for ASP.NET Core 7.0, which is scheduled for release by the end of 2022. For more information, see [Support `DateOnly` and `TimeOnly` in `JsonSerializer` (dotnet/runtime #53539)](https://github.com/dotnet/runtime/issues/53539).
+
+Blazor supports unmarshalled JS interop when a high volume of .NET objects are rapidly serialized or when large .NET objects or many .NET objects must be serialized. For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#unmarshalled-javascript-interop>.
+
 ## Location of JavaScript
 
 Load JavaScript (JS) code using any of the following approaches:
@@ -256,7 +300,7 @@ Load JavaScript (JS) code using any of the following approaches:
 
 *The approach in this section isn't generally recommended.*
 
-Place the script  (`<script>...</script>`) in the `<head>` element markup of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server):
+Place the script (`<script>...</script>`) in the `<head>` element markup of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server):
 
 ```html
 <head>
@@ -277,7 +321,7 @@ Loading JS from the `<head>` isn't the best approach for the following reasons:
 
 ### Load a script in `<body>` markup
 
-Place the script  (`<script>...</script>`) inside the closing `</body>` element markup of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server):
+Place the script (`<script>...</script>`) inside the closing `</body>` element markup of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server):
 
 ```html
 <body>
@@ -296,7 +340,7 @@ The `{webassembly|server}` placeholder in the preceding markup is either `webass
 
 ### Load a script from an external JS file (`.js`)
 
-Place the script  (`<script>...</script>`) with a script `src` path inside the closing `</body>` tag after the Blazor script reference.
+Place the script (`<script>...</script>`) with a script `src` path inside the closing `</body>` tag after the Blazor script reference.
 
 In `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server):
 
@@ -427,6 +471,25 @@ For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#ca
 
 JS interop calls are asynchronous by default, regardless of whether the called code is synchronous or asynchronous. Calls are asynchronous by default to ensure that components are compatible across both Blazor hosting models, Blazor Server and Blazor WebAssembly. On Blazor Server, JS interop calls must be asynchronous because they're sent over a network connection. For apps that exclusively adopt the Blazor WebAssembly hosting model, synchronous JS interop calls are supported. For more information, see <xref:blazor/performance?pivots=webassembly#consider-the-use-of-synchronous-calls>.
 
+## Object serialization
+
+Blazor uses <xref:System.Text.Json?displayProperty=fullName> for serialization with the following requirements and default behaviors:
+
+* Types must have a default constructor, [`get`/`set` accessors](/dotnet/csharp/programming-guide/classes-and-structs/using-properties) must be public, and fields are never serialized.
+* Global default serialization isn't customizable to avoid breaking existing component libraries, impacts on performance and security, and reductions in reliability.
+* Serializing .NET member names results in lowercase JSON key names.
+* JSON is deserialized as <xref:System.Text.Json.JsonElement> C# instances, which permit mixed casing. Internal casting for assignment to C# model properties works as expected in spite of any case differences between JSON key names and C# property names.
+
+<xref:System.Text.Json.Serialization.JsonConverter> API is available for custom serialization. Properties can be annotated with a [`[JsonConverter]` attribute](xref:System.Text.Json.Serialization.JsonConverterAttribute) to override default serialization for an existing data type.
+
+For more information, see the following resources in the .NET documentation:
+
+* [JSON serialization and deserialization (marshalling and unmarshalling) in .NET](/dotnet/standard/serialization/system-text-json-overview)
+* [How to customize property names and values with `System.Text.Json`](/dotnet/standard/serialization/system-text-json-customize-properties)
+* [How to write custom converters for JSON serialization (marshalling) in .NET](/dotnet/standard/serialization/system-text-json-converters-how-to)
+
+JSON serializer support for <xref:System.DateOnly?displayProperty=fullName> and <xref:System.TimeOnly?displayProperty=fullName> is planned for ASP.NET Core 7.0, which is scheduled for release by the end of 2022. For more information, see [Support `DateOnly` and `TimeOnly` in `JsonSerializer` (dotnet/runtime #53539)](https://github.com/dotnet/runtime/issues/53539).
+
 ## Location of JavaScript
 
 Load JavaScript (JS) code using any of the following approaches:
@@ -446,7 +509,7 @@ Load JavaScript (JS) code using any of the following approaches:
 
 *The approach in this section isn't generally recommended.*
 
-Place the script  (`<script>...</script>`) in the `<head>` element markup of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server):
+Place the script (`<script>...</script>`) in the `<head>` element markup of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server):
 
 ```html
 <head>
@@ -467,7 +530,7 @@ Loading JS from the `<head>` isn't the best approach for the following reasons:
 
 ### Load a script in `<body>` markup
 
-Place the script  (`<script>...</script>`) inside the closing `</body>` element markup of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server):
+Place the script (`<script>...</script>`) inside the closing `</body>` element markup of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server):
 
 ```html
 <body>
@@ -486,7 +549,7 @@ The `{webassembly|server}` placeholder in the preceding markup is either `webass
 
 ### Load a script from an external JS file (`.js`)
 
-Place the script  (`<script>...</script>`) with a script `src` path inside the closing `</body>` tag after the Blazor script reference.
+Place the script (`<script>...</script>`) with a script `src` path inside the closing `</body>` tag after the Blazor script reference.
 
 In `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server):
 
