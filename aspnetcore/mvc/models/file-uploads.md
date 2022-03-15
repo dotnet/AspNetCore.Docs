@@ -86,12 +86,13 @@ Two general approaches for uploading files are buffering and streaming.
 
 **Buffering**
 
-The entire file is read into an <xref:Microsoft.AspNetCore.Http.IFormFile>, which is a C# representation of the file used to process or save the file.
+The entire file is read into an <xref:Microsoft.AspNetCore.Http.IFormFile>.  `IFormFile` is a C# representation of the file used to process or save the file.
 
-The resources (disk, memory) used by file uploads depend on the number and size of concurrent file uploads. If an app attempts to buffer too many uploads, the site crashes when it runs out of memory or disk space. If the size or frequency of file uploads is exhausting app resources, use streaming.
+The disk and memory used by file uploads depend on the number and size of concurrent file uploads. If an app attempts to buffer too many uploads, the site crashes when it runs out of memory or disk space. If the size or frequency of file uploads is exhausting app resources, use streaming.
 
-> [!NOTE]
-> Any single buffered file exceeding 64 KB is moved from memory to a temp file on disk.
+Any single buffered file exceeding 64 KB is moved from memory to a temp file on disk.
+
+Temporary files for larger requests are written to the location named in the `ASPNETCORE_TEMP` [environment variable](xref:fundamentals/environments). If `ASPNETCORE_TEMP` is not defined, the files are written to the current user's temporary folder.
 
 Buffering small files is covered in the following sections of this topic:
 
