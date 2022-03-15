@@ -58,7 +58,7 @@
     {
       "path_to_root": "AspNetCore.Docs.Samples",
       "url": "https://github.com/dotnet/AspNetCore.Docs.Samples",
-      "branch": "serpent5-24650",
+      "branch": "main",
       "branch_mapping": {}
     }
   ],
