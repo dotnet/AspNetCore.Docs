@@ -94,11 +94,11 @@ In this section, you configure the ASP.NET Core web app to send and receive Sign
 
 1. In `Program.cs`, call <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddSignalR%2A>:
 
-   :::code language="csharp" source="~/../AspNetCore.Docs.Samples/tutorials/signalr-typescript-webpack/samples/6.x/SignalRWebpack/Program.cs" id="snippet_AddSignalR":::
+   :::code language="csharp" source="~/../AspNetCore.Docs.Samples/tutorials/signalr-typescript-webpack/samples/6.x/SignalRWebpack/Program.cs" id="snippet_AddSignalR" highlight="3":::
 
 1. Again, in `Program.cs`, call <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles%2A> and <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>:
 
-   :::code language="csharp" source="~/../AspNetCore.Docs.Samples/tutorials/signalr-typescript-webpack/samples/6.x/SignalRWebpack/Program.cs" id="snippet_FilesMiddleware":::
+   :::code language="csharp" source="~/../AspNetCore.Docs.Samples/tutorials/signalr-typescript-webpack/samples/6.x/SignalRWebpack/Program.cs" id="snippet_FilesMiddleware" highlight="3-4":::
 
    The preceding code allows the server to locate and serve the `index.html` file. The file is served whether the user enters its full URL or the root URL of the web app.
 
