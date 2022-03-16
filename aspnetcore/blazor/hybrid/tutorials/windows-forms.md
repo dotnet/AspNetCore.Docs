@@ -58,14 +58,6 @@ At the top of the project file, change the SDK to `Microsoft.NET.Sdk.Razor`:
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 ```
 
-Add the following [MSBuild `Content` item](/visualstudio/msbuild/common-msbuild-project-items#content) to the project file, which copies the contents of the `wwwroot` folder to the output directory without compiling the assets in the folder:
-
-```xml
-<ItemGroup>
-  <Content Update="wwwroot\**" CopyToOutputDirectory="PreserveNewest" />
-</ItemGroup>
-```
-
 Save the changes to the project file (`WinFormsBlazor.csproj`).
 
 Add an `_Imports.razor` file to the root of the project with an [`@using`](xref:mvc/views/razor#using) directive for <xref:Microsoft.AspNetCore.Components.Web?displayProperty=fullName>.
