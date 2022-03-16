@@ -3,4 +3,4 @@ no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Cor
 ---
 ## Configure proxy middleware for SignalR
 
-For more information, see  [http-proxy-middleware](https://github.com/chimurai/http-proxy-middleware)
+For more information, see  [http-proxy-middleware](https://github.com/chimurai/http-proxy-middleware).
