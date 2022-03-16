@@ -1,29 +1,27 @@
 ---
-title: Use the React project template with ASP.NET Core
+title: Use React with ASP.NET Core
 author: SteveSandersonMS
-description: Learn how to get started with the ASP.NET Core Single Page Application (SPA) project template for React and create-react-app.
+description: Learn how to get started with the ASP.NET Core Single Page Application (SPA) project template for React and Create React App (CRA).
 monikerRange: '>= aspnetcore-3.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 03/07/2019
+ms.date: 03/16/2022
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: spa/react
 ---
-# Use the React project template with ASP.NET Core
+# Use React with ASP.NET Core
 
 :::moniker range=">= aspnetcore-6.0"
 
-<!-- This section needs to be updated to 6.0 -->
+The ASP.NET Core with React project template provides a convenient starting point for ASP.NET Core apps using React and [Create React App](https://create-react-app.dev/) (CRA) to implement a rich, client-side user interface (UI).
 
-The updated React project template provides a convenient starting point for ASP.NET Core apps using React and [create-react-app](https://github.com/facebookincubator/create-react-app) (CRA) conventions to implement a rich, client-side user interface (UI).
+The project template is equivalent to creating both an ASP.NET Core project to act as a web API and a CRA React project to act as a UI. This project combination offers the convenience of hosting both projects in a single ASP.NET Core project that can be built and published as a single unit.
 
-The template is equivalent to creating both an ASP.NET Core project to act as an API backend, and a standard CRA React project to act as a UI, but with the convenience of hosting both in a single app project that can be built and published as a single unit.
-
-The React project template isn't meant for server-side rendering (SSR). For SSR with React and Node.js, consider [Next.js](https://github.com/zeit/next.js/) or [Razzle](https://github.com/jaredpalmer/razzle).
+The project template isn't meant for server-side rendering (SSR). For SSR with React and Node.js, consider [Next.js](https://nextjs.org/) or [Razzle](https://razzlejs.org/).
 
 ## Create a new app
 
-Create a new project from a command prompt using the command `dotnet new react` in an empty directory. For example, the following commands create the app in a *my-new-app* directory and switch to that directory:
+Create a new project from a command prompt using the command `dotnet new react` in an empty directory. For example, the following commands create the app in a `my-new-app` directory and switch to that directory:
 
 ```dotnetcli
 dotnet new react -o my-new-app
@@ -34,7 +32,7 @@ Run the app from either Visual Studio or the .NET Core CLI:
 
 # [Visual Studio](#tab/visual-studio)
 
-Open the generated *.csproj* file, and run the app as normal from there.
+Open the generated `.csproj` file, and run the app as normal from there.
 
 The build process restores npm dependencies on the first run, which can take several minutes. Subsequent builds are much faster.
 
@@ -48,21 +46,21 @@ Run [dotnet run](/dotnet/core/tools/dotnet-run) to start the app.
 
 ---
 
-The project template creates an ASP.NET Core app and a React app. The ASP.NET Core app is intended to be used for data access, authorization, and other server-side concerns. The React app, residing in the *ClientApp* subdirectory, is intended to be used for all UI concerns.
+The project template creates an ASP.NET Core app and a React app. The ASP.NET Core app is intended to be used for data access, authorization, and other server-side concerns. The React app, residing in the `ClientApp` subdirectory, is intended to be used for all UI concerns.
 
 ## Add pages, images, styles, modules, etc.
 
-The *ClientApp* directory is a standard CRA React app. See the official [CRA documentation](https://create-react-app.dev/docs/getting-started/) for more information.
+The `ClientApp` directory is a standard CRA React app. See the official [CRA documentation](https://create-react-app.dev/docs/getting-started/) for more information.
 
 There are slight differences between the React app created by this template and the one created by CRA itself; however, the app's capabilities are unchanged. The app created by the template contains a [Bootstrap](https://getbootstrap.com/)-based layout and a basic routing example.
 
 ## Install npm packages
 
-To install third-party npm packages, use a command prompt in the *ClientApp* subdirectory. For example:
+To install third-party npm packages, use a command prompt in the `ClientApp` subdirectory. For example:
 
 ```console
 cd ClientApp
-npm install --save <package_name>
+npm install <package_name>
 ```
 
 ## Publish and deploy
@@ -77,33 +75,16 @@ You can use standard [ASP.NET Core hosting and deployment methods](xref:host-and
 
 The project is configured to start its own instance of the CRA development server in the background when the ASP.NET Core app starts in development mode. This is convenient because it means you don't have to run a separate server manually.
 
-There's a drawback to this default setup. Each time you modify your C# code and your ASP.NET Core app needs to restart, the CRA server restarts. A few seconds are required to start back up. If you're making frequent C# code edits and don't want to wait for the CRA server to restart, run the CRA server externally, independently of the ASP.NET Core process. To do so:
+There's a drawback to this default setup. Each time you modify your C# code and your ASP.NET Core app needs to restart, the CRA server restarts. A few seconds are required to start back up. If you're making frequent C# code edits and don't want to wait for the CRA server to restart, run the CRA server externally, independently of the ASP.NET Core process.
 
-1. Add a *.env* file to the *ClientApp* subdirectory with the following setting:
+To run the CRA server externally, switch to the `ClientApp` subdirectory in a command prompt and launch the CRA development server:
 
-   ```
-   BROWSER=none
-   ```
-
-    This will prevent your web browser from opening when starting the CRA server externally.
-
-2. In a command prompt, switch to the *ClientApp* subdirectory, and launch the CRA development server:
-
-   ```console
-   cd ClientApp
-   npm start
-   ```
-
-3. Modify your ASP.NET Core app to use the external CRA server instance instead of launching one of its own. In your *Startup* class, replace the `spa.UseReactDevelopmentServer` invocation with the following:
-
-   ```csharp
-   spa.UseProxyToSpaDevelopmentServer("http://localhost:3000");
-   ```
+```console
+cd ClientApp
+npm start
+```
 
 When you start your ASP.NET Core app, it won't launch a CRA server. The instance you started manually is used instead. This enables it to start and restart faster. It's no longer waiting for your React app to rebuild each time.
-
-> [!IMPORTANT]
-> "Server-side rendering" is not a supported feature of this template. Our goal with this template is to meet parity with "create-react-app". As such, scenarios and features not included in a "create-react-app" project (such as SSR) are not supported and are left as an exercise for the user.
 
 [!INCLUDE[](~/includes/spa-proxy.md)]
 
@@ -123,7 +104,7 @@ The React project template isn't meant for server-side rendering (SSR). For SSR 
 
 ## Create a new app
 
-Create a new project from a command prompt using the command `dotnet new react` in an empty directory. For example, the following commands create the app in a *my-new-app* directory and switch to that directory:
+Create a new project from a command prompt using the command `dotnet new react` in an empty directory. For example, the following commands create the app in a `my-new-app` directory and switch to that directory:
 
 ```dotnetcli
 dotnet new react -o my-new-app
@@ -134,7 +115,7 @@ Run the app from either Visual Studio or the .NET Core CLI:
 
 # [Visual Studio](#tab/visual-studio)
 
-Open the generated *.csproj* file, and run the app as normal from there.
+Open the generated `.csproj` file, and run the app as normal from there.
 
 The build process restores npm dependencies on the first run, which can take several minutes. Subsequent builds are much faster.
 
@@ -148,17 +129,17 @@ Run [dotnet run](/dotnet/core/tools/dotnet-run) to start the app.
 
 ---
 
-The project template creates an ASP.NET Core app and a React app. The ASP.NET Core app is intended to be used for data access, authorization, and other server-side concerns. The React app, residing in the *ClientApp* subdirectory, is intended to be used for all UI concerns.
+The project template creates an ASP.NET Core app and a React app. The ASP.NET Core app is intended to be used for data access, authorization, and other server-side concerns. The React app, residing in the `ClientApp` subdirectory, is intended to be used for all UI concerns.
 
 ## Add pages, images, styles, modules, etc.
 
-The *ClientApp* directory is a standard CRA React app. See the official [CRA documentation](https://create-react-app.dev/docs/getting-started/) for more information.
+The `ClientApp` directory is a standard CRA React app. See the official [CRA documentation](https://create-react-app.dev/docs/getting-started/) for more information.
 
 There are slight differences between the React app created by this template and the one created by CRA itself; however, the app's capabilities are unchanged. The app created by the template contains a [Bootstrap](https://getbootstrap.com/)-based layout and a basic routing example.
 
 ## Install npm packages
 
-To install third-party npm packages, use a command prompt in the *ClientApp* subdirectory. For example:
+To install third-party npm packages, use a command prompt in the `ClientApp` subdirectory. For example:
 
 ```console
 cd ClientApp
@@ -179,7 +160,7 @@ The project is configured to start its own instance of the CRA development serve
 
 There's a drawback to this default setup. Each time you modify your C# code and your ASP.NET Core app needs to restart, the CRA server restarts. A few seconds are required to start back up. If you're making frequent C# code edits and don't want to wait for the CRA server to restart, run the CRA server externally, independently of the ASP.NET Core process. To do so:
 
-1. Add a *.env* file to the *ClientApp* subdirectory with the following setting:
+1. Add a `.env` file to the `ClientApp` subdirectory with the following setting:
 
    ```
    BROWSER=none
@@ -187,7 +168,7 @@ There's a drawback to this default setup. Each time you modify your C# code and 
 
     This will prevent your web browser from opening when starting the CRA server externally.
 
-2. In a command prompt, switch to the *ClientApp* subdirectory, and launch the CRA development server:
+2. In a command prompt, switch to the `ClientApp` subdirectory, and launch the CRA development server:
 
    ```console
    cd ClientApp
