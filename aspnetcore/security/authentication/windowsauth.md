@@ -225,7 +225,7 @@ While the [Microsoft.AspNetCore.Authentication.Negotiate](https://www.nuget.org/
 
 ## Claims transformations
 
-When hosting with IIS, <xref:Microsoft.AspNetCore.Authentication.AuthenticationService.AuthenticateAsync*> isn't called internally to initialize a user. Therefore, an <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> implementation used to transform claims after every authentication isn't activated by default. For more information and a code example that activates claims transformations, see <xref:host-and-deploy/aspnet-core-module#in-process-hosting-model>.
+When hosting with IIS, <xref:Microsoft.AspNetCore.Authentication.AuthenticationService.AuthenticateAsync*> isn't called internally to initialize a user. Therefore, an <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> implementation used to transform claims after every authentication isn't activated by default. For more information and a code example that activates claims transformations, see [Differences between in-process and out-of-process hosting](xref:host-and-deploy/iis/in-process-hosting#differences-between-in-process-and-out-of-process-hosting).
 
 ## Additional resources
 
@@ -482,7 +482,7 @@ While the [Microsoft.AspNetCore.Authentication.Negotiate](https://www.nuget.org/
 
 ## Claims transformations
 
-When hosting with IIS, <xref:Microsoft.AspNetCore.Authentication.AuthenticationService.AuthenticateAsync*> isn't called internally to initialize a user. Therefore, an <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> implementation used to transform claims after every authentication isn't activated by default. For more information and a code example that activates claims transformations, see <xref:host-and-deploy/aspnet-core-module#in-process-hosting-model>.
+When hosting with IIS, <xref:Microsoft.AspNetCore.Authentication.AuthenticationService.AuthenticateAsync*> isn't called internally to initialize a user. Therefore, an <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> implementation used to transform claims after every authentication isn't activated by default. For more information and a code example that activates claims transformations, see [Differences between in-process and out-of-process hosting](xref:host-and-deploy/iis/in-process-hosting#differences-between-in-process-and-out-of-process-hosting).
 
 ## Additional resources
 
