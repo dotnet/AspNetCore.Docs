@@ -59,6 +59,14 @@ At the top of the project file, change the SDK to `Microsoft.NET.Sdk.Razor`:
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 ```
 
+Add the following [MSBuild `Content` item](/visualstudio/msbuild/common-msbuild-project-items#content) to the project file, which copies the contents of the `wwwroot` folder to the output directory without compiling the assets in the folder:
+
+```xml
+<ItemGroup>
+  <Content Update="wwwroot\**" CopyToOutputDirectory="PreserveNewest" />
+</ItemGroup>
+```
+
 Save the changes to the project file (`WpfBlazor.csproj`).
 
 Add an `_Imports.razor` file to the root of the project with an [`@using`](xref:mvc/views/razor#using) directive for <xref:Microsoft.AspNetCore.Components.Web?displayProperty=fullName>.
@@ -176,6 +184,7 @@ If the `MainWindow` designer isn't open, open it by double-clicking the `MainWin
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:blazor="clr-namespace:Microsoft.AspNetCore.Components.WebView.Wpf;assembly=Microsoft.AspNetCore.Components.WebView.Wpf"
+        xmlns:local="clr-namespace:WpfBlazor"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
@@ -251,8 +260,6 @@ Select the start button in the Visual Studio toolbar:
 :::image type="content" source="wpf/_static/start-button.png" alt-text="Start button of the Visual Studio toolbar.":::
 
 The app running on Windows:
-
-########## UPDATE THE IMAGE
 
 :::image type="content" source="wpf/_static/running-app.png" alt-text="The app running on Windows.":::
 
