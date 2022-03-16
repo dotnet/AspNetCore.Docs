@@ -92,7 +92,7 @@ The disk and memory used by file uploads depend on the number and size of concur
 
 Any single buffered file exceeding 64 KB is moved from memory to a temp file on disk.
 
-Temporary files for larger requests are written to the location named in the `ASPNETCORE_TEMP` [environment variable](xref:fundamentals/environments). If `ASPNETCORE_TEMP` is not defined, the files are written to the current user's temporary folder.
+Temporary files for larger requests are written to the location named in the `ASPNETCORE_TEMP` environment variable. If `ASPNETCORE_TEMP` is not defined, the files are written to the current user's temporary folder.
 
 Buffering small files is covered in the following sections of this topic:
 
