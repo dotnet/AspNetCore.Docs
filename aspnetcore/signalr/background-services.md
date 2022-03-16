@@ -145,6 +145,7 @@ During the `IHostedService.StopAsync` method, the `HubConnection` is disposed of
 
 :::moniker-end  
 
+:::moniker range="<= aspnetcore-2.2"
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/background-service/samples/2.2) [(how to download)](xref:index#how-to-download-a-sample)
 
