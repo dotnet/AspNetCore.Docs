@@ -200,7 +200,7 @@ Experimental support is available for building custom elements, which use standa
 
 ### Infer component generic types from ancestor components
 
-An ancestor component can cascade a type parameter by name to descendants using the new `[CascadingTypeParameter]` attribute. For more information, see <xref:blazor/components/templated-components?view=aspnetcore-6.0#infer-generic-types-based-on-ancestor-components>.
+An ancestor component can cascade a type parameter by name to descendants using the new `[CascadingTypeParameter]` attribute. For more information, see <xref:blazor/components/index?view=aspnetcore-6.0#cascaded-generic-type-support>.
 
 ### Dynamically rendered components
 

@@ -143,7 +143,7 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 
 ## Dynamic content generation scenarios
 
-For dynamic content generation with [BuildRenderTree](xref:blazor/advanced-scenarios#manual-rendertreebuilder-logic), use the `[Inject]` attribute:
+For dynamic content generation with [BuildRenderTree](xref:blazor/advanced-scenarios#manually-build-a-render-tree-rendertreebuilder), use the `[Inject]` attribute:
 
 ```razor
 [Inject]
@@ -857,7 +857,7 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 
 ## Dynamic content generation scenarios
 
-For dynamic content generation with [BuildRenderTree](xref:blazor/advanced-scenarios#manual-rendertreebuilder-logic), use the `[Inject]` attribute:
+For dynamic content generation with [BuildRenderTree](xref:blazor/advanced-scenarios#manually-build-a-render-tree-rendertreebuilder), use the `[Inject]` attribute:
 
 ```razor
 [Inject]
@@ -1471,7 +1471,7 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 
 ## Dynamic content generation scenarios
 
-For dynamic content generation with [BuildRenderTree](xref:blazor/advanced-scenarios#manual-rendertreebuilder-logic), use the `[Inject]` attribute:
+For dynamic content generation with [BuildRenderTree](xref:blazor/advanced-scenarios#manually-build-a-render-tree-rendertreebuilder), use the `[Inject]` attribute:
 
 ```razor
 [Inject]

@@ -5,7 +5,7 @@ description: Build a Windows Presentation Foundation (WPF) app step-by-step.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/17/2022
+ms.date: 03/15/2022
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/hybrid/tutorials/wpf
 ---
@@ -15,21 +15,19 @@ This tutorial shows you how to build and run a WPF Blazor app. You learn how to:
 
 > [!div class="checklist"]
 > * Create a WPF Blazor app project
-> * Supply Razor components with a Razor class library (RCL)
+> * Add a Razor component to the project
 > * Run the app on Windows
 
 ## Prerequisites
 
 * [Supported platforms (WPF documentation)](/dotnet/desktop/wpf/overview/)
-* [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/) with the following workloads:
-  * **ASP.NET and web development**
-  * **.NET desktop development**
+* [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/) with the **.NET desktop development** workload
 
 ## Visual Studio workload
 
-If the **ASP.NET and web development** and **.NET desktop development** workloads aren't installed, use the Visual Studio installer to install the workloads. For more information, see [Modify Visual Studio workloads, components, and language packs](/visualstudio/install/modify-visual-studio).
+If the **.NET desktop development** workload isn't installed, use the Visual Studio installer to install the workload. For more information, see [Modify Visual Studio workloads, components, and language packs](/visualstudio/install/modify-visual-studio).
 
-:::image type="content" source="wpf/_static/install-workloads.png" alt-text="Visual Studio installer workload selection.":::
+:::image type="content" source="wpf/_static/install-workload.png" alt-text="Visual Studio installer workload selection.":::
 
 ## Create a WPF Blazor project
 
@@ -49,66 +47,7 @@ In the **Configure your new project** dialog, set the **Project name** to **`Wpf
 
 In the **Additional information** dialog, select the framework version, which must be .NET 6.0 or later. Select the **Create** button:
 
-:::image type="content" source="wpf/_static/additional-information-1.png" alt-text="The Additional Information dialog for the WPF project.":::
-
-## Add a component via a Razor class library (RCL)
-
-Add a Razor class library (RCL) project to the solution:
-
-In **Solution Explorer**, right-click the `WpfBlazor` solution and select **Add** > **New Project**:
-
-:::image type="content" source="wpf/_static/add-rcl-project.png" alt-text="Add a new RCL project to the solution in Visual Studio.":::
-
-In the **Create a new project** dialog, set the **Project types** drop-down to **Library**. Select the **Razor Class Library** project template and select the **Next** button:
-
-:::image type="content" source="wpf/_static/create-project-rcl.png" alt-text="Create a new RCL project in Visual Studio.":::
-
-In the **Configure your new project** dialog, set the **Project name** to **`ComponentLibrary`**. Confirm that the **Location** field is set to the solution's folder. Select the **Next** button:
-
-:::image type="content" source="wpf/_static/configure-project-rcl.png" alt-text="Configure the RCL project.":::
-
-In the **Additional information** dialog:
-
-* Select the framework version, which must be .NET 6.0 or later.
-* Do ***not*** select the **Support pages and views** checkbox.
-* Select the **Create** button.
-
-:::image type="content" source="wpf/_static/additional-information-2.png" alt-text="The Additional Information dialog for the Razor class library (RCL).":::
-
-Add the following `Counter` component to the root of the RCL, which is the default `Counter` component found in Blazor project templates.
-
-`Counter.razor`:
-
-```razor
-<h1>Counter</h1>
-
-<p>Current count: @currentCount</p>
-
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
-
-@code {
-    private int currentCount = 0;
-
-    private void IncrementCount()
-    {
-        currentCount++;
-    }
-}
-```
-
-Add a project reference for the RCL to the `WpfBlazor` project:
-
-* In **Solution Explorer**, right-click the `WpfBlazor` project and select **Add** > **Project Reference**:
-
-  :::image type="content" source="wpf/_static/add-rcl-project-reference.png" alt-text="Add a project reference to the WpfBlazor project.":::
-
-* Select the `ComponentLibrary`'s checkbox and select the **OK** button:
-
-  :::image type="content" source="wpf/_static/add-componentlibrary.png" alt-text="Select the ComponentLibrary RCL project.":::
-
-For more information on RCLs for Blazor apps, see <xref:blazor/components/class-libraries>.
-
-## Configure the `WpfBlazor` solution
+:::image type="content" source="wpf/_static/additional-information.png" alt-text="The Additional Information dialog for the WPF project.":::
 
 Use [NuGet Package Manager](/nuget/consume-packages/install-use-packages-visual-studio) to install the [`Microsoft.AspNetCore.Components.WebView.Wpf`](https://nuget.org/packages/Microsoft.AspNetCore.Components.WebView.Wpf) preview NuGet package.
 
@@ -121,6 +60,14 @@ At the top of the project file, change the SDK to `Microsoft.NET.Sdk.Razor`:
 ```
 
 Save the changes to the project file (`WpfBlazor.csproj`).
+
+Add an `_Imports.razor` file to the root of the project with an [`@using`](xref:mvc/views/razor#using) directive for <xref:Microsoft.AspNetCore.Components.Web?displayProperty=fullName>.
+
+`_Imports.razor`:
+
+```razor
+@using Microsoft.AspNetCore.Components.Web
+```
 
 Add a `wwwroot` folder to the project.
 
@@ -199,6 +146,27 @@ html, body {
     }
 ```
 
+Add the following `Counter` component to the root of the project, which is the default `Counter` component found in Blazor project templates.
+
+`Counter.razor`:
+
+```razor
+<h1>Counter</h1>
+
+<p>Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}
+```
+
 If the `MainWindow` designer isn't open, open it by double-clicking the `MainWindow.xaml` file in **Solution Explorer**. In the `MainWindow` designer, replace the XAML code with the following:
 
 ```xaml
@@ -207,12 +175,12 @@ If the `MainWindow` designer isn't open, open it by double-clicking the `MainWin
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ComponentLibrary;assembly=ComponentLibrary"
         xmlns:blazor="clr-namespace:Microsoft.AspNetCore.Components.WebView.Wpf;assembly=Microsoft.AspNetCore.Components.WebView.Wpf"
+        xmlns:local="clr-namespace:WpfBlazor"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <blazor:BlazorWebView HostPage="index.html" Services="{DynamicResource services}">
+        <blazor:BlazorWebView HostPage="wwwroot\index.html" Services="{DynamicResource services}">
             <blazor:BlazorWebView.RootComponents>
                 <blazor:RootComponent Selector="#app" ComponentType="{x:Type local:Counter}" />
             </blazor:BlazorWebView.RootComponents>
@@ -293,7 +261,7 @@ In this tutorial, you learned how to:
 
 > [!div class="checklist"]
 > * Create a WPF Blazor app project
-> * Supply Razor components with a Razor class library (RCL)
+> * Add a Razor component to the project
 > * Run the app on Windows
 
 Learn more about Blazor Hybrid apps:
