@@ -5,7 +5,7 @@ description: Learn about response compression and how to use Response Compressio
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/07/2021
+ms.date: 3/17/2022
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: performance/response-compression
 ---
@@ -14,8 +14,6 @@ uid: performance/response-compression
 :::moniker range=">= aspnetcore-6.0"
 
 Network bandwidth is a limited resource. Reducing the size of the response usually increases the responsiveness of an app, often dramatically. One way to reduce payload sizes is to compress an app's responses.
-
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/response-compression/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## When to use Response Compression Middleware
 
@@ -248,6 +246,7 @@ Use a tool like [Fiddler](https://www.telerik.com/fiddler), [Firefox Browser Dev
 
 ## Additional resources
 
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/response-compression/samples) ([how to download](xref:index#how-to-download-a-sample))
 * <xref:fundamentals/startup>
 * <xref:fundamentals/middleware/index>
 * [Mozilla Developer Network: Accept-Encoding](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Encoding)
