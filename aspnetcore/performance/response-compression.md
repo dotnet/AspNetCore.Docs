@@ -77,25 +77,12 @@ Response Compression Middleware is provided by the [Microsoft.AspNetCore.Respons
 
 The following code shows how to enable the Response Compression Middleware for default MIME types and compression providers ([Brotli](#brotli-compression-provider) and [Gzip](#gzip-compression-provider)):
 
-```csharp
-public class Startup
-{
-    public void ConfigureServices(IServiceCollection services)
-    {
-        services.AddResponseCompression();
-    }
-
-    public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-    {
-        app.UseResponseCompression();
-    }
-}
-```
+[!code-csharp[](response-compression/samples/6.x/SampleApp/Program.cs?name=snippet&highlight=3,7)]
 
 Notes:
 
 * `app.UseResponseCompression` must be called before any middleware that compresses responses. For more information, see <xref:fundamentals/middleware/index#middleware-order>.
-* Use a tool such as [Fiddler](https://www.telerik.com/fiddler), [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/), or [Postman](https://www.getpostman.com/) to set the `Accept-Encoding` request header and study the response headers, size, and body.
+* Use a tool such as [Fiddler](https://www.telerik.com/fiddler), [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/), or [Postman](https://www.getpostman.com/) to set the `Accept-Encoding` request header and examine the response headers, size, and body.
 
 Submit a request to the sample app without the `Accept-Encoding` header and observe that the response is uncompressed. The `Content-Encoding` and `Vary` headers aren't present on the response.
 
