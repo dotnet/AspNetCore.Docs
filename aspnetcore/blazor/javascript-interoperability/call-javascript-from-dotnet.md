@@ -724,7 +724,7 @@ In the following example, the `nonFunction` JS function doesn't exist. When the 
 
 Use a JS [AbortController](https://developer.mozilla.org/docs/Web/API/AbortController) with a <xref:System.Threading.CancellationTokenSource> in the component to abort a long-running JavaScript function from C# code.
 
-The following JS `Helpers` class contains a simulated long-running function, `longRunningFn`, to count continuously until the [`AbortController.signal`](https://developer.mozilla.org/docs/Web/API/AbortController/signal) indicates that [`AbortController.abort`](https://developer.mozilla.org/docs/Web/API/AbortController/abort) has been called. The `sleep` function is present for demonstration purposes to simulate slow execution of the long-running function and wouldn't be part of any production code. When a component calls `stopFn`, the `longRunningFn` is signalled to abort via the `while` loop conditional check on [`AbortSignal.aborted`](https://developer.mozilla.org/docs/Web/API/AbortSignal/aborted).
+The following JS `Helpers` class contains a simulated long-running function, `longRunningFn`, to count continuously until the [`AbortController.signal`](https://developer.mozilla.org/docs/Web/API/AbortController/signal) indicates that [`AbortController.abort`](https://developer.mozilla.org/docs/Web/API/AbortController/abort) has been called. The `sleep` function is for demonstration purposes to simulate slow execution of the long-running function and wouldn't be present in production code. When a component calls `stopFn`, the `longRunningFn` is signalled to abort via the `while` loop conditional check on [`AbortSignal.aborted`](https://developer.mozilla.org/docs/Web/API/AbortSignal/aborted).
 
 Add the following JS code inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server):
 
@@ -758,7 +758,7 @@ Add the following JS code inside the closing `</body>` tag of `wwwroot/index.htm
 
 The following `CallJsExample12` component:
 
-* Invokes the JS function `Helpers.longRunningFn` when the **`Start Task`** button is selected. A <xref:System.Threading.CancellationTokenSource> is used to manage the execution of the long-running function. <xref:System.Threading.CancellationToken.Register%2A?displayProperty=nameWithType> sets a JS interop call delegate to execute the JS function `Helpers.stopFn` when the <xref:System.Threading.CancellationTokenSource.Token?displayProperty=nameWithType> is cancelled.
+* Invokes the JS function `longRunningFn` when the **`Start Task`** button is selected. A <xref:System.Threading.CancellationTokenSource> is used to manage the execution of the long-running function. <xref:System.Threading.CancellationToken.Register%2A?displayProperty=nameWithType> sets a JS interop call delegate to execute the JS function `stopFn` when the <xref:System.Threading.CancellationTokenSource.Token?displayProperty=nameWithType> is cancelled.
 * When the **`Cancel Task`** button is selected, the <xref:System.Threading.CancellationTokenSource.Token?displayProperty=nameWithType> is cancelled with a call to <xref:System.Threading.CancellationTokenSource.Cancel%2A>.
 * The <xref:System.Threading.CancellationTokenSource> is disposed in the `Dispose` method.
 
