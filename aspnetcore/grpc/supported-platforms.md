@@ -56,7 +56,7 @@ All built-in ASP.NET Core servers are supported.
 > * IIS&dagger;
 > * HTTP.sys&Dagger;
 
-&dagger;IIS requires .NET 5 and Windows 11 Build 20200.0000 or later.  
+&dagger;IIS requires .NET 5 and Windows 11 Build 22000 or later.  
 &Dagger;HTTP.sys requires .NET 5 and Windows 10 Build 19529 or later.
 
 For information about configuring ASP.NET Core servers to run gRPC, see <xref:grpc/aspnetcore#server-options>.
