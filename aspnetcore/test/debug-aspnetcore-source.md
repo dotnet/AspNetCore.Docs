@@ -1,15 +1,15 @@
 ---
-title: Debug .NET and ASP.NET Core source code
+title: Debug .NET and ASP.NET Core source code with Visual Studio
 author: rick-anderson
-description: Debug .NET and ASP.NET Core source code
+description: Debug .NET and ASP.NET Core source code with Visual Studio
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 2/5/2022
+ms.date: 3/5/2022
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: test/debug-aspnetcore-source
 ---
-# Debug .NET and ASP.NET Core source code
+# Debug .NET and ASP.NET Core source code with Visual Studio
 
 To debug .NET and ASP.NET Core source code in Visual Studio:
 
