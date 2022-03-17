@@ -17,12 +17,7 @@ Client-side load balancing is a feature that allows gRPC clients to distribute l
 Client-side load balancing requires:
 
 * .NET 5 or later.
-* [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client) version 2.39.0-pre1 or later.
-
-> [!IMPORTANT]
-> This feature is in preview. Integration with other gRPC features is not complete and testing is required.
-> 
-> Client-side load balancing is currently only available in prerelease versions of `Grpc.Net.Client` on NuGet.org.
+* [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client) version 2.44.0 or later.
 
 ## Configure gRPC client-side load balancing
 
