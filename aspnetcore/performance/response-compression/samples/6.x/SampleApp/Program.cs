@@ -1,7 +1,7 @@
 #define FIRST // FIRST
 #if NEVER
 #elif FIRST
-#region snippet1
+#region snippet
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddResponseCompression();
