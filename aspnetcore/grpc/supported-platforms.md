@@ -54,10 +54,9 @@ All built-in ASP.NET Core servers are supported.
 > * Kestrel
 > * TestServer
 > * IIS&dagger;
-> * HTTP.sys&Dagger;
+> * HTTP.sys&dagger;
 
-&dagger;IIS requires .NET 5 and Windows 11 Build 22000 or Windows Server 2022 Build 20348 or later.  
-&Dagger;HTTP.sys requires .NET 5 and Windows 10 Build 19529 or later.
+&dagger;Requires .NET 5 and Windows 11 Build 22000 or Windows Server 2022 Build 20348 or later.
 
 For information about configuring ASP.NET Core servers to run gRPC, see <xref:grpc/aspnetcore#server-options>.
 
