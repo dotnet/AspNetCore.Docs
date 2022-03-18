@@ -42,7 +42,9 @@ Service interceptors have a per-request lifetime by default. Registering the int
 
 ### ASP.NET Core server options
 
-`Grpc.AspNetCore.Server` is hosted by an ASP.NET Core web server. There are a number of options for ASP.NET Core servers, including Kestrel, IIS and HTTP.sys. The default server is Kestrel.
+`Grpc.AspNetCore.Server` is hosted by an ASP.NET Core web server. There are a number of options for ASP.NET Core servers, including Kestrel, IIS and HTTP.sys. Each server offers additional options for how HTTP requests are served.
+
+The server used by an ASP.NET Core app is configured in app startup code. The default server is Kestrel.
 
 For more information about the different servers and their configuration options, see:
 
@@ -85,7 +87,9 @@ Note that client interceptors aren't configured with `GrpcChannelOptions`. Inste
 
 ### System.Net handler options
 
-`Grpc.Net.Client` uses a HTTP transport derived from `HttpMessageHandler` to make HTTP requests. The handler is configured on a channel and can be overriden by setting `GrpcChannelOptions.HttpHandler`. .NET Core 3 and .NET 5 or later uses `SocketsHttpHandler` by default. gRPC client apps on .NET Framework [should configure WinHttpHandler](xref:grpc/netstandard#net-framework).
+`Grpc.Net.Client` uses a HTTP transport derived from `HttpMessageHandler` to make HTTP requests. Each handler offers additional options for how HTTP requests are made.
+
+The handler is configured on a channel and can be overridden by setting `GrpcChannelOptions.HttpHandler`. .NET Core 3 and .NET 5 or later uses <xref:System.Net.Http.SocketsHttpHandler> by default. gRPC client apps on .NET Framework [should configure WinHttpHandler](xref:grpc/netstandard#net-framework).
 
 For more information about the different handlers and their configuration options, see:
 
