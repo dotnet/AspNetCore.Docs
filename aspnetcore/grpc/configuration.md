@@ -48,7 +48,7 @@ For more information about the different servers and their configuration options
 
 * <xref:fundamentals/servers/kestrel>
 * <xref:fundamentals/servers/httpsys>
-* <xref:host-and-deploy/iis>
+* <xref:host-and-deploy/iis/index>
 
 ## Configure client options
 
