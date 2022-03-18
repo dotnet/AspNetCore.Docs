@@ -6,7 +6,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddPortableObjectLocalization();
 
-builder.Services.Configure<RequestLocalizationOptions>(options => options.AddSupportedCultures("fr", "cs"));
+builder.Services
+    .Configure<RequestLocalizationOptions>(options => options
+        .AddSupportedCultures("fr", "cs")
+        .AddSupportedUICultures("fr", "cs"));
 
 builder.Services
     .AddRazorPages()
