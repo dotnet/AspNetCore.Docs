@@ -34,7 +34,7 @@ Lists additional troubleshooting topics.
 
 ## App startup errors
 
-In Visual Studio, the ASP.NET Core projects default server is Kestrel. Visual studio can configued to use [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview). A *502.5 - Process Failure* or a *500.30 - Start Failure* that occurs when debugging locally with IIS Express can be diagnosed using the advice in this topic.
+In Visual Studio,  the ASP.NET Core project default server is Kestrel. Visual studio can configured to use [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview). A *502.5 - Process Failure* or a *500.30 - Start Failure* that occurs when debugging locally with IIS Express can be diagnosed using the advice in this topic.
 
 ### 403.14 Forbidden
 
