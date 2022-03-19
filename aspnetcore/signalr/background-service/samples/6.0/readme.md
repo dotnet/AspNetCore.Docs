@@ -13,4 +13,4 @@ Start the `Server`, `Clients.ConsoleOne`, and `Clients.ConsoleTwo` projects with
 * `dotnet run --project Clients.ConsoleOne`
 * `dotnet run --project Clients.ConsoleTwo`
 
-The `ConsoleOne` and `ConsoleTwo` applications will produce log output when they receive a message via SignalR.
+The `ConsoleOne` and `ConsoleTwo` applications produce log output when they receive a message via SignalR.
