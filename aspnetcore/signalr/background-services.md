@@ -11,7 +11,7 @@ uid: signalr/background-services
 ---
 # Host ASP.NET Core SignalR in background services
 
-By [Brady Gaster](https://twitter.com/bradygaster)
+By [Brady Gaster](https://twitter.com/bradygaster) and [Dave Pringle](https://github.com/UncleDave)
 
 This article provides guidance for:
 
