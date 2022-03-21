@@ -202,7 +202,7 @@ public class ChatHub : Hub
 
 Creating the `DomainRestricted` policy might involve:
 
-* In *Startup.cs*, adding the new policy.
+* In `Startup.cs`, adding the new policy.
 * Provide the custom `DomainRestrictedRequirement` requirement as a parameter.
 * Registering `DomainRestricted` with the authorization middleware.
 

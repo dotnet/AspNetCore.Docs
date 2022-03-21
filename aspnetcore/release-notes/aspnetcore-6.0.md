@@ -624,7 +624,7 @@ info: Microsoft.AspNetCore.HttpLogging.HttpLoggingMiddleware[2]
       Content-Type: text/plain; charset=utf-8
 ```
 
-The preceding output was enabled with the following *appsettings.development.json* file:
+The preceding output was enabled with the following `appsettings.Development.json` file:
 
 [!code-json[](aspnetcore-6.0/samples/WebApp1/appsettings.development.json?highlight=6)]
 

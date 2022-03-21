@@ -139,7 +139,7 @@ In the *Controllers\OidcConfigurationController.cs* file, notice the endpoint th
 
 ### appsettings.json
 
-In the *appsettings.json* file of the project root, there's a new `IdentityServer` section that describes the list of configured clients. In the following example, there's a single client. The client name corresponds to the app name and is mapped by convention to the OAuth `ClientId` parameter. The profile indicates the app type being configured. It's used internally to drive conventions that simplify the configuration process for the server. There are several profiles available, as explained in the [Application profiles](#application-profiles) section.
+In the `appsettings.json` file of the project root, there's a new `IdentityServer` section that describes the list of configured clients. In the following example, there's a single client. The client name corresponds to the app name and is mapped by convention to the OAuth `ClientId` parameter. The profile indicates the app type being configured. It's used internally to drive conventions that simplify the configuration process for the server. There are several profiles available, as explained in the [Application profiles](#application-profiles) section.
 
 ```json
 "IdentityServer": {
@@ -153,7 +153,7 @@ In the *appsettings.json* file of the project root, there's a new `IdentityServe
 
 ### appsettings.Development.json
 
-In the *appsettings.Development.json* file of the project root, there's an `IdentityServer` section that describes the key used to sign tokens. When deploying to production, a key needs to be provisioned and deployed alongside the app, as explained in the [Deploy to production](#deploy-to-production) section.
+In the `appsettings.Development.json` file of the project root, there's an `IdentityServer` section that describes the key used to sign tokens. When deploying to production, a key needs to be provisioned and deployed alongside the app, as explained in the [Deploy to production](#deploy-to-production) section.
 
 ```json
 "IdentityServer": {
@@ -302,7 +302,7 @@ To deploy the app to production, the following resources need to be provisioned:
 
 ### Example: Deploy to a non-Azure web hosting provider
 
-In your web hosting panel, create or load your certificate. Then in the app's *appsettings.json* file, modify the `IdentityServer` section to include the key details. For example:
+In your web hosting panel, create or load your certificate. Then in the app's `appsettings.json` file, modify the `IdentityServer` section to include the key details. For example:
 
 ```json
 "IdentityServer": {
@@ -325,7 +325,7 @@ In the preceding example:
 
 This section describes deploying the app to Azure App Service using a certificate stored in the certificate store. To modify the app to load a certificate from the certificate store, a Standard tier service plan or better is required when you configure the app in the Azure portal in a later step.
 
-In the app's *appsettings.json* file, modify the `IdentityServer` section to include the key details:
+In the app's `appsettings.json` file, modify the `IdentityServer` section to include the key details:
 
 ```json
 "IdentityServer": {

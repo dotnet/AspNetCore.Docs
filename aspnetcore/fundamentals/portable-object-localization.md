@@ -72,11 +72,11 @@ The *.csproj* file now contains a line similar to the following (version number 
 
 ### Registering the service
 
-Add the required services to the `ConfigureServices` method of *Startup.cs*:
+Add the required services to the `ConfigureServices` method of `Startup.cs`:
 
 [!code-csharp[](localization/sample/3.x/POLocalization/Startup.cs?name=snippet_ConfigureServices&highlight=4-21)]
 
-Add the required middleware to the `Configure` method of *Startup.cs*:
+Add the required middleware to the `Configure` method of `Startup.cs`:
 
 [!code-csharp[](localization/sample/3.x/POLocalization/Startup.cs?name=snippet_Configure&highlight=15)]
 
@@ -288,11 +288,11 @@ The *.csproj* file now contains a line similar to the following (version number 
 
 ### Registering the service
 
-Add the required services to the `ConfigureServices` method of *Startup.cs*:
+Add the required services to the `ConfigureServices` method of `Startup.cs`:
 
 [!code-csharp[](localization/sample/2.x/POLocalization/Startup.cs?name=snippet_ConfigureServices&highlight=4-21)]
 
-Add the required middleware to the `Configure` method of *Startup.cs*:
+Add the required middleware to the `Configure` method of `Startup.cs`:
 
 [!code-csharp[](localization/sample/2.x/POLocalization/Startup.cs?name=snippet_Configure&highlight=15)]
 

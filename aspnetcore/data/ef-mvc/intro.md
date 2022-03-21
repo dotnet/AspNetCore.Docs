@@ -202,13 +202,13 @@ When the database is created, EF creates tables that have names the same as the 
 
 ASP.NET Core includes [dependency injection](../../fundamentals/dependency-injection.md). Services, such as the EF database context, are registered with dependency injection during app startup. Components that require these services, such as MVC controllers, are provided these services via constructor parameters. The controller constructor code that gets a context instance is shown later in this tutorial.
 
-To register `SchoolContext` as a service, open *Startup.cs*, and add the highlighted lines to the `ConfigureServices` method.
+To register `SchoolContext` as a service, open `Startup.cs`, and add the highlighted lines to the `ConfigureServices` method.
 
 [!code-csharp[](intro/samples/5cu-snap/Startup.cs?name=snippet&highlight=1-2,22-23)]
 
-The name of the connection string is passed in to the context by calling a method on a `DbContextOptionsBuilder` object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
+The name of the connection string is passed in to the context by calling a method on a `DbContextOptionsBuilder` object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the `appsettings.json` file.
 
-Open the *appsettings.json* file and add a connection string as shown in the following markup:
+Open the `appsettings.json` file and add a connection string as shown in the following markup:
 
 [!code-json[](./intro/samples/5cu/appsettings1.json?highlight=2-4)]
 
@@ -312,7 +312,7 @@ Use **SQL Server Object Explorer** (SSOX) to view the database in Visual Studio:
 
 * Select **SQL Server Object Explorer** from the **View** menu in Visual Studio.
 * In SSOX, select **(localdb)\MSSQLLocalDB > Databases**.
-* Select `ContosoUniversity1`, the entry for the database name that's in the connection string in the *appsettings.json* file.
+* Select `ContosoUniversity1`, the entry for the database name that's in the connection string in the `appsettings.json` file.
 * Expand the **Tables** node to see the tables in the database.
 
 ![Tables in SSOX](intro/_static/ssox-tables.png)
@@ -546,17 +546,17 @@ Build the project as a check for compiler errors.
 
 ASP.NET Core implements [dependency injection](../../fundamentals/dependency-injection.md) by default. Services (such as the EF database context) are registered with dependency injection during application startup. Components that require these services (such as MVC controllers) are provided these services via constructor parameters. You'll see the controller constructor code that gets a context instance later in this tutorial.
 
-To register `SchoolContext` as a service, open *Startup.cs*, and add the highlighted lines to the `ConfigureServices` method.
+To register `SchoolContext` as a service, open `Startup.cs`, and add the highlighted lines to the `ConfigureServices` method.
 
 [!code-csharp[](intro/samples/cu/Startup.cs?name=snippet_SchoolContext&highlight=9-10)]
 
-The name of the connection string is passed in to the context by calling a method on a `DbContextOptionsBuilder` object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
+The name of the connection string is passed in to the context by calling a method on a `DbContextOptionsBuilder` object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the `appsettings.json` file.
 
 Add `using` statements for `ContosoUniversity.Data` and `Microsoft.EntityFrameworkCore` namespaces, and then build the project.
 
 [!code-csharp[](intro/samples/cu/Startup.cs?name=snippet_Usings)]
 
-Open the *appsettings.json* file and add a connection string as shown in the following example.
+Open the `appsettings.json` file and add a connection string as shown in the following example.
 
 [!code-json[](./intro/samples/cu/appsettings1.json?highlight=2-4)]
 
@@ -613,7 +613,7 @@ Notice the controller takes a `SchoolContext` as a constructor parameter.
 
 [!code-csharp[](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_Context&highlight=5,7,9)]
 
-ASP.NET Core dependency injection takes care of passing an instance of `SchoolContext` into the controller. That was configured  in the *Startup.cs* file.
+ASP.NET Core dependency injection takes care of passing an instance of `SchoolContext` into the controller. That was configured  in the `Startup.cs` file.
 
 The controller contains an `Index` action method, which displays all students in the database. The method gets a list of students from the Students entity set by reading the `Students` property of the database context instance:
 
@@ -641,7 +641,7 @@ Close the browser.
 
 If the SSOX window isn't already open, select it from the **View** menu in Visual Studio.
 
-In SSOX, click **(localdb)\MSSQLLocalDB > Databases**, and then click the entry for the database name that's in the connection string in the *appsettings.json* file.
+In SSOX, click **(localdb)\MSSQLLocalDB > Databases**, and then click the entry for the database name that's in the connection string in the `appsettings.json` file.
 
 Expand the **Tables** node to see the tables in the database.
 

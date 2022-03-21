@@ -78,7 +78,7 @@ The package name is combined with the service name to identify a service address
 * `greet.v1.Greeter`
 * `greet.v2.Greeter`
 
-Implementations of the versioned service are registered in *Startup.cs*:
+Implementations of the versioned service are registered in `Startup.cs`:
 
 ```csharp
 app.UseEndpoints(endpoints =>

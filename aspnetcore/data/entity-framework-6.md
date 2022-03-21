@@ -62,7 +62,7 @@ In this sample code, the `IDbContextFactory` implementation passes in a hard-cod
 
 ## Set up dependency injection in the ASP.NET Core project
 
-In the Core project's *Startup.cs* file, set up the EF6 context for dependency injection (DI) in `ConfigureServices`. EF context objects should be scoped for a per-request lifetime.
+In the Core project's `Startup.cs` file, set up the EF6 context for dependency injection (DI) in `ConfigureServices`. EF context objects should be scoped for a per-request lifetime.
 
 [!code-csharp[](entity-framework-6/sample/MVCCore/Startup.cs?name=snippet_ConfigureServices&highlight=5)]
 
@@ -91,9 +91,9 @@ This sample can be created from scratch by the following steps in Visual Studio:
 
 * In the Core project, add a project reference to the class library project.
 
-* In the Core project, in *Startup.cs*, register the context for DI.
+* In the Core project, in `Startup.cs`, register the context for DI.
 
-* In the Core project, in *appsettings.json*, add the connection string.
+* In the Core project, in `appsettings.json`, add the connection string.
 
 * In the Core project, add a controller and view(s) to verify that you can read and write data. (Note that ASP.NET Core MVC scaffolding won't work with the EF6 context referenced from the class library.)
 

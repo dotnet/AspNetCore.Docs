@@ -138,7 +138,7 @@ Define a [log scope](xref:fundamentals/logging/index#log-scopes) to apply to a s
 
 The sample app has a **Clear All** button for deleting all of the quotes in the database. The quotes are deleted by removing them one at a time. Each time a quote is deleted, the `QuoteDeleted` method is called on the logger. A log scope is added to these log messages.
 
-Enable `IncludeScopes` in the console logger section of *appsettings.json*:
+Enable `IncludeScopes` in the console logger section of `appsettings.json`:
 
 [!code-json[](loggermessage/samples/3.x/LoggerMessageSample/appsettings.json?highlight=3-5)]
 
@@ -306,7 +306,7 @@ Define a [log scope](xref:fundamentals/logging/index#log-scopes) to apply to a s
 
 The sample app has a **Clear All** button for deleting all of the quotes in the database. The quotes are deleted by removing them one at a time. Each time a quote is deleted, the `QuoteDeleted` method is called on the logger. A log scope is added to these log messages.
 
-Enable `IncludeScopes` in the console logger section of *appsettings.json*:
+Enable `IncludeScopes` in the console logger section of `appsettings.json`:
 
 [!code-json[](loggermessage/samples/2.x/LoggerMessageSample/appsettings.json?highlight=3-5)]
 

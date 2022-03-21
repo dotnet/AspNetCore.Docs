@@ -25,7 +25,7 @@ In 2.0, the <xref:Microsoft.AspNetCore.Identity> namespace became the new home f
 
 In 1.x projects, authentication is configured via middleware. A middleware method is invoked for each authentication scheme you want to support.
 
-The following 1.x example configures Facebook authentication with Identity in *Startup.cs*:
+The following 1.x example configures Facebook authentication with Identity in `Startup.cs`:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -44,9 +44,9 @@ public void Configure(IApplicationBuilder app, ILoggerFactory loggerfactory)
 }
 ```
 
-In 2.0 projects, authentication is configured via services. Each authentication scheme is registered in the `ConfigureServices` method of *Startup.cs*. The `UseIdentity` method is replaced with `UseAuthentication`.
+In 2.0 projects, authentication is configured via services. Each authentication scheme is registered in the `ConfigureServices` method of `Startup.cs`. The `UseIdentity` method is replaced with `UseAuthentication`.
 
-The following 2.0 example configures Facebook authentication with Identity in *Startup.cs*:
+The following 2.0 example configures Facebook authentication with Identity in `Startup.cs`:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -75,7 +75,7 @@ Below are 2.0 migration instructions for each major authentication scheme.
 
 ### Cookie-based authentication
 
-Select one of the two options below, and make the necessary changes in *Startup.cs*:
+Select one of the two options below, and make the necessary changes in `Startup.cs`:
 
 1. Use cookies with Identity
     * Replace `UseIdentity` with `UseAuthentication` in the `Configure` method:
@@ -117,7 +117,7 @@ Select one of the two options below, and make the necessary changes in *Startup.
 
 ### JWT Bearer Authentication
 
-Make the following changes in *Startup.cs*:
+Make the following changes in `Startup.cs`:
 * Replace the `UseJwtBearerAuthentication` method call in the `Configure` method with `UseAuthentication`:
 
     ```csharp
@@ -139,7 +139,7 @@ Make the following changes in *Startup.cs*:
 
 ### OpenID Connect (OIDC) authentication
 
-Make the following changes in *Startup.cs*:
+Make the following changes in `Startup.cs`:
 
 * Replace the `UseOpenIdConnectAuthentication` method call in the `Configure` method with `UseAuthentication`:
 
@@ -174,7 +174,7 @@ Make the following changes in *Startup.cs*:
     
 ### Facebook authentication
 
-Make the following changes in *Startup.cs*:
+Make the following changes in `Startup.cs`:
 * Replace the `UseFacebookAuthentication` method call in the `Configure` method with `UseAuthentication`:
 
     ```csharp
@@ -194,7 +194,7 @@ Make the following changes in *Startup.cs*:
 
 ### Google authentication
 
-Make the following changes in *Startup.cs*:
+Make the following changes in `Startup.cs`:
 * Replace the `UseGoogleAuthentication` method call in the `Configure` method with `UseAuthentication`:
 
     ```csharp
@@ -216,7 +216,7 @@ Make the following changes in *Startup.cs*:
 
 For more information on Microsoft account authentication, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/14455).
 
-Make the following changes in *Startup.cs*:
+Make the following changes in `Startup.cs`:
 * Replace the `UseMicrosoftAccountAuthentication` method call in the `Configure` method with `UseAuthentication`:
 
     ```csharp
@@ -236,7 +236,7 @@ Make the following changes in *Startup.cs*:
 
 ### Twitter authentication
 
-Make the following changes in *Startup.cs*:
+Make the following changes in `Startup.cs`:
 * Replace the `UseTwitterAuthentication` method call in the `Configure` method with `UseAuthentication`:
 
     ```csharp
@@ -258,7 +258,7 @@ Make the following changes in *Startup.cs*:
 
 In 1.x, the `AutomaticAuthenticate` and `AutomaticChallenge` properties of the <xref:Microsoft.AspNetCore.Builder.AuthenticationOptions?view=aspnetcore-1.1> base class were intended to be set on a single authentication scheme. There was no good way to enforce this.
 
-In 2.0, these two properties have been removed as properties on the individual `AuthenticationOptions` instance. They can be configured in the `AddAuthentication` method call within the `ConfigureServices` method of *Startup.cs*:
+In 2.0, these two properties have been removed as properties on the individual `AuthenticationOptions` instance. They can be configured in the `AddAuthentication` method call within the `ConfigureServices` method of `Startup.cs`:
 
 ```csharp
 services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme);

@@ -165,7 +165,7 @@ The `CreateAsync` method is used to create the `PaginatedList<T>`. A constructor
 
 ### Add page size to configuration
 
-Add `PageSize` to the *appsettings.json* [Configuration](xref:fundamentals/configuration/index) file:
+Add `PageSize` to the `appsettings.json` [Configuration](xref:fundamentals/configuration/index) file:
 
 [!code-json[Main](intro/samples/cu50/appsettings.json?highlight=2)]
 

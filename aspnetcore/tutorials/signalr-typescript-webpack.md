@@ -439,7 +439,7 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
     :::code language="csharp" source="signalr-typescript-webpack/samples_snapshot/3.x/ChatHub.cs":::
 
-1. Add the following `using` statement at the top of the *Startup.cs* file to resolve the `ChatHub` reference:
+1. Add the following `using` statement at the top of the `Startup.cs` file to resolve the `ChatHub` reference:
 
     :::code language="csharp" source="signalr-typescript-webpack/samples/3.x/Startup.cs" id="snippet_HubsNamespace":::
 
@@ -697,7 +697,7 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
     :::code language="csharp" source="signalr-typescript-webpack/samples_snapshot/2.x/ChatHub.cs":::
 
-1. Add the following code at the top of the *Startup.cs* file to resolve the `ChatHub` reference:
+1. Add the following code at the top of the `Startup.cs` file to resolve the `ChatHub` reference:
 
     :::code language="csharp" source="signalr-typescript-webpack/samples/2.x/Startup.cs" id="snippet_HubsNamespace":::
 

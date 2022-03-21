@@ -156,7 +156,7 @@ public class UpdateModel : PageModel
 
 ## Policy based role checks
 
-Role requirements can also be expressed using the new Policy syntax, where a developer registers a policy at startup as part of the Authorization service configuration. This normally occurs in `ConfigureServices()` in your *Startup.cs* file.
+Role requirements can also be expressed using the new Policy syntax, where a developer registers a policy at startup as part of the Authorization service configuration. This normally occurs in `ConfigureServices()` in your `Startup.cs` file.
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)

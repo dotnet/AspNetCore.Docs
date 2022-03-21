@@ -119,7 +119,7 @@ The sample app uses an Application ID and X.509 certificate when the `#define` p
    1. Select the app in Azure AD.
    1. Navigate to **Certificates & secrets**.
    1. Select **Upload certificate** to upload the certificate, which contains the public key. A *.cer*, *.pem*, or *.crt* certificate is acceptable.
-1. Store the key vault name, Application ID, and certificate thumbprint in the app's *appsettings.json* file.
+1. Store the key vault name, Application ID, and certificate thumbprint in the app's `appsettings.json` file.
 1. Navigate to **Key vaults** in the Azure portal.
 1. Select the key vault you created in the [Secret storage in the Production environment with Azure Key Vault](#secret-storage-in-the-production-environment-with-azure-key-vault) section.
 1. Select **Access policies**.
@@ -137,7 +137,7 @@ The `Certificate` sample app obtains its configuration values from <xref:Microso
   * `config["Section:SecretName"]`
   * `config.GetSection("Section")["SecretName"]`
 
-The X.509 certificate is managed by the OS. The app calls <xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault%2A> with values supplied by the *appsettings.json* file:
+The X.509 certificate is managed by the OS. The app calls <xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault%2A> with values supplied by the `appsettings.json` file:
 
 :::code language="csharp" source="key-vault-configuration/samples/6.x/KeyVaultConfigurationSample/Program.cs" id="snippet_Certificate":::
 
@@ -147,7 +147,7 @@ Example values:
 * Application ID: `627e911e-43cc-61d4-992e-12db9c81b413`
 * Certificate thumbprint: `fe14593dd66b2406c5269d742d04b6e1ab03adb1`
 
-*appsettings.json*:
+`appsettings.json`:
 
 :::code language="json" source="key-vault-configuration/samples/6.x/KeyVaultConfigurationSample/appsettings.json":::
 
@@ -159,7 +159,7 @@ When you run the app, a webpage shows the loaded secret values. In the Developme
 
 The sample app uses a system-assigned managed identity when the `#define` preprocessor directive at the top of `Program.cs` is set to `Managed`. To create a managed identity for an Azure App Service app, see [How to use managed identities for App Service and Azure Functions](/azure/app-service/overview-managed-identity). Once the managed identity has been created, note the app's Object ID shown in the Azure portal on the **Identity** panel of the App Service.
 
-Enter the vault name into the app's *appsettings.json* file. The sample app doesn't require an Application ID and Password (Client Secret) when set to the `Managed` version, so you can ignore those configuration entries. The app is deployed to Azure, and Azure authenticates the app to access Azure Key Vault only using the vault name stored in the *appsettings.json* file.
+Enter the vault name into the app's `appsettings.json` file. The sample app doesn't require an Application ID and Password (Client Secret) when set to the `Managed` version, so you can ignore those configuration entries. The app is deployed to Azure, and Azure authenticates the app to access Azure Key Vault only using the vault name stored in the `appsettings.json` file.
 
 Deploy the sample app to Azure App Service.
 
@@ -177,7 +177,7 @@ The sample app creates an instance of the <xref:Azure.Identity.DefaultAzureCrede
 
 Key vault name example value: `contosovault`
 
-*appsettings.json*:
+`appsettings.json`:
 
 ```json
 {
@@ -469,7 +469,7 @@ The sample app uses an Application ID and X.509 certificate when the `#define` p
    1. Select the app in Azure AD.
    1. Navigate to **Certificates & secrets**.
    1. Select **Upload certificate** to upload the certificate, which contains the public key. A *.cer*, *.pem*, or *.crt* certificate is acceptable.
-1. Store the key vault name, Application ID, and certificate thumbprint in the app's *appsettings.json* file.
+1. Store the key vault name, Application ID, and certificate thumbprint in the app's `appsettings.json` file.
 1. Navigate to **Key vaults** in the Azure portal.
 1. Select the key vault you created in the [Secret storage in the Production environment with Azure Key Vault](#secret-storage-in-the-production-environment-with-azure-key-vault) section.
 1. Select **Access policies**.
@@ -487,7 +487,7 @@ The `Certificate` sample app obtains its configuration values from <xref:Microso
   * `config["Section:SecretName"]`
   * `config.GetSection("Section")["SecretName"]`
 
-The X.509 certificate is managed by the OS. The app calls <xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault%2A> with values supplied by the *appsettings.json* file:
+The X.509 certificate is managed by the OS. The app calls <xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault%2A> with values supplied by the `appsettings.json` file:
 
 :::code language="csharp" source="key-vault-configuration/samples/3.x/SampleApp/Program.cs" id="snippet1" highlight="46-49":::
 
@@ -497,7 +497,7 @@ Example values:
 * Application ID: `627e911e-43cc-61d4-992e-12db9c81b413`
 * Certificate thumbprint: `fe14593dd66b2406c5269d742d04b6e1ab03adb1`
 
-*appsettings.json*:
+`appsettings.json`:
 
 :::code language="json" source="key-vault-configuration/samples/3.x/SampleApp/appsettings.json" highlight="10-12":::
 
@@ -509,7 +509,7 @@ When you run the app, a webpage shows the loaded secret values. In the Developme
 
 The sample app uses managed identities for Azure resources when the `#define` preprocessor directive at the top of `Program.cs` is set to `Managed`.
 
-Enter the vault name into the app's *appsettings.json* file. The sample app doesn't require an Application ID and Password (Client Secret) when set to the `Managed` version, so you can ignore those configuration entries. The app is deployed to Azure, and Azure authenticates the app to access Azure Key Vault only using the vault name stored in the *appsettings.json* file.
+Enter the vault name into the app's `appsettings.json` file. The sample app doesn't require an Application ID and Password (Client Secret) when set to the `Managed` version, so you can ignore those configuration entries. The app is deployed to Azure, and Azure authenticates the app to access Azure Key Vault only using the vault name stored in the `appsettings.json` file.
 
 Deploy the sample app to Azure App Service.
 
@@ -533,7 +533,7 @@ The sample app:
 
 Key vault name example value: `contosovault`
 
-*appsettings.json*:
+`appsettings.json`:
 
 ```json
 {

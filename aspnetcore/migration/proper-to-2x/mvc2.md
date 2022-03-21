@@ -89,11 +89,11 @@ Applications read these settings using the `ConfigurationManager.AppSettings` co
 
 [!code-csharp[](samples/read-webconfig.cs)]
 
-ASP.NET Core can store configuration data for the application in any file and load them as part of middleware bootstrapping. The default file used in the project templates is *appsettings.json*:
+ASP.NET Core can store configuration data for the application in any file and load them as part of middleware bootstrapping. The default file used in the project templates is `appsettings.json`:
 
 [!code-json[](samples/appsettings-sample.json)]
 
-Loading this file into an instance of `IConfiguration` inside your application is done in *Startup.cs*:
+Loading this file into an instance of `IConfiguration` inside your application is done in `Startup.cs`:
 
 [!code-csharp[](samples/startup-builder.cs)]
 

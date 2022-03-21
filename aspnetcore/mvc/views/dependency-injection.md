@@ -17,9 +17,9 @@ ASP.NET Core supports [dependency injection](xref:fundamentals/dependency-inject
 
 ## Configuration injection
 
-*appsettings.json* values can be injected directly into a view.
+`appsettings.json` values can be injected directly into a view.
 
-Example of an *appsettings.json* file:
+Example of an `appsettings.json` file:
 
 ```json
 {
@@ -51,7 +51,7 @@ A service can be injected into a view using the `@inject` directive. You can thi
 
 [!code-cshtml[](../../mvc/views/dependency-injection/sample/src/ViewInjectSample/Views/ToDo/Index.cshtml?highlight=4,5,15,16,17)]
 
-This view displays a list of `ToDoItem` instances, along with a summary showing overall statistics. The summary is populated from the injected `StatisticsService`. This service is registered for dependency injection in `ConfigureServices` in *Startup.cs*:
+This view displays a list of `ToDoItem` instances, along with a summary showing overall statistics. The summary is populated from the injected `StatisticsService`. This service is registered for dependency injection in `ConfigureServices` in `Startup.cs`:
 
 [!code-csharp[](../../mvc/views/dependency-injection/sample/src/ViewInjectSample/Startup.cs?highlight=6,7&range=15-22)]
 

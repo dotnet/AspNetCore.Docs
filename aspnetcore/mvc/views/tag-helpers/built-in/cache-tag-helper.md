@@ -134,7 +134,7 @@ The following example monitors the values of `Make` and `Model`. The example cac
 
 Example:
 
-*Startup.cs*:
+`Startup.cs`:
 
 ```csharp
 routes.MapRoute(

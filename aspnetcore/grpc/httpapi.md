@@ -39,7 +39,7 @@ gRPC can still be used to call services.
 ### Usage
 
 1. Add a package reference to [Microsoft.AspNetCore.Grpc.HttpApi](https://www.nuget.org/packages/Microsoft.AspNetCore.Grpc.HttpApi).
-1. Register services in *Startup.cs* with `AddGrpcHttpApi`.
+1. Register services in `Startup.cs` with `AddGrpcHttpApi`.
 1. Add [google/api/http.proto](https://github.com/aspnet/AspLabs/blob/c1e59cacf7b9606650d6ec38e54fa3a82377f360/src/GrpcHttpApi/sample/Proto/google/api/http.proto) and [google/api/annotations.proto](https://github.com/aspnet/AspLabs/blob/c1e59cacf7b9606650d6ec38e54fa3a82377f360/src/GrpcHttpApi/sample/Proto/google/api/annotations.proto) files to your project.
 1. Annotate gRPC methods in your `.proto` files with HTTP bindings and routes:
 
@@ -74,7 +74,7 @@ Swagger (OpenAPI) is a language-agnostic specification for describing REST APIs.
 To enable Swagger with gRPC HTTP API:
 
 1. Add a package reference to [Microsoft.AspNetCore.Grpc.Swagger](https://www.nuget.org/packages/Microsoft.AspNetCore.Grpc.Swagger).
-2. Configure Swashbuckle in *Startup.cs*. The `AddGrpcSwagger` method configures Swashbuckle to include gRPC HTTP API endpoints.
+2. Configure Swashbuckle in `Startup.cs`. The `AddGrpcSwagger` method configures Swashbuckle to include gRPC HTTP API endpoints.
 
 [!code-csharp[](~/grpc/httpapi/Startup.cs?name=snippet_1&highlight=6-10,15-19)]
 
