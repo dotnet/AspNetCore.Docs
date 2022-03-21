@@ -15,7 +15,7 @@ In the previous article, we [migrated configuration from an ASP.NET MVC project 
 
 ## Configure Identity and Membership
 
-In ASP.NET MVC, authentication and identity features are configured using ASP.NET Identity in *Startup.Auth.cs* and *IdentityConfig.cs*, located in the *App_Start* folder. In ASP.NET Core MVC, these features are configured in *Startup.cs*.
+In ASP.NET MVC, authentication and identity features are configured using ASP.NET Identity in *Startup.Auth.cs* and *IdentityConfig.cs*, located in the *App_Start* folder. In ASP.NET Core MVC, these features are configured in `Startup.cs`.
 
 Install the following NuGet packages:
 
@@ -23,7 +23,7 @@ Install the following NuGet packages:
 * `Microsoft.AspNetCore.Authentication.Cookies`
 * `Microsoft.EntityFrameworkCore.SqlServer`
 
-In *Startup.cs*, update the `Startup.ConfigureServices` method to use Entity Framework and Identity services:
+In `Startup.cs`, update the `Startup.ConfigureServices` method to use Entity Framework and Identity services:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -83,7 +83,7 @@ namespace NewMvcProject.Models
 
 The ASP.NET Core MVC Starter Web project doesn't include much customization of users, or the `ApplicationDbContext`. When migrating a real app, you also need to migrate all of the custom properties and methods of your app's user and `DbContext` classes, as well as any other Model classes your app utilizes. For example, if your `DbContext` has a `DbSet<Album>`, you need to migrate the `Album` class.
 
-With these files in place, the *Startup.cs* file can be made to compile by updating its `using` statements:
+With these files in place, the `Startup.cs` file can be made to compile by updating its `using` statements:
 
 ```csharp
 using Microsoft.AspNetCore.Builder;

@@ -117,7 +117,7 @@ To Implement `IEmailSender`, create *Services/EmailSender.cs* with code similar 
 
 ### Configure app to support email
 
-Add the following code to the *Program.cs* file:
+Add the following code to the `Program.cs` file:
 
 * Add `EmailSender` as a transient service.
 * Register the `AuthMessageSenderOptions` configuration instance.
@@ -307,7 +307,7 @@ To Implement `IEmailSender`, create *Services/EmailSender.cs* with code similar 
 
 ### Configure startup to support email
 
-Add the following code to the `ConfigureServices` method in the *Startup.cs* file:
+Add the following code to the `ConfigureServices` method in the `Startup.cs` file:
 
 * Add `EmailSender` as a transient service.
 * Register the `AuthMessageSenderOptions` configuration instance.

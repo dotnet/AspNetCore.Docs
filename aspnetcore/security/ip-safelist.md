@@ -32,7 +32,7 @@ Access is allowed if the array contains the IP address. Otherwise, an HTTP 403 F
 
 In the sample app, the IP address safelist is:
 
-* Defined by the `AdminSafeList` property in the *appsettings.json* file.
+* Defined by the `AdminSafeList` property in the `appsettings.json` file.
 * A semicolon-delimited string that may contain both [Internet Protocol version 4 (IPv4)](https://wikipedia.org/wiki/IPv4) and [Internet Protocol version 6 (IPv6)](https://wikipedia.org/wiki/IPv6) addresses.
 
 [!code-json[](ip-safelist/samples/3.x/ClientIpAspNetCore/appsettings.json?range=1-3&highlight=2)]

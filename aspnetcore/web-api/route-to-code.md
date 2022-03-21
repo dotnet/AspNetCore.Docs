@@ -26,7 +26,7 @@ ASP.NET Core provides helper methods that ease the creation of JSON web APIs:
 * <xref:Microsoft.AspNetCore.Http.HttpRequestJsonExtensions.ReadFromJsonAsync%2A> reads JSON from the request and deserializes it to the specified type.
 * <xref:Microsoft.AspNetCore.Http.HttpResponseJsonExtensions.WriteAsJsonAsync%2A> writes the specified value as JSON to the response body and sets the response content type to `application/json`.
 
-Lightweight, route-based JSON APIs are specified in *Startup.cs*. The route and the API logic are configured in <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> as part of an app's request pipeline.
+Lightweight, route-based JSON APIs are specified in `Startup.cs`. The route and the API logic are configured in <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> as part of an app's request pipeline.
 
 ### Write JSON response
 
@@ -82,7 +82,7 @@ APIs that use DI extensively should consider using an ASP.NET Core app type that
 
 ## API project structure
 
-Route-based APIs don't have to be located in *Startup.cs*. APIs can be placed in other files and mapped at startup with `UseEndpoints`. This approach reduces the startup configuration file size.
+Route-based APIs don't have to be located in `Startup.cs`. APIs can be placed in other files and mapped at startup with `UseEndpoints`. This approach reduces the startup configuration file size.
 
 Consider the following static `UserApi` class that defines a `Map` method. The method maps route-based APIs.
 

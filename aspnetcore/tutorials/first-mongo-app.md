@@ -197,7 +197,7 @@ Use the mongo Shell in the following steps to create a database, make collection
 
 ## Add a configuration model
 
-1. Add the following database configuration values to *appsettings.json*:
+1. Add the following database configuration values to `appsettings.json`:
 
    :::code language="json" source="first-mongo-app/samples/6.x/BookStoreApi/appsettings.json" highlight="2-6":::
 
@@ -205,13 +205,13 @@ Use the mongo Shell in the following steps to create a database, make collection
 
    :::code language="csharp" source="first-mongo-app/samples/6.x/BookStoreApi/Models/BookStoreDatabaseSettings.cs":::
 
-   The preceding `BookStoreDatabaseSettings` class is used to store the *appsettings.json* file's `BookStoreDatabase` property values. The JSON and C# property names are named identically to ease the mapping process.
+   The preceding `BookStoreDatabaseSettings` class is used to store the `appsettings.json` file's `BookStoreDatabase` property values. The JSON and C# property names are named identically to ease the mapping process.
 
 1. Add the following highlighted code to `Program.cs`:
 
    :::code language="csharp" source="first-mongo-app/samples/6.x/BookStoreApi/Program.cs" id="snippet_BookStoreDatabaseSettings" highlight="4-5":::
 
-   In the preceding code, the configuration instance to which the *appsettings.json* file's `BookStoreDatabase` section binds is registered in the Dependency Injection (DI) container. For example, the `BookStoreDatabaseSettings` object's `ConnectionString` property is populated with the `BookStoreDatabase:ConnectionString` property in *appsettings.json*.
+   In the preceding code, the configuration instance to which the `appsettings.json` file's `BookStoreDatabase` section binds is registered in the Dependency Injection (DI) container. For example, the `BookStoreDatabaseSettings` object's `ConnectionString` property is populated with the `BookStoreDatabase:ConnectionString` property in `appsettings.json`.
 
 1. Add the following code to the top of `Program.cs` to resolve the `BookStoreDatabaseSettings` reference:
 
@@ -224,7 +224,7 @@ Use the mongo Shell in the following steps to create a database, make collection
 
    :::code language="csharp" source="first-mongo-app/samples/6.x/BookStoreApi/Services/BooksService.cs" id="snippet_File":::
 
-   In the preceding code, a `BookStoreDatabaseSettings` instance is retrieved from DI via constructor injection. This technique provides access to the *appsettings.json* configuration values that were added in the [Add a configuration model](#add-a-configuration-model) section.
+   In the preceding code, a `BookStoreDatabaseSettings` instance is retrieved from DI via constructor injection. This technique provides access to the `appsettings.json` configuration values that were added in the [Add a configuration model](#add-a-configuration-model) section.
 
 1. Add the following highlighted code to `Program.cs`:
 
@@ -553,7 +553,7 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
 ## Add a configuration model
 
-1. Add the following database configuration values to *appsettings.json*:
+1. Add the following database configuration values to `appsettings.json`:
 
    :::code language="json" source="first-mongo-app/samples/3.x/SampleApp/appsettings.json" highlight="2-6":::
 
@@ -561,7 +561,7 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
    :::code language="csharp" source="first-mongo-app/samples/3.x/SampleApp/Models/BookstoreDatabaseSettings.cs":::
 
-   The preceding `BookstoreDatabaseSettings` class is used to store the *appsettings.json* file's `BookstoreDatabaseSettings` property values. The JSON and C# property names are named identically to ease the mapping process.
+   The preceding `BookstoreDatabaseSettings` class is used to store the `appsettings.json` file's `BookstoreDatabaseSettings` property values. The JSON and C# property names are named identically to ease the mapping process.
 
 1. Add the following highlighted code to `Startup.ConfigureServices`:
 
@@ -569,10 +569,10 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
    In the preceding code:
 
-   * The configuration instance to which the *appsettings.json* file's `BookstoreDatabaseSettings` section binds is registered in the Dependency Injection (DI) container. For example, a `BookstoreDatabaseSettings` object's `ConnectionString` property is populated with the `BookstoreDatabaseSettings:ConnectionString` property in *appsettings.json*.
+   * The configuration instance to which the `appsettings.json` file's `BookstoreDatabaseSettings` section binds is registered in the Dependency Injection (DI) container. For example, a `BookstoreDatabaseSettings` object's `ConnectionString` property is populated with the `BookstoreDatabaseSettings:ConnectionString` property in `appsettings.json`.
    * The `IBookstoreDatabaseSettings` interface is registered in DI with a singleton [service lifetime](xref:fundamentals/dependency-injection#service-lifetimes). When injected, the interface instance resolves to a `BookstoreDatabaseSettings` object.
 
-1. Add the following code to the top of *Startup.cs* to resolve the `BookstoreDatabaseSettings` and `IBookstoreDatabaseSettings` references:
+1. Add the following code to the top of `Startup.cs` to resolve the `BookstoreDatabaseSettings` and `IBookstoreDatabaseSettings` references:
 
    :::code language="csharp" source="first-mongo-app/samples/3.x/SampleApp/Startup.cs" id="snippet_UsingBooksApiModels":::
 
@@ -583,7 +583,7 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
    :::code language="csharp" source="first-mongo-app/samples/3.x/SampleApp/Services/BookService.cs" id="snippet_BookServiceClass":::
 
-   In the preceding code, an `IBookstoreDatabaseSettings` instance is retrieved from DI via constructor injection. This technique provides access to the *appsettings.json* configuration values that were added in the [Add a configuration model](#add-a-configuration-model) section.
+   In the preceding code, an `IBookstoreDatabaseSettings` instance is retrieved from DI via constructor injection. This technique provides access to the `appsettings.json` configuration values that were added in the [Add a configuration model](#add-a-configuration-model) section.
 
 1. Add the following highlighted code to `Startup.ConfigureServices`:
 
@@ -591,7 +591,7 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
    In the preceding code, the `BookService` class is registered with DI to support constructor injection in consuming classes. The singleton service lifetime is most appropriate because `BookService` takes a direct dependency on `MongoClient`. Per the official [Mongo Client reuse guidelines](https://mongodb.github.io/mongo-csharp-driver/2.8/reference/driver/connecting/#re-use), `MongoClient` should be registered in DI with a singleton service lifetime.
 
-1. Add the following code to the top of *Startup.cs* to resolve the `BookService` reference:
+1. Add the following code to the top of `Startup.cs` to resolve the `BookService` reference:
 
    :::code language="csharp" source="first-mongo-app/samples/3.x/SampleApp/Startup.cs" id="snippet_UsingBooksApiServices":::
 

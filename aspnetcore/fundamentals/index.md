@@ -84,7 +84,7 @@ The following example instantiates a WebApplication  Host:
 The [WebApplicationBuilder.Build](xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build%2A) method configures a host with a set of default options, such as:
 
 * Use [Kestrel](#servers) as the web server and enable IIS integration.
-* Load [configuration](xref:fundamentals/configuration/index) from *appsettings.json*, environment variables, command line arguments, and other configuration sources.
+* Load [configuration](xref:fundamentals/configuration/index) from `appsettings.json`, environment variables, command line arguments, and other configuration sources.
 * Send logging output to the console and debug providers.
 
 ### Non-web scenarios
@@ -119,7 +119,7 @@ For more information, see <xref:fundamentals/servers/index>.
 
 ASP.NET Core provides a [configuration](xref:fundamentals/configuration/index) framework that gets settings as name-value pairs from an ordered set of configuration providers. Built-in configuration providers are available for a variety of sources, such as *.json* files, *.xml* files, environment variables, and command-line arguments. Write custom configuration providers to support other sources.
 
-By [default](xref:fundamentals/configuration/index#default), ASP.NET Core apps are configured to read from *appsettings.json*, environment variables, the command line, and more. When the app's configuration is loaded, values from environment variables override values from *appsettings.json*.
+By [default](xref:fundamentals/configuration/index#default), ASP.NET Core apps are configured to read from `appsettings.json`, environment variables, the command line, and more. When the app's configuration is loaded, values from environment variables override values from `appsettings.json`.
 
 For managing confidential configuration data such as passwords, .NET Core provides the [Secret Manager](xref:security/app-secrets#secret-manager). For production secrets, we recommend [Azure Key Vault](xref:security/key-vault-configuration).
 
@@ -301,7 +301,7 @@ The following example creates a .NET Generic Host:
 The `CreateDefaultBuilder` and `ConfigureWebHostDefaults` methods configure a host with a set of default options, such as:
 
 * Use [Kestrel](#servers) as the web server and enable IIS integration.
-* Load configuration from *appsettings.json*, *appsettings.{Environment Name}.json*, environment variables, command line arguments, and other configuration sources.
+* Load configuration from `appsettings.json`, `appsettings.{Environment}.json`, environment variables, command line arguments, and other configuration sources.
 * Send logging output to the console and debug providers.
 
 For more information, see <xref:fundamentals/host/generic-host>.
@@ -338,7 +338,7 @@ For more information, see <xref:fundamentals/servers/index>.
 
 ASP.NET Core provides a configuration framework that gets settings as name-value pairs from an ordered set of configuration providers. Built-in configuration providers are available for a variety of sources, such as *.json* files, *.xml* files, environment variables, and command-line arguments. Write custom configuration providers to support other sources.
 
-By [default](xref:fundamentals/configuration/index#default), ASP.NET Core apps are configured to read from *appsettings.json*, environment variables, the command line, and more. When the app's configuration is loaded, values from environment variables override values from *appsettings.json*.
+By [default](xref:fundamentals/configuration/index#default), ASP.NET Core apps are configured to read from `appsettings.json`, environment variables, the command line, and more. When the app's configuration is loaded, values from environment variables override values from `appsettings.json`.
 
 The preferred way to read related configuration values is using the [options pattern](xref:fundamentals/configuration/options). For more information, see [Bind hierarchical configuration data using the options pattern](xref:fundamentals/configuration/index#optpat).
 

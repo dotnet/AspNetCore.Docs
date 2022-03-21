@@ -65,14 +65,14 @@ This article shows how to migrate the Products controller created in [Getting St
 
 ASP.NET Core doesn't use the *App_Start* folder or the *Global.asax* file. The *web.config* file is added at publish time. For more information, see <xref:host-and-deploy/iis/web-config>.
 
-The *Program.cs* file:
+The `Program.cs` file:
 
 * Replaces *Global.asax*.
 * Handles all app startup tasks.
 
 For more information, see <xref:fundamentals/startup>.
 
-The following shows the application startup code in the ASP.NET Core *Program.cs* file:
+The following shows the application startup code in the ASP.NET Core `Program.cs` file:
 
 [!code-csharp[](webapi/sample/6.x/ProductsCore/Program.cs)]
 

@@ -466,7 +466,7 @@ Save your changes and build the project.
 
 ## Change the connection string
 
-You now have new code in the `DbInitializer` class that adds seed data for the new entities to an empty database. To make EF create a new empty database, change the name of the database in the connection string in *appsettings.json* to ContosoUniversity3 or some other name that you haven't used on the computer you're using.
+You now have new code in the `DbInitializer` class that adds seed data for the new entities to an empty database. To make EF create a new empty database, change the name of the database in the connection string in `appsettings.json` to ContosoUniversity3 or some other name that you haven't used on the computer you're using.
 
 ```json
 {
@@ -475,7 +475,7 @@ You now have new code in the `DbInitializer` class that adds seed data for the n
   },
 ```
 
-Save your change to *appsettings.json*.
+Save your change to `appsettings.json`.
 
 > [!NOTE]
 > As an alternative to changing the database name, you can delete the database. Use **SQL Server Object Explorer** (SSOX) or the `database drop` CLI command:

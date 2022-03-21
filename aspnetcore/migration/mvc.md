@@ -63,7 +63,7 @@ In ASP.NET Core, the `Startup` class:
 
 For more information, see <xref:fundamentals/startup>.
 
-In the ASP.NET Core project, open the *Startup.cs* file:
+In the ASP.NET Core project, open the `Startup.cs` file:
 
 [!code-csharp[](mvc/samples/3.x/Startup.cs?highlight=13,30,32&name=snippet)]
 
@@ -217,7 +217,7 @@ Create a new *empty* ASP.NET Core web app with the same name as the previous pro
 
 `Microsoft.AspNetCore.Mvc` is the ASP.NET Core MVC framework. `Microsoft.AspNetCore.StaticFiles` is the static file handler. ASP.NET Core apps explicitly opt in for middleware, such as for serving static files. For more information, see [Static files](xref:fundamentals/static-files).
 
-* Open the *Startup.cs* file and change the code to match the following:
+* Open the `Startup.cs` file and change the code to match the following:
 
 [!code-csharp[](mvc/samples/2.x/Startup.cs?highlight=7,20-25&name=snippet)]
 
@@ -403,7 +403,7 @@ Create a new *empty* ASP.NET Core web app with the same name as the previous pro
 
 `Microsoft.AspNetCore.Mvc` is the ASP.NET Core MVC framework. `Microsoft.AspNetCore.StaticFiles` is the static file handler. ASP.NET Core apps explicitly opt in for middleware, such as for serving static files. For more information, see [Static files](xref:fundamentals/static-files).
 
-* Open the *Startup.cs* file and change the code to match the following:
+* Open the `Startup.cs` file and change the code to match the following:
 
 [!code-csharp[](mvc/samples/2.x/Startup.cs?highlight=7,20-25&name=snippet)]
 

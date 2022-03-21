@@ -214,7 +214,7 @@ The following examples use the <xref:Microsoft.AspNetCore.Server.Kestrel.Core> n
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 ```
 
-In examples shown later in this article, Kestrel options are configured in C# code. Kestrel options can also be set using a [configuration provider](xref:fundamentals/configuration/index). For example, the [File Configuration Provider](xref:fundamentals/configuration/index#file-configuration-provider) can load Kestrel configuration from an *appsettings.json* or *appsettings.{Environment}.json* file:
+In examples shown later in this article, Kestrel options are configured in C# code. Kestrel options can also be set using a [configuration provider](xref:fundamentals/configuration/index). For example, the [File Configuration Provider](xref:fundamentals/configuration/index#file-configuration-provider) can load Kestrel configuration from an `appsettings.json` or `appsettings.{Environment}.json` file:
 
 ```json
 {
@@ -586,7 +586,7 @@ Kestrel listens on `http://localhost:5000` and `https://localhost:5001` (if a de
 
 `CreateDefaultBuilder` calls `Configure(context.Configuration.GetSection("Kestrel"))` by default to load Kestrel configuration. A default HTTPS app settings configuration schema is available for Kestrel. Configure multiple endpoints, including the URLs and the certificates to use, either from a file on disk or from a certificate store.
 
-In the following *appsettings.json* example:
+In the following `appsettings.json` example:
 
 * Set **AllowInvalid** to `true` to permit the use of invalid certificates (for example, self-signed certificates).
 * Any HTTPS endpoint that doesn't specify a certificate (**HttpsDefaultCert** in the example that follows) falls back to the cert defined under **Certificates** > **Default** or the development certificate.
@@ -948,7 +948,7 @@ webBuilder.ConfigureKestrel(serverOptions =>
 
 `CreateDefaultBuilder` calls `serverOptions.Configure(context.Configuration.GetSection("Kestrel"))` by default to load Kestrel configuration.
 
-The following *appsettings.json* example establishes HTTP/1.1 as the default connection protocol for all endpoints:
+The following `appsettings.json` example establishes HTTP/1.1 as the default connection protocol for all endpoints:
 
 ```json
 {
@@ -960,7 +960,7 @@ The following *appsettings.json* example establishes HTTP/1.1 as the default con
 }
 ```
 
-The following *appsettings.json* example establishes the HTTP/1.1 connection protocol for a specific endpoint:
+The following `appsettings.json` example establishes the HTTP/1.1 connection protocol for a specific endpoint:
 
 ```json
 {
@@ -1029,9 +1029,9 @@ As a workaround, use Host Filtering Middleware. Host Filtering Middleware is pro
 
 :::code language="csharp" source="kestrel/samples-snapshot/2.x/KestrelSample/Program.cs" id="snippet_Program" highlight="9":::
 
-Host Filtering Middleware is disabled by default. To enable the middleware, define an `AllowedHosts` key in *appsettings.json*/*appsettings.\<EnvironmentName>.json*. The value is a semicolon-delimited list of host names without port numbers:
+Host Filtering Middleware is disabled by default. To enable the middleware, define an `AllowedHosts` key in `appsettings.json`/`appsettings.{Environment}.json`. The value is a semicolon-delimited list of host names without port numbers:
 
-*appsettings.json*:
+`appsettings.json`:
 
 ```json
 {

@@ -416,7 +416,7 @@ A *hub* is a class that serves as a high-level pipeline that handles client-serv
 
 The SignalR server must be configured to pass SignalR requests to SignalR.
 
-* Add the following highlighted code to the *Startup.cs* file.
+* Add the following highlighted code to the `Startup.cs` file.
 
   [!code-csharp[Startup](signalr/sample-snapshot/3.x/Startup.cs?highlight=11,28,55)]
 

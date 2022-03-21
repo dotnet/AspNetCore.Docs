@@ -105,7 +105,7 @@ Named options:
 * Are useful when multiple configuration sections bind to the same properties.
 * Are case sensitive.
 
-Consider the following *appsettings.json* file:
+Consider the following `appsettings.json` file:
 
 :::code language="json" source="options/samples/6.x/OptionsSample/appsettings.NO.json":::
 
@@ -155,7 +155,7 @@ We recommend passing a configuration delegate to <xref:Microsoft.Extensions.Opti
 
 Options validation enables option values to be validated.
 
-Consider the following *appsettings.json* file:
+Consider the following `appsettings.json` file:
 
 :::code language="json" source="options/samples/3.x/OptionsValidationSample/appsettings.Dev2.json":::
 
@@ -340,7 +340,7 @@ Named options:
 * Are useful when multiple configuration sections bind to the same properties.
 * Are case sensitive.
 
-Consider the following *appsettings.json* file:
+Consider the following `appsettings.json` file:
 
 :::code language="json" source="options/samples/3.x/OptionsSample/appsettings.NO.json":::
 
@@ -390,7 +390,7 @@ We recommend passing a configuration delegate to <xref:Microsoft.Extensions.Opti
 
 Options validation enables option values to be validated.
 
-Consider the following *appsettings.json* file:
+Consider the following `appsettings.json` file:
 
 :::code language="json" source="options/samples/3.x/OptionsValidationSample/appsettings.Dev2.json":::
 

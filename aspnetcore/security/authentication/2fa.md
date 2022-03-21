@@ -85,7 +85,7 @@ info: Successfully saved SMSAccountIdentification = 12345 to the secret store.
 
 ### Configure startup to use `SMSoptions`
 
-Add `SMSoptions` to the service container in the `ConfigureServices` method in the *Startup.cs*:
+Add `SMSoptions` to the service container in the `ConfigureServices` method in the `Startup.cs`:
 
 [!code-csharp[](2fa/sample/Web2FA/Startup.cs?name=snippet1&highlight=4)]
 

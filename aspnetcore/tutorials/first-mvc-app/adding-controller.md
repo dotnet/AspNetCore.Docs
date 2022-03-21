@@ -256,7 +256,7 @@ MVC invokes controller classes, and the action methods within them, depending on
 
 `/[Controller]/[ActionName]/[Parameters]`
 
-The routing format is set in the `Configure` method in *Startup.cs* file.
+The routing format is set in the `Configure` method in `Startup.cs` file.
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_1&highlight=5)]
 

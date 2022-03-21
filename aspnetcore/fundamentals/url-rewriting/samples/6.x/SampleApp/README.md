@@ -49,7 +49,7 @@ This sample includes `WebHostBuilder` configuration for the app to use URLs (`ht
 `https://localhost`) and a test certificate (*testCert.pfx*) to assist in exploring the 
 secure redirect methods. If the server already has port 443 assigned or in use, 
 the `https://localhost` example doesn't work&mdash;remove the `ListenOptions` for port 443 in
-the `CreateWebHostBuilder` method of the *Program.cs* file or unbind port 443 on the server so
+the `CreateWebHostBuilder` method of the `Program.cs` file or unbind port 443 on the server so
 that Kestrel can use the port.
 
 | Method                           | Status Code |    Port    |

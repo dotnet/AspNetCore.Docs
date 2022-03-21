@@ -299,11 +299,11 @@ The scaffolding process:
   * *Index.cshtml* and *Index.cshtml.cs*
 * Creates *Data/SchoolContext.cs*.
 * Adds the context to dependency injection in `Program.cs`.
-* Adds a database connection string to *appsettings.json*.
+* Adds a database connection string to `appsettings.json`.
 
 ## Database connection string
 
-The scaffolding tool generates a connection string in the *appsettings.json* file.
+The scaffolding tool generates a connection string in the `appsettings.json` file.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -376,7 +376,7 @@ See [Use SQLite for development, SQL Server for production](xref:tutorials/razor
 
 ---
 
-The name of the connection string is passed in to the context by calling a method on a <xref:Microsoft.EntityFrameworkCore.DbContextOptions> object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* or the *appsettings.Developement.json* file.
+The name of the connection string is passed in to the context by calling a method on a <xref:Microsoft.EntityFrameworkCore.DbContextOptions> object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the `appsettings.json` or the `appsettings.Development.json` file.
 
 <a name="dbx"></a>
 
@@ -811,12 +811,12 @@ The scaffolding process:
   * *Edit.cshtml* and *Edit.cshtml.cs*
   * *Index.cshtml* and *Index.cshtml.cs*
 * Creates *Data/SchoolContext.cs*.
-* Adds the context to dependency injection in *Startup.cs*.
-* Adds a database connection string to *appsettings.json*.
+* Adds the context to dependency injection in `Startup.cs`.
+* Adds a database connection string to `appsettings.json`.
 
 ## Database connection string
 
-The scaffolding tool generates a connection string in the *appsettings.json* file.
+The scaffolding tool generates a connection string in the `appsettings.json` file.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -887,7 +887,7 @@ See [Use SQLite for development, SQL Server for production](xref:tutorials/razor
 
 ---
 
-The name of the connection string is passed in to the context by calling a method on a <xref:Microsoft.EntityFrameworkCore.DbContextOptions> object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
+The name of the connection string is passed in to the context by calling a method on a <xref:Microsoft.EntityFrameworkCore.DbContextOptions> object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the `appsettings.json` file.
 
 <a name="dbx"></a>
 
@@ -1118,7 +1118,7 @@ To run the app after downloading the completed project:
 
 * Delete *ContosoUniversity.csproj*, and rename *ContosoUniversitySQLite.csproj* to *ContosoUniversity.csproj*.
 * In `Program.cs`, comment out `#define Startup` so `StartupSQLite` is used.
-* Delete *appSettings.json*, and rename *appSettingsSQLite.json* to *appSettings.json*.
+* Delete `appsettings.json`, and rename `appSettingsSQLite.json` to `appsettings.json`.
 * Delete the *Migrations* folder, and rename *MigrationsSQL* to *Migrations*.
 * Do a global search for `#if SQLiteVersion` and remove `#if SQLiteVersion` and the associated `#endif` statement.
 * Build the project.
@@ -1315,14 +1315,14 @@ The scaffolding process:
   * *Edit.cshtml* and *Edit.cshtml.cs*
   * *Index.cshtml* and *Index.cshtml.cs*
 * Creates *Data/SchoolContext.cs*.
-* Adds the context to dependency injection in *Startup.cs*.
-* Adds a database connection string to *appsettings.json*.
+* Adds the context to dependency injection in `Startup.cs`.
+* Adds a database connection string to `appsettings.json`.
 
 ## Database connection string
 
 # [Visual Studio](#tab/visual-studio)
 
-The *appsettings.json* file specifies the connection string [SQL Server LocalDB](/sql/database-engine/configure-windows/sql-server-2016-express-localdb).
+The `appsettings.json` file specifies the connection string [SQL Server LocalDB](/sql/database-engine/configure-windows/sql-server-2016-express-localdb).
 
 [!code-json[Main](intro/samples/cu30/appsettings.json?highlight=11)]
 
@@ -1375,7 +1375,7 @@ The scaffolding tool automatically registered the context class with the depende
 
 ---
 
-The name of the connection string is passed in to the context by calling a method on a <xref:Microsoft.EntityFrameworkCore.DbContextOptions> object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
+The name of the connection string is passed in to the context by calling a method on a <xref:Microsoft.EntityFrameworkCore.DbContextOptions> object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the `appsettings.json` file.
 
 ## Create the database
 

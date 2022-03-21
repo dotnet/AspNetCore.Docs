@@ -51,7 +51,7 @@ Create a new ASP.NET Core Web Application in Visual Studio. Choose the Web API t
 
 ![New ASP.NET Web Application dialog with Web API project template selected](native-mobile-backend/_static/web-api-template.png)
 
-The app should respond to all requests made to port 5000 including clear-text http traffic for our mobile client. Update *Startup.cs* so <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A> doesn't run in development:
+The app should respond to all requests made to port 5000 including clear-text http traffic for our mobile client. Update `Startup.cs` so <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A> doesn't run in development:
 
 :::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Startup.cs" id="snippet" highlight="7-11":::
 
@@ -70,7 +70,7 @@ For this sample, the implementation just uses a private collection of items:
 
 :::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Services/TodoRepository.cs":::
 
-Configure the implementation in *Startup.cs*:
+Configure the implementation in `Startup.cs`:
 
 :::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Startup.cs" id="snippet2" highlight="3":::
 

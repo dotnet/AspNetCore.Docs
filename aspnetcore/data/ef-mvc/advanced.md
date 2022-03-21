@@ -225,7 +225,7 @@ Run the `migrations remove` command, save your code changes and rerun the `migra
 
 It's possible to get other errors when making schema changes in a database that has existing data. If you get migration errors you can't resolve, you can either change the database name in the connection string or delete the database. With a new database, there's no data to migrate, and the update-database command is much more likely to complete without errors.
 
-The simplest approach is to rename the database in *appsettings.json*. The next time you run `database update`, a new database will be created.
+The simplest approach is to rename the database in `appsettings.json`. The next time you run `database update`, a new database will be created.
 
 To delete a database in SSOX, right-click the database, click **Delete**, and then in the **Delete Database** dialog box select **Close existing connections** and click **OK**.
 

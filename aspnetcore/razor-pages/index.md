@@ -56,7 +56,7 @@ See [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
 
 ## Razor Pages
 
-Razor Pages is enabled in *program.cs*:
+Razor Pages is enabled in `Program.cs`:
 
 [!code-csharp[](index/6.0sample/RazorPagesIntro/Program.cs?highlight=3,20)]
 
@@ -672,7 +672,7 @@ See [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
 
 ## Razor Pages
 
-Razor Pages is enabled in *Startup.cs*:
+Razor Pages is enabled in `Startup.cs`:
 
 [!code-csharp[](index/3.0sample/RazorPagesIntro/Startup.cs?name=snippet_Startup&highlight=12,36)]
 

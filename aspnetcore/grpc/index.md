@@ -216,7 +216,7 @@ public class GreeterService : Greeter.GreeterBase
 }
 ```
 
-`GreeterService` inherits from the `GreeterBase` type, which is generated from the `Greeter` service in the `.proto` file. The service is made accessible to clients in *Startup.cs*:
+`GreeterService` inherits from the `GreeterBase` type, which is generated from the `Greeter` service in the `.proto` file. The service is made accessible to clients in `Startup.cs`:
 
 ```csharp
 app.UseEndpoints(endpoints =>

@@ -333,7 +333,7 @@ When publishing ASP.NET Core web apps, the following assets are included:
 * Build artifacts
 * Folders and files matching the following globbing patterns:
   * `**\*.config` (for example, *web.config*)
-  * `**\*.json` (for example, *appsettings.json*)
+  * `**\*.json` (for example, `appsettings.json`)
   * `wwwroot\**`
 
 MSBuild supports [globbing patterns](https://gruntjs.com/configuring-tasks#globbing-patterns). For example, the following `<Content>` element suppresses the copying of text (*.txt*) files in the *wwwroot\content* folder and its subfolders:
