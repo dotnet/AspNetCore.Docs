@@ -40,7 +40,7 @@ Using .NET for client-side web development offers the following advantages:
 * Leverage the existing .NET ecosystem of [.NET libraries](/dotnet/standard/class-libraries).
 * Share app logic across server and client.
 * Benefit from .NET's performance, reliability, and security.
-* Stay productive with [Visual Studio](https://visualstudio.microsoft.com) on Windows, and macOS.
+* Stay productive on Windows, Linux, or macOS with a development environment, such as [Visual Studio](https://visualstudio.microsoft.com/) or [Visual Studio Code](https://code.visualstudio.com/).
 * Build on a common set of languages, frameworks, and tools that are stable, feature-rich, and easy to use.
 
 > [!NOTE]
