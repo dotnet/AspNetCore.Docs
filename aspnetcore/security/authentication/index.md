@@ -4,7 +4,7 @@ author: mjrousos
 description: Learn about authentication in ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 1/24/2021
+ms.date: 03/21/2022
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/index
 ---
@@ -21,10 +21,10 @@ Authentication is the process of determining a user's identity. [Authorization](
 
 The registered authentication handlers and their configuration options are called "schemes".
 
-Authentication schemes are specified by registering authentication services in `Startup.ConfigureServices`:
+Authentication schemes are specified by registering authentication services in `Program.cs`:
 
-* By calling a scheme-specific extension method after a call to <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A> (such as <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A> or <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie%2A>, for example). These extension methods use <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder.AddScheme%2A?displayProperty=nameWithType> to register schemes with appropriate settings.
-* Less commonly, by calling AuthenticationBuilder.AddScheme directly.
+* By calling a scheme-specific extension method after a call to <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A>, such as <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A> or <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie%2A>. These extension methods use <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder.AddScheme%2A?displayProperty=nameWithType> to register schemes with appropriate settings.
+* Less commonly, by calling `AuthenticationBuilder.AddScheme` directly.
 
 For example, the following code registers authentication services and handlers for cookie and JWT bearer authentication schemes:
 
@@ -42,10 +42,7 @@ If multiple schemes are used, authorization policies (or authorization attribute
 
 In some cases, the call to `AddAuthentication` is automatically made by other extension methods. For example, when using [ASP.NET Core Identity](xref:security/authentication/identity), `AddAuthentication` is called internally.
 
-The Authentication middleware is added in `Startup.Configure` by calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A>. Calling `UseAuthentication` registers the middleware that uses the previously registered authentication schemes. Call `UseAuthentication` before any middleware that depends on users being authenticated. When using endpoint routing, the call to `UseAuthentication` must go:
-
-* After <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>, so that route information is available for authentication decisions.
-* Before <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A>, so that users are authenticated before accessing the endpoints.
+The Authentication middleware is added in `Program.cs` by calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A>. Calling `UseAuthentication` registers the middleware that uses the previously registered authentication schemes. Call `UseAuthentication` before any middleware that depends on users being authenticated.
 
 ## Authentication concepts
 
@@ -132,12 +129,11 @@ See the following links for differences between challenge and forbid:
 
 ## Authentication providers per tenant
 
-ASP.NET Core framework doesn't have a built-in solution for multi-tenant authentication.
-While it's possible for customers to write one, using the built-in features, we recommend customers to look into [Orchard Core](https://www.orchardcore.net/) for this purpose.
+ASP.NET Core doesn't have a built-in solution for multi-tenant authentication. While it's possible for customers to write one using the built-in features, we recommend customers to consider [Orchard Core](https://www.orchardcore.net/) for this purpose.
 
 Orchard Core is:
 
-* An open-source modular and multi-tenant app framework built with ASP.NET Core.
+* An open-source, modular, and multi-tenant app framework built with ASP.NET Core.
 * A content management system (CMS) built on top of that app framework.
 
 See the [Orchard Core](https://github.com/OrchardCMS/OrchardCore) source for an example of authentication providers per tenant.
@@ -166,16 +162,16 @@ The registered authentication handlers and their configuration options are calle
 Authentication schemes are specified by registering authentication services in `Startup.ConfigureServices`:
 
 * By calling a scheme-specific extension method after a call to <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A> (such as <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A> or <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie%2A>, for example). These extension methods use <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder.AddScheme%2A?displayProperty=nameWithType> to register schemes with appropriate settings.
-* Less commonly, by calling AuthenticationBuilder.AddScheme directly.
+* Less commonly, by calling `AuthenticationBuilder.AddScheme` directly.
 
 For example, the following code registers authentication services and handlers for cookie and JWT bearer authentication schemes:
 
 ```csharp
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme,
-        options => builder.Configuration.Bind("JwtSettings", options))
+        options => Configuration.Bind("JwtSettings", options))
     .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme,
-        options => builder.Configuration.Bind("CookieSettings", options));
+        options => Configuration.Bind("CookieSettings", options));
 ```
 
 The `AddAuthentication` parameter <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme?displayProperty=nameWithType> is the name of the scheme to use by default when a specific scheme isn't requested.
