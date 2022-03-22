@@ -660,7 +660,7 @@ The following delegate approach uses the preceding `ReferenceChild` component.
 
 Use a collection to reference components in a loop. In the following example:
 
-* Components are added to a <xref:System.Collections.Generic.List%601>.
+* Components are added to a <xref:System.Collections.Generic.List%601> (`List<ReferenceChild>`).
 * A button is created for each component that triggers the corresponding component's `ChildMethod` by its component index in the <xref:System.Collections.Generic.List%601>.
 * There's no need to clear the list of component references in developer code. The <xref:System.Collections.Generic.List%601> is a [managed resource](/dotnet/standard/managed-code) and cleared by the [.NET garbage collector](/dotnet/standard/garbage-collection/) automatically when the framework disposes of the component. Guidance on object disposal is covered in <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
 
@@ -2089,7 +2089,7 @@ The following delegate approach uses the preceding `ReferenceChild` component.
 
 Use a collection to reference components in a loop. In the following example:
 
-* Components are added to a <xref:System.Collections.Generic.List%601>.
+* Components are added to a <xref:System.Collections.Generic.List%601> (`List<ReferenceChild>`).
 * A button is created for each component that triggers the corresponding component's `ChildMethod` by its component index in the <xref:System.Collections.Generic.List%601>.
 * There's no need to clear the list of component references in developer code. The <xref:System.Collections.Generic.List%601> is a [managed resource](/dotnet/standard/managed-code) and cleared by the [.NET garbage collector](/dotnet/standard/garbage-collection/) automatically when the framework disposes of the component. Guidance on object disposal is covered in <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
 
@@ -3070,7 +3070,7 @@ The following delegate approach uses the preceding `ReferenceChild` component.
 
 Use a collection to reference components in a loop. In the following example:
 
-* Components are added to a <xref:System.Collections.Generic.List%601>.
+* Components are added to a <xref:System.Collections.Generic.List%601> (`List<ReferenceChild>`).
 * A button is created for each component that triggers the corresponding component's `ChildMethod` by its component index in the <xref:System.Collections.Generic.List%601>.
 * There's no need to clear the list of component references in developer code. The <xref:System.Collections.Generic.List%601> is a [managed resource](/dotnet/standard/managed-code) and cleared by the [.NET garbage collector](/dotnet/standard/garbage-collection/) automatically when the framework disposes of the component. Guidance on object disposal is covered in <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
 
