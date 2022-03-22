@@ -19,10 +19,10 @@ Network bandwidth is a limited resource. Reducing the size of the response usual
 
 ## Compression with HTTPS
 
-Compressed responses over secure connections can be controlled with the <xref:Microsoft.AspNetCore.ResponseCompression.ResponseCompressionOptions.EnableForHttps> option, which is disabled by default because of the security risk. Using compression with dynamically generated pages can make expose the app to [CRIME](https://wikipedia.org/wiki/CRIME_(security_exploit)) and [BREACH](https://wikipedia.org/wiki/BREACH_(security_exploit)) attacks. BREACH and CRIME attacks can be
- mitigated in ASP.NET Core by antiforgery tokens. For more information, see <xref:security/anti-request-forgery>. Fo information on mitigating BREACH attacks, see [mitigations](http://www.breachattack.com/#mitigations) at http://www.breachattack.com/
+Compressed responses over secure connections can be controlled with the <xref:Microsoft.AspNetCore.ResponseCompression.ResponseCompressionOptions.EnableForHttps> option, which is disabled by default because of the security risk. Using compression with dynamically generated pages can make expose the app to [CRIME](https://wikipedia.org/wiki/CRIME_(security_exploit)) and [BREACH](https://wikipedia.org/wiki/BREACH_(security_exploit)) attacks. CRIME and BREACH attacks can be
+ mitigated in ASP.NET Core by antiforgery tokens. For more information, see <xref:security/anti-request-forgery>. For information on mitigating BREACH attacks, see [mitigations](http://www.breachattack.com/#mitigations) at http://www.breachattack.com/
 
-Even when `EnableForHttps` is disabled in the app, IIS, IIS Express, and [Azure App Service](xrfef:host-and-deploy/azure-iis-errors-reference) can apply gzip at the IIS web server. When reviewing response headers, take note of the [Server](https://developer.mozilla.org/docs/Web/HTTP/Headers/Server) value.
+Even when `EnableForHttps` is disabled in the app, IIS, IIS Express, and [Azure App Service](xref:host-and-deploy/azure-iis-errors-reference) can apply gzip at the IIS web server. When reviewing response headers, take note of the [Server](https://developer.mozilla.org/docs/Web/HTTP/Headers/Server) value.
 
 ## When to use Response Compression Middleware
 
@@ -66,7 +66,7 @@ The headers involved in requesting, sending, caching, and receiving compressed c
 
 | Header             | Role |
 | ------------------ | ---- |
-| [`Accept-Encoding`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Encoding)`  | Sent from the client to the server to indicate the content encoding schemes acceptable to the client. |
+| [`Accept-Encoding`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Encoding) | Sent from the client to the server to indicate the content encoding schemes acceptable to the client. |
 | [`Content-Encoding`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Encoding) | Sent from the server to the client to indicate the encoding of the content in the payload. |
 | [`Content-Length`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Length)   | When compression occurs, the `Content-Length` header is removed, since the body content changes when the response is compressed. |
 | [`Content-MD5`](https://datatracker.ietf.org/doc/html/rfc1864)      | When compression occurs, the `Content-MD5` header is removed, since the body content has changed and the hash is no longer valid. |
