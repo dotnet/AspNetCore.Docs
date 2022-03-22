@@ -44,7 +44,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 1. [ChainedConfigurationProvider](xref:Microsoft.Extensions.Configuration.ChainedConfigurationSource) :  Adds an existing `IConfiguration` as a source. In the default configuration case, adds the [host](#hvac) configuration and setting it as the first source for the _app_ configuration.
 1. [appsettings.json](#appsettingsjson) using the [JSON configuration provider](#file-configuration-provider).
-1. `appsettings.{Environment}.json` using the [JSON configuration provider](#file-configuration-provider). For example, *appsettings*.***Production***.*json* and *appsettings*.***Development***.*json*.
+1. `appsettings.{Environment}.json` using the [JSON configuration provider](#file-configuration-provider). For example, `appsettings.Production.json` and `appsettings.Development.json`.
 1. [App secrets](xref:security/app-secrets) when the app runs in the `Development` environment.
 1. Environment variables using the [Environment Variables configuration provider](#evcp).
 1. Command-line arguments using the [Command-line configuration provider](#command-line).
@@ -70,12 +70,12 @@ The following code from the [sample download](https://github.com/dotnet/AspNetCo
 The default <xref:Microsoft.Extensions.Configuration.Json.JsonConfigurationProvider> loads configuration in the following order:
 
 1. `appsettings.json`
-1. `appsettings.{Environment}.json` : For example, the *appsettings*.***Production***.*json* and *appsettings*.***Development***.*json* files. The environment version of the file is loaded based on the [IHostingEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostingEnvironment.EnvironmentName*). For more information, see <xref:fundamentals/environments>.
+1. `appsettings.{Environment}.json` : For example, the `appsettings.Production.json` and `appsettings.Development.json` files. The environment version of the file is loaded based on the [IHostingEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostingEnvironment.EnvironmentName*). For more information, see <xref:fundamentals/environments>.
 
-*appsettings*.`Environment`.*json* values override keys in `appsettings.json`. For example, by default:
+`appsettings.{Environment}.json` values override keys in `appsettings.json`. For example, by default:
 
-* In development, *appsettings*.***Development***.*json* configuration overwrites values found in `appsettings.json`.
-* In production, *appsettings*.***Production***.*json* configuration overwrites values found in `appsettings.json`. For example, when deploying the app to Azure.
+* In development, `appsettings.Development.json` configuration overwrites values found in `appsettings.json`.
+* In production, `appsettings.Production.json` configuration overwrites values found in `appsettings.json`. For example, when deploying the app to Azure.
 
 If a configuration value must be guaranteed, see [GetValue](#getvalue). The preceding example only reads strings and doesn’t support a default value.
 
@@ -262,7 +262,7 @@ foreach (var c in config.AsEnumerable())
 
 Using the [default](#default) configuration, the <xref:Microsoft.Extensions.Configuration.CommandLine.CommandLineConfigurationProvider> loads configuration from command-line argument key-value pairs after the following configuration sources:
 
-* `appsettings.json` and *appsettings*.`Environment`.*json* files.
+* `appsettings.json` and `appsettings.{Environment}.json` files.
 * [App secrets](xref:security/app-secrets) in the Development environment.
 * Environment variables.
 
@@ -389,7 +389,7 @@ Configuration sources are read in the order that their configuration providers a
 A typical sequence of configuration providers is:
 
 1. `appsettings.json`
-1. *appsettings*.`Environment`.*json*
+1. `appsettings.{Environment}.json`
 1. [User secrets](xref:security/app-secrets)
 1. Environment variables using the [Environment Variables configuration provider](#evcp).
 1. Command-line arguments using the [Command-line configuration provider](#clcp).
@@ -483,7 +483,7 @@ The following code clears all the configuration providers and adds several confi
 
 In the preceding code, settings in the `MyConfig.json` and  *MyConfig*.`Environment`.*json* files:
 
-* Override settings in the `appsettings.json` and *appsettings*.`Environment`.*json* files.
+* Override settings in the `appsettings.json` and `appsettings.{Environment}.json` files.
 * Are overridden by settings in the [Environment variables configuration provider](#evcp) and the [Command-line configuration provider](#clcp).
 
 The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) contains the following  `MyConfig.json` file:
@@ -894,7 +894,7 @@ ASP.NET Core web apps created with [dotnet new](/dotnet/core/tools/dotnet-new) o
 
 1. [ChainedConfigurationProvider](xref:Microsoft.Extensions.Configuration.ChainedConfigurationSource) :  Adds an existing `IConfiguration` as a source. In the default configuration case, adds the [host](#hvac) configuration and setting it as the first source for the _app_ configuration.
 1. [appsettings.json](#appsettingsjson) using the [JSON configuration provider](#file-configuration-provider).
-1. `appsettings.{Environment}.json` using the [JSON configuration provider](#file-configuration-provider). For example, *appsettings*.***Production***.*json* and *appsettings*.***Development***.*json*.
+1. `appsettings.{Environment}.json` using the [JSON configuration provider](#file-configuration-provider). For example, `appsettings.Production.json` and `appsettings.Development.json`.
 1. [App secrets](xref:security/app-secrets) when the app runs in the `Development` environment.
 1. Environment variables using the [Environment Variables configuration provider](#evcp).
 1. Command-line arguments using the [Command-line configuration provider](#clcp).
@@ -920,12 +920,12 @@ The following code from the [sample download](https://github.com/dotnet/AspNetCo
 The default <xref:Microsoft.Extensions.Configuration.Json.JsonConfigurationProvider> loads configuration in the following order:
 
 1. `appsettings.json`
-1. `appsettings.{Environment}.json` : For example, the *appsettings*.***Production***.*json* and *appsettings*.***Development***.*json* files. The environment version of the file is loaded based on the [IHostingEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostingEnvironment.EnvironmentName*). For more information, see <xref:fundamentals/environments>.
+1. `appsettings.{Environment}.json` : For example, the `appsettings.Production.json` and `appsettings.Development.json` files. The environment version of the file is loaded based on the [IHostingEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostingEnvironment.EnvironmentName*). For more information, see <xref:fundamentals/environments>.
 
-*appsettings*.`Environment`.*json* values override keys in `appsettings.json`. For example, by default:
+`appsettings.{Environment}.json` values override keys in `appsettings.json`. For example, by default:
 
-* In development, *appsettings*.***Development***.*json* configuration overwrites values found in `appsettings.json`.
-* In production, *appsettings*.***Production***.*json* configuration overwrites values found in `appsettings.json`. For example, when deploying the app to Azure.
+* In development, `appsettings.Development.json` configuration overwrites values found in `appsettings.json`.
+* In production, `appsettings.Production.json` configuration overwrites values found in `appsettings.json`. For example, when deploying the app to Azure.
 
 If a configuration value must be guaranteed, see [GetValue](#getvalue). The preceding example only reads strings and doesn’t support a default value.
 
@@ -1102,7 +1102,7 @@ The following code displays the environment variables and values on application 
 
 Using the [default](#default) configuration, the <xref:Microsoft.Extensions.Configuration.CommandLine.CommandLineConfigurationProvider> loads configuration from command-line argument key-value pairs after the following configuration sources:
 
-* `appsettings.json` and *appsettings*.`Environment`.*json* files.
+* `appsettings.json` and `appsettings.{Environment}.json` files.
 * [App secrets](xref:security/app-secrets) in the Development environment.
 * Environment variables.
 
@@ -1232,7 +1232,7 @@ Configuration sources are read in the order that their configuration providers a
 A typical sequence of configuration providers is:
 
 1. `appsettings.json`
-1. *appsettings*.`Environment`.*json*
+1. `appsettings.{Environment}.json`
 1. [User secrets](xref:security/app-secrets)
 1. Environment variables using the [Environment Variables configuration provider](#evcp).
 1. Command-line arguments using the [Command-line configuration provider](#clcp).
@@ -1327,7 +1327,7 @@ The following code clears all the configuration providers and adds several confi
 
 In the preceding code, settings in the `MyConfig.json` and  *MyConfig*.`Environment`.*json* files:
 
-* Override settings in the `appsettings.json` and *appsettings*.`Environment`.*json* files.
+* Override settings in the `appsettings.json` and `appsettings.{Environment}.json` files.
 * Are overridden by settings in the [Environment variables configuration provider](#evcp) and the [Command-line configuration provider](#clcp).
 
 The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) contains the following  `MyConfig.json` file:
