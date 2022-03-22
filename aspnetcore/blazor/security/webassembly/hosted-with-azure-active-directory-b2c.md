@@ -70,7 +70,7 @@ Register an AAD B2C app for the *Client app*:
 In **Authentication** > **Platform configurations** > **Single-page application (SPA)**:
 
 1. Confirm the **Redirect URI** of `https://localhost:{PORT}/authentication/login-callback` is present.
-1. For **Implicit grant**, ensure that the checkboxes for **Access tokens** and **ID tokens** are **not** selected.
+1. In the **Implicit grant** section, ensure that the checkboxes for **Access tokens** and **ID tokens** are **not** selected.
 1. The remaining defaults for the app are acceptable for this experience.
 1. Select the **Save** button.
 
@@ -469,7 +469,7 @@ Register an AAD B2C app for the *Client app*:
 In **Authentication** > **Platform configurations** > **Single-page application (SPA)**:
 
 1. Confirm the **Redirect URI** of `https://localhost:{PORT}/authentication/login-callback` is present.
-1. For **Implicit grant**, ensure that the checkboxes for **Access tokens** and **ID tokens** are **not** selected.
+1. In the **Implicit grant** section, ensure that the checkboxes for **Access tokens** and **ID tokens** are **not** selected.
 1. The remaining defaults for the app are acceptable for this experience.
 1. Select the **Save** button.
 
@@ -866,7 +866,7 @@ Record the Application (client) ID (for example, `4369008b-21fa-427c-abaa-9b53bf
 In **Authentication** > **Platform configurations** > **Web**:
 
 1. Confirm the **Redirect URI** of `https://localhost:{PORT}/authentication/login-callback` is present.
-1. For **Implicit grant**, select the checkboxes for **Access tokens** and **ID tokens**.
+1. In the **Implicit grant** section, select the checkboxes for **Access tokens** and **ID tokens**.
 1. The remaining defaults for the app are acceptable for this experience.
 1. Select the **Save** button.
 
