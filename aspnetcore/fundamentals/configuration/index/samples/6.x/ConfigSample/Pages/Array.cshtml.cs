@@ -18,7 +18,7 @@ namespace ConfigSample
 
         public ContentResult OnGet()
         {
-           _array = Config.GetSection("array").Get<ArrayExample>();
+            _array = Config.GetSection("array").Get<ArrayExample>();
             string s = String.Empty;
 
             for (int j = 0; j < _array.Entries.Length; j++)
