@@ -62,7 +62,7 @@ The response compression middleware is capable of reacting to quality value (qva
 
 Compression algorithms are subject to a tradeoff between compression speed and the effectiveness of the compression. *Effectiveness* in this context refers to the size of the output after compression. The smallest size is achieved by the optimal compression.
 
-The headers involved in requesting, sending, caching, and receiving compressed content are described in the table below.
+The headers involved in requesting, sending, caching, and receiving compressed content are described in the following table.
 
 | Header             | Role |
 | ------------------ | ---- |
