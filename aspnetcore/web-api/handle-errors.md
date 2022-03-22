@@ -1,9 +1,9 @@
 ---
 title: Handle errors in ASP.NET Core web APIs
-author: pranavkm
+author: rick-anderson
 description: Learn about error handling with ASP.NET Core web APIs.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: prkrishn
+ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]

@@ -1,7 +1,7 @@
 ---
 title: Customize the behavior of AuthorizationMiddleware
-author: pranavkm
-ms.author: prkrishn
+author: rick-anderson
+ms.author: riande
 description: This article explains how to customize the result handling of AuthorizationMiddleware.
 monikerRange: '>= aspnetcore-5.0'
 uid: security/authorization/authorizationmiddlewareresulthandler
