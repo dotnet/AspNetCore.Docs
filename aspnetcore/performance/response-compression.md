@@ -17,9 +17,9 @@ Network bandwidth is a limited resource. Reducing the size of the response usual
 
 ## Compression with HTTPS
 
-Compressed responses over secure connections can be controlled with the <xref:Microsoft.AspNetCore.ResponseCompression.ResponseCompressionOptions.EnableForHttps> option, which is disabled by default. Using compression with dynamically generated pages can lead to security problems such as the [CRIME](https://wikipedia.org/wiki/CRIME_(security_exploit)) and [BREACH](https://wikipedia.org/wiki/BREACH_(security_exploit)) attacks.
+Compressed responses over secure connections can be controlled with the <xref:Microsoft.AspNetCore.ResponseCompression.ResponseCompressionOptions.EnableForHttps> option, which is disabled by default because of the security risk. Using compression with dynamically generated pages can make expose the app to [CRIME](https://wikipedia.org/wiki/CRIME_(security_exploit)) and [BREACH](https://wikipedia.org/wiki/BREACH_(security_exploit)) attacks.
 
-When `EnableForHttps` is set to `false`, IIS, IIS Express, and [Azure App Service](xrfef:host-and-deploy/azure-iis-errors-reference) can apply gzip at the IIS web server. When reviewing response headers, take note of the [Server](https://developer.mozilla.org/docs/Web/HTTP/Headers/Server) value.
+Even when `EnableForHttps` is disabled in the app, IIS, IIS Express, and [Azure App Service](xrfef:host-and-deploy/azure-iis-errors-reference) can apply gzip at the IIS web server. When reviewing response headers, take note of the [Server](https://developer.mozilla.org/docs/Web/HTTP/Headers/Server) value.
 
 ## When to use Response Compression Middleware
 
@@ -97,68 +97,27 @@ For example, in Firefox Developer:
 
 * Select the network tab.
 * Right click the request in the [Network request list](https://developer.mozilla.org/docs/Tools/Network_Monitor/request_list) and select **Edit and resend**
-* Change `Accept-Encoding:` from  `gzip, deflate, br` to `X`.
+* Change `Accept-Encoding:` from  `gzip, deflate, br` to `none`.
 * Select **Send**.
 
-Submit a request to the sample app with a browser using the developer tools and observe that the response is compressed. The `Content-Encoding` and `Vary` headers are present on the response.
+Submit a request to the [sample app](https://responsecompression.azurewebsites.net/) with a browser using the developer tools and observe that the response is compressed. The `Content-Encoding` and `Vary` headers are present on the response.
 
 ## Providers
 
-### Brotli compression provider
+### Brotli and Gzip compression providers
 
 Use the <xref:Microsoft.AspNetCore.ResponseCompression.BrotliCompressionProvider> to compress responses with the [Brotli compressed data format](https://tools.ietf.org/html/rfc7932).
 
 If [no compression providers are explicitly added](https://github.com/dotnet/aspnetcore/blob/v6.0.3/src/Middleware/ResponseCompression/src/ResponseCompressionProvider.cs#L46) to the <xref:Microsoft.AspNetCore.ResponseCompression.CompressionProviderCollection>:
 
-* The Brotli compression provider and [Gzip compression provider](#gzip-compression-provider) are added by default to the array of compression providers.
+* The Brotli compression provider and Gzip compression provider are added by default to the array of compression providers.
 * Compression defaults to Brotli compression when the Brotli compressed data format is supported by the client. If Brotli isn't supported by the client, compression defaults to Gzip when the client supports Gzip compression.
 
 When a compression provider is added, other providers are not added. For example, if the Gzip compression provider is the only provider explicitly added, not other compression provider are added.
 
-zz
-[!code-csharp[](response-compression/samples/3.x/SampleApp/Startup.cs?name=snippet1&highlight=5)]
+[!code-csharp[](response-compression/samples/6.x/SampleApp/Program.cs?name=snippet2&highlight=6-11)]
 
-Set the compression level with <xref:Microsoft.AspNetCore.ResponseCompression.BrotliCompressionProviderOptions>. The Brotli compression provider defaults to the fastest compression level ([CompressionLevel.Fastest](xref:System.IO.Compression.CompressionLevel)), which might not produce the most efficient compression. If the most efficient compression is desired, configure the middleware for optimal compression.
-
-| Compression Level | Description |
-| ----------------- | ----------- |
-| [CompressionLevel.Fastest](xref:System.IO.Compression.CompressionLevel) | Compression should complete as quickly as possible, even if the resulting output isn't optimally compressed. |
-| [CompressionLevel.NoCompression](xref:System.IO.Compression.CompressionLevel) | No compression should be performed. |
-| [CompressionLevel.Optimal](xref:System.IO.Compression.CompressionLevel) | Responses should be optimally compressed, even if the compression takes more time to complete. |
-
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddResponseCompression();
-
-    services.Configure<BrotliCompressionProviderOptions>(options => 
-    {
-        options.Level = CompressionLevel.Fastest;
-    });
-}
-```
-
-### Gzip compression provider
-
-Use the <xref:Microsoft.AspNetCore.ResponseCompression.GzipCompressionProvider> to compress responses with the [Gzip file format](https://tools.ietf.org/html/rfc1952).
-
-If no compression providers are explicitly added to the <xref:Microsoft.AspNetCore.ResponseCompression.CompressionProviderCollection>:
-
-* The Gzip compression provider is added by default to the array of compression providers along with the [Brotli compression provider](#brotli-compression-provider).
-* Compression defaults to Brotli compression when the Brotli compressed data format is supported by the client. If Brotli isn't supported by the client, compression defaults to Gzip when the client supports Gzip compression.
-
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddResponseCompression();
-}
-```
-
-The Gzip compression provider must be added when any compression providers are explicitly added:
-
-[!code-csharp[](response-compression/samples/3.x/SampleApp/Startup.cs?name=snippet1&highlight=6)]
-
-Set the compression level with <xref:Microsoft.AspNetCore.ResponseCompression.GzipCompressionProviderOptions>. The Gzip compression provider defaults to the fastest compression level ([CompressionLevel.Fastest](xref:System.IO.Compression.CompressionLevel)), which might not produce the most efficient compression. If the most efficient compression is desired, configure the middleware for optimal compression.
+Set the compression level with <xref:Microsoft.AspNetCore.ResponseCompression.BrotliCompressionProviderOptions> and <xref:Microsoft.AspNetCore.ResponseCompression.GzipCompressionProviderOptions>. The Brotli and Gzip compression providers default to the fastest compression level ([CompressionLevel.Fastest](xref:System.IO.Compression.CompressionLevel)), which might not produce the most efficient compression. If the most efficient compression is desired, configure the middleware for optimal compression.
 
 | Compression Level | Description |
 | ----------------- | ----------- |
@@ -166,19 +125,9 @@ Set the compression level with <xref:Microsoft.AspNetCore.ResponseCompression.Gz
 | [CompressionLevel.NoCompression](xref:System.IO.Compression.CompressionLevel) | No compression should be performed. |
 | [CompressionLevel.Optimal](xref:System.IO.Compression.CompressionLevel) | Responses should be optimally compressed, even if the compression takes more time to complete. |
 
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddResponseCompression();
+[!code-csharp[](response-compression/samples/6.x/SampleApp/Program.cs?name=snippet2&highlight=17-25)]
 
-    services.Configure<GzipCompressionProviderOptions>(options => 
-    {
-        options.Level = CompressionLevel.Fastest;
-    });
-}
-```
-
-### Custom providers
+### Custom providers zz
 
 Create custom compression implementations with <xref:Microsoft.AspNetCore.ResponseCompression.ICompressionProvider>. The <xref:Microsoft.AspNetCore.ResponseCompression.ICompressionProvider.EncodingName*> represents the content encoding that this `ICompressionProvider` produces. The middleware uses this information to choose the provider based on the list specified in the `Accept-Encoding` header of the request.
 
@@ -187,7 +136,6 @@ Using the sample app, the client submits a request with the `Accept-Encoding: my
 [!code-csharp[](response-compression/samples/3.x/SampleApp/Startup.cs?name=snippet1&highlight=7)]
 
 [!code-csharp[](response-compression/samples/3.x/SampleApp/CustomCompressionProvider.cs?name=snippet1)]
-
 
 Submit a request to the sample app with the `Accept-Encoding: mycustomcompression` header and observe the response headers. The `Vary` and `Content-Encoding` headers are present on the response. The response body (not shown) isn't compressed by the sample. There isn't a compression implementation in the `CustomCompressionProvider` class of the sample. However, the sample shows where you would implement such a compression algorithm.
 
