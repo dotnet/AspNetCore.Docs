@@ -351,6 +351,8 @@ items:
                     uid: blazor/hybrid/tutorials/wpf
               - name: Routing and navigation
                 uid: blazor/hybrid/routing
+              - name: Developer tools
+                uid: blazor/hybrid/developer-tools
           - name: Project structure
             uid: blazor/project-structure
           - name: Fundamentals
