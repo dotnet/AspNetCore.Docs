@@ -5,7 +5,7 @@ description: Discover how to prevent attacks against web apps where a malicious 
 ms.author: riande
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: mvc
-ms.date: 11/09/2021
+ms.date: 03/22/2021
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/anti-request-forgery
 ---
@@ -85,7 +85,7 @@ Attacks that exploit trusted cookies between apps hosted on the same domain can 
 > [!WARNING]
 > ASP.NET Core implements antiforgery using [ASP.NET Core Data Protection](xref:security/data-protection/introduction). The data protection stack must be configured to work in a server farm. For more information, see [Configuring data protection](xref:security/data-protection/configuration/overview).
 
-Antiforgery middleware is added to the [Dependency injection](xref:fundamentals/dependency-injection) container when one of the following APIs is called in `Startup.ConfigureServices` or `Startup.Configure`:
+Antiforgery middleware is added to the [Dependency injection](xref:fundamentals/dependency-injection) container when one of the following APIs is called in `Program.cs`:
 
 * <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddMvc%2A>
 * <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages%2A>
