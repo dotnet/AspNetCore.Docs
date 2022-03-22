@@ -67,6 +67,7 @@ Use the mongo Shell in the following steps to create a database, make collection
    ```console
    mongo
    ```
+   Remark: MongoDB 5.x and newer versions recommend using the [MongoDB Shell](https://docs.mongodb.com/mongodb-shell/install/). You can invoke the MongoDB Shell with `mongosh` after installing it.
 
 1. Run the following command in a command shell:
 
