@@ -315,7 +315,7 @@ LocalDB is a lightweight version of the SQL Server Express Database Engine and i
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Rename the connection string key to `SchoolContextSQLite` and shorten value to *CU.db*:
+Rename the connection string key to `SchoolContextSQLite` and shorten value to `CU.db`:
 
 [!code-json[Main](intro/samples/cu60/appsettings.Development.json?highlight=10)]
 
@@ -464,7 +464,7 @@ The code checks if there are any students in the database. If there are no stude
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Stop the app if it's running, and delete the *CU.db* file.
+* Stop the app if it's running, and delete the `CU.db` file.
 
 ---
 
@@ -483,7 +483,7 @@ The code checks if there are any students in the database. If there are no stude
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Use a SQLite tool to view the database schema and seeded data. The database file is named *CU.db* and is located in the project folder.
+Use a SQLite tool to view the database schema and seeded data. The database file is named `CU.db` and is located in the project folder.
 
 ---
 
@@ -828,7 +828,7 @@ LocalDB is a lightweight version of the SQL Server Express Database Engine and i
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Shorten the SQLite connection string to *CU.db*:
+Shorten the SQLite connection string to `CU.db`:
 
 [!code-json[Main](intro/samples/cu50/appsettingsSQLite.json?highlight=11)]
 
@@ -970,7 +970,7 @@ The code checks if there are any students in the database. If there are no stude
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Stop the app if it's running, and delete the *CU.db* file.
+* Stop the app if it's running, and delete the `CU.db` file.
 
 ---
 
@@ -989,7 +989,7 @@ The code checks if there are any students in the database. If there are no stude
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Use a SQLite tool to view the database schema and seeded data. The database file is named *CU.db* and is located in the project folder.
+Use a SQLite tool to view the database schema and seeded data. The database file is named `CU.db` and is located in the project folder.
 
 ---
 
@@ -1330,7 +1330,7 @@ LocalDB is a lightweight version of the SQL Server Express Database Engine and i
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Change the connection string to point to a SQLite database file named *CU.db*:
+Change the connection string to point to a SQLite database file named `CU.db`:
 
 [!code-json[Main](intro/samples/cu30/appsettingsSQLite.json?highlight=11)]
 
@@ -1427,7 +1427,7 @@ Drop-Database
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Stop the app if it's running, and delete the *CU.db* file.
+* Stop the app if it's running, and delete the `CU.db` file.
 
 ---
 
@@ -1447,7 +1447,7 @@ Drop-Database
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Use your SQLite tool to view the database schema and seeded data. The database file is named *CU.db* and is located in the project folder.
+Use your SQLite tool to view the database schema and seeded data. The database file is named `CU.db` and is located in the project folder.
 
 ---
 

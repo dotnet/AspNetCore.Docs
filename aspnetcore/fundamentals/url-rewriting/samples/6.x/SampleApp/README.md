@@ -30,8 +30,8 @@ Static File Middleware serves the file after the request URL is rewritten by the
   - Example (rewrite): **/some_file.txt** to **/file.txt**
 * `Add(new RedirectImageRequests(".png", "/png-images")))`<br>`Add(new RedirectImageRequests(".jpg", "/jpg-images")))`
   - Success status code: 301 (Moved Permanently)
-  - Example (redirect): **/image.png** to **/png-images/image.png**
-  - Example (redirect): **/image.jpg** to **/jpg-images/image.jpg**
+  - Example (redirect): *`/image.png`* to *`/png-images/image.png`*
+  - Example (redirect): *`/image.jpg`* to *`/jpg-images/image.jpg`*
 
 ## Use a PhysicalFileProvider
 

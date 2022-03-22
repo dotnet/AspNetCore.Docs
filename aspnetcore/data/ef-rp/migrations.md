@@ -46,7 +46,7 @@ Drop-Database
 
 * In the command prompt, navigate to the project folder. The project folder contains the `ContosoUniversity.csproj` file.
 
-* Delete the *CU.db* file, or run the following command:
+* Delete the `CU.db` file, or run the following command:
 
   ```dotnetcli
   dotnet ef database drop --force

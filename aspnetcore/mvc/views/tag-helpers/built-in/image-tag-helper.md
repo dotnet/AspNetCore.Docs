@@ -47,7 +47,7 @@ If the static file exists in the directory */wwwroot/images/*, the generated HTM
 <img src="/images/asplogo.png?v=Kl_dqr9NVtnMdsM2MUg4qthUnWZm5T1fCEimBPWDNgM">
 ```
 
-The value assigned to the parameter `v` is the hash value of the *asplogo.png* file on disk. If the web server is unable to obtain read access to the static file, no `v` parameter is added to the `src` attribute in the rendered markup.
+The value assigned to the parameter `v` is the hash value of the `asplogo.png` file on disk. If the web server is unable to obtain read access to the static file, no `v` parameter is added to the `src` attribute in the rendered markup.
 
 ## Hash caching behavior
 

@@ -195,7 +195,7 @@ The content root is the base path for:
 * Content files used by the app, such as:
   * Razor files (`.cshtml`, `.razor`)
   * Configuration files (`.json`, `.xml`)
-  * Data files (*.db*)
+  * Data files (`.db`)
 * The [Web root](#web-root), typically the *wwwroot* folder.
 
 During development, the content root defaults to the project's root directory. This directory is also the base path for both the app's content files and the [Web root](#web-root). Specify a different content root by setting its path when [building the host](#host). For more information, see [Content root](xref:fundamentals/host/generic-host#contentroot).
@@ -206,7 +206,7 @@ The web root is the base path for public, static resource files, such as:
 
 * Stylesheets (`.css`)
 * JavaScript (`.js`)
-* Images (*.png*, *.jpg*)
+* Images (`.png`, `.jpg`)
 
 By default, static files are served only from the web root directory and its sub-directories. The web root path defaults to *{content root}/wwwroot*. Specify a different web root by setting its path when [building the host](#host). For more information, see [Web root](xref:fundamentals/host/generic-host#webroot).
 
@@ -414,7 +414,7 @@ The content root is the base path for:
 * Content files used by the app, such as:
   * Razor files (`.cshtml`, `.razor`)
   * Configuration files (`.json`, `.xml`)
-  * Data files (*.db*)
+  * Data files (`.db`)
 * The [Web root](#web-root), typically the *wwwroot* folder.
 
 During development, the content root defaults to the project's root directory. This directory is also the base path for both the app's content files and the [Web root](#web-root). Specify a different content root by setting its path when [building the host](#host). For more information, see [Content root](xref:fundamentals/host/generic-host#contentroot).
@@ -425,7 +425,7 @@ The web root is the base path for public, static resource files, such as:
 
 * Stylesheets (`.css`)
 * JavaScript (`.js`)
-* Images (*.png*, *.jpg*)
+* Images (`.png`, `.jpg`)
 
 By default, static files are served only from the web root directory and its sub-directories. The web root path defaults to *{content root}/wwwroot*. Specify a different web root by setting its path when [building the host](#host). For more information, see [Web root](xref:fundamentals/host/generic-host#webroot).
 
