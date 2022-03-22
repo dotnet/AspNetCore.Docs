@@ -278,7 +278,7 @@ The following code shows the updated page:
 
 ## Update the Edit page model
 
-Update  with the following code:
+Update `Pages/Departments/Edit.cshtml.cs` with the following code:
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -688,7 +688,7 @@ The following code shows the updated page:
 
 ## Update the Edit page model
 
-Update  with the following code:
+Update `Pages/Departments/Edit.cshtml.cs` with the following code:
 
 [!code-csharp[](intro/samples/cu30/Pages/Departments/Edit.cshtml.cs?name=snippet_All)]
 
@@ -988,7 +988,7 @@ The following markup shows the updated page:
 
 ### Update the Edit page model
 
-Update  with the following code:
+Update `Pages/Departments/Edit.cshtml.cs` with the following code:
 
 [!code-csharp[](intro/samples/cu/Pages/Departments/Edit.cshtml.cs?name=snippet)]
 
