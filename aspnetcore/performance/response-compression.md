@@ -19,14 +19,14 @@ Network bandwidth is a limited resource. Reducing the size of the response usual
 
 ## Compression with HTTPS
 
-Compressed responses over secure connections can be controlled with the <xref:Microsoft.AspNetCore.ResponseCompression.ResponseCompressionOptions.EnableForHttps> option, which is disabled by default because of the security risk. Using compression with dynamically generated pages can make expose the app to [CRIME](https://wikipedia.org/wiki/CRIME_(security_exploit)) and [BREACH](https://wikipedia.org/wiki/BREACH_(security_exploit)) attacks. CRIME and BREACH attacks can be
- mitigated in ASP.NET Core by antiforgery tokens. For more information, see <xref:security/anti-request-forgery>. For information on mitigating BREACH attacks, see [mitigations](http://www.breachattack.com/#mitigations) at http://www.breachattack.com/
+Compressed responses over secure connections can be controlled with the <xref:Microsoft.AspNetCore.ResponseCompression.ResponseCompressionOptions.EnableForHttps> option, which is disabled by default because of the security risk. Using compression with dynamically generated pages can expose the app to [CRIME](https://wikipedia.org/wiki/CRIME_(security_exploit)) and [BREACH](https://wikipedia.org/wiki/BREACH_(security_exploit)) attacks. CRIME and BREACH attacks can be
+ mitigated in ASP.NET Core with antiforgery tokens. For more information, see <xref:security/anti-request-forgery>. For information on mitigating BREACH attacks, see [mitigations](http://www.breachattack.com/#mitigations) at http://www.breachattack.com/
 
 Even when `EnableForHttps` is disabled in the app, IIS, IIS Express, and [Azure App Service](xref:host-and-deploy/azure-iis-errors-reference) can apply gzip at the IIS web server. When reviewing response headers, take note of the [Server](https://developer.mozilla.org/docs/Web/HTTP/Headers/Server) value.
 
 ## When to use Response Compression Middleware
 
-Use server-based response compression technologies in IIS, Apache, or Nginx. The performance of The response compression middleware probably won't match that of the server modules. [HTTP.sys server](xref:fundamentals/servers/httpsys) server and [Kestrel](xref:fundamentals/servers/kestrel) server don't currently offer built-in compression support.
+Use server-based response compression technologies in IIS, Apache, or Nginx. The performance of the response compression middleware probably won't match that of the server modules. [HTTP.sys](xref:fundamentals/servers/httpsys) server and [Kestrel](xref:fundamentals/servers/kestrel) server don't currently offer built-in compression support.
 
 Use Response Compression Middleware when the app is:
 
@@ -40,7 +40,7 @@ Use Response Compression Middleware when the app is:
 
 ## Response compression
 
-Usually, any response not natively compressed can benefit from response compression. Responses not natively compressed typically include: CSS, JavaScript, HTML, XML, and JSON. Don't compress natively compressed assets, such as PNG files. Attempting to further compress a natively compressed response, any small extra reduction in size and transmission time will likely be overshadowed by the time it takes to process the compression. Don't compress files smaller than about 150-1000 bytes, depending on the file's content and the efficiency of compression. The overhead of compressing small files may produce a compressed file larger than the uncompressed file.
+Usually, any response not natively compressed can benefit from response compression. Responses not natively compressed typically include CSS, JavaScript, HTML, XML, and JSON. Don't compress natively compressed assets, such as PNG files. When attempting to further compress a natively compressed response, any small extra reduction in size and transmission time will likely be overshadowed by the time it takes to process the compression. Don't compress files smaller than about 150-1000 bytes, depending on the file's content and the efficiency of compression. The overhead of compressing small files may produce a compressed file larger than the uncompressed file.
 
 When a client can process compressed content, the client must inform the server of its capabilities by sending the [`Accept-Encoding`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Encoding) header with the request. When a server sends compressed content, it must include information in the [`Content-Encoding`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Encoding) header on how the compressed response is encoded. Content encoding designations supported by the response compression middleware are shown in the following table.
 
@@ -70,7 +70,7 @@ The headers involved in requesting, sending, caching, and receiving compressed c
 | [`Content-Encoding`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Encoding) | Sent from the server to the client to indicate the encoding of the content in the payload. |
 | [`Content-Length`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Length)   | When compression occurs, the `Content-Length` header is removed, since the body content changes when the response is compressed. |
 | [`Content-MD5`](https://datatracker.ietf.org/doc/html/rfc1864)      | When compression occurs, the `Content-MD5` header is removed, since the body content has changed and the hash is no longer valid. |
-| [`Content-Type`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Type)     | Specifies the [MIME type](https://developer.mozilla.org/docs/Web/HTTP/Basics_of_HTTP/MIME_types) of the content. Every response should specify its `Content-Type`. The response compression middleware checks this value to determine if the response should be compressed. The response compression middleware specifies a set of [default MIME types](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/ResponseCompression/src/ResponseCompressionDefaults.cs#L14-L30)) that it can encode, and they can bed replaced or added. |
+| [`Content-Type`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Type)     | Specifies the [MIME type](https://developer.mozilla.org/docs/Web/HTTP/Basics_of_HTTP/MIME_types) of the content. Every response should specify its `Content-Type`. The response compression middleware checks this value to determine if the response should be compressed. The response compression middleware specifies a set of [default MIME types](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/ResponseCompression/src/ResponseCompressionDefaults.cs#L14-L30) that it can encode, and they can bed replaced or added. |
 | [`Vary` ](https://developer.mozilla.org/docs/Web/HTTP/Headers/Vary)           | When sent by the server with a value of `Accept-Encoding` to clients and proxies, the `Vary` header indicates to the client or proxy that it should cache (vary) responses based on the value of the `Accept-Encoding` header of the request. The result of returning content with the `Vary: Accept-Encoding` header is that both compressed and uncompressed responses are cached separately. |
 
 Explore the features of the Response Compression Middleware with the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/response-compression/samples/6.x). The sample illustrates:
@@ -89,7 +89,7 @@ Notes:
 
 * Setting `EnableForHttps` to `true` is a security risk. See [Compression with HTTPS](#risk) in this article for more information.
 * [`app.UseResponseCompression`](xref:Microsoft.AspNetCore.Builder.ResponseCompressionBuilderExtensions.UseResponseCompression%2A) must be called ***before*** any middleware that compresses responses. For more information, see <xref:fundamentals/middleware/index#middleware-order>.
-* Use a tool such as [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/), or [Postman](https://www.getpostman.com/) to set the `Accept-Encoding` request header and examine the response headers, size, and body.
+* Use a tool such as [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/) or [Postman](https://www.getpostman.com/) to set the `Accept-Encoding` request header and examine the response headers, size, and body.
 
 Submit a request to the [sample app](https://responsecompression.azurewebsites.net/) without the `Accept-Encoding` header and observe that the response is uncompressed. The `Content-Encoding` header isn't in the Response Headers collection.
 
@@ -113,7 +113,7 @@ If [no compression providers are explicitly added](https://github.com/dotnet/asp
 * The Brotli compression provider and Gzip compression provider are added by default to the array of compression providers.
 * Compression defaults to Brotli compression when the Brotli compressed data format is supported by the client. If Brotli isn't supported by the client, compression defaults to Gzip when the client supports Gzip compression.
 
-When a compression provider is added, other providers are not added. For example, if the Gzip compression provider is the only provider explicitly added, not other compression provider are added.
+When a compression provider is added, other providers aren't added. For example, if the Gzip compression provider is the only provider explicitly added, no other compression providers are added.
 
 The following code:
 
