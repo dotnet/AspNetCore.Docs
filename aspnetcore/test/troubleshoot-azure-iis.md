@@ -225,7 +225,7 @@ An alternative to using the **Diagnose and solve problems** blade is to examine 
 1. Open **Advanced Tools** in the **Development Tools** area. Select the **Go&rarr;** button. The Kudu console opens in a new browser tab or window.
 1. Using the navigation bar at the top of the page, open **Debug console** and select **CMD**.
 1. Open the **LogFiles** folder.
-1. Select the pencil icon next to the *eventlog.xml* file.
+1. Select the pencil icon next to the `eventlog.xml` file.
 1. Examine the log. Scroll to the bottom of the log to see the most recent events.
 
 ### Run the app in the Kudu console
@@ -709,7 +709,7 @@ An alternative to using the **Diagnose and solve problems** blade is to examine 
 1. Open **Advanced Tools** in the **Development Tools** area. Select the **Go&rarr;** button. The Kudu console opens in a new browser tab or window.
 1. Using the navigation bar at the top of the page, open **Debug console** and select **CMD**.
 1. Open the **LogFiles** folder.
-1. Select the pencil icon next to the *eventlog.xml* file.
+1. Select the pencil icon next to the `eventlog.xml` file.
 1. Examine the log. Scroll to the bottom of the log to see the most recent events.
 
 ### Run the app in the Kudu console
@@ -1188,7 +1188,7 @@ An alternative to using the **Diagnose and solve problems** blade is to examine 
 1. Open **Advanced Tools** in the **Development Tools** area. Select the **Go&rarr;** button. The Kudu console opens in a new browser tab or window.
 1. Using the navigation bar at the top of the page, open **Debug console** and select **CMD**.
 1. Open the **LogFiles** folder.
-1. Select the pencil icon next to the *eventlog.xml* file.
+1. Select the pencil icon next to the `eventlog.xml` file.
 1. Examine the log. Scroll to the bottom of the log to see the most recent events.
 
 ### Run the app in the Kudu console

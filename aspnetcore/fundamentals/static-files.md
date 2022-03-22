@@ -139,14 +139,14 @@ Setting a default page provides visitors a starting point on a site. To serve a 
 
 With `UseDefaultFiles`, requests to a folder in `wwwroot` search for:
 
-* *default.htm*
-* *default.html*
-* *index.htm*
-* *index.html*
+* `default.htm`
+* `default.html`
+* `index.htm`
+* `index.html`
 
 The first file found from the list is served as though the request included the file's name. The browser URL continues to reflect the URI requested.
 
-The following code changes the default file name to *mydefault.html*:
+The following code changes the default file name to `mydefault.html`:
 
 [!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_df2&highlight=16-19)] 
 
@@ -189,7 +189,7 @@ Using the preceding file hierarchy and code, URLs resolve as follows:
 | URI            |      Response  |
 | ------- | ------|
 | `https://<hostname>/StaticFiles/images/MyImage.jpg` | *MyStaticFiles/images/MyImage.jpg* |
-| `https://<hostname>/StaticFiles` | *MyStaticFiles/default.html* |
+| `https://<hostname>/StaticFiles` | `MyStaticFiles/default.html` |
 
 If no default-named file exists in the *MyStaticFiles* directory, `https://<hostname>/StaticFiles` returns the directory listing with clickable links:
 
@@ -244,7 +244,7 @@ With the preceding code, a request for a file with an unknown content type is re
 > [!WARNING]
 > If the IIS static file handler is enabled **and** the ASP.NET Core Module is configured incorrectly, static files are served. This happens, for example, if the *web.config* file isn't deployed.
 
-* Place code files, including *.cs* and *.cshtml*, outside of the app project's [web root](xref:fundamentals/index#web-root). A logical separation is therefore created between the app's client-side content and server-based code. This prevents server-side code from being leaked.
+* Place code files, including `.cs` and `.cshtml`, outside of the app project's [web root](xref:fundamentals/index#web-root). A logical separation is therefore created between the app's client-side content and server-based code. This prevents server-side code from being leaked.
 
 ## Additional resources
 
@@ -386,14 +386,14 @@ Setting a default page provides visitors a starting point on a site. To serve a 
 
 With `UseDefaultFiles`, requests to a folder in `wwwroot` search for:
 
-* *default.htm*
-* *default.html*
-* *index.htm*
-* *index.html*
+* `default.htm`
+* `default.html`
+* `index.htm`
+* `index.html`
 
 The first file found from the list is served as though the request included the file's name. The browser URL continues to reflect the URI requested.
 
-The following code changes the default file name to *mydefault.html*:
+The following code changes the default file name to `mydefault.html`:
 
 [!code-csharp[](~/fundamentals/static-files/samples/3.x/StaticFilesSample/StartupDefault.cs?name=snippet_DefaultFiles)]
 
@@ -441,7 +441,7 @@ Using the file hierarchy and preceding code, URLs resolve as follows:
 | URI            |      Response  |
 | ------- | ------|
 | `https://<hostname>/StaticFiles/images/MyImage.jpg` | *MyStaticFiles/images/MyImage.jpg* |
-| `https://<hostname>/StaticFiles` | *MyStaticFiles/default.html* |
+| `https://<hostname>/StaticFiles` | `MyStaticFiles/default.html` |
 
 If no default-named file exists in the *MyStaticFiles* directory, `https://<hostname>/StaticFiles` returns the directory listing with clickable links:
 
@@ -501,7 +501,7 @@ With the preceding code, a request for a file with an unknown content type is re
 > [!WARNING]
 > If the IIS static file handler is enabled **and** the ASP.NET Core Module is configured incorrectly, static files are served. This happens, for example, if the *web.config* file isn't deployed.
 
-* Place code files, including *.cs* and *.cshtml*, outside of the app project's [web root](xref:fundamentals/index#web-root). A logical separation is therefore created between the app's client-side content and server-based code. This prevents server-side code from being leaked.
+* Place code files, including `.cs` and `.cshtml`, outside of the app project's [web root](xref:fundamentals/index#web-root). A logical separation is therefore created between the app's client-side content and server-based code. This prevents server-side code from being leaked.
 
 ## Additional resources
 

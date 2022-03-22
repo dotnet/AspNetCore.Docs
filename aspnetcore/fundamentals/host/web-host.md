@@ -188,7 +188,7 @@ Sets the app's environment.
 **Set using**: `UseEnvironment`  
 **Environment variable**: `ASPNETCORE_ENVIRONMENT`
 
-The environment can be set to any value. Framework-defined values include `Development`, `Staging`, and `Production`. Values aren't case sensitive. By default, the *Environment* is read from the `ASPNETCORE_ENVIRONMENT` environment variable. When using [Visual Studio](https://visualstudio.microsoft.com), environment variables may be set in the *launchSettings.json* file. For more information, see <xref:fundamentals/environments>.
+The environment can be set to any value. Framework-defined values include `Development`, `Staging`, and `Production`. Values aren't case sensitive. By default, the *Environment* is read from the `ASPNETCORE_ENVIRONMENT` environment variable. When using [Visual Studio](https://visualstudio.microsoft.com), environment variables may be set in the `launchSettings.json` file. For more information, see <xref:fundamentals/environments>.
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
@@ -361,9 +361,9 @@ For more information, see:
 
 ## Override configuration
 
-Use [Configuration](xref:fundamentals/configuration/index) to configure Web Host. In the following example, host configuration is optionally specified in a *hostsettings.json* file. Any configuration loaded from the *hostsettings.json* file may be overridden by command-line arguments. The built configuration (in `config`) is used to configure the host with <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseConfiguration%2A>. `IWebHostBuilder` configuration is added to the app's configuration, but the converse isn't true&mdash;`ConfigureAppConfiguration` doesn't affect the `IWebHostBuilder` configuration.
+Use [Configuration](xref:fundamentals/configuration/index) to configure Web Host. In the following example, host configuration is optionally specified in a `hostsettings.json` file. Any configuration loaded from the `hostsettings.json` file may be overridden by command-line arguments. The built configuration (in `config`) is used to configure the host with <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseConfiguration%2A>. `IWebHostBuilder` configuration is added to the app's configuration, but the converse isn't true&mdash;`ConfigureAppConfiguration` doesn't affect the `IWebHostBuilder` configuration.
 
-Overriding the configuration provided by `UseUrls` with *hostsettings.json* config first, command-line argument config second:
+Overriding the configuration provided by `UseUrls` with `hostsettings.json` config first, command-line argument config second:
 
 ```csharp
 public class Program
@@ -393,7 +393,7 @@ public class Program
 }
 ```
 
-*hostsettings.json*:
+`hostsettings.json`:
 
 ```json
 {
@@ -404,7 +404,7 @@ public class Program
 > [!NOTE]
 > <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseConfiguration%2A> only copies keys from the provided `IConfiguration` to the host builder configuration. Therefore, setting `reloadOnChange: true` for JSON, INI, and XML settings files has no effect.
 
-To specify the host run on a particular URL, the desired value can be passed in from a command prompt when executing [dotnet run](/dotnet/core/tools/dotnet-run). The command-line argument overrides the `urls` value from the *hostsettings.json* file, and the server listens on port 8080:
+To specify the host run on a particular URL, the desired value can be passed in from a command prompt when executing [dotnet run](/dotnet/core/tools/dotnet-run). The command-line argument overrides the `urls` value from the `hostsettings.json` file, and the server listens on port 8080:
 
 ```dotnetcli
 dotnet run --urls "http://*:8080"
@@ -945,7 +945,7 @@ Sets the app's environment.
 **Set using**: `UseEnvironment`  
 **Environment variable**: `ASPNETCORE_ENVIRONMENT`
 
-The environment can be set to any value. Framework-defined values include `Development`, `Staging`, and `Production`. Values aren't case sensitive. By default, the *Environment* is read from the `ASPNETCORE_ENVIRONMENT` environment variable. When using [Visual Studio](https://visualstudio.microsoft.com), environment variables may be set in the *launchSettings.json* file. For more information, see <xref:fundamentals/environments>.
+The environment can be set to any value. Framework-defined values include `Development`, `Staging`, and `Production`. Values aren't case sensitive. By default, the *Environment* is read from the `ASPNETCORE_ENVIRONMENT` environment variable. When using [Visual Studio](https://visualstudio.microsoft.com), environment variables may be set in the `launchSettings.json` file. For more information, see <xref:fundamentals/environments>.
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
@@ -1118,9 +1118,9 @@ For more information, see:
 
 ## Override configuration
 
-Use [Configuration](xref:fundamentals/configuration/index) to configure Web Host. In the following example, host configuration is optionally specified in a *hostsettings.json* file. Any configuration loaded from the *hostsettings.json* file may be overridden by command-line arguments. The built configuration (in `config`) is used to configure the host with <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseConfiguration%2A>. `IWebHostBuilder` configuration is added to the app's configuration, but the converse isn't true&mdash;`ConfigureAppConfiguration` doesn't affect the `IWebHostBuilder` configuration.
+Use [Configuration](xref:fundamentals/configuration/index) to configure Web Host. In the following example, host configuration is optionally specified in a `hostsettings.json` file. Any configuration loaded from the `hostsettings.json` file may be overridden by command-line arguments. The built configuration (in `config`) is used to configure the host with <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseConfiguration%2A>. `IWebHostBuilder` configuration is added to the app's configuration, but the converse isn't true&mdash;`ConfigureAppConfiguration` doesn't affect the `IWebHostBuilder` configuration.
 
-Overriding the configuration provided by `UseUrls` with *hostsettings.json* config first, command-line argument config second:
+Overriding the configuration provided by `UseUrls` with `hostsettings.json` config first, command-line argument config second:
 
 ```csharp
 public class Program
@@ -1150,7 +1150,7 @@ public class Program
 }
 ```
 
-*hostsettings.json*:
+`hostsettings.json`:
 
 ```json
 {
@@ -1161,7 +1161,7 @@ public class Program
 > [!NOTE]
 > <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseConfiguration%2A> only copies keys from the provided `IConfiguration` to the host builder configuration. Therefore, setting `reloadOnChange: true` for JSON, INI, and XML settings files has no effect.
 
-To specify the host run on a particular URL, the desired value can be passed in from a command prompt when executing [dotnet run](/dotnet/core/tools/dotnet-run). The command-line argument overrides the `urls` value from the *hostsettings.json* file, and the server listens on port 8080:
+To specify the host run on a particular URL, the desired value can be passed in from a command prompt when executing [dotnet run](/dotnet/core/tools/dotnet-run). The command-line argument overrides the `urls` value from the `hostsettings.json` file, and the server listens on port 8080:
 
 ```dotnetcli
 dotnet run --urls "http://*:8080"
@@ -1702,7 +1702,7 @@ Sets the app's environment.
 **Set using**: `UseEnvironment`  
 **Environment variable**: `ASPNETCORE_ENVIRONMENT`
 
-The environment can be set to any value. Framework-defined values include `Development`, `Staging`, and `Production`. Values aren't case sensitive. By default, the *Environment* is read from the `ASPNETCORE_ENVIRONMENT` environment variable. When using [Visual Studio](https://visualstudio.microsoft.com), environment variables may be set in the *launchSettings.json* file. For more information, see <xref:fundamentals/environments>.
+The environment can be set to any value. Framework-defined values include `Development`, `Staging`, and `Production`. Values aren't case sensitive. By default, the *Environment* is read from the `ASPNETCORE_ENVIRONMENT` environment variable. When using [Visual Studio](https://visualstudio.microsoft.com), environment variables may be set in the `launchSettings.json` file. For more information, see <xref:fundamentals/environments>.
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
@@ -1875,9 +1875,9 @@ For more information, see:
 
 ## Override configuration
 
-Use [Configuration](xref:fundamentals/configuration/index) to configure Web Host. In the following example, host configuration is optionally specified in a *hostsettings.json* file. Any configuration loaded from the *hostsettings.json* file may be overridden by command-line arguments. The built configuration (in `config`) is used to configure the host with <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseConfiguration%2A>. `IWebHostBuilder` configuration is added to the app's configuration, but the converse isn't true&mdash;`ConfigureAppConfiguration` doesn't affect the `IWebHostBuilder` configuration.
+Use [Configuration](xref:fundamentals/configuration/index) to configure Web Host. In the following example, host configuration is optionally specified in a `hostsettings.json` file. Any configuration loaded from the `hostsettings.json` file may be overridden by command-line arguments. The built configuration (in `config`) is used to configure the host with <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseConfiguration%2A>. `IWebHostBuilder` configuration is added to the app's configuration, but the converse isn't true&mdash;`ConfigureAppConfiguration` doesn't affect the `IWebHostBuilder` configuration.
 
-Overriding the configuration provided by `UseUrls` with *hostsettings.json* config first, command-line argument config second:
+Overriding the configuration provided by `UseUrls` with `hostsettings.json` config first, command-line argument config second:
 
 ```csharp
 public class Program
@@ -1907,7 +1907,7 @@ public class Program
 }
 ```
 
-*hostsettings.json*:
+`hostsettings.json`:
 
 ```json
 {
@@ -1918,7 +1918,7 @@ public class Program
 > [!NOTE]
 > <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseConfiguration%2A> only copies keys from the provided `IConfiguration` to the host builder configuration. Therefore, setting `reloadOnChange: true` for JSON, INI, and XML settings files has no effect.
 
-To specify the host run on a particular URL, the desired value can be passed in from a command prompt when executing [dotnet run](/dotnet/core/tools/dotnet-run). The command-line argument overrides the `urls` value from the *hostsettings.json* file, and the server listens on port 8080:
+To specify the host run on a particular URL, the desired value can be passed in from a command prompt when executing [dotnet run](/dotnet/core/tools/dotnet-run). The command-line argument overrides the `urls` value from the `hostsettings.json` file, and the server listens on port 8080:
 
 ```dotnetcli
 dotnet run --urls "http://*:8080"

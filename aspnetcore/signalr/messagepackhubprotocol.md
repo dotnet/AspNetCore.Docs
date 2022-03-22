@@ -107,7 +107,7 @@ To enable MessagePack with Java, install the `com.microsoft.signalr.messagepack`
 implementation 'com.microsoft.signalr.messagepack:signalr-messagepack:5.0.0'
 ```
 
-When using Maven, add the following lines inside the `<dependencies>` element of the *pom.xml* file:
+When using Maven, add the following lines inside the `<dependencies>` element of the `pom.xml` file:
 
 [!code-xml[pom.xml dependency element messagePack](java-client/sample/pom.xml?name=snippet_dependencyElement_messagePack)]
 
@@ -259,7 +259,7 @@ After installing the npm package, the module can be used directly via a JavaScri
 In a browser, the `msgpack5` library must also be referenced. Use a `<script>` tag to create a reference. The library can be found at *node_modules\msgpack5\dist\msgpack5.js*.
 
 > [!NOTE]
-> When using the `<script>` element, the order is important. If *signalr-protocol-msgpack.js* is referenced before *msgpack5.js*, an error occurs when trying to connect with MessagePack. *signalr.js* is also required before *signalr-protocol-msgpack.js*.
+> When using the `<script>` element, the order is important. If `signalr-protocol-msgpack.js` is referenced before `msgpack5.js`, an error occurs when trying to connect with MessagePack. `signalr.js` is also required before `signalr-protocol-msgpack.js`.
 
 ```html
 <script src="~/lib/signalr/signalr.js"></script>
@@ -287,7 +287,7 @@ To enable MessagePack with Java, install the `com.microsoft.signalr.messagepack`
 implementation 'com.microsoft.signalr.messagepack:signalr-messagepack:5.0.0'
 ```
 
-When using Maven, add the following lines inside the `<dependencies>` element of the *pom.xml* file:
+When using Maven, add the following lines inside the `<dependencies>` element of the `pom.xml` file:
 
 [!code-xml[pom.xml dependency element messagePack](java-client/sample/pom.xml?name=snippet_dependencyElement_messagePack)]
 
@@ -463,7 +463,7 @@ After installing the npm package, the module can be used directly via a JavaScri
 In a browser, the `msgpack5` library must also be referenced. Use a `<script>` tag to create a reference. The library can be found at *node_modules\msgpack5\dist\msgpack5.js*.
 
 > [!NOTE]
-> When using the `<script>` element, the order is important. If *signalr-protocol-msgpack.js* is referenced before *msgpack5.js*, an error occurs when trying to connect with MessagePack. *signalr.js* is also required before *signalr-protocol-msgpack.js*.
+> When using the `<script>` element, the order is important. If `signalr-protocol-msgpack.js` is referenced before `msgpack5.js`, an error occurs when trying to connect with MessagePack. `signalr.js` is also required before `signalr-protocol-msgpack.js`.
 
 ```html
 <script src="~/lib/signalr/signalr.js"></script>
@@ -643,7 +643,7 @@ After installing the npm package, the module can be used directly via a JavaScri
 In a browser, the `msgpack5` library must also be referenced. Use a `<script>` tag to create a reference. The library can be found at *node_modules\msgpack5\dist\msgpack5.js*.
 
 > [!NOTE]
-> When using the `<script>` element, the order is important. If *signalr-protocol-msgpack.js* is referenced before *msgpack5.js*, an error occurs when trying to connect with MessagePack. *signalr.js* is also required before *signalr-protocol-msgpack.js*.
+> When using the `<script>` element, the order is important. If `signalr-protocol-msgpack.js` is referenced before `msgpack5.js`, an error occurs when trying to connect with MessagePack. `signalr.js` is also required before `signalr-protocol-msgpack.js`.
 
 ```html
 <script src="~/lib/signalr/signalr.js"></script>

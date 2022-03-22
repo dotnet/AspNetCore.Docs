@@ -49,11 +49,11 @@ In the **Add New Scaffolded Item** dialog box, select **MVC Controller - Empty**
 
 ![Add MVC controller](~/tutorials/first-mvc-app/adding-controller/_static/acCopyVS19v16.9.png)
 
-In the **Add New Item - MvcMovie** dialog, enter **HelloWorldController.cs** and select **Add**.
+In the **Add New Item - MvcMovie** dialog, enter *`HelloWorldController.cs`* and select **Add**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Select the **EXPLORER** icon and then control-click (right-click) **Controllers > New File** and name the new file *HelloWorldController.cs*.
+Select the **EXPLORER** icon and then control-click (right-click) **Controllers > New File** and name the new file `HelloWorldController.cs`.
 
 ![Contextual menu](~/tutorials/first-mvc-app-xplat/adding-controller/_static/new_fileVSC1.51.png)
 
@@ -75,7 +75,7 @@ Name the controller **HelloWorldController**.
 
 ---
 
-Replace the contents of *Controllers/HelloWorldController.cs* with the following code:
+Replace the contents of `Controllers/HelloWorldController.cs` with the following code:
 
   [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Controllers/HelloWorldController.cs?name=First)]
 
@@ -206,11 +206,11 @@ In the **Add Scaffold** dialog box, select **MVC Controller - Empty**.
 
 ![Add MVC controller and name it](~/tutorials/first-mvc-app/adding-controller/_static/acCopyVS19v16.9.png)
 
-In the **Add New Item - MvcMovie dialog**, enter **HelloWorldController.cs** and select **Add**.
+In the **Add New Item - MvcMovie dialog**, enter *`HelloWorldController.cs`* and select **Add**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Select the **EXPLORER** icon and then control-click (right-click) **Controllers > New File** and name the new file *HelloWorldController.cs*.
+Select the **EXPLORER** icon and then control-click (right-click) **Controllers > New File** and name the new file `HelloWorldController.cs`.
 
 ![Contextual menu](~/tutorials/first-mvc-app-xplat/adding-controller/_static/new_fileVSC1.51.png)
 
@@ -228,7 +228,7 @@ Name the controller **HelloWorldController**.
 
 ---
 
-Replace the contents of *Controllers/HelloWorldController.cs* with the following:
+Replace the contents of `Controllers/HelloWorldController.cs` with the following:
 
   [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_1)]
 

@@ -17,7 +17,7 @@ A developer often wants to show, hide, or otherwise modify a UI based on the cur
 @inject IAuthorizationService AuthorizationService
 ```
 
-If you want the authorization service in every view, place the `@inject` directive into the *_ViewImports.cshtml* file of the *Views* directory. For more information, see [Dependency injection into views](xref:mvc/views/dependency-injection).
+If you want the authorization service in every view, place the `@inject` directive into the `_ViewImports.cshtml` file of the *Views* directory. For more information, see [Dependency injection into views](xref:mvc/views/dependency-injection).
 
 Use the injected authorization service to invoke `AuthorizeAsync` in exactly the same way you would check during [resource-based authorization](xref:security/authorization/resourcebased#security-authorization-resource-based-imperative):
 

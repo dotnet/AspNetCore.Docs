@@ -4,7 +4,7 @@ This sample illustrates use of Razor Pages authorization by conventions. This sa
 
 User authorization in this sample uses the cookie authentication features described in the [Use cookie authentication without ASP.NET Core Identity](https://docs.microsoft.com/aspnet/core/security/authentication/cookie) topic. The concepts and examples shown in this topic apply equally to apps that use ASP.NET Core Identity. For information on using ASP.NET Core Identity, see [Introduction to Identity on ASP.NET Core](https://docs.microsoft.com/aspnet/core/security/authentication/identity).
 
-Use the email address **maria.rodriguez@contoso.com** to authenticate the user with any password. The user is authenticated in the `AuthenticateUser` method in the *Pages/Account/Login.cshtml.cs* file. In a real-world example, the user would be authenticated against a database.
+Use the email address **maria.rodriguez@contoso.com** to authenticate the user with any password. The user is authenticated in the `AuthenticateUser` method in the `Pages/Account/Login.cshtml.cs` file. In a real-world example, the user would be authenticated against a database.
 
 ## Examples in this sample
 

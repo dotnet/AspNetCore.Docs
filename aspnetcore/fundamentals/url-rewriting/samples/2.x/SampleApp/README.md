@@ -20,7 +20,7 @@ When running the sample, non-file responses return the rewritten or redirected U
   - Example (rewrite): **/iis-rules-rewrite/{capture_group}** to **/rewritten?id={capture_group}**
 * `Add(RedirectXmlFileRequests)`
   - Success status code: 301 (Moved Permanently)
-  - Example (redirect): **/file.xml** to **/xmlfiles/file.xml**
+  - Example (redirect): *`/file.xml`* to *`/xmlfiles/file.xml`*
 * `Add(RewriteTextFileRequests)`
   - Success status code: 200 (OK)
   - Example (rewrite): **/some_file.txt** to **/file.txt**

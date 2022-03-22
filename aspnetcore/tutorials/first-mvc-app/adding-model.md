@@ -27,23 +27,23 @@ In this tutorial,  model classes are created first, and EF Core creates the data
 
 # [Visual Studio](#tab/visual-studio)
 
-Right-click the *Models* folder > **Add** > **Class**. Name the file *Movie.cs*.
+Right-click the *Models* folder > **Add** > **Class**. Name the file `Movie.cs`.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Add a file named *Movie.cs* to the *Models* folder.
+Add a file named `Movie.cs` to the *Models* folder.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 
 <!-- 
-Control-click the *Models* folder > **Add** > **New Class** > **Empty Class**. Name the file *Movie.cs*.
+Control-click the *Models* folder > **Add** > **New Class** > **Empty Class**. Name the file `Movie.cs`.
  -->
 
 ---
 
-Update the *Models/Movie.cs* file with the following code:
+Update the `Models/Movie.cs` file with the following code:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Models/Movie.cs?name=First)]
 
@@ -153,13 +153,13 @@ If you get an error message, select **Add** a second time to try it again.
 
 Scaffolding updates the following:
 
-* Inserts required package references in the *MvcMovie.csproj* project file.
+* Inserts required package references in the `MvcMovie.csproj` project file.
 * Registers the database context in the `Program.cs` file.
 * Adds a database connection string to the `appsettings.json` file.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Open a command window in the project directory. The project directory is the directory that contains the `Program.cs` and *.csproj* files.
+Open a command window in the project directory. The project directory is the directory that contains the `Program.cs` and `.csproj` files.
 
 On macOS and Linux, export the scaffold tool path:
 
@@ -195,7 +195,7 @@ Scaffolding updates the following:
 For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 
 <!--
-Open a command window in the project directory. The project directory is the directory that contains the `Program.cs`, `Startup.cs`, and *.csproj* files.
+Open a command window in the project directory. The project directory is the directory that contains the `Program.cs`, `Startup.cs`, and `.csproj` files.
 
 Export the scaffold tool path:
 
@@ -233,9 +233,9 @@ Scaffolding updates the following:
 
 Scaffolding creates the following:
 
-* A movies controller: *Controllers/MoviesController.cs*
+* A movies controller: `Controllers/MoviesController.cs`
 * Razor view files for **Create**, **Delete**, **Details**, **Edit**, and **Index** pages: `Views/Movies/*.cshtml`
-* A database context class: *Data/MvcMovieContext.cs*
+* A database context class: `Data/MvcMovieContext.cs`
 
 The automatic creation of these files and file updates is known as *scaffolding*.
 
@@ -247,7 +247,7 @@ The scaffolded pages can't be used yet because the database doesn't exist. Runni
 
 Build the app. The compiler generates several warnings about how `null` values are handled. See [this GitHub issue](https://github.com/dotnet/Scaffolding/issues/1594) and [Nullable reference types](/dotnet/csharp/nullable-references) for more information.
 
-To eliminate the warnings from nullable reference types, remove the following line from the *MvcMovie.csproj* file:
+To eliminate the warnings from nullable reference types, remove the following line from the `MvcMovie.csproj` file:
 
 ```xml
 <Nullable>enable</Nullable>
@@ -271,9 +271,9 @@ Update-Database
  
 ```
 
-* `Add-Migration InitialCreate`: Generates a *Migrations/{timestamp}_InitialCreate.cs* migration file. The `InitialCreate` argument is the migration name. Any name can be used, but by convention, a name is selected that describes the migration. Because this is the first migration, the generated class contains code to create the database schema. The database schema is based on the model specified in the `MvcMovieContext` class.
+* `Add-Migration InitialCreate`: Generates a `Migrations/{timestamp}_InitialCreate.cs` migration file. The `InitialCreate` argument is the migration name. Any name can be used, but by convention, a name is selected that describes the migration. Because this is the first migration, the generated class contains code to create the database schema. The database schema is based on the model specified in the `MvcMovieContext` class.
 
-* `Update-Database`: Updates the database to the latest migration, which the previous command created. This command runs the `Up` method in the *Migrations/{time-stamp}_InitialCreate.cs* file, which creates the database.
+* `Update-Database`: Updates the database to the latest migration, which the previous command created. This command runs the `Up` method in the `Migrations/{time-stamp}_InitialCreate.cs` file, which creates the database.
 
 The `Update-Database` command generates the following warning:
 
@@ -294,8 +294,8 @@ dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```
 
-* `ef migrations add InitialCreate`: Generates a *Migrations/{timestamp}_InitialCreate.cs* migration file. The `InitialCreate` argument is the migration name. Any name can be used, but by convention, a name is selected that describes the migration. This is the first migration, so the generated class contains code to create the database schema. The database schema is based on the model specified in the `MvcMovieContext` class, in the *Data/MvcMovieContext.cs* file.
-* `ef database update`: Updates the database to the latest migration, which the previous command created. This command runs the `Up` method in the *Migrations/{time-stamp}_InitialCreate.cs* file, which creates the database.
+* `ef migrations add InitialCreate`: Generates a `Migrations/{timestamp}_InitialCreate.cs` migration file. The `InitialCreate` argument is the migration name. Any name can be used, but by convention, a name is selected that describes the migration. This is the first migration, so the generated class contains code to create the database schema. The database schema is based on the model specified in the `MvcMovieContext` class, in the `Data/MvcMovieContext.cs` file.
+* `ef database update`: Updates the database to the latest migration, which the previous command created. This command runs the `Up` method in the `Migrations/{time-stamp}_InitialCreate.cs` file, which creates the database.
 
 ---
 
@@ -330,7 +330,7 @@ SqliteException: SQLite Error 1: 'no such table: Movie'.
 
 With EF Core, data access is performed using a model. A model is made up of entity classes and a context object that represents a session with the database. The context object allows querying and saving data. The database context is derived from [Microsoft.EntityFrameworkCore.DbContext](xref:Microsoft.EntityFrameworkCore.DbContext) and specifies the entities to include in the data model.
 
-Scaffolding creates the *Data/MvcMovieContext.cs* database context class:
+Scaffolding creates the `Data/MvcMovieContext.cs` database context class:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Data/MvcMovieContext.cs?name=First)]
 
@@ -340,7 +340,7 @@ The preceding code creates a [DbSet\<Movie>](xref:Microsoft.EntityFrameworkCore.
 
 ASP.NET Core is built with [dependency injection (DI)](xref:fundamentals/dependency-injection). Services, such as the database context, are registered with DI in `Program.cs`. These services are provided to components that require them via constructor parameters.
 
-In the *Controllers/MoviesController.cs* file, the constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the `MvcMovieContext` database context into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
+In the `Controllers/MoviesController.cs` file, the constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the `MvcMovieContext` database context into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
 
 Scaffolding generated the following highlighted code in `Program.cs`:
 
@@ -384,7 +384,7 @@ For local development, the [ASP.NET Core configuration system](xref:fundamentals
 
 ### The `InitialCreate` class
 
-Examine the *Migrations/{timestamp}_InitialCreate.cs* migration file:
+Examine the `Migrations/{timestamp}_InitialCreate.cs` migration file:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Migrations/20210915202210_InitialCreate.cs)]
 
@@ -395,7 +395,7 @@ In the preceding code:
 
 ## Dependency injection in the controller
 
-Open the *Controllers/MoviesController.cs* file and examine the constructor:
+Open the `Controllers/MoviesController.cs` file and examine the constructor:
 
 <!-- l.. Make copy of Movies controller (or use the old one as I did in the 3.0 upgrade) because we comment out the initial index method and update it later  -->
 
@@ -415,7 +415,7 @@ Earlier in this tutorial, you saw how a controller can pass data or objects to a
 
 MVC provides the ability to pass strongly typed model objects to a view. This strongly typed approach enables compile time code checking. The scaffolding mechanism passed a strongly typed model in the `MoviesController` class and views.
 
-Examine the generated `Details` method in the *Controllers/MoviesController.cs* file:
+Examine the generated `Details` method in the `Controllers/MoviesController.cs` file:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Controllers/MoviesController.cs?name=Details)]
 
@@ -444,7 +444,7 @@ If a movie is found, an instance of the `Movie` model is passed to the `Details`
 return View(movie);
 ```
 
-Examine the contents of the *Views/Movies/Details.cshtml* file:
+Examine the contents of the `Views/Movies/Details.cshtml` file:
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Views/Movies/DetailsOriginal.cshtml)]
 
@@ -454,19 +454,19 @@ The `@model` statement at the top of the view file specifies the type of object 
 @model MvcMovie.Models.Movie
 ```
 
-This `@model` directive allows access to the movie that the controller passed to the view. The `Model` object is strongly typed. For example, in the *Details.cshtml* view, the code passes each movie field to the `DisplayNameFor` and `DisplayFor` HTML Helpers with the strongly typed `Model` object. The `Create` and `Edit` methods and views also pass a `Movie` model object.
+This `@model` directive allows access to the movie that the controller passed to the view. The `Model` object is strongly typed. For example, in the `Details.cshtml` view, the code passes each movie field to the `DisplayNameFor` and `DisplayFor` HTML Helpers with the strongly typed `Model` object. The `Create` and `Edit` methods and views also pass a `Movie` model object.
 
-Examine the *Index.cshtml* view and the `Index` method in the Movies controller. Notice how the code creates a `List` object when it calls the `View` method. The code passes this `Movies` list from the `Index` action method to the view:
+Examine the `Index.cshtml` view and the `Index` method in the Movies controller. Notice how the code creates a `List` object when it calls the `View` method. The code passes this `Movies` list from the `Index` action method to the view:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Controllers/MoviesController.cs?name=FirstIndex)]
 
-When the movies controller was created, scaffolding included the following `@model` statement at the top of the *Index.cshtml* file:
+When the movies controller was created, scaffolding included the following `@model` statement at the top of the `Index.cshtml` file:
 
 <!-- Copy Index.cshtml to IndexOriginal.cshtml -->
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Views/Movies/IndexOriginal.cshtml?range=1)]
 
-The `@model` directive allows access to the list of movies that the controller passed to the view by using a `Model` object that's strongly typed. For example, in the *Index.cshtml* view, the code loops through the movies with a `foreach` statement over the strongly typed `Model` object:
+The `@model` directive allows access to the list of movies that the controller passed to the view by using a `Model` object that's strongly typed. For example, in the `Index.cshtml` view, the code loops through the movies with a `foreach` statement over the strongly typed `Model` object:
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Views/Movies/IndexOriginal.cshtml?highlight=1,31,34,37,40,43,46-48)]
 
@@ -489,19 +489,19 @@ Because the `Model` object is strongly typed as an `IEnumerable<Movie>` object, 
 
 # [Visual Studio](#tab/visual-studio)
 
-Right-click the *Models* folder > **Add** > **Class**. Name the file *Movie.cs*.
+Right-click the *Models* folder > **Add** > **Class**. Name the file `Movie.cs`.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Add a file named *Movie.cs* to the *Models* folder.
+Add a file named `Movie.cs` to the *Models* folder.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Control-click the *Models* folder > **Add** > **New Class** > **Empty Class**. Name the file *Movie.cs*.
+Control-click the *Models* folder > **Add** > **New Class** > **Empty Class**. Name the file `Movie.cs`.
 
 ---
 
-Update the *Models/Movie.cs* file with the following code:
+Update the `Models/Movie.cs` file with the following code:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Models/Movie.cs)]
 
@@ -603,13 +603,13 @@ Complete the **Add MVC Controller with views, using Entity Framework** dialog:
 
 Scaffolding updates the following:
 
-* Inserts required package references in the *MvcMovie.csproj* project file.
+* Inserts required package references in the `MvcMovie.csproj` project file.
 * Registers the database context in `Startup.ConfigureServices` of the `Startup.cs` file.
 * Adds a database connection string to the `appsettings.json` file.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Open a command window in the project directory. The project directory is the directory that contains the `Program.cs`, `Startup.cs`, and *.csproj* files.
+Open a command window in the project directory. The project directory is the directory that contains the `Program.cs`, `Startup.cs`, and `.csproj` files.
 
 On macOS and Linux, export the scaffold tool path:
 
@@ -642,7 +642,7 @@ Scaffolding updates the following:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Open a command window in the project directory. The project directory is the directory that contains the `Program.cs`, `Startup.cs`, and *.csproj* files.
+Open a command window in the project directory. The project directory is the directory that contains the `Program.cs`, `Startup.cs`, and `.csproj` files.
 
 Export the scaffold tool path:
 
@@ -680,9 +680,9 @@ Scaffolding updates the following:
 
 Scaffolding creates the following:
 
-* A movies controller: *Controllers/MoviesController.cs*
+* A movies controller: `Controllers/MoviesController.cs`
 * Razor view files for **Create**, **Delete**, **Details**, **Edit**, and **Index** pages: `Views/Movies/*.cshtml`
-* A database context class: *Data/MvcMovieContext.cs*
+* A database context class: `Data/MvcMovieContext.cs`
 
 The automatic creation of these files and file updates are known as *scaffolding*.
 
@@ -706,9 +706,9 @@ Update-Database
  
 ```
 
-* `Add-Migration InitialCreate`: Generates a *Migrations/{timestamp}_InitialCreate.cs* migration file. The `InitialCreate` argument is the migration name. Any name can be used, but by convention, a name is selected that describes the migration. Because this is the first migration, the generated class contains code to create the database schema. The database schema is based on the model specified in the `MvcMovieContext` class.
+* `Add-Migration InitialCreate`: Generates a `Migrations/{timestamp}_InitialCreate.cs` migration file. The `InitialCreate` argument is the migration name. Any name can be used, but by convention, a name is selected that describes the migration. Because this is the first migration, the generated class contains code to create the database schema. The database schema is based on the model specified in the `MvcMovieContext` class.
 
-* `Update-Database`: Updates the database to the latest migration, which the previous command created. This command runs the `Up` method in the *Migrations/{time-stamp}_InitialCreate.cs* file, which creates the database.
+* `Update-Database`: Updates the database to the latest migration, which the previous command created. This command runs the `Up` method in the `Migrations/{time-stamp}_InitialCreate.cs` file, which creates the database.
 
 The `Update-Database` command generates the following warning:
 
@@ -729,8 +729,8 @@ dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```
 
-* `ef migrations add InitialCreate`: Generates an *Migrations/{timestamp}_InitialCreate.cs* migration file. The `InitialCreate` argument is the migration name. Any name can be used, but by convention, a name is selected that describes the migration. This is the first migration, so the generated class contains code to create the database schema. The database schema is based on the model specified in the `MvcMovieContext` class, in the *Data/MvcMovieContext.cs* file.
-* `ef database update`: Updates the database to the latest migration, which the previous command created. This command runs the `Up` method in the *Migrations/{time-stamp}_InitialCreate.cs* file, which creates the database.
+* `ef migrations add InitialCreate`: Generates an `Migrations/{timestamp}_InitialCreate.cs` migration file. The `InitialCreate` argument is the migration name. Any name can be used, but by convention, a name is selected that describes the migration. This is the first migration, so the generated class contains code to create the database schema. The database schema is based on the model specified in the `MvcMovieContext` class, in the `Data/MvcMovieContext.cs` file.
+* `ef database update`: Updates the database to the latest migration, which the previous command created. This command runs the `Up` method in the `Migrations/{time-stamp}_InitialCreate.cs` file, which creates the database.
 
 ---
 
@@ -765,7 +765,7 @@ SqliteException: SQLite Error 1: 'no such table: Movie'.
 
 With EF Core, data access is performed using a model. A model is made up of entity classes and a context object that represents a session with the database. The context object allows querying and saving data. The database context is derived from [Microsoft.EntityFrameworkCore.DbContext](xref:Microsoft.EntityFrameworkCore.DbContext) and specifies the entities to include in the data model.
 
-Scaffolding creates the *Data/MvcMovieContext.cs* database context class:
+Scaffolding creates the `Data/MvcMovieContext.cs` database context class:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/zDocOnly/MvcMovieContext.cs?name=snippet)]
 
@@ -773,7 +773,7 @@ The preceding code creates a [DbSet\<Movie>](xref:Microsoft.EntityFrameworkCore.
 
 ASP.NET Core is built with [dependency injection (DI)](xref:fundamentals/dependency-injection). Services, such as the database context, must be registered with DI in `Startup`. Components that require these services are provided via constructor parameters.
 
-In the *Controllers/MoviesController.cs* file, the constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the `MvcMovieContext` database context into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
+In the `Controllers/MoviesController.cs` file, the constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the `MvcMovieContext` database context into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
 
 Scaffolding generated the following highlighted code in `Startup.ConfigureServices`:
 
@@ -813,7 +813,7 @@ For local development, the [ASP.NET Core configuration system](xref:fundamentals
 
 ### The `InitialCreate` class
 
-Examine the *Migrations/{timestamp}_InitialCreate.cs* migration file:
+Examine the `Migrations/{timestamp}_InitialCreate.cs` migration file:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie5/Migrations/20201107014924_InitialCreate.cs?name=snippet)]
 
@@ -824,7 +824,7 @@ In the preceding code:
 
 ## Dependency injection in the controller
 
-Open the *Controllers/MoviesController.cs* file and examine the constructor:
+Open the `Controllers/MoviesController.cs` file and examine the constructor:
 
 <!-- l.. Make copy of Movies controller (or use the old one as I did in the 3.0 upgrade) because we comment out the initial index method and update it later  -->
 
@@ -844,7 +844,7 @@ Earlier in this tutorial, you saw how a controller can pass data or objects to a
 
 MVC provides the ability to pass strongly typed model objects to a view. This strongly typed approach enables compile time code checking. The scaffolding mechanism passed a strongly typed model in the `MoviesController` class and views.
 
-Examine the generated `Details` method in the *Controllers/MoviesController.cs* file:
+Examine the generated `Details` method in the `Controllers/MoviesController.cs` file:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MC1.cs?name=snippet_details)]
 
@@ -873,7 +873,7 @@ If a movie is found, an instance of the `Movie` model is passed to the `Details`
 return View(movie);
 ```
 
-Examine the contents of the *Views/Movies/Details.cshtml* file:
+Examine the contents of the `Views/Movies/Details.cshtml` file:
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/DetailsOriginal.cshtml)]
 
@@ -883,19 +883,19 @@ The `@model` statement at the top of the view file specifies the type of object 
 @model MvcMovie.Models.Movie
 ```
 
-This `@model` directive allows access to the movie that the controller passed to the view. The `Model` object is strongly typed. For example, in the *Details.cshtml* view, the code passes each movie field to the `DisplayNameFor` and `DisplayFor` HTML Helpers with the strongly typed `Model` object. The `Create` and `Edit` methods and views also pass a `Movie` model object.
+This `@model` directive allows access to the movie that the controller passed to the view. The `Model` object is strongly typed. For example, in the `Details.cshtml` view, the code passes each movie field to the `DisplayNameFor` and `DisplayFor` HTML Helpers with the strongly typed `Model` object. The `Create` and `Edit` methods and views also pass a `Movie` model object.
 
-Examine the *Index.cshtml* view and the `Index` method in the Movies controller. Notice how the code creates a `List` object when it calls the `View` method. The code passes this `Movies` list from the `Index` action method to the view:
+Examine the `Index.cshtml` view and the `Index` method in the Movies controller. Notice how the code creates a `List` object when it calls the `View` method. The code passes this `Movies` list from the `Index` action method to the view:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MC1.cs?name=snippet_index)]
 
-When the movies controller was created, scaffolding included the following `@model` statement at the top of the *Index.cshtml* file:
+When the movies controller was created, scaffolding included the following `@model` statement at the top of the `Index.cshtml` file:
 
 <!-- Copy Index.cshtml to IndexOriginal.cshtml -->
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexOriginal.cshtml?range=1)]
 
-The `@model` directive allows access to the list of movies that the controller passed to the view by using a `Model` object that's strongly typed. For example, in the *Index.cshtml* view, the code loops through the movies with a `foreach` statement over the strongly typed `Model` object:
+The `@model` directive allows access to the list of movies that the controller passed to the view by using a `Model` object that's strongly typed. For example, in the `Index.cshtml` view, the code loops through the movies with a `foreach` statement over the strongly typed `Model` object:
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexOriginal.cshtml?highlight=1,31,34,37,40,43,46-48)]
 
@@ -920,19 +920,19 @@ Because the `Model` object is strongly typed as an `IEnumerable<Movie>` object, 
 
 # [Visual Studio](#tab/visual-studio)
 
-Right-click the *Models* folder > **Add** > **Class**. Name the file *Movie.cs*.
+Right-click the *Models* folder > **Add** > **Class**. Name the file `Movie.cs`.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Add a file named *Movie.cs* to the *Models* folder.
+Add a file named `Movie.cs` to the *Models* folder.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Right-click the *Models* folder > **Add** > **New Class** > **Empty Class**. Name the file *Movie.cs*.
+Right-click the *Models* folder > **Add** > **New Class** > **Empty Class**. Name the file `Movie.cs`.
 
 ---
 
-Update the *Movie.cs* file with the following code:
+Update the `Movie.cs` file with the following code:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Models/Movie.cs)]
 
@@ -993,7 +993,7 @@ A database context class is needed to coordinate EF Core functionality (Create, 
 
 Create a *Data* folder.
 
-Add a *Data/MvcMovieContext.cs* file with the following code:
+Add a `Data/MvcMovieContext.cs` file with the following code:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/zDocOnly/MvcMovieContext.cs?name=snippet)]
 
@@ -1071,14 +1071,14 @@ Complete the **Add Controller** dialog:
 
 Visual Studio creates:
 
-* A movies controller (*Controllers/MoviesController.cs*)
-* Razor view files for Create, Delete, Details, Edit, and Index pages (*Views/Movies/\*.cshtml*)
+* A movies controller (`Controllers/MoviesController.cs`)
+* Razor view files for Create, Delete, Details, Edit, and Index pages (*Views/Movies/\`.cshtml`)
 
 The automatic creation of these files is known as *scaffolding*.
 
 # [Visual Studio Code](#tab/visual-studio-code) 
 
-* Open a command window in the project directory (The directory that contains the `Program.cs`, `Startup.cs`, and *.csproj* files).
+* Open a command window in the project directory (The directory that contains the `Program.cs`, `Startup.cs`, and `.csproj` files).
 
 * On macOS and Linux, export the scaffold tool path:
 
@@ -1096,7 +1096,7 @@ The automatic creation of these files is known as *scaffolding*.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* Open a command window in the project directory (The directory that contains the `Program.cs`, `Startup.cs`, and *.csproj* files).
+* Open a command window in the project directory (The directory that contains the `Program.cs`, `Startup.cs`, and `.csproj` files).
 
 * Run the following command:
 
@@ -1129,9 +1129,9 @@ Add-Migration InitialCreate
 Update-Database
 ```
 
-* `Add-Migration InitialCreate`: Generates a *Migrations/{timestamp}_InitialCreate.cs* migration file. The `InitialCreate` argument is the migration name. Any name can be used, but by convention, a name is selected that describes the migration. Because this is the first migration, the generated class contains code to create the database schema. The database schema is based on the model specified in the `MvcMovieContext` class.
+* `Add-Migration InitialCreate`: Generates a `Migrations/{timestamp}_InitialCreate.cs` migration file. The `InitialCreate` argument is the migration name. Any name can be used, but by convention, a name is selected that describes the migration. Because this is the first migration, the generated class contains code to create the database schema. The database schema is based on the model specified in the `MvcMovieContext` class.
 
-* `Update-Database`: Updates the database to the latest migration, which the previous command created. This command runs the `Up` method in the *Migrations/{time-stamp}_InitialCreate.cs* file, which creates the database.
+* `Update-Database`: Updates the database to the latest migration, which the previous command created. This command runs the `Up` method in the `Migrations/{time-stamp}_InitialCreate.cs` file, which creates the database.
 
   The database update command generates the following warning: 
 
@@ -1152,15 +1152,15 @@ dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```
 
-* `ef migrations add InitialCreate`: Generates an *Migrations/{timestamp}_InitialCreate.cs* migration file. The `InitialCreate` argument is the migration name. Any name can be used, but by convention, a name is selected that describes the migration. Because this is the first migration, the generated class contains code to create the database schema. The database schema is based on the model specified in the `MvcMovieContext` class (in the *Data/MvcMovieContext.cs* file).
+* `ef migrations add InitialCreate`: Generates an `Migrations/{timestamp}_InitialCreate.cs` migration file. The `InitialCreate` argument is the migration name. Any name can be used, but by convention, a name is selected that describes the migration. Because this is the first migration, the generated class contains code to create the database schema. The database schema is based on the model specified in the `MvcMovieContext` class (in the `Data/MvcMovieContext.cs` file).
 
-* `ef database update`: Updates the database to the latest migration, which the previous command created. This command runs the `Up` method in the *Migrations/{time-stamp}_InitialCreate.cs* file, which creates the database.
+* `ef database update`: Updates the database to the latest migration, which the previous command created. This command runs the `Up` method in the `Migrations/{time-stamp}_InitialCreate.cs` file, which creates the database.
 
 ---
 
 ### The InitialCreate class
 
-Examine the *Migrations/{timestamp}_InitialCreate.cs* migration file:
+Examine the `Migrations/{timestamp}_InitialCreate.cs` migration file:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Migrations/20190805165915_InitialCreate.cs?name=snippet)]
 
@@ -1200,7 +1200,7 @@ The `Up` method creates the Movie table and configures `Id` as the primary key. 
 
 # [Visual Studio](#tab/visual-studio)
 
-Open the *Controllers/MoviesController.cs* file and examine the constructor:
+Open the `Controllers/MoviesController.cs` file and examine the constructor:
 
 <!-- l.. Make copy of Movies controller (or use the old one as I did in the 3.0 upgrade) because we comment out the initial index method and update it later  -->
 
@@ -1232,7 +1232,7 @@ Earlier in this tutorial, you saw how a controller can pass data or objects to a
 
 MVC also provides the ability to pass strongly typed model objects to a view. This strongly typed approach enables compile time code checking. The scaffolding mechanism used this approach (that is, passing a strongly typed model) with the `MoviesController` class and views.
 
-Examine the generated `Details` method in the *Controllers/MoviesController.cs* file:
+Examine the generated `Details` method in the `Controllers/MoviesController.cs` file:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MC1.cs?name=snippet_details)]
 
@@ -1261,7 +1261,7 @@ If a movie is found, an instance of the `Movie` model is passed to the `Details`
 return View(movie);
 ```
 
-Examine the contents of the *Views/Movies/Details.cshtml* file:
+Examine the contents of the `Views/Movies/Details.cshtml` file:
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/DetailsOriginal.cshtml)]
 
@@ -1271,19 +1271,19 @@ The `@model` statement at the top of the view file specifies the type of object 
 @model MvcMovie.Models.Movie
 ```
 
-This `@model` directive allows access to the movie that the controller passed to the view. The `Model` object is strongly typed. For example, in the *Details.cshtml* view, the code passes each movie field to the `DisplayNameFor` and `DisplayFor` HTML Helpers with the strongly typed `Model` object. The `Create` and `Edit` methods and views also pass a `Movie` model object.
+This `@model` directive allows access to the movie that the controller passed to the view. The `Model` object is strongly typed. For example, in the `Details.cshtml` view, the code passes each movie field to the `DisplayNameFor` and `DisplayFor` HTML Helpers with the strongly typed `Model` object. The `Create` and `Edit` methods and views also pass a `Movie` model object.
 
-Examine the *Index.cshtml* view and the `Index` method in the Movies controller. Notice how the code creates a `List` object when it calls the `View` method. The code passes this `Movies` list from the `Index` action method to the view:
+Examine the `Index.cshtml` view and the `Index` method in the Movies controller. Notice how the code creates a `List` object when it calls the `View` method. The code passes this `Movies` list from the `Index` action method to the view:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MC1.cs?name=snippet_index)]
 
-When the movies controller was created, scaffolding included the following `@model` statement at the top of the *Index.cshtml* file:
+When the movies controller was created, scaffolding included the following `@model` statement at the top of the `Index.cshtml` file:
 
 <!-- Copy Index.cshtml to IndexOriginal.cshtml -->
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexOriginal.cshtml?range=1)]
 
-The `@model` directive allows you to access the list of movies that the controller passed to the view by using a `Model` object that's strongly typed. For example, in the *Index.cshtml* view, the code loops through the movies with a `foreach` statement over the strongly typed `Model` object:
+The `@model` directive allows you to access the list of movies that the controller passed to the view by using a `Model` object that's strongly typed. For example, in the `Index.cshtml` view, the code loops through the movies with a `foreach` statement over the strongly typed `Model` object:
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexOriginal.cshtml?highlight=1,31,34,37,40,43,46-48)]
 

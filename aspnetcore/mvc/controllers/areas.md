@@ -122,7 +122,7 @@ For more information, see [Routing to controller actions](xref:mvc/controllers/r
 
 ### Shared layout for Areas using the _ViewStart.cshtml file
 
-To share a common layout for the entire app, keep the *_ViewStart.cshtml* in the [application root folder](#arf). For more information, see <xref:mvc/views/layout>
+To share a common layout for the entire app, keep the `_ViewStart.cshtml` in the [application root folder](#arf). For more information, see <xref:mvc/views/layout>
 
 <a name="arf"></a>
 
@@ -132,12 +132,12 @@ The application root folder is the folder containing `Startup.cs` in web app cre
 
 ### _ViewImports.cshtml
 
- */Views/_ViewImports.cshtml*, for MVC, and */Pages/_ViewImports.cshtml* for Razor Pages, is not imported to views in areas. Use one of the following approaches to provide view imports to all views:
+ `/Views/_ViewImports.cshtml`, for MVC, and `/Pages/_ViewImports.cshtml` for Razor Pages, is not imported to views in areas. Use one of the following approaches to provide view imports to all views:
 
-* Add *_ViewImports.cshtml* to the [application root folder](#arf). A *_ViewImports.cshtml* in the application root folder will apply to all views in the app.
-* Copy the *_ViewImports.cshtml* file to the appropriate view folder under areas.
+* Add `_ViewImports.cshtml` to the [application root folder](#arf). A `_ViewImports.cshtml` in the application root folder will apply to all views in the app.
+* Copy the `_ViewImports.cshtml` file to the appropriate view folder under areas.
 
-The *_ViewImports.cshtml* file typically contains [Tag Helpers](xref:mvc/views/tag-helpers/intro) imports, `@using`, and `@inject` statements. For more information, see [Importing Shared Directives](xref:mvc/views/layout#importing-shared-directives).
+The `_ViewImports.cshtml` file typically contains [Tag Helpers](xref:mvc/views/tag-helpers/intro) imports, `@using`, and `@inject` statements. For more information, see [Importing Shared Directives](xref:mvc/views/layout#importing-shared-directives).
 
 <a name="rename"></a>
 
@@ -186,9 +186,9 @@ For the preceding code:
 
 ### Import namespace and Tag Helpers with _ViewImports file
 
-A *_ViewImports.cshtml* file can be added to each area *Pages* folder to import the namespace and Tag Helpers to each Razor Page in the folder.
+A `_ViewImports.cshtml` file can be added to each area *Pages* folder to import the namespace and Tag Helpers to each Razor Page in the folder.
 
-Consider the *Services* area of the sample code, which doesn't contain a *_ViewImports.cshtml* file. The following markup shows the */Services/Manage/About* Razor Page:
+Consider the *Services* area of the sample code, which doesn't contain a `_ViewImports.cshtml` file. The following markup shows the */Services/Manage/About* Razor Page:
 
 [!code-cshtml[](areas/31samples/RPareas/Areas/Services/Pages/Manage/About.cshtml)]
 
@@ -197,7 +197,7 @@ In the preceding markup:
 * The fully qualified class name must be used to specify the model (`@model RPareas.Areas.Services.Pages.Manage.AboutModel`).
 * [Tag Helpers](xref:mvc/views/tag-helpers/intro) are enabled by `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers`
 
-In the sample download, the Products area contains the following *_ViewImports.cshtml* file:
+In the sample download, the Products area contains the following `_ViewImports.cshtml` file:
 
 [!code-cshtml[](areas/31samples/RPareas/Areas/Products/Pages/_ViewImports.cshtml)]
 
@@ -205,13 +205,13 @@ The following markup shows the */Products/About* Razor Page:
 
 [!code-cshtml[](areas/31samples/RPareas/Areas/Products/Pages/About.cshtml)]
 
-In the preceding file, the namespace and `@addTagHelper` directive is imported to the file by the *Areas/Products/Pages/_ViewImports.cshtml* file.
+In the preceding file, the namespace and `@addTagHelper` directive is imported to the file by the `Areas/Products/Pages/_ViewImports.cshtml` file.
 
 For more information, see [Managing Tag Helper scope](xref:mvc/views/tag-helpers/intro?view=aspnetcore-2.2#managing-tag-helper-scope) and [Importing Shared Directives](xref:mvc/views/layout#importing-shared-directives).
 
 ### Shared layout for Razor Pages Areas
 
-To share a common layout for the entire app, move the *_ViewStart.cshtml* to the application root folder.
+To share a common layout for the entire app, move the `_ViewStart.cshtml` to the application root folder.
 
 ### Publishing Areas
 
@@ -325,11 +325,11 @@ For more information, see [Routing to controller actions](xref:mvc/controllers/r
 
 ### Shared layout for Areas using the _ViewStart.cshtml file
 
-To share a common layout for the entire app, move the *_ViewStart.cshtml* to the application root folder.
+To share a common layout for the entire app, move the `_ViewStart.cshtml` to the application root folder.
 
 ### _ViewImports.cshtml
 
-In its standard location, */Views/_ViewImports.cshtml* doesn't apply to areas. To use common [Tag Helpers](xref:mvc/views/tag-helpers/intro), `@using`, or `@inject` in your area, ensure a proper *_ViewImports.cshtml* file [applies to your area views](xref:mvc/views/layout#importing-shared-directives). If you want the same behavior in all your views, move */Views/_ViewImports.cshtml* to the application root.
+In its standard location, `/Views/_ViewImports.cshtml` doesn't apply to areas. To use common [Tag Helpers](xref:mvc/views/tag-helpers/intro), `@using`, or `@inject` in your area, ensure a proper `_ViewImports.cshtml` file [applies to your area views](xref:mvc/views/layout#importing-shared-directives). If you want the same behavior in all your views, move `/Views/_ViewImports.cshtml` to the application root.
 
 <a name="rename"></a>
 
@@ -380,9 +380,9 @@ For the preceding code:
 
 ### Import namespace and Tag Helpers with _ViewImports file
 
-A *_ViewImports.cshtml* file can be added to each area *Pages* folder to import the namespace and Tag Helpers to each Razor Page in the folder.
+A `_ViewImports.cshtml` file can be added to each area *Pages* folder to import the namespace and Tag Helpers to each Razor Page in the folder.
 
-Consider the *Services* area of the sample code, which doesn't contain a *_ViewImports.cshtml* file. The following markup shows the */Services/Manage/About* Razor Page:
+Consider the *Services* area of the sample code, which doesn't contain a `_ViewImports.cshtml` file. The following markup shows the */Services/Manage/About* Razor Page:
 
 [!code-cshtml[](areas/samples/RPareas/Areas/Services/Pages/Manage/About.cshtml)]
 
@@ -391,7 +391,7 @@ In the preceding markup:
 * The fully qualified domain name must be used to specify the model (`@model RPareas.Areas.Services.Pages.Manage.AboutModel`).
 * [Tag Helpers](xref:mvc/views/tag-helpers/intro) are enabled by `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers`
 
-In the sample download, the Products area contains the following *_ViewImports.cshtml* file:
+In the sample download, the Products area contains the following `_ViewImports.cshtml` file:
 
 [!code-cshtml[](areas/samples/RPareas/Areas/Products/Pages/_ViewImports.cshtml)]
 
@@ -399,13 +399,13 @@ The following markup shows the */Products/About* Razor Page:
 
 [!code-cshtml[](areas/samples/RPareas/Areas/Products/Pages/About.cshtml)]
 
-In the preceding file, the namespace and `@addTagHelper` directive is imported to the file by the *Areas/Products/Pages/_ViewImports.cshtml* file.
+In the preceding file, the namespace and `@addTagHelper` directive is imported to the file by the `Areas/Products/Pages/_ViewImports.cshtml` file.
 
 For more information, see [Managing Tag Helper scope](xref:mvc/views/tag-helpers/intro?view=aspnetcore-2.2#managing-tag-helper-scope) and [Importing Shared Directives](xref:mvc/views/layout#importing-shared-directives).
 
 ### Shared layout for Razor Pages Areas
 
-To share a common layout for the entire app, move the *_ViewStart.cshtml* to the application root folder.
+To share a common layout for the entire app, move the `_ViewStart.cshtml` to the application root folder.
 
 ### Publishing Areas
 

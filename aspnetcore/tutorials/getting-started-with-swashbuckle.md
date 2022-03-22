@@ -29,7 +29,7 @@ Swashbuckle can be added with the following approaches:
 
 * From the **Package Manager Console** window:
   * Go to **View** > **Other Windows** > **Package Manager Console**
-  * Navigate to the directory in which the *.csproj* file exists
+  * Navigate to the directory in which the `.csproj` file exists
   * Execute the following command:
 
     ```powershell
@@ -123,27 +123,27 @@ XML comments can be enabled with the following approaches:
 
 #### [Visual Studio](#tab/visual-studio)
 
-* Right-click the project in **Solution Explorer** and select **Edit <project_name>.csproj**.
-* Manually add the highlighted lines to the *.csproj* file:
+* Right-click the project in **Solution Explorer** and select *`Edit <project_name>.csproj`*.
+* Manually add the highlighted lines to the `.csproj` file:
 
 :::code language="xml" source="web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/SwashbuckleSample.csproj" range="9-12" highlight="1-2,4":::
 
 #### [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * From the *Solution Pad*, press **control** and click the project name. Navigate to **Tools** > **Edit File**.
-* Manually add the highlighted lines to the *.csproj* file:
+* Manually add the highlighted lines to the `.csproj` file:
 
 :::code language="xml" source="web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/SwashbuckleSample.csproj" range="9-12" highlight="1-2,4":::
 
 #### [Visual Studio Code](#tab/visual-studio-code)
 
-Manually add the highlighted lines to the *.csproj* file:
+Manually add the highlighted lines to the `.csproj` file:
 
 :::code language="xml" source="web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/SwashbuckleSample.csproj" range="9-12" highlight="1-2,4":::
 
 #### [.NET Core CLI](#tab/netcore-cli)
 
-Manually add the highlighted lines to the *.csproj* file:
+Manually add the highlighted lines to the `.csproj` file:
 
 :::code language="xml" source="web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/SwashbuckleSample.csproj" range="9-12" highlight="1-2,4":::
 
@@ -163,7 +163,7 @@ To suppress warnings only for specific members, enclose the code in [#pragma war
 
 :::code language="csharp" source="web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/Models/TodoContext.cs" id="snippet_PragmaWarningDisable" highlight="3,10":::
 
-Configure Swagger to use the XML file that's generated with the preceding instructions. For Linux or non-Windows operating systems, file names and paths can be case-sensitive. For example, a *TodoApi.XML* file is valid on Windows but not CentOS.
+Configure Swagger to use the XML file that's generated with the preceding instructions. For Linux or non-Windows operating systems, file names and paths can be case-sensitive. For example, a `TodoApi.XML` file is valid on Windows but not CentOS.
 
 :::code language="csharp" source="web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/Program.cs" id="snippet_Services" highlight="22-23":::
 
@@ -267,7 +267,7 @@ Swashbuckle can be added with the following approaches:
 
 * From the **Package Manager Console** window:
   * Go to **View** > **Other Windows** > **Package Manager Console**
-  * Navigate to the directory in which the *TodoApi.csproj* file exists
+  * Navigate to the directory in which the `TodoApi.csproj` file exists
   * Execute the following command:
 
     ```powershell
@@ -372,27 +372,27 @@ XML comments can be enabled with the following approaches:
 
 #### [Visual Studio](#tab/visual-studio)
 
-* Right-click the project in **Solution Explorer** and select **Edit <project_name>.csproj**.
-* Manually add the highlighted lines to the *.csproj* file:
+* Right-click the project in **Solution Explorer** and select *`Edit <project_name>.csproj`*.
+* Manually add the highlighted lines to the `.csproj` file:
 
 :::code language="xml" source="web-api-help-pages-using-swagger/samples/2.1/TodoApi.Swashbuckle/TodoApi.csproj" range="8-11" highlight="1-2,4":::
 
 #### [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * From the *Solution Pad*, press **control** and click the project name. Navigate to **Tools** > **Edit File**.
-* Manually add the highlighted lines to the *.csproj* file:
+* Manually add the highlighted lines to the `.csproj` file:
 
 :::code language="xml" source="web-api-help-pages-using-swagger/samples/2.1/TodoApi.Swashbuckle/TodoApi.csproj" range="8-11" highlight="1-2,4":::
 
 #### [Visual Studio Code](#tab/visual-studio-code)
 
-Manually add the highlighted lines to the *.csproj* file:
+Manually add the highlighted lines to the `.csproj` file:
 
 :::code language="xml" source="web-api-help-pages-using-swagger/samples/2.1/TodoApi.Swashbuckle/TodoApi.csproj" range="8-11" highlight="1-2,4":::
 
 #### [.NET Core CLI](#tab/netcore-cli)
 
-Manually add the highlighted lines to the *.csproj* file:
+Manually add the highlighted lines to the `.csproj` file:
 
 :::code language="xml" source="web-api-help-pages-using-swagger/samples/2.1/TodoApi.Swashbuckle/TodoApi.csproj" range="8-11" highlight="1-2,4":::
 
@@ -428,7 +428,7 @@ namespace TodoApi
 }
 ```
 
-Configure Swagger to use the XML file that's generated with the preceding instructions. For Linux or non-Windows operating systems, file names and paths can be case-sensitive. For example, a *TodoApi.XML* file is valid on Windows but not CentOS.
+Configure Swagger to use the XML file that's generated with the preceding instructions. For Linux or non-Windows operating systems, file names and paths can be case-sensitive. For example, a `TodoApi.XML` file is valid on Windows but not CentOS.
 
 :::code language="csharp" source="web-api-help-pages-using-swagger/samples/3.x/TodoApi.Swashbuckle/Startup.cs" id="snippet_ConfigureServices" highlight="30-32":::
 

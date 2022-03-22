@@ -30,13 +30,13 @@ Automatic verification that the schema and model are in sync makes it easier to 
 
 ## Adding a Rating Property to the Movie Model
 
-1. Open the *Models/Movie.cs* file and add a `Rating` property:
+1. Open the `Models/Movie.cs` file and add a `Rating` property:
 
    [!code-csharp[](razor-pages-start/sample/RazorPagesMovie50/Models/MovieDateRating.cs?highlight=13&name=snippet)]
 
 1. Build the app.
 
-1. Edit *Pages/Movies/Index.cshtml*, and add a `Rating` field:
+1. Edit `Pages/Movies/Index.cshtml`, and add a `Rating` field:
 
    <a name="addrat"></a>
 
@@ -192,13 +192,13 @@ Automatic verification that the schema and model are in sync makes it easier to 
 
 ## Adding a Rating Property to the Movie Model
 
-1. Open the *Models/Movie.cs* file and add a `Rating` property:
+1. Open the `Models/Movie.cs` file and add a `Rating` property:
 
    [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Models/MovieDateRating.cs?highlight=13&name=snippet)]
 
 1. Build the app.
 
-1. Edit *Pages/Movies/Index.cshtml*, and add a `Rating` field:
+1. Edit `Pages/Movies/Index.cshtml`, and add a `Rating` field:
 
    <a name="addrat"></a>
 
@@ -332,9 +332,9 @@ Automatic verification that the schema and model are in sync makes it easier to 
 
 ## Adding a Rating Property to the Movie Model
 
-1. Open the *Models/Movie.cs* file and add a `Rating` property:
+1. Open the `Models/Movie.cs` file and add a `Rating` property:
    [!code-csharp[](razor-pages-start/sample/RazorPagesMovie60/Models/MovieDateRating.cs?highlight=13&name=snippet)]
-1. Edit *Pages/Movies/Index.cshtml*, and add a `Rating` field:
+1. Edit `Pages/Movies/Index.cshtml`, and add a `Rating` field:
    <a name="addrat6"></a>
    [!code-cshtml[](razor-pages-start/snapshot_sample6/Pages/Movies/IndexRating.cshtml?highlight=40-42,62-64)]
 

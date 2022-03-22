@@ -135,7 +135,7 @@ namespace IdentityStandaloneMfa
 }
 ```
 
-Because the Identity service setup changed in the `Startup` class, the layouts of the Identity need to be updated. Scaffold the Identity pages into the app. Define the layout in the *Identity/Account/Manage/_Layout.cshtml* file.
+Because the Identity service setup changed in the `Startup` class, the layouts of the Identity need to be updated. Scaffold the Identity pages into the app. Define the layout in the `Identity/Account/Manage/_Layout.cshtml` file.
 
 ```cshtml
 @{
@@ -293,7 +293,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ### Example OpenID Connect IdentityServer 4 server with ASP.NET Core Identity
 
-On the OpenID Connect server, which is implemented using ASP.NET Core Identity with MVC views, a new view named *ErrorEnable2FA.cshtml* is created. The view:
+On the OpenID Connect server, which is implemented using ASP.NET Core Identity with MVC views, a new view named `ErrorEnable2FA.cshtml` is created. The view:
 
 * Displays if the Identity comes from an app that requires MFA but the user hasn't activated this in Identity.
 * Informs the user and adds a link to activate this.
@@ -316,7 +316,7 @@ You can enable MFA to login here:
 
 In the `Login` method, the `IIdentityServerInteractionService` interface implementation `_interaction` is used to access the OpenID Connect request parameters. The `acr_values` parameter is accessed using the `AcrValues` property. As the client sent this with `mfa` set, this can then be checked.
 
-If MFA is required, and the user in ASP.NET Core Identity has MFA enabled, then the login continues. When the user has no MFA enabled, the user is redirected to the custom view *ErrorEnable2FA.cshtml*. Then ASP.NET Core Identity signs the user in.
+If MFA is required, and the user in ASP.NET Core Identity has MFA enabled, then the login continues. When the user has no MFA enabled, the user is redirected to the custom view `ErrorEnable2FA.cshtml`. Then ASP.NET Core Identity signs the user in.
 
 ```csharp
 //

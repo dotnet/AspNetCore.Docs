@@ -43,13 +43,13 @@ Before proceeding to ASP.NET Core middleware, let's first recap how HTTP modules
 
 2. For the same event, the order in which they're configured in *Web.config*.
 
-In addition to modules, you can add handlers for the life cycle events to your *Global.asax.cs* file. These handlers run after the handlers in the configured modules.
+In addition to modules, you can add handlers for the life cycle events to your `Global.asax.cs` file. These handlers run after the handlers in the configured modules.
 
 ## From handlers and modules to middleware
 
 **Middleware are simpler than HTTP modules and handlers:**
 
-* Modules, handlers, *Global.asax.cs*, *Web.config* (except for IIS configuration) and the application life cycle are gone
+* Modules, handlers, `Global.asax.cs`, *Web.config* (except for IIS configuration) and the application life cycle are gone
 
 * The roles of both modules and handlers have been taken over by middleware
 

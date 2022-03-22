@@ -104,7 +104,7 @@ Optional, test server-side validation:
   
 Alternatively, [Disable client-side validation on the server](xref:mvc/models/validation#disable-client-side-validation).
 
-The following code shows a portion of the *Create.cshtml* page scaffolded earlier in the tutorial. It's used by the Create and Edit pages to:
+The following code shows a portion of the `Create.cshtml` page scaffolded earlier in the tutorial. It's used by the Create and Edit pages to:
 
 * Display the initial form.
 * Redisplay the form in the event of an error.
@@ -347,7 +347,7 @@ Optional, test server-side validation:
   
 Alternatively, [Disable client-side validation on the server](xref:mvc/models/validation#disable-client-side-validation).
 
-The following code shows a portion of the *Create.cshtml* page scaffolded earlier in the tutorial. It's used by the Create and Edit pages to:
+The following code shows a portion of the `Create.cshtml` page scaffolded earlier in the tutorial. It's used by the Create and Edit pages to:
 
 * Display the initial form.
 * Redisplay the form in the event of an error.

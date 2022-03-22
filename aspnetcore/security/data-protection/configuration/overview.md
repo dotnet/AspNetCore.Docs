@@ -209,7 +209,7 @@ Only Redis versions supporting [Redis Data Persistence](/azure/azure-cache-for-r
 
 ## Logging DataProtection
 
-Enable `Information` level logging of DataProtection to help diagnosis problem. The following *appsetting.json* file enables information logging of the DataProtection API:
+Enable `Information` level logging of DataProtection to help diagnosis problem. The following `appsettings.json` file enables information logging of the DataProtection API:
 
 :::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/appsettings.json" highlight="6":::
 
@@ -544,7 +544,7 @@ Only Redis versions supporting [Redis Data Persistence](/azure/azure-cache-for-r
 
 ## Logging DataProtection
 
-Enable `Information` level logging of DataProtection to help diagnosis problem. The following *appsetting.json* file enables information logging of the DataProtection API:
+Enable `Information` level logging of DataProtection to help diagnosis problem. The following `appsettings.json` file enables information logging of the DataProtection API:
 
 ```JSON
 {

@@ -1030,9 +1030,9 @@ In the following example, the site is bound to an IIS **Host name** of `www.mysi
 
 Files in the deployment folder are locked when the app is running. Locked files can't be overwritten during deployment. To release locked files in a deployment, stop the app pool using **one** of the following approaches:
 
-* Use Web Deploy and reference `Microsoft.NET.Sdk.Web` in the project file. An *app_offline.htm* file is placed at the root of the web app directory. When the file is present, the ASP.NET Core Module gracefully shuts down the app and serves the *app_offline.htm* file during the deployment. For more information, see the [ASP.NET Core Module configuration reference](xref:host-and-deploy/aspnet-core-module#app_offlinehtm).
+* Use Web Deploy and reference `Microsoft.NET.Sdk.Web` in the project file. An `app_offline.htm` file is placed at the root of the web app directory. When the file is present, the ASP.NET Core Module gracefully shuts down the app and serves the `app_offline.htm` file during the deployment. For more information, see the [ASP.NET Core Module configuration reference](xref:host-and-deploy/aspnet-core-module#app_offlinehtm).
 * Manually stop the app pool in the IIS Manager on the server.
-* Use PowerShell to drop *app_offline.htm* (requires PowerShell 5 or later):
+* Use PowerShell to drop `app_offline.htm` (requires PowerShell 5 or later):
 
   ```powershell
   $pathToApp = 'PATH_TO_APP'
@@ -1598,9 +1598,9 @@ In the following example, the site is bound to an IIS **Host name** of `www.mysi
 
 Files in the deployment folder are locked when the app is running. Locked files can't be overwritten during deployment. To release locked files in a deployment, stop the app pool using **one** of the following approaches:
 
-* Use Web Deploy and reference `Microsoft.NET.Sdk.Web` in the project file. An *app_offline.htm* file is placed at the root of the web app directory. When the file is present, the ASP.NET Core Module gracefully shuts down the app and serves the *app_offline.htm* file during the deployment. For more information, see the [ASP.NET Core Module configuration reference](xref:host-and-deploy/aspnet-core-module#app_offlinehtm).
+* Use Web Deploy and reference `Microsoft.NET.Sdk.Web` in the project file. An `app_offline.htm` file is placed at the root of the web app directory. When the file is present, the ASP.NET Core Module gracefully shuts down the app and serves the `app_offline.htm` file during the deployment. For more information, see the [ASP.NET Core Module configuration reference](xref:host-and-deploy/aspnet-core-module#app_offlinehtm).
 * Manually stop the app pool in the IIS Manager on the server.
-* Use PowerShell to drop *app_offline.htm* (requires PowerShell 5 or later):
+* Use PowerShell to drop `app_offline.htm` (requires PowerShell 5 or later):
 
   ```powershell
   $pathToApp = 'PATH_TO_APP'

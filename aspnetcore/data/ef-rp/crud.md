@@ -29,7 +29,7 @@ The scaffolded code for the Students pages doesn't include enrollment data. In t
 
 ### Read enrollments
 
-To display a student's enrollment data on the page, the enrollment data must be read. The scaffolded code in *Pages/Students/Details.cshtml.cs* reads only the `Student` data, without the `Enrollment` data:
+To display a student's enrollment data on the page, the enrollment data must be read. The scaffolded code in `Pages/Students/Details.cshtml.cs` reads only the `Student` data, without the `Enrollment` data:
 
 [!code-csharp[Main](intro/samples/cu30snapshots/2-crud/Pages/Students/Details1.cshtml.cs?name=snippet_OnGetAsync&highlight=8)]
 
@@ -43,7 +43,7 @@ The <xref:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.AsNoT
 
 ### Display enrollments
 
-Replace the code in *Pages/Students/Details.cshtml* with the following code to display a list of enrollments. The changes are highlighted.
+Replace the code in `Pages/Students/Details.cshtml` with the following code to display a list of enrollments. The changes are highlighted.
 
 [!code-cshtml[Main](intro/samples/cu30/Pages/Students/Details.cshtml?highlight=32-53)]
 
@@ -64,7 +64,7 @@ The URL for the Details page is `https://localhost:<port>/Students/Details?id=1`
 
 ## Update the Create page
 
-The scaffolded `OnPostAsync` code for the Create page is vulnerable to [overposting](#overposting). Replace the `OnPostAsync` method in *Pages/Students/Create.cshtml.cs* with the following code.
+The scaffolded `OnPostAsync` code for the Create page is vulnerable to [overposting](#overposting). Replace the `OnPostAsync` method in `Pages/Students/Create.cshtml.cs` with the following code.
 
 [!code-csharp[Main](intro/samples/cu30/Pages/Students/Create.cshtml.cs?name=snippet_OnPostAsync)]
 
@@ -122,7 +122,7 @@ Using `StudentVM` requires the Create page use `StudentVM` rather than `Student`
 
 ## Update the Edit page
 
-In *Pages/Students/Edit.cshtml.cs*, replace the `OnGetAsync` and `OnPostAsync` methods with the following code.
+In `Pages/Students/Edit.cshtml.cs`, replace the `OnGetAsync` and `OnPostAsync` methods with the following code.
 
 [!code-csharp[Main](intro/samples/cu30/Pages/Students/Edit.cshtml.cs?name=snippet_OnGetPost)]
 
@@ -158,7 +158,7 @@ In a web app, the `DbContext` that reads an entity and displays the data is disp
 
 In this section, a custom error message is implemented when the call to `SaveChanges` fails.
 
-Replace the code in *Pages/Students/Delete.cshtml.cs* with the following code:
+Replace the code in `Pages/Students/Delete.cshtml.cs` with the following code:
 
 [!code-csharp[Main](intro/samples/cu50/Pages/Students/Delete.cshtml.cs)]
 
@@ -174,7 +174,7 @@ The `OnPostAsync` method retrieves the selected entity, then calls the [Remove](
 * The database exception is caught.
 * The Delete pages `OnGetAsync` method is called with `saveChangesError=true`.
 
-Add an error message to *Pages/Students/Delete.cshtml*:
+Add an error message to `Pages/Students/Delete.cshtml`:
 
 [!code-cshtml[Main](intro/samples/cu50/Pages/Students/Delete.cshtml?highlight=10)]
 
@@ -202,7 +202,7 @@ The scaffolded code for the Students pages doesn't include enrollment data. In t
 
 ### Read enrollments
 
-To display a student's enrollment data on the page, the enrollment data must be read. The scaffolded code in *Pages/Students/Details.cshtml.cs* reads only the `Student` data, without the `Enrollment` data:
+To display a student's enrollment data on the page, the enrollment data must be read. The scaffolded code in `Pages/Students/Details.cshtml.cs` reads only the `Student` data, without the `Enrollment` data:
 
 [!code-csharp[Main](intro/samples/cu30snapshots/2-crud/Pages/Students/Details1.cshtml.cs?name=snippet_OnGetAsync&highlight=8)]
 
@@ -216,7 +216,7 @@ The <xref:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.AsNoT
 
 ### Display enrollments
 
-Replace the code in *Pages/Students/Details.cshtml* with the following code to display a list of enrollments. The changes are highlighted.
+Replace the code in `Pages/Students/Details.cshtml` with the following code to display a list of enrollments. The changes are highlighted.
 
 [!code-cshtml[Main](intro/samples/cu30/Pages/Students/Details.cshtml?highlight=32-53)]
 
@@ -237,7 +237,7 @@ The URL for the Details page is `https://localhost:<port>/Students/Details?id=1`
 
 ## Update the Create page
 
-The scaffolded `OnPostAsync` code for the Create page is vulnerable to [overposting](#overposting). Replace the `OnPostAsync` method in *Pages/Students/Create.cshtml.cs* with the following code.
+The scaffolded `OnPostAsync` code for the Create page is vulnerable to [overposting](#overposting). Replace the `OnPostAsync` method in `Pages/Students/Create.cshtml.cs` with the following code.
 
 [!code-csharp[Main](intro/samples/cu30/Pages/Students/Create.cshtml.cs?name=snippet_OnPostAsync)]
 
@@ -295,7 +295,7 @@ Using `StudentVM` requires the Create page use `StudentVM` rather than `Student`
 
 ## Update the Edit page
 
-In *Pages/Students/Edit.cshtml.cs*, replace the `OnGetAsync` and `OnPostAsync` methods with the following code.
+In `Pages/Students/Edit.cshtml.cs`, replace the `OnGetAsync` and `OnPostAsync` methods with the following code.
 
 [!code-csharp[Main](intro/samples/cu30/Pages/Students/Edit.cshtml.cs?name=snippet_OnGetPost)]
 
@@ -331,7 +331,7 @@ In a web app, the `DbContext` that reads an entity and displays the data is disp
 
 In this section, a custom error message is implemented when the call to `SaveChanges` fails.
 
-Replace the code in *Pages/Students/Delete.cshtml.cs* with the following code:
+Replace the code in `Pages/Students/Delete.cshtml.cs` with the following code:
 
 [!code-csharp[Main](intro/samples/cu50/Pages/Students/Delete.cshtml.cs)]
 
@@ -347,7 +347,7 @@ The `OnPostAsync` method retrieves the selected entity, then calls the [Remove](
 * The database exception is caught.
 * The Delete pages `OnGetAsync` method is called with `saveChangesError=true`.
 
-Add an error message to *Pages/Students/Delete.cshtml*:
+Add an error message to `Pages/Students/Delete.cshtml`:
 
 [!code-cshtml[Main](intro/samples/cu50/Pages/Students/Delete.cshtml?highlight=10)]
 
@@ -375,7 +375,7 @@ The scaffolded code for the Students pages doesn't include enrollment data. In t
 
 ### Read enrollments
 
-To display a student's enrollment data on the page, the enrollment data needs to be read. The scaffolded code in *Pages/Students/Details.cshtml.cs* reads only the Student data, without the Enrollment data:
+To display a student's enrollment data on the page, the enrollment data needs to be read. The scaffolded code in `Pages/Students/Details.cshtml.cs` reads only the Student data, without the Enrollment data:
 
 [!code-csharp[Main](intro/samples/cu30snapshots/2-crud/Pages/Students/Details1.cshtml.cs?name=snippet_OnGetAsync&highlight=8)]
 
@@ -389,7 +389,7 @@ The <xref:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.AsNoT
 
 ### Display enrollments
 
-Replace the code in *Pages/Students/Details.cshtml* with the following code to display a list of enrollments. The changes are highlighted.
+Replace the code in `Pages/Students/Details.cshtml` with the following code to display a list of enrollments. The changes are highlighted.
 
 [!code-cshtml[Main](intro/samples/cu30/Pages/Students/Details.cshtml?highlight=32-53)]
 
@@ -410,7 +410,7 @@ The URL for the Details page is `https://localhost:<port>/Students/Details?id=1`
 
 ## Update the Create page
 
-The scaffolded `OnPostAsync` code for the Create page is vulnerable to [overposting](#overposting). Replace the `OnPostAsync` method in *Pages/Students/Create.cshtml.cs* with the following code.
+The scaffolded `OnPostAsync` code for the Create page is vulnerable to [overposting](#overposting). Replace the `OnPostAsync` method in `Pages/Students/Create.cshtml.cs` with the following code.
 
 [!code-csharp[Main](intro/samples/cu30/Pages/Students/Create.cshtml.cs?name=snippet_OnPostAsync)]
 
@@ -463,7 +463,7 @@ Using `StudentVM` requires [Create.cshtml](https://github.com/dotnet/AspNetCore.
 
 ## Update the Edit page
 
-In *Pages/Students/Edit.cshtml.cs*, replace the `OnGetAsync` and `OnPostAsync` methods with the following code.
+In `Pages/Students/Edit.cshtml.cs`, replace the `OnGetAsync` and `OnPostAsync` methods with the following code.
 
 [!code-csharp[Main](intro/samples/cu30/Pages/Students/Edit.cshtml.cs?name=snippet_OnGetPost)]
 
@@ -499,7 +499,7 @@ In a web app, the `DbContext` that reads an entity and displays the data is disp
 
 In this section, you implement a custom error message when the call to `SaveChanges` fails.
 
-Replace the code in *Pages/Students/Delete.cshtml.cs* with the following code. The changes are highlighted (other than cleanup of `using` statements).
+Replace the code in `Pages/Students/Delete.cshtml.cs` with the following code. The changes are highlighted (other than cleanup of `using` statements).
 
 [!code-csharp[Main](intro/samples/cu30/Pages/Students/Delete.cshtml.cs?name=snippet_All&highlight=20,22,30,38-41,53-71)]
 
@@ -510,7 +510,7 @@ The `OnPostAsync` method retrieves the selected entity, then calls the [Remove](
 * The database exception is caught.
 * The Delete page's `OnGetAsync` method is called with `saveChangesError=true`.
 
-Add an error message to the Delete Razor Page (*Pages/Students/Delete.cshtml*):
+Add an error message to the Delete Razor Page (`Pages/Students/Delete.cshtml`):
 
 [!code-cshtml[Main](intro/samples/cu30/Pages/Students/Delete.cshtml?highlight=10)]
 

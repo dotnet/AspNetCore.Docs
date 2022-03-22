@@ -357,7 +357,7 @@ The following Razor shows how you access a specific `Color` element:
 
 [!code-cshtml[](working-with-forms/sample/final/Views/Demo/EditColor.cshtml)]
 
-The *Views/Shared/EditorTemplates/String.cshtml* template:
+The `Views/Shared/EditorTemplates/String.cshtml` template:
 
 [!code-cshtml[](working-with-forms/sample/final/Views/Shared/EditorTemplates/String.cshtml)]
 
@@ -369,7 +369,7 @@ The following Razor shows how to iterate over a collection:
 
 [!code-cshtml[](working-with-forms/sample/final/Views/Demo/Edit.cshtml)]
 
-The *Views/Shared/EditorTemplates/ToDoItem.cshtml* template:
+The `Views/Shared/EditorTemplates/ToDoItem.cshtml` template:
 
 [!code-cshtml[](working-with-forms/sample/final/Views/Shared/EditorTemplates/ToDoItem.cshtml)]
 
@@ -673,7 +673,7 @@ If you find yourself using the "not specified" option in multiple pages, you can
 
 [!code-cshtml[](../../mvc/views/working-with-forms/sample/final/Views/Home/IndexEmptyTemplate.cshtml?highlight=5)]
 
-The *Views/Shared/EditorTemplates/CountryViewModel.cshtml* template:
+The `Views/Shared/EditorTemplates/CountryViewModel.cshtml` template:
 
 [!code-cshtml[](working-with-forms/sample/final/Views/Shared/EditorTemplates/CountryViewModel.cshtml)]
 

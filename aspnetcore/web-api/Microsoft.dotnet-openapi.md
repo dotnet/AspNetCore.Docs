@@ -22,7 +22,7 @@ dotnet tool install -g Microsoft.dotnet-openapi
 
 ## Add
 
-Adding an OpenAPI reference using any of the commands on this page adds an `<OpenApiReference />` element similar to the following to the *.csproj* file:
+Adding an OpenAPI reference using any of the commands on this page adds an `<OpenApiReference />` element similar to the following to the `.csproj` file:
 
 ```xml
 <OpenApiReference Include="openapi.json" />
@@ -43,7 +43,7 @@ The preceding reference is required for the app to call the generated client cod
 
 |  Argument  | Description | Example |
 |-------------|-------------|---------|
-| source-file | The source to create a reference from. Must be a project file. |dotnet openapi add project *../Ref/ProjRef.csproj* | -->
+| source-file | The source to create a reference from. Must be a project file. |dotnet openapi add project `../Ref/ProjRef.csproj` | -->
 
 ### Add File
 
@@ -68,7 +68,7 @@ The preceding reference is required for the app to call the generated client cod
 | Short option| Long option| Description | Example |
 |-------|------|-------------|---------|
 | -p|--updateProject | The project to operate on. |dotnet openapi add url *--updateProject .\Ref.csproj* `https://contoso.com/openapi.json` |
-| -o|--output-file | Where to place the local copy of the OpenAPI file. |dotnet openapi add url `https://contoso.com/openapi.json` *--output-file myclient.json* |
+| -o|--output-file | Where to place the local copy of the OpenAPI file. |dotnet openapi add url `https://contoso.com/openapi.json` `--output-file myclient.json` |
 | -c|--code-generator| The code generator to apply to the reference. Options are `NSwagCSharp` and `NSwagTypeScript`. |dotnet openapi add url `https://contoso.com/openapi.json` --code-generator
 | -h|--help|Show help information|dotnet openapi add url --help|
 
@@ -80,7 +80,7 @@ The preceding reference is required for the app to call the generated client cod
 
 ## Remove
 
-Removes the OpenAPI reference matching the given filename from the *.csproj* file. When the OpenAPI reference is removed, clients won't be generated. Local *.json* and *.yaml* files are deleted.
+Removes the OpenAPI reference matching the given filename from the `.csproj` file. When the OpenAPI reference is removed, clients won't be generated. Local `.json` and *.yaml* files are deleted.
 
 ### Options
 

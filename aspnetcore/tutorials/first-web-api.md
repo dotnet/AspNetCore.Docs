@@ -152,7 +152,7 @@ Run the app:
   * Replace  `<project-name.dll>` with `TodoApi.dll`.
 * Press Ctrl+F5.
 * In the **Could not find the task 'build'** dialog, select **Configure Task**.
-* Select **Create *tasks.json* file from template**.
+* Select **Create `tasks.json` file from template**.
 * Select the **.NET Core** task template.
 * Press Ctrl+F5.
 
@@ -244,7 +244,7 @@ A *model* is a set of classes that represent the data that the app manages. The 
 
 * Add a folder named *Models*.
 
-* Add a *TodoItem.cs* file to the *Models* folder with the following code:
+* Add a `TodoItem.cs` file to the *Models* folder with the following code:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -289,7 +289,7 @@ The *database context* is the main class that coordinates Entity Framework funct
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Add a *TodoContext.cs* file to the *Models* folder. 
+* Add a `TodoContext.cs` file to the *Models* folder. 
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 

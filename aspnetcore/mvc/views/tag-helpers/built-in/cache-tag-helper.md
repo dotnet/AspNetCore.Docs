@@ -142,7 +142,7 @@ routes.MapRoute(
     template: "{controller=Home}/{action=Index}/{Make?}/{Model?}");
 ```
 
-*Index.cshtml*:
+`Index.cshtml`:
 
 ```cshtml
 <cache vary-by-route="Make,Model">
@@ -207,7 +207,7 @@ public IActionResult Index(string myParam1, string myParam2, string myParam3)
 }
 ```
 
-*Index.cshtml*:
+`Index.cshtml`:
 
 ```cshtml
 <cache vary-by="@Model">

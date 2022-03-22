@@ -84,7 +84,7 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
   * If a dialog box appears with **Required assets to build and debug are missing from 'MvcMovie'. Add them?**, select **Yes**
 
   * `dotnet new mvc -o MvcMovie`: Creates a new ASP.NET Core MVC project in the *MvcMovie* folder.
-  * `code -r MvcMovie`: Loads the *MvcMovie.csproj* project file in Visual Studio Code.
+  * `code -r MvcMovie`: Loads the `MvcMovie.csproj` project file in Visual Studio Code.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -269,7 +269,7 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
   * If a dialog box appears with **Required assets to build and debug are missing from 'MvcMovie'. Add them?**, select **Yes**
 
   * `dotnet new mvc -o MvcMovie`: Creates a new ASP.NET Core MVC project in the *MvcMovie* folder.
-  * `code -r MvcMovie`: Loads the *MvcMovie.csproj* project file in Visual Studio Code.
+  * `code -r MvcMovie`: Loads the `MvcMovie.csproj` project file in Visual Studio Code.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -450,7 +450,7 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
   * A dialog box appears with **Required assets to build and debug are missing from 'MvcMovie'. Add them?**, select **Yes**.
 
   * `dotnet new mvc -o MvcMovie`: Creates a new ASP.NET Core MVC project in the *MvcMovie* folder.
-  * `code -r MvcMovie`: Loads the *MvcMovie.csproj* project file in Visual Studio Code.
+  * `code -r MvcMovie`: Loads the `MvcMovie.csproj` project file in Visual Studio Code.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
