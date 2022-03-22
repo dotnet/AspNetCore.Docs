@@ -1,4 +1,5 @@
 #define OPT // FIRST SECOND NO_COMP OPT CUST
+// Use OPT to Deploy this to Azure sample
 #if NEVER
 #elif FIRST
 #region snippet

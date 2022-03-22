@@ -176,12 +176,18 @@ To disable IIS Dynamic Compression Module configured at the server level, see [D
 
 ## Troubleshoot response compression
 
-Use a tool like [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/), or [Postman](https://www.getpostman.com/), which allow you to set the `Accept-Encoding` request header and study the response headers, size, and body. By default, Response Compression Middleware compresses responses that meet the following conditions:
+Use a tool like [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/) or [Postman](https://www.getpostman.com/), which allows setting the `Accept-Encoding` request header and study the response headers, size, and body. By default, Response Compression Middleware compresses responses that meet the following conditions:
 
 * The `Accept-Encoding` header is present with a value of `br`, `gzip`, `*`, or custom encoding that matches a custom compression provider. The value must not be `identity` or have a quality value (qvalue, `q`) setting of 0 (zero).
 * The MIME type (`Content-Type`) must be set and must match a MIME type configured on the <xref:Microsoft.AspNetCore.ResponseCompression.ResponseCompressionOptions>.
 * The request must not include the `Content-Range` header.
 * The request must use insecure protocol (http), unless secure protocol (https) is configured in the Response Compression Middleware options. *Note the danger [described above](#compression-with-secure-protocol) when enabling secure content compression.*
+
+## Azure deployed sample
+
+The [sample app](https://responsecompression.azurewebsites.net/) depolyed to Azure has the following `Program.cs` file:
+
+[!code-csharp[](response-compression/samples/6.x/SampleApp/Program.cs?name=snippet_opt)]
 
 ## Additional resources
 
