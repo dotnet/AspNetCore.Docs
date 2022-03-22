@@ -67,7 +67,7 @@ The headers involved in requesting, sending, caching, and receiving compressed c
 | `Content-Encoding` | Sent from the server to the client to indicate the encoding of the content in the payload. |
 | [`Content-Length`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Length)   | When compression occurs, the `Content-Length` header is removed, since the body content changes when the response is compressed. |
 | [`Content-MD5`](https://datatracker.ietf.org/doc/html/rfc1864)      | When compression occurs, the `Content-MD5` header is removed, since the body content has changed and the hash is no longer valid. |
-| [`Content-Type`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Type)     | Specifies the MIME type of the content. Every response should specify its `Content-Type`. The middleware checks this value to determine if the response should be compressed. The middleware specifies a set of [default MIME types](#mime-types) that it can encode, but you can replace or add MIME types. |
+| [`Content-Type`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Type)     | Specifies the MIME type of the content. Every response should specify its `Content-Type`. The middleware checks this value to determine if the response should be compressed. The middleware specifies a set of [default MIME types](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/ResponseCompression/src/ResponseCompressionDefaults.cs#L14-L30)) that it can encode, and they can bed replaced or added. |
 | [`Vary` ](https://developer.mozilla.org/docs/Web/HTTP/Headers/Vary)           | When sent by the server with a value of `Accept-Encoding` to clients and proxies, the `Vary` header indicates to the client or proxy that it should cache (vary) responses based on the value of the `Accept-Encoding` header of the request. The result of returning content with the `Vary: Accept-Encoding` header is that both compressed and uncompressed responses are cached separately. |
 
 Explore the features of the Response Compression Middleware with the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/response-compression/samples). The sample illustrates:
@@ -127,23 +127,22 @@ Set the compression level with <xref:Microsoft.AspNetCore.ResponseCompression.Br
 
 [!code-csharp[](response-compression/samples/6.x/SampleApp/Program.cs?name=snippet2&highlight=17-25)]
 
-### Custom providers zz
+### Custom providers
 
 Create custom compression implementations with <xref:Microsoft.AspNetCore.ResponseCompression.ICompressionProvider>. The <xref:Microsoft.AspNetCore.ResponseCompression.ICompressionProvider.EncodingName*> represents the content encoding that this `ICompressionProvider` produces. The middleware uses this information to choose the provider based on the list specified in the `Accept-Encoding` header of the request.
 
-Using the sample app, the client submits a request with the `Accept-Encoding: mycustomcompression` header. The middleware uses the custom compression implementation and returns the response with a `Content-Encoding: mycustomcompression` header. The client must be able to decompress the custom encoding in order for a custom compression implementation to work.
+Requests to the [sample app](https://responsecompression.azurewebsites.net/) with
+ the `Accept-Encoding: mycustomcompression` header return a response with a `Content-Encoding: mycustomcompression` header. The client must be able to decompress the custom encoding in order for a custom compression implementation to work.
 
-[!code-csharp[](response-compression/samples/3.x/SampleApp/Startup.cs?name=snippet1&highlight=7)]
+[!code-csharp[](response-compression/samples/6.x/SampleApp/Program.cs?name=snippet_cust&highlight=9)]
 
-[!code-csharp[](response-compression/samples/3.x/SampleApp/CustomCompressionProvider.cs?name=snippet1)]
+[!code-csharp[](response-compression/samples/6.x/SampleApp/CustomCompressionProvider.cs)]
 
-Submit a request to the sample app with the `Accept-Encoding: mycustomcompression` header and observe the response headers. The `Vary` and `Content-Encoding` headers are present on the response. The response body (not shown) isn't compressed by the sample. There isn't a compression implementation in the `CustomCompressionProvider` class of the sample. However, the sample shows where you would implement such a compression algorithm.
-
-![Fiddler window showing result of a request with the Accept-Encoding header and a value of mycustomcompression. The Vary and Content-Encoding headers are added to the response.](response-compression/_static/request-custom-compression.png)
+With the preceding code, the response body isn't compressed by the sample. However, the sample shows where to implement a custom compression algorithm.
 
 ## MIME types
 
-The middleware specifies a default set of MIME types for compression:
+The response compression middleware specifies a [default set of MIME types for compression](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/ResponseCompression/src/ResponseCompressionDefaults.cs#L14-L30):
 
 * `application/javascript`
 * `application/json`
@@ -154,35 +153,35 @@ The middleware specifies a default set of MIME types for compression:
 * `text/plain`
 * `text/xml`
 
-Replace or append MIME types with the Response Compression Middleware options. Note that wildcard MIME types, such as `text/*` aren't supported. The sample app adds a MIME type for `image/svg+xml` and compresses and serves the ASP.NET Core banner image (*banner.svg*).
+Replace or append MIME types with the Response Compression Middleware options. Note that wildcard MIME types, such as `text/*` aren't supported. The sample app adds a MIME type for `image/svg+xml` and compresses and serves the ASP.NET Core banner image *banner.svg*.
 
-[!code-csharp[](response-compression/samples/3.x/SampleApp/Startup.cs?name=snippet1&highlight=8-10)]
+[!code-csharp[](response-compression/samples/6.x/SampleApp/Program.cs?name=snippet_mime&highlight=12-14)]
 
 ## Adding the Vary header
 
-When compressing responses based on the `Accept-Encoding` header, there are potentially multiple compressed versions of the response and an uncompressed version. In order to instruct client and proxy caches that multiple versions exist and should be stored, the `Vary` header is added with an `Accept-Encoding` value. The middleware adds the `Vary` header automatically when the response is compressed.
+When compressing responses based on the [`Accept-Encoding` request header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Encoding), there are can be uncompressed and multiple compressed versions of the response. In order to instruct client and proxy caches that multiple versions exist and should be stored, the `Vary` header is added with an `Accept-Encoding` value. The response middleware adds the `Vary` header](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/ResponseCompression/src/ResponseCompressionBody.cs#L198-L241) automatically when the response is compressed.
 
 ## Middleware issue when behind an Nginx reverse proxy
 
 When a request is proxied by Nginx, the `Accept-Encoding` header is removed. Removal of the `Accept-Encoding` header prevents the middleware from compressing the response. For more information, see [NGINX: Compression and Decompression](https://www.nginx.com/resources/admin-guide/compression-and-decompression/). This issue is tracked by [Figure out pass-through compression for Nginx (aspnet/BasicMiddleware #123)](https://github.com/aspnet/BasicMiddleware/issues/123).
 
-## Working with IIS dynamic compression
+## Disabling IIS dynamic compression
 
-If you have an active IIS Dynamic Compression Module configured at the server level that you would like to disable for an app, disable the module with an addition to the *web.config* file. For more information, see [Disabling IIS modules](xref:host-and-deploy/iis/modules#disabling-iis-modules).
+To disable IIS Dynamic Compression Module configured at the server level, see [Disabling IIS modules](xref:host-and-deploy/iis/modules#disabling-iis-modules).
 
-## Troubleshooting
+## Troubleshoot response compression
 
-Use a tool like [Fiddler](https://www.telerik.com/fiddler), [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/), or [Postman](https://www.getpostman.com/), which allow you to set the `Accept-Encoding` request header and study the response headers, size, and body. By default, Response Compression Middleware compresses responses that meet the following conditions:
+Use a tool like [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/), or [Postman](https://www.getpostman.com/), which allow you to set the `Accept-Encoding` request header and study the response headers, size, and body. By default, Response Compression Middleware compresses responses that meet the following conditions:
 
-* The `Accept-Encoding` header is present with a value of `br`, `gzip`, `*`, or custom encoding that matches a custom compression provider that you've established. The value must not be `identity` or have a quality value (qvalue, `q`) setting of 0 (zero).
+* The `Accept-Encoding` header is present with a value of `br`, `gzip`, `*`, or custom encoding that matches a custom compression provider. The value must not be `identity` or have a quality value (qvalue, `q`) setting of 0 (zero).
 * The MIME type (`Content-Type`) must be set and must match a MIME type configured on the <xref:Microsoft.AspNetCore.ResponseCompression.ResponseCompressionOptions>.
 * The request must not include the `Content-Range` header.
 * The request must use insecure protocol (http), unless secure protocol (https) is configured in the Response Compression Middleware options. *Note the danger [described above](#compression-with-secure-protocol) when enabling secure content compression.*
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/response-compression/samples) ([how to download](xref:index#how-to-download-a-sample))
-* <xref:fundamentals/startup>
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/response-compression/samples/6.x) ([how to download](xref:index#how-to-download-a-sample))
+* [Response compression middleware source](https://github.com/dotnet/aspnetcore/tree/main/src/Middleware/ResponseCompression/src)
 * <xref:fundamentals/middleware/index>
 * [Mozilla Developer Network: Accept-Encoding](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Encoding)
 * [RFC 7231 Section 3.1.2.1: Content Codings](https://tools.ietf.org/html/rfc7231#section-3.1.2.1)

@@ -1,4 +1,4 @@
-#define OPT // FIRST SECOND NO_COMP OPT
+#define OPT // FIRST SECOND NO_COMP OPT CUST
 #if NEVER
 #elif FIRST
 #region snippet
@@ -19,54 +19,54 @@ app.Run();
 #endregion
 #elif SECOND
 #region snippet2
-using ResponseCompressionSample;
+using System.IO.Compression;
+using Microsoft.AspNetCore.ResponseCompression;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//builder.Services.AddResponseCompression();
+builder.Services.AddResponseCompression(options =>
+{
+    options.EnableForHttps = true;
+    options.Providers.Add<BrotliCompressionProvider>();
+    options.Providers.Add<GzipCompressionProvider>();
+});
 
 var app = builder.Build();
 
-//app.UseResponseCompression();
+app.UseResponseCompression();
 
-app.Map("/trickle", trickleApp =>
+builder.Services.Configure<BrotliCompressionProviderOptions>(options =>
 {
-    trickleApp.Run(async context =>
-    {
-        context.Response.ContentType = "text/plain";
-
-        for (int i = 0; i < 20; i++)
-        {
-            await context.Response.WriteAsync("a");
-            await context.Response.Body.FlushAsync();
-            await Task.Delay(TimeSpan.FromMilliseconds(50));
-        }
-    });
+    options.Level = CompressionLevel.Fastest;
 });
 
-app.Map("/testfile1kb.txt", fileApp =>
+builder.Services.Configure<GzipCompressionProviderOptions>(options =>
 {
-    fileApp.Run(context =>
-    {
-        context.Response.ContentType = "text/plain";
-        return context.Response.SendFileAsync("testfile1kb.txt");
-    });
+    options.Level = CompressionLevel.SmallestSize;
 });
 
-app.Map("/banner.svg", fileApp =>
+app.MapGet("/", () => "Hello World!");
+
+app.Run();
+#endregion
+#elif CUST
+#region snippet_cust
+using Microsoft.AspNetCore.ResponseCompression;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddResponseCompression(options =>
 {
-    fileApp.Run(context =>
-    {
-        context.Response.ContentType = "image/svg+xml";
-        return context.Response.SendFileAsync("banner.svg");
-    });
+    options.Providers.Add<BrotliCompressionProvider>();
+    options.Providers.Add<GzipCompressionProvider>();
+    options.Providers.Add<CustomCompressionProvider>();
 });
 
-app.Run(async context =>
-{
-    context.Response.ContentType = "text/plain";
-    await context.Response.WriteAsync(LoremIpsum.Text);
-});
+var app = builder.Build();
+
+app.UseResponseCompression();
+
+app.MapGet("/", () => "Hello World!");
 
 app.Run();
 #endregion
@@ -123,8 +123,10 @@ app.Run(async context =>
 
 app.Run();
 #endregion
-#elif OPT
+#elif OPT  // Deploy this to Azure sample
 #region snippet_opt
+#region snippet_mime
+using Microsoft.AspNetCore.ResponseCompression;
 using ResponseCompressionSample;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -132,11 +134,18 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddResponseCompression(options =>
 {
     options.EnableForHttps = true;
+    options.Providers.Add<BrotliCompressionProvider>();
+    options.Providers.Add<GzipCompressionProvider>();
+    options.Providers.Add<CustomCompressionProvider>();
+    options.MimeTypes =
+    ResponseCompressionDefaults.MimeTypes.Concat(
+        new[] { "image/svg+xml" });
 });
 
 var app = builder.Build();
 
 app.UseResponseCompression();
+#endregion
 
 app.Map("/trickle", trickleApp =>
 {
