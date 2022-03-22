@@ -32,7 +32,8 @@ At the end of the series, you'll have an app that manages and displays movie dat
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-prereqs-vs-6.0.md)]
+* [Download Visual Studio 2022 Community with the ASP.NET and web development workload](https://c2rsetup.officeapps.live.com/c2r/downloadVS.aspx?version=VS2022&sku=Community&channel=Release&source=VSFeaturesPage&add=Microsoft.VisualStudio.Workload.ManagedDesktop&add=Microsoft.VisualStudio.Workload.NetWeb&add=Microsoft.VisualStudio.Workload.Azure&focusedui=true&cid=4005) - Free for students and open source developers.
+* [Download Visual Studio 2022 Professional with the ASP.NET and web development workload](https://c2rsetup.officeapps.live.com/c2r/downloadVS.aspx?version=VS2022&sku=Community&channel=Release&source=VSFeaturesPage&add=Microsoft.VisualStudio.Workload.ManagedDesktop&add=Microsoft.VisualStudio.Workload.NetWeb&add=Microsoft.VisualStudio.Workload.Azure&focusedui=true&cid=4005) - Free 30 day trial for professional developers. 
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
