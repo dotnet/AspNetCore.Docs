@@ -53,7 +53,7 @@ In this tutorial, you'll learn how to configure an ASP.NET Core app for authenti
     - `Microsoft.Identity.Web` includes the basic set of dependencies for authenticating with the Microsoft Identity platform.
     - `Microsoft.Identity.Web.UI` includes UI functionality encapsulated in an area named `MicrosoftIdentity`.
 
-1. Add an `AzureB2C` object to *appsettings.json*.
+1. Add an `AzureB2C` object to `appsettings.json`.
 
     :::code language="json" source="azure-ad-b2c/sample/appsettings.json" highlight="2-8":::
 
@@ -88,7 +88,7 @@ In this tutorial, you'll learn how to configure an ASP.NET Core app for authenti
  
     Adding `<partial name="_LoginPartial" />` renders the *_LoginPartial.cshtml* partial view in every page request that uses this layout.
 
-1. In *Startup.cs*, make the following changes:
+1. In `Startup.cs`, make the following changes:
 
     1. Add the following `using` directives:
     

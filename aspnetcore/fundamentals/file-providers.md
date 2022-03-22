@@ -245,7 +245,7 @@ Use [glob patterns](#glob-patterns) to specify one or more files to embed into t
 
 The sample app creates an `ManifestEmbeddedFileProvider` and passes the currently executing assembly to its constructor.
 
-*Startup.cs*:
+`Startup.cs`:
 
 ```csharp
 var manifestEmbeddedProvider = 

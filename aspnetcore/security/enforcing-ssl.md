@@ -81,7 +81,7 @@ Specify the HTTPS port using any of the following approaches:
 
   * In host configuration.
   * By setting the `ASPNETCORE_HTTPS_PORT` environment variable.
-  * By adding a top-level entry in *appsettings.json*:
+  * By adding a top-level entry in `appsettings.json`:
 
     [!code-json[](enforcing-ssl/sample-snapshot/6.x/appsettings.json?highlight=2)]
 
@@ -548,7 +548,7 @@ Specify the HTTPS port using any of the following approaches:
 
   * In host configuration.
   * By setting the `ASPNETCORE_HTTPS_PORT` environment variable.
-  * By adding a top-level entry in *appsettings.json*:
+  * By adding a top-level entry in `appsettings.json`:
 
     [!code-json[](enforcing-ssl/sample-snapshot/3.x/appsettings.json?highlight=2)]
 
@@ -596,7 +596,7 @@ The preceding highlighted code:
 
 The middleware defaults to sending a <xref:Microsoft.AspNetCore.Http.StatusCodes.Status307TemporaryRedirect> with all redirects. If you prefer to send a permanent redirect status code when the app is in a non-Development environment, wrap the middleware options configuration in a conditional check for a non-Development environment.
 
-When configuring services in *Startup.cs*:
+When configuring services in `Startup.cs`:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)

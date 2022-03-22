@@ -518,7 +518,7 @@ Many implementations must include a check that the file exists; otherwise, the f
 
 Limit the size of uploaded files.
 
-In the sample app, the size of the file is limited to 2 MB (indicated in bytes). The limit is supplied via [Configuration](xref:fundamentals/configuration/index) from the *appsettings.json* file:
+In the sample app, the size of the file is limited to 2 MB (indicated in bytes). The limit is supplied via [Configuration](xref:fundamentals/configuration/index) from the `appsettings.json` file:
 
 ```json
 {
@@ -1242,7 +1242,7 @@ Many implementations must include a check that the file exists; otherwise, the f
 
 Limit the size of uploaded files.
 
-In the sample app, the size of the file is limited to 2 MB (indicated in bytes). The limit is supplied via [Configuration](xref:fundamentals/configuration/index) from the *appsettings.json* file:
+In the sample app, the size of the file is limited to 2 MB (indicated in bytes). The limit is supplied via [Configuration](xref:fundamentals/configuration/index) from the `appsettings.json` file:
 
 ```json
 {
@@ -1977,7 +1977,7 @@ Many implementations must include a check that the file exists; otherwise, the f
 
 Limit the size of uploaded files.
 
-In the sample app, the size of the file is limited to 2 MB (indicated in bytes). The limit is supplied via [Configuration](xref:fundamentals/configuration/index) from the *appsettings.json* file:
+In the sample app, the size of the file is limited to 2 MB (indicated in bytes). The limit is supplied via [Configuration](xref:fundamentals/configuration/index) from the `appsettings.json` file:
 
 ```json
 {

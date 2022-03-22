@@ -155,7 +155,7 @@ Scaffolding updates the following:
 
 * Inserts required package references in the *MvcMovie.csproj* project file.
 * Registers the database context in the `Program.cs` file.
-* Adds a database connection string to the *appsettings.json* file.
+* Adds a database connection string to the `appsettings.json` file.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -188,14 +188,14 @@ The following highlighted code in `Program.cs` shows how to use SQLite in develo
 Scaffolding updates the following:
 
 * Registers the database context in the `Program.cs` file
-* Adds a database connection string to the *appsettings.json* file.
+* Adds a database connection string to the `appsettings.json` file.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 
 <!--
-Open a command window in the project directory. The project directory is the directory that contains the `Program.cs`, *Startup.cs*, and *.csproj* files.
+Open a command window in the project directory. The project directory is the directory that contains the `Program.cs`, `Startup.cs`, and *.csproj* files.
 
 Export the scaffold tool path:
 
@@ -223,8 +223,8 @@ When SQLite is selected, the template generated code is ready for development. T
 
 Scaffolding updates the following:
 
-* Registers the database context in `Startup.ConfigureServices` of the *Startup.cs* file.
-* Adds a database connection string to the *appsettings.json* file.
+* Registers the database context in `Startup.ConfigureServices` of the `Startup.cs` file.
+* Adds a database connection string to the `appsettings.json` file.
 -->
 
 ---
@@ -368,7 +368,7 @@ The [ASP.NET Core configuration system](xref:fundamentals/configuration/index) r
 
 ### Examine the generated database connection string
 
-Scaffolding added a connection string to the *appsettings.json* file:
+Scaffolding added a connection string to the `appsettings.json` file:
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -380,7 +380,7 @@ Scaffolding added a connection string to the *appsettings.json* file:
 
 ---
 
-For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the `ConnectionString` key from the *appsettings.json* file.
+For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the `ConnectionString` key from the `appsettings.json` file.
 
 ### The `InitialCreate` class
 
@@ -604,12 +604,12 @@ Complete the **Add MVC Controller with views, using Entity Framework** dialog:
 Scaffolding updates the following:
 
 * Inserts required package references in the *MvcMovie.csproj* project file.
-* Registers the database context in `Startup.ConfigureServices` of the *Startup.cs* file.
-* Adds a database connection string to the *appsettings.json* file.
+* Registers the database context in `Startup.ConfigureServices` of the `Startup.cs` file.
+* Adds a database connection string to the `appsettings.json` file.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Open a command window in the project directory. The project directory is the directory that contains the `Program.cs`, *Startup.cs*, and *.csproj* files.
+Open a command window in the project directory. The project directory is the directory that contains the `Program.cs`, `Startup.cs`, and *.csproj* files.
 
 On macOS and Linux, export the scaffold tool path:
 
@@ -637,12 +637,12 @@ When SQLite is selected, the template generated code is ready for development. T
 
 Scaffolding updates the following:
 
-* Registers the database context in `Startup.ConfigureServices` of the *Startup.cs* file.
-* Adds a database connection string to the *appsettings.json* file.
+* Registers the database context in `Startup.ConfigureServices` of the `Startup.cs` file.
+* Adds a database connection string to the `appsettings.json` file.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Open a command window in the project directory. The project directory is the directory that contains the `Program.cs`, *Startup.cs*, and *.csproj* files.
+Open a command window in the project directory. The project directory is the directory that contains the `Program.cs`, `Startup.cs`, and *.csproj* files.
 
 Export the scaffold tool path:
 
@@ -671,8 +671,8 @@ When SQLite is selected, the template generated code is ready for development. T
 
 Scaffolding updates the following:
 
-* Registers the database context in `Startup.ConfigureServices` of the *Startup.cs* file.
-* Adds a database connection string to the *appsettings.json* file.
+* Registers the database context in `Startup.ConfigureServices` of the `Startup.cs` file.
+* Adds a database connection string to the `appsettings.json` file.
 
 ---
 
@@ -797,7 +797,7 @@ The [ASP.NET Core configuration system](xref:fundamentals/configuration/index) r
 
 ### Examine the generated database connection string
 
-Scaffolding added a connection string to the *appsettings.json* file:
+Scaffolding added a connection string to the `appsettings.json` file:
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -809,7 +809,7 @@ Scaffolding added a connection string to the *appsettings.json* file:
 
 ---
 
-For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the `ConnectionString` key from the *appsettings.json* file.
+For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the `ConnectionString` key from the `appsettings.json` file.
 
 ### The `InitialCreate` class
 
@@ -1005,7 +1005,7 @@ The preceding code creates a [DbSet\<Movie>](xref:Microsoft.EntityFrameworkCore.
 
 ASP.NET Core is built with [dependency injection (DI)](xref:fundamentals/dependency-injection). Services (such as the EF Core DB context) must be registered with DI during application startup. Components that require these services (such as Razor Pages) are provided via constructor parameters. The constructor code that gets a DB context instance is shown later in the tutorial. In this section, you register the database context with the DI container.
 
-Add the following `using` statements at the top of *Startup.cs*:
+Add the following `using` statements at the top of `Startup.cs`:
 
 ```csharp
 using MvcMovie.Data;
@@ -1024,13 +1024,13 @@ Add the following highlighted code in `Startup.ConfigureServices`:
 
 ---
 
-The name of the connection string is passed in to the context by calling a method on a <xref:Microsoft.EntityFrameworkCore.DbContextOptions> object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
+The name of the connection string is passed in to the context by calling a method on a <xref:Microsoft.EntityFrameworkCore.DbContextOptions> object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the `appsettings.json` file.
 
 <a name="cs"></a>
 
 ## Examine the database connection string
 
-Add a connection string to the *appsettings.json* file:
+Add a connection string to the `appsettings.json` file:
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -1078,7 +1078,7 @@ The automatic creation of these files is known as *scaffolding*.
 
 # [Visual Studio Code](#tab/visual-studio-code) 
 
-* Open a command window in the project directory (The directory that contains the `Program.cs`, *Startup.cs*, and *.csproj* files).
+* Open a command window in the project directory (The directory that contains the `Program.cs`, `Startup.cs`, and *.csproj* files).
 
 * On macOS and Linux, export the scaffold tool path:
 
@@ -1096,7 +1096,7 @@ The automatic creation of these files is known as *scaffolding*.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* Open a command window in the project directory (The directory that contains the `Program.cs`, *Startup.cs*, and *.csproj* files).
+* Open a command window in the project directory (The directory that contains the `Program.cs`, `Startup.cs`, and *.csproj* files).
 
 * Run the following command:
 

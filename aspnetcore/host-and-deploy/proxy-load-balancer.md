@@ -224,7 +224,7 @@ In the preceding example, 10.0.0.100 is a proxy server. If the server is a trust
 
 [!code-csharp[](~/host-and-deploy/proxy-load-balancer/6.1samples/WebPS/Program.cs?name=snippet_kp&highlight=11)]
 
-To display the logs, add `"Microsoft.AspNetCore.HttpLogging": "Information"` to the *appsettings.Development.json* file:
+To display the logs, add `"Microsoft.AspNetCore.HttpLogging": "Information"` to the `appsettings.Development.json` file:
 
 [!code-xml[](~/host-and-deploy/proxy-load-balancer/6.1samples/WebPS/appsettings.Development.json?highlight=7)]
 

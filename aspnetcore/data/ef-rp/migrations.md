@@ -190,7 +190,7 @@ Run `Get-Help about_EntityFrameworkCore` from the PMC to get help information.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Open a command window and navigate to the project folder. The project folder contains the *Startup.cs* file.
+Open a command window and navigate to the project folder. The project folder contains the `Startup.cs` file.
 
 Enter the following in the command window:
 

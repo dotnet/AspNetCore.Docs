@@ -97,7 +97,7 @@ Claim based authorization checks are declarative - the developer embeds them wit
 
 The simplest type of claim policy looks for the presence of a claim and doesn't check the value.
 
-Build and register the policy. This takes place as part of the Authorization service configuration, which normally takes part in `ConfigureServices()` in your *Startup.cs* file.
+Build and register the policy. This takes place as part of the Authorization service configuration, which normally takes part in `ConfigureServices()` in your `Startup.cs` file.
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -243,7 +243,7 @@ Claim based authorization checks are declarative - the developer embeds them wit
 
 The simplest type of claim policy looks for the presence of a claim and doesn't check the value.
 
-Build and register the policy. This takes place as part of the Authorization service configuration, which normally takes part in `ConfigureServices()` in your *Startup.cs* file.
+Build and register the policy. This takes place as part of the Authorization service configuration, which normally takes part in `ConfigureServices()` in your `Startup.cs` file.
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
