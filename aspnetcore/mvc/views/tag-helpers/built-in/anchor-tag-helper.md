@@ -180,8 +180,8 @@ Consider the following directory hierarchy:
     * **Sessions**
       * **Pages**
         * *\_ViewStart.cshtml*
-        * *Index.cshtml*
-        * *Index.cshtml.cs*
+        * `Index.cshtml`
+        * `Index.cshtml.cs`
   * **Pages**
 
 The markup to reference the *Sessions* area *Index* Razor Page is:
@@ -211,11 +211,11 @@ Consider the following directory hierarchy:
   * **Areas**
     * **Blogs**
       * **Controllers**
-        * *HomeController.cs*
+        * `HomeController.cs`
       * **Views**
         * **Home**
-          * *AboutBlog.cshtml*
-          * *Index.cshtml*
+          * `AboutBlog.cshtml`
+          * `Index.cshtml`
         * *\_ViewStart.cshtml*
   * **Controllers**
 

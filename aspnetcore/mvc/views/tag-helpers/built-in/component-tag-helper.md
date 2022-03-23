@@ -156,7 +156,7 @@ The parameter type must be JSON serializable, which typically means that the typ
 
 In the following example, a class object is passed to the component:
 
-*MyClass.cs*:
+`MyClass.cs`:
 
 ```csharp
 public class MyClass
@@ -172,7 +172,7 @@ public class MyClass
 
 **The class must have a public parameterless constructor.**
 
-*Shared/MyComponent.razor*:
+`Shared/MyComponent.razor`:
 
 ```razor
 <h2>MyComponent</h2>
@@ -187,7 +187,7 @@ public class MyClass
 }
 ```
 
-*Pages/MyPage.cshtml*:
+`Pages/MyPage.cshtml`:
 
 ```cshtml
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

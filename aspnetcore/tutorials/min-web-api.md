@@ -212,7 +212,7 @@ app.MapGet("/", () => "Hello World!");
 
 `app.Run();` runs the app.
 
-Remove the two `"launchUrl": "swagger",` lines from the *Properties/launchSettings.json* file. When the `launchUrl` isn't specified, the web browser requests the `/` endpoint.
+Remove the two `"launchUrl": "swagger",` lines from the `Properties/launchSettings.json` file. When the `launchUrl` isn't specified, the web browser requests the `/` endpoint.
 
 Run the app. `Hello World!` is displayed. The updated `Program.cs` file contains a minimal but complete app.
 

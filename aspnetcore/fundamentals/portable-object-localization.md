@@ -66,7 +66,7 @@ This example is based on an ASP.NET Core MVC application generated from a Visual
 
 Add a reference to the `OrchardCore.Localization.Core` NuGet package.
 
-The *.csproj* file now contains a line similar to the following (version number may vary):
+The `.csproj` file now contains a line similar to the following (version number may vary):
 
 [!code-xml[](localization/sample/3.x/POLocalization/POLocalization.csproj?range=8)]
 
@@ -80,7 +80,7 @@ Add the required middleware to the `Configure` method of `Startup.cs`:
 
 [!code-csharp[](localization/sample/3.x/POLocalization/Startup.cs?name=snippet_Configure&highlight=15)]
 
-Add the following code to your Razor view of choice. *About.cshtml* is used in this example.
+Add the following code to your Razor view of choice. `About.cshtml` is used in this example.
 
 [!code-cshtml[](localization/sample/3.x/POLocalization/Views/Home/About.cshtml)]
 
@@ -142,7 +142,7 @@ var supportedCultures = new List<CultureInfo>
 };
 ```
 
-Edit the *Views/Home/About.cshtml* file to render localized, plural strings for several cardinalities:
+Edit the `Views/Home/About.cshtml` file to render localized, plural strings for several cardinalities:
 
 ```cshtml
 <p>@Localizer.Plural(1, "There is one item.", "There are {0} items.")</p>
@@ -188,7 +188,7 @@ Applications often contain the strings to be translated in several places. The s
 
 The PO localization services use the name of the full class or the view that's used when translating a string. This is accomplished by setting the value on the `msgctxt` entry.
 
-Consider a minor addition to the previous *fr.po* example. A Razor view located at *Views/Home/About.cshtml* can be defined as the file context by setting the reserved `msgctxt` entry's value:
+Consider a minor addition to the previous *fr.po* example. A Razor view located at `Views/Home/About.cshtml` can be defined as the file context by setting the reserved `msgctxt` entry's value:
 
 ```text
 msgctxt "Views.Home.About"
@@ -198,7 +198,7 @@ msgstr "Bonjour le monde!"
 
 With the `msgctxt` set as such, text translation occurs when navigating to `/Home/About?culture=fr-FR`. The translation won't occur when navigating to `/Home/Contact?culture=fr-FR`.
 
-When no specific entry is matched with a given file context, Orchard Core's fallback mechanism looks for an appropriate PO file without a context. Assuming there's no specific file context defined for *Views/Home/Contact.cshtml*, navigating to `/Home/Contact?culture=fr-FR` loads a PO file such as:
+When no specific entry is matched with a given file context, Orchard Core's fallback mechanism looks for an appropriate PO file without a context. Assuming there's no specific file context defined for `Views/Home/Contact.cshtml`, navigating to `/Home/Contact?culture=fr-FR` loads a PO file such as:
 
 [!code-text[](localization/sample/3.x/POLocalization/fr.po)]
 
@@ -282,7 +282,7 @@ This example is based on an ASP.NET Core MVC application generated from a Visual
 
 Add a reference to the `OrchardCore.Localization.Core` NuGet package.
 
-The *.csproj* file now contains a line similar to the following (version number may vary):
+The `.csproj` file now contains a line similar to the following (version number may vary):
 
 [!code-xml[](localization/sample/2.x/POLocalization/POLocalization.csproj?range=9)]
 
@@ -296,7 +296,7 @@ Add the required middleware to the `Configure` method of `Startup.cs`:
 
 [!code-csharp[](localization/sample/2.x/POLocalization/Startup.cs?name=snippet_Configure&highlight=15)]
 
-Add the following code to your Razor view of choice. *About.cshtml* is used in this example.
+Add the following code to your Razor view of choice. `About.cshtml` is used in this example.
 
 [!code-cshtml[](localization/sample/2.x/POLocalization/Views/Home/About.cshtml)]
 
@@ -358,7 +358,7 @@ var supportedCultures = new List<CultureInfo>
 };
 ```
 
-Edit the *Views/Home/About.cshtml* file to render localized, plural strings for several cardinalities:
+Edit the `Views/Home/About.cshtml` file to render localized, plural strings for several cardinalities:
 
 ```cshtml
 <p>@Localizer.Plural(1, "There is one item.", "There are {0} items.")</p>
@@ -404,7 +404,7 @@ Applications often contain the strings to be translated in several places. The s
 
 The PO localization services use the name of the full class or the view that's used when translating a string. This is accomplished by setting the value on the `msgctxt` entry.
 
-Consider a minor addition to the previous *fr.po* example. A Razor view located at *Views/Home/About.cshtml* can be defined as the file context by setting the reserved `msgctxt` entry's value:
+Consider a minor addition to the previous *fr.po* example. A Razor view located at `Views/Home/About.cshtml` can be defined as the file context by setting the reserved `msgctxt` entry's value:
 
 ```text
 msgctxt "Views.Home.About"
@@ -414,7 +414,7 @@ msgstr "Bonjour le monde!"
 
 With the `msgctxt` set as such, text translation occurs when navigating to `/Home/About?culture=fr-FR`. The translation won't occur when navigating to `/Home/Contact?culture=fr-FR`.
 
-When no specific entry is matched with a given file context, Orchard Core's fallback mechanism looks for an appropriate PO file without a context. Assuming there's no specific file context defined for *Views/Home/Contact.cshtml*, navigating to `/Home/Contact?culture=fr-FR` loads a PO file such as:
+When no specific entry is matched with a given file context, Orchard Core's fallback mechanism looks for an appropriate PO file without a context. Assuming there's no specific file context defined for `Views/Home/Contact.cshtml`, navigating to `/Home/Contact?culture=fr-FR` loads a PO file such as:
 
 [!code-text[](localization/sample/2.x/POLocalization/fr.po)]
 

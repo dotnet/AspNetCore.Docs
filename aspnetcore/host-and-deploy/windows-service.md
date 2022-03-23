@@ -239,7 +239,7 @@ When the app runs as a service, <xref:Microsoft.Extensions.Hosting.WindowsServic
 
 The app's default settings files, `appsettings.json` and `appsettings.{Environment}.json`, are loaded from the app's content root by calling [CreateDefaultBuilder during host construction](xref:fundamentals/host/generic-host#set-up-a-host).
 
-For other settings files loaded by developer code in <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration%2A>, there's no need to call <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath%2A>. In the following example, the *custom_settings.json* file exists in the app's content root and is loaded without explicitly setting a base path:
+For other settings files loaded by developer code in <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration%2A>, there's no need to call <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath%2A>. In the following example, the `custom_settings.json` file exists in the app's content root and is loaded without explicitly setting a base path:
 
 :::code language="csharp" source="windows-service/samples_snapshot/CustomSettingsExample.cs" highlight="13":::
 
@@ -562,7 +562,7 @@ When the app runs as a service, <xref:Microsoft.Extensions.Hosting.WindowsServic
 
 The app's default settings files, `appsettings.json` and `appsettings.{Environment}.json`, are loaded from the app's content root by calling [CreateDefaultBuilder during host construction](xref:fundamentals/host/generic-host#set-up-a-host).
 
-For other settings files loaded by developer code in <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration%2A>, there's no need to call <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath%2A>. In the following example, the *custom_settings.json* file exists in the app's content root and is loaded without explicitly setting a base path:
+For other settings files loaded by developer code in <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration%2A>, there's no need to call <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath%2A>. In the following example, the `custom_settings.json` file exists in the app's content root and is loaded without explicitly setting a base path:
 
 :::code language="csharp" source="windows-service/samples_snapshot/CustomSettingsExample.cs" highlight="13":::
 

@@ -29,7 +29,7 @@ If using Gradle, add the following line to the `dependencies` section of your *b
 implementation 'com.microsoft.signalr:signalr:1.0.0'
 ```
 
-If using Maven, add the following lines inside the `<dependencies>` element of your *pom.xml* file:
+If using Maven, add the following lines inside the `<dependencies>` element of your `pom.xml` file:
 
 [!code-xml[pom.xml dependency element](java-client/sample/pom.xml?name=snippet_dependencyElement)]
 

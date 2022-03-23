@@ -78,7 +78,7 @@ In ASP.NET Core 5.0, the web API templates enable the OpenAPI support by default
 	```
 * From Visual Studio: Uncheck **Enable OpenAPI support**.
 
-All *.csproj* files created for web API projects contain the [Swashbuckle.AspNetCore](https://www.nuget.org/packages/Swashbuckle.AspNetCore/) NuGet package reference.
+All `.csproj` files created for web API projects contain the [Swashbuckle.AspNetCore](https://www.nuget.org/packages/Swashbuckle.AspNetCore/) NuGet package reference.
 
 ```xml
 <ItemGroup>

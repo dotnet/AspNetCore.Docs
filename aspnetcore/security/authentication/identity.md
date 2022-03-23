@@ -181,7 +181,7 @@ In the preceding code, the code `return RedirectToPage();` needs to be a redirec
 
 <xref:Microsoft.AspNetCore.Identity.SignInManager%601.SignOutAsync%2A> clears the user's claims stored in a cookie.
 
-Post is specified in the *Pages/Shared/_LoginPartial.cshtml*:
+Post is specified in the `Pages/Shared/_LoginPartial.cshtml`:
 
 [!code-cshtml[](identity/sample/WebApp3/Pages/Shared/_LoginPartial.cshtml?highlight=15)]
 
@@ -447,7 +447,7 @@ In the preceding code, the code `return RedirectToPage();` needs to be a redirec
 
 <xref:Microsoft.AspNetCore.Identity.SignInManager%601.SignOutAsync%2A> clears the user's claims stored in a cookie.
 
-Post is specified in the *Pages/Shared/_LoginPartial.cshtml*:
+Post is specified in the `Pages/Shared/_LoginPartial.cshtml`:
 
 [!code-cshtml[](identity/sample/WebApp3/Pages/Shared/_LoginPartial.cshtml?highlight=15)]
 

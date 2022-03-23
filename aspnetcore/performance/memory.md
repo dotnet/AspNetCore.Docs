@@ -125,7 +125,7 @@ The .NET Garbage Collector has two different modes:
 * **Workstation GC**: Optimized for the desktop.
 * **Server GC**. The default GC for ASP.NET Core apps. Optimized for the server.
 
-The GC mode can be set explicitly in the project file or in the *runtimeconfig.json* file of the published app. The following markup shows setting `ServerGarbageCollection` in the project file:
+The GC mode can be set explicitly in the project file or in the `runtimeconfig.json` file of the published app. The following markup shows setting `ServerGarbageCollection` in the project file:
 
 ```xml
 <PropertyGroup>

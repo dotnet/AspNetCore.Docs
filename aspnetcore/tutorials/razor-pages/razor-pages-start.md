@@ -168,10 +168,10 @@ The following sections contain an overview of the main project folders and files
 
 Contains Razor pages and supporting files. Each Razor page is a pair of files:
 
-* A *.cshtml* file that has HTML markup with C# code using Razor syntax.
-* A *.cshtml.cs* file that has C# code that handles page events.
+* A `.cshtml` file that has HTML markup with C# code using Razor syntax.
+* A `.cshtml.cs` file that has C# code that handles page events.
 
-Supporting files have names that begin with an underscore. For example, the *_Layout.cshtml* file configures UI elements common to all pages. This file sets up the navigation menu at the top of the page and the copyright notice at the bottom of the page. For more information, see <xref:mvc/views/layout>.
+Supporting files have names that begin with an underscore. For example, the `_Layout.cshtml` file configures UI elements common to all pages. This file sets up the navigation menu at the top of the page and the copyright notice at the bottom of the page. For more information, see <xref:mvc/views/layout>.
 
 ### wwwroot folder
 
@@ -337,10 +337,10 @@ Here's an overview of the main project folders and files that you'll work with i
 
 Contains Razor pages and supporting files. Each Razor page is a pair of files:
 
-* A *.cshtml* file that has HTML markup with C# code using Razor syntax.
-* A *.cshtml.cs* file that has C# code that handles page events.
+* A `.cshtml` file that has HTML markup with C# code using Razor syntax.
+* A `.cshtml.cs` file that has C# code that handles page events.
 
-Supporting files have names that begin with an underscore. For example, the *_Layout.cshtml* file configures UI elements common to all pages. This file sets up the navigation menu at the top of the page and the copyright notice at the bottom of the page. For more information, see <xref:mvc/views/layout>.
+Supporting files have names that begin with an underscore. For example, the `_Layout.cshtml` file configures UI elements common to all pages. This file sets up the navigation menu at the top of the page and the copyright notice at the bottom of the page. For more information, see <xref:mvc/views/layout>.
 
 ### wwwroot folder
 
@@ -442,7 +442,7 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
 * After the status bar's OmniSharp flame icon turns green, a dialog asks **Required assets to build and debug are missing from 'RazorPagesMovie'. Add them?** Select **Yes**.
 
-  A *.vscode* directory, containing *launch.json* and *tasks.json* files, is added to the project's root directory.
+  A *.vscode* directory, containing `launch.json` and `tasks.json` files, is added to the project's root directory.
 
   If Visual Studio Code doesn't offer to add the assets automatically, see the **Linux** operating system guidance in <xref:blazor/tooling?pivot=linux>.
 
@@ -483,10 +483,10 @@ Here's an overview of the main project folders and files that you'll work with i
 
 Contains Razor pages and supporting files. Each Razor page is a pair of files:
 
-* A *.cshtml* file that has HTML markup with C# code using Razor syntax.
-* A *.cshtml.cs* file that has C# code that handles page events.
+* A `.cshtml` file that has HTML markup with C# code using Razor syntax.
+* A `.cshtml.cs` file that has C# code that handles page events.
 
-Supporting files have names that begin with an underscore. For example, the *_Layout.cshtml* file configures UI elements common to all pages. This file sets up the navigation menu at the top of the page and the copyright notice at the bottom of the page. For more information, see <xref:mvc/views/layout>.
+Supporting files have names that begin with an underscore. For example, the `_Layout.cshtml` file configures UI elements common to all pages. This file sets up the navigation menu at the top of the page and the copyright notice at the bottom of the page. For more information, see <xref:mvc/views/layout>.
 
 ### wwwroot folder
 

@@ -638,7 +638,7 @@ The `@model` directive specifies the type of the `Model` property. The directive
 The `@namespace` directive:
 
 * Sets the namespace of the class of the generated Razor page, MVC view, or Razor component.
-* Sets the root derived namespaces of a pages, views, or components classes from the closest imports file in the directory tree, `_ViewImports.cshtml` (views or pages) or *_Imports.razor* (Razor components).
+* Sets the root derived namespaces of a pages, views, or components classes from the closest imports file in the directory tree, `_ViewImports.cshtml` (views or pages) or `_Imports.razor` (Razor components).
 
 ```cshtml
 @namespace Your.Namespace.Here

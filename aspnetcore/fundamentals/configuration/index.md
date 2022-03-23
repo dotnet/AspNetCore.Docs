@@ -44,7 +44,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 1. [ChainedConfigurationProvider](xref:Microsoft.Extensions.Configuration.ChainedConfigurationSource) :  Adds an existing `IConfiguration` as a source. In the default configuration case, adds the [host](#hvac) configuration and setting it as the first source for the _app_ configuration.
 1. [appsettings.json](#appsettingsjson) using the [JSON configuration provider](#file-configuration-provider).
-1. `appsettings.{Environment}.json` using the [JSON configuration provider](#file-configuration-provider). For example, *appsettings*.***Production***.*json* and *appsettings*.***Development***.*json*.
+1. `appsettings.{Environment}.json` using the [JSON configuration provider](#file-configuration-provider). For example, `appsettings.Production.json` and `appsettings.Development.json`.
 1. [App secrets](xref:security/app-secrets) when the app runs in the `Development` environment.
 1. Environment variables using the [Environment Variables configuration provider](#evcp).
 1. Command-line arguments using the [Command-line configuration provider](#command-line).
@@ -70,12 +70,12 @@ The following code from the [sample download](https://github.com/dotnet/AspNetCo
 The default <xref:Microsoft.Extensions.Configuration.Json.JsonConfigurationProvider> loads configuration in the following order:
 
 1. `appsettings.json`
-1. `appsettings.{Environment}.json` : For example, the *appsettings*.***Production***.*json* and *appsettings*.***Development***.*json* files. The environment version of the file is loaded based on the [IHostingEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostingEnvironment.EnvironmentName*). For more information, see <xref:fundamentals/environments>.
+1. `appsettings.{Environment}.json` : For example, the `appsettings.Production.json` and `appsettings.Development.json` files. The environment version of the file is loaded based on the [IHostingEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostingEnvironment.EnvironmentName*). For more information, see <xref:fundamentals/environments>.
 
-*appsettings*.`Environment`.*json* values override keys in `appsettings.json`. For example, by default:
+`appsettings.{Environment}.json` values override keys in `appsettings.json`. For example, by default:
 
-* In development, *appsettings*.***Development***.*json* configuration overwrites values found in `appsettings.json`.
-* In production, *appsettings*.***Production***.*json* configuration overwrites values found in `appsettings.json`. For example, when deploying the app to Azure.
+* In development, `appsettings.Development.json` configuration overwrites values found in `appsettings.json`.
+* In production, `appsettings.Production.json` configuration overwrites values found in `appsettings.json`. For example, when deploying the app to Azure.
 
 If a configuration value must be guaranteed, see [GetValue](#getvalue). The preceding example only reads strings and doesn’t support a default value.
 
@@ -223,7 +223,7 @@ setx Logging__1__Level Information
 
 ### Environment variables set in generated launchSettings.json
 
-Environment variables set in *launchSettings.json* override those set in the system environment. For example, the ASP.NET Core web templates generate a *launchSettings.json* file that sets the endpoint configuration to:
+Environment variables set in `launchSettings.json` override those set in the system environment. For example, the ASP.NET Core web templates generate a `launchSettings.json` file that sets the endpoint configuration to:
 
 ```json
 "applicationUrl": "https://localhost:5001;http://localhost:5000"
@@ -262,7 +262,7 @@ foreach (var c in config.AsEnumerable())
 
 Using the [default](#default) configuration, the <xref:Microsoft.Extensions.Configuration.CommandLine.CommandLineConfigurationProvider> loads configuration from command-line argument key-value pairs after the following configuration sources:
 
-* `appsettings.json` and *appsettings*.`Environment`.*json* files.
+* `appsettings.json` and `appsettings.{Environment}.json` files.
 * [App secrets](xref:security/app-secrets) in the Development environment.
 * Environment variables.
 
@@ -389,7 +389,7 @@ Configuration sources are read in the order that their configuration providers a
 A typical sequence of configuration providers is:
 
 1. `appsettings.json`
-1. *appsettings*.`Environment`.*json*
+1. `appsettings.{Environment}.json`
 1. [User secrets](xref:security/app-secrets)
 1. Environment variables using the [Environment Variables configuration provider](#evcp).
 1. Command-line arguments using the [Command-line configuration provider](#clcp).
@@ -470,10 +470,10 @@ Consider the following code:
 
 The preceding code:
 
-* Configures the JSON configuration provider to load the *MyConfig.json* file with the following options:
+* Configures the JSON configuration provider to load the `MyConfig.json` file with the following options:
   * `optional: true`: The file is optional.
   * `reloadOnChange: true` : The file is reloaded when changes are saved.
-* Reads the [default configuration providers](#default) before the *MyConfig.json* file. Settings in the *MyConfig.json* file override setting in the default configuration providers, including the [Environment variables configuration provider](#evcp) and the [Command-line configuration provider](#clcp).
+* Reads the [default configuration providers](#default) before the `MyConfig.json` file. Settings in the `MyConfig.json` file override setting in the default configuration providers, including the [Environment variables configuration provider](#evcp) and the [Command-line configuration provider](#clcp).
 
 You typically ***don't*** want a custom JSON file overriding values set in the [Environment variables configuration provider](#evcp) and the [Command-line configuration provider](#clcp).
 <!-- not needed sample 
@@ -481,12 +481,12 @@ The following code clears all the configuration providers and adds several confi
 
 [!code-csharp[](index/samples/3.x/ConfigSample/ProgramJSON2.cs?name=snippet)]
 
-In the preceding code, settings in the *MyConfig.json* and  *MyConfig*.`Environment`.*json* files:
+In the preceding code, settings in the `MyConfig.json` and  *MyConfig*.`Environment`.*json* files:
 
-* Override settings in the `appsettings.json` and *appsettings*.`Environment`.*json* files.
+* Override settings in the `appsettings.json` and `appsettings.{Environment}.json` files.
 * Are overridden by settings in the [Environment variables configuration provider](#evcp) and the [Command-line configuration provider](#clcp).
 
-The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) contains the following  *MyConfig.json* file:
+The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) contains the following  `MyConfig.json` file:
 
 [!code-json[](index/samples/3.x/ConfigSample/MyConfig.json)]
 
@@ -504,12 +504,12 @@ The following code clears all the configuration providers and adds several confi
 
 [!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Program.cs?name=snippet_xml)]
 
-In the preceding code, settings in the *MyXMLFile.xml* and  *MyXMLFile*.`Environment`.*xml* files are overridden by settings in the:
+In the preceding code, settings in the `MyXMLFile.xml` and  *MyXMLFile*.`Environment`.*xml* files are overridden by settings in the:
 
 * [Environment variables configuration provider](#evcp)
 * [Command-line configuration provider](#clcp).
 
-The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/6.x/ConfigSample) contains the following *MyXMLFile.xml* file:
+The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/6.x/ConfigSample) contains the following `MyXMLFile.xml` file:
 
 [!code-xml[](index/samples/6.x/ConfigSample/MyXMLFile.xml)]
 
@@ -620,11 +620,11 @@ In the preceding code,  if `NumberKey` isn't found in the configuration, the def
 
 ## GetSection, GetChildren, and Exists
 
-For the examples that follow, consider the following *MySubsection.json* file:
+For the examples that follow, consider the following `MySubsection.json` file:
 
 [!code-json[](index/samples/6.x/ConfigSample/MySubsection.json)]
 
-The following code adds *MySubsection.json* to the configuration providers:
+The following code adds `MySubsection.json` to the configuration providers:
 
 [!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Program.cs?name=snippet_sub)]
 
@@ -658,11 +658,11 @@ The preceding code calls [ConfigurationExtensions.Exists](xref:Microsoft.Extensi
 
 The [ConfigurationBinder.Bind](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*) supports binding arrays to objects using array indices in configuration keys. Any array format that exposes a numeric key segment is capable of array binding to a [POCO](https://wikipedia.org/wiki/Plain_Old_CLR_Object) class array.
 
-Consider *MyArray.json* from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/6.x/ConfigSample):
+Consider `MyArray.json` from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/6.x/ConfigSample):
 
 [!code-json[](index/samples/6.x/ConfigSample/MyArray.json)]
 
-The following code adds *MyArray.json* to the configuration providers:
+The following code adds `MyArray.json` to the configuration providers:
 
 [!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Program.cs?name=snippet_ba)]
 
@@ -682,7 +682,7 @@ Index: 3  Value: value40
 Index: 4  Value: value50
 ```
 
-In the preceding output, Index 3 has value `value40`, corresponding to `"4": "value40",` in *MyArray.json*. The bound array indices are continuous and not bound to the configuration key index. The configuration binder isn't capable of binding null values or creating null entries in bound objects.
+In the preceding output, Index 3 has value `value40`, corresponding to `"4": "value40",` in `MyArray.json`. The bound array indices are continuous and not bound to the configuration key index. The configuration binder isn't capable of binding null values or creating null entries in bound objects.
 <!-- Not needed sample 
 The  following code loads the `array:entries` configuration with the <xref:Microsoft.Extensions.Configuration.MemoryConfigurationBuilderExtensions.AddInMemoryCollection*> extension method:
 
@@ -704,11 +704,11 @@ Index: 4  Value: value5
 
 Index &num;3 in the bound object holds the configuration data for the `array:4` configuration key and its value of `value4`. When configuration data containing an array is bound, the array indices in the configuration keys are used to iterate the configuration data when creating the object. A null value can't be retained in configuration data, and a null-valued entry isn't created in a bound object when an array in configuration keys skip one or more indices.
 
-The missing configuration item for index &num;3 can be supplied before binding to the `ArrayExample` instance by any configuration provider that reads the index &num;3 key/value pair. Consider the following *Value3.json* file from the sample download:
+The missing configuration item for index &num;3 can be supplied before binding to the `ArrayExample` instance by any configuration provider that reads the index &num;3 key/value pair. Consider the following `Value3.json` file from the sample download:
 
 [!code-json[](index/samples/3.x/ConfigSample/Value3.json)]
 
-The following code includes configuration for *Value3.json* and the `arrayDict` `Dictionary`:
+The following code includes configuration for `Value3.json` and the `arrayDict` `Dictionary`:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/ProgramArray.cs?name=snippet2)]
 
@@ -742,31 +742,31 @@ The provider has the following characteristics:
 
 Define an `EFConfigurationValue` entity for storing configuration values in the database.
 
-*Models/EFConfigurationValue.cs*:
+`Models/EFConfigurationValue.cs`:
 
 [!code-csharp[](index/samples/6.x/EfconfigSample/Models/EFConfigurationValue.cs?name=snippet1)]
 
 Add an `EFConfigurationContext` to store and access the configured values.
 
-*EFConfigurationProvider/EFConfigurationContext.cs*:
+`EFConfigurationProvider/EFConfigurationContext.cs`:
 
 [!code-csharp[](index/samples/6.x/EfconfigSample/EFConfigurationProvider/EFConfigurationContext.cs?name=snippet1)]
 
 Create a class that implements <xref:Microsoft.Extensions.Configuration.IConfigurationSource>.
 
-*EFConfigurationProvider/EFConfigurationSource.cs*:
+`EFConfigurationProvider/EFConfigurationSource.cs`:
 
 [!code-csharp[](index/samples/6.x/EfconfigSample/EFConfigurationProvider/EFConfigurationSource.cs?name=snippet1)]
 
 Create the custom configuration provider by inheriting from <xref:Microsoft.Extensions.Configuration.ConfigurationProvider>. The configuration provider initializes the database when it's empty. Since configuration keys are case-insensitive, the dictionary used to initialize the database is created with the case-insensitive comparer ([StringComparer.OrdinalIgnoreCase](xref:System.StringComparer.OrdinalIgnoreCase)).
 
-*EFConfigurationProvider/EFConfigurationProvider.cs*:
+`EFConfigurationProvider/EFConfigurationProvider.cs`:
 
 [!code-csharp[](index/samples/6.x/EfconfigSample/EFConfigurationProvider/EFConfigurationProvider.cs?name=snippet1)]
 
 An `AddEFConfiguration` extension method permits adding the configuration source to a `ConfigurationBuilder`.
 
-*Extensions/EntityFrameworkExtensions.cs*:
+`Extensions/EntityFrameworkExtensions.cs`:
 
 [!code-csharp[](index/samples/6.x/EfconfigSample/Extensions/EntityFrameworkExtensions.cs?name=snippet1)]
 
@@ -841,14 +841,14 @@ For details on the default configuration when using the [Web Host](xref:fundamen
 
 This topic only pertains to *app configuration*. Other aspects of running and hosting ASP.NET Core apps are configured using configuration files not covered in this topic:
 
-* *launch.json*/*launchSettings.json* are tooling configuration files for the Development environment, described:
+* `launch.json`/`launchSettings.json` are tooling configuration files for the Development environment, described:
   * In <xref:fundamentals/environments#development>.
   * Across the documentation set where the files are used to configure ASP.NET Core apps for Development scenarios.
 * *web.config* is a server configuration file, described in the following topics:
   * <xref:host-and-deploy/iis/index>
   * <xref:host-and-deploy/aspnet-core-module>
 
-Environment variables set in *launchSettings.json* override those set in the system environment.
+Environment variables set in `launchSettings.json` override those set in the system environment.
 
 For more information on migrating app configuration from earlier versions of ASP.NET, see <xref:migration/proper-to-2x/index#store-configurations>.
 
@@ -894,7 +894,7 @@ ASP.NET Core web apps created with [dotnet new](/dotnet/core/tools/dotnet-new) o
 
 1. [ChainedConfigurationProvider](xref:Microsoft.Extensions.Configuration.ChainedConfigurationSource) :  Adds an existing `IConfiguration` as a source. In the default configuration case, adds the [host](#hvac) configuration and setting it as the first source for the _app_ configuration.
 1. [appsettings.json](#appsettingsjson) using the [JSON configuration provider](#file-configuration-provider).
-1. `appsettings.{Environment}.json` using the [JSON configuration provider](#file-configuration-provider). For example, *appsettings*.***Production***.*json* and *appsettings*.***Development***.*json*.
+1. `appsettings.{Environment}.json` using the [JSON configuration provider](#file-configuration-provider). For example, `appsettings.Production.json` and `appsettings.Development.json`.
 1. [App secrets](xref:security/app-secrets) when the app runs in the `Development` environment.
 1. Environment variables using the [Environment Variables configuration provider](#evcp).
 1. Command-line arguments using the [Command-line configuration provider](#clcp).
@@ -920,12 +920,12 @@ The following code from the [sample download](https://github.com/dotnet/AspNetCo
 The default <xref:Microsoft.Extensions.Configuration.Json.JsonConfigurationProvider> loads configuration in the following order:
 
 1. `appsettings.json`
-1. `appsettings.{Environment}.json` : For example, the *appsettings*.***Production***.*json* and *appsettings*.***Development***.*json* files. The environment version of the file is loaded based on the [IHostingEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostingEnvironment.EnvironmentName*). For more information, see <xref:fundamentals/environments>.
+1. `appsettings.{Environment}.json` : For example, the `appsettings.Production.json` and `appsettings.Development.json` files. The environment version of the file is loaded based on the [IHostingEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostingEnvironment.EnvironmentName*). For more information, see <xref:fundamentals/environments>.
 
-*appsettings*.`Environment`.*json* values override keys in `appsettings.json`. For example, by default:
+`appsettings.{Environment}.json` values override keys in `appsettings.json`. For example, by default:
 
-* In development, *appsettings*.***Development***.*json* configuration overwrites values found in `appsettings.json`.
-* In production, *appsettings*.***Production***.*json* configuration overwrites values found in `appsettings.json`. For example, when deploying the app to Azure.
+* In development, `appsettings.Development.json` configuration overwrites values found in `appsettings.json`.
+* In production, `appsettings.Production.json` configuration overwrites values found in `appsettings.json`. For example, when deploying the app to Azure.
 
 If a configuration value must be guaranteed, see [GetValue](#getvalue). The preceding example only reads strings and doesn’t support a default value.
 
@@ -1073,7 +1073,7 @@ setx Logging__1__Level Information
 
 ### Environment variables set in generated launchSettings.json
 
-Environment variables set in *launchSettings.json* override those set in the system environment. For example, the ASP.NET Core web templates generate a *launchSettings.json* file that sets the endpoint configuration to:
+Environment variables set in `launchSettings.json` override those set in the system environment. For example, the ASP.NET Core web templates generate a `launchSettings.json` file that sets the endpoint configuration to:
 
 ```json
 "applicationUrl": "https://localhost:5001;http://localhost:5000"
@@ -1102,7 +1102,7 @@ The following code displays the environment variables and values on application 
 
 Using the [default](#default) configuration, the <xref:Microsoft.Extensions.Configuration.CommandLine.CommandLineConfigurationProvider> loads configuration from command-line argument key-value pairs after the following configuration sources:
 
-* `appsettings.json` and *appsettings*.`Environment`.*json* files.
+* `appsettings.json` and `appsettings.{Environment}.json` files.
 * [App secrets](xref:security/app-secrets) in the Development environment.
 * Environment variables.
 
@@ -1232,7 +1232,7 @@ Configuration sources are read in the order that their configuration providers a
 A typical sequence of configuration providers is:
 
 1. `appsettings.json`
-1. *appsettings*.`Environment`.*json*
+1. `appsettings.{Environment}.json`
 1. [User secrets](xref:security/app-secrets)
 1. Environment variables using the [Environment Variables configuration provider](#evcp).
 1. Command-line arguments using the [Command-line configuration provider](#clcp).
@@ -1314,10 +1314,10 @@ Consider the following code:
 
 The preceding code:
 
-* Configures the JSON configuration provider to load the *MyConfig.json* file with the following options:
+* Configures the JSON configuration provider to load the `MyConfig.json` file with the following options:
   * `optional: true`: The file is optional.
   * `reloadOnChange: true` : The file is reloaded when changes are saved.
-* Reads the [default configuration providers](#default) before the *MyConfig.json* file. Settings in the *MyConfig.json* file override setting in the default configuration providers, including the [Environment variables configuration provider](#evcp) and the [Command-line configuration provider](#clcp).
+* Reads the [default configuration providers](#default) before the `MyConfig.json` file. Settings in the `MyConfig.json` file override setting in the default configuration providers, including the [Environment variables configuration provider](#evcp) and the [Command-line configuration provider](#clcp).
 
 You typically ***don't*** want a custom JSON file overriding values set in the [Environment variables configuration provider](#evcp) and the [Command-line configuration provider](#clcp).
 
@@ -1325,12 +1325,12 @@ The following code clears all the configuration providers and adds several confi
 
 [!code-csharp[](index/samples/3.x/ConfigSample/ProgramJSON2.cs?name=snippet)]
 
-In the preceding code, settings in the *MyConfig.json* and  *MyConfig*.`Environment`.*json* files:
+In the preceding code, settings in the `MyConfig.json` and  *MyConfig*.`Environment`.*json* files:
 
-* Override settings in the `appsettings.json` and *appsettings*.`Environment`.*json* files.
+* Override settings in the `appsettings.json` and `appsettings.{Environment}.json` files.
 * Are overridden by settings in the [Environment variables configuration provider](#evcp) and the [Command-line configuration provider](#clcp).
 
-The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) contains the following  *MyConfig.json* file:
+The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) contains the following  `MyConfig.json` file:
 
 [!code-json[](index/samples/3.x/ConfigSample/MyConfig.json)]
 
@@ -1346,12 +1346,12 @@ The following code clears all the configuration providers and adds several confi
 
 [!code-csharp[](index/samples/3.x/ConfigSample/ProgramXML.cs?name=snippet)]
 
-In the preceding code, settings in the *MyXMLFile.xml* and  *MyXMLFile*.`Environment`.*xml* files are overridden by settings in the:
+In the preceding code, settings in the `MyXMLFile.xml` and  *MyXMLFile*.`Environment`.*xml* files are overridden by settings in the:
 
 * [Environment variables configuration provider](#evcp)
 * [Command-line configuration provider](#clcp).
 
-The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) contains the following *MyXMLFile.xml* file:
+The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) contains the following `MyXMLFile.xml` file:
 
 [!code-xml[](index/samples/3.x/ConfigSample/MyXMLFile.xml)]
 
@@ -1468,11 +1468,11 @@ In the preceding code,  if `NumberKey` isn't found in the configuration, the def
 
 ## GetSection, GetChildren, and Exists
 
-For the examples that follow, consider the following *MySubsection.json* file:
+For the examples that follow, consider the following `MySubsection.json` file:
 
 [!code-json[](index/samples/3.x/ConfigSample/MySubsection.json)]
 
-The following code adds *MySubsection.json* to the configuration providers:
+The following code adds `MySubsection.json` to the configuration providers:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/ProgramJSONsection.cs?name=snippet)]
 
@@ -1506,11 +1506,11 @@ The preceding code calls [ConfigurationExtensions.Exists](xref:Microsoft.Extensi
 
 The [ConfigurationBinder.Bind](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*) supports binding arrays to objects using array indices in configuration keys. Any array format that exposes a numeric key segment is capable of array binding to a [POCO](https://wikipedia.org/wiki/Plain_Old_CLR_Object) class array.
 
-Consider *MyArray.json* from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample):
+Consider `MyArray.json` from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample):
 
 [!code-json[](index/samples/3.x/ConfigSample/MyArray.json)]
 
-The following code adds *MyArray.json* to the configuration providers:
+The following code adds `MyArray.json` to the configuration providers:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/ProgramJSONarray.cs?name=snippet)]
 
@@ -1528,7 +1528,7 @@ Index: 3  Value: value40
 Index: 4  Value: value50
 ```
 
-In the preceding output, Index 3 has value `value40`, corresponding to `"4": "value40",` in *MyArray.json*. The bound array indices are continuous and not bound to the configuration key index. The configuration binder isn't capable of binding null values or creating null entries in bound objects
+In the preceding output, Index 3 has value `value40`, corresponding to `"4": "value40",` in `MyArray.json`. The bound array indices are continuous and not bound to the configuration key index. The configuration binder isn't capable of binding null values or creating null entries in bound objects
 
 The  following code loads the `array:entries` configuration with the <xref:Microsoft.Extensions.Configuration.MemoryConfigurationBuilderExtensions.AddInMemoryCollection*> extension method:
 
@@ -1550,11 +1550,11 @@ Index: 4  Value: value5
 
 Index &num;3 in the bound object holds the configuration data for the `array:4` configuration key and its value of `value4`. When configuration data containing an array is bound, the array indices in the configuration keys are used to iterate the configuration data when creating the object. A null value can't be retained in configuration data, and a null-valued entry isn't created in a bound object when an array in configuration keys skip one or more indices.
 
-The missing configuration item for index &num;3 can be supplied before binding to the `ArrayExample` instance by any configuration provider that reads the index &num;3 key/value pair. Consider the following *Value3.json* file from the sample download:
+The missing configuration item for index &num;3 can be supplied before binding to the `ArrayExample` instance by any configuration provider that reads the index &num;3 key/value pair. Consider the following `Value3.json` file from the sample download:
 
 [!code-json[](index/samples/3.x/ConfigSample/Value3.json)]
 
-The following code includes configuration for *Value3.json* and the `arrayDict` `Dictionary`:
+The following code includes configuration for `Value3.json` and the `arrayDict` `Dictionary`:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/ProgramArray.cs?name=snippet2)]
 
@@ -1587,31 +1587,31 @@ The provider has the following characteristics:
 
 Define an `EFConfigurationValue` entity for storing configuration values in the database.
 
-*Models/EFConfigurationValue.cs*:
+`Models/EFConfigurationValue.cs`:
 
 [!code-csharp[](index/samples/3.x/ConfigurationSample/Models/EFConfigurationValue.cs?name=snippet1)]
 
 Add an `EFConfigurationContext` to store and access the configured values.
 
-*EFConfigurationProvider/EFConfigurationContext.cs*:
+`EFConfigurationProvider/EFConfigurationContext.cs`:
 
 [!code-csharp[](index/samples/3.x/ConfigurationSample/EFConfigurationProvider/EFConfigurationContext.cs?name=snippet1)]
 
 Create a class that implements <xref:Microsoft.Extensions.Configuration.IConfigurationSource>.
 
-*EFConfigurationProvider/EFConfigurationSource.cs*:
+`EFConfigurationProvider/EFConfigurationSource.cs`:
 
 [!code-csharp[](index/samples/3.x/ConfigurationSample/EFConfigurationProvider/EFConfigurationSource.cs?name=snippet1)]
 
 Create the custom configuration provider by inheriting from <xref:Microsoft.Extensions.Configuration.ConfigurationProvider>. The configuration provider initializes the database when it's empty. Since configuration keys are case-insensitive, the dictionary used to initialize the database is created with the case-insensitive comparer ([StringComparer.OrdinalIgnoreCase](xref:System.StringComparer.OrdinalIgnoreCase)).
 
-*EFConfigurationProvider/EFConfigurationProvider.cs*:
+`EFConfigurationProvider/EFConfigurationProvider.cs`:
 
 [!code-csharp[](index/samples/3.x/ConfigurationSample/EFConfigurationProvider/EFConfigurationProvider.cs?name=snippet1)]
 
 An `AddEFConfiguration` extension method permits adding the configuration source to a `ConfigurationBuilder`.
 
-*Extensions/EntityFrameworkExtensions.cs*:
+`Extensions/EntityFrameworkExtensions.cs`:
 
 [!code-csharp[](index/samples/3.x/ConfigurationSample/Extensions/EntityFrameworkExtensions.cs?name=snippet1)]
 
@@ -1690,14 +1690,14 @@ For details on the default configuration when using the [Web Host](xref:fundamen
 
 This topic only pertains to *app configuration*. Other aspects of running and hosting ASP.NET Core apps are configured using configuration files not covered in this topic:
 
-* *launch.json*/*launchSettings.json* are tooling configuration files for the Development environment, described:
+* `launch.json`/`launchSettings.json` are tooling configuration files for the Development environment, described:
   * In <xref:fundamentals/environments#development>.
   * Across the documentation set where the files are used to configure ASP.NET Core apps for Development scenarios.
 * *web.config* is a server configuration file, described in the following topics:
   * <xref:host-and-deploy/iis/index>
   * <xref:host-and-deploy/aspnet-core-module>
 
-Environment variables set in *launchSettings.json* override those set in the system environment.
+Environment variables set in `launchSettings.json` override those set in the system environment.
 
 For more information on migrating app configuration from earlier versions of ASP.NET, see <xref:migration/proper-to-2x/index#store-configurations>.
 

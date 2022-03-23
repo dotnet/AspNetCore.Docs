@@ -22,7 +22,7 @@ dotnet tool install -g dotnet-grpc
 
 ## Add references
 
-`dotnet-grpc` can be used to add Protobuf references as `<Protobuf />` items to the *.csproj* file:
+`dotnet-grpc` can be used to add Protobuf references as `<Protobuf />` items to the `.csproj` file:
 
 ```xml
 <Protobuf Include="Protos\greet.proto" GrpcServices="Server" />
@@ -94,7 +94,7 @@ dotnet-grpc add-url [options] <url>
 
 ## Remove
 
-The `remove` command is used to remove Protobuf references from the *.csproj* file. The command accepts path arguments and source URLs as arguments. The tool:
+The `remove` command is used to remove Protobuf references from the `.csproj` file. The command accepts path arguments and source URLs as arguments. The tool:
 
 * Only removes the Protobuf reference.
 * Does not delete the `.proto` file, even if it was originally downloaded from a remote URL.

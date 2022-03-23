@@ -163,7 +163,7 @@ Razor Pages can be individually scaffolded by specifying the name of the new pag
 * `Details`
 * `List`
 
-For example, the following command uses the Edit template to generate *MyEdit.cshtml* and *MyEdit.cshtml.cs*:
+For example, the following command uses the Edit template to generate `MyEdit.cshtml` and `MyEdit.cshtml.cs`:
 
 ```dotnetcli
 dotnet-aspnet-codegenerator razorpage MyEdit Edit -m Movie -dc RazorPagesMovieContext -outDir Pages/Movies
@@ -208,7 +208,7 @@ Views can be individually scaffolded by specifying the name of the view and the 
 * `Details`
 * `List`
 
-For example, the following command uses the Edit template to generate *MyEdit.cshtml*:
+For example, the following command uses the Edit template to generate `MyEdit.cshtml`:
 
 ```dotnetcli
 dotnet-aspnet-codegenerator view MyEdit Edit -m Movie -dc MovieContext -outDir Views/Movies
