@@ -221,9 +221,9 @@ dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 
 * Update the gRPC client `Program.cs` file with the following code.
 
-  [!code-csharp[](~/tutorials/grpc/grpc-start/sample6/GrpcGreeterClient/Program.cs?name=snippet2&highlight=7)]
+  [!code-csharp[](~/tutorials/grpc/grpc-start/sample6/GrpcGreeterClient/Program.cs?name=snippet2&highlight=6)]
 
-* In the preceding highlighted code, replace `7042` with the `HTTPS` port number specified in *Properties\launchSettings.json of the `GrpcGreeter` service project.
+* In the preceding highlighted code, replace the localhost port number `7042` with the `HTTPS` port number specified in *Properties\launchSettings.json of the `GrpcGreeter` service project.
 
 `Program.cs` contains the entry point and logic for the gRPC client.
 
