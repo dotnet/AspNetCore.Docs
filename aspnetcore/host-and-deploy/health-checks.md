@@ -45,7 +45,7 @@ The following example creates a health check endpoint at `/healthz`:
 HEALTHCHECK CMD curl --fail http://localhost:5000/healthz || exit
 ```
 
-The preceding example use `curl` to make a HTTP request to the health check endpoint at `/healthz`. `curl` isn't included in the .NET Linux container images, but it can be added by installing the required package in the Dockerfile. Containers that use images based on Alpine Linux can use the included `wget` in place of `curl`.
+The preceding example uses `curl` to make a HTTP request to the health check endpoint at `/healthz`. `curl` isn't included in the .NET Linux container images, but it can be added by installing the required package in the Dockerfile. Containers that use images based on Alpine Linux can use the included `wget` in place of `curl`.
 
 ## Create health checks
 
