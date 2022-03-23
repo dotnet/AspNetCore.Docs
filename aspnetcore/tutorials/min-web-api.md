@@ -299,6 +299,8 @@ The following instructions post data to the app:
   * Create a new request.
   * Set the HTTP method to `POST`.
   * Set the URI to `https://localhost:<port>/todoitems`. For example: `https://localhost:5001/todoitems`
+  * Select the **Headers** tab.
+  * Add the key `Content-Type` with the value of `application/json`
   * Select the **Body** tab.
   * Select **raw**.
   * Set the type to **JSON**.
