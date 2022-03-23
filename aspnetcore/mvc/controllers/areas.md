@@ -27,8 +27,6 @@ Consider using Areas in a project when:
 * The app is made of multiple high-level functional components that can be logically separated.
 * You want to partition the app so that each functional area can be worked on independently.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/areas/31samples) ([how to download](xref:index#how-to-download-a-sample)). The download sample provides a basic app for testing areas.
-
 If you're using Razor Pages, see [Areas with Razor Pages](#areas-with-razor-pages) in this document.
 
 ## Areas for controllers with views
@@ -38,11 +36,11 @@ A typical ASP.NET Core web app using areas, controllers, and views contains the 
 * An [Area folder structure](#area-folder-structure).
 * Controllers with the [`[Area]`](#attribute) attribute to associate the controller with the area:
 
-  [!code-csharp[](areas/31samples/MVCareas/Areas/Products/Controllers/ManageController.cs?name=snippet2)]
+  [!code-csharp[](areas/60samples/MVCareas/Areas/Products/Controllers/ManageController.cs?name=snippet2)]
 
 * The [area route added to startup](#add-area-route):
 
-  [!code-csharp[](areas/31samples/MVCareas/Startup.cs?name=snippet2&highlight=3-6)]
+  [!code-csharp[](areas/60samples/MVCareas/Program.cs?name=snippet1&highlight=20-22)]
 
 ### Area folder structure
 
@@ -220,6 +218,10 @@ All *.cshtml files and files within the *wwwroot* directory are published to out
 ## Add MVC Area with Visual Studio
 
 In Solution Explorer, right click the project and select **ADD > New Scaffolded Item**, then select **MVC Area**.
+
+## Additional resources
+
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/areas/31samples) ([how to download](xref:index#how-to-download-a-sample)). The download sample provides a basic app for testing areas.
 
 :::moniker-end
 
