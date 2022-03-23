@@ -18,7 +18,7 @@ namespace ConfigSample
 
         public ContentResult OnGet()
         {
-            _array = _c.GetSection("array").Get<ArrayExample>();
+           _array = Config.GetSection("array").Get<ArrayExample>();
             if (_array == null)
             {
                 throw new ArgumentNullException(nameof(_array));
