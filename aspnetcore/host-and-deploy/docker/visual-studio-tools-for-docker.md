@@ -124,7 +124,7 @@ The Visual Studio Container Tools do the following tasks:
 
     [!code-dockerfile[](visual-studio-tools-for-docker/samples/2.1/HelloDockerTools/Dockerfile)]
 
-* Adds an `<IsServiceFabricServiceProject>` element to the ASP.NET Core project's *.csproj* file:
+* Adds an `<IsServiceFabricServiceProject>` element to the ASP.NET Core project's `.csproj` file:
 
     [!code-xml[](visual-studio-tools-for-docker/samples/2.1/HelloDockerTools/HelloDockerTools.csproj?name=snippet_IsServiceFabricServiceProject)]
 

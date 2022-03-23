@@ -491,7 +491,7 @@ When a model binding validation error occurs on the server, an [`ApiController`]
 ```
 
 > [!NOTE]
-> To demonstrate the preceding JSON response, you must either disable the form's client-side validation to permit empty field form submission or use a tool to send a request directly to the server API, such as [Fiddler](https://www.telerik.com/fiddler), [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/), or [Postman](https://www.postman.com).
+> To demonstrate the preceding JSON response, you must either disable the form's client-side validation to permit empty field form submission or use a tool to send a request directly to the server API, such as [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/) or [Postman](https://www.postman.com).
 
 If the server API returns the preceding default JSON response, it's possible for the client to parse the response in developer code to obtain the children of the `errors` node for forms validation error processing. It's inconvenient to write developer code to parse the file. Parsing the JSON manually requires producing a [`Dictionary<string, List<string>>`](xref:System.Collections.Generic.Dictionary%602) of errors after calling <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A>. Ideally, the server API should only return the validation errors:
 
@@ -1471,7 +1471,7 @@ When a model binding validation error occurs on the server, an [`ApiController`]
 ```
 
 > [!NOTE]
-> To demonstrate the preceding JSON response, you must either disable the form's client-side validation to permit empty field form submission or use a tool to send a request directly to the server API, such as [Fiddler](https://www.telerik.com/fiddler), [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/), or [Postman](https://www.postman.com).
+> To demonstrate the preceding JSON response, you must either disable the form's client-side validation to permit empty field form submission or use a tool to send a request directly to the server API, such as [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/) or [Postman](https://www.postman.com).
 
 If the server API returns the preceding default JSON response, it's possible for the client to parse the response in developer code to obtain the children of the `errors` node for forms validation error processing. It's inconvenient to write developer code to parse the file. Parsing the JSON manually requires producing a [`Dictionary<string, List<string>>`](xref:System.Collections.Generic.Dictionary%602) of errors after calling <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A>. Ideally, the server API should only return the validation errors:
 
@@ -2420,7 +2420,7 @@ When a model binding validation error occurs on the server, an [`ApiController`]
 ```
 
 > [!NOTE]
-> To demonstrate the preceding JSON response, you must either disable the form's client-side validation to permit empty field form submission or use a tool to send a request directly to the server API, such as [Fiddler](https://www.telerik.com/fiddler), [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/), or [Postman](https://www.postman.com).
+> To demonstrate the preceding JSON response, you must either disable the form's client-side validation to permit empty field form submission or use a tool to send a request directly to the server API, such as [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/) or [Postman](https://www.postman.com).
 
 If the server API returns the preceding default JSON response, it's possible for the client to parse the response in developer code to obtain the children of the `errors` node for forms validation error processing. It's inconvenient to write developer code to parse the file. Parsing the JSON manually requires producing a [`Dictionary<string, List<string>>`](xref:System.Collections.Generic.Dictionary%602) of errors after calling <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A>. Ideally, the server API should only return the validation errors:
 

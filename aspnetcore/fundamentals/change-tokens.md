@@ -68,7 +68,7 @@ The sample app demonstrates two implementations for monitoring configuration cha
 
 A configuration file's `FileSystemWatcher` can trigger multiple token callbacks for a single configuration file change. To ensure that the custom code is only run once when multiple token callbacks are triggered, the sample's implementation checks file hashes. The sample uses SHA1 file hashing. A retry is implemented with an exponential back-off. The retry is present because file locking may occur that temporarily prevents computing a new hash on a file.
 
-*Utilities/Utilities.cs*:
+`Utilities/Utilities.cs`:
 
 [!code-csharp[](change-tokens/samples/3.x/SampleApp/Utilities/Utilities.cs?name=snippet1)]
 
@@ -98,7 +98,7 @@ The sample implements:
 
 The sample establishes an `IConfigurationMonitor` interface.
 
-*Extensions/ConfigurationMonitor.cs*:
+`Extensions/ConfigurationMonitor.cs`:
 
 [!code-csharp[](change-tokens/samples/3.x/SampleApp/Extensions/ConfigurationMonitor.cs?name=snippet1)]
 
@@ -124,7 +124,7 @@ An instance `ConfigurationMonitor` is registered as a service in `Startup.Config
 
 The Index page offers the user control over configuration monitoring. The instance of `IConfigurationMonitor` is injected into the `IndexModel`.
 
-*Pages/Index.cshtml.cs*:
+`Pages/Index.cshtml.cs`:
 
 [!code-csharp[](change-tokens/samples/3.x/SampleApp/Pages/Index.cshtml.cs?name=snippet1)]
 
@@ -136,7 +136,7 @@ When `OnPostStartMonitoring` is triggered, monitoring is enabled, and the curren
 
 Buttons in the UI enable and disable monitoring.
 
-*Pages/Index.cshtml*:
+`Pages/Index.cshtml`:
 
 [!code-cshtml[](change-tokens/samples/3.x/SampleApp/Pages/Index.cshtml?name=snippet_Buttons)]
 
@@ -153,11 +153,11 @@ The sample uses `GetFileContent` to:
 * Return file content.
 * Implement a retry algorithm with exponential back-off to cover cases where a file lock temporarily prevents reading a file.
 
-*Utilities/Utilities.cs*:
+`Utilities/Utilities.cs`:
 
 [!code-csharp[](change-tokens/samples/3.x/SampleApp/Utilities/Utilities.cs?name=snippet2)]
 
-A `FileService` is created to handle cached file lookups. The `GetFileContent` method call of the service attempts to obtain file content from the in-memory cache and return it to the caller (*Services/FileService.cs*).
+A `FileService` is created to handle cached file lookups. The `GetFileContent` method call of the service attempts to obtain file content from the in-memory cache and return it to the caller (`Services/FileService.cs`).
 
 If cached content isn't found using the cache key, the following actions are taken:
 
@@ -177,7 +177,7 @@ In `Startup.ConfigureServices`:
 
 The page model loads the file's content using the service.
 
-In the Index page's `OnGet` method (*Pages/Index.cshtml.cs*):
+In the Index page's `OnGet` method (`Pages/Index.cshtml.cs`):
 
 [!code-csharp[](change-tokens/samples/3.x/SampleApp/Pages/Index.cshtml.cs?name=snippet3)]
 
@@ -266,7 +266,7 @@ The sample app demonstrates two implementations for monitoring configuration cha
 
 A configuration file's `FileSystemWatcher` can trigger multiple token callbacks for a single configuration file change. To ensure that the custom code is only run once when multiple token callbacks are triggered, the sample's implementation checks file hashes. The sample uses SHA1 file hashing. A retry is implemented with an exponential back-off. The retry is present because file locking may occur that temporarily prevents computing a new hash on a file.
 
-*Utilities/Utilities.cs*:
+`Utilities/Utilities.cs`:
 
 [!code-csharp[](change-tokens/samples/2.x/SampleApp/Utilities/Utilities.cs?name=snippet1)]
 
@@ -296,7 +296,7 @@ The sample implements:
 
 The sample establishes an `IConfigurationMonitor` interface.
 
-*Extensions/ConfigurationMonitor.cs*:
+`Extensions/ConfigurationMonitor.cs`:
 
 [!code-csharp[](change-tokens/samples/2.x/SampleApp/Extensions/ConfigurationMonitor.cs?name=snippet1)]
 
@@ -322,7 +322,7 @@ An instance `ConfigurationMonitor` is registered as a service in `Startup.Config
 
 The Index page offers the user control over configuration monitoring. The instance of `IConfigurationMonitor` is injected into the `IndexModel`.
 
-*Pages/Index.cshtml.cs*:
+`Pages/Index.cshtml.cs`:
 
 [!code-csharp[](change-tokens/samples/2.x/SampleApp/Pages/Index.cshtml.cs?name=snippet1)]
 
@@ -334,7 +334,7 @@ When `OnPostStartMonitoring` is triggered, monitoring is enabled, and the curren
 
 Buttons in the UI enable and disable monitoring.
 
-*Pages/Index.cshtml*:
+`Pages/Index.cshtml`:
 
 [!code-cshtml[](change-tokens/samples/2.x/SampleApp/Pages/Index.cshtml?name=snippet_Buttons)]
 
@@ -351,11 +351,11 @@ The sample uses `GetFileContent` to:
 * Return file content.
 * Implement a retry algorithm with exponential back-off to cover cases where a file lock temporarily prevents reading a file.
 
-*Utilities/Utilities.cs*:
+`Utilities/Utilities.cs`:
 
 [!code-csharp[](change-tokens/samples/2.x/SampleApp/Utilities/Utilities.cs?name=snippet2)]
 
-A `FileService` is created to handle cached file lookups. The `GetFileContent` method call of the service attempts to obtain file content from the in-memory cache and return it to the caller (*Services/FileService.cs*).
+A `FileService` is created to handle cached file lookups. The `GetFileContent` method call of the service attempts to obtain file content from the in-memory cache and return it to the caller (`Services/FileService.cs`).
 
 If cached content isn't found using the cache key, the following actions are taken:
 
@@ -375,7 +375,7 @@ In `Startup.ConfigureServices`:
 
 The page model loads the file's content using the service.
 
-In the Index page's `OnGet` method (*Pages/Index.cshtml.cs*):
+In the Index page's `OnGet` method (`Pages/Index.cshtml.cs`):
 
 [!code-csharp[](change-tokens/samples/2.x/SampleApp/Pages/Index.cshtml.cs?name=snippet3)]
 

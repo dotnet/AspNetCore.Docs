@@ -1,9 +1,9 @@
 ---
 title: Use web API analyzers
-author: pranavkm
+author: rick-anderson
 description: Learn about the ASP.NET Core MVC web API analyzers package.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: prkrishn
+ms.author: riande
 ms.custom: mvc
 ms.date: 09/05/2019
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]

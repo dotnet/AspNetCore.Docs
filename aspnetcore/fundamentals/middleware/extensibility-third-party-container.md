@@ -36,11 +36,11 @@ In the sample app, a middleware factory is implemented to create a `SimpleInject
 
 <xref:Microsoft.AspNetCore.Http.IMiddleware> defines middleware for the app's request pipeline.
 
-Middleware activated by an `IMiddlewareFactory` implementation (*Middleware/SimpleInjectorActivatedMiddleware.cs*):
+Middleware activated by an `IMiddlewareFactory` implementation (`Middleware/SimpleInjectorActivatedMiddleware.cs`):
 
 [!code-csharp[](extensibility-third-party-container/samples/3.x/SampleApp/Middleware/SimpleInjectorActivatedMiddleware.cs?name=snippet1)]
 
-An extension is created for the middleware (*Middleware/MiddlewareExtensions.cs*):
+An extension is created for the middleware (`Middleware/MiddlewareExtensions.cs`):
 
 [!code-csharp[](extensibility-third-party-container/samples/3.x/SampleApp/Middleware/MiddlewareExtensions.cs?name=snippet1)]
 
@@ -83,11 +83,11 @@ In the sample app, a middleware factory is implemented to create a `SimpleInject
 
 <xref:Microsoft.AspNetCore.Http.IMiddleware> defines middleware for the app's request pipeline.
 
-Middleware activated by an `IMiddlewareFactory` implementation (*Middleware/SimpleInjectorActivatedMiddleware.cs*):
+Middleware activated by an `IMiddlewareFactory` implementation (`Middleware/SimpleInjectorActivatedMiddleware.cs`):
 
 [!code-csharp[](extensibility-third-party-container/samples/2.x/SampleApp/Middleware/SimpleInjectorActivatedMiddleware.cs?name=snippet1)]
 
-An extension is created for the middleware (*Middleware/MiddlewareExtensions.cs*):
+An extension is created for the middleware (`Middleware/MiddlewareExtensions.cs`):
 
 [!code-csharp[](extensibility-third-party-container/samples/2.x/SampleApp/Middleware/MiddlewareExtensions.cs?name=snippet1)]
 

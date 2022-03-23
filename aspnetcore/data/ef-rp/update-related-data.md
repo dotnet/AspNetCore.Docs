@@ -27,7 +27,7 @@ The scaffolded code for the Course Create and Edit pages has a Department drop-d
 
 ### Create a base class for Course Create and Edit
 
-Create a *Pages/Courses/DepartmentNamePageModel.cs* file with the following code:
+Create a `Pages/Courses/DepartmentNamePageModel.cs` file with the following code:
 
 [!code-csharp[](intro/samples/cu50/Pages/Courses/DepartmentNamePageModel.cs)]
 
@@ -41,7 +41,7 @@ A Course is assigned to a Department. The base class for the Create and Edit pag
 
 ![Create course](update-related-data/_static/ddl30.png)
 
-Update *Pages/Courses/Create.cshtml.cs* with the following code:
+Update `Pages/Courses/Create.cshtml.cs` with the following code:
 
 [!code-csharp[](intro/samples/cu50/Pages/Courses/Create.cshtml.cs?highlight=7,18,27-41)]
 
@@ -55,7 +55,7 @@ The preceding code:
 
 ### Update the Course Create Razor page
 
-Update *Pages/Courses/Create.cshtml* with the following code:
+Update `Pages/Courses/Create.cshtml` with the following code:
 
 [!code-cshtml[](intro/samples/cu50/Pages/Courses/Create.cshtml?highlight=29-34)]
 
@@ -74,7 +74,7 @@ Test the Create page. The Create page displays the department name rather than t
 
 ### Update the Course Edit page model
 
-Update *Pages/Courses/Edit.cshtml.cs* with the following code:
+Update `Pages/Courses/Edit.cshtml.cs` with the following code:
 
 [!code-csharp[](intro/samples/cu50/Pages/Courses/Edit.cshtml.cs?highlight=8,28,35,36,40-66)]
 
@@ -82,7 +82,7 @@ The changes are similar to those made in the Create page model. In the preceding
 
 ### Update the Course Edit Razor page
 
-Update *Pages/Courses/Edit.cshtml* with the following code:
+Update `Pages/Courses/Edit.cshtml` with the following code:
 
 [!code-cshtml[](intro/samples/cu50/Pages/Courses/Edit.cshtml?highlight=17-20,32-35)]
 
@@ -98,13 +98,13 @@ The page contains a hidden field (`<input type="hidden">`) for the course number
 
 <xref:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.AsNoTracking%2A> can improve performance when tracking isn't required.
 
-Update *Pages/Courses/Delete.cshtml.cs* and *Pages/Courses/Details.cshtml.cs* by adding `AsNoTracking` to the `OnGetAsync` methods:
+Update `Pages/Courses/Delete.cshtml.cs` and `Pages/Courses/Details.cshtml.cs` by adding `AsNoTracking` to the `OnGetAsync` methods:
 
 [!code-csharp[](intro/samples/cu50/Pages/Courses/Delete.cshtml.cs?highlight=8-11&name=snippet)]
 
 ### Update the Course Razor pages
 
-Update *Pages/Courses/Delete.cshtml* with the following code:
+Update `Pages/Courses/Delete.cshtml` with the following code:
 
 [!code-cshtml[](intro/samples/cu50/Pages/Courses/Delete.cshtml?highlight=15-20,37)]
 
@@ -126,7 +126,7 @@ The checkboxes enable changes to courses an instructor is assigned to. A checkbo
 
 ### Create a class for assigned courses data
 
-Create *Models/SchoolViewModels/AssignedCourseData.cs* with the following code:
+Create `Models/SchoolViewModels/AssignedCourseData.cs` with the following code:
 
 [!code-csharp[](intro/samples/cu50/Models/SchoolViewModels/AssignedCourseData.cs)]
 
@@ -134,7 +134,7 @@ The `AssignedCourseData` class contains data to create the checkboxes for course
 
 ### Create an Instructor page model base class
 
-Create the *Pages/Instructors/InstructorCoursesPageModel.cs* base class:
+Create the `Pages/Instructors/InstructorCoursesPageModel.cs` base class:
 
 [!code-csharp[](intro/samples/cu50/Pages/Instructors/InstructorCoursesPageModel.cs?name=snippet_All)]
 
@@ -150,7 +150,7 @@ Another relationship the edit page has to handle is the one-to-zero-or-one relat
 
 ## Update the Instructor Edit page model
 
-Update *Pages/Instructors/Edit.cshtml.cs* with the following code:
+Update `Pages/Instructors/Edit.cshtml.cs` with the following code:
 
 [!code-csharp[](intro/samples/cu50/Pages/Instructors/Edit.cshtml.cs?name=snippet_All)]
 
@@ -181,7 +181,7 @@ If the checkbox for a course is ***not*** selected, but the course is in the `In
 
 ### Update the Instructor Edit Razor page
 
-Update *Pages/Instructors/Edit.cshtml* with the following code:
+Update `Pages/Instructors/Edit.cshtml` with the following code:
 
 [!code-cshtml[](intro/samples/cu50/Pages/Instructors/Edit.cshtml?highlight=29-59)]
 
@@ -216,7 +216,7 @@ Update the Instructor Create Razor page with code similar to the Edit page:
 
 ## Update the Instructor Delete page
 
-Update *Pages/Instructors/Delete.cshtml.cs* with the following code:
+Update `Pages/Instructors/Delete.cshtml.cs` with the following code:
 
 [!code-csharp[](intro/samples/cu50/Pages/Instructors/Delete.cshtml.cs?highlight=45-61)]
 
@@ -250,7 +250,7 @@ The scaffolded code for the Course Create and Edit pages has a Department drop-d
 
 ### Create a base class for Course Create and Edit
 
-Create a *Pages/Courses/DepartmentNamePageModel.cs* file with the following code:
+Create a `Pages/Courses/DepartmentNamePageModel.cs` file with the following code:
 
 [!code-csharp[](intro/samples/cu30/Pages/Courses/DepartmentNamePageModel.cs)]
 
@@ -264,7 +264,7 @@ A Course is assigned to a Department. The base class for the Create and Edit pag
 
 ![Create course](update-related-data/_static/ddl30.png)
 
-Update *Pages/Courses/Create.cshtml.cs* with the following code:
+Update `Pages/Courses/Create.cshtml.cs` with the following code:
 
 [!code-csharp[](intro/samples/cu30/Pages/Courses/Create.cshtml.cs?highlight=7,18,27-41)]
 
@@ -278,7 +278,7 @@ The preceding code:
 
 ### Update the Course Create Razor page
 
-Update *Pages/Courses/Create.cshtml* with the following code:
+Update `Pages/Courses/Create.cshtml` with the following code:
 
 [!code-cshtml[](intro/samples/cu30/Pages/Courses/Create.cshtml?highlight=29-34)]
 
@@ -297,7 +297,7 @@ Test the Create page. The Create page displays the department name rather than t
 
 ### Update the Course Edit page model
 
-Update *Pages/Courses/Edit.cshtml.cs* with the following code:
+Update `Pages/Courses/Edit.cshtml.cs` with the following code:
 
 [!code-csharp[](intro/samples/cu30/Pages/Courses/Edit.cshtml.cs?highlight=8,28,35,36,40-66)]
 
@@ -305,7 +305,7 @@ The changes are similar to those made in the Create page model. In the preceding
 
 ### Update the Course Edit Razor page
 
-Update *Pages/Courses/Edit.cshtml* with the following code:
+Update `Pages/Courses/Edit.cshtml` with the following code:
 
 [!code-cshtml[](intro/samples/cu30/Pages/Courses/Edit.cshtml?highlight=17-20,32-35)]
 
@@ -323,17 +323,17 @@ The page contains a hidden field (`<input type="hidden">`) for the course number
 
 ### Update the Course page models
 
-Update *Pages/Courses/Delete.cshtml.cs* with the following code to add `AsNoTracking`:
+Update `Pages/Courses/Delete.cshtml.cs` with the following code to add `AsNoTracking`:
 
 [!code-csharp[](intro/samples/cu30/Pages/Courses/Delete.cshtml.cs?highlight=29)]
 
-Make the same change in the *Pages/Courses/Details.cshtml.cs* file:
+Make the same change in the `Pages/Courses/Details.cshtml.cs` file:
 
 [!code-csharp[](intro/samples/cu30/Pages/Courses/Details.cshtml.cs?highlight=28)]
 
 ### Update the Course Razor pages
 
-Update *Pages/Courses/Delete.cshtml* with the following code:
+Update `Pages/Courses/Delete.cshtml` with the following code:
 
 [!code-cshtml[](intro/samples/cu30/Pages/Courses/Delete.cshtml?highlight=15-20,37)]
 
@@ -355,7 +355,7 @@ The checkboxes enable changes to courses an instructor is assigned to. A checkbo
 
 ### Create a class for assigned courses data
 
-Create *Models/SchoolViewModels/AssignedCourseData.cs* with the following code:
+Create `Models/SchoolViewModels/AssignedCourseData.cs` with the following code:
 
 [!code-csharp[](intro/samples/cu30/Models/SchoolViewModels/AssignedCourseData.cs)]
 
@@ -363,7 +363,7 @@ The `AssignedCourseData` class contains data to create the checkboxes for course
 
 ### Create an Instructor page model base class
 
-Create the *Pages/Instructors/InstructorCoursesPageModel.cs* base class:
+Create the `Pages/Instructors/InstructorCoursesPageModel.cs` base class:
 
 [!code-csharp[](intro/samples/cu30/Pages/Instructors/InstructorCoursesPageModel.cs?name=snippet_All)]
 
@@ -395,7 +395,7 @@ Another relationship the edit page has to handle is the one-to-zero-or-one relat
 
 ### Update the Instructor Edit page model
 
-Update *Pages/Instructors/Edit.cshtml.cs* with the following code:
+Update `Pages/Instructors/Edit.cshtml.cs` with the following code:
 
 [!code-csharp[](intro/samples/cu30/Pages/Instructors/Edit.cshtml.cs?name=snippet_All)]
 
@@ -410,7 +410,7 @@ The preceding code:
 
 ### Update the Instructor Edit Razor page
 
-Update *Pages/Instructors/Edit.cshtml* with the following code:
+Update `Pages/Instructors/Edit.cshtml` with the following code:
 
 [!code-cshtml[](intro/samples/cu30/Pages/Instructors/Edit.cshtml?highlight=29-59)]
 
@@ -434,7 +434,7 @@ Test the instructor Create page.
 
 ## Update the Instructor Delete page
 
-Update *Pages/Instructors/Delete.cshtml.cs* with the following code:
+Update `Pages/Instructors/Delete.cshtml.cs` with the following code:
 
 [!code-csharp[](intro/samples/cu30/Pages/Instructors/Delete.cshtml.cs?highlight=45-61)]
 
@@ -467,7 +467,7 @@ Examine and test the Create and Edit course pages. Create a new course. The depa
 
 ## Create a base class to share common code
 
-The Courses/Create and Courses/Edit pages each need a list of department names. Create the *Pages/Courses/DepartmentNamePageModel.cshtml.cs* base class for the Create and Edit pages:
+The Courses/Create and Courses/Edit pages each need a list of department names. Create the `Pages/Courses/DepartmentNamePageModel.cshtml.cs` base class for the Create and Edit pages:
 
 [!code-csharp[](intro/samples/cu/Pages/Courses/DepartmentNamePageModel.cshtml.cs?highlight=9,11,20-21)]
 
@@ -495,7 +495,7 @@ The preceding code:
 
 ### Update the Courses Create page
 
-Update *Pages/Courses/Create.cshtml* with the following code:
+Update `Pages/Courses/Create.cshtml` with the following code:
 
 [!code-cshtml[](intro/samples/cu/Pages/Courses/Create.cshtml?highlight=29-34)]
 
@@ -514,13 +514,13 @@ Test the Create page. The Create page displays the department name rather than t
 
 ### Update the Courses Edit page.
 
-Replace the code in *Pages/Courses/Edit.cshtml.cs* with the following code:
+Replace the code in `Pages/Courses/Edit.cshtml.cs` with the following code:
 
 [!code-csharp[](intro/samples/cu/Pages/Courses/Edit.cshtml.cs?highlight=8,28,35,36,40,47-999)]
 
 The changes are similar to those made in the Create page model. In the preceding code, `PopulateDepartmentsDropDownList` passes in the department ID, which select the department specified in the drop-down list.
 
-Update *Pages/Courses/Edit.cshtml* with the following markup:
+Update `Pages/Courses/Edit.cshtml` with the following markup:
 
 [!code-cshtml[](intro/samples/cu/Pages/Courses/Edit.cshtml?highlight=17-20,32-35)]
 
@@ -540,7 +540,7 @@ Test the updated code. Create, edit, and delete a course.
 
 [!code-csharp[](intro/samples/cu/Pages/Courses/Delete.cshtml.cs?name=snippet&highlight=21,23,40,41)]
 
-Update the `OnGetAsync` method in the *Pages/Courses/Details.cshtml.cs* file:
+Update the `OnGetAsync` method in the `Pages/Courses/Details.cshtml.cs` file:
 
 [!code-csharp[](intro/samples/cu/Pages/Courses/Details.cshtml.cs?name=snippet)]
 
@@ -580,7 +580,7 @@ The preceding code:
 
 ### Update the instructor Edit page
 
-Update *Pages/Instructors/Edit.cshtml* with the office location:
+Update `Pages/Instructors/Edit.cshtml` with the office location:
 
 [!code-cshtml[](intro/samples/cu/Pages/Instructors/Edit1.cshtml?highlight=29-33)]
 
@@ -601,13 +601,13 @@ checkboxes enable changes to courses an instructor is assigned to. A checkbox is
 
 ### Add classes to support Create and Edit instructor pages
 
-Create *Models/SchoolViewModels/AssignedCourseData.cs* with the following code:
+Create `Models/SchoolViewModels/AssignedCourseData.cs` with the following code:
 
 [!code-csharp[](intro/samples/cu/Models/SchoolViewModels/AssignedCourseData.cs)]
 
 The `AssignedCourseData` class contains data to create the checkboxes for assigned courses by an instructor.
 
-Create the *Pages/Instructors/InstructorCoursesPageModel.cshtml.cs* base class:
+Create the `Pages/Instructors/InstructorCoursesPageModel.cshtml.cs` base class:
 
 [!code-csharp[](intro/samples/cu/Pages/Instructors/InstructorCoursesPageModel.cshtml.cs)]
 
@@ -643,7 +643,7 @@ Update the instructor Create page model with the following code:
 
 [!code-csharp[](intro/samples/cu/Pages/Instructors/Create.cshtml.cs)]
 
-The preceding code is similar to the *Pages/Instructors/Edit.cshtml.cs* code.
+The preceding code is similar to the `Pages/Instructors/Edit.cshtml.cs` code.
 
 Update the instructor Create Razor page with the following markup:
 

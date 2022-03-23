@@ -318,13 +318,13 @@ To satisfy the preceding requirements, make the following changes:
 
    With the preceding change, property names in the web API's serialized JSON response match their corresponding property names in the CLR object type. For example, the `Book` class's `Author` property serializes as `Author` instead of `author`.
 
-1. In *Models/Book.cs*, annotate the `BookName` property with the [`[JsonPropertyName]`](xref:System.Text.Json.Serialization.JsonPropertyNameAttribute) attribute:
+1. In `Models/Book.cs`, annotate the `BookName` property with the [`[JsonPropertyName]`](xref:System.Text.Json.Serialization.JsonPropertyNameAttribute) attribute:
 
    :::code language="csharp" source="first-mongo-app/samples/6.x/BookStoreApi/Models/Book.cs" id="snippet_BookName" highlight="2":::
 
    The `[JsonPropertyName]` attribute's value of `Name` represents the property name in the web API's serialized JSON response.
 
-1. Add the following code to the top of *Models/Book.cs* to resolve the `[JsonProperty]` attribute reference:
+1. Add the following code to the top of `Models/Book.cs` to resolve the `[JsonProperty]` attribute reference:
 
    :::code language="csharp" source="first-mongo-app/samples/6.x/BookStoreApi/Models/Book.cs" id="snippet_UsingSystemTextJsonSerialization":::
 
@@ -557,7 +557,7 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
    :::code language="json" source="first-mongo-app/samples/3.x/SampleApp/appsettings.json" highlight="2-6":::
 
-1. Add a *BookstoreDatabaseSettings.cs* file to the *Models* directory with the following code:
+1. Add a `BookstoreDatabaseSettings.cs` file to the *Models* directory with the following code:
 
    :::code language="csharp" source="first-mongo-app/samples/3.x/SampleApp/Models/BookstoreDatabaseSettings.cs":::
 
@@ -679,13 +679,13 @@ To satisfy the preceding requirements, make the following changes:
 
    With the preceding change, property names in the web API's serialized JSON response match their corresponding property names in the CLR object type. For example, the `Book` class's `Author` property serializes as `Author`.
 
-1. In *Models/Book.cs*, annotate the `BookName` property with the following [`[JsonProperty]`](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonPropertyAttribute.htm) attribute:
+1. In `Models/Book.cs`, annotate the `BookName` property with the following [`[JsonProperty]`](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonPropertyAttribute.htm) attribute:
 
    :::code language="csharp" source="first-mongo-app/samples/3.x/SampleApp/Models/Book.cs" id="snippet_BookNameProperty" highlight="2":::
 
    The `[JsonProperty]` attribute's value of `Name` represents the property name in the web API's serialized JSON response.
 
-1. Add the following code to the top of *Models/Book.cs* to resolve the `[JsonProperty]` attribute reference:
+1. Add the following code to the top of `Models/Book.cs` to resolve the `[JsonProperty]` attribute reference:
 
    :::code language="csharp" source="first-mongo-app/samples/3.x/SampleApp/Models/Book.cs" id="snippet_NewtonsoftJsonImport":::
 

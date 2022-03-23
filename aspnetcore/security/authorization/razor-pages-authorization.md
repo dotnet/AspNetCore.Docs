@@ -58,7 +58,7 @@ Use the <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionE
 options.Conventions.AuthorizeAreaPage("Identity", "/Manage/Accounts");
 ```
 
-The page name is the path of the file without an extension relative to the pages root directory for the specified area. For example, the page name for the file *Areas/Identity/Pages/Manage/Accounts.cshtml* is */Manage/Accounts*.
+The page name is the path of the file without an extension relative to the pages root directory for the specified area. For example, the page name for the file `Areas/Identity/Pages/Manage/Accounts.cshtml` is */Manage/Accounts*.
 
 To specify an [authorization policy](xref:security/authorization/policies), use an [AuthorizeAreaPage overload](xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizeAreaPage*):
 
@@ -170,7 +170,7 @@ Use the <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionE
 options.Conventions.AuthorizeAreaPage("Identity", "/Manage/Accounts");
 ```
 
-The page name is the path of the file without an extension relative to the pages root directory for the specified area. For example, the page name for the file *Areas/Identity/Pages/Manage/Accounts.cshtml* is */Manage/Accounts*.
+The page name is the path of the file without an extension relative to the pages root directory for the specified area. For example, the page name for the file `Areas/Identity/Pages/Manage/Accounts.cshtml` is */Manage/Accounts*.
 
 To specify an [authorization policy](xref:security/authorization/policies), use an [AuthorizeAreaPage overload](xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizeAreaPage*):
 

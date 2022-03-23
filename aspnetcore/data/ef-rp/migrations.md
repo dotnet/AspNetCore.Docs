@@ -44,9 +44,9 @@ Drop-Database
   dotnet tool install --global dotnet-ef
   ```
 
-* In the command prompt, navigate to the project folder. The project folder contains the *ContosoUniversity.csproj* file.
+* In the command prompt, navigate to the project folder. The project folder contains the `ContosoUniversity.csproj` file.
 
-* Delete the *CU.db* file, or run the following command:
+* Delete the `CU.db` file, or run the following command:
 
   ```dotnetcli
   dotnet ef database drop --force
@@ -114,7 +114,7 @@ The migration name parameter (`InitialCreate` in the example) is used for the fi
 
 ## The data model snapshot
 
-Migrations creates a *snapshot* of the current data model in *Migrations/SchoolContextModelSnapshot.cs*. When add a migration is added, EF determines what changed by comparing the current data model to the snapshot file.
+Migrations creates a *snapshot* of the current data model in `Migrations/SchoolContextModelSnapshot.cs`. When add a migration is added, EF determines what changed by comparing the current data model to the snapshot file.
 
 Because the snapshot file tracks the state of the data model, a migration cannot be deleted by deleting the `<timestamp>_<migrationname>.cs` file. To back out the most recent migration, use the [`migrations remove`](/ef/core/managing-schemas/migrations/managing#remove-a-migration) command. `migrations remove` deletes the migration and ensures the snapshot is correctly reset. For more information, see [dotnet ef migrations remove](/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove).
 
@@ -241,7 +241,7 @@ Previously the DB was dropped and doesn't exist, so migrations creates the new D
 
 ### The data model snapshot
 
-Migrations create a *snapshot* of the current database schema in *Migrations/SchoolContextModelSnapshot.cs*. When you add a migration, EF determines what changed by comparing the data model to the snapshot file.
+Migrations create a *snapshot* of the current database schema in `Migrations/SchoolContextModelSnapshot.cs`. When you add a migration, EF determines what changed by comparing the data model to the snapshot file.
 
 To delete a migration, use the following command:
 

@@ -16,7 +16,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 In this section, you add search capability to the `Index` action method that lets you search movies by *genre* or *name*.
 
-Update the `Index` method found inside *Controllers/MoviesController.cs* with the following code:
+Update the `Index` method found inside `Controllers/MoviesController.cs` with the following code:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Controllers/MoviesController.cs?name=IndexSearch1)]
 
@@ -63,7 +63,7 @@ However, you can't expect users to modify the URL every time they want to search
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Controllers/MoviesController.cs?highlight=1,6,8&name=IndexSearch1)]
 
-Open the *Views/Movies/Index.cshtml* file, and add the `<form>` markup highlighted below:
+Open the `Views/Movies/Index.cshtml` file, and add the `<form>` markup highlighted below:
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Movies/IndexForm1.cshtml?highlight=13-18&range=1-19)]
 
@@ -89,7 +89,7 @@ However, even if you add this `[HttpPost]` version of the `Index` method, there'
 
 You can see the search parameter and [XSRF](xref:security/anti-request-forgery) token in the request body. Note, as mentioned in the previous tutorial, the [Form Tag Helper](xref:mvc/views/working-with-forms) generates an [XSRF](xref:security/anti-request-forgery) anti-forgery token. We're not modifying data, so we don't need to validate the token in the controller method.
 
-Because the search parameter is in the request body and not the URL, you can't capture that search information to bookmark or share with others. Fix this by specifying the request should be `HTTP GET` found in the *Views/Movies/Index.cshtml* file.
+Because the search parameter is in the request body and not the URL, you can't capture that search information to bookmark or share with others. Fix this by specifying the request should be `HTTP GET` found in the `Views/Movies/Index.cshtml` file.
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Views/Movies/IndexGet.cshtml?highlight=13&range=1-19)]
 
@@ -154,7 +154,7 @@ Test the app by searching by genre, by movie title, and by both:
 
 In this section, you add search capability to the `Index` action method that lets you search movies by *genre* or *name*.
 
-Update the `Index` method found inside *Controllers/MoviesController.cs* with the following code:
+Update the `Index` method found inside `Controllers/MoviesController.cs` with the following code:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/MoviesController.cs?name=snippet_1stSearch)]
 
@@ -201,7 +201,7 @@ However, you can't expect users to modify the URL every time they want to search
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/MoviesController.cs?highlight=1,6,8&name=snippet_1stSearch)]
 
-Open the *Views/Movies/Index.cshtml* file, and add the `<form>` markup highlighted below:
+Open the `Views/Movies/Index.cshtml` file, and add the `<form>` markup highlighted below:
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Movies/IndexForm1.cshtml?highlight=10-16&range=4-21)]
 
@@ -227,7 +227,7 @@ However, even if you add this `[HttpPost]` version of the `Index` method, there'
 
 You can see the search parameter and [XSRF](xref:security/anti-request-forgery) token in the request body. Note, as mentioned in the previous tutorial, the [Form Tag Helper](xref:mvc/views/working-with-forms) generates an [XSRF](xref:security/anti-request-forgery) anti-forgery token. We're not modifying data, so we don't need to validate the token in the controller method.
 
-Because the search parameter is in the request body and not the URL, you can't capture that search information to bookmark or share with others. Fix this by specifying the request should be `HTTP GET` found in the *Views/Movies/Index.cshtml* file.
+Because the search parameter is in the request body and not the URL, you can't capture that search information to bookmark or share with others. Fix this by specifying the request should be `HTTP GET` found in the `Views/Movies/Index.cshtml` file.
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexGet.cshtml?highlight=12&range=1-23)]
 

@@ -22,7 +22,7 @@ dotnet tool install -g Microsoft.dotnet-openapi
 
 ## Add
 
-Adding an OpenAPI reference using any of the commands on this page adds an `<OpenApiReference />` element similar to the following to the *.csproj* file:
+Adding an OpenAPI reference using any of the commands on this page adds an `<OpenApiReference />` element similar to the following to the `.csproj` file:
 
 ```xml
 <OpenApiReference Include="openapi.json" />
@@ -80,7 +80,7 @@ The preceding reference is required for the app to call the generated client cod
 
 ## Remove
 
-Removes the OpenAPI reference matching the given filename from the *.csproj* file. When the OpenAPI reference is removed, clients won't be generated. Local *.json* and *.yaml* files are deleted.
+Removes the OpenAPI reference matching the given filename from the `.csproj` file. When the OpenAPI reference is removed, clients won't be generated. Local `.json` and `.yaml` files are deleted.
 
 ### Options
 

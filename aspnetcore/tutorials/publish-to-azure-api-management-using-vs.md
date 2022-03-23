@@ -43,7 +43,7 @@ Adding Swagger definitions to the ASP.NET Core web API allows Azure API Manageme
 
 Next, you'll change the URL structure needed to access the `Get` action of the `WeatherForecastController`. Complete the following steps:
 
-1. Open the *WeatherForecastController.cs* file.
+1. Open the `WeatherForecastController.cs` file.
 1. Delete the `[Route("[controller]")]` class-level attribute. The class definition will look like the following:
 
     ```csharp

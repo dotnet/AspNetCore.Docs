@@ -16,7 +16,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 In the following sections, searching movies by *genre* or *name* is added.
 
-Add the following highlighted code to *Pages/Movies/Index.cshtml.cs*:
+Add the following highlighted code to `Pages/Movies/Index.cshtml.cs`:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie60/Pages/Movies/Index.cshtml.cs?name=snippet_newProps&highlight=3,22-27)]
 
@@ -73,7 +73,7 @@ The ASP.NET Core runtime uses [model binding](xref:mvc/models/model-binding) to 
 
 However, users cannot be expected to modify the URL to search for a movie. In this step, UI is added to filter movies. If you added the route constraint `"{searchString?}"`, remove it.
 
-Open the *Pages/Movies/Index.cshtml* file, and add the markup highlighted in the following code:
+Open the `Pages/Movies/Index.cshtml` file, and add the markup highlighted in the following code:
 
 [!code-cshtml[](razor-pages-start/snapshot_sample6/Pages/Movies/Index2.cshtml?highlight=14-19&range=1-22)]
 
@@ -109,7 +109,7 @@ Genres = new SelectList(await genreQuery.Distinct().ToListAsync());
 
 ### Add search by genre to the Razor Page
 
-Update the *Index.cshtml* [`<form>` element](https://developer.mozilla.org/docs/Web/HTML/Element/form) as highlighted in the following markup:
+Update the `Index.cshtml` [`<form>` element](https://developer.mozilla.org/docs/Web/HTML/Element/form) as highlighted in the following markup:
 
 [!code-cshtml[](razor-pages-start/snapshot_sample6/Pages/Movies/IndexFormGenreNoRating.cshtml?highlight=16-18&range=1-22)]
 
@@ -125,7 +125,7 @@ Test the app by searching by genre, by movie title, and by both.
 
 In the following sections, searching movies by *genre* or *name* is added.
 
-Add the following highlighted using statement and properties to *Pages/Movies/Index.cshtml.cs*:
+Add the following highlighted using statement and properties to `Pages/Movies/Index.cshtml.cs`:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Index.cshtml.cs?name=snippet_newProps&highlight=3,23,24,25,26,27)]
 
@@ -182,7 +182,7 @@ The ASP.NET Core runtime uses [model binding](xref:mvc/models/model-binding) to 
 
 However, users cannot be expected to modify the URL to search for a movie. In this step, UI is added to filter movies. If you added the route constraint `"{searchString?}"`, remove it.
 
-Open the *Pages/Movies/Index.cshtml* file, and add the markup highlighted in the following code:
+Open the `Pages/Movies/Index.cshtml` file, and add the markup highlighted in the following code:
 
 [!code-cshtml[](razor-pages-start/sample/RazorPagesMovie30/SnapShots/Index2.cshtml?highlight=14-19&range=1-22)]
 
@@ -211,7 +211,7 @@ The `SelectList` of genres is created by projecting the distinct genres.
 
 ### Add search by genre to the Razor Page
 
-1. Update the *Index.cshtml* [`<form>` element](https://developer.mozilla.org/docs/Web/HTML/Element/form) as highlighted in the following markup:
+1. Update the `Index.cshtml` [`<form>` element](https://developer.mozilla.org/docs/Web/HTML/Element/form) as highlighted in the following markup:
 
    [!code-cshtml[](razor-pages-start/sample/RazorPagesMovie30/SnapShots/IndexFormGenreNoRating.cshtml?highlight=16-18&range=1-26)]
 

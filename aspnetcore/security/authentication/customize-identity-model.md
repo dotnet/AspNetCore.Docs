@@ -333,7 +333,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 
 There's no need to override `OnModelCreating` in the `ApplicationDbContext` class. EF Core maps the `CustomTag` property by convention. However, the database needs to be updated to create a new `CustomTag` column. To create the column, add a migration, and then update the database as described in [Identity and EF Core Migrations](#identity-and-ef-core-migrations).
 
-Update *Pages/Shared/_LoginPartial.cshtml* and replace `IdentityUser` with `ApplicationUser`:
+Update `Pages/Shared/_LoginPartial.cshtml` and replace `IdentityUser` with `ApplicationUser`:
 
 ```cshtml
 @using Microsoft.AspNetCore.Identity
@@ -342,7 +342,7 @@ Update *Pages/Shared/_LoginPartial.cshtml* and replace `IdentityUser` with `Appl
 @inject UserManager<ApplicationUser> UserManager
 ```
 
-Update *Areas/Identity/IdentityHostingStartup.cs* or `Startup.ConfigureServices` and replace `IdentityUser` with `ApplicationUser`.
+Update `Areas/Identity/IdentityHostingStartup.cs` or `Startup.ConfigureServices` and replace `IdentityUser` with `ApplicationUser`.
 
 ```csharp
 services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)

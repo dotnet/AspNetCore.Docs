@@ -14,7 +14,7 @@ uid: fundamentals/servers/kestrel/endpoints
 
 :::moniker range=">= aspnetcore-6.0"
 
-ASP.NET Core projects are configured to bind to a random HTTP port between 5000-5300 and a random HTTPS port between 7000-7300. This default configuration is specified in the generated *Properties/launchSettings.json* file and can be overridden. If no ports are specified, Kestrel binds to:
+ASP.NET Core projects are configured to bind to a random HTTP port between 5000-5300 and a random HTTPS port between 7000-7300. This default configuration is specified in the generated `Properties/launchSettings.json` file and can be overridden. If no ports are specified, Kestrel binds to:
 
 * `http://localhost:5000`
 * `https://localhost:5001` (when a local development certificate is present)

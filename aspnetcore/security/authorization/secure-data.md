@@ -244,13 +244,13 @@ Update the delete page model to use the authorization handler to verify the user
 
 Currently, the UI shows edit and delete links for contacts the user can't modify.
 
-Inject the authorization service in the *Pages/_ViewImports.cshtml* file so it's available to all views:
+Inject the authorization service in the `Pages/_ViewImports.cshtml` file so it's available to all views:
 
 [!code-cshtml[](secure-data/samples/final6/Pages/_ViewImports.cshtml?highlight=6-99)]
 
 The preceding markup adds several `using` statements.
 
-Update the **Edit** and **Delete** links in *Pages/Contacts/Index.cshtml* so they're only rendered for users with the appropriate permissions:
+Update the **Edit** and **Delete** links in `Pages/Contacts/Index.cshtml` so they're only rendered for users with the appropriate permissions:
 
 [!code-cshtml[](secure-data/samples/final6/Pages/Contacts/Index.cshtml?highlight=34-36,62-999)]
 
@@ -329,7 +329,7 @@ Create a contact in the administrator's browser. Copy the URL for delete and edi
   dotnet new webapp -o ContactManager -au Individual -uld
   ```
 
-* Add *Models/Contact.cs*:
+* Add `Models/Contact.cs`:
                   secure-data\samples\starter6\ContactManager\Models\Contact.cs
   [!code-csharp[](secure-data/samples/starter6/Models/Contact.cs)]
 
@@ -345,7 +345,7 @@ dotnet ef migrations add initial
 dotnet ef database update
 ```
 
-* Update the **ContactManager** anchor in the *Pages/Shared/_Layout.cshtml* file:
+* Update the **ContactManager** anchor in the `Pages/Shared/_Layout.cshtml` file:
 
   ```cshtml
   <a class="nav-link text-dark" asp-area="" asp-page="/Contacts/Index">Contact Manager</a>
@@ -603,13 +603,13 @@ Update the delete page model to use the authorization handler to verify the user
 
 Currently, the UI shows edit and delete links for contacts the user can't modify.
 
-Inject the authorization service in the *Pages/_ViewImports.cshtml* file so it's available to all views:
+Inject the authorization service in the `Pages/_ViewImports.cshtml` file so it's available to all views:
 
 [!code-cshtml[](secure-data/samples/final3/Pages/_ViewImports.cshtml?highlight=6-99)]
 
 The preceding markup adds several `using` statements.
 
-Update the **Edit** and **Delete** links in *Pages/Contacts/Index.cshtml* so they're only rendered for users with the appropriate permissions:
+Update the **Edit** and **Delete** links in `Pages/Contacts/Index.cshtml` so they're only rendered for users with the appropriate permissions:
 
 [!code-cshtml[](secure-data/samples/final3/Pages/Contacts/Index.cshtml?highlight=34-36,62-999)]
 
@@ -688,7 +688,7 @@ Create a contact in the administrator's browser. Copy the URL for delete and edi
   dotnet new webapp -o ContactManager -au Individual -uld
   ```
 
-* Add *Models/Contact.cs*:
+* Add `Models/Contact.cs`:
 
   [!code-csharp[](secure-data/samples/starter2.1/Models/Contact.cs?name=snippet1)]
 
@@ -706,7 +706,7 @@ dotnet ef database update
 
 If you experience a bug with the `dotnet aspnet-codegenerator razorpage` command, see [this GitHub issue](https://github.com/aspnet/Scaffolding/issues/984).
 
-* Update the **ContactManager** anchor in the *Pages/Shared/_Layout.cshtml* file:
+* Update the **ContactManager** anchor in the `Pages/Shared/_Layout.cshtml` file:
 
  ```cshtml
 <a class="navbar-brand" asp-area="" asp-page="/Contacts/Index">ContactManager</a>
