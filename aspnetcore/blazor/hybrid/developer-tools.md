@@ -28,7 +28,7 @@ Use the following steps to use Safari developer tools with an iOS app. The follo
 
 1. Open desktop Safari.
 1. Select the **Preferences** > **Advanced** > **Show Develop** menu item.
-1. Run the .NET MAUI Blazor app in the Visual Studio emulator.
+1. Run the .NET MAUI Blazor app in the iOS simulator.
 1. Return to desktop Safari. Select **Develop** > **Simulator** > **0.0.0.0**. If multiple entries for **0.0.0.0** are present, select the entry that highlights the `BlazorWebView`. The `BlazorWebView` is highlighted in blue in the Visual Studio emulator when the correct **0.0.0.0** entry is selected.
 
    ![Safari Develop Simulator open showing two entries for "0.0.0.0" with the second entry selected because it highlights the BlazorWebView in the Visual Studio emulator UI.](~/blazor/hybrid/developer-tools/_static/ios.png)
