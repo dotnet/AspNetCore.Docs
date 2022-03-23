@@ -658,15 +658,6 @@ The following delegate approach uses the preceding `ReferenceChild` component.
 
 [!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/index/ReferenceParent2.razor)]
 
-Use a collection to reference components in a loop. In the following example:
-
-* Components are added to a <xref:System.Collections.Generic.List%601>.
-* A button is created for each component that triggers the corresponding component's `ChildMethod` by its component index in the <xref:System.Collections.Generic.List%601>.
-
-`Pages/ReferenceParent3.razor` using the preceding `ReferenceChild` component:
-
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/index/ReferenceParent3.razor)]
-
 While capturing component references use a similar syntax to [capturing element references](xref:blazor/js-interop/call-javascript-from-dotnet#capture-references-to-elements), capturing component references isn't a JavaScript interop feature. Component references aren't passed to JavaScript code. Component references are only used in .NET code.
 
 > [!IMPORTANT]
@@ -2086,15 +2077,6 @@ The following delegate approach uses the preceding `ReferenceChild` component.
 
 [!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/index/ReferenceParent2.razor)]
 
-Use a collection to reference components in a loop. In the following example:
-
-* Components are added to a <xref:System.Collections.Generic.List%601>.
-* A button is created for each component that triggers the corresponding component's `ChildMethod` by its component index in the <xref:System.Collections.Generic.List%601>.
-
-`Pages/ReferenceParent3.razor` using the preceding `ReferenceChild` component:
-
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/index/ReferenceParent3.razor)]
-
 While capturing component references use a similar syntax to [capturing element references](xref:blazor/js-interop/call-javascript-from-dotnet#capture-references-to-elements), capturing component references isn't a JavaScript interop feature. Component references aren't passed to JavaScript code. Component references are only used in .NET code.
 
 > [!IMPORTANT]
@@ -3065,15 +3047,6 @@ The following delegate approach uses the preceding `ReferenceChild` component.
 `Pages/ReferenceParent2.razor`:
 
 [!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/index/ReferenceParent2.razor)]
-
-Use a collection to reference components in a loop. In the following example:
-
-* Components are added to a <xref:System.Collections.Generic.List%601>.
-* A button is created for each component that triggers the corresponding component's `ChildMethod` by its component index in the <xref:System.Collections.Generic.List%601>.
-
-`Pages/ReferenceParent3.razor` using the preceding `ReferenceChild` component:
-
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/index/ReferenceParent3.razor)]
 
 While capturing component references use a similar syntax to [capturing element references](xref:blazor/js-interop/call-javascript-from-dotnet#capture-references-to-elements), capturing component references isn't a JavaScript interop feature. Component references aren't passed to JavaScript code. Component references are only used in .NET code.
 
