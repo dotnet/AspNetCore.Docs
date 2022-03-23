@@ -32,10 +32,6 @@ builder.Services.AddResponseCompression(options =>
     options.Providers.Add<GzipCompressionProvider>();
 });
 
-var app = builder.Build();
-
-app.UseResponseCompression();
-
 builder.Services.Configure<BrotliCompressionProviderOptions>(options =>
 {
     options.Level = CompressionLevel.Fastest;
@@ -45,6 +41,10 @@ builder.Services.Configure<GzipCompressionProviderOptions>(options =>
 {
     options.Level = CompressionLevel.SmallestSize;
 });
+
+var app = builder.Build();
+
+app.UseResponseCompression();
 
 app.MapGet("/", () => "Hello World!");
 

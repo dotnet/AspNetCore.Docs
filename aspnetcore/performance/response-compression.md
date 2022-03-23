@@ -130,7 +130,7 @@ Set the compression level with <xref:Microsoft.AspNetCore.ResponseCompression.Br
 | [CompressionLevel.NoCompression](xref:System.IO.Compression.CompressionLevel) | No compression should be performed. |
 | [CompressionLevel.Optimal](xref:System.IO.Compression.CompressionLevel) | Responses should be optimally compressed, even if the compression takes more time to complete. |
 
-[!code-csharp[](response-compression/samples/6.x/SampleApp/Program.cs?name=snippet2&highlight=17-25)]
+[!code-csharp[](response-compression/samples/6.x/SampleApp/Program.cs?name=snippet2&highlight=13-21)]
 
 ### Custom providers
 
