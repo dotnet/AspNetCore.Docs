@@ -77,7 +77,7 @@ builder.Services
     });
 ```
 
-For more information, see [Make HTTP request using IHttpClientFactory](xref:fundamentals/http-requests).
+For more information, see [Make HTTP requests using IHttpClientFactory](xref:fundamentals/http-requests).
 
 ## Configure Interceptors
 
