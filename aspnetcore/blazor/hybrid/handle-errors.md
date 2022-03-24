@@ -26,6 +26,13 @@ Ensure the Blazor Hybrid project is configured to support browser developer tool
 #endif
 ```
 
+> [!NOTE]
+> Guidance on popular browsers' developer tools can be found in the documentation of each browser maintainer:
+>
+> * [Chrome DevTools](https://developer.chrome.com/docs/devtools/)
+> * [Microsoft Edge Developer Tools overview](/microsoft-edge/devtools-guide-chromium/)
+> * [Safari Web Inspector](https://support.apple.com/guide/safari-developer/welcome/mac)
+
 :::zone pivot="windows"
 
 To use browser developer tools with a Windows app:
