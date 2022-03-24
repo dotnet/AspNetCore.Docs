@@ -55,7 +55,7 @@ To use Safari developer tools with an iOS app:
 
 :::zone pivot="macos"
 
-To use Safari developer tools with a macOS app, use the instructions for [iOS](?pivots=ios).
+Using browser developer tools with Mac Catalyst applications isn't currently supported. Please use the guidance for [iOS](?pivots=ios) applications, as the behavior should be similar between the two platforms..
 
 <!--
 To use Safari developer tools with a macOS app:
