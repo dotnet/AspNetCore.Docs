@@ -100,8 +100,8 @@ app.Map("/testfile1kb.txt", () => Results.File(
     "text/plain;charset=utf-8"));
 
 app.Map("/banner.svg", () => Results.File(
-        app.Environment.ContentRootFileProvider.GetFileInfo("banner.svg").PhysicalPath,
-        "image/svg+xml;charset=utf-8"));
+    app.Environment.ContentRootFileProvider.GetFileInfo("banner.svg").PhysicalPath,
+    "image/svg+xml;charset=utf-8"));
 
 app.MapFallback(() => LoremIpsum.Text);
 
@@ -148,8 +148,8 @@ app.Map("/testfile1kb.txt", () => Results.File(
     "text/plain;charset=utf-8"));
 
 app.Map("/banner.svg", () => Results.File(
-        app.Environment.ContentRootFileProvider.GetFileInfo("banner.svg").PhysicalPath,
-        "image/svg+xml;charset=utf-8"));
+    app.Environment.ContentRootFileProvider.GetFileInfo("banner.svg").PhysicalPath,
+    "image/svg+xml;charset=utf-8"));
 
 app.MapFallback(() => LoremIpsum.Text);
 
