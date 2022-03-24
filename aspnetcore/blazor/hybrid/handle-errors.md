@@ -18,11 +18,11 @@ This article explains how to use [browser developer tools](https://developer.moz
 
 ## Browser developer tools with .NET MAUI Blazor
 
-Ensure your current Blazor Hybrid project is configured to support browser developer tools. Add the following to your `CreateMauiApp` method if it is not already present. The `CreateMauiApp` method is likely within your main `Program` or `Startup` file and contains `services.AddMauiBlazorWebView()`.
+Ensure the Blazor Hybrid project is configured to support browser developer tools. Add the following compiler directive to the app's `CreateMauiApp` method if it isn't present. The `CreateMauiApp` method is likely within the app's `Program.cs` or `Startup.cs` file and contains `services.AddMauiBlazorWebView()`.
 
 ```csharp
 #if DEBUG
-			services.AddBlazorWebViewDeveloperTools();
+    services.AddBlazorWebViewDeveloperTools();
 #endif
 ```
 
@@ -75,7 +75,7 @@ To use Safari developer tools with an iOS app:
 
 :::zone pivot="macos"
 
-Using browser developer tools with Mac Catalyst applications isn't currently supported. Please use the guidance for [iOS](?pivots=ios) applications, as the behavior should be similar between the two platforms..
+Using browser developer tools with Mac Catalyst apps isn't currently supported. Please use the guidance for [iOS](?pivots=ios) apps, as the behavior is similar between the two platforms.
 
 <!--
 To use Safari developer tools with a macOS app:
