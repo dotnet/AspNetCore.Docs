@@ -18,7 +18,7 @@ This article explains how to use [browser developer tools](https://developer.moz
 
 ## Browser developer tools with .NET MAUI Blazor
 
-Ensure the Blazor Hybrid project is configured to support browser developer tools. Add the following compiler directive to the app's `CreateMauiApp` method if it isn't present. The `CreateMauiApp` method is likely within the app's `Program.cs` or `Startup.cs` file and contains `services.AddMauiBlazorWebView()`.
+Ensure the Blazor Hybrid project is configured to support browser developer tools. Locate the `CreateMauiApp` method in the app, which is likely within the app's `Program.cs` or `Startup.cs` file and contains `services.AddMauiBlazorWebView()`. If the services extension method to add services for `BlazorWebView` developer tools (`AddBlazorWebViewDeveloperTools`) isn't present in the app's `CreateMauiApp` method for debug app execution (compiler directive: `DEBUG`), add it to the `CreateMauiApp` method:
 
 ```csharp
 #if DEBUG
