@@ -12,18 +12,18 @@ uid: security/authorization/authorizationmiddlewareresulthandler
 
 :::moniker range=">= aspnetcore-6.0"
   
-Apps can register an <xref:Microsoft.AspNetCore.Authorization.IAuthorizationMiddlewareResultHandler> to customize how <xref:Microsoft.AspNetCore.Authorization.AuthorizationMiddleware> handles authorization results. Apps can use the `IAuthorizationMiddlewareResultHandler` to:
+Apps can register an <xref:Microsoft.AspNetCore.Authorization.IAuthorizationMiddlewareResultHandler> to customize how <xref:Microsoft.AspNetCore.Authorization.AuthorizationMiddleware> handles authorization results. Apps can use `IAuthorizationMiddlewareResultHandler` to:
 
 * Return customized responses.
 * Enhance the default challenge or forbid responses.
 
 The following code shows an example implementation of `IAuthorizationMiddlewareResultHandler` that returns a custom response for specific authorization failures:
 
-:::code language="csharp" source="customizingauthorizationmiddlewareresponse/samples_snapshot/5.x/MyAuthorizationMiddlewareResultHandler.cs":::
+:::code language="csharp" source="customizingauthorizationmiddlewareresponse/samples_snapshot/6.x/SampleAuthorizationMiddlewareResultHandler.cs":::
 
-Register `MyAuthorizationMiddlewareResultHandler` in `Startup.ConfigureServices`:
+Register this implementation of `IAuthorizationMiddlewareResultHandler` in `Program.cs`:
 
-:::code language="csharp" source="customizingauthorizationmiddlewareresponse/samples_snapshot/5.x/Startup.cs" id="snippet_ConfigureServices":::
+:::code language="csharp" source="customizingauthorizationmiddlewareresponse/samples_snapshot/6.x/Program.cs" id="snippet_Register":::
 
 :::moniker-end
 
