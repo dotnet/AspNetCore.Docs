@@ -18,12 +18,11 @@ namespace ConfigSample
 
         public ContentResult OnGet()
         {
+           _array = Config.GetSection("array").Get<ArrayExample>();
             if (_array == null)
             {
                 throw new ArgumentNullException(nameof(_array));
             }
-
-            _array = Config.GetSection("array").Get<ArrayExample>();
             string s = String.Empty;
 
             for (int j = 0; j < _array.Entries.Length; j++)
