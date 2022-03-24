@@ -20,7 +20,7 @@ groups:
       title: Blazor WebAssembly
 - id: blazor-hybrid-operating-systems
   title: Operating System
-  prompt: Choose an operating system
+  prompt: Target operating system
   pivots:
     - id: android
       title: Android
