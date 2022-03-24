@@ -31,12 +31,14 @@ In this tutorial, you learn how to:
 # [Visual Studio](#tab/visual-studio)
 
 * [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
+* [MongoDB Shell](https://www.mongodb.com/docs/mongodb-shell/install/)
 * [Visual Studio 2022 or later](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2022) with the **ASP.NET and web development** workload
 * [!INCLUDE[](~/includes/6.0-SDK.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
 * [MongoDB](https://docs.mongodb.com/manual/administration/install-community/)
+* [MongoDB Shell](https://www.mongodb.com/docs/mongodb-shell/install/)
 * [Visual Studio Code](https://code.visualstudio.com/download)
 * [C# for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)
 * [!INCLUDE[](~/includes/6.0-SDK.md)]
@@ -44,6 +46,7 @@ In this tutorial, you learn how to:
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/)
+* [MongoDB Shell](https://www.mongodb.com/docs/mongodb-shell/install/)
 * [Visual Studio for Mac 2022 or later](https://visualstudio.microsoft.com/vs/mac/): Select the *Preview* channel from within Visual Studio. For more information, see [Install a preview version of Visual Studio for Mac](/visualstudio/mac/install-preview).
 * [!INCLUDE[](~/includes/6.0-SDK.md)]
 
@@ -53,7 +56,7 @@ In this tutorial, you learn how to:
 
 On Windows, MongoDB is installed at *C:\\Program Files\\MongoDB* by default. Add *C:\\Program Files\\MongoDB\\Server\\\<version_number>\\bin* to the `Path` environment variable. This change enables MongoDB access from anywhere on your development machine.
 
-Use the mongo Shell in the following steps to create a database, make collections, and store documents. For more information on mongo Shell commands, see [`mongo`](https://docs.mongodb.com/v4.4/reference/program/mongo/).
+Use the previously installed MongoDB Shell in the following steps to create a database, make collections, and store documents. For more information on MongoDB Shell commands, see [`mongosh`](https://docs.mongodb.com/mongodb-shell/run-commands/).
 
 1. Choose a directory on your development machine for storing the data. For example, *C:\\BooksData* on Windows. Create the directory if it doesn't exist. The mongo Shell doesn't create new directories.
 1. Open a command shell. Run the following command to connect to MongoDB on default port 27017. Remember to replace `<data_directory_path>` with the directory you chose in the previous step.
@@ -65,7 +68,7 @@ Use the mongo Shell in the following steps to create a database, make collection
 1. Open another command shell instance. Connect to the default test database by running the following command:
 
    ```console
-   mongo
+   mongosh
    ```
 
 1. Run the following command in a command shell:
