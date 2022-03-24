@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace RPareas.Pages
@@ -14,7 +14,7 @@ namespace RPareas.Pages
 
         public void OnGet()
         {
-
+            ViewData["routeInfo"] = PageContext.ToCtxStringP();
         }
     }
 }

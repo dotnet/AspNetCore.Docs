@@ -1,12 +1,10 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace RPareas.Areas.Products.Pages
+namespace RPareas.Areas.Products.Pages;
+
+public class IndexModel : PageModel
 {
-    public class IndexModel : PageModel
-    {
-        public void OnGet()
-        {
-            ViewData["routeInfo"] = PageContext.ToCtxStringP();
-        }
-    }
+    public ContentResult OnGet() =>
+     Content(PageContext.ToCtxStringP());    
 }
