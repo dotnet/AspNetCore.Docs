@@ -191,8 +191,8 @@ If you have an exceptional condition you *do* want to propagate to the client, y
 > [!NOTE]
 > SignalR only sends the `Message` property of the exception to the client. The stack trace and other properties on the exception aren't available to the client.
 
-## Related resources
+## Additional resources
 
-* [Intro to ASP.NET Core SignalR](xref:signalr/introduction)
-* [JavaScript client](xref:signalr/javascript-client)
-* [Publish to Azure](xref:signalr/publish-to-azure-web-app)
+* <xref:signalr/introduction>
+* <xref:signalr/javascript-client>
+* <xref:signalr/publish-to-azure-web-app>
