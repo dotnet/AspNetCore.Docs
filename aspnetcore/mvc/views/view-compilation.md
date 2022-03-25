@@ -22,7 +22,7 @@ Build-time and publish-time compilation of Razor files is enabled by default by 
 In addition to build-time compilation, updating Razor views and Razor Pages is supported using <xref:test/hot-reload>.
 
 > [!NOTE]
-> When enabled, runtime compilation currently disables [.NET Hot Reload](xref:test/hot-reload).
+> When enabled, runtime compilation currently disables [.NET Hot Reload](xref:test/hot-reload). Runtime compilation with Hot Reload is planned for a future release.
 
 ## Enable runtime compilation for all environments
 
