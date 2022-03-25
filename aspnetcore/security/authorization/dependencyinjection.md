@@ -26,7 +26,8 @@ public class SampleAuthorizationHandler : AuthorizationHandler<SampleRequirement
     public SampleAuthorizationHandler(ILoggerFactory loggerFactory)
         => _logger = loggerFactory.CreateLogger(GetType().FullName);
 
-    protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, SampleRequirement requirement)
+    protected override Task HandleRequirementAsync(
+        AuthorizationHandlerContext context, SampleRequirement requirement)
     {
         _logger.LogInformation("Inside my handler");
         
@@ -66,7 +67,8 @@ public class SampleAuthorizationHandler : AuthorizationHandler<SampleRequirement
     public SampleAuthorizationHandler(ILoggerFactory loggerFactory)
         => _logger = loggerFactory.CreateLogger(GetType().FullName);
 
-    protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, SampleRequirement requirement)
+    protected override Task HandleRequirementAsync(
+        AuthorizationHandlerContext context, SampleRequirement requirement)
     {
         _logger.LogInformation("Inside my handler");
         
