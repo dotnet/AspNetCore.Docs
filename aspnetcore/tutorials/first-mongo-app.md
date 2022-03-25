@@ -5,7 +5,7 @@ description: This tutorial demonstrates how to create an ASP.NET Core web API us
 monikerRange: '>= aspnetcore-3.1'
 ms.author: scaddie
 ms.custom: "mvc, seodec18"
-ms.date: 11/09/2021
+ms.date: 03/24/2022
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mongo-app
 ---
@@ -28,27 +28,20 @@ In this tutorial, you learn how to:
 
 ## Prerequisites
 
-# [Visual Studio](#tab/visual-studio)
-
 * [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
 * [MongoDB Shell](https://www.mongodb.com/docs/mongodb-shell/install/)
-* [Visual Studio 2022 or later](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2022) with the **ASP.NET and web development** workload
-* [!INCLUDE[](~/includes/6.0-SDK.md)]
+
+# [Visual Studio](#tab/visual-studio)
+
+[!INCLUDE[](~/includes/net-prereqs-vs-6.0.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* [MongoDB](https://docs.mongodb.com/manual/administration/install-community/)
-* [MongoDB Shell](https://www.mongodb.com/docs/mongodb-shell/install/)
-* [Visual Studio Code](https://code.visualstudio.com/download)
-* [C# for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)
-* [!INCLUDE[](~/includes/6.0-SDK.md)]
+[!INCLUDE[](~/includes/net-prereqs-vsc-6.0.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/)
-* [MongoDB Shell](https://www.mongodb.com/docs/mongodb-shell/install/)
-* [Visual Studio for Mac 2022 or later](https://visualstudio.microsoft.com/vs/mac/): Select the *Preview* channel from within Visual Studio. For more information, see [Install a preview version of Visual Studio for Mac](/visualstudio/mac/install-preview).
-* [!INCLUDE[](~/includes/6.0-SDK.md)]
+[!INCLUDE[](~/includes/net-prereqs-mac-6.0.md)]
 
 ---
 

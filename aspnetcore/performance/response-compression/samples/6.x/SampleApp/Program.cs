@@ -77,50 +77,33 @@ using ResponseCompressionSample;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//builder.Services.AddResponseCompression();
+// builder.Services.AddResponseCompression();
 
 var app = builder.Build();
 
-//app.UseResponseCompression();
+// app.UseResponseCompression();
 
-app.Map("/trickle", trickleApp =>
+app.Map("/trickle", async (HttpResponse httpResponse) =>
 {
-    trickleApp.Run(async context =>
+    httpResponse.ContentType = "text/plain;charset=utf-8";
+
+    for (int i = 0; i < 20; i++)
     {
-        context.Response.ContentType = "text/plain";
-
-        for (int i = 0; i < 20; i++)
-        {
-            await context.Response.WriteAsync("a");
-            await context.Response.Body.FlushAsync();
-            await Task.Delay(TimeSpan.FromMilliseconds(50));
-        }
-    });
+        await httpResponse.WriteAsync("a");
+        await httpResponse.Body.FlushAsync();
+        await Task.Delay(TimeSpan.FromMilliseconds(50));
+    }
 });
 
-app.Map("/testfile1kb.txt", fileApp =>
-{
-    fileApp.Run(context =>
-    {
-        context.Response.ContentType = "text/plain";
-        return context.Response.SendFileAsync("testfile1kb.txt");
-    });
-});
+app.Map("/testfile1kb.txt", () => Results.File(
+    app.Environment.ContentRootFileProvider.GetFileInfo("testfile1kb.txt").PhysicalPath,
+    "text/plain;charset=utf-8"));
 
-app.Map("/banner.svg", fileApp =>
-{
-    fileApp.Run(context =>
-    {
-        context.Response.ContentType = "image/svg+xml";
-        return context.Response.SendFileAsync("banner.svg");
-    });
-});
+app.Map("/banner.svg", () => Results.File(
+    app.Environment.ContentRootFileProvider.GetFileInfo("banner.svg").PhysicalPath,
+    "image/svg+xml;charset=utf-8"));
 
-app.Run(async context =>
-{
-    context.Response.ContentType = "text/plain";
-    await context.Response.WriteAsync(LoremIpsum.Text);
-});
+app.MapFallback(() => LoremIpsum.Text);
 
 app.Run();
 #endregion
@@ -148,44 +131,27 @@ var app = builder.Build();
 app.UseResponseCompression();
 #endregion
 
-app.Map("/trickle", trickleApp =>
+app.Map("/trickle", async (HttpResponse httpResponse) =>
 {
-    trickleApp.Run(async context =>
+    httpResponse.ContentType = "text/plain;charset=utf-8";
+
+    for (int i = 0; i < 20; i++)
     {
-        context.Response.ContentType = "text/plain";
-
-        for (int i = 0; i < 20; i++)
-        {
-            await context.Response.WriteAsync("a");
-            await context.Response.Body.FlushAsync();
-            await Task.Delay(TimeSpan.FromMilliseconds(25));
-        }
-    });
+        await httpResponse.WriteAsync("a");
+        await httpResponse.Body.FlushAsync();
+        await Task.Delay(TimeSpan.FromMilliseconds(50));
+    }
 });
 
-app.Map("/testfile1kb.txt", fileApp =>
-{
-    fileApp.Run(context =>
-    {
-        context.Response.ContentType = "text/plain";
-        return context.Response.SendFileAsync("testfile1kb.txt");
-    });
-});
+app.Map("/testfile1kb.txt", () => Results.File(
+    app.Environment.ContentRootFileProvider.GetFileInfo("testfile1kb.txt").PhysicalPath,
+    "text/plain;charset=utf-8"));
 
-app.Map("/banner.svg", fileApp =>
-{
-    fileApp.Run(context =>
-    {
-        context.Response.ContentType = "image/svg+xml";
-        return context.Response.SendFileAsync("banner.svg");
-    });
-});
+app.Map("/banner.svg", () => Results.File(
+    app.Environment.ContentRootFileProvider.GetFileInfo("banner.svg").PhysicalPath,
+    "image/svg+xml;charset=utf-8"));
 
-app.Run(async context =>
-{
-    context.Response.ContentType = "text/plain";
-    await context.Response.WriteAsync(LoremIpsum.Text);
-});
+app.MapFallback(() => LoremIpsum.Text);
 
 app.Run();
 #endregion
