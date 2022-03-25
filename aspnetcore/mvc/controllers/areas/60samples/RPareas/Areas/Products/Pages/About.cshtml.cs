@@ -1,10 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Docs.Samples;
 
 namespace RPareas.Areas.Products.Pages;
 
 public class AboutModel : PageModel
 {
     public ContentResult OnGet() =>
-     Content(PageContext.ToCtxStringP());
+     Content(PageContext.MyDisplayRouteInfoRP().ToString()!);
 }

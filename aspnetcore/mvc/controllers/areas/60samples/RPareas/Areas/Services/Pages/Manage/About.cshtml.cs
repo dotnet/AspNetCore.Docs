@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Docs.Samples;
 
 namespace RPareas.Areas.Services.Pages.Manage
 {
@@ -6,7 +7,7 @@ namespace RPareas.Areas.Services.Pages.Manage
     {
         public void OnGet()
         {
-            ViewData["routeInfo"] = PageContext.ToCtxStringP();
+            ViewData["routeInfo"] = PageContext.MyDisplayRouteInfoRP();
         }
     }
 }

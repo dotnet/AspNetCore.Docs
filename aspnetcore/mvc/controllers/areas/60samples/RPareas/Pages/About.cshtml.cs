@@ -1,12 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Docs.Samples;
 
-namespace RPareas.Pages
+namespace RPareas.Pages;
+
+public class AboutModel : PageModel
 {
-    public class AboutModel : PageModel
-    {
-        public void OnGet()
-        {
-        }
-    }
+    public ContentResult OnGet() =>
+     Content(PageContext.MyDisplayRouteInfoRP().ToString()!);
 }
