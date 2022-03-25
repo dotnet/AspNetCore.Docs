@@ -6,6 +6,6 @@ namespace RPareas.Areas.Products.Pages;
 
 public class AboutModel : PageModel
 {
-    public ContentResult OnGet() =>
-     Content(PageContext.MyDisplayRouteInfoRP().ToString()!);
+    public IActionResult OnGet() =>
+        PageContext.MyDisplayRouteInfoRP();
 }
