@@ -5,7 +5,7 @@ description: Learn how to create gRPC clients using the client factory.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 02/25/2022
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/clientfactory
 ---
 # gRPC client factory integration in .NET
