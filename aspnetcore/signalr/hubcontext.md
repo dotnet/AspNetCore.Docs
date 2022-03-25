@@ -139,8 +139,8 @@ This is useful when:
 
 :::moniker-end
 
-## Related resources
+## Additional resources
 
-* [Get started](xref:tutorials/signalr)
-* [Hubs](xref:signalr/hubs)
-* [Publish to Azure](xref:signalr/publish-to-azure-web-app)
+* <xref:tutorials/signalr>
+* <xref:signalr/hubs>
+* <xref:signalr/publish-to-azure-web-app>

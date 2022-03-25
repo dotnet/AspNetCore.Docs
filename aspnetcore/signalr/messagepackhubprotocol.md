@@ -13,7 +13,7 @@ uid: signalr/messagepackhubprotocol
 # Use MessagePack Hub Protocol in SignalR for ASP.NET Core
 :::moniker range=">= aspnetcore-6.0"
 
-This article assumes the reader is familiar with the topics covered in [Get Started](xref:tutorials/signalr).
+This article assumes the reader is familiar with the topics covered in <xref:tutorials/signalr>.
 
 ## What is MessagePack?
 
@@ -179,17 +179,16 @@ For more information on this limitation, see GitHub issue [aspnet/SignalR#2937](
 
 In the java client, `char` objects will be serialized as one-character `String` objects. This is in contrast with the C# and JavaScript client, which serialize them as `short` objects. The MessagePack spec itself does not define behavior for `char` objects, so it is up to the library author to determine how to serialize them. The difference in behavior between our clients is a result of the libraries we used for our implementations.
 
-## Related resources
+## Additional resources
 
-* [Get Started](xref:tutorials/signalr)
-* [.NET client](xref:signalr/dotnet-client)
-* [JavaScript client](xref:signalr/javascript-client)
+* <xref:signalr/dotnet-client>
+* <xref:signalr/javascript-client>
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-This article assumes the reader is familiar with the topics covered in [Get Started](xref:tutorials/signalr).
+This article assumes the reader is familiar with the topics covered in <xref:tutorials/signalr>.
 
 ## What is MessagePack?
 
@@ -371,17 +370,16 @@ For more information on this limitation, see GitHub issue [aspnet/SignalR#2937](
 
 In the java client, `char` objects will be serialized as one-character `String` objects. This is in contrast with the C# and JavaScript client, which serialize them as `short` objects. The MessagePack spec itself does not define behavior for `char` objects, so it is up to the library author to determine how to serialize them. The difference in behavior between our clients is a result of the libraries we used for our implementations.
 
-## Related resources
+## Additional resources
 
-* [Get Started](xref:tutorials/signalr)
-* [.NET client](xref:signalr/dotnet-client)
-* [JavaScript client](xref:signalr/javascript-client)
+* <xref:signalr/dotnet-client>
+* <xref:signalr/javascript-client>
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
-This article assumes the reader is familiar with the topics covered in [Get Started](xref:tutorials/signalr).
+This article assumes the reader is familiar with the topics covered in <xref:tutorials/signalr>.
 
 ## What is MessagePack?
 
@@ -551,17 +549,16 @@ InvalidDataException: Error binding arguments. Make sure that the types of the p
 
 For more information on this limitation, see GitHub issue [aspnet/SignalR#2937](https://github.com/aspnet/SignalR/issues/2937).
 
-## Related resources
+## Additional resources
 
-* [Get Started](xref:tutorials/signalr)
-* [.NET client](xref:signalr/dotnet-client)
-* [JavaScript client](xref:signalr/javascript-client)
+* <xref:signalr/dotnet-client>
+* <xref:signalr/javascript-client>
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-3.0"
 
-This article assumes the reader is familiar with the topics covered in [Get Started](xref:tutorials/signalr).
+This article assumes the reader is familiar with the topics covered in <xref:tutorials/signalr>.
 
 ## What is MessagePack?
 
@@ -731,10 +728,9 @@ InvalidDataException: Error binding arguments. Make sure that the types of the p
 
 For more information on this limitation, see GitHub issue [aspnet/SignalR#2937](https://github.com/aspnet/SignalR/issues/2937).
 
-## Related resources
+## Additional resources
 
-* [Get Started](xref:tutorials/signalr)
-* [.NET client](xref:signalr/dotnet-client)
-* [JavaScript client](xref:signalr/javascript-client)
+* <xref:signalr/dotnet-client>
+* <xref:signalr/javascript-client>
 
 :::moniker-end
