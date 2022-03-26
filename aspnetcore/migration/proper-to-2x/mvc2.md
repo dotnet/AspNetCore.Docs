@@ -5,7 +5,7 @@ description: Receive guidance for migrating existing ASP.NET MVC or Web API appl
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 10/24/2018
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: migration/mvc2
 ---
 # Migrate from ASP.NET to ASP.NET Core 2.0
@@ -41,7 +41,7 @@ When the metapackage is used, no packages referenced in the metapackage are depl
 
 ## Project structure differences
 
-The *.csproj* file format has been simplified in ASP.NET Core. Some notable changes include:
+The `.csproj` file format has been simplified in ASP.NET Core. Some notable changes include:
 
 * Explicit inclusion of files isn't necessary for them to be considered part of the project. This reduces the risk of XML merge conflicts when working on large teams.
 * There are no GUID-based references to other projects, which improves file readability.
@@ -89,11 +89,11 @@ Applications read these settings using the `ConfigurationManager.AppSettings` co
 
 [!code-csharp[](samples/read-webconfig.cs)]
 
-ASP.NET Core can store configuration data for the application in any file and load them as part of middleware bootstrapping. The default file used in the project templates is *appsettings.json*:
+ASP.NET Core can store configuration data for the application in any file and load them as part of middleware bootstrapping. The default file used in the project templates is `appsettings.json`:
 
 [!code-json[](samples/appsettings-sample.json)]
 
-Loading this file into an instance of `IConfiguration` inside your application is done in *Startup.cs*:
+Loading this file into an instance of `IConfiguration` inside your application is done in `Startup.cs`:
 
 [!code-csharp[](samples/startup-builder.cs)]
 

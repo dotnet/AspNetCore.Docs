@@ -6,7 +6,7 @@ ms.author: riande
 ms.date: 1/7/2022
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: contperf-fy21q2
-no-loc: ["Blazor Hybrid", Home, Privacy, Index, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, Models]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Index, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, Models]
 uid: tutorials/razor-pages/model
 ---
 # Part 2, add a model to a Razor Pages app in ASP.NET Core
@@ -42,7 +42,7 @@ The `Movie` class contains:
 # [Visual Studio Code](#tab/visual-studio-code)
 
 1. Add a folder named *Models*.
-1. Add a class to the *Models* folder named *Movie.cs*.
+1. Add a class to the *Models* folder named `Movie.cs`.
 
 Add the following properties to the `Movie` class:
 
@@ -127,11 +127,11 @@ In this section, the movie model is scaffolded. That is, the scaffolding tool pr
    
    If you get an error message that says you need to install the `Microsoft.EntityFrameworkCore.SqlServer` package, repeat the steps starting with **Add** > **New Scaffolded Item**.
 
-The *appsettings.json* file is updated with the connection string used to connect to a local database.
+The `appsettings.json` file is updated with the connection string used to connect to a local database.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Open a command shell to the project directory, which contains the `Program.cs` and *.csproj* files. Run the following command:
+* Open a command shell to the project directory, which contains the `Program.cs` and `.csproj` files. Run the following command:
 
   ```dotnetcli
   dotnet-aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries -sqlite
@@ -179,7 +179,7 @@ For more information, see [dotnet-aspnet-codegenerator](xref:fundamentals/tools/
 
    ![Add Razor Pages on Mac](model/_static/arpMac.png)
 
-The *appsettings.json* file is updated with the connection string used to connect to a local database.
+The `appsettings.json` file is updated with the connection string used to connect to a local database.
 
 [!INCLUDE[](~/includes/RP/sqlitedev.md)]
 
@@ -190,7 +190,7 @@ The *appsettings.json* file is updated with the connection string used to connec
 The scaffold process creates the following files:
 
 * *Pages/Movies*: Create, Delete, Details, Edit, and Index.
-* *Data/RazorPagesMovieContext.cs*
+* `Data/RazorPagesMovieContext.cs`
 
 The created files are explained in the next tutorial.
 
@@ -256,7 +256,7 @@ The following warning is displayed, which is addressed in a later step:
 
 The `migrations` command generates code to create the initial database schema. The schema is based on the model specified in `DbContext`. The `InitialCreate` argument is used to name the migrations. Any name can be used, but by convention a name is selected that describes the migration.
 
-The `update` command runs the `Up` method in migrations that have not been applied. In this case, `update` runs the `Up` method in the *Migrations/\<time-stamp>_InitialCreate.cs* file, which creates the database.
+The `update` command runs the `Up` method in migrations that have not been applied. In this case, `update` runs the `Up` method in the `Migrations/<time-stamp>_InitialCreate.cs` file, which creates the database.
 
 ### Examine the context registered with dependency injection
 
@@ -283,7 +283,7 @@ The data context `RazorPagesMovieContext`:
 
 The preceding code creates a [DbSet\<Movie>](xref:Microsoft.EntityFrameworkCore.DbSet%601) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
 
-The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](xref:Microsoft.EntityFrameworkCore.DbContextOptions) object. For local development, the [Configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
+The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](xref:Microsoft.EntityFrameworkCore.DbContextOptions) object. For local development, the [Configuration system](xref:fundamentals/configuration/index) reads the connection string from the `appsettings.json` file.
 
 <a name="test"></a>
 
@@ -293,7 +293,7 @@ Build the app. The compiler generates several `nullable` warnings. See [this Git
 
 ### Fix the warning messages
 
-In this section, you can either disable nullable warnings or fix the scaffolded code. To eliminate the warnings from nullable reference types, remove the following line from the *RazorPagesMovie .csproj* file:
+In this section, you can either disable nullable warnings or fix the scaffolded code. To eliminate the warnings from nullable reference types, remove the following line from the `RazorPagesMovie .csproj` file:
 
 ```xml
 <Nullable>enable</Nullable>
@@ -313,11 +313,11 @@ An alternative approach is to disable the CS8618 [warning with pragma](/dotnet/f
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Data/RazorPagesMovieContext.cs?name=snippet_prag)]
 
-For the warnings in the Razor Pages C# code behind files, use the [pragma](/dotnet/csharp/language-reference/preprocessor-directives#pragmas) C# preprocessor directive to disable warnings. For example, use the following highlighted code in the *Pages/Movies/Index.cshtml.cs* file:
+For the warnings in the Razor Pages C# code behind files, use the [pragma](/dotnet/csharp/language-reference/preprocessor-directives#pragmas) C# preprocessor directive to disable warnings. For example, use the following highlighted code in the `Pages/Movies/Index.cshtml.cs` file:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample6/Pages/Movies/Index.cshtml.cs?name=snippet&highlight=3-4,21,22)]
 
-The *Pages/Movies/Delete.cshtml.cs* file requires the following `pragma` statements:
+The `Pages/Movies/Delete.cshtml.cs` file requires the following `pragma` statements:
 
 ```csharp
 #pragma warning disable CS8618
@@ -400,7 +400,7 @@ The `Movie` class contains:
 # [Visual Studio Code](#tab/visual-studio-code)
 
 1. Add a folder named *Models*.
-1. Add a class to the *Models* folder named *Movie.cs*.
+1. Add a class to the *Models* folder named `Movie.cs`.
 
 Add the following properties to the `Movie` class:
 
@@ -473,11 +473,11 @@ In this section, the movie model is scaffolded. That is, the scaffolding tool pr
 
    ![Add Razor Pages](model/_static/3/arp.png)
 
-The *appsettings.json* file is updated with the connection string used to connect to a local database.
+The `appsettings.json` file is updated with the connection string used to connect to a local database.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Open a command shell to the project directory, which contains the `Program.cs`, *Startup.cs*, and *.csproj* files. Run the following command:
+* Open a command shell to the project directory, which contains the `Program.cs`, `Startup.cs`, and `.csproj` files. Run the following command:
 
   ```dotnetcli
   dotnet-aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries -sqlite
@@ -524,7 +524,7 @@ For more information, see [dotnet-aspnet-codegenerator](xref:fundamentals/tools/
 
    ![Add Razor Pages on Mac](model/_static/5/arpMac.png)
 
-The *appsettings.json* file is updated with the connection string used to connect to a local database.
+The `appsettings.json` file is updated with the connection string used to connect to a local database.
 
 [!INCLUDE[](~/includes/RP/sqlitedev.md)]
 
@@ -535,11 +535,11 @@ The *appsettings.json* file is updated with the connection string used to connec
 The scaffold process creates the following files:
 
 * *Pages/Movies*: Create, Delete, Details, Edit, and Index.
-* *Data/RazorPagesMovieContext.cs*
+* `Data/RazorPagesMovieContext.cs`
 
 #### Updated files
 
-* *Startup.cs*
+* `Startup.cs`
 
 The created and updated files are explained in the next section.
 
@@ -590,7 +590,7 @@ Ignore the warning, as it will be addressed in a later step.
 
 The `migrations` command generates code to create the initial database schema. The schema is based on the model specified in `DbContext`. The `InitialCreate` argument is used to name the migrations. Any name can be used, but by convention a name is selected that describes the migration.
 
-The `update` command runs the `Up` method in migrations that have not been applied. In this case, `update` runs the `Up` method in the *Migrations/\<time-stamp>_InitialCreate.cs* file, which creates the database.
+The `update` command runs the `Up` method in migrations that have not been applied. In this case, `update` runs the `Up` method in the `Migrations/<time-stamp>_InitialCreate.cs` file, which creates the database.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -610,7 +610,7 @@ The `RazorPagesMovieContext` coordinates EF Core functionality, such as Create, 
 
 The preceding code creates a [DbSet\<Movie>](xref:Microsoft.EntityFrameworkCore.DbSet%601) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
 
-The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](xref:Microsoft.EntityFrameworkCore.DbContextOptions) object. For local development, the [Configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
+The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](xref:Microsoft.EntityFrameworkCore.DbContextOptions) object. For local development, the [Configuration system](xref:fundamentals/configuration/index) reads the connection string from the `appsettings.json` file.
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
@@ -689,7 +689,7 @@ The `Movie` class contains:
 # [Visual Studio Code](#tab/visual-studio-code)
 
 * Add a folder named *Models*.
-* Add a class to the *Models* folder named *Movie.cs*.
+* Add a class to the *Models* folder named `Movie.cs`.
 
 Add the following properties to the `Movie` class:
 
@@ -724,7 +724,7 @@ The preceding code creates a `DbSet` property for the entity set. In Entity Fram
 
 ### Add a database connection string
 
-Add a connection string to the *appsettings.json* file as shown in the following highlighted code:
+Add a connection string to the `appsettings.json` file as shown in the following highlighted code:
 
 [!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/appsettings_SQLite.json?highlight=10-12)]
 
@@ -732,7 +732,7 @@ Add a connection string to the *appsettings.json* file as shown in the following
 
 ### Register the database context
 
-Add the following `using` statements at the top of *Startup.cs*:
+Add the following `using` statements at the top of `Startup.cs`:
 
 ```csharp
 using RazorPagesMovie.Data;
@@ -798,14 +798,14 @@ Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
 
 ![Add Razor Pages on VScode](model/_static/3/arp.png)
 
-The *appsettings.json* file is updated with the connection string used to connect to a local database.
+The `appsettings.json` file is updated with the connection string used to connect to a local database.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
 <!--  Until https://github.com/aspnet/Scaffolding/issues/582 is fixed windows needs backslash or the namespace is namespace RazorPagesMovie.Pages_Movies rather than namespace RazorPagesMovie.Pages.Movies
 -->
 
-* Open a command window in the project directory, which contains the `Program.cs`, *Startup.cs*, and *.csproj* files.
+* Open a command window in the project directory, which contains the `Program.cs`, `Startup.cs`, and `.csproj` files.
 
 * **For Windows**: Run the following command:
 
@@ -867,7 +867,7 @@ Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
 
 ![Add Razor Page on Visual Studio for Mac](model/_static/arpMac.png)
 
-The *appsettings.json* file is updated with the connection string used to connect to a local database.
+The `appsettings.json` file is updated with the connection string used to connect to a local database.
 
 ### Add EF tools
 
@@ -894,11 +894,11 @@ When SQLite is selected, the template generated code is ready for development. T
 The scaffold process creates and updates the following files:
 
 * *Pages/Movies*: Create, Delete, Details, Edit, and Index.
-* *Data/RazorPagesMovieContext.cs*
+* `Data/RazorPagesMovieContext.cs`
 
 ### Updated
 
-* *Startup.cs*
+* `Startup.cs`
 
 The created and updated files are explained in the next section.
 
@@ -907,11 +907,11 @@ The created and updated files are explained in the next section.
 The scaffold process creates and updates the following files:
 
 * *Pages/Movies*: Create, Delete, Details, Edit, and Index.
-* *Data/RazorPagesMovieContext.cs*
+* `Data/RazorPagesMovieContext.cs`
 
 ### Updated
 
-* *Startup.cs*
+* `Startup.cs`
 
 The created and updated files are explained in the next section.
 
@@ -966,7 +966,7 @@ Ignore the warning, as it will be addressed in a later step.
 
 The migrations command generates code to create the initial database schema. The schema is based on the model specified in `DbContext`. The `InitialCreate` argument is used to name the migrations. Any name can be used, but by convention a name is selected that describes the migration.
 
-The `update` command runs the `Up` method in migrations that have not been applied. In this case, `update` runs the `Up` method in  *Migrations/\<time-stamp>_InitialCreate.cs* file, which creates the database.
+The `update` command runs the `Up` method in migrations that have not been applied. In this case, `update` runs the `Up` method in  `Migrations/<time-stamp>_InitialCreate.cs` file, which creates the database.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -986,7 +986,7 @@ The `RazorPagesMovieContext` coordinates EF Core functionality, such as Create, 
 
 The preceding code creates a [DbSet\<Movie>](xref:Microsoft.EntityFrameworkCore.DbSet%601) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
 
-The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](xref:Microsoft.EntityFrameworkCore.DbContextOptions) object. For local development, the [Configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
+The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](xref:Microsoft.EntityFrameworkCore.DbContextOptions) object. For local development, the [Configuration system](xref:fundamentals/configuration/index) reads the connection string from the `appsettings.json` file.
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 

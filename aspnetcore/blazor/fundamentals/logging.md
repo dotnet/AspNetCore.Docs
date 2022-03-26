@@ -1,15 +1,17 @@
 ---
 title: ASP.NET Core Blazor logging
 author: guardrex
-description: Learn about logging in Blazor apps, including log level configuration and how to write log messages from Razor components.
+description: Learn about logging in Blazor apps, including configuration and how to write log messages from Razor components.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/03/2022
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/fundamentals/logging
 ---
 # ASP.NET Core Blazor logging
+
+This article explains logging in Blazor apps, including configuration and how to write log messages from Razor components.
 
 :::moniker range=">= aspnetcore-6.0"
 

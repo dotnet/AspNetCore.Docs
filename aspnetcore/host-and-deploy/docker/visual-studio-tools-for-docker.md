@@ -5,7 +5,7 @@ description: Learn how to use Visual Studio tooling and Docker for Windows to co
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 09/12/2018
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: host-and-deploy/docker/visual-studio-tools-for-docker
 ---
 # Visual Studio Container Tools with ASP.NET Core
@@ -124,7 +124,7 @@ The Visual Studio Container Tools do the following tasks:
 
     [!code-dockerfile[](visual-studio-tools-for-docker/samples/2.1/HelloDockerTools/Dockerfile)]
 
-* Adds an `<IsServiceFabricServiceProject>` element to the ASP.NET Core project's *.csproj* file:
+* Adds an `<IsServiceFabricServiceProject>` element to the ASP.NET Core project's `.csproj` file:
 
     [!code-xml[](visual-studio-tools-for-docker/samples/2.1/HelloDockerTools/HelloDockerTools.csproj?name=snippet_IsServiceFabricServiceProject)]
 

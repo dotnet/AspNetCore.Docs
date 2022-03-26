@@ -6,7 +6,7 @@ ms.author: riande
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: mvc, devx-track-js
 ms.date: 11/26/2019
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/web-api-javascript
 ---
 # Tutorial: Call an ASP.NET Core web API with JavaScript
@@ -39,22 +39,22 @@ The simplest `fetch` call accepts a single parameter representing the route. A s
 
 1. Create a *js* folder inside of the *wwwroot* folder.
 
-1. Add an HTML file named *index.html* to the *wwwroot* folder. Replace the contents of *index.html* with the following markup:
+1. Add an HTML file named `index.html` to the *wwwroot* folder. Replace the contents of `index.html` with the following markup:
 
     [!code-html[](first-web-api/samples/6.0/TodoApi/wwwroot/index.html)]
 
-1. Add a CSS file named *site.css* to the *wwwroot/css* folder. Replace the contents of *site.css* with the following styles:
+1. Add a CSS file named `site.css` to the *wwwroot/css* folder. Replace the contents of `site.css` with the following styles:
 
     [!code-css[](first-web-api/samples/6.0/TodoApi/wwwroot/css/site.css)]
 
-1. Add a JavaScript file named *site.js* to the *wwwroot/js* folder. Replace the contents of *site.js* with the following code:
+1. Add a JavaScript file named `site.js` to the *wwwroot/js* folder. Replace the contents of `site.js` with the following code:
 
     [!code-javascript[](first-web-api/samples/6.0/TodoApi/wwwroot/js/site.js?name=snippet_SiteJs)]
 
 A change to the ASP.NET Core project's launch settings may be required to test the HTML page locally:
 
 1. Open *Properties\launchSettings.json*.
-1. Remove the `launchUrl` property to force the app to open at *index.html*&mdash;the project's default file.
+1. Remove the `launchUrl` property to force the app to open at `index.html`&mdash;the project's default file.
 
 This sample calls all of the CRUD methods of the web API. Following are explanations of the web API requests.
 
@@ -119,7 +119,7 @@ The `fetch` function returns a [Promise](https://developer.mozilla.org/docs/Web/
 
 The simplest `fetch` call accepts a single parameter representing the route. A second parameter, known as the `init` object, is optional. `init` is used to configure the HTTP request.
 
-1. Configure the app to [serve static files](xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles(Microsoft.AspNetCore.Builder.IApplicationBuilder)) and [enable default file mapping](xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles(Microsoft.AspNetCore.Builder.IApplicationBuilder)). The following highlighted code is needed in the `Configure` method of *Startup.cs*:
+1. Configure the app to [serve static files](xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles(Microsoft.AspNetCore.Builder.IApplicationBuilder)) and [enable default file mapping](xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles(Microsoft.AspNetCore.Builder.IApplicationBuilder)). The following highlighted code is needed in the `Configure` method of `Startup.cs`:
 
     [!code-csharp[](first-web-api/samples/3.0/TodoApi/StartupJavaScript.cs?highlight=8-9&name=snippet_configure)]
 
@@ -129,22 +129,22 @@ The simplest `fetch` call accepts a single parameter representing the route. A s
 
 1. Create a *js* folder inside of the *wwwroot* folder.
 
-1. Add an HTML file named *index.html* to the *wwwroot* folder. Replace the contents of *index.html* with the following markup:
+1. Add an HTML file named `index.html` to the *wwwroot* folder. Replace the contents of `index.html` with the following markup:
 
     [!code-html[](first-web-api/samples/3.0/TodoApi/wwwroot/index.html)]
 
-1. Add a CSS file named *site.css* to the *wwwroot/css* folder. Replace the contents of *site.css* with the following styles:
+1. Add a CSS file named `site.css` to the *wwwroot/css* folder. Replace the contents of `site.css` with the following styles:
 
     [!code-css[](first-web-api/samples/3.0/TodoApi/wwwroot/css/site.css)]
 
-1. Add a JavaScript file named *site.js* to the *wwwroot/js* folder. Replace the contents of *site.js* with the following code:
+1. Add a JavaScript file named `site.js` to the *wwwroot/js* folder. Replace the contents of `site.js` with the following code:
 
     [!code-javascript[](first-web-api/samples/3.0/TodoApi/wwwroot/js/site.js?name=snippet_SiteJs)]
 
 A change to the ASP.NET Core project's launch settings may be required to test the HTML page locally:
 
 1. Open *Properties\launchSettings.json*.
-1. Remove the `launchUrl` property to force the app to open at *index.html*&mdash;the project's default file.
+1. Remove the `launchUrl` property to force the app to open at `index.html`&mdash;the project's default file.
 
 This sample calls all of the CRUD methods of the web API. Following are explanations of the web API requests.
 

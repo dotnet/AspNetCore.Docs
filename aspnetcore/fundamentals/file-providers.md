@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 04/06/2020
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/file-providers
 ---
 # File Providers in ASP.NET Core
@@ -245,7 +245,7 @@ Use [glob patterns](#glob-patterns) to specify one or more files to embed into t
 
 The sample app creates an `ManifestEmbeddedFileProvider` and passes the currently executing assembly to its constructor.
 
-*Startup.cs*:
+`Startup.cs`:
 
 ```csharp
 var manifestEmbeddedProvider = 

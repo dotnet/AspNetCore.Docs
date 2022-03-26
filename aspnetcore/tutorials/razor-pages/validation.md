@@ -5,7 +5,7 @@ description: Part 8 of tutorial series on Razor Pages.
 ms.author: riande
 ms.custom: mvc, contperf-fy21q2
 ms.date: 10/13/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Index, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Index, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/razor-pages/validation
 ---
 # Part 8 of tutorial series on Razor Pages
@@ -104,7 +104,7 @@ Optional, test server-side validation:
   
 Alternatively, [Disable client-side validation on the server](xref:mvc/models/validation#disable-client-side-validation).
 
-The following code shows a portion of the *Create.cshtml* page scaffolded earlier in the tutorial. It's used by the Create and Edit pages to:
+The following code shows a portion of the `Create.cshtml` page scaffolded earlier in the tutorial. It's used by the Create and Edit pages to:
 
 * Display the initial form.
 * Redisplay the form in the event of an error.
@@ -347,7 +347,7 @@ Optional, test server-side validation:
   
 Alternatively, [Disable client-side validation on the server](xref:mvc/models/validation#disable-client-side-validation).
 
-The following code shows a portion of the *Create.cshtml* page scaffolded earlier in the tutorial. It's used by the Create and Edit pages to:
+The following code shows a portion of the `Create.cshtml` page scaffolded earlier in the tutorial. It's used by the Create and Edit pages to:
 
 * Display the initial form.
 * Redisplay the form in the event of an error.

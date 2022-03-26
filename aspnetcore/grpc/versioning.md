@@ -5,7 +5,7 @@ description: Learn how to version gRPC services.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 01/09/2020
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/versioning
 ---
 # Versioning gRPC services
@@ -78,7 +78,7 @@ The package name is combined with the service name to identify a service address
 * `greet.v1.Greeter`
 * `greet.v2.Greeter`
 
-Implementations of the versioned service are registered in *Startup.cs*:
+Implementations of the versioned service are registered in `Startup.cs`:
 
 ```csharp
 app.UseEndpoints(endpoints =>

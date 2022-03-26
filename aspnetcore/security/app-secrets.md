@@ -6,7 +6,7 @@ ms.author: riande
 monikerRange: '>= aspnetcore-3.0'
 ms.custom: mvc
 ms.date: 11/11/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/app-secrets
 ---
 # Safe storage of app secrets in development in ASP.NET Core
@@ -23,7 +23,7 @@ This document explains how to manage sensitive data for an ASP.NET Core app on a
 
 Environment variables are used to avoid storage of app secrets in code or in local configuration files. Environment variables override configuration values for all previously specified configuration sources.
 
-Consider an ASP.NET Core web app in which **Individual User Accounts** security is enabled. A default database connection string is included in the project's *appsettings.json* file with the key `DefaultConnection`. The default connection string is for LocalDB, which runs in user mode and doesn't require a password. During app deployment, the `DefaultConnection` key value can be overridden with an environment variable's value. The environment variable may store the complete connection string with sensitive credentials.
+Consider an ASP.NET Core web app in which **Individual User Accounts** security is enabled. A default database connection string is included in the project's `appsettings.json` file with the key `DefaultConnection`. The default connection string is for LocalDB, which runs in user mode and doesn't require a password. During app deployment, the `DefaultConnection` key value can be overridden with an environment variable's value. The environment variable may store the complete connection string with sensitive credentials.
 
 > [!WARNING]
 > Environment variables are generally stored in plain, unencrypted text. If the machine or process is compromised, environment variables can be accessed by untrusted parties. Additional measures to prevent disclosure of user secrets may be required.
@@ -93,7 +93,7 @@ dotnet user-secrets set "Movies:ServiceApiKey" "12345" --project "C:\apps\WebApp
 
 ### JSON structure flattening in Visual Studio
 
-Visual Studio's **Manage User Secrets** gesture opens a *secrets.json* file in the text editor. Replace the contents of *secrets.json* with the key-value pairs to be stored. For example:
+Visual Studio's **Manage User Secrets** gesture opens a `secrets.json` file in the text editor. Replace the contents of `secrets.json` with the key-value pairs to be stored. For example:
 
 ```json
 {
@@ -114,7 +114,7 @@ The JSON structure is flattened after modifications via `dotnet user-secrets rem
 
 ## Set multiple secrets
 
-A batch of secrets can be set by piping JSON to the `set` command. In the following example, the *input.json* file's contents are piped to the `set` command.
+A batch of secrets can be set by piping JSON to the `set` command. In the following example, the `input.json` file's contents are piped to the `set` command.
 
 # [Windows](#tab/windows)
 
@@ -181,7 +181,7 @@ The `Movies:ConnectionString` and `Movies:ServiceApiKey` secrets are mapped to t
 
 ## String replacement with secrets
 
-Storing passwords in plain text is insecure. For example, a database connection string stored in *appsettings.json* may include a password for the specified user:
+Storing passwords in plain text is insecure. For example, a database connection string stored in `appsettings.json` may include a password for the specified user:
 
 [!code-json[](app-secrets/samples/3.x/UserSecrets/appsettings-unsecure.json?highlight=3)]
 
@@ -191,7 +191,7 @@ A more secure approach is to store the password as a secret. For example:
 dotnet user-secrets set "DbPassword" "pass123"
 ```
 
-Remove the `Password` key-value pair from the connection string in *appsettings.json*. For example:
+Remove the `Password` key-value pair from the connection string in `appsettings.json`. For example:
 
 [!code-json[](app-secrets/samples/3.x/UserSecrets/appsettings.json?highlight=3)]
 
@@ -216,7 +216,7 @@ Movies:ConnectionString = Server=(localdb)\mssqllocaldb;Database=Movie-1;Trusted
 Movies:ServiceApiKey = 12345
 ```
 
-In the preceding example, a colon in the key names denotes the object hierarchy within *secrets.json*.
+In the preceding example, a colon in the key names denotes the object hierarchy within `secrets.json`.
 
 ## Remove a single secret
 
@@ -228,7 +228,7 @@ Run the following command from the directory in which the project file exists:
 dotnet user-secrets remove "Movies:ConnectionString"
 ```
 
-The app's *secrets.json* file was modified to remove the key-value pair associated with the `MoviesConnectionString` key:
+The app's `secrets.json` file was modified to remove the key-value pair associated with the `MoviesConnectionString` key:
 
 ```json
 {
@@ -254,7 +254,7 @@ Run the following command from the directory in which the project file exists:
 dotnet user-secrets clear
 ```
 
-All user secrets for the app have been deleted from the *secrets.json* file:
+All user secrets for the app have been deleted from the `secrets.json` file:
 
 ```json
 {}
@@ -294,7 +294,7 @@ This document explains how to manage sensitive data for an ASP.NET Core app on a
 
 Environment variables are used to avoid storage of app secrets in code or in local configuration files. Environment variables override configuration values for all previously specified configuration sources.
 
-Consider an ASP.NET Core web app in which **Individual User Accounts** security is enabled. A default database connection string is included in the project's *appsettings.json* file with the key `DefaultConnection`. The default connection string is for LocalDB, which runs in user mode and doesn't require a password. During app deployment, the `DefaultConnection` key value can be overridden with an environment variable's value. The environment variable may store the complete connection string with sensitive credentials.
+Consider an ASP.NET Core web app in which **Individual User Accounts** security is enabled. A default database connection string is included in the project's `appsettings.json` file with the key `DefaultConnection`. The default connection string is for LocalDB, which runs in user mode and doesn't require a password. During app deployment, the `DefaultConnection` key value can be overridden with an environment variable's value. The environment variable may store the complete connection string with sensitive credentials.
 
 > [!WARNING]
 > Environment variables are generally stored in plain, unencrypted text. If the machine or process is compromised, environment variables can be accessed by untrusted parties. Additional measures to prevent disclosure of user secrets may be required.
@@ -364,7 +364,7 @@ dotnet user-secrets set "Movies:ServiceApiKey" "12345" --project "C:\apps\WebApp
 
 ### JSON structure flattening in Visual Studio
 
-Visual Studio's **Manage User Secrets** gesture opens a *secrets.json* file in the text editor. Replace the contents of *secrets.json* with the key-value pairs to be stored. For example:
+Visual Studio's **Manage User Secrets** gesture opens a `secrets.json` file in the text editor. Replace the contents of `secrets.json` with the key-value pairs to be stored. For example:
 
 ```json
 {
@@ -385,7 +385,7 @@ The JSON structure is flattened after modifications via `dotnet user-secrets rem
 
 ## Set multiple secrets
 
-A batch of secrets can be set by piping JSON to the `set` command. In the following example, the *input.json* file's contents are piped to the `set` command.
+A batch of secrets can be set by piping JSON to the `set` command. In the following example, the `input.json` file's contents are piped to the `set` command.
 
 # [Windows](#tab/windows)
 
@@ -454,7 +454,7 @@ The `Movies:ConnectionString` and `Movies:ServiceApiKey` secrets are mapped to t
 
 ## String replacement with secrets
 
-Storing passwords in plain text is insecure. For example, a database connection string stored in *appsettings.json* may include a password for the specified user:
+Storing passwords in plain text is insecure. For example, a database connection string stored in `appsettings.json` may include a password for the specified user:
 
 [!code-json[](app-secrets/samples/3.x/UserSecrets/appsettings-unsecure.json?highlight=3)]
 
@@ -464,7 +464,7 @@ A more secure approach is to store the password as a secret. For example:
 dotnet user-secrets set "DbPassword" "pass123"
 ```
 
-Remove the `Password` key-value pair from the connection string in *appsettings.json*. For example:
+Remove the `Password` key-value pair from the connection string in `appsettings.json`. For example:
 
 [!code-json[](app-secrets/samples/3.x/UserSecrets/appsettings.json?highlight=3)]
 
@@ -489,7 +489,7 @@ Movies:ConnectionString = Server=(localdb)\mssqllocaldb;Database=Movie-1;Trusted
 Movies:ServiceApiKey = 12345
 ```
 
-In the preceding example, a colon in the key names denotes the object hierarchy within *secrets.json*.
+In the preceding example, a colon in the key names denotes the object hierarchy within `secrets.json`.
 
 ## Remove a single secret
 
@@ -501,7 +501,7 @@ Run the following command from the directory in which the project file exists:
 dotnet user-secrets remove "Movies:ConnectionString"
 ```
 
-The app's *secrets.json* file was modified to remove the key-value pair associated with the `MoviesConnectionString` key:
+The app's `secrets.json` file was modified to remove the key-value pair associated with the `MoviesConnectionString` key:
 
 ```json
 {
@@ -527,7 +527,7 @@ Run the following command from the directory in which the project file exists:
 dotnet user-secrets clear
 ```
 
-All user secrets for the app have been deleted from the *secrets.json* file:
+All user secrets for the app have been deleted from the `secrets.json` file:
 
 ```json
 {}

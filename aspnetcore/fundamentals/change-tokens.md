@@ -5,7 +5,7 @@ description: Learn how to use change tokens to track changes.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 10/07/2019
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/change-tokens
 ---
 # Detect changes with change tokens in ASP.NET Core
@@ -50,7 +50,7 @@ Change tokens are used in prominent areas of ASP.NET Core to monitor for changes
 
 ## Monitor for configuration changes
 
-By default, ASP.NET Core templates use [JSON configuration files](xref:fundamentals/configuration/index#json-configuration-provider) (*appsettings.json*, *appsettings.Development.json*, and *appsettings.Production.json*) to load app configuration settings.
+By default, ASP.NET Core templates use [JSON configuration files](xref:fundamentals/configuration/index#json-configuration-provider) (`appsettings.json`, `appsettings.Development.json`, and `appsettings.Production.json`) to load app configuration settings.
 
 These files are configured using the [AddJsonFile(IConfigurationBuilder, String, Boolean, Boolean)](xref:Microsoft.Extensions.Configuration.JsonConfigurationExtensions.AddJsonFile*) extension method on <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder> that accepts a `reloadOnChange` parameter. `reloadOnChange` indicates if configuration should be reloaded on file changes. This setting appears in the <xref:Microsoft.Extensions.Hosting.Host> convenience method <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*>:
 
@@ -64,11 +64,11 @@ File-based configuration is represented by <xref:Microsoft.Extensions.Configurat
 
 By default, the `IFileMonitor` is provided by a <xref:Microsoft.Extensions.FileProviders.PhysicalFileProvider>, which uses <xref:System.IO.FileSystemWatcher> to monitor for configuration file changes.
 
-The sample app demonstrates two implementations for monitoring configuration changes. If any of the *appsettings* files change, both of the file monitoring implementations execute custom code&mdash;the sample app writes a message to the console.
+The sample app demonstrates two implementations for monitoring configuration changes. If any of the `appsettings` files change, both of the file monitoring implementations execute custom code&mdash;the sample app writes a message to the console.
 
 A configuration file's `FileSystemWatcher` can trigger multiple token callbacks for a single configuration file change. To ensure that the custom code is only run once when multiple token callbacks are triggered, the sample's implementation checks file hashes. The sample uses SHA1 file hashing. A retry is implemented with an exponential back-off. The retry is present because file locking may occur that temporarily prevents computing a new hash on a file.
 
-*Utilities/Utilities.cs*:
+`Utilities/Utilities.cs`:
 
 [!code-csharp[](change-tokens/samples/3.x/SampleApp/Utilities/Utilities.cs?name=snippet1)]
 
@@ -84,7 +84,7 @@ In `Startup.Configure`:
 
 [!code-csharp[](change-tokens/samples/3.x/SampleApp/Startup.cs?name=snippet3)]
 
-The `state` of the callback is used to pass in the `IWebHostEnvironment`, which is useful for specifying the correct *appsettings* configuration file to monitor (for example, *appsettings.Development.json* when in the Development environment). File hashes are used to prevent the `WriteConsole` statement from running multiple times due to multiple token callbacks when the configuration file has only changed once.
+The `state` of the callback is used to pass in the `IWebHostEnvironment`, which is useful for specifying the correct `appsettings` configuration file to monitor (for example, `appsettings.Development.json` when in the Development environment). File hashes are used to prevent the `WriteConsole` statement from running multiple times due to multiple token callbacks when the configuration file has only changed once.
 
 This system runs as long as the app is running and can't be disabled by the user.
 
@@ -98,7 +98,7 @@ The sample implements:
 
 The sample establishes an `IConfigurationMonitor` interface.
 
-*Extensions/ConfigurationMonitor.cs*:
+`Extensions/ConfigurationMonitor.cs`:
 
 [!code-csharp[](change-tokens/samples/3.x/SampleApp/Extensions/ConfigurationMonitor.cs?name=snippet1)]
 
@@ -124,7 +124,7 @@ An instance `ConfigurationMonitor` is registered as a service in `Startup.Config
 
 The Index page offers the user control over configuration monitoring. The instance of `IConfigurationMonitor` is injected into the `IndexModel`.
 
-*Pages/Index.cshtml.cs*:
+`Pages/Index.cshtml.cs`:
 
 [!code-csharp[](change-tokens/samples/3.x/SampleApp/Pages/Index.cshtml.cs?name=snippet1)]
 
@@ -136,7 +136,7 @@ When `OnPostStartMonitoring` is triggered, monitoring is enabled, and the curren
 
 Buttons in the UI enable and disable monitoring.
 
-*Pages/Index.cshtml*:
+`Pages/Index.cshtml`:
 
 [!code-cshtml[](change-tokens/samples/3.x/SampleApp/Pages/Index.cshtml?name=snippet_Buttons)]
 
@@ -153,11 +153,11 @@ The sample uses `GetFileContent` to:
 * Return file content.
 * Implement a retry algorithm with exponential back-off to cover cases where a file lock temporarily prevents reading a file.
 
-*Utilities/Utilities.cs*:
+`Utilities/Utilities.cs`:
 
 [!code-csharp[](change-tokens/samples/3.x/SampleApp/Utilities/Utilities.cs?name=snippet2)]
 
-A `FileService` is created to handle cached file lookups. The `GetFileContent` method call of the service attempts to obtain file content from the in-memory cache and return it to the caller (*Services/FileService.cs*).
+A `FileService` is created to handle cached file lookups. The `GetFileContent` method call of the service attempts to obtain file content from the in-memory cache and return it to the caller (`Services/FileService.cs`).
 
 If cached content isn't found using the cache key, the following actions are taken:
 
@@ -177,7 +177,7 @@ In `Startup.ConfigureServices`:
 
 The page model loads the file's content using the service.
 
-In the Index page's `OnGet` method (*Pages/Index.cshtml.cs*):
+In the Index page's `OnGet` method (`Pages/Index.cshtml.cs`):
 
 [!code-csharp[](change-tokens/samples/3.x/SampleApp/Pages/Index.cshtml.cs?name=snippet3)]
 
@@ -248,7 +248,7 @@ Change tokens are used in prominent areas of ASP.NET Core to monitor for changes
 
 ## Monitor for configuration changes
 
-By default, ASP.NET Core templates use [JSON configuration files](xref:fundamentals/configuration/index#json-configuration-provider) (*appsettings.json*, *appsettings.Development.json*, and *appsettings.Production.json*) to load app configuration settings.
+By default, ASP.NET Core templates use [JSON configuration files](xref:fundamentals/configuration/index#json-configuration-provider) (`appsettings.json`, `appsettings.Development.json`, and `appsettings.Production.json`) to load app configuration settings.
 
 These files are configured using the [AddJsonFile(IConfigurationBuilder, String, Boolean, Boolean)](xref:Microsoft.Extensions.Configuration.JsonConfigurationExtensions.AddJsonFile*) extension method on <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder> that accepts a `reloadOnChange` parameter. `reloadOnChange` indicates if configuration should be reloaded on file changes. This setting appears in the <xref:Microsoft.AspNetCore.WebHost> convenience method <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>:
 
@@ -262,11 +262,11 @@ File-based configuration is represented by <xref:Microsoft.Extensions.Configurat
 
 By default, the `IFileMonitor` is provided by a <xref:Microsoft.Extensions.FileProviders.PhysicalFileProvider>, which uses <xref:System.IO.FileSystemWatcher> to monitor for configuration file changes.
 
-The sample app demonstrates two implementations for monitoring configuration changes. If any of the *appsettings* files change, both of the file monitoring implementations execute custom code&mdash;the sample app writes a message to the console.
+The sample app demonstrates two implementations for monitoring configuration changes. If any of the `appsettings` files change, both of the file monitoring implementations execute custom code&mdash;the sample app writes a message to the console.
 
 A configuration file's `FileSystemWatcher` can trigger multiple token callbacks for a single configuration file change. To ensure that the custom code is only run once when multiple token callbacks are triggered, the sample's implementation checks file hashes. The sample uses SHA1 file hashing. A retry is implemented with an exponential back-off. The retry is present because file locking may occur that temporarily prevents computing a new hash on a file.
 
-*Utilities/Utilities.cs*:
+`Utilities/Utilities.cs`:
 
 [!code-csharp[](change-tokens/samples/2.x/SampleApp/Utilities/Utilities.cs?name=snippet1)]
 
@@ -282,7 +282,7 @@ In `Startup.Configure`:
 
 [!code-csharp[](change-tokens/samples/2.x/SampleApp/Startup.cs?name=snippet3)]
 
-The `state` of the callback is used to pass in the `IHostingEnvironment`, which is useful for specifying the correct *appsettings* configuration file to monitor (for example, *appsettings.Development.json* when in the Development environment). File hashes are used to prevent the `WriteConsole` statement from running multiple times due to multiple token callbacks when the configuration file has only changed once.
+The `state` of the callback is used to pass in the `IHostingEnvironment`, which is useful for specifying the correct `appsettings` configuration file to monitor (for example, `appsettings.Development.json` when in the Development environment). File hashes are used to prevent the `WriteConsole` statement from running multiple times due to multiple token callbacks when the configuration file has only changed once.
 
 This system runs as long as the app is running and can't be disabled by the user.
 
@@ -296,7 +296,7 @@ The sample implements:
 
 The sample establishes an `IConfigurationMonitor` interface.
 
-*Extensions/ConfigurationMonitor.cs*:
+`Extensions/ConfigurationMonitor.cs`:
 
 [!code-csharp[](change-tokens/samples/2.x/SampleApp/Extensions/ConfigurationMonitor.cs?name=snippet1)]
 
@@ -322,7 +322,7 @@ An instance `ConfigurationMonitor` is registered as a service in `Startup.Config
 
 The Index page offers the user control over configuration monitoring. The instance of `IConfigurationMonitor` is injected into the `IndexModel`.
 
-*Pages/Index.cshtml.cs*:
+`Pages/Index.cshtml.cs`:
 
 [!code-csharp[](change-tokens/samples/2.x/SampleApp/Pages/Index.cshtml.cs?name=snippet1)]
 
@@ -334,7 +334,7 @@ When `OnPostStartMonitoring` is triggered, monitoring is enabled, and the curren
 
 Buttons in the UI enable and disable monitoring.
 
-*Pages/Index.cshtml*:
+`Pages/Index.cshtml`:
 
 [!code-cshtml[](change-tokens/samples/2.x/SampleApp/Pages/Index.cshtml?name=snippet_Buttons)]
 
@@ -351,11 +351,11 @@ The sample uses `GetFileContent` to:
 * Return file content.
 * Implement a retry algorithm with exponential back-off to cover cases where a file lock temporarily prevents reading a file.
 
-*Utilities/Utilities.cs*:
+`Utilities/Utilities.cs`:
 
 [!code-csharp[](change-tokens/samples/2.x/SampleApp/Utilities/Utilities.cs?name=snippet2)]
 
-A `FileService` is created to handle cached file lookups. The `GetFileContent` method call of the service attempts to obtain file content from the in-memory cache and return it to the caller (*Services/FileService.cs*).
+A `FileService` is created to handle cached file lookups. The `GetFileContent` method call of the service attempts to obtain file content from the in-memory cache and return it to the caller (`Services/FileService.cs`).
 
 If cached content isn't found using the cache key, the following actions are taken:
 
@@ -375,7 +375,7 @@ In `Startup.ConfigureServices`:
 
 The page model loads the file's content using the service.
 
-In the Index page's `OnGet` method (*Pages/Index.cshtml.cs*):
+In the Index page's `OnGet` method (`Pages/Index.cshtml.cs`):
 
 [!code-csharp[](change-tokens/samples/2.x/SampleApp/Pages/Index.cshtml.cs?name=snippet3)]
 

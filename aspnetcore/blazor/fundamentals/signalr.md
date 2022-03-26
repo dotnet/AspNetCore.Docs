@@ -6,14 +6,14 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/fundamentals/signalr
 ---
 # ASP.NET Core Blazor SignalR guidance
 
-:::moniker range=">= aspnetcore-6.0"
-
 This article explains how to configure and manage SignalR connections in Blazor apps.
+
+:::moniker range=">= aspnetcore-6.0"
 
 For general guidance on ASP.NET Core SignalR configuration, see the topics in the <xref:signalr/introduction> area of the documentation. To configure SignalR [added to a hosted Blazor WebAssembly solution](xref:blazor/tutorials/signalr-blazor), see <xref:signalr/configuration#configure-server-options>.
 
@@ -327,8 +327,6 @@ When a circuit ends because a user has disconnected and the framework is cleanin
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
-
-This article explains how to configure and manage SignalR connections in Blazor apps.
 
 For general guidance on ASP.NET Core SignalR configuration, see the topics in the <xref:signalr/introduction> area of the documentation. To configure SignalR [added to a hosted Blazor WebAssembly solution](xref:blazor/tutorials/signalr-blazor), see <xref:signalr/configuration#configure-server-options>.
 
@@ -646,8 +644,6 @@ When a circuit ends because a user has disconnected and the framework is cleanin
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
-
-This article explains how to configure and manage SignalR connections in Blazor apps.
 
 For general guidance on ASP.NET Core SignalR configuration, see the topics in the <xref:signalr/introduction> area of the documentation. To configure SignalR [added to a hosted Blazor WebAssembly solution](xref:blazor/tutorials/signalr-blazor), see <xref:signalr/configuration#configure-server-options>.
 

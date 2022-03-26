@@ -126,8 +126,8 @@ XML comments can be enabled with the following approaches:
 
 #### [Visual Studio](#tab/visual-studio)
 
-* Right-click the project in **Solution Explorer** and select **Edit <project_name>.csproj**.
-* Manually add the highlighted lines to the *.csproj* file:
+* Right-click the project in **Solution Explorer** and select *`Edit <project_name>.csproj`*.
+* Manually add the highlighted lines to the `.csproj` file:
 
 ```xml
 <PropertyGroup>
@@ -139,7 +139,7 @@ XML comments can be enabled with the following approaches:
 #### [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * From the *Solution Pad*, press **control** and click the project name. Navigate to **Tools** > **Edit File**.
-* Manually add the highlighted lines to the *.csproj* file:
+* Manually add the highlighted lines to the `.csproj` file:
 
 ```xml
 <PropertyGroup>
@@ -150,7 +150,7 @@ XML comments can be enabled with the following approaches:
 
 #### [Visual Studio Code](#tab/visual-studio-code)
 
-Manually add the highlighted lines to the *.csproj* file:
+Manually add the highlighted lines to the `.csproj` file:
 
 ```xml
 <PropertyGroup>
@@ -193,7 +193,7 @@ namespace TodoApi
 }
 ```
 
-Configure Swagger to use the XML file that's generated with the preceding instructions. For Linux or non-Windows operating systems, file names and paths can be case-sensitive. For example, a *TodoApi.XML* file is valid on Windows but not CentOS.
+Configure Swagger to use the XML file that's generated with the preceding instructions. For Linux or non-Windows operating systems, file names and paths can be case-sensitive. For example, a `TodoApi.XML` file is valid on Windows but not CentOS.
 
 ```csharp
 /// NOTE LAST 3 LINES IN THIS SNIPPET

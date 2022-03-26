@@ -5,7 +5,7 @@ description: Provides an overview of minimal APIs in ASP.NET Core 6.0.
 ms.author: riande
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 01/27/2022
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/minimal-apis
 ---
 
@@ -38,7 +38,7 @@ The following code creates a <xref:Microsoft.AspNetCore.Builder.WebApplication> 
 
 ### Working with ports
 
-When a web app is created with Visual Studio or `dotnet new`, a *Properties/launchSettings.json* file is created that specifies the ports the app responds to. In the port setting samples that follow, running the app from Visual Studio returns an error dialog `Unable to connect to web server 'AppName'`. Run the following port changing samples from the command line.
+When a web app is created with Visual Studio or `dotnet new`, a `Properties/launchSettings.json` file is created that specifies the ports the app responds to. In the port setting samples that follow, running the app from Visual Studio returns an error dialog `Unable to connect to web server 'AppName'`. Run the following port changing samples from the command line.
 
 The following sections set the port the app responds to.
 
@@ -60,7 +60,7 @@ The following command makes the app respond to port `7777`:
 dotnet run --urls="https://localhost:7777"
 ```
 
-If the Kestrel endpoint is also configured in the *appsettings.json* file, the *appsettings.json* file specified URL is used. For more information, see [Kestrel endpoint configuration](xref:fundamentals/configuration/index?view=aspnetcore-6.0#kestrel)
+If the Kestrel endpoint is also configured in the `appsettings.json` file, the `appsettings.json` file specified URL is used. For more information, see [Kestrel endpoint configuration](xref:fundamentals/configuration/index?view=aspnetcore-6.0#kestrel)
 
 #### Read the port from environment
 
@@ -116,9 +116,9 @@ For more information on the development certificate, see [Trust the ASP.NET Core
 
 ### Specify HTTPS using a custom certificate
 
-The following sections show how to specify the custom certificate using the *appsetting.json* file and via configuration.
+The following sections show how to specify the custom certificate using the `appsettings.json` file and via configuration.
 
-#### Specify the custom certificate with appsetting.json
+#### Specify the custom certificate with appsettings.json
 
 [!code-json[](minimal-apis/samples/WebMinAPIs/appsettings.json?highlight=9-16)]
 

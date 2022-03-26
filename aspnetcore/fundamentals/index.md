@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/09/2022
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/index
 ---
 # ASP.NET Core fundamentals overview
@@ -84,7 +84,7 @@ The following example instantiates a WebApplication  Host:
 The [WebApplicationBuilder.Build](xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Build%2A) method configures a host with a set of default options, such as:
 
 * Use [Kestrel](#servers) as the web server and enable IIS integration.
-* Load [configuration](xref:fundamentals/configuration/index) from *appsettings.json*, environment variables, command line arguments, and other configuration sources.
+* Load [configuration](xref:fundamentals/configuration/index) from `appsettings.json`, environment variables, command line arguments, and other configuration sources.
 * Send logging output to the console and debug providers.
 
 ### Non-web scenarios
@@ -117,9 +117,9 @@ For more information, see <xref:fundamentals/servers/index>.
 
 ## Configuration
 
-ASP.NET Core provides a [configuration](xref:fundamentals/configuration/index) framework that gets settings as name-value pairs from an ordered set of configuration providers. Built-in configuration providers are available for a variety of sources, such as *.json* files, *.xml* files, environment variables, and command-line arguments. Write custom configuration providers to support other sources.
+ASP.NET Core provides a [configuration](xref:fundamentals/configuration/index) framework that gets settings as name-value pairs from an ordered set of configuration providers. Built-in configuration providers are available for a variety of sources, such as `.json` files, `.xml` files, environment variables, and command-line arguments. Write custom configuration providers to support other sources.
 
-By [default](xref:fundamentals/configuration/index#default), ASP.NET Core apps are configured to read from *appsettings.json*, environment variables, the command line, and more. When the app's configuration is loaded, values from environment variables override values from *appsettings.json*.
+By [default](xref:fundamentals/configuration/index#default), ASP.NET Core apps are configured to read from `appsettings.json`, environment variables, the command line, and more. When the app's configuration is loaded, values from environment variables override values from `appsettings.json`.
 
 For managing confidential configuration data such as passwords, .NET Core provides the [Secret Manager](xref:security/app-secrets#secret-manager). For production secrets, we recommend [Azure Key Vault](xref:security/key-vault-configuration).
 
@@ -193,9 +193,9 @@ The content root is the base path for:
 * The executable hosting the app (*.exe*).
 * Compiled assemblies that make up the app (*.dll*).
 * Content files used by the app, such as:
-  * Razor files (*.cshtml*, *.razor*)
-  * Configuration files (*.json*, *.xml*)
-  * Data files (*.db*)
+  * Razor files (`.cshtml`, `.razor`)
+  * Configuration files (`.json`, `.xml`)
+  * Data files (`.db`)
 * The [Web root](#web-root), typically the *wwwroot* folder.
 
 During development, the content root defaults to the project's root directory. This directory is also the base path for both the app's content files and the [Web root](#web-root). Specify a different content root by setting its path when [building the host](#host). For more information, see [Content root](xref:fundamentals/host/generic-host#contentroot).
@@ -204,9 +204,9 @@ During development, the content root defaults to the project's root directory. T
 
 The web root is the base path for public, static resource files, such as:
 
-* Stylesheets (*.css*)
-* JavaScript (*.js*)
-* Images (*.png*, *.jpg*)
+* Stylesheets (`.css`)
+* JavaScript (`.js`)
+* Images (`.png`, `.jpg`)
 
 By default, static files are served only from the web root directory and its sub-directories. The web root path defaults to *{content root}/wwwroot*. Specify a different web root by setting its path when [building the host](#host). For more information, see [Web root](xref:fundamentals/host/generic-host#webroot).
 
@@ -218,7 +218,7 @@ Prevent publishing files in *wwwroot* with the [\<Content> project item](/visual
 </ItemGroup>
 ```
 
-In Razor *.cshtml* files, tilde-slash (`~/`) points to the web root. A path beginning with `~/` is referred to as a *virtual path*.
+In Razor `.cshtml` files, tilde-slash (`~/`) points to the web root. A path beginning with `~/` is referred to as a *virtual path*.
 
 For more information, see <xref:fundamentals/static-files>.
 
@@ -301,7 +301,7 @@ The following example creates a .NET Generic Host:
 The `CreateDefaultBuilder` and `ConfigureWebHostDefaults` methods configure a host with a set of default options, such as:
 
 * Use [Kestrel](#servers) as the web server and enable IIS integration.
-* Load configuration from *appsettings.json*, *appsettings.{Environment Name}.json*, environment variables, command line arguments, and other configuration sources.
+* Load configuration from `appsettings.json`, `appsettings.{Environment}.json`, environment variables, command line arguments, and other configuration sources.
 * Send logging output to the console and debug providers.
 
 For more information, see <xref:fundamentals/host/generic-host>.
@@ -336,9 +336,9 @@ For more information, see <xref:fundamentals/servers/index>.
 
 ## Configuration
 
-ASP.NET Core provides a configuration framework that gets settings as name-value pairs from an ordered set of configuration providers. Built-in configuration providers are available for a variety of sources, such as *.json* files, *.xml* files, environment variables, and command-line arguments. Write custom configuration providers to support other sources.
+ASP.NET Core provides a configuration framework that gets settings as name-value pairs from an ordered set of configuration providers. Built-in configuration providers are available for a variety of sources, such as `.json` files, `.xml` files, environment variables, and command-line arguments. Write custom configuration providers to support other sources.
 
-By [default](xref:fundamentals/configuration/index#default), ASP.NET Core apps are configured to read from *appsettings.json*, environment variables, the command line, and more. When the app's configuration is loaded, values from environment variables override values from *appsettings.json*.
+By [default](xref:fundamentals/configuration/index#default), ASP.NET Core apps are configured to read from `appsettings.json`, environment variables, the command line, and more. When the app's configuration is loaded, values from environment variables override values from `appsettings.json`.
 
 The preferred way to read related configuration values is using the [options pattern](xref:fundamentals/configuration/options). For more information, see [Bind hierarchical configuration data using the options pattern](xref:fundamentals/configuration/index#optpat).
 
@@ -412,9 +412,9 @@ The content root is the base path for:
 * The executable hosting the app (*.exe*).
 * Compiled assemblies that make up the app (*.dll*).
 * Content files used by the app, such as:
-  * Razor files (*.cshtml*, *.razor*)
-  * Configuration files (*.json*, *.xml*)
-  * Data files (*.db*)
+  * Razor files (`.cshtml`, `.razor`)
+  * Configuration files (`.json`, `.xml`)
+  * Data files (`.db`)
 * The [Web root](#web-root), typically the *wwwroot* folder.
 
 During development, the content root defaults to the project's root directory. This directory is also the base path for both the app's content files and the [Web root](#web-root). Specify a different content root by setting its path when [building the host](#host). For more information, see [Content root](xref:fundamentals/host/generic-host#contentroot).
@@ -423,9 +423,9 @@ During development, the content root defaults to the project's root directory. T
 
 The web root is the base path for public, static resource files, such as:
 
-* Stylesheets (*.css*)
-* JavaScript (*.js*)
-* Images (*.png*, *.jpg*)
+* Stylesheets (`.css`)
+* JavaScript (`.js`)
+* Images (`.png`, `.jpg`)
 
 By default, static files are served only from the web root directory and its sub-directories. The web root path defaults to *{content root}/wwwroot*. Specify a different web root by setting its path when [building the host](#host). For more information, see [Web root](xref:fundamentals/host/generic-host#webroot).
 
@@ -437,7 +437,7 @@ Prevent publishing files in *wwwroot* with the [\<Content> project item](/visual
 </ItemGroup>
 ```
 
-In Razor *.cshtml* files, tilde-slash (`~/`) points to the web root. A path beginning with `~/` is referred to as a *virtual path*.
+In Razor `.cshtml` files, tilde-slash (`~/`) points to the web root. A path beginning with `~/` is referred to as a *virtual path*.
 
 For more information, see <xref:fundamentals/static-files>.
 

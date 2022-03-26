@@ -1,15 +1,15 @@
 ---
-title: Consume ASP.NET Core Razor components from Razor class libraries
+title: Consume ASP.NET Core Razor components from a Razor class library (RCL)
 author: guardrex
-description: Discover how components can be included in Blazor apps from an external Razor class libraries.
+description: Discover how components can be included in Blazor apps from an external Razor class library (RCL).
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/class-libraries
 ---
-# Consume ASP.NET Core Razor components from Razor class libraries
+# Consume ASP.NET Core Razor components from a Razor class library (RCL)
 
 :::moniker range=">= aspnetcore-6.0"
 

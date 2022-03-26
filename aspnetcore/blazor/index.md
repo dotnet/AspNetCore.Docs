@@ -1,15 +1,15 @@
 ---
-title: ASP.NET Core Blazor overview
+title: ASP.NET Core Blazor
 author: guardrex
 description: Explore ASP.NET Core Blazor, a way to build interactive client-side web UI with .NET in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: "mvc, seoapril2019"
 ms.date: 02/10/2022
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/index
 ---
-# ASP.NET Core Blazor overview
+# ASP.NET Core Blazor
 
 *Welcome to Blazor!*
 
@@ -40,7 +40,7 @@ Using .NET for client-side web development offers the following advantages:
 * Leverage the existing .NET ecosystem of [.NET libraries](/dotnet/standard/class-libraries).
 * Share app logic across server and client.
 * Benefit from .NET's performance, reliability, and security.
-* Stay productive with [Visual Studio](https://visualstudio.microsoft.com) on Windows, Linux, and macOS.
+* Stay productive on Windows, Linux, or macOS with a development environment, such as [Visual Studio](https://visualstudio.microsoft.com/) or [Visual Studio Code](https://code.visualstudio.com/).
 * Build on a common set of languages, frameworks, and tools that are stable, feature-rich, and easy to use.
 
 > [!NOTE]

@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/17/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/scaffold-identity
 ---
 # Scaffold Identity in ASP.NET Core projects
@@ -122,7 +122,7 @@ dotnet ef database update
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-Optional: Add the login partial (`_LoginPartial`) to the *Views/Shared/_Layout.cshtml* file:
+Optional: Add the login partial (`_LoginPartial`) to the `Views/Shared/_Layout.cshtml` file:
 
 [!code-cshtml[](scaffold-identity/6.0sample/_Layout.cshtml?highlight=29)]
 
@@ -364,15 +364,15 @@ To disable user registration:
    dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.RegisterConfirmation"
   ```
 
-* Update *Areas/Identity/Pages/Account/Register.cshtml.cs* so users can't register from this endpoint:
+* Update `Areas/Identity/Pages/Account/Register.cshtml.cs` so users can't register from this endpoint:
 
   [!code-csharp[](scaffold-identity/sample/Register.cshtml.cs?name=snippet)]
 
-* Update *Areas/Identity/Pages/Account/Register.cshtml* to be consistent with the preceding changes:
+* Update `Areas/Identity/Pages/Account/Register.cshtml` to be consistent with the preceding changes:
 
   [!code-cshtml[](scaffold-identity/sample/Register.cshtml)]
 
-* Comment out or remove the registration link from *Areas/Identity/Pages/Account/Login.cshtml*
+* Comment out or remove the registration link from `Areas/Identity/Pages/Account/Login.cshtml`
 
   ```cshtml
   @*
@@ -448,7 +448,7 @@ For example, `AddDbContext` and `AddDefaultIdentity` are commented out in the fo
 
 [!code-csharp[](scaffold-identity/3.1sample/StartupRemove.cs?name=snippet)]
 
-The preceding code comments out the code that is duplicated in *Areas/Identity/IdentityHostingStartup.cs*
+The preceding code comments out the code that is duplicated in `Areas/Identity/IdentityHostingStartup.cs`
 
 Typically, apps that were created with individual accounts should ***not*** create a new data context.
 
@@ -493,7 +493,7 @@ before dotnet ef database update
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*. For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
+Identity is configured in `Areas/Identity/IdentityHostingStartup.cs`. For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
 
 <a name="efm"></a>
 
@@ -532,7 +532,7 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
-Some Identity options are configured in *Areas/Identity/IdentityHostingStartup.cs*. For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
+Some Identity options are configured in `Areas/Identity/IdentityHostingStartup.cs`. For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
 
 ## Scaffold Identity into an MVC project without existing authorization
 
@@ -552,13 +552,13 @@ dotnet ef database update
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-Optional: Add the login partial (`_LoginPartial`) to the *Views/Shared/_Layout.cshtml* file:
+Optional: Add the login partial (`_LoginPartial`) to the `Views/Shared/_Layout.cshtml` file:
 
 [!code-cshtml[](scaffold-identity/3.1sample/_Layout.cshtml?highlight=20)]
 
-* Move the *Pages/Shared/_LoginPartial.cshtml* file to *Views/Shared/_LoginPartial.cshtml*
+* Move the `Pages/Shared/_LoginPartial.cshtml` file to `Views/Shared/_LoginPartial.cshtml`
 
-Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*. For more information, see IHostingStartup.
+Identity is configured in `Areas/Identity/IdentityHostingStartup.cs`. For more information, see IHostingStartup.
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
@@ -584,7 +584,7 @@ dotnet aspnet-codegenerator identity -dc MvcAuth.Data.ApplicationDbContext  --fi
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*. For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
+Identity is configured in `Areas/Identity/IdentityHostingStartup.cs`. For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
 
 ### Migrations
 
@@ -599,7 +599,7 @@ Tokens can be passed to components:
 
 For more information, see <xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app>.
 
-In the *Pages/_Host.cshtml* file, establish the token after adding it to the `InitialApplicationState` and `TokenProvider` classes:
+In the `Pages/_Host.cshtml` file, establish the token after adding it to the `InitialApplicationState` and `TokenProvider` classes:
 
 ```csharp
 @inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
@@ -614,7 +614,7 @@ var tokens = new InitialApplicationState
 };
 ```
 
-Update the `App` component (*App.razor*) to assign the `InitialState.XsrfToken`:
+Update the `App` component (`App.razor`) to assign the `InitialState.XsrfToken`:
 
 ```csharp
 @inject TokenProvider TokenProvider
@@ -642,7 +642,7 @@ In the `Startup` class:
 
 ### Layout and authentication flow changes
 
-Add a `RedirectToLogin` component (*RedirectToLogin.razor*) to the app's *Shared* folder in the project root:
+Add a `RedirectToLogin` component (`RedirectToLogin.razor`) to the app's *Shared* folder in the project root:
 
 ```razor
 @inject NavigationManager Navigation
@@ -655,7 +655,7 @@ Add a `RedirectToLogin` component (*RedirectToLogin.razor*) to the app's *Shared
 }
 ```
 
-Add a `LoginDisplay` component (*LoginDisplay.razor*) to the app's *Shared* folder. The [TokenProvider service](xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app) provides the XSRF token for the HTML form that POSTs to Identity's logout endpoint:
+Add a `LoginDisplay` component (`LoginDisplay.razor`) to the app's *Shared* folder. The [TokenProvider service](xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app) provides the XSRF token for the HTML form that POSTs to Identity's logout endpoint:
 
 ```razor
 @using Microsoft.AspNetCore.Components.Authorization
@@ -680,7 +680,7 @@ Add a `LoginDisplay` component (*LoginDisplay.razor*) to the app's *Shared* fold
 </AuthorizeView>
 ```
 
-In the `MainLayout` component (*Shared/MainLayout.razor*), add the `LoginDisplay` component to the top-row `<div>` element's content:
+In the `MainLayout` component (`Shared/MainLayout.razor`), add the `LoginDisplay` component to the top-row `<div>` element's content:
 
 ```razor
 <div class="top-row px-4 auth">
@@ -704,9 +704,9 @@ The Identity pages layout and styles can be modified to produce pages that use t
 > [!NOTE]
 > The example in this section is merely a starting point for customization. Additional work is likely required for the best user experience.
 
-Create a new `NavMenu_IdentityLayout` component (*Shared/NavMenu_IdentityLayout.razor*). For the markup and code of the component, use the same content of the app's `NavMenu` component (*Shared/NavMenu.razor*). Strip out any `NavLink`s to components that can't be reached anonymously because automatic redirects in the `RedirectToLogin` component fail for components requiring authentication or authorization.
+Create a new `NavMenu_IdentityLayout` component (`Shared/NavMenu_IdentityLayout.razor`). For the markup and code of the component, use the same content of the app's `NavMenu` component (`Shared/NavMenu.razor`). Strip out any `NavLink`s to components that can't be reached anonymously because automatic redirects in the `RedirectToLogin` component fail for components requiring authentication or authorization.
 
-In the *Pages/Shared/Layout.cshtml* file, make the following changes:
+In the `Pages/Shared/Layout.cshtml` file, make the following changes:
 
 * Add Razor directives to the top of the file to use Tag Helpers and the app's components in the *Shared* folder:
 
@@ -766,7 +766,7 @@ In the *Pages/Shared/Layout.cshtml* file, make the following changes:
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
-Some Identity options are configured in *Areas/Identity/IdentityHostingStartup.cs*. For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
+Some Identity options are configured in `Areas/Identity/IdentityHostingStartup.cs`. For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
 
 ## Standalone or hosted Blazor WebAssembly apps
 
@@ -828,15 +828,15 @@ To disable user registration:
    dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.RegisterConfirmation"
   ```
 
-* Update *Areas/Identity/Pages/Account/Register.cshtml.cs* so users can't register from this endpoint:
+* Update `Areas/Identity/Pages/Account/Register.cshtml.cs` so users can't register from this endpoint:
 
   [!code-csharp[](scaffold-identity/sample/Register.cshtml.cs?name=snippet)]
 
-* Update *Areas/Identity/Pages/Account/Register.cshtml* to be consistent with the preceding changes:
+* Update `Areas/Identity/Pages/Account/Register.cshtml` to be consistent with the preceding changes:
 
   [!code-cshtml[](scaffold-identity/sample/Register.cshtml)]
 
-* Comment out or remove the registration link from *Areas/Identity/Pages/Account/Login.cshtml*
+* Comment out or remove the registration link from `Areas/Identity/Pages/Account/Login.cshtml`
 
   ```cshtml
   @*

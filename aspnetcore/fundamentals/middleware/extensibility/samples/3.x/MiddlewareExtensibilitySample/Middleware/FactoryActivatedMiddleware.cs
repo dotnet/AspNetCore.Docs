@@ -6,7 +6,7 @@ using MiddlewareExtensibilitySample.Models;
 
 namespace MiddlewareExtensibilitySample.Middleware
 {
-    #region snippet1
+    // <snippet1>
     public class FactoryActivatedMiddleware : IMiddleware
     {
         private readonly AppDbContext _db;
@@ -35,5 +35,5 @@ namespace MiddlewareExtensibilitySample.Middleware
             await next(context);
         }
     }
-    #endregion
+    // </snippet1>
 }

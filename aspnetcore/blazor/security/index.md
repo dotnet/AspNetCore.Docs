@@ -6,14 +6,14 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/security/index
 ---
 # ASP.NET Core Blazor authentication and authorization
 
-:::moniker range=">= aspnetcore-6.0"
+This article describes ASP.NET Core's support for the configuration and management of security in Blazor apps.
 
-ASP.NET Core supports the configuration and management of security in Blazor apps.
+:::moniker range=">= aspnetcore-6.0"
 
 Security scenarios differ between Blazor Server and Blazor WebAssembly apps. Because Blazor Server apps run on the server, authorization checks are able to determine:
 
@@ -579,8 +579,6 @@ The <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationS
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
-
-ASP.NET Core supports the configuration and management of security in Blazor apps.
 
 Security scenarios differ between Blazor Server and Blazor WebAssembly apps. Because Blazor Server apps run on the server, authorization checks are able to determine:
 
@@ -1152,8 +1150,6 @@ The <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationS
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
-
-ASP.NET Core supports the configuration and management of security in Blazor apps.
 
 Security scenarios differ between Blazor Server and Blazor WebAssembly apps. Because Blazor Server apps run on the server, authorization checks are able to determine:
 

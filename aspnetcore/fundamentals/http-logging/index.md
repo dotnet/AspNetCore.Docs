@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-6.0'
 ms.author: jukotali
 ms.custom: mvc
 ms.date: 04/20/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/http-logging/index
 ---
 
@@ -39,7 +39,7 @@ HTTP Logging is enabled with <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuild
 
 [!code-csharp[](samples/6.x/Program.cs?name=snippet2&highlight=5)]
 
-By default, HTTP Logging logs common properties such as path, status-code, and headers for requests and responses. Add the following line to the *appsettings.Development.json* file at the `"LogLevel": {` level so the HTTP logs are displayed:
+By default, HTTP Logging logs common properties such as path, status-code, and headers for requests and responses. Add the following line to the `appsettings.Development.json` file at the `"LogLevel": {` level so the HTTP logs are displayed:
 
 ```xml
  "Microsoft.AspNetCore.HttpLogging.HttpLoggingMiddleware": "Information"

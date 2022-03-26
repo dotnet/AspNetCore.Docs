@@ -1,20 +1,19 @@
 ---
 title: ASP.NET Core Blazor file downloads
 author: TanayParikh
-description: Learn how to download files using Blazor.
+description: Learn how to download files using Blazor Server and Blazor WebAssembly.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: taparik
 ms.custom: mvc
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 ms.date: 11/09/2021
 uid: blazor/file-downloads
 ---
 # ASP.NET Core Blazor file downloads
 
-This article covers downloading files in Blazor apps. The guidance in this article:
+This article explains how to download files in Blazor Server and Blazor WebAssembly apps.
 
-* Addresses downloading files from the app's own static assets or from any other location. When downloading files, [Cross-Origin Resource Sharing (CORS)](#cross-origin-resource-sharing-cors) considerations apply.
-* Applies to any [Blazor hosting model](xref:blazor/hosting-models).
+Files can be downloaded from the app's own static assets or from any other location. When downloading files, [Cross-Origin Resource Sharing (CORS)](#cross-origin-resource-sharing-cors) considerations apply.
 
 > [!WARNING]
 > Always follow security best practices when allowing users to download files. For more information, see the [Security considerations](#security-considerations) section.
