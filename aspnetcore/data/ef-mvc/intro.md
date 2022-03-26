@@ -6,7 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 11/06/2020
 ms.topic: tutorial
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: data/ef-mvc/intro
 ---
 # Tutorial: Get started with EF Core in an ASP.NET MVC web app
@@ -72,7 +72,7 @@ Users can view and update student, course, and instructor information. Here are 
 
 A few basic changes set up the site menu, layout, and home page.
 
-Open *Views/Shared/_Layout.cshtml* and make the following changes:
+Open `Views/Shared/_Layout.cshtml` and make the following changes:
 
 * Change each occurrence of `ContosoUniversity` to `Contoso University`. There are three occurrences.
 * Add menu entries for **About**, **Students**, **Courses**, **Instructors**, and **Departments**, and delete the **Privacy** menu entry.
@@ -81,7 +81,7 @@ The preceding changes are highlighted in the following code:
 
 [!code-cshtml[](intro/samples/5cu/Views/Shared/_Layout.cshtml?highlight=6,24-38,52)]
 
-In *Views/Home/Index.cshtml*, replace the contents of the file with the following markup:
+In `Views/Home/Index.cshtml`, replace the contents of the file with the following markup:
 
 [!code-cshtml[](intro/samples/5cu/Views/Home/Index.cshtml)]
 
@@ -202,13 +202,13 @@ When the database is created, EF creates tables that have names the same as the 
 
 ASP.NET Core includes [dependency injection](../../fundamentals/dependency-injection.md). Services, such as the EF database context, are registered with dependency injection during app startup. Components that require these services, such as MVC controllers, are provided these services via constructor parameters. The controller constructor code that gets a context instance is shown later in this tutorial.
 
-To register `SchoolContext` as a service, open *Startup.cs*, and add the highlighted lines to the `ConfigureServices` method.
+To register `SchoolContext` as a service, open `Startup.cs`, and add the highlighted lines to the `ConfigureServices` method.
 
 [!code-csharp[](intro/samples/5cu-snap/Startup.cs?name=snippet&highlight=1-2,22-23)]
 
-The name of the connection string is passed in to the context by calling a method on a `DbContextOptionsBuilder` object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
+The name of the connection string is passed in to the context by calling a method on a `DbContextOptionsBuilder` object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the `appsettings.json` file.
 
-Open the *appsettings.json* file and add a connection string as shown in the following markup:
+Open the `appsettings.json` file and add a connection string as shown in the following markup:
 
 [!code-json[](./intro/samples/5cu/appsettings1.json?highlight=2-4)]
 
@@ -289,7 +289,7 @@ The controller contains an `Index` action method, which displays all students in
 
 The asynchronous programming elements in this code are explained later in the tutorial.
 
-The *Views/Students/Index.cshtml* view displays this list in a table:
+The `Views/Students/Index.cshtml` view displays this list in a table:
 
 [!code-cshtml[](intro/samples/cu/Views/Students/Index1.cshtml)]
 
@@ -312,7 +312,7 @@ Use **SQL Server Object Explorer** (SSOX) to view the database in Visual Studio:
 
 * Select **SQL Server Object Explorer** from the **View** menu in Visual Studio.
 * In SSOX, select **(localdb)\MSSQLLocalDB > Databases**.
-* Select `ContosoUniversity1`, the entry for the database name that's in the connection string in the *appsettings.json* file.
+* Select `ContosoUniversity1`, the entry for the database name that's in the connection string in the `appsettings.json` file.
 * Expand the **Tables** node to see the tables in the database.
 
 ![Tables in SSOX](intro/_static/ssox-tables.png)
@@ -442,7 +442,7 @@ Users can view and update student, course, and instructor information. Here are 
 
 A few simple changes will set up the site menu, layout, and home page.
 
-Open *Views/Shared/_Layout.cshtml* and make the following changes:
+Open `Views/Shared/_Layout.cshtml` and make the following changes:
 
 * Change each occurrence of "ContosoUniversity" to "Contoso University". There are three occurrences.
 
@@ -452,7 +452,7 @@ The changes are highlighted.
 
 [!code-cshtml[](intro/samples/cu/Views/Shared/_Layout.cshtml?highlight=6,34-48,63)]
 
-In *Views/Home/Index.cshtml*, replace the contents of the file with the following code to replace the text about ASP.NET and MVC with text about this application:
+In `Views/Home/Index.cshtml`, replace the contents of the file with the following code to replace the text about ASP.NET and MVC with text about this application:
 
 [!code-cshtml[](intro/samples/cu/Views/Home/Index.cshtml)]
 
@@ -482,7 +482,7 @@ In the following sections you'll create a class for each one of these entities.
 
 ![Student entity diagram](intro/_static/student-entity.png)
 
-In the *Models* folder, create a class file named *Student.cs* and replace the template code with the following code.
+In the *Models* folder, create a class file named `Student.cs` and replace the template code with the following code.
 
 [!code-csharp[](intro/samples/cu/Models/Student.cs?name=snippet_Intro)]
 
@@ -496,7 +496,7 @@ If a navigation property can hold multiple entities (as in many-to-many or one-t
 
 ![Enrollment entity diagram](intro/_static/enrollment-entity.png)
 
-In the *Models* folder, create *Enrollment.cs* and replace the existing code with the following code:
+In the *Models* folder, create `Enrollment.cs` and replace the existing code with the following code:
 
 [!code-csharp[](intro/samples/cu/Models/Enrollment.cs?name=snippet_Intro)]
 
@@ -514,7 +514,7 @@ Entity Framework interprets a property as a foreign key property if it's named `
 
 ![Course entity diagram](intro/_static/course-entity.png)
 
-In the *Models* folder, create *Course.cs* and replace the existing code with the following code:
+In the *Models* folder, create `Course.cs` and replace the existing code with the following code:
 
 [!code-csharp[](intro/samples/cu/Models/Course.cs?name=snippet_Intro)]
 
@@ -528,7 +528,7 @@ The main class that coordinates Entity Framework functionality for a given data 
 
 In the project folder, create a folder named *Data*.
 
-In the *Data* folder create a new class file named *SchoolContext.cs*, and replace the template code with the following code:
+In the *Data* folder create a new class file named `SchoolContext.cs`, and replace the template code with the following code:
 
 [!code-csharp[](intro/samples/cu/Data/SchoolContext.cs?name=snippet_Intro)]
 
@@ -546,17 +546,17 @@ Build the project as a check for compiler errors.
 
 ASP.NET Core implements [dependency injection](../../fundamentals/dependency-injection.md) by default. Services (such as the EF database context) are registered with dependency injection during application startup. Components that require these services (such as MVC controllers) are provided these services via constructor parameters. You'll see the controller constructor code that gets a context instance later in this tutorial.
 
-To register `SchoolContext` as a service, open *Startup.cs*, and add the highlighted lines to the `ConfigureServices` method.
+To register `SchoolContext` as a service, open `Startup.cs`, and add the highlighted lines to the `ConfigureServices` method.
 
 [!code-csharp[](intro/samples/cu/Startup.cs?name=snippet_SchoolContext&highlight=9-10)]
 
-The name of the connection string is passed in to the context by calling a method on a `DbContextOptionsBuilder` object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
+The name of the connection string is passed in to the context by calling a method on a `DbContextOptionsBuilder` object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the `appsettings.json` file.
 
 Add `using` statements for `ContosoUniversity.Data` and `Microsoft.EntityFrameworkCore` namespaces, and then build the project.
 
 [!code-csharp[](intro/samples/cu/Startup.cs?name=snippet_Usings)]
 
-Open the *appsettings.json* file and add a connection string as shown in the following example.
+Open the `appsettings.json` file and add a connection string as shown in the following example.
 
 [!code-json[](./intro/samples/cu/appsettings1.json?highlight=2-4)]
 
@@ -570,7 +570,7 @@ The Entity Framework will create an empty database for you. In this section, you
 
 Here you'll use the `EnsureCreated` method to automatically create the database. In a [later tutorial](migrations.md) you'll see how to handle model changes by using Code First Migrations to change the database schema instead of dropping and re-creating the database.
 
-In the *Data* folder, create a new class file named *DbInitializer.cs* and replace the template code with the following code, which causes a database to be created when needed and loads test data into the new database.
+In the *Data* folder, create a new class file named `DbInitializer.cs` and replace the template code with the following code, which causes a database to be created when needed and loads test data into the new database.
 
 [!code-csharp[](intro/samples/cu/Data/DbInitializer.cs?name=snippet_Intro)]
 
@@ -607,13 +607,13 @@ The automatic creation of CRUD action methods and views is known as scaffolding.
   * Accept the default **StudentsController** as the name.
   * Click **Add**.
 
-The Visual Studio scaffolding engine creates a *StudentsController.cs* file and a set of views (*.cshtml* files) that work with the controller.
+The Visual Studio scaffolding engine creates a `StudentsController.cs` file and a set of views (`.cshtml` files) that work with the controller.
 
 Notice the controller takes a `SchoolContext` as a constructor parameter.
 
 [!code-csharp[](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_Context&highlight=5,7,9)]
 
-ASP.NET Core dependency injection takes care of passing an instance of `SchoolContext` into the controller. That was configured  in the *Startup.cs* file.
+ASP.NET Core dependency injection takes care of passing an instance of `SchoolContext` into the controller. That was configured  in the `Startup.cs` file.
 
 The controller contains an `Index` action method, which displays all students in the database. The method gets a list of students from the Students entity set by reading the `Students` property of the database context instance:
 
@@ -621,7 +621,7 @@ The controller contains an `Index` action method, which displays all students in
 
 You learn about the asynchronous programming elements in this code later in the tutorial.
 
-The *Views/Students/Index.cshtml* view displays this list in a table:
+The `Views/Students/Index.cshtml` view displays this list in a table:
 
 [!code-cshtml[](intro/samples/cu/Views/Students/Index1.cshtml)]
 
@@ -641,7 +641,7 @@ Close the browser.
 
 If the SSOX window isn't already open, select it from the **View** menu in Visual Studio.
 
-In SSOX, click **(localdb)\MSSQLLocalDB > Databases**, and then click the entry for the database name that's in the connection string in the *appsettings.json* file.
+In SSOX, click **(localdb)\MSSQLLocalDB > Databases**, and then click the entry for the database name that's in the connection string in the `appsettings.json` file.
 
 Expand the **Tables** node to see the tables in the database.
 

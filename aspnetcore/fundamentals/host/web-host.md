@@ -5,8 +5,8 @@ description: Learn about Web Host in ASP.NET Core, which is responsible for app 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/07/2019
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+ms.date: 02/22/2022
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/host/web-host
 ---
 # ASP.NET Core Web Host
@@ -15,13 +15,11 @@ uid: fundamentals/host/web-host
 
 ASP.NET Core apps configure and launch a *host*. The host is responsible for app startup and lifetime management. At a minimum, the host configures a server and a request processing pipeline. The host can also set up logging, dependency injection, and configuration.
 
-This article covers the Web Host, which remains available only for backward compatibility. The ASP.NET Core templates create a [.NET Generic Host](xref:fundamentals/host/generic-host), which is recommended for all app types.
+This article covers the Web Host, which remains available only for backward compatibility. The ASP.NET Core templates create a <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> and <xref:Microsoft.AspNetCore.Builder.WebApplication>, which is recommended for web apps. For more information on `WebApplicationBuilder` and `WebApplication`, see <xref:migration/50-to-60#new-hosting-model>
 
 ## Set up a host
 
-Create a host using an instance of <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder>. This is typically performed in the app's entry point, the `Main` method.
-
-In the project templates, `Main` is located in `Program.cs`. A typical app calls <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> to start setting up a host:
+Create a host using an instance of <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder>. This is typically performed in the app's entry point, the `Main` method in `Program.cs`. A typical app calls <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> to start setting up a host:
 
 ```csharp
 public class Program
@@ -47,18 +45,18 @@ The code that calls `CreateDefaultBuilder` is in a method named `CreateWebHostBu
   * Environment variables prefixed with `ASPNETCORE_` (for example, `ASPNETCORE_ENVIRONMENT`).
   * Command-line arguments.
 * Loads app configuration in the following order from:
-  * *appsettings.json*.
-  * *appsettings.{Environment}.json*.
+  * `appsettings.json`.
+  * `appsettings.{Environment}.json`.
   * [User secrets](xref:security/app-secrets) when the app runs in the `Development` environment using the entry assembly.
   * Environment variables.
   * Command-line arguments.
-* Configures [logging](xref:fundamentals/logging/index) for console and debug output. Logging includes [log filtering](xref:fundamentals/logging/index#apply-log-filter-rules-in-code) rules specified in a Logging configuration section of an *appsettings.json* or *appsettings.{Environment}.json* file.
+* Configures [logging](xref:fundamentals/logging/index) for console and debug output. Logging includes [log filtering](xref:fundamentals/logging/index#apply-log-filter-rules-in-code) rules specified in a Logging configuration section of an `appsettings.json` or `appsettings.{Environment}.json` file.
 * When running behind IIS with the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module), `CreateDefaultBuilder` enables [IIS Integration](xref:host-and-deploy/iis/index), which configures the app's base address and port. IIS Integration also configures the app to [capture startup errors](#capture-startup-errors). For the IIS default options, see <xref:host-and-deploy/iis/index#iis-options>.
 * Sets <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateScopes%2A?displayProperty=nameWithType> to `true` if the app's environment is Development. For more information, see [Scope validation](#scope-validation).
 
 The configuration defined by `CreateDefaultBuilder` can be overridden and augmented by <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.ConfigureAppConfiguration%2A>, <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.ConfigureLogging%2A>, and other methods and extension methods of <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder>. A few examples follow:
 
-* <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.ConfigureAppConfiguration%2A> is used to specify additional `IConfiguration` for the app. The following `ConfigureAppConfiguration` call adds a delegate to include app configuration in the *appsettings.xml* file. `ConfigureAppConfiguration` may be called multiple times. Note that this configuration doesn't apply to the host (for example, server URLs or environment). See the [Host configuration values](#host-configuration-values) section.
+* <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.ConfigureAppConfiguration%2A> is used to specify additional `IConfiguration` for the app. The following `ConfigureAppConfiguration` call adds a delegate to include app configuration in the `appsettings.xml` file. `ConfigureAppConfiguration` may be called multiple times. Note that this configuration doesn't apply to the host (for example, server URLs or environment). See the [Host configuration values](#host-configuration-values) section.
 
     ```csharp
     WebHost.CreateDefaultBuilder(args)
@@ -69,7 +67,7 @@ The configuration defined by `CreateDefaultBuilder` can be overridden and augmen
         ...
     ```
 
-* The following `ConfigureLogging` call adds a delegate to configure the minimum logging level (<xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.SetMinimumLevel%2A>) to <xref:Microsoft.Extensions.Logging.LogLevel.Warning?displayProperty=nameWithType>. This setting overrides the settings in *appsettings.Development.json* (`LogLevel.Debug`) and *appsettings.Production.json* (`LogLevel.Error`) configured by `CreateDefaultBuilder`. `ConfigureLogging` may be called multiple times.
+* The following `ConfigureLogging` call adds a delegate to configure the minimum logging level (<xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.SetMinimumLevel%2A>) to <xref:Microsoft.Extensions.Logging.LogLevel.Warning?displayProperty=nameWithType>. This setting overrides the settings in `appsettings.Development.json` (`LogLevel.Debug`) and `appsettings.Production.json` (`LogLevel.Error`) configured by `CreateDefaultBuilder`. `ConfigureLogging` may be called multiple times.
 
     ```csharp
     WebHost.CreateDefaultBuilder(args)
@@ -190,7 +188,7 @@ Sets the app's environment.
 **Set using**: `UseEnvironment`  
 **Environment variable**: `ASPNETCORE_ENVIRONMENT`
 
-The environment can be set to any value. Framework-defined values include `Development`, `Staging`, and `Production`. Values aren't case sensitive. By default, the *Environment* is read from the `ASPNETCORE_ENVIRONMENT` environment variable. When using [Visual Studio](https://visualstudio.microsoft.com), environment variables may be set in the *launchSettings.json* file. For more information, see <xref:fundamentals/environments>.
+The environment can be set to any value. Framework-defined values include `Development`, `Staging`, and `Production`. Values aren't case sensitive. By default, the *Environment* is read from the `ASPNETCORE_ENVIRONMENT` environment variable. When using [Visual Studio](https://visualstudio.microsoft.com), environment variables may be set in the `launchSettings.json` file. For more information, see <xref:fundamentals/environments>.
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
@@ -363,9 +361,9 @@ For more information, see:
 
 ## Override configuration
 
-Use [Configuration](xref:fundamentals/configuration/index) to configure Web Host. In the following example, host configuration is optionally specified in a *hostsettings.json* file. Any configuration loaded from the *hostsettings.json* file may be overridden by command-line arguments. The built configuration (in `config`) is used to configure the host with <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseConfiguration%2A>. `IWebHostBuilder` configuration is added to the app's configuration, but the converse isn't true&mdash;`ConfigureAppConfiguration` doesn't affect the `IWebHostBuilder` configuration.
+Use [Configuration](xref:fundamentals/configuration/index) to configure Web Host. In the following example, host configuration is optionally specified in a `hostsettings.json` file. Any configuration loaded from the `hostsettings.json` file may be overridden by command-line arguments. The built configuration (in `config`) is used to configure the host with <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseConfiguration%2A>. `IWebHostBuilder` configuration is added to the app's configuration, but the converse isn't true&mdash;`ConfigureAppConfiguration` doesn't affect the `IWebHostBuilder` configuration.
 
-Overriding the configuration provided by `UseUrls` with *hostsettings.json* config first, command-line argument config second:
+Overriding the configuration provided by `UseUrls` with `hostsettings.json` config first, command-line argument config second:
 
 ```csharp
 public class Program
@@ -395,7 +393,7 @@ public class Program
 }
 ```
 
-*hostsettings.json*:
+`hostsettings.json`:
 
 ```json
 {
@@ -406,7 +404,7 @@ public class Program
 > [!NOTE]
 > <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseConfiguration%2A> only copies keys from the provided `IConfiguration` to the host builder configuration. Therefore, setting `reloadOnChange: true` for JSON, INI, and XML settings files has no effect.
 
-To specify the host run on a particular URL, the desired value can be passed in from a command prompt when executing [dotnet run](/dotnet/core/tools/dotnet-run). The command-line argument overrides the `urls` value from the *hostsettings.json* file, and the server listens on port 8080:
+To specify the host run on a particular URL, the desired value can be passed in from a command prompt when executing [dotnet run](/dotnet/core/tools/dotnet-run). The command-line argument overrides the `urls` value from the `hostsettings.json` file, and the server listens on port 8080:
 
 ```dotnetcli
 dotnet run --urls "http://*:8080"
@@ -804,18 +802,18 @@ The code that calls `CreateDefaultBuilder` is in a method named `CreateWebHostBu
   * Environment variables prefixed with `ASPNETCORE_` (for example, `ASPNETCORE_ENVIRONMENT`).
   * Command-line arguments.
 * Loads app configuration in the following order from:
-  * *appsettings.json*.
-  * *appsettings.{Environment}.json*.
+  * `appsettings.json`.
+  * `appsettings.{Environment}.json`.
   * [User secrets](xref:security/app-secrets) when the app runs in the `Development` environment using the entry assembly.
   * Environment variables.
   * Command-line arguments.
-* Configures [logging](xref:fundamentals/logging/index) for console and debug output. Logging includes [log filtering](xref:fundamentals/logging/index#apply-log-filter-rules-in-code) rules specified in a Logging configuration section of an *appsettings.json* or *appsettings.{Environment}.json* file.
+* Configures [logging](xref:fundamentals/logging/index) for console and debug output. Logging includes [log filtering](xref:fundamentals/logging/index#apply-log-filter-rules-in-code) rules specified in a Logging configuration section of an `appsettings.json` or `appsettings.{Environment}.json` file.
 * When running behind IIS with the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module), `CreateDefaultBuilder` enables [IIS Integration](xref:host-and-deploy/iis/index), which configures the app's base address and port. IIS Integration also configures the app to [capture startup errors](#capture-startup-errors). For the IIS default options, see <xref:host-and-deploy/iis/index#iis-options>.
 * Sets <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateScopes%2A?displayProperty=nameWithType> to `true` if the app's environment is Development. For more information, see [Scope validation](#scope-validation).
 
 The configuration defined by `CreateDefaultBuilder` can be overridden and augmented by <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.ConfigureAppConfiguration%2A>, <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.ConfigureLogging%2A>, and other methods and extension methods of <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder>. A few examples follow:
 
-* <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.ConfigureAppConfiguration%2A> is used to specify additional `IConfiguration` for the app. The following `ConfigureAppConfiguration` call adds a delegate to include app configuration in the *appsettings.xml* file. `ConfigureAppConfiguration` may be called multiple times. Note that this configuration doesn't apply to the host (for example, server URLs or environment). See the [Host configuration values](#host-configuration-values) section.
+* <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.ConfigureAppConfiguration%2A> is used to specify additional `IConfiguration` for the app. The following `ConfigureAppConfiguration` call adds a delegate to include app configuration in the `appsettings.xml` file. `ConfigureAppConfiguration` may be called multiple times. Note that this configuration doesn't apply to the host (for example, server URLs or environment). See the [Host configuration values](#host-configuration-values) section.
 
     ```csharp
     WebHost.CreateDefaultBuilder(args)
@@ -826,7 +824,7 @@ The configuration defined by `CreateDefaultBuilder` can be overridden and augmen
         ...
     ```
 
-* The following `ConfigureLogging` call adds a delegate to configure the minimum logging level (<xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.SetMinimumLevel%2A>) to <xref:Microsoft.Extensions.Logging.LogLevel.Warning?displayProperty=nameWithType>. This setting overrides the settings in *appsettings.Development.json* (`LogLevel.Debug`) and *appsettings.Production.json* (`LogLevel.Error`) configured by `CreateDefaultBuilder`. `ConfigureLogging` may be called multiple times.
+* The following `ConfigureLogging` call adds a delegate to configure the minimum logging level (<xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.SetMinimumLevel%2A>) to <xref:Microsoft.Extensions.Logging.LogLevel.Warning?displayProperty=nameWithType>. This setting overrides the settings in `appsettings.Development.json` (`LogLevel.Debug`) and `appsettings.Production.json` (`LogLevel.Error`) configured by `CreateDefaultBuilder`. `ConfigureLogging` may be called multiple times.
 
     ```csharp
     WebHost.CreateDefaultBuilder(args)
@@ -947,7 +945,7 @@ Sets the app's environment.
 **Set using**: `UseEnvironment`  
 **Environment variable**: `ASPNETCORE_ENVIRONMENT`
 
-The environment can be set to any value. Framework-defined values include `Development`, `Staging`, and `Production`. Values aren't case sensitive. By default, the *Environment* is read from the `ASPNETCORE_ENVIRONMENT` environment variable. When using [Visual Studio](https://visualstudio.microsoft.com), environment variables may be set in the *launchSettings.json* file. For more information, see <xref:fundamentals/environments>.
+The environment can be set to any value. Framework-defined values include `Development`, `Staging`, and `Production`. Values aren't case sensitive. By default, the *Environment* is read from the `ASPNETCORE_ENVIRONMENT` environment variable. When using [Visual Studio](https://visualstudio.microsoft.com), environment variables may be set in the `launchSettings.json` file. For more information, see <xref:fundamentals/environments>.
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
@@ -1120,9 +1118,9 @@ For more information, see:
 
 ## Override configuration
 
-Use [Configuration](xref:fundamentals/configuration/index) to configure Web Host. In the following example, host configuration is optionally specified in a *hostsettings.json* file. Any configuration loaded from the *hostsettings.json* file may be overridden by command-line arguments. The built configuration (in `config`) is used to configure the host with <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseConfiguration%2A>. `IWebHostBuilder` configuration is added to the app's configuration, but the converse isn't true&mdash;`ConfigureAppConfiguration` doesn't affect the `IWebHostBuilder` configuration.
+Use [Configuration](xref:fundamentals/configuration/index) to configure Web Host. In the following example, host configuration is optionally specified in a `hostsettings.json` file. Any configuration loaded from the `hostsettings.json` file may be overridden by command-line arguments. The built configuration (in `config`) is used to configure the host with <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseConfiguration%2A>. `IWebHostBuilder` configuration is added to the app's configuration, but the converse isn't true&mdash;`ConfigureAppConfiguration` doesn't affect the `IWebHostBuilder` configuration.
 
-Overriding the configuration provided by `UseUrls` with *hostsettings.json* config first, command-line argument config second:
+Overriding the configuration provided by `UseUrls` with `hostsettings.json` config first, command-line argument config second:
 
 ```csharp
 public class Program
@@ -1152,7 +1150,7 @@ public class Program
 }
 ```
 
-*hostsettings.json*:
+`hostsettings.json`:
 
 ```json
 {
@@ -1163,7 +1161,7 @@ public class Program
 > [!NOTE]
 > <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseConfiguration%2A> only copies keys from the provided `IConfiguration` to the host builder configuration. Therefore, setting `reloadOnChange: true` for JSON, INI, and XML settings files has no effect.
 
-To specify the host run on a particular URL, the desired value can be passed in from a command prompt when executing [dotnet run](/dotnet/core/tools/dotnet-run). The command-line argument overrides the `urls` value from the *hostsettings.json* file, and the server listens on port 8080:
+To specify the host run on a particular URL, the desired value can be passed in from a command prompt when executing [dotnet run](/dotnet/core/tools/dotnet-run). The command-line argument overrides the `urls` value from the `hostsettings.json` file, and the server listens on port 8080:
 
 ```dotnetcli
 dotnet run --urls "http://*:8080"
@@ -1561,18 +1559,18 @@ The code that calls `CreateDefaultBuilder` is in a method named `CreateWebHostBu
   * Environment variables prefixed with `ASPNETCORE_` (for example, `ASPNETCORE_ENVIRONMENT`).
   * Command-line arguments.
 * Loads app configuration in the following order from:
-  * *appsettings.json*.
-  * *appsettings.{Environment}.json*.
+  * `appsettings.json`.
+  * `appsettings.{Environment}.json`.
   * [User secrets](xref:security/app-secrets) when the app runs in the `Development` environment using the entry assembly.
   * Environment variables.
   * Command-line arguments.
-* Configures [logging](xref:fundamentals/logging/index) for console and debug output. Logging includes [log filtering](xref:fundamentals/logging/index#apply-log-filter-rules-in-code) rules specified in a Logging configuration section of an *appsettings.json* or *appsettings.{Environment}.json* file.
+* Configures [logging](xref:fundamentals/logging/index) for console and debug output. Logging includes [log filtering](xref:fundamentals/logging/index#apply-log-filter-rules-in-code) rules specified in a Logging configuration section of an `appsettings.json` or `appsettings.{Environment}.json` file.
 * When running behind IIS with the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module), `CreateDefaultBuilder` enables [IIS Integration](xref:host-and-deploy/iis/index), which configures the app's base address and port. IIS Integration also configures the app to [capture startup errors](#capture-startup-errors). For the IIS default options, see <xref:host-and-deploy/iis/index#iis-options>.
 * Sets <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateScopes%2A?displayProperty=nameWithType> to `true` if the app's environment is Development. For more information, see [Scope validation](#scope-validation).
 
 The configuration defined by `CreateDefaultBuilder` can be overridden and augmented by <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.ConfigureAppConfiguration%2A>, <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.ConfigureLogging%2A>, and other methods and extension methods of <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder>. A few examples follow:
 
-* <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.ConfigureAppConfiguration%2A> is used to specify additional `IConfiguration` for the app. The following `ConfigureAppConfiguration` call adds a delegate to include app configuration in the *appsettings.xml* file. `ConfigureAppConfiguration` may be called multiple times. Note that this configuration doesn't apply to the host (for example, server URLs or environment). See the [Host configuration values](#host-configuration-values) section.
+* <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.ConfigureAppConfiguration%2A> is used to specify additional `IConfiguration` for the app. The following `ConfigureAppConfiguration` call adds a delegate to include app configuration in the `appsettings.xml` file. `ConfigureAppConfiguration` may be called multiple times. Note that this configuration doesn't apply to the host (for example, server URLs or environment). See the [Host configuration values](#host-configuration-values) section.
 
     ```csharp
     WebHost.CreateDefaultBuilder(args)
@@ -1583,7 +1581,7 @@ The configuration defined by `CreateDefaultBuilder` can be overridden and augmen
         ...
     ```
 
-* The following `ConfigureLogging` call adds a delegate to configure the minimum logging level (<xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.SetMinimumLevel%2A>) to <xref:Microsoft.Extensions.Logging.LogLevel.Warning?displayProperty=nameWithType>. This setting overrides the settings in *appsettings.Development.json* (`LogLevel.Debug`) and *appsettings.Production.json* (`LogLevel.Error`) configured by `CreateDefaultBuilder`. `ConfigureLogging` may be called multiple times.
+* The following `ConfigureLogging` call adds a delegate to configure the minimum logging level (<xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.SetMinimumLevel%2A>) to <xref:Microsoft.Extensions.Logging.LogLevel.Warning?displayProperty=nameWithType>. This setting overrides the settings in `appsettings.Development.json` (`LogLevel.Debug`) and `appsettings.Production.json` (`LogLevel.Error`) configured by `CreateDefaultBuilder`. `ConfigureLogging` may be called multiple times.
 
     ```csharp
     WebHost.CreateDefaultBuilder(args)
@@ -1704,7 +1702,7 @@ Sets the app's environment.
 **Set using**: `UseEnvironment`  
 **Environment variable**: `ASPNETCORE_ENVIRONMENT`
 
-The environment can be set to any value. Framework-defined values include `Development`, `Staging`, and `Production`. Values aren't case sensitive. By default, the *Environment* is read from the `ASPNETCORE_ENVIRONMENT` environment variable. When using [Visual Studio](https://visualstudio.microsoft.com), environment variables may be set in the *launchSettings.json* file. For more information, see <xref:fundamentals/environments>.
+The environment can be set to any value. Framework-defined values include `Development`, `Staging`, and `Production`. Values aren't case sensitive. By default, the *Environment* is read from the `ASPNETCORE_ENVIRONMENT` environment variable. When using [Visual Studio](https://visualstudio.microsoft.com), environment variables may be set in the `launchSettings.json` file. For more information, see <xref:fundamentals/environments>.
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
@@ -1877,9 +1875,9 @@ For more information, see:
 
 ## Override configuration
 
-Use [Configuration](xref:fundamentals/configuration/index) to configure Web Host. In the following example, host configuration is optionally specified in a *hostsettings.json* file. Any configuration loaded from the *hostsettings.json* file may be overridden by command-line arguments. The built configuration (in `config`) is used to configure the host with <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseConfiguration%2A>. `IWebHostBuilder` configuration is added to the app's configuration, but the converse isn't true&mdash;`ConfigureAppConfiguration` doesn't affect the `IWebHostBuilder` configuration.
+Use [Configuration](xref:fundamentals/configuration/index) to configure Web Host. In the following example, host configuration is optionally specified in a `hostsettings.json` file. Any configuration loaded from the `hostsettings.json` file may be overridden by command-line arguments. The built configuration (in `config`) is used to configure the host with <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseConfiguration%2A>. `IWebHostBuilder` configuration is added to the app's configuration, but the converse isn't true&mdash;`ConfigureAppConfiguration` doesn't affect the `IWebHostBuilder` configuration.
 
-Overriding the configuration provided by `UseUrls` with *hostsettings.json* config first, command-line argument config second:
+Overriding the configuration provided by `UseUrls` with `hostsettings.json` config first, command-line argument config second:
 
 ```csharp
 public class Program
@@ -1909,7 +1907,7 @@ public class Program
 }
 ```
 
-*hostsettings.json*:
+`hostsettings.json`:
 
 ```json
 {
@@ -1920,7 +1918,7 @@ public class Program
 > [!NOTE]
 > <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseConfiguration%2A> only copies keys from the provided `IConfiguration` to the host builder configuration. Therefore, setting `reloadOnChange: true` for JSON, INI, and XML settings files has no effect.
 
-To specify the host run on a particular URL, the desired value can be passed in from a command prompt when executing [dotnet run](/dotnet/core/tools/dotnet-run). The command-line argument overrides the `urls` value from the *hostsettings.json* file, and the server listens on port 8080:
+To specify the host run on a particular URL, the desired value can be passed in from a command prompt when executing [dotnet run](/dotnet/core/tools/dotnet-run). The command-line argument overrides the `urls` value from the `hostsettings.json` file, and the server listens on port 8080:
 
 ```dotnetcli
 dotnet run --urls "http://*:8080"

@@ -6,14 +6,14 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/security/webassembly/standalone-with-azure-active-directory-b2c
 ---
 # Secure an ASP.NET Core Blazor WebAssembly standalone app with Azure Active Directory B2C
 
-:::moniker range=">= aspnetcore-6.0"
+This article explains how to create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD) B2C](/azure/active-directory-b2c/overview) for authentication.
 
-This article covers how to create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD) B2C](/azure/active-directory-b2c/overview) for authentication.
+:::moniker range=">= aspnetcore-6.0"
 
 Create a tenant or identify an existing B2C tenant for the app to use in the Azure portal by following the guidance in the [Create an AAD B2C tenant (Azure documentation)](/azure/active-directory-b2c/tutorial-create-tenant) article. Return to this article immediately after creating or identifying a tenant to use.
 
@@ -36,7 +36,7 @@ Record the Application (client) ID (for example, `41451fa7-82d9-4673-8fa5-69eff5
 In **Authentication** > **Platform configurations** > **Single-page application (SPA)**:
 
 1. Confirm the **Redirect URI** of `https://localhost:{PORT}/authentication/login-callback` is present.
-1. For **Implicit grant**, ensure that the checkboxes for **Access tokens** and **ID tokens** are **not** selected.
+1. In the **Implicit grant** section, ensure that the checkboxes for **Access tokens** and **ID tokens** are **not** selected.
 1. The remaining defaults for the app are acceptable for this experience.
 1. Select the **Save** button.
 
@@ -200,8 +200,6 @@ For more information, see the following sections of the *Additional scenarios* a
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-This article covers how to create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD) B2C](/azure/active-directory-b2c/overview) for authentication.
-
 Create a tenant or identify an existing B2C tenant for the app to use in the Azure portal by following the guidance in the [Create an AAD B2C tenant (Azure documentation)](/azure/active-directory-b2c/tutorial-create-tenant) article. Return to this article immediately after creating or identifying a tenant to use.
 
 Record the following information:
@@ -223,7 +221,7 @@ Record the Application (client) ID (for example, `41451fa7-82d9-4673-8fa5-69eff5
 In **Authentication** > **Platform configurations** > **Single-page application (SPA)**:
 
 1. Confirm the **Redirect URI** of `https://localhost:{PORT}/authentication/login-callback` is present.
-1. For **Implicit grant**, ensure that the checkboxes for **Access tokens** and **ID tokens** are **not** selected.
+1. In the **Implicit grant** section, ensure that the checkboxes for **Access tokens** and **ID tokens** are **not** selected.
 1. The remaining defaults for the app are acceptable for this experience.
 1. Select the **Save** button.
 
@@ -385,8 +383,6 @@ For more information, see the following sections of the *Additional scenarios* a
 
 :::moniker range="< aspnetcore-5.0"
 
-This article covers how to create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD) B2C](/azure/active-directory-b2c/overview) for authentication.
-
 Create a tenant or identify an existing B2C tenant for the app to use in the Azure portal by following the guidance in the [Create an AAD B2C tenant (Azure documentation)](/azure/active-directory-b2c/tutorial-create-tenant) article. Return to this article immediately after creating or identifying a tenant to use.
 
 Record the following information:
@@ -408,7 +404,7 @@ Record the Application (client) ID (for example, `41451fa7-82d9-4673-8fa5-69eff5
 In **Authentication** > **Platform configurations** > **Web**:
 
 1. Confirm the **Redirect URI** of `https://localhost:{PORT}/authentication/login-callback` is present.
-1. For **Implicit grant**, select the checkboxes for **Access tokens** and **ID tokens**.
+1. In the **Implicit grant** section, select the checkboxes for **Access tokens** and **ID tokens**.
 1. The remaining defaults for the app are acceptable for this experience.
 1. Select the **Save** button.
 

@@ -6,10 +6,12 @@ monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: "devx-track-csharp, mvc"
 ms.date: 11/09/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/security/webassembly/aad-groups-roles
 ---
 # Azure Active Directory (AAD) groups, Administrator Roles, and App Roles
+
+This article explains how to configure Blazor WebAssembly to use Azure Active Directory groups and roles.
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -96,7 +98,9 @@ public class CustomUserAccount : RemoteUserAccount
 }
 ```
 
-Add a package reference to the **CLIENT** app's project file for [`Microsoft.Graph`](https://www.nuget.org/packages/Microsoft.Graph).
+Add a package reference to the **CLIENT** app for [`Microsoft.Graph`](https://www.nuget.org/packages/Microsoft.Graph).
+
+[!INCLUDE[](~/includes/package-reference.md)]
 
 Add the Graph SDK utility classes and configuration in the *Graph SDK* section of the <xref:blazor/security/webassembly/graph-api#graph-sdk> article. In the `GraphClientExtensions` class, specify the `User.Read` scope for the access token in the `AuthenticateRequestAsync` method:
 
@@ -638,7 +642,9 @@ public class CustomUserAccount : RemoteUserAccount
 }
 ```
 
-Add a package reference to the **CLIENT** app's project file for [`Microsoft.Graph`](https://www.nuget.org/packages/Microsoft.Graph).
+Add a package reference to the **CLIENT** app for [`Microsoft.Graph`](https://www.nuget.org/packages/Microsoft.Graph).
+
+[!INCLUDE[](~/includes/package-reference.md)]
 
 Add the Graph SDK utility classes and configuration in the *Graph SDK* section of the <xref:blazor/security/webassembly/graph-api#graph-sdk> article. In the `GraphClientExtensions` class, specify the `User.Read` scope for the access token in the `AuthenticateRequestAsync` method:
 

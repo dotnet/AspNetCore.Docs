@@ -5,7 +5,7 @@ description: Discover the ASP.NET Core Anchor Tag Helper attributes and the role
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 10/13/2019
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/views/tag-helpers/builtin-th/anchor-tag-helper
 ---
 # Anchor Tag Helper in ASP.NET Core
@@ -180,8 +180,8 @@ Consider the following directory hierarchy:
     * **Sessions**
       * **Pages**
         * *\_ViewStart.cshtml*
-        * *Index.cshtml*
-        * *Index.cshtml.cs*
+        * `Index.cshtml`
+        * `Index.cshtml.cs`
   * **Pages**
 
 The markup to reference the *Sessions* area *Index* Razor Page is:
@@ -211,11 +211,11 @@ Consider the following directory hierarchy:
   * **Areas**
     * **Blogs**
       * **Controllers**
-        * *HomeController.cs*
+        * `HomeController.cs`
       * **Views**
         * **Home**
-          * *AboutBlog.cshtml*
-          * *Index.cshtml*
+          * `AboutBlog.cshtml`
+          * `Index.cshtml`
         * *\_ViewStart.cshtml*
   * **Controllers**
 

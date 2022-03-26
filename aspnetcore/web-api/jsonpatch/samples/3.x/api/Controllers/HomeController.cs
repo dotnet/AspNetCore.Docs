@@ -10,7 +10,7 @@ namespace JsonPatchSample.Controllers
     [ApiController]
     public class HomeController : ControllerBase
     {
-#region snippet_PatchAction
+        // <snippet_PatchAction>
         [HttpPatch]
         public IActionResult JsonPatchWithModelState(
             [FromBody] JsonPatchDocument<Customer> patchDoc)
@@ -33,7 +33,7 @@ namespace JsonPatchSample.Controllers
                 return BadRequest(ModelState);
             }
         }
-        #endregion
+        // </snippet_PatchAction>
 
         [HttpPatch]
         public IActionResult JsonPatchWithModelStateAndPrefix(
@@ -72,7 +72,7 @@ namespace JsonPatchSample.Controllers
             return new ObjectResult(product);
         }
 
-        #region snippet_Dynamic
+        // <snippet_Dynamic>
         [HttpPatch]
         public IActionResult JsonPatchForDynamic([FromBody]JsonPatchDocument patch)
         {
@@ -81,7 +81,7 @@ namespace JsonPatchSample.Controllers
 
             return Ok(obj);
         }
-        #endregion
+        // </snippet_Dynamic>
 
         private Customer CreateCustomer()
         {

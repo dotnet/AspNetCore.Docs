@@ -6,7 +6,7 @@ ms.author: bradyg
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: mvc
 ms.date: 11/21/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/signalr
 
 # Customer intent: As a developer, I want to get a quick proof-of-concept app running, so I can get a practical introduction to ASP.NET Core SignalR.
@@ -114,7 +114,7 @@ The SignalR server library is included in the ASP.NET Core shared framework. The
   * In the **Add Client-Side Library** dialog:
     * Select **unpkg** for **Provider**
     * Enter `@microsoft/signalr@latest` for **Library**
-    * Select **Choose specific files**, expand the *dist/browser* folder, and select *signalr.js* and *signalr.min.js*.
+    * Select **Choose specific files**, expand the *dist/browser* folder, and select `signalr.js` and `signalr.min.js`.
     * Set **Target Location** to *wwwroot/js/signalr/*
     * Select **Install**
 
@@ -157,7 +157,7 @@ The SignalR server library is included in the ASP.NET Core shared framework. The
   dotnet tool install -g Microsoft.Web.LibraryManager.Cli
   ```
 
-  * Navigate to the project folder (the one that contains the *SignalRChat.csproj* file).
+  * Navigate to the project folder (the one that contains the `SignalRChat.csproj` file).
 
   * Run the following command to get the SignalR client library by using LibMan.
 
@@ -203,7 +203,7 @@ The preceding highlighted code adds SignalR to the ASP.NET Core dependency injec
 
 ## Add SignalR client code
 
-* Replace the content in *Pages/Index.cshtml* with the following code:
+* Replace the content in `Pages/Index.cshtml` with the following code:
 
   [!code-cshtml[Index](signalr/samples/SignalRChat/Pages/Index.cshtml)]
 
@@ -211,9 +211,9 @@ The preceding highlighted code adds SignalR to the ASP.NET Core dependency injec
 
   * Creates text boxes and a submit button.
   * Creates a list with `id="messagesList"` for displaying messages that are received from the SignalR hub.
-  * Includes script references to SignalR and the *chat.js* app code is created in the next step.
+  * Includes script references to SignalR and the `chat.js` app code is created in the next step.
 
-* In the *wwwroot/js* folder, create a *chat.js* file with the following code:
+* In the *wwwroot/js* folder, create a `chat.js` file with the following code:
 
   [!code-javascript[chat](signalr/samples/SignalRChat/wwwroot/js/chat.js)]
 
@@ -250,7 +250,7 @@ The preceding highlighted code adds SignalR to the ASP.NET Core dependency injec
   ![SignalR sample app](signalr/_static/3.x/signalr-get-started-finished.png)
 
 > [!TIP]
-> * If the app doesn't work, open your browser developer tools (F12) and go to the console. You might see errors related to your HTML and JavaScript code. For example, suppose you put *signalr.js* in a different folder than directed. In that case the reference to that file won't work and you'll see a 404 error in the console.
+> * If the app doesn't work, open your browser developer tools (F12) and go to the console. You might see errors related to your HTML and JavaScript code. For example, suppose you put `signalr.js` in a different folder than directed. In that case the reference to that file won't work and you'll see a 404 error in the console.
 >   ![signalr.js not found error](signalr/_static/3.x/f12-console.png)
 > * If you get the error ERR_SPDY_INADEQUATE_TRANSPORT_SECURITY in Chrome, run these commands to update your development certificate:
 >
@@ -332,7 +332,7 @@ The SignalR server library is included in the ASP.NET Core 3.1 shared framework.
   * In **Solution Explorer**, right-click the project, and select **Add** > **Client-Side Library**.
   * In the **Add Client-Side Library** dialog, for **Provider** select **unpkg**.
   * For **Library**, enter `@microsoft/signalr@latest`.
-  * Select **Choose specific files**, expand the *dist/browser* folder, and select *signalr.js* and *signalr.min.js*.
+  * Select **Choose specific files**, expand the *dist/browser* folder, and select `signalr.js` and `signalr.min.js`.
   * Set **Target Location** to *wwwroot/js/signalr/*
   * Select **Install**
 
@@ -376,7 +376,7 @@ The SignalR server library is included in the ASP.NET Core 3.1 shared framework.
   dotnet tool install -g Microsoft.Web.LibraryManager.Cli
   ```
 
-  * Navigate to the project folder (the one that contains the *SignalRChat.csproj* file).
+  * Navigate to the project folder (the one that contains the `SignalRChat.csproj` file).
 
   * Run the following command to get the SignalR client library by using LibMan.
 
@@ -404,7 +404,7 @@ The SignalR server library is included in the ASP.NET Core 3.1 shared framework.
 A *hub* is a class that serves as a high-level pipeline that handles client-server communication.
 
   * In the SignalRChat project folder, create a *Hubs* folder.
-  * In the *Hubs* folder, create a *ChatHub.cs* file with the following code:
+  * In the *Hubs* folder, create a `ChatHub.cs` file with the following code:
 
   [!code-csharp[ChatHub](signalr/sample-snapshot/3.x/ChatHub.cs)]
 
@@ -416,7 +416,7 @@ A *hub* is a class that serves as a high-level pipeline that handles client-serv
 
 The SignalR server must be configured to pass SignalR requests to SignalR.
 
-* Add the following highlighted code to the *Startup.cs* file.
+* Add the following highlighted code to the `Startup.cs` file.
 
   [!code-csharp[Startup](signalr/sample-snapshot/3.x/Startup.cs?highlight=11,28,55)]
 
@@ -424,7 +424,7 @@ The SignalR server must be configured to pass SignalR requests to SignalR.
 
 ## Add SignalR client code
 
-* Replace the content in *Pages/Index.cshtml* with the following code:
+* Replace the content in `Pages/Index.cshtml` with the following code:
 
   [!code-cshtml[Index](signalr/sample-snapshot/3.x/Index.cshtml)]
 
@@ -432,9 +432,9 @@ The SignalR server must be configured to pass SignalR requests to SignalR.
 
   * Creates text boxes for name and message text, and a submit button.
   * Creates a list with `id="messagesList"` for displaying messages that are received from the SignalR hub.
-  * Includes script references to SignalR and the *chat.js* application code that you create in the next step.
+  * Includes script references to SignalR and the `chat.js` application code that you create in the next step.
 
-* In the *wwwroot/js* folder, create a *chat.js* file with the following code:
+* In the *wwwroot/js* folder, create a `chat.js` file with the following code:
 
   [!code-javascript[chat](signalr/sample-snapshot/3.x/chat.js)]
 
@@ -471,7 +471,7 @@ The SignalR server must be configured to pass SignalR requests to SignalR.
   ![SignalR sample app](signalr/_static/3.x/signalr-get-started-finished.png)
 
 > [!TIP]
-> * If the app doesn't work, open your browser developer tools (F12) and go to the console. You might see errors related to your HTML and JavaScript code. For example, suppose you put *signalr.js* in a different folder than directed. In that case the reference to that file won't work and you'll see a 404 error in the console.
+> * If the app doesn't work, open your browser developer tools (F12) and go to the console. You might see errors related to your HTML and JavaScript code. For example, suppose you put `signalr.js` in a different folder than directed. In that case the reference to that file won't work and you'll see a 404 error in the console.
 >   ![signalr.js not found error](signalr/_static/3.x/f12-console.png)
 > * If you get the error ERR_SPDY_INADEQUATE_TRANSPORT_SECURITY in Chrome, run these commands to update your development certificate:
 >

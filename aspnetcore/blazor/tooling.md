@@ -1,16 +1,18 @@
 ---
 title: Tooling for ASP.NET Core Blazor
 author: guardrex
-description: Learn about the tooling available to build Blazor apps.
+description: Learn about the tools available to build Blazor apps on various platforms.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/tooling
 zone_pivot_groups: operating-systems
 ---
 # Tooling for ASP.NET Core Blazor
+
+This article describes tools for building Blazor apps on various platforms.
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -41,7 +43,9 @@ For more information on trusting the ASP.NET Core HTTPS development certificate,
 
 :::zone pivot="linux"
 
-1. Install the latest version of the [.NET Core SDK](https://dotnet.microsoft.com/download). If you previously installed the SDK, you can determine your installed version by executing the following command in a command shell:
+Use the [.NET command-line interface (CLI)](/dotnet/core/tools/) to execute commands in a Linux command shell.
+
+1. Install the latest version of the [.NET Core SDK](https://dotnet.microsoft.com/download). If you previously installed the SDK, you can determine your installed version by executing the following command:
 
    ```dotnetcli
    dotnet --version
@@ -51,7 +55,7 @@ For more information on trusting the ASP.NET Core HTTPS development certificate,
 
 1. Install the latest [C# for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp).
 
-1. For a Blazor WebAssembly experience, execute the following command in a command shell:
+1. For a Blazor WebAssembly experience, execute the following command:
 
    ```dotnetcli
    dotnet new blazorwasm -o WebApplication1
@@ -63,7 +67,7 @@ For more information on trusting the ASP.NET Core HTTPS development certificate,
    dotnet new blazorwasm -o WebApplication1 -ho
    ```
 
-   For a Blazor Server experience, execute the following command in a command shell:
+   For a Blazor Server experience, execute the following command:
 
    ```dotnetcli
    dotnet new blazorserver -o WebApplication1
@@ -266,11 +270,11 @@ If a prompt appears to trust the development certificate, trust the certificate 
 
 ## Use Visual Studio Code for cross-platform Blazor development
 
-[Visual Studio Code](https://code.visualstudio.com/) is an open source, cross-platform Integrated Development Environment (IDE) that can be used to develop Blazor apps. Use the .NET CLI to create a new Blazor app for development with Visual Studio Code. For more information, see the [Linux version of this article](?pivots=linux).
+[Visual Studio Code](https://code.visualstudio.com/) is an open source, cross-platform Integrated Development Environment (IDE) that can be used to develop Blazor apps. Use the [.NET CLI](/dotnet/core/tools/) to create a new Blazor app for development with Visual Studio Code. For more information, see the [Linux version of this article](?pivots=linux).
 
 ## Blazor template options
 
-The Blazor framework provides templates for creating new apps for each of the two Blazor hosting models. The templates are used to create new Blazor projects and solutions regardless of the tooling that you select for Blazor development (Visual Studio, Visual Studio for Mac, Visual Studio Code, or the .NET CLI):
+The Blazor framework provides templates for creating new apps for each of the two Blazor hosting models. The templates are used to create new Blazor projects and solutions regardless of the tooling that you select for Blazor development (Visual Studio, Visual Studio for Mac, Visual Studio Code, or the [.NET command-line interface (CLI)](/dotnet/core/tools/)):
 
 * Blazor Server project template: `blazorserver`
 * Blazor WebAssembly project template: `blazorwasm`
@@ -301,6 +305,7 @@ For more information, see the following resources:
 
 ## Additional resources
 
+* [.NET command-line interface (CLI)](/dotnet/core/tools/)
 * <xref:test/hot-reload>
 * <xref:blazor/hosting-models>
 * <xref:blazor/project-structure>

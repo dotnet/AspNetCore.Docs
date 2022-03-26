@@ -5,7 +5,7 @@ description: Learn about the new features in ASP.NET Core 3.0.
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: aspnetcore-3.0
 ---
 # What's new in ASP.NET Core 3.0
@@ -202,7 +202,7 @@ public class ChatHub : Hub
 
 Creating the `DomainRestricted` policy might involve:
 
-* In *Startup.cs*, adding the new policy.
+* In `Startup.cs`, adding the new policy.
 * Provide the custom `DomainRestrictedRequirement` requirement as a parameter.
 * Registering `DomainRestricted` with the authorization middleware.
 

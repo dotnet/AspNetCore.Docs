@@ -1,15 +1,17 @@
 ---
 title: Secure an ASP.NET Core Blazor WebAssembly standalone app with the Authentication library
 author: guardrex
-description: Learn how to secure an ASP.NET Core Blazor WebAssembly standalone app with the Authentication library.
+description: Learn how to secure an ASP.NET Core Blazor WebAssembly standalone app with the Blazor WebAssembly Authentication library.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/security/webassembly/standalone-with-authentication-library
 ---
 # Secure an ASP.NET Core Blazor WebAssembly standalone app with the Authentication library
+
+This article explains how to secure an ASP.NET Core Blazor WebAssembly standalone app with the Blazor WebAssembly Authentication library.
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -56,7 +58,7 @@ To create a new Blazor WebAssembly project with an authentication mechanism:
 
 ## Authentication package
 
-When an app is created to use Individual User Accounts, the app automatically receives a package reference for the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) package in the app's project file. The package provides a set of primitives that help the app authenticate users and obtain tokens to call protected APIs.
+When an app is created to use Individual User Accounts, the app automatically receives a package reference for the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) package. The package provides a set of primitives that help the app authenticate users and obtain tokens to call protected APIs.
 
 If adding authentication to an app, manually add the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) package to the app.
 
@@ -240,7 +242,7 @@ To create a new Blazor WebAssembly project with an authentication mechanism:
 
 ## Authentication package
 
-When an app is created to use Individual User Accounts, the app automatically receives a package reference for the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) package in the app's project file. The package provides a set of primitives that help the app authenticate users and obtain tokens to call protected APIs.
+When an app is created to use Individual User Accounts, the app automatically receives a package reference for the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) package. The package provides a set of primitives that help the app authenticate users and obtain tokens to call protected APIs.
 
 If adding authentication to an app, manually add the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) package to the app.
 
@@ -424,7 +426,7 @@ To create a new Blazor WebAssembly project with an authentication mechanism:
 
 ## Authentication package
 
-When an app is created to use Individual User Accounts, the app automatically receives a package reference for the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) package in the app's project file. The package provides a set of primitives that help the app authenticate users and obtain tokens to call protected APIs.
+When an app is created to use Individual User Accounts, the app automatically receives a package reference for the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) package. The package provides a set of primitives that help the app authenticate users and obtain tokens to call protected APIs.
 
 If adding authentication to an app, manually add the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) package to the app.
 

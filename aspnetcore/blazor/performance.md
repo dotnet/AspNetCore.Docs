@@ -6,14 +6,14 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/performance
 ---
 # ASP.NET Core Blazor performance best practices
 
-:::moniker range=">= aspnetcore-6.0"
-
 Blazor is optimized for high performance in most realistic application UI scenarios. However, the best performance depends on developers adopting the correct patterns and features.
+
+:::moniker range=">= aspnetcore-6.0"
 
 ## Optimize rendering speed
 
@@ -770,8 +770,6 @@ Blazor WebAssembly's runtime includes the following .NET features that can be di
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-Blazor is optimized for high performance in most realistic application UI scenarios. However, the best performance depends on developers adopting the correct patterns and features.
-
 ## Optimize rendering speed
 
 Optimize rendering speed to minimize rendering workload and improve UI responsiveness, which can yield a *ten-fold or higher improvement* in UI rendering speed.
@@ -1518,8 +1516,6 @@ Blazor WebAssembly's runtime includes the following .NET features that can be di
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
-
-Blazor is optimized for high performance in most realistic application UI scenarios. However, the best performance depends on developers adopting the correct patterns and features.
 
 ## Optimize rendering speed
 

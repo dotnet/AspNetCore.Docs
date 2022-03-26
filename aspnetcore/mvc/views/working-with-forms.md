@@ -5,7 +5,7 @@ description: Describes the built-in Tag Helpers used with Forms.
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/views/working-with-forms
 ---
 # Tag Helpers in forms in ASP.NET Core
@@ -238,6 +238,8 @@ The code above generates the following HTML:
 
 The data annotations applied to the `Email` and `Password` properties generate metadata on the model. The Input Tag Helper consumes the model metadata and produces [HTML5](https://developer.mozilla.org/docs/Web/Guide/HTML/HTML5) `data-val-*` attributes (see [Model Validation](../models/validation.md)). These attributes describe the validators to attach to the input fields. This provides unobtrusive HTML5 and [jQuery](https://jquery.com/) validation. The unobtrusive attributes have the format `data-val-rule="Error Message"`, where rule is the name of the validation rule (such as `data-val-required`, `data-val-email`, `data-val-maxlength`, etc.) If an error message is provided in the attribute, it's displayed as the value for the `data-val-rule` attribute. There are also attributes of the form `data-val-ruleName-argumentName="argumentValue"` that provide additional details about the rule, for example, `data-val-maxlength-max="1024"` .
 
+When binding multiple `input` controls to the same property, the generated controls share the same `id`, which makes the generated mark-up invalid. To prevent duplicates, specify the `id` attribute for each control explicitly. 
+
 ### Checkbox hidden input rendering
 
 Checkboxes in HTML5 don't submit a value when they're unchecked. To enable a default value to be sent for an unchecked checkbox, the Input Tag Helper generates an additional hidden input for checkboxes.
@@ -355,7 +357,7 @@ The following Razor shows how you access a specific `Color` element:
 
 [!code-cshtml[](working-with-forms/sample/final/Views/Demo/EditColor.cshtml)]
 
-The *Views/Shared/EditorTemplates/String.cshtml* template:
+The `Views/Shared/EditorTemplates/String.cshtml` template:
 
 [!code-cshtml[](working-with-forms/sample/final/Views/Shared/EditorTemplates/String.cshtml)]
 
@@ -367,7 +369,7 @@ The following Razor shows how to iterate over a collection:
 
 [!code-cshtml[](working-with-forms/sample/final/Views/Demo/Edit.cshtml)]
 
-The *Views/Shared/EditorTemplates/ToDoItem.cshtml* template:
+The `Views/Shared/EditorTemplates/ToDoItem.cshtml` template:
 
 [!code-cshtml[](working-with-forms/sample/final/Views/Shared/EditorTemplates/ToDoItem.cshtml)]
 
@@ -671,7 +673,7 @@ If you find yourself using the "not specified" option in multiple pages, you can
 
 [!code-cshtml[](../../mvc/views/working-with-forms/sample/final/Views/Home/IndexEmptyTemplate.cshtml?highlight=5)]
 
-The *Views/Shared/EditorTemplates/CountryViewModel.cshtml* template:
+The `Views/Shared/EditorTemplates/CountryViewModel.cshtml` template:
 
 [!code-cshtml[](working-with-forms/sample/final/Views/Shared/EditorTemplates/CountryViewModel.cshtml)]
 

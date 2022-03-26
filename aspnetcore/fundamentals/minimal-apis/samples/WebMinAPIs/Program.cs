@@ -501,7 +501,7 @@ app.Run();
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
-app.MapPost("/products", (Product? product) => () => { });
+app.MapPost("/products", (Product? product) => { });
 
 app.Run();
 

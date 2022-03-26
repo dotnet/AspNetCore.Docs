@@ -6,10 +6,12 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/security/server/additional-scenarios
 ---
 # ASP.NET Core Blazor Server additional security scenarios
+
+This article explains how to configure Blazor Server for additional security scenarios, including how to pass tokens to a Blazor Server app.
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -108,6 +110,8 @@ In the `App` component (`App.razor`), resolve the service and initialize it with
 ```
 
 Add a package reference to the app for the [`Microsoft.AspNet.WebApi.Client`](https://www.nuget.org/packages/Microsoft.AspNet.WebApi.Client) NuGet package.
+
+[!INCLUDE[](~/includes/package-reference.md)]
 
 In the service that makes a secure API request, inject the token provider and retrieve the token for the API request:
 
@@ -257,6 +261,8 @@ In the `App` component (`App.razor`), resolve the service and initialize it with
 ```
 
 Add a package reference to the app for the [`Microsoft.AspNet.WebApi.Client`](https://www.nuget.org/packages/Microsoft.AspNet.WebApi.Client) NuGet package.
+
+[!INCLUDE[](~/includes/package-reference.md)]
 
 In the service that makes a secure API request, inject the token provider and retrieve the token for the API request:
 
@@ -413,6 +419,8 @@ In the `App` component (`App.razor`), resolve the service and initialize it with
 ```
 
 Add a package reference to the app for the [`Microsoft.AspNet.WebApi.Client`](https://www.nuget.org/packages/Microsoft.AspNet.WebApi.Client) NuGet package.
+
+[!INCLUDE[](~/includes/package-reference.md)]
 
 In the service that makes a secure API request, inject the token provider and retrieve the token for the API request:
 

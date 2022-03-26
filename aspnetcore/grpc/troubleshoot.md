@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.custom: mvc
 ms.date: 07/09/2020
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/troubleshoot
 ---
 # Troubleshoot gRPC on .NET Core
@@ -198,7 +198,9 @@ public class SubdirectoryHandler : DelegatingHandler
     protected override Task<HttpResponseMessage> SendAsync(
         HttpRequestMessage request, CancellationToken cancellationToken)
     {
-        var url = $"{request.RequestUri.Scheme}://{request.RequestUri.Host}";
+        var old = request.RequestUri;
+
+        var url = $"{old.Scheme}://{old.Host}:{old.Port}";
         url += $"{_subdirectory}{request.RequestUri.AbsolutePath}";
         request.RequestUri = new Uri(url, UriKind.Absolute);
 

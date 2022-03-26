@@ -6,23 +6,25 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/security/webassembly/graph-api
 ---
 # Use Graph API with ASP.NET Core Blazor WebAssembly
 
-:::moniker range=">= aspnetcore-6.0"
+This article explains how to use [Microsoft Graph API](/graph/use-the-api), which is a RESTful web API that enables apps to access Microsoft Cloud service resources.
 
-[Microsoft Graph API](/graph/use-the-api) is a RESTful web API that enables Blazor and other .NET Framework apps to access Microsoft Cloud service resources.
+:::moniker range=">= aspnetcore-6.0"
 
 ## Graph SDK
 
 [Microsoft Graph SDKs](/graph/sdks/sdks-overview) are designed to simplify building high-quality, efficient, and resilient applications that access Microsoft Graph.
 
-The examples in this section require package references for the following packages in the project file of the standalone or **`Client`** app's project file:
+The examples in this section require package references for the standalone or **`Client`** app:
 
 * [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http)
 * [`Microsoft.Graph`](https://www.nuget.org/packages/Microsoft.Graph)
+
+[!INCLUDE[](~/includes/package-reference.md)]
 
 The following utility classes and configuration are used in each of the following subsections of this article:
 
@@ -272,7 +274,9 @@ builder.Services.AddMsalAuthentication<RemoteAuthenticationState,
 
 The examples in this section use a named <xref:System.Net.Http.HttpClient> for Graph API to obtain a user's mobile phone number to process a call.
 
-The examples in this section require a package reference for [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) in the project file of the standalone or **`Client`** app's project file.
+The examples in this section require a package reference for [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) for the standalone or **`Client`** app.
+
+[!INCLUDE[](~/includes/package-reference.md)]
 
 Create the following class and project configuration for working with Graph API. The following class and configuration are used in each of the following subsections of this article:
 
@@ -504,16 +508,16 @@ The preceding example is for an app that uses AAD authentication with MSAL. Simi
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-[Microsoft Graph API](/graph/use-the-api) is a RESTful web API that enables Blazor and other .NET Framework apps to access Microsoft Cloud service resources.
-
 ## Graph SDK
 
 [Microsoft Graph SDKs](/graph/sdks/sdks-overview) are designed to simplify building high-quality, efficient, and resilient applications that access Microsoft Graph.
 
-The examples in this section require package references for the following packages in the project file of the standalone or **`Client`** app's project file:
+The examples in this section require package references for the standalone or **`Client`** app:
 
 * [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http)
 * [`Microsoft.Graph`](https://www.nuget.org/packages/Microsoft.Graph)
+
+[!INCLUDE[](~/includes/package-reference.md)]
 
 The following utility classes and configuration are used in each of the following subsections of this article:
 
@@ -763,7 +767,9 @@ builder.Services.AddMsalAuthentication<RemoteAuthenticationState,
 
 The examples in this section use a named <xref:System.Net.Http.HttpClient> for Graph API to obtain a user's mobile phone number to process a call.
 
-The examples in this section require a package reference for [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) in the project file of the standalone or **`Client`** app's project file.
+The examples in this section require a package reference for [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) for the standalone or **`Client`** app.
+
+[!INCLUDE[](~/includes/package-reference.md)]
 
 Create the following class and project configuration for working with Graph API. The following class and configuration are used in each of the following subsections of this article:
 
@@ -999,7 +1005,9 @@ The preceding example is for an app that uses AAD authentication with MSAL. Simi
 
 The examples in this section use a named <xref:System.Net.Http.HttpClient> for Graph API to obtain a user's mobile phone number to process a call.
 
-The examples in this section require a package reference for [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) in the project file of the standalone or **`Client`** app's project file.
+The examples in this section require a package reference for [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) for the standalone or **`Client`** app.
+
+[!INCLUDE[](~/includes/package-reference.md)]
 
 Create the following class and project configuration for working with Graph API. The following class and configuration are used in each of the following subsections of this article:
 

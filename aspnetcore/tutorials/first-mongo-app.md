@@ -5,8 +5,8 @@ description: This tutorial demonstrates how to create an ASP.NET Core web API us
 monikerRange: '>= aspnetcore-3.1'
 ms.author: scaddie
 ms.custom: "mvc, seodec18"
-ms.date: 11/09/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+ms.date: 03/24/2022
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mongo-app
 ---
 # Create a web API with ASP.NET Core and MongoDB
@@ -28,24 +28,20 @@ In this tutorial, you learn how to:
 
 ## Prerequisites
 
+* [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
+* [MongoDB Shell](https://www.mongodb.com/docs/mongodb-shell/install/)
+
 # [Visual Studio](#tab/visual-studio)
 
-* [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
-* [Visual Studio 2022 or later](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2022) with the **ASP.NET and web development** workload
-* [!INCLUDE[](~/includes/6.0-SDK.md)]
+[!INCLUDE[](~/includes/net-prereqs-vs-6.0.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* [MongoDB](https://docs.mongodb.com/manual/administration/install-community/)
-* [Visual Studio Code](https://code.visualstudio.com/download)
-* [C# for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)
-* [!INCLUDE[](~/includes/6.0-SDK.md)]
+[!INCLUDE[](~/includes/net-prereqs-vsc-6.0.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/)
-* [Visual Studio for Mac 2022 or later](https://visualstudio.microsoft.com/vs/mac/): Select the *Preview* channel from within Visual Studio. For more information, see [Install a preview version of Visual Studio for Mac](/visualstudio/mac/install-preview).
-* [!INCLUDE[](~/includes/6.0-SDK.md)]
+[!INCLUDE[](~/includes/net-prereqs-mac-6.0.md)]
 
 ---
 
@@ -53,7 +49,7 @@ In this tutorial, you learn how to:
 
 On Windows, MongoDB is installed at *C:\\Program Files\\MongoDB* by default. Add *C:\\Program Files\\MongoDB\\Server\\\<version_number>\\bin* to the `Path` environment variable. This change enables MongoDB access from anywhere on your development machine.
 
-Use the mongo Shell in the following steps to create a database, make collections, and store documents. For more information on mongo Shell commands, see [`mongo`](https://docs.mongodb.com/v4.4/reference/program/mongo/).
+Use the previously installed MongoDB Shell in the following steps to create a database, make collections, and store documents. For more information on MongoDB Shell commands, see [`mongosh`](https://docs.mongodb.com/mongodb-shell/run-commands/).
 
 1. Choose a directory on your development machine for storing the data. For example, *C:\\BooksData* on Windows. Create the directory if it doesn't exist. The mongo Shell doesn't create new directories.
 1. Open a command shell. Run the following command to connect to MongoDB on default port 27017. Remember to replace `<data_directory_path>` with the directory you chose in the previous step.
@@ -65,7 +61,7 @@ Use the mongo Shell in the following steps to create a database, make collection
 1. Open another command shell instance. Connect to the default test database by running the following command:
 
    ```console
-   mongo
+   mongosh
    ```
 
 1. Run the following command in a command shell:
@@ -197,7 +193,7 @@ Use the mongo Shell in the following steps to create a database, make collection
 
 ## Add a configuration model
 
-1. Add the following database configuration values to *appsettings.json*:
+1. Add the following database configuration values to `appsettings.json`:
 
    :::code language="json" source="first-mongo-app/samples/6.x/BookStoreApi/appsettings.json" highlight="2-6":::
 
@@ -205,13 +201,13 @@ Use the mongo Shell in the following steps to create a database, make collection
 
    :::code language="csharp" source="first-mongo-app/samples/6.x/BookStoreApi/Models/BookStoreDatabaseSettings.cs":::
 
-   The preceding `BookStoreDatabaseSettings` class is used to store the *appsettings.json* file's `BookStoreDatabase` property values. The JSON and C# property names are named identically to ease the mapping process.
+   The preceding `BookStoreDatabaseSettings` class is used to store the `appsettings.json` file's `BookStoreDatabase` property values. The JSON and C# property names are named identically to ease the mapping process.
 
 1. Add the following highlighted code to `Program.cs`:
 
    :::code language="csharp" source="first-mongo-app/samples/6.x/BookStoreApi/Program.cs" id="snippet_BookStoreDatabaseSettings" highlight="4-5":::
 
-   In the preceding code, the configuration instance to which the *appsettings.json* file's `BookStoreDatabase` section binds is registered in the Dependency Injection (DI) container. For example, the `BookStoreDatabaseSettings` object's `ConnectionString` property is populated with the `BookStoreDatabase:ConnectionString` property in *appsettings.json*.
+   In the preceding code, the configuration instance to which the `appsettings.json` file's `BookStoreDatabase` section binds is registered in the Dependency Injection (DI) container. For example, the `BookStoreDatabaseSettings` object's `ConnectionString` property is populated with the `BookStoreDatabase:ConnectionString` property in `appsettings.json`.
 
 1. Add the following code to the top of `Program.cs` to resolve the `BookStoreDatabaseSettings` reference:
 
@@ -224,7 +220,7 @@ Use the mongo Shell in the following steps to create a database, make collection
 
    :::code language="csharp" source="first-mongo-app/samples/6.x/BookStoreApi/Services/BooksService.cs" id="snippet_File":::
 
-   In the preceding code, a `BookStoreDatabaseSettings` instance is retrieved from DI via constructor injection. This technique provides access to the *appsettings.json* configuration values that were added in the [Add a configuration model](#add-a-configuration-model) section.
+   In the preceding code, a `BookStoreDatabaseSettings` instance is retrieved from DI via constructor injection. This technique provides access to the `appsettings.json` configuration values that were added in the [Add a configuration model](#add-a-configuration-model) section.
 
 1. Add the following highlighted code to `Program.cs`:
 
@@ -318,13 +314,13 @@ To satisfy the preceding requirements, make the following changes:
 
    With the preceding change, property names in the web API's serialized JSON response match their corresponding property names in the CLR object type. For example, the `Book` class's `Author` property serializes as `Author` instead of `author`.
 
-1. In *Models/Book.cs*, annotate the `BookName` property with the [`[JsonPropertyName]`](xref:System.Text.Json.Serialization.JsonPropertyNameAttribute) attribute:
+1. In `Models/Book.cs`, annotate the `BookName` property with the [`[JsonPropertyName]`](xref:System.Text.Json.Serialization.JsonPropertyNameAttribute) attribute:
 
    :::code language="csharp" source="first-mongo-app/samples/6.x/BookStoreApi/Models/Book.cs" id="snippet_BookName" highlight="2":::
 
    The `[JsonPropertyName]` attribute's value of `Name` represents the property name in the web API's serialized JSON response.
 
-1. Add the following code to the top of *Models/Book.cs* to resolve the `[JsonProperty]` attribute reference:
+1. Add the following code to the top of `Models/Book.cs` to resolve the `[JsonProperty]` attribute reference:
 
    :::code language="csharp" source="first-mongo-app/samples/6.x/BookStoreApi/Models/Book.cs" id="snippet_UsingSystemTextJsonSerialization":::
 
@@ -553,15 +549,15 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
 ## Add a configuration model
 
-1. Add the following database configuration values to *appsettings.json*:
+1. Add the following database configuration values to `appsettings.json`:
 
    :::code language="json" source="first-mongo-app/samples/3.x/SampleApp/appsettings.json" highlight="2-6":::
 
-1. Add a *BookstoreDatabaseSettings.cs* file to the *Models* directory with the following code:
+1. Add a `BookstoreDatabaseSettings.cs` file to the *Models* directory with the following code:
 
    :::code language="csharp" source="first-mongo-app/samples/3.x/SampleApp/Models/BookstoreDatabaseSettings.cs":::
 
-   The preceding `BookstoreDatabaseSettings` class is used to store the *appsettings.json* file's `BookstoreDatabaseSettings` property values. The JSON and C# property names are named identically to ease the mapping process.
+   The preceding `BookstoreDatabaseSettings` class is used to store the `appsettings.json` file's `BookstoreDatabaseSettings` property values. The JSON and C# property names are named identically to ease the mapping process.
 
 1. Add the following highlighted code to `Startup.ConfigureServices`:
 
@@ -569,10 +565,10 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
    In the preceding code:
 
-   * The configuration instance to which the *appsettings.json* file's `BookstoreDatabaseSettings` section binds is registered in the Dependency Injection (DI) container. For example, a `BookstoreDatabaseSettings` object's `ConnectionString` property is populated with the `BookstoreDatabaseSettings:ConnectionString` property in *appsettings.json*.
+   * The configuration instance to which the `appsettings.json` file's `BookstoreDatabaseSettings` section binds is registered in the Dependency Injection (DI) container. For example, a `BookstoreDatabaseSettings` object's `ConnectionString` property is populated with the `BookstoreDatabaseSettings:ConnectionString` property in `appsettings.json`.
    * The `IBookstoreDatabaseSettings` interface is registered in DI with a singleton [service lifetime](xref:fundamentals/dependency-injection#service-lifetimes). When injected, the interface instance resolves to a `BookstoreDatabaseSettings` object.
 
-1. Add the following code to the top of *Startup.cs* to resolve the `BookstoreDatabaseSettings` and `IBookstoreDatabaseSettings` references:
+1. Add the following code to the top of `Startup.cs` to resolve the `BookstoreDatabaseSettings` and `IBookstoreDatabaseSettings` references:
 
    :::code language="csharp" source="first-mongo-app/samples/3.x/SampleApp/Startup.cs" id="snippet_UsingBooksApiModels":::
 
@@ -583,7 +579,7 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
    :::code language="csharp" source="first-mongo-app/samples/3.x/SampleApp/Services/BookService.cs" id="snippet_BookServiceClass":::
 
-   In the preceding code, an `IBookstoreDatabaseSettings` instance is retrieved from DI via constructor injection. This technique provides access to the *appsettings.json* configuration values that were added in the [Add a configuration model](#add-a-configuration-model) section.
+   In the preceding code, an `IBookstoreDatabaseSettings` instance is retrieved from DI via constructor injection. This technique provides access to the `appsettings.json` configuration values that were added in the [Add a configuration model](#add-a-configuration-model) section.
 
 1. Add the following highlighted code to `Startup.ConfigureServices`:
 
@@ -591,7 +587,7 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
    In the preceding code, the `BookService` class is registered with DI to support constructor injection in consuming classes. The singleton service lifetime is most appropriate because `BookService` takes a direct dependency on `MongoClient`. Per the official [Mongo Client reuse guidelines](https://mongodb.github.io/mongo-csharp-driver/2.8/reference/driver/connecting/#re-use), `MongoClient` should be registered in DI with a singleton service lifetime.
 
-1. Add the following code to the top of *Startup.cs* to resolve the `BookService` reference:
+1. Add the following code to the top of `Startup.cs` to resolve the `BookService` reference:
 
    :::code language="csharp" source="first-mongo-app/samples/3.x/SampleApp/Startup.cs" id="snippet_UsingBooksApiServices":::
 
@@ -679,13 +675,13 @@ To satisfy the preceding requirements, make the following changes:
 
    With the preceding change, property names in the web API's serialized JSON response match their corresponding property names in the CLR object type. For example, the `Book` class's `Author` property serializes as `Author`.
 
-1. In *Models/Book.cs*, annotate the `BookName` property with the following [`[JsonProperty]`](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonPropertyAttribute.htm) attribute:
+1. In `Models/Book.cs`, annotate the `BookName` property with the following [`[JsonProperty]`](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonPropertyAttribute.htm) attribute:
 
    :::code language="csharp" source="first-mongo-app/samples/3.x/SampleApp/Models/Book.cs" id="snippet_BookNameProperty" highlight="2":::
 
    The `[JsonProperty]` attribute's value of `Name` represents the property name in the web API's serialized JSON response.
 
-1. Add the following code to the top of *Models/Book.cs* to resolve the `[JsonProperty]` attribute reference:
+1. Add the following code to the top of `Models/Book.cs` to resolve the `[JsonProperty]` attribute reference:
 
    :::code language="csharp" source="first-mongo-app/samples/3.x/SampleApp/Models/Book.cs" id="snippet_NewtonsoftJsonImport":::
 

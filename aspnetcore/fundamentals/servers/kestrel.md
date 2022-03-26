@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/04/2020
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/servers/kestrel
 ---
 # Kestrel web server implementation in ASP.NET Core
@@ -30,7 +30,7 @@ Kestrel is supported on all platforms and versions that .NET Core supports.
 
 ## Get started
 
-ASP.NET Core project templates use Kestrel by default when not hosted with IIS. In `Program.cs`, the <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A?displayProperty=nameWithType> method calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel%2A>:
+ASP.NET Core project templates use Kestrel by default when not hosted with IIS. In the following template-generated `Program.cs`, the <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A?displayProperty=nameWithType> method calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel%2A> internally:
 
 :::code language="csharp" source="kestrel/samples/6.x/KestrelSample/Program.cs" id="snippet_CreateBuilder" highlight="1":::
 
@@ -44,6 +44,7 @@ For information on apps that must protect a subset of the app with a certificate
 
 <a name="endpoint-configuration"></a>
 * <xref:fundamentals/servers/kestrel/endpoints>
+* Source for [`WebApplication.CreateBuilder` method call call to `UseKestrel`](https://github.com/dotnet/aspnetcore/blob/v6.0.2/src/DefaultBuilder/src/WebHost.cs#L224)
 <a name="kestrel-options"></a>
 * <xref:fundamentals/servers/kestrel/options>
 <a name="http2-support"></a>
@@ -56,7 +57,7 @@ For information on apps that must protect a subset of the app with a certificate
 * <xref:security/enforcing-ssl>
 * <xref:host-and-deploy/proxy-load-balancer>
 * [RFC 7230: Message Syntax and Routing (Section 5.4: Host)](https://tools.ietf.org/html/rfc7230#section-5.4)
-* When using UNIX sockets on Linux, the socket is not automatically deleted on app shut down. For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/14134).
+* When using UNIX sockets on Linux, the socket isn't automatically deleted on app shutdown. For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/14134).
 
 > [!NOTE]
 > As of ASP.NET Core 5.0, Kestrel's libuv transport is obsolete. The libuv transport doesn't receive updates to support new OS platforms, such as Windows ARM64, and will be removed in a future release. Remove any calls to the obsolete <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderLibuvExtensions.UseLibuv%2A> method and use Kestrel's default Socket transport instead.
@@ -213,7 +214,7 @@ The following examples use the <xref:Microsoft.AspNetCore.Server.Kestrel.Core> n
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 ```
 
-In examples shown later in this article, Kestrel options are configured in C# code. Kestrel options can also be set using a [configuration provider](xref:fundamentals/configuration/index). For example, the [File Configuration Provider](xref:fundamentals/configuration/index#file-configuration-provider) can load Kestrel configuration from an *appsettings.json* or *appsettings.{Environment}.json* file:
+In examples shown later in this article, Kestrel options are configured in C# code. Kestrel options can also be set using a [configuration provider](xref:fundamentals/configuration/index). For example, the [File Configuration Provider](xref:fundamentals/configuration/index#file-configuration-provider) can load Kestrel configuration from an `appsettings.json` or `appsettings.{Environment}.json` file:
 
 ```json
 {
@@ -585,7 +586,7 @@ Kestrel listens on `http://localhost:5000` and `https://localhost:5001` (if a de
 
 `CreateDefaultBuilder` calls `Configure(context.Configuration.GetSection("Kestrel"))` by default to load Kestrel configuration. A default HTTPS app settings configuration schema is available for Kestrel. Configure multiple endpoints, including the URLs and the certificates to use, either from a file on disk or from a certificate store.
 
-In the following *appsettings.json* example:
+In the following `appsettings.json` example:
 
 * Set **AllowInvalid** to `true` to permit the use of invalid certificates (for example, self-signed certificates).
 * Any HTTPS endpoint that doesn't specify a certificate (**HttpsDefaultCert** in the example that follows) falls back to the cert defined under **Certificates** > **Default** or the development certificate.
@@ -947,7 +948,7 @@ webBuilder.ConfigureKestrel(serverOptions =>
 
 `CreateDefaultBuilder` calls `serverOptions.Configure(context.Configuration.GetSection("Kestrel"))` by default to load Kestrel configuration.
 
-The following *appsettings.json* example establishes HTTP/1.1 as the default connection protocol for all endpoints:
+The following `appsettings.json` example establishes HTTP/1.1 as the default connection protocol for all endpoints:
 
 ```json
 {
@@ -959,7 +960,7 @@ The following *appsettings.json* example establishes HTTP/1.1 as the default con
 }
 ```
 
-The following *appsettings.json* example establishes the HTTP/1.1 connection protocol for a specific endpoint:
+The following `appsettings.json` example establishes the HTTP/1.1 connection protocol for a specific endpoint:
 
 ```json
 {
@@ -1028,9 +1029,9 @@ As a workaround, use Host Filtering Middleware. Host Filtering Middleware is pro
 
 :::code language="csharp" source="kestrel/samples-snapshot/2.x/KestrelSample/Program.cs" id="snippet_Program" highlight="9":::
 
-Host Filtering Middleware is disabled by default. To enable the middleware, define an `AllowedHosts` key in *appsettings.json*/*appsettings.\<EnvironmentName>.json*. The value is a semicolon-delimited list of host names without port numbers:
+Host Filtering Middleware is disabled by default. To enable the middleware, define an `AllowedHosts` key in `appsettings.json`/`appsettings.{Environment}.json`. The value is a semicolon-delimited list of host names without port numbers:
 
-*appsettings.json*:
+`appsettings.json`:
 
 ```json
 {

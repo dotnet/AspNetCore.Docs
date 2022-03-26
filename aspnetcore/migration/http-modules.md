@@ -4,7 +4,7 @@ description: Migrate HTTP handlers and modules to ASP.NET Core middleware
 author: rick-anderson
 ms.author: riande
 ms.date: 12/07/2016
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: migration/http-modules
 ---
 # Migrate HTTP handlers and modules to ASP.NET Core middleware
@@ -43,13 +43,13 @@ Before proceeding to ASP.NET Core middleware, let's first recap how HTTP modules
 
 2. For the same event, the order in which they're configured in *Web.config*.
 
-In addition to modules, you can add handlers for the life cycle events to your *Global.asax.cs* file. These handlers run after the handlers in the configured modules.
+In addition to modules, you can add handlers for the life cycle events to your `Global.asax.cs` file. These handlers run after the handlers in the configured modules.
 
 ## From handlers and modules to middleware
 
 **Middleware are simpler than HTTP modules and handlers:**
 
-* Modules, handlers, *Global.asax.cs*, *Web.config* (except for IIS configuration) and the application life cycle are gone
+* Modules, handlers, `Global.asax.cs`, *Web.config* (except for IIS configuration) and the application life cycle are gone
 
 * The roles of both modules and handlers have been taken over by middleware
 
@@ -178,7 +178,7 @@ The new [configuration system](xref:fundamentals/configuration/index) gives you 
 
 2. Store the option values
 
-   The configuration system allows you to store option values anywhere you want. However, most sites use *appsettings.json*, so we'll take that approach:
+   The configuration system allows you to store option values anywhere you want. However, most sites use `appsettings.json`, so we'll take that approach:
 
    [!code-json[](http-modules/sample/Asp.Net.Core/appsettings.json?range=1,14-18)]
 
@@ -190,7 +190,7 @@ The new [configuration system](xref:fundamentals/configuration/index) gives you 
 
     Update your `Startup` class:
 
-   1. If you're using *appsettings.json*, add it to the configuration builder in the `Startup` constructor:
+   1. If you're using `appsettings.json`, add it to the configuration builder in the `Startup` constructor:
 
       [!code-csharp[](../migration/http-modules/sample/Asp.Net.Core/Startup.cs?name=snippet_Ctor&highlight=5-6)]
 
@@ -218,9 +218,9 @@ This breaks down though if you want to use the same middleware twice, with diffe
 
 The solution is to get the options objects with the actual options values in your `Startup` class and pass those directly to each instance of your middleware.
 
-1. Add a second key to *appsettings.json*
+1. Add a second key to `appsettings.json`
 
-   To add a second set of options to the *appsettings.json* file, use a new key to uniquely identify it:
+   To add a second set of options to the `appsettings.json` file, use a new key to uniquely identify it:
 
    [!code-json[](http-modules/sample/Asp.Net.Core/appsettings.json?range=1,10-18&highlight=2-5)]
 

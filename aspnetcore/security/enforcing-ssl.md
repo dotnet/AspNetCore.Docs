@@ -5,8 +5,8 @@ description: Learn how to require HTTPS/TLS in an ASP.NET Core web app.
 ms.author: riande
 monikerRange: '>= aspnetcore-3.0'
 ms.custom: mvc
-ms.date: 11/06/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+ms.date: 03/10/2022
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/enforcing-ssl
 ---
 # Enforce HTTPS in ASP.NET Core
@@ -81,12 +81,12 @@ Specify the HTTPS port using any of the following approaches:
 
   * In host configuration.
   * By setting the `ASPNETCORE_HTTPS_PORT` environment variable.
-  * By adding a top-level entry in *appsettings.json*:
+  * By adding a top-level entry in `appsettings.json`:
 
     [!code-json[](enforcing-ssl/sample-snapshot/6.x/appsettings.json?highlight=2)]
 
 * Indicate a port with the secure scheme using the [ASPNETCORE_URLS environment variable](xref:fundamentals/host/generic-host#urls). The environment variable configures the server. The middleware indirectly discovers the HTTPS port via <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>. This approach doesn't work in reverse proxy deployments.
-* The ASP.NET Core web templates set an HTTPS URL in *Properties/launchsettings.json* for both Kestrel and IIS Express. *launchsettings.json* is only used on the local machine.
+* The ASP.NET Core web templates set an HTTPS URL in `Properties/launchsettings.json` for both Kestrel and IIS Express. `launchsettings.json` is only used on the local machine.
 * Configure an HTTPS URL endpoint for a public-facing edge deployment of [Kestrel](xref:fundamentals/servers/kestrel) server or [HTTP.sys](xref:fundamentals/servers/httpsys) server. Only **one HTTPS port** is used by the app. The middleware discovers the port via <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>.
 
 > [!NOTE]
@@ -376,14 +376,14 @@ The [Windows Subsystem for Linux (WSL)](/windows/wsl/about) generates an HTTPS s
 * Export the developer certificate to a file on ***Windows***:
 
   ```
-  dotnet dev-certs https -ep C:\<<path-to-folder>>\aspnetcore.pfx -p $CREDENTIAL_PLACEHOLDER$
+  dotnet dev-certs https -ep https.pfx -p $CREDENTIAL_PLACEHOLDER$ --trust
   ```
   Where `$CREDENTIAL_PLACEHOLDER$` is a password.
 
 * In a WSL window, import the exported certificate on the WSL instance:
 
   ```
-  dotnet dev-certs https --clean --import /mnt/c/<<path-to-folder>>/aspnetcore.pfx -p $CREDENTIAL_PLACEHOLDER$
+  dotnet dev-certs https --clean --import <<path-to-pfx>> --password $CREDENTIAL_PLACEHOLDER$
   ```
 
 The preceding approach is a one time operation per certificate and per WSL distribution. It's easier than exporting the certificate over and over. If you update or regenerate the certificate on windows, you might need to run the preceding commands again.
@@ -490,6 +490,7 @@ In some cases, group policy may prevent self-signed certificates from being trus
 * [Host ASP.NET Core on Linux with Apache: HTTPS configuration](xref:host-and-deploy/linux-apache#https-configuration)
 * [Host ASP.NET Core on Linux with Nginx: HTTPS configuration](xref:host-and-deploy/linux-nginx#https-configuration)
 * [How to Set Up SSL on IIS](/iis/manage/configuring-security/how-to-set-up-ssl-on-iis)
+* <xref:fundamentals/servers/kestrel/endpoints>
 * [OWASP HSTS browser support](https://www.owasp.org/index.php/HTTP_Strict_Transport_Security_Cheat_Sheet#Browser_Support)
 
 :::moniker-end
@@ -547,12 +548,12 @@ Specify the HTTPS port using any of the following approaches:
 
   * In host configuration.
   * By setting the `ASPNETCORE_HTTPS_PORT` environment variable.
-  * By adding a top-level entry in *appsettings.json*:
+  * By adding a top-level entry in `appsettings.json`:
 
     [!code-json[](enforcing-ssl/sample-snapshot/3.x/appsettings.json?highlight=2)]
 
 * Indicate a port with the secure scheme using the [ASPNETCORE_URLS environment variable](xref:fundamentals/host/generic-host#urls). The environment variable configures the server. The middleware indirectly discovers the HTTPS port via <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>. This approach doesn't work in reverse proxy deployments.
-* In development, set an HTTPS URL in *launchsettings.json*. Enable HTTPS when IIS Express is used.
+* In development, set an HTTPS URL in `launchsettings.json`. Enable HTTPS when IIS Express is used.
 
 * Configure an HTTPS URL endpoint for a public-facing edge deployment of [Kestrel](xref:fundamentals/servers/kestrel) server or [HTTP.sys](xref:fundamentals/servers/httpsys) server. Only **one HTTPS port** is used by the app. The middleware discovers the port via <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>.
 
@@ -595,7 +596,7 @@ The preceding highlighted code:
 
 The middleware defaults to sending a <xref:Microsoft.AspNetCore.Http.StatusCodes.Status307TemporaryRedirect> with all redirects. If you prefer to send a permanent redirect status code when the app is in a non-Development environment, wrap the middleware options configuration in a conditional check for a non-Development environment.
 
-When configuring services in *Startup.cs*:
+When configuring services in `Startup.cs`:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)

@@ -1,20 +1,14 @@
-using ProtoBuf.Grpc;
 using Shared.Contracts;
-using System.Threading.Tasks;
+using ProtoBuf.Grpc;
 
-namespace GrpcGreeter
+public class GreeterService : IGreeterService
 {
-    #region snippet
-    public class GreeterService : IGreeterService
+    public Task<HelloReply> SayHelloAsync(HelloRequest request, CallContext context = default)
     {
-        public Task<HelloReply> SayHelloAsync(HelloRequest request, CallContext context = default)
-        {
-            return Task.FromResult(
-                   new HelloReply
-                   {
-                       Message = $"Hello {request.Name}"
-                   });
-        }
+        return Task.FromResult(
+                new HelloReply
+                {
+                    Message = $"Hello {request.Name}"
+                });
     }
-    #endregion
 }

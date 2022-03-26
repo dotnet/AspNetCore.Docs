@@ -6,14 +6,14 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/forms-validation
 ---
 # ASP.NET Core Blazor forms and validation
 
-:::moniker range=">= aspnetcore-6.0"
+The Blazor framework supports forms and validation using the <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component bound to a model that uses [data annotations](xref:mvc/models/validation).
 
-The Blazor framework supports webforms with validation using the <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component bound to a model that uses [data annotations](xref:mvc/models/validation).
+:::moniker range=">= aspnetcore-6.0"
 
 To demonstrate how an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component works with [data annotations](xref:mvc/models/validation) validation, consider the following `ExampleModel` type. The `Name` property is marked required with the <xref:System.ComponentModel.DataAnnotations.RequiredAttribute> and specifies a <xref:System.ComponentModel.DataAnnotations.StringLengthAttribute> maximum string length limit and error message.
 
@@ -491,7 +491,7 @@ When a model binding validation error occurs on the server, an [`ApiController`]
 ```
 
 > [!NOTE]
-> To demonstrate the preceding JSON response, you must either disable the form's client-side validation to permit empty field form submission or use a tool to send a request directly to the server API, such as [Fiddler](https://www.telerik.com/fiddler), [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/), or [Postman](https://www.postman.com).
+> To demonstrate the preceding JSON response, you must either disable the form's client-side validation to permit empty field form submission or use a tool to send a request directly to the server API, such as [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/) or [Postman](https://www.postman.com).
 
 If the server API returns the preceding default JSON response, it's possible for the client to parse the response in developer code to obtain the children of the `errors` node for forms validation error processing. It's inconvenient to write developer code to parse the file. Parsing the JSON manually requires producing a [`Dictionary<string, List<string>>`](xref:System.Collections.Generic.Dictionary%602) of errors after calling <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A>. Ideally, the server API should only return the validation errors:
 
@@ -677,7 +677,7 @@ In the following `FormExample6` component, update the namespace of the **`Shared
 > As an alternative to the use of a [validation component](#validator-components), data annotation validation attributes can be used. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. When used with server-side validation, the attributes must be executable on the server. For more information, see <xref:mvc/models/validation#alternatives-to-built-in-attributes>.
 
 > [!NOTE]
-> The server-side validation approach in this section is suitable for any of the Blazor WebAssembly hosted solution examples in this documentation set:
+> The server-side validation approach in this section is suitable for any of the hosted Blazor WebAssembly solution examples in this documentation set:
 >
 > * [Azure Active Directory (AAD)](xref:blazor/security/webassembly/hosted-with-azure-active-directory)
 > * [Azure Active Directory (AAD) B2C](xref:blazor/security/webassembly/hosted-with-azure-active-directory-b2c)
@@ -1065,8 +1065,6 @@ private ExampleModel exampleModel = new();
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
-
-The Blazor framework supports webforms with validation using the <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component bound to a model that uses [data annotations](xref:mvc/models/validation).
 
 To demonstrate how an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component works with [data annotations](xref:mvc/models/validation) validation, consider the following `ExampleModel` type. The `Name` property is marked required with the <xref:System.ComponentModel.DataAnnotations.RequiredAttribute> and specifies a <xref:System.ComponentModel.DataAnnotations.StringLengthAttribute> maximum string length limit and error message.
 
@@ -1473,7 +1471,7 @@ When a model binding validation error occurs on the server, an [`ApiController`]
 ```
 
 > [!NOTE]
-> To demonstrate the preceding JSON response, you must either disable the form's client-side validation to permit empty field form submission or use a tool to send a request directly to the server API, such as [Fiddler](https://www.telerik.com/fiddler), [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/), or [Postman](https://www.postman.com).
+> To demonstrate the preceding JSON response, you must either disable the form's client-side validation to permit empty field form submission or use a tool to send a request directly to the server API, such as [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/) or [Postman](https://www.postman.com).
 
 If the server API returns the preceding default JSON response, it's possible for the client to parse the response in developer code to obtain the children of the `errors` node for forms validation error processing. It's inconvenient to write developer code to parse the file. Parsing the JSON manually requires producing a [`Dictionary<string, List<string>>`](xref:System.Collections.Generic.Dictionary%602) of errors after calling <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A>. Ideally, the server API should only return the validation errors:
 
@@ -1659,7 +1657,7 @@ In the following `FormExample6` component, update the namespace of the **`Shared
 > As an alternative to the use of a [validation component](#validator-components), data annotation validation attributes can be used. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. When used with server-side validation, the attributes must be executable on the server. For more information, see <xref:mvc/models/validation#alternatives-to-built-in-attributes>.
 
 > [!NOTE]
-> The server-side validation approach in this section is suitable for any of the Blazor WebAssembly hosted solution examples in this documentation set:
+> The server-side validation approach in this section is suitable for any of the hosted Blazor WebAssembly solution examples in this documentation set:
 >
 > * [Azure Active Directory (AAD)](xref:blazor/security/webassembly/hosted-with-azure-active-directory)
 > * [Azure Active Directory (AAD) B2C](xref:blazor/security/webassembly/hosted-with-azure-active-directory-b2c)
@@ -2048,8 +2046,6 @@ private ExampleModel exampleModel = new();
 
 :::moniker range="< aspnetcore-5.0"
 
-The Blazor framework supports webforms with validation using the <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component bound to a model that uses [data annotations](xref:mvc/models/validation).
-
 To demonstrate how an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component works with [data annotations](xref:mvc/models/validation) validation, consider the following `ExampleModel` type. The `Name` property is marked required with the <xref:System.ComponentModel.DataAnnotations.RequiredAttribute> and specifies a <xref:System.ComponentModel.DataAnnotations.StringLengthAttribute> maximum string length limit and error message.
 
 `ExampleModel.cs`:
@@ -2424,7 +2420,7 @@ When a model binding validation error occurs on the server, an [`ApiController`]
 ```
 
 > [!NOTE]
-> To demonstrate the preceding JSON response, you must either disable the form's client-side validation to permit empty field form submission or use a tool to send a request directly to the server API, such as [Fiddler](https://www.telerik.com/fiddler), [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/), or [Postman](https://www.postman.com).
+> To demonstrate the preceding JSON response, you must either disable the form's client-side validation to permit empty field form submission or use a tool to send a request directly to the server API, such as [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/) or [Postman](https://www.postman.com).
 
 If the server API returns the preceding default JSON response, it's possible for the client to parse the response in developer code to obtain the children of the `errors` node for forms validation error processing. It's inconvenient to write developer code to parse the file. Parsing the JSON manually requires producing a [`Dictionary<string, List<string>>`](xref:System.Collections.Generic.Dictionary%602) of errors after calling <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A>. Ideally, the server API should only return the validation errors:
 
@@ -2610,7 +2606,7 @@ In the following `FormExample6` component, update the namespace of the **`Shared
 > As an alternative to the use of a [validation component](#validator-components), data annotation validation attributes can be used. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. When used with server-side validation, the attributes must be executable on the server. For more information, see <xref:mvc/models/validation#alternatives-to-built-in-attributes>.
 
 > [!NOTE]
-> The server-side validation approach in this section is suitable for any of the Blazor WebAssembly hosted solution examples in this documentation set:
+> The server-side validation approach in this section is suitable for any of the hosted Blazor WebAssembly solution examples in this documentation set:
 >
 > * [Azure Active Directory (AAD)](xref:blazor/security/webassembly/hosted-with-azure-active-directory)
 > * [Azure Active Directory (AAD) B2C](xref:blazor/security/webassembly/hosted-with-azure-active-directory-b2c)

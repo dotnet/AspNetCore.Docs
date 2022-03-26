@@ -5,7 +5,7 @@ description: Learn how to make scalable, high-performance gRPC apps with client-
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 08/07/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, "service config"]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, "service config"]
 uid: grpc/loadbalancing
 ---
 # gRPC client-side load balancing
@@ -17,12 +17,7 @@ Client-side load balancing is a feature that allows gRPC clients to distribute l
 Client-side load balancing requires:
 
 * .NET 5 or later.
-* [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client) version 2.39.0-pre1 or later.
-
-> [!IMPORTANT]
-> This feature is in preview. Integration with other gRPC features is not complete and testing is required.
-> 
-> Client-side load balancing is currently only available in prerelease versions of `Grpc.Net.Client` on NuGet.org.
+* [`Grpc.Net.Client`](https://www.nuget.org/packages/Grpc.Net.Client) version 2.44.0 or later.
 
 ## Configure gRPC client-side load balancing
 
@@ -31,7 +26,7 @@ Client-side load balancing is configured when a channel is created. The two comp
 * The resolver, which resolves the addresses for the channel. Resolvers support getting addresses from an external source. This is also known as service discovery.
 * The load balancer, which creates connections and picks the address that a gRPC call will use.
 
-Built-in implementations of resolvers and load balancers are included in [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client). Load balancing can also be extended by [writing custom resolvers and load balancers](#write-custom-resolvers-and-load-balancers).
+Built-in implementations of resolvers and load balancers are included in [`Grpc.Net.Client`](https://www.nuget.org/packages/Grpc.Net.Client). Load balancing can also be extended by [writing custom resolvers and load balancers](#write-custom-resolvers-and-load-balancers).
 
 Addresses, connections and other load balancing state is stored in a `GrpcChannel` instance. A channel must be reused when making gRPC calls for load balancing to work correctly.
 
@@ -197,7 +192,7 @@ A resolver:
 * Can optionally provide a service configuration.
 
 ```csharp
-public class FileResolver : AsyncResolver
+public class FileResolver : PollingResolver
 {
     private readonly Uri _address;
     private readonly int _port;
@@ -236,7 +231,8 @@ public class FileResolverFactory : ResolverFactory
 In the preceding code:
 
 * `FileResolverFactory` implements `ResolverFactory`. It maps to the `file` scheme and creates `FileResolver` instances.
-* `FileResolver` implements `Resolver`. In `RefreshAsync`:
+* `FileResolver` implements `PollingResolver`. `PollingResolver` is an abstract base type that makes it easy to implement a resolver with asynchronous logic by overriding `ResolveAsync`.
+* In `ResolveAsync`:
   * The file URI is converted to a local path. For example, `file:///c:/addresses.json` becomes `c:\addresses.json`.
   * JSON is loaded from disk and converted into a collection of addresses.
   * Listener is called with results to let the channel know that addresses are available.

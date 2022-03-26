@@ -5,7 +5,7 @@ description: Learn about the new features in ASP.NET Core 6.0.
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/29/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, Kestrel]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, Kestrel]
 uid: aspnetcore-6.0
 ---
 # What's new in ASP.NET Core 6.0
@@ -200,7 +200,7 @@ Experimental support is available for building custom elements, which use standa
 
 ### Infer component generic types from ancestor components
 
-An ancestor component can cascade a type parameter by name to descendants using the new `[CascadingTypeParameter]` attribute. For more information, see <xref:blazor/components/templated-components?view=aspnetcore-6.0#infer-generic-types-based-on-ancestor-components>.
+An ancestor component can cascade a type parameter by name to descendants using the new `[CascadingTypeParameter]` attribute. For more information, see <xref:blazor/components/index?view=aspnetcore-6.0#cascaded-generic-type-support>.
 
 ### Dynamically rendered components
 
@@ -473,7 +473,7 @@ The web app templates:
 
 Random ports are assigned during project creation for use by the Kestrel web server. Random ports help minimize a port conflict when multiple projects are run on the same machine.
 
-When a project is created, a random HTTP port between 5000-5300 and a random HTTPS port between 7000-7300 is specified in the generated *Properties/launchSettings.json* file. The ports can be changed in the *Properties/launchSettings.json* file. If no port is specified, Kestrel  defaults to the HTTP 5000 and HTTPS 5001 ports. For more information, see <xref:fundamentals/servers/kestrel/endpoints>.
+When a project is created, a random HTTP port between 5000-5300 and a random HTTPS port between 7000-7300 is specified in the generated `Properties/launchSettings.json` file. The ports can be changed in the `Properties/launchSettings.json` file. If no port is specified, Kestrel  defaults to the HTTP 5000 and HTTPS 5001 ports. For more information, see <xref:fundamentals/servers/kestrel/endpoints>.
 
 ### New logging defaults
 
@@ -624,7 +624,7 @@ info: Microsoft.AspNetCore.HttpLogging.HttpLoggingMiddleware[2]
       Content-Type: text/plain; charset=utf-8
 ```
 
-The preceding output was enabled with the following *appsettings.development.json* file:
+The preceding output was enabled with the following `appsettings.Development.json` file:
 
 [!code-json[](aspnetcore-6.0/samples/WebApp1/appsettings.development.json?highlight=6)]
 

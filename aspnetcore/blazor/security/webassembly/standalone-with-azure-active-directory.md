@@ -6,14 +6,14 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: "devx-track-csharp, mvc"
 ms.date: 11/09/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/security/webassembly/standalone-with-azure-active-directory
 ---
 # Secure an ASP.NET Core Blazor WebAssembly standalone app with Azure Active Directory
 
-:::moniker range=">= aspnetcore-6.0"
+This article explains how to create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD)](https://azure.microsoft.com/services/active-directory/) for authentication.
 
-This article covers how to create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD)](https://azure.microsoft.com/services/active-directory/) for authentication.
+:::moniker range=">= aspnetcore-6.0"
 
 > [!NOTE]
 > For Blazor WebAssembly apps created in Visual Studio that are configured to support accounts in an AAD organizational directory with Microsoft Identity Platform, use Visual Studio version 16.10 or later in order to create the app with the correct Azure configuration. If you use a version of Visual Studio earlier than 16.10, you must manually update the app's configuration per **_each section of this article_** after generating the app.
@@ -35,7 +35,7 @@ Record the following information:
 In **Authentication** > **Platform configurations** > **Single-page application (SPA)**:
 
 1. Confirm the **Redirect URI** of `https://localhost:{PORT}/authentication/login-callback` is present.
-1. For **Implicit grant**, ensure that the checkboxes for **Access tokens** and **ID tokens** are **not** selected.
+1. In the **Implicit grant** section, ensure that the checkboxes for **Access tokens** and **ID tokens** are **not** selected.
 1. The remaining defaults for the app are acceptable for this experience.
 1. Select the **Save** button.
 
@@ -186,8 +186,6 @@ For more information, see the following sections of the *Additional scenarios* a
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-This article covers how to create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD)](https://azure.microsoft.com/services/active-directory/) for authentication.
-
 > [!NOTE]
 > For Blazor WebAssembly apps created in Visual Studio that are configured to support accounts in an AAD organizational directory with Microsoft Identity Platform, use Visual Studio version 16.10 or later in order to create the app with the correct Azure configuration. If you use a version of Visual Studio earlier than 16.10, you must manually update the app's configuration per **_each section of this article_** after generating the app.
 
@@ -208,7 +206,7 @@ Record the following information:
 In **Authentication** > **Platform configurations** > **Single-page application (SPA)**:
 
 1. Confirm the **Redirect URI** of `https://localhost:{PORT}/authentication/login-callback` is present.
-1. For **Implicit grant**, ensure that the checkboxes for **Access tokens** and **ID tokens** are **not** selected.
+1. In the **Implicit grant** section, ensure that the checkboxes for **Access tokens** and **ID tokens** are **not** selected.
 1. The remaining defaults for the app are acceptable for this experience.
 1. Select the **Save** button.
 
@@ -359,8 +357,6 @@ For more information, see the following sections of the *Additional scenarios* a
 
 :::moniker range="< aspnetcore-5.0"
 
-This article covers how to create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD)](https://azure.microsoft.com/services/active-directory/) for authentication.
-
 Register an AAD app:
 
 1. Navigate to **Azure Active Directory** in the Azure portal. Select **App registrations** in the sidebar. Select the **New registration** button.
@@ -378,7 +374,7 @@ Record the following information:
 In **Authentication** > **Platform configurations** > **Web**:
 
 1. Confirm the **Redirect URI** of `https://localhost:{PORT}/authentication/login-callback` is present.
-1. For **Implicit grant**, select the checkboxes for **Access tokens** and **ID tokens**.
+1. In the **Implicit grant** section, select the checkboxes for **Access tokens** and **ID tokens**.
 1. The remaining defaults for the app are acceptable for this experience.
 1. Select the **Save** button.
 

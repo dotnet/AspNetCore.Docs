@@ -4,7 +4,7 @@ author: ardalis
 description: Learn how ASP.NET Core supports dependency injection into MVC views.
 ms.author: riande
 ms.date: 10/14/2016
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/views/dependency-injection
 ---
 # Dependency injection into views in ASP.NET Core
@@ -17,9 +17,9 @@ ASP.NET Core supports [dependency injection](xref:fundamentals/dependency-inject
 
 ## Configuration injection
 
-*appsettings.json* values can be injected directly into a view.
+`appsettings.json` values can be injected directly into a view.
 
-Example of an *appsettings.json* file:
+Example of an `appsettings.json` file:
 
 ```json
 {
@@ -51,7 +51,7 @@ A service can be injected into a view using the `@inject` directive. You can thi
 
 [!code-cshtml[](../../mvc/views/dependency-injection/sample/src/ViewInjectSample/Views/ToDo/Index.cshtml?highlight=4,5,15,16,17)]
 
-This view displays a list of `ToDoItem` instances, along with a summary showing overall statistics. The summary is populated from the injected `StatisticsService`. This service is registered for dependency injection in `ConfigureServices` in *Startup.cs*:
+This view displays a list of `ToDoItem` instances, along with a summary showing overall statistics. The summary is populated from the injected `StatisticsService`. This service is registered for dependency injection in `ConfigureServices` in `Startup.cs`:
 
 [!code-csharp[](../../mvc/views/dependency-injection/sample/src/ViewInjectSample/Startup.cs?highlight=6,7&range=15-22)]
 

@@ -4,6 +4,9 @@
     "blanks-around-lists": false,
     "blanks-around-fences": false,
     "blanks-around-headers": true,
+    "emphasis-style": {
+      "style": "asterisk"
+    },
     "fenced-code-language": true,
     "first-header-h1": false,
     "first-line-h1": false,
@@ -61,5 +64,11 @@
     },
     "required-headers": false,
     "single-h1": false,
-    "ul-start-left": false
+    "strong-style": {
+      "style": "asterisk"
+    },
+    "ul-start-left": false,
+    "ul-style": {
+      "style": "asterisk"
+    }
 }

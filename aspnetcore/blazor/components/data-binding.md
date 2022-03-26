@@ -1,15 +1,17 @@
 ---
 title: ASP.NET Core Blazor data binding
 author: guardrex
-description: Learn about data binding features for components and Document Object Model (DOM) elements in Blazor apps.
+description: Learn about data binding features for Razor components and Document Object Model (DOM) elements in Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/data-binding
 ---
 # ASP.NET Core Blazor data binding
+
+This article explains data binding features for Razor components and Document Object Model (DOM) elements in Blazor apps.
 
 :::moniker range=">= aspnetcore-6.0"
 

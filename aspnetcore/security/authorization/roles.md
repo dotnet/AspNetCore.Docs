@@ -5,7 +5,7 @@ description: Learn how to restrict ASP.NET Core controller and action access by 
 ms.author: riande
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 10/14/2016
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authorization/roles
 ---
 # Role-based authorization in ASP.NET Core
@@ -156,7 +156,7 @@ public class UpdateModel : PageModel
 
 ## Policy based role checks
 
-Role requirements can also be expressed using the new Policy syntax, where a developer registers a policy at startup as part of the Authorization service configuration. This normally occurs in `ConfigureServices()` in your *Startup.cs* file.
+Role requirements can also be expressed using the new Policy syntax, where a developer registers a policy at startup as part of the Authorization service configuration. This normally occurs in `ConfigureServices()` in your `Startup.cs` file.
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)

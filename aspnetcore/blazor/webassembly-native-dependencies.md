@@ -6,14 +6,14 @@ monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/28/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/webassembly-native-dependencies
 ---
 # ASP.NET Core Blazor WebAssembly native dependencies
 
-*This article applies to Blazor WebAssembly.*
-
 Blazor WebAssembly apps can use native dependencies built to run on WebAssembly. You can statically link native dependencies into the .NET WebAssembly runtime using the **.NET WebAssembly build tools**, the same tools used to [ahead-of-time (AOT) compile](xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation) a Blazor app to WebAssembly and to [relink the runtime to remove unused features](xref:blazor/host-and-deploy/webassembly#runtime-relinking).
+
+*This article only applies to Blazor WebAssembly.*
 
 ## .NET WebAssembly build tools
 
@@ -110,7 +110,7 @@ NuGet packages can contain native dependencies for use on WebAssembly. These lib
 
 To use SkiaSharp in a Blazor WebAssembly app:
 
-1. Add a package reference to the [`SkiaSharp.Views.Blazor`](https://www.nuget.org/packages/SkiaSharp.Views.Blazor) package in a Blazor WebAssembly project. Use Visual Studio's process for adding packages to an app (**Manage NuGet Packages**) or execute the [`dotnet add package`](/dotnet/core/tools/dotnet-add-package) command in a command shell:
+1. Add a package reference to the [`SkiaSharp.Views.Blazor`](https://www.nuget.org/packages/SkiaSharp.Views.Blazor) package in a Blazor WebAssembly project. Use Visual Studio's process for adding packages to an app (**Manage NuGet Packages** with **Include prerelease** selected) or execute the [`dotnet add package`](/dotnet/core/tools/dotnet-add-package) command in a command shell:
 
    ```dotnetcli
    dotnet add package –-prerelease SkiaSharp.Views.Blazor
@@ -118,6 +118,8 @@ To use SkiaSharp in a Blazor WebAssembly app:
 
    > [!WARNING]
    > The [`SkiaSharp.Views.Blazor`](https://www.nuget.org/packages/SkiaSharp.Views.Blazor) package is a prerelease NuGet package not supported for production use.
+
+   [!INCLUDE[](~/includes/package-reference.md)]
 
 1. Add a `SKCanvasView` component to the app with the following:
 

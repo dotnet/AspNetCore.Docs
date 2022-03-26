@@ -5,7 +5,7 @@ description: Learn how ASP.NET Core implements dependency injection and how to u
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/21/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/dependency-injection
 ---
 # Dependency injection in ASP.NET Core
@@ -189,7 +189,7 @@ The logger output shows:
 * *Scoped* objects are the same for a given request but differ across each new request.
 * *Singleton* objects are the same for every request.
 
-To reduce the logging output, set "Logging:LogLevel:Microsoft:Error" in the *appsettings.Development.json* file:
+To reduce the logging output, set "Logging:LogLevel:Microsoft:Error" in the `appsettings.Development.json` file:
 
 [!code-json[](dependency-injection/samples/3.x/DependencyInjectionSample/appsettings.Development.json?highlight=7)]
 
@@ -579,7 +579,7 @@ The logger output shows:
 * *Scoped* objects are the same for a given request but differ across each new request.
 * *Singleton* objects are the same for every request.
 
-To reduce the logging output, set "Logging:LogLevel:Microsoft:Error" in the *appsettings.Development.json* file:
+To reduce the logging output, set "Logging:LogLevel:Microsoft:Error" in the `appsettings.Development.json` file:
 
 [!code-json[](dependency-injection/samples/3.x/DependencyInjectionSample/appsettings.Development.json?highlight=7)]
 

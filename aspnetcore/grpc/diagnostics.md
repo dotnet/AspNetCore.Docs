@@ -5,7 +5,7 @@ description: Learn how to gather diagnostics from your gRPC app on .NET.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 10/01/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/diagnostics
 ---
 # Logging and diagnostics in gRPC on .NET
@@ -30,7 +30,7 @@ gRPC services and the gRPC client write logs using [.NET Core logging](xref:fund
 
 Since gRPC services are hosted on ASP.NET Core, it uses the ASP.NET Core logging system. In the default configuration, gRPC logs minimal information, but logging can be configured. See the documentation on [ASP.NET Core logging](xref:fundamentals/logging/index) for details on configuring ASP.NET Core logging.
 
-gRPC adds logs under the `Grpc` category. To enable detailed logs from gRPC, configure the `Grpc` prefixes to the `Debug` level in the *appsettings.json* file by adding the following items to the `LogLevel` subsection in `Logging`:
+gRPC adds logs under the `Grpc` category. To enable detailed logs from gRPC, configure the `Grpc` prefixes to the `Debug` level in the `appsettings.json` file by adding the following items to the `LogLevel` subsection in `Logging`:
 
 [!code-json[](diagnostics/sample/logging-config.json?highlight=7)]
 
@@ -207,7 +207,7 @@ Press p to pause, r to resume, q to quit.
 
 Another way to observe gRPC metrics is to capture counter data using Application Insights's [Microsoft.ApplicationInsights.EventCounterCollector package](/azure/azure-monitor/app/eventcounters). Once setup, Application Insights collects common .NET counters at runtime. gRPC's counters are not collected by default, but App Insights can be [customized to include additional counters](/azure/azure-monitor/app/eventcounters#customizing-counters-to-be-collected).
 
-Specify the gRPC counters for Application Insight to collect in *Startup.cs*:
+Specify the gRPC counters for Application Insight to collect in `Startup.cs`:
 
 ```csharp
     using Microsoft.ApplicationInsights.Extensibility.EventCounterCollector;
@@ -254,11 +254,11 @@ gRPC services and the gRPC client write logs using [.NET Core logging](xref:fund
 
 Since gRPC services are hosted on ASP.NET Core, it uses the ASP.NET Core logging system. In the default configuration, gRPC logs minimal information, but logging can be configured. See the documentation on [ASP.NET Core logging](xref:fundamentals/logging/index) for details on configuring ASP.NET Core logging.
 
-gRPC adds logs under the `Grpc` category. To enable detailed logs from gRPC, configure the `Grpc` prefixes to the `Debug` level in your *appsettings.json* file by adding the following items to the `LogLevel` subsection in `Logging`:
+gRPC adds logs under the `Grpc` category. To enable detailed logs from gRPC, configure the `Grpc` prefixes to the `Debug` level in your `appsettings.json` file by adding the following items to the `LogLevel` subsection in `Logging`:
 
 [!code-json[](diagnostics/sample/logging-config.json?highlight=7)]
 
-You can also configure this in *Startup.cs* with `ConfigureLogging`:
+You can also configure this in `Startup.cs` with `ConfigureLogging`:
 
 [!code-csharp[](diagnostics/sample/logging-config-code.cs?highlight=5)]
 
@@ -431,7 +431,7 @@ Press p to pause, r to resume, q to quit.
 
 Another way to observe gRPC metrics is to capture counter data using Application Insights's [Microsoft.ApplicationInsights.EventCounterCollector package](/azure/azure-monitor/app/eventcounters). Once setup, Application Insights collects common .NET counters at runtime. gRPC's counters are not collected by default, but App Insights can be [customized to include additional counters](/azure/azure-monitor/app/eventcounters#customizing-counters-to-be-collected).
 
-Specify the gRPC counters for Application Insight to collect in *Startup.cs*:
+Specify the gRPC counters for Application Insight to collect in `Startup.cs`:
 
 ```csharp
     using Microsoft.ApplicationInsights.Extensibility.EventCounterCollector;

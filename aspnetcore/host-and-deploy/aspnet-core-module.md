@@ -1,22 +1,20 @@
 ---
-title: ASP.NET Core Module
+title: ASP.NET Core Module (ANCM) for IIS
 author: rick-anderson
-description: Learn about the ASP.NET Core Module for hosting ASP.NET Core apps with IIS.
+description: Learn about the ASP.NET Core Module (ANCM) for hosting ASP.NET Core apps with IIS.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/13/2020
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+ms.date: 03/04/2022
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: host-and-deploy/aspnet-core-module
 ---
 
-# ASP.NET Core Module
-
-By [Tom Dykstra](https://github.com/tdykstra), [Rick Strahl](https://github.com/RickStrahl), [Chris Ross](https://github.com/Tratcher), [Rick Anderson](https://twitter.com/RickAndMSFT), [Sourabh Shirhatti](https://twitter.com/sshirhatti), and [Justin Kotalik](https://github.com/jkotalik)
+# ASP.NET Core Module (ANCM) for IIS
 
 :::moniker range=">= aspnetcore-5.0"
 
-The ASP.NET Core Module is a native IIS module that plugs into the IIS pipeline, allowing ASP.NET Core applications to work with IIS. Run ASP.NET Core apps with IIS by either: 
+The ASP.NET Core Module (ANCM) is a native IIS module that plugs into the IIS pipeline, allowing ASP.NET Core applications to work with IIS. Run ASP.NET Core apps with IIS by either: 
 
 * Hosting an ASP.NET Core app inside of the IIS worker process (`w3wp.exe`), called the [in-process hosting model](xref:host-and-deploy/iis/in-process-hosting).
 * Forwarding web requests to a backend ASP.NET Core app running the Kestrel server, called the [out-of-process hosting model](xref:host-and-deploy/iis/out-of-process-hosting).
@@ -26,9 +24,9 @@ There are trade-offs between each of the hosting models. By default, the in-proc
 For more information and configuration guidance, see the following topics:
 * <xref:fundamentals/servers/index>
 
-## Install ASP.NET Core Module
+## Install ASP.NET Core Module (ANCM)
 
-The ASP.NET Core Module is installed with the .NET Core Runtime from the [.NET Core Hosting Bundle](xref:host-and-deploy/iis/hosting-bundle). The ASP.NET Core Module is forward and backward compatible with LTS releases of .NET.
+The ASP.NET Core Module (ANCM) is installed with the .NET Core Runtime from the [.NET Core Hosting Bundle](xref:host-and-deploy/iis/hosting-bundle). The ASP.NET Core Module is forward and backward compatible with LTS releases of .NET.
 
 [!INCLUDE[](~/includes/announcements.md)]
 
@@ -44,7 +42,7 @@ For a tutorial experience on publishing an ASP.NET Core app to an IIS server, se
 
 :::moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
-The ASP.NET Core Module is a native IIS module that plugs into the IIS pipeline to either:
+The ASP.NET Core Module (ANCM) is a native IIS module that plugs into the IIS pipeline to either:
 
 * Host an ASP.NET Core app inside of the IIS worker process (`w3wp.exe`), called the [in-process hosting model](#in-process-hosting-model).
 * Forward web requests to a backend ASP.NET Core app running the [Kestrel server](xref:fundamentals/servers/kestrel), called the [out-of-process hosting model](#out-of-process-hosting-model).
@@ -142,7 +140,7 @@ The ASP.NET Core Module can also:
 * Log stdout output to file storage for troubleshooting startup issues.
 * Forward Windows authentication tokens.
 
-## How to install and use the ASP.NET Core Module
+## How to install and use the ASP.NET Core Module (ANCM)
 
 For instructions on how to install the ASP.NET Core Module, see [Install the .NET Core Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle). The ASP.NET Core Module is forward and backward compatible with LTS releases of .NET.
 
@@ -209,7 +207,7 @@ For information on IIS sub-application configuration, see <xref:host-and-deploy/
 | `processPath` | <p>Required string attribute.</p><p>Path to the executable that launches a process listening for HTTP requests. Relative paths are supported. If the path begins with `.`, the path is considered to be relative to the site root.</p> | |
 | `rapidFailsPerMinute` | <p>Optional integer attribute.</p><p>Specifies the number of times the process specified in **processPath** is allowed to crash per minute. If this limit is exceeded, the module stops launching the process for the remainder of the minute.</p><p>Not supported with in-process hosting.</p> | Default: `10`<br>Min: `0`<br>Max: `100` |
 | `requestTimeout` | <p>Optional timespan attribute.</p><p>Specifies the duration for which the ASP.NET Core Module waits for a response from the process listening on %ASPNETCORE_PORT%.</p><p>In versions of the ASP.NET Core Module that shipped with the release of ASP.NET Core 2.1 or later, the `requestTimeout` is specified in hours, minutes, and seconds.</p><p>Doesn't apply to in-process hosting. For in-process hosting, the module waits for the app to process the request.</p><p>Valid values for minutes and seconds segments of the string are in the range 0-59. Use of **60** in the value for minutes or seconds results in a *500 - Internal Server Error*.</p> | Default: `00:02:00`<br>Min: `00:00:00`<br>Max: `360:00:00` |
-| `shutdownTimeLimit` | <p>Optional integer attribute.</p><p>Duration in seconds that the module waits for the executable to gracefully shutdown when the *app_offline.htm* file is detected.</p> | Default: `10`<br>Min: `0`<br>Max: `600` |
+| `shutdownTimeLimit` | <p>Optional integer attribute.</p><p>Duration in seconds that the module waits for the executable to gracefully shutdown when the `app_offline.htm` file is detected.</p> | Default: `10`<br>Min: `0`<br>Max: `600` |
 | `startupTimeLimit` | <p>Optional integer attribute.</p><p>Duration in seconds that the module waits for the executable to start a process listening on the port. If this time limit is exceeded, the module kills the process.</p><p>When hosting *in-process*: The process is **not** restarted and does **not** use the **rapidFailsPerMinute** setting.</p><p>When hosting *out-of-process*: The module attempts to relaunch the process when it receives a new request and continues to attempt to restart the process on subsequent incoming requests unless the app fails to start **rapidFailsPerMinute** number of times in the last rolling minute.</p><p>A value of 0 (zero) is **not** considered an infinite timeout.</p> | Default: `120`<br>Min: `0`<br>Max: `3600` |
 | `stdoutLogEnabled` | <p>Optional Boolean attribute.</p><p>If true, **stdout** and **stderr** for the process specified in **processPath** are redirected to the file specified in **stdoutLogFile**.</p> | `false` |
 | `stdoutLogFile` | <p>Optional string attribute.</p><p>Specifies the relative or absolute file path for which **stdout** and **stderr** from the process specified in **processPath** are logged. Relative paths are relative to the root of the site. Any path starting with `.` are relative to the site root and all other paths are treated as absolute paths. Any folders provided in the path are created by the module when the log file is created. Using underscore delimiters, a timestamp, process ID, and file extension (`.log`) are added to the last segment of the **stdoutLogFile** path. If `.\logs\stdout` is supplied as a value, an example stdout log is saved as `stdout_20180205194132_1934.log` in the `logs` folder when saved on 2/5/2018 at 19:41:32 with a process ID of 1934.</p> | `aspnetcore-stdout` |
@@ -450,7 +448,7 @@ The files can be found by searching for `aspnetcore` in the `applicationHost.con
 
 :::moniker range="= aspnetcore-2.2"
 
-The ASP.NET Core Module is a native IIS module that plugs into the IIS pipeline to either:
+The ASP.NET Core Module (ANCM) is a native IIS module that plugs into the IIS pipeline to either:
 
 * Host an ASP.NET Core app inside of the IIS worker process (`w3wp.exe`), called the [in-process hosting model](#in-process-hosting-model).
 * Forward web requests to a backend ASP.NET Core app running the [Kestrel server](xref:fundamentals/servers/kestrel), called the [out-of-process hosting model](#out-of-process-hosting-model).
@@ -559,7 +557,7 @@ The ASP.NET Core Module can also:
 * Log stdout output to file storage for troubleshooting startup issues.
 * Forward Windows authentication tokens.
 
-## How to install and use the ASP.NET Core Module
+## How to install and use the ASP.NET Core Module (ANCM)
 
 For instructions on how to install the ASP.NET Core Module, see [Install the .NET Core Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle). The ASP.NET Core Module is forward and backward compatible with LTS releases of .NET.
 
@@ -847,7 +845,7 @@ The files can be found by searching for `aspnetcore` in the `applicationHost.con
 
 :::moniker range="< aspnetcore-2.2"
 
-The ASP.NET Core Module is a native IIS module that plugs into the IIS pipeline to forward web requests to backend ASP.NET Core apps.
+The ASP.NET Core Module (ANCM) is a native IIS module that plugs into the IIS pipeline to forward web requests to backend ASP.NET Core apps.
 
 Supported Windows versions:
 
@@ -876,7 +874,7 @@ The ASP.NET Core Module can also:
 * Log stdout output to file storage for troubleshooting startup issues.
 * Forward Windows authentication tokens.
 
-## How to install and use the ASP.NET Core Module
+## How to install and use the ASP.NET Core Module (ANCM)
 
 For instructions on how to install the ASP.NET Core Module, see [Install the .NET Core Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle).
 
@@ -932,7 +930,7 @@ For information on IIS sub-application configuration, see <xref:host-and-deploy/
 | `processPath` | <p>Required string attribute.</p><p>Path to the executable that launches a process listening for HTTP requests. Relative paths are supported. If the path begins with `.`, the path is considered to be relative to the site root.</p> | |
 | `rapidFailsPerMinute` | <p>Optional integer attribute.</p><p>Specifies the number of times the process specified in **processPath** is allowed to crash per minute. If this limit is exceeded, the module stops launching the process for the remainder of the minute.</p> | Default: `10`<br>Min: `0`<br>Max: `100` |
 | `requestTimeout` | <p>Optional timespan attribute.</p><p>Specifies the duration for which the ASP.NET Core Module waits for a response from the process listening on %ASPNETCORE_PORT%.</p><p>In versions of the ASP.NET Core Module that shipped with the release of ASP.NET Core 2.1 or later, the `requestTimeout` is specified in hours, minutes, and seconds.</p> | Default: `00:02:00`<br>Min: `00:00:00`<br>Max: `360:00:00` |
-| `shutdownTimeLimit` | <p>Optional integer attribute.</p><p>Duration in seconds that the module waits for the executable to gracefully shutdown when the *app_offline.htm* file is detected.</p> | Default: `10`<br>Min: `0`<br>Max: `600` |
+| `shutdownTimeLimit` | <p>Optional integer attribute.</p><p>Duration in seconds that the module waits for the executable to gracefully shutdown when the `app_offline.htm` file is detected.</p> | Default: `10`<br>Min: `0`<br>Max: `600` |
 | `startupTimeLimit` | <p>Optional integer attribute.</p><p>Duration in seconds that the module waits for the executable to start a process listening on the port. If this time limit is exceeded, the module kills the process. The module attempts to relaunch the process when it receives a new request and continues to attempt to restart the process on subsequent incoming requests unless the app fails to start **rapidFailsPerMinute** number of times in the last rolling minute.</p><p>A value of 0 (zero) is **not** considered an infinite timeout.</p> | Default: `120`<br>Min: `0`<br>Max: `3600` |
 | `stdoutLogEnabled` | <p>Optional Boolean attribute.</p><p>If true, **stdout** and **stderr** for the process specified in **processPath** are redirected to the file specified in **stdoutLogFile**.</p> | `false` |
 | `stdoutLogFile` | <p>Optional string attribute.</p><p>Specifies the relative or absolute file path for which **stdout** and **stderr** from the process specified in **processPath** are logged. Relative paths are relative to the root of the site. Any path starting with `.` are relative to the site root and all other paths are treated as absolute paths. Any folders provided in the path must exist in order for the module to create the log file. Using underscore delimiters, a timestamp, process ID, and file extension (*.log*) are added to the last segment of the **stdoutLogFile** path. If `.\logs\stdout` is supplied as a value, an example stdout log is saved as *stdout_20180205194132_1934.log* in the *logs* folder when saved on 2/5/2018 at 19:41:32 with a process ID of 1934.</p> | `aspnetcore-stdout` |
@@ -963,9 +961,9 @@ The following example sets two environment variables. `ASPNETCORE_ENVIRONMENT` c
 
 ## app_offline.htm
 
-If a file with the name *app_offline.htm* is detected in the root directory of an app, the ASP.NET Core Module attempts to gracefully shutdown the app and stop processing incoming requests. If the app is still running after the number of seconds defined in `shutdownTimeLimit`, the ASP.NET Core Module kills the running process.
+If a file with the name `app_offline.htm` is detected in the root directory of an app, the ASP.NET Core Module attempts to gracefully shutdown the app and stop processing incoming requests. If the app is still running after the number of seconds defined in `shutdownTimeLimit`, the ASP.NET Core Module kills the running process.
 
-While the *app_offline.htm* file is present, the ASP.NET Core Module responds to requests by sending back the contents of the *app_offline.htm* file. When the *app_offline.htm* file is removed, the next request starts the app.
+While the `app_offline.htm` file is present, the ASP.NET Core Module responds to requests by sending back the contents of the `app_offline.htm` file. When the `app_offline.htm` file is removed, the next request starts the app.
 
 ## Start-up error page
 

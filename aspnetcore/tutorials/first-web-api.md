@@ -5,7 +5,7 @@ description: Learn how to build a web API with ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
 ms.date: 09/09/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, Models]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, Models]
 uid: tutorials/first-web-api
 ---
 
@@ -152,7 +152,7 @@ Run the app:
   * Replace  `<project-name.dll>` with `TodoApi.dll`.
 * Press Ctrl+F5.
 * In the **Could not find the task 'build'** dialog, select **Configure Task**.
-* Select **Create *tasks.json* file from template**.
+* Select **Create `tasks.json` file from template**.
 * Select the **.NET Core** task template.
 * Press Ctrl+F5.
 
@@ -244,7 +244,7 @@ A *model* is a set of classes that represent the data that the app manages. The 
 
 * Add a folder named *Models*.
 
-* Add a *TodoItem.cs* file to the *Models* folder with the following code:
+* Add a `TodoItem.cs` file to the *Models* folder with the following code:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -289,7 +289,7 @@ The *database context* is the main class that coordinates Entity Framework funct
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Add a *TodoContext.cs* file to the *Models* folder. 
+* Add a `TodoContext.cs` file to the *Models* folder. 
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -402,7 +402,7 @@ This tutorial uses [http-repl](../web-api/http-repl/index.md) to test the web AP
   dotnet tool install -g Microsoft.dotnet-httprepl
   ```
 
-* If you don't have the .NET 5.0 SDK or runtime installed, install the [.NET 5.0 runtime](https://dotnet.microsoft.com/download/dotnet/5.0/runtime).
+* If you don't have the .NET 6.0 SDK or runtime installed, install the [.NET 6.0 runtime](https://dotnet.microsoft.com/download/dotnet/6.0/runtime).
   
 <a name="post"></a>
 
@@ -873,7 +873,7 @@ The *database context* is the main class that coordinates Entity Framework funct
 
 In ASP.NET Core, services such as the DB context must be registered with the [dependency injection (DI)](xref:fundamentals/dependency-injection) container. The container provides the service to controllers.
 
-Update *Startup.cs* with the following code:
+Update `Startup.cs` with the following code:
 
 [!code-csharp[](first-web-api/samples/5.x/TodoApi/Startup.cs?highlight=7-8,25-30,38-39&name=snippet_all)]
 
@@ -1364,7 +1364,7 @@ The *database context* is the main class that coordinates Entity Framework funct
 
 In ASP.NET Core, services such as the DB context must be registered with the [dependency injection (DI)](xref:fundamentals/dependency-injection) container. The container provides the service to controllers.
 
-Update *Startup.cs* with the following highlighted code:
+Update `Startup.cs` with the following highlighted code:
 
 [!code-csharp[](first-web-api/samples/3.0/TodoApi/Startup.cs?highlight=7-8,23-24&name=snippet_all)]
 

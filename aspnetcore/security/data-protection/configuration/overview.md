@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/14/2022
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/data-protection/configuration/overview
 ---
 # Configure ASP.NET Core Data Protection
@@ -209,7 +209,7 @@ Only Redis versions supporting [Redis Data Persistence](/azure/azure-cache-for-r
 
 ## Logging DataProtection
 
-Enable `Information` level logging of DataProtection to help diagnosis problem. The following *appsetting.json* file enables information logging of the DataProtection API:
+Enable `Information` level logging of DataProtection to help diagnosis problem. The following `appsettings.json` file enables information logging of the DataProtection API:
 
 :::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/appsettings.json" highlight="6":::
 
@@ -544,7 +544,7 @@ Only Redis versions supporting [Redis Data Persistence](/azure/azure-cache-for-r
 
 ## Logging DataProtection
 
-Enable `Information` level logging of DataProtection to help diagnosis problem. The following *appsetting.json* file enables information logging of the DataProtection API:
+Enable `Information` level logging of DataProtection to help diagnosis problem. The following `appsettings.json` file enables information logging of the DataProtection API:
 
 ```JSON
 {

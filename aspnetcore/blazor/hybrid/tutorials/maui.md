@@ -5,8 +5,8 @@ description: Build a .NET MAUI Blazor app step-by-step.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/14/2022
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+ms.date: 03/25/2022
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/hybrid/tutorials/maui
 ---
 # Build a .NET MAUI Blazor app
@@ -23,7 +23,7 @@ This tutorial shows you how to build and run a .NET MAUI Blazor app. You learn h
 * [Supported platforms (.NET MAUI documentation)](/dotnet/maui/supported-platforms)
 * [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/) with the **Mobile development with .NET** workload
 * [Microsoft Edge WebView2](https://developer.microsoft.com/microsoft-edge/webview2/): WebView2 is required on Windows when running a native app. When developing .NET MAUI Blazor apps and only running them in Visual Studio's emulators, WebView2 isn't required.
-* [Enable hardware acceleration](/xamarin/android/get-started/installation/android-emulator/hardware-acceleration) to improve the performance of the Android emulator.
+* [Enable hardware acceleration](/dotnet/maui/android/emulator/hardware-acceleration) to improve the performance of the Android emulator.
 
 ## Create a .NET MAUI Blazor app
 
@@ -41,7 +41,7 @@ Select the **.NET MAUI Blazor App (Preview)** template and then select the **Nex
 
 :::image type="content" source="maui/_static/new-project-2.png" alt-text="Choose a template.":::
 
-In the **Configure your new project** window, name your project, choose a suitable location for it, and select the **Create** button:
+In the **Configure your new project** dialog, set the **Project name** to **`MauiBlazor`**, choose a suitable location for the project, and select the **Create** button.
 
 :::image type="content" source="maui/_static/configure-project.png" alt-text="Configure the project.":::
 

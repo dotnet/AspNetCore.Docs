@@ -5,7 +5,7 @@ description: Learn how to build a minimal web API with ASP.NET Core.
 ms.author: riande
 ms.date: 11/12/2021
 monikerRange: '>= aspnetcore-6.0'
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, Models]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, Models]
 uid: tutorials/min-web-api
 ---
 
@@ -212,7 +212,7 @@ app.MapGet("/", () => "Hello World!");
 
 `app.Run();` runs the app.
 
-Remove the two `"launchUrl": "swagger",` lines from the *Properties/launchSettings.json* file. When the `launchUrl` isn't specified, the web browser requests the `/` endpoint.
+Remove the two `"launchUrl": "swagger",` lines from the `Properties/launchSettings.json` file. When the `launchUrl` isn't specified, the web browser requests the `/` endpoint.
 
 Run the app. `Hello World!` is displayed. The updated `Program.cs` file contains a minimal but complete app.
 

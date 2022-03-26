@@ -1,12 +1,12 @@
 ---
 title: Lazy load assemblies in ASP.NET Core Blazor WebAssembly
 author: guardrex
-description: Discover how to lazy load assemblies in ASP.NET Core Blazor WebAssembly apps.
+description: Discover how to lazy load assemblies in Blazor WebAssembly apps.
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/webassembly-lazy-load-assemblies
 ---
 # Lazy load assemblies in ASP.NET Core Blazor WebAssembly
@@ -17,8 +17,7 @@ Blazor WebAssembly app startup performance can be improved by waiting to load ap
 
 This article's initial sections cover the app configuration. For a working demonstration, see the [Complete example](#complete-example) section at the end of this article.
 
-> [!NOTE]
-> Assembly lazy loading doesn't benefit Blazor Server apps because Blazor Server app assemblies aren't downloaded to the client.
+*This article only applies to Blazor WebAssembly apps.* Assembly lazy loading doesn't benefit Blazor Server apps because Blazor Server app assemblies aren't downloaded to the client.
 
 ## Project file configuration
 

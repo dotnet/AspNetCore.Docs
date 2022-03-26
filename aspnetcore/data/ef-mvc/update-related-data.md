@@ -6,7 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/27/2019
 ms.topic: tutorial
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: data/ef-mvc/update-related-data
 ---
 
@@ -37,7 +37,7 @@ In this tutorial, you:
 
 When a new `Course` entity is created, it must have a relationship to an existing department. To facilitate this, the scaffolded code includes controller methods and Create and Edit views that include a drop-down list for selecting the department. The drop-down list sets the `Course.DepartmentID` foreign key property, and that's all the Entity Framework needs in order to load the `Department` navigation property with the appropriate `Department` entity. You'll use the scaffolded code, but change it slightly to add error handling and sort the drop-down list.
 
-In *CoursesController.cs*, delete the four Create and Edit methods and replace them with the following code:
+In `CoursesController.cs`, delete the four Create and Edit methods and replace them with the following code:
 
 [!code-csharp[](intro/samples/cu/Controllers/CoursesController.cs?name=snippet_CreateGet)]
 
@@ -73,23 +73,23 @@ To optimize performance of the Course Details and Delete pages, add `AsNoTrackin
 
 ### Modify the Course views
 
-In *Views/Courses/Create.cshtml*, add a "Select Department" option to the **Department** drop-down list, change the caption from **DepartmentID** to **Department**, and add a validation message.
+In `Views/Courses/Create.cshtml`, add a "Select Department" option to the **Department** drop-down list, change the caption from **DepartmentID** to **Department**, and add a validation message.
 
 [!code-cshtml[](intro/samples/cu/Views/Courses/Create.cshtml?highlight=2-6&range=29-35)]
 
-In *Views/Courses/Edit.cshtml*, make the same change for the Department field that you just did in *Create.cshtml*.
+In `Views/Courses/Edit.cshtml`, make the same change for the Department field that you just did in `Create.cshtml`.
 
-Also in *Views/Courses/Edit.cshtml*, add a course number field before the **Title** field. Because the course number is the primary key, it's displayed, but it can't be changed.
+Also in `Views/Courses/Edit.cshtml`, add a course number field before the **Title** field. Because the course number is the primary key, it's displayed, but it can't be changed.
 
 [!code-cshtml[](intro/samples/cu/Views/Courses/Edit.cshtml?range=15-18)]
 
 There's already a hidden field (`<input type="hidden">`) for the course number in the Edit view. Adding a `<label>` tag helper doesn't eliminate the need for the hidden field because it doesn't cause the course number to be included in the posted data when the user clicks **Save** on the **Edit** page.
 
-In *Views/Courses/Delete.cshtml*, add a course number field at the top and change department ID to department name.
+In `Views/Courses/Delete.cshtml`, add a course number field at the top and change department ID to department name.
 
 [!code-cshtml[](intro/samples/cu/Views/Courses/Delete.cshtml?highlight=14-19,36)]
 
-In *Views/Courses/Details.cshtml*, make the same change that you just did for *Delete.cshtml*.
+In `Views/Courses/Details.cshtml`, make the same change that you just did for `Delete.cshtml`.
 
 ### Test the Course pages
 
@@ -117,7 +117,7 @@ When you edit an instructor record, you want to be able to update the instructor
 
 ### Update the Instructors controller
 
-In *InstructorsController.cs*, change the code in the HttpGet `Edit` method so that it loads the Instructor entity's `OfficeAssignment` navigation property and calls `AsNoTracking`:
+In `InstructorsController.cs`, change the code in the HttpGet `Edit` method so that it loads the Instructor entity's `OfficeAssignment` navigation property and calls `AsNoTracking`:
 
 [!code-csharp[](intro/samples/cu/Controllers/InstructorsController.cs?highlight=8-11&name=snippet_EditGetOA)]
 
@@ -157,7 +157,7 @@ The code does the following:
 
 ### Update the Instructor Edit view
 
-In *Views/Instructors/Edit.cshtml*, add a new field for editing the office location, at the end before the **Save** button:
+In `Views/Instructors/Edit.cshtml`, add a new field for editing the office location, at the end before the **Save** button:
 
 [!code-cshtml[](intro/samples/cu/Views/Instructors/Edit.cshtml?range=30-34)]
 
@@ -179,11 +179,11 @@ The UI that enables you to change which courses an instructor is assigned to is 
 
 To provide data to the view for the list of checkboxes, you'll use a view model class.
 
-Create *AssignedCourseData.cs* in the *SchoolViewModels* folder and replace the existing code with the following code:
+Create `AssignedCourseData.cs` in the *SchoolViewModels* folder and replace the existing code with the following code:
 
 [!code-csharp[](intro/samples/cu/Models/SchoolViewModels/AssignedCourseData.cs)]
 
-In *InstructorsController.cs*, replace the HttpGet `Edit` method with the following code. The changes are highlighted.
+In `InstructorsController.cs`, replace the HttpGet `Edit` method with the following code. The changes are highlighted.
 
 [!code-csharp[](intro/samples/cu/Controllers/InstructorsController.cs?highlight=10,17,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36&name=snippet_EditGetCourses)]
 
@@ -217,7 +217,7 @@ If the checkbox for a course wasn't selected, but the course is in the `Instruct
 
 ### Update the Instructor views
 
-In *Views/Instructors/Edit.cshtml*, add a **Courses** field with an array of checkboxes by adding the following code immediately after the `div` elements for the **Office** field and before the `div` element for the **Save** button.
+In `Views/Instructors/Edit.cshtml`, add a **Courses** field with an array of checkboxes by adding the following code immediately after the `div` elements for the **Office** field and before the `div` element for the **Save** button.
 
 <a id="notepad"></a>
 > [!NOTE]
@@ -240,7 +240,7 @@ Change some course assignments and click Save. The changes you make are reflecte
 
 ## Update Delete page
 
-In *InstructorsController.cs*, delete the `DeleteConfirmed` method and insert the following code in its place.
+In `InstructorsController.cs`, delete the `DeleteConfirmed` method and insert the following code in its place.
 
 [!code-csharp[](intro/samples/cu/Controllers/InstructorsController.cs?highlight=5-7,9-12&name=snippet_DeleteConfirmed)]
 
@@ -252,7 +252,7 @@ This code makes the following changes:
 
 ## Add office location and courses to Create page
 
-In *InstructorsController.cs*, delete the HttpGet and HttpPost `Create` methods, and then add the following code in their place:
+In `InstructorsController.cs`, delete the HttpGet and HttpPost `Create` methods, and then add the following code in their place:
 
 [!code-csharp[](intro/samples/cu/Controllers/InstructorsController.cs?name=snippet_Create&highlight=3-5,12,14-22,29)]
 
@@ -285,7 +285,7 @@ public ICollection<CourseAssignment> CourseAssignments
 
 If you modify the `CourseAssignments` property in this way, you can remove the explicit property initialization code in the controller.
 
-In *Views/Instructor/Create.cshtml*, add an office location text box and checkboxes for courses before the Submit button. As in the case of the Edit page, [fix the formatting if Visual Studio reformats the code when you paste it](#notepad).
+In `Views/Instructor/Create.cshtml`, add an office location text box and checkboxes for courses before the Submit button. As in the case of the Edit page, [fix the formatting if Visual Studio reformats the code when you paste it](#notepad).
 
 [!code-cshtml[](intro/samples/cu/Views/Instructors/Create.cshtml?range=29-61)]
 

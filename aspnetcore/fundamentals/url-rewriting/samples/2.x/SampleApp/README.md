@@ -20,14 +20,14 @@ When running the sample, non-file responses return the rewritten or redirected U
   - Example (rewrite): **/iis-rules-rewrite/{capture_group}** to **/rewritten?id={capture_group}**
 * `Add(RedirectXmlFileRequests)`
   - Success status code: 301 (Moved Permanently)
-  - Example (redirect): **/file.xml** to **/xmlfiles/file.xml**
+  - Example (redirect): *`/file.xml`* to *`/xmlfiles/file.xml`*
 * `Add(RewriteTextFileRequests)`
   - Success status code: 200 (OK)
   - Example (rewrite): **/some_file.txt** to **/file.txt**
 * `Add(new RedirectImageRequests(".png", "/png-images")))`<br>`Add(new RedirectImageRequests(".jpg", "/jpg-images")))`
   - Success status code: 301 (Moved Permanently)
-  - Example (redirect): **/image.png** to **/png-images/image.png**
-  - Example (redirect): **/image.jpg** to **/jpg-images/image.jpg**
+  - Example (redirect): *`/image.png`* to *`/png-images/image.png`*
+  - Example (redirect): *`/image.jpg`* to *`/jpg-images/image.jpg`*
 
 ## Use a PhysicalFileProvider
 
@@ -40,7 +40,7 @@ PhysicalFileProvider fileProvider = new PhysicalFileProvider(Directory.GetCurren
 
 ## Secure redirection extensions
 
-This sample includes `WebHostBuilder` configuration for the app to use URLs (`https://localhost:5001`, `https://localhost`) and a test certificate (*testCert.pfx*) to assist in exploring the secure redirect methods. If the server already has port 443 assigned or in use, the `https://localhost` example doesn't work&mdash;remove the `ListenOptions` for port 443 in the `CreateWebHostBuilder` method of the *Program.cs* file or unbind port 443 on the server so that Kestrel can use the port.
+This sample includes `WebHostBuilder` configuration for the app to use URLs (`https://localhost:5001`, `https://localhost`) and a test certificate (*testCert.pfx*) to assist in exploring the secure redirect methods. If the server already has port 443 assigned or in use, the `https://localhost` example doesn't work&mdash;remove the `ListenOptions` for port 443 in the `CreateWebHostBuilder` method of the `Program.cs` file or unbind port 443 on the server so that Kestrel can use the port.
 
 | Method                           | Status Code |    Port    |
 | -------------------------------- | :---------: | :--------: |

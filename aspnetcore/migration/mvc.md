@@ -4,7 +4,7 @@ author: wadepickett
 description: Learn how to start migrating an ASP.NET MVC project to ASP.NET Core MVC.
 ms.author: wpickett
 ms.date: 06/18/2020
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: migration/mvc
 ---
 # Migrate from ASP.NET MVC to ASP.NET Core MVC
@@ -63,7 +63,7 @@ In ASP.NET Core, the `Startup` class:
 
 For more information, see <xref:fundamentals/startup>.
 
-In the ASP.NET Core project, open the *Startup.cs* file:
+In the ASP.NET Core project, open the `Startup.cs` file:
 
 [!code-csharp[](mvc/samples/3.x/Startup.cs?highlight=13,30,32&name=snippet)]
 
@@ -84,7 +84,7 @@ The ASP.NET Core *WebApp1* project already includes a minimal example controller
 1. Copy the methods from the ASP.NET MVC `HomeController` to replace the new ASP.NET Core `HomeController` methods. There's no need to change the return type of the action methods. The ASP.NET MVC built-in template's controller action method return type is <xref:System.Web.Mvc.ActionResult>; in ASP.NET Core MVC, the action methods return `IActionResult` instead. `ActionResult` implements `IActionResult`.
 1. In the ASP.NET Core project, right-click the *Views/Home* directory, select **Add** > **Existing Item**.
 1. In the **Add Existing Item** dialog, navigate to the ASP.NET MVC *WebApp1* project's *Views/Home* directory.
-1. Select the *About.cshtml*, *Contact.cshtml*, and *Index.cshtml* Razor view files, then select **Add**, replacing the existing files.
+1. Select the `About.cshtml`, `Contact.cshtml`, and `Index.cshtml` Razor view files, then select **Add**, replacing the existing files.
 
 For more information, see <xref:mvc/controllers/actions> and <xref:mvc/views/overview>.
 
@@ -111,19 +111,19 @@ Copy the ASP.NET MVC project layout files to the ASP.NET Core project:
 
 1. In the ASP.NET Core project, right-click the *Views* directory, select **Add** > **Existing Item**.
 1. In the **Add Existing Item** dialog, navigate to the ASP.NET MVC *WebApp1* project's *Views* directory.
-1. Select the *_ViewStart.cshtml* file then select **Add**.
+1. Select the `_ViewStart.cshtml` file then select **Add**.
 
 Copy the ASP.NET MVC project shared layout files to the ASP.NET Core project:
 
 1. In the ASP.NET Core project, right-click the *Views/Shared* directory, select **Add** > **Existing Item**.
 1. In the **Add Existing Item** dialog, navigate to the ASP.NET MVC *WebApp1* project's *Views/Shared* directory.
-1. Select the *_Layout.cshtml* file, then select **Add**, replacing the existing file.
+1. Select the `_Layout.cshtml` file, then select **Add**, replacing the existing file.
 
-In the ASP.NET Core project, open the *_Layout.cshtml* file. Make the following changes to match the completed code shown below:
+In the ASP.NET Core project, open the `_Layout.cshtml` file. Make the following changes to match the completed code shown below:
 
 Update the Bootstrap CSS inclusion to match the completed code below:
 
-1. Replace `@Styles.Render("~/Content/css")` with a `<link>` element to load *bootstrap.css* (see below).
+1. Replace `@Styles.Render("~/Content/css")` with a `<link>` element to load `bootstrap.css` (see below).
 1. Remove `@Scripts.Render("~/bundles/modernizr")`.
 
 The completed replacement markup for Bootstrap CSS inclusion:
@@ -148,7 +148,7 @@ The completed replacement markup for jQuery and Bootstrap JavaScript inclusion:
     integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 ```
 
-The updated *_Layout.cshtml* file is shown below:
+The updated `_Layout.cshtml` file is shown below:
 
 [!code-cshtml[](mvc/samples/3.x/Views/Shared/_Layout.cshtml?highlight=7-10,40-42)]
 
@@ -160,7 +160,7 @@ ASP.NET Core is compatible with several open-source bundling and minification so
 
 ## Solve HTTP 500 errors
 
-There are many problems that can cause an HTTP 500 error message that contains no information on the source of the problem. For example, if the *Views/_ViewImports.cshtml* file contains a namespace that doesn't exist in the project, an HTTP 500 error is generated. By default in ASP.NET Core apps, the `UseDeveloperExceptionPage` extension is added to the `IApplicationBuilder` and executed when the environment is *Development*. This is detailed in the following code:
+There are many problems that can cause an HTTP 500 error message that contains no information on the source of the problem. For example, if the `Views/_ViewImports.cshtml` file contains a namespace that doesn't exist in the project, an HTTP 500 error is generated. By default in ASP.NET Core apps, the `UseDeveloperExceptionPage` extension is added to the `IApplicationBuilder` and executed when the environment is *Development*. This is detailed in the following code:
 
 [!code-csharp[](mvc/samples/3.x/Startup.cs?highlight=17-21&name=snippet)]
 
@@ -217,7 +217,7 @@ Create a new *empty* ASP.NET Core web app with the same name as the previous pro
 
 `Microsoft.AspNetCore.Mvc` is the ASP.NET Core MVC framework. `Microsoft.AspNetCore.StaticFiles` is the static file handler. ASP.NET Core apps explicitly opt in for middleware, such as for serving static files. For more information, see [Static files](xref:fundamentals/static-files).
 
-* Open the *Startup.cs* file and change the code to match the following:
+* Open the `Startup.cs` file and change the code to match the following:
 
 [!code-csharp[](mvc/samples/2.x/Startup.cs?highlight=7,20-25&name=snippet)]
 
@@ -229,7 +229,7 @@ In this section, a minimal controller and view are added to serve as placeholder
 
 * Add a *Controllers* directory.
 
-* Add a **Controller Class** named *HomeController.cs* to the *Controllers* directory.
+* Add a **Controller Class** named `HomeController.cs` to the *Controllers* directory.
 
 ![Add New Item dialog with MVC Controller Class selected](mvc/_static/add_mvc_ctl.png)
 
@@ -237,7 +237,7 @@ In this section, a minimal controller and view are added to serve as placeholder
 
 * Add a *Views/Home* directory.
 
-* Add a **Razor View** named *Index.cshtml* to the *Views/Home* directory.
+* Add a **Razor View** named `Index.cshtml` to the *Views/Home* directory.
 
 ![Add New Item dialog with MVC View Page selected](mvc/_static/view.png)
 
@@ -245,7 +245,7 @@ The project structure is shown below:
 
 ![Solution Explorer showing files and directories of WebApp1](mvc/_static/project-structure-controller-view.png)
 
-Replace the contents of the *Views/Home/Index.cshtml* file with the following markup:
+Replace the contents of the `Views/Home/Index.cshtml` file with the following markup:
 
 ```html
 <h1>Hello world!</h1>
@@ -277,7 +277,7 @@ The following functionality requires migration from the example ASP.NET MVC proj
 
 * Copy each of the methods from the ASP.NET MVC `HomeController` to the new `HomeController`. In ASP.NET MVC, the built-in template's controller action method return type is <xref:System.Web.Mvc.ActionResult>; in ASP.NET Core MVC, the action methods return `IActionResult` instead. `ActionResult` implements `IActionResult`, so there's no need to change the return type of the action methods.
 
-* Copy the *About.cshtml*, *Contact.cshtml*, and *Index.cshtml* Razor view files from the ASP.NET MVC project to the ASP.NET Core project.
+* Copy the `About.cshtml`, `Contact.cshtml`, and `Index.cshtml` Razor view files from the ASP.NET MVC project to the ASP.NET Core project.
 
 ## Test each method
 
@@ -295,21 +295,21 @@ In ASP.NET MVC 5 and earlier, static content was hosted from the root of the web
 
 * Copy the *favicon.ico* file from the ASP.NET MVC project to the *wwwroot* directory in the ASP.NET Core project.
 
-The ASP.NET MVC project uses [Bootstrap](https://getbootstrap.com/) for its styling and stores the Bootstrap files in the *Content* and *Scripts* directories. The template, which generated the ASP.NET MVC project, references Bootstrap in the layout file (*Views/Shared/_Layout.cshtml*). The *bootstrap.js* and *bootstrap.css* files could be copied from the ASP.NET MVC project to the *wwwroot* directory in the new project. Instead, this document adds support for Bootstrap (and other client-side libraries) using CDNs, in the next section.
+The ASP.NET MVC project uses [Bootstrap](https://getbootstrap.com/) for its styling and stores the Bootstrap files in the *Content* and *Scripts* directories. The template, which generated the ASP.NET MVC project, references Bootstrap in the layout file (`Views/Shared/_Layout.cshtml`). The `bootstrap.js` and `bootstrap.css` files could be copied from the ASP.NET MVC project to the *wwwroot* directory in the new project. Instead, this document adds support for Bootstrap (and other client-side libraries) using CDNs, in the next section.
 
 ## Migrate the layout file
 
-* Copy the *_ViewStart.cshtml* file from the ASP.NET MVC project's *Views* directory into the ASP.NET Core project's *Views* directory. The *_ViewStart.cshtml* file has not changed in ASP.NET Core MVC.
+* Copy the `_ViewStart.cshtml` file from the ASP.NET MVC project's *Views* directory into the ASP.NET Core project's *Views* directory. The `_ViewStart.cshtml` file has not changed in ASP.NET Core MVC.
 
 * Create a *Views/Shared* directory.
 
-* *Optional:* Copy *_ViewImports.cshtml* from the *FullAspNetCore* MVC project's *Views* directory into the ASP.NET Core project's *Views* directory. Remove any namespace declaration in the *_ViewImports.cshtml* file. The *_ViewImports.cshtml* file provides namespaces for all the view files and brings in [Tag Helpers](xref:mvc/views/tag-helpers/intro). Tag Helpers are used in the new layout file. The *_ViewImports.cshtml* file is new for ASP.NET Core.
+* *Optional:* Copy `_ViewImports.cshtml` from the *FullAspNetCore* MVC project's *Views* directory into the ASP.NET Core project's *Views* directory. Remove any namespace declaration in the `_ViewImports.cshtml` file. The `_ViewImports.cshtml` file provides namespaces for all the view files and brings in [Tag Helpers](xref:mvc/views/tag-helpers/intro). Tag Helpers are used in the new layout file. The `_ViewImports.cshtml` file is new for ASP.NET Core.
 
-* Copy the *_Layout.cshtml* file from the ASP.NET MVC project's *Views/Shared* directory into the ASP.NET Core project's *Views/Shared* directory.
+* Copy the `_Layout.cshtml` file from the ASP.NET MVC project's *Views/Shared* directory into the ASP.NET Core project's *Views/Shared* directory.
 
-Open *_Layout.cshtml* file and make the following changes (the completed code is shown below):
+Open `_Layout.cshtml` file and make the following changes (the completed code is shown below):
 
-* Replace `@Styles.Render("~/Content/css")` with a `<link>` element to load *bootstrap.css* (see below).
+* Replace `@Styles.Render("~/Content/css")` with a `<link>` element to load `bootstrap.css` (see below).
 
 * Remove `@Scripts.Render("~/bundles/modernizr")`.
 
@@ -336,7 +336,7 @@ The replacement markup for jQuery and Bootstrap JavaScript inclusion:
     integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 ```
 
-The updated *_Layout.cshtml* file is shown below:
+The updated `_Layout.cshtml` file is shown below:
 
 [!code-cshtml[](mvc/samples/2.x/Views/Shared/_Layout.cshtml?highlight=7-10,29,41-44)]
 
@@ -350,7 +350,7 @@ For information about how to configure bundling and minification, see [Bundling 
 
 ## Solve HTTP 500 errors
 
-There are many problems that can cause an HTTP 500 error messages that contain no information on the source of the problem. For example, if the *Views/_ViewImports.cshtml* file contains a namespace that doesn't exist in the project, a HTTP 500 error is generated. By default in ASP.NET Core apps, the `UseDeveloperExceptionPage` extension is added to the `IApplicationBuilder` and executed when the configuration is *Development*. See an example in the following code:
+There are many problems that can cause an HTTP 500 error messages that contain no information on the source of the problem. For example, if the `Views/_ViewImports.cshtml` file contains a namespace that doesn't exist in the project, a HTTP 500 error is generated. By default in ASP.NET Core apps, the `UseDeveloperExceptionPage` extension is added to the `IApplicationBuilder` and executed when the configuration is *Development*. See an example in the following code:
 
 [!code-csharp[](mvc/samples/2.x/Startup.cs?highlight=11-15&name=snippet)]
 
@@ -403,7 +403,7 @@ Create a new *empty* ASP.NET Core web app with the same name as the previous pro
 
 `Microsoft.AspNetCore.Mvc` is the ASP.NET Core MVC framework. `Microsoft.AspNetCore.StaticFiles` is the static file handler. ASP.NET Core apps explicitly opt in for middleware, such as for serving static files. For more information, see [Static files](xref:fundamentals/static-files).
 
-* Open the *Startup.cs* file and change the code to match the following:
+* Open the `Startup.cs` file and change the code to match the following:
 
 [!code-csharp[](mvc/samples/2.x/Startup.cs?highlight=7,20-25&name=snippet)]
 
@@ -415,7 +415,7 @@ In this section, a minimal controller and view are added to serve as placeholder
 
 * Add a *Controllers* directory.
 
-* Add a **Controller Class** named *HomeController.cs* to the *Controllers* directory.
+* Add a **Controller Class** named `HomeController.cs` to the *Controllers* directory.
 
 ![Add New Item dialog with MVC Controller Class selected (prior to the release of ASP.NET Core 2.1)](mvc/_static/add_mvc_ctl.png)
 
@@ -423,7 +423,7 @@ In this section, a minimal controller and view are added to serve as placeholder
 
 * Add a *Views/Home* directory.
 
-* Add a **Razor View** named *Index.cshtml* to the *Views/Home* directory.
+* Add a **Razor View** named `Index.cshtml` to the *Views/Home* directory.
 
 ![Add New Item dialog with MVC View Page selected (prior to the release of ASP.NET Core 2.1)](mvc/_static/view.png)
 
@@ -431,7 +431,7 @@ The project structure is shown below:
 
 ![Solution Explorer showing files and directories of WebApp1](mvc/_static/project-structure-controller-view.png)
 
-Replace the contents of the *Views/Home/Index.cshtml* file with the following markup:
+Replace the contents of the `Views/Home/Index.cshtml` file with the following markup:
 
 ```html
 <h1>Hello world!</h1>
@@ -463,7 +463,7 @@ The following functionality requires migration from the example ASP.NET MVC proj
 
 * Copy each of the methods from the ASP.NET MVC `HomeController` to the new `HomeController`. In ASP.NET MVC, the built-in template's controller action method return type is <xref:System.Web.Mvc.ActionResult>; in ASP.NET Core MVC, the action methods return `IActionResult` instead. `ActionResult` implements `IActionResult`, so there's no need to change the return type of the action methods.
 
-* Copy the *About.cshtml*, *Contact.cshtml*, and *Index.cshtml* Razor view files from the ASP.NET MVC project to the ASP.NET Core project.
+* Copy the `About.cshtml`, `Contact.cshtml`, and `Index.cshtml` Razor view files from the ASP.NET MVC project to the ASP.NET Core project.
 
 ## Test each method
 
@@ -481,21 +481,21 @@ In ASP.NET MVC 5 and earlier, static content was hosted from the root of the web
 
 * Copy the *favicon.ico* file from the ASP.NET MVC project to the *wwwroot* directory in the ASP.NET Core project.
 
-The ASP.NET MVC project uses [Bootstrap](https://getbootstrap.com/) for its styling and stores the Bootstrap files in the *Content* and *Scripts* directories. The template, which generated the ASP.NET MVC project, references Bootstrap in the layout file (*Views/Shared/_Layout.cshtml*). The *bootstrap.js* and *bootstrap.css* files could be copied from the ASP.NET MVC project to the *wwwroot* directory in the new project. Instead, this document adds support for Bootstrap (and other client-side libraries) using CDNs, in the next section.
+The ASP.NET MVC project uses [Bootstrap](https://getbootstrap.com/) for its styling and stores the Bootstrap files in the *Content* and *Scripts* directories. The template, which generated the ASP.NET MVC project, references Bootstrap in the layout file (`Views/Shared/_Layout.cshtml`). The `bootstrap.js` and `bootstrap.css` files could be copied from the ASP.NET MVC project to the *wwwroot* directory in the new project. Instead, this document adds support for Bootstrap (and other client-side libraries) using CDNs, in the next section.
 
 ## Migrate the layout file
 
-* Copy the *_ViewStart.cshtml* file from the ASP.NET MVC project's *Views* directory into the ASP.NET Core project's *Views* directory. The *_ViewStart.cshtml* file has not changed in ASP.NET Core MVC.
+* Copy the `_ViewStart.cshtml` file from the ASP.NET MVC project's *Views* directory into the ASP.NET Core project's *Views* directory. The `_ViewStart.cshtml` file has not changed in ASP.NET Core MVC.
 
 * Create a *Views/Shared* directory.
 
-* *Optional:* Copy *_ViewImports.cshtml* from the *FullAspNetCore* MVC project's *Views* directory into the ASP.NET Core project's *Views* directory. Remove any namespace declaration in the *_ViewImports.cshtml* file. The *_ViewImports.cshtml* file provides namespaces for all the view files and brings in [Tag Helpers](xref:mvc/views/tag-helpers/intro). Tag Helpers are used in the new layout file. The *_ViewImports.cshtml* file is new for ASP.NET Core.
+* *Optional:* Copy `_ViewImports.cshtml` from the *FullAspNetCore* MVC project's *Views* directory into the ASP.NET Core project's *Views* directory. Remove any namespace declaration in the `_ViewImports.cshtml` file. The `_ViewImports.cshtml` file provides namespaces for all the view files and brings in [Tag Helpers](xref:mvc/views/tag-helpers/intro). Tag Helpers are used in the new layout file. The `_ViewImports.cshtml` file is new for ASP.NET Core.
 
-* Copy the *_Layout.cshtml* file from the ASP.NET MVC project's *Views/Shared* directory into the ASP.NET Core project's *Views/Shared* directory.
+* Copy the `_Layout.cshtml` file from the ASP.NET MVC project's *Views/Shared* directory into the ASP.NET Core project's *Views/Shared* directory.
 
-Open *_Layout.cshtml* file and make the following changes (the completed code is shown below):
+Open `_Layout.cshtml` file and make the following changes (the completed code is shown below):
 
-* Replace `@Styles.Render("~/Content/css")` with a `<link>` element to load *bootstrap.css* (see below).
+* Replace `@Styles.Render("~/Content/css")` with a `<link>` element to load `bootstrap.css` (see below).
 
 * Remove `@Scripts.Render("~/bundles/modernizr")`.
 
@@ -522,7 +522,7 @@ The replacement markup for jQuery and Bootstrap JavaScript inclusion:
     integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 ```
 
-The updated *_Layout.cshtml* file is shown below:
+The updated `_Layout.cshtml` file is shown below:
 
 [!code-cshtml[](mvc/samples/2.x/Views/Shared/_Layout.cshtml?highlight=7-10,29,41-44)]
 
@@ -536,7 +536,7 @@ For information about how to configure bundling and minification, see [Bundling 
 
 ## Solve HTTP 500 errors
 
-There are many problems that can cause an HTTP 500 error messages that contain no information on the source of the problem. For example, if the *Views/_ViewImports.cshtml* file contains a namespace that doesn't exist in the project, a HTTP 500 error is generated. By default in ASP.NET Core apps, the `UseDeveloperExceptionPage` extension is added to the `IApplicationBuilder` and executed when the configuration is *Development*. See an example in the following code:
+There are many problems that can cause an HTTP 500 error messages that contain no information on the source of the problem. For example, if the `Views/_ViewImports.cshtml` file contains a namespace that doesn't exist in the project, a HTTP 500 error is generated. By default in ASP.NET Core apps, the `UseDeveloperExceptionPage` extension is added to the `IApplicationBuilder` and executed when the configuration is *Development*. See an example in the following code:
 
 [!code-csharp[](mvc/samples/2.x/Startup.cs?highlight=11-15&name=snippet)]
 

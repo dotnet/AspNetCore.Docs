@@ -5,7 +5,7 @@ description: Learn how to use gRPC health checks in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: jamesnk
 ms.date: 01/16/2022
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/health-checks
 ---
 # gRPC health checks in ASP.NET Core
@@ -21,11 +21,6 @@ Health checks are exposed by an app as a gRPC service. They are typically used w
 * Health probes can be used by container orchestrators and load balancers to check an app's status. For example, Kubernetes supports [gRPC liveness, readiness and startup probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#define-a-grpc-liveness-probe). Kubernetes can be configured to reroute traffic or restart unhealthy containers based on gRPC health check results.
 * Use of memory, disk, and other physical server resources can be monitored for healthy status.
 * Health checks can test an app's dependencies, such as databases and external service endpoints, to confirm availability and normal functioning.
-
-> [!IMPORTANT]
-> This feature is in preview.
-> 
-> gRPC health checks requires version 2.43.0-pre1 or later of the [`Grpc.AspNetCore.HealthChecks`](https://www.nuget.org/packages/Grpc.AspNetCore.HealthChecks) package on NuGet.org.
 
 ## Set up gRPC health checks
 
@@ -93,11 +88,6 @@ Health checks are exposed by an app as a gRPC service. They are typically used w
 * Health probes can be used by container orchestrators and load balancers to check an app's status. For example, Kubernetes supports [gRPC liveness, readiness and startup probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#define-a-grpc-liveness-probe). Kubernetes can be configured to reroute traffic or restart unhealthy containers based on gRPC health check results.
 * Use of memory, disk, and other physical server resources can be monitored for healthy status.
 * Health checks can test an app's dependencies, such as databases and external service endpoints, to confirm availability and normal functioning.
-
-> [!IMPORTANT]
-> This feature is in preview.
-> 
-> gRPC health checks requires version 2.43.0-pre1 or later of the [`Grpc.AspNetCore.HealthChecks`](https://www.nuget.org/packages/Grpc.AspNetCore.HealthChecks) package on NuGet.org.
 
 ## Set up gRPC health checks
 

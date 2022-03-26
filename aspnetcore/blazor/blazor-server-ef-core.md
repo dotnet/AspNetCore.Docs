@@ -1,15 +1,17 @@
 ---
-title: ASP.NET Core Blazor Server with Entity Framework Core (EFCore)
+title: ASP.NET Core Blazor Server with Entity Framework Core (EF Core)
 author: JeremyLikness
-description: Guidance for using EF Core in Blazor Server apps.
+description: Learn how to use Entity Framework Core (EF Core) in Blazor Server apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: jeliknes
 ms.custom: mvc
 ms.date: 11/09/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/blazor-server-ef-core
 ---
-# ASP.NET Core Blazor Server with Entity Framework Core (EFCore)
+# ASP.NET Core Blazor Server with Entity Framework Core (EF Core)
+
+This article explains how to use [Entity Framework Core (EF Core)](/ef/core/) in Blazor Server apps.
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -92,7 +94,7 @@ The factory is injected into components and used to create new instances. For ex
 > [!NOTE]
 > `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/blazor/samples/6.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor).
 
-New <xref:Microsoft.EntityFrameworkCore.DbContext> instances can be created with a factory that allows you to configure the connection string per `DbContext`, such as when you use [ASP.NET Core's Identity model](xref:security/authentication/customize_identity_model). For more information, see [Multi-tenancy with EF Core in Blazor Server Apps](https://blog.jeremylikness.com/blog/multitenancy-with-ef-core-in-blazor-server-apps/).
+New <xref:Microsoft.EntityFrameworkCore.DbContext> instances can be created with a factory that allows you to configure the connection string per `DbContext`, such as when you use [ASP.NET Core's Identity model](xref:security/authentication/customize_identity_model). For more information, see [Multi-tenancy (EF Core documentation)](/ef/core/miscellaneous/multitenancy).
 
 ### Scope to the component lifetime
 
@@ -216,7 +218,7 @@ The factory is injected into components and used to create new instances. For ex
 > [!NOTE]
 > `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/blazor/samples/5.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor).
 
-New <xref:Microsoft.EntityFrameworkCore.DbContext> instances can be created with a factory that allows you to configure the connection string per `DbContext`, such as when you use [ASP.NET Core's Identity model](xref:security/authentication/customize_identity_model). For more information, see [Multi-tenancy with EF Core in Blazor Server Apps](https://blog.jeremylikness.com/blog/multitenancy-with-ef-core-in-blazor-server-apps/).
+New <xref:Microsoft.EntityFrameworkCore.DbContext> instances can be created with a factory that allows you to configure the connection string per `DbContext`, such as when you use [ASP.NET Core's Identity model](xref:security/authentication/customize_identity_model). For more information, see [Multi-tenancy (EF Core documentation)](/ef/core/miscellaneous/multitenancy).
 
 ### Scope to the component lifetime
 
@@ -347,7 +349,7 @@ The factory is injected into components and used to create new instances. For ex
 > [!NOTE]
 > `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/blazor/samples/3.1/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor).
 
-New <xref:Microsoft.EntityFrameworkCore.DbContext> instances can be created with a factory that allows you to configure the connection string per `DbContext`, such as when you use [ASP.NET Core's Identity model])(xref:security/authentication/customize_identity_model). For more information, see [Multi-tenancy with EF Core in Blazor Server Apps](https://blog.jeremylikness.com/blog/multitenancy-with-ef-core-in-blazor-server-apps/).
+New <xref:Microsoft.EntityFrameworkCore.DbContext> instances can be created with a factory that allows you to configure the connection string per `DbContext`, such as when you use [ASP.NET Core's Identity model])(xref:security/authentication/customize_identity_model). For more information, see [Multi-tenancy (EF Core documentation)](/ef/core/miscellaneous/multitenancy).
 
 ### Scope to the component lifetime
 

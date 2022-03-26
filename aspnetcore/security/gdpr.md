@@ -5,7 +5,7 @@ description: Learn how to access the GDPR extension points in an ASP.NET Core we
 ms.author: riande
 ms.custom: mvc
 ms.date: 07/11/2019
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/gdpr
 ---
 # EU General Data Protection Regulation (GDPR) support in ASP.NET Core
@@ -17,7 +17,7 @@ ASP.NET Core provides APIs and templates to help meet some of the [EU General Da
 :::moniker range=">= aspnetcore-3.0"
 
 * The project templates include extension points and stubbed markup that you can replace with your privacy and cookie use policy.
-* The *Pages/Privacy.cshtml* page or *Views/Home/Privacy.cshtml* view provides a page to detail your site's privacy policy.
+* The `Pages/Privacy.cshtml` page or `Views/Home/Privacy.cshtml` view provides a page to detail your site's privacy policy.
 
 To enable the default cookie consent feature like that found in the ASP.NET Core 2.2 templates in a current ASP.NET Core template generated app:
 
@@ -26,7 +26,7 @@ To enable the default cookie consent feature like that found in the ASP.NET Core
 
   [!code-csharp[Main](gdpr/sample/RP3.0/Startup.cs?name=snippet1&highlight=12-19,38)]
 
-* Add the cookie consent partial to the *_Layout.cshtml* file:
+* Add the cookie consent partial to the `_Layout.cshtml` file:
 
   [!code-cshtml[Main](gdpr/sample/RP3.0/Pages/Shared/_Layout.cshtml?name=snippet&highlight=4)]
 
@@ -56,7 +56,7 @@ Razor Pages and MVC projects created with the project templates include the foll
 
 * <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions> and <xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy%2A> are set in the `Startup` class.
 * The *\_CookieConsentPartial.cshtml* [partial view](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper). An **Accept** button is included in this file. When the user clicks the **Accept** button, consent to store cookies is provided.
-* The *Pages/Privacy.cshtml* page or *Views/Home/Privacy.cshtml* view provides a page to detail your site's privacy policy. The *\_CookieConsentPartial.cshtml* file generates a link to the Privacy page.
+* The `Pages/Privacy.cshtml` page or `Views/Home/Privacy.cshtml` view provides a page to detail your site's privacy policy. The *\_CookieConsentPartial.cshtml* file generates a link to the Privacy page.
 * For apps created with individual user accounts, the Manage page provides links to download and delete [personal user data](#pd).
 
 ### CookiePolicyOptions and UseCookiePolicy

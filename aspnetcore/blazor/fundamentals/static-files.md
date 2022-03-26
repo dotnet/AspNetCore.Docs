@@ -6,14 +6,14 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/fundamentals/static-files
 ---
 # ASP.NET Core Blazor static files
 
-:::moniker range=">= aspnetcore-6.0"
-
 This article describes the configuration for serving static files in Blazor apps.
+
+:::moniker range=">= aspnetcore-6.0"
 
 ## Static File Middleware
 
@@ -116,8 +116,6 @@ To create additional file mappings with a <xref:Microsoft.AspNetCore.StaticFiles
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-This article describes the configuration for serving static files in Blazor apps.
-
 ## Static File Middleware
 
 *This section applies to Blazor Server apps and the `**Server**` app of a hosted Blazor WebAssembly solution.*
@@ -218,8 +216,6 @@ To create additional file mappings with a <xref:Microsoft.AspNetCore.StaticFiles
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
-
-This article describes the configuration for serving static files in Blazor apps.
 
 ## Static File Middleware
 

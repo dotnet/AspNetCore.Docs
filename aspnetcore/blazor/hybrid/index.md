@@ -1,15 +1,17 @@
 ---
-title: Introduction to ASP.NET Core Blazor Hybrid
+title: ASP.NET Core Blazor Hybrid
 author: guardrex
 description: Explore ASP.NET Core Blazor Hybrid, a way to build interactive client-side web UI with .NET in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: "mvc"
 ms.date: 02/10/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/hybrid/index
 ---
-# Introduction to ASP.NET Core Blazor Hybrid
+# ASP.NET Core Blazor Hybrid
+
+This article explains ASP.NET Core Blazor Hybrid, a way to build interactive client-side web UI with .NET in an ASP.NET Core app.
 
 Use *Blazor Hybrid* to blend desktop and mobile native client frameworks with .NET and Blazor.
 

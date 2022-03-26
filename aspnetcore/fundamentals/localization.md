@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how ASP.NET Core provides services and middleware for localizing content into different languages and cultures.
 ms.author: riande
 ms.date: 11/30/2019
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/localization
 ---
 # Globalization and localization in ASP.NET Core
@@ -177,7 +177,7 @@ In the sample project, the `ConfigureServices` method sets the `ResourcesPath` t
 | Resources/Controllers.HomeController.fr.resx | Dot  |
 | Resources/Controllers/HomeController.fr.resx  | Path |
 
-Resource files using `@inject IViewLocalizer` in Razor views follow a similar pattern. The resource file for a view can be named using either dot naming or path naming. Razor view resource files mimic the path of their associated view file. Assuming we set the `ResourcesPath` to "Resources", the French resource file associated with the *Views/Home/About.cshtml* view could be either of the following:
+Resource files using `@inject IViewLocalizer` in Razor views follow a similar pattern. The resource file for a view can be named using either dot naming or path naming. Razor view resource files mimic the path of their associated view file. Assuming we set the `ResourcesPath` to "Resources", the French resource file associated with the `Views/Home/About.cshtml` view could be either of the following:
 
 * Resources/Views/Home/About.fr.resx
 
@@ -197,7 +197,7 @@ If the root namespace of an assembly is different than the assembly name:
 * Localization does not work by default.
 * Localization fails due to the way resources are searched for within the assembly. `RootNamespace` is a build-time value which is not available to the executing process. 
 
-If the `RootNamespace` is different from the `AssemblyName`, include the following in *AssemblyInfo.cs* (with parameter values replaced with the actual values):
+If the `RootNamespace` is different from the `AssemblyName`, include the following in `AssemblyInfo.cs` (with parameter values replaced with the actual values):
 
 ```csharp
 using System.Reflection;
@@ -239,7 +239,7 @@ Localization is configured in the `Startup.ConfigureServices` method:
 
 * `AddLocalization` adds the localization services to the services container. The code above also sets the resources path to "Resources".
 
-* `AddViewLocalization` adds support for localized view files. In this sample view localization is based on the view file suffix. For example "fr" in the *Index.fr.cshtml* file.
+* `AddViewLocalization` adds support for localized view files. In this sample view localization is based on the view file suffix. For example "fr" in the `Index.fr.cshtml` file.
 
 * `AddDataAnnotationsLocalization` adds support for localized `DataAnnotations` validation messages through `IStringLocalizer` abstractions.
 
@@ -378,11 +378,11 @@ As previously mentioned, add a custom provider via <xref:Microsoft.AspNetCore.Bu
 
 ### Set the culture programmatically
 
-This sample **Localization.StarterWeb** project on [GitHub](https://github.com/aspnet/entropy) contains UI to set the `Culture`. The *Views/Shared/_SelectLanguagePartial.cshtml* file allows you to select the culture from the list of supported cultures:
+This sample **Localization.StarterWeb** project on [GitHub](https://github.com/aspnet/entropy) contains UI to set the `Culture`. The `Views/Shared/_SelectLanguagePartial.cshtml` file allows you to select the culture from the list of supported cultures:
 
 [!code-cshtml[](localization/sample/3.x/Localization/Views/Shared/_SelectLanguagePartial.cshtml)]
 
-The *Views/Shared/_SelectLanguagePartial.cshtml* file is added to the `footer` section of the layout file so it will be available to all views:
+The `Views/Shared/_SelectLanguagePartial.cshtml` file is added to the `footer` section of the layout file so it will be available to all views:
 
 [!code-cshtml[](localization/sample/3.x/Localization/Views/Shared/_Layout.cshtml?range=43-56&highlight=10)]
 
@@ -390,7 +390,7 @@ The `SetLanguage` method sets the culture cookie.
 
 [!code-csharp[](localization/sample/3.x/Localization/Controllers/HomeController.cs?range=57-67)]
 
-You can't plug in the *_SelectLanguagePartial.cshtml* to sample code for this project. The **Localization.StarterWeb** project on [GitHub](https://github.com/aspnet/entropy) has code to flow the `RequestLocalizationOptions` to a Razor partial through the [Dependency Injection](dependency-injection.md) container.
+You can't plug in the `_SelectLanguagePartial.cshtml` to sample code for this project. The **Localization.StarterWeb** project on [GitHub](https://github.com/aspnet/entropy) has code to flow the `RequestLocalizationOptions` to a Razor partial through the [Dependency Injection](dependency-injection.md) container.
 
 ## Model binding route data and query strings
 
@@ -573,7 +573,7 @@ In the sample project, the `ConfigureServices` method sets the `ResourcesPath` t
 | Resources/Controllers.HomeController.fr.resx | Dot  |
 | Resources/Controllers/HomeController.fr.resx  | Path |
 
-Resource files using `@inject IViewLocalizer` in Razor views follow a similar pattern. The resource file for a view can be named using either dot naming or path naming. Razor view resource files mimic the path of their associated view file. Assuming we set the `ResourcesPath` to "Resources", the French resource file associated with the *Views/Home/About.cshtml* view could be either of the following:
+Resource files using `@inject IViewLocalizer` in Razor views follow a similar pattern. The resource file for a view can be named using either dot naming or path naming. Razor view resource files mimic the path of their associated view file. Assuming we set the `ResourcesPath` to "Resources", the French resource file associated with the `Views/Home/About.cshtml` view could be either of the following:
 
 * Resources/Views/Home/About.fr.resx
 
@@ -593,7 +593,7 @@ If the root namespace of an assembly is different than the assembly name:
 * Localization does not work by default.
 * Localization fails due to the way resources are searched for within the assembly. `RootNamespace` is a build-time value which is not available to the executing process. 
 
-If the `RootNamespace` is different from the `AssemblyName`, include the following in *AssemblyInfo.cs* (with parameter values replaced with the actual values):
+If the `RootNamespace` is different from the `AssemblyName`, include the following in `AssemblyInfo.cs` (with parameter values replaced with the actual values):
 
 ```csharp
 using System.Reflection;
@@ -635,7 +635,7 @@ Localization is configured in the `Startup.ConfigureServices` method:
 
 * `AddLocalization` adds the localization services to the services container. The code above also sets the resources path to "Resources".
 
-* `AddViewLocalization` adds support for localized view files. In this sample view localization is based on the view file suffix. For example "fr" in the *Index.fr.cshtml* file.
+* `AddViewLocalization` adds support for localized view files. In this sample view localization is based on the view file suffix. For example "fr" in the `Index.fr.cshtml` file.
 
 * `AddDataAnnotationsLocalization` adds support for localized `DataAnnotations` validation messages through `IStringLocalizer` abstractions.
 
@@ -749,11 +749,11 @@ As previously mentioned, add a custom provider via <xref:Microsoft.AspNetCore.Bu
 
 ### Set the culture programmatically
 
-This sample **Localization.StarterWeb** project on [GitHub](https://github.com/aspnet/entropy) contains UI to set the `Culture`. The *Views/Shared/_SelectLanguagePartial.cshtml* file allows you to select the culture from the list of supported cultures:
+This sample **Localization.StarterWeb** project on [GitHub](https://github.com/aspnet/entropy) contains UI to set the `Culture`. The `Views/Shared/_SelectLanguagePartial.cshtml` file allows you to select the culture from the list of supported cultures:
 
 [!code-cshtml[](localization/sample/3.x/Localization/Views/Shared/_SelectLanguagePartial.cshtml)]
 
-The *Views/Shared/_SelectLanguagePartial.cshtml* file is added to the `footer` section of the layout file so it will be available to all views:
+The `Views/Shared/_SelectLanguagePartial.cshtml` file is added to the `footer` section of the layout file so it will be available to all views:
 
 [!code-cshtml[](localization/sample/3.x/Localization/Views/Shared/_Layout.cshtml?range=43-56&highlight=10)]
 
@@ -761,7 +761,7 @@ The `SetLanguage` method sets the culture cookie.
 
 [!code-csharp[](localization/sample/3.x/Localization/Controllers/HomeController.cs?range=57-67)]
 
-You can't plug in the *_SelectLanguagePartial.cshtml* to sample code for this project. The **Localization.StarterWeb** project on [GitHub](https://github.com/aspnet/entropy) has code to flow the `RequestLocalizationOptions` to a Razor partial through the [Dependency Injection](dependency-injection.md) container.
+You can't plug in the `_SelectLanguagePartial.cshtml` to sample code for this project. The **Localization.StarterWeb** project on [GitHub](https://github.com/aspnet/entropy) has code to flow the `RequestLocalizationOptions` to a Razor partial through the [Dependency Injection](dependency-injection.md) container.
 
 ## Model binding route data and query strings
 

@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: bradyg
 ms.custom: mvc, devx-track-js
 ms.date: 1/22/2022
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: signalr/javascript-client
 ---
 # ASP.NET Core SignalR JavaScript client
@@ -37,7 +37,7 @@ npm init -y
 npm install @microsoft/signalr
 ```
 
-npm installs the package contents in the *node_modules\\@microsoft\signalr\dist\browser* folder. Create the *wwwroot/lib/signalr* folder. Copy the *signalr.js* file to the *wwwroot/lib/signalr* folder.
+npm installs the package contents in the *node_modules\\@microsoft\signalr\dist\browser* folder. Create the *wwwroot/lib/signalr* folder. Copy the `signalr.js` file to the *wwwroot/lib/signalr* folder.
 
 Reference the SignalR JavaScript client in the `<script>` element. For example:
 
@@ -320,7 +320,7 @@ For the preceding code example:
 ## Additional resources
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/javascript-client/samples) ([how to download](xref:index#how-to-download-a-sample))
-* [JavaScript API reference](/javascript/api/&preserve-view=true )
+* [JavaScript API reference](/javascript/api/@microsoft/signalr)
 * [JavaScript tutorial](xref:tutorials/signalr)
 * [WebPack and TypeScript tutorial](xref:tutorials/signalr-typescript-webpack)
 * [Hubs](xref:signalr/hubs)
@@ -353,7 +353,7 @@ npm init -y
 npm install @microsoft/signalr
 ```
 
-npm installs the package contents in the *node_modules\\@microsoft\signalr\dist\browser* folder. Create a new folder named *signalr* under the *wwwroot\\lib* folder. Copy the *signalr.js* file to the *wwwroot\lib\signalr* folder.
+npm installs the package contents in the *node_modules\\@microsoft\signalr\dist\browser* folder. Create a new folder named *signalr* under the *wwwroot\\lib* folder. Copy the `signalr.js` file to the *wwwroot\lib\signalr* folder.
 
 Reference the SignalR JavaScript client in the `<script>` element. For example:
 
@@ -628,7 +628,7 @@ For the preceding code example:
 
 ## Additional resources
 
-* [JavaScript API reference](/javascript/api/&preserve-view=true )
+* [JavaScript API reference](/javascript/api/@microsoft/signalr)
 * [JavaScript tutorial](xref:tutorials/signalr)
 * [WebPack and TypeScript tutorial](xref:tutorials/signalr-typescript-webpack)
 * [Hubs](xref:signalr/hubs)

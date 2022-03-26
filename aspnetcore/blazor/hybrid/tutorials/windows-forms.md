@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/15/2022
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/hybrid/tutorials/windows-forms
 ---
 # Build a Windows Forms Blazor app
@@ -56,14 +56,6 @@ At the top of the project file, change the SDK to `Microsoft.NET.Sdk.Razor`:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Razor">
-```
-
-Add the following [MSBuild `Content` item](/visualstudio/msbuild/common-msbuild-project-items#content) to the project file, which copies the contents of the `wwwroot` folder to the output directory without compiling the assets in the folder:
-
-```xml
-<ItemGroup>
-  <Content Update="wwwroot\**" CopyToOutputDirectory="PreserveNewest" />
-</ItemGroup>
 ```
 
 Save the changes to the project file (`WinFormsBlazor.csproj`).

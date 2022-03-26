@@ -6,15 +6,17 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/tutorials/build-a-blazor-app
 zone_pivot_groups: blazor-hosting-models
 ---
 # Build a Blazor todo list app
 
+This tutorial shows you how to build and modify a Blazor app.
+
 :::moniker range=">= aspnetcore-6.0"
 
-This tutorial shows you how to build and modify a Blazor app. You learn how to:
+Learn how to:
 
 > [!div class="checklist"]
 > * Create a todo list Blazor app project
@@ -191,7 +193,7 @@ Learn about tooling for ASP.NET Core Blazor:
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-This tutorial shows you how to build and modify a Blazor app. You learn how to:
+Learn how to:
 
 > [!div class="checklist"]
 > * Create a todo list Blazor app project
@@ -368,7 +370,7 @@ Learn about tooling for ASP.NET Core Blazor:
 
 :::moniker range="< aspnetcore-5.0"
 
-This tutorial shows you how to build and modify a Blazor app. You learn how to:
+Learn how to:
 
 > [!div class="checklist"]
 > * Create a todo list Blazor app project

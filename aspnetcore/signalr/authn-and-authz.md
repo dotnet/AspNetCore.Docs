@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: bradyg
 ms.custom: mvc
 ms.date: 2/05/2022
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: signalr/authn-and-authz
 ---
 
@@ -91,7 +91,7 @@ Rather than `ClaimTypes.Name`, use any value from the `User`, such as the Window
 > [!NOTE]
 > The value chosen must be unique among all the users in the system. Otherwise, a message intended for one user could end up going to a different user.
 
-Register this component in *Program.cs*:
+Register this component in `Program.cs`:
 
 [!code-csharp[](authn-and-authz/6.0sample/SignalRAuthenticationSample/Program.cs?name=snippet_win&highlight=17-18)]
 
@@ -124,7 +124,7 @@ The account registration adds a claim with type `ClaimsTypes.Email` to the ASP.N
 
 [!code-csharp[Adding the email to the ASP.NET identity claims](authn-and-authz/6.0sample/SignalRAuthenticationSample/Areas/Identity/Pages/Account/Register.cshtml.cs?name=AddEmailClaim&highlight=14)]
 
-Register this component in *Program.cs*:
+Register this component in `Program.cs`:
 
 ```csharp
 builder.Services.AddSingleton<IUserIdProvider, EmailBasedUserIdProvider>();
@@ -188,7 +188,7 @@ public class ChatHub : Hub
 
 [!code-csharp[Restrict a hub only DomainRestrictedRequirement users](authn-and-authz/6.0sample/SignalRAuthenticationSample/DomainRestrictedRequirement.cs)]
 
-In *Program.cs*, add the new policy, providing the custom `DomainRestrictedRequirement` requirement as a parameter to create the `DomainRestricted` policy:
+In `Program.cs`, add the new policy, providing the custom `DomainRestrictedRequirement` requirement as a parameter to create the `DomainRestricted` policy:
 
 [!code-csharp[](authn-and-authz/6.0sample/SignalRAuthenticationSample/Program.cs?name=snippet_drr&highlight=19-25)]
 

@@ -1,19 +1,21 @@
 ---
 title: Debug ASP.NET Core Blazor WebAssembly
 author: guardrex
-description: Learn how to debug Blazor apps.
+description: Learn how to debug Blazor WebAssembly with browser developer tools and an integrated development environment (IDE).
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/debug
 ---
 # Debug ASP.NET Core Blazor WebAssembly
 
+This article describes how to debug Blazor WebAssembly with browser developer tools and an integrated development environment (IDE).
+
 :::moniker range=">= aspnetcore-6.0"
 
-Blazor WebAssembly apps can be debugged using the browser dev tools in Chromium-based browsers (Edge/Chrome). You can also debug your app using the following integrated development environments (IDEs):
+Blazor WebAssembly apps can be debugged using the browser developer tools in Chromium-based browsers (Edge/Chrome). You can also debug your app using the following IDEs:
 
 * Visual Studio
 * Visual Studio for Mac
@@ -245,7 +247,7 @@ The following launch configuration options are supported for the `blazorwasm` de
 
 To debug a Blazor WebAssembly app in Visual Studio for Mac:
 
-1. Create a new ASP.NET Core hosted Blazor WebAssembly app.
+1. Create a new hosted Blazor WebAssembly app.
 1. Press <kbd>&#8984;</kbd>+<kbd>&#8617;</kbd> to run the app in the debugger.
 
    > [!NOTE]
@@ -380,7 +382,7 @@ The `{TIMEOUT}` placeholder in the preceding command is in milliseconds. For exa
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-Blazor WebAssembly apps can be debugged using the browser dev tools in Chromium-based browsers (Edge/Chrome). You can also debug your app using the following integrated development environments (IDEs):
+Blazor WebAssembly apps can be debugged using the browser developer tools in Chromium-based browsers (Edge/Chrome). You can also debug your app using the following IDEs:
 
 * Visual Studio
 * Visual Studio for Mac
@@ -660,7 +662,7 @@ The following launch configuration options are supported for the `blazorwasm` de
 
 To debug a Blazor WebAssembly app in Visual Studio for Mac:
 
-1. Create a new ASP.NET Core hosted Blazor WebAssembly app.
+1. Create a new hosted Blazor WebAssembly app.
 1. Press <kbd>&#8984;</kbd>+<kbd>&#8617;</kbd> to run the app in the debugger.
 
    > [!NOTE]
@@ -795,7 +797,7 @@ The `{TIMEOUT}` placeholder in the preceding command is in milliseconds. For exa
 
 :::moniker range="< aspnetcore-5.0"
 
-Blazor WebAssembly apps can be debugged using the browser dev tools in Chromium-based browsers (Edge/Chrome). You can also debug your app using the following integrated development environments (IDEs):
+Blazor WebAssembly apps can be debugged using the browser developer tools in Chromium-based browsers (Edge/Chrome). You can also debug your app using the following IDEs:
 
 * Visual Studio
 * Visual Studio for Mac
@@ -1075,7 +1077,7 @@ The following launch configuration options are supported for the `blazorwasm` de
 
 To debug a Blazor WebAssembly app in Visual Studio for Mac:
 
-1. Create a new ASP.NET Core hosted Blazor WebAssembly app.
+1. Create a new hosted Blazor WebAssembly app.
 1. Press <kbd>&#8984;</kbd>+<kbd>&#8617;</kbd> to run the app in the debugger.
 
    > [!NOTE]
