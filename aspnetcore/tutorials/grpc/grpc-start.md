@@ -75,7 +75,7 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
  
 [!INCLUDE[](~/includes/run-the-app6.0.md)]
 
-The logs show the service listening on `https://localhost:<port>`, where `<port>` is the localhost port number randomly assigned when the project is created and set in the *Properties\launchSettings.json.
+The logs show the service listening on `https://localhost:<port>`, where `<port>` is the localhost port number randomly assigned when the project is created and set in `Properties/launchSettings.json`.
 
 ```console
 info: Microsoft.Hosting.Lifetime[0]
@@ -223,7 +223,7 @@ dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 
   [!code-csharp[](~/tutorials/grpc/grpc-start/sample6/GrpcGreeterClient/Program.cs?name=snippet2&highlight=6)]
 
-* In the preceding highlighted code, replace the localhost port number `7042` with the `HTTPS` port number specified in *Properties\launchSettings.json of the `GrpcGreeter` service project.
+* In the preceding highlighted code, replace the localhost port number `7042` with the `HTTPS` port number specified in `Properties/launchSettings.json` within the `GrpcGreeter` service project.
 
 `Program.cs` contains the entry point and logic for the gRPC client.
 
