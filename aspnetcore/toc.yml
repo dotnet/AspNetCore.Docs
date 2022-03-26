@@ -707,7 +707,7 @@ items:
             uid: signalr/javascript-client
             displayName: signalr
           - name: JavaScript API reference
-            href: /javascript/api/?view=signalr-js-latest
+            href: /javascript/api/@microsoft/signalr/?view=signalr-js-latest
             displayName: signalr
       - name: Host and scale
         displayName: signalr
