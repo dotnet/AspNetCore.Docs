@@ -1,8 +1,7 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Docs.Samples;
 
-namespace RPareas.Pages
+namespace WebApplication1.Pages
 {
     public class IndexModel : PageModel
     {
@@ -15,7 +14,7 @@ namespace RPareas.Pages
 
         public void OnGet()
         {
-            ViewData["routeInfo"] =  PageContext.ToCtxStringP();
+
         }
     }
 }

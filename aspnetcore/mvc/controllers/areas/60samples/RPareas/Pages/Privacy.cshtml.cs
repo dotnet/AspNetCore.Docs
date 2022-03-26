@@ -13,6 +13,8 @@ public class PrivacyModel : PageModel
         _logger = logger;
     }
 
-    public void OnGet() =>
-        ViewData["routeInfo"] = PageContext.MyDisplayRouteInfoRP();
+    public void OnGet()
+    {        
+        ViewData["routeInfo"] =  PageContext.ToCtxStringP();
+    }
 }

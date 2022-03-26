@@ -103,7 +103,7 @@ For more information, see [Area routing](xref:mvc/controllers/routing#areas).
 
 ### Link generation with MVC areas
 
-The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/areas/31samples) shows link generation with the area specified:
+The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/areas/60samples) shows link generation with the area specified:
 
 [!code-cshtml[](areas/60samples/MVCareas/Views/Shared/_testLinksPartial.cshtml?name=snippet)]
 
@@ -168,21 +168,21 @@ Areas with Razor Pages require an `Areas/<area name>/Pages` folder in the root o
 
 ### Link generation with Razor Pages and areas
 
-The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/areas/samples/RPareas) shows link generation with the area specified (for example, `asp-area="Products"`):
+The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/areas/60samples/RPareas) shows link generation with the area specified (for example, `asp-area="Products"`):
 
-[!code-cshtml[](areas/31samples/RPareas/Pages/Shared/_testLinksPartial.cshtml?name=snippet)]
+[!code-cshtml[](areas/60samples/RPareas/Pages/Shared/_testLinksPartial.cshtml?name=snippet)]
 
 The sample download includes a [partial view](xref:mvc/views/partial) that contains the preceding links and the same links without specifying the area. The partial view is referenced in the [layout file](xref:mvc/views/layout), so every page in the app displays the generated links. The links generated without specifying the area are only valid when referenced from a page in the same area.
 
 When the area is not specified, routing depends on the *ambient* values. The current route values of the current request are considered ambient values for link generation. In many cases for the sample app, using the ambient values generates incorrect links. For example, consider the links generated from the following code:
 
-[!code-cshtml[](areas/31samples/RPareas/Pages/Shared/_testLinksPartial.cshtml?name=snippet2)]
+[!code-cshtml[](areas/60samples/RPareas/Pages/Shared/_testLinksPartial.cshtml?name=snippet2)]
 
 For the preceding code:
 
 * The link generated from `<a asp-page="/Manage/About">` is correct only when the last request was for a page in `Services` area. For example, `/Services/Manage/`, `/Services/Manage/Index`, or `/Services/Manage/About`.
 * The link generated from `<a asp-page="/About">` is correct only when the last request was for a page in `/Home`.
-* The code is from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/areas/31samples/RPareas).
+* The code is from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/areas/60samples/RPareas).
 
 ### Import namespace and Tag Helpers with _ViewImports file
 
@@ -190,7 +190,7 @@ A *_ViewImports.cshtml* file can be added to each area *Pages* folder to import 
 
 Consider the *Services* area of the sample code, which doesn't contain a *_ViewImports.cshtml* file. The following markup shows the */Services/Manage/About* Razor Page:
 
-[!code-cshtml[](areas/31samples/RPareas/Areas/Services/Pages/Manage/About.cshtml)]
+[!code-cshtml[](areas/60samples/RPareas/Areas/Services/Pages/Manage/About.cshtml)]
 
 In the preceding markup:
 
@@ -199,11 +199,11 @@ In the preceding markup:
 
 In the sample download, the Products area contains the following *_ViewImports.cshtml* file:
 
-[!code-cshtml[](areas/31samples/RPareas/Areas/Products/Pages/_ViewImports.cshtml)]
+[!code-cshtml[](areas/60samples/RPareas/Areas/Products/Pages/_ViewImports.cshtml)]
 
 The following markup shows the */Products/About* Razor Page:
 
-[!code-cshtml[](areas/31samples/RPareas/Areas/Products/Pages/About.cshtml)]
+[!code-cshtml[](areas/60samples/RPareas/Areas/Products/Pages/About.cshtml)]
 
 In the preceding file, the namespace and `@addTagHelper` directive is imported to the file by the *Areas/Products/Pages/_ViewImports.cshtml* file.
 
@@ -223,7 +223,7 @@ In Solution Explorer, right click the project and select **ADD > New Scaffolded 
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/areas/31samples) ([how to download](xref:index#how-to-download-a-sample)). The download sample provides a basic app for testing areas.
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/areas/60samples) ([how to download](xref:index#how-to-download-a-sample)). The download sample provides a basic app for testing areas.
 
 :::moniker-end
 
@@ -382,7 +382,7 @@ Areas with Razor Pages require an `Areas/<area name>/Pages` folder in the root o
           * About
           * Index
 
-### Link generation with Razor Pages and areas
+### Link generation with Razor Pages and areas 
 
 The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/areas/samples/RPareas) shows link generation with the area specified (for example, `asp-area="Products"`):
 
