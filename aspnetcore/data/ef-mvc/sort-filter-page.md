@@ -5,7 +5,7 @@ author: rick-anderson
 ms.author: riande
 ms.date: 03/27/2019
 ms.topic: tutorial
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: data/ef-mvc/sort-filter-page
 ---
 
@@ -37,7 +37,7 @@ To add sorting to the Student Index page, you'll change the `Index` method of th
 
 ### Add sorting Functionality to the Index method
 
-In *StudentsController.cs*, replace the `Index` method with the following code:
+In `StudentsController.cs`, replace the `Index` method with the following code:
 
 [!code-csharp[](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_SortOnly)]
 
@@ -64,7 +64,7 @@ This code could get verbose with a large number of columns. [The last tutorial i
 
 ### Add column heading hyperlinks to the Student Index view
 
-Replace the code in *Views/Students/Index.cshtml*, with the following code to add column heading hyperlinks. The changed lines are highlighted.
+Replace the code in `Views/Students/Index.cshtml`, with the following code to add column heading hyperlinks. The changed lines are highlighted.
 
 [!code-cshtml[](intro/samples/cu/Views/Students/Index2.cshtml?highlight=16,22)]
 
@@ -80,7 +80,7 @@ To add filtering to the Students Index page, you'll add a text box and a submit 
 
 ### Add filtering functionality to the Index method
 
-In *StudentsController.cs*, replace the `Index` method with the following code (the changes are highlighted).
+In `StudentsController.cs`, replace the `Index` method with the following code (the changes are highlighted).
 
 [!code-csharp[](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_SortFilter&highlight=1,5,9-13)]
 
@@ -93,7 +93,7 @@ You've added a `searchString` parameter to the `Index` method. The search string
 
 ### Add a Search Box to the Student Index View
 
-In *Views/Student/Index.cshtml*, add the highlighted code immediately before the opening table tag in order to create a caption, a text box, and a **Search** button.
+In `Views/Student/Index.cshtml`, add the highlighted code immediately before the opening table tag in order to create a caption, a text box, and a **Search** button.
 
 [!code-cshtml[](intro/samples/cu/Views/Students/Index3.cshtml?range=9-23&highlight=5-13)]
 
@@ -129,7 +129,7 @@ A `CreateAsync` method is used instead of a constructor to create the `Paginated
 
 ## Add paging to Index method
 
-In *StudentsController.cs*, replace the `Index` method with the following code.
+In `StudentsController.cs`, replace the `Index` method with the following code.
 
 [!code-csharp[](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_SortFilterPage&highlight=1-5,7,11-18,45-46)]
 
@@ -172,7 +172,7 @@ The `PaginatedList.CreateAsync` method takes a page number. The two question mar
 
 ## Add paging links
 
-In *Views/Students/Index.cshtml*, replace the existing code with the following code. The changes are highlighted.
+In `Views/Students/Index.cshtml`, replace the existing code with the following code. The changes are highlighted.
 
 [!code-cshtml[](intro/samples/cu/Views/Students/Index.cshtml?highlight=1,27,30,33,61-79)]
 
@@ -214,13 +214,13 @@ For the Contoso University website's **About** page, you'll display how many stu
 
 Create a *SchoolViewModels* folder in the *Models* folder.
 
-In the new folder, add a class file *EnrollmentDateGroup.cs* and replace the template code with the following code:
+In the new folder, add a class file `EnrollmentDateGroup.cs` and replace the template code with the following code:
 
 [!code-csharp[](intro/samples/cu/Models/SchoolViewModels/EnrollmentDateGroup.cs)]
 
 ### Modify the Home Controller
 
-In *HomeController.cs*, add the following using statements at the top of the file:
+In `HomeController.cs`, add the following using statements at the top of the file:
 
 [!code-csharp[](intro/samples/cu/Controllers/HomeController.cs?name=snippet_Usings1)]
 
@@ -236,7 +236,7 @@ The LINQ statement groups the student entities by enrollment date, calculates th
 
 ### Create the About View
 
-Add a *Views/Home/About.cshtml* file with the following code:
+Add a `Views/Home/About.cshtml` file with the following code:
 
 [!code-cshtml[](intro/samples/cu/Views/Home/About.cshtml)]
 

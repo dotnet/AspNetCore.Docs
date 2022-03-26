@@ -5,7 +5,7 @@ description: Part 6 of Razor Pages and Entity Framework tutorial series.
 ms.author: riande
 ms.custom: mvc
 ms.date: 09/28/2019
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: data/ef-rp/read-related-data
 ---
 
@@ -93,7 +93,7 @@ To display the name of the assigned department for a course:
 
 ---
 
-* Open *Pages/Courses/Index.cshtml.cs* and examine the `OnGetAsync` method. The scaffolding engine specified eager loading for the `Department` navigation property. The `Include` method specifies eager loading.
+* Open `Pages/Courses/Index.cshtml.cs` and examine the `OnGetAsync` method. The scaffolding engine specified eager loading for the `Department` navigation property. The `Include` method specifies eager loading.
 
 * Run the app and select the **Courses** link. The department column displays the `DepartmentID`, which isn't useful.
 
@@ -105,7 +105,7 @@ Update Pages/Courses/Index.cshtml.cs with the following code:
 
 The preceding code changes the `Course` property to `Courses` and adds `AsNoTracking`. `AsNoTracking` improves performance because the entities returned are not tracked. The entities don't need to be tracked because they're not updated in the current context.
 
-Update *Pages/Courses/Index.cshtml* with the following code.
+Update `Pages/Courses/Index.cshtml` with the following code.
 
 [!code-cshtml[](intro/samples/cu30/Pages/Courses/Index.cshtml?highlight=5,8,16-18,20,23,26,32,35-37,45)]
 
@@ -158,7 +158,7 @@ This page reads and displays related data in the following ways:
 
 The instructors page shows data from three different tables. A view model is needed that includes three properties representing the three tables.
 
-Create *Models/SchoolViewModels/InstructorIndexData.cs* with the following code:
+Create `Models/SchoolViewModels/InstructorIndexData.cs` with the following code:
 
 [!code-csharp[](intro/samples/cu50/Models/SchoolViewModels/InstructorIndexData.cs)]
 
@@ -194,13 +194,13 @@ Create *Models/SchoolViewModels/InstructorIndexData.cs* with the following code:
 
 Run the app and navigate to the Instructors page.
 
-Update *Pages/Instructors/Index.cshtml.cs* with the following code:
+Update `Pages/Instructors/Index.cshtml.cs` with the following code:
 
 [!code-csharp[](intro/samples/cu50/Pages/Instructors/Index.cshtml.cs?name=snippet_all)]
 
 The `OnGetAsync` method accepts optional route data for the ID of the selected instructor.
 
-Examine the query in the *Pages/Instructors/Index.cshtml.cs* file:
+Examine the query in the `Pages/Instructors/Index.cshtml.cs` file:
 
 [!code-csharp[](intro/samples/cu50/Pages/Instructors/Index.cshtml.cs?name=snippet_query)]
 
@@ -226,7 +226,7 @@ The following code populates the view model's `Enrollments` property when a cour
 
 ### Update the instructors Index page
 
-Update *Pages/Instructors/Index.cshtml* with the following code.
+Update `Pages/Instructors/Index.cshtml` with the following code.
 
 [!code-cshtml[](intro/samples/cu50/Pages/Instructors/Index.cshtml?highlight=1)]
 
@@ -365,7 +365,7 @@ To display the name of the assigned department for a course:
 
 ---
 
-* Open *Pages/Courses/Index.cshtml.cs* and examine the `OnGetAsync` method. The scaffolding engine specified eager loading for the `Department` navigation property. The `Include` method specifies eager loading.
+* Open `Pages/Courses/Index.cshtml.cs` and examine the `OnGetAsync` method. The scaffolding engine specified eager loading for the `Department` navigation property. The `Include` method specifies eager loading.
 
 * Run the app and select the **Courses** link. The department column displays the `DepartmentID`, which isn't useful.
 
@@ -377,7 +377,7 @@ Update Pages/Courses/Index.cshtml.cs with the following code:
 
 The preceding code changes the `Course` property to `Courses` and adds `AsNoTracking`. `AsNoTracking` improves performance because the entities returned are not tracked. The entities don't need to be tracked because they're not updated in the current context.
 
-Update *Pages/Courses/Index.cshtml* with the following code.
+Update `Pages/Courses/Index.cshtml` with the following code.
 
 [!code-cshtml[](intro/samples/cu30/Pages/Courses/Index.cshtml?highlight=5,8,16-18,20,23,26,32,35-37,45)]
 
@@ -430,7 +430,7 @@ This page reads and displays related data in the following ways:
 
 The instructors page shows data from three different tables. A view model is needed that includes three properties representing the three tables.
 
-Create *SchoolViewModels/InstructorIndexData.cs* with the following code:
+Create `SchoolViewModels/InstructorIndexData.cs` with the following code:
 
 [!code-csharp[](intro/samples/cu30/Models/SchoolViewModels/InstructorIndexData.cs)]
 
@@ -466,13 +466,13 @@ Create *SchoolViewModels/InstructorIndexData.cs* with the following code:
 
 To see what the scaffolded page looks like before you update it, run the app and navigate to the Instructors page.
 
-Update *Pages/Instructors/Index.cshtml.cs* with the following code:
+Update `Pages/Instructors/Index.cshtml.cs` with the following code:
 
 [!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index1.cshtml.cs?name=snippet_all&highlight=2,19-53)]
 
 The `OnGetAsync` method accepts optional route data for the ID of the selected instructor.
 
-Examine the query in the *Pages/Instructors/Index.cshtml.cs* file:
+Examine the query in the `Pages/Instructors/Index.cshtml.cs` file:
 
 [!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index1.cshtml.cs?name=snippet_EagerLoading)]
 
@@ -505,7 +505,7 @@ The following code populates the view model's `Enrollments` property when a cour
 
 ### Update the instructors Index page
 
-Update *Pages/Instructors/Index.cshtml* with the following code.
+Update `Pages/Instructors/Index.cshtml` with the following code.
 
 [!code-cshtml[](intro/samples/cu30/Pages/Instructors/Index.cshtml?highlight=1,5,8,16-21,25-32,43-57,67-102,104-126)]
 
@@ -575,7 +575,7 @@ The current code specifies eager loading for `Enrollments` and `Students`:
 
 Suppose users rarely want to see enrollments in a course. In that case, an optimization would be to only load the enrollment data if it's requested. In this section, the `OnGetAsync` is updated to use explicit loading of `Enrollments` and `Students`.
 
-Update *Pages/Instructors/Index.cshtml.cs* with the following code.
+Update `Pages/Instructors/Index.cshtml.cs` with the following code.
 
 [!code-csharp[](intro/samples/cu30/Pages/Instructors/Index.cshtml.cs?highlight=31-35,52-56)]
 
@@ -668,7 +668,7 @@ Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#sc
 
 The preceding command scaffolds the `Course` model. Open the project in Visual Studio.
 
-Open *Pages/Courses/Index.cshtml.cs* and examine the `OnGetAsync` method. The scaffolding engine specified eager loading for the `Department` navigation property. The `Include` method specifies eager loading.
+Open `Pages/Courses/Index.cshtml.cs` and examine the `OnGetAsync` method. The scaffolding engine specified eager loading for the `Department` navigation property. The `Include` method specifies eager loading.
 
 Run the app and select the **Courses** link. The department column displays the `DepartmentID`, which isn't useful.
 
@@ -678,7 +678,7 @@ Update the `OnGetAsync` method with the following code:
 
 The preceding code adds `AsNoTracking`. `AsNoTracking` improves performance because the entities returned are not tracked. The entities are not tracked because they're not updated in the current context.
 
-Update *Pages/Courses/Index.cshtml* with the following highlighted markup:
+Update `Pages/Courses/Index.cshtml` with the following highlighted markup:
 
 [!code-cshtml[](intro/samples/cu/Pages/Courses/Index.cshtml?highlight=4,7,15-17,34-36,44)]
 
@@ -733,7 +733,7 @@ This page reads and displays related data in the following ways:
 
 The instructors page shows data from three different tables. A view model is created that includes the three entities representing the three tables.
 
-In the *SchoolViewModels* folder, create *InstructorIndexData.cs* with the following code:
+In the *SchoolViewModels* folder, create `InstructorIndexData.cs` with the following code:
 
 [!code-csharp[](intro/samples/cu/Models/SchoolViewModels/InstructorIndexData.cs)]
 
@@ -756,13 +756,13 @@ Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#sc
 The preceding command scaffolds the `Instructor` model. 
 Run the app and navigate to the instructors page.
 
-Replace *Pages/Instructors/Index.cshtml.cs* with the following code:
+Replace `Pages/Instructors/Index.cshtml.cs` with the following code:
 
 [!code-csharp[](intro/samples/cu/Pages/Instructors/Index1.cshtml.cs?name=snippet_all&highlight=2,18-99)]
 
 The `OnGetAsync` method accepts optional route data for the ID of the selected instructor.
 
-Examine the query in the *Pages/Instructors/Index.cshtml.cs* file:
+Examine the query in the `Pages/Instructors/Index.cshtml.cs` file:
 
 [!code-csharp[](intro/samples/cu/Pages/Instructors/Index1.cshtml.cs?name=snippet_ThenInclude)]
 
@@ -773,7 +773,7 @@ The query has two includes:
 
 ### Update the instructors Index page
 
-Update *Pages/Instructors/Index.cshtml* with the following markup:
+Update `Pages/Instructors/Index.cshtml` with the following markup:
 
 [!code-cshtml[](intro/samples/cu/Pages/Instructors/IndexRRD.cshtml?range=1-65&highlight=1,5,8,16-21,25-32,43-57)]
 
@@ -822,7 +822,7 @@ Click on the **Select** link. The row style changes.
 
 ### Add courses taught by selected instructor
 
-Update the `OnGetAsync` method in *Pages/Instructors/Index.cshtml.cs* with the following code:
+Update the `OnGetAsync` method in `Pages/Instructors/Index.cshtml.cs` with the following code:
 
 [!code-csharp[](intro/samples/cu/Pages/Instructors/Index2.cshtml.cs?name=snippet_OnGetAsync&highlight=1,8,16-999)]
 
@@ -853,7 +853,7 @@ The following code populates the view model's `Enrollments` property when a cour
 
 [!code-csharp[](intro/samples/cu/Pages/Instructors/Index2.cshtml.cs?name=snippet_courseID)]
 
-Add the following markup to the end of the *Pages/Instructors/Index.cshtml* Razor Page:
+Add the following markup to the end of the `Pages/Instructors/Index.cshtml` Razor Page:
 
 [!code-cshtml[](intro/samples/cu/Pages/Instructors/IndexRRD.cshtml?range=60-102&highlight=7-999)]
 
@@ -865,11 +865,11 @@ Test the app. Click on a **Select** link on the instructors page.
 
 In this section, the app is updated to show the student data for a selected course.
 
-Update the query in the `OnGetAsync` method in *Pages/Instructors/Index.cshtml.cs* with the following code:
+Update the query in the `OnGetAsync` method in `Pages/Instructors/Index.cshtml.cs` with the following code:
 
 [!code-csharp[](intro/samples/cu/Pages/Instructors/Index.cshtml.cs?name=snippet_ThenInclude&highlight=6-9)]
 
-Update *Pages/Instructors/Index.cshtml*. Add the following markup to the end of the file:
+Update `Pages/Instructors/Index.cshtml`. Add the following markup to the end of the file:
 
 [!code-cshtml[](intro/samples/cu/Pages/Instructors/IndexRRD.cshtml?range=103-)]
 

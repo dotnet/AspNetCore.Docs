@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
 ms.date: 01/16/2020
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: signalr/hubs
 ---
 
@@ -191,8 +191,8 @@ If you have an exceptional condition you *do* want to propagate to the client, y
 > [!NOTE]
 > SignalR only sends the `Message` property of the exception to the client. The stack trace and other properties on the exception aren't available to the client.
 
-## Related resources
+## Additional resources
 
-* [Intro to ASP.NET Core SignalR](xref:signalr/introduction)
-* [JavaScript client](xref:signalr/javascript-client)
-* [Publish to Azure](xref:signalr/publish-to-azure-web-app)
+* <xref:signalr/introduction>
+* <xref:signalr/javascript-client>
+* <xref:signalr/publish-to-azure-web-app>

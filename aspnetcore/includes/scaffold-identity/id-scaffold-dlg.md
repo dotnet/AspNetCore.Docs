@@ -1,5 +1,5 @@
 ---
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 ---
 Run the Identity scaffolder:
 
@@ -23,7 +23,7 @@ If you have not previously installed the ASP.NET Core scaffolder, install it now
 dotnet tool install -g dotnet-aspnet-codegenerator
 ```
 
-Add required NuGet package references to the project file (*.csproj*). Run the following commands in the project directory:
+Add required NuGet package references to the project file (`.csproj`). Run the following commands in the project directory:
 
 ```dotnetcli
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design

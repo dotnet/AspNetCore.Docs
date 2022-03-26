@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 10/27/2020
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/identity/spa
 ---
 # Authentication and authorization for SPAs
@@ -125,17 +125,17 @@ This helper method configures a policy scheme for the app as the default authent
 
 ### WeatherForecastController
 
-In the *Controllers\WeatherForecastController.cs* file, notice the `[Authorize]` attribute applied to the class that indicates that the user needs to be authorized based on the default policy to access the resource. The default authorization policy happens to be configured to use the default authentication scheme, which is set up by `AddIdentityServerJwt` to the policy scheme that was mentioned above, making the `JwtBearerHandler` configured by such helper method the default handler for requests to the app.
+In the  file, notice the `[Authorize]` attribute applied to the class that indicates that the user needs to be authorized based on the default policy to access the resource. The default authorization policy happens to be configured to use the default authentication scheme, which is set up by `AddIdentityServerJwt` to the policy scheme that was mentioned above, making the `JwtBearerHandler` configured by such helper method the default handler for requests to the app.
 
 ### ApplicationDbContext
 
-In the *Data\ApplicationDbContext.cs* file, notice the same `DbContext` is used in Identity with the exception that it extends `ApiAuthorizationDbContext` (a more derived class from `IdentityDbContext`) to include the schema for IdentityServer.
+In the  file, notice the same `DbContext` is used in Identity with the exception that it extends `ApiAuthorizationDbContext` (a more derived class from `IdentityDbContext`) to include the schema for IdentityServer.
 
 To gain full control of the database schema, inherit from one of the available Identity `DbContext` classes and configure the context to include the Identity schema by calling `builder.ConfigurePersistedGrantContext(_operationalStoreOptions.Value)` on the `OnModelCreating` method.
 
 ### OidcConfigurationController
 
-In the *Controllers\OidcConfigurationController.cs* file, notice the endpoint that's provisioned to serve the OIDC parameters that the client needs to use.
+In the  file, notice the endpoint that's provisioned to serve the OIDC parameters that the client needs to use.
 
 ### appsettings.json
 
@@ -168,9 +168,9 @@ In the `appsettings.Development.json` file of the project root, there's an `Iden
 The authentication and API authorization support in the Angular template resides in its own Angular module in the *ClientApp\src\api-authorization* directory. The module is composed of the following elements:
 
 * 3 components:
-  * *login.component.ts*: Handles the app's login flow.
-  * *logout.component.ts*: Handles the app's logout flow.
-  * *login-menu.component.ts*: A widget that displays one of the following sets of links:
+  * `login.component.ts`: Handles the app's login flow.
+  * `logout.component.ts`: Handles the app's logout flow.
+  * `login-menu.component.ts`: A widget that displays one of the following sets of links:
     * User profile management and log out links when the user is authenticated.
     * Registration and log in links when the user isn't authenticated.
 * A route guard `AuthorizeGuard` that can be added to routes and requires a user to be authenticated before visiting the route.
@@ -183,12 +183,12 @@ The authentication and API authorization support in the Angular template resides
 The support for authentication and API authorization in the React template resides in the *ClientApp\src\components\api-authorization* directory. It's composed of the following elements:
 
 * 4 components:
-  * *Login.js*: Handles the app's login flow.
-  * *Logout.js*: Handles the app's logout flow.
-  * *LoginMenu.js*: A widget that displays one of the following sets of links:
+  * `Login.js`: Handles the app's login flow.
+  * `Logout.js`: Handles the app's logout flow.
+  * `LoginMenu.js`: A widget that displays one of the following sets of links:
     * User profile management and log out links when the user is authenticated.
     * Registration and log in links when the user isn't authenticated.
-  * *AuthorizeRoute.js*: A route component that requires a user to be authenticated before rendering the component indicated in the `Component` parameter.
+  * `AuthorizeRoute.js`: A route component that requires a user to be authenticated before rendering the component indicated in the `Component` parameter.
 * An exported `authService` instance of class `AuthorizeService` that handles the lower-level details of the authentication process and exposes information about the authenticated user to the rest of the app for consumption.
 
 Now that you've seen the main components of the solution, you can take a deeper look at individual scenarios for the app.

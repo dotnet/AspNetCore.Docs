@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Builder;
 
 namespace MiddlewareExtensibilitySample.Middleware
 {
-    #region snippet1
+    // <snippet1>
     public static class MiddlewareExtensions
     {
         public static IApplicationBuilder UseConventionalMiddleware(
@@ -17,5 +17,5 @@ namespace MiddlewareExtensibilitySample.Middleware
             return builder.UseMiddleware<FactoryActivatedMiddleware>();
         }
     }
-    #endregion
+    // </snippet1>
 }

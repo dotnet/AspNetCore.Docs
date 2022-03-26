@@ -6,7 +6,7 @@ ms.author: riande
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 09/25/2020
 ms.custom: contperf-fy21q2
-no-loc: ["Blazor Hybrid", Home, Privacy, Index, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Index, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/razor-pages/page
 ---
 
@@ -20,7 +20,7 @@ This tutorial examines the Razor Pages created by scaffolding in the [previous t
 
 ## The Create, Delete, Details, and Edit pages
 
-Examine the *Pages/Movies/Index.cshtml.cs* Page Model:
+Examine the `Pages/Movies/Index.cshtml.cs` Page Model:
 
 [!code-csharp[](razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Index.cshtml.cs?name=snippetFull)]
 
@@ -36,12 +36,12 @@ When `OnGet` returns `void` or `OnGetAsync` returns `Task`, no return statement 
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Pages/Privacy.cshtml.cs?name=snippet)]
 
-When the return type is `IActionResult` or `Task<IActionResult>`, a return statement must be provided. For example, the *Pages/Movies/Create.cshtml.cs* `OnPostAsync` method:
+When the return type is `IActionResult` or `Task<IActionResult>`, a return statement must be provided. For example, the `Pages/Movies/Create.cshtml.cs` `OnPostAsync` method:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Create.cshtml.cs?name=snippet)]
 
 <a name="index"></a>
-Examine the *Pages/Movies/Index.cshtml* Razor Page:
+Examine the `Pages/Movies/Index.cshtml` Razor Page:
 
 [!code-cshtml[](razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Index.cshtml)]
 
@@ -70,22 +70,22 @@ The <xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper%601.DisplayNameFor%2A> 
 
 ### The layout page
 
-Select the menu links **RazorPagesMovie**, **Home**, and **Privacy**. Each page shows the same menu layout. The menu layout is implemented in the *Pages/Shared/_Layout.cshtml* file.
+Select the menu links **RazorPagesMovie**, **Home**, and **Privacy**. Each page shows the same menu layout. The menu layout is implemented in the `Pages/Shared/_Layout.cshtml` file.
 
-Open and examine the *Pages/Shared/_Layout.cshtml* file.
+Open and examine the `Pages/Shared/_Layout.cshtml` file.
 
 [Layout](xref:mvc/views/layout) templates allow the HTML container layout to be:
 
 * Specified in one place.
 * Applied in multiple pages in the site.
 
-Find the `@RenderBody()` line. `RenderBody` is a placeholder where all the page-specific views show up, *wrapped* in the layout page. For example, select the **Privacy** link and the *Pages/Privacy.cshtml* view is rendered inside the `RenderBody` method.
+Find the `@RenderBody()` line. `RenderBody` is a placeholder where all the page-specific views show up, *wrapped* in the layout page. For example, select the **Privacy** link and the `Pages/Privacy.cshtml` view is rendered inside the `RenderBody` method.
 
 <a name="vd"></a>
 
 ### ViewData and layout
 
-Consider the following markup from the *Pages/Movies/Index.cshtml* file:
+Consider the following markup from the `Pages/Movies/Index.cshtml` file:
 
 [!code-cshtml[](razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Index.cshtml?range=1-6&highlight=4-999)]
 
@@ -93,7 +93,7 @@ The preceding highlighted markup is an example of Razor transitioning into C#. T
 
 The `PageModel` base class contains a `ViewData` dictionary property that can be used to pass data to a View. Objects are added to the `ViewData` dictionary using a ***key value*** pattern. In the preceding sample, the `Title` property is added to the `ViewData` dictionary.
 
-The `Title` property is used in the *Pages/Shared/_Layout.cshtml* file. The following markup shows the first few lines of the *_Layout.cshtml* file.
+The `Title` property is used in the `Pages/Shared/_Layout.cshtml` file. The following markup shows the first few lines of the `_Layout.cshtml` file.
 
 <!-- We need a snapshot copy of layout because we are changing in the next step. -->
 
@@ -103,11 +103,11 @@ The line `@*Markup removed for brevity.*@` is a Razor comment. Unlike HTML comme
 
 ### Update the layout
 
-1. Change the `<title>` element in the *Pages/Shared/_Layout.cshtml* file to display **Movie** rather than **RazorPagesMovie**.
+1. Change the `<title>` element in the `Pages/Shared/_Layout.cshtml` file to display **Movie** rather than **RazorPagesMovie**.
 
    [!code-cshtml[](razor-pages-start/sample/RazorPagesMovie30/Pages/Shared/_Layout.cshtml?range=1-6&highlight=6)]
 
-1. Find the following anchor element in the *Pages/Shared/_Layout.cshtml* file.
+1. Find the following anchor element in the `Pages/Shared/_Layout.cshtml` file.
 
    ```cshtml
    <a class="navbar-brand" asp-area="" asp-page="/Index">RazorPagesMovie</a>
@@ -128,19 +128,19 @@ The line `@*Markup removed for brevity.*@` is a Razor comment. Unlike HTML comme
 > [!NOTE]
 > You may not be able to enter decimal commas in the `Price` field. To support [jQuery validation](https://jqueryvalidation.org/) for non-English locales that use a comma (",") for a decimal point, and non US-English date formats, you must take steps to globalize the app. See this [GitHub issue 4076](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420) for instructions on adding decimal comma.
 
-The `Layout` property is set in the *Pages/_ViewStart.cshtml* file:
+The `Layout` property is set in the `Pages/_ViewStart.cshtml` file:
 
 [!code-cshtml[](razor-pages-start/sample/RazorPagesMovie30/Pages/_ViewStart.cshtml)]
 
-The preceding markup sets the layout file to *Pages/Shared/_Layout.cshtml* for all Razor files under the *Pages* folder. See [Layout](xref:razor-pages/index#layout) for more information.
+The preceding markup sets the layout file to `Pages/Shared/_Layout.cshtml` for all Razor files under the *Pages* folder. See [Layout](xref:razor-pages/index#layout) for more information.
 
 ### The Create page model
 
-Examine the *Pages/Movies/Create.cshtml.cs* page model:
+Examine the `Pages/Movies/Create.cshtml.cs` page model:
 
 [!code-csharp[](razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Create.cshtml.cs?name=snippetALL)]
 
-The `OnGet` method initializes any state needed for the page. The Create page doesn't have any state to initialize, so `Page` is returned. Later in the tutorial, an example of `OnGet` initializing state is shown. The `Page` method creates a `PageResult` object that renders the *Create.cshtml* page.
+The `OnGet` method initializes any state needed for the page. The Create page doesn't have any state to initialize, so `Page` is returned. Later in the tutorial, an example of `OnGet` initializing state is shown. The `Page` method creates a `PageResult` object that renders the `Create.cshtml` page.
 
 The `Movie` property uses the [[BindProperty]](xref:Microsoft.AspNetCore.Mvc.BindPropertyAttribute) attribute to opt-in to [model binding](xref:mvc/models/model-binding). When the Create form posts the form values, the ASP.NET Core runtime binds the posted values to the `Movie` model.
 
@@ -157,7 +157,7 @@ If there are no model errors:
 
 ### The Create Razor Page
 
-Examine the *Pages/Movies/Create.cshtml* Razor Page file:
+Examine the `Pages/Movies/Create.cshtml` Razor Page file:
 
 [!code-cshtml[](razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Create.cshtml)]
 
@@ -211,7 +211,7 @@ For more information on Tag Helpers such as `<form method="post">`, see [Tag Hel
 <!-- Make a copy of the current project at tutorials/razor-pages/razor-pages-start/snapshot_v6 -->
 ## The Create, Delete, Details, and Edit pages
 
-Examine the *Pages/Movies/Index.cshtml.cs* Page Model:
+Examine the `Pages/Movies/Index.cshtml.cs` Page Model:
 
 [!code-csharp[](razor-pages-start/snapshot_sample6/Pages/Movies/IndexClean.cshtml.cs?name=snippetFull)]
 
@@ -229,12 +229,12 @@ When `OnGet` returns `void` or `OnGetAsync` returns `Task`, no return statement 
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie60/Pages/Privacy.cshtml.cs)]
 
-When the return type is <xref:Microsoft.AspNetCore.Mvc.IActionResult> or `Task<IActionResult>`, a return statement must be provided. For example, the *Pages/Movies/Create.cshtml.cs* `OnPostAsync` method:
+When the return type is <xref:Microsoft.AspNetCore.Mvc.IActionResult> or `Task<IActionResult>`, a return statement must be provided. For example, the `Pages/Movies/Create.cshtml.cs` `OnPostAsync` method:
 
 [!code-csharp[](razor-pages-start/snapshot_sample6/Pages/Movies/Create.cshtml.cs?name=snippetPost)]
 
 <a name="index6"></a>
-Examine the *Pages/Movies/Index.cshtml* Razor Page:
+Examine the `Pages/Movies/Index.cshtml` Razor Page:
 
 [!code-cshtml[](razor-pages-start/snapshot_sample6/Pages/Movies/Index.cshtml)]
 
@@ -262,22 +262,22 @@ The <xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper%601.DisplayNameFor%2A> 
 
 ### The layout page
 
-Select the menu links **RazorPagesMovie**, **Home**, and **Privacy**. Each page shows the same menu layout. The menu layout is implemented in the *Pages/Shared/_Layout.cshtml* file.
+Select the menu links **RazorPagesMovie**, **Home**, and **Privacy**. Each page shows the same menu layout. The menu layout is implemented in the `Pages/Shared/_Layout.cshtml` file.
 
-Open and examine the *Pages/Shared/_Layout.cshtml* file.
+Open and examine the `Pages/Shared/_Layout.cshtml` file.
 
 [Layout](xref:mvc/views/layout) templates allow the HTML container layout to be:
 
 * Specified in one place.
 * Applied in multiple pages in the site.
 
-Find the `@RenderBody()` line. `RenderBody` is a placeholder where all the page-specific views show up, *wrapped* in the layout page. For example, select the **Privacy** link and the *Pages/Privacy.cshtml* view is rendered inside the `RenderBody` method.
+Find the `@RenderBody()` line. `RenderBody` is a placeholder where all the page-specific views show up, *wrapped* in the layout page. For example, select the **Privacy** link and the `Pages/Privacy.cshtml` view is rendered inside the `RenderBody` method.
 
 <a name="vd"></a>
 
 ### ViewData and layout
 
-Consider the following markup from the *Pages/Movies/Index.cshtml* file:
+Consider the following markup from the `Pages/Movies/Index.cshtml` file:
 
 [!code-cshtml[](razor-pages-start/snapshot_sample6/Pages/Movies/Index.cshtml?range=1-6&highlight=4-999)]
 
@@ -285,7 +285,7 @@ The preceding highlighted markup is an example of Razor transitioning into C#. T
 
 The `PageModel` base class contains a `ViewData` dictionary property that can be used to pass data to a View. Objects are added to the `ViewData` dictionary using a ***key value*** pattern. In the preceding sample, the `Title` property is added to the `ViewData` dictionary.
 
-The `Title` property is used in the *Pages/Shared/_Layout.cshtml* file. The following markup shows the first few lines of the *_Layout.cshtml* file.
+The `Title` property is used in the `Pages/Shared/_Layout.cshtml` file. The following markup shows the first few lines of the `_Layout.cshtml` file.
 
 <!-- We need a snapshot copy of layout because we are changing in the next step. -->
 
@@ -295,10 +295,10 @@ The line `@*Markup removed for brevity.*@` is a Razor comment. Unlike HTML comme
 
 ### Update the layout
 
-1. Change the `<title>` element in the *Pages/Shared/_Layout.cshtml* file to display **Movie** rather than **RazorPagesMovie**.
+1. Change the `<title>` element in the `Pages/Shared/_Layout.cshtml` file to display **Movie** rather than **RazorPagesMovie**.
    [!code-cshtml[](razor-pages-start/sample/RazorPagesMovie60/Pages/Shared/_Layout.cshtml?range=1-6&highlight=6)]
 
-1. Find the following anchor element in the *Pages/Shared/_Layout.cshtml* file.
+1. Find the following anchor element in the `Pages/Shared/_Layout.cshtml` file.
 
    ```cshtml
    <a class="navbar-brand" asp-area="" asp-page="/Index">RazorPagesMovie</a>
@@ -319,19 +319,19 @@ The line `@*Markup removed for brevity.*@` is a Razor comment. Unlike HTML comme
 > [!NOTE]
 > You may not be able to enter decimal commas in the `Price` field. To support [jQuery validation](https://jqueryvalidation.org/) for non-English locales that use a comma (",") for a decimal point, and non US-English date formats, you must take steps to globalize the app. See this [GitHub issue 4076](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420) for instructions on adding decimal comma.
 
-The `Layout` property is set in the *Pages/_ViewStart.cshtml* file:
+The `Layout` property is set in the `Pages/_ViewStart.cshtml` file:
 
 [!code-cshtml[](razor-pages-start/sample/RazorPagesMovie60/Pages/_ViewStart.cshtml)]
 
-The preceding markup sets the layout file to *Pages/Shared/_Layout.cshtml* for all Razor files under the *Pages* folder. See [Layout](xref:razor-pages/index#layout) for more information.
+The preceding markup sets the layout file to `Pages/Shared/_Layout.cshtml` for all Razor files under the *Pages* folder. See [Layout](xref:razor-pages/index#layout) for more information.
 
 ### The Create page model
 
-Examine the *Pages/Movies/Create.cshtml.cs* page model:
+Examine the `Pages/Movies/Create.cshtml.cs` page model:
 
 [!code-csharp[](razor-pages-start/snapshot_sample6/Pages/Movies/Create.cshtml.cs?name=snippetALL)]
 
-The `OnGet` method initializes any state needed for the page. The Create page doesn't have any state to initialize, so `Page` is returned. Later in the tutorial, an example of `OnGet` initializing state is shown. The `Page` method creates a `PageResult` object that renders the *Create.cshtml* page.
+The `OnGet` method initializes any state needed for the page. The Create page doesn't have any state to initialize, so `Page` is returned. Later in the tutorial, an example of `OnGet` initializing state is shown. The `Page` method creates a `PageResult` object that renders the `Create.cshtml` page.
 
 The `Movie` property uses the [[BindProperty]](xref:Microsoft.AspNetCore.Mvc.BindPropertyAttribute) attribute to opt-in to [model binding](xref:mvc/models/model-binding). When the Create form posts the form values, the ASP.NET Core runtime binds the posted values to the `Movie` model.
 
@@ -348,7 +348,7 @@ If there are no model errors:
 
 ### The Create Razor Page
 
-Examine the *Pages/Movies/Create.cshtml* Razor Page file:
+Examine the `Pages/Movies/Create.cshtml` Razor Page file:
 
 [!code-cshtml[](razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Create.cshtml)]
 

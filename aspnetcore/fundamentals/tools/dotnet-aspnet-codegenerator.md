@@ -5,7 +5,7 @@ description: The dotnet-aspnet-codegenerator command scaffolds ASP.NET Core proj
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 11/16/2020
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/tools/dotnet-aspnet-codegenerator
 ---
 
@@ -163,7 +163,7 @@ Razor Pages can be individually scaffolded by specifying the name of the new pag
 * `Details`
 * `List`
 
-For example, the following command uses the Edit template to generate *MyEdit.cshtml* and *MyEdit.cshtml.cs*:
+For example, the following command uses the Edit template to generate `MyEdit.cshtml` and `MyEdit.cshtml.cs`:
 
 ```dotnetcli
 dotnet-aspnet-codegenerator razorpage MyEdit Edit -m Movie -dc RazorPagesMovieContext -outDir Pages/Movies
@@ -208,7 +208,7 @@ Views can be individually scaffolded by specifying the name of the view and the 
 * `Details`
 * `List`
 
-For example, the following command uses the Edit template to generate *MyEdit.cshtml*:
+For example, the following command uses the Edit template to generate `MyEdit.cshtml`:
 
 ```dotnetcli
 dotnet-aspnet-codegenerator view MyEdit Edit -m Movie -dc MovieContext -outDir Views/Movies

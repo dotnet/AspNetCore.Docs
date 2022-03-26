@@ -6,7 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/27/2019
 ms.topic: tutorial
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: data/ef-mvc/inheritance
 ---
 
@@ -72,17 +72,17 @@ In the Models folder, create Person.cs and replace the template code with the fo
 
 ## Update Instructor and Student
 
-In *Instructor.cs*, derive the Instructor class from the Person class and remove the key and name fields. The code will look like the following example:
+In `Instructor.cs`, derive the Instructor class from the Person class and remove the key and name fields. The code will look like the following example:
 
 [!code-csharp[](intro/samples/cu/Models/Instructor.cs?name=snippet_AfterInheritance&highlight=8)]
 
-Make the same changes in *Student.cs*.
+Make the same changes in `Student.cs`.
 
 [!code-csharp[](intro/samples/cu/Models/Student.cs?name=snippet_AfterInheritance&highlight=8)]
 
 ## Add Person to the model
 
-Add the Person entity type to *SchoolContext.cs*. The new lines are highlighted.
+Add the Person entity type to `SchoolContext.cs`. The new lines are highlighted.
 
 [!code-csharp[](intro/samples/cu/Data/SchoolContext.cs?name=snippet_AfterInheritance&highlight=19,30)]
 
@@ -98,7 +98,7 @@ dotnet ef migrations add Inheritance
 
 Don't run the `database update` command yet. That command will result in lost data because it will drop the Instructor table and rename the Student table to Person. You need to provide custom code to preserve existing data.
 
-Open *Migrations/\<timestamp>_Inheritance.cs* and replace the `Up` method with the following code:
+Open `Migrations/<timestamp>_Inheritance.cs` and replace the `Up` method with the following code:
 
 [!code-csharp[](intro/samples/cu/Migrations/20170216215525_Inheritance.cs?name=snippet_Up)]
 

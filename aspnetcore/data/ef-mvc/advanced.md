@@ -6,7 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/27/2019
 ms.topic: tutorial
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: data/ef-mvc/advanced
 ---
 
@@ -47,7 +47,7 @@ As is always true when you execute SQL commands in a web application, you must t
 
 The `DbSet<TEntity>` class provides a method that you can use to execute a query that returns an entity of type `TEntity`. To see how this works you'll change the code in the `Details` method of the Department controller.
 
-In *DepartmentsController.cs*, in the `Details` method, replace the code that retrieves a department with a `FromSql` method call, as shown in the following highlighted code:
+In `DepartmentsController.cs`, in the `Details` method, replace the code that retrieves a department with a `FromSql` method call, as shown in the following highlighted code:
 
 [!code-csharp[](intro/samples/cu/Controllers/DepartmentsController.cs?name=snippet_RawSQL&highlight=8,9,10)]
 
@@ -59,7 +59,7 @@ To verify that the new code works correctly, select the **Departments** tab and 
 
 Earlier you created a student statistics grid for the About page that showed the number of students for each enrollment date. You got the data from the Students entity set (`_context.Students`) and used LINQ to project the results into a list of `EnrollmentDateGroup` view model objects. Suppose you want to write the SQL itself rather than using LINQ. To do that you need to run a SQL query that returns something other than entity objects. In EF Core 1.0, one way to do that is to write ADO.NET code and get the database connection from EF.
 
-In *HomeController.cs*, replace the `About` method with the following code:
+In `HomeController.cs`, replace the `About` method with the following code:
 
 [!code-csharp[](intro/samples/cu/Controllers/HomeController.cs?name=snippet_UseRawSQL&highlight=3-32)]
 
@@ -77,7 +77,7 @@ Suppose Contoso University administrators want to perform global changes in the 
 
 ![Update Course Credits page](advanced/_static/update-credits.png)
 
-In *CoursesController.cs*, add UpdateCourseCredits methods for HttpGet and HttpPost:
+In `CoursesController.cs`, add UpdateCourseCredits methods for HttpGet and HttpPost:
 
 [!code-csharp[](intro/samples/cu/Controllers/CoursesController.cs?name=snippet_UpdateGet)]
 
@@ -89,9 +89,9 @@ When the **Update** button is clicked, the HttpPost method is called, and multip
 
 In **Solution Explorer**, right-click the *Views/Courses* folder, and then click **Add > New Item**.
 
-In the **Add New Item** dialog, click **ASP.NET Core** under **Installed** in the left pane, click **Razor View**, and name the new view *UpdateCourseCredits.cshtml*.
+In the **Add New Item** dialog, click **ASP.NET Core** under **Installed** in the left pane, click **Razor View**, and name the new view `UpdateCourseCredits.cshtml`.
 
-In *Views/Courses/UpdateCourseCredits.cshtml*, replace the template code with the following code:
+In `Views/Courses/UpdateCourseCredits.cshtml`, replace the template code with the following code:
 
 [!code-cshtml[](intro/samples/cu/Views/Courses/UpdateCourseCredits.cshtml)]
 
@@ -113,7 +113,7 @@ For more information about raw SQL queries, see [Raw SQL Queries](/ef/core/query
 
 Sometimes it's helpful to be able to see the actual SQL queries that are sent to the database. Built-in logging functionality for ASP.NET Core is automatically used by EF Core to write logs that contain the SQL for queries and updates. In this section you'll see some examples of SQL logging.
 
-Open *StudentsController.cs* and in the `Details` method set a breakpoint on the `if (student == null)` statement.
+Open `StudentsController.cs` and in the `Details` method set a breakpoint on the `if (student == null)` statement.
 
 Run the app in debug mode, and go to the Details page for a student.
 

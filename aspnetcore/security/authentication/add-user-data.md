@@ -5,7 +5,7 @@ description: Learn how to add custom user data to Identity in an ASP.NET Core pr
 ms.author: riande
 ms.date: 03/15/2022
 ms.custom: "mvc, seodec18"
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/add-user-data
 ---
 # Add, download, and delete custom user data to Identity in an ASP.NET Core project
@@ -51,7 +51,7 @@ dotnet new webapp -o WebApp1
 * From **Solution Explorer**, right-click on the project > **Add** > **New Scaffolded Item**.
 * From the left pane of the **Add Scaffold** dialog, select **Identity** > **Add**.
 * In the **Add Identity** dialog, the following options:
-  * Select the existing layout  file  *~/Pages/Shared/_Layout.cshtml*
+  * Select the existing layout  file  `~/Pages/Shared/_Layout.cshtml`
   * Select the following files to override:
     * **Account/Register**
     * **Account/Manage/Index**
@@ -99,37 +99,37 @@ Follow the instruction in [Migrations, UseAuthentication, and layout](xref:secur
   * Register a user
   * Select the new user name (next to the **Logout** link). You might need to expand the window or select the navigation bar icon to show the user name and other links.
   * Select the **Personal Data** tab.
-  * Select the **Download** button and examined the *PersonalData.json* file.
+  * Select the **Download** button and examined the `PersonalData.json` file.
   * Test the **Delete** button, which deletes the logged on user.
 
 ## Add custom user data to the Identity DB
 
-Update the `IdentityUser` derived class with custom properties. If you named the project WebApp1, the file is named *Areas/Identity/Data/WebApp1User.cs*. Update the file with the following code:
+Update the `IdentityUser` derived class with custom properties. If you named the project WebApp1, the file is named `Areas/Identity/Data/WebApp1User.cs`. Update the file with the following code:
 
 [!code-csharp[](add-user-data/samples/6.x/SampleApp/Areas/Identity/Data/WebApp1User.cs)]
 
 Properties with the [PersonalData](xref:Microsoft.AspNetCore.Identity.PersonalDataAttribute) attribute are:
 
-* Deleted when the *Areas/Identity/Pages/Account/Manage/DeletePersonalData.cshtml* Razor Page calls `UserManager.Delete`.
-* Included in the downloaded data by the *Areas/Identity/Pages/Account/Manage/DownloadPersonalData.cshtml* Razor Page.
+* Deleted when the `Areas/Identity/Pages/Account/Manage/DeletePersonalData.cshtml` Razor Page calls `UserManager.Delete`.
+* Included in the downloaded data by the `Areas/Identity/Pages/Account/Manage/DownloadPersonalData.cshtml` Razor Page.
 
 ### Update the `Account/Manage/Index.cshtml` page
 
-Update the `InputModel` in *Areas/Identity/Pages/Account/Manage/Index.cshtml.cs* with the following highlighted code:
+Update the `InputModel` in `Areas/Identity/Pages/Account/Manage/Index.cshtml.cs` with the following highlighted code:
 
 [!code-csharp[](add-user-data/samples/6.x/SampleApp/Areas/Identity/Pages/Account/Manage/Index.cshtml.cs?name=snippet&highlight=30-38,54-55,97-107)]
 
-Update the *Areas/Identity/Pages/Account/Manage/Index.cshtml* with the following highlighted markup:
+Update the `Areas/Identity/Pages/Account/Manage/Index.cshtml` with the following highlighted markup:
 
 [!code-cshtml[](add-user-data/samples/6.x/SampleApp/Areas/Identity/Pages/Account/Manage/Index.cshtml?highlight=18-25,81-82)]
 
 ### Update the `Account/Register.cshtml` page
 
-Update the `InputModel` in *Areas/Identity/Pages/Account/Register.cshtml.cs* with the following highlighted code:
+Update the `InputModel` in `Areas/Identity/Pages/Account/Register.cshtml.cs` with the following highlighted code:
 
 [!code-csharp[](add-user-data/samples/6.x/SampleApp/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=39-47)]
 
-Update the *Areas/Identity/Pages/Account/Register.cshtml* with the following highlighted markup:
+Update the `Areas/Identity/Pages/Account/Register.cshtml` with the following highlighted markup:
 
 [!code-cshtml[](add-user-data/samples/6.x/SampleApp/Areas/Identity/Pages/Account/Register.cshtml?highlight=16-25)]
 
@@ -196,7 +196,7 @@ dotnet new webapp -o WebApp1
 * From **Solution Explorer**, right-click on the project > **Add** > **New Scaffolded Item**.
 * From the left pane of the **Add Scaffold** dialog, select **Identity** > **Add**.
 * In the **Add Identity** dialog, the following options:
-  * Select the existing layout  file  *~/Pages/Shared/_Layout.cshtml*
+  * Select the existing layout  file  `~/Pages/Shared/_Layout.cshtml`
   * Select the following files to override:
     * **Account/Register**
     * **Account/Manage/Index**
@@ -244,37 +244,37 @@ Follow the instruction in [Migrations, UseAuthentication, and layout](xref:secur
   * Register a user
   * Select the new user name (next to the **Logout** link). You might need to expand the window or select the navigation bar icon to show the user name and other links.
   * Select the **Personal Data** tab.
-  * Select the **Download** button and examined the *PersonalData.json* file.
+  * Select the **Download** button and examined the `PersonalData.json` file.
   * Test the **Delete** button, which deletes the logged on user.
 
 ## Add custom user data to the Identity DB
 
-Update the `IdentityUser` derived class with custom properties. If you named the project WebApp1, the file is named *Areas/Identity/Data/WebApp1User.cs*. Update the file with the following code:
+Update the `IdentityUser` derived class with custom properties. If you named the project WebApp1, the file is named `Areas/Identity/Data/WebApp1User.cs`. Update the file with the following code:
 
 [!code-csharp[](add-user-data/samples/3.x/SampleApp/Areas/Identity/Data/WebApp1User.cs)]
 
 Properties with the [PersonalData](xref:Microsoft.AspNetCore.Identity.PersonalDataAttribute) attribute are:
 
-* Deleted when the *Areas/Identity/Pages/Account/Manage/DeletePersonalData.cshtml* Razor Page calls `UserManager.Delete`.
-* Included in the downloaded data by the *Areas/Identity/Pages/Account/Manage/DownloadPersonalData.cshtml* Razor Page.
+* Deleted when the `Areas/Identity/Pages/Account/Manage/DeletePersonalData.cshtml` Razor Page calls `UserManager.Delete`.
+* Included in the downloaded data by the `Areas/Identity/Pages/Account/Manage/DownloadPersonalData.cshtml` Razor Page.
 
 ### Update the Account/Manage/Index.cshtml page
 
-Update the `InputModel` in *Areas/Identity/Pages/Account/Manage/Index.cshtml.cs* with the following highlighted code:
+Update the `InputModel` in `Areas/Identity/Pages/Account/Manage/Index.cshtml.cs` with the following highlighted code:
 
 [!code-csharp[](add-user-data/samples/3.x/SampleApp/Areas/Identity/Pages/Account/Manage/Index.cshtml.cs?name=snippet&highlight=24-32,48-49,96-104,106)]
 
-Update the *Areas/Identity/Pages/Account/Manage/Index.cshtml* with the following highlighted markup:
+Update the `Areas/Identity/Pages/Account/Manage/Index.cshtml` with the following highlighted markup:
 
 [!code-cshtml[](add-user-data/samples/3.x/SampleApp/Areas/Identity/Pages/Account/Manage/Index.cshtml?highlight=18-25)]
 
 ### Update the Account/Register.cshtml page
 
-Update the `InputModel` in *Areas/Identity/Pages/Account/Register.cshtml.cs* with the following highlighted code:
+Update the `InputModel` in `Areas/Identity/Pages/Account/Register.cshtml.cs` with the following highlighted code:
 
 [!code-csharp[](add-user-data/samples/3.x/SampleApp/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=30-38,70-71)]
 
-Update the *Areas/Identity/Pages/Account/Register.cshtml* with the following highlighted markup:
+Update the `Areas/Identity/Pages/Account/Register.cshtml` with the following highlighted markup:
 
 [!code-cshtml[](add-user-data/samples/3.x/SampleApp/Areas/Identity/Pages/Account/Register.cshtml?highlight=16-25)]
 
@@ -416,7 +416,7 @@ dotnet new webapp -o WebApp1
 * From **Solution Explorer**, right-click on the project > **Add** > **New Scaffolded Item**.
 * From the left pane of the **Add Scaffold** dialog, select **Identity** > **Add**.
 * In the **Add Identity** dialog, the following options:
-  * Select the existing layout  file  *~/Pages/Shared/_Layout.cshtml*
+  * Select the existing layout  file  `~/Pages/Shared/_Layout.cshtml`
   * Select the following files to override:
     * **Account/Register**
     * **Account/Manage/Index**
@@ -464,38 +464,38 @@ Follow the instruction in [Migrations, UseAuthentication, and layout](xref:secur
   * Register a user
   * Select the new user name (next to the **Logout** link). You might need to expand the window or select the navigation bar icon to show the user name and other links.
   * Select the **Personal Data** tab.
-  * Select the **Download** button and examined the *PersonalData.json* file.
+  * Select the **Download** button and examined the `PersonalData.json` file.
   * Test the **Delete** button, which deletes the logged on user.
 
 ## Add custom user data to the Identity DB
 
-Update the `IdentityUser` derived class with custom properties. If you named the project WebApp1, the file is named *Areas/Identity/Data/WebApp1User.cs*. Update the file with the following code:
+Update the `IdentityUser` derived class with custom properties. If you named the project WebApp1, the file is named `Areas/Identity/Data/WebApp1User.cs`. Update the file with the following code:
 
 [!code-csharp[](add-user-data/samples/2.x/SampleApp/Areas/Identity/Data/WebApp1User.cs)]
 
 
 Properties with the [PersonalData](xref:Microsoft.AspNetCore.Identity.PersonalDataAttribute) attribute are:
 
-* Deleted when the *Areas/Identity/Pages/Account/Manage/DeletePersonalData.cshtml* Razor Page calls `UserManager.Delete`.
-* Included in the downloaded data by the *Areas/Identity/Pages/Account/Manage/DownloadPersonalData.cshtml* Razor Page.
+* Deleted when the `Areas/Identity/Pages/Account/Manage/DeletePersonalData.cshtml` Razor Page calls `UserManager.Delete`.
+* Included in the downloaded data by the `Areas/Identity/Pages/Account/Manage/DownloadPersonalData.cshtml` Razor Page.
 
 ### Update the Account/Manage/Index.cshtml page
 
-Update the `InputModel` in *Areas/Identity/Pages/Account/Manage/Index.cshtml.cs* with the following highlighted code:
+Update the `InputModel` in `Areas/Identity/Pages/Account/Manage/Index.cshtml.cs` with the following highlighted code:
 
 [!code-csharp[](add-user-data/samples/2.x/SampleApp/Areas/Identity/Pages/Account/Manage/Index.cshtml.cs?name=snippet&highlight=28-36,63-64,98-106,119)]
 
-Update the *Areas/Identity/Pages/Account/Manage/Index.cshtml* with the following highlighted markup:
+Update the `Areas/Identity/Pages/Account/Manage/Index.cshtml` with the following highlighted markup:
 
 [!code-cshtml[](add-user-data/samples/2.x/SampleApp/Areas/Identity/Pages/Account/Manage/Index.cshtml?highlight=35-42)]
 
 ### Update the Account/Register.cshtml page
 
-Update the `InputModel` in *Areas/Identity/Pages/Account/Register.cshtml.cs* with the following highlighted code:
+Update the `InputModel` in `Areas/Identity/Pages/Account/Register.cshtml.cs` with the following highlighted code:
 
 [!code-csharp[](add-user-data/samples/2.x/SampleApp/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=28-36,67,66)]
 
-Update the *Areas/Identity/Pages/Account/Register.cshtml* with the following highlighted markup:
+Update the `Areas/Identity/Pages/Account/Register.cshtml` with the following highlighted markup:
 
 [!code-cshtml[](add-user-data/samples/2.x/SampleApp/Areas/Identity/Pages/Account/Register.cshtml?highlight=16-25)]
 

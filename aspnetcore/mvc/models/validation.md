@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/02/2022
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/models/validation
 ---
 # Model validation in ASP.NET Core MVC and Razor Pages
@@ -215,7 +215,7 @@ Top-level nodes can use <xref:Microsoft.AspNetCore.Mvc.ModelBinding.BindRequired
 
 :::code language="csharp" source="validation/samples/6.x/ValidationSample/Controllers/UsersController.cs" id="snippet_CheckAgeSignature":::
 
-In the Check Age page (*CheckAge.cshtml*), there are two forms. The first form submits an `Age` value of `99` as a query string parameter: `https://localhost:5001/Users/CheckAge?Age=99`.
+In the Check Age page (`CheckAge.cshtml`), there are two forms. The first form submits an `Age` value of `99` as a query string parameter: `https://localhost:5001/Users/CheckAge?Age=99`.
 
 When a properly formatted `age` parameter from the query string is submitted, the form validates.
 
@@ -239,7 +239,7 @@ Validation is automatically short-circuited (skipped) if the model graph doesn't
 
 Client-side validation prevents submission until the form is valid. The Submit button runs JavaScript that either submits the form or displays error messages.
 
-Client-side validation avoids an unnecessary round trip to the server when there are input errors on a form. The following script references in *_Layout.cshtml* and *_ValidationScriptsPartial.cshtml* support client-side validation:
+Client-side validation avoids an unnecessary round trip to the server when there are input errors on a form. The following script references in `_Layout.cshtml` and `_ValidationScriptsPartial.cshtml` support client-side validation:
 
 :::code language="cshtml" source="validation/samples/6.x/ValidationSample/Views/Shared/_Layout.cshtml" id="snippet_Scripts":::
 
@@ -376,7 +376,7 @@ The following code disables client validation in Razor Pages:
 
 Other options to disable client-side validation:
 
-* Comment out the reference to `_ValidationScriptsPartial` in all the *.cshtml* files.
+* Comment out the reference to `_ValidationScriptsPartial` in all the `.cshtml` files.
 * Remove the contents of the *Pages\Shared\_ValidationScriptsPartial.cshtml* file.
 
 The preceding approach won't prevent client-side validation of ASP.NET Core Identity Razor Class Library. For more information, see <xref:security/authentication/scaffold-identity>.
@@ -586,7 +586,7 @@ Top-level nodes can use <xref:Microsoft.AspNetCore.Mvc.ModelBinding.BindRequired
 
 :::code language="csharp" source="validation/samples/3.x/ValidationSample/Controllers/UsersController.cs" id="snippet_CheckAgeSignature":::
 
-In the Check Age page (*CheckAge.cshtml*), there are two forms. The first form submits an `Age` value of `99` as a query string parameter: `https://localhost:5001/Users/CheckAge?Age=99`.
+In the Check Age page (`CheckAge.cshtml`), there are two forms. The first form submits an `Age` value of `99` as a query string parameter: `https://localhost:5001/Users/CheckAge?Age=99`.
 
 When a properly formatted `age` parameter from the query string is submitted, the form validates.
 
@@ -610,7 +610,7 @@ Validation is automatically short-circuited (skipped) if the model graph doesn't
 
 Client-side validation prevents submission until the form is valid. The Submit button runs JavaScript that either submits the form or displays error messages.
 
-Client-side validation avoids an unnecessary round trip to the server when there are input errors on a form. The following script references in *_Layout.cshtml* and *_ValidationScriptsPartial.cshtml* support client-side validation:
+Client-side validation avoids an unnecessary round trip to the server when there are input errors on a form. The following script references in `_Layout.cshtml` and `_ValidationScriptsPartial.cshtml` support client-side validation:
 
 :::code language="cshtml" source="validation/samples/3.x/ValidationSample/Views/Shared/_Layout.cshtml" id="snippet_Scripts":::
 
@@ -747,7 +747,7 @@ The following code disables client validation in Razor Pages:
 
 Other options to disable client-side validation:
 
-* Comment out the reference to `_ValidationScriptsPartial` in all the *.cshtml* files.
+* Comment out the reference to `_ValidationScriptsPartial` in all the `.cshtml` files.
 * Remove the contents of the *Pages\Shared\_ValidationScriptsPartial.cshtml* file.
 
 The preceding approach won't prevent client-side validation of ASP.NET Core Identity Razor Class Library. For more information, see <xref:security/authentication/scaffold-identity>.

@@ -4,7 +4,7 @@ author: isaacrlevin
 description: Receive guidance for migrating existing ASP.NET MVC or Web API apps to ASP.NET Core.web
 ms.author: scaddie
 ms.date: 10/18/2019
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: migration/proper-to-2x/index
 ---
 # Migrate from ASP.NET to ASP.NET Core
@@ -35,7 +35,7 @@ When the metapackage is used, no packages referenced in the metapackage are depl
 
 ## Project structure differences
 
-The *.csproj* file format has been simplified in ASP.NET Core. Some notable changes include:
+The `.csproj` file format has been simplified in ASP.NET Core. Some notable changes include:
 
 - Explicit inclusion of files isn't necessary for them to be considered part of the project. This reduces the risk of XML merge conflicts when working on large teams.
 - There are no GUID-based references to other projects, which improves file readability.

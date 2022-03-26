@@ -5,7 +5,7 @@ description: Learn how to use NSwag to generate documentation and help pages for
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 12/05/2019
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/get-started-with-nswag
 ---
 # Get started with NSwag and ASP.NET Core
@@ -38,7 +38,7 @@ Use one of the following approaches to install the NSwag NuGet package:
 
 * From the **Package Manager Console** window:
   * Go to **View** > **Other Windows** > **Package Manager Console**
-  * Navigate to the directory in which the *TodoApi.csproj* file exists
+  * Navigate to the directory in which the `TodoApi.csproj` file exists
   * Execute the following command:
 
     ```powershell
@@ -97,7 +97,7 @@ You can take advantage of NSwag's code generation capabilities by choosing one o
 ### Generate code with NSwagStudio
 
 * Install NSwagStudio by following the instructions at the [NSwagStudio GitHub repository](https://github.com/RicoSuter/NSwag/wiki/NSwagStudio). On the NSwag release page you can download an xcopy version which can be started without installation and admin privileges.
-* Launch NSwagStudio and enter the *swagger.json* file URL in the **Swagger Specification URL** text box. For example, *http://localhost:44354/swagger/v1/swagger.json*.
+* Launch NSwagStudio and enter the `swagger.json` file URL in the **Swagger Specification URL** text box. For example, `http://localhost:44354/swagger/v1/swagger.json`.
 * Click the **Create local Copy** button to generate a JSON representation of your Swagger specification.
 
   ![Create local copy of Swagger specification](web-api-help-pages-using-swagger/_static/CreateLocalCopy-NSwagStudio.PNG)
@@ -182,21 +182,21 @@ To enable XML comments, perform the following steps:
 
 # [Visual Studio](#tab/visual-studio)
 
-* Right-click the project in **Solution Explorer** and select **Edit <project_name>.csproj**.
-* Manually add the highlighted lines to the *.csproj* file:
+* Right-click the project in **Solution Explorer** and select *`Edit <project_name>.csproj`*.
+* Manually add the highlighted lines to the `.csproj` file:
 
 [!code-xml[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag/TodoApi.csproj?name=snippet_DocumentationFileElement&highlight=1-2,4)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * From the *Solution Pad*, press **control** and click the project name. Navigate to **Tools** > **Edit File**.
-* Manually add the highlighted lines to the *.csproj* file:
+* Manually add the highlighted lines to the `.csproj` file:
 
 [!code-xml[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag/TodoApi.csproj?name=snippet_DocumentationFileElement&highlight=1-2,4)]
 
 # [.NET Core CLI](#tab/netcore-cli)
 
-Manually add the highlighted lines to the *.csproj* file:
+Manually add the highlighted lines to the `.csproj` file:
 
 [!code-xml[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag/TodoApi.csproj?name=snippet_DocumentationFileElement&highlight=1-2,4)]
 
@@ -250,7 +250,7 @@ Use one of the following approaches to install the NSwag NuGet package:
 
 * From the **Package Manager Console** window:
   * Go to **View** > **Other Windows** > **Package Manager Console**
-  * Navigate to the directory in which the *TodoApi.csproj* file exists
+  * Navigate to the directory in which the `TodoApi.csproj` file exists
   * Execute the following command:
 
     ```powershell
@@ -309,7 +309,7 @@ You can take advantage of NSwag's code generation capabilities by choosing one o
 ### Generate code with NSwagStudio
 
 * Install NSwagStudio by following the instructions at the [NSwagStudio GitHub repository](https://github.com/RicoSuter/NSwag/wiki/NSwagStudio). On the NSwag release page you can download an xcopy version which can be started without installation and admin privileges.
-* Launch NSwagStudio and enter the *swagger.json* file URL in the **Swagger Specification URL** text box. For example, *http://localhost:44354/swagger/v1/swagger.json*.
+* Launch NSwagStudio and enter the `swagger.json` file URL in the **Swagger Specification URL** text box. For example, `http://localhost:44354/swagger/v1/swagger.json`.
 * Click the **Create local Copy** button to generate a JSON representation of your Swagger specification.
 
   ![Create local copy of Swagger specification](web-api-help-pages-using-swagger/_static/CreateLocalCopy-NSwagStudio.PNG)
@@ -394,21 +394,21 @@ To enable XML comments, perform the following steps:
 
 # [Visual Studio](#tab/visual-studio)
 
-* Right-click the project in **Solution Explorer** and select **Edit <project_name>.csproj**.
-* Manually add the highlighted lines to the *.csproj* file:
+* Right-click the project in **Solution Explorer** and select *`Edit <project_name>.csproj`*.
+* Manually add the highlighted lines to the `.csproj` file:
 
 [!code-xml[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag/TodoApi.csproj?name=snippet_DocumentationFileElement&highlight=1-2,4)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * From the *Solution Pad*, press **control** and click the project name. Navigate to **Tools** > **Edit File**.
-* Manually add the highlighted lines to the *.csproj* file:
+* Manually add the highlighted lines to the `.csproj` file:
 
 [!code-xml[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag/TodoApi.csproj?name=snippet_DocumentationFileElement&highlight=1-2,4)]
 
 # [.NET Core CLI](#tab/netcore-cli)
 
-Manually add the highlighted lines to the *.csproj* file:
+Manually add the highlighted lines to the `.csproj` file:
 
 [!code-xml[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag/TodoApi.csproj?name=snippet_DocumentationFileElement&highlight=1-2,4)]
 

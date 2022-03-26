@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 08/21/2020
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/models/file-uploads
 ---
 # Upload files in ASP.NET Core
@@ -109,7 +109,7 @@ Streaming large files is covered in the [Upload large files with streaming](#upl
 
 To upload small files, use a multipart form or construct a POST request using JavaScript.
 
-The following example demonstrates the use of a Razor Pages form to upload a single file (*Pages/BufferedSingleFileUploadPhysical.cshtml* in the sample app):
+The following example demonstrates the use of a Razor Pages form to upload a single file (`Pages/BufferedSingleFileUploadPhysical.cshtml` in the sample app):
 
 ```cshtml
 <form enctype="multipart/form-data" method="post">
@@ -292,7 +292,7 @@ The path passed to the <xref:System.IO.FileStream> *must* include the file name.
 
 Files uploaded using the <xref:Microsoft.AspNetCore.Http.IFormFile> technique are buffered in memory or on disk on the server before processing. Inside the action method, the <xref:Microsoft.AspNetCore.Http.IFormFile> contents are accessible as a <xref:System.IO.Stream>. In addition to the local file system, files can be saved to a network share or to a file storage service, such as [Azure Blob storage](/azure/visual-studio/vs-storage-aspnet5-getting-started-blobs).
 
-For another example that loops over multiple files for upload and uses safe file names, see *Pages/BufferedMultipleFileUploadPhysical.cshtml.cs* in the sample app.
+For another example that loops over multiple files for upload and uses safe file names, see `Pages/BufferedMultipleFileUploadPhysical.cshtml.cs` in the sample app.
 
 > [!WARNING]
 > [Path.GetTempFileName](xref:System.IO.Path.GetTempFileName*) throws an <xref:System.IO.IOException> if more than 65,535 files are created without deleting previous temporary files. The limit of 65,535 files is a per-server limit. For more information on this limit on Windows OS, see the remarks in the following topics:
@@ -385,8 +385,8 @@ public async Task<IActionResult> OnPostUploadAsync()
 
 The preceding example is similar to a scenario demonstrated in the sample app:
 
-* *Pages/BufferedSingleFileUploadDb.cshtml*
-* *Pages/BufferedSingleFileUploadDb.cshtml.cs*
+* `Pages/BufferedSingleFileUploadDb.cshtml`
+* `Pages/BufferedSingleFileUploadDb.cshtml.cs`
 
 > [!WARNING]
 > Use caution when storing binary data in relational databases, as it can adversely impact performance.
@@ -420,7 +420,7 @@ The complete `StreamingController.UploadDatabase` method for streaming to a data
 
 [!code-csharp[](file-uploads/samples/3.x/SampleApp/Controllers/StreamingController.cs?name=snippet_UploadDatabase)]
 
-`MultipartRequestHelper` (*Utilities/MultipartRequestHelper.cs*):
+`MultipartRequestHelper` (`Utilities/MultipartRequestHelper.cs`):
 
 [!code-csharp[](file-uploads/samples/3.x/SampleApp/Utilities/MultipartRequestHelper.cs)]
 
@@ -432,7 +432,7 @@ In the sample app, validation checks are handled by `FileHelpers.ProcessStreamed
 
 ## Validation
 
-The sample app's `FileHelpers` class demonstrates several checks for buffered <xref:Microsoft.AspNetCore.Http.IFormFile> and streamed file uploads. For processing <xref:Microsoft.AspNetCore.Http.IFormFile> buffered file uploads in the sample app, see the `ProcessFormFile` method in the *Utilities/FileHelpers.cs* file. For processing streamed files, see the `ProcessStreamedFile` method in the same file.
+The sample app's `FileHelpers` class demonstrates several checks for buffered <xref:Microsoft.AspNetCore.Http.IFormFile> and streamed file uploads. For processing <xref:Microsoft.AspNetCore.Http.IFormFile> buffered file uploads in the sample app, see the `ProcessFormFile` method in the `Utilities/FileHelpers.cs` file. For processing streamed files, see the `ProcessStreamedFile` method in the same file.
 
 > [!WARNING]
 > The validation processing methods demonstrated in the sample app don't scan the content of uploaded files. In most production scenarios, a virus/malware scanner API is used on the file before making the file available to users or other systems.
@@ -833,7 +833,7 @@ Streaming large files is covered in the [Upload large files with streaming](#upl
 
 To upload small files, use a multipart form or construct a POST request using JavaScript.
 
-The following example demonstrates the use of a Razor Pages form to upload a single file (*Pages/BufferedSingleFileUploadPhysical.cshtml* in the sample app):
+The following example demonstrates the use of a Razor Pages form to upload a single file (`Pages/BufferedSingleFileUploadPhysical.cshtml` in the sample app):
 
 ```cshtml
 <form enctype="multipart/form-data" method="post">
@@ -1016,7 +1016,7 @@ The path passed to the <xref:System.IO.FileStream> *must* include the file name.
 
 Files uploaded using the <xref:Microsoft.AspNetCore.Http.IFormFile> technique are buffered in memory or on disk on the server before processing. Inside the action method, the <xref:Microsoft.AspNetCore.Http.IFormFile> contents are accessible as a <xref:System.IO.Stream>. In addition to the local file system, files can be saved to a network share or to a file storage service, such as [Azure Blob storage](/azure/visual-studio/vs-storage-aspnet5-getting-started-blobs).
 
-For another example that loops over multiple files for upload and uses safe file names, see *Pages/BufferedMultipleFileUploadPhysical.cshtml.cs* in the sample app.
+For another example that loops over multiple files for upload and uses safe file names, see `Pages/BufferedMultipleFileUploadPhysical.cshtml.cs` in the sample app.
 
 > [!WARNING]
 > [Path.GetTempFileName](xref:System.IO.Path.GetTempFileName*) throws an <xref:System.IO.IOException> if more than 65,535 files are created without deleting previous temporary files. The limit of 65,535 files is a per-server limit. For more information on this limit on Windows OS, see the remarks in the following topics:
@@ -1109,8 +1109,8 @@ public async Task<IActionResult> OnPostUploadAsync()
 
 The preceding example is similar to a scenario demonstrated in the sample app:
 
-* *Pages/BufferedSingleFileUploadDb.cshtml*
-* *Pages/BufferedSingleFileUploadDb.cshtml.cs*
+* `Pages/BufferedSingleFileUploadDb.cshtml`
+* `Pages/BufferedSingleFileUploadDb.cshtml.cs`
 
 > [!WARNING]
 > Use caution when storing binary data in relational databases, as it can adversely impact performance.
@@ -1144,7 +1144,7 @@ The complete `StreamingController.UploadDatabase` method for streaming to a data
 
 [!code-csharp[](file-uploads/samples/3.x/SampleApp/Controllers/StreamingController.cs?name=snippet_UploadDatabase)]
 
-`MultipartRequestHelper` (*Utilities/MultipartRequestHelper.cs*):
+`MultipartRequestHelper` (`Utilities/MultipartRequestHelper.cs`):
 
 [!code-csharp[](file-uploads/samples/3.x/SampleApp/Utilities/MultipartRequestHelper.cs)]
 
@@ -1156,7 +1156,7 @@ In the sample app, validation checks are handled by `FileHelpers.ProcessStreamed
 
 ## Validation
 
-The sample app's `FileHelpers` class demonstrates a several checks for buffered <xref:Microsoft.AspNetCore.Http.IFormFile> and streamed file uploads. For processing <xref:Microsoft.AspNetCore.Http.IFormFile> buffered file uploads in the sample app, see the `ProcessFormFile` method in the *Utilities/FileHelpers.cs* file. For processing streamed files, see the `ProcessStreamedFile` method in the same file.
+The sample app's `FileHelpers` class demonstrates a several checks for buffered <xref:Microsoft.AspNetCore.Http.IFormFile> and streamed file uploads. For processing <xref:Microsoft.AspNetCore.Http.IFormFile> buffered file uploads in the sample app, see the `ProcessFormFile` method in the `Utilities/FileHelpers.cs` file. For processing streamed files, see the `ProcessStreamedFile` method in the same file.
 
 > [!WARNING]
 > The validation processing methods demonstrated in the sample app don't scan the content of uploaded files. In most production scenarios, a virus/malware scanner API is used on the file before making the file available to users or other systems.
@@ -1568,7 +1568,7 @@ Streaming large files is covered in the [Upload large files with streaming](#upl
 
 To upload small files, use a multipart form or construct a POST request using JavaScript.
 
-The following example demonstrates the use of a Razor Pages form to upload a single file (*Pages/BufferedSingleFileUploadPhysical.cshtml* in the sample app):
+The following example demonstrates the use of a Razor Pages form to upload a single file (`Pages/BufferedSingleFileUploadPhysical.cshtml` in the sample app):
 
 ```cshtml
 <form enctype="multipart/form-data" method="post">
@@ -1751,7 +1751,7 @@ The path passed to the <xref:System.IO.FileStream> *must* include the file name.
 
 Files uploaded using the <xref:Microsoft.AspNetCore.Http.IFormFile> technique are buffered in memory or on disk on the server before processing. Inside the action method, the <xref:Microsoft.AspNetCore.Http.IFormFile> contents are accessible as a <xref:System.IO.Stream>. In addition to the local file system, files can be saved to a network share or to a file storage service, such as [Azure Blob storage](/azure/visual-studio/vs-storage-aspnet5-getting-started-blobs).
 
-For another example that loops over multiple files for upload and uses safe file names, see *Pages/BufferedMultipleFileUploadPhysical.cshtml.cs* in the sample app.
+For another example that loops over multiple files for upload and uses safe file names, see `Pages/BufferedMultipleFileUploadPhysical.cshtml.cs` in the sample app.
 
 > [!WARNING]
 > [Path.GetTempFileName](xref:System.IO.Path.GetTempFileName*) throws an <xref:System.IO.IOException> if more than 65,535 files are created without deleting previous temporary files. The limit of 65,535 files is a per-server limit. For more information on this limit on Windows OS, see the remarks in the following topics:
@@ -1844,8 +1844,8 @@ public async Task<IActionResult> OnPostUploadAsync()
 
 The preceding example is similar to a scenario demonstrated in the sample app:
 
-* *Pages/BufferedSingleFileUploadDb.cshtml*
-* *Pages/BufferedSingleFileUploadDb.cshtml.cs*
+* `Pages/BufferedSingleFileUploadDb.cshtml`
+* `Pages/BufferedSingleFileUploadDb.cshtml.cs`
 
 > [!WARNING]
 > Use caution when storing binary data in relational databases, as it can adversely impact performance.
@@ -1879,7 +1879,7 @@ The complete `StreamingController.UploadDatabase` method for streaming to a data
 
 [!code-csharp[](file-uploads/samples/2.x/SampleApp/Controllers/StreamingController.cs?name=snippet_UploadDatabase)]
 
-`MultipartRequestHelper` (*Utilities/MultipartRequestHelper.cs*):
+`MultipartRequestHelper` (`Utilities/MultipartRequestHelper.cs`):
 
 [!code-csharp[](file-uploads/samples/2.x/SampleApp/Utilities/MultipartRequestHelper.cs)]
 
@@ -1891,7 +1891,7 @@ In the sample app, validation checks are handled by `FileHelpers.ProcessStreamed
 
 ## Validation
 
-The sample app's `FileHelpers` class demonstrates a several checks for buffered <xref:Microsoft.AspNetCore.Http.IFormFile> and streamed file uploads. For processing <xref:Microsoft.AspNetCore.Http.IFormFile> buffered file uploads in the sample app, see the `ProcessFormFile` method in the *Utilities/FileHelpers.cs* file. For processing streamed files, see the `ProcessStreamedFile` method in the same file.
+The sample app's `FileHelpers` class demonstrates a several checks for buffered <xref:Microsoft.AspNetCore.Http.IFormFile> and streamed file uploads. For processing <xref:Microsoft.AspNetCore.Http.IFormFile> buffered file uploads in the sample app, see the `ProcessFormFile` method in the `Utilities/FileHelpers.cs` file. For processing streamed files, see the `ProcessStreamedFile` method in the same file.
 
 > [!WARNING]
 > The validation processing methods demonstrated in the sample app don't scan the content of uploaded files. In most production scenarios, a virus/malware scanner API is used on the file before making the file available to users or other systems.

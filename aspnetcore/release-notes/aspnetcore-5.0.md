@@ -5,7 +5,7 @@ description: Learn about the new features in ASP.NET Core 5.0.
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/29/2020
-no-loc: ["Blazor Hybrid", Home, Privacy, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, Kestrel]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, Kestrel]
 uid: aspnetcore-5.0
 ---
 # What's new in ASP.NET Core 5.0
@@ -78,7 +78,7 @@ In ASP.NET Core 5.0, the web API templates enable the OpenAPI support by default
 	```
 * From Visual Studio: Uncheck **Enable OpenAPI support**.
 
-All *.csproj* files created for web API projects contain the [Swashbuckle.AspNetCore](https://www.nuget.org/packages/Swashbuckle.AspNetCore/) NuGet package reference.
+All `.csproj` files created for web API projects contain the [Swashbuckle.AspNetCore](https://www.nuget.org/packages/Swashbuckle.AspNetCore/) NuGet package reference.
 
 ```xml
 <ItemGroup>

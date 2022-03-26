@@ -5,7 +5,7 @@ description: Use Identity with an ASP.NET Core app. Learn how to set password re
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.date: 03/21/2022
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/identity
 ---
 # Introduction to Identity on ASP.NET Core
@@ -181,7 +181,7 @@ In the preceding code, the code `return RedirectToPage();` needs to be a redirec
 
 <xref:Microsoft.AspNetCore.Identity.SignInManager%601.SignOutAsync%2A> clears the user's claims stored in a cookie.
 
-Post is specified in the *Pages/Shared/_LoginPartial.cshtml*:
+Post is specified in the `Pages/Shared/_LoginPartial.cshtml`:
 
 [!code-cshtml[](identity/sample/WebApp3/Pages/Shared/_LoginPartial.cshtml?highlight=15)]
 
@@ -447,7 +447,7 @@ In the preceding code, the code `return RedirectToPage();` needs to be a redirec
 
 <xref:Microsoft.AspNetCore.Identity.SignInManager%601.SignOutAsync%2A> clears the user's claims stored in a cookie.
 
-Post is specified in the *Pages/Shared/_LoginPartial.cshtml*:
+Post is specified in the `Pages/Shared/_LoginPartial.cshtml`:
 
 [!code-cshtml[](identity/sample/WebApp3/Pages/Shared/_LoginPartial.cshtml?highlight=15)]
 
