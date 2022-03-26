@@ -1,4 +1,4 @@
-﻿
+
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
@@ -15,9 +15,9 @@ namespace MVCareas
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                   // webBuilder.UseStartup<Startup>();
-                    webBuilder.UseStartup<StartupMapAreaRoute>();
-                    webBuilder.UseStartup<Startup2>();
+                    webBuilder.UseStartup<Startup>();
+                    //webBuilder.UseStartup<StartupMapAreaRoute>();
+                    //webBuilder.UseStartup<Startup2>();
                 });
     }
 }

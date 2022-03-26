@@ -6,7 +6,7 @@ using MiddlewareExtensibilitySample.Models;
 
 namespace MiddlewareExtensibilitySample.Middleware
 {
-    #region snippet1
+    // <snippet1>
     public class ConventionalMiddleware
     {
         private readonly RequestDelegate _next;
@@ -35,5 +35,5 @@ namespace MiddlewareExtensibilitySample.Middleware
             await _next(context);
         }
     }
-    #endregion
+    // </snippet1>
 }

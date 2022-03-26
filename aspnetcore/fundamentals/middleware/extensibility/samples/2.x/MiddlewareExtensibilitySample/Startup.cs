@@ -11,7 +11,7 @@ namespace MiddlewareExtensibilitySample
 {
     public class Startup
     {
-        #region snippet1
+        // <snippet1>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDbContext>(options =>
@@ -22,9 +22,9 @@ namespace MiddlewareExtensibilitySample
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
-        #endregion
+        // </snippet1>
 
-        #region snippet2
+        // <snippet2>
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -43,6 +43,6 @@ namespace MiddlewareExtensibilitySample
             app.UseStaticFiles();
             app.UseMvc();
         }
-        #endregion
+        // </snippet2>
     }
 }
