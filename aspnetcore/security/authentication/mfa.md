@@ -66,28 +66,25 @@ MFA could be forced on users to access sensitive pages within an ASP.NET Core Id
 
 The demo code is setup using ASP.NET Core with Identity and Razor Pages. The `AddIdentity` method is used instead of `AddDefaultIdentity` one, so an `IUserClaimsPrincipalFactory` implementation can be used to add claims to the identity after a successful login.
 
+Program.cs
 ```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddDbContext<ApplicationDbContext>(options =>
-        options.UseSqlite(
-            Configuration.GetConnectionString("DefaultConnection")));
-    
-    services.AddIdentity<IdentityUser, IdentityRole>(
-            options => options.SignIn.RequireConfirmedAccount = false)
-        .AddEntityFrameworkStores<ApplicationDbContext>()
-        .AddDefaultTokenProviders();
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlite(
+        Configuration.GetConnectionString("DefaultConnection")));
 
-    services.AddSingleton<IEmailSender, EmailSender>();
-    services.AddScoped<IUserClaimsPrincipalFactory<IdentityUser>, 
-        AdditionalUserClaimsPrincipalFactory>();
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
+    options.SignIn.RequireConfirmedAccount = false)
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders();
 
-    services.AddAuthorization(options =>
-        options.AddPolicy("TwoFactorEnabled",
-            x => x.RequireClaim("amr", "mfa")));
+builder.Services.AddSingleton<IEmailSender, EmailSender>();
+builder.Services.AddScoped<IUserClaimsPrincipalFactory<IdentityUser>, 
+    AdditionalUserClaimsPrincipalFactory>();
 
-    services.AddRazorPages();
-}
+builder.Services.AddAuthorization(options =>
+    options.AddPolicy("TwoFactorEnabled", x => x.RequireClaim("amr", "mfa")));
+
+builder.Services.AddRazorPages();
 ```
 
 The `AdditionalUserClaimsPrincipalFactory` class adds the `amr` claim to the user claims only after a successful login. The claim's value is read from the database. The claim is added here because the user should only access the higher protected view if the identity has logged in with MFA. If the database view is read from the database directly instead of using the claim, it's possible to access the view without MFA directly after activating the MFA.
@@ -99,38 +96,37 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace IdentityStandaloneMfa
+namespace IdentityStandaloneMfa;
+
+public class AdditionalUserClaimsPrincipalFactory : 
+    UserClaimsPrincipalFactory<IdentityUser, IdentityRole>
 {
-    public class AdditionalUserClaimsPrincipalFactory : 
-        UserClaimsPrincipalFactory<IdentityUser, IdentityRole>
+    public AdditionalUserClaimsPrincipalFactory( 
+        UserManager<IdentityUser> userManager,
+        RoleManager<IdentityRole> roleManager, 
+        IOptions<IdentityOptions> optionsAccessor) 
+        : base(userManager, roleManager, optionsAccessor)
     {
-        public AdditionalUserClaimsPrincipalFactory( 
-            UserManager<IdentityUser> userManager,
-            RoleManager<IdentityRole> roleManager, 
-            IOptions<IdentityOptions> optionsAccessor) 
-            : base(userManager, roleManager, optionsAccessor)
+    }
+
+    public async override Task<ClaimsPrincipal> CreateAsync(IdentityUser user)
+    {
+        var principal = await base.CreateAsync(user);
+        var identity = (ClaimsIdentity)principal.Identity;
+
+        var claims = new List<Claim>();
+
+        if (user.TwoFactorEnabled)
         {
+            claims.Add(new Claim("amr", "mfa"));
+        }
+        else
+        {
+            claims.Add(new Claim("amr", "pwd"));
         }
 
-        public async override Task<ClaimsPrincipal> CreateAsync(IdentityUser user)
-        {
-            var principal = await base.CreateAsync(user);
-            var identity = (ClaimsIdentity)principal.Identity;
-
-            var claims = new List<Claim>();
-
-            if (user.TwoFactorEnabled)
-            {
-                claims.Add(new Claim("amr", "mfa"));
-            }
-            else
-            {
-                claims.Add(new Claim("amr", "pwd"));
-            }
-
-            identity.AddClaims(claims);
-            return principal;
-        }
+        identity.AddClaims(claims);
+        return principal;
     }
 }
 ```
@@ -163,28 +159,27 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace IdentityStandaloneMfa
+namespace IdentityStandaloneMfa;
+
+public class AdminModel : PageModel
 {
-    public class AdminModel : PageModel
+    public IActionResult OnGet()
     {
-        public IActionResult OnGet()
+        var claimTwoFactorEnabled = 
+            User.Claims.FirstOrDefault(t => t.Type == "amr");
+
+        if (claimTwoFactorEnabled != null && 
+            "mfa".Equals(claimTwoFactorEnabled.Value))
         {
-            var claimTwoFactorEnabled = 
-                User.Claims.FirstOrDefault(t => t.Type == "amr");
-
-            if (claimTwoFactorEnabled != null && 
-                "mfa".Equals(claimTwoFactorEnabled.Value))
-            {
-                // You logged in with MFA, do the administrative stuff
-            }
-            else
-            {
-                return Redirect(
-                    "/Identity/Account/Manage/TwoFactorAuthentication");
-            }
-
-            return Page();
+            // You logged in with MFA, do the administrative stuff
         }
+        else
+        {
+            return Redirect(
+                "/Identity/Account/Manage/TwoFactorAuthentication");
+        }
+
+        return Page();
     }
 }
 ```
@@ -194,7 +189,7 @@ namespace IdentityStandaloneMfa
 An authorization policy was added at startup. The policy requires the `amr` claim with the value `mfa`.
 
 ```csharp
-services.AddAuthorization(options =>
+builder.Services.AddAuthorization(options =>
     options.AddPolicy("TwoFactorEnabled",
         x => x.RequireClaim("amr", "mfa")));
 ```
@@ -257,38 +252,36 @@ The ASP.NET Core Razor Pages OpenID Connect client app uses the `AddOpenIdConnec
 For recommended `acr_values` parameter values, see [Authentication Method Reference Values](https://tools.ietf.org/html/draft-ietf-oauth-amr-values-08).
 
 ```csharp
-public void ConfigureServices(IServiceCollection services)
+builder.Services.AddAuthentication(options =>
 {
-    services.AddAuthentication(options =>
+    options.DefaultScheme =
+        CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme =
+        OpenIdConnectDefaults.AuthenticationScheme;
+})
+.AddCookie()
+.AddOpenIdConnect(options =>
+{
+    options.SignInScheme =
+        CookieAuthenticationDefaults.AuthenticationScheme;
+    options.Authority = "<OpenID Connect server URL>";
+    options.RequireHttpsMetadata = true;
+    options.ClientId = "<OpenID Connect client ID>";
+    options.ClientSecret = "<>";
+    // Code with PKCE can also be used here
+    options.ResponseType = "code id_token";
+    options.Scope.Add("profile");
+    options.Scope.Add("offline_access");
+    options.SaveTokens = true;
+    options.Events = new OpenIdConnectEvents
     {
-        options.DefaultScheme =
-            CookieAuthenticationDefaults.AuthenticationScheme;
-        options.DefaultChallengeScheme =
-            OpenIdConnectDefaults.AuthenticationScheme;
-    })
-    .AddCookie()
-    .AddOpenIdConnect(options =>
-    {
-        options.SignInScheme =
-            CookieAuthenticationDefaults.AuthenticationScheme;
-        options.Authority = "<OpenID Connect server URL>";
-        options.RequireHttpsMetadata = true;
-        options.ClientId = "<OpenID Connect client ID>";
-        options.ClientSecret = "<>";
-        // Code with PKCE can also be used here
-        options.ResponseType = "code id_token";
-        options.Scope.Add("profile");
-        options.Scope.Add("offline_access");
-        options.SaveTokens = true;
-        options.Events = new OpenIdConnectEvents
+        OnRedirectToIdentityProvider = context =>
         {
-            OnRedirectToIdentityProvider = context =>
-            {
-                context.ProtocolMessage.SetParameter("acr_values", "mfa");
-                return Task.FromResult(0);
-            }
-        };
-    });
+            context.ProtocolMessage.SetParameter("acr_values", "mfa");
+            return Task.FromResult(0);
+        }
+    };
+});
 ```
 
 ### Example OpenID Connect IdentityServer 4 server with ASP.NET Core Identity
@@ -410,10 +403,9 @@ To validate the MFA requirement, an `IAuthorizationRequirement` requirement is c
 ```csharp
 using Microsoft.AspNetCore.Authorization;
  
-namespace AspNetCoreRequireMfaOidc
-{
-    public class RequireMfa : IAuthorizationRequirement{}
-}
+namespace AspNetCoreRequireMfaOidc;
+
+public class RequireMfa : IAuthorizationRequirement {}
 ```
 
 An `AuthorizationHandler` is implemented that will use the `amr` claim and check for the value `mfa`. The `amr` is returned in the `id_token` of a successful authentication and can have many different values as defined in the [Authentication Method Reference Values](https://tools.ietf.org/html/draft-ietf-oauth-amr-values-08) specification.
@@ -439,29 +431,28 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AspNetCoreRequireMfaOidc
+namespace AspNetCoreRequireMfaOidc;
+
+public class RequireMfaHandler : AuthorizationHandler<RequireMfa>
 {
-    public class RequireMfaHandler : AuthorizationHandler<RequireMfa>
+    protected override Task HandleRequirementAsync(
+        AuthorizationHandlerContext context, 
+        RequireMfa requirement)
     {
-        protected override Task HandleRequirementAsync(
-            AuthorizationHandlerContext context, 
-            RequireMfa requirement)
+        if (context == null)
+            throw new ArgumentNullException(nameof(context));
+        if (requirement == null)
+            throw new ArgumentNullException(nameof(requirement));
+
+        var amrClaim =
+            context.User.Claims.FirstOrDefault(t => t.Type == "amr");
+
+        if (amrClaim != null && amrClaim.Value == Amr.Mfa)
         {
-            if (context == null)
-                throw new ArgumentNullException(nameof(context));
-            if (requirement == null)
-                throw new ArgumentNullException(nameof(requirement));
-
-            var amrClaim =
-                context.User.Claims.FirstOrDefault(t => t.Type == "amr");
-
-            if (amrClaim != null && amrClaim.Value == Amr.Mfa)
-            {
-                context.Succeed(requirement);
-            }
-
-            return Task.CompletedTask;
+            context.Succeed(requirement);
         }
+
+        return Task.CompletedTask;
     }
 }
 ```
@@ -469,46 +460,43 @@ namespace AspNetCoreRequireMfaOidc
 In the `Startup.ConfigureServices` method, the `AddOpenIdConnect` method is used as the default challenge scheme. The authorization handler, which is used to check the `amr` claim, is added to the Inversion of Control container. A policy is then created which adds the `RequireMfa` requirement.
 
 ```csharp
-public void ConfigureServices(IServiceCollection services)
+builder.Services.ConfigureApplicationCookie(options =>
+    options.Cookie.SecurePolicy =
+        CookieSecurePolicy.Always);
+
+builder.Services.AddSingleton<IAuthorizationHandler, RequireMfaHandler>();
+
+builder.Services.AddAuthentication(options =>
 {
-    services.ConfigureApplicationCookie(options =>
-        options.Cookie.SecurePolicy =
-            CookieSecurePolicy.Always);
+    options.DefaultScheme =
+        CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme =
+        OpenIdConnectDefaults.AuthenticationScheme;
+})
+.AddCookie()
+.AddOpenIdConnect(options =>
+{
+    options.SignInScheme =
+        CookieAuthenticationDefaults.AuthenticationScheme;
+    options.Authority = "https://localhost:44352";
+    options.RequireHttpsMetadata = true;
+    options.ClientId = "AspNetCoreRequireMfaOidc";
+    options.ClientSecret = "AspNetCoreRequireMfaOidcSecret";
+    options.ResponseType = "code id_token";
+    options.Scope.Add("profile");
+    options.Scope.Add("offline_access");
+    options.SaveTokens = true;
+});
 
-    services.AddSingleton<IAuthorizationHandler, RequireMfaHandler>();
-
-    services.AddAuthentication(options =>
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("RequireMfa", policyIsAdminRequirement =>
     {
-        options.DefaultScheme =
-            CookieAuthenticationDefaults.AuthenticationScheme;
-        options.DefaultChallengeScheme =
-            OpenIdConnectDefaults.AuthenticationScheme;
-    })
-    .AddCookie()
-    .AddOpenIdConnect(options =>
-    {
-        options.SignInScheme =
-            CookieAuthenticationDefaults.AuthenticationScheme;
-        options.Authority = "https://localhost:44352";
-        options.RequireHttpsMetadata = true;
-        options.ClientId = "AspNetCoreRequireMfaOidc";
-        options.ClientSecret = "AspNetCoreRequireMfaOidcSecret";
-        options.ResponseType = "code id_token";
-        options.Scope.Add("profile");
-        options.Scope.Add("offline_access");
-        options.SaveTokens = true;
+        policyIsAdminRequirement.Requirements.Add(new RequireMfa());
     });
+});
 
-    services.AddAuthorization(options =>
-    {
-        options.AddPolicy("RequireMfa", policyIsAdminRequirement =>
-        {
-            policyIsAdminRequirement.Requirements.Add(new RequireMfa());
-        });
-    });
-
-    services.AddRazorPages();
-}
+builder.Services.AddRazorPages();
 ```
 
 This policy is then used in the Razor page as required. The policy could be added globally for the entire app as well.
@@ -523,21 +511,20 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
-namespace AspNetCoreRequireMfaOidc.Pages
+namespace AspNetCoreRequireMfaOidc.Pages;
+
+[Authorize(Policy= "RequireMfa")]
+public class IndexModel : PageModel
 {
-    [Authorize(Policy= "RequireMfa")]
-    public class IndexModel : PageModel
+    private readonly ILogger<IndexModel> _logger;
+
+    public IndexModel(ILogger<IndexModel> logger)
     {
-        private readonly ILogger<IndexModel> _logger;
+        _logger = logger;
+    }
 
-        public IndexModel(ILogger<IndexModel> logger)
-        {
-            _logger = logger;
-        }
-
-        public void OnGet()
-        {
-        }
+    public void OnGet()
+    {
     }
 }
 ```
