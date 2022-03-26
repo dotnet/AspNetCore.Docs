@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 3/5/2022
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: test/debug-aspnetcore-source
 ---
 # Debug .NET and ASP.NET Core source code with Visual Studio

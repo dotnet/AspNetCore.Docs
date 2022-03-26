@@ -6,7 +6,7 @@ monikerRange: ">= aspnetcore-2.1"
 ms.author: bradyg
 ms.custom: mvc
 ms.date: 03/15/2022
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/signalr-typescript-webpack
 ---
 # Tutorial: Get started with ASP.NET Core SignalR using TypeScript and Webpack

@@ -5,7 +5,7 @@ description: Use Identity with an ASP.NET Core app. Learn how to set password re
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.date: 03/21/2022
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/identity
 ---
 # Introduction to Identity on ASP.NET Core
