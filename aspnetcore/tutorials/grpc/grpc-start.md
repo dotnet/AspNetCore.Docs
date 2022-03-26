@@ -3,7 +3,7 @@ title: Create a .NET Core gRPC client and server in ASP.NET Core
 author: jamesnk
 description: This tutorial shows how to create a gRPC Service and gRPC client on ASP.NET Core. Learn how to create a gRPC Service project, edit a proto file, and add a duplex streaming call.
 ms.author: jamesnk
-ms.date: 10/19/2021
+ms.date: 03/22/2022
 no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/grpc/grpc-start
 ---
@@ -75,11 +75,11 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
  
 [!INCLUDE[](~/includes/run-the-app6.0.md)]
 
-The logs show the service listening on `https://localhost:7042`.
+The logs show the service listening on `https://localhost:<port>`, where `<port>` is the localhost port number randomly assigned when the project is created and set in `Properties/launchSettings.json`.
 
 ```console
 info: Microsoft.Hosting.Lifetime[0]
-      Now listening on: https://localhost:7042
+      Now listening on: https://localhost:<port>
 info: Microsoft.Hosting.Lifetime[0]
       Application started. Press Ctrl+C to shut down.
 info: Microsoft.Hosting.Lifetime[0]
@@ -219,9 +219,11 @@ dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 
 * Build the client project to create the types in the `GrpcGreeterClient` namespace. The `GrpcGreeterClient` types are generated automatically by the build process.
 
-* Update the gRPC client `Program.cs` file with the following code:
+* Update the gRPC client `Program.cs` file with the following code.
 
-  [!code-csharp[](~/tutorials/grpc/grpc-start/sample6/GrpcGreeterClient/Program.cs?name=snippet2)]
+  [!code-csharp[](~/tutorials/grpc/grpc-start/sample6/GrpcGreeterClient/Program.cs?name=snippet2&highlight=6)]
+
+* In the preceding highlighted code, replace the localhost port number `7042` with the `HTTPS` port number specified in `Properties/launchSettings.json` within the `GrpcGreeter` service project.
 
 `Program.cs` contains the entry point and logic for the gRPC client.
 
@@ -272,7 +274,7 @@ The gRPC service records the details of the successful call in the logs written 
 
 ```console
 info: Microsoft.Hosting.Lifetime[0]
-      Now listening on: https://localhost:7042
+      Now listening on: https://localhost:<port>
 info: Microsoft.Hosting.Lifetime[0]
       Application started. Press Ctrl+C to shut down.
 info: Microsoft.Hosting.Lifetime[0]
@@ -280,7 +282,7 @@ info: Microsoft.Hosting.Lifetime[0]
 info: Microsoft.Hosting.Lifetime[0]
       Content root path: C:\GH\aspnet\docs\4\Docs\aspnetcore\tutorials\grpc\grpc-start\sample\GrpcGreeter
 info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
-      Request starting HTTP/2 POST https://localhost:7042/Greet.Greeter/SayHello application/grpc
+      Request starting HTTP/2 POST https://localhost:<port>/Greet.Greeter/SayHello application/grpc
 info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
       Executing endpoint 'gRPC - /Greet.Greeter/SayHello'
 info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
