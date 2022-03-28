@@ -7,7 +7,7 @@ namespace SignalRChat.Hubs
 {
     public class ChatHub : Hub
     {
-        #region HubMethods
+        // <HubMethods>
         public Task SendMessage(string user, string message)
         {
             return Clients.All.SendAsync("ReceiveMessage", user, message);
@@ -22,37 +22,37 @@ namespace SignalRChat.Hubs
         {
             return Clients.Group("SignalR Users").SendAsync("ReceiveMessage", user, message);
         }
-        #endregion
+        // </HubMethods>
 
-        #region HubMethodName
+        // <HubMethodName>
         [HubMethodName("SendMessageToUser")]
         public Task DirectMessage(string user, string message)
         {
             return Clients.User(user).SendAsync("ReceiveMessage", user, message);
         }
-        #endregion
+        // </HubMethodName>
 
-        #region ThrowHubException
+        // <ThrowHubException>
         public Task ThrowException()
         {
             throw new HubException("This error will be sent to the client!");
         }
-        #endregion
+        // </ThrowHubException>
 
-        #region OnConnectedAsync
+        // <OnConnectedAsync>
         public override async Task OnConnectedAsync()
         {
             await Groups.AddToGroupAsync(Context.ConnectionId, "SignalR Users");
             await base.OnConnectedAsync();
         }
-        #endregion
+        // </OnConnectedAsync>
 
-        #region OnDisconnectedAsync
+        // <OnDisconnectedAsync>
         public override async Task OnDisconnectedAsync(Exception exception)
         {
             await Groups.RemoveFromGroupAsync(Context.ConnectionId, "SignalR Users");
             await base.OnDisconnectedAsync(exception);
         }
-        #endregion
+        // </OnDisconnectedAsync>
     }
 }
