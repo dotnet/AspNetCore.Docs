@@ -16,7 +16,7 @@ uid: signalr/hubs
 
 By [Rachel Appel](https://twitter.com/rachelappel) and [Kevin Griffin](https://twitter.com/1kevgriff)
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/hubs/sample/ ) [(how to download)](xref:index#how-to-download-a-sample)
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/hubs/samples/) [(how to download)](xref:index#how-to-download-a-sample)
 
 ## What is a SignalR hub
 
@@ -88,7 +88,7 @@ The <xref:Microsoft.AspNetCore.SignalR.Hub> class has a <xref:Microsoft.AspNetCo
 |--|--|
 | <xref:Microsoft.AspNetCore.SignalR.IHubClients%601.All%2A> | Calls a method on all connected clients |
 | <xref:Microsoft.AspNetCore.SignalR.IHubCallerClients%601.Caller%2A> | Calls a method on the client that invoked the hub method |
-| <xref:Microsoft.AspNetCore.SignalR.IHubCallerClients%601.Others%2A>` | Calls a method on all connected clients except the client that invoked the method |
+| <xref:Microsoft.AspNetCore.SignalR.IHubCallerClients%601.Others%2A> | Calls a method on all connected clients except the client that invoked the method |
 
 <xref:Microsoft.AspNetCore.SignalR.Hub.Clients%2A?displayProperty=nameWithType> also contains the following methods:
 
@@ -193,7 +193,7 @@ If you have an exceptional condition you *do* want to propagate to the client, y
 
 By [Rachel Appel](https://twitter.com/rachelappel) and [Kevin Griffin](https://twitter.com/1kevgriff)
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/hubs/sample/ ) [(how to download)](xref:index#how-to-download-a-sample)
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/hubs/samples/) [(how to download)](xref:index#how-to-download-a-sample)
 
 ## What is a SignalR hub
 
@@ -265,7 +265,7 @@ The <xref:Microsoft.AspNetCore.SignalR.Hub> class has a <xref:Microsoft.AspNetCo
 |--|--|
 | <xref:Microsoft.AspNetCore.SignalR.IHubClients%601.All%2A> | Calls a method on all connected clients |
 | <xref:Microsoft.AspNetCore.SignalR.IHubCallerClients%601.Caller%2A> | Calls a method on the client that invoked the hub method |
-| <xref:Microsoft.AspNetCore.SignalR.IHubCallerClients%601.Others%2A>` | Calls a method on all connected clients except the client that invoked the method |
+| <xref:Microsoft.AspNetCore.SignalR.IHubCallerClients%601.Others%2A> | Calls a method on all connected clients except the client that invoked the method |
 
 <xref:Microsoft.AspNetCore.SignalR.Hub.Clients%2A?displayProperty=nameWithType> also contains the following methods:
 
@@ -370,7 +370,7 @@ If you have an exceptional condition you *do* want to propagate to the client, y
 
 By [Rachel Appel](https://twitter.com/rachelappel) and [Kevin Griffin](https://twitter.com/1kevgriff)
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/hubs/sample/ ) [(how to download)](xref:index#how-to-download-a-sample)
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/hubs/samples/) [(how to download)](xref:index#how-to-download-a-sample)
 
 ## What is a SignalR hub
 
@@ -436,7 +436,7 @@ The <xref:Microsoft.AspNetCore.SignalR.Hub> class has a <xref:Microsoft.AspNetCo
 |--|--|
 | <xref:Microsoft.AspNetCore.SignalR.IHubClients%601.All%2A> | Calls a method on all connected clients |
 | <xref:Microsoft.AspNetCore.SignalR.IHubCallerClients%601.Caller%2A> | Calls a method on the client that invoked the hub method |
-| <xref:Microsoft.AspNetCore.SignalR.IHubCallerClients%601.Others%2A>` | Calls a method on all connected clients except the client that invoked the method |
+| <xref:Microsoft.AspNetCore.SignalR.IHubCallerClients%601.Others%2A> | Calls a method on all connected clients except the client that invoked the method |
 
 <xref:Microsoft.AspNetCore.SignalR.Hub.Clients%2A?displayProperty=nameWithType> also contains the following methods:
 
