@@ -193,9 +193,12 @@ The simple types that the model binder can convert source strings into include t
 
 ## Complex types
 
-A complex type must have a public default constructor and public writable properties to bind. When model binding occurs, the class is instantiated using the public default constructor. 
+A complex type must have a public default constructor and public writable properties to bind. When model binding occurs, the class is instantiated using the public default constructor.
 
-For each property of the complex type, model binding looks through the sources for the name pattern *prefix.property_name*. If nothing is found, it looks for just *property_name* without the prefix.
+For each property of the complex type, [model binding looks through the sources for the name pattern](https://github.com/dotnet/aspnetcore/blob/v6.0.3/src/Mvc/Mvc.Core/src/ModelBinding/ParameterBinder.cs#L157-L172) *prefix.property_name*. If nothing is found, it looks for just *property_name* without the prefix. The decision to use the query is not made per property. For example the query containing `?Instructor.Id=100&Name=foo`, bound to method `OnGet(Instructor instructor)`,  the resulting object of type `Instructor` contains:
+
+* `Id` set to `100`.
+* `Name` set to `null`.
 
 For binding to a parameter, the prefix is the parameter name. For binding to a `PageModel` public property, the prefix is the public property name. Some attributes have a `Prefix` property that lets you override the default usage of parameter or property name.
 
@@ -246,9 +249,9 @@ Model binding starts by looking through the sources for the key `Instructor.ID`.
 
 Several built-in attributes are available for controlling model binding of complex types:
 
-* `[Bind]`
-* `[BindRequired]`
-* `[BindNever]`
+* [`[Bind]`](xref:Microsoft.AspNetCore.Mvc.BindAttribute)
+* [`[BindRequired]`](xref:Microsoft.AspNetCore.Mvc.ModelBinding.BindRequiredAttribute)
+* [`[BindNever]`](xref:Microsoft.AspNetCore.Mvc.ModelBinding.BindNeverAttribute)
 
 > [!WARNING]
 > These attributes affect model binding when posted form data is the source of values. They do ***not*** affect input formatters, which process posted JSON and XML request bodies. Input formatters are explained [later in this article](#input-formatters).
