@@ -152,16 +152,16 @@ To establish *Log on as a service* rights for a service user account:
 Use PowerShell commands to register a service. From an administrative PowerShell 6 command shell, execute the following commands:
 
 ```powershell
-$acl = Get-Acl "{EXE PATH}"
+$acl = Get-Acl "{APP DIR}"
 $aclRuleArgs = "{DOMAIN OR COMPUTER NAME\USER}", "Read,Write,ReadAndExecute", "ContainerInherit,ObjectInherit", "None", "Allow"
 $accessRule = New-Object System.Security.AccessControl.FileSystemAccessRule($aclRuleArgs)
 $acl.SetAccessRule($accessRule)
-$acl | Set-Acl "{EXE PATH}"
+$acl | Set-Acl "{APP DIR}"
 
 New-Service -Name {SERVICE NAME} -BinaryPathName "{EXE FILE PATH}" -Credential "{DOMAIN OR COMPUTER NAME\USER}" -Description "{DESCRIPTION}" -DisplayName "{DISPLAY NAME}" -StartupType Automatic
 ```
 
-* `{EXE PATH}`: Path to the app's folder on the host (for example, `d:\myservice`). Don't include the app's executable in the path. A trailing slash isn't required.
+* `{APP DIR}`: Path to the app's folder on the host (for example, `d:\myservice`). Don't include the app's executable in the path. A trailing slash isn't required.
 * `{DOMAIN OR COMPUTER NAME\USER}`: Service user account (for example, `Contoso\ServiceUser`).
 * `{SERVICE NAME}`: Service name (for example, `MyService`).
 * `{EXE FILE PATH}`: The app's executable path (for example, `d:\myservice\myservice.exe`). Include the executable's file name with extension.
@@ -475,16 +475,16 @@ To establish *Log on as a service* rights for a service user account:
 Use PowerShell commands to register a service. From an administrative PowerShell 6 command shell, execute the following commands:
 
 ```powershell
-$acl = Get-Acl "{EXE PATH}"
+$acl = Get-Acl "{APP DIR}"
 $aclRuleArgs = "{DOMAIN OR COMPUTER NAME\USER}", "Read,Write,ReadAndExecute", "ContainerInherit,ObjectInherit", "None", "Allow"
 $accessRule = New-Object System.Security.AccessControl.FileSystemAccessRule($aclRuleArgs)
 $acl.SetAccessRule($accessRule)
-$acl | Set-Acl "{EXE PATH}"
+$acl | Set-Acl "{APP DIR}"
 
 New-Service -Name {SERVICE NAME} -BinaryPathName "{EXE FILE PATH}" -Credential "{DOMAIN OR COMPUTER NAME\USER}" -Description "{DESCRIPTION}" -DisplayName "{DISPLAY NAME}" -StartupType Automatic
 ```
 
-* `{EXE PATH}`: Path to the app's folder on the host (for example, `d:\myservice`). Don't include the app's executable in the path. A trailing slash isn't required.
+* `{APP DIR}`: Path to the app's folder on the host (for example, `d:\myservice`). Don't include the app's executable in the path. A trailing slash isn't required.
 * `{DOMAIN OR COMPUTER NAME\USER}`: Service user account (for example, `Contoso\ServiceUser`).
 * `{SERVICE NAME}`: Service name (for example, `MyService`).
 * `{EXE FILE PATH}`: The app's executable path (for example, `d:\myservice\myservice.exe`). Include the executable's file name with extension.
