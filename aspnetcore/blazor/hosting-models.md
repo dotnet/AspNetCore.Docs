@@ -74,7 +74,7 @@ The Blazor WebAssembly hosting model has the following limitations:
 
 Blazor WebAssembly supports ahead-of-time (AOT) compilation, where you can compile your .NET code directly into WebAssembly. AOT compilation results in runtime performance improvements at the expense of a larger app size. For more information, see <xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation>. 
 
-The same .NET WebAssembly build tools used for AOT compilation also [relink the .NET WebAssembly runtime](xref:blazor/host-and-deploy/webassembly#runtime-relinking) to trim unused runtime code resulting in a smaller app size and thus improved download speed. 
+The same .NET WebAssembly build tools used for AOT compilation also [relink the .NET WebAssembly runtime](xref:blazor/host-and-deploy/webassembly#runtime-relinking) to trim unused runtime code. 
 
 Blazor WebAssembly includes support for trimming unused code from .NET Core framework libraries. For more information, see <xref:blazor/globalization-localization>. The .NET compiler further precompresses a Blazor WebAssembly app for a smaller app payload.
 
