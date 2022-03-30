@@ -270,7 +270,7 @@ public class RandomBalancer : SubchannelsLoadBalancer
 
         public RandomPicker(List<Subchannel> subchannels)
         {
-            _subchannels = readySubchannels;
+            _subchannels = subchannels;
         }
 
         public override PickResult Pick(PickContext context)
