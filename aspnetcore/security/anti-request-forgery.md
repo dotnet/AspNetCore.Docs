@@ -618,7 +618,7 @@ xhttp.send(JSON.stringify({ "name": "Learn C#" }));
 
 ### AngularJS
 
-AngularJS uses a convention to address CSRF. If the server sends a cookie with the name `XSRF-TOKEN`, the AngularJS `$http` service adds the cookie value to a header when it sends a request to the server. This process is automatic. The client doesn't need set the header explicitly. The header name is `X-XSRF-TOKEN`. The server should detect this header and validate its contents.
+AngularJS uses a convention to address CSRF. If the server sends a cookie with the name `XSRF-TOKEN`, the AngularJS `$http` service adds the cookie value to a header when it sends a request to the server. This process is automatic. The client doesn't need to set the header explicitly. The header name is `X-XSRF-TOKEN`. The server should detect this header and validate its contents.
 
 For ASP.NET Core API to work with this convention in your application startup:
 
