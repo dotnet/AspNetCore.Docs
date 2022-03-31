@@ -335,19 +335,17 @@ public class GenericType<TValue>
 
 Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server), add the following `<script>` block.
 
-In the `invokeDotNetMethodsAsync` function:
+In the `invokeMethodsAsync` function:
 
 * The generic type class's `Update` and `UpdateAsync` methods are called with arguments representing strings and numbers.
-* Blazor WebAssembly apps support calling .NET methods synchronously with `invokeMethod`. `supportSyncInterop` receives a boolean value indicating if the JS interop is occurring in a Blazor WebAssembly app. When `supportSyncInterop` is `true`, `invokeMethod` is safely called. If the value of `supportSyncInterop` is `false`, only the asynchronous function `invokeMethodAsync` is called because the JS interop is executing in a Blazor Server app.
+* Blazor WebAssembly apps support calling .NET methods synchronously with `invokeMethod`. `syncInterop` receives a boolean value indicating if the JS interop is occurring in a Blazor WebAssembly app. When `syncInterop` is `true`, `invokeMethod` is safely called. If the value of `syncInterop` is `false`, only the asynchronous function `invokeMethodAsync` is called because the JS interop is executing in a Blazor Server app.
 * For demonstration purposes, the <xref:Microsoft.JSInterop.DotNetObjectReference> function call (`invokeMethod` or `invokeMethodAsync`), the .NET method called (`Update` or `UpdateAsync`), and the argument are written to the console. The arguments use a random number to permit matching the JS function call to the .NET method invocation (also written to the console on the .NET side). Production code usually doesn't write to the console, either on the client or the server. Production apps usually rely upon app *logging*. For more information, see <xref:blazor/fundamentals/logging> and <xref:fundamentals/logging/index>.
 
 ```html
 <script>
   const randomInt = () => Math.floor(Math.random() * 99999);
 
-  window.invokeDotNetMethodsAsync = 
-      async (supportSyncInterop, dotNetHelper1, dotNetHelper2) => {
-
+  window.invokeMethodsAsync = async (syncInterop, dotNetHelper1, dotNetHelper2) => {
     var n = randomInt();
     console.log(`JS: invokeMethodAsync:Update('string ${n}')`);
     await dotNetHelper1.invokeMethodAsync('Update', `string ${n}`);
@@ -356,7 +354,7 @@ In the `invokeDotNetMethodsAsync` function:
     console.log(`JS: invokeMethodAsync:UpdateAsync('string ${n}')`);
     await dotNetHelper1.invokeMethodAsync('UpdateAsync', `string ${n}`);
 
-    if (supportSyncInterop) {
+    if (syncInterop) {
       n = randomInt();
       console.log(`JS: invokeMethod:Update('string ${n}')`);
       dotNetHelper1.invokeMethod('Update', `string ${n}`);
@@ -370,19 +368,19 @@ In the `invokeDotNetMethodsAsync` function:
     console.log(`JS: invokeMethodAsync:UpdateAsync(${n})`);
     await dotNetHelper2.invokeMethodAsync('UpdateAsync', n);
 
-    if (supportSyncInterop) {
+    if (syncInterop) {
       n = randomInt();
       console.log(`JS: invokeMethod:Update(${n})`);
       dotNetHelper2.invokeMethod('Update', n);
-   }
+    }
   };
 </script>
 ```
 
 In the following `GenericsExample` component:
 
-* The JS function `invokeDotNetMethodsAsync` is called when the **`Invoke Interop`** button is selected.
-* A pair of <xref:Microsoft.JSInterop.DotNetObjectReference> types are created and passed to the JS function for instances of the `GenericType` as a `string` and a `double`.
+* The JS function `invokeMethodsAsync` is called when the **`Invoke Interop`** button is selected.
+* A pair of <xref:Microsoft.JSInterop.DotNetObjectReference> types are created and passed to the JS function for instances of the `GenericType` as a `string` and an `int`.
 
 `Pages/GenericsExample.razor`:
 
@@ -402,16 +400,16 @@ In the following `GenericsExample` component:
 
 @code {
     private GenericType<string> genericType1 = new() { Value = "string 0" };
-    private GenericType<double> genericType2 = new() { Value = 0 };
+    private GenericType<int> genericType2 = new() { Value = 0 };
 
     public async Task InvokeInterop()
     {
-        var supportSyncInterop = 
+        var syncInterop = 
             RuntimeInformation.IsOSPlatform(OSPlatform.Create("BROWSER"));
 
         await JSRuntime.InvokeVoidAsync(
-            "invokeDotNetMethodsAsync",
-            supportSyncInterop,
+            "invokeMethodsAsync",
+            syncInterop,
             DotNetObjectReference.Create(genericType1),
             DotNetObjectReference.Create(genericType2));
     }
@@ -426,12 +424,12 @@ The following demonstrates typical output of the preceding example when the **`I
 > JS: invokeMethod:Update('string 26784')
 > .NET: Update: GenericType<System.String>: string 26784
 > JS: invokeMethodAsync:Update(14107)
-> .NET: Update: GenericType<System.Double>: 14107
+> .NET: Update: GenericType<System.Int32>: 14107
 > JS: invokeMethodAsync:UpdateAsync(48995)
 > JS: invokeMethod:Update(12872)
-> .NET: Update: GenericType<System.Double>: 12872
+> .NET: Update: GenericType<System.Int32>: 12872
 > .NET: UpdateAsync: GenericType<System.String>: string 53051
-> .NET: UpdateAsync: GenericType<System.Double>: 48995
+> .NET: UpdateAsync: GenericType<System.Int32>: 48995
 
 If the preceding example is implemented in a Blazor Server app, the synchronous calls with `invokeMethod` are avoided. The asynchronous function (`invokeMethodAsync`) is preferred over the synchronous version (`invokeMethod`) in Blazor Server scenarios.
 
@@ -441,12 +439,12 @@ Typical output of a Blazor Server app:
 > .NET: Update: GenericType<System.String>: string 34809
 > JS: invokeMethodAsync:UpdateAsync('string 93059')
 > JS: invokeMethodAsync:Update(41997)
-> .NET: Update: GenericType<System.Double>: 41997
+> .NET: Update: GenericType<System.Int32>: 41997
 > JS: invokeMethodAsync:UpdateAsync(24652)
 > .NET: UpdateAsync: GenericType<System.String>: string 93059
-> .NET: UpdateAsync: GenericType<System.Double>: 24652
+> .NET: UpdateAsync: GenericType<System.Int32>: 24652
 
-The preceding output examples demonstrate that asynchronous methods execute and complete in an *arbitrary order* depending on several factors, including thread scheduling and the speed of method execution. It usually isn't possible to predict the order of completion for asynchronous method calls.
+The preceding output examples demonstrate that asynchronous methods execute and complete in an *arbitrary order* depending on several factors, including thread scheduling and the speed of method execution. It isn't possible to reliably predict the order of completion for asynchronous method calls.
 
 ## Class instance examples
 
