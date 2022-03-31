@@ -255,9 +255,23 @@ When [IWebHostEnvironment.WebRootPat](xref:Microsoft.AspNetCore.Hosting.IWebHost
 
 Consider a web app created with the empty web template:
 
-* With and the following updated `Program.cs` file:
+* Containing an *Index.html* file in *wwwroot* and *wwwroot-custom*.
+* With and the following updated `Program.cs` file to set `WebRootPath = "wwwroot-custom"`:
 
-[!code-csharp[](~/fundamentals/static-files/samples/6.x/WebRoot/Program.cs?name=snippet1)]
+  [!code-csharp[](~/fundamentals/static-files/samples/6.x/WebRoot/Program.cs?name=snippet1)]
+
+In the preceding code, requests to `/`:
+
+* In the development environment return `wwwroot/Index.html`
+* In any environment other than development return `wwwroot-custom/Index.html`
+
+Any of the following approaches can be used to ensure assets from `wwwroot-custom` are returned:
+
+* Delete duplicate named assets in `wwwroot`.
+* Set `"ASPNETCORE_ENVIRONMENT"` in *Properties/launchSettings.json* to any value other than `"Development"`.
+* Completely disable static web assets by setting `<StaticWebAssetsEnabled>false</StaticWebAssetsEnabled>` in the project file. ***WARNING, disabling static web assets disables [Razor Class Libraries](xref:razor-pages/ui-class).
+
+Setting `<Content Remove="wwwroot\**" />` hides `wwwroot` from Visual Studios solution explorer, but doesn't prevent files from being served for `wwwroot`.
 
 ## Additional resources
 
