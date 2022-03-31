@@ -1,9 +1,28 @@
+#define FIRST // FIRST
+#if NEVER
+#elif FIRST
+#region snippet1
+var builder = WebApplication.CreateBuilder(new WebApplicationOptions
+{
+    Args = args,
+    // Look for static files in "wwwroot-custom"
+    WebRootPath = "wwwroot-custom"
+});
+
+var app = builder.Build();
+
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
+app.Run();
+#endregion
+#elif SECOND
+#region snippet2
 var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 {
     Args = args,
     // Examine Hosting environment: logging value
      EnvironmentName = Environments.Staging,
-    // Look for static files in "wwwroot-custom"
     WebRootPath = "wwwroot-custom"
 });
 
@@ -19,3 +38,5 @@ app.UseDefaultFiles();
 app.UseStaticFiles();
 
 app.Run();
+#endregion
+#endif

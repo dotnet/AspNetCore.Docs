@@ -223,7 +223,7 @@ With the preceding code, a request for a file with an unknown content type is re
 
 `UseStaticFiles` and `UseFileServer` default to the file provider pointing at `wwwroot`. Additional instances of `UseStaticFiles` and `UseFileServer` can be provided with other file providers to serve files from other locations. The following example calls `UseStaticFiles` twice to serve files from both `wwwroot` and `static`:
 
-[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_mul)] 
+[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_mul)]
 
 <a name="sc"></a>
 
@@ -252,6 +252,12 @@ When [IWebHostEnvironment.WebRootPat](xref:Microsoft.AspNetCore.Hosting.IWebHost
 
 * In the development environment, static assets found in both `wwwroot` and the updated `IWebHostEnvironment.WebRootPath` are served from `wwwroot`.
 * With any environment other than development, static assets are served from the updated `IWebHostEnvironment.WebRootPath` folder.
+
+Consider a web app created with the empty web template:
+
+* With and the following updated `Program.cs` file:
+
+[!code-csharp[](~/fundamentals/static-files/samples/6.x/WebRoot/Program.cs=snippet1)]
 
 ## Additional resources
 

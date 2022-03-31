@@ -6,9 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-  <ItemGroup>
+  <!--<ItemGroup>
 	  <Content Remove="wwwroot\**" />
-  </ItemGroup>
+  </ItemGroup>-->
 
   <ItemGroup>
     <Content Include="wwwroot-custom\Index.html">
