@@ -64,7 +64,7 @@ The [`Grpc.HealthCheck`](https://www.nuget.org/packages/Grpc.HealthCheck) packag
 var channel = GrpcChannel.ForAddress("https://localhost:5001");
 var client = new Health.HealthClient(channel);
 
-var response = client.CheckAsync(new HealthCheckRequest());
+var response = await client.CheckAsync(new HealthCheckRequest());
 var status = response.Status;
 ```
 
