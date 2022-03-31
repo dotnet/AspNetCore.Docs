@@ -273,6 +273,10 @@ Any of the following approaches can be used to ensure assets from `wwwroot-custo
 
 Setting `<Content Remove="wwwroot\**" />` hides `wwwroot` from Visual Studios solution explorer, but doesn't prevent files from being served for `wwwroot`.
 
+The following code updates `IWebHostEnvironment.WebRootPath` to a non development value, guaranteeing duplicate content is returned from `wwwroot-custom` rather than `wwwroot`:
+
+[!code-csharp[](~/fundamentals/static-files/samples/6.x/WebRoot/Program.cs?name=snippet2&highlight=5)]
+
 ## Additional resources
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/static-files/samples) ([how to download](xref:index#how-to-download-a-sample))
