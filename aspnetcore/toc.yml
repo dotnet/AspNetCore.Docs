@@ -351,7 +351,7 @@ items:
                     uid: blazor/hybrid/tutorials/wpf
               - name: Routing and navigation
                 uid: blazor/hybrid/routing
-              - name: Handle errors
+              - name: Browser developer tools
                 uid: blazor/hybrid/developer-tools
           - name: Project structure
             uid: blazor/project-structure
