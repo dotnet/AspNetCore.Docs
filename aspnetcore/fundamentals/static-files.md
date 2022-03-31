@@ -257,7 +257,7 @@ Consider a web app created with the empty web template:
 
 * With and the following updated `Program.cs` file:
 
-[!code-csharp[](~/fundamentals/static-files/samples/6.x/WebRoot/Program.cs=snippet1)]
+[!code-csharp[](~/fundamentals/static-files/samples/6.x/WebRoot/Program.cs?name=snippet1)]
 
 ## Additional resources
 
