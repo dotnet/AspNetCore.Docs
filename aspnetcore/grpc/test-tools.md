@@ -4,7 +4,7 @@ author: jamesnk
 description: Learn how to test services with gRPC tools. gRPCurl a command-line tool for interacting with gRPC services. gRPCui is an interactive web UI.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 03/30/2022
+ms.date: 03/31/2022
 no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/test-tools
 ---
@@ -39,11 +39,11 @@ It's easier to use gRPC reflection. gRPC reflection adds a new gRPC service to t
 gRPC ASP.NET Core has built-in support for gRPC reflection with the [`Grpc.AspNetCore.Server.Reflection`](https://www.nuget.org/packages/Grpc.AspNetCore.Server.Reflection) package. To configure reflection in an app:
 
 * Add a `Grpc.AspNetCore.Server.Reflection` package reference.
-* Register reflection in `Startup.cs`:
+* Register reflection in `Program.cs`:
   * `AddGrpcReflection` to register services that enable reflection.
   * `MapGrpcReflectionService` to add a reflection service endpoint.
 
-[!code-csharp[](~/grpc/test-tools/Startup.cs?name=snippet_1&highlight=4,15-18)]
+[!code-csharp[](~/grpc/test-tools/samples/6.x/Program.cs?name=snippet_1&highlight=2,10-13)]
 
 When gRPC reflection is set up:
 
@@ -123,7 +123,7 @@ In the preceding example:
 * Calls the `SayHello` method on the `greeter.Greeter` service.
 * Prints the response message as JSON.
 
-The preceding example uses `\` to escape the `"` character. Escaping `"` is required in a PowerShell console but must not be used in some consoles. For example, the previous command for a MacOS console:
+The preceding example uses `\` to escape the `"` character. Escaping `"` is required in a PowerShell console but must not be used in some consoles. For example, the previous command for a macOS console:
 
 ```console
 $ grpcurl -d '{ "name": "World" }' localhost:5001 greet.Greeter/SayHello
@@ -134,7 +134,7 @@ $ grpcurl -d '{ "name": "World" }' localhost:5001 greet.Greeter/SayHello
 
 ## gRPCui
 
-gRPCui is an interactive web UI for gRPC. It builds on top of gRPCurl and offers a GUI for discovering and testing gRPC services, similar to HTTP tools such as Postman or Swagger UI.
+gRPCui is an interactive web UI for gRPC. gRPCui builds on top of gRPCurl. gRPCui offers a GUI for discovering and testing gRPC services, similar to HTTP tools such as Postman or Swagger UI.
 
 For information about downloading and installing `grpcui`, see the [gRPCui GitHub homepage](https://github.com/fullstorydev/grpcui#installation).
 
@@ -193,7 +193,7 @@ gRPC ASP.NET Core has built-in support for gRPC reflection with the [`Grpc.AspNe
   * `AddGrpcReflection` to register services that enable reflection.
   * `MapGrpcReflectionService` to add a reflection service endpoint.
 
-[!code-csharp[](~/grpc/test-tools/Startup.cs?name=snippet_1&highlight=4,15-18)]
+[!code-csharp[](~/grpc/test-tools/samples/5.x/Startup.cs?name=snippet_1&highlight=4,15-18)]
 
 When gRPC reflection is set up:
 
@@ -273,7 +273,7 @@ In the preceding example:
 * Calls the `SayHello` method on the `greeter.Greeter` service.
 * Prints the response message as JSON.
 
-The preceding example uses `\` to escape the `"` character. Escaping `"` is required in a PowerShell console but must not be used in some consoles. For example, the previous command for a MacOS console:
+The preceding example uses `\` to escape the `"` character. Escaping `"` is required in a PowerShell console but must not be used in some consoles. For example, the previous command for a macOS console:
 
 ```console
 $ grpcurl -d '{ "name": "World" }' localhost:5001 greet.Greeter/SayHello
@@ -284,7 +284,7 @@ $ grpcurl -d '{ "name": "World" }' localhost:5001 greet.Greeter/SayHello
 
 ## gRPCui
 
-gRPCui is an interactive web UI for gRPC. It builds on top of gRPCurl and offers a GUI for discovering and testing gRPC services, similar to HTTP tools such as Postman or Swagger UI.
+gRPCui is an interactive web UI for gRPC. gRPCui builds on top of gRPCurl. gRPCui offers a GUI for discovering and testing gRPC services, similar to HTTP tools such as Postman or Swagger UI.
 
 For information about downloading and installing `grpcui`, see the [gRPCui GitHub homepage](https://github.com/fullstorydev/grpcui#installation).
 
