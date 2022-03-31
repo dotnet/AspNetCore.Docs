@@ -218,7 +218,7 @@ Prevent publishing files in *wwwroot* with the [\<Content> project item](/visual
 </ItemGroup>
 ```
 
-In Razor `.cshtml` files, tilde-slash (`~/`) points to the web root. A path beginning with `~/` is referred to as a *virtual path*.
+In Razor `.cshtml` files, `~/` points to the web root. A path beginning with `~/` is referred to as a *virtual path*.
 
 For more information, see <xref:fundamentals/static-files>.
 
