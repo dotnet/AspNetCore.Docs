@@ -106,7 +106,7 @@ Run the app and register a user. Depending on your screen size, you might need t
 Services are added in `Program.cs`. The typical pattern is to call methods in the following order:
 
 1. `Add{Service}`
-1. `Services.Configure{Service}`
+1. `builder.Services.Configure{Service}`
 
 [!code-csharp[](identity/sample/WebApp6x/Program.cs?name=snippet_)]
 
