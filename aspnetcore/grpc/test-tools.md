@@ -74,10 +74,10 @@ $ grpcurl -help
 
 ### Discover services
 
-Use the `describe` verb to view the services defined by the server:
+Use the `describe` verb to view the services defined by the server. Specify `<port>` as the localhost port number of the gRPC server. The port number is randomly assigned when the project is created and set in `Properties/launchSettings.json`:
 
 ```console
-$ grpcurl localhost:5001 describe
+$ grpcurl localhost:<port> describe
 greet.Greeter is a service:
 service Greeter {
   rpc SayHello ( .greet.HelloRequest ) returns ( .greet.HelloReply );
@@ -91,7 +91,7 @@ service ServerReflection {
 
 The preceding example:
 
-* Runs the `describe` verb on server `localhost:5001`.
+* Runs the `describe` verb on server `localhost:<port>`. Where `<port>` is randomly assigned when the gRPC server project is created and set in `Properties/launchSettings.json`
 * Prints services and methods returned by gRPC reflection.
   * `Greeter` is a service implemented by the app.
   * `ServerReflection` is the service added by the `Grpc.AspNetCore.Server.Reflection` package.
@@ -99,19 +99,21 @@ The preceding example:
 Combine `describe` with a service, method, or message name to view its detail:
 
 ```powershell
-$ grpcurl localhost:5001 describe greet.HelloRequest
+$ grpcurl localhost:<port> describe greet.HelloRequest
 greet.HelloRequest is a message:
 message HelloRequest {
   string name = 1;
 }
 ```
 
+In the preceding example, Specify `<port>` as the localhost port number of the gRPC server. The port number is randomly assigned when the project is created and set in `Properties/launchSettings.json`.
+
 ### Call gRPC services
 
 Call a gRPC service by specifying a service and method name along with a JSON argument that represents the request message. The JSON is converted into Protobuf and sent to the service.
 
 ```console
-$ grpcurl -d '{ \"name\": \"World\" }' localhost:5001 greet.Greeter/SayHello
+$ grpcurl -d '{ \"name\": \"World\" }' localhost:<port> greet.Greeter/SayHello
 {
   "message": "Hello World"
 }
@@ -122,15 +124,18 @@ In the preceding example:
 * The `-d` argument specifies a request message with JSON. This argument must come before the server address and method name.
 * Calls the `SayHello` method on the `greeter.Greeter` service.
 * Prints the response message as JSON.
+* Where `<port>` is randomly assigned when the gRPC server project is created and set in `Properties/launchSettings.json`
 
 The preceding example uses `\` to escape the `"` character. Escaping `"` is required in a PowerShell console but must not be used in some consoles. For example, the previous command for a macOS console:
 
 ```console
-$ grpcurl -d '{ "name": "World" }' localhost:5001 greet.Greeter/SayHello
+$ grpcurl -d '{ "name": "World" }' localhost:<port> greet.Greeter/SayHello
 {
   "message": "Hello World"
 }
 ```
+
+In the preceding example, specify `<port>` as the localhost port number of the gRPC server. The port number is randomly assigned when the project is created and set in `Properties/launchSettings.json`
 
 ## gRPCui
 
@@ -143,9 +148,11 @@ For information about downloading and installing `grpcui`, see the [gRPCui GitHu
 Run `grpcui` with the server address to interact with as an argument:
 
 ```powershell
-$ grpcui localhost:5001
+$ grpcui localhost:<port>
 gRPC Web UI available at http://127.0.0.1:55038/
 ```
+
+In the preceding example, specify `<port>` as the localhost port number of the gRPC server. The port number is randomly assigned when the project is created and set in `Properties/launchSettings.json`
 
 The tool launches a browser window with the interactive web UI. gRPC services are automatically discovered using gRPC reflection.
 
