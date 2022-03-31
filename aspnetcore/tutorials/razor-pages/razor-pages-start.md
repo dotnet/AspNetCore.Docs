@@ -46,8 +46,6 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-We hope to have Visual Studio for Mac instructions soon.
-
 [!INCLUDE[](~/includes/net-prereqs-mac-6.0.md)]
 
 ---
@@ -103,17 +101,17 @@ We hope to have Visual Studio for Mac instructions soon.
 
 	![macOS New solution](razor-pages-start/_static/6/new_project_vsmac6.png)
 
-1. In Visual Studio 2022 for Mac select **Web and Console** > **App** > **Web Application** > **Continue**.
+1. In Visual Studio 2022 for Mac select **Web and Console** > **App** > **Web Application** > **Next**.
 
 	![macOS web app template selection](razor-pages-start/_static/6/web_app_template_vsmac6.png)
 
 1. In the **Configure your new Web Application** dialog:
 
-	1. Confirm that **Authentication** is set to **No Authentication**.
 	1. Confirm that **Target framework** is set to the latest .NET 6.x version.
-  1. Select **Continue**.
+  1. Confirm that **Authentication** is set to **No Authentication**.
+  1. Select **Next**.
 
-1. Name the project *RazorPagesMovie* and select **Continue**.
+1. Name the project *RazorPagesMovie* and select **Create**.
 
 	![macOS name the project](razor-pages-start/_static/6/razorpagesmovievsmac6.png)
 
@@ -156,7 +154,7 @@ The default browser launched with the following URL: [https://localhost:5001](ht
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Select **Run** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number.
+Select **Debug** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number.
 
 ---
 
