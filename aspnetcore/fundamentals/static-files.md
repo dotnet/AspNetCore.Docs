@@ -246,6 +246,13 @@ With the preceding code, a request for a file with an unknown content type is re
 
 * Place code files, including `.cs` and `.cshtml`, outside of the app project's [web root](xref:fundamentals/index#web-root). A logical separation is therefore created between the app's client-side content and server-based code. This prevents server-side code from being leaked.
 
+## Serve files outside wwwroot by updating IWebHostEnvironment.WebRootPath
+
+When [IWebHostEnvironment.WebRootPat](xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootPath) is updated to folder other than `wwwroot`:
+
+* In the development environment, static assets found in both `wwwroot` and the updated `IWebHostEnvironment.WebRootPath` are served from `wwwroot`.
+* With any environment other than development, static assets are served from the updated `IWebHostEnvironment.WebRootPath` folder.
+
 ## Additional resources
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/static-files/samples) ([how to download](xref:index#how-to-download-a-sample))
