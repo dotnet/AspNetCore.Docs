@@ -1,11 +1,11 @@
 ---
 title: Use browser developer tools with ASP.NET Core Blazor Hybrid
 author: guardrex
-description: Learn how to use developer tools with ASP.NET Core Blazor Hybrid apps.
+description: Learn how to use browser developer tools with ASP.NET Core Blazor Hybrid apps.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: "mvc"
-ms.date: 03/24/2022
+ms.date: 03/31/2022
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/hybrid/developer-tools
 zone_pivot_groups: blazor-hybrid-operating-systems
