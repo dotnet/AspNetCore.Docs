@@ -352,7 +352,7 @@ items:
               - name: Routing and navigation
                 uid: blazor/hybrid/routing
               - name: Handle errors
-                uid: blazor/hybrid/handle-errors
+                uid: blazor/hybrid/developer-tools
           - name: Project structure
             uid: blazor/project-structure
           - name: Fundamentals
