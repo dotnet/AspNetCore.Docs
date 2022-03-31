@@ -270,8 +270,13 @@ Any of the following approaches can be used to ensure assets from `wwwroot-custo
 * Delete duplicate named assets in `wwwroot`.
 * Set `"ASPNETCORE_ENVIRONMENT"` in *Properties/launchSettings.json* to any value other than `"Development"`.
 * Completely disable static web assets by setting `<StaticWebAssetsEnabled>false</StaticWebAssetsEnabled>` in the project file. ***WARNING, disabling static web assets disables [Razor Class Libraries](xref:razor-pages/ui-class).
+* Add the following JSON to the project file:
 
-Setting `<Content Remove="wwwroot\**" />` hides `wwwroot` from Visual Studios solution explorer, but doesn't prevent files from being served for `wwwroot`.
+  ```JSON
+  <ItemGroup>
+	  <Content Remove="wwwroot\**" />
+  </ItemGroup>
+  ```
 
 The following code updates `IWebHostEnvironment.WebRootPath` to a non development value, guaranteeing duplicate content is returned from `wwwroot-custom` rather than `wwwroot`:
 
