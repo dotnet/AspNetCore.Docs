@@ -2,10 +2,10 @@ using System.Threading.Tasks;
 
 namespace SignalRChat.Hubs
 {
-    #region snippet_IChatClient
+    // <snippet_IChatClient>
     public interface IChatClient
     {
         Task ReceiveMessage(string user, string message);
     }
-    #endregion
+    // </snippet_IChatClient>
 }

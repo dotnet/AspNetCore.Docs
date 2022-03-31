@@ -18,3 +18,15 @@ groups:
       title: Blazor Server
     - id: webassembly
       title: Blazor WebAssembly
+- id: blazor-hybrid-operating-systems
+  title: Operating System
+  prompt: Target operating system
+  pivots:
+    - id: android
+      title: Android
+    - id: ios
+      title: iOS
+    - id: macos
+      title: macOS
+    - id: windows
+      title: Windows

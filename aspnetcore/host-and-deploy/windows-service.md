@@ -161,10 +161,10 @@ $acl | Set-Acl "{EXE PATH}"
 New-Service -Name {SERVICE NAME} -BinaryPathName "{EXE FILE PATH}" -Credential "{DOMAIN OR COMPUTER NAME\USER}" -Description "{DESCRIPTION}" -DisplayName "{DISPLAY NAME}" -StartupType Automatic
 ```
 
-* `{EXE PATH}`: Path to the app's folder on the host (for example, `d:\myservice`). Don't include the app's executable in the path. A trailing slash isn't required.
+* `{EXE PATH}`: Path of the app's executable on the host (for example, `d:\myservice`). Don't include the app's executable file name in the path. A trailing slash isn't required.
 * `{DOMAIN OR COMPUTER NAME\USER}`: Service user account (for example, `Contoso\ServiceUser`).
 * `{SERVICE NAME}`: Service name (for example, `MyService`).
-* `{EXE FILE PATH}`: The app's executable path (for example, `d:\myservice\myservice.exe`). Include the executable's file name with extension.
+* `{EXE FILE PATH}`: The app's full executable path (for example, `d:\myservice\myservice.exe`). Include the executable's file name with extension.
 * `{DESCRIPTION}`: Service description (for example, `My sample service`).
 * `{DISPLAY NAME}`: Service display name (for example, `My Service`).
 
@@ -484,10 +484,10 @@ $acl | Set-Acl "{EXE PATH}"
 New-Service -Name {SERVICE NAME} -BinaryPathName "{EXE FILE PATH}" -Credential "{DOMAIN OR COMPUTER NAME\USER}" -Description "{DESCRIPTION}" -DisplayName "{DISPLAY NAME}" -StartupType Automatic
 ```
 
-* `{EXE PATH}`: Path to the app's folder on the host (for example, `d:\myservice`). Don't include the app's executable in the path. A trailing slash isn't required.
+* `{EXE PATH}`: Path of the app's executable on the host (for example, `d:\myservice`). Don't include the app's executable file name in the path. A trailing slash isn't required.
 * `{DOMAIN OR COMPUTER NAME\USER}`: Service user account (for example, `Contoso\ServiceUser`).
 * `{SERVICE NAME}`: Service name (for example, `MyService`).
-* `{EXE FILE PATH}`: The app's executable path (for example, `d:\myservice\myservice.exe`). Include the executable's file name with extension.
+* `{EXE FILE PATH}`: The app's full executable path (for example, `d:\myservice\myservice.exe`). Include the executable's file name with extension.
 * `{DESCRIPTION}`: Service description (for example, `My sample service`).
 * `{DISPLAY NAME}`: Service display name (for example, `My Service`).
 
