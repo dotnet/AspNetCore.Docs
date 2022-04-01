@@ -19,7 +19,7 @@ builder.Services.Configure<IISServerOptions>(options =>
     options.AutomaticAuthentication = false;
 });
 
-builder.Services.AddTransient<IClaimsTransformation, ClaimsTransformer>();
+builder.Services.AddTransient<IClaimsTransformation, MyClaimsTransformation>();
 builder.Services.AddAuthentication(IISServerDefaults.AuthenticationScheme);
 
 builder.Services.AddRazorPages();
