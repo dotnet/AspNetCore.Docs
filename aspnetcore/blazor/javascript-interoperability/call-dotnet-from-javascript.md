@@ -52,7 +52,8 @@ In the following example:
 }
 ```
 
-Calling open generic methods isn't supported with static .NET methods but is supported with [instance methods](#invoke-an-instance-net-method), which are described later in this article.
+> [!NOTE]
+> Calling open generic methods isn't supported with static .NET methods but is supported with instance methods. For more information, see the [Call .NET generic class methods](#call-net-generic-class-methods) section.
 
 In the following `CallDotNetExample1` component, the `ReturnArrayAsync` C# method returns an `int` array. The [`[JSInvokable]` attribute](xref:Microsoft.JSInterop.JSInvokableAttribute) is applied to the method, which makes the method invokable by JS.
 
@@ -117,14 +118,17 @@ To invoke an instance .NET method from JavaScript (JS):
 * Invoke a .NET instance method from JS using `invokeMethod` or `invokeMethodAsync` from the passed <xref:Microsoft.JSInterop.DotNetObjectReference>. The .NET instance can also be passed as an argument when invoking other .NET methods from JS.
 * Dispose of the <xref:Microsoft.JSInterop.DotNetObjectReference>.
 
-### Component instance examples
-
-The examples in this section demonstrate how to pass a <xref:Microsoft.JSInterop.DotNetObjectReference> to an individual JavaScript function and to a JavaScript class with multiple functions:
+The following sections of this article demonstrate various approaches for invoking an instance .NET method:
 
 * [Pass a `DotNetObjectReference` to an individual JavaScript function](#pass-a-dotnetobjectreference-to-an-individual-javascript-function)
 * [Pass a `DotNetObjectReference` to a class with multiple JavaScript functions](#pass-a-dotnetobjectreference-to-a-class-with-multiple-javascript-functions)
+* [Call .NET generic class methods](#call-net-generic-class-methods)
+* [Class instance examples](#class-instance-examples)
+* [Component instance .NET method helper class](#component-instance-net-method-helper-class)
 
-#### Pass a `DotNetObjectReference` to an individual JavaScript function
+## Pass a `DotNetObjectReference` to an individual JavaScript function
+
+The example in this section demonstrates how to pass a <xref:Microsoft.JSInterop.DotNetObjectReference> to an individual JavaScript (JS) function.
 
 The following `sayHello1` JS function receives a <xref:Microsoft.JSInterop.DotNetObjectReference> and calls `invokeMethodAsync` to call the `GetHelloMethod` .NET method of a component.
 
@@ -178,9 +182,11 @@ To pass arguments to an instance method:
 
    In the preceding example, the variable name `dotNetHelper` is arbitrary and can be changed to any preferred name.
 
-#### Pass a `DotNetObjectReference` to a class with multiple JavaScript functions
+## Pass a `DotNetObjectReference` to a class with multiple JavaScript functions
 
-Create and pass a <xref:Microsoft.JSInterop.DotNetObjectReference> from the [`OnAfterRenderAsync` lifecycle method](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync) to a JavaScript (JS) class for multiple functions to use. Make sure that the .NET code disposes of the <xref:Microsoft.JSInterop.DotNetObjectReference>, as the following example shows.
+The example in this section demonstrates how to pass a <xref:Microsoft.JSInterop.DotNetObjectReference> to a JavaScript (JS) class with multiple functions.
+
+Create and pass a <xref:Microsoft.JSInterop.DotNetObjectReference> from the [`OnAfterRenderAsync` lifecycle method](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync) to a JS class for multiple functions to use. Make sure that the .NET code disposes of the <xref:Microsoft.JSInterop.DotNetObjectReference>, as the following example shows.
 
 In the following `CallDotNetExampleOneHelper` component, the `Trigger JS function` buttons call JS functions by setting the [JS `onclick` property](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/onclick), ***not*** Blazor's `@onclick` directive attribute.
 
@@ -278,7 +284,169 @@ In the preceding example:
 * The `GreetingHelpers` class is added to the `window` object to globally define the class, which permits Blazor to locate the class for JS interop.
 * The variable name `dotNetHelper` is arbitrary and can be changed to any preferred name.
 
-### Class instance examples
+## Call .NET generic class methods
+
+JavaScript (JS) functions can call [.NET generic class](/dotnet/csharp/programming-guide/generics/generic-classes) methods, where a JS function calls a .NET method of a generic class.
+
+In the following generic type class (`GenericType<TValue>`):
+
+* The class has a single type parameter (`TValue`) with a single generic `Value` property.
+* The class has two non-generic methods marked with the [`[JSInvokable]` attribute](xref:Microsoft.JSInterop.JSInvokableAttribute), each with a generic type parameter named `newValue`:
+  * `Update` synchronously updates the value of `Value` from `newValue`.
+  * `UpdateAsync` asynchronously updates the value of `Value` from `newValue` after creating an awaitable task with <xref:System.Threading.Tasks.Task.Yield%2A?displayProperty=nameWithType> that asynchronously yields back to the current context when awaited.
+* Each of the class methods write the type of `TValue` and the value of `Value` to the console. Writing to the console is only for demonstration purposes. Production apps usually avoid writing to the console in favor of app *logging*. For more information, see <xref:blazor/fundamentals/logging> and <xref:fundamentals/logging/index>.
+
+> [!NOTE]
+> *Open generic types and methods* don't specify types for type placeholders. Conversely, *closed generics* supply types for all type placeholders. The examples in this section demonstrate closed generics, but invoking JS interop *instance methods* with open generics ***is supported***. Use of open generics is ***not*** supported for [static .NET method invocations](#invoke-a-static-net-method), which were described earlier in this article.
+
+For more information, see the following articles:
+
+* [Generic classes and methods (C# documentation)](/dotnet/csharp/fundamentals/types/generics)
+* [Generic Classes (C# Programming Guide)](/dotnet/csharp/programming-guide/generics/generic-classes)
+* [Generics in .NET (.NET documentation)](/dotnet/standard/generics/)
+
+`GenericType.cs`:
+
+```csharp
+using Microsoft.JSInterop;
+
+public class GenericType<TValue>
+{
+    public TValue? Value { get; set; }
+
+    [JSInvokable]
+    public void Update(TValue newValue)
+    {
+        Value = newValue;
+
+        Console.WriteLine($"Update: GenericType<{typeof(TValue)}>: {Value}");
+    }
+
+    [JSInvokable]
+    public async void UpdateAsync(TValue newValue)
+    {
+        await Task.Yield();
+        Value = newValue;
+
+        Console.WriteLine($"UpdateAsync: GenericType<{typeof(TValue)}>: {Value}");
+    }
+}
+```
+
+Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server), add the following `<script>` block.
+
+In the `invokeMethodsAsync` function:
+
+* The generic type class's `Update` and `UpdateAsync` methods are called with arguments representing strings and numbers.
+* Blazor WebAssembly apps support calling .NET methods synchronously with `invokeMethod`. `syncInterop` receives a boolean value indicating if the JS interop is occurring in a Blazor WebAssembly app. When `syncInterop` is `true`, `invokeMethod` is safely called. If the value of `syncInterop` is `false`, only the asynchronous function `invokeMethodAsync` is called because the JS interop is executing in a Blazor Server app.
+* For demonstration purposes, the <xref:Microsoft.JSInterop.DotNetObjectReference> function call (`invokeMethod` or `invokeMethodAsync`), the .NET method called (`Update` or `UpdateAsync`), and the argument are written to the console. The arguments use a random number to permit matching the JS function call to the .NET method invocation (also written to the console on the .NET side). Production code usually doesn't write to the console, either on the client or the server. Production apps usually rely upon app *logging*. For more information, see <xref:blazor/fundamentals/logging> and <xref:fundamentals/logging/index>.
+
+```html
+<script>
+  const randomInt = () => Math.floor(Math.random() * 99999);
+
+  window.invokeMethodsAsync = async (syncInterop, dotNetHelper1, dotNetHelper2) => {
+    var n = randomInt();
+    console.log(`JS: invokeMethodAsync:Update('string ${n}')`);
+    await dotNetHelper1.invokeMethodAsync('Update', `string ${n}`);
+
+    n = randomInt();
+    console.log(`JS: invokeMethodAsync:UpdateAsync('string ${n}')`);
+    await dotNetHelper1.invokeMethodAsync('UpdateAsync', `string ${n}`);
+
+    if (syncInterop) {
+      n = randomInt();
+      console.log(`JS: invokeMethod:Update('string ${n}')`);
+      dotNetHelper1.invokeMethod('Update', `string ${n}`);
+    }
+
+    n = randomInt();
+    console.log(`JS: invokeMethodAsync:Update(${n})`);
+    await dotNetHelper2.invokeMethodAsync('Update', n);
+
+    n = randomInt();
+    console.log(`JS: invokeMethodAsync:UpdateAsync(${n})`);
+    await dotNetHelper2.invokeMethodAsync('UpdateAsync', n);
+
+    if (syncInterop) {
+      n = randomInt();
+      console.log(`JS: invokeMethod:Update(${n})`);
+      dotNetHelper2.invokeMethod('Update', n);
+    }
+  };
+</script>
+```
+
+In the following `GenericsExample` component:
+
+* The JS function `invokeMethodsAsync` is called when the **`Invoke Interop`** button is selected.
+* A pair of <xref:Microsoft.JSInterop.DotNetObjectReference> types are created and passed to the JS function for instances of the `GenericType` as a `string` and an `int`.
+
+`Pages/GenericsExample.razor`:
+
+```razor
+@page "/generics-example"
+@using System.Runtime.InteropServices
+@inject IJSRuntime JSRuntime
+
+<p>
+    <button @onclick="InvokeInterop">Invoke Interop</button>
+</p>
+
+<ul>
+    <li>genericType1: @genericType1?.Value</li>
+    <li>genericType2: @genericType2?.Value</li>
+</ul>
+
+@code {
+    private GenericType<string> genericType1 = new() { Value = "string 0" };
+    private GenericType<int> genericType2 = new() { Value = 0 };
+
+    public async Task InvokeInterop()
+    {
+        var syncInterop = 
+            RuntimeInformation.IsOSPlatform(OSPlatform.Create("BROWSER"));
+
+        await JSRuntime.InvokeVoidAsync(
+            "invokeMethodsAsync",
+            syncInterop,
+            DotNetObjectReference.Create(genericType1),
+            DotNetObjectReference.Create(genericType2));
+    }
+}
+```
+
+The following demonstrates typical output of the preceding example when the **`Invoke Interop`** button is selected in a Blazor WebAssembly app:
+
+> JS: invokeMethodAsync:Update('string 37802')
+> .NET: Update: GenericType<System.String>: string 37802
+> JS: invokeMethodAsync:UpdateAsync('string 53051')
+> JS: invokeMethod:Update('string 26784')
+> .NET: Update: GenericType<System.String>: string 26784
+> JS: invokeMethodAsync:Update(14107)
+> .NET: Update: GenericType<System.Int32>: 14107
+> JS: invokeMethodAsync:UpdateAsync(48995)
+> JS: invokeMethod:Update(12872)
+> .NET: Update: GenericType<System.Int32>: 12872
+> .NET: UpdateAsync: GenericType<System.String>: string 53051
+> .NET: UpdateAsync: GenericType<System.Int32>: 48995
+
+If the preceding example is implemented in a Blazor Server app, the synchronous calls with `invokeMethod` are avoided. The asynchronous function (`invokeMethodAsync`) is preferred over the synchronous version (`invokeMethod`) in Blazor Server scenarios.
+
+Typical output of a Blazor Server app:
+
+> JS: invokeMethodAsync:Update('string 34809')
+> .NET: Update: GenericType<System.String>: string 34809
+> JS: invokeMethodAsync:UpdateAsync('string 93059')
+> JS: invokeMethodAsync:Update(41997)
+> .NET: Update: GenericType<System.Int32>: 41997
+> JS: invokeMethodAsync:UpdateAsync(24652)
+> .NET: UpdateAsync: GenericType<System.String>: string 93059
+> .NET: UpdateAsync: GenericType<System.Int32>: 24652
+
+The preceding output examples demonstrate that asynchronous methods execute and complete in an *arbitrary order* depending on several factors, including thread scheduling and the speed of method execution. It isn't possible to reliably predict the order of completion for asynchronous method calls.
+
+## Class instance examples
 
 The following `sayHello1` JS function:
 
@@ -580,7 +748,8 @@ In the following example:
 }
 ```
 
-Calling open generic methods isn't supported with static .NET methods but is supported with [instance methods](#invoke-an-instance-net-method), which are described later in this article.
+> [!NOTE]
+> Calling open generic methods isn't supported with static .NET methods but is supported with [instance methods](#invoke-an-instance-net-method), which are described later in this article.
 
 In the following `CallDotNetExample1` component, the `ReturnArrayAsync` C# method returns an `int` array. The [`[JSInvokable]` attribute](xref:Microsoft.JSInterop.JSInvokableAttribute) is applied to the method, which makes the method invokable by JS.
 
@@ -645,7 +814,13 @@ To invoke an instance .NET method from JavaScript (JS):
 * Invoke a .NET instance method from JS using `invokeMethod` or `invokeMethodAsync` from the passed <xref:Microsoft.JSInterop.DotNetObjectReference>. The .NET instance can also be passed as an argument when invoking other .NET methods from JS.
 * Dispose of the <xref:Microsoft.JSInterop.DotNetObjectReference>.
 
-### Component instance examples
+The following sections of this article demonstrate various approaches for invoking an instance .NET method:
+
+* [Component instance examples](#component-instance-examples)
+* [Class instance examples](#class-instance-examples)
+* [Component instance .NET method helper class](#component-instance-net-method-helper-class)
+
+## Component instance examples
 
 The following `sayHello1` JS function receives a <xref:Microsoft.JSInterop.DotNetObjectReference> and calls `invokeMethodAsync` to call the `GetHelloMethod` .NET method of a component.
 
@@ -691,7 +866,7 @@ To pass arguments to an instance method:
 
    [!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample3.razor?highlight=31,35)]
 
-### Class instance examples
+## Class instance examples
 
 The following `sayHello1` JS function:
 
@@ -895,7 +1070,8 @@ In the following example:
 }
 ```
 
-Calling open generic methods isn't supported with static .NET methods but is supported with [instance methods](#invoke-an-instance-net-method), which are described later in this article.
+> [!NOTE]
+> Calling open generic methods isn't supported with static .NET methods but is supported with [instance methods](#invoke-an-instance-net-method), which are described later in this article.
 
 In the following `CallDotNetExample1` component, the `ReturnArrayAsync` C# method returns an `int` array. The [`[JSInvokable]` attribute](xref:Microsoft.JSInterop.JSInvokableAttribute) is applied to the method, which makes the method invokable by JS.
 
@@ -960,7 +1136,13 @@ To invoke an instance .NET method from JavaScript (JS):
 * Invoke a .NET instance method from JS using `invokeMethod` or `invokeMethodAsync` from the passed <xref:Microsoft.JSInterop.DotNetObjectReference>. The .NET instance can also be passed as an argument when invoking other .NET methods from JS.
 * Dispose of the <xref:Microsoft.JSInterop.DotNetObjectReference>.
 
-### Component instance examples
+The following sections of this article demonstrate various approaches for invoking an instance .NET method:
+
+* [Component instance examples](#component-instance-examples)
+* [Class instance examples](#class-instance-examples)
+* [Component instance .NET method helper class](#component-instance-net-method-helper-class)
+
+## Component instance examples
 
 The following `sayHello1` JS function receives a <xref:Microsoft.JSInterop.DotNetObjectReference> and calls `invokeMethodAsync` to call the `GetHelloMethod` .NET method of a component.
 
@@ -1006,7 +1188,7 @@ To pass arguments to an instance method:
 
    [!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample3.razor?highlight=31,35)]
 
-### Class instance examples
+## Class instance examples
 
 The following `sayHello1` JS function:
 

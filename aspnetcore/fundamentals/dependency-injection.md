@@ -94,12 +94,6 @@ The framework provides a robust [logging](xref:fundamentals/logging/index) syste
 
 Using the preceding code, there is no need to update `Program.cs`, because [logging](xref:fundamentals/logging/index) is provided by the framework.
 
-## Services injected into Program.cs
-
-Any service registered with the DI container can be resolved from `app.Services` in `Program.cs`:
-
-[!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/Program.cs?name=snippet1)]
-
 ## Register groups of services with extension methods
 
 The ASP.NET Core framework uses a convention for registering a group of related services. The convention is to use a single `Add{GROUP_NAME}` extension method to register all of the services required by a framework feature. For example, the <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllers%2A> extension method registers the services required for MVC controllers.
