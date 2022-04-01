@@ -183,7 +183,7 @@ For information about Single Page Applications, see the guides for the [React](x
 
 ## UseCors and UseStaticFiles order
 
-The order for calling UseCors and UseStaticFiles depends on the app. For more information, see [UseCors and UseStaticFiles order](xref:security/cors#uc1)
+The order for calling `UseCors` and `UseStaticFiles` depends on the app. For more information, see [UseCors and UseStaticFiles order](xref:security/cors#uc1)
 
 ### Forwarded Headers Middleware order
 
