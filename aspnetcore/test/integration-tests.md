@@ -120,7 +120,7 @@ If the SUT's [environment](xref:fundamentals/environments) isn't set, the enviro
 
 :::moniker range=">= aspnetcore-6.0"
 
-ASP.NET Core 6 introduced <xref:Microsoft.AspNetCore.Builder.WebApplication> which removed the need for a `Startup` class. To test with `WebApplicationFactory` without a `Startup` class, an ASP.NET Core 6 app needs to expose the implicitly defined `Program` class to the test project by doing the following:
+ASP.NET Core 6 introduced <xref:Microsoft.AspNetCore.Builder.WebApplication> which removed the need for a `Startup` class. To test with `WebApplicationFactory` without a `Startup` class, an ASP.NET Core 6 app needs to expose the implicitly defined `Program` class to the test project by doing one the following:
 
 * Expose internal types from the web app to the test project. This can be done in the project file (`.csproj`):
   ```xml
