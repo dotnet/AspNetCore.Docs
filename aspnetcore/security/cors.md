@@ -90,6 +90,12 @@ The <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder> methods ca
 
 Note: The specified URL must **not** contain a trailing slash (`/`). If the URL terminates with `/`, the comparison returns `false` and no header is returned.
 
+<a name="uc1"></a>
+
+## UseCors and UseStaticFiles order
+
+Typically, `UseStaticFiles` is called before `UseCors`. Apps that use JavaScript to retrieve static files cross site should call `UseCors` before `UseStaticFiles`.
+
 <a name="dp"></a>
 
 ### CORS with default policy and middleware
