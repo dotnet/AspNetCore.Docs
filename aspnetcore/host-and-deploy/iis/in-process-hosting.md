@@ -52,10 +52,9 @@ Apps published as a single file executable can't be loaded by the in-process hos
 
 ## Application configuration
 
-To configure IIS options, include a service configuration for <xref:Microsoft.AspNetCore.Builder.IISServerOptions> in <xref:Microsoft.AspNetCore.Hosting.IStartup.ConfigureServices%2A>. The following example disables AutomaticAuthentication:
+To configure IIS options, include a service configuration for <xref:Microsoft.AspNetCore.Builder.IISServerOptions> in <xref:Microsoft.AspNetCore.Hosting.IStartup.ConfigureServices%2A>. The following example disables `AutomaticAuthentication`:
 
-~/host-and-deploy/iis/in-process-hosting/6.0samples/Program.cs
-[!code-csharp[](~/host-and-deploy/iis/in-process-hosting/6.0samples/Program.cs?highlight=2,10)]
+[!code-csharp[](~/host-and-deploy/iis/in-process-hosting/6.0samples/Program.cs?highlight=17-20)]
 
 | Option | Default | Setting |
 | ------ | :-----: | ------- |
@@ -84,18 +83,7 @@ The following characteristics apply when hosting in-process:
 
 * When hosting in-process, <xref:Microsoft.AspNetCore.Authentication.AuthenticationService.AuthenticateAsync%2A> isn't called internally to initialize a user. Therefore, an <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> implementation used to transform claims after every authentication isn't activated by default. When transforming claims with an <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> implementation, call <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A> to add authentication services:
 
-  ```csharp
-  public void ConfigureServices(IServiceCollection services)
-  {
-      services.AddTransient<IClaimsTransformation, ClaimsTransformer>();
-      services.AddAuthentication(IISServerDefaults.AuthenticationScheme);
-  }
-
-  public void Configure(IApplicationBuilder app)
-  {
-      app.UseAuthentication();
-  }
-  ```
+[!code-csharp[](~/host-and-deploy/iis/in-process-hosting/6.0samples/Program.cs?highlight=22-23)]
   
 * [Web Package (single-file) deployments](/aspnet/web-forms/overview/deployment/web-deployment-in-the-enterprise/deploying-web-packages) aren't supported.
 
