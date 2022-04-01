@@ -168,7 +168,7 @@ Launching the app without debugging by selecting Ctrl+F5 allows you to:
 
 For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 
-<!-->
+<!--
 * Select **Run** > **Start Without Debugging** to launch the app.
 
   Visual Studio for Mac:
