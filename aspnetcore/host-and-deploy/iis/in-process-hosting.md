@@ -54,12 +54,8 @@ Apps published as a single file executable can't be loaded by the in-process hos
 
 To configure IIS options, include a service configuration for <xref:Microsoft.AspNetCore.Builder.IISServerOptions> in <xref:Microsoft.AspNetCore.Hosting.IStartup.ConfigureServices%2A>. The following example disables AutomaticAuthentication:
 
-```csharp
-services.Configure<IISServerOptions>(options => 
-{
-    options.AutomaticAuthentication = false;
-});
-```
+~/host-and-deploy/iis/in-process-hosting/6.0samples/Program.cs
+[!code-csharp[](~/host-and-deploy/iis/in-process-hosting/6.0samples/Program.cs?highlight=2,10)]
 
 | Option | Default | Setting |
 | ------ | :-----: | ------- |
