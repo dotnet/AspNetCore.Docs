@@ -94,7 +94,7 @@ Note: The specified URL must **not** contain a trailing slash (`/`). If the URL 
 
 ## UseCors and UseStaticFiles order
 
-Typically, `UseStaticFiles` is called before `UseCors`. Apps that use JavaScript to retrieve static files cross site should call `UseCors` before `UseStaticFiles`.
+Typically, `UseStaticFiles` is called before `UseCors`. Apps that use JavaScript to retrieve static files cross site must call `UseCors` before `UseStaticFiles`.
 
 <a name="dp"></a>
 
