@@ -66,6 +66,32 @@ MFA could be forced on users to access sensitive pages within an ASP.NET Core Id
 
 The demo code is setup using ASP.NET Core with Identity and Razor Pages. The `AddIdentity` method is used instead of `AddDefaultIdentity` one, so an `IUserClaimsPrincipalFactory` implementation can be used to add claims to the identity after a successful login.
 
+::: moniker range=">= aspnetcore-6.0"
+
+```csharp
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlite(
+        Configuration.GetConnectionString("DefaultConnection")));
+		
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
+		options.SignIn.RequireConfirmedAccount = false)
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders();
+	
+builder.Services.AddSingleton<IEmailSender, EmailSender>();
+builder.Services.AddScoped<IUserClaimsPrincipalFactory<IdentityUser>, 
+    AdditionalUserClaimsPrincipalFactory>();
+	
+builder.Services.AddAuthorization(options =>
+    options.AddPolicy("TwoFactorEnabled", x => x.RequireClaim("amr", "mfa")));
+	
+builder.Services.AddRazorPages();
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-6.0"
+
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
@@ -89,6 +115,9 @@ public void ConfigureServices(IServiceCollection services)
     services.AddRazorPages();
 }
 ```
+
+::: moniker-end
+
 
 The `AdditionalUserClaimsPrincipalFactory` class adds the `amr` claim to the user claims only after a successful login. The claim's value is read from the database. The claim is added here because the user should only access the higher protected view if the identity has logged in with MFA. If the database view is read from the database directly instead of using the claim, it's possible to access the view without MFA directly after activating the MFA.
 
@@ -191,6 +220,8 @@ namespace IdentityStandaloneMfa
 
 ### UI logic to toggle user login information
 
+::: moniker range=">= aspnetcore-6.0"
+
 An authorization policy was added at startup. The policy requires the `amr` claim with the value `mfa`.
 
 ```csharp
@@ -198,6 +229,20 @@ services.AddAuthorization(options =>
     options.AddPolicy("TwoFactorEnabled",
         x => x.RequireClaim("amr", "mfa")));
 ```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-6.0"
+
+An authorization policy was added in the program file. The policy requires the `amr` claim with the value `mfa`.
+
+```csharp
+builder.Services.AddAuthorization(options =>
+    options.AddPolicy("TwoFactorEnabled",
+        x => x.RequireClaim("amr", "mfa")));
+```
+
+::: moniker-end
 
 This policy can then be used in the `_Layout` view to show or hide the **Admin** menu with the warning:
 
@@ -256,6 +301,45 @@ The ASP.NET Core Razor Pages OpenID Connect client app uses the `AddOpenIdConnec
 
 For recommended `acr_values` parameter values, see [Authentication Method Reference Values](https://tools.ietf.org/html/draft-ietf-oauth-amr-values-08).
 
+::: moniker range=">= aspnetcore-6.0"
+
+```csharp
+build.Services.AddAuthentication(options =>
+{
+	options.DefaultScheme =
+		CookieAuthenticationDefaults.AuthenticationScheme;
+	options.DefaultChallengeScheme =
+		OpenIdConnectDefaults.AuthenticationScheme;
+})
+.AddCookie()
+.AddOpenIdConnect(options =>
+{
+	options.SignInScheme =
+		CookieAuthenticationDefaults.AuthenticationScheme;
+	options.Authority = "<OpenID Connect server URL>";
+	options.RequireHttpsMetadata = true;
+	options.ClientId = "<OpenID Connect client ID>";
+	options.ClientSecret = "<>";
+	// Code with PKCE can also be used here
+	options.ResponseType = "code id_token";
+	options.Scope.Add("profile");
+	options.Scope.Add("offline_access");
+	options.SaveTokens = true;
+	options.Events = new OpenIdConnectEvents
+	{
+		OnRedirectToIdentityProvider = context =>
+		{
+			context.ProtocolMessage.SetParameter("acr_values", "mfa");
+			return Task.FromResult(0);
+		}
+	};
+});
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-6.0"
+
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
@@ -290,6 +374,10 @@ public void ConfigureServices(IServiceCollection services)
         };
     });
 ```
+
+::: moniker-end
+
+
 
 ### Example OpenID Connect IdentityServer 4 server with ASP.NET Core Identity
 
@@ -466,6 +554,54 @@ namespace AspNetCoreRequireMfaOidc
 }
 ```
 
+::: moniker range=">= aspnetcore-6.0"
+
+In the program file , the `AddOpenIdConnect` method is used as the default challenge scheme. The authorization handler, which is used to check the `amr` claim, is added to the Inversion of Control container. A policy is then created which adds the `RequireMfa` requirement.
+
+```csharp
+builder.Services.ConfigureApplicationCookie(options =>
+        options.Cookie.SecurePolicy =
+            CookieSecurePolicy.Always);
+
+builder.Services.AddSingleton<IAuthorizationHandler, RequireMfaHandler>();
+
+builder.Services.AddAuthentication(options =>
+{
+	options.DefaultScheme =
+		CookieAuthenticationDefaults.AuthenticationScheme;
+	options.DefaultChallengeScheme =
+		OpenIdConnectDefaults.AuthenticationScheme;
+})
+.AddCookie()
+.AddOpenIdConnect(options =>
+{
+	options.SignInScheme =
+		CookieAuthenticationDefaults.AuthenticationScheme;
+	options.Authority = "https://localhost:44352";
+	options.RequireHttpsMetadata = true;
+	options.ClientId = "AspNetCoreRequireMfaOidc";
+	options.ClientSecret = "AspNetCoreRequireMfaOidcSecret";
+	options.ResponseType = "code id_token";
+	options.Scope.Add("profile");
+	options.Scope.Add("offline_access");
+	options.SaveTokens = true;
+});
+
+builder.Services.AddAuthorization(options =>
+{
+	options.AddPolicy("RequireMfa", policyIsAdminRequirement =>
+	{
+		policyIsAdminRequirement.Requirements.Add(new RequireMfa());
+	});
+});
+
+builder.Services.AddRazorPages();
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-6.0"
+
 In the `Startup.ConfigureServices` method, the `AddOpenIdConnect` method is used as the default challenge scheme. The authorization handler, which is used to check the `amr` claim, is added to the Inversion of Control container. A policy is then created which adds the `RequireMfa` requirement.
 
 ```csharp
@@ -510,6 +646,7 @@ public void ConfigureServices(IServiceCollection services)
     services.AddRazorPages();
 }
 ```
+::: moniker-end
 
 This policy is then used in the Razor page as required. The policy could be added globally for the entire app as well.
 
