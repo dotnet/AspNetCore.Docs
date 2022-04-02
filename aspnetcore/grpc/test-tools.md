@@ -106,8 +106,6 @@ message HelloRequest {
 }
 ```
 
-In the preceding example, Specify `<port>` as the localhost port number of the gRPC server. The port number is randomly assigned when the project is created and set in `Properties/launchSettings.json`.
-
 ### Call gRPC services
 
 Call a gRPC service by specifying a service and method name along with a JSON argument that represents the request message. The JSON is converted into Protobuf and sent to the service.
@@ -134,8 +132,6 @@ $ grpcurl -d '{ "name": "World" }' localhost:<port> greet.Greeter/SayHello
   "message": "Hello World"
 }
 ```
-
-In the preceding example, specify `<port>` as the localhost port number of the gRPC server. The port number is randomly assigned when the project is created and set in `Properties/launchSettings.json`
 
 ## gRPCui
 
