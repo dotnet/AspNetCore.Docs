@@ -495,6 +495,21 @@ This example shows how an ASP.NET Core Razor Page app, which uses OpenID Connect
 
 To validate the MFA requirement, an `IAuthorizationRequirement` requirement is created. This will be added to the pages using a policy that requires MFA.
 
+::: moniker range=">= aspnetcore-6.0"
+
+```csharp
+using Microsoft.AspNetCore.Authorization;
+ 
+namespace AspNetCoreRequireMfaOidc;
+
+public class RequireMfa : IAuthorizationRequirement{}
+
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-6.0"
+
 ```csharp
 using Microsoft.AspNetCore.Authorization;
  
@@ -503,6 +518,10 @@ namespace AspNetCoreRequireMfaOidc
     public class RequireMfa : IAuthorizationRequirement{}
 }
 ```
+
+::: moniker-end
+
+
 
 An `AuthorizationHandler` is implemented that will use the `amr` claim and check for the value `mfa`. The `amr` is returned in the `id_token` of a successful authentication and can have many different values as defined in the [Authentication Method Reference Values](https://tools.ietf.org/html/draft-ietf-oauth-amr-values-08) specification.
 
@@ -522,35 +541,27 @@ The `AuthorizationHandler` uses the `RequireMfa` requirement and validates the `
 :::moniker-end
 
 ```csharp
-using Microsoft.AspNetCore.Authorization;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace AspNetCoreRequireMfaOidc
+public class RequireMfaHandler : AuthorizationHandler<RequireMfa>
 {
-    public class RequireMfaHandler : AuthorizationHandler<RequireMfa>
-    {
-        protected override Task HandleRequirementAsync(
-            AuthorizationHandlerContext context, 
-            RequireMfa requirement)
-        {
-            if (context == null)
-                throw new ArgumentNullException(nameof(context));
-            if (requirement == null)
-                throw new ArgumentNullException(nameof(requirement));
+	protected override Task HandleRequirementAsync(
+		AuthorizationHandlerContext context, 
+		RequireMfa requirement)
+	{
+		if (context == null)
+			throw new ArgumentNullException(nameof(context));
+		if (requirement == null)
+			throw new ArgumentNullException(nameof(requirement));
 
-            var amrClaim =
-                context.User.Claims.FirstOrDefault(t => t.Type == "amr");
+		var amrClaim =
+			context.User.Claims.FirstOrDefault(t => t.Type == "amr");
 
-            if (amrClaim != null && amrClaim.Value == Amr.Mfa)
-            {
-                context.Succeed(requirement);
-            }
+		if (amrClaim != null && amrClaim.Value == Amr.Mfa)
+		{
+			context.Succeed(requirement);
+		}
 
-            return Task.CompletedTask;
-        }
-    }
+		return Task.CompletedTask;
+	}
 }
 ```
 
@@ -651,31 +662,19 @@ public void ConfigureServices(IServiceCollection services)
 This policy is then used in the Razor page as required. The policy could be added globally for the entire app as well.
 
 ```csharp
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
-
-namespace AspNetCoreRequireMfaOidc.Pages
+[Authorize(Policy= "RequireMfa")]
+public class IndexModel : PageModel
 {
-    [Authorize(Policy= "RequireMfa")]
-    public class IndexModel : PageModel
-    {
-        private readonly ILogger<IndexModel> _logger;
+	private readonly ILogger<IndexModel> _logger;
 
-        public IndexModel(ILogger<IndexModel> logger)
-        {
-            _logger = logger;
-        }
+	public IndexModel(ILogger<IndexModel> logger)
+	{
+		_logger = logger;
+	}
 
-        public void OnGet()
-        {
-        }
-    }
+	public void OnGet()
+	{
+	}
 }
 ```
 
