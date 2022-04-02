@@ -665,16 +665,9 @@ This policy is then used in the Razor page as required. The policy could be adde
 [Authorize(Policy= "RequireMfa")]
 public class IndexModel : PageModel
 {
-	private readonly ILogger<IndexModel> _logger;
-
-	public IndexModel(ILogger<IndexModel> logger)
-	{
-		_logger = logger;
-	}
-
-	public void OnGet()
-	{
-	}
+    public void OnGet()
+    {
+    }
 }
 ```
 
