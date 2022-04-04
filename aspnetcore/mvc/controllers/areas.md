@@ -78,7 +78,7 @@ While the preceding layout is typical when using Areas, only the view files are 
 
 ### Associate the controller with an Area
 
-Area controllers are designated with the [`Area]`](xref:Microsoft.AspNetCore.Mvc.AreaAttribute) attribute:
+Area controllers are designated with the [`[Area]`](xref:Microsoft.AspNetCore.Mvc.AreaAttribute) attribute:
 
 [!code-csharp[](areas/60samples/MVCareas/Areas/Products/Controllers/ManageController.cs?highlight=6&name=snippet)]
 
