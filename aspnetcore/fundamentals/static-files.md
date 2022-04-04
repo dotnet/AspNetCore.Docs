@@ -248,15 +248,15 @@ With the preceding code, a request for a file with an unknown content type is re
 
 ## Serve files outside wwwroot by updating IWebHostEnvironment.WebRootPath
 
-When [IWebHostEnvironment.WebRootPat](xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootPath) is updated to folder other than `wwwroot`:
+When <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootPath%2A?displayProperty=nameWithType> is set to a folder other than `wwwroot`:
 
 * In the development environment, static assets found in both `wwwroot` and the updated `IWebHostEnvironment.WebRootPath` are served from `wwwroot`.
-* With any environment other than development, duplicate static assets are served from the updated `IWebHostEnvironment.WebRootPath` folder.
+* In any environment other than development, duplicate static assets are served from the updated `IWebHostEnvironment.WebRootPath` folder.
 
 Consider a web app created with the empty web template:
 
-* Containing an *Index.html* file in *wwwroot* and *wwwroot-custom*.
-* With and the following updated `Program.cs` file to set `WebRootPath = "wwwroot-custom"`:
+* Containing an `Index.html` file in `wwwroot` and `wwwroot-custom`.
+* With the following updated `Program.cs` file that sets `WebRootPath = "wwwroot-custom"`:
 
   [!code-csharp[](~/fundamentals/static-files/samples/6.x/WebRoot/Program.cs?name=snippet1)]
 
@@ -265,14 +265,14 @@ In the preceding code, requests to `/`:
 * In the development environment return `wwwroot/Index.html`
 * In any environment other than development return `wwwroot-custom/Index.html`
 
-Any of the following approaches can be used to ensure assets from `wwwroot-custom` are returned:
+To ensure assets from `wwwroot-custom` are returned, use one of the following approaches:
 
 * Delete duplicate named assets in `wwwroot`.
-* Set `"ASPNETCORE_ENVIRONMENT"` in *Properties/launchSettings.json* to any value other than `"Development"`.
+* Set `"ASPNETCORE_ENVIRONMENT"` in `Properties/launchSettings.json` to any value other than `"Development"`.
 * Completely disable static web assets by setting `<StaticWebAssetsEnabled>false</StaticWebAssetsEnabled>` in the project file. ***WARNING, disabling static web assets disables [Razor Class Libraries](xref:razor-pages/ui-class)***.
 * Add the following JSON to the project file:
 
-  ```JSON
+  ```xml
   <ItemGroup>
 	  <Content Remove="wwwroot\**" />
   </ItemGroup>

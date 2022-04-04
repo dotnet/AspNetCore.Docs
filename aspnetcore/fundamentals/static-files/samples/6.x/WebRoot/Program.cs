@@ -22,7 +22,7 @@ var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 {
     Args = args,
     // Examine Hosting environment: logging value
-     EnvironmentName = Environments.Staging,
+    EnvironmentName = Environments.Staging,
     WebRootPath = "wwwroot-custom"
 });
 
