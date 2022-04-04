@@ -181,6 +181,10 @@ app.MapRazorPages();
 
 For information about Single Page Applications, see the guides for the [React](xref:spa/react) and [Angular](xref:spa/angular) project templates.
 
+## UseCors and UseStaticFiles order
+
+The order for calling `UseCors` and `UseStaticFiles` depends on the app. For more information, see [UseCors and UseStaticFiles order](xref:security/cors#uc1)
+
 ### Forwarded Headers Middleware order
 
 [!INCLUDE[](~/includes/ForwardedHeaders.md)]
