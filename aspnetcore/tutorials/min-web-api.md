@@ -223,7 +223,6 @@ NuGet packages must be added to support the database and diagnostics used in thi
 # [Visual Studio](#tab/visual-studio)
 
 * From the **Tools** menu, select **NuGet Package Manager > Manage NuGet Packages for Solution**.
-* Select the **Browse** tab, and verify that **Include prerelease** is checked.
 * Enter **Microsoft.EntityFrameworkCore.InMemory** in the search box, and then select `Microsoft.EntityFrameworkCore.InMemory`.
 * Select the **Project** checkbox in the right pane and then select **Install**.
 * Follow the preceding instructions to add the `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` package.
@@ -233,8 +232,8 @@ NuGet packages must be added to support the database and diagnostics used in thi
 * Run the following commands:
 
    ```dotnetcli
-   dotnet add package Microsoft.EntityFrameworkCore.InMemory --prerelease
-   dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore --prerelease
+   dotnet add package Microsoft.EntityFrameworkCore.InMemory
+   dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
      ```
 
 <!-- add VS Mac later 
