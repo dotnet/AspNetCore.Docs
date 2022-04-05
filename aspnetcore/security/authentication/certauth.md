@@ -165,7 +165,7 @@ A separate class can be used to implement validation logic. Because the same sel
 
 #### Implement an HttpClient using a certificate and IHttpClientFactory
 
-In the following example, a client certificate is added to a `HttpClientHandler` using the `ClientCertificates` property from the handler. This handler can then be used in a named instance of an `HttpClient` using the `ConfigurePrimaryHttpMessageHandler` method. This is setup in `Program.cs`:
+In the following example, a client certificate is added to a `HttpClientHandler` using the `ClientCertificates` property from the handler. This handler can then be used in a named instance of an `HttpClient` using the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> method. This is setup in `Program.cs`:
 
 :::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Snippets/Program.cs" id="snippet_AddHttpClient":::
 
@@ -749,7 +749,7 @@ private async Task<JsonDocument> GetApiDataUsingHttpClientHandler()
 
 #### Implement an HttpClient using a certificate and a named HttpClient from IHttpClientFactory 
 
-In the following example, a client certificate is added to a `HttpClientHandler` using the `ClientCertificates` property from the handler. This handler can then be used in a named instance of an `HttpClient` using the `ConfigurePrimaryHttpMessageHandler` method. This is setup in `Startup.ConfigureServices`:
+In the following example, a client certificate is added to a `HttpClientHandler` using the `ClientCertificates` property from the handler. This handler can then be used in a named instance of an `HttpClient` using the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> method. This is setup in `Startup.ConfigureServices`:
 
 ```csharp
 var clientCertificate = 
@@ -1428,7 +1428,7 @@ private async Task<JsonDocument> GetApiDataUsingHttpClientHandler()
 
 #### Implement an HttpClient using a certificate and a named HttpClient from IHttpClientFactory 
 
-In the following example, a client certificate is added to a `HttpClientHandler` using the `ClientCertificates` property from the handler. This handler can then be used in a named instance of an `HttpClient` using the `ConfigurePrimaryHttpMessageHandler` method. This is setup in `Startup.ConfigureServices`:
+In the following example, a client certificate is added to a `HttpClientHandler` using the `ClientCertificates` property from the handler. This handler can then be used in a named instance of an `HttpClient` using the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> method. This is setup in `Startup.ConfigureServices`:
 
 ```csharp
 var clientCertificate = 
