@@ -99,7 +99,6 @@ In this section, the movie model is scaffolded. That is, the scaffolding tool pr
    1. From the **Tools** menu, select **NuGet Package Manager** > **Manage NuGet Packages for Solution**
       ![NuGet Package Manager - manage](model/_static/6/nugetMP.png)
    1. Select the **Browse** tab.
-   1. Check **Include prerelease**
    1. Enter `Microsoft.EntityFrameworkCore.Design` and select it from the list.
    1. Check **Project** and then Select **Install**
    1. Select **I Accept** in the **License Acceptance** dialog.
