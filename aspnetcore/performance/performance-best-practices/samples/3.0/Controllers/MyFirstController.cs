@@ -54,5 +54,15 @@ namespace pbp.Controllers
         }
     }
     #endregion
-}
 
+    public class GoodStreamReaderNoAsyncAwaitController : Controller
+    {
+        #region snippet4
+        [HttpGet("/contoso")]
+        public Task<ActionResult<ContosoData>> Get()
+        {
+            return JsonSerializer.DeserializeAsync<ContosoData>(Request.Body);
+        }
+        #endregion
+    }
+}

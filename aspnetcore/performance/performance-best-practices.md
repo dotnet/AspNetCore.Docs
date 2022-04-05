@@ -4,7 +4,7 @@ author: mjrousos
 description: Tips for increasing performance in ASP.NET Core apps and avoiding common performance problems.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.date: 04/06/2020
+ms.date: 04/05/2022
 no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: performance/performance-best-practices
 ---
@@ -198,6 +198,13 @@ The preceding code asynchronously reads the entire HTTP request body into memory
 [!code-csharp[](performance-best-practices/samples/3.0/Controllers/MyFirstController.cs?name=snippet3)]
 
 The preceding code asynchronously de-serializes the request body into a C# object.
+
+> [!NOTE]
+> The preceding example can be written without `async`/`await`:
+>
+> [!code-csharp[](performance-best-practices/samples/3.0/Controllers/MyFirstController.cs?name=snippet4)]
+>
+> Although this approach is more performant, using `async`/`await` offers a number of benefits that make it a good default choice. For more information, see [Prefer `async`/`await` over directly returning `Task`](https://github.com/davidfowl/AspNetCoreDiagnosticScenarios/blob/master/AsyncGuidance.md#prefer-asyncawait-over-directly-returning-task).
 
 ## Prefer ReadFormAsync over Request.Form
 
