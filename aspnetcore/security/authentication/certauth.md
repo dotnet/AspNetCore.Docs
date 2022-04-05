@@ -163,7 +163,7 @@ A separate class can be used to implement validation logic. Because the same sel
 
 :::code language="csharp" source="certauth/samples/6.x/CertAuthSample/Snippets/SampleCertificateValidationService.cs":::
 
-#### Implement an HttpClient using a certificate and IHttpClientFactory 
+#### Implement an HttpClient using a certificate and IHttpClientFactory
 
 In the following example, a client certificate is added to a `HttpClientHandler` using the `ClientCertificates` property from the handler. This handler can then be used in a named instance of an `HttpClient` using the `ConfigurePrimaryHttpMessageHandler` method. This is setup in `Program.cs`:
 
@@ -755,13 +755,15 @@ In the following example, a client certificate is added to a `HttpClientHandler`
 var clientCertificate = 
     new X509Certificate2(
       Path.Combine(_environment.ContentRootPath, "sts_dev_cert.pfx"), "1234");
- 
-var handler = new HttpClientHandler();
-handler.ClientCertificates.Add(clientCertificate);
- 
+
 services.AddHttpClient("namedClient", c =>
 {
-}).ConfigurePrimaryHttpMessageHandler(() => handler);
+}).ConfigurePrimaryHttpMessageHandler(() =>
+{
+    var handler = new HttpClientHandler();
+    handler.ClientCertificates.Add(clientCertificate);
+    return handler;
+});
 ```
 
 The `IHttpClientFactory` can then be used to get the named instance with the handler and the certificate. The `CreateClient` method with the name of the client defined in the `Startup` class is used to get the instance. The HTTP request can be sent using the client as required.
@@ -1432,13 +1434,15 @@ In the following example, a client certificate is added to a `HttpClientHandler`
 var clientCertificate = 
     new X509Certificate2(
       Path.Combine(_environment.ContentRootPath, "sts_dev_cert.pfx"), "1234");
- 
-var handler = new HttpClientHandler();
-handler.ClientCertificates.Add(clientCertificate);
- 
+
 services.AddHttpClient("namedClient", c =>
 {
-}).ConfigurePrimaryHttpMessageHandler(() => handler);
+}).ConfigurePrimaryHttpMessageHandler(() =>
+{
+    var handler = new HttpClientHandler();
+    handler.ClientCertificates.Add(clientCertificate);
+    return handler;
+});
 ```
 
 The `IHttpClientFactory` can then be used to get the named instance with the handler and the certificate. The `CreateClient` method with the name of the client defined in the `Startup` class is used to get the instance. The HTTP request can be sent using the client as required.

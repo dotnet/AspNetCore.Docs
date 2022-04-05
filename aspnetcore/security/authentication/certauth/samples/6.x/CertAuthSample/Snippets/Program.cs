@@ -170,16 +170,22 @@ public static class Program
         // </snippet_UseCertificateForwarding>
     }
 
-    public static void AddHttplient(WebApplicationBuilder builder)
+
+    public static void AddHttplient(WebApplicationBuilder builder, IWebHostEnvironment _environment)
     {
         // <snippet_AddHttpClient>
-        var clientCertificateHandler = new HttpClientHandler();
+        var clientCertificate =
+            new X509Certificate2(
+              Path.Combine(_environment.ContentRootPath, "sts_dev_cert.pfx"), "1234");
 
-        clientCertificateHandler.ClientCertificates.Add(
-            new X509Certificate2(Path.Combine("/path/to/pfx"), "1234"));
-
-        builder.Services.AddHttpClient("namedClient")
-            .ConfigurePrimaryHttpMessageHandler(() => clientCertificateHandler);
+        builder.Services.AddHttpClient("namedClient", c =>
+        {
+        }).ConfigurePrimaryHttpMessageHandler(() =>
+        {
+            var handler = new HttpClientHandler();
+            handler.ClientCertificates.Add(clientCertificate);
+            return handler;
+        });
         // </snippet_AddHttpClient>
     }
 
