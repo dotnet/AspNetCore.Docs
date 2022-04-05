@@ -241,34 +241,28 @@ Generic type parameters are now supported. For more information, see <xref:blazo
 
 Use a deployment layout to enable Blazor WebAssembly app downloads in restricted security environments. For more information, see <xref:blazor/host-and-deploy/webassembly-deployment-layout?view=aspnetcore-6.0>.
 
-### Blazor hybrid desktop apps (.NET MAUI)
-
-.NET Multi-platform App UI (.NET MAUI) is a cross-platform framework for creating native mobile and desktop apps with C# and XAML.
-
-> [!NOTE]
-> The .NET MAUI framework is in preview and shouldn't be used in production apps until final release.
-
-For more information, see the following resources:
-
-* [What is .NET MAUI?](/dotnet/maui/what-is-maui)
-* [Microsoft .NET Blog (category: ".NET MAUI")](https://devblogs.microsoft.com/dotnet/category/maui/)
-
-<!-- HOLD
-### Blazor WebAssembly packaging
-
-HOLD
-
-### Dynamically added root components
-
-HOLD
--->
-
 ### New Blazor articles
 
 In addition to the Blazor features described in the preceding sections, new Blazor articles are available on the following subjects:
 
 * <xref:blazor/file-downloads>: Learn how to download a file using native `byte[]` streaming interop to ensure efficient transfer to the client.
 * <xref:blazor/images>: Discover how to work with images in Blazor apps, including how to stream image data and preview an image.
+
+## Build Blazor Hybrid apps with .NET MAUI, WPF, and Windows Forms
+
+Use Blazor Hybrid to blend desktop and mobile native client frameworks with .NET and Blazor:
+
+* .NET Multi-platform App UI (.NET MAUI) is a cross-platform framework for creating native mobile and desktop apps with C# and XAML.
+* Blazor Hybrid apps can be built with Windows Presentation Foundation (WPF) and Windows Forms frameworks.
+
+> [!IMPORTANT]
+> Blazor Hybrid is in preview and shouldn't be used in production apps until final release.
+
+For more information, see the following resources:
+
+* [Preview ASP.NET Core Blazor Hybrid documentation](xref:blazor/hybrid/index)
+* [What is .NET MAUI?](/dotnet/maui/what-is-maui)
+* [Microsoft .NET Blog (category: ".NET MAUI")](https://devblogs.microsoft.com/dotnet/category/maui/)
 
 ## Kestrel
 
