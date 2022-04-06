@@ -40,15 +40,14 @@ This tutorial creates the following API:
 
 ![VS22 installer workloads](min-web-api/_static/asp-net-web-dev.png)
 
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+[!INCLUDE[](~/includes/net-prereqs-mac-6.0.md)]
+
 # [Visual Studio Code](#tab/visual-studio-code)
 
 [!INCLUDE[](~/includes/net-prereqs-vsc-6.0.md)]
 
-<!-- add VS Mac later
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-[!INCLUDE[](~/includes/net-prereqs-mac-6.0.md)]
--->
 ---
 
 ## Create a Web API project
@@ -91,25 +90,36 @@ This tutorial creates the following API:
 
   The preceding command creates a new web minimal API project and opens it in Visual Studio Code.
 
-<!-- add VS Mac later 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* Select **File** > **New Solution**.
+* Select **File** > **New Project...**.
 
 `  ![macOS New solution](first-web-api-mac/_static/sln.png)`
 
-* In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **API** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **API** > **Next**.
+* In Visual Studio for Mac 2022, select **Web and Console** > **App** > **API** > **Next**.
 
 `  ![macOS API template selection](first-web-api-mac/_static/api_template.png)`
 
-* In the **Configure the new ASP.NET Core Web API** dialog, select the latest .NET Core 5.x **Target Framework**. Select **Next**.
+In the **Configure your new API** dialog, make the following selections:
+- **Target framework:** .NET 6.x (or more recent). 
+- **Configure for HTTPS**: Check
+- **Use Controllers (uncheck to use minimal APIs)**: Uncheck
+- **Enable OpenAPI Support**: Check
 
-* Enter *TodoApi* for the **Project Name** and then select **Create**.
+Select **Next**.
 
- ` ![config dialog](first-web-api-mac/_static/2.png)`
+`  ![macOS API template selection](first-web-api-mac/_static/configure_your_new_api.png)`
+
+* In the **Configure our new API** window, enter the following:
+- **Project name:** TodoApi
+- **Solution name:** TodoApi
+
+Select **Create**.
+
+ `  ![macOS API template selection](first-web-api-mac/_static/configure_your_new_api2.png)`
 
 [!INCLUDE[](~/includes/mac-terminal-access.md)]
--->
+
 ---
 
 ### Examine the code
@@ -142,11 +152,10 @@ Visual Studio launches the [Kestrel web server](xref:fundamentals/servers/kestre
 
 Press Ctrl+F5 to run the app. A browser window is opened. Append `/swagger` to the URL in the browser, for example `https://localhost:7122/swagger`.
 
-<!-- add VS Mac later 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Select **Run** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number. 
--->
+Select **Debug** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number. 
+
 
 ---
 
@@ -236,15 +245,15 @@ NuGet packages must be added to support the database and diagnostics used in thi
    dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
      ```
 
-<!-- add VS Mac later 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Open a command terminal in the project folder and run the following command:
+* In the Visual Studio for Mac 2022 toolbar, select **Project** > **Manage NuGet Packages...**
+* In the searchbox, enter **Microsoft.EntityFrameworkCore.InMemory** 
+* In the results window, check `Microsoft.EntityFrameworkCore.InMemory`.
+* Select **Add Package**
+* In the **Select Projects** window, select **Ok**
+* In the **License Agreement** window, select **Agree**
 
-   ```dotnetcli
-   dotnet add package Microsoft.EntityFrameworkCore.InMemory
-   ```
-   -->
 ---
 
 ## Add the API code
