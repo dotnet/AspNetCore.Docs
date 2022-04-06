@@ -21,19 +21,19 @@ namespace WebAPI
             services.AddCors(options =>
             {
                 options.AddDefaultPolicy(
-                    builder =>
+                    policy =>
                     {
                        
-                        builder.WithOrigins("http://example.com",
+                        policy.WithOrigins("http://example.com",
                                             "https://localhost:5001",
                                             "https://localhost:44375",
                                             "http://www.contoso.com");
                     });
 
                 options.AddPolicy("AnotherPolicy",
-                    builder =>
+                    policy =>
                     {
-                        builder.WithOrigins("http://www.contoso.com",
+                        policy.WithOrigins("http://www.contoso.com",
                                             "https://localhost:44375",
                                             "https://localhost:5001")
                                             .AllowAnyHeader()

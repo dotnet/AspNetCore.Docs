@@ -255,7 +255,7 @@ Use the [`[SupplyParameterFromQuery]` attribute](xref:Microsoft.AspNetCore.Compo
 Component parameters supplied from the query string support the following types:
 
 * `bool`, `DateTime`, `decimal`, `double`, `float`, `Guid`, `int`, `long`, `string`.
-* Nullable variants of the preceding types (except `string`, which doesn't have a nullable variant).
+* Nullable variants of the preceding types.
 * Arrays of the preceding types, whether they're nullable or not nullable.
 
 The correct culture-invariant formatting is applied for the given type (<xref:System.Globalization.CultureInfo.InvariantCulture?displayProperty=nameWithType>).
@@ -372,7 +372,7 @@ Supported types are identical to supported types for route constraints:
 
 Supported types include:
 
-* Nullable variants of the preceding types (except `string`, which doesn't have a nullable variant).
+* Nullable variants of the preceding types.
 * Arrays of the preceding types, whether they're nullable or not nullable.
 
 ### Replace a query parameter value when the parameter exists

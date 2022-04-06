@@ -25,55 +25,55 @@ namespace WebAPI
             {
                 #region snippet
                 options.AddPolicy("MyAllowSubdomainPolicy",
-                    builder =>
+                    policy =>
                     {
-                        builder.WithOrigins("https://*.example.com")
+                        policy.WithOrigins("https://*.example.com")
                             .SetIsOriginAllowedToAllowWildcardSubdomains();
                     });
                 #endregion
 
                 #region snippet2
                 options.AddPolicy("MyAllowHeadersPolicy",
-                    builder =>
+                    policy =>
                     {
                         // requires using Microsoft.Net.Http.Headers;
-                        builder.WithOrigins("http://example.com")
+                        policy.WithOrigins("http://example.com")
                                .WithHeaders(HeaderNames.ContentType, "x-custom-header");
                     });
                 #endregion
 
                 #region snippet3
                 options.AddPolicy("MyAllowAllHeadersPolicy",
-                    builder =>
+                    policy =>
                     {
-                        builder.WithOrigins("https://*.example.com")
+                        policy.WithOrigins("https://*.example.com")
                                .AllowAnyHeader();
                     });
                 #endregion
 
                 #region snippet5
                 options.AddPolicy("MyExposeResponseHeadersPolicy",
-                    builder =>
+                    policy =>
                     {
-                        builder.WithOrigins("https://*.example.com")
+                        policy.WithOrigins("https://*.example.com")
                                .WithExposedHeaders("x-custom-header");
                     });
                 #endregion
 
                 #region snippet6
                 options.AddPolicy("MyMyAllowCredentialsPolicy",
-                    builder =>
+                    policy =>
                     {
-                        builder.WithOrigins("http://example.com")
+                        policy.WithOrigins("http://example.com")
                                .AllowCredentials();
                     });
                 #endregion
 
                 #region snippet7
                 options.AddPolicy("MySetPreflightExpirationPolicy",
-                    builder =>
+                    policy =>
                     {
-                        builder.WithOrigins("http://example.com")
+                        policy.WithOrigins("http://example.com")
                                .SetPreflightMaxAge(TimeSpan.FromSeconds(2520));
                     });
                 #endregion

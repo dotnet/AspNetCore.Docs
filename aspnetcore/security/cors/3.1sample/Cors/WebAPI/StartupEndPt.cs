@@ -18,9 +18,9 @@ namespace WebAPIendPt
             services.AddCors(options =>
             {
                 options.AddPolicy(name: MyAllowSpecificOrigins,
-                                  builder =>
+                                  policy =>
                                   {
-                                      builder.WithOrigins("http://example.com",
+                                      policy.WithOrigins("http://example.com",
                                                           "http://www.contoso.com");
                                   });
             });
