@@ -22,7 +22,7 @@ The options pattern uses classes to provide strongly typed access to groups of r
 
 Options also provide a mechanism to validate configuration data. For more information, see the [Options validation](#options-validation) section.
 
-This topic provides information on the options pattern in ASP.NET Core. For information on using the options pattern in console apps, see [Options pattern in .NET](/dotnet/core/extensions/options).
+This article provides information on the options pattern in ASP.NET Core. For information on using the options pattern in console apps, see [Options pattern in .NET](/dotnet/core/extensions/options).
 
 <a name="optpat"></a>
 
@@ -44,7 +44,7 @@ This topic provides information on the options pattern in ASP.NET Core. For info
 <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>:
 
 * Is useful in scenarios where options should be recomputed on every request. For more information, see [Use IOptionsSnapshot to read updated data](#ios).
-* Is registered as [Scoped](/dotnet/core/extensions/dependency-injection#scoped) and therefore cannot be injected into a Singleton service.
+* Is registered as [Scoped](/dotnet/core/extensions/dependency-injection#scoped) and therefore can't be injected into a Singleton service.
 * Supports [named options](#named)
 
 <xref:Microsoft.Extensions.Options.IOptionsMonitor%601>:
@@ -67,7 +67,11 @@ This topic provides information on the options pattern in ASP.NET Core. For info
 
 ## Use IOptionsSnapshot to read updated data
 
-Using <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>, options are computed once per request when accessed and cached for the lifetime of the request. Changes to the configuration are read after the app starts when using configuration providers that support reading updated configuration values.
+Using <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>:
+
+* Options are computed once per request when accessed and cached for the lifetime of the request.
+* May incur a significant performance penalty because it's a [Scoped service](/dotnet/core/extensions/dependency-injection#scoped) and is recomputed per request. For more information, see [this GitHub issue](https://github.com/dotnet/runtime/issues/53793).
+* Changes to the configuration are read after the app starts when using configuration providers that support reading updated configuration values.
 
 The difference between `IOptionsMonitor` and `IOptionsSnapshot` is that:
 
