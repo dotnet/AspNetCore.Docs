@@ -40,13 +40,13 @@ This tutorial creates the following API:
 
 ![VS22 installer workloads](min-web-api/_static/asp-net-web-dev.png)
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-[!INCLUDE[](~/includes/net-prereqs-mac-6.0.md)]
-
 # [Visual Studio Code](#tab/visual-studio-code)
 
 [!INCLUDE[](~/includes/net-prereqs-vsc-6.0.md)]
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+[!INCLUDE[](~/includes/net-prereqs-mac-6.0.md)]
 
 ---
 
