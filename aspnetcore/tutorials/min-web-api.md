@@ -94,11 +94,11 @@ This tutorial creates the following API:
 
 * Select **File** > **New Project...**.
 
-`  ![macOS New solution](first-web-api-mac/_static/sln.png)`
+![macOS New solution](first-web-api-mac/_static/sln.png)
 
 * In Visual Studio for Mac 2022, select **Web and Console** > **App** > **API** > **Next**.
 
-`  ![macOS API template selection](first-web-api-mac/_static/api_template.png)`
+![macOS API template selection](first-web-api-mac/_static/api_template.png)
 
 In the **Configure your new API** dialog, make the following selections:
 - **Target framework:** .NET 6.x (or more recent). 
@@ -108,7 +108,7 @@ In the **Configure your new API** dialog, make the following selections:
 
 Select **Next**.
 
-`  ![macOS API template selection](first-web-api-mac/_static/configure_your_new_api.png)`
+![macOS API template selection](first-web-api-mac/_static/configure_your_new_api.png)
 
 * In the **Configure our new API** window, enter the following:
 - **Project name:** TodoApi
@@ -116,7 +116,7 @@ Select **Next**.
 
 Select **Create**.
 
- `  ![macOS API template selection](first-web-api-mac/_static/configure_your_new_api2.png)`
+![macOS API template selection](first-web-api-mac/_static/configure_your_new_api2.png)
 
 [!INCLUDE[](~/includes/mac-terminal-access.md)]
 
