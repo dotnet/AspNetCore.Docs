@@ -30,7 +30,8 @@
       "ms.topic": "conceptual",
       "uhfHeaderId": "MSDocsHeader-AspNet",
       "searchScope": [ "ASP.NET Core" ],
-      "zone_pivot_group_filename": "core/zone-pivot-groups.json"
+      "zone_pivot_group_filename": "core/zone-pivot-groups.json",
+      "no-loc": [ "toaster", "bowl", "toothbrush", "magnet", "oak" ]
     },
     "fileMetadata": {
       "author": {
@@ -64,9 +65,6 @@
       "ms.topic": {
         "**/getting-started/**/**.md": "tutorial",
         "**/tutorials/**/**.md": "tutorial"
-      },
-      "no-loc": {
-        "**/migration/no-loc-test.md": [ "computer", "cat" ]
       },
       "recommendations": {
         "**/tutorials/**/**.md": "false"
