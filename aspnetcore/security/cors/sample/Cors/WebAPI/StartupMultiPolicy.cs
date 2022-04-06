@@ -21,17 +21,17 @@ namespace WebAPI
             services.AddCors(options =>
             {
                 options.AddDefaultPolicy(
-                    builder =>
+                    policy =>
                     {
                        
-                        builder.WithOrigins("http://example.com",
+                        policy.WithOrigins("http://example.com",
                                             "http://www.contoso.com");
                     });
 
                 options.AddPolicy("AnotherPolicy",
-                    builder =>
+                    policy =>
                     {
-                        builder.WithOrigins("http://www.contoso.com")
+                        policy.WithOrigins("http://www.contoso.com")
                                             .AllowAnyHeader()
                                             .AllowAnyMethod();
                     });
