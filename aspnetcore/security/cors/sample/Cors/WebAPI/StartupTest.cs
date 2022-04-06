@@ -35,9 +35,9 @@ namespace WebAPI
             }
 
             // Shows UseCors with CorsPolicyBuilder.
-            app.UseCors(builder =>
+            app.UseCors(policy =>
             {
-                builder.WithOrigins("http://example.com",
+                policy.WithOrigins("http://example.com",
                                     "http://www.contoso.com",
                                     "https://localhost:44375",
                                     "https://localhost:5001");
