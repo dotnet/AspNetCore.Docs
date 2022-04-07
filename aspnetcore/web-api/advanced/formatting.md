@@ -534,7 +534,7 @@ To configure an app to respect browser accept headers, set the <xref:Microsoft.A
 
 :::code language="csharp" source="formatting/samples/7.x/ResponseFormattingSample/Snippets/Program.cs" id="snippet_RespectBrowserAcceptHeader" highlight="5":::
 
-### Configure formatters
+## Configure formatters
 
 Apps that need to support extra formats can add the appropriate NuGet packages and configure support. There are separate formatters for input and output. Input formatters are used by [Model Binding](xref:mvc/models/model-binding). Output formatters are used to format responses. For information on creating a custom formatter, see [Custom Formatters](xref:web-api/advanced/custom-formatters).
 
@@ -592,7 +592,7 @@ The following action method calls <xref:Microsoft.AspNetCore.Mvc.ControllerBase.
 
 A `ProblemDetails` response is always camelCase, even when the app sets the format to PascalCase. `ProblemDetails` follows [RFC 7807](https://tools.ietf.org/html/rfc7807#appendix-A), which specifies lowercase.
 
-### Specify a format
+## Specify a format
 
 To restrict the response formats, apply the [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) filter. Like most [Filters](xref:mvc/controllers/filters), `[Produces]` can be applied at the action, controller, or global scope:
 
@@ -605,7 +605,7 @@ The preceding [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) fi
 
 For more information, see [Filters](xref:mvc/controllers/filters).
 
-### Special case formatters
+## Special case formatters
 
 Some special cases are implemented using built-in formatters. By default, `string` return types are formatted as *text/plain* (*text/html* if requested via the `Accept` header). This behavior can be deleted by removing the <xref:Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter>. Formatters are removed in `Program.cs`. Actions that have a model object return type return `204 No Content` when returning `null`. This behavior can be deleted by removing the <xref:Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter>. The following code removes the `StringOutputFormatter` and `HttpNoContentOutputFormatter`.
 
