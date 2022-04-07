@@ -1,0 +1,1 @@
+Put code for https://github.com/dotnet/AspNetCore.Docs/issues/7721 in this folder
