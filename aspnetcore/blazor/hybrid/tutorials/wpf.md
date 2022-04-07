@@ -5,7 +5,7 @@ description: Build a Windows Presentation Foundation (WPF) app step-by-step.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/15/2022
+ms.date: 04/07/2022
 no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/hybrid/tutorials/wpf
 ---
@@ -57,6 +57,14 @@ At the top of the project file, change the SDK to `Microsoft.NET.Sdk.Razor`:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Razor">
+```
+
+Set the project's assembly name, `WpfBlazor` in this tutorial, as the app's root namespace by adding the following property group to the project file:
+
+```xml
+<PropertyGroup>
+  <RootNameSpace>WpfBlazor</RootNamespace>
+</PropertyGroup>
 ```
 
 Save the changes to the project file (`WpfBlazor.csproj`).
