@@ -5,7 +5,7 @@ description: Learn how to format response data in ASP.NET Core Web API.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: H1Hack27Feb2017
-ms.date: 11/09/2021
+ms.date: 04/07/2022
 no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: web-api/advanced/formatting
 ---
@@ -552,13 +552,7 @@ To configure features for the `System.Text.Json`-based formatters, use <xref:Mic
 
 :::code language="csharp" source="formatting/samples/7.x/ResponseFormattingSample/Snippets/Program.cs" id="snippet_JsonSerializerOptions" highlight="4-7":::
 
-The following action method calls <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Problem%2A?displayProperty=nameWithType> to create a <xref:Microsoft.AspNetCore.Mvc.ProblemDetails> response:
-
-:::code language="csharp" source="formatting/samples/7.x/ResponseFormattingSample/Controllers/TodoItemsController.cs" id="snippet_GetError" highlight="3":::
-
-A `ProblemDetails` response is always camelCase, even when the app sets the format to PascalCase. `ProblemDetails` follows [RFC 7807](https://tools.ietf.org/html/rfc7807#appendix-A), which specifies lowercase.
-
-To configure output serialization options for specific actions, use `JsonResult`. For example:
+To configure output serialization options for specific actions, use <xref:Microsoft.AspNetCore.Mvc.JsonResult>. For example:
 
 :::code language="csharp" source="formatting/samples/7.x/ResponseFormattingSample/Snippets/Controllers/TodoItemsController.cs" id="snippet_Get":::
 
@@ -589,6 +583,14 @@ To configure features for the `Newtonsoft.Json`-based formatters, use <xref:Micr
 To configure output serialization options for specific actions, use `JsonResult`. For example:
 
 :::code language="csharp" source="formatting/samples/7.x/ResponseFormattingSample/Snippets/Controllers/TodoItemsController.cs" id="snippet_GetNewtonsoftJson":::
+
+### Format `ProblemDetails` responses
+
+The following action method calls <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Problem%2A?displayProperty=nameWithType> to create a <xref:Microsoft.AspNetCore.Mvc.ProblemDetails> response:
+
+:::code language="csharp" source="formatting/samples/7.x/ResponseFormattingSample/Controllers/TodoItemsController.cs" id="snippet_GetError" highlight="3":::
+
+A `ProblemDetails` response is always camelCase, even when the app sets the format to PascalCase. `ProblemDetails` follows [RFC 7807](https://tools.ietf.org/html/rfc7807#appendix-A), which specifies lowercase.
 
 ### Specify a format
 
