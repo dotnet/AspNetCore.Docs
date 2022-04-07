@@ -68,3 +68,7 @@ If you wish to ship a specific version of `WebView2` with the app, use the [Fixe
 -->
 
 For more information on selecting a `WebView2` distribution mode and checking the currently-installed `WebView2` version, see the [`WebView2` distribution docs](/microsoft-edge/webview2/concepts/distribution).
+
+## Additional resources
+
+* <xref:blazor/security/index>
