@@ -253,7 +253,7 @@ For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 <!--
 * Right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
 
-  ![new folder](first-web-api-mac/_static/folder.png)
+  ![new folder](first-web-api-mac/_static/add_new_folder.png)
 
 * Right-click the *Models* folder, and select **Add** > **New File** > **General** > **Empty Class**.
 
@@ -824,7 +824,7 @@ A *model* is a set of classes that represent the data that the app manages. The 
 
 * Right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
 
-  ![new folder](first-web-api-mac/_static/folder.png)
+  ![new folder](first-web-api-mac/_static/add_new_folder.png)
 
 * Right-click the *Models* folder, and select **Add** > **New File** > **General** > **Empty Class**.
 
@@ -1315,7 +1315,7 @@ A *model* is a set of classes that represent the data that the app manages. The 
 
 * Right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
 
-  ![new folder](first-web-api-mac/_static/folder.png)
+  ![new folder](first-web-api-mac/_static/add_new_folder.png)
 
 * Right-click the *Models* folder, and select **Add** > **New File** > **General** > **Empty Class**.
 
