@@ -24,8 +24,9 @@
       "version": 0
     }
   ],
-  "notification_subscribers": [],
-  "sync_notification_subscribers": null,
+  "notification_subscribers": [
+    "riande@microsoft.com"
+  ],
   "branches_to_filter": [],
   "git_repository_branch_open_to_public_contributors": "main",
   "skip_source_output_uploading": false,
