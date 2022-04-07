@@ -25,7 +25,7 @@
     }
   ],
   "notification_subscribers": [
-     "riande@microsoft.com"
+    "riande@microsoft.com"
   ],
   "branches_to_filter": [],
   "git_repository_branch_open_to_public_contributors": "main",
