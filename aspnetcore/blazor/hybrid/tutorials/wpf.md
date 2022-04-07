@@ -59,7 +59,7 @@ At the top of the project file, change the SDK to `Microsoft.NET.Sdk.Razor`:
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 ```
 
-Set the project's assembly name, `WpfBlazor` in this tutorial, as the app's root namespace by adding the following property group to the project file:
+Set the project's namespace, `WpfBlazor` in this tutorial, as the app's root namespace by adding the following property group to the project file:
 
 ```xml
 <PropertyGroup>
