@@ -670,7 +670,7 @@ For more information, see [StackExchange.Redis Profiling](https://stackexchange.
 
 ### Shadow copying in IIS
 
-Shadow copy is supported in ASP.NET Core 7 and later. For more information, see [Shadow copy](xref:host-and-deploy/iis/advanced?view=aspnetcore-7.0&preserve-view=true#shadow-copy).
+Shadow copy is in preview now but will be supported when ASP.NET Core 7.0 is released. For more information, see [Shadow copy](xref:host-and-deploy/iis/advanced?view=aspnetcore-7.0&preserve-view=true#shadow-copy).
 
 An unsupported experimental feature has been added to the <xref:host-and-deploy/aspnet-core-module> to add support for [shadow copying application assemblies](/dotnet/framework/app-domains/shadow-copy-assemblies). Currently .NET locks application binaries when running on Windows making it impossible to replace binaries when the app is running. While our recommendation remains to use an [app offline file](xref:host-and-deploy/iis/app-offline), we recognize there are certain scenarios (for example FTP deployments) where it isn’t possible to do so.
 
