@@ -412,7 +412,7 @@ Shadow copying app assemblies to the [ASP.NET Core Module (ANCM)](xref:host-and-
 
 When an ASP.NET Core app is running on Windows, the binaries are locked so that they can't be modified or replaced. Shadow copying enables the app assemblies to be updated while the app is running by making a copy of the assemblies.
 
-Shadow copy isn't intended to enable zero-downtime deployment, so its expected that IIS will still recycle the app, and some requests may get an [503 Service Unavailable](https://developer.mozilla.org/docs/Web/HTTP/Status/503) response.  We recommend using a pattern like [blue-green deployments](https://www.martinfowler.com/bliki/BlueGreenDeployment.html) or [Azure deployment slots](/azure/app-service/deploy-best-practices) for zero-downtime deployments. Shadow copy helps minimize downtime on deployments, but can't completely eliminate it.
+Shadow copy isn't intended to enable zero-downtime deployment, so its expected that IIS will still recycle the app, and some requests may get an [503 Service Unavailable](https://developer.mozilla.org/docs/Web/HTTP/Status/503) response.  We recommend using a pattern like [blue-green deployments](https://www.martinfowler.com/bliki/BlueGreenDeployment.html) or [Azure deployment slots](/azure/app-service/deploy-best-practices#use-deployment-slots) for zero-downtime deployments. Shadow copy helps minimize downtime on deployments, but can't completely eliminate it.
 
 Shadow copying can be enabled by customizing the ANCM handler settings in `web.config`:
 
