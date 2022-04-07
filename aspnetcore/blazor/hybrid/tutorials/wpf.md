@@ -59,6 +59,8 @@ At the top of the project file, change the SDK to `Microsoft.NET.Sdk.Razor`:
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 ```
 
+<!-- The following is a workaround for https://github.com/dotnet/wpf/issues/5697 (fixes https://github.com/dotnet/maui/issues/3526) -->
+
 Set the project's namespace, `WpfBlazor` in this tutorial, as the app's root namespace by adding the following property group to the project file:
 
 ```xml
