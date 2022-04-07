@@ -111,7 +111,7 @@ For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 
 * Enter *TodoApi* for the **Project Name** and then select **Create**.
 
-  ![config dialog](first-web-api-mac/_static/2.png)
+  ![config dialog](first-web-api-mac/_static/configure_your_new_api2.png)
 
 [!INCLUDE[](~/includes/mac-terminal-access.md)]
 
@@ -699,7 +699,7 @@ The following diagram shows the design of the app.
 
 * Enter *TodoApi* for the **Project Name** and then select **Create**.
 
-  ![config dialog](first-web-api-mac/_static/2.png)
+  ![config dialog](first-web-api-mac/_static/configure_your_new_api2.png)
 
 [!INCLUDE[](~/includes/mac-terminal-access.md)]
 
@@ -1222,7 +1222,7 @@ The following diagram shows the design of the app.
 
 * Enter *TodoApi* for the **Project Name** and then select **Create**.
 
-  ![config dialog](first-web-api-mac/_static/2.png)
+  ![config dialog](first-web-api-mac/_static/configure_your_new_api2.png)
 
 [!INCLUDE[](~/includes/mac-terminal-access.md)]
 

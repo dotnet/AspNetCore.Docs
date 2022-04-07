@@ -108,7 +108,7 @@ In the **Configure your new API** dialog, make the following selections:
 
 Select **Next**.
 
-![macOS API template selection](first-web-api-mac/_static/configure_your_new_api.png)
+![Configure Your New API Window 1](first-web-api-mac/_static/configure_your_new_api.png)
 
 * In the **Configure our new API** window, enter the following:
 - **Project name:** TodoApi
@@ -116,7 +116,7 @@ Select **Next**.
 
 Select **Create**.
 
-![macOS API template selection](first-web-api-mac/_static/configure_your_new_api2.png)
+![Configure Your New API Window 2](first-web-api-mac/_static/configure_your_new_api2.png)
 
 [!INCLUDE[](~/includes/mac-terminal-access.md)]
 
