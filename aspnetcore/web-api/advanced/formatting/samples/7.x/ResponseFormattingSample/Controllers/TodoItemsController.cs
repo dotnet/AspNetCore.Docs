@@ -9,13 +9,13 @@ public class TodoItemsController : ControllerBase
 {
     private readonly TodoItemStore _todoItemStore;
 
-    public TodoItemsController(TodoItemStore todoItemStore) =>
-        _todoItemStore = todoItemStore;
+    public TodoItemsController(TodoItemStore todoItemStore)
+        => _todoItemStore = todoItemStore;
 
     // <snippet_Get>
     [HttpGet]
-    public IActionResult Get() =>
-        Ok(_todoItemStore.GetList());
+    public IActionResult Get()
+        => Ok(_todoItemStore.GetList());
     // </snippet_Get>
 
     // <snippet_GetById>
@@ -35,13 +35,13 @@ public class TodoItemsController : ControllerBase
 
     // <snippet_GetVersion>
     [HttpGet("Version")]
-    public ContentResult GetVersion() =>
-        Content("v1.0.0");
+    public ContentResult GetVersion()
+        => Content("v1.0.0");
     // </snippet_GetVersion>
 
     // <snippet_GetError>
     [HttpGet("Error")]
-    public IActionResult GetError() =>
-        Problem("Something went wrong.");
+    public IActionResult GetError()
+        => Problem("Something went wrong.");
     // </snippet_GetError>
 }

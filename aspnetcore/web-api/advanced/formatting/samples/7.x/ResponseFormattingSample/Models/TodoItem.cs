@@ -4,8 +4,8 @@ public class TodoItem
 {
     public TodoItem() { }
 
-    public TodoItem(long id, string name, bool isComplete = false) =>
-        (Id, Name, IsComplete) = (id, name, isComplete);
+    public TodoItem(long id, string name, bool isComplete = false)
+        => (Id, Name, IsComplete) = (id, name, isComplete);
 
     public long Id { get; set; }
 

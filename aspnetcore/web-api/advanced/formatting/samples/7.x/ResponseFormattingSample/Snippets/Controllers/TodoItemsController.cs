@@ -16,34 +16,28 @@ public class TodoItemsController : ControllerBase
 {
     private readonly TodoItemStore _todoItemStore;
 
-    public TodoItemsController(TodoItemStore todoItemStore) =>
-        _todoItemStore = todoItemStore;
+    public TodoItemsController(TodoItemStore todoItemStore)
+        => _todoItemStore = todoItemStore;
 
     // <snippet_Get>
     [HttpGet]
-    public IActionResult Get() =>
-        new JsonResult(
+    public IActionResult Get() 
+        => new JsonResult(
             _todoItemStore.GetList(),
-            new JsonSerializerOptions
-            {
-                PropertyNamingPolicy = null
-            });
+            new JsonSerializerOptions { PropertyNamingPolicy = null });
     // </snippet_Get>
 
     // <snippet_GetNewtonsoftJson>
     [HttpGet]
-    public IActionResult GetNewtonsoftJson() =>
-        new JsonResult(
+    public IActionResult GetNewtonsoftJson()
+        => new JsonResult(
             _todoItemStore.GetList(),
-            new JsonSerializerSettings
-            {
-                ContractResolver = new DefaultContractResolver()
-            });
+            new JsonSerializerSettings { ContractResolver = new DefaultContractResolver() });
     // </snippet_GetNewtonsoftJson>
 
     // <snippet_GetById>
     [HttpGet("{id:long}")]
-    public TodoItem? GetById(long id) =>
-        _todoItemStore.GetById(id);
+    public TodoItem? GetById(long id)
+        => _todoItemStore.GetById(id);
     // </snippet_GetById>
 }

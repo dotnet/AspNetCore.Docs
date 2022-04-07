@@ -11,9 +11,9 @@ public class TodoItemStore
         new TodoItem(5, "Todo #5"),
     };
 
-    public IEnumerable<TodoItem> GetList() =>
-        _todoItems.ToList();
+    public IEnumerable<TodoItem> GetList()
+        => _todoItems.ToList();
 
-    public TodoItem? GetById(long id) =>
-        _todoItems.Find(x => x.Id == id);
+    public TodoItem? GetById(long id)
+        => _todoItems.Find(x => x.Id == id);
 }

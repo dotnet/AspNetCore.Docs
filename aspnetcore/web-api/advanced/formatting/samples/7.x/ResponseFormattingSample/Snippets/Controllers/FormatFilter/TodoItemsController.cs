@@ -12,12 +12,12 @@ public class TodoItemsController : ControllerBase
 {
     private readonly TodoItemStore _todoItemStore;
 
-    public TodoItemsController(TodoItemStore todoItemStore) =>
-        _todoItemStore = todoItemStore;
+    public TodoItemsController(TodoItemStore todoItemStore)
+        => _todoItemStore = todoItemStore;
 
     [HttpGet("{id:long}.{format?}")]
-    public TodoItem? GetById(long id) =>
-        _todoItemStore.GetById(id);
+    public TodoItem? GetById(long id)
+        => _todoItemStore.GetById(id);
     // </snippet_ClassGet>
 
     // ...
