@@ -358,7 +358,7 @@ public ICollection<Enrollment> Enrollments { get; set; }
 A course may be taught by multiple instructors, so the `Instructors` navigation property is a collection:
 
 ```csharp
-        public ICollection<Instructor> Instructors { get; set; }
+public ICollection<Instructor> Instructors { get; set; }
 ```
 
 ## The Department entity
