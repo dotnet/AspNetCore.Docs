@@ -30,7 +30,7 @@ The preceding highlighted inline middleware is used to demonstrate creating a mi
 There are two overloads available for the `Use` extension:
 
 * One takes a <xref:Microsoft.AspNetCore.Http.HttpContext> and a `Func<Task>`. Invoke the `Func<Task>` without any parameters.
-* The other takes a `HttpContext` and a `<xref:Microsoft.AspNetCore.Http.RequestDelegate>`. Invoke the `RequestDelegate` by passing the `HttpContext`.
+* The other takes a `HttpContext` and a <xref:Microsoft.AspNetCore.Http.RequestDelegate>. Invoke the `RequestDelegate` by passing the `HttpContext`.
 
 Prefer using the later overload as it saves two internal per-request allocations that are required when using the other overload.
 
