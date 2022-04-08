@@ -334,7 +334,6 @@ A dump can be analyzed using several approaches. For more information, see [Anal
 
 :::moniker-end
 
-
 :::moniker range="= aspnetcore-5.0"
 
 An ASP.NET Core app can be hosted on Windows as a [Windows Service](/dotnet/framework/windows-services/introduction-to-windows-service-applications) without using IIS. When hosted as a Windows Service, the app automatically starts after server reboots.
@@ -343,7 +342,7 @@ An ASP.NET Core app can be hosted on Windows as a [Windows Service](/dotnet/fram
 
 ## Prerequisites
 
-* [ASP.NET Core SDK 2.1 or later](https://dotnet.microsoft.com/download)
+* [ASP.NET Core SDK 5.0](https://dotnet.microsoft.com/download)
 * [PowerShell 6.2 or later](https://github.com/PowerShell/PowerShell)
 
 ## Worker Service template
