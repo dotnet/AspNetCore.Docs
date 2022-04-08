@@ -487,11 +487,11 @@ For convenience, attribute routes support *token replacement* by enclosing a tok
 
 In the preceding code:
 
-  [!code-csharp[](routing/samples/6.x/main/Controllers/ProductsController.cs?name=snippet10)]
+[!code-csharp[](routing/samples/6.x/main/Controllers/ProductsController.cs?name=snippet10)]
 
 * Matches `/Products0/List`
 
-  [!code-csharp[](routing/samples/6.x/main/Controllers/ProductsController.cs?name=snippet11)]
+[!code-csharp[](routing/samples/6.x/main/Controllers/ProductsController.cs?name=snippet11)]
 
 * Matches `/Products0/Edit/{id}`
 
