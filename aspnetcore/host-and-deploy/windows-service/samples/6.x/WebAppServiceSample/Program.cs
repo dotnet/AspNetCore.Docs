@@ -18,5 +18,5 @@ var app = builder.Build();
 
 app.UseStaticFiles();
 app.UseRouting();
-app.UseEndpoints(endpoints => { endpoints.MapRazorPages(); });
+app.MapRazorPages();
 await app.RunAsync();
