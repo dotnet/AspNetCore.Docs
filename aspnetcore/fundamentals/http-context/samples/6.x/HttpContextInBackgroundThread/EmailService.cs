@@ -5,11 +5,13 @@ namespace HttpContextInBackgroundThread;
 public class EmailService : IEmailService
 {
     private readonly IHttpContextAccessor _httpContextAccessor;
+    private readonly ILogger<EmailService> _logger;
     private const string? BackgroundCorrelationId = "background-correlation-id";
 
-    public EmailService(IHttpContextAccessor httpContextAccessor)
+    public EmailService(IHttpContextAccessor httpContextAccessor, ILogger<EmailService> logger)
     {
         _httpContextAccessor = httpContextAccessor;
+        _logger = logger;
     }
 
     public void SendEmail(string email)
@@ -25,7 +27,7 @@ public class EmailService : IEmailService
 
     private async Task SendEmailCoreAsync(string? correlationId)
     {
-        Debug.WriteLine($"Email sent with correlation id: {correlationId}");
+        _logger.LogInformation($"Email sent with correlation id: {correlationId}");
         await Task.CompletedTask;
     }
 }
