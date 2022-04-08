@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
+using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 using Newtonsoft.Json.Serialization;
 
 namespace ResponseFormattingSample.Snippets;
@@ -59,6 +62,33 @@ public static class Program
                 options.SerializerSettings.ContractResolver = new DefaultContractResolver();
             });
         // </snippet_AddNewtonsoftJsonSerializerSettings>
+    }
+
+    public static void SystemTextJsonValidationMetadataProvider(WebApplicationBuilder builder)
+    {
+        // <snippet_SystemTextJsonValidationMetadataProvider>
+        builder.Services.AddControllers();
+
+        builder.Services.Configure<MvcOptions>(options =>
+        {
+            options.ModelMetadataDetailsProviders.Add(
+                new SystemTextJsonValidationMetadataProvider());
+        });
+        // </snippet_SystemTextJsonValidationMetadataProvider>
+    }
+
+    public static void NewtonsoftJsonValidationMetadataProvider(WebApplicationBuilder builder)
+    {
+        // <snippet_NewtonsoftJsonValidationMetadataProvider>
+        builder.Services.AddControllers()
+            .AddNewtonsoftJson();
+
+        builder.Services.Configure<MvcOptions>(options =>
+        {
+            options.ModelMetadataDetailsProviders.Add(
+                new NewtonsoftJsonValidationMetadataProvider());
+        });
+        // </snippet_NewtonsoftJsonValidationMetadataProvider>
     }
 
     public static void RemoveOutputFormatters(string[] args)

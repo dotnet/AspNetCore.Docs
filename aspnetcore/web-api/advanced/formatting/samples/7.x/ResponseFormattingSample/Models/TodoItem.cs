@@ -1,4 +1,4 @@
-﻿namespace ResponseFormattingSample.Models;
+namespace ResponseFormattingSample.Models;
 
 public class TodoItem
 {
