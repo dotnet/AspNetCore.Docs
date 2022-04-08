@@ -5,7 +5,7 @@ description: Learn how to format response data in ASP.NET Core Web API.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: H1Hack27Feb2017
-ms.date: 04/07/2022
+ms.date: 04/08/2022
 no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: web-api/advanced/formatting
 ---
@@ -584,13 +584,41 @@ To configure output serialization options for specific actions, use `JsonResult`
 
 :::code language="csharp" source="formatting/samples/7.x/ResponseFormattingSample/Snippets/Controllers/TodoItemsController.cs" id="snippet_GetNewtonsoftJson":::
 
-### Format `ProblemDetails` responses
+### Format `ProblemDetails` and `ValidationProblemDetails` responses
 
 The following action method calls <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Problem%2A?displayProperty=nameWithType> to create a <xref:Microsoft.AspNetCore.Mvc.ProblemDetails> response:
 
 :::code language="csharp" source="formatting/samples/7.x/ResponseFormattingSample/Controllers/TodoItemsController.cs" id="snippet_GetError" highlight="3":::
 
 A `ProblemDetails` response is always camelCase, even when the app sets the format to PascalCase. `ProblemDetails` follows [RFC 7807](https://tools.ietf.org/html/rfc7807#appendix-A), which specifies lowercase.
+
+When the [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute is applied to a controller class, the controller creates a <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails> response when [Model Validation](xref:mvc/models/validation) fails. This response includes a dictionary that uses the model's property names as error keys, unchanged. For example, the following model includes a single property that requires validation:
+
+:::code language="csharp" source="formatting/samples/7.x/ResponseFormattingSample/Snippets/Models/SampleModel.cs" id="snippet_Class":::
+
+By default, the `ValidationProblemDetails` response returned when the `Value` property is invalid uses an error key of `Value`, as shown in the following example:
+
+:::code language="csharp" source="formatting/samples_snapshot/7.x/ValidationProblemDetailsDefault.json" highlight="7":::
+
+To format the property names used as error keys, add an implementation of <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.IMetadataDetailsProvider> to the <xref:Microsoft.AspNetCore.Mvc.MvcOptions.ModelMetadataDetailsProviders%2A?displayProperty=nameWithType> collection. The following example adds a `System.Text.Json`-based implementation, `SystemTextJsonValidationMetadataProvider`, which formats property names as camelCase by default:
+
+:::code language="csharp" source="formatting/samples/7.x/ResponseFormattingSample/Snippets/Program.cs" id="snippet_SystemTextJsonValidationMetadataProvider":::
+
+`SystemTextJsonValidationMetadataProvider` also accepts an implementation of <xref:System.Text.Json.JsonNamingPolicy> in its constructor, which specifies a custom naming policy for formatting property names.
+
+To set a custom name for a property within a model, use the [[JsonPropertyName]](xref:System.Text.Json.Serialization.JsonPropertyNameAttribute) attribute on the property:
+
+:::code language="csharp" source="formatting/samples/7.x/ResponseFormattingSample/Snippets/Models/Formatted/SampleModel.cs" id="snippet_Class":::
+
+The `ValidationProblemDetails` response returned for the preceding model when the `Value` property is invalid uses an error key of `sampleValue`, as shown in the following example:
+
+:::code language="csharp" source="formatting/samples_snapshot/7.x/ValidationProblemDetailsCustom.json" highlight="7":::
+
+To format the `ValidationProblemDetails` response using `Newtonsoft.Json`, use `NewtonsoftJsonValidationMetadataProvider`:
+
+:::code language="csharp" source="formatting/samples/7.x/ResponseFormattingSample/Snippets/Program.cs" id="snippet_NewtonsoftJsonValidationMetadataProvider":::
+
+By default, `NewtonsoftJsonValidationMetadataProvider` formats property names as camelCase. `NewtonsoftJsonValidationMetadataProvider` also accepts an implementation of `NamingPolicy` in its constructor, which specifies a custom naming policy for formatting property names. To set a custom name for a property within a model, use the `[JsonProperty]` attribute.
 
 ## Specify a format
 
