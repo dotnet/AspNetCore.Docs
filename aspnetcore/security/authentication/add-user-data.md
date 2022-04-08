@@ -93,7 +93,7 @@ PowerShell uses semicolon as a command separator. When using PowerShell, escape 
 Follow the instruction in [Migrations, UseAuthentication, and layout](xref:security/authentication/scaffold-identity#efm) to perform the following steps:
 
 * Create a migration and update the database.
-* Add `UseAuthentication` to `Startup.Configure`.
+* Add `UseAuthentication` to [`Program.cs`](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/security/authentication/add-user-data/samples/6.x/SampleApp/Program.cs#L24)
 * Add `<partial name="_LoginPartial" />` to the layout file.
 * Test the app:
   * Register a user
