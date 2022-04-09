@@ -70,12 +70,17 @@ To prevent a class that has a case-insensitive `ViewComponent` suffix from being
 
 ### View component methods
 
-A view component defines its logic in an `InvokeAsync` method that returns a `Task<IViewComponentResult>` or in a synchronous `Invoke` method that returns an `IViewComponentResult`. Parameters come directly from invocation of the view component, not from model binding. A view component never directly handles a request. Typically, a view component initializes a model and passes it to a view by calling the `View` method. In summary, view component methods:
+A view component defines its logic in an:
+
+* `InvokeAsync` method that returns `Task<IViewComponentResult>`.
+* `Invoke` synchronous method that returns an <xref:Microsoft.AspNetCore.Mvc.IViewComponentResult>.
+
+Parameters come directly from invocation of the view component, not from model binding. A view component never directly handles a request. Typically, a view component initializes a model and passes it to a view by calling the `View` method. In summary, view component methods:
 
 * Define an `InvokeAsync` method that returns a `Task<IViewComponentResult>` or a synchronous `Invoke` method that returns an `IViewComponentResult`.
-* Typically initializes a model and passes it to a view by calling the `ViewComponent` `View` method.
+* Typically initializes a model and passes it to a view by calling the [ViewComponent.View](xref:Microsoft.AspNetCore.Mvc.ViewComponent.View) method.
 * Parameters come from the calling method, not HTTP. There's no model binding.
-* Are not reachable directly as an HTTP endpoint. They're invoked from your code (usually in a view). A view component never handles a request.
+* Are not reachable directly as an HTTP endpoint. They're invoked from your code, typically in a view. A view component never handles a request.
 * Are overloaded on the signature rather than any details from the current HTTP request.
 
 ### View search path
@@ -88,7 +93,7 @@ The runtime searches for the view in the following paths:
 
 The search path applies to projects using controllers + views and Razor Pages.
 
-The default view name for a view component is *Default*, which means your view file will typically be named `Default.cshtml`. You can specify a different view name when creating the view component result or when calling the `View` method.
+The default view name for a view component is `Default`, which means view files will typically be named `Default.cshtml`. You can specify a different view name when creating the view component result or when calling the `View` method.
 
 We recommend you name the view file `Default.cshtml` and use the *Views/Shared/Components/{View Component Name}/{View Name}* path. The `PriorityList` view component used in this sample uses `Views/Shared/Components/PriorityList/Default.cshtml` for the view component view.
 
@@ -96,27 +101,30 @@ We recommend you name the view file `Default.cshtml` and use the *Views/Shared/C
 
 To customize the view search path, modify Razor's <xref:Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions.ViewLocationFormats> collection. For example, to search for views within the path "/Components/{View Component Name}/{View Name}", add a new item to the collection:
 
-[!code-csharp[](view-components/samples_snapshot/2.x/Startup.cs?name=snippet_ViewLocationFormats&highlight=4)]
+[!code-csharp[](view-components/sample6.x/ViewComponentSample/Program.cs?name=snippet&highlight=7-10)]
 
-In the preceding code, the placeholder "{0}" represents the path "Components/{View Component Name}/{View Name}".
+In the preceding code, the placeholder `{0}` represents the path `Components/{View Component Name}/{View Name}`.
 
 ## Invoking a view component
 
 To use the view component, call the following inside a view:
 
 ```cshtml
-@await Component.InvokeAsync("Name of view component", {Anonymous Type Containing Parameters})
+@await Component.InvokeAsync("Name of view component",
+                             {Anonymous Type Containing Parameters})
 ```
 
-The parameters will be passed to the `InvokeAsync` method. The `PriorityList` view component developed in the article is invoked from the `Views/ToDo/Index.cshtml` view file. In the following, the `InvokeAsync` method is called with two parameters:
-
-[!code-cshtml[](view-components/sample/ViewCompFinal/Views/ToDo/IndexFinal.cshtml?range=35)]
+The parameters are passed to the `InvokeAsync` method. The `PriorityList` view component developed in the article is invoked from the `Views/ToDo/Index.cshtml` view file. In the following, the `InvokeAsync` method is called with two parameters:
+               view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexFinal.cshtml
+[!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexFinal.cshtml?range=35)]
 
 ## Invoking a view component as a Tag Helper
 
 For ASP.NET Core 1.1 and higher, you can invoke a view component as a [Tag Helper](xref:mvc/views/tag-helpers/intro):
 
-[!code-cshtml[](view-components/sample/ViewCompFinal/Views/ToDo/IndexTagHelper.cshtml?range=37-38)]
+
+
+[!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexTagHelper.cshtml?range=37-38)]
 
 Pascal-cased class and method parameters for Tag Helpers are translated into their [kebab case](https://stackoverflow.com/questions/11273282/whats-the-name-for-dash-separated-case/12273101). The Tag Helper to invoke a view component uses the `<vc></vc>` element. The view component is specified as follows:
 
@@ -137,11 +145,11 @@ You can register a view component as a Tag Helper to any file that references th
 
 The `InvokeAsync` method used in this tutorial:
 
-[!code-cshtml[](view-components/sample/ViewCompFinal/Views/ToDo/IndexFinal.cshtml?range=35)]
+[!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexFinal.cshtml?range=35)]
 
 In Tag Helper markup:
 
-[!code-cshtml[](view-components/sample/ViewCompFinal/Views/ToDo/IndexTagHelper.cshtml?range=37-38)]
+[!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexTagHelper.cshtml?range=37-38)]
 
 In the sample above, the `PriorityList` view component becomes `priority-list`. The parameters to the view component are passed as attributes in kebab case.
 
@@ -151,7 +159,7 @@ View components are typically invoked from a view, but you can invoke them direc
 
 In this example, the view component is called directly from the controller:
 
-[!code-csharp[](view-components/sample/ViewCompFinal/Controllers/ToDoController.cs?name=snippet_IndexVC)]
+[!code-csharp[](view-components/sample6.x/ViewComponentSample/Controllers/ToDoController.cs?name=snippet_IndexVC)]
 
 ## Walkthrough: Creating a simple view component
 
@@ -163,7 +171,7 @@ In this example, the view component is called directly from the controller:
 
 Create a *ViewComponents* folder and add the following `PriorityListViewComponent` class:
 
-[!code-csharp[](view-components/sample/ViewCompFinal/ViewComponents/PriorityListViewComponent1.cs?name=snippet1)]
+[!code-csharp[](view-components/sample6.x/ViewComponentSample/ViewComponents/PriorityListViewComponent1.cs?name=snippet1)]
 
 Notes on the code:
 
@@ -189,7 +197,7 @@ Notes on the code:
 
 * Create a `Views/Shared/Components/PriorityList/Default.cshtml` Razor view:
 
-  [!code-cshtml[](view-components/sample/ViewCompFinal/Views/Shared/Components/PriorityList/Default1.cshtml)]
+  [!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/Shared/Components/PriorityList/Default1.cshtml)]
 
    The Razor view takes a list of `TodoItem` and displays them. If the view component `InvokeAsync` method doesn't pass the name of the view (as in our sample), *Default* is used for the view name by convention. Later in the tutorial, I'll show you how to pass the name of the view. To override the default styling for a specific controller, add a view to the controller-specific view folder (for example *Views/ToDo/Components/PriorityList/Default.cshtml)*.
 
@@ -197,7 +205,7 @@ Notes on the code:
 
 * Add a `div` containing a call to the priority list component to the bottom of the `Views/ToDo/index.cshtml` file:
 
-    [!code-cshtml[](view-components/sample/ViewCompFinal/Views/ToDo/IndexFirst.cshtml?range=34-38)]
+    [!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexFirst.cshtml?range=34-38)]
 
 The markup `@await Component.InvokeAsync` shows the syntax for calling view components. The first argument is the name of the component we want to invoke or call. Subsequent parameters are passed to the component. `InvokeAsync` can take an arbitrary number of arguments.
 
@@ -207,7 +215,7 @@ Test the app. The following image shows the ToDo list and the priority items:
 
 You can also call the view component directly from the controller:
 
-[!code-csharp[](view-components/sample/ViewCompFinal/Controllers/ToDoController.cs?name=snippet_IndexVC)]
+[!code-csharp[](view-components/sample6.x/ViewComponentSample/Controllers/ToDoController.cs?name=snippet_IndexVC)]
 
 ![priority items from IndexVC action](view-components/_static/indexvc.png)
 
@@ -215,17 +223,17 @@ You can also call the view component directly from the controller:
 
 A complex view component might need to specify a non-default view under some conditions. The following code shows how to specify the "PVC" view  from the `InvokeAsync` method. Update the `InvokeAsync` method in the `PriorityListViewComponent` class.
 
-[!code-csharp[](../../mvc/views/view-components/sample/ViewCompFinal/ViewComponents/PriorityListViewComponentFinal.cs?highlight=4,5,6,7,8,9&range=28-39)]
+[!code-csharp[](../../mvc/views/view-components/sample6.x/ViewComponentSample/ViewComponents/PriorityListViewComponentFinal.cs?highlight=4,5,6,7,8,9&range=28-39)]
 
 Copy the `Views/Shared/Components/PriorityList/Default.cshtml` file to a view named `Views/Shared/Components/PriorityList/PVC.cshtml`. Add a heading to indicate the PVC view is being used.
 
-[!code-cshtml[](../../mvc/views/view-components/sample/ViewCompFinal/Views/Shared/Components/PriorityList/PVC.cshtml?highlight=3)]
+[!code-cshtml[](../../mvc/views/view-components/sample6.x/ViewComponentSample/Views/Shared/Components/PriorityList/PVC.cshtml?highlight=3)]
 
 Update `Views/ToDo/Index.cshtml`:
 
 <!-- Views/ToDo/Index.cshtml is never imported, so change to test tutorial -->
 
-[!code-cshtml[](view-components/sample/ViewCompFinal/Views/ToDo/IndexFinal.cshtml?range=35)]
+[!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexFinal.cshtml?range=35)]
 
 Run the app and verify PVC view.
 
@@ -257,15 +265,15 @@ If the PVC view isn't rendered, verify you are calling the view component with a
 
 If you want compile time safety, you can replace the hard-coded view component name with the class name. Create the view component without the "ViewComponent" suffix:
 
-[!code-csharp[](../../mvc/views/view-components/sample/ViewCompFinal/ViewComponents/PriorityList.cs?highlight=10&range=5-35)]
+[!code-csharp[](../../mvc/views/view-components/sample6.x/ViewComponentSample/ViewComponents/PriorityList.cs?highlight=10&range=5-35)]
 
 Add a `using` statement to your Razor view file, and use the `nameof` operator:
 
-[!code-cshtml[](view-components/sample/ViewCompFinal/Views/ToDo/IndexNameof.cshtml?range=1-6,35-)]
+[!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexNameof.cshtml?range=1-6,35-)]
 
 You can use an overload of `Component.InvokeAsync` method that takes a CLR type. Remember to use the `typeof` operator in this case:
 
-[!code-cshtml[](view-components/sample/ViewCompFinal/Views/ToDo/IndexTypeof.cshtml?range=1-6,35-)]
+[!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexTypeof.cshtml?range=1-6,35-)]
 
 ## Perform synchronous work
 
@@ -321,14 +329,6 @@ Use the view component Tag Helper in the Razor markup file:
 ```
 
 The method signature of `PriorityList.Invoke` is synchronous, but Razor finds and calls the method with `Component.InvokeAsync` in the markup file.
-
-## All view component parameters are required
-
-Each parameter in a view component is a required attribute. See [this GitHub issue](https://github.com/dotnet/AspNetCore/issues/5011). If any  parameter is omitted:
-
-* The `InvokeAsync` method signature won't match, therefore the method won't execute.
-* The ViewComponent won't render any markup.
-* No errors will be thrown.
 
 ## Additional resources
 
