@@ -26,7 +26,7 @@ A view component:
 * Can have parameters and business logic.
 * Is typically invoked from a layout page.
 
-View components are intended anywhere you have reusable rendering logic that's too complex for a partial view, such as:
+View components are intended anywhere reusable rendering logic that's too complex for a partial view, such as:
 
 * Dynamic navigation menus
 * Tag cloud, where it queries the database
@@ -93,9 +93,9 @@ The runtime searches for the view in the following paths:
 
 The search path applies to projects using controllers + views and Razor Pages.
 
-The default view name for a view component is `Default`, which means view files will typically be named `Default.cshtml`. You can specify a different view name when creating the view component result or when calling the `View` method.
+The default view name for a view component is `Default`, which means view files will typically be named `Default.cshtml`. A different view name can be specifed when creating the view component result or when calling the `View` method.
 
-We recommend you name the view file `Default.cshtml` and use the *Views/Shared/Components/{View Component Name}/{View Name}* path. The `PriorityList` view component used in this sample uses `Views/Shared/Components/PriorityList/Default.cshtml` for the view component view.
+We recommend naming the view file `Default.cshtml` and using the *Views/Shared/Components/{View Component Name}/{View Name}* path. The `PriorityList` view component used in this sample uses `Views/Shared/Components/PriorityList/Default.cshtml` for the view component view.
 
 ### Customize the view search path
 
@@ -153,9 +153,9 @@ In the sample above, the `PriorityList` view component becomes `priority-list`. 
 
 ### Invoking a view component directly from a controller
 
-View components are typically invoked from a view, but you can invoke them directly from a controller method. While view components don't define endpoints like controllers, you can easily implement a controller action that returns the content of a `ViewComponentResult`.
+View components are typically invoked from a view, but they can be invoked directly from a controller method. While view components don't define endpoints like controllers, a controller action that returns the content of a `ViewComponentResult` can be implemented.
 
-In this example, the view component is called directly from the controller:
+In the following example, the view component is called directly from the controller:
 
 [!code-csharp[](view-components/sample6.x/ViewComponentSample/Controllers/ToDoController.cs?name=snippet_IndexVC)]
 
@@ -191,15 +191,15 @@ Notes on the code:
 
 * Create the *Views/Shared/Components* folder. This folder **must** be named *Components*.
 
-* Create the *Views/Shared/Components/PriorityList* folder. This folder name must match the name of the view component class, or the name of the class minus the suffix (if we followed convention and used the `ViewComponent` suffix in the class name). If you used the `ViewComponent` attribute, the class name would need to match the attribute designation.
+* Create the *Views/Shared/Components/PriorityList* folder. This folder name must match the name of the view component class, or the name of the class minus the suffix. If the `ViewComponent` attribute is used, the class name would need to match the attribute designation.
 
 * Create a `Views/Shared/Components/PriorityList/Default.cshtml` Razor view:
 
   [!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/Shared/Components/PriorityList/Default1.cshtml)]
 
-   The Razor view takes a list of `TodoItem` and displays them. If the view component `InvokeAsync` method doesn't pass the name of the view (as in our sample), *Default* is used for the view name by convention. Later in the tutorial, I'll show you how to pass the name of the view. To override the default styling for a specific controller, add a view to the controller-specific view folder (for example *Views/ToDo/Components/PriorityList/Default.cshtml)*.
+   The Razor view takes a list of `TodoItem` and displays them. If the view component `InvokeAsync` method doesn't pass the name of the view (as in our sample), *Default* is used for the view name by convention. Later in the tutorial, we show how to pass the name of the view. To override the default styling for a specific controller, add a view to the controller-specific view folder (for example *Views/ToDo/Components/PriorityList/Default.cshtml)*.
 
-    If the view component is controller-specific, you can add it to the controller-specific folder (`Views/ToDo/Components/PriorityList/Default.cshtml`).
+    If the view component is controller-specific, it can be added it to the controller-specific folder (`Views/ToDo/Components/PriorityList/Default.cshtml`).
 
 * Add a `div` containing a call to the priority list component to the bottom of the `Views/ToDo/index.cshtml` file:
 
@@ -211,7 +211,7 @@ Test the app. The following image shows the ToDo list and the priority items:
 
 ![todo list and priority items](view-components/_static/pi.png)
 
-You can also call the view component directly from the controller:
+The view component can be called directly from the controller:
 
 [!code-csharp[](view-components/sample6.x/ViewComponentSample/Controllers/ToDoController.cs?name=snippet_IndexVC)]
 
@@ -237,15 +237,15 @@ Run the app and verify PVC view.
 
 ![Priority View Component](view-components/_static/pvc.png)
 
-If the PVC view isn't rendered, verify you are calling the view component with a priority of 4 or higher.
+If the PVC view isn't rendered, verify the view component with a priority of 4 or higher is called.
 
 ### Examine the view path
 
 * Change the priority parameter to three or less so the priority view isn't returned.
 * Temporarily rename the `Views/ToDo/Components/PriorityList/Default.cshtml` to `1Default.cshtml`.
-* Test the app, you'll get the following error:
+* Test the app, the following error occurs:
 
-   ```
+   ```txt
    An unhandled exception occurred while processing the request.
    InvalidOperationException: The view 'Components/PriorityList/Default' wasn't found. The following locations were searched:
    /Views/ToDo/Components/PriorityList/Default.cshtml
@@ -261,21 +261,21 @@ If the PVC view isn't rendered, verify you are calling the view component with a
 
 ### Avoiding hard-coded strings
 
-If you want compile time safety, you can replace the hard-coded view component name with the class name. Create the view component without the "ViewComponent" suffix:
+For compile time safety, replace the hard-coded view component name with the class name. Create the view component without the "ViewComponent" suffix:
 
 [!code-csharp[](../../mvc/views/view-components/sample6.x/ViewComponentSample/ViewComponents/PriorityList.cs?highlight=10&range=5-35)]
 
-Add a `using` statement to your Razor view file, and use the `nameof` operator:
+Add a `using` statement to the Razor view file, and use the `nameof` operator:
 
 [!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexNameof.cshtml?range=1-6,35-)]
 
-You can use an overload of `Component.InvokeAsync` method that takes a CLR type. Remember to use the `typeof` operator in this case:
+An overload of `Component.InvokeAsync` method that takes a CLR type can be used. Remember to use the `typeof` operator in this case:
 
 [!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexTypeof.cshtml?range=1-6,35-)]
 
 ## Perform synchronous work
 
-The framework handles invoking a synchronous `Invoke` method if you don't need to perform asynchronous work. The following method creates a synchronous `Invoke` view component:
+The framework handles invoking a synchronous `Invoke` method if asynchronous work isn't required. The following method creates a synchronous `Invoke` view component:
 
 ```csharp
 public class PriorityList : ViewComponent
