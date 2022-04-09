@@ -1,8 +1,6 @@
-﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using ViewComponentSample.Models;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using ViewComponentSample.Models;
 
 namespace ViewComponentSample.Controllers
 {
@@ -21,7 +19,7 @@ namespace ViewComponentSample.Controllers
 
         public IActionResult Index()
         {
-            var model = _ToDoContext.ToDo.ToList();
+            var model = _ToDoContext.ToDo!.ToList();
             return View(model);
         }
         #region snippet_IndexVC
@@ -33,21 +31,21 @@ namespace ViewComponentSample.Controllers
 
         public async Task<IActionResult> IndexFinal()
         {
-            return View(await _ToDoContext.ToDo.ToListAsync());
+            return View(await _ToDoContext.ToDo!.ToListAsync());
         }
 
         public IActionResult IndexNameof()
         {
-            return View(_ToDoContext.ToDo.ToList());
+            return View(_ToDoContext.ToDo!.ToList());
         }
         public IActionResult IndexTypeof()
         {
-            return View(_ToDoContext.ToDo.ToList());
+            return View(_ToDoContext.ToDo!.ToList());
         }
 
         public IActionResult IndexFirst()
         {
-            return View(_ToDoContext.ToDo.ToList());
+            return View(_ToDoContext.ToDo!.ToList());
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿#define Final
+#define Final
 #if Final
 
 using Microsoft.AspNetCore.Mvc;
@@ -21,7 +21,7 @@ namespace ViewComponentSample.ViewComponents
        
         private Task<List<TodoItem>> GetItemsAsync(int maxPriority, bool isDone)
         {
-            return db.ToDo.Where(x => x.IsDone == isDone &&
+            return db.ToDo!.Where(x => x.IsDone == isDone &&
                                  x.Priority <= maxPriority).ToListAsync();
         }
         #region snippet1
