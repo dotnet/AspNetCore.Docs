@@ -99,7 +99,7 @@ We recommend you name the view file `Default.cshtml` and use the *Views/Shared/C
 
 ### Customize the view search path
 
-To customize the view search path, modify Razor's <xref:Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions.ViewLocationFormats> collection. For example, to search for views within the path "/Components/{View Component Name}/{View Name}", add a new item to the collection:
+To customize the view search path, modify Razor's <xref:Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions.ViewLocationFormats> collection. For example, to search for views within the path `/Components/{View Component Name}/{View Name}`, add a new item to the collection:
 
 [!code-csharp[](view-components/sample6.x/ViewComponentSample/Program.cs?name=snippet&highlight=7-10)]
 
@@ -114,15 +114,13 @@ To use the view component, call the following inside a view:
                              {Anonymous Type Containing Parameters})
 ```
 
-The parameters are passed to the `InvokeAsync` method. The `PriorityList` view component developed in the article is invoked from the `Views/ToDo/Index.cshtml` view file. In the following, the `InvokeAsync` method is called with two parameters:
-               view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexFinal.cshtml
+The parameters are passed to the `InvokeAsync` method. The `PriorityList` view component developed in the article is invoked from the `Views/ToDo/Index.cshtml` view file. In the following code, the `InvokeAsync` method is called with two parameters:
+
 [!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexFinal.cshtml?range=35)]
 
 ## Invoking a view component as a Tag Helper
 
-For ASP.NET Core 1.1 and higher, you can invoke a view component as a [Tag Helper](xref:mvc/views/tag-helpers/intro):
-
-
+View component can be invoked as a [Tag Helper](xref:mvc/views/tag-helpers/intro):
 
 [!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexTagHelper.cshtml?range=37-38)]
 
@@ -135,13 +133,13 @@ Pascal-cased class and method parameters for Tag Helpers are translated into the
 </vc:[view-component-name]>
 ```
 
-To use a view component as a Tag Helper, register the assembly containing the view component using the `@addTagHelper` directive. If your view component is in an assembly called `MyWebApp`, add the following directive to the `_ViewImports.cshtml` file:
+To use a view component as a Tag Helper, register the assembly containing the view component using the `@addTagHelper` directive. If the view component is in an assembly called `MyWebApp`, add the following directive to the `_ViewImports.cshtml` file:
 
 ```cshtml
 @addTagHelper *, MyWebApp
 ```
 
-You can register a view component as a Tag Helper to any file that references the view component. See [Managing Tag Helper Scope](xref:mvc/views/tag-helpers/intro#managing-tag-helper-scope) for more information on how to register Tag Helpers.
+A view component can be registered as a Tag Helper to any file that references the view component. See [Managing Tag Helper Scope](xref:mvc/views/tag-helpers/intro#managing-tag-helper-scope) for more information on how to register Tag Helpers.
 
 The `InvokeAsync` method used in this tutorial:
 
