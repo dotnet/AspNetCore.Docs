@@ -54,24 +54,19 @@ This section contains the high-level requirements to create a view component. La
 A view component class can be created by any of the following:
 
 * Deriving from <xref:Microsoft.AspNetCore.Mvc.ViewComponent>
-* Decorating a class with the `[ViewComponent]` attribute, or deriving from a class with the `[ViewComponent]` attribute
-* Creating a class where the name ends with the suffix *ViewComponent*
+* Decorating a class with the [`[ViewComponent]`](xref:Microsoft.AspNetCore.Mvc.ViewComponentAttribute) attribute, or deriving from a class with the `[ViewComponent]` attribute
+* Creating a class where the name ends with the suffix `ViewComponent`
 
-Like controllers, view components must be public, non-nested, and non-abstract classes. The view component name is the class name with the "ViewComponent" suffix removed. It can also be explicitly specified using the `ViewComponentAttribute.Name` property.
+Like controllers, view components must be public, non-nested, and non-abstract classes. The view component name is the class name with the `ViewComponent` suffix removed. It can also be explicitly specified using the <xref:Microsoft.AspNetCore.Mvc.ViewComponentAttribute.Name%2A> property.
 
 A view component class:
 
 * Fully supports constructor [dependency injection](../../fundamentals/dependency-injection.md)
-* Doesn't take part in the controller lifecycle, which means you can't use [filters](../controllers/filters.md) in a view component
+* Doesn't take part in the controller lifecycle, therefore [filters](../controllers/filters.md) can't be used in a view component
 
-To stop a class that has a case-insensitive *ViewComponent* suffix from being treated as a view component, decorate the class with the [[NonViewComponent]](xref:Microsoft.AspNetCore.Mvc.NonViewComponentAttribute) attribute:
- 
-```csharp
-[NonViewComponent]
-public class ReviewComponent
-{
-    // ...
-```
+To prevent a class that has a case-insensitive `ViewComponent` suffix from being treated as a view component, decorate the class with the [`[NonViewComponent]`](xref:Microsoft.AspNetCore.Mvc.NonViewComponentAttribute) attribute:
+
+[!code-csharp[](view-components/sample6.x/ViewComponentSample/ReviewComponent.cs?name=snippet&highlight=3)]
 
 ### View component methods
 
@@ -190,10 +185,9 @@ Notes on the code:
 
 * Create the *Views/Shared/Components* folder. This folder **must** be named *Components*.
 
-* Create the *Views/Shared/Components/PriorityList* folder. This folder name must match the name of the view component class, or the name of the class minus the suffix (if we followed convention and used the *ViewComponent* suffix in the class name). If you used the `ViewComponent` attribute, the class name would need to match the attribute designation.
+* Create the *Views/Shared/Components/PriorityList* folder. This folder name must match the name of the view component class, or the name of the class minus the suffix (if we followed convention and used the `ViewComponent` suffix in the class name). If you used the `ViewComponent` attribute, the class name would need to match the attribute designation.
 
 * Create a `Views/Shared/Components/PriorityList/Default.cshtml` Razor view:
-
 
   [!code-cshtml[](view-components/sample/ViewCompFinal/Views/Shared/Components/PriorityList/Default1.cshtml)]
 

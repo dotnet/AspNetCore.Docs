@@ -1,11 +1,7 @@
 #define Final
 #if Final
-
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using ViewComponentSample.Models;
 
 namespace ViewComponentSample.ViewComponents
@@ -40,5 +36,4 @@ namespace ViewComponentSample.ViewComponents
         #endregion
     }
 }
-
 #endif
