@@ -220,9 +220,7 @@ To debug a **published**, hosted Blazor WebAssembly app, configure debugger supp
 By default, publishing an app disables the preceding properties by setting them to `false`.
 
 > [!WARNING]
-> Published, hosted Blazor WebAssembly apps should only enable debugging when deploying published assets ***locally***. Do **not*** deploy a published app into production with the `DebuggerSupport` property set to `true`.
->
-> If `CopyOutputSymbolsToPublishDirectory` is set to `true` in a published, production app, there are no security risks, but app size and deployment speed are adversely impacted for no benefit. Therefore, apps deployed into production should ***not** enable copying symbols to the `publish` directory.
+> Published, hosted Blazor WebAssembly apps should only enable debugging and copying output symbols when deploying published assets ***locally***. Do **not*** deploy a published app into production with the `DebuggerSupport` and `CopyOutputSymbolsToPublishDirectory` properties set to `true`.
 
 ## Attach to an existing debugging session
 
@@ -649,9 +647,7 @@ To debug a **published**, hosted Blazor WebAssembly app, configure debugger supp
 By default, publishing an app disables the preceding properties by setting them to `false`.
 
 > [!WARNING]
-> Published, hosted Blazor WebAssembly apps should only enable debugging when deploying published assets ***locally***. Do **not*** deploy a published app into production with the `DebuggerSupport` property set to `true`.
->
-> If `CopyOutputSymbolsToPublishDirectory` is set to `true` in a published, production app, there are no security risks, but app size and deployment speed are adversely impacted for no benefit. Therefore, apps deployed into production should ***not** enable copying symbols to the `publish` directory.
+> Published, hosted Blazor WebAssembly apps should only enable debugging and copying output symbols when deploying published assets ***locally***. Do **not*** deploy a published app into production with the `DebuggerSupport` and `CopyOutputSymbolsToPublishDirectory` properties set to `true`.
 
 ## Attach to an existing debugging session
 
