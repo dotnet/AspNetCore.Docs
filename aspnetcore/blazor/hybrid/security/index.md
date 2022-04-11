@@ -30,11 +30,11 @@ When using an [`iframe`](https://developer.mozilla.org/docs/Web/HTML/Element/ifr
 
 ## Links to external URLs
 
-By default, links to URLs outside of the app are opened using the system's browser, not loaded within the app. We do ***not*** recommend overriding the default behavior.
+By default, links to URLs outside of the app are opened in an appropriate external app, not loaded within the `WebView`. We do ***not*** recommend overriding the default behavior.
 
 The user might be able to indicate that they want the URL to load in the app because it's content that they trust. In that case, see the [Untrusted and unencoded content](#untrusted-and-unencoded-content) section.
 
-## Keep `BlazorWebView` (`WebView`) current in deployed apps
+## Keep the `WebView` current deployed apps
 
 By default, the [`BlazorWebView`](/maui/user-interface/controls/blazorwebview) control uses the currently-installed, platform-specific native `WebView`. Since the native `WebView` is periodically updated with support for new APIs and fixes for security issues, it may be necessary to ensure that an app is using a `WebView` version that meets the app's requirements.
 
@@ -67,7 +67,7 @@ If you wish to ship a specific version of `WebView2` with the app, use the [Fixe
 
 -->
 
-For more information on selecting a `WebView2` distribution mode and checking the currently-installed `WebView2` version, see the [`WebView2` distribution docs](/microsoft-edge/webview2/concepts/distribution).
+For more information on checking the currently-installed `WebView2` version, see the [`WebView2` distribution docs](/microsoft-edge/webview2/concepts/distribution).
 
 ## Additional resources
 
