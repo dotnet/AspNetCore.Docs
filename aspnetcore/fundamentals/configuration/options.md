@@ -200,31 +200,11 @@ Options validation also supports <xref:System.ComponentModel.DataAnnotations.IVa
 * Implement the `IValidatableObject` interface and its <xref:System.ComponentModel.DataAnnotations.IValidatableObject.Validate%2A> method within the class.
 * Call <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotationsExtensions.ValidateDataAnnotations%2A> in `Program.cs`.
 
-<!-- The following comment doesn't seem that useful 
-Options validation doesn't guard against options modifications after the options instance is created. For example, `IOptionsSnapshot` options are created and validated once per request when the options are first accessed. The `IOptionsSnapshot` options aren't validated again on subsequent access attempts *for the same request*.
+### `ValidateOnStart`
 
-The `Validate` method accepts a `Func<TOptions, bool>`. To fully customize validation, implement `IValidateOptions<TOptions>`, which allows:
+Options validation runs the first time an <xref:Microsoft.Extensions.Options.IOptions%601>, <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>, or <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> implementation is created. To run options validation eagerly, when the app starts, call <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderExtensions.ValidateOnStart%2A> in `Program.cs`:
 
-* Validation of multiple options types: `class ValidateTwo : IValidateOptions<Option1>, IValidationOptions<Option2>`
-* Validation that depends on another option type: `public DependsOnAnotherOptionValidator(IOptionsMonitor<AnotherOption> options)`
-
-`IValidateOptions` validates:
-
-* A specific named options instance.
-* All options when `name` is `null`.
-
-Return a `ValidateOptionsResult` from your implementation of the interface:
-
-```csharp
-public interface IValidateOptions<TOptions> where TOptions : class
-{
-    ValidateOptionsResult Validate(string name, TOptions options);
-}
-```
-
-Data Annotation-based validation is available from the [Microsoft.Extensions.Options.DataAnnotations](https://www.nuget.org/packages/Microsoft.Extensions.Options.DataAnnotations) package by calling the <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotationsExtensions.ValidateDataAnnotations*> method on `OptionsBuilder<TOptions>`. `Microsoft.Extensions.Options.DataAnnotations` is implicitly referenced in ASP.NET Core apps.
-
--->
+:::code language="csharp" source="options/samples/6.x/OptionsValidationSample/Snippets/Program.cs" id="snippet_ValidateOnStart" highlight="4":::
 
 ## Options post-configuration
 
