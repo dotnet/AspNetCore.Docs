@@ -148,7 +148,12 @@ ASP.NET Core includes three [filters](xref:mvc/controllers/filters) for working 
 
 ## Multiple browser tabs and the Synchronizer Token Pattern
 
-With the Synchronizer Token Pattern, only the most recently loaded page contains a valid antiforgery token. This can raise problems for users with multiple tabs. For example, if a user opens two distinct tabs, only the most recently loaded tab would contain a valid antiforgery token in its HTML, and any requests made from previously loaded tabs would fail. Consider alternative CSRF protection patterns if this poses an issue.
+With the Synchronizer Token Pattern, only the most recently loaded page contains a valid antiforgery token. Using multiple tabs can be problematic. For example, if a user opens multiple tabs:
+
+ * Only the most recently loaded tab contains a valid antiforgery token.
+ * Requests made from previously loaded tabs fail with an xyz error.
+ 
+ Consider alternative CSRF protection patterns if this poses an issue.
 
 ## Configure antiforgery with `AntiforgeryOptions`
 
