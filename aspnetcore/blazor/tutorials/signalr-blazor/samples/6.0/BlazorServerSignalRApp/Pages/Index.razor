@@ -44,7 +44,7 @@
         {
             var encodedMsg = $"{user}: {message}";
             messages.Add(encodedMsg);
-            StateHasChanged();
+            InvokeAsync(StateHasChanged);
         });
 
         await hubConnection.StartAsync();
