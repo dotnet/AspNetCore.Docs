@@ -177,7 +177,7 @@ If event handlers are provided in developer code, unhook them on disposal. For m
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called automatically for <xref:Microsoft.AspNetCore.Components.EventCallback> methods. For more information on event callbacks, see <xref:blazor/components/event-handling#eventcallback>.
 
-For more information on component rendering and when to call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>, see <xref:blazor/components/rendering>.
+For more information on component rendering and when to call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>, including when to invoke it with <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A?displayProperty=nameWithType>, see <xref:blazor/components/rendering>.
 
 ## Handle incomplete async actions at render
 
@@ -254,6 +254,9 @@ If a single object requires disposal, a lambda can be used to dispose of the obj
 `Pages/CounterWithTimerDisposal1.razor`:
 
 [!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal1.razor?highlight=3,11,28)]
+
+> [!NOTE]
+> In the preceding example, the call to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is wrapped by a call to <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A?displayProperty=nameWithType> because the callback is invoked outside of Blazor's synchronization context. For more information, see the <xref:blazor/components/rendering#receiving-a-call-from-something-external-to-the-blazor-rendering-and-event-handling-system>.
 
 If the object is created in a lifecycle method, such as [`OnInitialized`/`OnInitializedAsync`](#component-initialization-oninitializedasync), check for `null` before calling `Dispose`.
 
@@ -625,7 +628,7 @@ If event handlers are provided in developer code, unhook them on disposal. For m
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called automatically for <xref:Microsoft.AspNetCore.Components.EventCallback> methods. For more information on event callbacks, see <xref:blazor/components/event-handling#eventcallback>.
 
-For more information on component rendering and when to call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>, see <xref:blazor/components/rendering>.
+For more information on component rendering and when to call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>, including when to invoke it with <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A?displayProperty=nameWithType>, see <xref:blazor/components/rendering>.
 
 ## Handle incomplete async actions at render
 
@@ -702,6 +705,9 @@ If a single object requires disposal, a lambda can be used to dispose of the obj
 `Pages/CounterWithTimerDisposal1.razor`:
 
 [!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal1.razor?highlight=3,11,28)]
+
+> [!NOTE]
+> In the preceding example, the call to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is wrapped by a call to <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A?displayProperty=nameWithType> because the callback is invoked outside of Blazor's synchronization context. For more information, see the <xref:blazor/components/rendering#receiving-a-call-from-something-external-to-the-blazor-rendering-and-event-handling-system>.
 
 If the object is created in a lifecycle method, such as [`OnInitialized`/`OnInitializedAsync`](#component-initialization-oninitializedasync), check for `null` before calling `Dispose`.
 
@@ -1069,7 +1075,7 @@ If event handlers are provided in developer code, unhook them on disposal. For m
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called automatically for <xref:Microsoft.AspNetCore.Components.EventCallback> methods. For more information on event callbacks, see <xref:blazor/components/event-handling#eventcallback>.
 
-For more information on component rendering and when to call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>, see <xref:blazor/components/rendering>.
+For more information on component rendering and when to call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>, including when to invoke it with <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A?displayProperty=nameWithType>, see <xref:blazor/components/rendering>.
 
 ## Handle incomplete async actions at render
 
@@ -1146,6 +1152,9 @@ If a single object requires disposal, a lambda can be used to dispose of the obj
 `Pages/CounterWithTimerDisposal1.razor`:
 
 [!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal1.razor?highlight=3,11,28)]
+
+> [!NOTE]
+> In the preceding example, the call to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is wrapped by a call to <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A?displayProperty=nameWithType> because the callback is invoked outside of Blazor's synchronization context. For more information, see the <xref:blazor/components/rendering#receiving-a-call-from-something-external-to-the-blazor-rendering-and-event-handling-system>.
 
 If the object is created in a lifecycle method, such as [`OnInitialized`/`OnInitializedAsync`](#component-initialization-oninitializedasync), check for `null` before calling `Dispose`.
 
