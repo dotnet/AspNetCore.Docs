@@ -806,7 +806,7 @@ In the preceding code, the `culture` route parameter is used for localization. T
 
 ## Parse URL paths with `LinkParser`
 
-The <xref:Microsoft.AspNetCore.Routing.LinkParser> class adds support for parsing a URL path into a set of route values. The <xref:Microsoft.AspNetCore.Routing.LinkParserEndpointNameAddressExtensions.ParsePathByEndpointName%2A> method takes a URL path and an endpoint name, and returns a set of route values extracted from the URL path.
+The <xref:Microsoft.AspNetCore.Routing.LinkParser> class adds support for parsing a URL path into a set of route values. The <xref:Microsoft.AspNetCore.Routing.LinkParserEndpointNameAddressExtensions.ParsePathByEndpointName%2A> method takes an endpoint name and a URL path, and returns a set of route values extracted from the URL path.
 
 In the following example controller, the `GetProduct` action uses a route template of `api/Products/{id}` and has a <xref:Microsoft.AspNetCore.Mvc.RouteAttribute.Name%2A> of `GetProduct`: 
 
