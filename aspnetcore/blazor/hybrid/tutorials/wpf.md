@@ -18,6 +18,8 @@ This tutorial shows you how to build and run a WPF Blazor app. You learn how to:
 > * Add a Razor component to the project
 > * Run the app on Windows
 
+[!INCLUDE[](~/blazor/includes/blazor-hybrid-preview-notice.md)]
+
 ## Prerequisites
 
 * [Supported platforms (WPF documentation)](/dotnet/desktop/wpf/overview/)
