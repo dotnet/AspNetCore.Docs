@@ -804,6 +804,20 @@ In the preceding code, the `culture` route parameter is used for localization. T
 * In the `"default"` route template, the `culture` route parameter is to the left of `controller`, so changes to `controller` won't invalidate `culture`.
 * In the `"blog"` route template, the `culture` route parameter is considered to be to the right of `controller`, which appears in the required values.
 
+## Parse URL paths with `LinkParser`
+
+The <xref:Microsoft.AspNetCore.Routing.LinkParser> class adds support for parsing a URL path into a set of route values. The <xref:Microsoft.AspNetCore.Routing.LinkParserEndpointNameAddressExtensions.ParsePathByEndpointName%2A> method takes a URL path and an endpoint name, and returns a set of route values extracted from the URL path.
+
+In the following example controller, the `GetProduct` action uses a route template of `api/Products/{id}` and has a <xref:Microsoft.AspNetCore.Mvc.RouteAttribute.Name%2A> of `GetProduct`: 
+
+:::code language="csharp" source="routing/samples/6.x/RoutingSample/Snippets/Controllers/ProductsController.cs" id="snippet_ClassGet" highlight="2,5":::
+
+In the same controller class, the `AddRelatedProduct` action expects a URL path, `pathToRelatedProduct`, which can be provided as a query-string parameter:
+
+:::code language="csharp" source="routing/samples/6.x/RoutingSample/Snippets/Controllers/ProductsController.cs" id="snippet_AddRelatedProduct":::
+
+In the preceding example, the `AddRelatedProduct` action extracts the `id` route value from the URL path. For example, with a URL path of `/api/Products/1`, the `relatedProductId` value is set to `1`. This approach allows the API's clients to use URL paths when referring to resources, without requiring knowledge of how such a URL is structured.
+
 ## Configure endpoint metadata
 
 The following links provide information on how to configure endpoint metadata:
@@ -835,7 +849,7 @@ The following code uses `RequireHost` to require the specified host on the route
 
 The following code uses the `[Host]` attribute on the controller to require any of the specified hosts:
 
-:::code language="csharp" source="routing/samples/6.x/RoutingSample/Snippets/Controllers/ProductsController.cs" id="snippet_Host":::
+:::code language="csharp" source="routing/samples/6.x/RoutingSample/Snippets/Controllers/HostsController.cs" id="snippet_Class":::
 
 When the `[Host]` attribute is applied to both the controller and action method:
 
