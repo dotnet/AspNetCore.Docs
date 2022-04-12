@@ -380,9 +380,9 @@ Standalone deployment assets are published into the `/bin/Release/{TARGET FRAMEW
 
 Blazor WebAssembly apps can be deployed to Azure App Services on Windows, which hosts the app on [IIS](#iis).
 
-Deploying a standalone Blazor WebAssembly app to Azure App Service for Linux isn't currently supported. A Linux server image to host the app isn't available at this time. Work is in progress to enable this scenario.
+Deploying a standalone Blazor WebAssembly app to Azure App Service for Linux isn't currently supported. We recommend hosting a standalone Blazor WebAssembly app using [Azure Static Web Apps](#azure-static-web-apps), which supports this scenario.
 
-### Azure static web app
+### Azure Static Web Apps
 
 For more information, see [Tutorial: Building a static web app with Blazor in Azure Static Web Apps](/azure/static-web-apps/deploy-blazor).
 
@@ -1357,9 +1357,9 @@ Standalone deployment assets are published into the `/bin/Release/{TARGET FRAMEW
 
 Blazor WebAssembly apps can be deployed to Azure App Services on Windows, which hosts the app on [IIS](#iis).
 
-Deploying a standalone Blazor WebAssembly app to Azure App Service for Linux isn't currently supported. A Linux server image to host the app isn't available at this time. Work is in progress to enable this scenario.
+Deploying a standalone Blazor WebAssembly app to Azure App Service for Linux isn't currently supported. We recommend hosting a standalone Blazor WebAssembly app using [Azure Static Web Apps](#azure-static-web-apps), which supports this scenario.
 
-### Azure static web app
+### Azure Static Web Apps
 
 For more information, see [Tutorial: Building a static web app with Blazor in Azure Static Web Apps](/azure/static-web-apps/deploy-blazor).
 
@@ -2212,9 +2212,9 @@ Standalone deployment assets are published into the `/bin/Release/{TARGET FRAMEW
 
 Blazor WebAssembly apps can be deployed to Azure App Services on Windows, which hosts the app on [IIS](#iis).
 
-Deploying a standalone Blazor WebAssembly app to Azure App Service for Linux isn't currently supported. A Linux server image to host the app isn't available at this time. Work is in progress to enable this scenario.
+Deploying a standalone Blazor WebAssembly app to Azure App Service for Linux isn't currently supported. We recommend hosting a standalone Blazor WebAssembly app using [Azure Static Web Apps](#azure-static-web-apps), which supports this scenario.
 
-### Azure static web app
+### Azure Static Web Apps
 
 For more information, see [Tutorial: Building a static web app with Blazor in Azure Static Web Apps](/azure/static-web-apps/deploy-blazor).
 
