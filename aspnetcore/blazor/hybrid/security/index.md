@@ -13,6 +13,8 @@ uid: blazor/hybrid/security/index
 
 This article describes ASP.NET Core's support for the configuration and management of security in Blazor Hybrid apps.
 
+[!INCLUDE[](~/blazor/includes/blazor-hybrid-preview-notice.md)]
+
 ## Untrusted and unencoded content
 
 Avoid allowing an app render untrusted and unencoded content from a database or other resource, such as user-provided comments, in its rendered UI. Permitting untrusted, unencoded content to render can cause malicious code to execute.
