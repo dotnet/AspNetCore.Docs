@@ -5,7 +5,7 @@ description: Build a .NET MAUI Blazor app step-by-step.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/25/2022
+ms.date: 04/12/2022
 no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/hybrid/tutorials/maui
 ---
@@ -18,10 +18,12 @@ This tutorial shows you how to build and run a .NET MAUI Blazor app. You learn h
 > * Run the app on Windows
 > * Run the app in the Android emulator
 
+[!INCLUDE[](~/blazor/includes/net-maui-release-candidate-notice.md)]
+
 ## Prerequisites
 
 * [Supported platforms (.NET MAUI documentation)](/dotnet/maui/supported-platforms)
-* [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/) with the **Mobile development with .NET** workload
+* [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/) with the **Mobile development with .NET** workload.
 * [Microsoft Edge `WebView2`](https://developer.microsoft.com/microsoft-edge/webview2/): `WebView2` is required on Windows when running a native app. When developing .NET MAUI Blazor apps and only running them in Visual Studio's emulators, `WebView2` isn't required.
 * [Enable hardware acceleration](/dotnet/maui/android/emulator/hardware-acceleration) to improve the performance of the Android emulator.
 

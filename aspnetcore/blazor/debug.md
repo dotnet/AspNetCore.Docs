@@ -210,6 +210,18 @@ For guidance on configuring VS Code assets in the `.vscode` folder and where to 
 >
 > You can't automatically rebuild the backend **`Server`** app of a hosted Blazor WebAssembly solution during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
 
+To debug a **published**, hosted Blazor WebAssembly app, configure debugger support (`DebuggerSupport`) and copy output symbols to the `publish` directory (`CopyOutputSymbolsToPublishDirectory`) in the **`Client`** app's project file:
+
+```xml
+<DebuggerSupport>true</DebuggerSupport>
+<CopyOutputSymbolsToPublishDirectory>true</CopyOutputSymbolsToPublishDirectory>
+```
+
+By default, publishing an app disables the preceding properties by setting them to `false`.
+
+> [!WARNING]
+> Published, hosted Blazor WebAssembly apps should only enable debugging and copying output symbols when deploying published assets ***locally***. Do **not*** deploy a published app into production with the `DebuggerSupport` and `CopyOutputSymbolsToPublishDirectory` properties set to `true`.
+
 ## Attach to an existing debugging session
 
 To attach to a running Blazor app, create a `.vscode/launch.json` file with the following configuration. Replace the `{URL}` placeholder with the URL where the app is running:
@@ -624,6 +636,18 @@ The **`Server`** project's `Properties/launchSettings.json` file includes the `i
   }
 }
 ```
+
+To debug a **published**, hosted Blazor WebAssembly app, configure debugger support (`DebuggerSupport`) and copy output symbols to the `publish` directory (`CopyOutputSymbolsToPublishDirectory`) in the **`Client`** app's project file:
+
+```xml
+<DebuggerSupport>true</DebuggerSupport>
+<CopyOutputSymbolsToPublishDirectory>true</CopyOutputSymbolsToPublishDirectory>
+```
+
+By default, publishing an app disables the preceding properties by setting them to `false`.
+
+> [!WARNING]
+> Published, hosted Blazor WebAssembly apps should only enable debugging and copying output symbols when deploying published assets ***locally***. Do **not*** deploy a published app into production with the `DebuggerSupport` and `CopyOutputSymbolsToPublishDirectory` properties set to `true`.
 
 ## Attach to an existing debugging session
 

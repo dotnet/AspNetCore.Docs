@@ -1,11 +1,11 @@
 ---
 title: Configuration in ASP.NET Core
 author: rick-anderson
-description: Learn how to use the Configuration API to configure an ASP.NET Core app.
+description: Learn how to use the Configuration API to configure AppSettings in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 1/29/2021
+ms.date: 04/12/2022
 no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/configuration/index
 ---
@@ -42,7 +42,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 [WebApplication.CreateBuilder](xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A) initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults. The initialized `WebApplicationBuilder` (`builder`) provides default configuration for the app in the following order:
 
-1. [ChainedConfigurationProvider](xref:Microsoft.Extensions.Configuration.ChainedConfigurationSource) :  Adds an existing `IConfiguration` as a source. In the default configuration case, adds the [host](#hvac) configuration and setting it as the first source for the _app_ configuration.
+1. [ChainedConfigurationProvider](xref:Microsoft.Extensions.Configuration.ChainedConfigurationSource) :  Adds an existing `IConfiguration` as a source. In the default configuration case, adds the [host](#hvac) configuration and setting it as the first source for the *app* configuration.
 1. [appsettings.json](#appsettingsjson) using the [JSON configuration provider](#file-configuration-provider).
 1. `appsettings.{Environment}.json` using the [JSON configuration provider](#file-configuration-provider). For example, `appsettings.Production.json` and `appsettings.Development.json`.
 1. [App secrets](xref:security/app-secrets) when the app runs in the `Development` environment.
@@ -70,7 +70,7 @@ The following code from the [sample download](https://github.com/dotnet/AspNetCo
 The default <xref:Microsoft.Extensions.Configuration.Json.JsonConfigurationProvider> loads configuration in the following order:
 
 1. `appsettings.json`
-1. `appsettings.{Environment}.json` : For example, the `appsettings.Production.json` and `appsettings.Development.json` files. The environment version of the file is loaded based on the [IHostingEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostingEnvironment.EnvironmentName*). For more information, see <xref:fundamentals/environments>.
+1. `appsettings.{Environment}.json` : For example, the `appsettings.Production.json` and `appsettings.Development.json` files. The environment version of the file is loaded based on the <xref:Microsoft.Extensions.Hosting.IHostingEnvironment.EnvironmentName%2A?displayProperty=nameWithType>. For more information, see <xref:fundamentals/environments>.
 
 `appsettings.{Environment}.json` values override keys in `appsettings.json`. For example, by default:
 
@@ -152,7 +152,7 @@ To test that the preceding commands override `appsettings.json` and `appsettings
 * With Visual Studio: Exit and restart Visual Studio.
 * With the CLI: Start a new command window and enter `dotnet run`.
 
-Call <xref:Microsoft.Extensions.Configuration.EnvironmentVariablesExtensions.AddEnvironmentVariables*> with a string to specify a prefix for environment variables:
+Call <xref:Microsoft.Extensions.Configuration.EnvironmentVariablesExtensions.AddEnvironmentVariables%2A> with a string to specify a prefix for environment variables:
 
 [!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Program.cs?name=snippet_env&highlight=5)]
 
@@ -273,19 +273,19 @@ By [default](#default), configuration values set on the command-line override co
 The following command sets keys and values using `=`:
 
 ```dotnetcli
-dotnet run MyKey="My key from command line" Position:Title=Cmd Position:Name=Cmd_Rick
+dotnet run MyKey="Using =" Position:Title=Cmd Position:Name=Cmd_Rick
 ```
 
 The following command sets keys and values using `/`:
 
 ```dotnetcli
-dotnet run /MyKey "Using /" /Position:Title=Cmd_ /Position:Name=Cmd_Rick
+dotnet run /MyKey "Using /" /Position:Title=Cmd /Position:Name=Cmd_Rick
 ```
 
 The following command sets keys and values using `--`:
 
 ```dotnetcli
-dotnet run --MyKey "Using --" --Position:Title=Cmd-- --Position:Name=Cmd--Rick
+dotnet run --MyKey "Using --" --Position:Title=Cmd --Position:Name=Cmd_Rick
 ```
 
 The key value:
@@ -297,7 +297,7 @@ Within the same command, don't mix command-line argument key-value pairs that us
 
 ### Switch mappings
 
-Switch mappings allow **key** name replacement logic. Provide a dictionary of switch replacements to the <xref:Microsoft.Extensions.Configuration.CommandLineConfigurationExtensions.AddCommandLine*> method.
+Switch mappings allow **key** name replacement logic. Provide a dictionary of switch replacements to the <xref:Microsoft.Extensions.Configuration.CommandLineConfigurationExtensions.AddCommandLine%2A> method.
 
 When the switch mappings dictionary is used, the dictionary is checked for a key that matches the key provided by a command-line argument. If the command-line key is found in the dictionary, the dictionary value is passed back to set the key-value pair into the app's configuration. A switch mapping is required for any command-line key prefixed with a single dash (`-`).
 
@@ -343,7 +343,7 @@ The following code from the [sample download](https://github.com/dotnet/AspNetCo
 
 The preferred way to read hierarchical configuration data is using the options pattern. For more information, see [Bind hierarchical configuration data](#optpat) in this document.
 
-<xref:Microsoft.Extensions.Configuration.ConfigurationSection.GetSection*> and <xref:Microsoft.Extensions.Configuration.IConfiguration.GetChildren*> methods are available to isolate sections and children of a section in the configuration data. These methods are described later in [GetSection, GetChildren, and Exists](#getsection).
+<xref:Microsoft.Extensions.Configuration.ConfigurationSection.GetSection%2A> and <xref:Microsoft.Extensions.Configuration.IConfiguration.GetChildren%2A> methods are available to isolate sections and children of a section in the configuration data. These methods are described later in [GetSection, GetChildren, and Exists](#getsection).
 
 <!--
 [Azure Key Vault configuration provider](xref:security/key-vault-configuration) implement change detection.
@@ -416,12 +416,12 @@ When an environment variable is discovered and loaded into configuration with an
 * The configuration key is created by removing the environment variable prefix and adding a configuration key section (`ConnectionStrings`).
 * A new configuration key-value pair is created that represents the database connection provider (except for `CUSTOMCONNSTR_`, which has no stated provider).
 
-| Environment variable key | Converted configuration key | Provider configuration entry                                                    |
-| ------------------------ | --------------------------- | ------------------------------------------------------------------------------- |
-| `CUSTOMCONNSTR_{KEY} `   | `ConnectionStrings:{KEY}`   | Configuration entry not created.                                                |
-| `MYSQLCONNSTR_{KEY}`     | `ConnectionStrings:{KEY}`   | Key: `ConnectionStrings:{KEY}_ProviderName`:<br>Value: `MySql.Data.MySqlClient` |
-| `SQLAZURECONNSTR_{KEY}`  | `ConnectionStrings:{KEY}`   | Key: `ConnectionStrings:{KEY}_ProviderName`:<br>Value: `System.Data.SqlClient`  |
-| `SQLCONNSTR_{KEY}`       | `ConnectionStrings:{KEY}`   | Key: `ConnectionStrings:{KEY}_ProviderName`:<br>Value: `System.Data.SqlClient`  |
+| Environment variable key | Converted configuration key | Provider configuration entry |
+|--|--|--|
+| `CUSTOMCONNSTR_{KEY}` | `ConnectionStrings:{KEY}` | Configuration entry not created. |
+| `MYSQLCONNSTR_{KEY}` | `ConnectionStrings:{KEY}` | Key: `ConnectionStrings:{KEY}_ProviderName`:<br>Value: `MySql.Data.MySqlClient` |
+| `SQLAZURECONNSTR_{KEY}` | `ConnectionStrings:{KEY}` | Key: `ConnectionStrings:{KEY}_ProviderName`:<br>Value: `System.Data.SqlClient` |
+| `SQLCONNSTR_{KEY}` | `ConnectionStrings:{KEY}` | Key: `ConnectionStrings:{KEY}_ProviderName`:<br>Value: `System.Data.SqlClient` |
 
 <a name="fcp"></a>
 
@@ -438,14 +438,14 @@ When an environment variable is discovered and loaded into configuration with an
 The <xref:Microsoft.Extensions.Configuration.Ini.IniConfigurationProvider> loads configuration from INI file key-value pairs at runtime.
 
 The following code clears all the configuration providers and adds several configuration providers:
-[!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Program.cs?name=snippet_ini)]
+[!code-csharp[](index/samples/6.x/ConfigSample/Program.cs?name=snippet_ini)]
 
-In the preceding code, settings in the *MyIniConfig.ini* and  *MyIniConfig*.`Environment`.*ini* files are overridden by settings in the:
+In the preceding code, settings in the `MyIniConfig.ini` and  `MyIniConfig.{Environment}.ini` files are overridden by settings in the:
 
 * [Environment variables configuration provider](#evcp)
 * [Command-line configuration provider](#clcp).
 
-The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/6.x/ConfigSample) contains the following *MyIniConfig.ini* file:
+The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/6.x/ConfigSample) contains the following `MyIniConfig.ini` file:
 
 [!code-ini[](index/samples/6.x/ConfigSample/MyIniConfig.ini)]
 
@@ -504,7 +504,7 @@ The following code clears all the configuration providers and adds several confi
 
 [!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Program.cs?name=snippet_xml)]
 
-In the preceding code, settings in the `MyXMLFile.xml` and  *MyXMLFile*.`Environment`.*xml* files are overridden by settings in the:
+In the preceding code, settings in the `MyXMLFile.xml` and  `MyXMLFile.{Environment}.xml` files are overridden by settings in the:
 
 * [Environment variables configuration provider](#evcp)
 * [Command-line configuration provider](#clcp).
@@ -546,7 +546,7 @@ The previous configuration file loads the following keys with `value`:
 
 The <xref:Microsoft.Extensions.Configuration.KeyPerFile.KeyPerFileConfigurationProvider> uses a directory's files as configuration key-value pairs. The key is the file name. The value contains the file's contents. The Key-per-file configuration provider is used in Docker hosting scenarios.
 
-To activate key-per-file configuration, call the <xref:Microsoft.Extensions.Configuration.KeyPerFileConfigurationBuilderExtensions.AddKeyPerFile*> extension method on an instance of <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder>. The `directoryPath` to the files must be an absolute path.
+To activate key-per-file configuration, call the <xref:Microsoft.Extensions.Configuration.KeyPerFileConfigurationBuilderExtensions.AddKeyPerFile%2A> extension method on an instance of <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder>. The `directoryPath` to the files must be an absolute path.
 
 Overloads permit specifying:
 
@@ -590,9 +590,9 @@ See [Bind an array](#boa) for another example using `MemoryConfigurationProvider
 
 Kestrel specific endpoint configuration overrides all [cross-server](xref:fundamentals/servers/index) endpoint configurations. Cross-server endpoint configurations include:
 
-  * [UseUrls](xref:fundamentals/host/web-host#server-urls)
-  * `--urls` on the [command line](xref:fundamentals/configuration/index#command-line)
-  * The [environment variable](xref:fundamentals/configuration/index#environment-variables) `ASPNETCORE_URLS`
+* [UseUrls](xref:fundamentals/host/web-host#server-urls)
+* `--urls` on the [command line](xref:fundamentals/configuration/index#command-line)
+* The [environment variable](xref:fundamentals/configuration/index#environment-variables) `ASPNETCORE_URLS`
 
 Consider the following `appsettings.json` file used in an ASP.NET Core web app:
 
@@ -612,7 +612,7 @@ In the preceding environment variable, `Https` is the name of the Kestrel specif
 
 ## GetValue
 
-[`ConfigurationBinder.GetValue<T>`](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.GetValue*) extracts a single value from configuration with a specified key and converts it to the specified type:
+<xref:Microsoft.Extensions.Configuration.ConfigurationBinder.GetValue%2A?displayProperty=nameWithType> extracts a single value from configuration with a specified key and converts it to the specified type:
 
 [!code-csharp[](index/samples/6.x/ConfigSample/Pages/TestNum.cshtml.cs?name=snippet)]
 
@@ -630,7 +630,7 @@ The following code adds `MySubsection.json` to the configuration providers:
 
 ### GetSection
 
-[IConfiguration.GetSection](xref:Microsoft.Extensions.Configuration.IConfiguration.GetSection*) returns a configuration subsection with the specified subsection key.
+<xref:Microsoft.Extensions.Configuration.IConfiguration.GetSection%2A?displayProperty=nameWithType> returns a configuration subsection with the specified subsection key.
 
 The following code returns values for `section1`:
 
@@ -646,17 +646,17 @@ When `GetSection` returns a matching section, <xref:Microsoft.Extensions.Configu
 
 ### GetChildren and Exists
 
-The following code calls [IConfiguration.GetChildren](xref:Microsoft.Extensions.Configuration.IConfiguration.GetChildren*) and returns values for `section2:subsection0`:
+The following code calls <xref:Microsoft.Extensions.Configuration.IConfiguration.GetChildren%2A?displayProperty=nameWithType> and returns values for `section2:subsection0`:
 
 [!code-csharp[](index/samples/6.x/ConfigSample/Pages/TestSection4.cshtml.cs?name=snippet)]
 
-The preceding code calls [ConfigurationExtensions.Exists](xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.Exists*) to verify the  section exists:
+The preceding code calls <xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.Exists%2A?displayProperty=nameWithType> to verify the  section exists:
 
 <a name="boa"></a>
 
 ## Bind an array
 
-The [ConfigurationBinder.Bind](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*) supports binding arrays to objects using array indices in configuration keys. Any array format that exposes a numeric key segment is capable of array binding to a [POCO](https://wikipedia.org/wiki/Plain_Old_CLR_Object) class array.
+The <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind%2A?displayProperty=nameWithType> supports binding arrays to objects using array indices in configuration keys. Any array format that exposes a numeric key segment is capable of array binding to a [POCO](https://wikipedia.org/wiki/Plain_Old_CLR_Object) class array.
 
 Consider `MyArray.json` from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/6.x/ConfigSample):
 
@@ -788,7 +788,7 @@ The following code displays configuration data in a Razor Page:
 
 [!code-cshtml[](index/samples/6.x/ConfigSample/Pages/Test5.cshtml)]
 
-In the following code, `MyOptions` is added to the service container with <xref:Microsoft.Extensions.DependencyInjection.OptionsConfigurationServiceCollectionExtensions.Configure*> and bound to configuration:
+In the following code, `MyOptions` is added to the service container with <xref:Microsoft.Extensions.DependencyInjection.OptionsConfigurationServiceCollectionExtensions.Configure%2A> and bound to configuration:
 
 [!code-csharp[](~/fundamentals/configuration/options/samples/6.x/OptionsSample/Program.cs?name=snippet)]
 
@@ -844,7 +844,7 @@ This topic only pertains to *app configuration*. Other aspects of running and ho
 * `launch.json`/`launchSettings.json` are tooling configuration files for the Development environment, described:
   * In <xref:fundamentals/environments#development>.
   * Across the documentation set where the files are used to configure ASP.NET Core apps for Development scenarios.
-* *web.config* is a server configuration file, described in the following topics:
+* `web.config` is a server configuration file, described in the following topics:
   * <xref:host-and-deploy/iis/index>
   * <xref:host-and-deploy/aspnet-core-module>
 
@@ -890,9 +890,9 @@ ASP.NET Core web apps created with [dotnet new](/dotnet/core/tools/dotnet-new) o
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Program.cs?name=snippet&highlight=9)]
 
- <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> provides default configuration for the app in the following order:
+ <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder%2A> provides default configuration for the app in the following order:
 
-1. [ChainedConfigurationProvider](xref:Microsoft.Extensions.Configuration.ChainedConfigurationSource) :  Adds an existing `IConfiguration` as a source. In the default configuration case, adds the [host](#hvac) configuration and setting it as the first source for the _app_ configuration.
+1. [ChainedConfigurationProvider](xref:Microsoft.Extensions.Configuration.ChainedConfigurationSource) :  Adds an existing `IConfiguration` as a source. In the default configuration case, adds the [host](#hvac) configuration and setting it as the first source for the *app* configuration.
 1. [appsettings.json](#appsettingsjson) using the [JSON configuration provider](#file-configuration-provider).
 1. `appsettings.{Environment}.json` using the [JSON configuration provider](#file-configuration-provider). For example, `appsettings.Production.json` and `appsettings.Development.json`.
 1. [App secrets](xref:security/app-secrets) when the app runs in the `Development` environment.
@@ -920,7 +920,7 @@ The following code from the [sample download](https://github.com/dotnet/AspNetCo
 The default <xref:Microsoft.Extensions.Configuration.Json.JsonConfigurationProvider> loads configuration in the following order:
 
 1. `appsettings.json`
-1. `appsettings.{Environment}.json` : For example, the `appsettings.Production.json` and `appsettings.Development.json` files. The environment version of the file is loaded based on the [IHostingEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostingEnvironment.EnvironmentName*). For more information, see <xref:fundamentals/environments>.
+1. `appsettings.{Environment}.json` : For example, the `appsettings.Production.json` and `appsettings.Development.json` files. The environment version of the file is loaded based on the <xref:Microsoft.Extensions.Hosting.IHostingEnvironment.EnvironmentName%2A?displayProperty=nameWithType>. For more information, see <xref:fundamentals/environments>.
 
 `appsettings.{Environment}.json` values override keys in `appsettings.json`. For example, by default:
 
@@ -1002,7 +1002,7 @@ To test that the preceding commands override `appsettings.json` and `appsettings
 * With Visual Studio: Exit and restart Visual Studio.
 * With the CLI: Start a new command window and enter `dotnet run`.
 
-Call <xref:Microsoft.Extensions.Configuration.EnvironmentVariablesExtensions.AddEnvironmentVariables*> with a string to specify a prefix for environment variables:
+Call <xref:Microsoft.Extensions.Configuration.EnvironmentVariablesExtensions.AddEnvironmentVariables%2A> with a string to specify a prefix for environment variables:
 
 [!code-csharp[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/Program.cs?name=snippet4&highlight=12)]
 
@@ -1113,19 +1113,19 @@ By [default](#default), configuration values set on the command-line override co
 The following command sets keys and values using `=`:
 
 ```dotnetcli
-dotnet run MyKey="My key from command line" Position:Title=Cmd Position:Name=Cmd_Rick
+dotnet run MyKey="Using =" Position:Title=Cmd Position:Name=Cmd_Rick
 ```
 
 The following command sets keys and values using `/`:
 
 ```dotnetcli
-dotnet run /MyKey "Using /" /Position:Title=Cmd_ /Position:Name=Cmd_Rick
+dotnet run /MyKey "Using /" /Position:Title=Cmd /Position:Name=Cmd_Rick
 ```
 
 The following command sets keys and values using `--`:
 
 ```dotnetcli
-dotnet run --MyKey "Using --" --Position:Title=Cmd-- --Position:Name=Cmd--Rick
+dotnet run --MyKey "Using --" --Position:Title=Cmd --Position:Name=Cmd_Rick
 ```
 
 The key value:
@@ -1137,7 +1137,7 @@ Within the same command, don't mix command-line argument key-value pairs that us
 
 ### Switch mappings
 
-Switch mappings allow **key** name replacement logic. Provide a dictionary of switch replacements to the <xref:Microsoft.Extensions.Configuration.CommandLineConfigurationExtensions.AddCommandLine*> method.
+Switch mappings allow **key** name replacement logic. Provide a dictionary of switch replacements to the <xref:Microsoft.Extensions.Configuration.CommandLineConfigurationExtensions.AddCommandLine%2A> method.
 
 When the switch mappings dictionary is used, the dictionary is checked for a key that matches the key provided by a command-line argument. If the command-line key is found in the dictionary, the dictionary value is passed back to set the key-value pair into the app's configuration. A switch mapping is required for any command-line key prefixed with a single dash (`-`).
 
@@ -1186,7 +1186,7 @@ The following code from the [sample download](https://github.com/dotnet/AspNetCo
 
 The preferred way to read hierarchical configuration data is using the options pattern. For more information, see [Bind hierarchical configuration data](#optpat) in this document.
 
-<xref:Microsoft.Extensions.Configuration.ConfigurationSection.GetSection*> and <xref:Microsoft.Extensions.Configuration.IConfiguration.GetChildren*> methods are available to isolate sections and children of a section in the configuration data. These methods are described later in [GetSection, GetChildren, and Exists](#getsection).
+<xref:Microsoft.Extensions.Configuration.ConfigurationSection.GetSection%2A> and <xref:Microsoft.Extensions.Configuration.IConfiguration.GetChildren%2A> methods are available to isolate sections and children of a section in the configuration data. These methods are described later in [GetSection, GetChildren, and Exists](#getsection).
 
 <!--
 [Azure Key Vault configuration provider](xref:security/key-vault-configuration) implement change detection.
@@ -1259,12 +1259,12 @@ When an environment variable is discovered and loaded into configuration with an
 * The configuration key is created by removing the environment variable prefix and adding a configuration key section (`ConnectionStrings`).
 * A new configuration key-value pair is created that represents the database connection provider (except for `CUSTOMCONNSTR_`, which has no stated provider).
 
-| Environment variable key | Converted configuration key | Provider configuration entry                                                    |
-| ------------------------ | --------------------------- | ------------------------------------------------------------------------------- |
-| `CUSTOMCONNSTR_{KEY} `   | `ConnectionStrings:{KEY}`   | Configuration entry not created.                                                |
-| `MYSQLCONNSTR_{KEY}`     | `ConnectionStrings:{KEY}`   | Key: `ConnectionStrings:{KEY}_ProviderName`:<br>Value: `MySql.Data.MySqlClient` |
-| `SQLAZURECONNSTR_{KEY}`  | `ConnectionStrings:{KEY}`   | Key: `ConnectionStrings:{KEY}_ProviderName`:<br>Value: `System.Data.SqlClient`  |
-| `SQLCONNSTR_{KEY}`       | `ConnectionStrings:{KEY}`   | Key: `ConnectionStrings:{KEY}_ProviderName`:<br>Value: `System.Data.SqlClient`  |
+| Environment variable key | Converted configuration key | Provider configuration entry |
+|--|--|--|
+| `CUSTOMCONNSTR_{KEY}` | `ConnectionStrings:{KEY}` | Configuration entry not created. |
+| `MYSQLCONNSTR_{KEY}` | `ConnectionStrings:{KEY}` | Key: `ConnectionStrings:{KEY}_ProviderName`:<br>Value: `MySql.Data.MySqlClient` |
+| `SQLAZURECONNSTR_{KEY}` | `ConnectionStrings:{KEY}` | Key: `ConnectionStrings:{KEY}_ProviderName`:<br>Value: `System.Data.SqlClient` |
+| `SQLCONNSTR_{KEY}` | `ConnectionStrings:{KEY}` | Key: `ConnectionStrings:{KEY}_ProviderName`:<br>Value: `System.Data.SqlClient` |
 
 <a name="fcp"></a>
 
@@ -1284,12 +1284,12 @@ The following code clears all the configuration providers and adds several confi
 
 [!code-csharp[](index/samples/3.x/ConfigSample/ProgramINI.cs?name=snippet&highlight=10-30)]
 
-In the preceding code, settings in the *MyIniConfig.ini* and  *MyIniConfig*.`Environment`.*ini* files are overridden by settings in the:
+In the preceding code, settings in the `MyIniConfig.ini` and  `MyIniConfig.{Environment}.ini` files are overridden by settings in the:
 
 * [Environment variables configuration provider](#evcp)
 * [Command-line configuration provider](#clcp).
 
-The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) contains the following *MyIniConfig.ini* file:
+The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) contains the following `MyIniConfig.ini` file:
 
 [!code-ini[](index/samples/3.x/ConfigSample/MyIniConfig.ini)]
 
@@ -1346,7 +1346,7 @@ The following code clears all the configuration providers and adds several confi
 
 [!code-csharp[](index/samples/3.x/ConfigSample/ProgramXML.cs?name=snippet)]
 
-In the preceding code, settings in the `MyXMLFile.xml` and  *MyXMLFile*.`Environment`.*xml* files are overridden by settings in the:
+In the preceding code, settings in the `MyXMLFile.xml` and  `MyXMLFile.{Environment}.xml` files are overridden by settings in the:
 
 * [Environment variables configuration provider](#evcp)
 * [Command-line configuration provider](#clcp).
@@ -1388,7 +1388,7 @@ The previous configuration file loads the following keys with `value`:
 
 The <xref:Microsoft.Extensions.Configuration.KeyPerFile.KeyPerFileConfigurationProvider> uses a directory's files as configuration key-value pairs. The key is the file name. The value contains the file's contents. The Key-per-file configuration provider is used in Docker hosting scenarios.
 
-To activate key-per-file configuration, call the <xref:Microsoft.Extensions.Configuration.KeyPerFileConfigurationBuilderExtensions.AddKeyPerFile*> extension method on an instance of <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder>. The `directoryPath` to the files must be an absolute path.
+To activate key-per-file configuration, call the <xref:Microsoft.Extensions.Configuration.KeyPerFileConfigurationBuilderExtensions.AddKeyPerFile%2A> extension method on an instance of <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder>. The `directoryPath` to the files must be an absolute path.
 
 Overloads permit specifying:
 
@@ -1427,6 +1427,7 @@ In the preceding code, `config.AddInMemoryCollection(Dict)` is added after the [
 See [Bind an array](#boa) for another example using `MemoryConfigurationProvider`.
 
 :::moniker-end
+
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 <a name="kestrel"></a>
@@ -1435,9 +1436,9 @@ See [Bind an array](#boa) for another example using `MemoryConfigurationProvider
 
 Kestrel specific endpoint configuration overrides all [cross-server](xref:fundamentals/servers/index) endpoint configurations. Cross-server endpoint configurations include:
 
-  * [UseUrls](xref:fundamentals/host/web-host#server-urls)
-  * `--urls` on the [command line](xref:fundamentals/configuration/index#command-line)
-  * The [environment variable](xref:fundamentals/configuration/index#environment-variables) `ASPNETCORE_URLS`
+* [UseUrls](xref:fundamentals/host/web-host#server-urls)
+* `--urls` on the [command line](xref:fundamentals/configuration/index#command-line)
+* The [environment variable](xref:fundamentals/configuration/index#environment-variables) `ASPNETCORE_URLS`
 
 Consider the following `appsettings.json` file used in an ASP.NET Core web app:
 
@@ -1456,11 +1457,12 @@ Consider the Kestrel specific endpoint configured as an environment variable:
 In the preceding environment variable, `Https` is the name of the Kestrel specific endpoint. The preceding `appsettings.json` file also defines a Kestrel specific endpoint named `Https`. By [default](#default-configuration), environment variables using the [Environment Variables configuration provider](#evcp) are read after `appsettings.{Environment}.json`, therefore, the preceding environment variable is used for the `Https` endpoint.
 
 :::moniker-end
+
 :::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 
 ## GetValue
 
-[`ConfigurationBinder.GetValue<T>`](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.GetValue*) extracts a single value from configuration with a specified key and converts it to the specified type. This method is an extension method for <xref:Microsoft.Extensions.Configuration.IConfiguration>:
+<xref:Microsoft.Extensions.Configuration.ConfigurationBinder.GetValue%2A?displayProperty=nameWithType> extracts a single value from configuration with a specified key and converts it to the specified type. This method is an extension method for <xref:Microsoft.Extensions.Configuration.IConfiguration>:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/TestNum.cshtml.cs?name=snippet)]
 
@@ -1478,7 +1480,7 @@ The following code adds `MySubsection.json` to the configuration providers:
 
 ### GetSection
 
-[IConfiguration.GetSection](xref:Microsoft.Extensions.Configuration.IConfiguration.GetSection*) returns a configuration subsection with the specified subsection key.
+<xref:Microsoft.Extensions.Configuration.IConfiguration.GetSection%2A?displayProperty=nameWithType> returns a configuration subsection with the specified subsection key.
 
 The following code returns values for `section1`:
 
@@ -1494,17 +1496,17 @@ When `GetSection` returns a matching section, <xref:Microsoft.Extensions.Configu
 
 ### GetChildren and Exists
 
-The following code calls [IConfiguration.GetChildren](xref:Microsoft.Extensions.Configuration.IConfiguration.GetChildren*) and returns values for `section2:subsection0`:
+The following code calls <xref:Microsoft.Extensions.Configuration.IConfiguration.GetChildren%2A?displayProperty=nameWithType> and returns values for `section2:subsection0`:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/TestSection4.cshtml.cs?name=snippet)]
 
-The preceding code calls [ConfigurationExtensions.Exists](xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.Exists*) to verify the  section exists:
+The preceding code calls <xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.Exists%2A?displayProperty=nameWithType> to verify the  section exists:
 
  <a name="boa"></a>
 
 ## Bind an array
 
-The [ConfigurationBinder.Bind](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*) supports binding arrays to objects using array indices in configuration keys. Any array format that exposes a numeric key segment is capable of array binding to a [POCO](https://wikipedia.org/wiki/Plain_Old_CLR_Object) class array.
+The <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind%2A?displayProperty=nameWithType> supports binding arrays to objects using array indices in configuration keys. Any array format that exposes a numeric key segment is capable of array binding to a [POCO](https://wikipedia.org/wiki/Plain_Old_CLR_Object) class array.
 
 Consider `MyArray.json` from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample):
 
@@ -1530,7 +1532,7 @@ Index: 4  Value: value50
 
 In the preceding output, Index 3 has value `value40`, corresponding to `"4": "value40",` in `MyArray.json`. The bound array indices are continuous and not bound to the configuration key index. The configuration binder isn't capable of binding null values or creating null entries in bound objects
 
-The  following code loads the `array:entries` configuration with the <xref:Microsoft.Extensions.Configuration.MemoryConfigurationBuilderExtensions.AddInMemoryCollection*> extension method:
+The  following code loads the `array:entries` configuration with the <xref:Microsoft.Extensions.Configuration.MemoryConfigurationBuilderExtensions.AddInMemoryCollection%2A> extension method:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/ProgramArray.cs?name=snippet)]
 
@@ -1635,7 +1637,7 @@ The following code displays configuration data in a Razor Page:
 
 [!code-cshtml[](index/samples/3.x/ConfigSample/Pages/Test5.cshtml)]
 
-In the following code, `MyOptions` is added to the service container with <xref:Microsoft.Extensions.DependencyInjection.OptionsConfigurationServiceCollectionExtensions.Configure*> and bound to configuration:
+In the following code, `MyOptions` is added to the service container with <xref:Microsoft.Extensions.DependencyInjection.OptionsConfigurationServiceCollectionExtensions.Configure%2A> and bound to configuration:
 
 [!code-csharp[](~/fundamentals/configuration/options/samples/3.x/OptionsSample/Startup3.cs?name=snippet_Example2)]
 
@@ -1693,7 +1695,7 @@ This topic only pertains to *app configuration*. Other aspects of running and ho
 * `launch.json`/`launchSettings.json` are tooling configuration files for the Development environment, described:
   * In <xref:fundamentals/environments#development>.
   * Across the documentation set where the files are used to configure ASP.NET Core apps for Development scenarios.
-* *web.config* is a server configuration file, described in the following topics:
+* `web.config` is a server configuration file, described in the following topics:
   * <xref:host-and-deploy/iis/index>
   * <xref:host-and-deploy/aspnet-core-module>
 
