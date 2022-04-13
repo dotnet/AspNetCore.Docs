@@ -5,7 +5,7 @@ description: Learn how to use browser developer tools with ASP.NET Core Blazor H
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: "mvc"
-ms.date: 03/31/2022
+ms.date: 04/13/2022
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/hybrid/developer-tools
 zone_pivot_groups: blazor-hybrid-operating-systems
@@ -18,18 +18,18 @@ This article explains how to use [browser developer tools](https://developer.moz
 
 ## Browser developer tools with .NET MAUI Blazor
 
-Ensure the Blazor Hybrid project is configured to support browser developer tools. You can confirm this by searching for `AddBlazorWebViewDeveloperTools()` within your application.
+Ensure the Blazor Hybrid project is configured to support browser developer tools. You can confirm developer tools support by searching the app for `AddBlazorWebViewDeveloperTools`.
 
-If your project isn't already configured for browser developer tools, you can add support by:
+If the project isn't already configured for browser developer tools, add support by:
 
-1. Locating where the call to `AddMauiBlazorWebView()` made. This will likely be within the app's `MauiProgram.cs` file.
-2. Add the following, after the call to `AddMauiBlazorWebView()`.
+1. Locating where the call to `AddMauiBlazorWebView` made, likely within the app's `MauiProgram.cs` file.
+1. After the call to `AddMauiBlazorWebView`, add the following code:
 
-```csharp
-#if DEBUG
-    builder.Services.AddBlazorWebViewDeveloperTools();
-#endif
-```
+   ```csharp
+   #if DEBUG
+       builder.Services.AddBlazorWebViewDeveloperTools();
+   #endif
+   ```
 
 > [!NOTE]
 > Guidance on popular browsers' developer tools can be found in the documentation of each browser maintainer:
