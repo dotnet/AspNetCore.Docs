@@ -44,19 +44,19 @@
         {
             var encodedMsg = $"{user}: {message}";
             messages.Add(encodedMsg);
-            StateHasChanged();
+            InvokeAsync(StateHasChanged);
         });
 
         await hubConnection.StartAsync();
     }
 
     private async Task Send()
-	{
-	    if (hubConnection is not null)
-		{
+    {
+        if (hubConnection is not null)
+        {
             await hubConnection.SendAsync("SendMessage", userInput, messageInput);
-		}
-	}
+        }
+    }
 
     public bool IsConnected =>
         hubConnection?.State == HubConnectionState.Connected;
