@@ -126,7 +126,14 @@ XML comments can be enabled with the following approaches:
 * Right-click the project in **Solution Explorer** and select *`Edit <project_name>.csproj`*.
 * Manually add the highlighted lines to the `.csproj` file:
 
+<!--
 :::code language="xml" source="web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/SwashbuckleSample.csproj" range="9-12" highlight="1-2,4":::
+-->
+```XML
+<PropertyGroup>
+  <GenerateDocumentationFile>true</GenerateDocumentationFile>
+</PropertyGroup>
+```
 
 #### [Visual Studio for Mac](#tab/visual-studio-mac)
 
