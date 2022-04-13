@@ -5,7 +5,7 @@ description: Learn how to use browser developer tools with ASP.NET Core Blazor H
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: "mvc"
-ms.date: 03/31/2022
+ms.date: 04/13/2022
 no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/hybrid/developer-tools
 zone_pivot_groups: blazor-hybrid-operating-systems
@@ -18,13 +18,18 @@ This article explains how to use [browser developer tools](https://developer.moz
 
 ## Browser developer tools with .NET MAUI Blazor
 
-Ensure the Blazor Hybrid project is configured to support browser developer tools. Locate the `CreateMauiApp` method in the app, which is likely within the app's `Program.cs` or `Startup.cs` file and contains `services.AddMauiBlazorWebView()`. If the services extension method to add services for `BlazorWebView` developer tools (`AddBlazorWebViewDeveloperTools`) isn't present in the app's `CreateMauiApp` method for debug app execution (compiler directive: `DEBUG`), add it to the `CreateMauiApp` method:
+Ensure the Blazor Hybrid project is configured to support browser developer tools. You can confirm developer tools support by searching the app for `AddBlazorWebViewDeveloperTools`.
 
-```csharp
-#if DEBUG
-    services.AddBlazorWebViewDeveloperTools();
-#endif
-```
+If the project isn't already configured for browser developer tools, add support by:
+
+1. Locating where the call to `AddMauiBlazorWebView` is made, likely within the app's `MauiProgram.cs` file.
+1. After the call to `AddMauiBlazorWebView`, add the following code:
+
+   ```csharp
+   #if DEBUG
+       builder.Services.AddBlazorWebViewDeveloperTools();
+   #endif
+   ```
 
 > [!NOTE]
 > Guidance on popular browsers' developer tools can be found in the documentation of each browser maintainer:
@@ -82,7 +87,7 @@ To use Safari developer tools with an iOS app:
 
 :::zone pivot="macos"
 
-Using browser developer tools with Mac Catalyst apps isn't currently supported. Please use the guidance for [iOS](?pivots=ios) apps, as the behavior is similar between the two platforms.
+Using browser developer tools with Mac Catalyst apps isn't currently supported. You may wish to run the [iOS](?pivots=ios) application instead, as the behavior is similar between iOS and Mac Catalyst.
 
 <!--
 To use Safari developer tools with a macOS app:
