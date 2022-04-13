@@ -129,7 +129,7 @@ services
     });
 ```
 
-A gRPC interceptor can also be used to configure a bearer token. An advantage to using an interceptor is the client factory can be configured to create a new interceptor for each client. This allows an interceptor to be [constructed from DI using scoped and transient services](/dotnet/core/extensions/dependency-injection#service-lifetimes). However, please keep in mind that within the `Interceptor` class, the overridable methods such as `AsyncUnaryCall` are *synchronous*. Therefore, you cannot use the `await` statement inside these methods.
+A gRPC interceptor can also be used to configure a bearer token. An advantage to using an interceptor is the client factory can be configured to create a new interceptor for each client. This allows an interceptor to be [constructed from DI using scoped and transient services](/dotnet/core/extensions/dependency-injection#service-lifetimes). However, within the `Interceptor` class, the overridable methods such as `AsyncUnaryCall` are ***synchronous***. Therefore, the `await` statement cannot be used inside these methods.
 
 Consider an app that has:
 * A user-defined `ITokenProvider` for getting a bearer token. `ITokenProvider` is registered in DI with a scoped lifetime.
