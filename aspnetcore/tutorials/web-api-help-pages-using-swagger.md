@@ -33,7 +33,7 @@ In short:
 
 ## OpenAPI specification (openapi.json)
 
-The OpenAPI specification is a document that describes the capabilities of your API. The document is based on the XML and attribute annotations within the controllers and models. It's the core part of the OpenAPI flow and is used to drive tooling such as SwaggerUI. By default, it's named `openapi.json`. Here's an example of an OpenAPI specification, reduced for brevity:
+The OpenAPI specification is a document that describes the capabilities of your API. The document is based on the [XML](xref:tutorials/getting-started-with-swashbuckle#xml-comments) and attribute annotations within the controllers and models. It's the core part of the OpenAPI flow and is used to drive tooling such as SwaggerUI. By default, it's named `openapi.json`. Here's an example of an OpenAPI specification, reduced for brevity:
 
 ```json
 {
