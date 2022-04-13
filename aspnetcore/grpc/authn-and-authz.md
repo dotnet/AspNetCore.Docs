@@ -171,6 +171,43 @@ The preceeding code:
 * Registers the `GreeterClient` type with client factory.
 * Configures the `AuthInterceptor` for this client using `InterceptorScope.Client`. A new interceptor is created for each client instance. When a client is created for a gRPC service or Web API controller, the scoped `ITokenProvider` is injected into the interceptor.
 
+##### Bearer token with gRPC client factory using AsyncAuthInterceptor
+
+If the bearer token can only be generated using asynchronous method calls, the `AsyncAuthInterceptor` must be used.
+
+Assuming the token provider is defined as follows and has been registered as scoped service:
+
+```csharp
+public interface ITokenProvider
+{
+    Task<string> GetToken();
+}
+``` 
+
+You have to register the gRPC client using the `AsyncAuthInterceptor`
+
+```csharp
+services
+    .AddGrpcClient<Greeter.GreeterClient>(o =>
+    {
+        o.Address = new Uri("https://localhost:5001");
+    })
+    .ConfigureChannel((sp, options) =>
+    {
+        var scopeFactory = sp.GetRequiredService<IServiceScopeFactory>();
+        var asyncAuthInterceptor = new AsyncAuthInterceptor(async (context, metadata) =>
+        {
+            using var scope = scopeFactory.CreateScope();
+            var tokenProvider = scope.ServiceProvider.GetRequiredService<ITokenProvider>();
+            var token = await tokenProvider.GetToken();
+            metadata.Add("Authorization", $"Bearer {token}");
+        });
+        options.Credentials = ChannelCredentials.Create(
+            channelCredentials: new SslCredentials(),
+            callCredentials: CallCredentials.FromInterceptor(asyncAuthInterceptor));
+    });
+```
+
 ### Client certificate authentication
 
 A client could alternatively provide a client certificate for authentication. [Certificate authentication](https://tools.ietf.org/html/rfc5246#section-7.4.4) happens at the TLS level, long before it ever gets to ASP.NET Core. When the request enters ASP.NET Core, the [client certificate authentication package](xref:security/authentication/certauth) allows you to resolve the certificate to a `ClaimsPrincipal`.
