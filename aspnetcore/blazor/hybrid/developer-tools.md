@@ -22,7 +22,7 @@ Ensure the Blazor Hybrid project is configured to support browser developer tool
 
 If the project isn't already configured for browser developer tools, add support by:
 
-1. Locating where the call to `AddMauiBlazorWebView` made, likely within the app's `MauiProgram.cs` file.
+1. Locating where the call to `AddMauiBlazorWebView` is made, likely within the app's `MauiProgram.cs` file.
 1. After the call to `AddMauiBlazorWebView`, add the following code:
 
    ```csharp
