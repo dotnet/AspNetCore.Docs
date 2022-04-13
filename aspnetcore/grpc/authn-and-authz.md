@@ -129,7 +129,7 @@ services
     });
 ```
 
-A gRPC interceptor can also be used to configure a bearer token. An advantage to using an interceptor is the client factory can be configured to create a new interceptor for each client. This allows an interceptor to be [constructed from DI using scoped and transient services](/dotnet/core/extensions/dependency-injection#service-lifetimes).
+A gRPC interceptor can also be used to configure a bearer token. An advantage to using an interceptor is the client factory can be configured to create a new interceptor for each client. This allows an interceptor to be [constructed from DI using scoped and transient services](/dotnet/core/extensions/dependency-injection#service-lifetimes). However, please keep in mind that within the `Interceptor` class, the overridable methods such as `AsyncUnaryCall` are *synchronous*. Therefore, you cannot use the `await` statement inside these methods.
 
 Consider an app that has:
 * A user-defined `ITokenProvider` for getting a bearer token. `ITokenProvider` is registered in DI with a scoped lifetime.
@@ -151,13 +151,24 @@ public class AuthInterceptor : Interceptor
         ClientInterceptorContext<TRequest, TResponse> context,
         AsyncUnaryCallContinuation<TRequest, TResponse> continuation)
     {
-        context.Options.Metadata.Add("Authorization", $"Bearer {_tokenProvider.GetToken()}");
-        return continuation(request, context);
+    
+        // Replace context if it comes without meta data.
+        var newContext = context.Options.Headers is null
+            ? new ClientInterceptorContext<TRequest, TResponse>(
+                method: context.Method,
+                host: context.Host,
+                options: context.Options.WithHeaders(new Metadata()))
+            : context;
+
+        newContext.Options.Headers.Add("Authorization", "Bearer {_tokenProvider.GetToken()}");
+        
+        return continuation(request, newContext);
     }
 }
 ```
 
 ```csharp
+services.TryAddScoped<AuthInterceptor>();
 services
     .AddGrpcClient<Greeter.GreeterClient>(o =>
     {
@@ -169,6 +180,7 @@ services
 The preceeding code:
 * Defines `AuthInterceptor` which is constructed using the user defined `ITokenProvider`.
 * Registers the `GreeterClient` type with client factory.
+* Registers the `AuthInterceptor` type.
 * Configures the `AuthInterceptor` for this client using `InterceptorScope.Client`. A new interceptor is created for each client instance. When a client is created for a gRPC service or Web API controller, the scoped `ITokenProvider` is injected into the interceptor.
 
 ### Client certificate authentication
