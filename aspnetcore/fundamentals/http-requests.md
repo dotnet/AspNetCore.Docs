@@ -225,7 +225,7 @@ Handlers can depend upon services of any scope. Services that handlers depend up
 
 Use one of the following approaches to share per-request state with message handlers:
 
-* Pass data into the handler using [HttpRequestMessage.Properties](xref:System.Net.Http.HttpRequestMessage.Properties).
+* Pass data into the handler using <xref:System.Net.Http.HttpRequestMessage.Options%2A?displayProperty=nameWithType>.
 * Use <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> to access the current request.
 * Create a custom <xref:System.Threading.AsyncLocal%601> storage object to pass the data.
 
@@ -646,7 +646,7 @@ Handlers can depend upon services of any scope. Services that handlers depend up
 
 Use one of the following approaches to share per-request state with message handlers:
 
-* Pass data into the handler using [HttpRequestMessage.Properties](xref:System.Net.Http.HttpRequestMessage.Properties).
+* Pass data into the handler using <xref:System.Net.Http.HttpRequestMessage.Options%2A?displayProperty=nameWithType>.
 * Use <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> to access the current request.
 * Create a custom <xref:System.Threading.AsyncLocal%601> storage object to pass the data.
 
@@ -1068,7 +1068,7 @@ Handlers can depend upon services of any scope. Services that handlers depend up
 
 Use one of the following approaches to share per-request state with message handlers:
 
-* Pass data into the handler using [HttpRequestMessage.Properties](xref:System.Net.Http.HttpRequestMessage.Properties).
+* Pass data into the handler using <xref:System.Net.Http.HttpRequestMessage.Properties%2A?displayProperty=nameWithType>.
 * Use <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> to access the current request.
 * Create a custom <xref:System.Threading.AsyncLocal%601> storage object to pass the data.
 

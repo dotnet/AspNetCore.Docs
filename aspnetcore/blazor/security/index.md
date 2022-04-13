@@ -574,6 +574,7 @@ The <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationS
 * <xref:security/index>
 * <xref:security/authentication/windowsauth>
 * [Build a custom version of the Authentication.MSAL JavaScript library](xref:blazor/security/webassembly/additional-scenarios#build-a-custom-version-of-the-authenticationmsal-javascript-library)
+* <xref:blazor/hybrid/security/index>
 * [Awesome Blazor: Authentication](https://github.com/AdrienTorris/awesome-blazor#authentication) community sample links
 
 :::moniker-end
