@@ -171,7 +171,7 @@ The preceeding code:
 * Registers the `GreeterClient` type with client factory.
 * Configures the `AuthInterceptor` for this client using `InterceptorScope.Client`. A new interceptor is created for each client instance. When a client is created for a gRPC service or Web API controller, the scoped `ITokenProvider` is injected into the interceptor.
 
-##### Bearer token with gRPC client factory using AsyncAuthInterceptor
+##### Bearer token with gRPC client factory using `AsyncAuthInterceptor`
 
 If the bearer token can only be generated using asynchronous method calls, the `AsyncAuthInterceptor` must be used.
 
