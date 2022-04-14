@@ -180,7 +180,7 @@ Assuming the token provider is defined as follows and has been registered as sco
 ```csharp
 public interface ITokenProvider
 {
-    Task<string> GetToken();
+    Task<string> GetTokenAsync();
 }
 ``` 
 
