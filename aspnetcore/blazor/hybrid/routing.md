@@ -23,8 +23,8 @@ Default URI request routing behavior:
 * If the link is internal, the link is opened in the `BlazorWebView` by the app.
 * If the link is external, the link is opened by an app determined by the device based on the device's registered handler for the link's scheme.
 * For internal links that appear to request a file because the last segment of the URI uses dot notation (for example, `/file.x`, `/Maryia.Melnyk`, `/image.gif`) but don't point to any static content:
-  * WPF and Windows Forms: The host page content will be returned.
-  * .NET MAUI: A 404 response will be returned.
+  * WPF and Windows Forms: The host page content is returned.
+  * .NET MAUI: A 404 response is returned.
 
 To change the link handling behavior for links that don't set `target="_blank"`, register the `UrlLoading` event and set the `UrlLoadingEventArgs.UrlLoadingStrategy` property. The `UrlLoadingStrategy` enumeration allows setting link handling behavior to any of the following values:
 
