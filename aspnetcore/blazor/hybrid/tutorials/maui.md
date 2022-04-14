@@ -18,6 +18,8 @@ This tutorial shows you how to build and run a .NET MAUI Blazor app. You learn h
 > * Run the app on Windows
 > * Run the app in the Android emulator
 
+[!INCLUDE[](~/blazor/includes/blazor-hybrid-preview-notice.md)]
+
 [!INCLUDE[](~/blazor/includes/net-maui-release-candidate-notice.md)]
 
 ## Prerequisites
