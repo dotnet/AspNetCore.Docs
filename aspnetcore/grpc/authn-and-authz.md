@@ -199,7 +199,7 @@ services
         {
             using var scope = scopeFactory.CreateScope();
             var tokenProvider = scope.ServiceProvider.GetRequiredService<ITokenProvider>();
-            var token = await tokenProvider.GetToken();
+            var token = await tokenProvider.GetTokenAsync();
             metadata.Add("Authorization", $"Bearer {token}");
         });
         options.Credentials = ChannelCredentials.Create(
