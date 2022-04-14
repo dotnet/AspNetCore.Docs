@@ -9,8 +9,10 @@
     <div asp-validation-summary="All"></div>
     <form method="POST">
         <div>Name: <input asp-for="Customer.Name" /></div>
+        <!-- <snippet_Handlers> -->
         <input type="submit" asp-page-handler="JoinList" value="Join" />
         <input type="submit" asp-page-handler="JoinListUC" value="JOIN UC" />
+        <!-- </snippet_Handlers> -->
     </form>
 </body>
 </html>

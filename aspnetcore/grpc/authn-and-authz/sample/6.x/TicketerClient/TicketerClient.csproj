@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Protobuf" Version="3.20.0" />
+    <PackageReference Include="Grpc.Net.Client" Version="2.43.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.43.0" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="Protos\ticket.proto" GrpcServices="Client" />
+  </ItemGroup>
+
+</Project>

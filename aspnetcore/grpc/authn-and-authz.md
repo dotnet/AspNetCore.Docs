@@ -4,7 +4,7 @@ author: jamesnk
 description: Learn how to use authentication and authorization in gRPC for ASP.NET Core.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 04/01/2022
+ms.date: 04/13/2022
 no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/authn-and-authz
 ---
@@ -13,33 +13,30 @@ uid: grpc/authn-and-authz
 By [James Newton-King](https://twitter.com/jamesnk)
 :::moniker range=">= aspnetcore-6.0"
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/grpc/authn-and-authz/sample/) [(how to download)](xref:index#how-to-download-a-sample)
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/grpc/authn-and-authz/sample/6.x/) [(how to download)](xref:index#how-to-download-a-sample)
 
 ## Authenticate users calling a gRPC service
 
 gRPC can be used with [ASP.NET Core authentication](xref:security/authentication/identity) to associate a user with each call.
 
-The following is an example of `Startup.Configure` which uses gRPC and ASP.NET Core authentication:
+The following is an example of `Program.cs` which uses gRPC and ASP.NET Core authentication:
 
 ```csharp
-public void Configure(IApplicationBuilder app)
-{
-    app.UseRouting();
+app.UseRouting();
     
-    app.UseAuthentication();
-    app.UseAuthorization();
+app.UseAuthentication();
+app.UseAuthorization();
 
-    app.UseEndpoints(endpoints =>
-    {
-        endpoints.MapGrpcService<GreeterService>();
-    });
-}
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapGrpcService<GreeterService>();
+});
 ```
 
 > [!NOTE]
 > The order in which you register the ASP.NET Core authentication middleware matters. Always call `UseAuthentication` and `UseAuthorization` after `UseRouting` and before `UseEndpoints`.
 
-The authentication mechanism your app uses during a call needs to be configured. Authentication configuration is added in `Startup.ConfigureServices` and will be different depending upon the authentication mechanism your app uses. For examples of how to secure ASP.NET Core apps, see [Authentication samples](xref:security/authentication/samples).
+The authentication mechanism your app uses during a call needs to be configured. Authentication configuration is added in `Program.cs` and will be different depending upon the authentication mechanism your app uses. For examples of how to secure ASP.NET Core apps, see [Authentication samples](xref:security/authentication/samples).
 
 Once authentication has been setup, the user can be accessed in a gRPC service methods via the `ServerCallContext`.
 
@@ -109,7 +106,7 @@ private static GrpcChannel CreateAuthenticatedChannel(string address)
 gRPC client factory can create clients that send a bearer token using `ChannelCredentials`. When configuring a client, assign the `CallCredentials` the client should use with the `ConfigureChannel` method.
 
 ```csharp
-services
+builder.Services
     .AddGrpcClient<Greeter.GreeterClient>(o =>
     {
         o.Address = new Uri("https://localhost:5001");
@@ -158,7 +155,7 @@ public class AuthInterceptor : Interceptor
 ```
 
 ```csharp
-services
+builder.Services
     .AddGrpcClient<Greeter.GreeterClient>(o =>
     {
         o.Address = new Uri("https://localhost:5001");
