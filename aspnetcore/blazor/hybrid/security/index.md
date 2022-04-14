@@ -59,7 +59,7 @@ The Android :::no-loc text="Web View"::: is distributed and updated via the [Goo
 
 iOS and Mac Catalyst both use [`WKWebView`](https://developer.apple.com/documentation/webkit/wkwebview), a Safari-based control, which is updated by the operating system. Similar to the [Android](#android) case, determine the :::no-loc text="Web View"::: version by reading the :::no-loc text="Web View":::'s [`User-Agent`](https://developer.mozilla.org/docs/Web/HTTP/Headers/User-Agent) string.
 
-### Windows (.NET MAUI, WPF, WinForms)
+### Windows (.NET MAUI, WPF, Windows Forms)
 
 On Windows, the Chromium-based [Microsoft Edge `WebView2`](/microsoft-edge/webview2/) is required to run Blazor web apps. By default, the newest installed version of `WebView2` (known as the [Evergreen distribution](/microsoft-edge/webview2/concepts/distribution#details-about-the-fixed-version-runtime-distribution-mode)) is used.
 
