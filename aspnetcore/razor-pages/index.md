@@ -219,7 +219,7 @@ The `<a /a>` [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/anchor-ta
 
 The `Index.cshtml` file contains markup to create a delete button for each customer contact:
 
-[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Index.cshtml?range=22-23)]
+[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Index.cshtml?range=23-25)]
 
 The rendered HTML:
 
