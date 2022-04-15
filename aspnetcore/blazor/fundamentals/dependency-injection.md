@@ -98,6 +98,41 @@ The `builder` variable represents a `Microsoft.AspNetCore.Builder.WebApplication
 builder.Services.AddSingleton<IDataAccess, DataAccess>();
 ```
 
+## Provide common services in a hosted Blazor WebAssembly app
+
+If one or more common services are required by the **`Server`** and **`Client`** projects of a hosted Blazor WebAssembly app, you can place the common service registrations in a method in the **`Client`** project and call the method to register the services in both projects.
+
+First, factor common service registrations into a separate method. For example, create a `ConfigureCommonServices` method in the **`Client`** project:
+
+```csharp
+public static void ConfigureCommonServices(IServiceCollection services)
+{
+    services.Add...;
+}
+```
+
+In the **`Client`** project's `Program.cs` file, call `ConfigureCommonServices` to register the common services:
+
+```csharp
+var builder = WebAssemblyHostBuilder.CreateDefault(args);
+
+...
+
+ConfigureCommonServices(builder.Services);
+```
+
+In the **`Server`** project's `Program.cs` file, call `ConfigureCommonServices` to register the common services for the **`Server`** project:
+
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+
+...
+
+Client.Program.ConfigureCommonServices(builder.Services);
+```
+
+For an example of this approach, see <xref:blazor/security/webassembly/additional-scenarios#support-prerendering-with-authentication>.
+
 ## Service lifetime
 
 Services can be configured with the lifetimes shown in the following table.
@@ -463,6 +498,37 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
+## Provide common services in a hosted Blazor WebAssembly app
+
+If one or more common services are required by the **`Server`** and **`Client`** projects of a hosted Blazor WebAssembly app, you can place the common service registrations in a method in the **`Client`** project and call the method to register the services in both projects.
+
+First, factor common service registrations into a separate method. For example, create a `ConfigureCommonServices` method in the **`Client`** project:
+
+```csharp
+public static void ConfigureCommonServices(IServiceCollection services)
+{
+    services.Add...;
+}
+```
+
+In the client (**`Client`**) project's `Program.cs` file, call `ConfigureCommonServices` to register the common services:
+
+```csharp
+var builder = WebAssemblyHostBuilder.CreateDefault(args);
+
+...
+
+ConfigureCommonServices(builder.Services);
+```
+
+In the **`Server`** project's `ConfigureServices` method of `Startup.cs`, call `ConfigureCommonServices` to register the common services for the **`Server`** project:
+
+```csharp
+Client.Program.ConfigureCommonServices(services);
+```
+
+For an example of this approach, see <xref:blazor/security/webassembly/additional-scenarios#support-prerendering-with-authentication>.
+
 ## Service lifetime
 
 Services can be configured with the lifetimes shown in the following table.
@@ -824,6 +890,37 @@ public void ConfigureServices(IServiceCollection services)
     services.AddSingleton<IDataAccess, DataAccess>();
 }
 ```
+
+## Provide common services in a hosted Blazor WebAssembly app
+
+If one or more common services are required by the **`Server`** and **`Client`** projects of a hosted Blazor WebAssembly app, you can place the common service registrations in a method in the **`Client`** project and call the method to register the services in both projects.
+
+First, factor common service registrations into a separate method. For example, create a `ConfigureCommonServices` method in the **`Client`** project:
+
+```csharp
+public static void ConfigureCommonServices(IServiceCollection services)
+{
+    services.Add...;
+}
+```
+
+In the **`Client`** project's `Program.cs` file, call `ConfigureCommonServices` to register the common services:
+
+```csharp
+var builder = WebAssemblyHostBuilder.CreateDefault(args);
+
+...
+
+ConfigureCommonServices(builder.Services);
+```
+
+In the **`Server`** project's `ConfigureServices` method of `Startup.cs`, call `ConfigureCommonServices` to register the common services for the **`Server`** project:
+
+```csharp
+Client.Program.ConfigureCommonServices(services);
+```
+
+For an example of this approach, see <xref:blazor/security/webassembly/additional-scenarios#support-prerendering-with-authentication>.
 
 ## Service lifetime
 
