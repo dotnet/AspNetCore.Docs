@@ -143,6 +143,8 @@ To use a view component as a Tag Helper, register the assembly containing the vi
 
 A view component can be registered as a Tag Helper to any file that references the view component. See [Managing Tag Helper Scope](xref:mvc/views/tag-helpers/intro#managing-tag-helper-scope) for more information on how to register Tag Helpers.
 
+<a name="invok"></a>
+
 The `InvokeAsync` method used in this tutorial:
 
 [!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexFinal.cshtml?range=35)]
