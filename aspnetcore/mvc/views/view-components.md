@@ -121,8 +121,10 @@ The parameters are passed to the `InvokeAsync` method. The `PriorityList` view c
 ## Invoking a view component as a Tag Helper
 
 View component can be invoked as a [Tag Helper](xref:mvc/views/tag-helpers/intro):
-
+<!--
 [!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexTagHelper.cshtml?range=37-38)]
+-->
+[!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexTagHelper.cshtml?name=snippet)]
 
 Pascal-cased class and method parameters for Tag Helpers are translated into their [kebab case](https://stackoverflow.com/questions/11273282/whats-the-name-for-dash-separated-case/12273101). The Tag Helper to invoke a view component uses the `<vc></vc>` element. The view component is specified as follows:
 
@@ -150,6 +152,12 @@ In Tag Helper markup:
 [!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexTagHelper.cshtml?range=37-38)]
 
 In the sample above, the `PriorityList` view component becomes `priority-list`. The parameters to the view component are passed as attributes in kebab case.
+
+The following code passes in the priority and completion status dynamically:
+
+[!code-csharp[](view-components/sample6.x/ViewComponentSample/Controllers/ToDoController.cs?name=snippet_IndexPP)]
+
+[!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexPP.cshtml?name=snippet)]
 
 ### Invoking a view component directly from a controller
 

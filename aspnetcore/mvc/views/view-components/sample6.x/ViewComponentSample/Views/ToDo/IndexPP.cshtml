@@ -1,9 +1,7 @@
 @using ViewComponentSample.Models
-@addTagHelper *, ViewComponentSample
 @model IEnumerable<TodoItem>
 
 <h2>ToDo</h2>
-
 <table>
     <tr>
         <th>
@@ -17,7 +15,6 @@
         </th>
         <th></th>
     </tr>
-
     @foreach (var item in Model)
     {
         <tr>
@@ -32,10 +29,13 @@
             </td>
         </tr>
     }
-</table>
- <!-- <snippet> -->
+</table>         
+
 <div>
-    <vc:priority-list max-priority="2" is-done="false">
-    </vc:priority-list>
+     <!-- <snippet> -->
+    @await Component.InvokeAsync("PriorityList",
+    new { maxPriority =  ViewData["maxPri"], 
+        isDone = ViewData["isComplete"]  }
+        )
+         <!-- </snippet> -->
 </div>
- <!-- </snippet> -->

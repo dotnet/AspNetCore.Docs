@@ -7,6 +7,10 @@ namespace ViewComponentSample.Controllers
     public class ToDoController : Controller
     {
         private readonly ToDoContext _ToDoContext;
+        [BindProperty(SupportsGet = true)]
+        public int maxPri { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public bool isComplete { get; set; }
 
         public ToDoController(ToDoContext context)
         {
@@ -29,6 +33,15 @@ namespace ViewComponentSample.Controllers
         }
         #endregion
 
+        #region snippet_IndexPP
+        public async Task<IActionResult> IndexPP(int maxPri=2, bool isComplete=false)
+        {
+            ViewData["maxPri"] = maxPri;
+            ViewData["isComplete"] = isComplete;
+            return View(await _ToDoContext.ToDo!.ToListAsync());
+        }
+        #endregion
+
         public async Task<IActionResult> IndexFinal()
         {
             return View(await _ToDoContext.ToDo!.ToListAsync());
@@ -44,6 +57,11 @@ namespace ViewComponentSample.Controllers
         }
 
         public IActionResult IndexFirst()
+        {
+            return View(_ToDoContext.ToDo!.ToList());
+        }
+
+        public IActionResult IndexTagHelper()
         {
             return View(_ToDoContext.ToDo!.ToList());
         }
