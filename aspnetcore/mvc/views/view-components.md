@@ -168,9 +168,9 @@ In the following example, the view component is called directly from the control
 
 [!code-csharp[](view-components/sample6.x/ViewComponentSample/Controllers/ToDoController.cs?name=snippet_IndexVC)]
 
-## Walkthrough: Creating a simple view component
+## Walkthrough: Creating a basic view component
 
-[Download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/view-components/sample), build and test the starter code. It's a simple project with a `ToDo` controller that displays a list of *ToDo* items.
+[Download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/view-components/sample), build and test the starter code. It's a basic project with a `ToDo` controller that displays a list of *ToDo* items.
 
 ![List of ToDos](view-components/_static/2dos.png)
 
@@ -492,7 +492,7 @@ In this example, the view component is called directly from the controller:
 
 ## Walkthrough: Creating a simple view component
 
-[Download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/view-components/sample), build and test the starter code. It's a simple project with a `ToDo` controller that displays a list of *ToDo* items.
+[Download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/view-components/sample6.x), build and test the starter code. It's a simple project with a `ToDo` controller that displays a list of *ToDo* items.
 
 ![List of ToDos](view-components/_static/2dos.png)
 
@@ -500,20 +500,22 @@ In this example, the view component is called directly from the controller:
 
 Create a *ViewComponents* folder and add the following `PriorityListViewComponent` class:
 
-[!code-csharp[](view-components/sample/ViewCompFinal/ViewComponents/PriorityListViewComponent1.cs?name=snippet1)]
+[!code-csharp[](view-components/sample6.x/ViewCompFinal/ViewComponents/PriorityListViewComponent1.cs?name=snippet1)]
 
 Notes on the code:
 
 * View component classes can be contained in **any** folder in the project.
-* Because the class name PriorityList**ViewComponent** ends with the suffix **ViewComponent**, the runtime will use the string "PriorityList" when referencing the class component from a view. I'll explain that in more detail later.
-* The `[ViewComponent]` attribute can change the name used to reference a view component. For example, we could've named the class `XYZ` and applied the `ViewComponent` attribute:
+* Because the class name PriorityList**ViewComponent** ends with the suffix **ViewComponent**, the runtime uses the string `PriorityList` when referencing the class component from a view.
+* The `[ViewComponent]` attribute can change the name used to reference a view component. For example, the class could have been named `XYZ` with the `ViewComponent` attribute:
 
   ```csharp
   [ViewComponent(Name = "PriorityList")]
      public class XYZ : ViewComponent
      ```
 
-* The `[ViewComponent]` attribute above tells the view component selector to use the name `PriorityList` when looking for the views associated with the component, and to use the string "PriorityList" when referencing the class component from a view. I'll explain that in more detail later.
+* The `[ViewComponent]` attribute in the preceding code tells the view component selector to use:
+  * The name `PriorityList` when looking for the views associated with the component
+  * The string "PriorityList" when referencing the class component from a view. 
 * The component uses [dependency injection](../../fundamentals/dependency-injection.md) to make the data context available.
 * `InvokeAsync` exposes a method which can be called from a view, and it can take an arbitrary number of arguments.
 * The `InvokeAsync` method returns the set of `ToDo` items that satisfy the `isDone` and `maxPriority` parameters.
