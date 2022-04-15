@@ -31,8 +31,8 @@ namespace ViewComponentSample.Controllers
         {
             return ViewComponent("PriorityList",
                 new { 
-                maxPriority = maxPri,
-                isDone = isComplete
+                   maxPriority = maxPri,
+                   isDone = isComplete
                 });
         }
         #endregion

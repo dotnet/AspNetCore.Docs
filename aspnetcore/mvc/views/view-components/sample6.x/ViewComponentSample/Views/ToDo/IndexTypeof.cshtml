@@ -1,4 +1,4 @@
-﻿@using ViewComponentSample.Models
+@using ViewComponentSample.Models
 @using ViewComponentSample.ViewComponents
 @model IEnumerable<TodoItem>
 
@@ -34,5 +34,6 @@
 </table>
 
 <div>
-    @await Component.InvokeAsync(typeof(PriorityListViewComponent), new { maxPriority = 4, isDone = true })
+    @await Component.InvokeAsync(typeof(PriorityListViewComponent),
+                          new { maxPriority = 4, isDone = true })
 </div>

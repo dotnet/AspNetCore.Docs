@@ -319,7 +319,8 @@ The view component is invoked in a Razor file (for example, `Views/Home/Index.cs
 To use the <xref:Microsoft.AspNetCore.Mvc.IViewComponentHelper> approach, call `Component.InvokeAsync`:
 
 ```cshtml
-@await Component.InvokeAsync(nameof(PriorityList), new { maxPriority = 4, isDone = true })
+@await Component.InvokeAsync(nameof(PriorityList),
+                             new { maxPriority = 4, isDone = true })
 ```
 
 To use the Tag Helper, register the assembly containing the View Component using the `@addTagHelper` directive (the view component is in an assembly called `MyWebApp`):
@@ -341,6 +342,8 @@ The method signature of `PriorityList.Invoke` is synchronous, but Razor finds an
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/view-components/sample) ([how to download](xref:index#how-to-download-a-sample))
 * [Dependency injection into views](xref:mvc/views/dependency-injection)
+* [View Components in Razor Pages](https://www.learnrazorpages.com/razor-pages/view-components)
+* [Why You Should Use View Components, not Partial Views, in ASP.NET Core](https://www.telerik.com/blogs/why-you-should-use-view-components-not-partial-views-aspnet-core)
 
 :::moniker-end
 
