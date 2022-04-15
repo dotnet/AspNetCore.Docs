@@ -27,9 +27,13 @@ namespace ViewComponentSample.Controllers
             return View(model);
         }
         #region snippet_IndexVC
-        public IActionResult IndexVC()
+        public IActionResult IndexVC(int maxPri = 2, bool isComplete = false)
         {
-            return ViewComponent("PriorityList", new { maxPriority = 3, isDone = false });
+            return ViewComponent("PriorityList",
+                new { 
+                maxPriority = maxPri,
+                isDone = isComplete
+                });
         }
         #endregion
 

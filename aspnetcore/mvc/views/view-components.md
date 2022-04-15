@@ -149,9 +149,9 @@ The `InvokeAsync` method used in this tutorial:
 
 In Tag Helper markup:
 
-[!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexTagHelper.cshtml?range=37-38)]
+[!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexTagHelper.cshtml?name=snippet)]
 
-In the sample above, the `PriorityList` view component becomes `priority-list`. The parameters to the view component are passed as attributes in kebab case.
+In the preceding markup, the `PriorityList` view component becomes `priority-list`. The parameters to the view component are passed as attributes in kebab case.
 
 The following code passes in the priority and completion status dynamically:
 
@@ -211,7 +211,7 @@ Notes on the code:
 
 * Add a `div` containing a call to the priority list component to the bottom of the `Views/ToDo/index.cshtml` file:
 
-    [!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexFirst.cshtml?range=34-38)]
+    [!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexPP.cshtml?range=snippet2)]
 
 The markup `@await Component.InvokeAsync` shows the syntax for calling view components. The first argument is the name of the component we want to invoke or call. Subsequent parameters are passed to the component. `InvokeAsync` can take an arbitrary number of arguments.
 
@@ -290,7 +290,8 @@ public class PriorityList : ViewComponent
 {
     public IViewComponentResult Invoke(int maxPriority, bool isDone)
     {
-        var items = new List<string> { $"maxPriority: {maxPriority}", $"isDone: {isDone}" };
+        var items = new List<string> { $"maxPriority: {maxPriority}", 
+                                       $"isDone: {isDone}" };
         return View(items);
     }
 }

@@ -29,13 +29,16 @@
             </td>
         </tr>
     }
-</table>         
+</table>
 
 <div>
-     <!-- <snippet> -->
+    Maxium Priority: @ViewData["maxPri"] <br />
+    Is Complete:  @ViewData["isComplete"]
+    <!-- <snippet> -->
     @await Component.InvokeAsync("PriorityList",
-    new { maxPriority =  ViewData["maxPri"], 
-        isDone = ViewData["isComplete"]  }
-        )
-         <!-- </snippet> -->
+                     new { 
+                         maxPriority =  ViewData["maxPri"],
+                         isDone = ViewData["isComplete"]  }
+                     )
+    <!-- </snippet> -->
 </div>
