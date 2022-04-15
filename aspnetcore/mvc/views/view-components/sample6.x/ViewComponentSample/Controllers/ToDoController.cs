@@ -46,7 +46,7 @@ namespace ViewComponentSample.Controllers
         }
         #endregion
 
-        public async Task<IActionResult> IndexFinal()
+        public async Task<IActionResult> IndexFinal(int maxPri = 2, bool isComplete = false)
         {
             return View(await _ToDoContext.ToDo!.ToListAsync());
         }
@@ -65,8 +65,10 @@ namespace ViewComponentSample.Controllers
             return View(_ToDoContext.ToDo!.ToList());
         }
 
-        public IActionResult IndexTagHelper()
+        public IActionResult IndexTagHelper(int maxPri = 2, bool isComplete = false)
         {
+            ViewData["maxPri"] = maxPri;
+            ViewData["isComplete"] = isComplete;
             return View(_ToDoContext.ToDo!.ToList());
         }
     }

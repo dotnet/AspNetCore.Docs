@@ -2,7 +2,7 @@
 @addTagHelper *, ViewComponentSample
 @model IEnumerable<TodoItem>
 
-<h2>ToDo</h2>
+<h2>IndexTagHelper</h2>
 
 <table>
     <tr>
@@ -35,7 +35,13 @@
 </table>
  <!-- <snippet> -->
 <div>
-    <vc:priority-list max-priority="2" is-done="false">
+       Maxium Priority: @ViewData["maxPri"] <br />
+       Is Complete:  @ViewData["isComplete"]
+    @{
+        int maxPri = Convert.ToInt32(ViewData["maxPri"]);
+        bool status = Convert.ToBoolean(ViewData["isComplete"]);
+    }
+    <vc:priority-list max-priority=maxPri is-done=status>
     </vc:priority-list>
 </div>
  <!-- </snippet> -->
