@@ -153,11 +153,12 @@ The `InvokeAsync` method used in this tutorial:
 
 [!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexPP.cshtml?name=snippet)]
 
+In the preceding markup, the `PriorityList` view component becomes `priority-list`. The parameters to the view component are passed as attributes in kebab case.
+
 In Tag Helper markup:
 
 [!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexTagHelper.cshtml?name=snippet)]
 
-In the preceding markup, the `PriorityList` view component becomes `priority-list`. The parameters to the view component are passed as attributes in kebab case.
 
 ### Invoking a view component directly from a controller
 
