@@ -34,7 +34,6 @@ Blazor WebAssembly Hot Reload support has the following conditions:
 * Adding new lambdas or local functions, adding a new [`await` operator](/dotnet/csharp/language-reference/operators/await) or [`yield` keyword](/dotnet/csharp/language-reference/keywords/yield) expression is ***not*** supported.
 * Changing the names of method parameters is ***not*** supported.
 * Changes outside of method bodies is ***not*** supported.
-* In Visual Studio 2022 GA (17.0), Hot Reload is only supported when running without the debugger.
 
 ## .NET CLI
 
