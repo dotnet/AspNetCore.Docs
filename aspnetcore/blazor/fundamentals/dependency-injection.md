@@ -98,9 +98,9 @@ The `builder` variable represents a `Microsoft.AspNetCore.Builder.WebApplication
 builder.Services.AddSingleton<IDataAccess, DataAccess>();
 ```
 
-## Provide common services in a hosted Blazor WebAssembly app
+## Register common services in a hosted Blazor WebAssembly solution
 
-If one or more common services are required by the **`Server`** and **`Client`** projects of a hosted Blazor WebAssembly app, you can place the common service registrations in a method in the **`Client`** project and call the method to register the services in both projects.
+If one or more common services are required by the **`Server`** and **`Client`** projects of a hosted Blazor WebAssembly solution, you can place the common service registrations in a method in the **`Client`** project and call the method to register the services in both projects.
 
 First, factor common service registrations into a separate method. For example, create a `ConfigureCommonServices` method in the **`Client`** project:
 
@@ -498,9 +498,9 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-## Provide common services in a hosted Blazor WebAssembly app
+## Register common services in a hosted Blazor WebAssembly solution
 
-If one or more common services are required by the **`Server`** and **`Client`** projects of a hosted Blazor WebAssembly app, you can place the common service registrations in a method in the **`Client`** project and call the method to register the services in both projects.
+If one or more common services are required by the **`Server`** and **`Client`** projects of a hosted Blazor WebAssembly solution, you can place the common service registrations in a method in the **`Client`** project and call the method to register the services in both projects.
 
 First, factor common service registrations into a separate method. For example, create a `ConfigureCommonServices` method in the **`Client`** project:
 
@@ -891,9 +891,9 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-## Provide common services in a hosted Blazor WebAssembly app
+## Register common services in a hosted Blazor WebAssembly solution
 
-If one or more common services are required by the **`Server`** and **`Client`** projects of a hosted Blazor WebAssembly app, you can place the common service registrations in a method in the **`Client`** project and call the method to register the services in both projects.
+If one or more common services are required by the **`Server`** and **`Client`** projects of a hosted Blazor WebAssembly solution, you can place the common service registrations in a method in the **`Client`** project and call the method to register the services in both projects.
 
 First, factor common service registrations into a separate method. For example, create a `ConfigureCommonServices` method in the **`Client`** project:
 

@@ -153,7 +153,7 @@ To set up prerendering for a hosted Blazor WebAssembly app:
    app.MapFallbackToPage("/_Host");
    ```
 
-1. If the **`Client`** and **`Server`** projects use one or more common services during prerendering, factor the service registrations into a method that can be called from both projects. For more information, see <xref:blazor/fundamentals/dependency-injection#provide-common-services-in-a-hosted-blazor-webassembly-app>.
+1. If the **`Client`** and **`Server`** projects use one or more common services during prerendering, factor the service registrations into a method that can be called from both projects. For more information, see <xref:blazor/fundamentals/dependency-injection#register-common-services-in-a-hosted-blazor-webassembly-solution>.
 
 1. Run the **`Server`** project. The hosted Blazor WebAssembly app is prerendered by the **`Server`** project for clients.
 
@@ -1015,7 +1015,7 @@ To set up prerendering for a hosted Blazor WebAssembly app:
    + endpoints.MapFallbackToPage("/_Host");
    ```
 
-1. If the **`Client`** and **`Server`** projects use one or more common services during prerendering, factor the service registrations into a method that can be called from both projects. For more information, see <xref:blazor/fundamentals/dependency-injection#provide-common-services-in-a-hosted-blazor-webassembly-app>.
+1. If the **`Client`** and **`Server`** projects use one or more common services during prerendering, factor the service registrations into a method that can be called from both projects. For more information, see <xref:blazor/fundamentals/dependency-injection#register-common-services-in-a-hosted-blazor-webassembly-solution>.
 
 1. Run the **`Server`** project. The hosted Blazor WebAssembly app is prerendered by the **`Server`** project for clients.
 
