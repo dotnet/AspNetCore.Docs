@@ -145,19 +145,19 @@ A view component can be registered as a Tag Helper to any file that references t
 
 The `InvokeAsync` method used in this tutorial:
 
+<!--
 [!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexFinal.cshtml?name=snippet)]
+-->
+
+[!code-csharp[](view-components/sample6.x/ViewComponentSample/Controllers/ToDoController.cs?name=snippet_IndexPP)]
+
+[!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexPP.cshtml?name=snippet)]
 
 In Tag Helper markup:
 
 [!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexTagHelper.cshtml?name=snippet)]
 
 In the preceding markup, the `PriorityList` view component becomes `priority-list`. The parameters to the view component are passed as attributes in kebab case.
-
-The following code passes in the priority and completion status dynamically:
-
-[!code-csharp[](view-components/sample6.x/ViewComponentSample/Controllers/ToDoController.cs?name=snippet_IndexPP)]
-
-[!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexPP.cshtml?name=snippet)]
 
 ### Invoking a view component directly from a controller
 
