@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using ViewComponentSample.Models;
 
 namespace ViewComponentSample.Controllers;
@@ -16,11 +16,15 @@ public class ToDoController : Controller
         _ToDoContext.Database.EnsureCreated();
     }
 
-    public IActionResult Index()
+    #region snippet
+    public IActionResult Index(int maxPri = 2, bool isComplete = false)
     {
         var model = _ToDoContext!.ToDo!.ToList();
+        ViewData["maxPri"] = maxPri;
+        ViewData["isComplete"] = isComplete;
         return View(model);
     }
+    #endregion
 
     public string Index2()
     {

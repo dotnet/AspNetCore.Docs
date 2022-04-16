@@ -1,5 +1,6 @@
-//#define SECOND
-#if SECOND
+#define First
+#if First
+#region snippet1
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ViewComponentSample.Models;
@@ -24,4 +25,5 @@ public class PriorityListViewComponent : ViewComponent
                              x.Priority <= maxPriority).ToListAsync();
     }
 }
+#endregion
 #endif

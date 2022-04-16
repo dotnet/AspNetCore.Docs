@@ -30,11 +30,11 @@ View components are intended anywhere reusable rendering logic that's too comple
 
 * Dynamic navigation menus
 * Tag cloud, where it queries the database
-* Login panel
+* Sign in panel
 * Shopping cart
 * Recently published articles
 * Sidebar content on a typical blog
-* A login panel that would be rendered on every page and show either the links to log out or log in, depending on the log in state of the user
+* A sign in panel that would be rendered on every page and show either the links to sign out or sign in, depending on the sign in state of the user
 
 A view component consists of two parts: 
 
@@ -80,7 +80,7 @@ Parameters come directly from invocation of the view component, not from model b
 * Define an `InvokeAsync` method that returns a `Task<IViewComponentResult>` or a synchronous `Invoke` method that returns an `IViewComponentResult`.
 * Typically initializes a model and passes it to a view by calling the [ViewComponent.View](xref:Microsoft.AspNetCore.Mvc.ViewComponent.View) method.
 * Parameters come from the calling method, not HTTP. There's no model binding.
-* Are not reachable directly as an HTTP endpoint. They're invoked from your code, typically in a view. A view component never handles a request.
+* Aren't reachable directly as an HTTP endpoint. They're invoked from your code, typically in a view. A view component never handles a request.
 * Are overloaded on the signature rather than any details from the current HTTP request.
 
 ### View search path
@@ -93,7 +93,7 @@ The runtime searches for the view in the following paths:
 
 The search path applies to projects using controllers + views and Razor Pages.
 
-The default view name for a view component is `Default`, which means view files will typically be named `Default.cshtml`. A different view name can be specifed when creating the view component result or when calling the `View` method.
+The default view name for a view component is `Default`, which means view files will typically be named `Default.cshtml`. A different view name can be specified when creating the view component result or when calling the `View` method.
 
 We recommend naming the view file `Default.cshtml` and using the *Views/Shared/Components/{View Component Name}/{View Name}* path. The `PriorityList` view component used in this sample uses `Views/Shared/Components/PriorityList/Default.cshtml` for the view component view.
 
@@ -176,43 +176,41 @@ In the following example, the view component is called directly from the control
 
 ### Add a ViewComponent class
 
-Create a *ViewComponents* folder and add the following `PriorityListViewComponent` class:
-
-[!code-csharp[](view-components/sample6.x/ViewComponentSample/ViewComponents/PriorityListViewComponent1.cs?name=snippet1)]
+[!code-csharp[](view-components/sample6.x/ViewCompFinal/ViewComponents/PriorityListViewComponent1.cs?name=snippet1)]
 
 Notes on the code:
 
 * View component classes can be contained in **any** folder in the project.
-* Because the class name PriorityList**ViewComponent** ends with the suffix **ViewComponent**, the runtime will use the string "PriorityList" when referencing the class component from a view. I'll explain that in more detail later.
-* The `[ViewComponent]` attribute can change the name used to reference a view component. For example, we could've named the class `XYZ` and applied the `ViewComponent` attribute:
+* Because the class name PriorityList**ViewComponent** ends with the suffix **ViewComponent**, the runtime uses the string `PriorityList` when referencing the class component from a view.
+* The  [`[ViewComponent]`](xref:Microsoft.AspNetCore.Mvc.ViewComponentAttribute) attribute can change the name used to reference a view component. For example, the class could have been named `XYZ` with the `ViewComponent` attribute:
 
   ```csharp
   [ViewComponent(Name = "PriorityList")]
      public class XYZ : ViewComponent
      ```
 
-* The `[ViewComponent]` attribute above tells the view component selector to use the name `PriorityList` when looking for the views associated with the component, and to use the string "PriorityList" when referencing the class component from a view. I'll explain that in more detail later.
+* The `[ViewComponent]` attribute in the preceding code tells the view component selector to use:
+  * The name `PriorityList` when looking for the views associated with the component
+  * The string "PriorityList" when referencing the class component from a view. 
 * The component uses [dependency injection](../../fundamentals/dependency-injection.md) to make the data context available.
-* `InvokeAsync` exposes a method which can be called from a view, and it can take an arbitrary number of arguments.
+* `InvokeAsync` exposes a method that can be called from a view, and it can take an arbitrary number of arguments.
 * The `InvokeAsync` method returns the set of `ToDo` items that satisfy the `isDone` and `maxPriority` parameters.
 
 ### Create the view component Razor view
 
 * Create the *Views/Shared/Components* folder. This folder **must** be named *Components*.
-
 * Create the *Views/Shared/Components/PriorityList* folder. This folder name must match the name of the view component class, or the name of the class minus the suffix. If the `ViewComponent` attribute is used, the class name would need to match the attribute designation.
-
 * Create a `Views/Shared/Components/PriorityList/Default.cshtml` Razor view:
 
   [!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/Shared/Components/PriorityList/Default1.cshtml)]
 
-   The Razor view takes a list of `TodoItem` and displays them. If the view component `InvokeAsync` method doesn't pass the name of the view (as in our sample), *Default* is used for the view name by convention. Later in the tutorial, we show how to pass the name of the view. To override the default styling for a specific controller, add a view to the controller-specific view folder (for example *Views/ToDo/Components/PriorityList/Default.cshtml)*.
+   The Razor view takes a list of `TodoItem` and displays them. If the view component `InvokeAsync` method doesn't pass the name of the view (as in our sample), *Default* is used for the view name by convention. To override the default styling for a specific controller, add a view to the controller-specific view folder (for example *Views/ToDo/Components/PriorityList/Default.cshtml)*.
 
     If the view component is controller-specific, it can be added it to the controller-specific folder (`Views/ToDo/Components/PriorityList/Default.cshtml`).
 
 * Add a `div` containing a call to the priority list component to the bottom of the `Views/ToDo/index.cshtml` file:
 
-    [!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexPP.cshtml?range=snippet2)]
+    [!code-cshtml[](view-components/sample6.x/ViewCompFinal/Views/ToDo/Index.cshtmll?name=snippet2)]
 
 The markup `@await Component.InvokeAsync` shows the syntax for calling view components. The first argument is the name of the component we want to invoke or call. Subsequent parameters are passed to the component. `InvokeAsync` can take an arbitrary number of arguments.
 
@@ -496,11 +494,13 @@ In this example, the view component is called directly from the controller:
 
 ![List of ToDos](view-components/_static/2dos.png)
 
+### Update the controller to pass in priority and complition status
+
 ### Add a ViewComponent class
 
 Create a *ViewComponents* folder and add the following `PriorityListViewComponent` class:
 
-[!code-csharp[](view-components/sample6.x/ViewCompFinal/ViewComponents/PriorityListViewComponent1.cs?name=snippet1)]
+[!code-csharp[](view-components/sample/ViewCompFinal/ViewComponents/PriorityListViewComponent1.cs?name=snippet1)]
 
 Notes on the code:
 

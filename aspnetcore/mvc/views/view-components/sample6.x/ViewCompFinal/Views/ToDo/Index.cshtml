@@ -1,4 +1,4 @@
-﻿
+
 @using ViewComponentSample.Models
 @model IEnumerable<TodoItem>
 
@@ -33,4 +33,18 @@
             </td>
             </tr>
     }
+  <!-- <snippet2> -->
 </table>
+
+<div>
+    Maxium Priority: @ViewData["maxPri"] <br />
+    Is Complete:  @ViewData["isComplete"]
+    <!-- <snippet> -->
+    @await Component.InvokeAsync("PriorityList",
+                     new { 
+                         maxPriority =  ViewData["maxPri"],
+                         isDone = ViewData["isComplete"]  }
+                     )
+    <!-- </snippet> -->
+</div>
+  <!-- </snippet2> -->
