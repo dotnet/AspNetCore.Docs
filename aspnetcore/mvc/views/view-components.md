@@ -174,6 +174,8 @@ In the following example, the view component is called directly from the control
 
 ![List of ToDos](view-components/_static/2dos.png)
 
+### Update the controller to pass in priority and completion  status
+
 ### Add a ViewComponent class
 
 [!code-csharp[](view-components/sample6.x/ViewCompFinal/ViewComponents/PriorityListViewComponent1.cs?name=snippet1)]
@@ -210,7 +212,7 @@ Notes on the code:
 
 * Add a `div` containing a call to the priority list component to the bottom of the `Views/ToDo/index.cshtml` file:
 
-    [!code-cshtml[](view-components/sample6.x/ViewCompFinal/Views/ToDo/Index.cshtmll?name=snippet2)]
+    [!code-cshtml[](view-components/sample6.x/ViewCompFinal/Views/ToDo/Index.cshtml?name=snippet2)]
 
 The markup `@await Component.InvokeAsync` shows the syntax for calling view components. The first argument is the name of the component we want to invoke or call. Subsequent parameters are passed to the component. `InvokeAsync` can take an arbitrary number of arguments.
 
@@ -493,8 +495,6 @@ In this example, the view component is called directly from the controller:
 [Download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/view-components/sample6.x), build and test the starter code. It's a simple project with a `ToDo` controller that displays a list of *ToDo* items.
 
 ![List of ToDos](view-components/_static/2dos.png)
-
-### Update the controller to pass in priority and complition status
 
 ### Add a ViewComponent class
 
