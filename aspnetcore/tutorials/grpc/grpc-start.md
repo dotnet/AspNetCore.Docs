@@ -3,7 +3,7 @@ title: Create a .NET Core gRPC client and server in ASP.NET Core
 author: jamesnk
 description: This tutorial shows how to create a gRPC Service and gRPC client on ASP.NET Core. Learn how to create a gRPC Service project, edit a proto file, and add a duplex streaming call.
 ms.author: jamesnk
-ms.date: 03/22/2022
+ms.date: 04/15/2022
 no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/grpc/grpc-start
 ---
@@ -217,7 +217,10 @@ dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 
 ### Create the Greeter client
 
-* Build the client project to create the types in the `GrpcGreeterClient` namespace. The `GrpcGreeterClient` types are generated automatically by the build process.
+* Build the client project to create the types in the `GrpcGreeterClient` namespace. The `GrpcGreeterClient` types are generated automatically by the build process.  Grpc.Tools generates the following files based on the .proto file in the project:
+
+  * Greeter/obj/Debug/TARGET_FRAMEWORK/GreeterClient.cs
+  * Greeter/obj/Debug/TARGET_FRAMEWORK/GreeterClientGrpc.cs
 
 * Update the gRPC client `Program.cs` file with the following code.
 
