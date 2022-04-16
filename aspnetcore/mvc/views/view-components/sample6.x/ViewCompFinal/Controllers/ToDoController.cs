@@ -1,8 +1,8 @@
+#region snippet
 using Microsoft.AspNetCore.Mvc;
 using ViewComponentSample.Models;
 
 namespace ViewComponentSample.Controllers;
-
 public class ToDoController : Controller
 {
     private readonly ToDoContext _ToDoContext;
@@ -10,13 +10,9 @@ public class ToDoController : Controller
     public ToDoController(ToDoContext context)
     {
         _ToDoContext = context;
-
-        // EnsureCreated() is used to call OnModelCreating for In-Memory databases as migration is not possible
-        // see: https://github.com/aspnet/EntityFrameworkCore/issues/11666 
         _ToDoContext.Database.EnsureCreated();
     }
 
-    #region snippet
     public IActionResult Index(int maxPri = 2, bool isComplete = false)
     {
         var model = _ToDoContext!.ToDo!.ToList();
@@ -26,8 +22,21 @@ public class ToDoController : Controller
     }
     #endregion
 
-    public string Index2()
+    public IActionResult IndexVC(int maxPri = 2, bool isComplete = false)
     {
-        return "View()";
+        return ViewComponent("PriorityList",
+            new
+            {
+                maxPriority = maxPri,
+                isDone = isComplete
+            });
+    }
+
+    public IActionResult IndexFinal(int maxPri = 2, bool isComplete = false)
+    {
+        var model = _ToDoContext!.ToDo!.ToList();
+        ViewData["maxPri"] = maxPri;
+        ViewData["isComplete"] = isComplete;
+        return View(model);
     }
 }

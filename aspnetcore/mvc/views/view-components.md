@@ -159,7 +159,6 @@ In Tag Helper markup:
 
 [!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexTagHelper.cshtml?name=snippet)]
 
-
 ### Invoking a view component directly from a controller
 
 View components are typically invoked from a view, but they can be invoked directly from a controller method. While view components don't define endpoints like controllers, a controller action that returns the content of a `ViewComponentResult` can be implemented.
@@ -174,7 +173,11 @@ In the following example, the view component is called directly from the control
 
 ![List of ToDos](view-components/_static/2dos.png)
 
-### Update the controller to pass in priority and completion  status
+### Update the controller to pass in priority and completion status
+
+Update the `Index` method to use priority and completion status parameters:
+
+[!code-csharp[](view-components/sample6.x/ViewCompFinal/Controllers/ToDoController.cs?highlight=15-21&name=snippet)]
 
 ### Add a ViewComponent class
 
@@ -206,10 +209,9 @@ Notes on the code:
 
   [!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/Shared/Components/PriorityList/Default1.cshtml)]
 
-   The Razor view takes a list of `TodoItem` and displays them. If the view component `InvokeAsync` method doesn't pass the name of the view (as in our sample), *Default* is used for the view name by convention. To override the default styling for a specific controller, add a view to the controller-specific view folder (for example *Views/ToDo/Components/PriorityList/Default.cshtml)*.
+   The Razor view takes a list of `TodoItem` and displays them. If the view component `InvokeAsync` method doesn't pass the name of the view, *Default* is used for the view name by convention. To override the default styling for a specific controller, add a view to the controller-specific view folder (for example *Views/ToDo/Components/PriorityList/Default.cshtml)*.
 
-    If the view component is controller-specific, it can be added it to the controller-specific folder (`Views/ToDo/Components/PriorityList/Default.cshtml`).
-
+    If the view component is controller-specific, it can be added it to the controller-specific folder. For example, `Views/ToDo/Components/PriorityList/Default.cshtml` is controller-specific.
 * Add a `div` containing a call to the priority list component to the bottom of the `Views/ToDo/index.cshtml` file:
 
     [!code-cshtml[](view-components/sample6.x/ViewCompFinal/Views/ToDo/Index.cshtml?name=snippet2)]
@@ -226,11 +228,11 @@ The view component can be called directly from the controller:
 
 ![priority items from IndexVC action](view-components/_static/indexvc.png)
 
-### Specifying a view name
+### Specify a view component name
 
 A complex view component might need to specify a non-default view under some conditions. The following code shows how to specify the "PVC" view  from the `InvokeAsync` method. Update the `InvokeAsync` method in the `PriorityListViewComponent` class.
 
-[!code-csharp[](../../mvc/views/view-components/sample6.x/ViewComponentSample/ViewComponents/PriorityListViewComponentFinal.cs?highlight=4,5,6,7,8,9&range=28-39)]
+[!code-csharp[](view-components/sample6.x/ViewCompFinal/ViewComponents/PriorityListViewComponentFinal.cs?name=snippet1)]
 
 Copy the `Views/Shared/Components/PriorityList/Default.cshtml` file to a view named `Views/Shared/Components/PriorityList/PVC.cshtml`. Add a heading to indicate the PVC view is being used.
 
@@ -238,9 +240,9 @@ Copy the `Views/Shared/Components/PriorityList/Default.cshtml` file to a view na
 
 Update `Views/ToDo/Index.cshtml`:
 
-<!-- Views/ToDo/Index.cshtml is never imported, so change to test tutorial -->
+<!-- Create IndexFinal method to test -->
 
-[!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexFinal.cshtml?range=35)]
+[!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexFinal.cshtml?name=snippet)]
 
 Run the app and verify PVC view.
 
