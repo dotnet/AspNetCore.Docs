@@ -219,8 +219,8 @@ dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 
 * Build the client project to create the types in the `GrpcGreeterClient` namespace. The `GrpcGreeterClient` types are generated automatically by the build process.  Grpc.Tools generates the following files based on the .proto file in the project:
 
-  * Greeter/obj/Debug/TARGET_FRAMEWORK/GreeterClient.cs
-  * Greeter/obj/Debug/TARGET_FRAMEWORK/GreeterClientGrpc.cs
+  * GrpcGreeterClient\obj\Debug\[TARGET_FRAMEWORK]\Protos\Greet.cs
+  * GrpcGreeterClient\obj\Debug\TARGET_FRAMEWORK]\Protos\GreetGrpc.cs
 
 * Update the gRPC client `Program.cs` file with the following code.
 
