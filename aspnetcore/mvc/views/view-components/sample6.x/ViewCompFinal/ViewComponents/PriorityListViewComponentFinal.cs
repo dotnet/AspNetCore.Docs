@@ -1,4 +1,4 @@
-#define Final
+//#define Final
 #if Final
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -22,7 +22,7 @@ namespace ViewComponentSample.ViewComponents
         }
         #region snippet1
         public async Task<IViewComponentResult> InvokeAsync(
-            int maxPriority, bool isDone)
+                                                   int maxPriority, bool isDone)
         {
             string MyView = "Default";
             // If asking for all completed tasks, render with the "PVC" view.

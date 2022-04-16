@@ -1,10 +1,11 @@
+
 @using ViewComponentSample.Models
-@addTagHelper *, ViewComponentSample
+@using ViewComponentSample.ViewComponents
 @model IEnumerable<TodoItem>
 
-<h2>IndexTagHelper</h2>
+<h2>ToDo typeof</h2>
 
-<table>
+<table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.IsDone)
@@ -30,18 +31,18 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
-        </tr>
+            </tr>
     }
 </table>
- <!-- <snippet> -->
+
 <div>
-       Maxium Priority: @ViewData["maxPriority"] <br />
-       Is Complete:  @ViewData["isDone"]
-    @{
-        int maxPriority = Convert.ToInt32(ViewData["maxPriority"]);
-        bool status = Convert.ToBoolean(ViewData["isDone"]);
-    }
-    <vc:priority-list max-priority=maxPriority is-done=status>
-    </vc:priority-list>
+    Testing nameof(PriorityList) <br />
+
+    Maxium Priority: @ViewData["maxPriority"] <br />
+    Is Complete:  @ViewData["isDone"]
+    @await Component.InvokeAsync(nameof(PriorityList),
+                     new { 
+                         maxPriority =  ViewData["maxPriority"],
+                         isDone = ViewData["isDone"]  }
+                     )
 </div>
- <!-- </snippet> -->

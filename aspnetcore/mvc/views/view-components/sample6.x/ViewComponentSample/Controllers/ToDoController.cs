@@ -8,9 +8,9 @@ namespace ViewComponentSample.Controllers
     {
         private readonly ToDoContext _ToDoContext;
         [BindProperty(SupportsGet = true)]
-        public int maxPri { get; set; }
+        public int maxPriority { get; set; }
         [BindProperty(SupportsGet = true)]
-        public bool isComplete { get; set; }
+        public bool isDone { get; set; }
 
         public ToDoController(ToDoContext context)
         {
@@ -27,26 +27,26 @@ namespace ViewComponentSample.Controllers
             return View(model);
         }
         #region snippet_IndexVC
-        public IActionResult IndexVC(int maxPri = 2, bool isComplete = false)
+        public IActionResult IndexVC(int maxPriority = 2, bool isDone = false)
         {
             return ViewComponent("PriorityList",
                 new { 
-                   maxPriority = maxPri,
-                   isDone = isComplete
+                   maxPriority = maxPriority,
+                   isDone = isDone
                 });
         }
         #endregion
 
         #region snippet_IndexPP
-        public async Task<IActionResult> IndexPP(int maxPri=2, bool isComplete=false)
+        public async Task<IActionResult> IndexPP(int maxPriority=2, bool isDone=false)
         {
-            ViewData["maxPri"] = maxPri;
-            ViewData["isComplete"] = isComplete;
+            ViewData["maxPriority"] = maxPriority;
+            ViewData["isDone"] = isDone;
             return View(await _ToDoContext.ToDo!.ToListAsync());
         }
         #endregion
 
-        public async Task<IActionResult> IndexFinal(int maxPri = 2, bool isComplete = false)
+        public async Task<IActionResult> IndexFinal(int maxPriority = 2, bool isDone = false)
         {
             return View(await _ToDoContext.ToDo!.ToListAsync());
         }
@@ -65,10 +65,10 @@ namespace ViewComponentSample.Controllers
             return View(_ToDoContext.ToDo!.ToList());
         }
 
-        public IActionResult IndexTagHelper(int maxPri = 2, bool isComplete = false)
+        public IActionResult IndexTagHelper(int maxPriority = 2, bool isDone = false)
         {
-            ViewData["maxPri"] = maxPri;
-            ViewData["isComplete"] = isComplete;
+            ViewData["maxPriority"] = maxPriority;
+            ViewData["isDone"] = isDone;
             return View(_ToDoContext.ToDo!.ToList());
         }
     }

@@ -13,30 +13,38 @@ public class ToDoController : Controller
         _ToDoContext.Database.EnsureCreated();
     }
 
-    public IActionResult Index(int maxPri = 2, bool isComplete = false)
+    public IActionResult Index(int maxPriority = 2, bool isDone = false)
     {
         var model = _ToDoContext!.ToDo!.ToList();
-        ViewData["maxPri"] = maxPri;
-        ViewData["isComplete"] = isComplete;
+        ViewData["maxPriority"] = maxPriority;
+        ViewData["isDone"] = isDone;
         return View(model);
     }
     #endregion
 
-    public IActionResult IndexVC(int maxPri = 2, bool isComplete = false)
+    public IActionResult IndexVC(int maxPriority = 2, bool isDone = false)
     {
         return ViewComponent("PriorityList",
             new
             {
-                maxPriority = maxPri,
-                isDone = isComplete
+                maxPriority = maxPriority,
+                isDone = isDone
             });
     }
 
-    public IActionResult IndexFinal(int maxPri = 2, bool isComplete = false)
+    public IActionResult IndexTypeof(int maxPriority = 2, bool isDone = false)
     {
         var model = _ToDoContext!.ToDo!.ToList();
-        ViewData["maxPri"] = maxPri;
-        ViewData["isComplete"] = isComplete;
+        ViewData["maxPriority"] = maxPriority;
+        ViewData["isDone"] = isDone;
+        return View(model);
+    }
+
+    public IActionResult IndexSync(int maxPriority = 2, bool isDone = false)
+    {
+        var model = _ToDoContext!.ToDo!.ToList();
+        ViewData["maxPriority"] = maxPriority;
+        ViewData["isDone"] = isDone;
         return View(model);
     }
 }

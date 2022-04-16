@@ -1,8 +1,11 @@
+
 @using ViewComponentSample.Models
+@using ViewComponentSample.ViewComponents
 @model IEnumerable<TodoItem>
 
-<h2>ToDo</h2>
-<table>
+<h2>ToDo typeof</h2>
+
+<table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.IsDone)
@@ -15,6 +18,7 @@
         </th>
         <th></th>
     </tr>
+
     @foreach (var item in Model)
     {
         <tr>
@@ -27,14 +31,18 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
-        </tr>
+            </tr>
     }
-         <!-- <snippet> -->
 </table>
 
-
 <div>
-    @await Component.InvokeAsync("PriorityList", 
-      new { maxPriority = 4, isDone = true })
+    Testing nameof(PriorityList) <br />
+
+    Maxium Priority: @ViewData["maxPriority"] <br />
+    Is Complete:  @ViewData["isDone"]
+    @await Component.InvokeAsync(nameof(PriorityListSync),
+                     new { 
+                         maxPriority =  ViewData["maxPriority"],
+                         isDone = ViewData["isDone"]  }
+                     )
 </div>
-     <!-- </snippet> -->

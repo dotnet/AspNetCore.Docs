@@ -55,7 +55,7 @@ A view component class can be created by any of the following:
 
 * Deriving from <xref:Microsoft.AspNetCore.Mvc.ViewComponent>
 * Decorating a class with the [`[ViewComponent]`](xref:Microsoft.AspNetCore.Mvc.ViewComponentAttribute) attribute, or deriving from a class with the `[ViewComponent]` attribute
-* Creating a class where the name ends with the suffix `ViewComponent`
+* Creating a class where the name ends with the suffix [`ViewComponent`](xref:Microsoft.AspNetCore.Mvc.ViewComponents)
 
 Like controllers, view components must be public, non-nested, and non-abstract classes. The view component name is the class name with the `ViewComponent` suffix removed. It can also be explicitly specified using the <xref:Microsoft.AspNetCore.Mvc.ViewComponentAttribute.Name%2A> property.
 
@@ -181,13 +181,15 @@ Update the `Index` method to use priority and completion status parameters:
 
 ### Add a ViewComponent class
 
+Add a ViewComponent class to `ViewComponents/PriorityListViewComponent.cs`:
+
 [!code-csharp[](view-components/sample6.x/ViewCompFinal/ViewComponents/PriorityListViewComponent1.cs?name=snippet1)]
 
 Notes on the code:
 
 * View component classes can be contained in **any** folder in the project.
 * Because the class name PriorityList**ViewComponent** ends with the suffix **ViewComponent**, the runtime uses the string `PriorityList` when referencing the class component from a view.
-* The  [`[ViewComponent]`](xref:Microsoft.AspNetCore.Mvc.ViewComponentAttribute) attribute can change the name used to reference a view component. For example, the class could have been named `XYZ` with the `ViewComponent` attribute:
+* The  [`[ViewComponent]`](xref:Microsoft.AspNetCore.Mvc.ViewComponentAttribute) attribute can change the name used to reference a view component. For example, the class could have been named `XYZ` with the following `[ViewComponent]` attribute:
 
   ```csharp
   [ViewComponent(Name = "PriorityList")]
@@ -238,11 +240,12 @@ Copy the `Views/Shared/Components/PriorityList/Default.cshtml` file to a view na
 
 [!code-cshtml[](../../mvc/views/view-components/sample6.x/ViewComponentSample/Views/Shared/Components/PriorityList/PVC.cshtml?highlight=3)]
 
+<!-- TODO zz delete me 
 Update `Views/ToDo/Index.cshtml`:
 
-<!-- Create IndexFinal method to test -->
-
 [!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexFinal.cshtml?name=snippet)]
+
+-->
 
 Run the app and verify PVC view.
 
@@ -261,7 +264,6 @@ If the PVC view isn't rendered, verify the view component with a priority of 4 o
    InvalidOperationException: The view 'Components/PriorityList/Default' wasn't found. The following locations were searched:
    /Views/ToDo/Components/PriorityList/Default.cshtml
    /Views/Shared/Components/PriorityList/Default.cshtml
-   EnsureSuccessful
    ```
 
 * Copy `Views/ToDo/Components/PriorityList/1Default.cshtml` to `Views/Shared/Components/PriorityList/Default.cshtml`.
@@ -270,19 +272,15 @@ If the PVC view isn't rendered, verify the view component with a priority of 4 o
 
 ![ToDo output with Shared component view](view-components/_static/shared.png)
 
-### Avoiding hard-coded strings
+### Avoid hard-coded strings
 
-For compile time safety, replace the hard-coded view component name with the class name. Create the view component without the "ViewComponent" suffix:
+For compile time safety, replace the hard-coded view component name with the class name. Update the *PriorityListViewComponent.cs* file to not use the "ViewComponent" suffix:
 
-[!code-csharp[](../../mvc/views/view-components/sample6.x/ViewComponentSample/ViewComponents/PriorityList.cs?highlight=10&range=5-35)]
+[!code-csharp[](view-components/sample6.x/ViewCompFinal/ViewComponents/Components/PriorityList.cs?highlight=7)]
 
-Add a `using` statement to the Razor view file, and use the `nameof` operator:
+Add a `using` statement to the *Index.cshtml* view file, and use the `nameof` operator:
 
-[!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexNameof.cshtml?range=1-6,35-)]
-
-An overload of `Component.InvokeAsync` method that takes a CLR type can be used. Remember to use the `typeof` operator in this case:
-
-[!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexTypeof.cshtml?range=1-6,35-)]
+[!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexTypeof.cshtml?highlight=3,6,39,43)]
 
 ## Perform synchronous work
 
@@ -524,12 +522,11 @@ Notes on the code:
 
 ### Create the view component Razor view
 
-* Create the *Views/Shared/Components* folder. This folder **must** be named *Components*.
+* Create the *Views/Shared/Components* folder. This folder ***must*** be named `Components`.
 
 * Create the *Views/Shared/Components/PriorityList* folder. This folder name must match the name of the view component class, or the name of the class minus the suffix (if we followed convention and used the *ViewComponent* suffix in the class name). If you used the `ViewComponent` attribute, the class name would need to match the attribute designation.
 
 * Create a `Views/Shared/Components/PriorityList/Default.cshtml` Razor view:
-
 
   [!code-cshtml[](view-components/sample/ViewCompFinal/Views/Shared/Components/PriorityList/Default1.cshtml)]
 

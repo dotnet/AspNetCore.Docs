@@ -33,13 +33,13 @@
 
   <!-- <snippet2> -->
 <div>
-    Maxium Priority: @ViewData["maxPri"] <br />
-    Is Complete:  @ViewData["isComplete"]
+    Maxium Priority: @ViewData["maxPriority"] <br />
+    Is Complete:  @ViewData["isDone"]
     <!-- <snippet> -->
     @await Component.InvokeAsync("PriorityList",
                      new { 
-                         maxPriority =  ViewData["maxPri"],
-                         isDone = ViewData["isComplete"]  }
+                         maxPriority =  ViewData["maxPriority"],
+                         isDone = ViewData["isDone"]  }
                      )
     <!-- </snippet> -->
 </div>
