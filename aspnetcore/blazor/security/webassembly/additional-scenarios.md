@@ -822,7 +822,7 @@ Prerendering content that requires authentication and authorization isn't curren
 * Prerenders paths for which authorization isn't required.
 * Doesn't prerender paths for which authorization is required.
 
-For the client (**`Client`**) app's `Program.cs`, factor common service registrations into a separate method (for example, create a `ConfigureCommonServices` method in the **`Client`** project). Common services are those that the developer registers for use by both the client and server (**`Server`**) apps.
+For the **`Client`** project's `Program.cs` file, factor common service registrations into a separate method (for example, create a `ConfigureCommonServices` method in the **`Client`** project). Common services are those that the developer registers for use by both the client and server projects.
 
 ```csharp
 public static void ConfigureCommonServices(IServiceCollection services)
@@ -844,7 +844,7 @@ ConfigureCommonServices(builder.Services);
 await builder.Build().RunAsync();
 ```
 
-In the **`Server`** app's `Program.cs` file, register the following additional services and call `ConfigureCommonServices`:
+In the **`Server`** project's `Program.cs` file, register the following additional services and call `ConfigureCommonServices`:
 
 ```csharp
 using Microsoft.AspNetCore.Components.Authorization;
@@ -861,7 +861,7 @@ builder.Services.AddScoped<SignOutSessionStateManager>();
 Client.Program.ConfigureCommonServices(services);
 ```
 
-In the **`Server`** app's `Pages/_Host.cshtml` file, replace the `Component` Tag Helper (`<component ... />`) with the following:
+In the **`Server`** project's `Pages/_Host.cshtml` file, replace the `Component` Tag Helper (`<component ... />`) with the following:
 
 ```cshtml
 <div id="app">
@@ -1859,7 +1859,7 @@ Prerendering content that requires authentication and authorization isn't curren
 * Prerenders paths for which authorization isn't required.
 * Doesn't prerender paths for which authorization is required.
 
-In the client (**`Client`**) app's `Program` class (`Program.cs`), factor common service registrations into a separate method (for example, `ConfigureCommonServices`). Common services are those that the developer registers for use by both the client and server (**`Server`**) apps.
+In the **`Client`** project's `Program` class (`Program.cs`), factor common service registrations into a separate method (for example, `ConfigureCommonServices`). Common services are those that the developer registers for use by both the client and server projects.
 
 ```csharp
 public class Program
@@ -1885,7 +1885,7 @@ public class Program
 }
 ```
 
-In the server app's `Startup.ConfigureServices`, register the following additional services and call `ConfigureCommonServices`:
+In the **`Server`** project's `Startup.ConfigureServices` method, register the following additional services and call `ConfigureCommonServices`:
 
 ```csharp
 using Microsoft.AspNetCore.Components.Authorization;
@@ -1905,7 +1905,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-In the **`Server`** app's `Pages/_Host.cshtml` file, replace the `Component` Tag Helper (`<component ... />`) with the following:
+In the **`Server`** project's `Pages/_Host.cshtml` file, replace the `Component` Tag Helper (`<component ... />`) with the following:
 
 ```cshtml
 <div id="app">
@@ -2903,7 +2903,7 @@ Prerendering content that requires authentication and authorization isn't curren
 * Prerenders paths for which authorization isn't required.
 * Doesn't prerender paths for which authorization is required.
 
-In the client (**`Client`**) app's `Program` class (`Program.cs`), factor common service registrations into a separate method (for example, `ConfigureCommonServices`). Common services are those that the developer registers for use by both the client and server (**`Server`**) apps.
+In the **`Client`** project's `Program` class (`Program.cs`), factor common service registrations into a separate method (for example, `ConfigureCommonServices`). Common services are those that the developer registers for use by both the client and server projects.
 
 ```csharp
 public class Program
@@ -2929,7 +2929,7 @@ public class Program
 }
 ```
 
-In the server app's `Startup.ConfigureServices`, register the following additional services and call `ConfigureCommonServices`:
+In the **`Server`** project's `Startup.ConfigureServices` method, register the following additional services and call `ConfigureCommonServices`:
 
 ```csharp
 using Microsoft.AspNetCore.Components.Authorization;
@@ -2949,7 +2949,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-In the **`Server`** app's `Pages/_Host.cshtml` file, replace the `Component` Tag Helper (`<component ... />`) with the following:
+In the **`Server`** project's `Pages/_Host.cshtml` file, replace the `Component` Tag Helper (`<component ... />`) with the following:
 
 ```cshtml
 <div id="app">
