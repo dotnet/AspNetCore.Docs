@@ -31,7 +31,7 @@ Browser security prevents a web page from making requests to a different domain 
 
 Two URLs have the same origin if they have identical schemes, hosts, and ports ([RFC 6454](https://tools.ietf.org/html/rfc6454)).
 
-These two URLs have the same origin:
+These two URLs have the same origin, as they come from the same domain:
 
 * `https://example.com/foo.html`
 * `https://example.com/bar.html`
