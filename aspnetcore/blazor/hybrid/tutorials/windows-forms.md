@@ -202,7 +202,7 @@ Inside the `Form1` constructor, below the `InitializeComponent()` method call, a
 
 ```csharp
 var services = new ServiceCollection();
-services.AddBlazorWebView();
+services.AddWindowsFormsBlazorWebView();
 blazorWebView1.HostPage = "wwwroot\\index.html";
 blazorWebView1.Services = services.BuildServiceProvider();
 blazorWebView1.RootComponents.Add<Counter>("#app");
