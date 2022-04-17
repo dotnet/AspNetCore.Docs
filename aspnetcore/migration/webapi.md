@@ -133,7 +133,7 @@ The preceding highlighted code changes the following, to migrate to ASP.NET Core
 * Sets the root namespace to `ProductsCore`.
 * Changes `ApiController` to <xref:Microsoft.AspNetCore.Mvc.ControllerBase>.
 * Adds `using Microsoft.AspNetCore.Mvc;` to resolve the `ControllerBase` reference.
-* Changes the `GetProduct` action's return type from `IHttpActionResult` to `ActionResult<Product>`. For more info, see [Controller action return types](/aspnet/web-api/action-return-types).
+* Changes the `GetProduct` action's return type from `IHttpActionResult` to `ActionResult<Product>`. For more info, see [Controller action return types](/aspnet/core/web-api/action-return-types).
 * Simplifies the `GetProduct` action's `return` statement to the following statement:
 
     ```csharp
