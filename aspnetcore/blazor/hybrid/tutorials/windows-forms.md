@@ -223,7 +223,7 @@ namespace WinFormsBlazor
             InitializeComponent();
 
             var services = new ServiceCollection();
-            services.AddBlazorWebView();
+            services.AddWindowsFormsBlazorWebView();
             blazorWebView1.HostPage = "wwwroot\\index.html";
             blazorWebView1.Services = services.BuildServiceProvider();
             blazorWebView1.RootComponents.Add<Counter>("#app");
