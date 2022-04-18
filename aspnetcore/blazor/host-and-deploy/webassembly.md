@@ -1715,7 +1715,7 @@ for f in {PATH}/*; do mv "$f" "`echo $f | sed -e 's/\.dll/.bin/g'`"; done
 sed -i 's/\.dll"/.bin"/g' {PATH}/blazor.boot.json
 ```
 
-In the preceding command, the `{PATH}` placeholder is the path to the published `_framework` folder (for example, `.\bin\Release\net6.0\browser-wasm\publish\wwwroot\_framework` from the project's root folder).
+In the preceding command, the `{PATH}` placeholder is the path to the published `_framework` folder (for example, `.\bin\Release\net5.0\browser-wasm\publish\wwwroot\_framework` from the project's root folder).
 
 If service worker assets are also in use:
 
