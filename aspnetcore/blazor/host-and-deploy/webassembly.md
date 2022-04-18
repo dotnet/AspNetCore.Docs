@@ -809,66 +809,82 @@ Blazor performs Intermediate Language (IL) trimming on each Release build to rem
 
 In case you have a need to change the filename extensions of the app's published `.dll` files, follow the guidance in this section.
 
-After publishing the app, use a shell script or DevOps build pipeline to rename `.dll` files to use a different file extension. Target the `.dll` files in the `wwwroot` directory of the app's published output (for example, `{CONTENT ROOT}/bin/Release/netstandard2.1/publish/wwwroot`).
+After publishing the app, use a shell script or DevOps build pipeline to rename `.dll` files to use a different file extension in the directory of the app's published output.
 
-In the following examples, `.dll` files are renamed to use the `.bin` file extension.
+In the following examples:
+
+* PowerShell (PS) is used to update the file extensions.
+* `.dll` files are renamed to use the `.bin` file extension from the command line.
+* Files listed in the published `blazor.boot.json` file with a `.dll` file extension are updated to the `.bin` file extension.
+* If service worker assets are also in use, a PowerShell command updates the `.dll` files listed in the `service-worker-assets.js` file to the `.bin` file extension.
+
+To use a different file extension than `.bin`, replace `.bin` in the following commands with the desired file extension.
 
 On Windows:
 
 ```powershell
-dir .\_framework\_bin | rename-item -NewName { $_.name -replace ".dll\b",".bin" }
-((Get-Content .\_framework\blazor.boot.json -Raw) -replace '.dll"','.bin"') | Set-Content .\_framework\blazor.boot.json
+dir {PATH} | rename-item -NewName { $_.name -replace ".dll\b",".bin" }
+((Get-Content {PATH}\blazor.boot.json -Raw) -replace '.dll"','.bin"') | Set-Content {PATH}\blazor.boot.json
 ```
 
-If service worker assets are also in use, add the following command:
+In the preceding command, the `{PATH}` placeholder is the path to the published `_framework` folder (for example, `.\bin\Release\net6.0\browser-wasm\publish\wwwroot\_framework` from the project's root folder).
+
+If service worker assets are also in use:
 
 ```powershell
-((Get-Content .\service-worker-assets.js -Raw) -replace '.dll"','.bin"') | Set-Content .\service-worker-assets.js
+((Get-Content {PATH}\service-worker-assets.js -Raw) -replace '.dll"','.bin"') | Set-Content {PATH}\service-worker-assets.js
 ```
+
+In the preceding command, the `{PATH}` placeholder is the path to the published `service-worker-assets.js` file.
 
 On Linux or macOS:
 
 ```console
-for f in _framework/_bin/*; do mv "$f" "`echo $f | sed -e 's/\.dll/.bin/g'`"; done
-sed -i 's/\.dll"/.bin"/g' _framework/blazor.boot.json
+for f in {PATH}/*; do mv "$f" "`echo $f | sed -e 's/\.dll/.bin/g'`"; done
+sed -i 's/\.dll"/.bin"/g' {PATH}/blazor.boot.json
 ```
 
-If service worker assets are also in use, add the following command:
+In the preceding command, the `{PATH}` placeholder is the path to the published `_framework` folder (for example, `.\bin\Release\net6.0\browser-wasm\publish\wwwroot\_framework` from the project's root folder).
+
+If service worker assets are also in use:
 
 ```console
-sed -i 's/\.dll"/.bin"/g' service-worker-assets.js
+sed -i 's/\.dll"/.bin"/g' {PATH}/service-worker-assets.js
 ```
-   
-To use a different file extension than `.bin`, replace `.bin` in the preceding commands.
+
+In the preceding command, the `{PATH}` placeholder is the path to the published `service-worker-assets.js` file.
 
 To address the compressed `blazor.boot.json.gz` and `blazor.boot.json.br` files, adopt either of the following approaches:
 
-* Remove the compressed `blazor.boot.json.gz` and `blazor.boot.json.br` files. Compression is disabled with this approach.
+* Remove the compressed `blazor.boot.json.gz` and `blazor.boot.json.br` files. **Compression is disabled with this approach.**
 * Recompress the updated `blazor.boot.json` file.
 
-The preceding guidance also applies when service worker assets are in use. Remove or recompress `wwwroot/service-worker-assets.js.br` and `wwwroot/service-worker-assets.js.gz`. Otherwise, file integrity checks fail in the browser.
+The preceding guidance for the compressed `blazor.boot.json` file also applies when service worker assets are in use. Remove or recompress `service-worker-assets.js.br` and `service-worker-assets.js.gz`. Otherwise, file integrity checks fail in the browser.
 
-The following Windows example uses a PowerShell script placed at the root of the project.
+The following Windows example for .NET 6.0 uses a PowerShell script placed at the root of the project. The following script, which disables compression, is the basis for further modification if you wish to recompress the `blazor.boot.json` file.
 
 `ChangeDLLExtensions.ps1:`:
 
 ```powershell
 param([string]$filepath,[string]$tfm)
-dir $filepath\bin\Release\$tfm\wwwroot\_framework\_bin | rename-item -NewName { $_.name -replace ".dll\b",".bin" }
-((Get-Content $filepath\bin\Release\$tfm\wwwroot\_framework\blazor.boot.json -Raw) -replace '.dll"','.bin"') | Set-Content $filepath\bin\Release\$tfm\wwwroot\_framework\blazor.boot.json
-Remove-Item $filepath\bin\Release\$tfm\wwwroot\_framework\blazor.boot.json.gz
+dir $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\_framework | rename-item -NewName { $_.name -replace ".dll\b",".bin" }
+((Get-Content $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\_framework\blazor.boot.json -Raw) -replace '.dll"','.bin"') | Set-Content $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\_framework\blazor.boot.json
+Remove-Item $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\_framework\blazor.boot.json.gz
+Remove-Item $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\_framework\blazor.boot.json.br
 ```
 
-If service worker assets are also in use, add the following command:
+If service worker assets are also in use, add the following commands:
 
 ```powershell
-((Get-Content $filepath\bin\Release\$tfm\wwwroot\service-worker-assets.js -Raw) -replace '.dll"','.bin"') | Set-Content $filepath\bin\Release\$tfm\wwwroot\service-worker-assets.js
+((Get-Content $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\service-worker-assets.js -Raw) -replace '.dll"','.bin"') | Set-Content $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\_framework\wwwroot\service-worker-assets.js
+Remove-Item $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\_framework\wwwroot\service-worker-assets.js.gz
+Remove-Item $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\_framework\wwwroot\service-worker-assets.js.br
 ```
 
-In the project file, the script is run after publishing the app:
+In the project file, the script is executed after publishing the app for the `Release` configuration:
 
 ```xml
-<Target Name="ChangeDLLFileExtensions" AfterTargets="Publish" Condition="'$(Configuration)'=='Release'">
+<Target Name="ChangeDLLFileExtensions" AfterTargets="AfterPublish" Condition="'$(Configuration)'=='Release'">
   <Exec Command="powershell.exe -command &quot;&amp; { .\ChangeDLLExtensions.ps1 '$(SolutionDir)' '$(TargetFramework)'}&quot;" />
 </Target>
 ```
@@ -1664,66 +1680,82 @@ Blazor performs Intermediate Language (IL) trimming on each Release build to rem
 
 In case you have a need to change the filename extensions of the app's published `.dll` files, follow the guidance in this section.
 
-After publishing the app, use a shell script or DevOps build pipeline to rename `.dll` files to use a different file extension. Target the `.dll` files in the `wwwroot` directory of the app's published output (for example, `{CONTENT ROOT}/bin/Release/netstandard2.1/publish/wwwroot`).
+After publishing the app, use a shell script or DevOps build pipeline to rename `.dll` files to use a different file extension in the directory of the app's published output.
 
-In the following examples, `.dll` files are renamed to use the `.bin` file extension.
+In the following examples:
+
+* PowerShell (PS) is used to update the file extensions.
+* `.dll` files are renamed to use the `.bin` file extension from the command line.
+* Files listed in the published `blazor.boot.json` file with a `.dll` file extension are updated to the `.bin` file extension.
+* If service worker assets are also in use, a PowerShell command updates the `.dll` files listed in the `service-worker-assets.js` file to the `.bin` file extension.
+
+To use a different file extension than `.bin`, replace `.bin` in the following commands with the desired file extension.
 
 On Windows:
 
 ```powershell
-dir .\_framework\_bin | rename-item -NewName { $_.name -replace ".dll\b",".bin" }
-((Get-Content .\_framework\blazor.boot.json -Raw) -replace '.dll"','.bin"') | Set-Content .\_framework\blazor.boot.json
+dir {PATH} | rename-item -NewName { $_.name -replace ".dll\b",".bin" }
+((Get-Content {PATH}\blazor.boot.json -Raw) -replace '.dll"','.bin"') | Set-Content {PATH}\blazor.boot.json
 ```
 
-If service worker assets are also in use, add the following command:
+In the preceding command, the `{PATH}` placeholder is the path to the published `_framework` folder (for example, `.\bin\Release\net5.0\browser-wasm\publish\wwwroot\_framework` from the project's root folder).
+
+If service worker assets are also in use:
 
 ```powershell
-((Get-Content .\service-worker-assets.js -Raw) -replace '.dll"','.bin"') | Set-Content .\service-worker-assets.js
+((Get-Content {PATH}\service-worker-assets.js -Raw) -replace '.dll"','.bin"') | Set-Content {PATH}\service-worker-assets.js
 ```
+
+In the preceding command, the `{PATH}` placeholder is the path to the published `service-worker-assets.js` file.
 
 On Linux or macOS:
 
 ```console
-for f in _framework/_bin/*; do mv "$f" "`echo $f | sed -e 's/\.dll/.bin/g'`"; done
-sed -i 's/\.dll"/.bin"/g' _framework/blazor.boot.json
+for f in {PATH}/*; do mv "$f" "`echo $f | sed -e 's/\.dll/.bin/g'`"; done
+sed -i 's/\.dll"/.bin"/g' {PATH}/blazor.boot.json
 ```
 
-If service worker assets are also in use, add the following command:
+In the preceding command, the `{PATH}` placeholder is the path to the published `_framework` folder (for example, `.\bin\Release\net5.0\browser-wasm\publish\wwwroot\_framework` from the project's root folder).
+
+If service worker assets are also in use:
 
 ```console
-sed -i 's/\.dll"/.bin"/g' service-worker-assets.js
+sed -i 's/\.dll"/.bin"/g' {PATH}/service-worker-assets.js
 ```
-   
-To use a different file extension than `.bin`, replace `.bin` in the preceding commands.
+
+In the preceding command, the `{PATH}` placeholder is the path to the published `service-worker-assets.js` file.
 
 To address the compressed `blazor.boot.json.gz` and `blazor.boot.json.br` files, adopt either of the following approaches:
 
-* Remove the compressed `blazor.boot.json.gz` and `blazor.boot.json.br` files. Compression is disabled with this approach.
+* Remove the compressed `blazor.boot.json.gz` and `blazor.boot.json.br` files. **Compression is disabled with this approach.**
 * Recompress the updated `blazor.boot.json` file.
 
-The preceding guidance also applies when service worker assets are in use. Remove or recompress `wwwroot/service-worker-assets.js.br` and `wwwroot/service-worker-assets.js.gz`. Otherwise, file integrity checks fail in the browser.
+The preceding guidance for the compressed `blazor.boot.json` file also applies when service worker assets are in use. Remove or recompress `service-worker-assets.js.br` and `service-worker-assets.js.gz`. Otherwise, file integrity checks fail in the browser.
 
-The following Windows example uses a PowerShell script placed at the root of the project.
+The following Windows example for .NET 6.0 uses a PowerShell script placed at the root of the project. The following script, which disables compression, is the basis for further modification if you wish to recompress the `blazor.boot.json` file.
 
 `ChangeDLLExtensions.ps1:`:
 
 ```powershell
 param([string]$filepath,[string]$tfm)
-dir $filepath\bin\Release\$tfm\wwwroot\_framework\_bin | rename-item -NewName { $_.name -replace ".dll\b",".bin" }
-((Get-Content $filepath\bin\Release\$tfm\wwwroot\_framework\blazor.boot.json -Raw) -replace '.dll"','.bin"') | Set-Content $filepath\bin\Release\$tfm\wwwroot\_framework\blazor.boot.json
-Remove-Item $filepath\bin\Release\$tfm\wwwroot\_framework\blazor.boot.json.gz
+dir $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\_framework | rename-item -NewName { $_.name -replace ".dll\b",".bin" }
+((Get-Content $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\_framework\blazor.boot.json -Raw) -replace '.dll"','.bin"') | Set-Content $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\_framework\blazor.boot.json
+Remove-Item $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\_framework\blazor.boot.json.gz
+Remove-Item $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\_framework\blazor.boot.json.br
 ```
 
-If service worker assets are also in use, add the following command:
+If service worker assets are also in use, add the following commands:
 
 ```powershell
-((Get-Content $filepath\bin\Release\$tfm\wwwroot\service-worker-assets.js -Raw) -replace '.dll"','.bin"') | Set-Content $filepath\bin\Release\$tfm\wwwroot\service-worker-assets.js
+((Get-Content $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\service-worker-assets.js -Raw) -replace '.dll"','.bin"') | Set-Content $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\_framework\wwwroot\service-worker-assets.js
+Remove-Item $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\_framework\wwwroot\service-worker-assets.js.gz
+Remove-Item $filepath\bin\Release\$tfm\browser-wasm\publish\wwwroot\_framework\wwwroot\service-worker-assets.js.br
 ```
 
-In the project file, the script is run after publishing the app:
+In the project file, the script is executed after publishing the app for the `Release` configuration:
 
 ```xml
-<Target Name="ChangeDLLFileExtensions" AfterTargets="Publish" Condition="'$(Configuration)'=='Release'">
+<Target Name="ChangeDLLFileExtensions" AfterTargets="AfterPublish" Condition="'$(Configuration)'=='Release'">
   <Exec Command="powershell.exe -command &quot;&amp; { .\ChangeDLLExtensions.ps1 '$(SolutionDir)' '$(TargetFramework)'}&quot;" />
 </Target>
 ```
@@ -2514,77 +2546,6 @@ The `--urls` argument sets the IP addresses or host addresses with ports and pro
 ## Configure the Linker
 
 Blazor performs Intermediate Language (IL) linking on each Release build to remove unnecessary IL from the output assemblies. For more information, see <xref:blazor/host-and-deploy/configure-linker>.
-
-## Change the filename extension of DLL files
-
-In case you have a need to change the filename extensions of the app's published `.dll` files, follow the guidance in this section.
-
-After publishing the app, use a shell script or DevOps build pipeline to rename `.dll` files to use a different file extension. Target the `.dll` files in the `wwwroot` directory of the app's published output (for example, `{CONTENT ROOT}/bin/Release/netstandard2.1/publish/wwwroot`).
-
-In the following examples, `.dll` files are renamed to use the `.bin` file extension.
-
-On Windows:
-
-```powershell
-dir .\_framework\_bin | rename-item -NewName { $_.name -replace ".dll\b",".bin" }
-((Get-Content .\_framework\blazor.boot.json -Raw) -replace '.dll"','.bin"') | Set-Content .\_framework\blazor.boot.json
-```
-
-If service worker assets are also in use, add the following command:
-
-```powershell
-((Get-Content .\service-worker-assets.js -Raw) -replace '.dll"','.bin"') | Set-Content .\service-worker-assets.js
-```
-
-On Linux or macOS:
-
-```console
-for f in _framework/_bin/*; do mv "$f" "`echo $f | sed -e 's/\.dll/.bin/g'`"; done
-sed -i 's/\.dll"/.bin"/g' _framework/blazor.boot.json
-```
-
-If service worker assets are also in use, add the following command:
-
-```console
-sed -i 's/\.dll"/.bin"/g' service-worker-assets.js
-```
-   
-To use a different file extension than `.bin`, replace `.bin` in the preceding commands.
-
-To address the compressed `blazor.boot.json.gz` and `blazor.boot.json.br` files, adopt either of the following approaches:
-
-* Remove the compressed `blazor.boot.json.gz` and `blazor.boot.json.br` files. Compression is disabled with this approach.
-* Recompress the updated `blazor.boot.json` file.
-
-The preceding guidance also applies when service worker assets are in use. Remove or recompress `wwwroot/service-worker-assets.js.br` and `wwwroot/service-worker-assets.js.gz`. Otherwise, file integrity checks fail in the browser.
-
-The following Windows example uses a PowerShell script placed at the root of the project.
-
-`ChangeDLLExtensions.ps1:`:
-
-```powershell
-param([string]$filepath,[string]$tfm)
-dir $filepath\bin\Release\$tfm\wwwroot\_framework\_bin | rename-item -NewName { $_.name -replace ".dll\b",".bin" }
-((Get-Content $filepath\bin\Release\$tfm\wwwroot\_framework\blazor.boot.json -Raw) -replace '.dll"','.bin"') | Set-Content $filepath\bin\Release\$tfm\wwwroot\_framework\blazor.boot.json
-Remove-Item $filepath\bin\Release\$tfm\wwwroot\_framework\blazor.boot.json.gz
-```
-
-If service worker assets are also in use, add the following command:
-
-```powershell
-((Get-Content $filepath\bin\Release\$tfm\wwwroot\service-worker-assets.js -Raw) -replace '.dll"','.bin"') | Set-Content $filepath\bin\Release\$tfm\wwwroot\service-worker-assets.js
-```
-
-In the project file, the script is run after publishing the app:
-
-```xml
-<Target Name="ChangeDLLFileExtensions" AfterTargets="Publish" Condition="'$(Configuration)'=='Release'">
-  <Exec Command="powershell.exe -command &quot;&amp; { .\ChangeDLLExtensions.ps1 '$(SolutionDir)' '$(TargetFramework)'}&quot;" />
-</Target>
-```
-
-> [!NOTE]
-> When renaming and lazy loading the same assemblies, see the guidance in <xref:blazor/webassembly-lazy-load-assemblies#onnavigateasync-events-and-renamed-assembly-files>.
 
 ## Prior deployment corruption
 
