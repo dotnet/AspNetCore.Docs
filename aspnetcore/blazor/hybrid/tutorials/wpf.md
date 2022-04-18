@@ -67,7 +67,7 @@ Set the project's namespace, `WpfBlazor` in this tutorial, as the app's root nam
 
 ```xml
 <PropertyGroup>
-  <RootNameSpace>WpfBlazor</RootNamespace>
+  <RootNameSpace>WpfBlazor</RootNameSpace>
 </PropertyGroup>
 ```
 
@@ -215,7 +215,7 @@ Inside the `MainWindow` constructor, above the `InitializeComponent()` method ca
 
 ```csharp
 var serviceCollection = new ServiceCollection();
-serviceCollection.AddBlazorWebView();
+serviceCollection.AddWpfBlazorWebView();
 Resources.Add("services", serviceCollection.BuildServiceProvider());
 ```
 

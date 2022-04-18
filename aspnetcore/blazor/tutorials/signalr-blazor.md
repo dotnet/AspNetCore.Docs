@@ -76,6 +76,8 @@ Follow the guidance for your choice of tooling:
 
 1. Select **Create**.
 
+1. Confirm that a hosted Blazor WebAssembly app was created: In **Solution Explorer**, confirm the presence of a **`Client`** project and a **`Server`** project. If the two projects aren't present, start over and confirm selection of the **ASP.NET Core hosted** checkbox before selecting **Create**.
+
 # [Visual Studio Code](#tab/visual-studio-code)
 
 1. In a command shell, execute the following command:
@@ -89,6 +91,8 @@ Follow the guidance for your choice of tooling:
    The `-o|--output` option creates a folder for the solution. If you've created a folder for the solution and the command shell is open in that folder, omit the `-o|--output` option and value to create the solution.
 
 1. In Visual Studio Code, open the app's project folder.
+
+1. Confirm that a hosted Blazor WebAssembly app was created: Confirm the presence of a **`Client`** project and a **`Server`** project in the app's solution folder. If the two projects aren't present, start over and confirm passing the `-ho` or `--hosted` option to the `dotnet new` command when creating the solution.
 
 To configure Visual Studio Code assets in the `.vscode` folder for debugging, see:
 
@@ -115,6 +119,8 @@ To configure Visual Studio Code assets in the `.vscode` folder for debugging, se
 
 1. Open the project by navigating to the project folder and opening the project's solution file (`.sln`).
 
+1. Confirm that a hosted Blazor WebAssembly app was created: In **Solution Explorer**, confirm the presence of a **`Client`** project and a **`Server`** project. If the two projects aren't present, start over and confirm selection of the **ASP.NET Core Hosted** checkbox before selecting **Create**.
+
 # [.NET Core CLI](#tab/netcore-cli/)
 
 In a command shell, execute the following command:
@@ -126,6 +132,8 @@ dotnet new blazorwasm -ho -o BlazorWebAssemblySignalRApp
 The `-ho|--hosted` option creates a hosted Blazor WebAssembly solution.
 
 The `-o|--output` option creates a folder for the solution. If you've created a folder for the solution and the command shell is open in that folder, omit the `-o|--output` option and value to create the solution.
+
+Confirm that a hosted Blazor WebAssembly app was created: Confirm the presence of a **`Client`** project and a **`Server`** project in the app's solution folder. If the two projects aren't present, start over and confirm passing the `-ho` or `--hosted` option to the `dotnet new` command when creating the solution.
 
 ---
 
