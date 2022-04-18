@@ -159,10 +159,14 @@ public class CustomAuthStateProvider : AuthenticationStateProvider
 }
 ```
 
-The `CustomAuthStateProvider` service is registered in `Program.cs`:
+The `CustomAuthStateProvider` service is registered in `Program.cs` ***after*** the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A>:
 
 ```csharp
 using Microsoft.AspNetCore.Components.Authorization;
+
+...
+
+builder.Services.AddServerSideBlazor();
 
 ...
 
@@ -330,14 +334,18 @@ public class CustomAuthStateProvider : AuthenticationStateProvider
 }
 ```
 
-The `CustomAuthStateProvider` service is registered in `Program.cs`:
+The `CustomAuthStateProvider` service is registered in `Startup.ConfigureServices` ***after*** the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A>:
 
 ```csharp
 using Microsoft.AspNetCore.Components.Authorization;
 
 ...
 
-builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
+services.AddServerSideBlazor();
+
+...
+
+services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
 ```
 
 Using the `CustomAuthStateProvider` in the preceding example, all users are authenticated with the username `mrfibuli`.
@@ -501,14 +509,18 @@ public class CustomAuthStateProvider : AuthenticationStateProvider
 }
 ```
 
-The `CustomAuthStateProvider` service is registered in `Program.cs`:
+The `CustomAuthStateProvider` service is registered in `Startup.ConfigureServices` ***after*** the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A>:
 
 ```csharp
 using Microsoft.AspNetCore.Components.Authorization;
 
 ...
 
-builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
+services.AddServerSideBlazor();
+
+...
+
+services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
 ```
 
 Using the `CustomAuthStateProvider` in the preceding example, all users are authenticated with the username `mrfibuli`.
