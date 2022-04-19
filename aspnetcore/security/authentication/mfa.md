@@ -32,16 +32,18 @@ MFA requires at least two or more types of proof for an identity like something 
 
 Two-factor authentication (2FA) is like a subset of MFA, but the difference being that MFA can require two or more factors to prove the identity.
 
+2FA is supported by default when using ASP.NET Core Identity. To enable or disable 2FA for a specific user, set the <xref:Microsoft.AspNetCore.Identity.IdentityUser%601.TwoFactorEnabled%2A?displayProperty=nameWithType> property. The ASP.NET Core Identity Default UI includes pages for configuring 2FA.
+
 ### MFA TOTP (Time-based One-time Password Algorithm)
 
-MFA using TOTP is a supported implementation using ASP.NET Core Identity. This can be used together with any compliant authenticator app, including:
+MFA using TOTP is supported by default when using ASP.NET Core Identity. This approach can be used together with any compliant authenticator app, including:
 
-* Microsoft Authenticator App
-* Google Authenticator App
+* Microsoft Authenticator
+* Google Authenticator
 
-See the following link for implementation details:
+For implementation details, see [Enable QR Code generation for TOTP authenticator apps in ASP.NET Core](xref:security/authentication/identity-enable-qrcodes).
 
-[Enable QR Code generation for TOTP authenticator apps in ASP.NET Core](xref:security/authentication/identity-enable-qrcodes)
+To disable support for MFA TOTP, configure authentication using <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentity%2A> instead of <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionUIExtensions.AddDefaultIdentity%2A>. `AddDefaultIdentity` calls <xref:Microsoft.AspNetCore.Identity.IdentityBuilderExtensions.AddDefaultTokenProviders%2A> internally, which registers multiple token providers including one for MFA TOTP. To register only specific token providers, call <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddTokenProvider%2A> for each required provider. For more information about available token providers, see the [AddDefaultTokenProviders source on GitHub](https://github.com/dotnet/aspnetcore/blob/release/6.0/src/Identity/Core/src/IdentityBuilderExtensions.cs#L21-L32).
 
 ### MFA FIDO2 or passwordless
 
