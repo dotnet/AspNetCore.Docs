@@ -247,10 +247,6 @@ Confirm that the app works with the following steps:
 
 :::image source="signalr-typescript-webpack/_static/browsers-message-broadcast.png" alt-text="message displayed in both browser windows":::
 
-## Publish to Azure
-
-For information on deploying to Azure, see [Tutorial: Build an ASP.NET Core app in Azure with SQL Database](/azure/app-service/tutorial-dotnetcore-sqldb-app).
-
 ## Additional resources
 
 * <xref:signalr/javascript-client>
