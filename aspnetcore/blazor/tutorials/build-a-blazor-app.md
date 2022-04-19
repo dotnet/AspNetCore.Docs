@@ -176,7 +176,7 @@ cd TodoList
 
 ## Publish to Azure
 
-For information on deploying to Azure, see [Tutorial: Build an ASP.NET Core app in Azure with SQL Database](/azure/app-service/quickstart-dotnetcore).
+For information on deploying to Azure, see [Quickstart: Deploy an ASP.NET web app](/azure/app-service/quickstart-dotnetcore).
 
 ## Next steps
 
@@ -357,7 +357,7 @@ cd TodoList
 
 ## Publish to Azure
 
-For information on deploying to Azure, see [Tutorial: Build an ASP.NET Core app in Azure with SQL Database](/azure/app-service/quickstart-dotnetcore).
+For information on deploying to Azure, see [Quickstart: Deploy an ASP.NET web app](/azure/app-service/quickstart-dotnetcore).
 
 ## Next steps
 
