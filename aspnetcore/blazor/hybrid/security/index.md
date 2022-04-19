@@ -5,7 +5,7 @@ description: Learn about Blazor Hybrid authentication and authorization scenario
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/07/2022
+ms.date: 04/19/2022
 no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/hybrid/security/index
 ---
@@ -40,16 +40,10 @@ The user might be able to indicate that they want the URL to load in the app bec
 
 By default, the [`BlazorWebView`](/maui/user-interface/controls/blazorwebview) control uses the currently-installed, platform-specific native :::no-loc text="Web View":::. Since the native :::no-loc text="Web View"::: is periodically updated with support for new APIs and fixes for security issues, it may be necessary to ensure that an app is using a :::no-loc text="Web View"::: version that meets the app's requirements.
 
-To keep the :::no-loc text="Web View"::: current in deployed apps, check the :::no-loc text="Web View"::: version and prompt the user to take any necessary steps to update it.
-
-<!-- HOLD FOR RC2 AND SWAP FOR THE PRIOR SENTENCE
-
 Use one of the following approaches to keep the :::no-loc text="Web View"::: current in deployed apps:
 
 * **On all platforms**: Check the :::no-loc text="Web View"::: version and prompt the user to take any necessary steps to update it.
 * **Only on Windows**: Package a fixed-version :::no-loc text="Web View"::: within the app, using it in place of the system's shared :::no-loc text="Web View":::.
-
--->
 
 ### Android
 
@@ -61,15 +55,11 @@ iOS and Mac Catalyst both use [`WKWebView`](https://developer.apple.com/document
 
 ### Windows (.NET MAUI, WPF, Windows Forms)
 
-On Windows, the Chromium-based [Microsoft Edge `WebView2`](/microsoft-edge/webview2/) is required to run Blazor web apps. By default, the newest installed version of `WebView2` (known as the [Evergreen distribution](/microsoft-edge/webview2/concepts/distribution#details-about-the-fixed-version-runtime-distribution-mode)) is used.
+On Windows, the Chromium-based [Microsoft Edge `WebView2`](/microsoft-edge/webview2/) is required to run Blazor web apps.
 
-<!-- AT RC2, ADD THE FOLLOWING SENTENCE TO THE PRECEDING PARAGRAPH
+By default, the newest installed version of `WebView2`, known as the *:::no-loc text="Evergreen distribution":::*, is used. If you wish to ship a specific version of `WebView2` with the app, use the *:::no-loc text="Fixed Version distribution":::*.
 
-If you wish to ship a specific version of `WebView2` with the app, use the [Fixed Version distribution mode](/microsoft-edge/webview2/concepts/distribution#details-about-the-fixed-version-runtime-distribution-mode).
-
--->
-
-For more information on checking the currently-installed `WebView2` version, see the [`WebView2` distribution docs](/microsoft-edge/webview2/concepts/distribution).
+For more information on checking the currently-installed `WebView2` version and the distribution modes, see the [`WebView2` distribution docs](/microsoft-edge/webview2/concepts/distribution).
 
 ## Additional resources
 
