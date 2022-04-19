@@ -59,7 +59,7 @@ On Windows, the Chromium-based [Microsoft Edge `WebView2`](/microsoft-edge/webvi
 
 By default, the newest installed version of `WebView2`, known as the *:::no-loc text="Evergreen distribution":::*, is used. If you wish to ship a specific version of `WebView2` with the app, use the *:::no-loc text="Fixed Version distribution":::*.
 
-For more information on checking the currently-installed `WebView2` version and the distribution modes, see the [`WebView2` distribution docs](/microsoft-edge/webview2/concepts/distribution).
+For more information on checking the currently-installed `WebView2` version and the distribution modes, see the [`WebView2` distribution documentation](/microsoft-edge/webview2/concepts/distribution).
 
 ## Additional resources
 
