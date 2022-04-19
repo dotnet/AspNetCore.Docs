@@ -1,0 +1,11 @@
+<div>
+       Maxium Priority: @ViewData["maxPriority"] <br />
+       Is Complete:  @ViewData["isDone"]
+    @{
+        int maxPriority = Convert.ToInt32(ViewData["maxPriority"]);
+        bool status = Convert.ToBoolean(ViewData["isDone"]);
+    }
+    <vc:priority-list max-priority=maxPriority is-done=status>
+    </vc:priority-list>
+</div>
+ <!-- </snippet> -->

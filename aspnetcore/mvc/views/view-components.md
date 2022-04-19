@@ -116,15 +116,13 @@ To use the view component, call the following inside a view:
 
 The parameters are passed to the `InvokeAsync` method. The `PriorityList` view component developed in the article is invoked from the `Views/ToDo/Index.cshtml` view file. In the following code, the `InvokeAsync` method is called with two parameters:
 
-[!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexFinal.cshtml?range=35)]
+[!code-cshtml[](view-components/sample6.x/ViewCompFinal/Views/ToDo/Index.cshtml?name=snippet2)]
 
 ## Invoking a view component as a Tag Helper
 
 View component can be invoked as a [Tag Helper](xref:mvc/views/tag-helpers/intro):
-<!--
-[!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexTagHelper.cshtml?range=37-38)]
--->
-[!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexTagHelper.cshtml?name=snippet)]
+
+[!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexTagHelper.cshtml?name=snippet&highlight=8-9)]
 
 Pascal-cased class and method parameters for Tag Helpers are translated into their [kebab case](https://stackoverflow.com/questions/11273282/whats-the-name-for-dash-separated-case/12273101). The Tag Helper to invoke a view component uses the `<vc></vc>` element. The view component is specified as follows:
 
@@ -145,19 +143,9 @@ A view component can be registered as a Tag Helper to any file that references t
 
 The `InvokeAsync` method used in this tutorial:
 
-<!--
-[!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexFinal.cshtml?name=snippet)]
--->
-
-[!code-csharp[](view-components/sample6.x/ViewComponentSample/Controllers/ToDoController.cs?name=snippet_IndexPP)]
-
 [!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexPP.cshtml?name=snippet)]
 
 In the preceding markup, the `PriorityList` view component becomes `priority-list`. The parameters to the view component are passed as attributes in kebab case.
-
-In Tag Helper markup:
-
-[!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexTagHelper.cshtml?name=snippet)]
 
 ### Invoking a view component directly from a controller
 
@@ -167,9 +155,9 @@ In the following example, the view component is called directly from the control
 
 [!code-csharp[](view-components/sample6.x/ViewComponentSample/Controllers/ToDoController.cs?name=snippet_IndexVC)]
 
-## Walkthrough: Creating a basic view component
+## Create a basic view component
 
-[Download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/view-components/sample), build and test the starter code. It's a basic project with a `ToDo` controller that displays a list of *ToDo* items.
+[Download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/view-components/sample6.x), build and test the starter code. It's a basic project with a `ToDo` controller that displays a list of *ToDo* items.
 
 ![List of ToDos](view-components/_static/2dos.png)
 
