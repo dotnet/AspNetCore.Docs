@@ -17,7 +17,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ## View components
 
-View components are similar to partial views, but they're much more powerful. View components don't use model binding, and only depend on the data provided when calling into it. This article was written using controllers and views, but view components work with Razor Pages.
+View components are similar to partial views, but they're much more powerful. View components don't use model binding, they depend on the data past when calling the view component. This article was written using controllers and views, but view components work with [Razor Pages](https://www.learnrazorpages.com/razor-pages/view-components).
 
 A view component:
 
@@ -33,10 +33,10 @@ View components are intended anywhere reusable rendering logic that's too comple
 * Sign in panel
 * Shopping cart
 * Recently published articles
-* Sidebar content on a typical blog
+* Sidebar content on a blog
 * A sign in panel that would be rendered on every page and show either the links to sign out or sign in, depending on the sign in state of the user
 
-A view component consists of two parts: 
+A view component consists of two parts:
 
 * The class, typically derived from <xref:Microsoft.AspNetCore.Mvc.ViewComponent>
 * The result it returns, typically a view.
@@ -45,7 +45,7 @@ Like controllers, a view component can be a POCO, but most developers take advan
 
 When considering if view components meet an app's specifications, consider using Razor components instead. Razor components also combine markup with C# code to produce reusable UI units. Razor components are designed for developer productivity when providing client-side UI logic and composition. For more information, see <xref:blazor/components/index>. For information on how to incorporate Razor components into an MVC or Razor Pages app, see <xref:blazor/components/prerendering-and-integration?pivots=server>.
 
-## Creat a view component
+## Create a view component
 
 This section contains the high-level requirements to create a view component. Later in the article, we'll examine each step in detail and create a view component.
 
@@ -345,7 +345,7 @@ View components are intended anywhere you have reusable rendering logic that's t
 * Sidebar content on a typical blog
 * A login panel that would be rendered on every page and show either the links to log out or log in, depending on the log in state of the user
 
-A view component consists of two parts: the class (typically derived from <xref:Microsoft.AspNetCore.Mvc.ViewComponent>) and the result it returns (typically a view). Like controllers, a view component can be a POCO, but most developers will want to take advantage of the methods and properties available by deriving from `ViewComponent`.
+A view component consists of two parts: the class (typically derived from <xref:Microsoft.AspNetCore.Mvc.ViewComponent>) and the result it returns (typically a view). Like controllers, a view component can be a [POCO](https://stackoverflow.com/questions/250001/poco-definition), but most developers take advantage of the methods and properties available by deriving from `ViewComponent`.
 
 When considering if view components meet an app's specifications, consider using Razor components instead. Razor components also combine markup with C# code to produce reusable UI units. Razor components are designed for developer productivity when providing client-side UI logic and composition. For more information, see <xref:blazor/components/index>. For information on how to incorporate Razor components into an MVC or Razor Pages app, see <xref:blazor/components/prerendering-and-integration?pivots=server>.
 
