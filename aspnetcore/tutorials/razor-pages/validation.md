@@ -4,7 +4,7 @@ author: rick-anderson
 description: Part 8 of tutorial series on Razor Pages.
 ms.author: riande
 ms.custom: mvc, contperf-fy21q2
-ms.date: 04/118/2022
+ms.date: 10/13/2021
 no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Index, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/razor-pages/validation
 ---
@@ -478,7 +478,6 @@ Thanks for completing this introduction to Razor Pages. [Get started with Razor 
 * <xref:fundamentals/localization>
 * <xref:mvc/views/tag-helpers/intro>
 * <xref:mvc/views/tag-helpers/authoring>
-* [Tutorial: Deploy an ASP.NET Core and Azure SQL Database app to Azure App Service](https://docs.microsoft.com/azure/app-service/tutorial-dotnetcore-sqldb-app)
 
 > [!div class="step-by-step"]
 > [Previous: Add a new field](xref:tutorials/razor-pages/new-field)
