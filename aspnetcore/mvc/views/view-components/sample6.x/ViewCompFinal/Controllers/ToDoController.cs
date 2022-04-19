@@ -39,6 +39,14 @@ public class ToDoController : Controller
         ViewData["isDone"] = isDone;
         return View(model);
     }
+        
+    public IActionResult IndexNameOf(int maxPriority = 2, bool isDone = false)
+    {
+        var model = _ToDoContext!.ToDo!.ToList();
+        ViewData["maxPriority"] = maxPriority;
+        ViewData["isDone"] = isDone;
+        return View(model);
+    }
 
     public IActionResult IndexSync(int maxPriority = 2, bool isDone = false)
     {
