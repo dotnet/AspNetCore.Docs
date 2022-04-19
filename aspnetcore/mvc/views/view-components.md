@@ -282,7 +282,7 @@ The framework handles invoking a synchronous `Invoke` method if asynchronous wor
 
 The view component's Razor file:
 
-[!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexSync.cshtml?name=snippet)]
+[!code-cshtml[](view-components/sample6.x/ViewCompFinal/Views/ToDo/IndexSync.cshtml?name=snippet)]
 
 The view component is invoked in a Razor file (for example, `Views/Home/Index.cshtml`) using one of the following approaches:
 
