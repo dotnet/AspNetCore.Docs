@@ -607,6 +607,10 @@ Verify you can't post or get the secret field.
 
 See [Tutorial: Call an ASP.NET Core web API with JavaScript](xref:tutorials/web-api-javascript).
 
+## Publish to Azure
+
+For information on deploying to Azure, see [Tutorial: Build an ASP.NET Core app in Azure with SQL Database](/azure/app-service/tutorial-dotnetcore-sqldb-app).
+
 :::moniker-end
 
 :::moniker range="= aspnetcore-5.0"
@@ -648,7 +652,7 @@ The following diagram shows the design of the app.
 
 [!INCLUDE[](~/includes/net-core-prereqs-vsc-5.0.md)]
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
+# [Visual Studio for Mac](#tab/visual-studio-mac)F
 
 [!INCLUDE[](~/includes/net-core-prereqs-mac-5.0.md)]
 

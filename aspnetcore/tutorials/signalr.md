@@ -258,6 +258,10 @@ The preceding highlighted code adds SignalR to the ASP.NET Core dependency injec
 >   dotnet dev-certs https --clean
 >   dotnet dev-certs https --trust
 >   ```
+
+### Publish to Azure
+
+For information on deploying to Azure, see [Tutorial: Build an ASP.NET Core app in Azure with SQL Database](/azure/app-service/tutorial-dotnetcore-sqldb-app).
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
