@@ -146,6 +146,15 @@ ASP.NET Core includes three [filters](xref:mvc/controllers/filters) for working 
 * [AutoValidateAntiforgeryToken](xref:Microsoft.AspNetCore.Mvc.AutoValidateAntiforgeryTokenAttribute)
 * [IgnoreAntiforgeryToken](xref:Microsoft.AspNetCore.Mvc.IgnoreAntiforgeryTokenAttribute)
 
+## Multiple browser tabs and the Synchronizer Token Pattern
+
+With the Synchronizer Token Pattern, only the most recently loaded page contains a valid antiforgery token. Using multiple tabs can be problematic. For example, if a user opens multiple tabs:
+
+ * Only the most recently loaded tab contains a valid antiforgery token.
+ * Requests made from previously loaded tabs fail with an error: `Antiforgery token validation failed. The antiforgery cookie token and request token do not match`
+ 
+ Consider alternative CSRF protection patterns if this poses an issue.
+
 ## Configure antiforgery with `AntiforgeryOptions`
 
 Customize <xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions> in `Program.cs`:

@@ -5,13 +5,13 @@ description: Learn how to set up multi-factor authentication (MFA) in an ASP.NET
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/17/2020
+ms.date: 04/19/2022
 no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/mfa
 ---
 # Multi-factor authentication in ASP.NET Core
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 By [Damien Bowden](https://github.com/damienbod)
 
@@ -32,16 +32,18 @@ MFA requires at least two or more types of proof for an identity like something 
 
 Two-factor authentication (2FA) is like a subset of MFA, but the difference being that MFA can require two or more factors to prove the identity.
 
+2FA is supported by default when using ASP.NET Core Identity. To enable or disable 2FA for a specific user, set the <xref:Microsoft.AspNetCore.Identity.IdentityUser%601.TwoFactorEnabled%2A?displayProperty=nameWithType> property. The ASP.NET Core Identity Default UI includes pages for configuring 2FA.
+
 ### MFA TOTP (Time-based One-time Password Algorithm)
 
-MFA using TOTP is a supported implementation using ASP.NET Core Identity. This can be used together with any compliant authenticator app, including:
+MFA using TOTP is supported by default when using ASP.NET Core Identity. This approach can be used together with any compliant authenticator app, including:
 
-* Microsoft Authenticator App
-* Google Authenticator App
+* Microsoft Authenticator
+* Google Authenticator
 
-See the following link for implementation details:
+For implementation details, see [Enable QR Code generation for TOTP authenticator apps in ASP.NET Core](xref:security/authentication/identity-enable-qrcodes).
 
-[Enable QR Code generation for TOTP authenticator apps in ASP.NET Core](xref:security/authentication/identity-enable-qrcodes)
+To disable support for MFA TOTP, configure authentication using <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentity%2A> instead of <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionUIExtensions.AddDefaultIdentity%2A>. `AddDefaultIdentity` calls <xref:Microsoft.AspNetCore.Identity.IdentityBuilderExtensions.AddDefaultTokenProviders%2A> internally, which registers multiple token providers including one for MFA TOTP. To register only specific token providers, call <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddTokenProvider%2A> for each required provider. For more information about available token providers, see the [AddDefaultTokenProviders source on GitHub](https://github.com/dotnet/aspnetcore/blob/release/6.0/src/Identity/Core/src/IdentityBuilderExtensions.cs#L21-L32).
 
 ### MFA FIDO2 or passwordless
 
@@ -537,9 +539,9 @@ Alternatively, logging in using OTP with Identity:
 * [FIDO2 .NET library for FIDO2 / WebAuthn Attestation and Assertion using .NET](https://github.com/abergs/fido2-net-lib)
 * [WebAuthn Awesome](https://github.com/herrjemand/awesome-webauthn)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 By [Damien Bowden](https://github.com/damienbod)
 
@@ -1074,4 +1076,4 @@ Alternatively, logging in using OTP with Identity:
 * [FIDO2 .NET library for FIDO2 / WebAuthn Attestation and Assertion using .NET](https://github.com/abergs/fido2-net-lib)
 * [WebAuthn Awesome](https://github.com/herrjemand/awesome-webauthn)
 
-::: moniker-end
+:::moniker-end
