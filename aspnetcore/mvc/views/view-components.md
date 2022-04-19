@@ -266,39 +266,23 @@ For compile time safety, replace the hard-coded view component name with the cla
 
 [!code-csharp[](view-components/sample6.x/ViewCompFinal/ViewComponents/Components/PriorityList.cs?highlight=7)]
 
-Add a `using` statement to the *Index.cshtml* view file, and use the `nameof` operator:
+The view file:
 
-[!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexTypeof.cshtml?highlight=3,37)]
+[!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexTypeof.cshtml?name=snippet)]
+
+An overload of `Component.InvokeAsync` method that takes a CLR type uses the `typeof` operator:
+
+[!code-cshtml[](view-components\sample6.x\ViewCompFinal\Views\ToDo\IndexTypeof.cshtml?name=snippet&highlight=8)]
 
 ## Perform synchronous work
 
 The framework handles invoking a synchronous `Invoke` method if asynchronous work isn't required. The following method creates a synchronous `Invoke` view component:
 
-```csharp
-public class PriorityList : ViewComponent
-{
-    public IViewComponentResult Invoke(int maxPriority, bool isDone)
-    {
-        var items = new List<string> { $"maxPriority: {maxPriority}", 
-                                       $"isDone: {isDone}" };
-        return View(items);
-    }
-}
-```
+[!code-csharp[](view-components/sample6.x/ViewCompFinal/ViewComponents/Components/PriorityListSync.cs)]
 
-The view component's Razor file lists the strings passed to the `Invoke` method (`Views/Home/Components/PriorityList/Default.cshtml`):
+The view component's Razor file:
 
-```cshtml
-@model List<string>
-
-<h3>Priority Items</h3>
-<ul>
-    @foreach (var item in Model)
-    {
-        <li>@item</li>
-    }
-</ul>
-```
+[!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexSync.cshtml?name=snippet)]
 
 The view component is invoked in a Razor file (for example, `Views/Home/Index.cshtml`) using one of the following approaches:
 
@@ -329,7 +313,7 @@ The method signature of `PriorityList.Invoke` is synchronous, but Razor finds an
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/view-components/sample) ([how to download](xref:index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/view-components/sample6.x) ([how to download](xref:index#how-to-download-a-sample))
 * [Dependency injection into views](xref:mvc/views/dependency-injection)
 * [View Components in Razor Pages](https://www.learnrazorpages.com/razor-pages/view-components)
 * [Why You Should Use View Components, not Partial Views, in ASP.NET Core](https://www.telerik.com/blogs/why-you-should-use-view-components-not-partial-views-aspnet-core)

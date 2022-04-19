@@ -12,7 +12,7 @@ namespace ViewComponentSample.ViewComponents
             db = context;
         }
 
-        public  IViewComponentResult Invoke(int maxPriority, bool isDone)
+        public IViewComponentResult Invoke(int maxPriority, bool isDone)
         {
  
             var x = db!.ToDo!.Where(x => x.IsDone == isDone &&
