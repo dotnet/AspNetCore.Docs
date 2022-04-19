@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using ViewComponentSample.Models;
 
 namespace ViewComponentSample.ViewComponents

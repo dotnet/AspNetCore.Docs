@@ -45,7 +45,7 @@ Like controllers, a view component can be a POCO, but most developers take advan
 
 When considering if view components meet an app's specifications, consider using Razor components instead. Razor components also combine markup with C# code to produce reusable UI units. Razor components are designed for developer productivity when providing client-side UI logic and composition. For more information, see <xref:blazor/components/index>. For information on how to incorporate Razor components into an MVC or Razor Pages app, see <xref:blazor/components/prerendering-and-integration?pivots=server>.
 
-## Creating a view component
+## Creat a view component
 
 This section contains the high-level requirements to create a view component. Later in the article, we'll examine each step in detail and create a view component.
 
@@ -61,7 +61,7 @@ Like controllers, view components must be public, non-nested, and non-abstract c
 
 A view component class:
 
-* Fully supports constructor [dependency injection](../../fundamentals/dependency-injection.md)
+* Supports constructor [dependency injection](../../fundamentals/dependency-injection.md)
 * Doesn't take part in the controller lifecycle, therefore [filters](../controllers/filters.md) can't be used in a view component
 
 To prevent a class that has a case-insensitive `ViewComponent` suffix from being treated as a view component, decorate the class with the [`[NonViewComponent]`](xref:Microsoft.AspNetCore.Mvc.NonViewComponentAttribute) attribute:
@@ -80,7 +80,7 @@ Parameters come directly from invocation of the view component, not from model b
 * Define an `InvokeAsync` method that returns a `Task<IViewComponentResult>` or a synchronous `Invoke` method that returns an `IViewComponentResult`.
 * Typically initializes a model and passes it to a view by calling the [ViewComponent.View](xref:Microsoft.AspNetCore.Mvc.ViewComponent.View) method.
 * Parameters come from the calling method, not HTTP. There's no model binding.
-* Aren't reachable directly as an HTTP endpoint. They're invoked from your code, typically in a view. A view component never handles a request.
+* Aren't reachable directly as an HTTP endpoint. They're typically invoked in a view. A view component never handles a request.
 * Are overloaded on the signature rather than any details from the current HTTP request.
 
 ### View search path
@@ -116,11 +116,11 @@ To use the view component, call the following inside a view:
 
 The parameters are passed to the `InvokeAsync` method. The `PriorityList` view component developed in the article is invoked from the `Views/ToDo/Index.cshtml` view file. In the following code, the `InvokeAsync` method is called with two parameters:
 
-[!code-cshtml[](view-components/sample6.x/ViewCompFinal/Views/ToDo/Index.cshtml?name=snippet2)]
+[!code-cshtml[](view-components/sample6.x/ViewCompFinal/Views/ToDo/Index.cshtml?name=snippet2&highlight=6-10)]
 
 ## Invoking a view component as a Tag Helper
 
-View component can be invoked as a [Tag Helper](xref:mvc/views/tag-helpers/intro):
+A View Component can be invoked as a [Tag Helper](xref:mvc/views/tag-helpers/intro):
 
 [!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexTagHelper.cshtml?name=snippet&highlight=8-9)]
 
@@ -268,7 +268,7 @@ For compile time safety, replace the hard-coded view component name with the cla
 
 Add a `using` statement to the *Index.cshtml* view file, and use the `nameof` operator:
 
-[!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexTypeof.cshtml?highlight=3,6,39,43)]
+[!code-cshtml[](view-components/sample6.x/ViewComponentSample/Views/ToDo/IndexTypeof.cshtml?highlight=3,37)]
 
 ## Perform synchronous work
 
