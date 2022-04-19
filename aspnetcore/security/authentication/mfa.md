@@ -5,13 +5,13 @@ description: Learn how to set up multi-factor authentication (MFA) in an ASP.NET
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/17/2020
+ms.date: 04/19/2022
 no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/mfa
 ---
 # Multi-factor authentication in ASP.NET Core
 
-::: moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 By [Damien Bowden](https://github.com/damienbod)
 
@@ -537,9 +537,9 @@ Alternatively, logging in using OTP with Identity:
 * [FIDO2 .NET library for FIDO2 / WebAuthn Attestation and Assertion using .NET](https://github.com/abergs/fido2-net-lib)
 * [WebAuthn Awesome](https://github.com/herrjemand/awesome-webauthn)
 
-::: moniker-end
+:::moniker-end
 
-::: moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 By [Damien Bowden](https://github.com/damienbod)
 
@@ -1074,4 +1074,4 @@ Alternatively, logging in using OTP with Identity:
 * [FIDO2 .NET library for FIDO2 / WebAuthn Attestation and Assertion using .NET](https://github.com/abergs/fido2-net-lib)
 * [WebAuthn Awesome](https://github.com/herrjemand/awesome-webauthn)
 
-::: moniker-end
+:::moniker-end
