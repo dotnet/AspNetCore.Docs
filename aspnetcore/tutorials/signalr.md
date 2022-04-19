@@ -485,4 +485,8 @@ The SignalR server must be configured to pass SignalR requests to SignalR.
 >   dotnet dev-certs https --trust
 >   ```
 
+## Publish to Azure
+
+For information on deploying to Azure, see [Tutorial: Build an ASP.NET Core app in Azure with SQL Database](/azure/app-service/tutorial-dotnetcore-sqldb-app).
+
 :::moniker-end
