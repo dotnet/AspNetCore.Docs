@@ -268,7 +268,7 @@ For compile time safety, replace the hard-coded view component name with the cla
 
 The view file:
 
-[!code-cshtml[](view-components/sample6.x/ViewCompFinal/Views/ToDo/IndexNameOf.cshtml?name=snippet)]
+[!code-cshtml[](view-components/sample6.x/ViewCompFinal/Views/ToDo/IndexNameOf.cshtml?name=snippet&highlight=8)]
 
 An overload of `Component.InvokeAsync` method that takes a CLR type uses the `typeof` operator:
 
