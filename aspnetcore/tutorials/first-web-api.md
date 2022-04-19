@@ -652,7 +652,7 @@ The following diagram shows the design of the app.
 
 [!INCLUDE[](~/includes/net-core-prereqs-vsc-5.0.md)]
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)F
+# [Visual Studio for Mac](#tab/visual-studio-mac)
 
 [!INCLUDE[](~/includes/net-core-prereqs-mac-5.0.md)]
 
