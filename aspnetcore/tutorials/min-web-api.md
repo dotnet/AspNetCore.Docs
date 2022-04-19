@@ -462,7 +462,7 @@ For an example of testing a minimal API app, see [this GitHub sample](https://gi
 
 ## Publish to Azure
 
-For information on deploying to Azure, see [Tutorial: Build an ASP.NET Core app in Azure with SQL Database](/azure/app-service/tutorial-dotnetcore-sqldb-app).
+For information on deploying to Azure, see [Tutorial: Build an ASP.NET Core app in Azure with SQL Database](/azure/app-service/quickstart-dotnetcore).
 
 ## Additional resources
 
