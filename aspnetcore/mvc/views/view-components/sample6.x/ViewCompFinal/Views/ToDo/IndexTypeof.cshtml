@@ -36,11 +36,11 @@
 </table>
 
 <div>
-    Testing nameof(PriorityList) <br />
+    Testing typeof(PriorityList) <br />
 
     Maxium Priority: @ViewData["maxPriority"] <br />
     Is Complete:  @ViewData["isDone"]
-    @await Component.InvokeAsync(nameof(PriorityList),
+    @await Component.InvokeAsync(typeof(PriorityList),
                      new { 
                          maxPriority =  ViewData["maxPriority"],
                          isDone = ViewData["isDone"]  }
