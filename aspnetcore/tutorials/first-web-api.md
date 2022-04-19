@@ -1625,6 +1625,10 @@ See [Tutorial: Call an ASP.NET Core web API with JavaScript](xref:tutorials/web-
 
 [!INCLUDE[](~/includes/DuendeIdentityServer.md)]
 
+## Publish to Azure
+
+For information on deploying to Azure, see [Quickstart: Deploy an ASP.NET web app](/azure/app-service/quickstart-dotnetcore).
+
 ## Additional resources
 
 [View or download sample code for this tutorial](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-web-api/samples). See [how to download](xref:index#how-to-download-a-sample).
