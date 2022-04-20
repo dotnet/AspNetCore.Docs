@@ -460,6 +460,10 @@ The preceding code uses [web defaults](/dotnet/standard/serialization/system-tex
 
 For an example of testing a minimal API app, see [this GitHub sample](https://github.com/davidfowl/CommunityStandUpMinimalAPI/blob/main/TodoApi.Tests/TodoTests.cs).
 
+## Publish to Azure
+
+For information on deploying to Azure, see [Quickstart: Deploy an ASP.NET web app](/azure/app-service/quickstart-dotnetcore).
+
 ## Additional resources
 
 * <xref:fundamentals/minimal-apis>

@@ -1,4 +1,4 @@
-﻿
+
 
 using Microsoft.EntityFrameworkCore;
 
@@ -10,7 +10,7 @@ namespace ViewComponentSample.Models
                 : base(options)
         {
         }
-        public DbSet<TodoItem> ToDo { get; set; }
+        public DbSet<TodoItem>? ToDo { get; set; }
         
         //The below is used to seeding the DB
         protected override void OnModelCreating(ModelBuilder modelBuilder)
