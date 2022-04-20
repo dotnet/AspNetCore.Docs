@@ -16,7 +16,7 @@ You need a basic understanding of [Git and GitHub.com](https://guides.github.com
 * If your PR has the label 'cla-required' assigned, [complete the Contribution License Agreement (CLA)](https://cla.dotnetfoundation.org/).
 * Respond to PR feedback.
 
-For an example where this process led to publication of a new article, see [Issue 1477](https://github.com/dotnet/docs/issues/1477) and [Pull Request 18955](https://github.com/dotnet/docs/pull/18955) in the .NET Docs repository. The new article is [Use code coverage for unit testing](/dotnet/core/testing/unit-testing-code-coverage).
+For an example where this process led to publication of a new article, see [Issue 1477](https://github.com/dotnet/docs/issues/1477) and [Pull Request 18955](https://github.com/dotnet/docs/pull/18955) in the .NET Docs repository. The new article is [Use code coverage for unit testing](https://github.com/dotnet/docs/blob/main/docs/core/testing/unit-testing-code-coverage.md).
 
 ## Docs Authoring Pack extension in Visual Studio Code
 
