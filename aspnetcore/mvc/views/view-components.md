@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how view components are used in ASP.NET Core and how to add them to apps.
 ms.author: riande
 ms.custom: mvc
-ms.date: 4/9/2022
+ms.date: 04/20/2022
 monikerRange: '>= aspnetcore-3.1'
 no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/views/view-components
@@ -17,7 +17,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ## View components
 
-View components are similar to partial views, but they're much more powerful. View components don't use model binding, they depend on the data past when calling the view component. This article was written using controllers and views, but view components work with [Razor Pages](https://www.learnrazorpages.com/razor-pages/view-components).
+View components are similar to partial views, but they're much more powerful. View components don't use model binding, they depend on the data passed when calling the view component. This article was written using controllers and views, but view components work with [Razor Pages](https://www.learnrazorpages.com/razor-pages/view-components).
 
 A view component:
 
@@ -105,7 +105,7 @@ To customize the view search path, modify Razor's <xref:Microsoft.AspNetCore.Mvc
 
 In the preceding code, the placeholder `{0}` represents the path `Components/{View Component Name}/{View Name}`.
 
-## Invoking a view component
+## Invoke a view component
 
 To use the view component, call the following inside a view:
 
@@ -118,7 +118,7 @@ The parameters are passed to the `InvokeAsync` method. The `PriorityList` view c
 
 [!code-cshtml[](view-components/sample6.x/ViewCompFinal/Views/ToDo/Index.cshtml?name=snippet2&highlight=6-10)]
 
-## Invoking a view component as a Tag Helper
+## Invoke a view component as a Tag Helper
 
 A View Component can be invoked as a [Tag Helper](xref:mvc/views/tag-helpers/intro):
 
@@ -147,7 +147,7 @@ The `InvokeAsync` method used in this tutorial:
 
 In the preceding markup, the `PriorityList` view component becomes `priority-list`. The parameters to the view component are passed as attributes in kebab case.
 
-### Invoking a view component directly from a controller
+### Invoke a view component directly from a controller
 
 View components are typically invoked from a view, but they can be invoked directly from a controller method. While view components don't define endpoints like controllers, a controller action that returns the content of a `ViewComponentResult` can be implemented.
 
