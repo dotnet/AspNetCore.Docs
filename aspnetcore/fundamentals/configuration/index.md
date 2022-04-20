@@ -15,7 +15,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://tw
 
 :::moniker range=">= aspnetcore-6.0"
 
-Application configuration in ASP.NET Core is performed using one or more [configuration providers](#cp). Application configuration providers read configuration data from key-value pairs using a variety of configuration sources:
+Application configuration in ASP.NET Core is performed using one or more [configuration providers](#cp). Configuration providers read configuration data from key-value pairs using a variety of configuration sources:
 
 * Settings files, such as `appsettings.json`
 * Environment variables
@@ -79,12 +79,12 @@ The following variables are locked in early when initializing the host builders 
 * Environment name, for example `Development`, `Production`, `Staging`
 * Content root
 * Web root
-* Whether to scan for [hosting startup assemblies](xref:fundamentals/host/platform-specific-configuration) and which assemblies to scan for.
+* Whether to scan for [hosting startup assemblies](xref:fundamentals/configuration/platform-specific-configuration) and which assemblies to scan for.
 * Variables read by app and library code from [HostBuilderContext.Configuration](xref:Microsoft.Extensions.Hosting.HostBuilderContext.Configuration) in [IHostBuilder.ConfigureAppConfiguration](xref:Microsoft.Extensions.Hosting.IHostBuilder.ConfigureAppConfiguration%2A) callbacks.
 
 `URLS` is notably absent from the previous list of host variables. `URLS` is read later from application config where non-prefixed environment variables override `appsettings.json`. `ASPNETCORE_` prefixed and `DOTNET_` prefixed environment variables set in application configuration are overridden by those set in host configuration.
 
-For more information, see [Change the content root, app name, and environment](xref:https:/migration/50-to-60-samples#change-the-content-root-app-name-and-environment).
+For more information, see [Change the content root, app name, and environment](xref:migration/50-to-60-samples#change-the-content-root-app-name-and-environment).
 
 The remaining sections in this article refer to application configuration.
 
