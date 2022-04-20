@@ -156,25 +156,10 @@ Navigate to the docker file folder at `dotnet-docker/samples/aspnetapp`.
 
   ```console
   docker build -t aspnetapp .
-  docker run -it --rm --name aspnetcore_sample aspnetapp
+  docker run -it --rm -p 5000:80 --name aspnetcore_sample aspnetapp
   ```
 
-* For Windows containers, you need the IP address of the container (browsing to `http://localhost:5000` won't work):
-  * Open up another command prompt.
-  * Run `docker ps` to see the running containers. Verify that the "aspnetcore_sample" container is there.
-  * Run `docker exec aspnetcore_sample ipconfig` to display the IP address of the container. The output from the command looks like this example:
-
-    ```console
-    Ethernet adapter Ethernet:
-
-       Connection-specific DNS Suffix  . : contoso.com
-       Link-local IPv6 Address . . . . . : fe80::1967:6598:124:cfa3%4
-       IPv4 Address. . . . . . . . . . . : 172.29.245.43
-       Subnet Mask . . . . . . . . . . . : 255.255.240.0
-       Default Gateway . . . . . . . . . : 172.29.240.1
-    ```
-
-* Copy the container IPv4 address (for example, 172.29.245.43) and paste into the browser address bar to test the app.
+* Go to `http://localhost:5000` in a browser to test the app.
 
 ## Build and deploy manually
 
