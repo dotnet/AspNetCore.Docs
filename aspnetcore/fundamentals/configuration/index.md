@@ -67,7 +67,7 @@ The following list contains host configuration sources from lowest to highest pr
 
 When a configuration value is set in host and application configuration, the host configuration is used.
 
-See [this GitHub comment](https://github.com/dotnet/AspNetCore.Docs/issues/25626#issuecomment-1098616664) for an explanation of why in host configuration, `ASPNETCORE_` prefixed environment variables have higher priority than command-line arguments.
+See [**Explanation** in this GitHub comment](https://github.com/dotnet/AspNetCore.Docs/issues/25626#issuecomment-1098616664) for an explanation of why in host configuration, `ASPNETCORE_` prefixed environment variables have higher priority than command-line arguments.
 
 ### Host variables
 
