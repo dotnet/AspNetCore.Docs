@@ -5,7 +5,7 @@ description: Learn how to use the Configuration API to configure AppSettings in 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/12/2022
+ms.date: 4/21/2022
 no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/configuration/index
 ---
@@ -15,7 +15,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://tw
 
 :::moniker range=">= aspnetcore-6.0"
 
-Configuration in ASP.NET Core is performed using one or more [configuration providers](#cp). Configuration providers read configuration data from key-value pairs using a variety of configuration sources:
+Application configuration in ASP.NET Core is performed using one or more [configuration providers](#cp). Application configuration providers read configuration data from key-value pairs using a variety of configuration sources:
 
 * Settings files, such as `appsettings.json`
 * Environment variables
@@ -26,13 +26,15 @@ Configuration in ASP.NET Core is performed using one or more [configuration prov
 * Directory files
 * In-memory .NET objects
 
+ASP.NET Core apps configure and launch a *host*. The host is responsible for app startup and lifetime management. The ASP.NET Core templates create a <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> which contains the host. While some configuration can be done in both the host and the application configuration providers, generally, only configuration that is necessary for the host should be done in host configuration. <!--TODO, split up that long sentence --> 
+
 This topic provides information on configuration in ASP.NET Core. For information on using configuration in console apps, see [.NET Configuration](/dotnet/core/extensions/configuration).
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 <a name="default"></a>
 
-## Default configuration
+## Default application configuration
 
 ASP.NET Core web apps created with [dotnet new](/dotnet/core/tools/dotnet-new) or Visual Studio generate the following code:
 
@@ -56,6 +58,15 @@ For more information on `CreateBuilder`, see [Default builder settings](xref:fun
 The following code displays the enabled configuration providers in the order they were added:
 
 [!code-csharp[](index/samples/6.x/ConfigSample/Pages/Index2.cshtml.cs?name=snippet)]
+
+## Host configuration
+
+The following list contains host configuration sources from highest to lowest priority:
+
+1. `ASPNETCORE_` prefixed environment variables
+1. Command-line arguments
+1. `DOTNET_` prefixed environment variables
+
 
 ### appsettings.json
 
