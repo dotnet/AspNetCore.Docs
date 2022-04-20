@@ -121,13 +121,12 @@ To include TypeScript files in an RCL:
    <TypescriptOutDir>wwwroot</TypescriptOutDir>
    ```
 
-1. Include the TypeScript target as a dependency of the `ResolveCurrentProjectStaticWebAssets` target by adding the following target inside of a `PropertyGroup` in the project file:
-
+1. Include the TypeScript target as a dependency of the `PrepareForBuildDependsOn` target by adding the following target inside of a `PropertyGroup` in the project file:
+   
    ```xml
-   <ResolveCurrentProjectStaticWebAssetsInputsDependsOn>
-     CompileTypeScript;
-     $(ResolveCurrentProjectStaticWebAssetsInputs)
-   </ResolveCurrentProjectStaticWebAssetsInputsDependsOn>
+   <PrepareForBuildDependsOn>
+     GetTypeScriptOutputForPublishing;$(PrepareForBuildDependsOn)
+   </PrepareForBuildDependsOn>
    ```
 
 ### Consume content from a referenced RCL
