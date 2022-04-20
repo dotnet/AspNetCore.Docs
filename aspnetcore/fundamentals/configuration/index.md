@@ -76,7 +76,7 @@ See [this GitHub comment](https://github.com/dotnet/AspNetCore.Docs/issues/25626
 The following variables are locked in early when initializing the host builders and can't be influenced by application config:
 
 * Application name
-* Environment name, for example `Development`, `Production`, `Staging`
+* Environment name, for example `Development`, `Production`, and `Staging`
 * Content root
 * Web root
 * Whether to scan for [hosting startup assemblies](xref:fundamentals/configuration/platform-specific-configuration) and which assemblies to scan for.
