@@ -26,9 +26,9 @@ Application configuration in ASP.NET Core is performed using one or more [config
 * Directory files
 * In-memory .NET objects
 
-ASP.NET Core apps configure and launch a *host*. The host is responsible for app startup and lifetime management. The ASP.NET Core templates create a <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> which contains the host. While some configuration can be done in both the host and the application configuration providers, generally, only configuration that is necessary for the host should be done in host configuration. <!--TODO, split up that long sentence --> 
+ASP.NET Core apps configure and launch a *host*. The host is responsible for app startup and lifetime management. The ASP.NET Core templates create a <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> which contains the host. While some configuration can be done in both the host and the application configuration providers, generally, only configuration that is necessary for the host should be done in host configuration.
 
-This topic provides information on configuration in ASP.NET Core. For information on using configuration in console apps, see [.NET Configuration](/dotnet/core/extensions/configuration).
+This article provides information on configuration in ASP.NET Core. For information on using configuration in console apps, see [.NET Configuration](/dotnet/core/extensions/configuration).
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -61,12 +61,30 @@ The following code displays the enabled configuration providers in the order the
 
 ## Host configuration
 
-The following list contains host configuration sources from highest to lowest priority:
+The following list contains host configuration sources from lowest to highest priority:
 
-1. `ASPNETCORE_` prefixed environment variables
-1. Command-line arguments
 1. `DOTNET_` prefixed environment variables
+1. Command-line arguments
+1. `ASPNETCORE_` prefixed environment variable
 
+When a configuration value is set in host and application configuration, the host configuration is used.
+
+See [this GitHub comment](https://github.com/dotnet/AspNetCore.Docs/issues/25626#issuecomment-1098616664) for an explanation of why in host configuration, `ASPNETCORE_` prefixed environment variables have higher priority than command-line arguments.
+
+### Host variables
+
+The following variables are locked in early when initializing the host builders and can't be influenced by application config:
+
+* Application name
+* Environment name, for example `Development`, `Production`, `Staging`
+* Content root
+* Web root
+* Whether to scan for [hosting startup assemblies](xref:fundamentals/host/platform-specific-configuration) and which assemblies to scan for.
+* Variables read by app and library code from [HostBuilderContext.Configuration](xref:Microsoft.Extensions.Hosting.HostBuilderContext.Configuration) in [IHostBuilder.ConfigureAppConfiguration](xref:Microsoft.Extensions.Hosting.IHostBuilder.ConfigureAppConfiguration%2A) callbacks.
+
+`URLS` is notably absent from the previous list of host variables. `URLS` is read later from application config where non-prefixed environment variables override `appsettings.json`. `ASPNETCORE_` prefixed and `DOTNET_` prefixed environment variables set in application configuration are overridden by those set in host configuration.
+
+The remaining sections in this article refer to application configuration.
 
 ### appsettings.json
 
