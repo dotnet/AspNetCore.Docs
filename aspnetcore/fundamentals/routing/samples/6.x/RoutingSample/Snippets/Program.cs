@@ -73,38 +73,32 @@ public class Program
     public static void CurrentEndpointMiddlewareOrder(WebApplication app)
     {
         // <snippet_CurrentEndpointMiddlewareOrder>
-        // Location 1: before routing runs, endpoint is always null here
-        app.Use(next => context =>
+        app.Use(async (context, next) =>
         {
             Console.WriteLine($"1. Endpoint: {context.GetEndpoint()?.DisplayName ?? "(null)"}");
-            return next(context);
+            await next(context);
         });
 
         app.UseRouting();
 
-        // Location 2: after routing runs, endpoint will be non-null if routing found a match
-        app.Use(next => context =>
+        app.Use(async (context, next) =>
         {
             Console.WriteLine($"2. Endpoint: {context.GetEndpoint()?.DisplayName ?? "(null)"}");
-            return next(context);
+            await next(context);
         });
 
-        app.UseEndpoints(endpoints =>
+        app.MapGet("/", (HttpContext context) =>
         {
-            // Location 3: runs when this endpoint matches
-            endpoints.MapGet("/", context =>
-            {
-                Console.WriteLine(
-                    $"3. Endpoint: {context.GetEndpoint()?.DisplayName ?? "(null)"}");
-                return Task.CompletedTask;
-            }).WithDisplayName("Hello");
-        });
+            Console.WriteLine($"3. Endpoint: {context.GetEndpoint()?.DisplayName ?? "(null)"}");
+            return "Hello World!";
+        }).WithDisplayName("Hello");
 
-        // Location 4: runs after UseEndpoints - will only run if there was no match
-        app.Use(next => context =>
+        app.UseEndpoints(_ => { });
+
+        app.Use(async (context, next) =>
         {
             Console.WriteLine($"4. Endpoint: {context.GetEndpoint()?.DisplayName ?? "(null)"}");
-            return next(context);
+            await next(context);
         });
         // </snippet_CurrentEndpointMiddlewareOrder>
     }
