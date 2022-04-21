@@ -24,7 +24,7 @@ This article primarily discusses using `HttpContext` in request and response flo
 * [IHttpContextAccessor.HttpContext](xref:Microsoft.AspNetCore.Http.IHttpContextAccessor.HttpContext) may be null if accessed outside of the request and response flow.
 * Don't capture the `HttpContext` property of the `IHttpContextAccessor` in a constructor.
 
-The following sample uses the `EmailService` to send simulated email when requested from `/send` endpoint:
+The following sample uses the `EmailService` to send simulated email when requested from the `/send` endpoint:
 
 [!code-csharp[](~/fundamentals/http-context/samples/6.x/HttpContextInBackgroundThread/Program.cs?highlight=5-6,12)]
 
