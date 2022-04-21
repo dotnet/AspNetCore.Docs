@@ -472,9 +472,7 @@ Run the app again. Select the the **`Log Messages`** button. Notice that the log
 
 ### Log scopes
 
-[Log scopes](xref:fundamentals/logging/index#log-scopes) aren't currently available in Blazor apps. However, a [custom logger](#custom-logger-provider) can be built to provide log scopes. 
-
-For more information, see [[Blazor Server] Ability to have scoped logger (dotnet/aspnetcore #25442)](https://github.com/dotnet/aspnetcore/issues/25442).
+[Log scopes](xref:fundamentals/logging/index#log-scopes) aren't supported in Blazor apps. However, a [custom logger](#custom-logger-provider) can be built to provide log scopes. 
 
 <!-- HOLD FOR FUTURE PRODUCT FEATURE
 
@@ -485,8 +483,8 @@ logger.LogInformation("Someone has clicked me!");
 
 using (logger.BeginScope("Custom Log Scope"))
 {
-    logger.LogInformation("Someone has clicked me!");
-    logger.LogInformation("Yes! I was clicked!");
+    logger.LogInformation("Someone has clicked me in a log scope!");
+    logger.LogInformation("Yes! I was clicked in a scope!");
 }
 
 logger.LogInformation("Someone has clicked me!");
@@ -497,9 +495,9 @@ Developer tools console output:
 > info: BlazorSample.Pages.Counter[0]
 > Someone has clicked me!
 > info: BlazorSample.Pages.Counter[0]
-> Scoped: Someone has clicked me!
+> Custom Log Scope => Someone has clicked me in a log scope!
 > info: BlazorSample.Pages.Counter[0]
-> Scoped: Yes! I was clicked!
+> Custom Log Scope => Yes! I was clicked in a scope!
 > info: BlazorSample.Pages.Counter[0]
 > Someone has clicked me!
 
