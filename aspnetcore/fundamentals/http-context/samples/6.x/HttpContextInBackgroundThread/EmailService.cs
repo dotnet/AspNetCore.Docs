@@ -36,6 +36,6 @@ public class EmailService : IEmailService
     {
         _logger.LogInformation($"Email sent detected user agent: {userAgent}");
 
-        await Task.CompletedTask;
+        // ...
     }
 }

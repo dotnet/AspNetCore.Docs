@@ -21,8 +21,8 @@ This article primarily discusses using `HttpContext` in request and response flo
 
 * The `HttpContext` is **NOT** thread safe, accessing it from multiple threads can result in null access violations and unpredictable results.
 * The `HttpContext` may be captured outside of the request flow when using the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>.
-* [IHttpContextAccessor.HttpContext](xref:Microsoft.AspNetCore.Http.IHttpContextAccessor.HttpContext) may be null if accessed outside of the request and response flow.
-* Don't capture the `HttpContext` property of the `IHttpContextAccessor` in a constructor.
+* <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor.HttpContext%2A?displayProperty=nameWithType> may be null if accessed outside of the request and response flow.
+* Don't capture `IHttpContextAccessor.HttpContext` in a constructor.
 
 The following sample uses the `EmailService` to send simulated email when requested from the `/send` endpoint:
 
@@ -34,13 +34,13 @@ The following code shows the `EmailService` interface and implementation:
 
 Requests to `/send` show the user agent making the request.
 
-The application also includes `NewsletterService`, which sends an email using every 30 seconds:
+The application also includes `NewsletterService`, which sends an email using `EmailService` every 30 seconds:
 
 [!code-csharp[](~/fundamentals/http-context/samples/6.x/HttpContextInBackgroundThread/Program.cs?highlight=7)]
 
 [!code-csharp[](~/fundamentals/http-context/samples/6.x/HttpContextInBackgroundThread/NewsletterService.cs)]
 
-Email sent from the `NewsletterService` has a null `HttpContext`. The `EmailService` was written not to depend on the `HttpContext`.
+`NewsletterService` is a [hosted service](xref:fundamentals/host/hosted-services), which runs outside the request and response flow. Email sent from the `NewsletterService` has a null `HttpContext`. The `EmailService` was written to not depend on the `HttpContext`.
 
 ## Use HttpContext from Razor Pages
 
