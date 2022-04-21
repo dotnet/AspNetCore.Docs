@@ -24,6 +24,24 @@ This article primarily discusses using `HttpContext` in request and response flo
 * [IHttpContextAccessor.HttpContext](xref:Microsoft.AspNetCore.Http.IHttpContextAccessor.HttpContext) may be null if accessed outside of the request flow.
 * Don't capture the `HttpContext` property of the `IHttpContextAccessor` in a constructor.
 
+The following sample uses the `EmailService` to send simulated email when requested from `/send` endpoint:
+
+[!code-csharp[](~/fundamentals/http-context/samples/6.x/HttpContextInBackgroundThread/Program.cs?highlight=5-6,12)]
+
+The following code shows the `EmailService` interface and implementation:
+
+[!code-csharp[](~/fundamentals/http-context/samples/6.x/HttpContextInBackgroundThread/EmailService.cs)]
+
+Requests to `/send` show the user agent making the request.
+
+The application also includes `NewsletterService`, which sends an email using every 30 seconds:
+
+[!code-csharp[](~/fundamentals/http-context/samples/6.x/HttpContextInBackgroundThread/Program.cs?highlight=7)]
+
+[!code-csharp[](~/fundamentals/http-context/samples/6.x/HttpContextInBackgroundThread/NewsletterService.cs)]
+
+Email sent from the `NewsletterService` has a null `HttpContext`. The `EmailService` doesn't depend on the `HttpContext`.
+
 ## Use HttpContext from Razor Pages
 
 The Razor Pages <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> exposes the <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.HttpContext?displayProperty=nameWithType> property:
