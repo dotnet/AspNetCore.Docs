@@ -4,7 +4,7 @@ public class EmailService : IEmailService
 {
     private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly ILogger<EmailService> _logger;
-    private const string? BackgroundCorrelationId = "background-correlation-id";
+    private const string? UserAgent = "Unknown";
 
     public EmailService(IHttpContextAccessor httpContextAccessor, 
                                      ILogger<EmailService> logger)
@@ -21,15 +21,16 @@ public class EmailService : IEmailService
         // The service should either throw or gracefully handle a null HttpContext.
 
         var request = _httpContextAccessor.HttpContext?.Request;
-        var correlationId = request!.Headers["X-Correlation-Id"].ToString() 
-                                                 ?? BackgroundCorrelationId;
+        var userAgent = request?.Headers["user-agent"].ToString()
+                                         ?? UserAgent;
 
-        _ = SendEmailCoreAsync(correlationId);
+        _ = SendEmailCoreAsync(userAgent);
     }
 
-    private async Task SendEmailCoreAsync(string? correlationId)
+    private async Task SendEmailCoreAsync(string? userAgent)
     {
-        _logger.LogInformation($"Email sent with correlation id: {correlationId}");
+            _logger.LogInformation($"Email sent detected user agent: {userAgent}");
+        
         await Task.CompletedTask;
     }
 }

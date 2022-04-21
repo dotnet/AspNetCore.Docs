@@ -8,6 +8,7 @@ builder.Services.AddHostedService<NewsletterService>();
 
 var app = builder.Build();
 
+app.MapGet("/", () => "Hello World!");
 app.MapGet("/send", (IEmailService service) => service.SendEmail("microsoft@aka.ms"));
 
 app.Run();

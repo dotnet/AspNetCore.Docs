@@ -15,6 +15,15 @@ uid: fundamentals/httpcontext
 
 ASP.NET Core apps access `HttpContext` through the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> interface and its default implementation <xref:Microsoft.AspNetCore.Http.HttpContextAccessor>. It's only necessary to use `IHttpContextAccessor` when you need access to the `HttpContext` inside a service.
 
+## HttpContext isn't thread safe
+
+This article primarily discusses using `HttpContext` in request and response flow from ASP.NET Core MVC, Razor pages, controllers, Razor Pages, middleware, etc. Consider the following when using `HttpContext` outside the request and response flow:
+
+* The `HttpContext` is **NOT** thread safe, accessing it from multiple threads can result in null access violations and unpredictable results.
+* The `HttpContext` may be captured outside of the request flow when using the IHttpContextAccessor.
+* [IHttpContextAccessor.HttpContext](xref:Microsoft.AspNetCore.Http.IHttpContextAccessor.HttpContext) may be null if accessed outside of the request flow.
+* Don't capture the `HttpContext` property of the `IHttpContextAccessor` in a constructor.
+
 ## Use HttpContext from Razor Pages
 
 The Razor Pages <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> exposes the <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.HttpContext?displayProperty=nameWithType> property:
