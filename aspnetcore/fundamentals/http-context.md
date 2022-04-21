@@ -40,7 +40,7 @@ The application also includes `NewsletterService`, which sends an email using ev
 
 [!code-csharp[](~/fundamentals/http-context/samples/6.x/HttpContextInBackgroundThread/NewsletterService.cs)]
 
-Email sent from the `NewsletterService` has a null `HttpContext`. The `EmailService` was written no to depend on the `HttpContext`.
+Email sent from the `NewsletterService` has a null `HttpContext`. The `EmailService` was written not to depend on the `HttpContext`.
 
 ## Use HttpContext from Razor Pages
 
