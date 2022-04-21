@@ -15,7 +15,7 @@ This article explains [ASP.NET Core environments](xref:fundamentals/environments
 
 :::moniker range=">= aspnetcore-6.0"
 
-> [!NOTE]
+> [!IMPORTANT]
 > This topic applies to Blazor WebAssembly. For general guidance on ASP.NET Core app configuration, which describes the approaches to use for Blazor Server apps, see <xref:fundamentals/environments>.
 
 When running an app locally, the environment defaults to `Development`. When the app is published, the environment defaults to `Production`.
@@ -32,13 +32,15 @@ For a standalone Blazor WebAssembly app running locally, the development server 
 
 ## Set the environment via startup configuration
 
-The following example starts Blazor in the Staging environment:
+The following example starts Blazor in the Staging environment.
+
+In `wwwroot/index.html`:
 
 ```cshtml
 <body>
     ...
 
-    <script src="_framework/blazor.{webassembly|server}.js" autostart="false"></script>
+    <script src="_framework/blazor.webassembly.js" autostart="false"></script>
     <script>
       Blazor.start({
         environment: "Staging"
