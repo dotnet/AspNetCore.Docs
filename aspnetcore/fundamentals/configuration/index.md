@@ -65,7 +65,7 @@ The following list contains host configuration sources from lowest to highest pr
 1. Command-line arguments
 1. `ASPNETCORE_` prefixed environment variable
 
-When a configuration value is set in host and application configuration, the host configuration is used.
+When a configuration value is set in host and application configuration, the application configuration is used.
 
 See [**Explanation** in this GitHub comment](https://github.com/dotnet/AspNetCore.Docs/issues/25626#issuecomment-1098616664) for an explanation of why in host configuration, `ASPNETCORE_` prefixed environment variables have higher priority than command-line arguments.
 
@@ -73,10 +73,10 @@ See [**Explanation** in this GitHub comment](https://github.com/dotnet/AspNetCor
 
 The following variables are locked in early when initializing the host builders and can't be influenced by application config:
 
-* Application name
-* Environment name, for example `Development`, `Production`, and `Staging`
-* Content root
-* Web root
+* [Application name](xref:fundamentals/minimal-apis#change-the-content-root-application-name-and-environment)
+* [Environment name](xref:fundamentals/environments), for example `Development`, `Production`, and `Staging`
+* [Content root](xref:fundamentals/index#content-root)
+* [Web root](xref:fundamentals/index#web-root)
 * Whether to scan for [hosting startup assemblies](xref:fundamentals/configuration/platform-specific-configuration) and which assemblies to scan for.
 * Variables read by app and library code from [HostBuilderContext.Configuration](xref:Microsoft.Extensions.Hosting.HostBuilderContext.Configuration) in [IHostBuilder.ConfigureAppConfiguration](xref:Microsoft.Extensions.Hosting.IHostBuilder.ConfigureAppConfiguration%2A) callbacks.
 
