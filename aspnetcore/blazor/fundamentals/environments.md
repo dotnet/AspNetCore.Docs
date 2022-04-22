@@ -32,7 +32,7 @@ For a standalone Blazor WebAssembly app running locally, the development server 
 
 ## Set the environment via startup configuration
 
-The following example starts Blazor in the Staging environment.
+The following example starts Blazor in the `Staging` environment.
 
 In `wwwroot/index.html`:
 
@@ -159,7 +159,7 @@ The <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEn
 > [!NOTE]
 > This topic applies to Blazor WebAssembly. For general guidance on ASP.NET Core app configuration, which describes the approaches to use for Blazor Server apps, see <xref:fundamentals/environments>.
 
-When running an app locally, the environment defaults to `Development`. When the app is published, the environment defaults to Production.
+When running an app locally, the environment defaults to `Development`. When the app is published, the environment defaults to `Production`.
 
 The environment is set using any of the following approaches:
 
@@ -173,7 +173,7 @@ For a standalone Blazor WebAssembly app running locally, the development server 
 
 ## Set the environment via startup configuration
 
-The following example starts Blazor in the Staging environment:
+The following example starts Blazor in the `Staging` environment:
 
 ```cshtml
 <body>
@@ -298,7 +298,7 @@ The <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEn
 > [!NOTE]
 > This topic applies to Blazor WebAssembly. For general guidance on ASP.NET Core app configuration, which describes the approaches to use for Blazor Server apps, see <xref:fundamentals/environments>.
 
-When running an app locally, the environment defaults to `Development`. When the app is published, the environment defaults to Production.
+When running an app locally, the environment defaults to `Development`. When the app is published, the environment defaults to `Production`.
 
 The client-side Blazor app (**`Client`**) of a hosted Blazor WebAssembly solution determines the environment from the **`Server`** app of the solution via a middleware that communicates the environment to the browser. The **`Server`** app adds a header named `Blazor-Environment` with the environment as the value of the header. The **`Client`** app reads the header. The **`Server`** app of the solution is an ASP.NET Core app, so more information on how to configure the environment is found in <xref:fundamentals/environments>.
 
