@@ -20,11 +20,6 @@ public class EmailService : IEmailService
 
     public void SendEmail(string email)
     {
-        // Services should account for the possibility of HttpContext being null
-        // if not called from a request thread. For example, when a service is 
-        // called from a BackgroundWorker, the HttpContext is null.
-        // The service should either throw or gracefully handle a null HttpContext.
-
         var request = _httpContextAccessor.HttpContext?.Request;
         var userAgent = request?.Headers["user-agent"].ToString()
                                          ?? UserAgent;
@@ -36,6 +31,7 @@ public class EmailService : IEmailService
     {
         _logger.LogInformation($"Email sent detected user agent: {userAgent}");
 
-        // ...
+        // SendEmailAsync(...
+        await Task.CompletedTask;
     }
 }

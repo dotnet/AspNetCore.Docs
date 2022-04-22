@@ -20,8 +20,11 @@ ASP.NET Core apps access `HttpContext` through the <xref:Microsoft.AspNetCore.Ht
 This article primarily discusses using `HttpContext` in request and response flow from ASP.NET Core MVC, Razor Pages, controllers, middleware, etc. Consider the following when using `HttpContext` outside the request and response flow:
 
 * The `HttpContext` is **NOT** thread safe, accessing it from multiple threads can result in null access violations and unpredictable results.
-* The `HttpContext` may be captured outside of the request flow when using the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>.
-* <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor.HttpContext%2A?displayProperty=nameWithType> may be null if accessed outside of the request and response flow.
+* The `HttpContext` may be captured outside of the request flow when using the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>. The `IHttpContextAccessor` interface should be used with caution. `IHttpContextAccessor`:
+  * Relies on  <xref:System.Threading.AsyncLocal%601> <!--AsyncLocal<T>--> which can have a negative performance impact on asynchronous calls.
+  * Creates a dependency on "ambient state" which can make testing more difficult.
+* To access information from `HttpContext` outside the request flow, copy the information inside the request flow.
+* <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor.HttpContext%2A?displayProperty=nameWithType> may be null if accessed outside of the request flow.
 * Don't capture `IHttpContextAccessor.HttpContext` in a constructor.
 
 The following sample uses the `EmailService` to send simulated email when requested from the `/send` endpoint:
@@ -32,7 +35,9 @@ The following code shows the `EmailService` interface and implementation:
 
 [!code-csharp[](~/fundamentals/http-context/samples/6.x/HttpContextInBackgroundThread/EmailService.cs)]
 
-Requests to `/send` show the user agent making the request.
+Requests to `/send` logs the user agent making the request. In the preceding code, when the `HttpContext` is `null`, the `userAgent` string is set to `"Unknown"`. Services should account for the possibility of `HttpContext` being `null` when not called from a request thread:
+
+[!code-csharp[](~/fundamentals/http-context/samples/6.x/HttpContextInBackgroundThread/EmailService.cs?highlight=12,29-30)]
 
 The application also includes `NewsletterService`, which sends an email using `EmailService` every 30 seconds:
 
