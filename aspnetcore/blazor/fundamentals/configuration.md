@@ -15,7 +15,7 @@ This article explains configuration of Blazor apps, including app settings, auth
 
 :::moniker range=">= aspnetcore-6.0"
 
-> [!NOTE]
+> [!IMPORTANT]
 > This topic applies to Blazor WebAssembly. For general guidance on ASP.NET Core app configuration, see <xref:fundamentals/configuration/index>.
 
 Blazor WebAssembly loads configuration from the following app settings files by default:
@@ -208,12 +208,6 @@ In the app settings file, provide logging configuration. The logging configurati
     }
   }
 }
-```
-
-Add the namespace for <xref:Microsoft.Extensions.Logging?displayProperty=fullName> to `Program.cs`:
-
-```csharp
-using Microsoft.Extensions.Logging;
 ```
 
 In `Program.cs`:
