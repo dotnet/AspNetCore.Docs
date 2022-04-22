@@ -28,7 +28,6 @@ public class NewsletterService : BackgroundService
     public override async Task StopAsync(CancellationToken stoppingToken)
     {
         _timer.Change(Timeout.Infinite, 0);
-
         await base.StopAsync(stoppingToken);
     }
 }
