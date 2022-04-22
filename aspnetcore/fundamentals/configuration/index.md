@@ -82,7 +82,7 @@ The following variables are locked in early when initializing the host builders 
 
 `URLS` is notably absent from the previous list of host variables. `URLS` is read later from application config where non-prefixed environment variables override `appsettings.json`. `ASPNETCORE_` prefixed and `DOTNET_` prefixed environment variables set in application configuration are overridden by those set in host configuration.
 
-For more information, see [Change the content root, app name, and environment](xref:migration/50-to-60-samples#change-the-content-root-app-name-and-environment).
+For more information, see [Change the content root, app name, and environment](xref:migration/50-to-60-samples#change-the-content-root-app-name-and-environment) and [Change the content root, app name, and environment by environment variables or command line](xref:migration/50-to-60-samples#change-the-content-root-app-name-and-environment-by-environment-variables-or-command-line)
 
 The remaining sections in this article refer to application configuration.
 
