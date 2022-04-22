@@ -5,7 +5,7 @@ description: Learn about logging in Blazor apps, including configuration and how
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/21/2022
+ms.date: 04/22/2022
 no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/fundamentals/logging
 ---
@@ -472,36 +472,7 @@ Run the app again. Select the the **`Log Messages`** button. Notice that the log
 
 ### Log scopes
 
-[Log scopes](xref:fundamentals/logging/index#log-scopes) aren't supported in Blazor apps. However, a [custom logger](#custom-logger-provider) can be built to provide log scopes. 
-
-<!-- HOLD FOR FUTURE PRODUCT FEATURE
-
-In the `IncrementCount` method of the app's `Counter` component (`Pages/Counter.razor`):
-
-```csharp
-logger.LogInformation("Someone has clicked me!");
-
-using (logger.BeginScope("Custom Log Scope"))
-{
-    logger.LogInformation("Someone has clicked me in a log scope!");
-    logger.LogInformation("Yes! I was clicked in a scope!");
-}
-
-logger.LogInformation("Someone has clicked me!");
-```
-
-Developer tools console output:
-
-> info: BlazorSample.Pages.Counter[0]
-> Someone has clicked me!
-> info: BlazorSample.Pages.Counter[0]
-> Custom Log Scope => Someone has clicked me in a log scope!
-> info: BlazorSample.Pages.Counter[0]
-> Custom Log Scope => Yes! I was clicked in a scope!
-> info: BlazorSample.Pages.Counter[0]
-> Someone has clicked me!
-
--->
+The Blazor WebAssembly developer tools console logger doesn't support [log scopes](xref:fundamentals/logging/index#log-scopes). However, you can build a [custom logger](#custom-logger-provider) to support log scopes in an app.
 
 ## Hosted Blazor WebAssembly logging
 
