@@ -148,7 +148,16 @@ public class AuthInterceptor : Interceptor
         ClientInterceptorContext<TRequest, TResponse> context,
         AsyncUnaryCallContinuation<TRequest, TResponse> continuation)
     {
-        context.Options.Metadata.Add("Authorization", $"Bearer {_tokenProvider.GetToken()}");
+        if(context.Options.Headers == null)
+        {
+            context = new ClientInterceptorContext<TRequest, TResponse>(
+                context.Method,
+                context.Host,
+                context.Options.WithHeaders(new Metadata()));
+        }
+
+        context.Options.Headers!.Add("Authorization", $"Bearer {_tokenProvider.GetToken()}");
+
         return continuation(request, context);
     }
 }
@@ -405,7 +414,16 @@ public class AuthInterceptor : Interceptor
         ClientInterceptorContext<TRequest, TResponse> context,
         AsyncUnaryCallContinuation<TRequest, TResponse> continuation)
     {
-        context.Options.Metadata.Add("Authorization", $"Bearer {_tokenProvider.GetToken()}");
+        if(context.Options.Headers == null)
+        {
+            context = new ClientInterceptorContext<TRequest, TResponse>(
+                context.Method,
+                context.Host,
+                context.Options.WithHeaders(new Metadata()));
+        }
+        
+        context.Options.Headers!.Add("Authorization", $"Bearer {_tokenProvider.GetToken()}");
+
         return continuation(request, context);
     }
 }
