@@ -171,16 +171,7 @@ In `Program.cs`:
 
 ```csharp
 builder.Logging.AddFilter((provider, category, logLevel) =>
-{
-    if (category.Equals("CustomCategory2") && logLevel == LogLevel.Information)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-});
+    category.Equals("CustomCategory2") && logLevel == LogLevel.Information);
 ```
 
 In the `IncrementCount` method of the app's `Counter` component (`Pages/Counter.razor`) that injects an <xref:Microsoft.Extensions.Logging.ILoggerFactory> as `LoggerFactory`:
@@ -199,20 +190,18 @@ var logger4 = LoggerFactory.CreateLogger("CustomCategory2");
 logger4.LogWarning("Someone has clicked me!");
 ```
 
-In the developer tools console output, the filter only permits logging for the `CustomCategory2` category <xref:Microsoft.Extensions.Logging.LogLevel.Warning> log level message:
+In the developer tools console output, the filter only permits logging for the `CustomCategory2` category and <xref:Microsoft.Extensions.Logging.LogLevel.Warning> log level message:
 
 > :::no-loc text="info: CustomCategory2[0]":::
 > :::no-loc text="Someone has clicked me!":::
 
-The app can configure log filtering for specific namespaces.
-
-For example, set the log level to <xref:Microsoft.Extensions.Logging.LogLevel.Trace> in `Program.cs`:
+The app can also configure log filtering for specific namespaces. For example, set the log level to <xref:Microsoft.Extensions.Logging.LogLevel.Trace> in `Program.cs`:
 
 ```csharp
 builder.Logging.SetMinimumLevel(LogLevel.Trace);
 ```
 
-Developer tools console output at the **Verbose** level includes <xref:Microsoft.AspNetCore.Components.RenderTree> logging messages at the <xref:Microsoft.Extensions.Logging.LogLevel.Trace> log level, such as the following:
+Normally at the <xref:Microsoft.Extensions.Logging.LogLevel.Trace> log level, developer tools console output at the **Verbose** level includes <xref:Microsoft.AspNetCore.Components.RenderTree> logging messages, such as the following:
 
 > :::no-loc text="dbug: Microsoft.AspNetCore.Components.RenderTree.Renderer[3]":::
 > :::no-loc text="Rendering component 14 of type Microsoft.AspNetCore.Components.Web.HeadOutlet":::
@@ -233,7 +222,7 @@ In `Program.cs`, logging messages specific to <xref:Microsoft.AspNetCore.Compone
       ));
   ```
 
-After ***either*** of the preceding filter configurations, the console output at the **Verbose** level doesn't show logging messages from the <xref:Microsoft.AspNetCore.Components.RenderTree> API.
+After ***either*** of the preceding filters is added to the app, the console output at the **Verbose** level doesn't show logging messages from the <xref:Microsoft.AspNetCore.Components.RenderTree> API.
 
 ### Custom logger provider
 
