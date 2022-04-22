@@ -120,9 +120,10 @@ The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.d
 
 * Press Ctrl+C at the command prompt to stop the app.
 
-## Run in a Linux container
+## Run in a Linux container or Windows container
 
-* In the Docker client, [switch to Linux containers](https://docs.docker.com/desktop/windows/#switch-between-windows-and-linux-containers).
+* To run in a Linux container, in the Docker client, [switch to Linux containers](https://docs.docker.com/desktop/windows/#switch-between-windows-and-linux-containers).
+* To run in a Windows container, in the Docker client, [switch to Windows containers](https://docs.docker.com/desktop/windows/#switch-between-windows-and-linux-containers).
 
 * Navigate to the Dockerfile folder at *dotnet-docker/samples/aspnetapp*.
 
@@ -143,21 +144,6 @@ The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.d
   * Map port 5000 on the local machine to port 80 in the container.
   * Name the container aspnetcore_sample.
   * Specify the aspnetapp image.
-
-* Go to `http://localhost:5000` in a browser to test the app.
-
-## Run in a Windows container
-
-* In the Docker client, [switch to Windows containers](https://docs.docker.com/desktop/windows/#switch-between-windows-and-linux-containers).
-
-Navigate to the docker file folder at `dotnet-docker/samples/aspnetapp`.
-
-* Run the following commands to build and run the sample in Docker:
-
-  ```console
-  docker build -t aspnetapp .
-  docker run -it --rm -p 5000:80 --name aspnetcore_sample aspnetapp
-  ```
 
 * Go to `http://localhost:5000` in a browser to test the app.
 
