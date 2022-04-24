@@ -192,7 +192,7 @@ Razor Pages, by default, bind properties only with non-`GET` verbs. Binding to p
 
 [!INCLUDE[](~/includes/bind-get.md)]
 
-Reviewing the `Pages/Create.cshtml` view file:
+Reviewing the `Pages/Customers/Create.cshtml` view file:
 
 [!code-cshtml[](index/6.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml?highlight=3,9)]
 
@@ -404,11 +404,11 @@ The generated namespace for the `Pages/Customers/Edit.cshtml` Razor Page is the 
 
 `@namespace` *also works with conventional Razor views.*
 
-Consider the `Pages/Create.cshtml` view file:
+Consider the `Pages/Customers/Create.cshtml` view file:
 
 [!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create3.cshtml?highlight=2-3)]
 
-The updated `Pages/Create.cshtml` view file with `_ViewImports.cshtml` and the preceding layout file:
+The updated `Pages/Customers/Create.cshtml` view file with `_ViewImports.cshtml` and the preceding layout file:
 
 [!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create4.cshtml?highlight=2)]
 
