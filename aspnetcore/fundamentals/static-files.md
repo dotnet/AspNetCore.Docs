@@ -72,6 +72,37 @@ The following markup references `MyStaticFiles/images/red-rose.jpg`:
 
 To serve files from multiple locations, see [Serve files from multiple locations](#serve-files-from-multiple-locations).
 
+### Serve files from multiple paths
+
+There may be times when you need to serve static files from more than one directory. It might be tempting to just add two instances of the  <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> middleware to handle two or more directories:
+
+```csharp
+// DO NOT DO THIS
+app.UseStaticFiles();
+app.UseStaticFiles(new StaticFileOptions()
+{
+  FileProvider = new PhysicalFileProvider(
+    Path.Combine(builder.Environment.ContentRootPath, @"Other"))
+});
+```
+
+Some of the ASP.NET Core infrastructure depends on a single <xref:Microsoft.Extensions.FileProviders.IFileProvider> for the WebRoot (including the asp-append-version tag helper). The correct way of handling this is to assign the <xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.WebRootFileProvider> with the multiple paths. For example:
+
+```csharp
+var webRootProvider = new PhysicalFileProvider(builder.Environment.WebRootPath);
+var newPathProvider = new PhysicalFileProvider(
+  Path.Combine(builder.Environment.ContentRootPath, @"Other"));
+
+app.Environment.WebRootFileProvider = new CompositeFileProvider(
+    webRootProvider,
+    newPathProvider);
+
+app.UseStaticFiles();
+```
+
+This allows that any static files will use the <xref:Microsoft.Extensions.FileProviders.CompositeFileProvider> to find the files instead of just in the `wwwroot` folder which is the default.
+
+
 ### Set HTTP response headers
 
 A <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> object can be used to set HTTP response headers. In addition to configuring static file serving from the [web root](xref:fundamentals/index#web-root), the following code sets the [Cache-Control](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control) header:
