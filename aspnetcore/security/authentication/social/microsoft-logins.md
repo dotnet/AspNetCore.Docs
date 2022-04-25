@@ -155,7 +155,7 @@ Run the app and select **Log in**. An option to sign in with Microsoft appears. 
 
 Tap **Yes** and you will be redirected back to the web site where you can set your email.
 
-You are now logged in using your Microsoft credentials:
+You are now logged in using your Microsoft credentials.
 
 [!INCLUDE[](includes/chain-auth-providers.md)]
 
