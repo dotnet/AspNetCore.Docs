@@ -874,7 +874,7 @@ Create a class derived from <xref:Microsoft.AspNetCore.Components.Forms.FieldCss
 
 `CustomFieldClassProvider.cs`:
 
-[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/CustomFieldClassProvider.cs?highlight=11)]
+[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/CustomFieldClassProvider.cs?highlight=10)]
 
 Set the `CustomFieldClassProvider` class as the Field CSS Class Provider on the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> instance with <xref:Microsoft.AspNetCore.Components.Forms.EditContextFieldClassExtensions.SetFieldCssClassProvider%2A>.
 
@@ -886,7 +886,7 @@ The preceding example checks the validity of all form fields and applies a style
 
 `CustomFieldClassProvider2.cs`:
 
-[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/CustomFieldClassProvider2.cs?highlight=9,16)]
+[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/CustomFieldClassProvider2.cs?highlight=8,15)]
 
 Add an additional property to `ExampleModel`, for example:
 
@@ -928,7 +928,7 @@ In the following example:
 
 `CustomFieldClassProvider3.cs`:
 
-[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/CustomFieldClassProvider3.cs?highlight=17-24)]
+[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/CustomFieldClassProvider3.cs?highlight=16-23)]
 
 Update the `EditContext` instance in the component's `OnInitialized` method to use the preceding Field CSS Class Provider:
 

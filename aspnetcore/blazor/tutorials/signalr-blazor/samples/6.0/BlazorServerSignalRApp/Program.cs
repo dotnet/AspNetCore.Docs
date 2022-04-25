@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
 using BlazorServerSignalRApp.Data;
 using Microsoft.AspNetCore.ResponseCompression;
 using BlazorServerSignalRApp.Hubs;

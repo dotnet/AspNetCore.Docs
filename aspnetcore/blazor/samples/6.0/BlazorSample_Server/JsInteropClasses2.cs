@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using Microsoft.JSInterop;
 
 public class JsInteropClasses2
