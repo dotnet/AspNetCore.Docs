@@ -194,7 +194,9 @@ In the following example:
 >
 > * Accessing the apps directly at the example host domains, `firstapp.com` and `secondapp.com`.
 > * Certificates for the client apps to enable TLS security (HTTPS).
-> * Configuring the server app as a Razor Pages app.
+> * Configuring the server app as a Razor Pages app for the following features:
+>   * Integration of Razor components into Razor pages.
+>   * Prerendering Razor components.
 >
 > The preceding configurations are beyond the scope of this article. For more information, see the following resources:
 > 
