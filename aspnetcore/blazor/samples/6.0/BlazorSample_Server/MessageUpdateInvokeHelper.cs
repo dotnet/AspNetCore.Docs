@@ -1,4 +1,3 @@
-using System;
 using Microsoft.JSInterop;
 
 public class MessageUpdateInvokeHelper
