@@ -262,6 +262,7 @@ For an alternative approach suited to sharing data in memory and across componen
 
 ## Additional resources
 
+* [Parameter change detection and additional guidance on Razor component rendering](xref:blazor/components/rendering)
 * <xref:blazor/forms-validation>
 * [Binding to radio buttons in a form](xref:blazor/forms-validation#radio-buttons)
 * [Binding `InputSelect` options to C# object `null` values](xref:blazor/forms-validation#binding-inputselect-options-to-c-object-null-values)
@@ -457,6 +458,7 @@ For an alternative approach suited to sharing data in memory and across componen
 
 ## Additional resources
 
+* [Parameter change detection and additional guidance on Razor component rendering](xref:blazor/components/rendering)
 * <xref:blazor/forms-validation>
 * [Binding to radio buttons in a form](xref:blazor/forms-validation#radio-buttons)
 * [Binding `InputSelect` options to C# object `null` values](xref:blazor/forms-validation#binding-inputselect-options-to-c-object-null-values)
@@ -652,6 +654,7 @@ For an alternative approach suited to sharing data in memory and across componen
 
 ## Additional resources
 
+* [Parameter change detection and additional guidance on Razor component rendering](xref:blazor/components/rendering)
 * <xref:blazor/forms-validation>
 * [Binding to radio buttons in a form](xref:blazor/forms-validation#radio-buttons)
 * [Binding `InputSelect` options to C# object `null` values](xref:blazor/forms-validation#binding-inputselect-options-to-c-object-null-values)
