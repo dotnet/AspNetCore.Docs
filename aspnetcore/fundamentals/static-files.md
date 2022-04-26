@@ -72,6 +72,7 @@ The following markup references `MyStaticFiles/images/red-rose.jpg`:
 
 To serve files from multiple locations, see [Serve files from multiple locations](#serve-files-from-multiple-locations).
 
+<!--
 ### Serve files from multiple paths
 
 There may be times when you need to serve static files from more than one directory. It might be tempting to just add two instances of the  <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> middleware to handle two or more directories:
@@ -101,7 +102,7 @@ app.UseStaticFiles();
 ```
 
 This allows that any static files will use the <xref:Microsoft.Extensions.FileProviders.CompositeFileProvider> to find the files instead of just in the `wwwroot` folder which is the default.
-
+-->
 
 ### Set HTTP response headers
 
@@ -252,9 +253,22 @@ With the preceding code, a request for a file with an unknown content type is re
 
 ## Serve files from multiple locations
 
-`UseStaticFiles` and `UseFileServer` default to the file provider pointing at `wwwroot`. Additional instances of `UseStaticFiles` and `UseFileServer` can be provided with other file providers to serve files from other locations. The following example calls `UseStaticFiles` twice to serve files from both `wwwroot` and `static`:
+Consider the following Razor page which displays the `/MyStaticFiles/image3.png` file:
+
+[!code-cshtml[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Pages/Test.cshtml&highlight=3)]
+
+`UseStaticFiles` and `UseFileServer` default to the file provider pointing at `wwwroot`. Additional instances of `UseStaticFiles` and `UseFileServer` can be provided with other file providers to serve files from other locations. The following example calls `UseStaticFiles` twice to serve files from both `wwwroot` and `MyStaticFiles`:
 
 [!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_mul)]
+
+Using the preceding code:
+
+* The `/MyStaticFiles/image3.png` file is displayed.
+* The [Image Tag Helpers](xref:https:mvc/views/tag-helpers/built-in/image-tag-helper) <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ImageTagHelper.AppendVersion> is not applied because the Tag Helpers depend on <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootFileProvider>.
+
+The following code updates the `WebRootFileProvider`, which provides a version for the image:
+
+[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_mult2)]
 
 <a name="sc"></a>
 
