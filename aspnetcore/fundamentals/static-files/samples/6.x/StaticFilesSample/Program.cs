@@ -426,11 +426,6 @@ app.Environment.WebRootFileProvider = compositeProvider;
 
 app.UseStaticFiles();
 
-app.UseStaticFiles(new StaticFileOptions()
-{
-    FileProvider = new PhysicalFileProvider(
-             Path.Combine(builder.Environment.ContentRootPath, "MyStaticFiles"))
-});
 #endregion
 
 app.UseAuthorization();
