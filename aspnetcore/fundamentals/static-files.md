@@ -232,7 +232,7 @@ Consider the following Razor page which displays the `/MyStaticFiles/image3.png`
 Using the preceding code:
 
 * The `/MyStaticFiles/image3.png` file is displayed.
-* The [Image Tag Helpers](xref:mvc/views/tag-helpers/built-in/image-tag-helper) <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ImageTagHelper.AppendVersion> is not applied because the Tag Helpers depend on <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootFileProvider>.
+* The [Image Tag Helpers](xref:mvc/views/tag-helpers/built-in/image-tag-helper) <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ImageTagHelper.AppendVersion> is not applied because the Tag Helpers depend on <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootFileProvider>. `WebRootFileProvider` has not been updated to include the `MyStaticFiles` folder.
 
 The following code updates the `WebRootFileProvider`, which provides a version for the image:
 
