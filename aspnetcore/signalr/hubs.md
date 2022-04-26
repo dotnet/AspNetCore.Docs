@@ -120,6 +120,57 @@ By default, a server hub method name is the name of the .NET method. To change t
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/signalr/hubs/samples/6.x/SignalRHubsSample/Snippets/Hubs/ChatHub.cs" id="snippet_HubMethodName" highlight="1":::
 
+:::moniker range=">= aspnetcore-7.0"
+
+## Inject services into your hub
+
+Hub constructors can accept services from DI as parameters which can be stored in properties on the class for use in a hub method.
+
+When injecting multiple services for different hub methods or as an alternative way of writing your code, hub methods can also accept services from DI.
+By default hub method parameters will be inspected and resolved from DI if possible.
+
+```csharp
+services.AddSingleton<IDatabaseService, DatabaseServiceImpl>();
+
+// ...
+
+public class ChatHub : Hub
+{
+    public Task SendMessage(string user, string message, IDatabaseService dbService)
+    {
+        var userName = dbService.GetUserName(user);
+        return Clients.All.SendAsync("ReceiveMessage", userName, message);
+    }
+}
+```
+
+If this behavior is undesired it can be disabled with [DisableImplicitFromServicesParameters](xref:signalr/configuration#configure-server-options).
+If you want to be explicit about what parameters get resolved from DI in your hub methods, you can use the `DisableImplicitFromServicesParameters` option and use the `[FromServices]` attribute or a custom attribute that implements `IFromServiceMetadata` on your parameters.
+
+```csharp
+services.AddSingleton<IDatabaseService, DatabaseServiceImpl>();
+services.AddSignalR(options =>
+{
+    options.DisableImplicitFromServicesParameters = true;
+});
+
+// ...
+
+public class ChatHub : Hub
+{
+    public Task SendMessage(string user, string message, [FromServices] IDatabaseService dbService)
+    {
+        var userName = dbService.GetUserName(user);
+        return Clients.All.SendAsync("ReceiveMessage", userName, message);
+    }
+}
+```
+
+> [!NOTE]
+> This feature makes use of <xref:Microsoft.Extensions.Dependencyinjection.IServiceProviderIsService?displayProperty=nameWithType> which is optionally implemented by Dependency Injection implementations. If the DI container used by your app does not support this feature then injecting services into your hub methods will not work.
+
+:::moniker-end
+
 ## Handle events for a connection
 
 The SignalR Hubs API provides the <xref:Microsoft.AspNetCore.SignalR.Hub.OnConnectedAsync%2A> and <xref:Microsoft.AspNetCore.SignalR.Hub.OnDisconnectedAsync%2A> virtual methods to manage and track connections. Override the `OnConnectedAsync` virtual method to perform actions when a client connects to the hub, such as adding it to a group:
