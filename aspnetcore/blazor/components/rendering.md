@@ -28,7 +28,7 @@ By default, Razor components inherit from the <xref:Microsoft.AspNetCore.Compone
 
 Components inherited from <xref:Microsoft.AspNetCore.Components.ComponentBase> skip rerenders due to parameter updates if either of the following are true:
 
-* Generally, all of the parameter values are of known immutable primitive types, such as `int`, `string`, and `DateTime` (including nullable types), and haven't changed since the previous set of parameters were set. 
+* Generally, all of the parameter values are of known immutable primitive types, such as `int`, `string`, and `DateTime` (including nullable types), and haven't changed since the previous set of parameters were set.
 * The component's [`ShouldRender` method](#suppress-ui-refreshing-shouldrender) returns `false`.
 
 Blazor's framework uses a set of built-in rules for change detection, which are subject to change at any time. For more information, see the [`ChangeDetection` API in the ASP.NET Core reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ChangeDetection.cs).
@@ -129,7 +129,7 @@ By default, Razor components inherit from the <xref:Microsoft.AspNetCore.Compone
 
 Components inherited from <xref:Microsoft.AspNetCore.Components.ComponentBase> skip rerenders due to parameter updates if either of the following are true:
 
-* Generally, all of the parameter values are of known immutable primitive types, such as `int`, `string`, and `DateTime` (including nullable types), and haven't changed since the previous set of parameters were set. 
+* Generally, all of the parameter values are of known immutable primitive types, such as `int`, `string`, and `DateTime` (including nullable types), and haven't changed since the previous set of parameters were set.
 * The component's [`ShouldRender` method](#suppress-ui-refreshing-shouldrender) returns `false`.
 
 Blazor's framework uses a set of built-in rules for change detection, which are subject to change at any time. For more information, see the [`ChangeDetection` API in the ASP.NET Core reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ChangeDetection.cs).
@@ -230,7 +230,7 @@ By default, Razor components inherit from the <xref:Microsoft.AspNetCore.Compone
 
 Components inherited from <xref:Microsoft.AspNetCore.Components.ComponentBase> skip rerenders due to parameter updates if either of the following are true:
 
-* Generally, all of the parameter values are of known immutable primitive types, such as `int`, `string`, and `DateTime` (including nullable types), and haven't changed since the previous set of parameters were set. 
+* Generally, all of the parameter values are of known immutable primitive types, such as `int`, `string`, and `DateTime` (including nullable types), and haven't changed since the previous set of parameters were set.
 * The component's [`ShouldRender` method](#suppress-ui-refreshing-shouldrender) returns `false`.
 
 Blazor's framework uses a set of built-in rules for change detection, which are subject to change at any time. For more information, see the [`ChangeDetection` API in the ASP.NET Core reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ChangeDetection.cs).
