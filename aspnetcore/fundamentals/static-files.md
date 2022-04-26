@@ -223,7 +223,7 @@ With the preceding code, a request for a file with an unknown content type is re
 
 Consider the following Razor page which displays the `/MyStaticFiles/image3.png` file:
 
-[!code-cshtml[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Pages/Test.cshtml?highlight=3)]
+[!code-cshtml[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Pages/Test.cshtml?highlight=5)]
 
 `UseStaticFiles` and `UseFileServer` default to the file provider pointing at `wwwroot`. Additional instances of `UseStaticFiles` and `UseFileServer` can be provided with other file providers to serve files from other locations. The following example calls `UseStaticFiles` twice to serve files from both `wwwroot` and `MyStaticFiles`:
 
@@ -232,7 +232,7 @@ Consider the following Razor page which displays the `/MyStaticFiles/image3.png`
 Using the preceding code:
 
 * The `/MyStaticFiles/image3.png` file is displayed.
-* The [Image Tag Helpers](xref:mvc/views/tag-helpers/built-in/image-tag-helper) <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ImageTagHelper.AppendVersion> is not applied because the Tag Helpers depend on <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootFileProvider>. `WebRootFileProvider` has not been updated to include the `MyStaticFiles` folder.
+* The [Image Tag Helpers](xref:mvc/views/tag-helpers/builtin-th/image-tag-helper) <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ImageTagHelper.AppendVersion> is not applied because the Tag Helpers depend on <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootFileProvider>. `WebRootFileProvider` has not been updated to include the `MyStaticFiles` folder.
 
 The following code updates the `WebRootFileProvider`, which provides a version for the image:
 
