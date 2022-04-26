@@ -120,9 +120,10 @@ By default, a server hub method name is the name of the .NET method. To change t
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/signalr/hubs/samples/6.x/SignalRHubsSample/Snippets/Hubs/ChatHub.cs" id="snippet_HubMethodName" highlight="1":::
 
-:::moniker range=">= aspnetcore-7.0"
-
 ## Inject services into your hub
+
+> [!NOTE]
+> The following feature is only available in .NET 7.0+
 
 Hub constructors can accept services from DI as parameters which can be stored in properties on the class for use in a hub method.
 
@@ -167,9 +168,7 @@ public class ChatHub : Hub
 ```
 
 > [!NOTE]
-> This feature makes use of <xref:Microsoft.Extensions.Dependencyinjection.IServiceProviderIsService?displayProperty=nameWithType> which is optionally implemented by Dependency Injection implementations. If the DI container used by your app does not support this feature then injecting services into your hub methods will not work.
-
-:::moniker-end
+> This feature makes use of <xref:Microsoft.Extensions.Dependencyinjection.IServiceProviderIsService%2A> which is optionally implemented by Dependency Injection implementations. If the DI container used by your app does not support this feature then injecting services into your hub methods will not work.
 
 ## Handle events for a connection
 
