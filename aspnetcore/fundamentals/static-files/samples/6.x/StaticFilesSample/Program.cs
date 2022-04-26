@@ -1,4 +1,4 @@
-#define DB // DEFAULT RR RH DB DF DF2 UFS UFS2 TREE FECTP NS MUL
+#define MUL // DEFAULT RR RH DB DF DF2 UFS UFS2 TREE FECTP NS MUL
 #if NEVER
 #elif DEFAULT
 #region snippet
@@ -385,7 +385,7 @@ app.UseStaticFiles(); // Serve files from wwwroot
 app.UseStaticFiles(new StaticFileOptions
 {
     FileProvider = new PhysicalFileProvider(
-        Path.Combine(builder.Environment.ContentRootPath, "static"))
+        Path.Combine(builder.Environment.ContentRootPath, "MyStaticFiles"))
 });
 #endregion
 
