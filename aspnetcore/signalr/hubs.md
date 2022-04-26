@@ -168,7 +168,7 @@ public class ChatHub : Hub
 ```
 
 > [!NOTE]
-> This feature makes use of <xref:Microsoft.Extensions.Dependencyinjection.IServiceProviderIsService%2A> which is optionally implemented by Dependency Injection implementations. If the DI container used by your app does not support this feature then injecting services into your hub methods will not work.
+> This feature makes use of [IServiceProviderIsService](/dotnet/api/Microsoft.Extensions.Dependencyinjection.IServiceProviderIsService) which is optionally implemented by Dependency Injection implementations. If the DI container used by your app does not support this feature then injecting services into your hub methods will not work.
 
 ## Handle events for a connection
 
