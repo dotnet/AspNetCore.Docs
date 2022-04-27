@@ -373,6 +373,23 @@ Use an existing hosted Blazor solution or create a new solution from the Blazor 
   </div>
   ```
 
+  `Pages/Index.cshtml.cs`:
+
+  ```csharp
+  using Microsoft.AspNetCore.Mvc;
+  using Microsoft.AspNetCore.Mvc.RazorPages;
+
+  namespace MultipleBlazorApps.Server.Pages
+  {
+      public class IndexModel : PageModel
+      {
+          public void OnGet()
+          {
+          }
+      }
+  }
+  ```
+
 * In the server app's weather forecast controller (`Controllers/WeatherForecastController.cs`), replace the existing route (`[Route("[controller]")]`) to `WeatherForecastController` with the following routes:
 
   ```csharp
