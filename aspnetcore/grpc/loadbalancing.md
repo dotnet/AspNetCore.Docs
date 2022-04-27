@@ -94,8 +94,8 @@ A static resolver is provided by `StaticResolverFactory`. This resolver:
 ```csharp
 var factory = new StaticResolverFactory(addr => new[]
 {
-    new DnsEndPoint("localhost", 80),
-    new DnsEndPoint("localhost", 81)
+    new BalancerAddress("localhost", 80),
+    new BalancerAddress("localhost", 81)
 });
 
 var services = new ServiceCollection();
