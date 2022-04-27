@@ -12,7 +12,7 @@ uid: signalr/configuration
 
 # ASP.NET Core SignalR configuration
 
-:::moniker range="< aspnetcore-7.0"
+:::moniker range="= aspnetcore-6.0"
 
 ## JSON/MessagePack serialization options
 
