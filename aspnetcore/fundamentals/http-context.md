@@ -19,12 +19,12 @@ ASP.NET Core apps access `HttpContext` through the <xref:Microsoft.AspNetCore.Ht
 
 This article primarily discusses using `HttpContext` in request and response flow from ASP.NET Core MVC, Razor Pages, controllers, middleware, etc. Consider the following when using `HttpContext` outside the request and response flow:
 
-* The `HttpContext` is **NOT** thread safe, accessing it from multiple threads can result in null access violations and unpredictable results.
-* The `HttpContext` may be captured outside of the request flow when using the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>. The `IHttpContextAccessor` interface should be used with caution. `IHttpContextAccessor`:
+* The `HttpContext` is **NOT** thread safe, accessing it from multiple threads can result in exceptions, data corruption and generally unpredictable results.
+* The <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> interface should be used with caution. As always, the `HttpContext` must not be captured outside of the request flow.  `IHttpContextAccessor`:
   * Relies on  <xref:System.Threading.AsyncLocal%601> which can have a negative performance impact on asynchronous calls.
   * Creates a dependency on "ambient state" which can make testing more difficult.
 * <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor.HttpContext%2A?displayProperty=nameWithType> may be null if accessed outside of the request flow.
-* To access information from `HttpContext` outside the request flow, copy the information inside the request flow.
+* To access information from `HttpContext` outside the request flow, copy the information inside the request flow. Be careful to copy the actual data and not just references. For example, rather than copying a reference to an `IHeaderDictionary`, copy the relevant header values or copy the entire dictionary key by key before leaving the request flow.
 * Don't capture `IHttpContextAccessor.HttpContext` in a constructor.
 
 The following sample uses the `EmailService` to send simulated email when requested from the `/send` endpoint:

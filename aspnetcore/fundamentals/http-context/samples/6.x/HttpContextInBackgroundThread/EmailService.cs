@@ -11,20 +11,25 @@ public class EmailService : IEmailService
     private readonly ILogger<EmailService> _logger;
     private const string UserAgent = "Unknown";
 
-    public EmailService(IHttpContextAccessor httpContextAccessor,
-                                     ILogger<EmailService> logger)
+    public EmailService(IHttpContextAccessor httpContextAccessor, ILogger<EmailService> logger)
     {
         _httpContextAccessor = httpContextAccessor;
         _logger = logger;
     }
 
-    public void SendEmail(string email)
+    // The userAgent should come directly from the caller to the service if possible.
+    // An explicit parameter makes the API more usable outside of the request flow, is
+    // better for performance and is easier to reason about than relying on ambient state.
+    public void SendEmail(string email, string? userAgent = null)
     {
         var request = _httpContextAccessor.HttpContext?.Request;
-        var userAgent = request?.Headers["user-agent"].ToString()
-                                         ?? UserAgent;
+        var userAgent = request?.Headers["user-agent"].ToString();
+        if (string.IsNullOrEmpty(userAgent))
+        {
+            userAgent = "Unkown";
+        }
 
-        _ = SendEmailCoreAsync(userAgent);
+        await _taskQueue.QueueBackgroundWorkItemAsync(cancellationToken => SendEmailCoreAsync(userAgent, cancellationToken));
     }
 
     private async Task SendEmailCoreAsync(string userAgent)
