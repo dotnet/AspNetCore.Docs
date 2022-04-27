@@ -100,7 +100,7 @@ The Blazor WebAssembly template creates the initial files and directory structur
 
 Additional files and folders may appear in an app produced from a Blazor WebAssembly project template when additional options are configured. For example, generating an app with ASP.NET Core Identity includes additional assets for authentication and authorization features.
 
-## Dual Blazor Server/Blazor WebAssembly solution
+## Dual Blazor Server/Blazor WebAssembly app
 
 To create an app that can run as either a Blazor Server app or a Blazor WebAssembly app, one approach is to place all of the app logic and components into a [Razor class library (RCL)](xref:blazor/components/class-libraries) and reference the RCL from separate Blazor Server and Blazor WebAssembly projects. For any common services that differ based on the hosting model, define the service interfaces in the RCL and implement the services in the Blazor Server and Blazor WebAssembly projects.
 
@@ -200,7 +200,7 @@ The Blazor WebAssembly template creates the initial files and directory structur
 
 Additional files and folders may appear in an app produced from a Blazor WebAssembly project template when additional options are configured. For example, generating an app with ASP.NET Core Identity includes additional assets for authentication and authorization features.
 
-## Dual Blazor Server/Blazor WebAssembly solution
+## Dual Blazor Server/Blazor WebAssembly app
 
 To create an app that can run as either a Blazor Server app or a Blazor WebAssembly app, one approach is to place all of the app logic and components into a [Razor class library (RCL)](xref:blazor/components/class-libraries) and reference the RCL from separate Blazor Server and Blazor WebAssembly projects. For any common services that differ based on the hosting model, define the service interfaces in the RCL and implement the services in the Blazor Server and Blazor WebAssembly projects.
 
@@ -295,7 +295,7 @@ The Blazor WebAssembly template creates the initial files and directory structur
 
 Additional files and folders may appear in an app produced from a Blazor WebAssembly project template when additional options are configured. For example, generating an app with ASP.NET Core Identity includes additional assets for authentication and authorization features.
 
-## Dual Blazor Server/Blazor WebAssembly solution
+## Dual Blazor Server/Blazor WebAssembly app
 
 To create an app that can run as either a Blazor Server app or a Blazor WebAssembly app, one approach is to place all of the app logic and components into a [Razor class library (RCL)](xref:blazor/components/class-libraries) and reference the RCL from separate Blazor Server and Blazor WebAssembly projects. For any common services that differ based on the hosting model, define the service interfaces in the RCL and implement the services in the Blazor Server and Blazor WebAssembly projects.
 
