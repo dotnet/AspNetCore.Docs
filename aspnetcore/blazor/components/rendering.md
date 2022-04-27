@@ -28,17 +28,10 @@ By default, Razor components inherit from the <xref:Microsoft.AspNetCore.Compone
 
 Components inherited from <xref:Microsoft.AspNetCore.Components.ComponentBase> skip rerenders due to parameter updates if either of the following are true:
 
-* All of the parameters are of the following immutable types, whether nullable or nonnullable, and haven't changed since the previous set of parameters were set:
-
-  * <xref:System.DateTime>
-  * [`decimal`](xref:System.Decimal)
-  * <xref:System.Guid>
-  * [`string`](xref:System.String)
-  * <xref:System.Type>
-  * Any [primitive type](/dotnet/api/system.type.isprimitive)
+* All of the parameters are of known immutable types or any [primitive type](/dotnet/api/system.type.isprimitive), whether nullable or nonnullable, and haven't changed since the previous set of parameters were set.
 
   > [!NOTE]
-  > Blazor's framework uses a set of built-in rules, including the list of parameter types, for change detection. These rules are subject to change at any time. For more information, see the [`ChangeDetection` API in the ASP.NET Core reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ChangeDetection.cs).
+  > Blazor's framework uses a set of built-in rules and parameter types for change detection. These rules and the types are subject to change at any time. For more information, see the [`ChangeDetection` API in the ASP.NET Core reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ChangeDetection.cs).
   >
   > [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
@@ -138,17 +131,10 @@ By default, Razor components inherit from the <xref:Microsoft.AspNetCore.Compone
 
 Components inherited from <xref:Microsoft.AspNetCore.Components.ComponentBase> skip rerenders due to parameter updates if either of the following are true:
 
-* All of the parameters are of the following immutable types, whether nullable or nonnullable, and haven't changed since the previous set of parameters were set:
-
-  * <xref:System.DateTime>
-  * [`decimal`](xref:System.Decimal)
-  * <xref:System.Guid>
-  * [`string`](xref:System.String)
-  * <xref:System.Type>
-  * Any [primitive type](/dotnet/api/system.type.isprimitive)
+* All of the parameters are of known immutable types or any [primitive type](/dotnet/api/system.type.isprimitive), whether nullable or nonnullable, and haven't changed since the previous set of parameters were set.
 
   > [!NOTE]
-  > Blazor's framework uses a set of built-in rules, including the list of parameter types, for change detection. These rules are subject to change at any time. For more information, see the [`ChangeDetection` API in the ASP.NET Core reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ChangeDetection.cs).
+  > Blazor's framework uses a set of built-in rules and parameter types for change detection. These rules and the types are subject to change at any time. For more information, see the [`ChangeDetection` API in the ASP.NET Core reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ChangeDetection.cs).
   >
   > [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
@@ -252,17 +238,10 @@ By default, Razor components inherit from the <xref:Microsoft.AspNetCore.Compone
 
 Components inherited from <xref:Microsoft.AspNetCore.Components.ComponentBase> skip rerenders due to parameter updates if either of the following are true:
 
-* All of the parameters are of the following immutable types, whether nullable or nonnullable, and haven't changed since the previous set of parameters were set:
-
-  * <xref:System.DateTime>
-  * [`decimal`](xref:System.Decimal)
-  * <xref:System.Guid>
-  * [`string`](xref:System.String)
-  * <xref:System.Type>
-  * Any [primitive type](/dotnet/api/system.type.isprimitive)
+* All of the parameters are of known immutable types or any [primitive type](/dotnet/api/system.type.isprimitive), whether nullable or nonnullable, and haven't changed since the previous set of parameters were set.
 
   > [!NOTE]
-  > Blazor's framework uses a set of built-in rules, including the list of parameter types, for change detection. These rules are subject to change at any time. For more information, see the [`ChangeDetection` API in the ASP.NET Core reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ChangeDetection.cs).
+  > Blazor's framework uses a set of built-in rules and parameter types for change detection. These rules and the types are subject to change at any time. For more information, see the [`ChangeDetection` API in the ASP.NET Core reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ChangeDetection.cs).
   >
   > [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
