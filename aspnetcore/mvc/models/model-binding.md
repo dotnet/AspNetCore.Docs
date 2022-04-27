@@ -309,7 +309,7 @@ See also the discussion of the `[Required]` attribute in [Model validation](xref
 
 ### [BindNever] attribute
 
-Can only be applied to model properties, not to method parameters. Prevents model binding from setting a model's property. Here's an example:
+Can be applied to a property or a type. Prevents model binding from setting a model's property. When applied to a type, the model binding system excludes all properties the type defines. Here's an example:
 
 :::code language="csharp" source="model-binding/samples/6.x/ModelBindingSample/Snippets/InstructorBindNever.cs" id="snippet_Class" highlight="3":::
 
