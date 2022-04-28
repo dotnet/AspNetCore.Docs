@@ -59,7 +59,7 @@ The following code displays the enabled configuration providers in the order the
 
 ## Host configuration
 
-The following list contains host configuration sources from lowest to highest priority:
+The following list contains the default host configuration sources from lowest to highest priority:
 
 1. `DOTNET_` prefixed environment variables
 1. Command-line arguments
@@ -80,7 +80,9 @@ The following variables are locked in early when initializing the host builders 
 * Whether to scan for [hosting startup assemblies](xref:fundamentals/configuration/platform-specific-configuration) and which assemblies to scan for.
 * Variables read by app and library code from [HostBuilderContext.Configuration](xref:Microsoft.Extensions.Hosting.HostBuilderContext.Configuration) in [IHostBuilder.ConfigureAppConfiguration](xref:Microsoft.Extensions.Hosting.IHostBuilder.ConfigureAppConfiguration%2A) callbacks.
 
-`URLS` is notably absent from the previous list of host variables. `URLS` is read later from application config where non-prefixed environment variables override `appsettings.json`. `ASPNETCORE_` prefixed and `DOTNET_` prefixed environment variables set in application configuration are overridden by those set in host configuration.
+Every other host setting is read from application config instead of host config.
+
+`URLS` is one of the many common host settings that is not a bootstrap setting. Like every other host setting not in the previous list, `URLS` is read later from application config. Host config is a fallback for application config, so host config can be used to set `URLS`, but it will be overridden by any configuration source in application config like `appsettings.json`.
 
 For more information, see [Change the content root, app name, and environment](xref:migration/50-to-60-samples#change-the-content-root-app-name-and-environment) and [Change the content root, app name, and environment by environment variables or command line](xref:migration/50-to-60-samples#change-the-content-root-app-name-and-environment-by-environment-variables-or-command-line)
 
