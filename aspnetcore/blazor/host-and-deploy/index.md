@@ -151,7 +151,7 @@ In other hosting scenarios, such as GitHub Pages and IIS sub-apps, the app base 
     ```
 
 > [!NOTE]
-> When using [WebApplication](xref:Microsoft.AspNetCore.Builder.WebApplication) (see <xref:migration/50-to-60#new-hosting-model>), [app.UseRouting](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A) must be called explicitly after `UsePathBase` so the routing middleware can observe the modified path before matching routes. Otherwise, routes will be matched before the path is rewritten by `UsePathBase` as described in the[Middleware Ordering](xref:fundamentals/middleware/index#order) and [Routing](xref:fundamentals/routing) docs.
+> When using <xref:Microsoft.AspNetCore.Builder.WebApplication> (see <xref:migration/50-to-60#new-hosting-model>), [`app.UseRouting`](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A) must be called after `UsePathBase` so that the routing middleware can observe the modified path before matching routes. Otherwise, routes are matched before the path is rewritten by `UsePathBase` as described in the [Middleware Ordering](xref:fundamentals/middleware/index#order) and [Routing](xref:fundamentals/routing) articles.
 
 Do ***not*** prefix links throughout the app with a forward slash. Either avoid the use of a path segment separator or use dot-slash (`./`) relative path notation:
 
