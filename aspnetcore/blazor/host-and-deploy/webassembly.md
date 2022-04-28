@@ -356,7 +356,7 @@ Use an existing hosted Blazor solution or create a new solution from the Blazor 
 
   [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-* In the server app, add an `Index` Razor page to the `Pages` folder if you plan to serve Razor Pages. If you plan to serve MVC views, add a view to the `Views` folder (not shown) and a `Home` controller (not shown) to render the `Index` view on request.
+* If you plan to serve Razor Pages pages from the server app, add an `Index` Razor page to the `Pages` folder of the server app.
 
   `Pages/Index.cshtml`:
 
@@ -389,6 +389,43 @@ Use an existing hosted Blazor solution or create a new solution from the Blazor 
       }
   }
   ```
+
+  > [!NOTE]
+  > If the app requires additional Razor Pages assets, such as a layout, styles, scripts, and imports, obtain them from an app created from the Razor Pages project template. For more information, see <xref:razor-pages/index>.
+
+* If you plan to serve MVC views from the server app, add an `Index` view and a `Home` controller.
+
+  `Views/Home/Index.cshtml`:
+
+  ```cshtml
+  @{
+      ViewData["Title"] = "Home Page";
+  }
+
+  <div>
+      <h1>Welcome</h1>
+      <p>Hello from MVC!</p>
+  </div>
+  ```
+
+  `Controllers/HomeController.cs`:
+
+  ```csharp
+  using Microsoft.AspNetCore.Mvc;
+
+  namespace MultipleBlazorApps.Server.Controllers;
+
+  public class HomeController : Controller
+  {
+      public IActionResult Index()
+      {
+          return View();
+      }
+  }
+  ```
+
+  > [!NOTE]
+  > If the app requires additional MVC assets, such as a layout, styles, scripts, and imports, obtain them from an app created from the MVC project template. For more information, see <xref:tutorials/first-mvc-app/start-mvc>.
 
 * In the server app's weather forecast controller (`Controllers/WeatherForecastController.cs`), replace the existing route (`[Route("[controller]")]`) to `WeatherForecastController` with the following routes:
 
