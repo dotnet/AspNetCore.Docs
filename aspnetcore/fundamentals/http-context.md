@@ -35,9 +35,15 @@ The following code shows the `EmailService` interface and implementation:
 
 [!code-csharp[](~/fundamentals/http-context/samples/6.x/HttpContextInBackgroundThread/EmailService.cs)]
 
-Requests to `/send` logs the user agent making the request. In the preceding code, when the `HttpContext` is `null`, the `userAgent` string is set to `"Unknown"`. Services should account for the possibility of `HttpContext` being `null` when not called from a request thread:
+Requests to `/send` logs the user agent making the request. In the preceding code, when the `HttpContext` is `null`, the `userAgent` string is set to `"Unknown"`. If possible, `HttpContext` should be explicitly passed to the service if possible. Explicitly passing in `HttpContext` data:
 
-[!code-csharp[](~/fundamentals/http-context/samples/6.x/HttpContextInBackgroundThread/EmailService.cs?highlight=12,29)]
+* Makes the service API more useable outside the request flow.
+* Is better for performance.
+* Makes the code easier to understand and reason about than relying on ambient state.
+
+When the service must access `HttpContext`, it should account for the possibility of `HttpContext` being `null` when not called from a request thread:
+
+[!code-csharp[](~/fundamentals/http-context/samples/6.x/HttpContextInBackgroundThread/EmailService.cs?highlight=10,15,24-29)]
 
 The application also includes `NewsletterService`, which sends an email using `EmailService` every 30 seconds:
 
