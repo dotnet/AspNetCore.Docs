@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using RazorPagesContacts.Models;
-#pragma warning disable CS8618
 
 namespace RazorPagesContacts.Pages.Customers
 {
+    #region snippet
     public class IndexModel : PageModel
     {
         private readonly Data.CustomerDbContext _context;
@@ -14,13 +14,14 @@ namespace RazorPagesContacts.Pages.Customers
             _context = context;
         }
 
-        public IList<Customer> Customer { get;set; }
+        public IList<Customer>? Customers { get; set; }
 
         public async Task OnGetAsync()
         {
-            Customer = await _context.Customer.ToListAsync();
+            Customers = await _context.Customer.ToListAsync();
         }
 
+        #region snippet2
         public async Task<IActionResult> OnPostDeleteAsync(int id)
         {
             var contact = await _context.Customer.FindAsync(id);
@@ -33,6 +34,7 @@ namespace RazorPagesContacts.Pages.Customers
 
             return RedirectToPage();
         }
+        #endregion
     }
+    #endregion
 }
-#pragma warning restore CS8618

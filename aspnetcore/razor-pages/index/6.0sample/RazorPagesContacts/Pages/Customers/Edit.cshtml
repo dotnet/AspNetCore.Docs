@@ -1,4 +1,4 @@
-﻿@page
+@page "{id:int}"
 @model RazorPagesContacts.Pages.Customers.EditModel
 
 @{
@@ -13,11 +13,11 @@
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Customer.Id" />
+            <input type="hidden" asp-for="Customer!.Id" />
             <div class="form-group">
-                <label asp-for="Customer.Name" class="control-label"></label>
-                <input asp-for="Customer.Name" class="form-control" />
-                <span asp-validation-for="Customer.Name" class="text-danger"></span>
+                <label asp-for="Customer!.Name" class="control-label"></label>
+                <input asp-for="Customer!.Name" class="form-control" />
+                <span asp-validation-for="Customer!.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
