@@ -2,14 +2,13 @@ namespace HttpContextInBackgroundThread;
 
 public interface IEmailService
 {
-    void SendEmail(string email);
+    Task SendEmail(string email, string? userAgent = null);
 }
 
 public class EmailService : IEmailService
 {
     private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly ILogger<EmailService> _logger;
-    private const string UserAgent = "Unknown";
 
     public EmailService(IHttpContextAccessor httpContextAccessor, ILogger<EmailService> logger)
     {
@@ -20,16 +19,18 @@ public class EmailService : IEmailService
     // The userAgent should come directly from the caller to the service if possible.
     // An explicit parameter makes the API more usable outside of the request flow, is
     // better for performance and is easier to reason about than relying on ambient state.
-    public void SendEmail(string email, string? userAgent = null)
+    public async Task SendEmail(string email, string? userAgent = null)
     {
         var request = _httpContextAccessor.HttpContext?.Request;
-        var userAgent = request?.Headers["user-agent"].ToString();
-        if (string.IsNullOrEmpty(userAgent))
+        string ? userAgentString = userAgent ?? request?.Headers["user-agent"].ToString();
+        if (string.IsNullOrEmpty(userAgentString))
         {
-            userAgent = "Unkown";
+            userAgentString = "Unkown";
         }
 
-        await _taskQueue.QueueBackgroundWorkItemAsync(cancellationToken => SendEmailCoreAsync(userAgent, cancellationToken));
+        _ = SendEmailCoreAsync(userAgentString);
+        //await _taskQueue.QueueBackgroundWorkItemAsync(cancellationToken => 
+        //                           SendEmailCoreAsync(userAgentString, cancellationToken));
     }
 
     private async Task SendEmailCoreAsync(string userAgent)
