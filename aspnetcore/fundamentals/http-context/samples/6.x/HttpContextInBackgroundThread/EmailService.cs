@@ -1,31 +1,41 @@
 namespace HttpContextInBackgroundThread;
 
+public interface IEmailService
+{
+    Task SendEmail(EmailMessage email, CancellationToken cancellationToken, string? userAgent = null);
+}
+
 public class EmailService : IEmailService
 {
     private readonly IHttpContextAccessor _httpContextAccessor;
-    private readonly ILogger<EmailService> _logger;
-    private const string? BackgroundCorrelationId = "background-correlation-id";
+    private readonly ILogger<EmailService> _logger; 
+    private readonly IAsyncConcurrentQueue<EmailMessage> _queue;
 
-    public EmailService(IHttpContextAccessor httpContextAccessor, ILogger<EmailService> logger)
+    public EmailService(IHttpContextAccessor httpContextAccessor, ILogger<EmailService> logger, IAsyncConcurrentQueue<EmailMessage> queue)
     {
         _httpContextAccessor = httpContextAccessor;
         _logger = logger;
+        _queue = queue;
     }
 
-    public void SendEmail(string email)
+    // The userAgent should come directly from the caller to the service if possible.
+    // An explicit parameter makes the API more usable outside of the request flow, is
+    // better for performance and is easier to reason about than relying on ambient state.
+    public Task SendEmail(EmailMessage email, CancellationToken cancellationToken, string? userAgent = null)
     {
-        // Services should account for the possibility of HttpContext being null if not called from a request thread.
-        // e.g. When a service is called from a BackgroundWorker the HttpContext is null.
-        // The service should either throw or gracefully handle this.
+        var request = _httpContextAccessor.HttpContext?.Request;
+        string? userAgentString = userAgent ?? request?.Headers["user-agent"].ToString();
 
-        var correlationId = _httpContextAccessor.HttpContext?.Request.Headers["X-Correlation-Id"].ToString() ?? BackgroundCorrelationId;
+        if (string.IsNullOrEmpty(userAgentString))
+        {
+            userAgentString = "Unknown";
+        }
 
-        _ = SendEmailCoreAsync(correlationId);
-    }
+        _queue.Enqueue(new EmailMessage
+        {
+            UserAgent = userAgentString,
+        });
 
-    private async Task SendEmailCoreAsync(string? correlationId)
-    {
-        _logger.LogInformation($"Email sent with correlation id: {correlationId}");
-        await Task.CompletedTask;
+        return Task.CompletedTask;
     }
 }
