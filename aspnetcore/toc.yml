@@ -332,7 +332,7 @@ items:
               - name: SignalR with Blazor
                 uid: blazor/tutorials/signalr-blazor
               - name: Microsoft Learn modules
-                href: /learn/modules/build-blazor-webassembly-visual-studio-code/
+                href: /learn/paths/build-web-apps-with-blazor/
           - name: Hosting models
             uid: blazor/hosting-models
           - name: Blazor Hybrid

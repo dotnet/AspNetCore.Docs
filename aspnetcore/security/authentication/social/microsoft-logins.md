@@ -72,7 +72,7 @@ For more information about configuration options supported by Microsoft Account 
 * Select to sign in with Microsoft. You are redirected to Microsoft for authentication. After signing in with your Microsoft Account, you will be prompted to let the app access your info:
 * Select **Yes**. You are redirected back to the web site where you can set your email.
 
-You are now logged in using your Microsoft credentials:
+You are now logged in using your Microsoft credentials.
 
 [!INCLUDE[](includes/chain-auth-providers.md)]
 
@@ -155,7 +155,7 @@ Run the app and select **Log in**. An option to sign in with Microsoft appears. 
 
 Tap **Yes** and you will be redirected back to the web site where you can set your email.
 
-You are now logged in using your Microsoft credentials:
+You are now logged in using your Microsoft credentials.
 
 [!INCLUDE[](includes/chain-auth-providers.md)]
 

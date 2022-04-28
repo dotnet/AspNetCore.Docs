@@ -17,7 +17,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 :::moniker range=">= aspnetcore-6.0"
 This is the first tutorial of a series that teaches the basics of building an ASP.NET Core Razor Pages web app.
 
-For a more advanced introduction aimed at developers who are familiar with controllers and views, see [Introduction to Razor Pages](xref:razor-pages/index).
+For a more advanced introduction aimed at developers who are familiar with controllers and views, see [Introduction to Razor Pages](xref:razor-pages/index). For a video introduction, see [Entity Framework Core for Beginners](https://www.youtube.com/playlist?list=PLdo4fOcmZ0oXCPdC3fTFA3Z79-eVH3K-s).
 
 [!INCLUDE [Choose web UI](~/includes/choose-ui-link.md)]
 

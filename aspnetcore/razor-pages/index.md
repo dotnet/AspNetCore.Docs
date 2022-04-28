@@ -114,11 +114,11 @@ The db context:
 
 [!code-csharp[](index/6.0sample/RazorPagesContacts/Data/CustomerDbContext.cs?name=snippet)]
 
-The `Pages/Create.cshtml` view file:
+The `Pages/Customers/Create.cshtml` view file:
 
 [!code-cshtml[](index/6.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml)]
 
-The `Pages/Create.cshtml.cs` page model:
+The `Pages/Customers/Create.cshtml.cs` page model:
 
 [!code-csharp[](index/6.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet)]
 
@@ -152,11 +152,11 @@ Check for validation errors.
 * If there are no errors, save the data and redirect.
 * If there are errors, show the page again with validation messages. In many cases, validation errors would be detected on the client, and never submitted to the server.
 
-The `Pages/Create.cshtml` view file:
+The `Pages/Customers/Create.cshtml` view file:
 
 [!code-cshtml[](index/6.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml)]
 
-The rendered HTML from `Pages/Create.cshtml`:
+The rendered HTML from `Pages/Customers/Create.cshtml`:
 
 [!code-html[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create4.html)]
 
@@ -192,7 +192,7 @@ Razor Pages, by default, bind properties only with non-`GET` verbs. Binding to p
 
 [!INCLUDE[](~/includes/bind-get.md)]
 
-Reviewing the `Pages/Create.cshtml` view file:
+Reviewing the `Pages/Customers/Create.cshtml` view file:
 
 [!code-cshtml[](index/6.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml?highlight=3,9)]
 
@@ -207,17 +207,17 @@ Reviewing the `Pages/Create.cshtml` view file:
 
 The associated `PageModel` class (`Index.cshtml.cs`):
 
-[!code-csharp[](index/3.0sample/RazorPagesContacts/Pages/Customers/Index.cshtml.cs?name=snippet)]
+[!code-csharp[](index/6.0sample/RazorPagesContacts/Pages/Customers/Index.cshtml.cs?name=snippet)]
 
 The `Index.cshtml` file contains the following markup:
 
-[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Index.cshtml?name=snippet_Edit)]
+[!code-cshtml[](index/6.0sample/RazorPagesContacts/Pages/Customers/Index.cshtml?name=snippet_Edit)]
 
 The `<a /a>` [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) used the `asp-route-{value}` attribute to generate a link to the Edit page. The link contains route data with the contact ID. For example, `https://localhost:5001/Edit/1`. [Tag Helpers](xref:mvc/views/tag-helpers/intro) enable server-side code to participate in creating and rendering HTML elements in Razor files.
 
 The `Index.cshtml` file contains markup to create a delete button for each customer contact:
 
-[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Index.cshtml?name=snippet_Delete)]
+[!code-cshtml[](index/6.0sample/RazorPagesContacts/Pages/Customers/Index.cshtml?name=snippet_Delete)]
 
 The rendered HTML:
 
@@ -234,7 +234,7 @@ When the button is selected, a form `POST` request is sent to the server. By con
 
 Because the `handler` is `delete` in this example, the `OnPostDeleteAsync` handler method is used to process the `POST` request. If the `asp-page-handler` is set to a different value, such as `remove`, a handler method with the name `OnPostRemoveAsync` is selected.
 
-[!code-csharp[](index/3.0sample/RazorPagesContacts/Pages/Customers/Index.cshtml.cs?name=snippet2)]
+[!code-csharp[](index/6.0sample/RazorPagesContacts/Pages/Customers/Index.cshtml.cs?name=snippet2)]
 
 The `OnPostDeleteAsync` method:
 
@@ -245,7 +245,7 @@ The `OnPostDeleteAsync` method:
 
 ### The Edit.cshtml file
 
-[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Edit.cshtml?highlight=1)]
+[!code-cshtml[](index/6.0sample/RazorPagesContacts/Pages/Customers/Edit.cshtml?highlight=1)]
 
 The first line contains the `@page "{id:int}"` directive. The routing constraint `"{id:int}"` tells the page to accept requests to the page that contain `int` route data. If a request to the page doesn't contain route data that can be converted to an `int`, the runtime returns an HTTP 404 (not found) error. To make the ID optional, append `?` to the route constraint:
 
@@ -255,7 +255,7 @@ The first line contains the `@page "{id:int}"` directive. The routing constraint
 
 The `Edit.cshtml.cs` file:
 
-[!code-csharp[](index/3.0sample/RazorPagesContacts/Pages/Customers/Edit.cshtml.cs?name=snippet)]
+[!code-csharp[](index/6.0sample/RazorPagesContacts/Pages/Customers/Edit.cshtml.cs?name=snippet)]
 
 ## Validation
 
@@ -268,7 +268,7 @@ The <xref:System.ComponentModel.DataAnnotations> namespace provides a set of bui
 
 Consider the `Customer` model:
 
-[!code-csharp[](index/3.0sample/RazorPagesContacts/Models/Customer.cs)]
+[!code-csharp[](index/6.0sample/RazorPagesContacts/Models/Customer.cs)]
 
 Using the following `Create.cshtml` view file:
 
@@ -404,11 +404,11 @@ The generated namespace for the `Pages/Customers/Edit.cshtml` Razor Page is the 
 
 `@namespace` *also works with conventional Razor views.*
 
-Consider the `Pages/Create.cshtml` view file:
+Consider the `Pages/Customers/Create.cshtml` view file:
 
 [!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create3.cshtml?highlight=2-3)]
 
-The updated `Pages/Create.cshtml` view file with `_ViewImports.cshtml` and the preceding layout file:
+The updated `Pages/Customers/Create.cshtml` view file with `_ViewImports.cshtml` and the preceding layout file:
 
 [!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create4.cshtml?highlight=2)]
 

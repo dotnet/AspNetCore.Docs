@@ -120,9 +120,10 @@ The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.d
 
 * Press Ctrl+C at the command prompt to stop the app.
 
-## Run in a Linux container
+## Run in a Linux container or Windows container
 
-* In the Docker client, [switch to Linux containers](https://docs.docker.com/desktop/windows/#switch-between-windows-and-linux-containers).
+* To run in a Linux container, right-click the System Tray's Docker client icon and select [switch to Linux containers](https://docs.docker.com/desktop/windows/#switch-between-windows-and-linux-containers).
+* To run in a Windows container, right-click the System Tray's Docker client icon and select [switch to Windows containers](https://docs.docker.com/desktop/windows/#switch-between-windows-and-linux-containers).
 
 * Navigate to the Dockerfile folder at *dotnet-docker/samples/aspnetapp*.
 
@@ -145,36 +146,6 @@ The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.d
   * Specify the aspnetapp image.
 
 * Go to `http://localhost:5000` in a browser to test the app.
-
-## Run in a Windows container
-
-* In the Docker client, [switch to Windows containers](https://docs.docker.com/desktop/windows/#switch-between-windows-and-linux-containers).
-
-Navigate to the docker file folder at `dotnet-docker/samples/aspnetapp`.
-
-* Run the following commands to build and run the sample in Docker:
-
-  ```console
-  docker build -t aspnetapp .
-  docker run -it --rm --name aspnetcore_sample aspnetapp
-  ```
-
-* For Windows containers, you need the IP address of the container (browsing to `http://localhost:5000` won't work):
-  * Open up another command prompt.
-  * Run `docker ps` to see the running containers. Verify that the "aspnetcore_sample" container is there.
-  * Run `docker exec aspnetcore_sample ipconfig` to display the IP address of the container. The output from the command looks like this example:
-
-    ```console
-    Ethernet adapter Ethernet:
-
-       Connection-specific DNS Suffix  . : contoso.com
-       Link-local IPv6 Address . . . . . : fe80::1967:6598:124:cfa3%4
-       IPv4 Address. . . . . . . . . . . : 172.29.245.43
-       Subnet Mask . . . . . . . . . . . : 255.255.240.0
-       Default Gateway . . . . . . . . . : 172.29.240.1
-    ```
-
-* Copy the container IPv4 address (for example, 172.29.245.43) and paste into the browser address bar to test the app.
 
 ## Build and deploy manually
 

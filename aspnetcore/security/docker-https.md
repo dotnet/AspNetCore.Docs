@@ -51,11 +51,11 @@ Use the following instructions for your operating system configuration.
 Generate certificate and configure local machine:
 
 ```dotnetcli
-dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p { password here }
+dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p <password>
 dotnet dev-certs https --trust
 ```
 
-In the preceding commands, replace `{ password here }` with a password.
+In the preceding commands, replace `<password>` with a password.
 
 Run the container image with ASP.NET Core configured for HTTPS in a command shell:
 

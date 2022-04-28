@@ -189,6 +189,21 @@ In the following example:
 * The initial (first) client app is the default client project of a solution created from the Blazor WebAssembly project template. The first client app is accessible in a browser from the URL `/FirstApp` on either port 5001 or with a host of `firstapp.com`.
 * A second client app is added to the solution, `SecondBlazorApp.Client`. The second client app is accessible in a browser from the URL `/SecondApp` on either port 5002 or with a host of `secondapp.com`.
 
+> [!NOTE]
+> The example shown in this section requires additional configuration for:
+>
+> * Accessing the apps directly at the example host domains, `firstapp.com` and `secondapp.com`.
+> * Certificates for the client apps to enable TLS security (HTTPS).
+> * Configuring the server app as a Razor Pages app for the following features:
+>   * Integration of Razor components into Razor pages.
+>   * Prerendering Razor components.
+>
+> The preceding configurations are beyond the scope of this article. For more information, see the following resources:
+> 
+> * [Host and deploy articles](xref:host-and-deploy/index)
+> * <xref:blazor/components/prerendering-and-integration?pivots=webassembly>
+> * <xref:security/enforcing-ssl>
+
 Use an existing hosted Blazor solution or create a new solution from the Blazor Hosted project template:
 
 * In the client app's project file, add a [`<StaticWebAssetBasePath>` property](xref:blazor/fundamentals/static-files#static-web-asset-base-path) to the `<PropertyGroup>` with a value of `FirstApp` to set the base path for the project's static assets:
@@ -270,14 +285,6 @@ Use an existing hosted Blazor solution or create a new solution from the Blazor 
 
   * The request port is either 5001 for the original client app or 5002 for the added client app.
   * The request host is either `firstapp.com` for the original client app or `secondapp.com` for the added client app.
-
-    > [!NOTE]
-    > The example shown in this section requires additional configuration for:
-    >
-    > * Accessing the apps at the example host domains, `firstapp.com` and `secondapp.com`.
-    > * Certificates for the client apps to enable TLS security (HTTPS).
-    >
-    > The required configuration is beyond the scope of this article and depends on how the solution is hosted. For more information see the [Host and deploy articles](xref:host-and-deploy/index).
 
   Place the following code where the lines were removed earlier:
 
