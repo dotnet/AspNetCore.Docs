@@ -270,14 +270,14 @@ If a prompt appears to trust the development certificate, trust the certificate 
 
 ## Visual Studio solution file (`.sln`)
 
-A *solution* is a container to organize one or more related code projects. [Visual Studio](https://visualstudio.microsoft.com/vs/) and [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/) use a solution file (`.sln`) to store settings for solutions. Solution files use a unique format and aren't intended to be edited directly.
+A *solution* is a container to organize one or more related code projects. [Visual Studio](https://visualstudio.microsoft.com/vs/) and [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/) use a solution file (`.sln`) to store settings for a solution. Solution files use a unique format and aren't intended to be edited directly.
 
-Other tooling can interact with solution files, but usually for the purpose of locating the projects in solutions:
+Other tooling can interact with solution files:
 
 * The [.NET CLI](/dotnet/core/tools/) can manipulate solution files via the [`dotnet sln` command](/dotnet/core/tools/dotnet-sln) and use the path of the solution file for various publishing, testing, and packaging commands.
-* [Visual Studio Code](https://code.visualstudio.com) can execute the `dotnet sln` command and other .NET CLI commands through its integrated terminal but doesn't use the settings in the solution file directly.
+* [Visual Studio Code](https://code.visualstudio.com) can execute the `dotnet sln` command and other .NET CLI commands through its integrated terminal but doesn't use the settings in a solution file directly.
 
-Throughout the Blazor documentation, *solution* is used to describe apps created from the Blazor WebAssembly project template with the *ASP.NET Core hosted* option enabled or from a Blazor Hybrid project template. For hosted Blazor WebAssembly apps where the developer isn't using Visual Studio or Visual Studio for Mac, the solution file can be ignored or deleted if it isn't used with .NET CLI commands.
+Throughout the Blazor documentation, *solution* is used to describe apps created from the Blazor WebAssembly project template with the *ASP.NET Core hosted* option enabled or from a Blazor Hybrid project template. Apps produced from these project templates include a solution file (`.sln`) by default. For hosted Blazor WebAssembly apps where the developer isn't using Visual Studio or Visual Studio for Mac, the solution file can be ignored or deleted if it isn't used with .NET CLI commands.
 
 For more information, see the following resources in the Visual Studio documentation:
 
@@ -539,14 +539,14 @@ If a prompt appears to trust the development certificate, trust the certificate 
 
 ## Visual Studio solution file (`.sln`)
 
-A *solution* is a container to organize one or more related code projects. [Visual Studio](https://visualstudio.microsoft.com/vs/) and [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/) use a solution file (`.sln`) to store settings for solutions. Solution files use a unique format and aren't intended to be edited directly.
+A *solution* is a container to organize one or more related code projects. [Visual Studio](https://visualstudio.microsoft.com/vs/) and [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/) use a solution file (`.sln`) to store settings for a solution. Solution files use a unique format and aren't intended to be edited directly.
 
-Other tooling can interact with solution files, but usually for the purpose of locating the projects in solutions:
+Other tooling can interact with solution files:
 
 * The [.NET CLI](/dotnet/core/tools/) can manipulate solution files via the [`dotnet sln` command](/dotnet/core/tools/dotnet-sln) and use the path of the solution file for various publishing, testing, and packaging commands.
-* [Visual Studio Code](https://code.visualstudio.com) can execute the `dotnet sln` command and other .NET CLI commands through its integrated terminal but doesn't use the settings in the solution file directly.
+* [Visual Studio Code](https://code.visualstudio.com) can execute the `dotnet sln` command and other .NET CLI commands through its integrated terminal but doesn't use the settings in a solution file directly.
 
-Throughout the Blazor documentation, *solution* is used to describe apps created from the Blazor WebAssembly project template with the *ASP.NET Core hosted* option enabled. For hosted Blazor WebAssembly apps where the developer isn't using Visual Studio or Visual Studio for Mac, the solution file can be ignored or deleted if it isn't used with .NET CLI commands.
+Throughout the Blazor documentation, *solution* is used to describe apps created from the Blazor WebAssembly project template with the *ASP.NET Core hosted* option enabled. Apps produced the project template include a solution file (`.sln`) by default. For hosted Blazor WebAssembly apps where the developer isn't using Visual Studio or Visual Studio for Mac, the solution file can be ignored or deleted if it isn't used with .NET CLI commands.
 
 For more information, see the following resources in the Visual Studio documentation:
 
@@ -785,14 +785,14 @@ When executing a hosted Blazor WebAssembly app, run the app from the solution's 
 
 ## Visual Studio solution file (`.sln`)
 
-A *solution* is a container to organize one or more related code projects. [Visual Studio](https://visualstudio.microsoft.com/vs/) and [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/) use a solution file (`.sln`) to store settings for solutions. Solution files use a unique format and aren't intended to be edited directly.
+A *solution* is a container to organize one or more related code projects. [Visual Studio](https://visualstudio.microsoft.com/vs/) and [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/) use a solution file (`.sln`) to store settings for a solution. Solution files use a unique format and aren't intended to be edited directly.
 
-Other tooling can interact with solution files, but usually for the purpose of locating the projects in solutions:
+Other tooling can interact with solution files:
 
 * The [.NET CLI](/dotnet/core/tools/) can manipulate solution files via the [`dotnet sln` command](/dotnet/core/tools/dotnet-sln) and use the path of the solution file for various publishing, testing, and packaging commands.
-* [Visual Studio Code](https://code.visualstudio.com) can execute the `dotnet sln` command and other .NET CLI commands through its integrated terminal but doesn't use the settings in the solution file directly.
+* [Visual Studio Code](https://code.visualstudio.com) can execute the `dotnet sln` command and other .NET CLI commands through its integrated terminal but doesn't use the settings in a solution file directly.
 
-Throughout the Blazor documentation, *solution* is used to describe apps created from the Blazor WebAssembly project template with the *ASP.NET Core hosted* option enabled. For hosted Blazor WebAssembly apps where the developer isn't using Visual Studio or Visual Studio for Mac, the solution file can be ignored or deleted if it isn't used with .NET CLI commands.
+Throughout the Blazor documentation, *solution* is used to describe apps created from the Blazor WebAssembly project template with the *ASP.NET Core hosted* option enabled. Apps produced the project template include a solution file (`.sln`) by default. For hosted Blazor WebAssembly apps where the developer isn't using Visual Studio or Visual Studio for Mac, the solution file can be ignored or deleted if it isn't used with .NET CLI commands.
 
 For more information, see the following resources in the Visual Studio documentation:
 
