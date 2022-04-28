@@ -265,7 +265,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 ASP.NET Core Identity:
 
 * Is an API that supports user interface (UI) login functionality.
-* Is meant to be used together with IdentityServer4
+* Is designed to be used together with [Duende IdentityServer4](https://duendesoftware.com/products/identityserver).
 * Manages users, passwords, profile data, roles, claims, tokens, email confirmation, and more.
 
 Users can create an account with the login information stored in Identity or they can use an external login provider. Supported external login providers include [Facebook, Google, Microsoft Account, and Twitter](xref:security/authentication/social/index).
@@ -280,7 +280,7 @@ In this topic, you learn how to use Identity to register, log in, and log out a 
 
 [Microsoft identity platform](/azure/active-directory/develop/) is:
 * An evolution of the Azure Active Directory (Azure AD) developer platform.
-* An alternative identity solution, which can be used for authentication and authorization in ASP.NET Core applications.
+* An alternative identity solution for authentication and authorization in ASP.NET Core applications.
 
 [!INCLUDE[](~/includes/IdentityServer4.md)]
 
