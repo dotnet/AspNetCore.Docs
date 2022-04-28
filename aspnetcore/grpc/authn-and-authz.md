@@ -367,7 +367,9 @@ private static GrpcChannel CreateAuthenticatedChannel(string address)
 
 #### Bearer token with gRPC client factory
 
-gRPC client factory can create clients that send a bearer token using `AddCallCredentials`. The delegate passed to `AddCallCredentials` is executed for each gRPC call:
+gRPC client factory can create clients that send a bearer token using `AddCallCredentials`. This method is available in [Grpc.Net.ClientFactory](https://www.nuget.org/packages/Grpc.Net.ClientFactory) version 2.46.0 or later.
+
+The delegate passed to `AddCallCredentials` is executed for each gRPC call:
 
 ```csharp
 services
