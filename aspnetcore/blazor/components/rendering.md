@@ -30,10 +30,9 @@ Components inherited from <xref:Microsoft.AspNetCore.Components.ComponentBase> s
 
 * All of the parameters are [verifiably immutable types](/dotnet/csharp/language-reference/builtin-types/unmanaged-types) or any [primitive type](/dotnet/api/system.type.isprimitive) that hasn't changed since the previous set of parameters were set.
 
-  > [!NOTE]
-  > Blazor's framework uses a set of built-in rules and parameter types for change detection. These rules and the types are subject to change at any time. For more information, see the [`ChangeDetection` API in the ASP.NET Core reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ChangeDetection.cs).
-  >
-  > [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+  Blazor's framework uses a set of built-in rules and parameter types for change detection. These rules and the types are subject to change at any time. For more information, see the [`ChangeDetection` API in the ASP.NET Core reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ChangeDetection.cs).
+  
+  [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 * The component's [`ShouldRender` method](#suppress-ui-refreshing-shouldrender) returns `false`.
 
@@ -133,10 +132,9 @@ Components inherited from <xref:Microsoft.AspNetCore.Components.ComponentBase> s
 
 * All of the parameters are [verifiably immutable types](/dotnet/csharp/language-reference/builtin-types/unmanaged-types) or any [primitive type](/dotnet/api/system.type.isprimitive) that hasn't changed since the previous set of parameters were set.
 
-  > [!NOTE]
-  > Blazor's framework uses a set of built-in rules and parameter types for change detection. These rules and the types are subject to change at any time. For more information, see the [`ChangeDetection` API in the ASP.NET Core reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ChangeDetection.cs).
-  >
-  > [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+  Blazor's framework uses a set of built-in rules and parameter types for change detection. These rules and the types are subject to change at any time. For more information, see the [`ChangeDetection` API in the ASP.NET Core reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ChangeDetection.cs).
+
+  [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 * The component's [`ShouldRender` method](#suppress-ui-refreshing-shouldrender) returns `false`.
 
@@ -240,10 +238,9 @@ Components inherited from <xref:Microsoft.AspNetCore.Components.ComponentBase> s
 
 * All of the parameters are [verifiably immutable types](/dotnet/csharp/language-reference/builtin-types/unmanaged-types) or any [primitive type](/dotnet/api/system.type.isprimitive) that hasn't changed since the previous set of parameters were set.
 
-  > [!NOTE]
-  > Blazor's framework uses a set of built-in rules and parameter types for change detection. These rules and the types are subject to change at any time. For more information, see the [`ChangeDetection` API in the ASP.NET Core reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ChangeDetection.cs).
-  >
-  > [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+  Blazor's framework uses a set of built-in rules and parameter types for change detection. These rules and the types are subject to change at any time. For more information, see the [`ChangeDetection` API in the ASP.NET Core reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ChangeDetection.cs).
+
+  [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 * The component's [`ShouldRender` method](#suppress-ui-refreshing-shouldrender) returns `false`.
 
