@@ -32,7 +32,7 @@ This article describes tools for building Blazor apps on various platforms.
 
 1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app.
 
-   When running a hosted Blazor WebAssembly solution in Visual Studio, the startup project of the solution is the **`Server`** project.
+   When running a hosted Blazor WebAssembly [solution](#visual-studio-solution-file-sln) in Visual Studio, the startup project of the solution is the **`Server`** project.
 
 For more information on trusting the ASP.NET Core HTTPS development certificate, see <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos>.
 
@@ -131,7 +131,7 @@ Use the [.NET command-line interface (CLI)](/dotnet/core/tools/) to execute comm
 
    **Hosted Blazor WebAssembly launch and task configuration**
 
-   For hosted Blazor WebAssembly solutions, add (or move) the `.vscode` folder with `launch.json` and `tasks.json` files to the solution's parent folder, which is the folder that contains the typical project folders: `Client`, `Server`, and `Shared`. Update or confirm that the configuration in the `launch.json` and `tasks.json` files execute a hosted Blazor WebAssembly app from the **`Server`** project.
+   For hosted Blazor WebAssembly [solutions](#visual-studio-solution-file-sln), add (or move) the `.vscode` folder with `launch.json` and `tasks.json` files to the solution's parent folder, which is the folder that contains the typical project folders: `Client`, `Server`, and `Shared`. Update or confirm that the configuration in the `launch.json` and `tasks.json` files execute a hosted Blazor WebAssembly app from the **`Server`** project.
 
    > [!IMPORTANT]
    > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
@@ -268,6 +268,22 @@ If a prompt appears to trust the development certificate, trust the certificate 
 
 :::zone-end
 
+## Visual Studio solution file (`.sln`)
+
+A *solution* is a container to organize one or more related code projects. [Visual Studio](https://visualstudio.microsoft.com/vs/) and [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/) use a solution file (`.sln`) to store settings for a solution. Solution files use a unique format and aren't intended to be edited directly.
+
+Tooling outside of Visual Studio and Visual Studio for Mac can interact with solution files:
+
+* The [.NET CLI](/dotnet/core/tools/) can create solution files and list/modify the projects in solution files via the [`dotnet sln` command](/dotnet/core/tools/dotnet-sln). Other .NET CLI commands use the path of the solution file for various publishing, testing, and packaging commands.
+* [Visual Studio Code](https://code.visualstudio.com) can execute the `dotnet sln` command and other .NET CLI commands through its integrated terminal but doesn't use the settings in a solution file directly.
+
+Throughout the Blazor documentation, *solution* is used to describe apps created from the Blazor WebAssembly project template with the *ASP.NET Core hosted* option enabled or from a Blazor Hybrid project template. Apps produced from these project templates include a solution file (`.sln`) by default. For hosted Blazor WebAssembly apps where the developer isn't using Visual Studio or Visual Studio for Mac, the solution file can be ignored or deleted if it isn't used with .NET CLI commands.
+
+For more information, see the following resources in the Visual Studio documentation:
+
+* [Introduction to projects and solutions](/visualstudio/get-started/tutorial-projects-solutions)
+* [What are solutions and projects in Visual Studio?](/visualstudio/ide/solutions-and-projects-in-visual-studio)
+
 ## Use Visual Studio Code for cross-platform Blazor development
 
 [Visual Studio Code](https://code.visualstudio.com/) is an open source, cross-platform Integrated Development Environment (IDE) that can be used to develop Blazor apps. Use the [.NET CLI](/dotnet/core/tools/) to create a new Blazor app for development with Visual Studio Code. For more information, see the [Linux version of this article](?pivots=linux).
@@ -331,7 +347,7 @@ For more information, see the following resources:
 
 1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app.
 
-   When running a hosted Blazor WebAssembly solution in Visual Studio, the startup project of the solution is the **`Server`** project.
+   When running a hosted Blazor WebAssembly [solution](#visual-studio-solution-file-sln) in Visual Studio, the startup project of the solution is the **`Server`** project.
 
 For more information on trusting the ASP.NET Core HTTPS development certificate, see <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos>.
 
@@ -429,7 +445,7 @@ For more information on trusting the ASP.NET Core HTTPS development certificate,
 
    **Hosted Blazor WebAssembly launch and task configuration**
 
-   For hosted Blazor WebAssembly solutions, add (or move) the `.vscode` folder with `launch.json` and `tasks.json` files to the solution's parent folder, which is the folder that contains the typical project folders: `Client`, `Server`, and `Shared`. Update or confirm that the configuration in the `launch.json` and `tasks.json` files execute a hosted Blazor WebAssembly app from the **`Server`** project.
+   For hosted Blazor WebAssembly [solutions](#visual-studio-solution-file-sln), add (or move) the `.vscode` folder with `launch.json` and `tasks.json` files to the solution's parent folder, which is the folder that contains the typical project folders: `Client`, `Server`, and `Shared`. Update or confirm that the configuration in the `launch.json` and `tasks.json` files execute a hosted Blazor WebAssembly app from the **`Server`** project.
 
    > [!IMPORTANT]
    > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
@@ -521,6 +537,22 @@ If a prompt appears to trust the development certificate, trust the certificate 
 
 :::zone-end
 
+## Visual Studio solution file (`.sln`)
+
+A *solution* is a container to organize one or more related code projects. [Visual Studio](https://visualstudio.microsoft.com/vs/) and [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/) use a solution file (`.sln`) to store settings for a solution. Solution files use a unique format and aren't intended to be edited directly.
+
+Tooling outside of Visual Studio and Visual Studio for Mac can interact with solution files:
+
+* The [.NET CLI](/dotnet/core/tools/) can create solution files and list/modify the projects in solution files via the [`dotnet sln` command](/dotnet/core/tools/dotnet-sln). Other .NET CLI commands use the path of the solution file for various publishing, testing, and packaging commands.
+* [Visual Studio Code](https://code.visualstudio.com) can execute the `dotnet sln` command and other .NET CLI commands through its integrated terminal but doesn't use the settings in a solution file directly.
+
+Throughout the Blazor documentation, *solution* is used to describe apps created from the Blazor WebAssembly project template with the *ASP.NET Core hosted* option enabled or from a Blazor Hybrid project template. Apps produced from these project templates include a solution file (`.sln`) by default. For hosted Blazor WebAssembly apps where the developer isn't using Visual Studio or Visual Studio for Mac, the solution file can be ignored or deleted if it isn't used with .NET CLI commands.
+
+For more information, see the following resources in the Visual Studio documentation:
+
+* [Introduction to projects and solutions](/visualstudio/get-started/tutorial-projects-solutions)
+* [What are solutions and projects in Visual Studio?](/visualstudio/ide/solutions-and-projects-in-visual-studio)
+
 ## Use Visual Studio Code for cross-platform Blazor development
 
 [Visual Studio Code](https://code.visualstudio.com/) is an open source, cross-platform Integrated Development Environment (IDE) that can be used to develop Blazor apps. Use the .NET CLI to create a new Blazor app for development with Visual Studio Code. For more information, see the [Linux version of this article](?pivots=linux).
@@ -566,7 +598,7 @@ dotnet new blazorserver -h
 
 1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app.
 
-   When running a hosted Blazor WebAssembly solution in Visual Studio, the startup project of the solution is the **`Server`** project.
+   When running a hosted Blazor WebAssembly [solution](#visual-studio-solution-file-sln) in Visual Studio, the startup project of the solution is the **`Server`** project.
 
 For more information on trusting the ASP.NET Core HTTPS development certificate, see <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos>.
 
@@ -663,7 +695,7 @@ When executing a hosted Blazor WebAssembly app, run the app from the solution's 
 
    **Hosted Blazor WebAssembly launch and task configuration**
 
-   For hosted Blazor WebAssembly solutions, add (or move) the `.vscode` folder with `launch.json` and `tasks.json` files to the solution's parent folder, which is the folder that contains the typical project folders: `Client`, `Server`, and `Shared`. Update or confirm that the configuration in the `launch.json` and `tasks.json` files execute a hosted Blazor WebAssembly app from the **`Server`** project.
+   For hosted Blazor WebAssembly [solutions](#visual-studio-solution-file-sln), add (or move) the `.vscode` folder with `launch.json` and `tasks.json` files to the solution's parent folder, which is the folder that contains the typical project folders: `Client`, `Server`, and `Shared`. Update or confirm that the configuration in the `launch.json` and `tasks.json` files execute a hosted Blazor WebAssembly app from the **`Server`** project.
 
    **`.vscode/launch.json`** (`launch` configuration):
 
@@ -750,6 +782,22 @@ If a prompt appears to trust the development certificate, trust the certificate 
 When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
 
 :::zone-end
+
+## Visual Studio solution file (`.sln`)
+
+A *solution* is a container to organize one or more related code projects. [Visual Studio](https://visualstudio.microsoft.com/vs/) and [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/) use a solution file (`.sln`) to store settings for a solution. Solution files use a unique format and aren't intended to be edited directly.
+
+Tooling outside of Visual Studio and Visual Studio for Mac can interact with solution files:
+
+* The [.NET CLI](/dotnet/core/tools/) can create solution files and list/modify the projects in solution files via the [`dotnet sln` command](/dotnet/core/tools/dotnet-sln). Other .NET CLI commands use the path of the solution file for various publishing, testing, and packaging commands.
+* [Visual Studio Code](https://code.visualstudio.com) can execute the `dotnet sln` command and other .NET CLI commands through its integrated terminal but doesn't use the settings in a solution file directly.
+
+Throughout the Blazor documentation, *solution* is used to describe apps created from the Blazor WebAssembly project template with the *ASP.NET Core hosted* option enabled or from a Blazor Hybrid project template. Apps produced from these project templates include a solution file (`.sln`) by default. For hosted Blazor WebAssembly apps where the developer isn't using Visual Studio or Visual Studio for Mac, the solution file can be ignored or deleted if it isn't used with .NET CLI commands.
+
+For more information, see the following resources in the Visual Studio documentation:
+
+* [Introduction to projects and solutions](/visualstudio/get-started/tutorial-projects-solutions)
+* [What are solutions and projects in Visual Studio?](/visualstudio/ide/solutions-and-projects-in-visual-studio)
 
 ## Use Visual Studio Code for cross-platform Blazor development
 

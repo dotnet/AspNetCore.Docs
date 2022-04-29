@@ -18,7 +18,7 @@ This article explains Razor component integration scenarios for Blazor apps, inc
 
 :::zone pivot="webassembly"
 
-Razor components can be integrated into Razor Pages and MVC apps in a hosted Blazor WebAssembly solution. When the page or view is rendered, components can be prerendered at the same time.
+Razor components can be integrated into Razor Pages and MVC apps in a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln). When the page or view is rendered, components can be prerendered at the same time.
 
 Prerendering can improve [Search Engine Optimization (SEO)](https://developer.mozilla.org/docs/Glossary/SEO) by rendering content for the initial HTTP response that search engines can use to calculate page rank.
 
@@ -952,7 +952,7 @@ By initializing components with the same state used during prerendering, any exp
 
 :::zone pivot="webassembly"
 
-Razor components can be integrated into Razor Pages and MVC apps in a hosted Blazor WebAssembly solution. When the page or view is rendered, components can be prerendered at the same time.
+Razor components can be integrated into Razor Pages and MVC apps in a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln). When the page or view is rendered, components can be prerendered at the same time.
   
 Prerendering can improve [Search Engine Optimization (SEO)](https://developer.mozilla.org/docs/Glossary/SEO) by rendering content for the initial HTTP response that search engines can use to calculate page rank.
 
@@ -1639,7 +1639,7 @@ For more information, see <xref:blazor/components/index#namespaces>.
 
 :::zone pivot="webassembly"
 
-Integrating Razor components into Razor Pages and MVC apps in a hosted Blazor WebAssembly solution is supported in ASP.NET Core in .NET 5 or later. Select a .NET 5 or later version of this article.
+Integrating Razor components into Razor Pages and MVC apps in a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) is supported in ASP.NET Core in .NET 5 or later. Select a .NET 5 or later version of this article.
 
 :::zone-end
 

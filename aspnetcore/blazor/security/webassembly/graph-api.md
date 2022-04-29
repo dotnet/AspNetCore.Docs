@@ -33,7 +33,7 @@ The following utility classes and configuration are used in each of the followin
 
 After adding the Microsoft Graph API scopes in the AAD area of the Azure portal:
 
-* Add the following `GraphClientExtensions.cs` class to the standalone app or **`Client`** app of a hosted Blazor solution.
+* Add the following `GraphClientExtensions.cs` class to the standalone app or **`Client`** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln).
 * Provide the required scopes to the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenRequestOptions.Scopes> property of the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenRequestOptions> in the `AuthenticateRequestAsync` method. In the following example, the `User.Read` scope is specified to match the examples in later sections of this article.
 
 ```csharp
@@ -526,7 +526,7 @@ The following utility classes and configuration are used in each of the followin
 
 After adding the Microsoft Graph API scopes in the AAD area of the Azure portal:
 
-* Add the following `GraphClientExtensions.cs` class to the standalone app or **`Client`** app of a hosted Blazor solution.
+* Add the following `GraphClientExtensions.cs` class to the standalone app or **`Client`** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln).
 * Provide the required scopes to the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenRequestOptions.Scopes> property of the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenRequestOptions> in the `AuthenticateRequestAsync` method. In the following example, the `User.Read` scope is specified to match the examples in later sections of this article.
 
 ```csharp

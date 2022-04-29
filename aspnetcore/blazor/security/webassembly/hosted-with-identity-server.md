@@ -13,6 +13,8 @@ uid: blazor/security/webassembly/hosted-with-identity-server
 
 This article explains how to create a [hosted Blazor WebAssembly solution](xref:blazor/hosting-models#blazor-webassembly) that uses [Duende Identity Server](https://docs.duendesoftware.com) to authenticate users and API calls.
 
+For more information on *solutions*, see <xref:blazor/tooling#visual-studio-solution-file-sln>.
+
 :::moniker range=">= aspnetcore-6.0"
 
 > [!IMPORTANT]

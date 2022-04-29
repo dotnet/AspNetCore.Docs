@@ -15,7 +15,7 @@ uid: blazor/components/class-libraries
 
 Components can be shared in a [Razor class library (RCL)](xref:razor-pages/ui-class) across projects. Include components and static assets in an app from:
 
-* Another project in the solution.
+* Another project in the [solution](xref:blazor/tooling#visual-studio-solution-file-sln).
 * A referenced .NET library.
 * A NuGet package.
 
@@ -382,7 +382,7 @@ Upload the package to NuGet using the [`dotnet nuget push`](/dotnet/core/tools/d
 
 Components can be shared in a [Razor class library (RCL)](xref:razor-pages/ui-class) across projects. Include components and static assets in an app from:
 
-* Another project in the solution.
+* Another project in the [solution](xref:blazor/tooling#visual-studio-solution-file-sln).
 * A referenced .NET library.
 * A NuGet package.
 
@@ -672,7 +672,7 @@ Upload the package to NuGet using the [`dotnet nuget push`](/dotnet/core/tools/d
 
 Components can be shared in a [Razor class library (RCL)](xref:razor-pages/ui-class) across projects. Include components and static assets in an app from:
 
-* Another project in the solution.
+* Another project in the [solution](xref:blazor/tooling#visual-studio-solution-file-sln).
 * A referenced .NET library.
 * A NuGet package.
 
