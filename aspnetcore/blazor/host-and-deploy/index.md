@@ -20,7 +20,7 @@ This article explains how to host and deploy Blazor apps.
 Apps are published for deployment in Release configuration.
 
 > [!NOTE]
-> Publish hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) from the **`Server`** project.
+> Publish a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) from the **`Server`** project.
 
 # [Visual Studio](#tab/visual-studio)
 
