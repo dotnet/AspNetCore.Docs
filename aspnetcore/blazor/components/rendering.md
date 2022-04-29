@@ -28,7 +28,7 @@ By default, Razor components inherit from the <xref:Microsoft.AspNetCore.Compone
 
 Components inherited from <xref:Microsoft.AspNetCore.Components.ComponentBase> skip rerenders due to parameter updates if either of the following are true:
 
-* All of the parameters are known immutable types or any [primitive type](/dotnet/api/system.type.isprimitive) that hasn't changed since the previous set of parameters were set.
+* All of the parameters are [verifiably immutable types](/dotnet/csharp/language-reference/builtin-types/unmanaged-types) or any [primitive type](/dotnet/api/system.type.isprimitive) that hasn't changed since the previous set of parameters were set.
 
   > [!NOTE]
   > Blazor's framework uses a set of built-in rules and parameter types for change detection. These rules and the types are subject to change at any time. For more information, see the [`ChangeDetection` API in the ASP.NET Core reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ChangeDetection.cs).
@@ -131,7 +131,7 @@ By default, Razor components inherit from the <xref:Microsoft.AspNetCore.Compone
 
 Components inherited from <xref:Microsoft.AspNetCore.Components.ComponentBase> skip rerenders due to parameter updates if either of the following are true:
 
-* All of the parameters are known immutable types or any [primitive type](/dotnet/api/system.type.isprimitive) that hasn't changed since the previous set of parameters were set.
+* All of the parameters are [verifiably immutable types](/dotnet/csharp/language-reference/builtin-types/unmanaged-types) or any [primitive type](/dotnet/api/system.type.isprimitive) that hasn't changed since the previous set of parameters were set.
 
   > [!NOTE]
   > Blazor's framework uses a set of built-in rules and parameter types for change detection. These rules and the types are subject to change at any time. For more information, see the [`ChangeDetection` API in the ASP.NET Core reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ChangeDetection.cs).
@@ -238,7 +238,7 @@ By default, Razor components inherit from the <xref:Microsoft.AspNetCore.Compone
 
 Components inherited from <xref:Microsoft.AspNetCore.Components.ComponentBase> skip rerenders due to parameter updates if either of the following are true:
 
-* All of the parameters are known immutable types or any [primitive type](/dotnet/api/system.type.isprimitive) that hasn't changed since the previous set of parameters were set.
+* All of the parameters are [verifiably immutable types](/dotnet/csharp/language-reference/builtin-types/unmanaged-types) or any [primitive type](/dotnet/api/system.type.isprimitive) that hasn't changed since the previous set of parameters were set.
 
   > [!NOTE]
   > Blazor's framework uses a set of built-in rules and parameter types for change detection. These rules and the types are subject to change at any time. For more information, see the [`ChangeDetection` API in the ASP.NET Core reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ChangeDetection.cs).
