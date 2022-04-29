@@ -30,7 +30,7 @@ Components inherited from <xref:Microsoft.AspNetCore.Components.ComponentBase> s
 
 * All of the parameters are from a set of known types&dagger; or any [primitive type](/dotnet/api/system.type.isprimitive) that hasn't changed since the previous set of parameters were set.
 
-  &dagger;Blazor's framework uses a set of built-in rules and explicit parameter type checks for change detection. These rules and the types are subject to change at any time. For more information, see the [`ChangeDetection` API in the ASP.NET Core reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ChangeDetection.cs).
+  &dagger;The Blazor framework uses a set of built-in rules and explicit parameter type checks for change detection. These rules and the types are subject to change at any time. For more information, see the [`ChangeDetection` API in the ASP.NET Core reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ChangeDetection.cs).
   
   [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
@@ -132,7 +132,7 @@ Components inherited from <xref:Microsoft.AspNetCore.Components.ComponentBase> s
 
 * All of the parameters are from a set of known types&dagger; or any [primitive type](/dotnet/api/system.type.isprimitive) that hasn't changed since the previous set of parameters were set.
 
-  &dagger;Blazor's framework uses a set of built-in rules and explicit parameter type checks for change detection. These rules and the types are subject to change at any time. For more information, see the [`ChangeDetection` API in the ASP.NET Core reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ChangeDetection.cs).
+  &dagger;The Blazor framework uses a set of built-in rules and explicit parameter type checks for change detection. These rules and the types are subject to change at any time. For more information, see the [`ChangeDetection` API in the ASP.NET Core reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ChangeDetection.cs).
 
   [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
@@ -238,7 +238,7 @@ Components inherited from <xref:Microsoft.AspNetCore.Components.ComponentBase> s
 
 * All of the parameters are from a set of known types&dagger; or any [primitive type](/dotnet/api/system.type.isprimitive) that hasn't changed since the previous set of parameters were set.
 
-  &dagger;Blazor's framework uses a set of built-in rules and explicit parameter type checks for change detection. These rules and the types are subject to change at any time. For more information, see the [`ChangeDetection` API in the ASP.NET Core reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ChangeDetection.cs).
+  &dagger;The Blazor framework uses a set of built-in rules and explicit parameter type checks for change detection. These rules and the types are subject to change at any time. For more information, see the [`ChangeDetection` API in the ASP.NET Core reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ChangeDetection.cs).
 
   [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
