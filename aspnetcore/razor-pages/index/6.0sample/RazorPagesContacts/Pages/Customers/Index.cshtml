@@ -1,4 +1,4 @@
-﻿@page
+@page
 @model RazorPagesContacts.Pages.Customers.IndexModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
@@ -13,19 +13,24 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var contact in Model.Customer)
+        @if (Model.Customers != null)
+        {
+            foreach (var contact in Model.Customers)
             {
                 <tr>
-                    <td> @contact.Id  </td>
+                    <td> @contact.Id </td>
                     <td>@contact.Name</td>
                     <td>
+                        <!-- <snippet_Edit> -->
                         <a asp-page="./Edit" asp-route-id="@contact.Id">Edit</a> |
-                        <button type="submit" asp-page-handler="delete"
-                                asp-route-id="@contact.Id">delete
-                        </button>
+                        <!-- </snippet_Edit> -->
+                        <!-- <snippet_Delete> -->
+                        <button type="submit" asp-page-handler="delete" asp-route-id="@contact.Id">delete</button>
+                        <!-- </snippet_Delete> -->
                     </td>
                 </tr>
             }
+        }
         </tbody>
     </table>
     <a asp-page="Create">Create New</a>

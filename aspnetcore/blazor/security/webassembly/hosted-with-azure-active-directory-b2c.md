@@ -13,6 +13,8 @@ uid: blazor/security/webassembly/hosted-with-azure-active-directory-b2c
 
 This article explains how to create a [hosted Blazor WebAssembly solution](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD) B2C](/azure/active-directory-b2c/overview) for authentication.
 
+For more information on *solutions*, see <xref:blazor/tooling#visual-studio-solution-file-sln>.
+
 :::moniker range=">= aspnetcore-6.0"
 
 ## Register apps in AAD B2C and create solution

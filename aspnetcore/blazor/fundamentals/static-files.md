@@ -13,6 +13,8 @@ uid: blazor/fundamentals/static-files
 
 This article describes the configuration for serving static files in Blazor apps.
 
+For more information on *solutions* in sections that apply to hosted Blazor WebAssembly apps, see <xref:blazor/tooling#visual-studio-solution-file-sln>.
+
 :::moniker range=">= aspnetcore-6.0"
 
 ## Static File Middleware
