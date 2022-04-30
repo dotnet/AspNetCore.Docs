@@ -23,7 +23,7 @@ public interface IAsyncConcurrentQueue<T>
     /// <exception cref="System.OperationCanceledException">
     /// The <paramref name="cancellationToken" /> was canceled.
     /// </exception>
-    Task<T> DequeueAsync(CancellationToken cancellationToken);
+    Task<T?> DequeueAsync(CancellationToken cancellationToken);
 
     /// <summary>
     /// Dequeue an item. Returns <see langword="true" /> when an item was successfully dequeued,

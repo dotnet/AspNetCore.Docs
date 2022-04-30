@@ -8,8 +8,8 @@ namespace HttpContextInBackgroundThread;
 [SuppressMessage("Naming", "CA1711: Identifiers should not have incorrect suffix", Justification = "This is a queue but does not implement System.Collections.Queue because this class handles concurrency.")]
 public sealed class AsyncConcurrentQueue<T> : IAsyncConcurrentQueue<T>, IDisposable
 {
-    private readonly ConcurrentQueue<T> _queue = new();
-    private readonly SemaphoreSlim _signal = new(0);
+    private readonly ConcurrentQueue<T?> _queue = new();
+    private readonly SemaphoreSlim _signal = new(0, 10);
 
     /// <inheritdoc />
     public void Enqueue(T item)
@@ -19,7 +19,7 @@ public sealed class AsyncConcurrentQueue<T> : IAsyncConcurrentQueue<T>, IDisposa
     }
 
     /// <inheritdoc />
-    public async Task<T> DequeueAsync(CancellationToken cancellationToken)
+    public async Task<T?> DequeueAsync(CancellationToken cancellationToken)
     {
         await _signal.WaitAsync(cancellationToken);
         if (_queue.TryDequeue(out T? item))
@@ -43,7 +43,7 @@ public sealed class AsyncConcurrentQueue<T> : IAsyncConcurrentQueue<T>, IDisposa
             throw new InvalidOperationException("Unexpected failure of {nameof(AsyncConcurrentQueue<T>)}.{nameof(AsyncConcurrentQueue<T>.TryDequeue)}.");
         }
 
-        item = default;
+        item = default!;
         return false;
     }
 

@@ -4,13 +4,10 @@ namespace HttpContextInBackgroundThread;
 
 public class NewsletterService : BackgroundService
 {
-    private readonly IEmailService _emailService;
-    private readonly Timer _timer = null!; 
     private readonly IAsyncConcurrentQueue<EmailMessage> _queue;
 
-    public NewsletterService(IEmailService emailService, IAsyncConcurrentQueue<EmailMessage> queue)
+    public NewsletterService(IAsyncConcurrentQueue<EmailMessage> queue)
     {
-        _emailService = emailService;
         _queue = queue;
     }
 
@@ -20,7 +17,7 @@ public class NewsletterService : BackgroundService
         while (!stoppingToken.IsCancellationRequested)
         {
             var message = await _queue.DequeueAsync(stoppingToken);
-            Task task = SendEmailAsync(message, stoppingToken);
+            Task task = SendEmailAsync();
             pendingTasks.TryAdd(task, 0);
 
             // Run and forget rather than await so that we can process the subsequent messages.
@@ -33,14 +30,13 @@ public class NewsletterService : BackgroundService
         await Task.WhenAll(pendingTasks.Keys);
     }
 
-    private async Task SendEmailAsync(EmailMessage message, CancellationToken cancellationToken)
+    private async Task SendEmailAsync()
     {
         await Task.CompletedTask;
     }
 
     public override async Task StopAsync(CancellationToken stoppingToken)
     {
-        await _timer.DisposeAsync();
         await base.StopAsync(stoppingToken);
     }
 }
