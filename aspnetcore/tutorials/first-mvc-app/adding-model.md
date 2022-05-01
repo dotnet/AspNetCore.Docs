@@ -474,6 +474,7 @@ Because the `Model` object is strongly typed as an `IEnumerable<Movie>` object, 
 
 ## Additional resources
 
+* [Entity Framework Core for Beginners](https://www.youtube.com/playlist?list=PLdo4fOcmZ0oXCPdC3fTFA3Z79-eVH3K-s)
 * [Tag Helpers](xref:mvc/views/tag-helpers/intro)
 * [Globalization and localization](xref:fundamentals/localization)
 
@@ -905,6 +906,7 @@ Because the `Model` object is strongly typed as an `IEnumerable<Movie>` object, 
 
 ## Additional resources
 
+* [Entity Framework Core for Beginners](https://www.youtube.com/playlist?list=PLdo4fOcmZ0oXCPdC3fTFA3Z79-eVH3K-s)
 * [Tag Helpers](xref:mvc/views/tag-helpers/intro)
 * [Globalization and localization](xref:fundamentals/localization)
 
@@ -1291,6 +1293,7 @@ Because the `Model` object is strongly typed (as an `IEnumerable<Movie>` object)
 
 ## Additional resources
 
+* [Entity Framework Core for Beginners](https://www.youtube.com/playlist?list=PLdo4fOcmZ0oXCPdC3fTFA3Z79-eVH3K-s)
 * [Tag Helpers](xref:mvc/views/tag-helpers/intro)
 * [Globalization and localization](xref:fundamentals/localization)
 
