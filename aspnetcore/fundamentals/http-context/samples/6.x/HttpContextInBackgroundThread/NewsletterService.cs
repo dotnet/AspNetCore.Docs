@@ -1,42 +1,45 @@
-using System.Collections.Concurrent;
-
-namespace HttpContextInBackgroundThread;
-
-public class NewsletterService : BackgroundService
+namespace HttpContextInBackgroundThread
 {
-    private readonly IAsyncConcurrentQueue<EmailMessage> _queue;
-
-    public NewsletterService(IAsyncConcurrentQueue<EmailMessage> queue)
+    public class NewsletterService : BackgroundService
     {
-        _queue = queue;
-    }
+        private readonly ILogger<NewsletterService> _logger;
+        private readonly IEmailService _emailService;
+        private Timer _timer = null!;
 
-    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
-    {
-        var pendingTasks = new ConcurrentDictionary<Task, byte>();
-        while (!stoppingToken.IsCancellationRequested)
+        public NewsletterService(ILogger<NewsletterService> logger,
+            IEmailService emailService)
         {
-            var message = await _queue.DequeueAsync(stoppingToken);
-            Task task = SendEmailAsync();
-            pendingTasks.TryAdd(task, 0);
-
-            // Run and forget rather than await so that we can process the subsequent messages.
-            _ = task.ContinueWith(
-                (innerTask, innerPendingTasks) => ((ConcurrentDictionary<Task, byte>)innerPendingTasks!).TryRemove(innerTask, out _),
-                pendingTasks,
-                TaskScheduler.Default);
+            _logger = logger;
+            _emailService = emailService;
         }
 
-        await Task.WhenAll(pendingTasks.Keys);
-    }
+        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        {
+            _logger.LogInformation("Newsletter Hosted Service is running.");
 
-    private async Task SendEmailAsync()
-    {
-        await Task.CompletedTask;
-    }
+            await BackgroundProcessing(stoppingToken);
+        }
 
-    public override async Task StopAsync(CancellationToken stoppingToken)
-    {
-        await base.StopAsync(stoppingToken);
+        private Task BackgroundProcessing(CancellationToken stoppingToken)
+        {
+            _timer = new Timer(StartMailing,
+                null,
+                TimeSpan.Zero,
+                TimeSpan.FromSeconds(30));
+
+            async void StartMailing(object? state)
+            {
+                await _emailService.SendEmail(stoppingToken);
+            }
+
+            return Task.CompletedTask;
+        }
+
+        public override async Task StopAsync(CancellationToken stoppingToken)
+        {
+            _logger.LogInformation("Newsletter Hosted Service is stopping.");
+            await _timer.DisposeAsync();
+            await base.StopAsync(stoppingToken);
+        }
     }
 }

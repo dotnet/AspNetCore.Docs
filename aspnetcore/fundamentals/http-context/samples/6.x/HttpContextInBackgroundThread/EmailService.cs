@@ -1,25 +1,20 @@
 namespace HttpContextInBackgroundThread;
 
-public interface IEmailService
-{
-    void SendEmail(string? userAgent = null);
-}
-
 public class EmailService : IEmailService
 {
     private readonly IHttpContextAccessor _httpContextAccessor;
-    private readonly IAsyncConcurrentQueue<string> _queue;
+    private readonly IBackgroundTaskQueue _taskQueue;
 
-    public EmailService(IHttpContextAccessor httpContextAccessor, IAsyncConcurrentQueue<string> queue)
+    public EmailService(IHttpContextAccessor httpContextAccessor, IBackgroundTaskQueue taskQueue)
     {
         _httpContextAccessor = httpContextAccessor;
-        _queue = queue;
+        _taskQueue = taskQueue;
     }
 
     // The userAgent should come directly from the caller to the service if possible.
     // An explicit parameter makes the API more usable outside of the request flow, is
     // better for performance and is easier to reason about than relying on ambient state.
-    public void SendEmail(string? userAgent = null)
+    public Task SendEmail(CancellationToken token, string? userAgent = null)
     {
         var request = _httpContextAccessor.HttpContext?.Request;
         string? userAgentString = userAgent ?? request?.Headers["user-agent"].ToString();
@@ -29,6 +24,23 @@ public class EmailService : IEmailService
             userAgentString = "Unknown";
         }
 
-        _queue.Enqueue(userAgentString);
+        _taskQueue.QueueBackgroundWorkItemAsync(cancellationToken =>
+        {
+            while (!cancellationToken.IsCancellationRequested)
+            {
+                try
+                {
+                    return new ValueTask<string>(userAgentString);
+                }
+                catch (OperationCanceledException)
+                {
+                    // throw if cancellation is requested
+                }
+            }
+
+            return default;
+        });
+
+        return Task.CompletedTask;
     }
 }
