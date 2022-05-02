@@ -101,6 +101,20 @@ To work around this issue, configure Kestrel and the gRPC client to use HTTP/2 *
 
 Kestrel must configure an HTTP/2 endpoint without TLS in `Program.cs`:
 
+:::moniker range=">= aspnetcore-6.0"
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+
+builder.WebHost.ConfigureKestrel(options =>
+{
+    // Setup a HTTP/2 endpoint without TLS.
+    options.ListenLocalhost(5000, o => o.Protocols =
+        HttpProtocols.Http2);
+});
+```
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
 ```csharp
 public static IHostBuilder CreateHostBuilder(string[] args) =>
     Host.CreateDefaultBuilder(args)
@@ -115,6 +129,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
             webBuilder.UseStartup<Startup>();
         });
 ```
+:::moniker-end
 
 :::moniker range=">= aspnetcore-5.0"
 When an HTTP/2 endpoint is configured without TLS, the endpoint's [ListenOptions.Protocols](xref:fundamentals/servers/kestrel/endpoints#listenoptionsprotocols) must be set to `HttpProtocols.Http2`. `HttpProtocols.Http1AndHttp2` can't be used because TLS is required to negotiate HTTP/2. Without TLS, all connections to the endpoint default to HTTP/1.1, and gRPC calls fail.
