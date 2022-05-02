@@ -4,14 +4,14 @@ public class BulkEmailService : BackgroundService
 {
     private readonly ILogger<BulkEmailService> _logger;
 
+    private readonly IBackgroundTaskQueue _taskQueue;
+
     public BulkEmailService(IBackgroundTaskQueue taskQueue,
         ILogger<BulkEmailService> logger)
     {
-        TaskQueue = taskQueue;
+        _taskQueue = taskQueue;
         _logger = logger;
     }
-
-    public IBackgroundTaskQueue TaskQueue { get; }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
@@ -25,7 +25,7 @@ public class BulkEmailService : BackgroundService
         while (!stoppingToken.IsCancellationRequested)
         {
             var workItem =
-                await TaskQueue.DequeueAsync(stoppingToken);
+                await _taskQueue.DequeueAsync(stoppingToken);
 
             try
             {
