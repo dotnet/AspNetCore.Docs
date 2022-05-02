@@ -18,7 +18,7 @@ Load testing and stress testing are important to ensure a web app is performant 
 
 Stress tests determine if an app under stress can recover from failure and gracefully return to expected behavior. Under stress, the app isn't run under normal conditions.
 
-Visual Studio 2019 announced plans to [deprecate the load testing](https://devblogs.microsoft.com/devops/cloud-based-load-testing-service-eol/). The corresponding Azure DevOps cloud-based load testing service has been closed.
+Visual Studio 2019 announced plans to [deprecate the load testing](https://devblogs.microsoft.com/devops/cloud-based-load-testing-service-eol/). The corresponding Azure DevOps cloud-based load testing service has been closed. In turn, you can now use [Azure Load Testing Preview](/azure/load-testing/overview-what-is-azure-load-testing). Azure Load Testing Preview is a fully managed load testing service that enables you to use existing Apache JMeter scripts to generate high-scale load.
 
 ## Third-party tools
 
