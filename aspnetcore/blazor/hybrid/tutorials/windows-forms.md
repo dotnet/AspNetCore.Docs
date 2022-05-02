@@ -175,17 +175,21 @@ In **Solution Explorer**, double-click on the `Form1.cs` file to open the design
 
 Open the **Toolbox** by either selecting the **Toolbox** button along the left edge of the Visual Studio window or selecting the **View** > **Toolbox** menu item.
 
-Locate the `BlazorWebView` control under `Microsoft.AspNetCore.Components.WebView.WindowsForms`:
+Locate the `BlazorWebView` control under `Microsoft.AspNetCore.Components.WebView.WindowsForms`. Drag the `BlazorWebView` from the **Toolbox** into the `Form1` designer. Be careful not to accidentally drag a `WebView2` control into the form.
 
 :::image type="content" source="windows-forms/_static/toolbox.png" alt-text="BlazorWebView in the Toolbox.":::
 
-Drag `BlazorWebView` from the **Toolbox** into the `Form1` designer:
+Visual Studio shows the `BlazorWebView` control in the form designer as `WebView2` and automatically names the control `blazorWebView1`:
 
 :::image type="content" source="windows-forms/_static/form1.png" alt-text="BlazorWebView in the Form1 designer.":::
 
-In `Form1`, select `BlazorWebView` with a single click.
+In `Form1`, select the `BlazorWebView` (`WebView2`) with a single click.
 
-In `BlazorWebView`'s **Properties**, change its **Dock** value to **Fill**:
+In the `BlazorWebView`'s **Properties**, confirm that the control is named `blazorWebView1`. If the name isn't `blazorWebView1`, the wrong control was dragged from the **Toolbox**. Delete the `WebView2` control in `Form1` and drag the **`BlazorWebView` control** into the form.
+
+:::image type="content" source="windows-forms/_static/control-properties.png" alt-text="The BlazorWebView is automatically named 'blazorWebView1' by Visual Studio." :::
+
+In the control's properties, change the `BlazorWebView`'s **Dock** value to **Fill**:
 
 :::image type="content" source="windows-forms/_static/properties.png" alt-text="BlazorWebView properties with Dock set to Fill.":::
 
