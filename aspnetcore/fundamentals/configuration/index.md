@@ -40,14 +40,14 @@ ASP.NET Core web apps created with [dotnet new](/dotnet/core/tools/dotnet-new) o
 var builder = WebApplication.CreateBuilder(args);
 ```
 
-[WebApplication.CreateBuilder](xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A) initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults. The initialized `WebApplicationBuilder` (`builder`) provides default configuration for the app in the following order:
+[WebApplication.CreateBuilder](xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A) initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults. The initialized `WebApplicationBuilder` (`builder`) provides default configuration for the app in the following order, from highest to lowest:
 
-1. [ChainedConfigurationProvider](xref:Microsoft.Extensions.Configuration.ChainedConfigurationSource) :  Adds an existing `IConfiguration` as a source. In the default configuration case, adds the [host](#hvac) configuration and setting it as the first source for the *app* configuration.
-1. [appsettings.json](#appsettingsjson) using the [JSON configuration provider](#file-configuration-provider).
-1. `appsettings.{Environment}.json` using the [JSON configuration provider](#file-configuration-provider). For example, `appsettings.Production.json` and `appsettings.Development.json`.
-1. [App secrets](xref:security/app-secrets) when the app runs in the `Development` environment.
-1. Environment variables using the [Environment Variables configuration provider](#evcp).
 1. Command-line arguments using the [Command-line configuration provider](#command-line).
+1. Environment variables using the [Environment Variables configuration provider](#evcp).
+1. [User secrets](xref:security/app-secrets) when the app runs in the `Development` environment.
+1. `appsettings.{Environment}.json` using the [JSON configuration provider](#file-configuration-provider). For example, `appsettings.Production.json` and `appsettings.Development.json`.
+1. [appsettings.json](#appsettingsjson) using the [JSON configuration provider](#file-configuration-provider).
+1. A fallback to the host configuration described in the next section
 
 Configuration providers that are added later override previous key settings. For example, if `MyKey` is set in both `appsettings.json` and the environment, the environment value is used. Using the default configuration providers, the  [Command-line configuration provider](#clcp) overrides all other providers.
 
@@ -59,11 +59,10 @@ The following code displays the enabled configuration providers in the order the
 
 ## Host configuration
 
-The following list contains the default host configuration sources from lowest to highest priority:
+The following list contains the default host configuration sources from highest to lowest priority:
 
-1. `DOTNET_` prefixed environment variables
-1. Command-line arguments
 1. `ASPNETCORE_` prefixed environment variable
+1.  Command-line arguments using the [Command-line configuration provider](#command-line)1. `DOTNET_` prefixed environment variables
 
 When a configuration value is set in host and application configuration, the application configuration is used.
 
