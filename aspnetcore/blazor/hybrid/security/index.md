@@ -130,6 +130,14 @@ public class AuthenticatedUser
 }
 ```
 
+Add the Blazor abstractions to the DI container:
+
+```csharp
+builder.Services.AddAuthorizationCore();
+builder.Services.AddScoped<AuthenticationStateProvider, HybridAuthenticationStateProvider>();
+builder.Services.AddSingleton<AuthenticatedUser>();
+```
+
 From anywhere in the app, we can resolve the `AuthenticatedUser` service after we have authenticated the user and set the principal property to the authenticated user before we start the Blazor application:
 
 ```csharp
@@ -138,7 +146,30 @@ authenticatedUser.Principal = currentUser;
 ```
 
 > [!NOTE]
-> Alternatively, set the user's principal on <xref:System.Threading.Thread.CurrentPrincipal?displayProperty=fullName> instead of setting it via a service, which avoids use of the dependency injection container.
+> Alternatively, set the user's principal on <xref:System.Threading.Thread.CurrentPrincipal?displayProperty=fullName> instead of setting it via a service, which avoids use of the dependency injection container:
+>
+> ```csharp
+> public class CurrentThreadUserAuthenticationStateProvider : AuthenticationStateProvider
+> {
+>     public override Task<AuthenticationState> GetAuthenticationStateAsync() =>
+>         Task.FromResult(
+>             new AuthenticationState(Thread.CurrentPrincipal as ClaimsPrincipal ?? 
+>                 new ClaimsPrincipal(new ClaimsIdentity())));
+> }
+> ```
+>
+> In `MainWindow`'s constructor (`MainWindow.xaml.cs`):
+>
+> ```csharp
+> services.AddScoped<AuthenticationStateProvider, CurrentThreadUserAuthenticationStateProvider>();
+> BlazorView.Services = services.BuildServiceProvider();
+>
+> BlazorView.RootComponents.Add(new Microsoft.AspNetCore.Components.WebView.Wpf.RootComponent()
+> {
+>     ComponentType = typeof(Main),
+>     Selector = "#app"
+> });
+>
 
 ### Handle authentication within the `BlazorWebView` (Option 2)
 
@@ -168,6 +199,14 @@ public HybridAuthenticationStateProvider : AuthenticationStateProvider
 
             return currentUser;
         }
+    }
+
+    private Task<ClaimsPrincipal> LoginWithExternalProviderAsync()
+    {
+        /*
+            Add developer OpenID/MSAL code to authenticate the user
+        */
+        return Task.FromResult(new ClaimsPrincipal(new ClaimsIdentity()));
     }
 }
 ```
@@ -200,14 +239,11 @@ The following `LoginComponent` component demonstrates how to log in a user. In a
 
 The implementation for logout is similar.
 
-### Service registrations
-
 Add the Blazor abstractions to the DI container:
 
 ```csharp
 builder.Services.AddAuthorizationCore();
 builder.Services.AddScoped<AuthenticationStateProvider, HybridAuthenticationStateProvider>();
-builder.Services.AddSingleton<AuthenticatedUser>();
 ```
 
 ## Accessing other authentication information
