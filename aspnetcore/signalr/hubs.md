@@ -577,10 +577,13 @@ The <xref:Microsoft.AspNetCore.SignalR.Hub> class includes a <xref:Microsoft.Asp
 | <xref:Microsoft.AspNetCore.SignalR.IHubClients%601.GroupExcept%2A> | Calls a method on all connections in the specified group, except the specified connections |
 | <xref:Microsoft.AspNetCore.SignalR.IHubClients%601.Groups%2A> | Calls a method on multiple groups of connections |
 | <xref:Microsoft.AspNetCore.SignalR.IHubCallerClients%601.OthersInGroup%2A> | Calls a method on a group of connections, excluding the client that invoked the hub method |
+| <xref:Microsoft.AspNetCore.SignalR.IHubCallerClients%601.Single%2A> | calls a method on a specific connected client |
 | <xref:Microsoft.AspNetCore.SignalR.IHubClients%601.User%2A> | Calls a method on all connections associated with a specific user |
 | <xref:Microsoft.AspNetCore.SignalR.IHubClients%601.Users%2A> | Calls a method on all connections associated with the specified users |
 
 Each property or method in the preceding tables returns an object with a `SendAsync` method. The `SendAsync` method receives the name of the client method to call and any parameters.
+
+The object returned by the `Single` method also contains an `InvokeAsync` method which can be used to wait for a [result from the client](xref:signalr/hubs#client-results).
 
 ## Send messages to clients
 
@@ -608,6 +611,76 @@ Using `Hub<IChatClient>` enables compile-time checking of the client methods. Th
 
 > [!NOTE]
 > The `Async` suffix isn't stripped from method names. Unless a client method is defined with `.on('MyMethodAsync')`, don't use `MyMethodAsync` as the name.
+
+## Client results
+
+In addition to making calls to clients, the server can request a result from the client. This requires the server to use `ISingleClientProxy.InvokeAsync` and the client to return a result from their `.On` handler.
+
+There are two ways to use the API on the server, the first is to call `Single(...)` on the `Clients` property in a Hub method.
+```csharp
+public class ChatHub : Hub
+{
+    public async Task<string> WaitForMessage(string connectionId)
+    {
+        var message = await Clients.Single(connectionId).InvokeAsync<string>("GetMessage");
+        return message;
+    }
+}
+```
+
+> [!NOTE]
+> Currently using `InvokeAsync` from a Hub method requires setting the [MaximumParallelInvocationsPerClient](xref:signalr/configuration#configure-server-options) option to a value greater than 1.
+
+The second way is to call `Single(...)` on an instance of [IHubContext<T>](xref:signalr/hubcontext).
+```csharp
+async Task SomeMethod(IHubContext<MyHub> context)
+{
+    string result = await context.Single(connectionID).InvokeAsync<string>("GetMessage");
+}
+```
+
+Strongly-typed hubs can also return values from interface methods:
+```csharp
+public interface IClient
+{
+    Task<string> GetMessage();
+}
+
+public class ChatHub : Hub<IClient>
+{
+    public async Task<string> WaitForMessage(string connectionId)
+    {
+        string message = await Clients.Single(connectionId).GetMessage();
+        return message;
+    }
+}
+```
+
+Clients return results in their `.On(...)` handlers as shown below:
+
+### .NET client
+```csharp
+hubConnection.On("GetMessage", async () =>
+{
+    Console.WriteLine("Enter message:");
+    var message = await Console.In.ReadLineAsync();
+    return message;
+});
+```
+### Typescript client
+```typescript
+hubConnection.on("GetMessage", async () => {
+    let promise = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve("message");
+        }, 100);
+    });
+    return promise;
+});
+```
+
+> [!NOTE]
+> Client results does not work with the Azure SignalR Service currently.
 
 ## Change the name of a hub method
 
