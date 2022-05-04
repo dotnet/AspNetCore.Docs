@@ -631,7 +631,7 @@ public class ChatHub : Hub
 > [!NOTE]
 > Currently using `InvokeAsync` from a Hub method requires setting the [MaximumParallelInvocationsPerClient](xref:signalr/configuration#configure-server-options) option to a value greater than 1.
 
-The second way is to call `Single(...)` on an instance of [IHubContext<T>](xref:signalr/hubcontext).
+The second way is to call `Single(...)` on an instance of [`IHubContext<T>`](xref:signalr/hubcontext).
 ```csharp
 async Task SomeMethod(IHubContext<MyHub> context)
 {
@@ -658,7 +658,7 @@ public class ChatHub : Hub<IClient>
 
 Clients return results in their `.On(...)` handlers as shown below:
 
-### .NET client
+#### .NET client
 ```csharp
 hubConnection.On("GetMessage", async () =>
 {
@@ -667,7 +667,7 @@ hubConnection.On("GetMessage", async () =>
     return message;
 });
 ```
-### Typescript client
+#### Typescript client
 ```typescript
 hubConnection.on("GetMessage", async () => {
     let promise = new Promise((resolve, reject) => {
@@ -680,7 +680,7 @@ hubConnection.on("GetMessage", async () => {
 ```
 
 > [!NOTE]
-> Client results does not work with the Azure SignalR Service currently.
+> Client results do not work with the Azure SignalR Service currently.
 
 ## Change the name of a hub method
 
