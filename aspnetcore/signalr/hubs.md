@@ -577,7 +577,7 @@ The <xref:Microsoft.AspNetCore.SignalR.Hub> class includes a <xref:Microsoft.Asp
 | <xref:Microsoft.AspNetCore.SignalR.IHubClients%601.GroupExcept%2A> | Calls a method on all connections in the specified group, except the specified connections |
 | <xref:Microsoft.AspNetCore.SignalR.IHubClients%601.Groups%2A> | Calls a method on multiple groups of connections |
 | <xref:Microsoft.AspNetCore.SignalR.IHubCallerClients%601.OthersInGroup%2A> | Calls a method on a group of connections, excluding the client that invoked the hub method |
-| <xref:Microsoft.AspNetCore.SignalR.IHubCallerClients%601.Single%2A> | calls a method on a specific connected client |
+| Single | calls a method on a specific connected client |
 | <xref:Microsoft.AspNetCore.SignalR.IHubClients%601.User%2A> | Calls a method on all connections associated with a specific user |
 | <xref:Microsoft.AspNetCore.SignalR.IHubClients%601.Users%2A> | Calls a method on all connections associated with the specified users |
 
