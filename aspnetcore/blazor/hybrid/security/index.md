@@ -169,7 +169,7 @@ authenticatedUser.Principal = currentUser;
 >     ComponentType = typeof(Main),
 >     Selector = "#app"
 > });
->
+> ```
 
 ### Handle authentication within the `BlazorWebView` (Option 2)
 
