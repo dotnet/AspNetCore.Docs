@@ -194,7 +194,7 @@ public HybridAuthenticationStateProvider : AuthenticationStateProvider
 
         Task<AuthenticationState> CreateLoginTask()
         {
-            var newUser = await LoginWithIdentityProviderAsync();
+            var newUser = await LoginWithExternalProviderAsync();
             currentUser = new AuthenticationState(newUser);
 
             return currentUser;
@@ -216,7 +216,7 @@ In the preceding example:
 * The call to `CreateLoginTask` triggers the login process.
 * The call to <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged%2A> notifies that an update is in progress, which allows the app to provide a temporary UI during the login process.
 * Returning `loginTask` returns the task so that the component that triggered the login can await and react after the task is complete.
-* The `LoginWithIdentityProviderAsync` method is implemented by the developer to log in the user with the identity provider's SDK. For more information, see the identity provider's documentation.
+* The `LoginWithExternalProviderAsync` method is implemented by the developer to log in the user with the identity provider's SDK. For more information, see the identity provider's documentation.
 
 The following `LoginComponent` component demonstrates how to log in a user. In a typical app, the `LoginComponent` component is only shown in a parent component if the user isn't logged into the app.
 
