@@ -143,6 +143,13 @@ However, excluding the `div` element removes the descendant relationship. In the
 <Child />
 ```
 
+The `::deep` combinator affects where the scope attribute is applied to the rule. When you define a CSS rule in a scoped CSS file, the scope is applied to the right most element by default. For example: `div > a` is transformed to `div > a[{SCOPE ID}]`, where the placeholder `{SCOPE ID}` is the scope identifier applied by the Blazor framework (for example, `b-3xxtam6d07`). If you instead want the rule to apply to a different selector, the `::deep` combinator allows you do so. For example, `div::deep > a` is transformed to `div[{SCOPE ID}] > a` (for example, `div[b-3xxtam6d07] > a`).
+
+The ability to attach the `::deep` combinator to any HTML element allows you to create scoped CSS styles that affect elements rendered by other components when you can determine the structure of the rendered HTML tags. For a component that renders an hyperlink tag (`<a>`) inside another component, wrap the component in a `div` and use the rule `div::deep > a` to create a style that's only applied to that component when the parent component renders.
+
+> [!IMPORTANT]
+> Scoped CSS only applies to ***HTML elements*** and not to Razor components or Tag Helpers, including elements with a Tag Helper applied, such as `<input asp-for="..." />`.
+
 ## CSS preprocessor support
 
 CSS preprocessors are useful for improving CSS development by utilizing features such as variables, nesting, modules, mixins, and inheritance. While CSS isolation doesn't natively support CSS preprocessors such as Sass or Less, integrating CSS preprocessors is seamless as long as preprocessor compilation occurs before Blazor rewrites the CSS selectors during the build process. Using Visual Studio for example, configure existing preprocessor compilation as a **Before Build** task in the Visual Studio Task Runner Explorer.
@@ -358,6 +365,13 @@ However, excluding the `div` element removes the descendant relationship. In the
 
 <Child />
 ```
+
+The `::deep` combinator affects where the scope attribute is applied to the rule. When you define a CSS rule in a scoped CSS file, the scope is applied to the right most element by default. For example: `div > a` is transformed to `div > a[{SCOPE ID}]`, where the placeholder `{SCOPE ID}` is the scope identifier applied by the Blazor framework (for example, `b-3xxtam6d07`). If you instead want the rule to apply to a different selector, the `::deep` combinator allows you do so. For example, `div::deep > a` is transformed to `div[{SCOPE ID}] > a` (for example, `div[b-3xxtam6d07] > a`).
+
+The ability to attach the `::deep` combinator to any HTML element allows you to create scoped CSS styles that affect elements rendered by other components when you can determine the structure of the rendered HTML tags. For a component that renders an hyperlink tag (`<a>`) inside another component, wrap the component in a `div` and use the rule `div::deep > a` to create a style that's only applied to that component when the parent component renders.
+
+> [!IMPORTANT]
+> Scoped CSS only applies to ***HTML elements*** and not to Razor components or Tag Helpers, including elements with a Tag Helper applied, such as `<input asp-for="..." />`.
 
 ## CSS preprocessor support
 
