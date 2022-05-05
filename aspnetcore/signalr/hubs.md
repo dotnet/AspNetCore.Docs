@@ -614,7 +614,7 @@ Using `Hub<IChatClient>` enables compile-time checking of the client methods. Th
 
 ## Client results
 
-In addition to making calls to clients, the server can request a result from a client. This requires the server to use `ISingleClientProxy.InvokeAsync` and the client to return a result from their `.On` handler.
+In addition to making calls to clients, the server can request a result from a client. This requires the server to use `ISingleClientProxy.InvokeAsync` and the client to return a result from its `.On` handler.
 
 There are two ways to use the API on the server, the first is to call `Single(...)` on the `Clients` property in a Hub method:
 
@@ -632,6 +632,7 @@ public class ChatHub : Hub
 
 > [!NOTE]
 > Using `InvokeAsync` from a Hub method requires setting the [`MaximumParallelInvocationsPerClient`](xref:signalr/configuration#configure-server-options) option to a value greater than 1.
+>
 > This will be addressed in a future release. For more information, see [Support returning values from client invocations](https://github.com/dotnet/aspnetcore/issues/5280).
 
 The second way is to call `Single(...)` on an instance of [`IHubContext<T>`](xref:signalr/hubcontext):
@@ -690,6 +691,7 @@ hubConnection.on("GetMessage", async () => {
 
 > [!NOTE]
 > Client results don't work with the Azure SignalR Service.
+>
 > This will be addressed in a future release. For more information, see [Support returning values from client invocations](https://github.com/dotnet/aspnetcore/issues/5280).
 
 ## Change the name of a hub method
