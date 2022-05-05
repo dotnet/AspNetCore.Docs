@@ -226,7 +226,13 @@ public class ExternalAuthenticationStateProvider : AuthenticationStateProvider
 
     private Task<ClaimsPrincipal> LoginWithExternalProviderAsync()
     {
-        // Here is where you write your OpenID/MSAL code to authenticate the user.
+        /*
+            Provide OpenID/MSAL code to authenticate the user. See your identity 
+            provider's documentation for details.
+
+            Return a new ClaimsPrincipal based on a new ClaimsIdentity.
+        */
+
         return Task.FromResult(new ClaimsPrincipal(new ClaimsIdentity()));
     }
 
@@ -244,7 +250,7 @@ In the preceding example:
 * The call to `LogInAsyncCore` triggers the login process.
 * The call to <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged%2A> notifies that an update is in progress, which allows the app to provide a temporary UI during the login or logout process.
 * Returning `loginTask` returns the task so that the component that triggered the login can await and react after the task is complete.
-* The `LoginWithExternalProviderAsync` method is implemented by the developer to log in the user with the identity provider's SDK. For more information, see the identity provider's documentation.
+* The `LoginWithExternalProviderAsync` method is implemented by the developer to log in the user with the identity provider's SDK. For more information, see your identity provider's documentation.
 
 The following `LoginComponent` component demonstrates how to log in a user. In a typical app, the `LoginComponent` component is only shown in a parent component if the user isn't logged into the app.
 
