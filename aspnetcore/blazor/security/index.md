@@ -76,24 +76,24 @@ The <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvi
 
 <button @onclick="GetClaimsPrincipalData">Get ClaimsPrincipal Data</button>
 
-<p>@_authMessage</p>
+<p>@authMessage</p>
 
-@if (_claims.Count() > 0)
+@if (claims.Count() > 0)
 {
     <ul>
-        @foreach (var claim in _claims)
+        @foreach (var claim in claims)
         {
             <li>@claim.Type: @claim.Value</li>
         }
     </ul>
 }
 
-<p>@_surnameMessage</p>
+<p>@surnameMessage</p>
 
 @code {
-    private string _authMessage;
-    private string _surnameMessage;
-    private IEnumerable<Claim> _claims = Enumerable.Empty<Claim>();
+    private string authMessage;
+    private string surnameMessage;
+    private IEnumerable<Claim> claims = Enumerable.Empty<Claim>();
 
     private async Task GetClaimsPrincipalData()
     {
@@ -102,14 +102,14 @@ The <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvi
 
         if (user.Identity.IsAuthenticated)
         {
-            _authMessage = $"{user.Identity.Name} is authenticated.";
-            _claims = user.Claims;
-            _surnameMessage = 
+            authMessage = $"{user.Identity.Name} is authenticated.";
+            claims = user.Claims;
+            surnameMessage = 
                 $"Surname: {user.FindFirst(c => c.Type == ClaimTypes.Surname)?.Value}";
         }
         else
         {
-            _authMessage = "The user is NOT authenticated.";
+            authMessage = "The user is NOT authenticated.";
         }
     }
 }
@@ -128,13 +128,13 @@ If authentication state data is required for procedural logic, such as when perf
 
 <button @onclick="LogUsername">Log username</button>
 
-<p>@_authMessage</p>
+<p>@authMessage</p>
 
 @code {
     [CascadingParameter]
     private Task<AuthenticationState> authenticationStateTask { get; set; }
 
-    private string _authMessage;
+    private string authMessage;
 
     private async Task LogUsername()
     {
@@ -143,11 +143,11 @@ If authentication state data is required for procedural logic, such as when perf
 
         if (user.Identity.IsAuthenticated)
         {
-            _authMessage = $"{user.Identity.Name} is authenticated.";
+            authMessage = $"{user.Identity.Name} is authenticated.";
         }
         else
         {
-            _authMessage = "The user is NOT authenticated.";
+            authMessage = "The user is NOT authenticated.";
         }
     }
 }
@@ -642,24 +642,24 @@ The <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvi
 
 <button @onclick="GetClaimsPrincipalData">Get ClaimsPrincipal Data</button>
 
-<p>@_authMessage</p>
+<p>@authMessage</p>
 
-@if (_claims.Count() > 0)
+@if (claims.Count() > 0)
 {
     <ul>
-        @foreach (var claim in _claims)
+        @foreach (var claim in claims)
         {
             <li>@claim.Type: @claim.Value</li>
         }
     </ul>
 }
 
-<p>@_surnameMessage</p>
+<p>@surnameMessage</p>
 
 @code {
-    private string _authMessage;
-    private string _surnameMessage;
-    private IEnumerable<Claim> _claims = Enumerable.Empty<Claim>();
+    private string authMessage;
+    private string surnameMessage;
+    private IEnumerable<Claim> claims = Enumerable.Empty<Claim>();
 
     private async Task GetClaimsPrincipalData()
     {
@@ -668,14 +668,14 @@ The <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvi
 
         if (user.Identity.IsAuthenticated)
         {
-            _authMessage = $"{user.Identity.Name} is authenticated.";
-            _claims = user.Claims;
-            _surnameMessage = 
+            authMessage = $"{user.Identity.Name} is authenticated.";
+            claims = user.Claims;
+            surnameMessage = 
                 $"Surname: {user.FindFirst(c => c.Type == ClaimTypes.Surname)?.Value}";
         }
         else
         {
-            _authMessage = "The user is NOT authenticated.";
+            authMessage = "The user is NOT authenticated.";
         }
     }
 }
@@ -694,13 +694,13 @@ If authentication state data is required for procedural logic, such as when perf
 
 <button @onclick="LogUsername">Log username</button>
 
-<p>@_authMessage</p>
+<p>@authMessage</p>
 
 @code {
     [CascadingParameter]
     private Task<AuthenticationState> authenticationStateTask { get; set; }
 
-    private string _authMessage;
+    private string authMessage;
 
     private async Task LogUsername()
     {
@@ -709,11 +709,11 @@ If authentication state data is required for procedural logic, such as when perf
 
         if (user.Identity.IsAuthenticated)
         {
-            _authMessage = $"{user.Identity.Name} is authenticated.";
+            authMessage = $"{user.Identity.Name} is authenticated.";
         }
         else
         {
-            _authMessage = "The user is NOT authenticated.";
+            authMessage = "The user is NOT authenticated.";
         }
     }
 }
@@ -1213,24 +1213,24 @@ The <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvi
 
 <button @onclick="GetClaimsPrincipalData">Get ClaimsPrincipal Data</button>
 
-<p>@_authMessage</p>
+<p>@authMessage</p>
 
-@if (_claims.Count() > 0)
+@if (claims.Count() > 0)
 {
     <ul>
-        @foreach (var claim in _claims)
+        @foreach (var claim in claims)
         {
             <li>@claim.Type: @claim.Value</li>
         }
     </ul>
 }
 
-<p>@_surnameMessage</p>
+<p>@surnameMessage</p>
 
 @code {
-    private string _authMessage;
-    private string _surnameMessage;
-    private IEnumerable<Claim> _claims = Enumerable.Empty<Claim>();
+    private string authMessage;
+    private string surnameMessage;
+    private IEnumerable<Claim> claims = Enumerable.Empty<Claim>();
 
     private async Task GetClaimsPrincipalData()
     {
@@ -1239,14 +1239,14 @@ The <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvi
 
         if (user.Identity.IsAuthenticated)
         {
-            _authMessage = $"{user.Identity.Name} is authenticated.";
-            _claims = user.Claims;
-            _surnameMessage = 
+            authMessage = $"{user.Identity.Name} is authenticated.";
+            claims = user.Claims;
+            surnameMessage = 
                 $"Surname: {user.FindFirst(c => c.Type == ClaimTypes.Surname)?.Value}";
         }
         else
         {
-            _authMessage = "The user is NOT authenticated.";
+            authMessage = "The user is NOT authenticated.";
         }
     }
 }
@@ -1265,13 +1265,13 @@ If authentication state data is required for procedural logic, such as when perf
 
 <button @onclick="LogUsername">Log username</button>
 
-<p>@_authMessage</p>
+<p>@authMessage</p>
 
 @code {
     [CascadingParameter]
     private Task<AuthenticationState> authenticationStateTask { get; set; }
 
-    private string _authMessage;
+    private string authMessage;
 
     private async Task LogUsername()
     {
@@ -1280,11 +1280,11 @@ If authentication state data is required for procedural logic, such as when perf
 
         if (user.Identity.IsAuthenticated)
         {
-            _authMessage = $"{user.Identity.Name} is authenticated.";
+            authMessage = $"{user.Identity.Name} is authenticated.";
         }
         else
         {
-            _authMessage = "The user is NOT authenticated.";
+            authMessage = "The user is NOT authenticated.";
         }
     }
 }
