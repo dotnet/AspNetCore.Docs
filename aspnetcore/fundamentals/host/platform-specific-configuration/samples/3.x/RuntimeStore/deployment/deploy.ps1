@@ -1,11 +1,11 @@
 function AppendToEnvironmentVariable($name, $appendValue)
 {
-    $value = [Environment]::GetEnvironmentVariable($name, 'Machine')
+    $value = [Environment]::GetEnvironmentVariable($name)
     if ($value -eq $null) {
-      [Environment]::SetEnvironmentVariable($name, 'StartupDiagnostics', 'Machine')
+      [Environment]::SetEnvironmentVariable($name, $appendValue)
     } else {
       if ($value -notcontains $appendValue) {
-        [Environment]::SetEnvironmentVariable($name, $value + ';' + $appendValue, 'Machine')
+        [Environment]::SetEnvironmentVariable($name, $value + ';' + $appendValue)
       }
     }
 }
