@@ -79,7 +79,7 @@ By default, a DNS resolver is refreshed if a connection is interrupted. The DNS 
 
 ```csharp
 services.AddSingleton<ResolverFactory>(
-    () => new DnsResolverFactory(refreshInterval: TimeSpan.FromSeconds(30)));
+    sp => new DnsResolverFactory(refreshInterval: TimeSpan.FromSeconds(30)));
 ```
 
 The preceding code creates a `DnsResolverFactory` with a refresh interval and registers it with dependency injection. For more information on using a custom-configured resolver, see [Configure custom resolvers and load balancers](#configure-custom-resolvers-and-load-balancers).
