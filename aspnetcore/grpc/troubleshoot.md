@@ -9,11 +9,12 @@ ms.date: 05/04/2022
 no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/troubleshoot
 ---
-:::moniker range=">= aspnetcore-6.0"
 
 # Troubleshoot gRPC on .NET Core
 
 By [James Newton-King](https://twitter.com/jamesnk)
+
+:::moniker range=">= aspnetcore-6.0"
 
 This document discusses commonly encountered problems when developing gRPC apps on .NET.
 
@@ -278,10 +279,6 @@ Alternatively, a client factory can be configured with `Http3Handler` by using <
 :::moniker-end
 :::moniker range="< aspnetcore-6.0"
 
-# Troubleshoot gRPC on .NET Core
-
-By [James Newton-King](https://twitter.com/jamesnk)
-
 This document discusses commonly encountered problems when developing gRPC apps on .NET.
 
 ## Mismatch between client and service SSL/TLS configuration
@@ -496,10 +493,6 @@ Alternatively, a client factory can be configured with `SubdirectoryHandler` by 
 
 :::moniker-end
 :::moniker range="< aspnetcore-5.0"
-
-# Troubleshoot gRPC on .NET Core
-
-By [James Newton-King](https://twitter.com/jamesnk)
 
 This document discusses commonly encountered problems when developing gRPC apps on .NET.
 
