@@ -1,4 +1,4 @@
-#define OS // First SECOND MULT OS
+#define MULT // First SECOND MULT OS
 #if First
 #region snippet1
 using DependencyInjectionSample.Interfaces;
@@ -62,6 +62,8 @@ app.Run();
 #elif MULT
 using DependencyInjectionSample.Interfaces;
 using DependencyInjectionSample.Models;
+using DependencyInjectionSample.Middleware;
+
 #region snippet3
 var builder = WebApplication.CreateBuilder(args);
 
@@ -72,7 +74,6 @@ builder.Services.AddScoped<IOperationScoped, Operation>();
 builder.Services.AddSingleton<IOperationSingleton, Operation>();
 
 var app = builder.Build();
-#endregion
 
 if (!app.Environment.IsDevelopment())
 {
@@ -83,6 +84,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+app.UseMyMiddleware();
 app.UseRouting();
 
 app.UseAuthorization();
@@ -90,6 +92,8 @@ app.UseAuthorization();
 app.MapRazorPages();
 
 app.Run();
+#endregion
+
 #elif OS
 // To test Index4
 using DependencyInjectionSample.Interfaces;
