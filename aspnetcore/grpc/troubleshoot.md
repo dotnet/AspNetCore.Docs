@@ -277,7 +277,7 @@ Alternatively, a client factory can be configured with `Http3Handler` by using <
 [!INCLUDE[](~/includes/gRPCazure.md)]
 
 :::moniker-end
-:::moniker range="< aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 This document discusses commonly encountered problems when developing gRPC apps on .NET.
 
@@ -492,7 +492,7 @@ Alternatively, a client factory can be configured with `SubdirectoryHandler` by 
 [!INCLUDE[](~/includes/gRPCazure.md)]
 
 :::moniker-end
-:::moniker range="< aspnetcore-5.0"
+:::moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
 This document discusses commonly encountered problems when developing gRPC apps on .NET.
 
