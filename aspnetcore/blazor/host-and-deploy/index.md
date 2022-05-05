@@ -110,6 +110,8 @@ In other hosting scenarios, such as GitHub Pages and IIS sub-apps, the app base 
 
   ```csharp
   app.UsePathBase("/CoolApp");
+  // ...
+  app.UseRouting();
   ```
 
 * In a Blazor Server app, use ***either*** of the following approaches:
@@ -126,6 +128,8 @@ In other hosting scenarios, such as GitHub Pages and IIS sub-apps, the app base 
 
     ```csharp
     app.UsePathBase("/CoolApp");
+    // ...
+    app.UseRouting();
     ```
 
     Calling <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> is recommended when you also wish to run the Blazor Server app locally. For example, supply the launch URL in `Properties/launchSettings.json`:
@@ -147,6 +151,9 @@ In other hosting scenarios, such as GitHub Pages and IIS sub-apps, the app base 
         "ASPNETCORE_ENVIRONMENT": "Development"
     }
     ```
+
+> [!NOTE]
+> When using <xref:Microsoft.AspNetCore.Builder.WebApplication> (see <xref:migration/50-to-60#new-hosting-model>), [`app.UseRouting`](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A) must be called after `UsePathBase` so that the routing middleware can observe the modified path before matching routes. Otherwise, routes are matched before the path is rewritten by `UsePathBase` as described in the [Middleware Ordering](xref:fundamentals/middleware/index#order) and [Routing](xref:fundamentals/routing) articles.
 
 Do ***not*** prefix links throughout the app with a forward slash. Either avoid the use of a path segment separator or use dot-slash (`./`) relative path notation:
 
