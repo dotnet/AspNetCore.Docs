@@ -67,14 +67,18 @@ After authentication is added to a .NET MAUI, WPF, or Windows Forms app and user
 
 The <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> is the abstraction that Razor components use to access information about the authenticated user and to receive updates when the authentication state changes.
 
-If the app authenticates the user immediately after the app launches and the authenticated user remains the same for the entirety of the app lifetime, user change notifications aren't required, and the app only provides information about the authenticated user. Typically in this scenario, the user logs into the app when the app is opened, and the app displays the login screen again after the user logs out. The following `HybridAuthenticationStateProvider` is an example implementation of a custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> for this authentication scenario.
+If the app authenticates the user immediately after the app launches and the authenticated user remains the same for the entirety of the app lifetime, user change notifications aren't required, and the app only provides information about the authenticated user. Typically in this scenario, the user logs into the app when the app is opened, and the app displays the login screen again after the user logs out. The following `ExternalAuthenticationStateProvider` is an example implementation of a custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> for this authentication scenario.
 
 ```csharp
-public HybridAuthenticationStateProvider : AuthenticationStateProvider
+using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components.Authorization;
+
+public class ExternalAuthenticationStateProvider : AuthenticationStateProvider
 {
     private readonly Task<AuthenticationState> authenticationState;
 
-    public HybridAuthenticationStateProvider(AuthenticatedUser user) => 
+    public ExternalAuthenticationStateProvider(AuthenticatedUser user) => 
         authenticationState = Task.FromResult(new AuthenticationState(user.Principal));
 
     public override Task<AuthenticationState> GetAuthenticationStateAsync() =>
@@ -83,8 +87,16 @@ public HybridAuthenticationStateProvider : AuthenticationStateProvider
 
 public class AuthenticatedUser 
 {
-    public ClaimsPrincipal Principal { get; set; }
+    public ClaimsPrincipal Principal { get; set; } = new();
 }
+```
+
+Add the Blazor abstractions to the DI container:
+
+```csharp
+services.AddAuthorizationCore();
+services.AddScoped<AuthenticationStateProvider, ExternalAuthenticationStateProvider>();
+services.AddSingleton<AuthenticatedUser>();
 ```
 
 To update the user while the Blazor app is running, call <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged%2A> within the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> implementation, using ***either*** of the following approaches:
@@ -100,33 +112,48 @@ The following example uses a global service to signal an authentication update. 
 > `AuthenticatedUser` in the following example is registered in the dependency injection container later in this article.
 
 ```csharp
-public HybridAuthenticationStateProvider : AuthenticationStateProvider
+using System;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components.Authorization;
+
+public class ExternalAuthenticationStateProvider : AuthenticationStateProvider
 {
-    private readonly AuthenticatedUser authenticatedUser;
-    private Task<AuthenticationState> authenticationState;
+    private AuthenticationState currentUser;
 
-    public HybridAuthenticationStateProvider(AuthenticatedUser user)
+    public ExternalAuthenticationStateProvider(ExternalAuthService service)
     {
-        authenticationState = 
-            Task.FromResult(new AuthenticationState(user.Principal));
-        authenticatedUser = user;
+        currentUser = new AuthenticationState(service.CurrentUser);
 
-        authenticatedUser.UserChanged += () => 
+        service.UserChanged += (newUser) =>
         {
-            authenticationState = 
-                Task.FromResult(new AuthenticationState(user.Principal));
-            NotifyAuthenticationStateChanged(authenticatedUser);
-        }
+            currentUser = new AuthenticationState(newUser);
+            NotifyAuthenticationStateChanged(Task.FromResult(currentUser));
+        };
     }
 
-    public override Task<AuthenticationState> GetAuthenticationStateAsync() => 
-        authenticationState;
+    public override Task<AuthenticationState> GetAuthenticationStateAsync() =>
+        Task.FromResult(currentUser);
 }
 
-public class AuthenticatedUser 
+public class ExternalAuthService
 {
-    public ClaimsPrincipal Principal { get; set; }
-    public event Action UserChanged;
+    public event Action<ClaimsPrincipal>? UserChanged;
+    private ClaimsPrincipal? currentUser;
+
+    public ClaimsPrincipal CurrentUser
+    {
+        get { return currentUser ?? new(); }
+        set
+        {
+            currentUser = value;
+
+            if (UserChanged is not null)
+            {
+                UserChanged(currentUser);
+            }
+        }
+    }
 }
 ```
 
@@ -134,15 +161,15 @@ Add the Blazor abstractions to the DI container:
 
 ```csharp
 services.AddAuthorizationCore();
-services.AddScoped<AuthenticationStateProvider, HybridAuthenticationStateProvider>();
-services.AddSingleton<AuthenticatedUser>();
+services.AddScoped<AuthenticationStateProvider, ExternalAuthenticationStateProvider>();
+services.AddSingleton<ExternalAuthService>();
 ```
 
-From anywhere in the app, we can resolve the `AuthenticatedUser` service after we have authenticated the user and set the principal property to the authenticated user before we start the Blazor application:
+From anywhere in the app, we can resolve the `ExternalAuthService` service after we have authenticated the user and set the principal property to the authenticated user before we start the Blazor application:
 
 ```csharp
-var authenticatedUser = services.GetRequiredService<AuthenticatedUser>();
-authenticatedUser.Principal = currentUser;
+var authenticatedUser = services.GetRequiredService<ExternalAuthService>();
+ExternalAuthService.Principal = currentUser;
 ```
 
 > [!NOTE]
@@ -167,64 +194,55 @@ authenticatedUser.Principal = currentUser;
 
 ### Handle authentication within the `BlazorWebView` (Option 2)
 
-Add additional methods to the `HybridAuthenticationStateProvider` to trigger log in and log out and update the user:
+Add additional methods to the `ExternalAuthenticationStateProvider` to trigger log in and log out and update the user:
 
 ```csharp
-public HybridAuthenticationStateProvider : AuthenticationStateProvider
+using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components.Authorization;
+
+public class ExternalAuthenticationStateProvider : AuthenticationStateProvider
 {
-    private Task<AuthenticationState> currentUser = 
-        Task.FromResult(new ClaimsPrincipal(new ClaimsIdentity()));
+    private ClaimsPrincipal currentUser = new ClaimsPrincipal(new ClaimsIdentity());
 
     public override Task<AuthenticationState> GetAuthenticationStateAsync() =>
-        currentUser;
+        Task.FromResult(new AuthenticationState(currentUser));
 
-    public Task LoginAsync()
+    public Task LogInAsync()
     {
-        var loginTask = CreateLoginTask;
-
+        var loginTask = LogInAsyncCore();
         NotifyAuthenticationStateChanged(loginTask);
 
         return loginTask;
 
-        Task<AuthenticationState> CreateLoginTask()
+        async Task<AuthenticationState> LogInAsyncCore()
         {
-            var newUser = await LoginWithExternalProviderAsync();
-            currentUser = new AuthenticationState(newUser);
+            var user = await LoginWithExternalProviderAsync();
+            currentUser = user;
 
-            return currentUser;
+            return new AuthenticationState(currentUser);
         }
     }
 
     private Task<ClaimsPrincipal> LoginWithExternalProviderAsync()
     {
-        /*
-            Add developer OpenID/MSAL code to authenticate the user.
-
-            Return a new ClaimsPrincipal for a new ClaimsIdentity.
-        */
+        // Here is where you write your OpenID/MSAL code to authenticate the user.
         return Task.FromResult(new ClaimsPrincipal(new ClaimsIdentity()));
     }
 
-    public Task LogoutAsync()
+    public void Logout()
     {
-        var logoutTask = CreateLogoutTask;
-
-        NotifyAuthenticationStateChanged(logoutTask);
-
-        return logoutTask;
-
-        Task<AuthenticationState> CreateLogoutTask()
-        {
-            return Task.FromResult(new ClaimsPrincipal(new ClaimsIdentity()));
-        }
+        currentUser = new ClaimsPrincipal(new ClaimsIdentity());
+        NotifyAuthenticationStateChanged(
+            Task.FromResult(new AuthenticationState(currentUser)));
     }
 }
 ```
 
 In the preceding example:
 
-* The call to `CreateLoginTask` triggers the login process, and `CreateLogoutTask` triggers the logout process.
-* The call to <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged%2A> notifies that an update is in progress, which allows the app to provide a temporary UI during the login process.
+* The call to `LogInAsyncCore` triggers the login process.
+* The call to <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged%2A> notifies that an update is in progress, which allows the app to provide a temporary UI during the login or logout process.
 * Returning `loginTask` returns the task so that the component that triggered the login can await and react after the task is complete.
 * The `LoginWithExternalProviderAsync` method is implemented by the developer to log in the user with the identity provider's SDK. For more information, see the identity provider's documentation.
 
@@ -241,7 +259,7 @@ The following `LoginComponent` component demonstrates how to log in a user. In a
 {
     public async Task Login()
     {
-        await ((HybridAuthenticationStateProvider)AuthenticationStateProvider)
+        await ((ExternalAuthenticationStateProvider)AuthenticationStateProvider)
             .LoginAsync();
     }
 }
@@ -260,8 +278,8 @@ The following `LogoutComponent` component demonstrates how to log out a user. In
 {
     public async Task Logout()
     {
-        await ((HybridAuthenticationStateProvider)AuthenticationStateProvider)
-            .LogoutAsync();
+        await ((ExternalAuthenticationStateProvider)AuthenticationStateProvider)
+            .Logout();
     }
 }
 ```
@@ -270,7 +288,7 @@ Add the Blazor abstractions to the DI container:
 
 ```csharp
 services.AddAuthorizationCore();
-services.AddScoped<AuthenticationStateProvider, HybridAuthenticationStateProvider>();
+services.AddScoped<AuthenticationStateProvider, ExternalAuthenticationStateProvider>();
 ```
 
 ## Accessing other authentication information
