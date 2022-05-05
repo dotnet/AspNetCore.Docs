@@ -20,8 +20,7 @@ namespace DependencyInjectionSample.Middleware
 
         #region snippet2
         public async Task InvokeAsync(HttpContext context,
-            IOperationTransient transientOperation,
-            IOperationScoped scopedOperation)
+            IOperationTransient transientOperation, IOperationScoped scopedOperation)
         {
             _logger.LogInformation("Transient: " + transientOperation.OperationId);
             _logger.LogInformation("Scoped: " + scopedOperation.OperationId);
