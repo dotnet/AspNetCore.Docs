@@ -85,9 +85,7 @@ In the following example for IIS, the custom header (`Blazor-Environment`) is ad
 ***The guidance in this section requires the use of a hosted Blazor WebAssembly app.***
 
 > [!NOTE]
-> **Standalone Blazor WebAssembly apps**
->
-> For standalone Blazor Webassembly apps, set the environment manually via [start configuration](#set-the-environment-via-startup-configuration) or the [`Blazor-Environment` header](#set-the-environment-via-header).
+> For **standalone Blazor Webassembly apps**, set the environment manually via [start configuration](#set-the-environment-via-startup-configuration) or the [`Blazor-Environment` header](#set-the-environment-via-header).
 
 Use the following guidance for hosted Blazor WebAssembly solutions hosted by Azure App Service:
 
@@ -224,9 +222,7 @@ In the following example for IIS, the custom header (`Blazor-Environment`) is ad
 ***The guidance in this section requires the use of a hosted Blazor WebAssembly app.***
 
 > [!NOTE]
-> **Standalone Blazor WebAssembly apps**
->
-> For standalone Blazor Webassembly apps, set the environment manually via [start configuration](#set-the-environment-via-startup-configuration) or the [`Blazor-Environment` header](#set-the-environment-via-header).
+> For **standalone Blazor Webassembly apps**, set the environment manually via [start configuration](#set-the-environment-via-startup-configuration) or the [`Blazor-Environment` header](#set-the-environment-via-header).
 
 Use the following guidance for hosted Blazor WebAssembly solutions hosted by Azure App Service:
 
