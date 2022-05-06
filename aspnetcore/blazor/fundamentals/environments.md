@@ -32,21 +32,24 @@ For a standalone Blazor WebAssembly app running locally, the development server 
 
 ## Set the environment via startup configuration
 
-The following example starts Blazor in the `Staging` environment.
+The following example starts Blazor in the `Staging` environment if the hostname includes `localhost`. Otherwise, the environment is set to `Production`.
 
-In `wwwroot/index.html`:
+Inside the closing `</body>` tag of `wwwroot/index.html`:
 
 ```cshtml
-<body>
-    ...
-
-    <script src="_framework/blazor.webassembly.js" autostart="false"></script>
-    <script>
-      Blazor.start({
-        environment: "Staging"
-      });
-    </script>
-</body>
+<script src="_framework/blazor.webassembly.js" autostart="false"></script>
+<script>
+  if (window.location.hostname.includes("localhost")) {
+    Blazor.start({
+      environment: "Staging"
+    });
+  }
+  else {
+    Blazor.start({
+      environment: "Production"
+    });
+  }
+</script>
 ```
 
 Using the `environment` property overrides the environment set by the [`Blazor-Environment` header](#set-the-environment-via-header).
@@ -86,10 +89,6 @@ In the following example for IIS, the custom header (`Blazor-Environment`) is ad
 > **Standalone Blazor WebAssembly apps**
 >
 > For standalone Blazor Webassembly apps, set the environment manually via [start configuration](#set-the-environment-via-startup-configuration) or the [`Blazor-Environment` header](#set-the-environment-via-header).
->
-> **Apps built and deployed with continuous integration (CI)**
->
-> For app's built and deployed by a continuous integration (CI) process, you might be able to use a [JS Initializer](xref:blazor/js-interop/index#javascript-initializers) in conjunction with a build environment variable in the CI process to add an initializer specific to the environment as part of the build.
 
 Use the following guidance for hosted Blazor WebAssembly solutions hosted by Azure App Service:
 
@@ -173,19 +172,24 @@ For a standalone Blazor WebAssembly app running locally, the development server 
 
 ## Set the environment via startup configuration
 
-The following example starts Blazor in the `Staging` environment:
+The following example starts Blazor in the `Staging` environment if the hostname includes `localhost`. Otherwise, the environment is set to `Production`.
+
+Inside the closing `</body>` tag of `wwwroot/index.html`:
 
 ```cshtml
-<body>
-    ...
-
-    <script src="_framework/blazor.{webassembly|server}.js" autostart="false"></script>
-    <script>
-      Blazor.start({
-        environment: "Staging"
-      });
-    </script>
-</body>
+<script src="_framework/blazor.webassembly.js" autostart="false"></script>
+<script>
+  if (window.location.hostname.includes("localhost")) {
+    Blazor.start({
+      environment: "Staging"
+    });
+  }
+  else {
+    Blazor.start({
+      environment: "Production"
+    });
+  }
+</script>
 ```
 
 Using the `environment` property overrides the environment set by the [`Blazor-Environment` header](#set-the-environment-via-header).
@@ -225,10 +229,6 @@ In the following example for IIS, the custom header (`Blazor-Environment`) is ad
 > **Standalone Blazor WebAssembly apps**
 >
 > For standalone Blazor Webassembly apps, set the environment manually via [start configuration](#set-the-environment-via-startup-configuration) or the [`Blazor-Environment` header](#set-the-environment-via-header).
->
-> **Apps built and deployed with continuous integration (CI)**
->
-> For app's built and deployed by a continuous integration (CI) process, you might be able to use a [JS Initializer](xref:blazor/js-interop/index#javascript-initializers) in conjunction with a build environment variable in the CI process to add an initializer specific to the environment as part of the build.
 
 Use the following guidance for hosted Blazor WebAssembly solutions hosted by Azure App Service:
 
@@ -339,10 +339,6 @@ In the following example for IIS, the custom header (`Blazor-Environment`) is ad
 > **Standalone Blazor WebAssembly apps**
 >
 > For standalone Blazor Webassembly apps, set the environment manually via [start configuration](#set-the-environment-via-startup-configuration) or the [`Blazor-Environment` header](#set-the-environment-via-header).
->
-> **Apps built and deployed with continuous integration (CI)**
->
-> For app's built and deployed by a continuous integration (CI) process, you might be able to use a [JS Initializer](xref:blazor/js-interop/index#javascript-initializers) in conjunction with a build environment variable in the CI process to add an initializer specific to the environment as part of the build.
 
 Use the following guidance for hosted Blazor WebAssembly solutions hosted by Azure App Service:
 
