@@ -163,7 +163,7 @@ The following `Operation` class implements all of the preceding interfaces. The 
 
 The following code creates multiple registrations of the `Operation` class according to the named lifetimes:
 
-[!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/Program.cs?name=snippet3)]
+[!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/Program.cs?name=snippet3&highlight=5-7,20)]
 
 The sample app demonstrates object lifetimes both within and between requests. The `IndexModel` and the middleware request each kind of `IOperation` type and log the `OperationId` for each:
 
@@ -173,7 +173,7 @@ Similar to the `IndexModel`, the middleware resolves the same services:
 
 [!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/Middleware/MyMiddleware.cs?name=snippet)]
 
-Scoped services must be resolved in the `InvokeAsync` method:
+Scoped and transient services must be resolved in the `InvokeAsync` method:
 
 [!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/Middleware/MyMiddleware.cs?name=snippet2&highlight=2)]
 
