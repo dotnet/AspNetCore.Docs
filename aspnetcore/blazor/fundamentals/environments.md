@@ -43,8 +43,7 @@ Inside the closing `</body>` tag of `wwwroot/index.html`:
     Blazor.start({
       environment: "Staging"
     });
-  }
-  else {
+  } else {
     Blazor.start({
       environment: "Production"
     });
@@ -183,8 +182,7 @@ Inside the closing `</body>` tag of `wwwroot/index.html`:
     Blazor.start({
       environment: "Staging"
     });
-  }
-  else {
+  } else {
     Blazor.start({
       environment: "Production"
     });
