@@ -12,12 +12,10 @@ namespace TodoApi.Pages
             _logger = logger;
         }
 
-        public string? Message { get; set; }
-
         public void OnGet()
         {
-            Message = "About page visited at {DT}";
-            _logger.LogInformation(Message, DateTime.UtcNow.ToLongTimeString());
+            _logger.LogInformation("About page visited at {DT}", 
+                DateTime.UtcNow.ToLongTimeString());
         }
     }
     #endregion
