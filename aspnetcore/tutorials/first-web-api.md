@@ -954,7 +954,7 @@ This tutorial uses Postman to test the web API.
 * Start Postman.
 * Disable **SSL certificate verification**:
   * For Postman for Windows: Select **File** > **Settings** (**General** tab), disable **SSL certificate verification**.
-  * For Postman for MacOS: Select **Postman** > **Settings** (**General** tab), disable **SSL certificate verification**.
+  * For Postman for macOS: Select **Postman** > **Settings** (**General** tab), disable **SSL certificate verification**.
     > [!WARNING]
     > Re-enable SSL certificate verification after testing the controller.
 
@@ -1445,7 +1445,7 @@ This tutorial uses Postman to test the web API.
 * Start Postman.
 * Disable **SSL certificate verification**:
   * For Postman for Windows: Postman for Windows **File** > **Settings** (**General** tab), disable **SSL certificate verification**.
-  * For Postman for MacOS: Postman for Windows **Postman** > **Settings** (**General** tab), disable **SSL certificate verification**.
+  * For Postman for macOS: Postman for Windows **Postman** > **Settings** (**General** tab), disable **SSL certificate verification**.
     > [!WARNING]
     > Re-enable SSL certificate verification after testing the controller.
 
