@@ -32,10 +32,11 @@ This article provides information on configuration in ASP.NET Core. For informat
 
 ASP.NET Core apps configure and launch a *host*. The host is responsible for app startup and lifetime management. The ASP.NET Core templates create a <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> which contains the host. While some configuration can be done in both the host and the application configuration providers, generally, only configuration that is necessary for the host should be done in host configuration.
 
+Application configuration is the highest priority and is detailed in the next section. [Host configuration](#host) follows application configuration, and is described in this article.
 
 <a name="default"></a>
 
-### Default application configuration
+### Default application configuration sources
 
 ASP.NET Core web apps created with [dotnet new](/dotnet/core/tools/dotnet-new) or Visual Studio generate the following code:
 
@@ -43,24 +44,20 @@ ASP.NET Core web apps created with [dotnet new](/dotnet/core/tools/dotnet-new) o
 var builder = WebApplication.CreateBuilder(args);
 ```
 
+<a name="hi2low"></a>
+
 [WebApplication.CreateBuilder](xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A) initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults. The initialized `WebApplicationBuilder` (`builder`) provides default configuration for the app in the following order, from highest to lowest:
 
 1. Command-line arguments using the [Command-line configuration provider](#command-line).
-1. Environment variables using the [Environment Variables configuration provider](#evcp).
+1. Non-prefixed environment variables using the [Non-prefixed environment variables configuration provider](#evcp).
 1. [User secrets](xref:security/app-secrets) when the app runs in the `Development` environment.
 1. `appsettings.{Environment}.json` using the [JSON configuration provider](#file-configuration-provider). For example, `appsettings.Production.json` and `appsettings.Development.json`.
 1. [appsettings.json](#appsettingsjson) using the [JSON configuration provider](#file-configuration-provider).
-1. A fallback to the host configuration described in the next section
+1. A fallback to the host configuration described in the [next section](#host).
 
-Configuration providers that are added later override previous key settings. For example, if `MyKey` is set in both `appsettings.json` and the environment, the environment value is used. Using the default configuration providers, the  [Command-line configuration provider](#clcp) overrides all other providers.
+<a name="host"></a>
 
-For more information on `CreateBuilder`, see [Default builder settings](xref:fundamentals/host/generic-host#default-builder-settings).
-
-The following code displays the enabled configuration providers in the order they were added:
-
-[!code-csharp[](index/samples/6.x/ConfigSample/Pages/Index2.cshtml.cs?name=snippet)]
-
-### Host configuration
+### Default host configuration sources
 
 The following list contains the default host configuration sources from highest to lowest priority:
 
@@ -88,9 +85,19 @@ Every other host setting is read from application config instead of host config.
 
 For more information, see [Change the content root, app name, and environment](xref:migration/50-to-60-samples#change-the-content-root-app-name-and-environment) and [Change the content root, app name, and environment by environment variables or command line](xref:migration/50-to-60-samples#change-the-content-root-app-name-and-environment-by-environment-variables-or-command-line)
 
+The remaining sections in this article refer to application configuration.
+
 ## Application configuration providers
 
-The remaining sections in this article refer to application configuration.
+The following code displays the enabled configuration providers in the order they were added:
+
+[!code-csharp[](index/samples/6.x/ConfigSample/Pages/Index2.cshtml.cs?name=snippet)]
+
+The preceding [highest to lowest default configuration list](#hi2low) shows the providers in the opposite order they are added to template generated application. For example, the [JSON configuration provider](#file-configuration-provider) is added before the [Command-line configuration provider](#command-line).
+
+Configuration providers that are added later have higher priority and override previous key settings. For example, if `MyKey` is set in both `appsettings.json` and the environment, the environment value is used. Using the default configuration providers, the  [Command-line configuration provider](#clcp) overrides all other providers.
+
+For more information on `CreateBuilder`, see [Default builder settings](xref:fundamentals/host/generic-host#default-builder-settings).
 
 ### appsettings.json
 
@@ -151,7 +158,12 @@ For more information on storing passwords or other sensitive data:
 
 <a name="evcp"></a>
 
-## Environment variables
+## Non-prefixed environment variables
+
+Non-prefixed environment variables are environment variables other than those prefixed by `ASPNETCORE_` or `DOTNET_`. For example, the ASP.NET Core web application templates set `"ASPNETCORE_ENVIRONMENT": "Development"` in `launchSettings.json`. For more information on `ASPNETCORE_` and `DOTNET_` environment variables, see:
+
+* <xref:fundamentals/environments>
+* [`DOTNET_` environment variables](/dotnet/core/tools/dotnet-environment-variables)
 
 Using the [default](#default) configuration, the <xref:Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider> loads configuration from environment variable key-value pairs after reading `appsettings.json`, `appsettings.{Environment}.json`, and [user secrets](xref:security/app-secrets). Therefore, key values read from the environment override values read from `appsettings.json`, `appsettings.{Environment}.json`, and user secrets.
 
