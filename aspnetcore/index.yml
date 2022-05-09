@@ -117,6 +117,9 @@ conceptualContent:
         - url: razor-pages/razor-pages-conventions.md
           itemType: concept
           text: "Routing"
+        - url: /learn/modules/aspnet-core-accessibility
+          itemType: concept
+          text: "Accessible ASP.NET Core web apps"
     # Card
     - title: Page-focused web UI with MVC
       summary: "Develop web apps using the Model-View-Controller design pattern"
