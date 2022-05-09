@@ -61,9 +61,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 The following list contains the default host configuration sources from highest to lowest priority:
 
-1. [`ASPNETCORE_` prefixed environment variable](xref:fundamentals/environments)
+1. `ASPNETCORE_`-prefixed environment variables using the [Environment variables configuration provider](xref:Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider).
 1.  Command-line arguments using the [Command-line configuration provider](#command-line)
-1. [`DOTNET_` prefixed environment variables](/dotnet/core/tools/dotnet-environment-variables)
+1. `DOTNET_`-prefixed environment variables using the [Environment variables configuration provider](xref:Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider).
 
 When a configuration value is set in host and application configuration, the application configuration is used.
 
