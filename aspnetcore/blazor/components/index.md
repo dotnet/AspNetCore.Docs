@@ -84,6 +84,8 @@ The Blazor framework processes a component internally as a [*render tree*](https
 
 Components are ordinary [C# classes](/dotnet/csharp/programming-guide/classes-and-structs/classes) and can be placed anywhere within a project. Components that produce webpages usually reside in the `Pages` folder. Non-page components are frequently placed in the `Shared` folder or a custom folder added to the project.
 
+Razor syntax for C# control structures, directives, and directive attributes are lowercase (examples: [`@if`](xref:mvc/views/razor#conditionals-if-else-if-else-and-switch), [`@code`](xref:mvc/views/razor#code), [`@bind`](xref:mvc/views/razor#bind)). Property names are uppercase (example: `@Body` for <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body?displayProperty=nameWithType>).
+
 ### Asynchronous methods (`async`) don't support returning `void`
 
 The Blazor framework doesn't track `void`-returning asynchronous methods (`async`). As a result, exceptions aren't caught if `void` is returned. Always return a <xref:System.Threading.Tasks.Task> from asynchronous methods.
@@ -1537,6 +1539,8 @@ The Blazor framework processes a component internally as a [*render tree*](https
 
 Components are ordinary [C# classes](/dotnet/csharp/programming-guide/classes-and-structs/classes) and can be placed anywhere within a project. Components that produce webpages usually reside in the `Pages` folder. Non-page components are frequently placed in the `Shared` folder or a custom folder added to the project.
 
+Razor syntax for C# control structures, directives, and directive attributes are lowercase (examples: [`@if`](xref:mvc/views/razor#conditionals-if-else-if-else-and-switch), [`@code`](xref:mvc/views/razor#code), [`@bind`](xref:mvc/views/razor#bind)). Property names are uppercase (example: `@Body` for <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body?displayProperty=nameWithType>).
+
 ### Asynchronous methods (`async`) don't support returning `void`
 
 The Blazor framework doesn't track `void`-returning asynchronous methods (`async`). As a result, exceptions aren't caught if `void` is returned. Always return a <xref:System.Threading.Tasks.Task> from asynchronous methods.
@@ -2513,6 +2517,8 @@ Component members are used in rendering logic using C# expressions that start wi
 The Blazor framework processes a component internally as a [*render tree*](https://developer.mozilla.org/docs/Web/Performance/How_browsers_work#render), which is the combination of a component's [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) and [Cascading Style Sheet Object Model (CSSOM)](https://developer.mozilla.org/docs/Web/API/CSS_Object_Model). After the component is initially rendered, the component's render tree is regenerated in response to events. Blazor compares the new render tree against the previous render tree and applies any modifications to the browser's DOM for display. For more information, see <xref:blazor/components/rendering>.
 
 Components are ordinary [C# classes](/dotnet/csharp/programming-guide/classes-and-structs/classes) and can be placed anywhere within a project. Components that produce webpages usually reside in the `Pages` folder. Non-page components are frequently placed in the `Shared` folder or a custom folder added to the project.
+
+Razor syntax for C# control structures, directives, and directive attributes are lowercase (examples: [`@if`](xref:mvc/views/razor#conditionals-if-else-if-else-and-switch), [`@code`](xref:mvc/views/razor#code), [`@bind`](xref:mvc/views/razor#bind)). Property names are uppercase (example: `@Body` for <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body?displayProperty=nameWithType>).
 
 ### Asynchronous methods (`async`) don't support returning `void`
 
