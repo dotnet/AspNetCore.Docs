@@ -84,7 +84,7 @@ The Blazor framework processes a component internally as a [*render tree*](https
 
 Components are ordinary [C# classes](/dotnet/csharp/programming-guide/classes-and-structs/classes) and can be placed anywhere within a project. Components that produce webpages usually reside in the `Pages` folder. Non-page components are frequently placed in the `Shared` folder or a custom folder added to the project.
 
-Razor syntax for C# control structures, directives, and directive attributes are lowercase (examples: [`@if`](xref:mvc/views/razor#if-else-if-else-switch), [`@code`](xref:mvc/views/razor#code), [`@bind`](xref:mvc/views/razor#bind)). Property names are uppercase (example: `@Body` for <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body?displayProperty=nameWithType>).
+Razor syntax for C# control structures, directives, and directive attributes are lowercase (examples: [`@if`](xref:mvc/views/razor#conditionals-if-else-if-else-and-switch), [`@code`](xref:mvc/views/razor#code), [`@bind`](xref:mvc/views/razor#bind)). Property names are uppercase (example: `@Body` for <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body?displayProperty=nameWithType>).
 
 ### Asynchronous methods (`async`) don't support returning `void`
 
@@ -1539,7 +1539,7 @@ The Blazor framework processes a component internally as a [*render tree*](https
 
 Components are ordinary [C# classes](/dotnet/csharp/programming-guide/classes-and-structs/classes) and can be placed anywhere within a project. Components that produce webpages usually reside in the `Pages` folder. Non-page components are frequently placed in the `Shared` folder or a custom folder added to the project.
 
-Razor syntax for C# control structures, directives, and directive attributes are lowercase (examples: [`@if`](xref:mvc/views/razor#if-else-if-else-switch), [`@code`](xref:mvc/views/razor#code), [`@bind`](xref:mvc/views/razor#bind)). Property names are uppercase (example: `@Body` for <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body?displayProperty=nameWithType>).
+Razor syntax for C# control structures, directives, and directive attributes are lowercase (examples: [`@if`](xref:mvc/views/razor#conditionals-if-else-if-else-and-switch), [`@code`](xref:mvc/views/razor#code), [`@bind`](xref:mvc/views/razor#bind)). Property names are uppercase (example: `@Body` for <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body?displayProperty=nameWithType>).
 
 ### Asynchronous methods (`async`) don't support returning `void`
 
@@ -2518,7 +2518,7 @@ The Blazor framework processes a component internally as a [*render tree*](https
 
 Components are ordinary [C# classes](/dotnet/csharp/programming-guide/classes-and-structs/classes) and can be placed anywhere within a project. Components that produce webpages usually reside in the `Pages` folder. Non-page components are frequently placed in the `Shared` folder or a custom folder added to the project.
 
-Razor syntax for C# control structures, directives, and directive attributes are lowercase (examples: [`@if`](xref:mvc/views/razor#if-else-if-else-switch), [`@code`](xref:mvc/views/razor#code), [`@bind`](xref:mvc/views/razor#bind)). Property names are uppercase (example: `@Body` for <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body?displayProperty=nameWithType>).
+Razor syntax for C# control structures, directives, and directive attributes are lowercase (examples: [`@if`](xref:mvc/views/razor#conditionals-if-else-if-else-and-switch), [`@code`](xref:mvc/views/razor#code), [`@bind`](xref:mvc/views/razor#bind)). Property names are uppercase (example: `@Body` for <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body?displayProperty=nameWithType>).
 
 ### Asynchronous methods (`async`) don't support returning `void`
 
