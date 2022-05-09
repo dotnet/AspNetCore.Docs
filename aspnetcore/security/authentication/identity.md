@@ -17,6 +17,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 ASP.NET Core Identity:
 
 * Is an API that supports user interface (UI) login functionality.
+* Is designed to be used together with [Duende IdentityServer4](https://duendesoftware.com/products/identityserver).
 * Manages users, passwords, profile data, roles, claims, tokens, email confirmation, and more.
 
 Users can create an account with the login information stored in Identity or they can use an external login provider. Supported external login providers include [Facebook, Google, Microsoft Account, and Twitter](xref:security/authentication/social/index).
@@ -32,7 +33,8 @@ In this topic, you learn how to use Identity to register, log in, and log out a 
 [Microsoft identity platform](/azure/active-directory/develop/) is:
 
 * An evolution of the Azure Active Directory (Azure AD) developer platform.
-* Unrelated to ASP.NET Core Identity.
+* An alternative identity solution for authentication and authorization in ASP.NET Core apps.
+* Not related to ASP.NET Core Identity.
 
 [!INCLUDE[](~/includes/IdentityServer4.md)]
 
@@ -264,6 +266,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 ASP.NET Core Identity:
 
 * Is an API that supports user interface (UI) login functionality.
+* Is designed to be used together with [Duende IdentityServer4](https://duendesoftware.com/products/identityserver).
 * Manages users, passwords, profile data, roles, claims, tokens, email confirmation, and more.
 
 Users can create an account with the login information stored in Identity or they can use an external login provider. Supported external login providers include [Facebook, Google, Microsoft Account, and Twitter](xref:security/authentication/social/index).
@@ -277,9 +280,9 @@ Identity is typically configured using a SQL Server database to store user names
 In this topic, you learn how to use Identity to register, log in, and log out a user. Note: the templates treat username and email as the same for users. For more detailed instructions about creating apps that use Identity, see [Next Steps](#next).
 
 [Microsoft identity platform](/azure/active-directory/develop/) is:
-
 * An evolution of the Azure Active Directory (Azure AD) developer platform.
-* Unrelated to ASP.NET Core Identity.
+* An alternative identity solution for authentication and authorization in ASP.NET Core apps.
+* Not related to ASP.NET Core Identity.
 
 [!INCLUDE[](~/includes/IdentityServer4.md)]
 
