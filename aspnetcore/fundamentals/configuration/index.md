@@ -26,13 +26,16 @@ Application configuration in ASP.NET Core is performed using one or more [config
 * Directory files
 * In-memory .NET objects
 
+This article provides information on configuration in ASP.NET Core. For information on using configuration in console apps, see [.NET Configuration](/dotnet/core/extensions/configuration).
+
+## Application and Host Configuration
+
 ASP.NET Core apps configure and launch a *host*. The host is responsible for app startup and lifetime management. The ASP.NET Core templates create a <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> which contains the host. While some configuration can be done in both the host and the application configuration providers, generally, only configuration that is necessary for the host should be done in host configuration.
 
-This article provides information on configuration in ASP.NET Core. For information on using configuration in console apps, see [.NET Configuration](/dotnet/core/extensions/configuration).
 
 <a name="default"></a>
 
-## Default application configuration
+### Default application configuration
 
 ASP.NET Core web apps created with [dotnet new](/dotnet/core/tools/dotnet-new) or Visual Studio generate the following code:
 
@@ -57,7 +60,7 @@ The following code displays the enabled configuration providers in the order the
 
 [!code-csharp[](index/samples/6.x/ConfigSample/Pages/Index2.cshtml.cs?name=snippet)]
 
-## Host configuration
+### Host configuration
 
 The following list contains the default host configuration sources from highest to lowest priority:
 
@@ -84,6 +87,8 @@ Every other host setting is read from application config instead of host config.
 `URLS` is one of the many common host settings that is not a bootstrap setting. Like every other host setting not in the previous list, `URLS` is read later from application config. Host config is a fallback for application config, so host config can be used to set `URLS`, but it will be overridden by any configuration source in application config like `appsettings.json`.
 
 For more information, see [Change the content root, app name, and environment](xref:migration/50-to-60-samples#change-the-content-root-app-name-and-environment) and [Change the content root, app name, and environment by environment variables or command line](xref:migration/50-to-60-samples#change-the-content-root-app-name-and-environment-by-environment-variables-or-command-line)
+
+## Application configuration providers
 
 The remaining sections in this article refer to application configuration.
 
