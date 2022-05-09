@@ -61,6 +61,19 @@ Visual Studio for Mac requires version 8.8 (build 1532) or later:
 > [!NOTE]
 > Apple Safari on macOS isn't currently supported.
 
+## Packages
+
+Standalone Blazor WebAssembly:
+
+[`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer): Development server for use when building Blazor apps. Calls <xref:Microsoft.AspNetCore.Builder.WebAssemblyNetDebugProxyAppBuilderExtensions.UseWebAssemblyDebugging%2A?displayProperty=nameWithType> internally to add middleware for debugging Blazor WebAssembly apps inside Chromium developer tools.
+
+Hosted Blazor WebAssembly:
+
+* **`Client`** project: [`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer): Development server for use when building Blazor apps. Calls <xref:Microsoft.AspNetCore.Builder.WebAssemblyNetDebugProxyAppBuilderExtensions.UseWebAssemblyDebugging%2A?displayProperty=nameWithType> internally to add middleware for debugging Blazor WebAssembly apps inside Chromium developer tools.
+* **`Server`** project: [`Microsoft.AspNetCore.Components.WebAssembly.Server`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Server): References an internal package ([`Microsoft.NETCore.BrowserDebugHost.Transport`](https://github.com/dotnet/runtime/blob/main/src/mono/nuget/Microsoft.NETCore.BrowserDebugHost.Transport/Microsoft.NETCore.BrowserDebugHost.Transport.pkgproj)) for assemblies that share the browser debug host.
+
+[!INCLUDE[](~/includes/package-reference.md)]
+
 ## Debug a standalone Blazor WebAssembly app
 
 To enable debugging for an existing Blazor WebAssembly app, update the `launchSettings.json` file in the startup project to include the following `inspectUri` property in each launch profile:
@@ -439,6 +452,19 @@ Visual Studio for Mac requires version 8.8 (build 1532) or later:
 
 > [!NOTE]
 > Apple Safari on macOS isn't currently supported.
+
+## Packages
+
+Standalone Blazor WebAssembly:
+
+[`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer): Development server for use when building Blazor apps. Calls <xref:Microsoft.AspNetCore.Builder.WebAssemblyNetDebugProxyAppBuilderExtensions.UseWebAssemblyDebugging%2A?displayProperty=nameWithType> internally to add middleware for debugging Blazor WebAssembly apps inside Chromium developer tools.
+
+Hosted Blazor WebAssembly:
+
+* **`Client`** project: [`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer): Development server for use when building Blazor apps. Calls <xref:Microsoft.AspNetCore.Builder.WebAssemblyNetDebugProxyAppBuilderExtensions.UseWebAssemblyDebugging%2A?displayProperty=nameWithType> internally to add middleware for debugging Blazor WebAssembly apps inside Chromium developer tools.
+* **`Server`** project: [`Microsoft.AspNetCore.Components.WebAssembly.Server`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Server): References an internal package ([`Microsoft.NETCore.BrowserDebugHost.Transport`](https://github.com/dotnet/runtime/blob/main/src/mono/nuget/Microsoft.NETCore.BrowserDebugHost.Transport/Microsoft.NETCore.BrowserDebugHost.Transport.pkgproj)) for assemblies that share the browser debug host.
+
+[!INCLUDE[](~/includes/package-reference.md)]
 
 ## Debug a standalone Blazor WebAssembly app
 
@@ -866,6 +892,19 @@ Visual Studio for Mac requires version 8.8 (build 1532) or later:
 
 > [!NOTE]
 > Apple Safari on macOS isn't currently supported.
+
+## Packages
+
+Standalone Blazor WebAssembly:
+
+[`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer): Development server for use when building Blazor apps. Calls <xref:Microsoft.AspNetCore.Builder.WebAssemblyNetDebugProxyAppBuilderExtensions.UseWebAssemblyDebugging%2A?displayProperty=nameWithType> internally to add middleware for debugging Blazor WebAssembly apps inside Chromium developer tools.
+
+Hosted Blazor WebAssembly:
+
+* **`Client`** project: [`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer): Development server for use when building Blazor apps. Calls <xref:Microsoft.AspNetCore.Builder.WebAssemblyNetDebugProxyAppBuilderExtensions.UseWebAssemblyDebugging%2A?displayProperty=nameWithType> internally to add middleware for debugging Blazor WebAssembly apps inside Chromium developer tools.
+* **`Server`** project: [`Microsoft.AspNetCore.Components.WebAssembly.Server`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Server): References an internal package ([`Microsoft.NETCore.BrowserDebugHost.Transport`](https://github.com/dotnet/runtime/blob/main/src/mono/nuget/Microsoft.NETCore.BrowserDebugHost.Transport/Microsoft.NETCore.BrowserDebugHost.Transport.pkgproj)) for assemblies that share the browser debug host.
+
+[!INCLUDE[](~/includes/package-reference.md)]
 
 ## Debug a standalone Blazor WebAssembly app
 
