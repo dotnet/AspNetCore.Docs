@@ -59,6 +59,10 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
 
 This is a basic example. See [HttpRule](https://cloud.google.com/service-infrastructure/docs/service-management/reference/rpc/google.api#google.api.HttpRule) for more customization options.
 
+### OpenAPI support
+
+OpenAPI currently isn't supported with gRPC JSON transcoding. During the .NET 7 development process the .NET team will investigate the best way to support OpenAPI.
+
 ### gRPC JSON transcoding vs gRPC-Web
 
 Both JSON transcoding and gRPC-Web allow gRPC services to be called from a browser. However, the way each does this is different:
