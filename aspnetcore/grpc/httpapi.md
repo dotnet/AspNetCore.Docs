@@ -32,7 +32,7 @@ gRPC can still be used to call services.
 
 1. Add a package reference to [Microsoft.AspNetCore.Grpc.JsonTranscoding](https://www.nuget.org/packages/Microsoft.AspNetCore.Grpc.JsonTranscoding).
 1. Register it in server startup code by adding `AddJsonTranscoding`. For example, `services.AddGrpc().AddJsonTranscoding()`.
-1. Add [google/api/http.proto](https://github.com/aspnet/AspLabs/blob/c1e59cacf7b9606650d6ec38e54fa3a82377f360/src/GrpcHttpApi/sample/Proto/google/api/http.proto) and [google/api/annotations.proto](https://github.com/aspnet/AspLabs/blob/c1e59cacf7b9606650d6ec38e54fa3a82377f360/src/GrpcHttpApi/sample/Proto/google/api/annotations.proto) files to your project.
+1. Add [google/api/http.proto](https://github.com/dotnet/aspnetcore/blob/8b601c3a73ba66de4e6ca35530b5d32a48c76c5b/src/Grpc/JsonTranscoding/test/testassets/Sandbox/google/api/http.proto) and [google/api/annotations.proto](https://github.com/dotnet/aspnetcore/blob/main/src/Grpc/JsonTranscoding/test/testassets/Sandbox/google/api/annotations.proto) files to your project.
 1. Annotate gRPC methods in your `.proto` files with HTTP bindings and routes:
 
 [!code-protobuf[](~/grpc/httpapi/greet.proto?highlight=3,9-11)]
@@ -61,9 +61,9 @@ This is a basic example. See [HttpRule](https://cloud.google.com/service-infrast
 
 ### OpenAPI support
 
-OpenAPI currently isn't supported with gRPC JSON transcoding. During the .NET 7 development process the .NET team will investigate the best way to support OpenAPI.
+JSON transcoding currently doesn't support OpenAPI. During the .NET 7 development process the .NET team will investigate the best way to support OpenAPI.
 
-### gRPC JSON transcoding vs gRPC-Web
+### JSON transcoding vs gRPC-Web
 
 Both JSON transcoding and gRPC-Web allow gRPC services to be called from a browser. However, the way each does this is different:
 
@@ -89,7 +89,7 @@ fetch('/v1/greeter/' + name)
 
 grpc-gateway uses code generation to create a reverse-proxy server. The reverse-proxy translates RESTful calls into gRPC+Protobuf and sends them over HTTP/2 to the gRPC service. The benefit of this approach is the gRPC service doesn't know about the RESTful JSON APIs. Any gRPC server can use grpc-gateway.
 
-Meanwhile, gRPC JSON transcoding runs inside an ASP.NET Core app. It deserializes JSON into Protobuf messages, then invokes the gRPC service directly. We believe JSON transcoding in ASP.NET Core offers many advantages to .NET app developers:
+Meanwhile, gRPC JSON transcoding runs inside an ASP.NET Core app. It deserializes JSON into Protobuf messages, then invokes the gRPC service directly. JSON transcoding in ASP.NET Core offers advantages to .NET app developers:
 
 * Fewer moving parts. Both gRPC services and mapped RESTful JSON API run out of one ASP.NET Core application.
 * Performance. JSON transcoding deserializes JSON to Protobuf messages and invokes the gRPC service directly. There are significant performance benefits in doing this in-process vs. making a new gRPC call to a different server.
