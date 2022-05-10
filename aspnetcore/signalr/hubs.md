@@ -640,7 +640,7 @@ The second way is to call `Single(...)` on an instance of [`IHubContext<T>`](xre
 ```csharp
 async Task SomeMethod(IHubContext<MyHub> context)
 {
-    string result = await context.Single(connectionID).InvokeAsync<string>(
+    string result = await context.Clients.Single(connectionID).InvokeAsync<string>(
         "GetMessage");
 }
 ```
