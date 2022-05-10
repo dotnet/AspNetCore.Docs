@@ -11,7 +11,7 @@ metadata:
   ms.topic: hub-page
   author: WadePickett
   ms.author: wpickett
-  ms.date: 11/08/2021
+  ms.date: 05/09/2022
 
 # highlightedContent section (optional)
 # Maximum of 8 items
@@ -117,6 +117,9 @@ conceptualContent:
         - url: razor-pages/razor-pages-conventions.md
           itemType: concept
           text: "Routing"
+        - url: /learn/modules/aspnet-core-accessibility
+          itemType: concept
+          text: "Accessible ASP.NET Core web apps"
     # Card
     - title: Page-focused web UI with MVC
       summary: "Develop web apps using the Model-View-Controller design pattern"
@@ -226,6 +229,9 @@ conceptualContent:
         - url: /azure/storage/tables/table-storage-overview?bc=%252faspnet%252fcore%252fbreadcrumb%252ftoc.json&toc=%252faspnet%252fcore%252ftoc.json&view=aspnetcore-6.0
           itemType: concept
           text: "Azure Table Storage"
+        - url: /learn/paths/m365-msgraph-dotnet-core-scenarios
+          itemType: concept
+          text: "Microsoft Graph scenarios for ASP.NET Core"
       # Card
     - title: Previous ASP.NET framework versions
       summary: "Explore overviews, tutorials, fundamental concepts, architecture and API reference for previous ASP.NET framework versions"

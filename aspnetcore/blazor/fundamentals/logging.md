@@ -416,8 +416,8 @@ In the following `Index` component:
 
 The following output is seen in the browser's developer tools console when the **`Log Messages`** button is selected. The log entries reflect the appropriate formats applied by the custom logger:
 
-> :::no-loc text="LoggingTest.Pages.Index: This is an information message.":::
-> :::no-loc text="LoggingTest.Pages.Index: This is a warning message.":::
+> :::no-loc text="LoggingTest.Pages.Index: This is an information message.":::  
+> :::no-loc text="LoggingTest.Pages.Index: This is a warning message.":::  
 > :::no-loc text="[ 7: Error       ] LoggingTest.Pages.Index - This is an error message.":::
 
 From a casual inspection of the preceding example, it's apparent that setting the log line formats via the dictionary in `CustomLoggerConfiguration` isn't strictly necessary. The line formats applied by the custom logger (`CustomLogger`) could have been applied by merely checking the `logLevel` in the `Log` method. The purpose of assigning the log format via configuration is that the developer can change the log format easily via app configuration, as the following example demonstrates.
@@ -451,8 +451,8 @@ The call to <xref:Microsoft.Extensions.Logging.Configuration.LoggingBuilderConfi
 
 Run the app again. Select the the **`Log Messages`** button. Notice that the logging configuration is applied from the `appsettings.json` file. All three log entries are in the long (`LogFormat.Long`) format:
 
-> :::no-loc text="[ 3: Information ] LoggingTest.Pages.Index - This is an information message.":::
-> :::no-loc text="[ 5: Warning     ] LoggingTest.Pages.Index - This is a warning message.":::
+> :::no-loc text="[ 3: Information ] LoggingTest.Pages.Index - This is an information message.":::  
+> :::no-loc text="[ 5: Warning     ] LoggingTest.Pages.Index - This is a warning message.":::  
 > :::no-loc text="[ 7: Error       ] LoggingTest.Pages.Index - This is an error message.":::
 
 ### Log scopes
@@ -749,8 +749,8 @@ In the following `Index` component:
 
 The following output is seen in the browser's developer tools console when the **`Log Messages`** button is selected. The log entries reflect the appropriate formats applied by the custom logger:
 
-> :::no-loc text="LoggingTest.Pages.Index: This is an information message.":::
-> :::no-loc text="LoggingTest.Pages.Index: This is a warning message.":::
+> :::no-loc text="LoggingTest.Pages.Index: This is an information message.":::  
+> :::no-loc text="LoggingTest.Pages.Index: This is a warning message.":::  
 > :::no-loc text="[ 7: Error       ] LoggingTest.Pages.Index - This is an error message.":::
 
 From a casual inspection of the preceding example, it's apparent that setting the log line formats via the dictionary in `CustomLoggerConfiguration` isn't strictly necessary. The line formats applied by the custom logger (`CustomLogger`) could have been applied by merely checking the `logLevel` in the `Log` method. The purpose of assigning the log format via configuration is that the developer can change the log format easily via app configuration, as the following example demonstrates.
@@ -784,8 +784,8 @@ The call to <xref:Microsoft.Extensions.Logging.Configuration.LoggingBuilderConfi
 
 Run the app again. Select the the **`Log Messages`** button. Notice that the logging configuration is applied from the `appsettings.json` file. All three log entries are in the long (`LogFormat.Long`) format:
 
-> :::no-loc text="[ 3: Information ] LoggingTest.Pages.Index - This is an information message.":::
-> :::no-loc text="[ 5: Warning     ] LoggingTest.Pages.Index - This is a warning message.":::
+> :::no-loc text="[ 3: Information ] LoggingTest.Pages.Index - This is an information message.":::  
+> :::no-loc text="[ 5: Warning     ] LoggingTest.Pages.Index - This is a warning message.":::  
 > :::no-loc text="[ 7: Error       ] LoggingTest.Pages.Index - This is an error message.":::
 
 ## Hosted Blazor WebAssembly logging
@@ -1073,8 +1073,8 @@ In the following `Index` component:
 
 The following output is seen in the browser's developer tools console when the **`Log Messages`** button is selected. The log entries reflect the appropriate formats applied by the custom logger:
 
-> :::no-loc text="LoggingTest.Pages.Index: This is an information message.":::
-> :::no-loc text="LoggingTest.Pages.Index: This is a warning message.":::
+> :::no-loc text="LoggingTest.Pages.Index: This is an information message.":::  
+> :::no-loc text="LoggingTest.Pages.Index: This is a warning message.":::  
 > :::no-loc text="[ 7: Error       ] LoggingTest.Pages.Index - This is an error message.":::
 
 From a casual inspection of the preceding example, it's apparent that setting the log line formats via the dictionary in `CustomLoggerConfiguration` isn't strictly necessary. The line formats applied by the custom logger (`CustomLogger`) could have been applied by merely checking the `logLevel` in the `Log` method. The purpose of assigning the log format via configuration is that the developer can change the log format easily via app configuration, as the following example demonstrates.
@@ -1108,8 +1108,8 @@ The call to <xref:Microsoft.Extensions.Logging.Configuration.LoggingBuilderConfi
 
 Run the app again. Select the the **`Log Messages`** button. Notice that the logging configuration is applied from the `appsettings.json` file. All three log entries are in the long (`LogFormat.Long`) format:
 
-> :::no-loc text="[ 3: Information ] LoggingTest.Pages.Index - This is an information message.":::
-> :::no-loc text="[ 5: Warning     ] LoggingTest.Pages.Index - This is a warning message.":::
+> :::no-loc text="[ 3: Information ] LoggingTest.Pages.Index - This is an information message.":::  
+> :::no-loc text="[ 5: Warning     ] LoggingTest.Pages.Index - This is a warning message.":::  
 > :::no-loc text="[ 7: Error       ] LoggingTest.Pages.Index - This is an error message.":::
 
 ## Hosted Blazor WebAssembly logging

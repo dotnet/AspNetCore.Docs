@@ -817,7 +817,7 @@ items:
         uid: grpc/performance
       - name: Inter-process communication
         uid: grpc/interprocess
-      - name: Create JSON Web APIs from gRPC
+      - name: gRPC JSON transcoding
         uid: grpc/httpapi
       - name: Code-first services and clients
         uid: grpc/code-first
