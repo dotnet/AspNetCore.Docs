@@ -1,46 +1,41 @@
 namespace HttpContextInBackgroundThread;
 
+public interface IEmailService
+{
+    Task SendEmail(string email, string? userAgent = null);
+}
+
 public class EmailService : IEmailService
 {
     private readonly IHttpContextAccessor _httpContextAccessor;
-    private readonly IBackgroundTaskQueue _taskQueue;
+    private readonly ILogger<EmailService> _logger;
 
-    public EmailService(IHttpContextAccessor httpContextAccessor, IBackgroundTaskQueue taskQueue)
+    public EmailService(IHttpContextAccessor httpContextAccessor, ILogger<EmailService> logger)
     {
         _httpContextAccessor = httpContextAccessor;
-        _taskQueue = taskQueue;
+        _logger = logger;
     }
 
     // The userAgent should come directly from the caller to the service if possible.
     // An explicit parameter makes the API more usable outside of the request flow, is
     // better for performance and is easier to reason about than relying on ambient state.
-    public Task SendEmail(CancellationToken token, string? userAgent = null)
+    public async Task SendEmail(string email, string? userAgent = null)
     {
         var request = _httpContextAccessor.HttpContext?.Request;
         string? userAgentString = userAgent ?? request?.Headers["user-agent"].ToString();
-
         if (string.IsNullOrEmpty(userAgentString))
         {
-            userAgentString = "Unknown";
+            userAgentString = "Unkown";
         }
 
-        _taskQueue.QueueBackgroundWorkItemAsync(cancellationToken =>
-        {
-            while (!cancellationToken.IsCancellationRequested)
-            {
-                try
-                {
-                    return new ValueTask<string>(userAgentString);
-                }
-                catch (OperationCanceledException)
-                {
-                    // throw if cancellation is requested
-                }
-            }
+        await SendEmailCoreAsync(userAgentString);
+    }
 
-            return default;
-        });
+    private async Task SendEmailCoreAsync(string userAgent)
+    {
+        _logger.LogInformation($"Email sent detected user agent: {userAgent}");
 
-        return Task.CompletedTask;
+        // SendEmailAsync(...
+        await Task.CompletedTask;
     }
 }

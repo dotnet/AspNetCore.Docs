@@ -16,6 +16,7 @@ builder.Services.AddSingleton<IBackgroundTaskQueue>(ctx =>
 var app = builder.Build();
 
 app.MapGet("/", () => "Hello World!");
-app.MapGet("/send", (IEmailService service, CancellationToken token) => service.SendEmail(token));
+app.MapGet("/send", (IEmailService service, CancellationToken token) =>
+                                            service.SendEmail(token.ToString()!));
 
 app.Run();

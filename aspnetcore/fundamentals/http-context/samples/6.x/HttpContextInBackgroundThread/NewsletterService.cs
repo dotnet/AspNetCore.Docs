@@ -1,45 +1,35 @@
-namespace HttpContextInBackgroundThread
+namespace HttpContextInBackgroundThread;
+
+public class NewsletterService : BackgroundService
 {
-    public class NewsletterService : BackgroundService
+    private readonly IEmailService _emailService;
+    private Timer _timer = null!;
+
+    public NewsletterService(IEmailService emailService)
     {
-        private readonly ILogger<NewsletterService> _logger;
-        private readonly IEmailService _emailService;
-        private Timer _timer = null!;
+        _emailService = emailService;
+    }
 
-        public NewsletterService(ILogger<NewsletterService> logger,
-            IEmailService emailService)
+    protected override Task ExecuteAsync(CancellationToken stoppingToken)
+    {
+        void StartMailing(object? state)
         {
-            _logger = logger;
-            _emailService = emailService;
+            _emailService.SendEmail("microsoft@aka.ms");
         }
 
-        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
-        {
-            _logger.LogInformation("Newsletter Hosted Service is running.");
+        _timer = new Timer(StartMailing,
+            null,
+            TimeSpan.Zero,
+            TimeSpan.FromSeconds(30));
 
-            await BackgroundProcessing(stoppingToken);
-        }
+        return Task.CompletedTask;
+    }
 
-        private Task BackgroundProcessing(CancellationToken stoppingToken)
-        {
-            _timer = new Timer(StartMailing,
-                null,
-                TimeSpan.Zero,
-                TimeSpan.FromSeconds(30));
+    public override async Task StopAsync(CancellationToken stoppingToken)
+    {
+        _timer.Change(Timeout.Infinite, 0);
 
-            async void StartMailing(object? state)
-            {
-                await _emailService.SendEmail(stoppingToken);
-            }
-
-            return Task.CompletedTask;
-        }
-
-        public override async Task StopAsync(CancellationToken stoppingToken)
-        {
-            _logger.LogInformation("Newsletter Hosted Service is stopping.");
-            await _timer.DisposeAsync();
-            await base.StopAsync(stoppingToken);
-        }
+        await base.StopAsync(stoppingToken);
     }
 }
+
