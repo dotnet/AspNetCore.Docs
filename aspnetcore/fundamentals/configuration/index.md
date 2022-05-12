@@ -299,9 +299,7 @@ The following code displays the environment variables and values on application 
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
-var config = app.Services.GetRequiredService<IConfiguration>();
-
-foreach (var c in config.AsEnumerable())
+foreach (var c in builder.Configuration.AsEnumerable())
 {
     Console.WriteLine(c.Key + " = " + c.Value);
 }
