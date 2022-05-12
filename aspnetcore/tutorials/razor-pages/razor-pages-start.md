@@ -154,7 +154,7 @@ The default browser launched with the following URL: [https://localhost:5001](ht
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Select **Debug** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number.
+Select **Debug** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is the port number randomly assigned at project creation and is set in `Properties/launchSettings.json`.
 
 ---
 
