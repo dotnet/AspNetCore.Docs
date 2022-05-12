@@ -353,6 +353,8 @@ items:
                 uid: blazor/hybrid/routing
               - name: Browser developer tools
                 uid: blazor/hybrid/developer-tools
+              - name: Reuse Razor components
+                uid: blazor/hybrid/reuse-razor-components
               - name: Security
                 uid: blazor/hybrid/security/index
           - name: Project structure
