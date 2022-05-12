@@ -117,16 +117,6 @@ Non-nullable generic types must include the `[Required]` attribute when the type
 
 [!code-csharp[](~/mvc/models/validation/samples/6.x/WeatherForecastG.cs?name=snippet&highlight=3)]
 
-
-```csharp
-public class WeatherForecast<T>
-{
-    public string TestRequired { get; set; } = null!;
-    public T? Inner { get; set; }
-}
-
-```
-
 In the following code, `TestRequired` is explicitly marked as required:
 
 [!code-csharp[](~/mvc/models/validation/samples/6.x/WeatherForecastG.cs?name=snippet2&highlight=5-6)]
