@@ -38,17 +38,17 @@ As much as possible, the code and static content should be inside a Razor class 
 
 Each target platform assembly should contain only the code that is specific to that platform along with the code that helps bootstrap the app.
 
-![Blazor WebAssembly, Blazor Server, and WebView each have a project reference for the Razor class library (RCL).](~/blazor/hybrid/reuse-razor-components/_static/diagram1t.png)
+![Blazor WebAssembly, Blazor Server, and WebView each have a project reference for the Razor class library (RCL).](~/blazor/hybrid/reuse-razor-components/_static/diagram1.png)
 
 ### Abstract platform-specific functionality
 
-![In a Razor class library (RCL), MapComponent injects an ILocationService service. Separately, App.Web (Blazor WebAssembly and Blazor Server projects) implement ILocationService as WebLocationService. Separately, App.Desktop (.NET MAUI, WPF, Windows Forms) implement ILocationService as DesktopLocationService.](~/blazor/hybrid/reuse-razor-components/_static/diagram2t.png)
+![In a Razor class library (RCL), MapComponent injects an ILocationService service. Separately, App.Web (Blazor WebAssembly and Blazor Server projects) implement ILocationService as WebLocationService. Separately, App.Desktop (.NET MAUI, WPF, Windows Forms) implement ILocationService as DesktopLocationService.](~/blazor/hybrid/reuse-razor-components/_static/diagram2.png)
 
 ## .NET MAUI Blazor app platform-specific code
 
 A common pattern in .NET MAUI involves having different implementations for different platforms following several patterns, such as defining partial classes with platform specific implementations. For example, see the following diagram, where partial classes for `CameraService` are implemented in each of `CameraService.Windows.cs`, `CameraService.iOS.cs`, `CameraService.Android.cs`, and `CameraService.cs`:
 
-![Partial classes for CameraService are implemented in each of CameraService.Windows.cs, CameraService.iOS.cs, CameraService.Android.cs, and CameraService.cs.](~/blazor/hybrid/reuse-razor-components/_static/diagram3t.png)
+![Partial classes for CameraService are implemented in each of CameraService.Windows.cs, CameraService.iOS.cs, CameraService.Android.cs, and CameraService.cs.](~/blazor/hybrid/reuse-razor-components/_static/diagram3.png)
 
 In these cases, where you want to pack the functionality in a class library that can be consumed by other apps using .NET MAUI Blazor, we recommend that you follow a similar approach to the one described above and create an abstraction for your component:
 
@@ -56,7 +56,7 @@ In these cases, where you want to pack the functionality in a class library that
 * From a .NET MAUI class library, reference the RCL and create your platform specific implementations.
 * Within the consuming app, reference the .NET MAUI class library.
 
-![A .NET MAUI Blazor app uses InputPhoto from a Razor class library (RCL) that it references. The .NET MAUI app also references a .NET MAUI class library. InputPhoto in the RCL injects an ICameraService interface defined in the RCL. CameraService partial class implementations for ICameraService are in the .NET MAUI class library (CameraService.Windows.cs, CameraService.iOS.cs, CameraService.Android.cs), which references the RCL.](~/blazor/hybrid/reuse-razor-components/_static/diagram4t.png)
+![A .NET MAUI Blazor app uses InputPhoto from a Razor class library (RCL) that it references. The .NET MAUI app also references a .NET MAUI class library. InputPhoto in the RCL injects an ICameraService interface defined in the RCL. CameraService partial class implementations for ICameraService are in the .NET MAUI class library (CameraService.Windows.cs, CameraService.iOS.cs, CameraService.Android.cs), which references the RCL.](~/blazor/hybrid/reuse-razor-components/_static/diagram4.png)
 
 ## Additional resources
 
