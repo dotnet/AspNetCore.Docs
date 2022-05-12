@@ -82,7 +82,7 @@ To find out which parameters are passed to `String.Format` for a particular attr
 ## Non-nullable reference types and [Required] attribute
 
 <!-- remove non-generic in following sentence and next section in the .NET 7 version See  https://github.com/dotnet/AspNetCore.Docs/issues/25840 -->
-The validation system treats non-nullable parameters or bound properties [on non-generic types](#ngen) as if they had a `[Required(AllowEmptyStrings = true)]` attribute. By [enabling `Nullable` contexts](/dotnet/csharp/nullable-references#nullable-contexts), MVC implicitly starts validating non-nullable properties or parameters as if they had been attributed with the `[Required(AllowEmptyStrings = true)]` attribute. Consider the following code:
+The validation system treats non-nullable parameters or bound properties as if they had a `[Required(AllowEmptyStrings = true)]` attribute. By [enabling `Nullable` contexts](/dotnet/csharp/nullable-references#nullable-contexts), MVC implicitly starts validating non-nullable properties [on non-generic types](#ngen) or parameters as if they had been attributed with the `[Required(AllowEmptyStrings = true)]` attribute. Consider the following code:
 
 ```csharp
 public class Person
