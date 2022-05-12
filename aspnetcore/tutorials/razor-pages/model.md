@@ -236,7 +236,7 @@ In this section, the **Package Manager Console** (PMC) window is used to:
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 * In the **Solution Tool Window**, right-click the *RazorPagesMovie* project, and then select **Open in Terminal**. 
 
-The **Terminal** window opens with the command prompt at the project directory, which contains the Program.cs and .csproj files.
+  The **Terminal** window opens with the command prompt at the project directory, which contains the Program.cs and .csproj files.
 
 * Run the following .NET CLI commands:
 
