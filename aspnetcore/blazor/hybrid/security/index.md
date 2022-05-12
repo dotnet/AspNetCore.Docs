@@ -5,7 +5,7 @@ description: Learn about Blazor Hybrid authentication and authorization scenario
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/11/2022
+ms.date: 05/12/2022
 no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/hybrid/security/index
 zone_pivot_groups: blazor-hybrid-frameworks
@@ -16,7 +16,7 @@ This article describes ASP.NET Core's support for the configuration and manageme
 
 [!INCLUDE[](~/blazor/includes/blazor-hybrid-preview-notice.md)]
 
-Authentication in Blazor Hybrid apps is handled by native platform libraries, as they offer enhanced security guarantees that the browser sandbox can't offer. Follow the external guidance for the identity provider that you've selected for the app and then further integrate identity with Blazor using the guidance in this article.
+Authentication in Blazor Hybrid apps is handled by native platform libraries, as they offer enhanced security guarantees that the browser sandbox can't offer. Authentication of native apps uses an OS-specific mechanism or via a federated protocol, such as [OpenID Connect (OIDC)](https://openid.net/connect/). Follow the guidance for the identity provider that you've selected for the app and then further integrate identity with Blazor using the guidance in this article.
 
 Integrating authentication must achieve the following goals for Razor components and services:
 
@@ -30,10 +30,8 @@ After authentication is added to a .NET MAUI, WPF, or Windows Forms app and user
 
   [!INCLUDE[](~/includes/package-reference.md)]
 
-* Implement a custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider>.
+* Implement a custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider>, which is the abstraction that Razor components use to access information about the authenticated user and to receive updates when the authentication state changes.
 * Register the custom authentication state provider in the dependency injection container.
-
-Authentication of native apps uses an OS-specific mechanism or via a federated protocol, such as [OpenID Connect (OIDC)](https://openid.net/connect/)
 
 :::zone pivot="maui"
 
@@ -65,12 +63,10 @@ Windows Forms apps use ...
 
 ## Create a custom `AuthenticationStateProvider` without user change updates
 
-The <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> is the abstraction that Razor components use to access information about the authenticated user and to receive updates when the authentication state changes.
-
-If the app authenticates the user immediately after the app launches and the authenticated user remains the same for the entirety of the app lifetime, user change notifications aren't required, and the app only provides information about the authenticated user. Typically in this scenario, the user logs into the app when the app is opened, and the app displays the login screen again after the user logs out. The following `ExternalAuthStateProvider` is an example implementation of a custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> for this authentication scenario.
+If the app authenticates the user immediately after the app launches and the authenticated user remains the same for the entirety of the app lifetime, user change notifications aren't required, and the app only provides information about the authenticated user. In this scenario, the user logs into the app when the app is opened, and the app displays the login screen again after the user logs out. The following `ExternalAuthStateProvider` is an example implementation of a custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> for this authentication scenario.
 
 > [!NOTE]
-> The following custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> doesn't declare a namespace in order to make the code example applicable to any Blazor Hybrid app. However, a best practice is to include your app's namespace when you implement the example in a production app.
+> The following custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> doesn't declare a namespace in order to make the code example applicable to any Blazor Hybrid app. However, a best practice is to provide your app's namespace when you implement the example in a production app.
 
 `ExternalAuthStateProvider.cs`:
 
@@ -98,15 +94,15 @@ public class AuthenticatedUser
 
 :::zone pivot="maui"
 
-In the `MauiProgram.CreateMauiApp` method of `MainWindow.cs`, the following steps:
+The following steps describe how to:
 
 * Add required namespaces.
 * Add the authorization services and Blazor abstractions to the service collection.
 * Build the service collection.
-* Resolve the `AuthenticatedUser` service and set the authenticated user's claims principal. See your identity provider's documentation for details.
+* Resolve the `AuthenticatedUser` service to set the authenticated user's claims principal. See your identity provider's documentation for details.
 * Return the built host.
 
-Add namespaces for <xref:Microsoft.AspNetCore.Components.Authorization?displayProperty=fullName> and <xref:System.Security.Claims?displayProperty=fullName>:
+In the `MauiProgram.CreateMauiApp` method of `MainWindow.cs`, add namespaces for <xref:Microsoft.AspNetCore.Components.Authorization?displayProperty=fullName> and <xref:System.Security.Claims?displayProperty=fullName>:
 
 ```csharp
 using Microsoft.AspNetCore.Components.Authorization;
@@ -146,15 +142,15 @@ return host;
 
 :::zone pivot="wpf"
 
-In the `MainWindow`'s constructor (`MainWindow.xaml.cs`), the following steps:
+The following steps describe how to:
 
 * Add required namespaces.
 * Add the authorization services and Blazor abstractions to the service collection.
 * Build the service collection and add the built service collection as a resource to the app's `ResourceDictionary`.
-* Resolve the `AuthenticatedUser` service and set the authenticated user's claims principal. See your identity provider's documentation for details.
+* Resolve the `AuthenticatedUser` service to set the authenticated user's claims principal. See your identity provider's documentation for details.
 * Return the built host.
 
-Add namespaces for <xref:Microsoft.AspNetCore.Components.Authorization?displayProperty=fullName> and <xref:System.Security.Claims?displayProperty=fullName>:
+In the `MainWindow`'s constructor (`MainWindow.xaml.cs`), add namespaces for <xref:Microsoft.AspNetCore.Components.Authorization?displayProperty=fullName> and <xref:System.Security.Claims?displayProperty=fullName>:
 
 ```csharp
 using Microsoft.AspNetCore.Components.Authorization;
@@ -193,15 +189,14 @@ authenticatedUser.Principal = user;
 
 :::zone pivot="winforms"
 
-In the `Form1`'s constructor (`Form1.cs`), the following steps:
+The following steps describe how to:
 
 * Add required namespaces.
 * Add the authorization services and Blazor abstractions to the service collection.
 * Build the service collection and add the built service collection to the app's service provider.
-* Resolve the `AuthenticatedUser` service and set the authenticated user's claims principal. See your identity provider's documentation for details.
-* Return the built host.
+* Resolve the `AuthenticatedUser` service to set the authenticated user's claims principal. See your identity provider's documentation for details.
 
-Add namespaces for <xref:Microsoft.AspNetCore.Components.Authorization?displayProperty=fullName> and <xref:System.Security.Claims?displayProperty=fullName>:
+In the `Form1`'s constructor (`Form1.cs`), add namespaces for <xref:Microsoft.AspNetCore.Components.Authorization?displayProperty=fullName> and <xref:System.Security.Claims?displayProperty=fullName>:
 
 ```csharp
 using Microsoft.AspNetCore.Components.Authorization;
@@ -250,7 +245,7 @@ To update the user while the Blazor app is running, call <xref:Microsoft.AspNetC
 A custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> can use a global service to signal an authentication update. We recommend that the service offer an event that the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> can subscribe to, where the event invokes <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged%2A>.
 
 > [!NOTE]
-> The following custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> doesn't declare a namespace in order to make the code example applicable to any Blazor Hybrid app. However, a best practice is to include your app's namespace when you implement the example in a production app.
+> The following custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> doesn't declare a namespace in order to make the code example applicable to any Blazor Hybrid app. However, a best practice is to provide your app's namespace when you implement the example in a production app.
 
 `ExternalAuthStateProvider.cs`:
 
@@ -308,7 +303,7 @@ In the `MauiProgram.CreateMauiApp` method of `MainWindow.cs`, add a namespace fo
 using Microsoft.AspNetCore.Components.Authorization;
 ```
 
-Add the authorization services and Blazor abstractions to the service collection in the `MauiProgram.CreateMauiApp` method of `MainWindow.cs`:
+Add the authorization services and Blazor abstractions to the service collection:
 
 ```csharp
 builder.Services.AddAuthorizationCore();
@@ -326,7 +321,7 @@ In the `MainWindow`'s constructor (`MainWindow.xaml.cs`), add a namespace for <x
 using Microsoft.AspNetCore.Components.Authorization;
 ```
 
-Add the authorization services and the Blazor abstractions to the service collection in the `MainWindow`'s constructor (`MainWindow.xaml.cs`):
+Add the authorization services and the Blazor abstractions to the service collection:
 
 ```csharp
 serviceCollection.AddAuthorizationCore();
@@ -344,7 +339,7 @@ In the `Form1`'s constructor (`Form1.cs`), add a namespace for <xref:Microsoft.A
 using Microsoft.AspNetCore.Components.Authorization;
 ```
 
-Add the authorization services and Blazor abstractions to the service collection in `Form1`'s constructor (`Form1.cs`):
+Add the authorization services and Blazor abstractions to the service collection:
 
 ```csharp
 services.AddAuthorizationCore();
@@ -387,7 +382,7 @@ Using the alternative approach, only authorization services (`.AddAuthorizationC
 A custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> can include additional methods to trigger log in and log out and update the user.
 
 > [!NOTE]
-> The following custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> doesn't declare a namespace in order to make the code example applicable to any Blazor Hybrid app. However, a best practice is to include your app's namespace when you implement the example in a production app.
+> The following custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> doesn't declare a namespace in order to make the code example applicable to any Blazor Hybrid app. However, a best practice is to provide your app's namespace when you implement the example in a production app.
 
 `ExternalAuthStateProvider.cs`:
 
@@ -450,7 +445,7 @@ In the preceding example:
 
 :::zone pivot="maui"
 
-In the `MauiProgram.CreateMauiApp` method of `MainWindow.cs`, add the authorization services and the Blazor abstraction to the service collection in the `MauiProgram.CreateMauiApp` method of `MainWindow.cs`:
+In the `MauiProgram.CreateMauiApp` method of `MainWindow.cs`, add the authorization services and the Blazor abstraction to the service collection:
 
 ```csharp
 builder.Services.AddAuthorizationCore();
@@ -461,7 +456,7 @@ builder.Services.AddScoped<AuthenticationStateProvider, ExternalAuthStateProvide
 
 :::zone pivot="wpf"
 
-In the `MainWindow`'s constructor (`MainWindow.xaml.cs`), add the authorization services and the Blazor abstraction to the service collection in the `MainWindow`'s constructor (`MainWindow.xaml.cs`):
+In the `MainWindow`'s constructor (`MainWindow.xaml.cs`), add the authorization services and the Blazor abstraction to the service collection:
 
 ```csharp
 serviceCollection.AddAuthorizationCore();
@@ -472,7 +467,7 @@ serviceCollection.AddScoped<AuthenticationStateProvider, ExternalAuthStateProvid
 
 :::zone pivot="winforms"
 
-In the `Form1`'s constructor (`Form1.cs`), add the authorization services and the Blazor abstraction to the service collection in `Form1`'s constructor (`Form1.cs`):
+In the `Form1`'s constructor (`Form1.cs`), add the authorization services and the Blazor abstraction to the service collection:
 
 ```csharp
 services.AddAuthorizationCore();
@@ -523,7 +518,7 @@ The following `LogoutComponent` component demonstrates how to log out a user. In
 
 Blazor doesn't define an abstraction to deal with other credentials, such as access tokens to use for HTTP requests to web APIs. We recommend following the identity provider's guidance to manage the user's credentials with the primitives that the identity provider's SDK provides.
 
-It's common for identity provider SDKs to use a token store for user credentials stored in the device. If the SDK's token store primitive are added to the service container, consume the SDK's primitive within the app.
+It's common for identity provider SDKs to use a token store for user credentials stored in the device. If the SDK's token store primitive is added to the service container, consume the SDK's primitive within the app.
 
 The Blazor framework isn't aware of a user's authentication credentials and doesn't interact with credentials in any way, so the app's code is free to follow whatever approach you deem most convenient. However, follow the general security guidance in the next section, [Other authentication security considerations](#other-authentication-security-considerations), when implementing authentication code in an app.
 
@@ -534,20 +529,20 @@ The authentication process is external to Blazor, and we recommend that develope
 When implementing authentication:
 
 * Avoid authentication in the context of the :::no-loc text="Web View":::. For example, avoid using a JavaScript OAuth library to perform the authentication flow. In a single-page app, authentication tokens aren't hidden in JavaScript and can be easily discovered by malicious users and used for nefarious purposes. Native apps don't suffer this risk because native apps are only able to obtain tokens outside of the browser context, which means that rogue third-party scripts can't steal the tokens and compromise the app.
-* Avoid implementing the authentication workflow yourself. In most cases, platform libraries securely handle the authentication workflow, specifically using the system's browser instead of using a custom :::no-loc text="Web View"::: that can be hijacked.
+* Avoid implementing the authentication workflow yourself. In most cases, platform libraries securely handle the authentication workflow, using the system's browser instead of using a custom :::no-loc text="Web View"::: that can be hijacked.
 * Avoid using the platform's :::no-loc text="Web View"::: control to perform authentication. Instead, rely on the system's browser when possible.
 * Avoid passing the tokens to the document context (JavaScript). In some situations, a JavaScript library within the document is required to perform an authorized call to an external service. Instead of making the token available to JavaScript via JS interop:
-  * Provide a fake token to the library and within the :::no-loc text="Web View":::.
+  * Provide a generated temporary token to the library and within the :::no-loc text="Web View":::.
   * Intercept the outgoing network request in code.
-  * Replace the fake token with the real token and confirm that the destination of the request is valid.
+  * Replace the temporary token with the real token and confirm that the destination of the request is valid.
 
 ## Untrusted and unencoded content
 
-Avoid allowing an app render untrusted and unencoded content from a database or other resource, such as user-provided comments, in its rendered UI. Permitting untrusted, unencoded content to render can cause malicious code to execute.
+Avoid allowing an app render untrusted and unencoded content from a database or other resource in its rendered UI, such as user-provided comments. Permitting untrusted, unencoded content to render can cause malicious code to execute.
 
 ## External content rendered in an `iframe`
 
-When using an [`iframe`](https://developer.mozilla.org/docs/Web/HTML/Element/iframe) to display external content within a Blazor Hybrid page, we recommend that users leverage sandboxing features to ensure that the content is isolated from the parent page containing the app. In the following example, the [`sandbox` attribute](https://developer.mozilla.org/docs/Web/HTML/Element/iframe) is present for the `<iframe>` tag to apply [sandboxing features](https://developer.mozilla.org/docs/Web/HTML/Element/iframe) to the `foo.html` page:
+When using an [`iframe`](https://developer.mozilla.org/docs/Web/HTML/Element/iframe) to display external content within a Blazor Hybrid page, we recommend that users leverage [sandboxing features](https://developer.mozilla.org/docs/Web/HTML/Element/iframe) to ensure that the content is isolated from the parent page containing the app. In the following example, the [`sandbox` attribute](https://developer.mozilla.org/docs/Web/HTML/Element/iframe) is present for the `<iframe>` tag to apply sandboxing features to the `foo.html` page:
 
 ```html
 <iframe sandbox src="https://contoso.com/foo.html" />
