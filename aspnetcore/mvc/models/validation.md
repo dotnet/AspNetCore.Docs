@@ -111,9 +111,9 @@ builder.Services.AddControllers(
 
 <a name="ngen"></a>
 
-## Non-nullable generic types and [Required] attribute
+## Non-nullable properties on generic types and [Required] attribute
 
-Non-nullable generic types must include the `[Required]` attribute when the type is required. In the following code, `TestRequired` is not required:
+Non-nullable properties on generic types must include the `[Required]` attribute when the type is required. In the following code, `TestRequired` is not required:
 
 [!code-csharp[](~/mvc/models/validation/samples/6.x/WeatherForecastG.cs?name=snippet&highlight=3)]
 
