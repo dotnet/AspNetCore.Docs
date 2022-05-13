@@ -859,7 +859,7 @@ If the Kestrel endpoint is also configured in the `appsettings.json` file, the `
 
 The following code reads the port from the environment:
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_pe)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_pe)]
 
 The preferred way to set the port from the environment is to use the `ASPNETCORE_URLS` environment variable, which is shown in the following section.
 
@@ -883,15 +883,15 @@ The following samples demonstrate listening on all interfaces
 
 #### http://*:3000
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_i1)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_i1)]
 
 #### http://+:3000
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_ip)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_ip)]
 
 #### `http://0.0.0.0:3000`
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_i0)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_i0)]
 
 ### Listen on all interfaces using ASPNETCORE_URLS
 
@@ -903,7 +903,7 @@ ASPNETCORE_URLS=http://*:3000;https://+:5000;http://0.0.0.0:5005
 
 ### Specify HTTPS with development certificate
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_cert)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_cert)]
 
 For more information on the development certificate, see [Trust the ASP.NET Core HTTPS development certificate on Windows and macOS](xref:security/enforcing-ssl#trust).
 
@@ -913,19 +913,19 @@ The following sections show how to specify the custom certificate using the `app
 
 #### Specify the custom certificate with appsettings.json
 
-[!code-json[](minimal-apis/samples/WebMinAPIs/appsettings.json?highlight=9-16)]
+[!code-json[](minimal-apis/7.0-samples/WebMinAPIs/appsettings.json?highlight=9-16)]
 
 #### Specify the custom certificate via configuration
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_cert2)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_cert2)]
 
 #### Use the certificate APIs
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_cert3)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_cert3)]
 
 ### Read the environment
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_re)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_re)]
 
 For more information using the environment, see <xref:fundamentals/environments?view=aspnetcore-6.0>
 
@@ -933,7 +933,7 @@ For more information using the environment, see <xref:fundamentals/environments?
 
 The following code reads from the configuration system:
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_CONFIG)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_CONFIG)]
 
 For more information, see <xref:fundamentals/configuration/index?view=aspnetcore-6.0>
 
@@ -941,7 +941,7 @@ For more information, see <xref:fundamentals/configuration/index?view=aspnetcore
 
 The following code writes a message to the log on application startup:
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_log)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_log)]
 
 For more information, see <xref:fundamentals/logging/index?view=aspnetcore-6.0>
 
@@ -949,7 +949,7 @@ For more information, see <xref:fundamentals/logging/index?view=aspnetcore-6.0>
 
 The following code shows how to get services from the DI container during application startup:
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_dependencies)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_dependencies)]
 
 For more information, see <xref:fundamentals/dependency-injection?view=aspnetcore-6.0>.
 
@@ -1005,17 +1005,17 @@ By default the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> reads c
 
 For a complete list of configuration sources read, see [Default configuration](xref:fundamentals/configuration/index?view=aspnetcore-6.0#default-configuration) in <xref:fundamentals/configuration/index?view=aspnetcore-6.0>
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_configb)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_configb)]
 
 ### Read the environment
 
 The following code reads `HelloKey` from configuration and displays the value at the `/` endpoint. If the configuration value is null, "Hello" is assigned to `message`:
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_reb)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_reb)]
 
 ### Add logging providers
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_logb)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_logb)]
 
 ### Add services
 
@@ -1026,19 +1026,19 @@ The following code reads `HelloKey` from configuration and displays the value at
 
 Existing extension methods on <xref:Microsoft.Extensions.Hosting.IHostBuilder> can be accessed using the [Host property](xref:Microsoft.Extensions.Hosting.IHostBuilder.Properties):
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_ihb)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_ihb)]
 
 ### Customize the IWebHostBuilder
 
 Extension methods on <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> can be accessed using the [WebApplicationBuilder.WebHost](xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.WebHost) property.
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_iwhb)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_iwhb)]
 
 ### Change the web root
 
 By default, the web root is relative to the content root in the `wwwroot` folder. Web root is where the static files middleware looks for static files. Web root can be changed with `WebHostOptions`, the command line, or with the <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseWebRoot%2A> method:
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_chngr)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_chngr)]
 
 ### Custom dependency injection (DI) container
 
@@ -1060,7 +1060,7 @@ var app = builder.Build();
 
 Any existing ASP.NET Core middleware can be configured on the `WebApplication`:
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_addmid)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_addmid)]
 
 For more information, see <xref:fundamentals/middleware/index?view=aspnetcore-6.0>
 
@@ -1068,7 +1068,7 @@ For more information, see <xref:fundamentals/middleware/index?view=aspnetcore-6.
 
 <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A?displayProperty=nameWithType> initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults. The developer exception page is enabled in the  preconfigured defaults. When the following code is run in the [development environment](xref:fundamentals/environments), navigating to `/` renders a friendly page that shows the exception.
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_dep)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_dep)]
 
 ## ASP.NET Core Middleware
 
@@ -1099,7 +1099,7 @@ The following sections cover routing, parameter binding, and responses.
 
 A configured `WebApplication` supports `Map{Verb}` and <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapMethods%2A>:
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_r1)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_r1)]
 
 ### Route Handlers
 
@@ -1107,31 +1107,31 @@ Route handlers are methods that execute when the route matches. Route handlers c
 
 #### Lambda expression
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_le)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_le)]
 
 #### Local function
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_lf)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_lf)]
 
 #### Instance method
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_im)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_im)]
 
 #### Static method
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_sm)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_sm)]
 
 ### Name routes and link generation
 
 Routes can be given names in order to generate URLs to the route. Using a named route avoids having to hard code paths in an app:
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_nr)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_nr)]
 
 The preceding code displays `The link to the hello route is /hello` from the `/` endpoint.
 
 Route names are inferred from method names if specified:
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_nr2)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_nr2)]
 
 **REVIEW**: `{linker.GetPathByName("Hi", values: null)}` is null in the preceding code.
 
@@ -1146,7 +1146,7 @@ Route names:
 
 Route parameters can be captured as part of the route pattern definition:
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_rp)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_rp)]
 
 The preceding code returns `The user id is 3 and book id is 7` from the URI `/users/3/books/7`.
 
@@ -1160,7 +1160,7 @@ In the preceding code, if either route value cannot be converted to an `int`, an
 
 The following catch all route returns `Routing to hello` from the `/posts/hello' endpoint:
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_wild)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_wild)]
 
 ### Route constraints
 
@@ -1205,7 +1205,7 @@ Supported binding sources:
 
 The following example GET route handler uses some of these parameter binding sources:
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_pbg&highlight=8-11)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_pbg&highlight=8-11)]
 
 The following table shows the relationship between the parameters used in the preceding example and the associated binding sources.
 
@@ -1220,18 +1220,18 @@ The HTTP methods `GET`, `HEAD`, `OPTIONS`, and `DELETE` don't implicitly bind fr
 
 The following example POST route handler uses a binding source of body (as JSON) for the `person` parameter:
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_pbp&highlight=5)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_pbp&highlight=5)]
 
 The parameters in the preceding examples are all bound from request data automatically. To demonstrate the convenience that parameter binding provides, the following example route handlers show how to read request data directly from the request:
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Snippets/Program.cs?name=snippet_ManualRequestBinding&highlight=3-5,12)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Snippets/Program.cs?name=snippet_ManualRequestBinding&highlight=3-5,12)]
 
 ### Explicit Parameter Binding
 
 Attributes can be used to explicitly declare where parameters are bound from.
 
 <!-- TODO - finish Service  -->
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_epb)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_epb)]
 
 | Parameter | Binding Source |
 | --------- | -------------- |
@@ -1250,7 +1250,7 @@ Parameters declared in route handlers are treated as required:
 * If a request matches the route, the route handler only runs if all required parameters are provided in the request.
 * Failure to provide all required parameters results in an error.
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_op1)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_op1)]
 
 | URI | result |
 | --------- | -------------- |
@@ -1260,7 +1260,7 @@ Parameters declared in route handlers are treated as required:
 
 To make `pageNumber` optional, define the type as optional or provide a default value:
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_op2)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_op2)]
 
 | URI | result |
 | --------- | -------------- |
@@ -1270,13 +1270,13 @@ To make `pageNumber` optional, define the type as optional or provide a default 
 
 The preceding nullable and default value applies to all sources:
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_op3)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_op3)]
 
 The preceding code calls the method with a null product if no request body is sent.
 
 **NOTE**: If invalid data is provided and the parameter is nullable, the route handler is ***not*** run.
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_op4)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_op4)]
 
 | URI | result |
 | --------- | -------------- |
@@ -1334,7 +1334,7 @@ public static bool TryParse(string value, IFormatProvider provider, T out result
 
 The following code displays `Point: 12.3, 10.1` with the URI `/map?Point=12.3,10.1`:
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_cb)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_cb)]
 
 #### BindAsync
 
@@ -1347,7 +1347,7 @@ public static ValueTask<T?> BindAsync(HttpContext context);
 
 The following code displays `SortBy:xyz, SortDirection:Desc, CurrentPage:99` with the URI `/products?SortBy=xyz&SortDir=Desc&Page=99`:
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_ba)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_ba)]
 
 <a name="bf"></a>
 
@@ -1390,7 +1390,7 @@ The rules for determining a binding source from a parameter:
 
 The body binding source uses <xref:System.Text.Json?displayProperty=fullName> for de-serialization. It is ***not*** possible to change this default, but the binding can be customized using other techniques described previously. To customize JSON serializer options, use code similar to the following:
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_cjson)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_cjson)]
 
 The preceding code:
 
@@ -1414,7 +1414,7 @@ The preceding code:
 
 Read the request body directly using a <xref:Microsoft.AspNetCore.Http.HttpContext> or <xref:Microsoft.AspNetCore.Http.HttpRequest> parameter:
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_fileupload)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_fileupload)]
 
 The preceding code:
 
@@ -1457,7 +1457,7 @@ app.MapGet("/hello", () => Results.Ok(new { Message = "Hello World" }));
 
 The following example uses the built-in result types to customize the response:
 
-[!code-csharp[](minimal-apis/samples/todo/Program.cs?name=snippet_getCustom)]
+[!code-csharp[](minimal-apis/7.0-samples/todo/Program.cs?name=snippet_getCustom)]
 
 ### JSON
 
@@ -1479,7 +1479,7 @@ app.MapGet("/text", () => Results.Text("This is some text"));
 
 ### Stream
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_stream)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_stream)]
 
 ### Redirect
 
@@ -1517,41 +1517,41 @@ Write a JSON response with advanced options |application/json |200|[Results.Json
 
 Applications can control responses by implementing a custom <xref:Microsoft.AspNetCore.Http.IResult> type. The following code is an example of an HTML result type:
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/ResultsExtensions.cs)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/ResultsExtensions.cs)]
 
 We recommend adding an extension method to <xref:Microsoft.AspNetCore.Http.IResultExtensions?displayProperty=fullName> to make these custom results more discoverable.
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_xtn)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_xtn)]
 
 ## Authorization
 
 Routes can be protected using authorization policies. These can be declared via the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute or by using the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> method:
 
-[!code-csharp[](minimal-apis/samples/WebRPauth/Program.cs?name=snippet_auth1&highlight=7-8,22)]
+[!code-csharp[](minimal-apis/7.0-samples/WebRPauth/Program.cs?name=snippet_auth1&highlight=7-8,22)]
 
 The preceding code can be written with <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A>:
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_auth2)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_auth2)]
 
 The following sample uses [policy-based authorization](xref:security/authorization/policies):
 
-[!code-csharp[](minimal-apis/samples/WebRPauth/Program.cs?name=snippet_auth3&range=7-8,22-26)]
+[!code-csharp[](minimal-apis/7.0-samples/WebRPauth/Program.cs?name=snippet_auth3&range=7-8,22-26)]
 
 ### Allow unauthenticated users to access an endpoint
 
 The [`[AllowAnonymous]`](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute)
 allows unauthenticated users to access endpoints:
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_auth4)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_auth4)]
 
 ## CORS
 
 Routes can be [CORS](xref:security/cors?view=aspnetcore-6.0) enabled using [CORS policies](xref:security/cors?view=aspnetcore-6.0#cors-policy-options). CORS can be declared via the [`[EnableCors]`](xref:Microsoft.AspNetCore.Cors.EnableCorsAttribute) attribute or by using the
 <xref:Microsoft.AspNetCore.Builder.CorsEndpointConventionBuilderExtensions.RequireCors%2A> method. The following samples enable CORS:
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_cors)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_cors)]
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_cors2)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_cors2)]
 
 For more information, see <xref:security/cors?view=aspnetcore-6.0>
 
@@ -1561,13 +1561,13 @@ An app can describe the [OpenAPI specification](https://swagger.io/specification
 
 The following code is a typical ASP.NET Core app with OpenAPI support:
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_swag)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_swag)]
 
 ### Exclude Open API description
 
 In the following sample, the `/skipme` endpoint is excluded from generating an OpenAPI description:
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_swag2)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_swag2)]
 
 ### Describe response types
 
@@ -1592,4 +1592,3 @@ Moved to uid: tutorials/min-web-api
 -->
 
 :::moniker-end
-
