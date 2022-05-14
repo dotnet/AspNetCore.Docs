@@ -687,7 +687,7 @@ The preceding code:
 * Returns `/Widget/Index/17`
 * Gets <xref:Microsoft.AspNetCore.Routing.LinkGenerator> via [DI](xref:fundamentals/dependency-injection).
 
-The following code provides no ambient values and explicit values:
+The following code provides only explicit values and no ambient values:
 
 :::code language="csharp" source="routing/samples/6.x/RoutingSample/Snippets/Controllers/WidgetController.cs" id="snippet_HomeSubscribe":::
 
