@@ -330,8 +330,6 @@ The `Pages/Movies/Delete.cshtml.cs` file requires the following `pragma` stateme
 #pragma warning restore CS8604
 ```
 
-Ignore NU1603 package mismatch warnings, they will be fixed when .NET 6 is released.
-
 ### Test the app
 
 1. Run the app and append `/Movies` to the URL in the browser (`http://localhost:port/movies`).
