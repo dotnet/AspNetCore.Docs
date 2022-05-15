@@ -353,8 +353,12 @@ items:
                 uid: blazor/hybrid/routing
               - name: Browser developer tools
                 uid: blazor/hybrid/developer-tools
-              - name: Security
-                uid: blazor/hybrid/security/index
+              - name: Security and Identity
+                items:
+                  - name: Overview
+                    uid: blazor/hybrid/security/index
+                  - name: Security considerations
+                    uid: blazor/hybrid/security/security-considerations
           - name: Project structure
             uid: blazor/project-structure
           - name: Fundamentals
