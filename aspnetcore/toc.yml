@@ -709,13 +709,13 @@ items:
             uid: signalr/java-client
             displayName: signalr
           - name: Java API reference
-            href: /java/api/com.microsoft.signalr?view=aspnet-signalr-java
+            href: /java/api/com.microsoft.signalr
             displayName: signalr
           - name: JavaScript client
             uid: signalr/javascript-client
             displayName: signalr
           - name: JavaScript API reference
-            href: /javascript/api/@microsoft/signalr/?view=signalr-js-latest
+            href: /javascript/api/@microsoft/signalr/
             displayName: signalr
       - name: Host and scale
         displayName: signalr
@@ -1534,6 +1534,6 @@ items:
         displayName: migrate, migration
         uid: migration/logging-nonaspnetcore
   - name: API reference
-    href: /dotnet/api/?view=aspnetcore-2.2
+    href: /dotnet/api/
   - name: Contribute
     href: https://github.com/dotnet/AspNetCore.Docs/blob/main/CONTRIBUTING.md
