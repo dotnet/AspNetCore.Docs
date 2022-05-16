@@ -15,16 +15,18 @@ This article explains how to author and organize Razor components for the web an
 
 [!INCLUDE[](~/blazor/includes/blazor-hybrid-preview-notice.md)]
 
-Blazor runs across hosting models (Blazor WebAssembly, Blazor Server, and in the :::no-loc text="Web View"::: of Blazor Hybrid) and across platforms (Android, iOS, Windows). Hosting models and platforms have unique capabilities that Razor components can leverage, but Blazor apps designed to execute across hosting models and platforms must leverage these unique capabilities separately.
+Razor components work across hosting models (Blazor WebAssembly, Blazor Server, and in the :::no-loc text="Web View"::: of Blazor Hybrid) and across platforms (Android, iOS, and Windows). Hosting models and platforms have unique capabilities that components can leverage, but components executing across hosting models and platforms must leverage unique capabilities separately, which the following examples demonstrate:
 
-For example, Blazor WebAssembly supports synchronous JavaScript (JS) interop, which isn't supported by the strictly asynchronous JS interop communication channel in Blazor Server and :::no-loc text="Web Views"::: of Blazor Hybrid apps. Another example is how a component in a Blazor Server app can access services that are only available on the server, such as an Entity Framework database context (<xref:Microsoft.EntityFrameworkCore.DbContext>). Similarly, a component in a `BlazorWebView` can access unique desktop and mobile device features, such as geolocation services or other native features offered by platforms, that Blazor Server and Blazor WebAssembly must rely upon web API interfaces to use.
+* Blazor WebAssembly supports synchronous JavaScript (JS) interop, which isn't supported by the strictly asynchronous JS interop communication channel in Blazor Server and :::no-loc text="Web Views"::: of Blazor Hybrid apps.
+* Components in a Blazor Server app can access services that are only available on the server, such as an Entity Framework database context.
+* Components in a `BlazorWebView` can directly access native desktop and mobile device features, such as geolocation services. Blazor Server and Blazor WebAssembly apps must rely upon web API interfaces of apps on external servers to provide similar features.
 
 ## Design principles
 
 In order to author Razor components that can seamlessly work across hosting models and platforms, adhere to the following design principles:
 
 * Place shared UI code in Razor class libraries (RCLs), which are containers designed to maintain reusable pieces of UI for use across different hosting models and platforms.
-* Implementations of unique features shouldn't exist in RCLs. Instead, the RCL should define abstractions (interfaces and base classes) that different hosting models and platforms implement.
+* Implementations of unique features shouldn't exist in RCLs. Instead, the RCL should define abstractions (interfaces and base classes) that hosting models and platforms implement.
 * Only opt-in to unique features by hosting model or platform. For example, Blazor WebAssembly supports the use of <xref:Microsoft.JSInterop.IJSInProcessRuntime> in a component as an optimization, but only use it with a conditional cast and fallback implementation that relies on the universal <xref:Microsoft.JSInterop.IJSRuntime> abstraction that all hosting models and platforms support. For more information on <xref:Microsoft.JSInterop.IJSInProcessRuntime>, see <xref:blazor/performance#consider-the-use-of-synchronous-calls>.
 * As a general rule, use CSS for HTML styling in components. The most common case is for consistency in the look and feel of an app. In places where UI styles must differ across hosting models or platforms, use CSS to style the differences.
 * If some part of the UI requires additional or different content for a target hosting model or platform, the content can be encapsulated inside a component and rendered inside the RCL using [`DynamicComponent`](xref:blazor/components/dynamiccomponent). Additional UI can also be provided to components via <xref:Microsoft.AspNetCore.Components.RenderFragment> instances. For more information on <xref:Microsoft.AspNetCore.Components.RenderFragment>, see <xref:blazor/performance#define-reusable-renderfragments-in-code>.
@@ -47,13 +49,13 @@ The following example demonstrates how to use an abstraction for a geolocation s
 
 ![In a Razor class library (RCL), MapComponent injects an ILocationService service. Separately, App.Web (Blazor WebAssembly and Blazor Server projects) implement ILocationService as WebLocationService. Separately, App.Desktop (.NET MAUI, WPF, Windows Forms) implement ILocationService as DesktopLocationService.](~/blazor/hybrid/reuse-razor-components/_static/diagram2.png)
 
-## .NET MAUI Blazor app platform-specific code
+## .NET MAUI Blazor platform-specific code
 
-A common pattern in .NET MAUI involves maintaining different implementations for different platforms following several patterns, such as defining partial classes with platform-specific implementations. For example, see the following diagram, where partial classes for `CameraService` are implemented in each of `CameraService.Windows.cs`, `CameraService.iOS.cs`, `CameraService.Android.cs`, and `CameraService.cs`:
+A common pattern in .NET MAUI is to create separate implementations for different platforms, such as defining partial classes with platform-specific implementations. For example, see the following diagram, where partial classes for `CameraService` are implemented in each of `CameraService.Windows.cs`, `CameraService.iOS.cs`, `CameraService.Android.cs`, and `CameraService.cs`:
 
 ![Partial classes for CameraService are implemented in each of CameraService.Windows.cs, CameraService.iOS.cs, CameraService.Android.cs, and CameraService.cs.](~/blazor/hybrid/reuse-razor-components/_static/diagram3.png)
 
-Where you want to pack platform-specific features in a class library that can be consumed by other apps using .NET MAUI Blazor, we recommend that you follow a similar approach to the one described in the preceding example and create an abstraction for the Razor component:
+Where you want to pack platform-specific features into a class library that can be consumed by other apps, we recommend that you follow a similar approach to the one described in the preceding example and create an abstraction for the Razor component:
 
 * Place the component in a Razor class library (RCL).
 * From a .NET MAUI class library, reference the RCL and create the platform-specific implementations.
