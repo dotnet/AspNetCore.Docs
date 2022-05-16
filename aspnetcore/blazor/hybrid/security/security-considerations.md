@@ -63,8 +63,6 @@ When using an [`iframe`](https://developer.mozilla.org/docs/Web/HTML/Element/ifr
 
 By default, links to URLs outside of the app are opened in an appropriate external app, not loaded within the :::no-loc text="Web View":::. We do ***not*** recommend overriding the default behavior.
 
-The user might be able to indicate that they want the URL to load in the app because it's content that they trust. In that case, see the [Untrusted and unencoded content](#untrusted-and-unencoded-content) section.
-
 ## Keep the :::no-loc text="Web View"::: current in deployed apps
 
 By default, the [`BlazorWebView`](/maui/user-interface/controls/blazorwebview) control uses the currently-installed, platform-specific native :::no-loc text="Web View":::. Since the native :::no-loc text="Web View"::: is periodically updated with support for new APIs and fixes for security issues, it may be necessary to ensure that an app is using a :::no-loc text="Web View"::: version that meets the app's requirements.
