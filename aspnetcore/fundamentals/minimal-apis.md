@@ -1571,9 +1571,9 @@ ASP.NET Core provides the [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org
 
 `Microsoft.AspNetCore.OpenApi` is added as a PackageReference to a project file:
 
-[!code-xml[](minimal-apis/7.0-samples/WebMinOpenApi/projectFile.xml?highlight=9)]
+[!code-xml[](minimal-apis/7.0-samples/WebMinOpenApi/projectFile.xml?highlight=10)]
 
-### WithOpenApi call on endpoints adds an OpenApiOperation
+### `WithOpenApi` call on endpoints adds an `OpenApiOperation`
 
 Calling [`WithOpenApi`](https://github.com/dotnet/aspnetcore/blob/main/src/OpenApi/src/OpenApiRouteHandlerBuilderExtensions.cs) on an endpoint without parameters adds an [`OpenApiOperation`](https://github.com/RicoSuter/NSwag/blob/master/src/NSwag.Core/OpenApiOperation.cs) type to the endpoints metadata. This metadata can be:
 
@@ -1584,13 +1584,15 @@ Calling [`WithOpenApi`](https://github.com/dotnet/aspnetcore/blob/main/src/OpenA
 
 #### `WithOpenApi(Func<OpenApiOperation, OpenApiOperation> configureOperation)`
 
+The `WithOpenApi` method also accepts a function that can be used to modify the `OpenApiOperation`. For example, in the following code, a description is added to the first parameter of the endpoint:
+
 [!code-csharp[](minimal-apis/7.0-samples/todo/Program.cs?name=snippet_withopenapi2&highlight=9-99)]
 
 ### Exclude Open API description
 
 In the following sample, the `/skipme` endpoint is excluded from generating an OpenAPI description:
 
-[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_swag2)]
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_swag2&highlight=20-21)]
 
 ### Describe response types
 
