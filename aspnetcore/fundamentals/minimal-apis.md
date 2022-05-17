@@ -1555,6 +1555,8 @@ Routes can be [CORS](xref:security/cors?view=aspnetcore-6.0) enabled using [CORS
 
 For more information, see <xref:security/cors?view=aspnetcore-6.0>
 
+<a name="openapi7"></a>
+
 ## OpenAPI
 
 An app can describe the [OpenAPI specification](https://swagger.io/specification/) for route handlers using [Swashbuckle](https://www.nuget.org/packages/Swashbuckle.AspNetCore/).
@@ -1570,6 +1572,15 @@ ASP.NET Core provides the [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org
 `Microsoft.AspNetCore.OpenApi` is added as a PackageReference to a project file:
 
 [!code-xml[](minimal-apis/7.0-samples/WebMinOpenApi/projectFile.xml?highlight=10)]
+
+### WithOpenApi call on endpoints adds an OpenApiOperation
+
+Calling [`WithOpenApi`](https://github.com/dotnet/aspnetcore/blob/main/src/OpenApi/src/OpenApiRouteHandlerBuilderExtensions.cs) on an endpoint without parameters adds an [`OpenApiOperation`](https://github.com/RicoSuter/NSwag/blob/master/src/NSwag.Core/OpenApiOperation.cs) type to the endpoints metadata. This metadata can be:
+
+* Consumed in third-party packages, like [Swashbuckle.AspNetCore](https://www.nuget.org/packages/Swashbuckle.AspNetCore/).
+* Displayed in the Swagger user interface or in YAML or JSON generated to define the file.
+
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_withopenapi&highlight=9)]
 
 ### Exclude Open API description
 
@@ -1598,5 +1609,10 @@ The following code uses an [OpenAPI grouping tag](https://swagger.io/docs/specif
 
 Moved to uid: tutorials/min-web-api
 -->
+
+### ASP.NET Core OpenAPI source code on GitHub
+
+* [WithOpenApi](https://github.com/dotnet/aspnetcore/blob/main/src/OpenApi/src/OpenApiRouteHandlerBuilderExtensions.cs)
+* [OpenApiGenerator](https://github.com/dotnet/aspnetcore/blob/main/src/OpenApi/src/OpenApiGenerator.cs)
 
 :::moniker-end
