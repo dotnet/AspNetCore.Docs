@@ -351,6 +351,8 @@ items:
                     uid: blazor/hybrid/tutorials/wpf
               - name: Routing and navigation
                 uid: blazor/hybrid/routing
+              - name: Static files
+                uid: blazor/hybrid/static-files
               - name: Browser developer tools
                 uid: blazor/hybrid/developer-tools
               - name: Security
