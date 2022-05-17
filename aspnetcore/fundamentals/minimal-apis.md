@@ -1571,7 +1571,7 @@ ASP.NET Core provides the [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org
 
 `Microsoft.AspNetCore.OpenApi` is added as a PackageReference to a project file:
 
-[!code-xml[](minimal-apis/7.0-samples/WebMinOpenApi/projectFile.xml?highlight=10)]
+[!code-xml[](minimal-apis/7.0-samples/WebMinOpenApi/projectFile.xml?highlight=9)]
 
 ### WithOpenApi call on endpoints adds an OpenApiOperation
 
@@ -1580,11 +1580,11 @@ Calling [`WithOpenApi`](https://github.com/dotnet/aspnetcore/blob/main/src/OpenA
 * Consumed in third-party packages, like [Swashbuckle.AspNetCore](https://www.nuget.org/packages/Swashbuckle.AspNetCore/).
 * Displayed in the Swagger user interface or in YAML or JSON generated to define the file.
 
-[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_withopenapi&highlight=9)]
+[!code-csharp[](minimal-apis/7.0-samples/todo/Program.cs?name=snippet_withopenapi&highlight=9)]
 
 #### `WithOpenApi(Func<OpenApiOperation, OpenApiOperation> configureOperation)`
 
-[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_withopenapi2&highlight=9-99)]
+[!code-csharp[](minimal-apis/7.0-samples/todo/Program.cs?name=snippet_withopenapi2&highlight=9-99)]
 
 ### Exclude Open API description
 
