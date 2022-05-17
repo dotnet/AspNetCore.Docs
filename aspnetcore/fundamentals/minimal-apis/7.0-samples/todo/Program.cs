@@ -74,6 +74,23 @@ app.MapPost("/todoitems/{id}", async (int id, Todo todo, TodoDb db) =>
 .WithOpenApi();
 #endregion
 
+#region snippet_withopenapi2
+app.MapPost("/todo2/{id}", async (int id, Todo todo, TodoDb db) =>
+{
+    todo.Id = id;
+    db.Todos.Add(todo);
+    await db.SaveChangesAsync();
+
+    return Results.Created($"/todoitems/{todo.Id}", todo);
+})
+.WithOpenApi(generatedOperation =>
+{
+    var parameter = generatedOperation.Parameters[0];
+    parameter.Description = "The ID associated with the created Todo";
+    return generatedOperation;
+});
+#endregion
+
 app.MapPut("/todoitems/{id}", async (int id, Todo inputTodo, TodoDb db) =>
 {
     var todo = await db.Todos.FindAsync(id);

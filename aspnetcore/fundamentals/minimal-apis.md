@@ -1582,6 +1582,10 @@ Calling [`WithOpenApi`](https://github.com/dotnet/aspnetcore/blob/main/src/OpenA
 
 [!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_withopenapi&highlight=9)]
 
+#### `WithOpenApi(Func<OpenApiOperation, OpenApiOperation> configureOperation)`
+
+[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_withopenapi2&highlight=9-99)]
+
 ### Exclude Open API description
 
 In the following sample, the `/skipme` endpoint is excluded from generating an OpenAPI description:
