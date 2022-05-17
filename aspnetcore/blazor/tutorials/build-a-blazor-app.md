@@ -158,7 +158,7 @@ cd TodoList
    </ul>
    ```
 
-1. Update the `<h1>` header to show a count of the number of todo items that aren't complete (`IsDone` is `false`).
+1. Update the `<h1>` header to show a count of the number of todo items that aren't complete (`IsDone` is `false`). The Razor expression in the following header evaluates each time Blazor rerenders the component.
 
    ```razor
    <h1>Todo (@todos.Count(todo => !todo.IsDone))</h1>
@@ -339,7 +339,7 @@ cd TodoList
    </ul>
    ```
 
-1. Update the `<h1>` header to show a count of the number of todo items that aren't complete (`IsDone` is `false`).
+1. Update the `<h1>` header to show a count of the number of todo items that aren't complete (`IsDone` is `false`). The Razor expression in the following header evaluates each time Blazor rerenders the component.
 
    ```razor
    <h1>Todo (@todos.Count(todo => !todo.IsDone))</h1>
@@ -520,7 +520,7 @@ cd TodoList
    </ul>
    ```
 
-1. Update the `<h1>` header to show a count of the number of todo items that aren't complete (`IsDone` is `false`).
+1. Update the `<h1>` header to show a count of the number of todo items that aren't complete (`IsDone` is `false`). The Razor expression in the following header evaluates each time Blazor rerenders the component.
 
    ```razor
    <h1>Todo (@todos.Count(todo => !todo.IsDone))</h1>
