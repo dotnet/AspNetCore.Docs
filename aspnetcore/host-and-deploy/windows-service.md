@@ -158,13 +158,14 @@ $accessRule = New-Object System.Security.AccessControl.FileSystemAccessRule($acl
 $acl.SetAccessRule($accessRule)
 $acl | Set-Acl "{EXE PATH}"
 
-New-Service -Name {SERVICE NAME} -BinaryPathName "{EXE FILE PATH}" -Credential "{DOMAIN OR COMPUTER NAME\USER}" -Description "{DESCRIPTION}" -DisplayName "{DISPLAY NAME}" -StartupType Automatic
+New-Service -Name {SERVICE NAME} -BinaryPathName "{EXE FILE PATH} --contentRoot {EXE FOLDER PATH}" -Credential "{DOMAIN OR COMPUTER NAME\USER}" -Description "{DESCRIPTION}" -DisplayName "{DISPLAY NAME}" -StartupType Automatic
 ```
 
 * `{EXE PATH}`: Path of the app's executable on the host (for example, `d:\myservice`). Don't include the app's executable file name in the path. A trailing slash isn't required.
 * `{DOMAIN OR COMPUTER NAME\USER}`: Service user account (for example, `Contoso\ServiceUser`).
 * `{SERVICE NAME}`: Service name (for example, `MyService`).
 * `{EXE FILE PATH}`: The app's full executable path (for example, `d:\myservice\myservice.exe`). Include the executable's file name with extension.
+* `{EXE FOLDER PATH}`: The app's full executable folder path (for example `d:\myservice`).
 * `{DESCRIPTION}`: Service description (for example, `My sample service`).
 * `{DISPLAY NAME}`: Service display name (for example, `My Service`).
 
