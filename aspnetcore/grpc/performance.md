@@ -72,7 +72,7 @@ There are a couple of workarounds for .NET Core 3.1 apps:
 > * Thread contention between streams trying to write to the connection.
 > * Connection packet loss causes all calls to be blocked at the TCP layer.
 
-## Enable `ServerGarbageCollection` in high load client apps
+## `ServerGarbageCollection` in client apps
 
 The .NET garbage collector has two options: workstation garbage collection (GC) and server garbage collection. Each is each tuned for different workloads. ASP.NET Core apps use server GC by default.
 
