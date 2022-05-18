@@ -1575,16 +1575,16 @@ ASP.NET Core provides the [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org
 
 ### `WithOpenApi` call on endpoints adds an OpenAPI annotation
 
-Calling [`WithOpenApi`](https://github.com/dotnet/aspnetcore/blob/main/src/OpenApi/src/OpenApiRouteHandlerBuilderExtensions.cs) on an endpoint without parameters adds an [OpenAPI annotation](https://github.com/dotnet/aspnetcore/blob/main/src/OpenApi/src/OpenApiRouteHandlerBuilderExtensions.cs#L65-L82) type to the endpoints metadata. This metadata can be:
+Calling [`WithOpenApi`](https://github.com/dotnet/aspnetcore/blob/main/src/OpenApi/src/OpenApiRouteHandlerBuilderExtensions.cs) on an endpoint without parameters adds an [OpenAPI annotation](https://github.com/dotnet/aspnetcore/blob/main/src/OpenApi/src/OpenApiRouteHandlerBuilderExtensions.cs#L65-L82) to the endpoints metadata. This metadata can be:
 
 * Consumed in third-party packages like [Swashbuckle.AspNetCore](https://www.nuget.org/packages/Swashbuckle.AspNetCore/).
 * Displayed in the Swagger user interface or in YAML or JSON generated to define the file.
 
 [!code-csharp[](minimal-apis/7.0-samples/todo/Program.cs?name=snippet_withopenapi&highlight=9)]
 
-#### `WithOpenApi(Func<OpenApiOperation, OpenApiOperation> configureOperation)`
+#### Call `WithOpenApi` with parameters
 
-The `WithOpenApi` method also accepts a function that can be used to modify the OpenAPI annotation. For example, in the following code, a description is added to the first parameter of the endpoint:
+The [`WithOpenApi`](https://github.com/dotnet/aspnetcore/blob/main/src/OpenApi/src/OpenApiRouteHandlerBuilderExtensions.cs#L49) method accepts a function that can be used to modify the OpenAPI annotation. For example, in the following code, a description is added to the first parameter of the endpoint:
 
 [!code-csharp[](minimal-apis/7.0-samples/todo/Program.cs?name=snippet_withopenapi2&highlight=9-99)]
 
