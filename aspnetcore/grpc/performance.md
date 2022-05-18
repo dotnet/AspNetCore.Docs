@@ -72,6 +72,25 @@ There are a couple of workarounds for .NET Core 3.1 apps:
 > * Thread contention between streams trying to write to the connection.
 > * Connection packet loss causes all calls to be blocked at the TCP layer.
 
+## `ServerGarbageCollection` in client apps
+
+The .NET garbage collector has two modes: workstation garbage collection (GC) and server garbage collection. Each is each tuned for different workloads. ASP.NET Core apps use server GC by default.
+
+Highly concurrent apps generally perform better with server GC. If a gRPC client app is sending and receiving a high number of gRPC calls at the same time, then there may be a performance benefit in updating the app to use server GC.
+
+To enable server GC, set `<ServerGarbageCollection>` in the app's project file:
+
+```xml
+<PropertyGroup>
+  <ServerGarbageCollection>true</ServerGarbageCollection>
+</PropertyGroup>
+```
+
+For more information about garbage collection, see [Workstation and server garbage collection](/dotnet/standard/garbage-collection/workstation-server-gc).
+
+> [!NOTE]
+> ASP.NET Core apps use server GC by default. Enabling `<ServerGarbageCollection>` is only useful in non-server gRPC client apps, for example in a gRPC client console app.
+
 ## Load balancing
 
 Some load balancers don't work effectively with gRPC. L4 (transport) load balancers operate at a connection level, by distributing TCP connections across endpoints. This approach works well for loading balancing API calls made with HTTP/1.1. Concurrent calls made with HTTP/1.1 are sent on different connections, allowing calls to be load balanced across endpoints.
