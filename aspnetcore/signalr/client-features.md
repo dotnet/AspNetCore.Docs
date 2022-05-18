@@ -35,7 +35,7 @@ The table below shows the features and support for the clients that offer real-t
 | Azure SignalR Service Support |2.1.0|1.0.0|1.0.0|1.0.0|
 | [Server-to-client Streaming](xref:signalr/streaming)          |2.1.0|1.0.0|1.0.0|1.0.0|
 | [Client-to-server Streaming](xref:signalr/streaming)          |3.0.0|3.0.0|3.0.0|3.0.0|
-| Automatic Reconnection ([.NET](xref:signalr/dotnet-client#handle-lost-connection), [JavaScript](xref:signalr/javascript-client#reconnect-clients))          |3.0.0|3.0.0|3.0.0|❌|
+| Automatic Reconnection ([.NET](./dotnet-client.md?tabs=visual-studio&view=aspnetcore-3.0#handle-lost-connection), [JavaScript](./javascript-client.md?view=aspnetcore-3.0#reconnect-clients))          |3.0.0|3.0.0|3.0.0|❌|
 | WebSockets Transport |2.1.0|1.0.0|1.0.0|1.0.0|
 | Server-Sent Events Transport |2.1.0|1.0.0|1.0.0|❌|
 | Long Polling Transport |2.1.0|1.0.0|1.0.0|3.0.0|
