@@ -74,7 +74,7 @@ There are a couple of workarounds for .NET Core 3.1 apps:
 
 ## `ServerGarbageCollection` in client apps
 
-The .NET garbage collector has two options: workstation garbage collection (GC) and server garbage collection. Each is each tuned for different workloads. ASP.NET Core apps use server GC by default.
+The .NET garbage collector has two modes: workstation garbage collection (GC) and server garbage collection. Each is each tuned for different workloads. ASP.NET Core apps use server GC by default.
 
 Highly concurrent apps generally perform better with server GC. If a gRPC client app is sending and receiving a high number of gRPC calls at the same time, then there may be a performance benefit in updating the app to use server GC.
 
