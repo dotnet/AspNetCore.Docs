@@ -129,7 +129,7 @@ See the following links for differences between challenge and forbid:
 
 ## Authentication providers per tenant
 
-ASP.NET Core doesn't have a built-in solution for multi-tenant authentication. While it's possible for customers to write one using the built-in features, we recommend customers to consider [Orchard Core](https://www.orchardcore.net/) for this purpose.
+ASP.NET Core doesn't have a built-in solution for multi-tenant authentication. While it's possible for customers to write one using the built-in features, we recommend customers to consider [Orchard Core](https://www.orchardcore.net/) or [ABP Framework](https://abp.io/) for multi-tenant authentication.
 
 Orchard Core is:
 
@@ -138,6 +138,8 @@ Orchard Core is:
 
 See the [Orchard Core](https://github.com/OrchardCMS/OrchardCore) source for an example of authentication providers per tenant.
 
+[ABP Framework](https://abp.io/) supports various architectural patterns including modularity, microservices, domain driven design, and multi-tenancy. See [ABP Framework source on GitHub](https://github.com/abpframework/abp).
+
 ## Additional resources
 
 * <xref:security/authorization/limitingidentitybyscheme>
@@ -145,7 +147,7 @@ See the [Orchard Core](https://github.com/OrchardCMS/OrchardCore) source for an 
 * <xref:security/authorization/secure-data>
 * [Globally require authenticated users](xref:security/authorization/secure-data#rau)
 * [GitHub issue on using multiple authentication schemes](https://github.com/dotnet/aspnetcore/issues/26002)
-    
+
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
@@ -271,15 +273,15 @@ See the following links for differences between challenge and forbid:
 ## Authentication providers per tenant
 
 ASP.NET Core framework doesn't have a built-in solution for multi-tenant authentication.
-While it's possible for customers to write one, using the built-in features, we recommend customers to look into the following projects for this purpose:
+While it's possible for customers to write an app with multi-tenant authentication, we recommend using one of the following asp.net core application frameworks that support multi-tenant authentication:
 
 ### Orchard Core
 
-[Orchard Core](https://orchardcore.net/) is an open-source modular and multi-tenant application framework built with ASP.NET Core. It is also a content management system (CMS) built on top of that application framework. See the [Orchard Core](https://github.com/OrchardCMS/OrchardCore) source for an example of authentication providers per tenant.
+[Orchard Core](https://orchardcore.net/). See the [Orchard Core](https://github.com/OrchardCMS/OrchardCore) source for an example of authentication providers per tenant.
 
 ### ABP Framework
 
-[ABP Framework](https://abp.io/) is another open source web application framework on top of ASP.NET Core. It supports various architectural patterns including modularity, microservices, domain driven design (DDD) and multi-tenancy. See [its source code](https://github.com/abpframework/abp) on GitHub.
+[ABP Framework](https://abp.io/) supports various architectural patterns including modularity, microservices, domain driven design, and multi-tenancy. See [ABP Framework source on GitHub](https://github.com/abpframework/abp).
 
 ## Additional resources
 
