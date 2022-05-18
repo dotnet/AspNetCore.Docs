@@ -186,7 +186,7 @@ To use the manually published app within a Docker container, create a new *Docke
 ```dockerfile
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS runtime
 WORKDIR /app
-COPY published/aspnetapp.dll ./
+COPY published/ ./
 ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 ```
 
@@ -225,7 +225,7 @@ ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 ```dockerfile
 FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS runtime
 WORKDIR /app
-COPY published/aspnetapp.dll ./
+COPY published/ ./
 ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 ```
 
@@ -270,7 +270,7 @@ In the preceding *Dockerfile*, the `*.csproj` files are copied and restored as d
 ```dockerfile
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.0 AS runtime
 WORKDIR /app
-COPY published/aspnetapp.dll ./
+COPY published/ ./
 ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 ```
 
@@ -307,7 +307,7 @@ As noted in the preceding Dockerfile, the `*.csproj` files are copied and restor
 ```dockerfile
 FROM mcr.microsoft.com/dotnet/core/aspnet:2.2 AS runtime
 WORKDIR /app
-COPY published/aspnetapp.dll ./
+COPY published/ ./
 ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 ```
 
