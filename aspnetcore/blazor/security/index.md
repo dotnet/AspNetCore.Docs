@@ -302,7 +302,7 @@ For role-based authorization, use the <xref:Microsoft.AspNetCore.Components.Auth
 </AuthorizeView>
 ```
 
-For more information, see <xref:security/authorization/roles>.
+For more information, including configuration guidance, see <xref:security/authorization/roles>.
 
 For policy-based authorization, use the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Policy> parameter:
 
@@ -870,7 +870,7 @@ For role-based authorization, use the <xref:Microsoft.AspNetCore.Components.Auth
 </AuthorizeView>
 ```
 
-For more information, see <xref:security/authorization/roles>.
+For more information, including configuration guidance, see <xref:security/authorization/roles>.
 
 For policy-based authorization, use the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Policy> parameter:
 
@@ -1439,7 +1439,7 @@ For role-based authorization, use the <xref:Microsoft.AspNetCore.Components.Auth
 </AuthorizeView>
 ```
 
-For more information, see <xref:security/authorization/roles>.
+For more information, including configuration guidance, see <xref:security/authorization/roles>.
 
 For policy-based authorization, use the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Policy> parameter:
 
