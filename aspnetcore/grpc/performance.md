@@ -164,7 +164,7 @@ HTTP/2 flow control is a feature that prevents apps from being overwhelmed with 
 * Flow control activates if the buffer window is filled up. When activated, the sending app pauses sending more data.
 * Once the receiving app has processed data, then space in the buffer window is available. The sending app resumes sending data.
 
-Flow control can have a negative impact on performance when sending and receiving large messages. If the buffer window is smaller than incoming message payloads or there's latency between the client and server, then data can be sent in start/stop bursts.
+Flow control can have a negative impact on performance when receiving large messages. If the buffer window is smaller than incoming message payloads or there's latency between the client and server, then data can be sent in start/stop bursts.
 
 Flow control performance issues can be fixed by increasing buffer window size. In Kestrel, this is configured with <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Http2Limits.InitialConnectionWindowSize> and <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Http2Limits.InitialStreamWindowSize> at app startup:
 
@@ -179,7 +179,7 @@ builder.WebHost.ConfigureKestrel(options =>
 
 Recommendations:
 
-* If a gRPC service often receives messages larger than 96 KB, Kestrel's default stream window size, consider increasing the connection and stream window size.
+* If a gRPC service often receives messages larger than 96 KB, Kestrel's default stream window size, then consider increasing the connection and stream window size.
 * The connection window size should always be equal or greater than the stream window size. A stream is part of the connection and the sender is limited by both.
 
 For more information about how flow control works, see [HTTP/2 Flow Control (blog post)](https://medium.com/coderscorner/http-2-flow-control-77e54f7fd518).
