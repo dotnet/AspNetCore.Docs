@@ -20,7 +20,7 @@ While roles are claims, not all claims are roles. Depending on the identity issu
 
 ## Add Role services to Identity
 
-Register role-based authorization services with <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles%2A> as part of the authorization service configuration in the app's `Program.cs` file:
+Register role-based authorization services in `Program.cs` by calling <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles%2A> with the role type in the app's Identity configuration. The role type in the following example is `IdentityRole`:
 
 ```csharp
 builder.Services.AddDefaultIdentity<IdentityUser>( ... )
