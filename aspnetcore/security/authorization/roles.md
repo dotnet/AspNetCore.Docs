@@ -22,7 +22,11 @@ While roles are claims, not all claims are roles. Depending on the identity issu
 
 Register role-based authorization services with <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles%2A> as part of the authorization service configuration in the app's `Program.cs` file:
 
-[!code-csharp[](~/security/authorization/roles/samples/6_0/WebAll/Program.cs?name=snippet_ef&highlight=12)]
+```csharp
+builder.Services.AddDefaultIdentity<IdentityUser>( ... )
+    .AddRoles<IdentityRole>()
+    ...
+```
 
 ## Adding role checks
 
