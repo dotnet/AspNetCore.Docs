@@ -31,7 +31,6 @@ Each ASP.NET Core component that emits cookies needs to decide if SameSite is ap
 
 ## SameSite test sample code
 
-
 :::moniker range=">= aspnetcore-6.0"
 
 The following sample can be downloaded and tested:
@@ -42,7 +41,7 @@ The following sample can be downloaded and tested:
 
 ## .NET Core support for the sameSite attribute
 
-.NET Core 3.1 and later support the 2019 draft standard for SameSite. Developers are able to programmatically control the value of the sameSite attribute using the `HttpCookie.SameSite` property. Setting the `SameSite` property to Strict, Lax, or None results in those values being written on the network with the cookie. Setting it equal to `(SameSiteMode)(-1)` indicates that no sameSite attribute should be included on the network with the cookie
+.NET Core supports the 2019 draft standard for SameSite. Developers are able to programmatically control the value of the sameSite attribute using the `HttpCookie.SameSite` property. Setting the `SameSite` property to `Strict`, `Lax`, or `None` results in those values being written on the network with the cookie. Setting to `SameSiteMode.Unspecified indicates no sameSite should be sent with the cookie.
 
 [!code-csharp[](samesite/snippets/Privacy.cshtml.cs?name=snippet)]
 
