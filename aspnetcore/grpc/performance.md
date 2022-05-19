@@ -162,9 +162,9 @@ HTTP/2 flow control is a feature that prevents apps from being overwhelmed with 
 
 * Each app has an available buffer window. The buffer window is how much data the app can receive at once.
 * Flow control activates if the buffer window is filled up. When activated, the sending app pauses sending more data.
-* Once the receiving app has processed data then space in the buffer window is available. The sending app resumes sending data.
+* Once the receiving app has processed data, then space in the buffer window is available. The sending app resumes sending data.
 
-Flow control can have a negative impact on performance when sending and receiving large messages. If the buffer window isn't large enough, or there is latency between the client and server, then data can be sent in start/stop bursts. This can be fixed by increasing HTTP/2 flow control window size. In Kestrel this is configured with <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Http2Limits.InitialConnectionWindowSize> and <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Http2Limits.InitialStreamWindowSize> at app startup.
+Flow control can have a negative impact on performance when sending and receiving large messages. If the buffer window isn't large enough or there's latency between the client and server, then data can be sent in start/stop bursts. This can be fixed by increasing the HTTP/2 flow control window size. In Kestrel, this is configured with <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Http2Limits.InitialConnectionWindowSize> and <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Http2Limits.InitialStreamWindowSize> at app startup.
 
 ```csharp
 builder.WebHost.ConfigureKestrel(options =>
@@ -176,7 +176,7 @@ builder.WebHost.ConfigureKestrel(options =>
 ```
 
 > [!IMPORTANT]
-> Increasing Kestrel's window size allows the app to buffer more data and possibility increasing memory usage. Avoid configuring an unnecessarily large window size.
+> Increasing Kestrel's window size allows the app to buffer more data, which possibly increases memory usage. Avoid configuring an unnecessarily large window size.
 
 ## Streaming
 
