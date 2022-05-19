@@ -3,7 +3,7 @@ title: Part 2, add a model
 author: rick-anderson
 description: Part 2 of tutorial series on Razor Pages. In this section, model classes are added.
 ms.author: riande
-ms.date: 1/7/2022
+ms.date: 05/11/2022
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: contperf-fy21q2
 no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Index, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, Models]
@@ -233,6 +233,9 @@ In this section, the **Package Manager Console** (PMC) window is used to:
    ```
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+* In the **Solution Tool Window**, right-click the *RazorPagesMovie* project, and then select **Open in Terminal**. 
+
+  The **Terminal** window opens with the command prompt at the project directory, which contains the Program.cs and .csproj files.
 
 * Run the following .NET CLI commands:
 
