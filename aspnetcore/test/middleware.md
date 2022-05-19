@@ -117,7 +117,7 @@ TestServer:
 * Does ***not*** try to replicate all <xref:System.Net.Http.HttpClient> behaviors.
 * Attempts to give the client access to as much control over the server as possible, and with as much visibility into what's happening on the server as possible. For example it may throw exceptions not normally thrown by `HttpClient` in order to directly communicate server state.
 * Doesn't set some transport specific headers by default as those aren't usually relevant to middleware. For more information, see the next section.
-* Ignores positioning in a <xref:System.IO.Stream> passed through <xref:System.Net.Http.HttpRequest.StreamContent>. <xref:System.Net.Http.HttpClient> will send the whole stream from the start position. For more information, see GitHub issues [dotnet/aspnetcore#33780](https://github.com/dotnet/aspnetcore/issues/33780).
+* Ignores positioning in a <xref:System.IO.Stream> passed through <xref:System.Net.Http.StreamContent>. <xref:System.Net.Http.HttpClient> will send the whole stream from the start position. For more information, see GitHub issues [dotnet/aspnetcore#33780](https://github.com/dotnet/aspnetcore/issues/33780).
 
 ### Content-Length and Transfer-Encoding headers
 
