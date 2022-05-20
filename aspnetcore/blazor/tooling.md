@@ -278,9 +278,21 @@ For more information, see the following resources in the Visual Studio documenta
 * [Introduction to projects and solutions](/visualstudio/get-started/tutorial-projects-solutions)
 * [What are solutions and projects in Visual Studio?](/visualstudio/ide/solutions-and-projects-in-visual-studio)
 
+:::zone pivot="windows"
+
 ## Use Visual Studio Code for cross-platform Blazor development
 
 [Visual Studio Code](https://code.visualstudio.com/) is an open source, cross-platform Integrated Development Environment (IDE) that can be used to develop Blazor apps. Use the [.NET CLI](/dotnet/core/tools/) to create a new Blazor app for development with Visual Studio Code. For more information, see the [Linux version of this article](?pivots=linux).
+
+:::zone-end
+
+:::zone pivot="macos"
+
+## Use Visual Studio Code for cross-platform Blazor development
+
+[Visual Studio Code](https://code.visualstudio.com/) is an open source, cross-platform Integrated Development Environment (IDE) that can be used to develop Blazor apps. Use the [.NET CLI](/dotnet/core/tools/) to create a new Blazor app for development with Visual Studio Code. For more information, see the [Linux version of this article](?pivots=linux).
+
+:::zone-end
 
 ## Blazor template options
 
@@ -541,9 +553,21 @@ For more information, see the following resources in the Visual Studio documenta
 * [Introduction to projects and solutions](/visualstudio/get-started/tutorial-projects-solutions)
 * [What are solutions and projects in Visual Studio?](/visualstudio/ide/solutions-and-projects-in-visual-studio)
 
+:::zone pivot="windows"
+
 ## Use Visual Studio Code for cross-platform Blazor development
 
-[Visual Studio Code](https://code.visualstudio.com/) is an open source, cross-platform Integrated Development Environment (IDE) that can be used to develop Blazor apps. Use the .NET CLI to create a new Blazor app for development with Visual Studio Code. For more information, see the [Linux version of this article](?pivots=linux).
+[Visual Studio Code](https://code.visualstudio.com/) is an open source, cross-platform Integrated Development Environment (IDE) that can be used to develop Blazor apps. Use the [.NET CLI](/dotnet/core/tools/) to create a new Blazor app for development with Visual Studio Code. For more information, see the [Linux version of this article](?pivots=linux).
+
+:::zone-end
+
+:::zone pivot="macos"
+
+## Use Visual Studio Code for cross-platform Blazor development
+
+[Visual Studio Code](https://code.visualstudio.com/) is an open source, cross-platform Integrated Development Environment (IDE) that can be used to develop Blazor apps. Use the [.NET CLI](/dotnet/core/tools/) to create a new Blazor app for development with Visual Studio Code. For more information, see the [Linux version of this article](?pivots=linux).
+
+:::zone-end
 
 ## Blazor template options
 
@@ -781,9 +805,21 @@ For more information, see the following resources in the Visual Studio documenta
 * [Introduction to projects and solutions](/visualstudio/get-started/tutorial-projects-solutions)
 * [What are solutions and projects in Visual Studio?](/visualstudio/ide/solutions-and-projects-in-visual-studio)
 
+:::zone pivot="windows"
+
 ## Use Visual Studio Code for cross-platform Blazor development
 
-[Visual Studio Code](https://code.visualstudio.com/) is an open source, cross-platform Integrated Development Environment (IDE) that can be used to develop Blazor apps. Use the .NET CLI to create a new Blazor app for development with Visual Studio Code. For more information, see the [Linux version of this article](?pivots=linux).
+[Visual Studio Code](https://code.visualstudio.com/) is an open source, cross-platform Integrated Development Environment (IDE) that can be used to develop Blazor apps. Use the [.NET CLI](/dotnet/core/tools/) to create a new Blazor app for development with Visual Studio Code. For more information, see the [Linux version of this article](?pivots=linux).
+
+:::zone-end
+
+:::zone pivot="macos"
+
+## Use Visual Studio Code for cross-platform Blazor development
+
+[Visual Studio Code](https://code.visualstudio.com/) is an open source, cross-platform Integrated Development Environment (IDE) that can be used to develop Blazor apps. Use the [.NET CLI](/dotnet/core/tools/) to create a new Blazor app for development with Visual Studio Code. For more information, see the [Linux version of this article](?pivots=linux).
+
+:::zone-end
 
 ## Blazor template options
 
