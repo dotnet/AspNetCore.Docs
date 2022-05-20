@@ -5,7 +5,7 @@ description: Learn about the tools available to build Blazor apps on various pla
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/09/2021
+ms.date: 05/20/2022
 no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/tooling
 zone_pivot_groups: operating-systems
@@ -231,13 +231,7 @@ Use the [.NET command-line interface (CLI)](/dotnet/core/tools/) to execute comm
 
 ## Trust a development certificate
 
-There's no centralized way to trust a certificate on Linux. Typically, one of the following approaches is adopted:
-
-* Exclude the app's URL in browser's exclude list.
-* Trust all self-signed certificates for `localhost`.
-* Add the certificate to the list of trusted certificates in the browser.
-
-For more information, see the guidance provided by your browser manufacturer and Linux distribution.
+For more information, see <xref:security/enforcing-ssl#trust-https-certificate-on-linux-using-edge-or-chrome>.
 
 :::zone-end
 
@@ -500,13 +494,7 @@ For more information on trusting the ASP.NET Core HTTPS development certificate,
 
 ## Trust a development certificate
 
-There's no centralized way to trust a certificate on Linux. Typically, one of the following approaches is adopted:
-
-* Exclude the app's URL in browser's exclude list.
-* Trust all self-signed certificates for `localhost`.
-* Add the certificate to the list of trusted certificates in the browser.
-
-For more information, see the guidance provided by your browser manufacturer and Linux distribution.
+For more information, see <xref:security/enforcing-ssl#trust-https-certificate-on-linux-using-edge-or-chrome>.
 
 :::zone-end
 
@@ -747,13 +735,7 @@ When executing a hosted Blazor WebAssembly app, run the app from the solution's 
 
 ## Trust a development certificate
 
-There's no centralized way to trust a certificate on Linux. Typically, one of the following approaches is adopted:
-
-* Exclude the app's URL in browser's exclude list.
-* Trust all self-signed certificates for `localhost`.
-* Add the certificate to the list of trusted certificates in the browser.
-
-For more information, see the guidance provided by your browser manufacturer and Linux distribution.
+For more information, see <xref:security/enforcing-ssl#trust-https-certificate-on-linux-using-edge-or-chrome>.
 
 :::zone-end
 
