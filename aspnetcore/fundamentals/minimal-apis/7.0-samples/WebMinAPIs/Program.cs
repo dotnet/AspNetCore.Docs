@@ -817,7 +817,6 @@ app.MapGet("/swag", () => "Hello Swagger!")
     .WithOpenApi();
 app.MapGet("/skipme", () => "Skipping Swagger.")
                     .ExcludeFromDescription();
-app.MapGet("/test", () => "test swag!");
 
 app.Run();
 #endregion
