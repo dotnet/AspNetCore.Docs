@@ -1,46 +1,43 @@
 ---
 title: ASP.NET Core Blazor Hybrid static files
 author: guardrex
-description: Learn how to configure and manage static files for Blazor Hybrid apps.
+description: Learn how to consume static asset files in Blazor Hybrid apps.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/18/2022
+ms.date: 05/20/2022
 no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/hybrid/static-files
 ---
 # ASP.NET Core Blazor Hybrid static files
 
-This article describes the configuration for serving static files in Blazor Hybrid apps.
+This article describes how to consume static asset files in Blazor Hybrid apps.
 
 [!INCLUDE[](~/blazor/includes/blazor-hybrid-preview-notice.md)]
 
 In a Blazor Hybrid app, static files are *app resources*, accessed by Razor components using the following approaches:
 
-* [.NET MAUI](#net-maui): [:::no-loc text="Xamarin.Essentials":::](/xamarin/essentials/)
+* [.NET MAUI](#net-maui): [:::no-loc text=".NET MAUI Essentials":::](https://devblogs.microsoft.com/xamarin/xamarin-essentials-1-7-and-introducing-net-maui-essentials/#net-maui-essentials)
 * [WPF](#wpf) and [Windows Forms](#windows-forms): <xref:System.Resources.ResourceManager>
 
-When static assets are only used in the Razor components, they can be consumed by Razor components from the web root (`wwwroot` folder) in a similar way to Blazor WebAssembly and Blazor Server apps. For more information, see the [Static assets limited to Razor components](#static-assets-limited-to-razor-components) section.
+When static assets are only used in the Razor components, static assets can be consumed from the web root (`wwwroot` folder) in a similar way to Blazor WebAssembly and Blazor Server apps. For more information, see the [Static assets limited to Razor components](#static-assets-limited-to-razor-components) section.
 
 ## .NET MAUI
 
-In .NET MAUI apps, the `MauiAsset` build action and [:::no-loc text="Xamarin.Essentials":::](/xamarin/essentials/) are used for static assets.
+In .NET MAUI apps, [*raw assets*](/dotnet/maui/fundamentals/single-project#raw-assets) using the `MauiAsset` build action and :::no-loc text=".NET MAUI Essentials"::: are used for static assets.
 
 Place raw assets into the `Resources/Raw` folder of the app. The example in this section uses a static text file.
 
 `Resources/Raw/Data.txt`:
 
 ```text
-This is some text from a static text file resource.
+This is text from a static text file resource.
 ```
-
-> [!NOTE]
-> When a file is added to the `Resources/Raw` folder in Visual Studio, the file is automatically assigned the `MauiAsset` build action.
 
 The following Razor component:
 
-* Calls <xref:Xamarin.Essentials.FileSystem.OpenAppPackageFileAsync%2A> to obtain a <xref:System.IO.Stream> for the resource.
-* Establishes a new <xref:System.IO.StreamReader> for the resource.
+* Calls `Microsoft.Maui.Storage.FileSystem.OpenAppPackageFileAsync` to obtain a <xref:System.IO.Stream> for the resource.
+* Reads the <xref:System.IO.Stream> with a <xref:System.IO.StreamReader>.
 * Calls <xref:System.IO.StreamReader.ReadToEndAsync%2A?displayProperty=nameWithType> to read the file.
 
 `Pages/StaticAssetExample.razor`:
@@ -48,13 +45,13 @@ The following Razor component:
 ```razor
 @page "/static-asset-example"
 @using System.IO
-@using Microsoft.Maui.Storage
 @using Microsoft.Extensions.Logging
+@using Microsoft.Maui.Storage
 @inject ILogger<StaticAssetExample> Logger
 
 <h1>Static Asset Example</h1>
 
-<p>@@dataResourceText: @dataResourceText</p>
+<p>@dataResourceText</p>
 
 @code {
     public string dataResourceText = "Loading resource ...";
@@ -66,6 +63,7 @@ The following Razor component:
             using var stream = 
                 await FileSystem.OpenAppPackageFileAsync("Data.txt");
             using var reader = new StreamReader(stream);
+
             dataResourceText = await reader.ReadToEndAsync();
         }
         catch (FileNotFoundException ex)
@@ -73,7 +71,6 @@ The following Razor component:
             dataResourceText = "Data file not found.";
             Logger.LogError(ex, "'Resource/Raw/Data.txt' not found.");
         }
-        
     }
 }
 ```
@@ -90,18 +87,18 @@ Place the asset into a folder of the app, typically at the project's root, such 
 `Resources/Data.txt`:
 
 ```text
-This is some text from a static text file resource.
+This is text from a static text file resource.
 ```
 
 If a `Properties` folder doesn't exist in the app, create a `Properties` folder in the root of the app.
 
-If the `Properties` folder doesn't contain a resources file (`Resources.resx`), create the file in **Solution Explorer** with the **Add** > **New Item** contextual menu item for the `Properties`.
+If the `Properties` folder doesn't contain a resources file (`Resources.resx`), create the file in **Solution Explorer** with the **Add** > **New Item** contextual menu item.
 
-Double-click the `Resource.resx` file to open it.
+Double-click the `Resource.resx` file.
 
 Select **Strings** > **Files** from the dropdown list.
 
-Select **Add Resource** > **Add Existing File**. If prompted by Visual Studio to confirm that you want to edit the file, select **Yes**. Navigate to the `Resources` folder, select the `Data.txt` file, and select **Open**.
+Select **Add Resource** > **Add Existing File**. If prompted by Visual Studio to confirm editing the file, select **Yes**. Navigate to the `Resources` folder, select the `Data.txt` file, and select **Open**.
 
 In the following example component, <xref:System.Resources.ResourceManager.GetString%2A?displayProperty=nameWithType> obtains the string resource's text for display.
 
@@ -116,15 +113,16 @@ In the following example component, <xref:System.Resources.ResourceManager.GetSt
 
 <h1>Static Asset Example</h1>
 
-<p>@@dataResourceText: @dataResourceText</p>
+<p>@dataResourceText</p>
 
 @code {
     public string dataResourceText = "Loading resource ...";
 
     protected override void OnInitialized()
-    {   
+    {
         var resources = 
             new ResourceManager(typeof(WpfBlazor.Properties.Resources));
+
         dataResourceText = resources.GetString("Data") ?? "'Data' not found.";
     }
 }
@@ -137,20 +135,20 @@ Place the asset into a folder of the app, typically at the project's root, such 
 `Resources/Data.txt`:
 
 ```text
-This is some text from a static text file resource.
+This is text from a static text file resource.
 ```
 
-Examine the files for `Form1` in **Solution Explorer**. If `Form1` doesn't have a resource file (`.resx`) create a `Form1.resx` file.
+Examine the files associated with `Form1` in **Solution Explorer**. If `Form1` doesn't have a resource file (`.resx`), add a `Form1.resx` file with the **Add** > **New Item** contextual menu item.
 
-Double-click `Form1.resx` to open the resource file.
+Double-click the `Form1.resx` file.
 
 Select **Strings** > **Files** from the dropdown list.
 
-Select **Add Resource** > **Add Existing File**. If prompted by Visual Studio to confirm that you want to edit the file, select **Yes**. Navigate to the `Resources` folder, select the `Data.txt` file, and select **Open**.
+Select **Add Resource** > **Add Existing File**. If prompted by Visual Studio to confirm editing the file, select **Yes**. Navigate to the `Resources` folder, select the `Data.txt` file, and select **Open**.
 
 In the following example component:
 
-* The app's assembly name is `WinFormsBlazor`. The <xref:System.Resources.ResourceManager>'s base name is set to assembly name of `Form1` ( `WinFormsBlazor.Form1`). Modify the type reference to match your component's form.
+* The app's assembly name is `WinFormsBlazor`. The <xref:System.Resources.ResourceManager>'s base name is set to the assembly name of `Form1` ( `WinFormsBlazor.Form1`).
 * <xref:System.Resources.ResourceManager.GetString%2A?displayProperty=nameWithType> obtains the string resource's text for display.
 
 > [!WARNING]
@@ -164,7 +162,7 @@ In the following example component:
 
 <h1>Static Asset Example</h1>
 
-<p>@@dataResourceText: @dataResourceText</p>
+<p>@dataResourceText</p>
 
 @code {
     public string dataResourceText = "Loading resource ...";
@@ -173,6 +171,7 @@ In the following example component:
     {   
         var resources = 
             new ResourceManager("WinFormsBlazor.Form1", this.GetType().Assembly);
+
         dataResourceText = resources.GetString("Data") ?? "'Data' not found.";
     }
 }
@@ -180,17 +179,17 @@ In the following example component:
 
 ## Static assets limited to Razor components
 
-In scenarios where the app only uses static assets in Razor components, the static assets can be supplied from the app's `wwwroot` folder.
+In scenarios where the app only uses static assets in Razor components, the static assets can be supplied from the app's web root (`wwwroot` folder).
 
-Place assets into the `wwwroot` folder. For example, place a static text file into the folder with the following string content.
+Place assets into the `wwwroot` folder. The example in this section uses a static text file.
 
 `wwwroot/data.txt`:
 
 ```text
-This is some text from a static text file resource.
+This is text from a static text file resource.
 ```
 
-In **Solution Explorer**, select the `data.txt` file. In the file's **Properties** set **Copy to Output Directory** to **Copy if newer**.
+In **Solution Explorer**, select the `data.txt` file. In the file's **Properties**, set **Copy to Output Directory** to **Copy if newer**.
 
 The following Jeep&reg; image is also used in this section's example. You can right-click the following image to save it locally for use in a local test app.
 
@@ -204,7 +203,7 @@ The following Jeep&reg; image is also used in this section's example. You can ri
 In a Razor component:
 
 * The static text file contents can be read using the following techniques:
-  * .NET MAUI: [:::no-loc text="Xamarin.Essentials":::](/xamarin/essentials/) (<xref:Xamarin.Essentials.FileSystem.OpenAppPackageFileAsync%2A>)
+  * .NET MAUI: :::no-loc text=".NET MAUI Essentials"::: (`Microsoft.Maui.Storage.FileSystem.OpenAppPackageFileAsync`)
   * WPF and Windows Forms: <xref:System.IO.StreamReader.ReadToEndAsync%2A?displayProperty=nameWithType>
 * The image can be the source attribute (`src`) of an image tag (`<img>`).
 
@@ -217,11 +216,9 @@ In a Razor component:
 
 <h1>Static Asset Example 2</h1>
 
-<p>@@dataResourceText: @dataResourceText</p>
+<p>@dataResourceText</p>
 
-<p>
-    <img alt="1991 Jeep YJ" src="/jeep-yj.png" />
-</p>
+<p><img alt="1991 Jeep YJ" src="/jeep-yj.png" /></p>
 
 <p>
     <em>Jeep</em> and <em>Jeep YJ</em> are registered trademarks of 
