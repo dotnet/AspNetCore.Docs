@@ -6,14 +6,6 @@
    <ImplicitUsings>enable</ImplicitUsings>
  </PropertyGroup>
 
- <ItemGroup>
-   <Content Remove="Properties\launchSettings - Copy.json" />
- </ItemGroup>
-
- <ItemGroup>
-   <_WebToolingArtifacts Remove="Properties\launchSettings - Copy.json" />
- </ItemGroup>
-
 <ItemGroup>
    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.0-preview.4.22251.1" />
    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
@@ -23,12 +15,5 @@
    <Folder Include="wwwroot\uploads\" />
 </ItemGroup>
 
-<ItemGroup>
-  <None Include="Properties\launchSettings - Copy.json">
-    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-    <CopyToPublishDirectory>Never</CopyToPublishDirectory>
-  </None>
-</ItemGroup>
     
 </Project>
