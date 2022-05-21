@@ -69,10 +69,11 @@ On startup, an ASP.NET Core app builds a *host*. The host encapsulates all of th
 * Dependency injection (DI) services
 * Configuration
 
-There are three different hosts:
+The different hosts include:
 
 * .NET WebApplication Host
 * .NET Generic Host
+* .NET Minimal Host
 * ASP.NET Core Web Host
 
 The .NET Minimal Host is recommended and used in all the ASP.NET Core templates. The Minimal and Generic hosts share many of the same interfaces and classes. The ASP.NET Core Web Host is available only for backwards compatibility.
