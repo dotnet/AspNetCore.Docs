@@ -54,12 +54,6 @@ Wait for Visual Studio to create the project and for the project's dependencies 
 
 ## Run the app on Windows
 
-<!--
-In the Visual Studio toolbar, select the start configuration drop-down button:
-
-:::image type="content" source="maui/_static/windows-machine-button-1.png" alt-text="Start configuration button.":::
--->
-
 In the Visual Studio toolbar, select the **Windows Machine** button to build and start the project:
 
 :::image type="content" source="maui/_static/windows-machine-button.png" alt-text="Windows Machine button.":::
