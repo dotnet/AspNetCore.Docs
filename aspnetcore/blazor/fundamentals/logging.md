@@ -11,6 +11,12 @@ uid: blazor/fundamentals/logging
 ---
 # ASP.NET Core Blazor logging
 
+<!--
+
+NOTE: The console output block quotes in this topic use a double-space at the ends of lines to generate a bare return in block quote output.
+
+-->
+
 This article explains logging in Blazor apps, including configuration and how to write log messages from Razor components.
 
 :::moniker range=">= aspnetcore-6.0"
@@ -39,13 +45,13 @@ The following example:
 
 `Pages/Counter.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/logging/Counter1.razor?highlight=3,16)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/logging/Counter1.razor?highlight=2,15)]
 
 The following example demonstrates logging with an <xref:Microsoft.Extensions.Logging.ILoggerFactory> in components.
 
 `Pages/Counter.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/logging/Counter2.razor?highlight=3,16-17)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/logging/Counter2.razor?highlight=2,15-16)]
 
 ## Logging in Blazor Server apps
 
@@ -78,7 +84,7 @@ logger.LogWarning("Someone has clicked me!");
 
 Developer tools console output:
 
-> :::no-loc text="warn: CustomCategory[0]":::
+> :::no-loc text="warn: CustomCategory[0]":::  
 > :::no-loc text="Someone has clicked me!":::
 
 ### Log event ID
@@ -106,10 +112,9 @@ logger.LogWarning(LogEvent.Event2, "Someone has clicked me!");
 
 Developer tools console output:
 
-> :::no-loc text="info: BlazorSample.Pages.Counter[1000]":::
-> :::no-loc text="Someone has clicked me!":::
->
-> :::no-loc text="warn: BlazorSample.Pages.Counter[1001]":::
+> :::no-loc text="info: BlazorSample.Pages.Counter[1000]":::  
+> :::no-loc text="Someone has clicked me!":::  
+> :::no-loc text="warn: BlazorSample.Pages.Counter[1001]":::  
 > :::no-loc text="Someone has clicked me!":::
 
 ### Log message template
@@ -126,7 +131,7 @@ logger.LogInformation("Someone clicked me at {CurrentDT}!", DateTime.UtcNow);
 
 Developer tools console output:
 
-> :::no-loc text="info: BlazorSample.Pages.Counter[0]":::
+> :::no-loc text="info: BlazorSample.Pages.Counter[0]":::  
 > :::no-loc text="Someone clicked me at 04/21/2022 12:15:57!":::
 
 ### Log exception parameters
@@ -156,9 +161,9 @@ catch (Exception ex)
 
 Developer tools console output:
 
-> :::no-loc text="warn: BlazorSample.Pages.Counter[0]":::
-> :::no-loc text="Exception (currentCount: 4)!":::
-> :::no-loc text="System.OperationCanceledException: Skip 3":::
+> :::no-loc text="warn: BlazorSample.Pages.Counter[0]":::  
+> :::no-loc text="Exception (currentCount: 4)!":::  
+> :::no-loc text="System.OperationCanceledException: Skip 3":::  
 > :::no-loc text="at BlazorSample.Pages.Counter.IncrementCount() in C:\Users\Alaba\Desktop\BlazorSample\Pages\Counter.razor:line 28":::
 
 ### Filter function
@@ -192,7 +197,7 @@ logger4.LogWarning("Someone has clicked me!");
 
 In the developer tools console output, the filter only permits logging for the `CustomCategory2` category and <xref:Microsoft.Extensions.Logging.LogLevel.Warning> log level message:
 
-> :::no-loc text="info: CustomCategory2[0]":::
+> :::no-loc text="info: CustomCategory2[0]":::  
 > :::no-loc text="Someone has clicked me!":::
 
 The app can also configure log filtering for specific namespaces. For example, set the log level to <xref:Microsoft.Extensions.Logging.LogLevel.Trace> in `Program.cs`:
@@ -203,7 +208,7 @@ builder.Logging.SetMinimumLevel(LogLevel.Trace);
 
 Normally at the <xref:Microsoft.Extensions.Logging.LogLevel.Trace> log level, developer tools console output at the **Verbose** level includes <xref:Microsoft.AspNetCore.Components.RenderTree> logging messages, such as the following:
 
-> :::no-loc text="dbug: Microsoft.AspNetCore.Components.RenderTree.Renderer[3]":::
+> :::no-loc text="dbug: Microsoft.AspNetCore.Components.RenderTree.Renderer[3]":::  
 > :::no-loc text="Rendering component 14 of type Microsoft.AspNetCore.Components.Web.HeadOutlet":::
 
 In `Program.cs`, logging messages specific to <xref:Microsoft.AspNetCore.Components.RenderTree> can be disabled using ***either*** of the following approaches:
@@ -416,8 +421,8 @@ In the following `Index` component:
 
 The following output is seen in the browser's developer tools console when the **`Log Messages`** button is selected. The log entries reflect the appropriate formats applied by the custom logger:
 
-> :::no-loc text="LoggingTest.Pages.Index: This is an information message.":::
-> :::no-loc text="LoggingTest.Pages.Index: This is a warning message.":::
+> :::no-loc text="LoggingTest.Pages.Index: This is an information message.":::  
+> :::no-loc text="LoggingTest.Pages.Index: This is a warning message.":::  
 > :::no-loc text="[ 7: Error       ] LoggingTest.Pages.Index - This is an error message.":::
 
 From a casual inspection of the preceding example, it's apparent that setting the log line formats via the dictionary in `CustomLoggerConfiguration` isn't strictly necessary. The line formats applied by the custom logger (`CustomLogger`) could have been applied by merely checking the `logLevel` in the `Log` method. The purpose of assigning the log format via configuration is that the developer can change the log format easily via app configuration, as the following example demonstrates.
@@ -451,8 +456,8 @@ The call to <xref:Microsoft.Extensions.Logging.Configuration.LoggingBuilderConfi
 
 Run the app again. Select the the **`Log Messages`** button. Notice that the logging configuration is applied from the `appsettings.json` file. All three log entries are in the long (`LogFormat.Long`) format:
 
-> :::no-loc text="[ 3: Information ] LoggingTest.Pages.Index - This is an information message.":::
-> :::no-loc text="[ 5: Warning     ] LoggingTest.Pages.Index - This is a warning message.":::
+> :::no-loc text="[ 3: Information ] LoggingTest.Pages.Index - This is an information message.":::  
+> :::no-loc text="[ 5: Warning     ] LoggingTest.Pages.Index - This is a warning message.":::  
 > :::no-loc text="[ 7: Error       ] LoggingTest.Pages.Index - This is an error message.":::
 
 ### Log scopes
@@ -749,8 +754,8 @@ In the following `Index` component:
 
 The following output is seen in the browser's developer tools console when the **`Log Messages`** button is selected. The log entries reflect the appropriate formats applied by the custom logger:
 
-> :::no-loc text="LoggingTest.Pages.Index: This is an information message.":::
-> :::no-loc text="LoggingTest.Pages.Index: This is a warning message.":::
+> :::no-loc text="LoggingTest.Pages.Index: This is an information message.":::  
+> :::no-loc text="LoggingTest.Pages.Index: This is a warning message.":::  
 > :::no-loc text="[ 7: Error       ] LoggingTest.Pages.Index - This is an error message.":::
 
 From a casual inspection of the preceding example, it's apparent that setting the log line formats via the dictionary in `CustomLoggerConfiguration` isn't strictly necessary. The line formats applied by the custom logger (`CustomLogger`) could have been applied by merely checking the `logLevel` in the `Log` method. The purpose of assigning the log format via configuration is that the developer can change the log format easily via app configuration, as the following example demonstrates.
@@ -784,8 +789,8 @@ The call to <xref:Microsoft.Extensions.Logging.Configuration.LoggingBuilderConfi
 
 Run the app again. Select the the **`Log Messages`** button. Notice that the logging configuration is applied from the `appsettings.json` file. All three log entries are in the long (`LogFormat.Long`) format:
 
-> :::no-loc text="[ 3: Information ] LoggingTest.Pages.Index - This is an information message.":::
-> :::no-loc text="[ 5: Warning     ] LoggingTest.Pages.Index - This is a warning message.":::
+> :::no-loc text="[ 3: Information ] LoggingTest.Pages.Index - This is an information message.":::  
+> :::no-loc text="[ 5: Warning     ] LoggingTest.Pages.Index - This is a warning message.":::  
 > :::no-loc text="[ 7: Error       ] LoggingTest.Pages.Index - This is an error message.":::
 
 ## Hosted Blazor WebAssembly logging
@@ -1073,8 +1078,8 @@ In the following `Index` component:
 
 The following output is seen in the browser's developer tools console when the **`Log Messages`** button is selected. The log entries reflect the appropriate formats applied by the custom logger:
 
-> :::no-loc text="LoggingTest.Pages.Index: This is an information message.":::
-> :::no-loc text="LoggingTest.Pages.Index: This is a warning message.":::
+> :::no-loc text="LoggingTest.Pages.Index: This is an information message.":::  
+> :::no-loc text="LoggingTest.Pages.Index: This is a warning message.":::  
 > :::no-loc text="[ 7: Error       ] LoggingTest.Pages.Index - This is an error message.":::
 
 From a casual inspection of the preceding example, it's apparent that setting the log line formats via the dictionary in `CustomLoggerConfiguration` isn't strictly necessary. The line formats applied by the custom logger (`CustomLogger`) could have been applied by merely checking the `logLevel` in the `Log` method. The purpose of assigning the log format via configuration is that the developer can change the log format easily via app configuration, as the following example demonstrates.
@@ -1108,8 +1113,8 @@ The call to <xref:Microsoft.Extensions.Logging.Configuration.LoggingBuilderConfi
 
 Run the app again. Select the the **`Log Messages`** button. Notice that the logging configuration is applied from the `appsettings.json` file. All three log entries are in the long (`LogFormat.Long`) format:
 
-> :::no-loc text="[ 3: Information ] LoggingTest.Pages.Index - This is an information message.":::
-> :::no-loc text="[ 5: Warning     ] LoggingTest.Pages.Index - This is a warning message.":::
+> :::no-loc text="[ 3: Information ] LoggingTest.Pages.Index - This is an information message.":::  
+> :::no-loc text="[ 5: Warning     ] LoggingTest.Pages.Index - This is a warning message.":::  
 > :::no-loc text="[ 7: Error       ] LoggingTest.Pages.Index - This is an error message.":::
 
 ## Hosted Blazor WebAssembly logging

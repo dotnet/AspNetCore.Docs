@@ -78,9 +78,7 @@ A <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> object can be used to se
 
 [!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_rh&highlight=16-24)]
 
-The preceding code makes static files publicly available in the local cache for one week (604800 seconds):
-
-![Response headers showing the Cache-Control header has been added V6](static-files/_static/add-header.png)
+The preceding code makes static files publicly available in the local cache for one week (604800 seconds).
 
 ## Static file authorization
 

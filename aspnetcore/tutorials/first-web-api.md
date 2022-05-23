@@ -111,7 +111,7 @@ For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 
 * Enter *TodoApi* for the **Project Name** and then select **Create**.
 
-  ![config dialog](first-web-api-mac/_static/2.png)
+  ![config dialog](first-web-api-mac/_static/configure_your_new_api2.png)
 
 [!INCLUDE[](~/includes/mac-terminal-access.md)]
 
@@ -253,7 +253,7 @@ For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 <!--
 * Right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
 
-  ![new folder](first-web-api-mac/_static/folder.png)
+  ![new folder](first-web-api-mac/_static/add_new_folder.png)
 
 * Right-click the *Models* folder, and select **Add** > **New File** > **General** > **Empty Class**.
 
@@ -699,7 +699,7 @@ The following diagram shows the design of the app.
 
 * Enter *TodoApi* for the **Project Name** and then select **Create**.
 
-  ![config dialog](first-web-api-mac/_static/2.png)
+  ![config dialog](first-web-api-mac/_static/configure_your_new_api2.png)
 
 [!INCLUDE[](~/includes/mac-terminal-access.md)]
 
@@ -824,7 +824,7 @@ A *model* is a set of classes that represent the data that the app manages. The 
 
 * Right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
 
-  ![new folder](first-web-api-mac/_static/folder.png)
+  ![new folder](first-web-api-mac/_static/add_new_folder.png)
 
 * Right-click the *Models* folder, and select **Add** > **New File** > **General** > **Empty Class**.
 
@@ -952,8 +952,9 @@ This tutorial uses Postman to test the web API.
 * Install [Postman](https://www.getpostman.com/downloads/)
 * Start the web app.
 * Start Postman.
-* Disable **SSL certificate verification**
-  * From **File** > **Settings** (**General** tab), disable **SSL certificate verification**.
+* Disable **SSL certificate verification**:
+  * Postman for Windows: Select **File** > **Settings** (**General** tab), disable **SSL certificate verification**.
+  * Postman for macOS: Select **Postman** > **Settings** (**General** tab), disable **SSL certificate verification**.
     > [!WARNING]
     > Re-enable SSL certificate verification after testing the controller.
 
@@ -1222,7 +1223,7 @@ The following diagram shows the design of the app.
 
 * Enter *TodoApi* for the **Project Name** and then select **Create**.
 
-  ![config dialog](first-web-api-mac/_static/2.png)
+  ![config dialog](first-web-api-mac/_static/configure_your_new_api2.png)
 
 [!INCLUDE[](~/includes/mac-terminal-access.md)]
 
@@ -1315,7 +1316,7 @@ A *model* is a set of classes that represent the data that the app manages. The 
 
 * Right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
 
-  ![new folder](first-web-api-mac/_static/folder.png)
+  ![new folder](first-web-api-mac/_static/add_new_folder.png)
 
 * Right-click the *Models* folder, and select **Add** > **New File** > **General** > **Empty Class**.
 
@@ -1442,8 +1443,9 @@ This tutorial uses Postman to test the web API.
 * Install [Postman](https://www.getpostman.com/downloads/)
 * Start the web app.
 * Start Postman.
-* Disable **SSL certificate verification**
-  * From **File** > **Settings** (**General** tab), disable **SSL certificate verification**.
+* Disable **SSL certificate verification**:
+  * Postman for Windows: Postman for Windows **File** > **Settings** (**General** tab), disable **SSL certificate verification**.
+  * Postman for macOS: Postman for Windows **Postman** > **Settings** (**General** tab), disable **SSL certificate verification**.
     > [!WARNING]
     > Re-enable SSL certificate verification after testing the controller.
 

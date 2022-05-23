@@ -351,8 +351,12 @@ items:
                     uid: blazor/hybrid/tutorials/wpf
               - name: Routing and navigation
                 uid: blazor/hybrid/routing
+              - name: Static files
+                uid: blazor/hybrid/static-files
               - name: Browser developer tools
                 uid: blazor/hybrid/developer-tools
+              - name: Reuse Razor components
+                uid: blazor/hybrid/reuse-razor-components
               - name: Security and Identity
                 items:
                   - name: Overview
@@ -821,7 +825,7 @@ items:
         uid: grpc/performance
       - name: Inter-process communication
         uid: grpc/interprocess
-      - name: Create JSON Web APIs from gRPC
+      - name: gRPC JSON transcoding
         uid: grpc/httpapi
       - name: Code-first services and clients
         uid: grpc/code-first

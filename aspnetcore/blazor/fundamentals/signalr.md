@@ -45,11 +45,11 @@ To configure SignalR's underlying client to send credentials, such as cookies or
 * Where a hub connection is built, assign the <xref:System.Net.Http.HttpMessageHandler> to the <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.HttpMessageHandlerFactory> option:
 
   ```csharp
-  private HubConnectionBuilder? hubConnecton;
+  private HubConnectionBuilder? hubConnection;
 
   ...
 
-  hubConnecton = new HubConnectionBuilder()
+  hubConnection = new HubConnectionBuilder()
       .WithUrl(new Uri(NavigationManager.ToAbsoluteUri("/chathub")), options =>
       {
           options.HttpMessageHandlerFactory = innerHandler => 
@@ -358,11 +358,11 @@ To configure SignalR's underlying client to send credentials, such as cookies or
 * Where a hub connection is built, assign the <xref:System.Net.Http.HttpMessageHandler> to the <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.HttpMessageHandlerFactory> option:
 
   ```csharp
-  HubConnectionBuilder hubConnecton;
+  HubConnectionBuilder hubConnection;
 
   ...
 
-  hubConnecton = new HubConnectionBuilder()
+  hubConnection = new HubConnectionBuilder()
       .WithUrl(new Uri(NavigationManager.ToAbsoluteUri("/chathub")), options =>
       {
           options.HttpMessageHandlerFactory = innerHandler => 
@@ -675,11 +675,11 @@ To configure SignalR's underlying client to send credentials, such as cookies or
 * Where a hub connection is built, assign the <xref:System.Net.Http.HttpMessageHandler> to the <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.HttpMessageHandlerFactory> option:
 
   ```csharp
-  HubConnectionBuilder hubConnecton;
+  HubConnectionBuilder hubConnection;
 
   ...
 
-  hubConnecton = new HubConnectionBuilder()
+  hubConnection = new HubConnectionBuilder()
       .WithUrl(new Uri(NavigationManager.ToAbsoluteUri("/chathub")), options =>
       {
           options.HttpMessageHandlerFactory = innerHandler => 
