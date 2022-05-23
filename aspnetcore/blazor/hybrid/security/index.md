@@ -43,6 +43,7 @@ After authentication is added to a .NET MAUI, WPF, or Windows Forms app and user
 
 WPF apps use the [Microsoft identity platform](/azure/active-directory/develop/) to integrate with Azure Active Directory (AAD) and AAD B2C. For guidance and examples, see the following resources:
 
+* [Overview of the Microsoft Authentication Library (MSAL)](/azure/active-directory/develop/msal-overview)
 * [Sign-in a user with the Microsoft Identity Platform in a WPF Desktop application and call an ASP.NET Core Web API](/samples/azure-samples/active-directory-dotnet-native-aspnetcore-v2/1-desktop-app-calls-web-api/)
 * [Add authentication to your Windows (WPF) app](/azure/developer/mobile-apps/azure-mobile-apps/quickstarts/wpf/authentication)
 * [Tutorial: Sign in users and call Microsoft Graph in Windows Presentation Foundation (WPF) desktop app](/azure/active-directory/develop/tutorial-v2-windows-desktop)
