@@ -5,7 +5,7 @@ description: Learn about Blazor Hybrid authentication and authorization scenario
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/15/2022
+ms.date: 05/23/2022
 no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/hybrid/security/index
 zone_pivot_groups: blazor-hybrid-frameworks
@@ -54,10 +54,7 @@ WPF apps use the [Microsoft identity platform](/azure/active-directory/develop/)
 
 :::zone pivot="winforms"
 
-Windows Forms apps use ...
-
-* \[]()
-* \[]()
+Windows Forms apps use the [Microsoft identity platform](/azure/active-directory/develop/) to integrate with Azure Active Directory (AAD) and AAD B2C. For more information, see [Overview of the Microsoft Authentication Library (MSAL)](/azure/active-directory/develop/msal-overview).
 
 :::zone-end
 
