@@ -11,6 +11,12 @@ uid: blazor/fundamentals/logging
 ---
 # ASP.NET Core Blazor logging
 
+<!--
+
+NOTE: The console output block quotes in this topic use a double-space at the ends of lines to generate a bare return in block quote output.
+
+-->
+
 This article explains logging in Blazor apps, including configuration and how to write log messages from Razor components.
 
 :::moniker range=">= aspnetcore-6.0"
@@ -78,7 +84,7 @@ logger.LogWarning("Someone has clicked me!");
 
 Developer tools console output:
 
-> :::no-loc text="warn: CustomCategory[0]":::
+> :::no-loc text="warn: CustomCategory[0]":::  
 > :::no-loc text="Someone has clicked me!":::
 
 ### Log event ID
@@ -106,10 +112,9 @@ logger.LogWarning(LogEvent.Event2, "Someone has clicked me!");
 
 Developer tools console output:
 
-> :::no-loc text="info: BlazorSample.Pages.Counter[1000]":::
-> :::no-loc text="Someone has clicked me!":::
->
-> :::no-loc text="warn: BlazorSample.Pages.Counter[1001]":::
+> :::no-loc text="info: BlazorSample.Pages.Counter[1000]":::  
+> :::no-loc text="Someone has clicked me!":::  
+> :::no-loc text="warn: BlazorSample.Pages.Counter[1001]":::  
 > :::no-loc text="Someone has clicked me!":::
 
 ### Log message template
@@ -126,7 +131,7 @@ logger.LogInformation("Someone clicked me at {CurrentDT}!", DateTime.UtcNow);
 
 Developer tools console output:
 
-> :::no-loc text="info: BlazorSample.Pages.Counter[0]":::
+> :::no-loc text="info: BlazorSample.Pages.Counter[0]":::  
 > :::no-loc text="Someone clicked me at 04/21/2022 12:15:57!":::
 
 ### Log exception parameters
@@ -156,9 +161,9 @@ catch (Exception ex)
 
 Developer tools console output:
 
-> :::no-loc text="warn: BlazorSample.Pages.Counter[0]":::
-> :::no-loc text="Exception (currentCount: 4)!":::
-> :::no-loc text="System.OperationCanceledException: Skip 3":::
+> :::no-loc text="warn: BlazorSample.Pages.Counter[0]":::  
+> :::no-loc text="Exception (currentCount: 4)!":::  
+> :::no-loc text="System.OperationCanceledException: Skip 3":::  
 > :::no-loc text="at BlazorSample.Pages.Counter.IncrementCount() in C:\Users\Alaba\Desktop\BlazorSample\Pages\Counter.razor:line 28":::
 
 ### Filter function
@@ -192,7 +197,7 @@ logger4.LogWarning("Someone has clicked me!");
 
 In the developer tools console output, the filter only permits logging for the `CustomCategory2` category and <xref:Microsoft.Extensions.Logging.LogLevel.Warning> log level message:
 
-> :::no-loc text="info: CustomCategory2[0]":::
+> :::no-loc text="info: CustomCategory2[0]":::  
 > :::no-loc text="Someone has clicked me!":::
 
 The app can also configure log filtering for specific namespaces. For example, set the log level to <xref:Microsoft.Extensions.Logging.LogLevel.Trace> in `Program.cs`:
@@ -203,7 +208,7 @@ builder.Logging.SetMinimumLevel(LogLevel.Trace);
 
 Normally at the <xref:Microsoft.Extensions.Logging.LogLevel.Trace> log level, developer tools console output at the **Verbose** level includes <xref:Microsoft.AspNetCore.Components.RenderTree> logging messages, such as the following:
 
-> :::no-loc text="dbug: Microsoft.AspNetCore.Components.RenderTree.Renderer[3]":::
+> :::no-loc text="dbug: Microsoft.AspNetCore.Components.RenderTree.Renderer[3]":::  
 > :::no-loc text="Rendering component 14 of type Microsoft.AspNetCore.Components.Web.HeadOutlet":::
 
 In `Program.cs`, logging messages specific to <xref:Microsoft.AspNetCore.Components.RenderTree> can be disabled using ***either*** of the following approaches:
