@@ -11,6 +11,12 @@ uid: blazor/fundamentals/logging
 ---
 # ASP.NET Core Blazor logging
 
+<!--
+
+NOTE: The console output block quotes in this topic use a double-space at the ends of lines to generate a bare return in block quote output.
+
+-->
+
 This article explains logging in Blazor apps, including configuration and how to write log messages from Razor components.
 
 :::moniker range=">= aspnetcore-6.0"
