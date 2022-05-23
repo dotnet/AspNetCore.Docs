@@ -30,3 +30,13 @@ groups:
       title: macOS
     - id: windows
       title: Windows
+- id: blazor-hybrid-frameworks
+  title: Framework
+  prompt: Target framework
+  pivots:
+    - id: maui
+      title: .NET MAUI
+    - id: wpf
+      title: WPF
+    - id: winforms
+      title: Windows Forms

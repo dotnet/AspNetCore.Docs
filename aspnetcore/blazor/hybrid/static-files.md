@@ -5,7 +5,7 @@ description: Learn how to consume static asset files in Blazor Hybrid apps.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/20/2022
+ms.date: 05/23/2022
 no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/hybrid/static-files
 ---
