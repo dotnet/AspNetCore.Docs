@@ -13,8 +13,6 @@ uid: blazor/hybrid/reuse-razor-components
 
 This article explains how to author and organize Razor components for the web and and :::no-loc text="Web Views"::: in Blazor Hybrid apps.
 
-[!INCLUDE[](~/blazor/includes/blazor-hybrid-preview-notice.md)]
-
 Razor components work across hosting models (Blazor WebAssembly, Blazor Server, and in the :::no-loc text="Web View"::: of Blazor Hybrid) and across platforms (Android, iOS, and Windows). Hosting models and platforms have unique capabilities that components can leverage, but components executing across hosting models and platforms must leverage unique capabilities separately, which the following examples demonstrate:
 
 * Blazor WebAssembly supports synchronous JavaScript (JS) interop, which isn't supported by the strictly asynchronous JS interop communication channel in Blazor Server and :::no-loc text="Web Views"::: of Blazor Hybrid apps.

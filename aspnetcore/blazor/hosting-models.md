@@ -82,8 +82,6 @@ Blazor WebAssembly apps can use [native dependencies](xref:blazor/webassembly-na
 
 ## Blazor Hybrid
 
-[!INCLUDE[](~/blazor/includes/blazor-hybrid-preview-notice.md)]
-
 Blazor can also be used to build native client apps using a hybrid approach. Hybrid apps are native apps that leverage web technologies for their functionality. In a Blazor Hybrid app, Razor components run directly in the native app (not on WebAssembly) along with any other .NET code and render web UI based on HTML and CSS to an embedded :::no-loc text="Web View"::: control through a local interop channel.
 
 ![Hybrid apps with .NET and Blazor render UI in a Web View control, where the HTML Document Object Model (DOM) interacts with Blazor and .NET of the native desktop or mobile app.](~/blazor/hosting-models/_static/hybrid-apps-1.png)
@@ -112,8 +110,6 @@ For more information on Microsoft native client frameworks, see the following re
 * [Windows Forms](/dotnet/desktop/winforms/overview/)
 
 ## Which Blazor hosting model should I choose?
-
-[!INCLUDE[](~/blazor/includes/blazor-hybrid-preview-notice.md)]
 
 Select the Blazor hosting model based on the app's feature requirements. The following table shows the primary considerations for selecting the hosting model.
 

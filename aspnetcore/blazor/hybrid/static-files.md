@@ -13,18 +13,16 @@ uid: blazor/hybrid/static-files
 
 This article describes how to consume static asset files in Blazor Hybrid apps.
 
-[!INCLUDE[](~/blazor/includes/blazor-hybrid-preview-notice.md)]
-
 In a Blazor Hybrid app, static files are *app resources*, accessed by Razor components using the following approaches:
 
-* [.NET MAUI](#net-maui): [:::no-loc text=".NET MAUI File System Helpers":::](/dotnet/maui/platform-integration/storage/file-system-helpers)
+* [.NET MAUI](#net-maui): [:::no-loc text=".NET MAUI file system helpers":::](/dotnet/maui/platform-integration/storage/file-system-helpers)
 * [WPF](#wpf) and [Windows Forms](#windows-forms): <xref:System.Resources.ResourceManager>
 
 When static assets are only used in the Razor components, static assets can be consumed from the web root (`wwwroot` folder) in a similar way to Blazor WebAssembly and Blazor Server apps. For more information, see the [Static assets limited to Razor components](#static-assets-limited-to-razor-components) section.
 
 ## .NET MAUI
 
-In .NET MAUI apps, [*raw assets*](/dotnet/maui/fundamentals/single-project#raw-assets) using the `MauiAsset` build action and [:::no-loc text=".NET MAUI File System Helpers":::](/dotnet/maui/platform-integration/storage/file-system-helpers) are used for static assets.
+In .NET MAUI apps, [*raw assets*](/dotnet/maui/fundamentals/single-project#raw-assets) using the `MauiAsset` build action and [:::no-loc text=".NET MAUI file system helpers":::](/dotnet/maui/platform-integration/storage/file-system-helpers) are used for static assets.
 
 Place raw assets into the `Resources/Raw` folder of the app. The example in this section uses a static text file.
 
@@ -203,7 +201,7 @@ The following Jeep&reg; image is also used in this section's example. You can ri
 In a Razor component:
 
 * The static text file contents can be read using the following techniques:
-  * .NET MAUI: [:::no-loc text=".NET MAUI File System Helpers":::](/dotnet/maui/platform-integration/storage/file-system-helpers) (`Microsoft.Maui.Storage.FileSystem.OpenAppPackageFileAsync`)
+  * .NET MAUI: [:::no-loc text=".NET MAUI file system helpers":::](/dotnet/maui/platform-integration/storage/file-system-helpers) (`Microsoft.Maui.Storage.FileSystem.OpenAppPackageFileAsync`)
   * WPF and Windows Forms: <xref:System.IO.StreamReader.ReadToEndAsync%2A?displayProperty=nameWithType>
 * The image can be the source attribute (`src`) of an image tag (`<img>`).
 

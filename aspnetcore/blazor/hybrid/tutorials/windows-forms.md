@@ -17,8 +17,6 @@ This tutorial shows you how to build and run a Windows Forms Blazor app. You lea
 > * Create a Windows Forms Blazor app project
 > * Run the app on Windows
 
-[!INCLUDE[](~/blazor/includes/blazor-hybrid-preview-notice.md)]
-
 ## Prerequisites
 
 * [Supported platforms (Windows Forms documentation)](/dotnet/desktop/winforms/overview/)

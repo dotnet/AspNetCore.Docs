@@ -14,8 +14,6 @@ zone_pivot_groups: blazor-hybrid-operating-systems
 
 This article explains how to use [browser developer tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) with Blazor Hybrid apps.
 
-[!INCLUDE[](~/blazor/includes/blazor-hybrid-preview-notice.md)]
-
 ## Browser developer tools with .NET MAUI Blazor
 
 Ensure the Blazor Hybrid project is configured to support browser developer tools. You can confirm developer tools support by searching the app for `AddBlazorWebViewDeveloperTools`.

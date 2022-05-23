@@ -13,8 +13,6 @@ uid: blazor/hybrid/security/security-considerations
 
 This article describes security considerations for Blazor Hybrid apps.
 
-[!INCLUDE[](~/blazor/includes/blazor-hybrid-preview-notice.md)]
-
 Blazor Hybrid apps that render web content execute .NET code inside a platform :::no-loc text="Web View":::. The .NET code interacts with the web content via an interop channel between the .NET code and the :::no-loc text="Web View":::.
 
 ![The WebView and .NET code interoperate within the app to render web content.](~/blazor/hybrid/security/index/_static/figure01.png)
