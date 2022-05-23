@@ -48,7 +48,7 @@ In the **Additional information** dialog, select the framework version, which mu
 
 :::image type="content" source="windows-forms/_static/additional-information.png" alt-text="The Additional Information dialog.":::
 
-Use [NuGet Package Manager](/nuget/consume-packages/install-use-packages-visual-studio) to install the [`Microsoft.AspNetCore.Components.WebView.WindowsForms`](https://nuget.org/packages/Microsoft.AspNetCore.Components.WebView.WindowsForms) preview NuGet package.
+Use [NuGet Package Manager](/nuget/consume-packages/install-use-packages-visual-studio) to install the [`Microsoft.AspNetCore.Components.WebView.WindowsForms`](https://nuget.org/packages/Microsoft.AspNetCore.Components.WebView.WindowsForms) NuGet package.
 
 In **Solution Explorer**, right-click the project's name, `WinFormsBlazor` and select **Edit Project File** to open the project file (`WinFormsBlazor.csproj`).
 
