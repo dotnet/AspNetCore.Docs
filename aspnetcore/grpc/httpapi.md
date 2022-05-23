@@ -4,7 +4,7 @@ author: jamesnk
 description: Learn how to create JSON HTTP APIs for gRPC services using gRPC JSON transcoding.
 monikerRange: '>= aspnetcore-7.0'
 ms.author: jamesnk
-ms.date: 05/10/2022
+ms.date: 05/20/2022
 no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, REST]
 uid: grpc/httpapi
 ---
@@ -27,6 +27,9 @@ gRPC JSON transcoding is an extension for ASP.NET Core that creates RESTful JSON
 * JSON requests/responses
 
 gRPC can still be used to call services.
+
+> [!NOTE]
+> gRPC JSON transcoding replaces [gRPC HTTP API](https://github.com/aspnet/AspLabs/tree/main/src/GrpcHttpApi), an alternative experimental extension.
 
 ### Usage
 
