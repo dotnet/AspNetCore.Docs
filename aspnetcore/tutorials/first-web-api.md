@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to build a web API with ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/023/2022
+ms.date: 05/23/2022
 no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, Models]
 uid: tutorials/first-web-api
 ---
