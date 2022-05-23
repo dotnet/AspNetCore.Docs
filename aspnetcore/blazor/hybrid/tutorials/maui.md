@@ -18,10 +18,6 @@ This tutorial shows you how to build and run a .NET MAUI Blazor app. You learn h
 > * Run the app on Windows
 > * Run the app in the Android emulator
 
-[!INCLUDE[](~/blazor/includes/blazor-hybrid-preview-notice.md)]
-
-[!INCLUDE[](~/blazor/includes/net-maui-release-candidate-notice.md)]
-
 ## Prerequisites
 
 * [Supported platforms (.NET MAUI documentation)](/dotnet/maui/supported-platforms)
@@ -41,7 +37,7 @@ In the **Create a new project** window, use the **Project type** drop-down to fi
 
 :::image type="content" source="maui/_static/new-project-1.png" alt-text="Filter templates to .NET MAUI.":::
 
-Select the **.NET MAUI Blazor App (Preview)** template and then select the **Next** button:
+Select the **.NET MAUI Blazor App** template and then select the **Next** button:
 
 :::image type="content" source="maui/_static/new-project-2.png" alt-text="Choose a template.":::
 

@@ -19,8 +19,6 @@ In a Blazor Hybrid app, [Razor components](xref:blazor/components/index) run nat
 
 Blazor Hybrid articles cover subjects pertaining to integrating [Razor components](xref:blazor/components/index) into native client frameworks.
 
-[!INCLUDE[](~/blazor/includes/blazor-hybrid-preview-notice.md)]
-
 ## Blazor Hybrid apps with .NET MAUI
 
 Blazor Hybrid support is built into the [.NET Multi-platform App UI (.NET MAUI)](/dotnet/maui/what-is-maui) framework. .NET MAUI includes the `BlazorWebView` control that permits rendering [Razor components](xref:blazor/components/index) into an embedded :::no-loc text="Web View":::. By using .NET MAUI and Blazor together, you can reuse one set of web UI components across mobile, desktop, and web.

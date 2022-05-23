@@ -18,8 +18,6 @@ This tutorial shows you how to build and run a WPF Blazor app. You learn how to:
 > * Add a Razor component to the project
 > * Run the app on Windows
 
-[!INCLUDE[](~/blazor/includes/blazor-hybrid-preview-notice.md)]
-
 ## Prerequisites
 
 * [Supported platforms (WPF documentation)](/dotnet/desktop/wpf/overview/)
@@ -51,7 +49,7 @@ In the **Additional information** dialog, select the framework version, which mu
 
 :::image type="content" source="wpf/_static/additional-information.png" alt-text="The Additional Information dialog for the WPF project.":::
 
-Use [NuGet Package Manager](/nuget/consume-packages/install-use-packages-visual-studio) to install the [`Microsoft.AspNetCore.Components.WebView.Wpf`](https://nuget.org/packages/Microsoft.AspNetCore.Components.WebView.Wpf) preview NuGet package.
+Use [NuGet Package Manager](/nuget/consume-packages/install-use-packages-visual-studio) to install the [`Microsoft.AspNetCore.Components.WebView.Wpf`](https://nuget.org/packages/Microsoft.AspNetCore.Components.WebView.Wpf) NuGet package.
 
 In **Solution Explorer**, right-click the `WpfBlazor` project and select **Edit Project File** to open the project file (`WpfBlazor.csproj`).
 
