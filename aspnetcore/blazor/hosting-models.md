@@ -119,14 +119,18 @@ For more information on Microsoft native client frameworks, see the following re
 
 ## Which Blazor hosting model should I choose?
 
-Select the Blazor hosting model based on the app's feature requirements. The following table shows the primary considerations for selecting the hosting model.
+Select the Blazor hosting model based on the app's feature requirements. The following table shows the primary considerations for selecting the hosting model. 
 
-| Feature | Blazor Server | Blazor WebAssembly (WASM) | Blazor WASM PWA | Blazor Hybrid |
+Technically, a Blazor Progressive Web Application (PWA) is a form of Blazor WebAssembly and not a separate hosting model. However, Blazor PWA offers a unique combination of features, so PWA appears in the following table in its own column.
+
+Blazor Hybrid apps include .NET MAUI, WPF, and Windows Forms framework apps.
+
+| Feature | Blazor Server | Blazor WebAssembly (WASM) | Blazor PWA | Blazor Hybrid |
 | --- | :---: | :---: | :---: | :---: |
 | [Complete .NET API compatibility](#complete-net-api-compatibility) | ✔️ | ❌ | ❌ | ✔️ |
 | [Direct access to server and network resources](#direct-access-to-server-and-network-resources) | ✔️ | ❌&dagger; | ❌&dagger; | ❌&dagger; |
 | [Small payload size with fast initial load time](#small-payload-size-with-fast-initial-load-time) | ✔️ | ❌ | ❌&Dagger; | ❌ |
-| [Relatively larger payload size with faster execution speed](#relatively-larger-payload-size-with-faster-execution-speed) | ❌ | ✔️ | ✔️ | ✔️ |
+| [Relatively larger payload size with faster execution speed](#relatively-larger-payload-size-with-faster-execution-speed) | ❌ | ✔️ | ✔️&Dagger; | ✔️ |
 | [App code secure and private on the server](#app-code-secure-and-private-on-the-server) | ✔️ | ❌&dagger; | ❌&dagger; | ❌&dagger; |
 | [Run apps offline once downloaded](#run-apps-offline-once-downloaded) | ❌ | ✔️ | ✔️ | ✔️ |
 | [Static site hosting](#static-site-hosting) | ❌ | ✔️ | ✔️ | ❌ |
