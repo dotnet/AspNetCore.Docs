@@ -56,7 +56,7 @@ Use one of the available [overloads of the method](xref:Microsoft.AspNetCore.Mvc
 ## EditorTemplates
 You can also use templates for form controls. They are called _EditorTemplates_ and work the same way as _DisplayTemplates_. The only difference is the name of the folder: instead of _DisplayTemplates_, you need to call it _EditorTemplates_.
 
-To reference them, use the `EditorFor` HTML helper, for example:
+To reference them, use the <xref:Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperEditorExtensions.EditorFor*> HTML helper, for example:
 [!code-cshtml[](display-templates/sample/Pages/Index.cshtml?name=snippet_htmlEditorFor)]
 
 > [!TIP]
