@@ -5,7 +5,7 @@ description: Learn about the supported platforms for ASP.NET Core Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/09/2021
+ms.date: 05/24/2022
 no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/supported-platforms
 ---
@@ -13,14 +13,14 @@ uid: blazor/supported-platforms
 
 :::moniker range=">= aspnetcore-6.0"
 
-Blazor WebAssembly and Blazor Server are supported in the browsers shown in the following table.
+Blazor WebAssembly and Blazor Server are supported in the browsers shown in the following table on both mobile and desktop platforms.
 
-| Browser                          | Version         |
-| -------------------------------- | --------------- |
-| Apple Safari, including iOS      | Current&dagger; |
-| Google Chrome, including Android | Current&dagger; |
-| Microsoft Edge                   | Current&dagger; |
-| Mozilla Firefox                  | Current&dagger; |
+| Browser         | Version         |
+| --------------- | --------------- |
+| Apple Safari    | Current&dagger; |
+| Google Chrome   | Current&dagger; |
+| Microsoft Edge  | Current&dagger; |
+| Mozilla Firefox | Current&dagger; |
 
 &dagger;*Current* refers to the latest version of the browser.
 
@@ -39,14 +39,14 @@ For [Blazor Hybrid apps](xref:blazor/hybrid/index), we test on and support the l
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-Blazor WebAssembly and Blazor Server are supported in the browsers shown in the following table.
+Blazor WebAssembly and Blazor Server are supported in the browsers shown in the following table on both mobile and desktop platforms.
 
-| Browser                          | Version         |
-| -------------------------------- | --------------- |
-| Apple Safari, including iOS      | Current&dagger; |
-| Google Chrome, including Android | Current&dagger; |
-| Microsoft Edge                   | Current&dagger; |
-| Mozilla Firefox                  | Current&dagger; |
+| Browser         | Version         |
+| --------------- | --------------- |
+| Apple Safari    | Current&dagger; |
+| Google Chrome   | Current&dagger; |
+| Microsoft Edge  | Current&dagger; |
+| Mozilla Firefox | Current&dagger; |
 
 &dagger;*Current* refers to the latest version of the browser.
 
@@ -61,26 +61,26 @@ Blazor WebAssembly and Blazor Server are supported in the browsers shown in the 
 
 ## Blazor WebAssembly
 
-| Browser                          | Version               |
-| -------------------------------- | --------------------- |
-| Apple Safari, including iOS      | Current&dagger;       |
-| Google Chrome, including Android | Current&dagger;       |
-| Microsoft Edge                   | Current&dagger;       |
-| Microsoft Internet Explorer      | Not Supported&Dagger; |
-| Mozilla Firefox                  | Current&dagger;       |
+| Browser                     | Version               |
+| --------------------------- | --------------------- |
+| Apple Safari                | Current&dagger;       |
+| Google Chrome               | Current&dagger;       |
+| Microsoft Edge              | Current&dagger;       |
+| Microsoft Internet Explorer | Not Supported&Dagger; |
+| Mozilla Firefox             | Current&dagger;       |
 
 &dagger;*Current* refers to the latest version of the browser.  
 &Dagger;Microsoft Internet Explorer doesn't support [WebAssembly](https://webassembly.org).
 
 ## Blazor Server
 
-| Browser                          | Version         |
-| -------------------------------- | --------------- |
-| Apple Safari, including iOS      | Current&dagger; |
-| Google Chrome, including Android | Current&dagger; |
-| Microsoft Edge                   | Current&dagger; |
-| Microsoft Internet Explorer      | 11&Dagger;      |
-| Mozilla Firefox                  | Current&dagger; |
+| Browser                     | Version         |
+| --------------------------- | --------------- |
+| Apple Safari                | Current&dagger; |
+| Google Chrome               | Current&dagger; |
+| Microsoft Edge              | Current&dagger; |
+| Microsoft Internet Explorer | 11&Dagger;      |
+| Mozilla Firefox             | Current&dagger; |
 
 &dagger;*Current* refers to the latest version of the browser.  
 &Dagger;Additional polyfills are required. For example, promises can be added via a [`Polyfill.io`](https://polyfill.io/v3/) bundle.
