@@ -16,8 +16,6 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 Razor views, pages, controllers, page models, [Razor components](xref:blazor/components/class-libraries), [View components](xref:mvc/views/view-components), and data models can be built into a Razor class library (RCL). The RCL can be packaged and reused. Applications can include the RCL and override the views and pages it contains. When a view, partial view, or Razor Page is found in both the web app and the RCL, the Razor markup (`.cshtml` file) in the web app takes precedence.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/ui-class/samples) ([how to download](xref:index#how-to-download-a-sample))
-
 ## Create a class library containing Razor UI
 
 # [Visual Studio](#tab/visual-studio)
@@ -64,7 +62,7 @@ Copy the `RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml` partial 
 
 If the RCL uses Razor Pages, enable the Razor Pages services and endpoints in the hosting app:
 
-[!code-csharp[](ui-class/samples/Startup.cs?name=snippet&highlight=4,17)]
+[!code-csharp[](ui-class/6samples/MvcProgram.cs?highlight=4,25)]
 
 <a name="rcl-lay"></a>
 
@@ -140,41 +138,15 @@ To include TypeScript files in an RCL:
 
 The files included in the `wwwroot` folder of the RCL are exposed to either the RCL or the consuming app under the prefix `_content/{PACKAGE ID}/`. For example, a library with an assembly name of `Razor.Class.Lib` and without a `<PackageId>` specified in its project file results in a path to static content at `_content/Razor.Class.Lib/`. When producing a NuGet package and the assembly name isn't the same as the package ID ([`<PackageId>`](/nuget/create-packages/creating-a-package-msbuild#set-properties) in the library's project file), use the package ID as specified in the project file for `{PACKAGE ID}`.
 
-The consuming app references static assets provided by the library with `<script>`, `<style>`, `<img>`, and other HTML tags. The consuming app must have [static file support](xref:fundamentals/static-files) enabled in `Startup.Configure`:
+The consuming app references static assets provided by the library with `<script>`, `<style>`, `<img>`, and other HTML tags. The consuming app must have [static file support](xref:fundamentals/static-files) enabled in:
 
-```csharp
-public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-{
-    ...
-
-    app.UseStaticFiles();
-
-    ...
-}
-```
+[!code-csharp[](ui-class/6samples/MvcProgram.cs?highlight=15)]
 
 When running the consuming app from build output (`dotnet run`), static web assets are enabled by default in the Development environment. To support assets in other environments when running from build output, call `UseStaticWebAssets` on the host builder in `Program.cs`:
 
-```csharp
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
 
-public class Program
-{
-    public static void Main(string[] args)
-    {
-        CreateHostBuilder(args).Build().Run();
-    }
 
-    public static IHostBuilder CreateHostBuilder(string[] args) =>
-        Host.CreateDefaultBuilder(args)
-            .ConfigureWebHostDefaults(webBuilder =>
-            {
-                webBuilder.UseStaticWebAssets();
-                webBuilder.UseStartup<Startup>();
-            });
-}
-```
+[!code-csharp[](ui-class/6samples/cli/WebApp1/Program.cs?name=snippet1&highlight=15)]
 
 Calling `UseStaticWebAssets` isn't required when running an app from published output (`dotnet publish`).
 
@@ -192,6 +164,8 @@ When the RCL is built, a manifest is produced that describes the static web asse
 When the app is published, the companion assets from all referenced projects and packages are copied into the `wwwroot` folder of the published app under `_content/{PACKAGE ID}/`. When producing a NuGet package and the assembly name isn't the same as the package ID ([`<PackageId>`](/nuget/create-packages/creating-a-package-msbuild#set-properties) in the library's project file), use the package ID as specified in the project file for `{PACKAGE ID}` when examining the `wwwroot` folder for the published assets.
 
 ## Additional resources
+
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/ui-class/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 * <xref:blazor/components/class-libraries>
 * <xref:blazor/components/css-isolation#razor-class-library-rcl-support>
