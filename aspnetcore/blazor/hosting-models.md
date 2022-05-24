@@ -11,6 +11,12 @@ uid: blazor/hosting-models
 ---
 # ASP.NET Core Blazor hosting models
 
+<!-- 
+
+NOTE: Daggered lines under the table (&dagger;, &Dagger;) use a double-space at the ends of lines to generate a bare return across rendered lines.
+
+-->
+
 This article explains the different Blazor hosting models and how to choose which one to use.
 
 :::moniker range=">= aspnetcore-6.0"
@@ -19,7 +25,7 @@ Blazor is a web framework for building web UI components ([Razor components](xre
 
 ## Blazor Server
 
-With the Blazor Server hosting model, the app is executed on the server from within an ASP.NET Core app. UI updates, event handling, and JavaScript calls are handled over a [SignalR](xref:signalr/introduction) connection. The state on the server associated with each connected client is called a *circuit*. A circuit can tolerate temporary network interruptions and attempts by the client to reconnect to the server when the connection is lost.
+With the Blazor Server hosting model, the app is executed on the server from within an ASP.NET Core app. UI updates, event handling, and JavaScript calls are handled over a [SignalR](xref:signalr/introduction) connection using the [WebSockets protocol](xref:fundamentals/websockets). The state on the server associated with each connected client is called a *circuit*. Circuits aren't tied to a specific network connection and can tolerate temporary network interruptions and attempts by the client to reconnect to the server when the connection is lost.
 
 In a traditional server-rendered app, opening the same app in multiple browser screens (tabs or `iframes`) typically doesn't translate into additional resource demands on the server. In a Blazor Server app, each browser screen requires a separate circuit and separate instances of server-managed component state. Blazor considers closing a browser tab or navigating to an external URL a *graceful* termination. In the event of a graceful termination, the circuit and associated resources are immediately released. A client may also disconnect non-gracefully, for instance due to a network interruption. Blazor Server stores disconnected circuits for a configurable interval to allow the client to reconnect.
 
@@ -51,6 +57,8 @@ Blazor WebAssembly (WASM) apps run client-side in the browser on a WebAssembly-b
 ![Blazor WebAssembly: The Blazor app runs on a UI thread inside the browser.](~/blazor/hosting-models/_static/blazor-webassembly.png)
 
 When the Blazor WebAssembly app is created for deployment without a backend ASP.NET Core app to serve its files, the app is called a *standalone* Blazor WebAssembly app. When the app is created for deployment with a backend app to serve its files, the app is called a *hosted* Blazor WebAssembly app.
+
+A Blazor WebAssembly app built as a [Progressive Web Application (PWA)](xref:blazor/progressive-web-app) uses modern browser APIs and capabilities to behave like a desktop app, providing features such as working offline, running in its own app window, launching from the host's operating system, receiving push notifications, and automatically updating in the background.
 
 Using hosted Blazor WebAssembly, you get a full-stack web development experience with .NET, including the ability to share code between the client and server apps, support for prerendering, and integration with MVC and Razor Pages. A hosted client app can interact with its backend server app over the network using a variety of messaging frameworks and protocols, such as [web API](xref:web-api/index), [gRPC-web](xref:grpc/index), and [SignalR](xref:signalr/introduction) (<xref:blazor/tutorials/signalr-blazor>).
 
@@ -113,18 +121,25 @@ For more information on Microsoft native client frameworks, see the following re
 
 Select the Blazor hosting model based on the app's feature requirements. The following table shows the primary considerations for selecting the hosting model.
 
-| Feature | Blazor Server | Blazor WebAssembly (WASM) | Blazor Hybrid |
-| --- | :---: | :---: | :---: |
-| [Complete .NET API compatibility](#complete-net-api-compatibility) | ✔️ | ❌ | ✔️ |
-| [Direct access to server and network resources](#direct-access-to-server-and-network-resources) | ✔️ | ❌&dagger; | ❌&dagger; |
-| [Small payload size with fast initial load time](#small-payload-size-with-fast-initial-load-time) | ✔️ | ❌ | ❌ |
-| [App code secure and private on the server](#app-code-secure-and-private-on-the-server) | ✔️ | ❌&dagger; | ❌&dagger; |
-| [Run apps offline once downloaded](#run-apps-offline-once-downloaded) | ❌ | ✔️ | ✔️ |
-| [Static site hosting](#static-site-hosting) | ❌ | ✔️ | ❌ |
-| [Offloads processing to clients](#offloads-processing-to-clients) | ❌ | ✔️ | ✔️ |
-| [Full access to native client capabilities](#full-access-to-native-client-capabilities) | ❌ | ❌ | ✔️ |
+| Feature | Blazor Server | Blazor WebAssembly (WASM) | Blazor WASM PWA | Blazor Hybrid |
+| --- | :---: | :---: | :---: | :---: |
+| [Complete .NET API compatibility](#complete-net-api-compatibility) | ✔️ | ❌ | ❌ | ✔️ |
+| [Direct access to server and network resources](#direct-access-to-server-and-network-resources) | ✔️ | ❌&dagger; | ❌&dagger; | ❌&dagger; |
+| [Small payload size with fast initial load time](#small-payload-size-with-fast-initial-load-time) | ✔️ | ❌ | ❌&Dagger; | ❌ |
+| [Relatively larger payload size with faster execution speed](#relatively-larger-payload-size-with-faster-execution-speed) | ❌ | ✔️ | ✔️ | ✔️ |
+| [App code secure and private on the server](#app-code-secure-and-private-on-the-server) | ✔️ | ❌&dagger; | ❌&dagger; | ❌&dagger; |
+| [Run apps offline once downloaded](#run-apps-offline-once-downloaded) | ❌ | ✔️ | ✔️ | ✔️ |
+| [Static site hosting](#static-site-hosting) | ❌ | ✔️ | ✔️ | ❌ |
+| [Offloads processing to clients](#offloads-processing-to-clients) | ❌ | ✔️ | ✔️ | ✔️ |
+| [Full access to native client capabilities](#full-access-to-native-client-capabilities) | ❌ | ❌ | ❌ | ✔️ |
+| [Executes in its own app window](#executes-in-its-own-app-window) | ❌ | ❌ | ✔️ | ✔️ |
+| [Launch from the client](#launch-from-the-client) | ❌ | ❌ | ✔️ | ✔️ |
+| [Receive push notifications](#receive-push-notifications) | ❌ | ❌ | ✔️ | ✔️ |
+| [Automatic background updates](#automatic-background-updates) | ❌ | ❌ | ✔️ | ✔️ |
+| [Provided to clients via an installer](#provided-to-clients-via-an-installer) | ❌ | ❌ | ❌ | ✔️ |
 
-&dagger;Blazor WebAssembly and Blazor Hybrid apps can use server-based APIs to access server/network resources and access private and secure app code.
+&dagger;Blazor WebAssembly and Blazor Hybrid apps can use server-based APIs to access server/network resources and access private and secure app code.  
+&Dagger;Blazor PWA apps have a slower initial load due to their initial download from a server and then a faster initial load time when started subsequently on the client.  
 
 After you choose the app's hosting model, you can generate a Blazor Server or Blazor WebAssembly app from a Blazor project template. For more information, see <xref:blazor/tooling#blazor-template-options>.
 
@@ -147,13 +162,21 @@ To avoid server-based APIs for Blazor WebAssembly or Blazor Hybrid apps, adopt B
 
 Blazor Server apps have relatively small payload sizes with faster initial load times. When a fast initial load time is desired, adopt Blazor Server.
 
+### Relatively larger payload size with faster execution speed
+
+Blazor Server apps execute on the server and thus are relatively slower than other types of Blazor apps that execute on the client.
+
+Blazor Hybrid apps run using the .NET runtime natively on the target platform, which offers the best possible speed.
+
+Blazor WebAssembly, including Blazor PWA, apps run using the .NET runtime for WebAssembly, which is slower than running directly on the platform, even for apps that are [ahead-of-time (AOT) compiled](xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation) for WebAssembly in the broswer.
+
 ### App code secure and private on the server
 
 Maintaining app code securely and privately on the server is a built-in feature of Blazor Server. Blazor WebAssembly and Blazor Hybrid apps can use server-based APIs to access functionality that must be kept private and secure. The considerations for developing and maintaining server-based APIs described in the [Direct access to server and network resources](#direct-access-to-server-and-network-resources) section apply. If the development and maintenance of server-based APIs isn't desirable for maintaining secure and private app code, adopt the Blazor Server hosting model.
 
 ### Run apps offline once downloaded
 
-Blazor WebAssembly and Blazor Hybrid apps can run offline, which is particularly useful when clients aren't able to connect to the Internet. Blazor Server apps fail to run when the connection to the server is lost. If an app must run offline, Blazor WebAssembly and Blazor Hybrid are the best choices.
+Blazor WebAssembly, including Blazor PWA, and Blazor Hybrid apps can run offline, which is particularly useful when clients aren't able to connect to the Internet. Blazor Server apps fail to run when the connection to the server is lost. If an app must run offline, Blazor WebAssembly and Blazor Hybrid are the best choices.
 
 ### Static site hosting
 
@@ -166,6 +189,29 @@ Blazor WebAssembly and Blazor Hybrid apps execute on clients and thus offload pr
 ### Full access to native client capabilities
 
 Blazor Hybrid apps have full access to native client API capabilities via .NET native app frameworks. In Blazor Hybrid apps, Razor components run directly in the native app, not on [WebAssembly](https://developer.mozilla.org/docs/WebAssembly). When full client capabilities are a requirement, Blazor Hybrid is the best choice.
+
+### Executes in its own app window
+
+Blazor PWA and Blazor Hybrid apps can run in their own app window on the client, not limited to a browser window.
+
+### Launch from the client
+
+Blazor PWA and Blazor Hybrid apps can be launched from the client's operating system start menu, dock, or home screen.
+
+### Receive push notifications
+
+Blazor PWA and Blazor Hybrid apps are able to receive push notifications, even while the user isn't using the app.
+
+### Automatic background updates
+
+Blazor PWA and Blazor Hybrid apps permit automatic background updates:
+
+* PWAs are updated automatically when the site is updated. Updates via stores aren't possible, and there's no validation or verification process for updates.
+* Blazor Hybrid apps are deployed and updated as any other native app for a given platform, following the appropriate procedures for a given platform.
+
+### Provided to clients via an installer
+
+Blazor Hybrid apps are the only type of Blazor app that use an installer.
 
 ## Additional resources
 
@@ -184,7 +230,7 @@ Blazor is a web framework for building web UI components ([Razor components](xre
 
 ## Blazor Server
 
-With the Blazor Server hosting model, the app is executed on the server from within an ASP.NET Core app. UI updates, event handling, and JavaScript calls are handled over a [SignalR](xref:signalr/introduction) connection. The state on the server associated with each connected client is called a *circuit*. A circuit can tolerate temporary network interruptions and attempts by the client to reconnect to the server when the connection is lost.
+With the Blazor Server hosting model, the app is executed on the server from within an ASP.NET Core app. UI updates, event handling, and JavaScript calls are handled over a [SignalR](xref:signalr/introduction) connection using the [WebSockets protocol](xref:fundamentals/websockets). The state on the server associated with each connected client is called a *circuit*. Circuits aren't tied to a specific network connection and can tolerate temporary network interruptions and attempts by the client to reconnect to the server when the connection is lost.
 
 In a traditional server-rendered app, opening the same app in multiple browser screens (tabs or `iframes`) typically doesn't translate into additional resource demands on the server. In a Blazor Server app, each browser screen requires a separate circuit and separate instances of server-managed component state. Blazor considers closing a browser tab or navigating to an external URL a *graceful* termination. In the event of a graceful termination, the circuit and associated resources are immediately released. A client may also disconnect non-gracefully, for instance due to a network interruption. Blazor Server stores disconnected circuits for a configurable interval to allow the client to reconnect.
 
