@@ -97,7 +97,7 @@ The following diagram shows the design of the app.
 
 * Select **File** > **New Solution**.
 
-  ![macOS New solution](first-web-api-mac/6/_static/sln.png)
+  ![macOS New solution](first-web-api-mac/_static/6/sln.png)
 
 * In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **API** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **API** > **Next**.
 
@@ -107,7 +107,7 @@ The following diagram shows the design of the app.
 
 * Enter *TodoApi* for the **Project Name** and then select **Create**.
 
-  ![config dialog](first-web-api-mac/_static/configure_your_new_api2.png)
+  ![config dialog](first-web-api-mac/_static/6/configure_your_new_api2.png)
 
 [!INCLUDE[](~/includes/mac-terminal-access.md)]
 
@@ -248,7 +248,7 @@ For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 <!--
 * Right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
 
-  ![new folder](first-web-api-mac/_static/add_new_folder.png)
+  ![new folder](first-web-api-mac/_static/6/add_new_folder.png)
 
 * Right-click the *Models* folder, and select **Add** > **New File** > **General** > **Empty Class**.
 
@@ -631,7 +631,7 @@ This tutorial creates the following API:
 
 The following diagram shows the design of the app.
 
-![The client is represented by a box on the left. It submits a request and receives a response from the application, a box drawn on the right. Within the application box, three boxes represent the controller, the model, and the data access layer. The request comes into the application's controller, and read/write operations occur between the controller and the data access layer. The model is serialized and returned to the client in the response.](first-web-api/_static/architecture.png)
+![The client is represented by a box on the left. It submits a request and receives a response from the application, a box drawn on the right. Within the application box, three boxes represent the controller, the model, and the data access layer. The request comes into the application's controller, and read/write operations occur between the controller and the data access layer. The model is serialized and returned to the client in the response.](first-web-api/_static/5/architecture.png)
 
 ## Prerequisites
 
@@ -694,7 +694,7 @@ The following diagram shows the design of the app.
 
 * Enter *TodoApi* for the **Project Name** and then select **Create**.
 
-  ![config dialog](first-web-api-mac/_static/configure_your_new_api2.png)
+  ![config dialog](first-web-api-mac/_static/5/configure_your_new_api2.png)
 
 [!INCLUDE[](~/includes/mac-terminal-access.md)]
 
@@ -974,7 +974,7 @@ This tutorial uses Postman to test the web API.
 
 * Select **Send**.
 
-  ![Postman with create request](first-web-api/_static/3/create.png)
+  ![Postman with create request](first-web-api/_static/create.png)
 
 ### Test the location header URI
 
@@ -985,7 +985,7 @@ To test in Postman:
 * Select the **Headers** tab in the **Response** pane.
 * Copy the **Location** header value:
 
-  ![Headers tab of the Postman console](first-web-api/_static/3/create.png)
+  ![Headers tab of the Postman console](first-web-api/_static/create.png)
 
 * Set the HTTP method to `GET`.
 * Set the URI to `https://localhost:<port>/api/todoitems/1`. For example, `https://localhost:5001/api/todoitems/1`.
@@ -1212,7 +1212,8 @@ The following diagram shows the design of the app.
 
 * In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **API** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **API** > **Next**.
 
-  ![macOS API template selection](first-web-api-mac/_static/5/api_template.png)
+  ![macOS API template selection](first-web-api-mac/_static/3/api_template
+  )
 
 * In the **Configure the new ASP.NET Core Web API** dialog, select the latest .NET Core 3.x **Target Framework**. Select **Next**.
 
