@@ -16,7 +16,7 @@ _DisplayTemplates_ are a way to customize the display of model fields or create 
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/display-templates/sample) ([how to download](xref:index#how-to-download-a-sample))
 
-A _DisplayTemplate_ is a [Razor](xref:mvc/views/razor) markup file (`.cshtml`) file that has to be placed in a folder called `DisplayTemplates` in the _Shared_ folder of your _Pages_ or _Views_ folder (depending on whether you are using Razor Pages or MVC).
+A _DisplayTemplate_ is a [Razor](xref:mvc/views/razor) markup file (`.cshtml`) file placed in a folder called `DisplayTemplates` in the _Shared_ folder of your _Pages_ or _Views_ folder (depending on whether you are using Razor Pages or MVC).
 
 > [!NOTE]
 > As of now, the name of the folder cannot be changed.
