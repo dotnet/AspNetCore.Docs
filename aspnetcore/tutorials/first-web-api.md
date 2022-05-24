@@ -97,11 +97,11 @@ The following diagram shows the design of the app.
 
 * Select **File** > **New Solution**.
 
-  ![macOS New solution](first-web-api-mac/_static/sln.png)
+  ![macOS New solution](first-web-api-mac/6/_static/sln.png)
 
 * In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **API** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **API** > **Next**.
 
-  ![macOS API template selection](first-web-api-mac/_static/api_template.png)
+  ![macOS API template selection](first-web-api-mac/_static/6/api_template.png)
 
 * In the **Configure the new ASP.NET Core Web API** dialog, select the latest .NET Core 5.x **Target Framework**. Select **Next**.
 
@@ -684,11 +684,11 @@ The following diagram shows the design of the app.
 
 * Select **File** > **New Solution**.
 
-  ![macOS New solution](first-web-api-mac/_static/sln.png)
+  ![macOS New solution](first-web-api-mac/_static/5/sln.png)
 
 * In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **API** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **API** > **Next**.
 
-  ![macOS API template selection](first-web-api-mac/_static/api_template.png)
+  ![macOS API template selection](first-web-api-mac/_static/5/api_template.png)
 
 * In the **Configure the new ASP.NET Core Web API** dialog, select the latest .NET Core 5.x **Target Framework**. Select **Next**.
 
