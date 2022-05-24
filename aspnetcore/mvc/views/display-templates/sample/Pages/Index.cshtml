@@ -1,0 +1,22 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<h1>DisplayTemplates and EditorTemplates</h1>
+
+<h2>DisplayTemplate Usage</h2>
+<!-- <snippet_htmlDisplayFor> -->
+@Html.DisplayFor(model => Model.Person)
+<!-- </snippet_htmlDisplayFor> -->
+
+<h3>Using <em>templateName</em> parameter</h3>
+<!-- <snippet_htmlDisplayForTemplate> -->
+@Html.DisplayFor(model => Model.Person, "AlternativePerson")
+<!-- </snippet_htmlDisplayForTemplate> -->
+
+<h2>EditorTemplate Usage</h2>
+<!-- <snippet_htmlEditorFor> -->
+@Html.EditorFor(model => Model.Person)
+<!-- </snippet_htmlEditorFor> -->
