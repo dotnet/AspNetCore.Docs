@@ -371,7 +371,7 @@ public class CurrentThreadUserAuthenticationStateProvider : AuthenticationStateP
 }
 ```
 
-Using the alternative approach, only authorization services (`.AddAuthorizationCore()`) and `CurrentThreadUserAuthenticationStateProvider` (`.AddScoped<AuthenticationStateProvider, CurrentThreadUserAuthenticationStateProvider>()`) are added to the service collection.
+Using the alternative approach, only authorization services (<xref:Microsoft.Extensions.DependencyInjection.AuthorizationServiceCollectionExtensions.AddAuthorizationCore%2A>) and `CurrentThreadUserAuthenticationStateProvider` (`.AddScoped<AuthenticationStateProvider, CurrentThreadUserAuthenticationStateProvider>()`) are added to the service collection.
 
 ### Handle authentication within the `BlazorWebView` (Option 2)
 
@@ -535,3 +535,4 @@ When implementing authentication:
 ## Additional resources
 
 * <xref:blazor/security/index>
+* <xref:blazor/hybrid/security/security-considerations>

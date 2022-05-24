@@ -31,7 +31,6 @@ Each ASP.NET Core component that emits cookies needs to decide if SameSite is ap
 
 ## SameSite test sample code
 
-
 :::moniker range=">= aspnetcore-6.0"
 
 The following sample can be downloaded and tested:
@@ -42,12 +41,9 @@ The following sample can be downloaded and tested:
 
 ## .NET Core support for the sameSite attribute
 
-.NET Core 3.1 and later support the 2019 draft standard for SameSite. Developers are able to programmatically control the value of the sameSite attribute using the `HttpCookie.SameSite` property. Setting the `SameSite` property to Strict, Lax, or None results in those values being written on the network with the cookie. Setting it equal to `(SameSiteMode)(-1)` indicates that no sameSite attribute should be included on the network with the cookie
+.NET Core supports the 2019 draft standard for SameSite. Developers are able to programmatically control the value of the sameSite attribute using the `HttpCookie.SameSite` property. Setting the `SameSite` property to `Strict`, `Lax`, or `None` results in those values being written on the network with the cookie. Setting to `SameSiteMode.Unspecified` indicates no sameSite should be sent with the cookie.
 
-[!code-csharp[](samesite/snippets/Privacy.cshtml.cs?name=snippet)]
-
-.NET Core 3.1 and later support the updated SameSite values and adds an extra enum value, `SameSiteMode.Unspecified` to the `SameSiteMode` enum.
-This new value indicates no sameSite should be sent with the cookie.
+[!code-csharp[](samesite/sample6/WebSameSite/Pages/Privacy.cshtml.cs?name=snippet)]
 
 ## API usage with SameSite
 
@@ -90,7 +86,7 @@ SameSite support was first implemented in ASP.NET Core in 2.0 using the [2016 dr
 * Is **not** backwards compatible with the 2016 draft. For more information, see [Supporting older browsers](#sob) in this document.
 * Specifies cookies are treated as `SameSite=Lax` by default.
 * Specifies cookies that explicitly assert `SameSite=None` in order to enable cross-site delivery should be marked as `Secure`. `None` is a new entry to opt out.
-* Is supported by patches issued for ASP.NET Core 2.1, 2.2, and 3.0. ASP.NET Core 3.1 has additional SameSite support.
+* Is supported by patches issued for ASP.NET Core 2.1, 2.2, and 3.0. ASP.NET Core 3.1 and later has additional SameSite support.
 * Is scheduled to be enabled by [Chrome](https://chromestatus.com/feature/5088147346030592) by default in [Feb 2020](https://blog.chromium.org/2019/10/developers-get-ready-for-new.html). Browsers started moving to this standard in 2019.
 
 ## APIs impacted by the change from the 2016 SameSite draft standard to the 2019 draft standard
@@ -108,13 +104,13 @@ SameSite support was first implemented in ASP.NET Core in 2.0 using the [2016 dr
 
 The 2016 SameSite standard mandated that unknown values must be treated as `SameSite=Strict` values. Apps accessed from older browsers which support the 2016 SameSite standard may break when they get a SameSite property with a value of `None`. Web apps must implement browser detection if they intend to support older browsers. ASP.NET Core doesn't implement browser detection because User-Agents values are highly volatile and change frequently. An extension point in <xref:Microsoft.AspNetCore.CookiePolicy> allows plugging in User-Agent specific logic.
 
-In `Startup.Configure`, add code that calls <xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy*> before calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> or *any* method that writes cookies:
+In `Program.cs`, add code that calls <xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy*> before calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> or *any* method that writes cookies:
 
-[!code-csharp[](samesite/sample/Startup.cs?name=snippet5&highlight=18-19)]
+[!code-csharp[](samesite/sample6/WebSameSite/Program.cs?highlight=39-40)]
 
-In `Startup.ConfigureServices`, add code similar to the following:
+In `Program.cs`, add code similar to the following highlighted code:
 
-[!code-csharp[](samesite/sample/Startup31.cs?name=snippet)]
+[!code-csharp[](samesite/sample6/WebSameSite/Program.cs?highlight=3-22)]
 
 In the preceding sample, `MyUserAgentDetectionLib.DisallowsSameSiteNone` is a user supplied library that detects if the user agent doesn't support SameSite `None`:
 
