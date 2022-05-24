@@ -1,9 +1,9 @@
 ---
 title: Using DisplayTemplates and EditorTemplates
-author: alexander-wicht
+author: Ducki
 description: How to use DisplayTemplates and EditorTemplates in ASP.NET Core.
 monikerRange: '>= aspnetcore-1.0'
-ms.date: 22/05/2022
+ms.date: 05/22/2022
 no-loc: ["DisplayTemplate", "EditorTemplate", Home, Model, "Page Model", "Razor Pages"]
 uid: mvc/views/display-templates
 ---
