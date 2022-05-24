@@ -146,6 +146,10 @@ ASP.NET Core includes three [filters](xref:mvc/controllers/filters) for working 
 * [AutoValidateAntiforgeryToken](xref:Microsoft.AspNetCore.Mvc.AutoValidateAntiforgeryTokenAttribute)
 * [IgnoreAntiforgeryToken](xref:Microsoft.AspNetCore.Mvc.IgnoreAntiforgeryTokenAttribute)
 
+### Antiforgery with AddControllers
+
+Calling <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllers%2A> does ***not*** enable antiforgery tokens. <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllersWithViews%2A> must be called to have built-in antiforgery token support.
+
 ## Multiple browser tabs and the Synchronizer Token Pattern
 
 With the Synchronizer Token Pattern, only the most recently loaded page contains a valid antiforgery token. Using multiple tabs can be problematic. For example, if a user opens multiple tabs:
