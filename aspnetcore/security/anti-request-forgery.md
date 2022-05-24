@@ -148,7 +148,7 @@ ASP.NET Core includes three [filters](xref:mvc/controllers/filters) for working 
 
 ### Antiforgery with AddControllers
 
-Calling <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllers%2A> does ***not*** enable antiforgery tokens, <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllersWithViews%2A> must be called to have antiforgery token support.
+Calling <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllers%2A> does ***not*** enable antiforgery tokens, <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllersWithViews%2A> must be called to have built-in antiforgery token support.
 
 ## Multiple browser tabs and the Synchronizer Token Pattern
 
