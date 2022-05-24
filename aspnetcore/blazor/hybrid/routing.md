@@ -35,7 +35,7 @@ The `UrlLoadingEventArgs.Url` property is used to get or dynamically set the URL
 
 ## Namespace
 
-The `Microsoft.AspNetCore.Components.WebView` namespace is required for the examples in this article:
+The <xref:Microsoft.AspNetCore.Components.WebView?displayProperty=fullName> namespace is required for the examples in this article:
 
 ```csharp
 using Microsoft.AspNetCore.Components.WebView;

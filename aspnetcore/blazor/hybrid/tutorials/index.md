@@ -17,4 +17,4 @@ uid: blazor/hybrid/tutorials/index
 
 * <xref:blazor/hybrid/tutorials/wpf>
 
-For more information on Blazor hosting models, see <xref:blazor/hosting-models>.
+For more information on hosting models, see <xref:blazor/hosting-models>.
