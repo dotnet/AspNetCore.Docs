@@ -196,7 +196,7 @@ Blazor Hybrid apps have full access to native client API capabilities via .NET n
 
 ### Executes in its own app window
 
-Blazor PWA and Blazor Hybrid apps can run in their own app window on the client, not limited to a browser window.
+Blazor PWA and Blazor Hybrid apps can run in their own app window on the client, so they aren't limited to a browser window.
 
 ### Launch from the client
 
