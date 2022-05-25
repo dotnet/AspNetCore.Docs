@@ -1,14 +1,20 @@
-﻿using DisplayTemplatesTest.Models;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace DisplayTemplatesTest.Pages;
-
-public class IndexModel : PageModel
+namespace WebAddress.Pages
 {
-    public Person Person { get; set; } =
-        new Person
+    public class IndexModel : PageModel
+    {
+        private readonly ILogger<IndexModel> _logger;
+
+        public IndexModel(ILogger<IndexModel> logger)
         {
-            Name = "Niklas",
-            Age = 17
-        };
+            _logger = logger;
+        }
+
+        public void OnGet()
+        {
+
+        }
+    }
 }

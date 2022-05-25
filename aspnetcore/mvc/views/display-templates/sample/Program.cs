@@ -1,7 +1,12 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using WebAddress.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<WebAddressContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("WebAddressContext") ?? throw new InvalidOperationException("Connection string 'WebAddressContext' not found.")));
 
 var app = builder.Build();
 

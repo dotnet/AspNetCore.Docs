@@ -9,20 +9,41 @@ no-loc: ["DisplayTemplate", "EditorTemplate", Home, Model, "Page Model", "Razor 
 uid: mvc/views/display-templates
 ---
 
-# Display  and Editor templates in ASP.NET Core
+# Display and Editor templates in ASP.NET Core
 
 By [Alexander Wicht](https://github.com/Ducki/)
 
+Display and Editor templates specify the user interface layout of custom types. Consider the following `Address` model:
+
+[!code-csharp[](display-templates/sample/Address.cs)]
+
+A project that [scaffolds](xref:razor-pages/model#scaffold-the-movie-model) the `Address` model displays the `Address` in the following form:
+
+![view of default scaffolding layout](display-templates/_static/addr.png)
+
+A web site could use a Display Template to show the `Address` in standard format:
+
+![view of default scaffolding layout](display-templates/_static/addr2.png)
+
+Display and Editor templates can also reduce code duplication and maintenance costs. Consider a web site that displays the `Address` model on 20 different pages. If the `Address` model changes, the 20 pages will all need to be updated. If a Display Template is used for the `Address` model, only the Display Template needs to be updated. For example, the model might want to include the country.
+
+[Tag Helpers](xref:mvc/views/tag-helpers/intro) provide an alternative way enable server-side code to participate in creating and rendering HTML elements in Razor files. For more information, see [Tag Helpers compared to HTML Helpers](xref:mvc/views/tag-helpers/intro#tag-helpers-compared-to-html-helpers).
+
 ## Display templates
 
-*DisplayTemplates* are a way to customize the display of model fields or create a layer of abstraction between your model values and their display.
+*DisplayTemplates* are a way to customize the display of model fields or create a layer of abstraction between the model values and their display.
 
-A *DisplayTemplate* is a [Razor](xref:mvc/views/razor) markup file (`.cshtml`) file placed in a folder called `DisplayTemplates` in the *Shared* folder of your *Pages* or *Views* folder (depending on whether you are using Razor Pages or MVC).
+A *DisplayTemplate* is a [Razor](xref:mvc/views/razor) file placed in the`DisplayTemplates`folder:
 
-> [!NOTE]
-> As of now, the name of the folder cannot be changed.
+* For Razor Pages apps, in the `Pages/Shared/DisplayTemplates` folder.
+* For MVC apps, in the `Views//Shared/DisplayTemplates` folder or the `Views/ControllerName/DisplayTemplates` folder.
 
-By convention, the *DisplayTemplate* file is named after the type you want to create the template for. You can use them for built-in types, like `DateTime` or your own types.
+By convention, the *DisplayTemplate* file is named after the type to be displayed. The `Address.cshtml` template used in this sample:
+
+[!code-cshtml[](display-templates/sample/Pages/Shared/DisplayTemplates/Address.cshtml)]
+
+<!--
+You can use them for built-in types, like `DateTime` or your own types.
 
 For example, a DisplayTemplate for `DateTime` would be called `DateTime.cshtml` and look like this:
 ```csharp
@@ -65,3 +86,4 @@ To reference them, use the <xref:Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperEd
 ## Additional resources
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/display-templates/sample) ([how to download](xref:index#how-to-download-a-sample))
+-->
