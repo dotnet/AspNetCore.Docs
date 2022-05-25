@@ -37,6 +37,7 @@ var app = builder.Build();
 #if Managed
 // <snippet_Managed>
 using Azure.Identity;
+using Azure.Extensions.AspNetCore.Configuration.Secrets;
 
 var builder = WebApplication.CreateBuilder(args);
 
