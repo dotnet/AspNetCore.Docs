@@ -235,7 +235,7 @@ namespace CustomTypes
 
 The preceding code:
 
-* Adds a partial class for `DecimalValue`. It is combined with the `DecimalValue` partial class generated from the `.proto` file. The generated class declares the `Units` and `Nanos` properties.
+* Adds a partial class for `DecimalValue`. The partial class is combined with `DecimalValue` generated from the `.proto` file. The generated class declares the `Units` and `Nanos` properties.
 * Has implicit operators for converting between `DecimalValue` and the BCL `decimal` type.
 
 ## Collections
