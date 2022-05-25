@@ -505,6 +505,8 @@ items:
                 uid: blazor/host-and-deploy/configure-trimmer
               - name: WebAssembly deployment layout
                 uid: blazor/host-and-deploy/webassembly-deployment-layout
+              - name: Multiple hosted WebAssembly apps
+                uid: blazor/host-and-deploy/multiple-hosted-webassembly
           - name: Blazor Server and EF Core
             uid: blazor/blazor-server-ef-core
           - name: Advanced scenarios
