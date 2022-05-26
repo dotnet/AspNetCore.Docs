@@ -32,7 +32,7 @@ By default, the built-in helper method <xref:Microsoft.AspNetCore.Mvc.Controller
 
 :::code language="csharp" source="formatting/samples/6.x/ResponseFormattingSample/Controllers/TodoItemsController.cs" id="snippet_Get":::
 
-The sample code returns a list of todo items. Using the F12 browser developer tools or [Postman](https://www.getpostman.com/tools) with the previous code displays:
+The sample code returns a list of todo items. Using the F12 browser developer tools or [Postman](https://www.getpostman.com/product/tools) with the previous code displays:
 
 * The response header containing **content-type:** `application/json; charset=utf-8`.
 * The request headers. For example, the `Accept` header. The `Accept` header is ignored by the preceding code.
@@ -64,7 +64,7 @@ By default, ASP.NET Core supports the following media types:
 * `text/json`
 * `text/plain`
 
-Tools such as [Fiddler](https://www.telerik.com/fiddler) or [Postman](https://www.getpostman.com/tools) can set the `Accept` request header to specify the return format. When the `Accept` header contains a type the server supports, that type is returned. The next section shows how to add additional formatters.
+Tools such as [Fiddler](https://www.telerik.com/fiddler) or [Postman](https://www.getpostman.com/product/tools) can set the `Accept` request header to specify the return format. When the `Accept` header contains a type the server supports, that type is returned. The next section shows how to add additional formatters.
 
 Controller actions can return POCOs (Plain Old CLR Objects). When a POCO is returned, the runtime automatically creates an `ObjectResult` that wraps the object. The client gets the formatted serialized object. If the object being returned is `null`, a `204 No Content` response is returned.
 
@@ -229,7 +229,7 @@ The built-in helper method <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Ok%2A> 
 
 :::code language="csharp" source="formatting/samples/3.x/ResponseFormattingSample/Controllers/AuthorsController.cs" id="snippet_get":::
 
-The sample download returns the list of authors. Using the F12 browser developer tools or [Postman](https://www.getpostman.com/tools) with the previous code:
+The sample download returns the list of authors. Using the F12 browser developer tools or [Postman](https://www.getpostman.com/product/tools) with the previous code:
 
 * The response header containing **content-type:** `application/json; charset=utf-8` is displayed.
 * The request headers are displayed. For example, the `Accept` header. The `Accept` header is ignored by the preceding code.
@@ -257,7 +257,7 @@ The following action method uses the `Ok` and `NotFound` helper methods:
 
 :::code language="csharp" source="formatting/samples/3.x/ResponseFormattingSample/Controllers/AuthorsController.cs" id="snippet_search":::
 
-By default, ASP.NET Core supports `application/json`, `text/json`, and `text/plain` media types. Tools such as [Fiddler](https://www.telerik.com/fiddler) or [Postman](https://www.getpostman.com/tools) can set the `Accept` request header to specify the return format. When the `Accept` header contains a type the server supports, that type is returned. The next section shows how to add additional formatters.
+By default, ASP.NET Core supports `application/json`, `text/json`, and `text/plain` media types. Tools such as [Fiddler](https://www.telerik.com/fiddler) or [Postman](https://www.getpostman.com/product/tools) can set the `Accept` request header to specify the return format. When the `Accept` header contains a type the server supports, that type is returned. The next section shows how to add additional formatters.
 
 Controller actions can return POCOs (Plain Old CLR Objects). When a POCO is returned, the runtime automatically creates an `ObjectResult` that wraps the object. The client gets the formatted serialized object. If the object being returned is `null`, a `204 No Content` response is returned.
 
@@ -460,7 +460,7 @@ By default, the built-in helper method <xref:Microsoft.AspNetCore.Mvc.Controller
 
 :::code language="csharp" source="formatting/samples/7.x/ResponseFormattingSample/Controllers/TodoItemsController.cs" id="snippet_Get":::
 
-The sample code returns a list of todo items. Using the F12 browser developer tools or [Postman](https://www.getpostman.com/tools) with the previous code displays:
+The sample code returns a list of todo items. Using the F12 browser developer tools or [Postman](https://www.getpostman.com/product/tools) with the previous code displays:
 
 * The response header containing **content-type:** `application/json; charset=utf-8`.
 * The request headers. For example, the `Accept` header. The `Accept` header is ignored by the preceding code.
@@ -492,7 +492,7 @@ By default, ASP.NET Core supports the following media types:
 * `text/json`
 * `text/plain`
 
-Tools such as [Fiddler](https://www.telerik.com/fiddler) or [Postman](https://www.getpostman.com/tools) can set the `Accept` request header to specify the return format. When the `Accept` header contains a type the server supports, that type is returned. The next section shows how to add additional formatters.
+Tools such as [Fiddler](https://www.telerik.com/fiddler) or [Postman](https://www.getpostman.com/product/tools) can set the `Accept` request header to specify the return format. When the `Accept` header contains a type the server supports, that type is returned. The next section shows how to add additional formatters.
 
 Controller actions can return POCOs (Plain Old CLR Objects). When a POCO is returned, the runtime automatically creates an `ObjectResult` that wraps the object. The client gets the formatted serialized object. If the object being returned is `null`, a `204 No Content` response is returned.
 

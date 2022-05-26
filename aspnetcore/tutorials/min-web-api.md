@@ -330,6 +330,7 @@ The sample app implements several GET endpoints using calls to `MapGet`:
 |--- | ---- | ---- | ---- |
 |`GET /` | Browser test, "Hello World" | None | `Hello World!`|
 |`GET /todoitems` | Get all to-do items | None | Array of to-do items|
+|`GET /todoitems/complete` | Get all completed to-do items | None | Array of to-do items|
 |`GET /todoitems/{id}` | Get an item by ID | None | To-do item|
 
 [!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_get)]
