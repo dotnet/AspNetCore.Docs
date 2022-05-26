@@ -25,7 +25,7 @@ A web site could use a Display Template to show the `Address` in standard format
 
 ![view of default scaffolding layout](display-templates/_static/addr2.png)
 
-Display and Editor templates can also reduce code duplication and maintenance costs. Consider a web site that displays the `Address` model on 20 different pages. If the `Address` model changes, the 20 pages will all need to be updated. If a Display Template is used for the `Address` model, only the Display Template needs to be updated. For example, the model might be updated to include the country.
+Display and Editor templates can also reduce code duplication and maintenance costs. Consider a web site that displays the `Address` model on 20 different pages. If the `Address` model changes, the 20 pages will all need to be updated. If a Display Template is used for the `Address` model, only the Display Template needs to be updated. For example, the `Address` model might be updated to include the country.
 
 [Tag Helpers](xref:mvc/views/tag-helpers/intro) provide an alternative way enable server-side code to participate in creating and rendering HTML elements in Razor files. For more information, see [Tag Helpers compared to HTML Helpers](xref:mvc/views/tag-helpers/intro#tag-helpers-compared-to-html-helpers).
 
@@ -36,7 +36,7 @@ Display and Editor templates can also reduce code duplication and maintenance co
 A *DisplayTemplate* is a [Razor](xref:mvc/views/razor) file placed in the`DisplayTemplates`folder:
 
 * For Razor Pages apps, in the `Pages/Shared/DisplayTemplates` folder.
-* For MVC apps, in the `Views//Shared/DisplayTemplates` folder or the `Views/ControllerName/DisplayTemplates` folder.
+* For MVC apps, in the `Views/Shared/DisplayTemplates` folder or the `Views/ControllerName/DisplayTemplates` folder. Display templates in the `Views/Shared/DisplayTemplates` are used by all controllers in the app. Display templates in the `Views/ControllerName/DisplayTemplates` folder are resolved only by the `ControllerName` controller.
 
 By convention, the *DisplayTemplate* file is named after the type to be displayed. The `Address.cshtml` template used in this sample:
 
@@ -52,7 +52,7 @@ The following code shows the Details view using the Address Display Template:
 
 [!code-cshtml[](display-templates/sample/Pages/Adr2/Details.cshtml?highlight=15)]
 
-To reference a template whose name doesn't match the type name, use the `templateName` parameter in the `DisplayFor` method. For example, The following markup displays the `Address` model with the "AddressShort" template:
+To reference a template whose name doesn't match the type name, use the `templateName` parameter in the <xref:Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperDisplayExtensions.DisplayFor%2A> method. For example, The following markup displays the `Address` model with the `AddressShort` template:
 
 [!code-cshtml[](display-templates/sample/Pages/Adr2/DetailsCC.cshtml?highlight=15)]
 
