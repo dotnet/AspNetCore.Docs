@@ -515,7 +515,7 @@ The potential for overwriting parameter values extends into the child component'
 > [!IMPORTANT]
 > Our general guidance is not to create components that directly write to their own parameters after the component is rendered for the first time.
 
-Consider the following faulty `Expander` component that:
+Consider the following `Expander` component that:
 
 * Renders child content.
 * Toggles showing child content with a component parameter (`Expanded`).
@@ -1948,7 +1948,7 @@ The potential for overwriting parameter values extends into the child component'
 > [!IMPORTANT]
 > Our general guidance is not to create components that directly write to their own parameters after the component is rendered for the first time.
 
-Consider the following faulty `Expander` component that:
+Consider the following `Expander` component that:
 
 * Renders child content.
 * Toggles showing child content with a component parameter (`Expanded`).
@@ -2933,7 +2933,7 @@ The potential for overwriting parameter values extends into the child component'
 > [!IMPORTANT]
 > Our general guidance is not to create components that directly write to their own parameters after the component is rendered for the first time.
 
-Consider the following faulty `Expander` component that:
+Consider the following `Expander` component that:
 
 * Renders child content.
 * Toggles showing child content with a component parameter (`Expanded`).
