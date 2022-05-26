@@ -17,13 +17,13 @@ Display and Editor templates specify the user interface layout of custom types. 
 
 [!code-csharp[](display-templates/sample/Address.cs)]
 
-A project that [scaffolds](xref:razor-pages/model#scaffold-the-movie-model) the `Address` model displays the `Address` in the following form:
+A project that [scaffolds](xref:tutorials/razor-pages/model#scaffold-the-movie-model) the `Address` model displays the `Address` in the following form:
 
-![view of default scaffolding layout](display-templates/_static/addr.png)
+![view of default scaffolding layout of model](display-templates/_static/addr.png)
 
 A web site could use a Display Template to show the `Address` in standard format:
 
-![view of default scaffolding layout](display-templates/_static/addr2.png)
+![view of default scaffolding layout using Address template](display-templates/_static/addr2.png)
 
 Display and Editor templates can also reduce code duplication and maintenance costs. Consider a web site that displays the `Address` model on 20 different pages. If the `Address` model changes, the 20 pages will all need to be updated. If a Display Template is used for the `Address` model, only the Display Template needs to be updated. For example, the `Address` model might be updated to include the country.
 
