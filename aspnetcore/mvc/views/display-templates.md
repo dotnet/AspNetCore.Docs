@@ -42,22 +42,21 @@ By convention, the *DisplayTemplate* file is named after the type to be displaye
 
 [!code-cshtml[](display-templates/sample/Pages/Shared/DisplayTemplates/Address.cshtml)]
 
+The view engine automatically looks for a file in the `DisplayTemplates` folder that matches the name of the type. If it does not find a matching template, it falls back to the built in templates.
+
+The following code shows the Details view of the scaffolded project:
+
+[!code-cshtml[](display-templates/sample/Pages/Adr/Details.cshtml)]
+
+The following code shows the Details view using the Address Display Template:
+
+[!code-cshtml[](display-templates/sample/Pages/Adr2/Details.cshtml)]
+
+To reference a template whose name does not match the type name, use the `templateName` parameter in the `DisplayFor` method. For example, The following markup displays the `Address` model with the "AddressShort" template:
+
+[!code-cshtml[](display-templates/sample/Pages/Adr2/DetailsCC.cshtml?highlight=15)]
+
 <!--
-You can use them for built-in types, like `DateTime` or your own types.
-
-For example, a DisplayTemplate for `DateTime` would be called `DateTime.cshtml` and look like this:
-```csharp
-@model System.DateTime
-<span>
-@Model.ToString("yyyy-MM-dd")
-</span>
-```
-
-The view engine automatically looks up the file in the `DisplayTemplates` folder that matches the name of the type. If it does not find anything, it will fall back to just display the value.
-
-To reference a template whose name does not match the type name, use the `templateName` parameter in the `DisplayFor` method. For example, if we have a template file called `AlternativePerson.cshtml`:
-[!code-cshtml[](display-templates/sample/Pages/Index.cshtml?name=snippet_htmlDisplayForTemplate)]
-
 ### Custom Models
 
 Consider this custom type `Person`:
