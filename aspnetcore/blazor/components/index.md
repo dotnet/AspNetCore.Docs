@@ -520,7 +520,7 @@ Consider the following `Expander` component that:
 * Renders child content.
 * Toggles showing child content with a component parameter (`Expanded`).
 
-After the following `Expander` component demonstrates the incorrect approach for this scenario, a modified `Expander` component is shown to demonstrate the correct approach. The following examples can be placed in a local sample app to experience the behaviors described.
+After the following `Expander` component demonstrates an overwritten parameter, a modified `Expander` component is shown to demonstrate the correct approach for this scenario. The following examples can be placed in a local sample app to experience the behaviors described.
 
 `Shared/Expander.razor`:
 
@@ -1952,7 +1952,7 @@ Consider the following `Expander` component that:
 * Renders child content.
 * Toggles showing child content with a component parameter (`Expanded`).
 
-After the following `Expander` component demonstrates the incorrect approach for this scenario, a modified `Expander` component is shown to demonstrate the correct approach. The following examples can be placed in a local sample app to experience the behaviors described.
+After the following `Expander` component demonstrates an overwritten parameter, a modified `Expander` component is shown to demonstrate the correct approach for this scenario. The following examples can be placed in a local sample app to experience the behaviors described.
 
 `Shared/Expander.razor`:
 
@@ -2936,7 +2936,7 @@ Consider the following `Expander` component that:
 * Renders child content.
 * Toggles showing child content with a component parameter (`Expanded`).
 
-After the following `Expander` component demonstrates the incorrect approach for this scenario, a modified `Expander` component is shown to demonstrate the correct approach. The following examples can be placed in a local sample app to experience the behaviors described.
+After the following `Expander` component demonstrates an overwritten parameter, a modified `Expander` component is shown to demonstrate the correct approach for this scenario. The following examples can be placed in a local sample app to experience the behaviors described.
 
 `Shared/Expander.razor`:
 
