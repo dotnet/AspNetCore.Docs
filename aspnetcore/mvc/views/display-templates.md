@@ -65,7 +65,7 @@ Editor templates are used in form controls when the model is edited or updated.
 A *EditorTemplate* is a [Razor](xref:mvc/views/razor) file placed in the`EditorTemplates`folder:
 
 * For Razor Pages apps, in the `Pages/Shared/EditorTemplates` folder.
-* For MVC apps, in the `Views//Shared/EditorTemplates` folder or the `Views/ControllerName/EditorTemplates` folder.
+* For MVC apps, in the `Views/Shared/EditorTemplates` folder or the `Views/ControllerName/EditorTemplates` folder.
 
 The following markup shows the *Pages/Shared/EditorTemplates/Address.cshtml* used in the sample:
 
