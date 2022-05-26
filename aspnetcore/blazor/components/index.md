@@ -431,6 +431,72 @@ Optional route parameters are supported. In the following example, the `text` op
 
 For information on catch-all route parameters (`{*pageRoute}`), which capture paths across multiple folder boundaries, see <xref:blazor/fundamentals/routing#catch-all-route-parameters>.
 
+## Child content
+
+Components can set the content of another component. The assigning component provides the content between the child component's opening and closing tags.
+
+In the following example, the `RenderFragmentChild` component has a `ChildContent` component parameter that represents a segment of the UI to render as a <xref:Microsoft.AspNetCore.Components.RenderFragment>. The position of `ChildContent` in the component's Razor markup is where the content is rendered in the final HTML output.
+
+`Shared/RenderFragmentChild.razor`:
+
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Shared/index/RenderFragmentChild.razor)]
+
+> [!IMPORTANT]
+> The property receiving the <xref:Microsoft.AspNetCore.Components.RenderFragment> content must be named `ChildContent` by convention.
+>
+> [Event callbacks](xref:blazor/components/event-handling#eventcallback) aren't supported for <xref:Microsoft.AspNetCore.Components.RenderFragment>.
+
+The following `RenderFragmentParent` component provides content for rendering the `RenderFragmentChild` by placing the content inside the child component's opening and closing tags.
+
+`Pages/RenderFragmentParent.razor`:
+
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/index/RenderFragmentParent.razor)]
+
+Due to the way that Blazor renders child content, rendering components inside a [`for`](/dotnet/csharp/language-reference/keywords/for) loop requires a local index variable if the incrementing loop variable is used in the `RenderFragmentChild` component's content. The following example can be added to the preceding `RenderFragmentParent` component:
+
+```razor
+<h1>Three children with an index variable</h1>
+
+@for (int c = 0; c < 3; c++)
+{
+    var current = c;
+
+    <RenderFragmentChild>
+        Count: @current
+    </RenderFragmentChild>
+}
+```
+
+Alternatively, use a [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop with <xref:System.Linq.Enumerable.Range%2A?displayProperty=nameWithType> instead of a [`for`](/dotnet/csharp/language-reference/keywords/for) loop. The following example can be added to the preceding `RenderFragmentParent` component:
+
+```razor
+<h1>Second example of three children with an index variable</h1>
+
+@foreach (var c in Enumerable.Range(0,3))
+{
+    <RenderFragmentChild>
+        Count: @c
+    </RenderFragmentChild>
+}
+```
+
+> [!NOTE]
+> Assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate is only supported in Razor component files (`.razor`):
+> 
+> ```razor
+> private RenderFragment RenderWelcomeInfo = __builder =>
+> {
+>     <p>Welcome to your new app!</p>
+> };
+> ```
+>
+> For more information, see <xref:blazor/performance#define-reusable-renderfragments-in-code>.
+
+For information on how a <xref:Microsoft.AspNetCore.Components.RenderFragment> can be used as a template for component UI, see the following articles:
+
+* <xref:blazor/components/templated-components>
+* <xref:blazor/performance#define-reusable-renderfragments-in-code>
+
 ## Overwritten parameters
 
 The Blazor framework generally imposes safe parent-to-child parameter assignment:
@@ -500,72 +566,6 @@ The following revised `Expander` component:
 [!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Shared/index/Expander.razor)]
 
 For two-way parent-child binding examples, see <xref:blazor/components/data-binding#binding-with-component-parameters>. For additional information, see [Blazor Two Way Binding Error (dotnet/aspnetcore #24599)](https://github.com/dotnet/aspnetcore/issues/24599).
-
-## Child content
-
-Components can set the content of another component. The assigning component provides the content between the child component's opening and closing tags.
-
-In the following example, the `RenderFragmentChild` component has a `ChildContent` property that represents a segment of the UI to render as a <xref:Microsoft.AspNetCore.Components.RenderFragment>. The position of `ChildContent` in the component's Razor markup is where the content is rendered in the final HTML output.
-
-`Shared/RenderFragmentChild.razor`:
-
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Shared/index/RenderFragmentChild.razor)]
-
-> [!IMPORTANT]
-> The property receiving the <xref:Microsoft.AspNetCore.Components.RenderFragment> content must be named `ChildContent` by convention.
->
-> [Event callbacks](xref:blazor/components/event-handling#eventcallback) aren't supported for <xref:Microsoft.AspNetCore.Components.RenderFragment>.
-
-The following `RenderFragmentParent` component provides content for rendering the `RenderFragmentChild` by placing the content inside the child component's opening and closing tags.
-
-`Pages/RenderFragmentParent.razor`:
-
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/index/RenderFragmentParent.razor)]
-
-Due to the way that Blazor renders child content, rendering components inside a [`for`](/dotnet/csharp/language-reference/keywords/for) loop requires a local index variable if the incrementing loop variable is used in the `RenderFragmentChild` component's content. The following example can be added to the preceding `RenderFragmentParent` component:
-
-```razor
-<h1>Three children with an index variable</h1>
-
-@for (int c = 0; c < 3; c++)
-{
-    var current = c;
-
-    <RenderFragmentChild>
-        Count: @current
-    </RenderFragmentChild>
-}
-```
-
-Alternatively, use a [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop with <xref:System.Linq.Enumerable.Range%2A?displayProperty=nameWithType> instead of a [`for`](/dotnet/csharp/language-reference/keywords/for) loop. The following example can be added to the preceding `RenderFragmentParent` component:
-
-```razor
-<h1>Second example of three children with an index variable</h1>
-
-@foreach (var c in Enumerable.Range(0,3))
-{
-    <RenderFragmentChild>
-        Count: @c
-    </RenderFragmentChild>
-}
-```
-
-> [!NOTE]
-> Assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate is only supported in Razor component files (`.razor`):
-> 
-> ```razor
-> private RenderFragment RenderWelcomeInfo = __builder =>
-> {
->     <p>Welcome to your new app!</p>
-> };
-> ```
->
-> For more information, see <xref:blazor/performance#define-reusable-renderfragments-in-code>.
-
-For information on how a <xref:Microsoft.AspNetCore.Components.RenderFragment> can be used as a template for component UI, see the following articles:
-
-* <xref:blazor/components/templated-components>
-* <xref:blazor/performance#define-reusable-renderfragments-in-code>
 
 ## Attribute splatting and arbitrary parameters
 
@@ -1864,6 +1864,72 @@ Optional route parameters are supported. In the following example, the `text` op
 
 For information on catch-all route parameters (`{*pageRoute}`), which capture paths across multiple folder boundaries, see <xref:blazor/fundamentals/routing#catch-all-route-parameters>.
 
+## Child content
+
+Components can set the content of another component. The assigning component provides the content between the child component's opening and closing tags.
+
+In the following example, the `RenderFragmentChild` component has a `ChildContent` component parameter that represents a segment of the UI to render as a <xref:Microsoft.AspNetCore.Components.RenderFragment>. The position of `ChildContent` in the component's Razor markup is where the content is rendered in the final HTML output.
+
+`Shared/RenderFragmentChild.razor`:
+
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Shared/index/RenderFragmentChild.razor)]
+
+> [!IMPORTANT]
+> The property receiving the <xref:Microsoft.AspNetCore.Components.RenderFragment> content must be named `ChildContent` by convention.
+>
+> [Event callbacks](xref:blazor/components/event-handling#eventcallback) aren't supported for <xref:Microsoft.AspNetCore.Components.RenderFragment>.
+
+The following `RenderFragmentParent` component provides content for rendering the `RenderFragmentChild` by placing the content inside the child component's opening and closing tags.
+
+`Pages/RenderFragmentParent.razor`:
+
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/index/RenderFragmentParent.razor)]
+
+Due to the way that Blazor renders child content, rendering components inside a [`for`](/dotnet/csharp/language-reference/keywords/for) loop requires a local index variable if the incrementing loop variable is used in the `RenderFragmentChild` component's content. The following example can be added to the preceding `RenderFragmentParent` component:
+
+```razor
+<h1>Three children with an index variable</h1>
+
+@for (int c = 0; c < 3; c++)
+{
+    var current = c;
+
+    <RenderFragmentChild>
+        Count: @current
+    </RenderFragmentChild>
+}
+```
+
+Alternatively, use a [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop with <xref:System.Linq.Enumerable.Range%2A?displayProperty=nameWithType> instead of a [`for`](/dotnet/csharp/language-reference/keywords/for) loop. The following example can be added to the preceding `RenderFragmentParent` component:
+
+```razor
+<h1>Second example of three children with an index variable</h1>
+
+@foreach (var c in Enumerable.Range(0,3))
+{
+    <RenderFragmentChild>
+        Count: @c
+    </RenderFragmentChild>
+}
+```
+
+> [!NOTE]
+> Assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate is only supported in Razor component files (`.razor`):
+> 
+> ```razor
+> private RenderFragment RenderWelcomeInfo = __builder =>
+> {
+>     <p>Welcome to your new app!</p>
+> };
+> ```
+>
+> For more information, see <xref:blazor/performance#define-reusable-renderfragments-in-code>.
+
+For information on how a <xref:Microsoft.AspNetCore.Components.RenderFragment> can be used as a template for component UI, see the following articles:
+
+* <xref:blazor/components/templated-components>
+* <xref:blazor/performance#define-reusable-renderfragments-in-code>
+
 ## Overwritten parameters
 
 The Blazor framework generally imposes safe parent-to-child parameter assignment:
@@ -1933,72 +1999,6 @@ The following revised `Expander` component:
 [!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Shared/index/Expander.razor)]
 
 For additional information, see [Blazor Two Way Binding Error (dotnet/aspnetcore #24599)](https://github.com/dotnet/aspnetcore/issues/24599).
-
-## Child content
-
-Components can set the content of another component. The assigning component provides the content between the child component's opening and closing tags.
-
-In the following example, the `RenderFragmentChild` component has a `ChildContent` property that represents a segment of the UI to render as a <xref:Microsoft.AspNetCore.Components.RenderFragment>. The position of `ChildContent` in the component's Razor markup is where the content is rendered in the final HTML output.
-
-`Shared/RenderFragmentChild.razor`:
-
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Shared/index/RenderFragmentChild.razor)]
-
-> [!IMPORTANT]
-> The property receiving the <xref:Microsoft.AspNetCore.Components.RenderFragment> content must be named `ChildContent` by convention.
->
-> [Event callbacks](xref:blazor/components/event-handling#eventcallback) aren't supported for <xref:Microsoft.AspNetCore.Components.RenderFragment>.
-
-The following `RenderFragmentParent` component provides content for rendering the `RenderFragmentChild` by placing the content inside the child component's opening and closing tags.
-
-`Pages/RenderFragmentParent.razor`:
-
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/index/RenderFragmentParent.razor)]
-
-Due to the way that Blazor renders child content, rendering components inside a [`for`](/dotnet/csharp/language-reference/keywords/for) loop requires a local index variable if the incrementing loop variable is used in the `RenderFragmentChild` component's content. The following example can be added to the preceding `RenderFragmentParent` component:
-
-```razor
-<h1>Three children with an index variable</h1>
-
-@for (int c = 0; c < 3; c++)
-{
-    var current = c;
-
-    <RenderFragmentChild>
-        Count: @current
-    </RenderFragmentChild>
-}
-```
-
-Alternatively, use a [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop with <xref:System.Linq.Enumerable.Range%2A?displayProperty=nameWithType> instead of a [`for`](/dotnet/csharp/language-reference/keywords/for) loop. The following example can be added to the preceding `RenderFragmentParent` component:
-
-```razor
-<h1>Second example of three children with an index variable</h1>
-
-@foreach (var c in Enumerable.Range(0,3))
-{
-    <RenderFragmentChild>
-        Count: @c
-    </RenderFragmentChild>
-}
-```
-
-> [!NOTE]
-> Assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate is only supported in Razor component files (`.razor`):
-> 
-> ```razor
-> private RenderFragment RenderWelcomeInfo = __builder =>
-> {
->     <p>Welcome to your new app!</p>
-> };
-> ```
->
-> For more information, see <xref:blazor/performance#define-reusable-renderfragments-in-code>.
-
-For information on how a <xref:Microsoft.AspNetCore.Components.RenderFragment> can be used as a template for component UI, see the following articles:
-
-* <xref:blazor/components/templated-components>
-* <xref:blazor/performance#define-reusable-renderfragments-in-code>
 
 ## Attribute splatting and arbitrary parameters
 
@@ -2849,6 +2849,72 @@ Optional route parameters aren't supported, so two [`@page`][9] directives are a
 
 For information on catch-all route parameters (`{*pageRoute}`), which capture paths across multiple folder boundaries, see <xref:blazor/fundamentals/routing#catch-all-route-parameters>.
 
+## Child content
+
+Components can set the content of another component. The assigning component provides the content between the child component's opening and closing tags.
+
+In the following example, the `RenderFragmentChild` component has a `ChildContent` component parameter that represents a segment of the UI to render as a <xref:Microsoft.AspNetCore.Components.RenderFragment>. The position of `ChildContent` in the component's Razor markup is where the content is rendered in the final HTML output.
+
+`Shared/RenderFragmentChild.razor`:
+
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Shared/index/RenderFragmentChild.razor)]
+
+> [!IMPORTANT]
+> The property receiving the <xref:Microsoft.AspNetCore.Components.RenderFragment> content must be named `ChildContent` by convention.
+>
+> [Event callbacks](xref:blazor/components/event-handling#eventcallback) aren't supported for <xref:Microsoft.AspNetCore.Components.RenderFragment>.
+
+The following `RenderFragmentParent` component provides content for rendering the `RenderFragmentChild` by placing the content inside the child component's opening and closing tags.
+
+`Pages/RenderFragmentParent.razor`:
+
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/index/RenderFragmentParent.razor)]
+
+Due to the way that Blazor renders child content, rendering components inside a [`for`](/dotnet/csharp/language-reference/keywords/for) loop requires a local index variable if the incrementing loop variable is used in the `RenderFragmentChild` component's content. The following example can be added to the preceding `RenderFragmentParent` component:
+
+```razor
+<h1>Three children with an index variable</h1>
+
+@for (int c = 0; c < 3; c++)
+{
+    var current = c;
+
+    <RenderFragmentChild>
+        Count: @current
+    </RenderFragmentChild>
+}
+```
+
+Alternatively, use a [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop with <xref:System.Linq.Enumerable.Range%2A?displayProperty=nameWithType> instead of a [`for`](/dotnet/csharp/language-reference/keywords/for) loop. The following example can be added to the preceding `RenderFragmentParent` component:
+
+```razor
+<h1>Second example of three children with an index variable</h1>
+
+@foreach (var c in Enumerable.Range(0,3))
+{
+    <RenderFragmentChild>
+        Count: @c
+    </RenderFragmentChild>
+}
+```
+
+> [!NOTE]
+> Assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate is only supported in Razor component files (`.razor`):
+> 
+> ```razor
+> private RenderFragment RenderWelcomeInfo = __builder =>
+> {
+>     <p>Welcome to your new app!</p>
+> };
+> ```
+>
+> For more information, see <xref:blazor/performance#define-reusable-renderfragments-in-code>.
+
+For information on how a <xref:Microsoft.AspNetCore.Components.RenderFragment> can be used as a template for component UI, see the following articles:
+
+* <xref:blazor/components/templated-components>
+* <xref:blazor/performance#define-reusable-renderfragments-in-code>
+
 ## Overwritten parameters
 
 The Blazor framework generally imposes safe parent-to-child parameter assignment:
@@ -2918,72 +2984,6 @@ The following revised `Expander` component:
 [!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Shared/index/Expander.razor)]
 
 For additional information, see [Blazor Two Way Binding Error (dotnet/aspnetcore #24599)](https://github.com/dotnet/aspnetcore/issues/24599).
-
-## Child content
-
-Components can set the content of another component. The assigning component provides the content between the child component's opening and closing tags.
-
-In the following example, the `RenderFragmentChild` component has a `ChildContent` property that represents a segment of the UI to render as a <xref:Microsoft.AspNetCore.Components.RenderFragment>. The position of `ChildContent` in the component's Razor markup is where the content is rendered in the final HTML output.
-
-`Shared/RenderFragmentChild.razor`:
-
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Shared/index/RenderFragmentChild.razor)]
-
-> [!IMPORTANT]
-> The property receiving the <xref:Microsoft.AspNetCore.Components.RenderFragment> content must be named `ChildContent` by convention.
->
-> [Event callbacks](xref:blazor/components/event-handling#eventcallback) aren't supported for <xref:Microsoft.AspNetCore.Components.RenderFragment>.
-
-The following `RenderFragmentParent` component provides content for rendering the `RenderFragmentChild` by placing the content inside the child component's opening and closing tags.
-
-`Pages/RenderFragmentParent.razor`:
-
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/index/RenderFragmentParent.razor)]
-
-Due to the way that Blazor renders child content, rendering components inside a [`for`](/dotnet/csharp/language-reference/keywords/for) loop requires a local index variable if the incrementing loop variable is used in the `RenderFragmentChild` component's content. The following example can be added to the preceding `RenderFragmentParent` component:
-
-```razor
-<h1>Three children with an index variable</h1>
-
-@for (int c = 0; c < 3; c++)
-{
-    var current = c;
-
-    <RenderFragmentChild>
-        Count: @current
-    </RenderFragmentChild>
-}
-```
-
-Alternatively, use a [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop with <xref:System.Linq.Enumerable.Range%2A?displayProperty=nameWithType> instead of a [`for`](/dotnet/csharp/language-reference/keywords/for) loop. The following example can be added to the preceding `RenderFragmentParent` component:
-
-```razor
-<h1>Second example of three children with an index variable</h1>
-
-@foreach (var c in Enumerable.Range(0,3))
-{
-    <RenderFragmentChild>
-        Count: @c
-    </RenderFragmentChild>
-}
-```
-
-> [!NOTE]
-> Assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate is only supported in Razor component files (`.razor`):
-> 
-> ```razor
-> private RenderFragment RenderWelcomeInfo = __builder =>
-> {
->     <p>Welcome to your new app!</p>
-> };
-> ```
->
-> For more information, see <xref:blazor/performance#define-reusable-renderfragments-in-code>.
-
-For information on how a <xref:Microsoft.AspNetCore.Components.RenderFragment> can be used as a template for component UI, see the following articles:
-
-* <xref:blazor/components/templated-components>
-* <xref:blazor/performance#define-reusable-renderfragments-in-code>
 
 ## Attribute splatting and arbitrary parameters
 
