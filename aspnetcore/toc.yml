@@ -608,6 +608,8 @@ items:
             uid: mvc/views/view-components
           - name: View compilation
             uid: mvc/views/view-compilation
+          - name: Display and Editor Templates
+            uid: mvc/views/display-templates
           - name: Upload files
             uid: mvc/models/file-uploads
           - name: Web SDK
