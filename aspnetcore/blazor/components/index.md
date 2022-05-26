@@ -543,8 +543,6 @@ If <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is ca
 * For a group of parameter types that Blazor explicitly checks, Blazor rerenders a child component if it detects that any of the parameters have changed.
 * For unchecked parameter types, Blazor rerenders the child component *regardless of whether or not the parameters have changed*. Child content falls into this category of parameter types because child content is of type <xref:Microsoft.AspNetCore.Components.RenderFragment>, which is a delegate that refers to other mutable objects.
 
-For more information on change detection, inlcuding information on the exact types that Blazor checks, see <xref:blazor/components/rendering#rendering-conventions-for-componentbase>.
-
 For the `ExpanderExample` component:
 
 * The first `Expander` component sets child content in a potentially mutable <xref:Microsoft.AspNetCore.Components.RenderFragment>, so a call to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in the parent component automatically rerenders the component and potentially overwrites the value of `Expanded` to its intitial value of `true`.
@@ -566,6 +564,8 @@ The following revised `Expander` component:
 [!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Shared/index/Expander.razor)]
 
 For two-way parent-child binding examples, see <xref:blazor/components/data-binding#binding-with-component-parameters>. For additional information, see [Blazor Two Way Binding Error (dotnet/aspnetcore #24599)](https://github.com/dotnet/aspnetcore/issues/24599).
+
+For more information on change detection, inlcuding information on the exact types that Blazor checks, see <xref:blazor/components/rendering#rendering-conventions-for-componentbase>.
 
 ## Attribute splatting and arbitrary parameters
 
@@ -1976,8 +1976,6 @@ If <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is ca
 * For a group of parameter types that Blazor explicitly checks, Blazor rerenders a child component if it detects that any of the parameters have changed.
 * For unchecked parameter types, Blazor rerenders the child component *regardless of whether or not the parameters have changed*. Child content falls into this category of parameter types because child content is of type <xref:Microsoft.AspNetCore.Components.RenderFragment>, which is a delegate that refers to other mutable objects.
 
-For more information on change detection, inlcuding information on the exact types that Blazor checks, see <xref:blazor/components/rendering#rendering-conventions-for-componentbase>.
-
 For the `ExpanderExample` component:
 
 * The first `Expander` component sets child content in a potentially mutable <xref:Microsoft.AspNetCore.Components.RenderFragment>, so a call to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in the parent component automatically rerenders the component and potentially overwrites the value of `Expanded` to its intitial value of `true`.
@@ -1999,6 +1997,8 @@ The following revised `Expander` component:
 [!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Shared/index/Expander.razor)]
 
 For additional information, see [Blazor Two Way Binding Error (dotnet/aspnetcore #24599)](https://github.com/dotnet/aspnetcore/issues/24599).
+
+For more information on change detection, inlcuding information on the exact types that Blazor checks, see <xref:blazor/components/rendering#rendering-conventions-for-componentbase>.
 
 ## Attribute splatting and arbitrary parameters
 
@@ -2961,8 +2961,6 @@ If <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is ca
 * For a group of parameter types that Blazor explicitly checks, Blazor rerenders a child component if it detects that any of the parameters have changed.
 * For unchecked parameter types, Blazor rerenders the child component *regardless of whether or not the parameters have changed*. Child content falls into this category of parameter types because child content is of type <xref:Microsoft.AspNetCore.Components.RenderFragment>, which is a delegate that refers to other mutable objects.
 
-For more information on change detection, inlcuding information on the exact types that Blazor checks, see <xref:blazor/components/rendering#rendering-conventions-for-componentbase>.
-
 For the `ExpanderExample` component:
 
 * The first `Expander` component sets child content in a potentially mutable <xref:Microsoft.AspNetCore.Components.RenderFragment>, so a call to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in the parent component automatically rerenders the component and potentially overwrites the value of `Expanded` to its intitial value of `true`.
@@ -2984,6 +2982,8 @@ The following revised `Expander` component:
 [!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Shared/index/Expander.razor)]
 
 For additional information, see [Blazor Two Way Binding Error (dotnet/aspnetcore #24599)](https://github.com/dotnet/aspnetcore/issues/24599).
+
+For more information on change detection, inlcuding information on the exact types that Blazor checks, see <xref:blazor/components/rendering#rendering-conventions-for-componentbase>.
 
 ## Attribute splatting and arbitrary parameters
 
