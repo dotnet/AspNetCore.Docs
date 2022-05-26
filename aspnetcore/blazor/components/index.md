@@ -472,15 +472,17 @@ The `Expander` component is added to the following `ExpanderExample` parent comp
 
 Initially, the `Expander` components behave independently when their `Expanded` properties are toggled. The child components maintain their states as expected.
 
-If <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called in a parent component, the Blazor framework rerenders child components if their parameters might have changed. Change detection behavior is covered in detail in the <xref:blazor/components/rendering#rendering-conventions-for-componentbase> article. The following is a summary of the behavior:
+If <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called in a parent component, the Blazor framework rerenders child components if their parameters might have changed:
 
-* For several specific parameter types, Blazor rerenders the child component if it detects that any of the checked parameters have changed.
-* For all other parameter types, the framework doesn't know if parameter values are mutated, so Blazor ***must*** rerender the child component. Child content falls into this category of component parameters that trigger rerendering because child content is of type <xref:Microsoft.AspNetCore.Components.RenderFragment>, which is a delegate that refers to other mutable objects.
+* For a group of parameter types that Blazor explicitly checks, Blazor rerenders a child component if it detects that any of the parameters have changed.
+* For unchecked parameter types, Blazor rerenders the child component *regardless of whether or not the parameters have changed*. Child content falls into this category of parameter types because child content is of type <xref:Microsoft.AspNetCore.Components.RenderFragment>, which is a delegate that refers to other mutable objects.
+
+For more information on change detection, inlcuding information on the exact types that Blazor checks, see <xref:blazor/components/rendering#rendering-conventions-for-componentbase>.
 
 For the `ExpanderExample` component:
 
 * The first `Expander` component sets child content in a potentially mutable <xref:Microsoft.AspNetCore.Components.RenderFragment>, so a call to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in the parent component automatically rerenders the component and potentially overwrites the value of `Expanded` to its intitial value of `true`.
-* The second `Expander` component does ***not*** set child content. Therefore, no potentially mutable <xref:Microsoft.AspNetCore.Components.RenderFragment> exists. A call to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in the parent component doesn't automatically rerender the child component, so the component's `Expanded` value isn't overwritten.
+* The second `Expander` component doesn't set child content. Therefore, a potentially mutable <xref:Microsoft.AspNetCore.Components.RenderFragment> doesn't exist. A call to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in the parent component doesn't automatically rerender the child component, so the component's `Expanded` value isn't overwritten.
 
 To maintain state in the preceding scenario, use a *private field* in the `Expander` component to maintain its toggled state.
 
@@ -1903,15 +1905,17 @@ The `Expander` component is added to the following `ExpanderExample` parent comp
 
 Initially, the `Expander` components behave independently when their `Expanded` properties are toggled. The child components maintain their states as expected.
 
-If <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called in a parent component, the Blazor framework rerenders child components if their parameters might have changed. Change detection behavior is covered in detail in the <xref:blazor/components/rendering#rendering-conventions-for-componentbase> article. The following is a summary of the behavior:
+If <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called in a parent component, the Blazor framework rerenders child components if their parameters might have changed:
 
-* For several specific parameter types, Blazor rerenders the child component if it detects that any of the checked parameters have changed.
-* For all other parameter types, the framework doesn't know if parameter values are mutated, so Blazor ***must*** rerender the child component. Child content falls into this category of component parameters that trigger rerendering because child content is of type <xref:Microsoft.AspNetCore.Components.RenderFragment>, which is a delegate that refers to other mutable objects.
+* For a group of parameter types that Blazor explicitly checks, Blazor rerenders a child component if it detects that any of the parameters have changed.
+* For unchecked parameter types, Blazor rerenders the child component *regardless of whether or not the parameters have changed*. Child content falls into this category of parameter types because child content is of type <xref:Microsoft.AspNetCore.Components.RenderFragment>, which is a delegate that refers to other mutable objects.
+
+For more information on change detection, inlcuding information on the exact types that Blazor checks, see <xref:blazor/components/rendering#rendering-conventions-for-componentbase>.
 
 For the `ExpanderExample` component:
 
 * The first `Expander` component sets child content in a potentially mutable <xref:Microsoft.AspNetCore.Components.RenderFragment>, so a call to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in the parent component automatically rerenders the component and potentially overwrites the value of `Expanded` to its intitial value of `true`.
-* The second `Expander` component does ***not*** set child content. Therefore, no potentially mutable <xref:Microsoft.AspNetCore.Components.RenderFragment> exists. A call to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in the parent component doesn't automatically rerender the child component, so the component's `Expanded` value isn't overwritten.
+* The second `Expander` component doesn't set child content. Therefore, a potentially mutable <xref:Microsoft.AspNetCore.Components.RenderFragment> doesn't exist. A call to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in the parent component doesn't automatically rerender the child component, so the component's `Expanded` value isn't overwritten.
 
 To maintain state in the preceding scenario, use a *private field* in the `Expander` component to maintain its toggled state.
 
@@ -2886,15 +2890,17 @@ The `Expander` component is added to the following `ExpanderExample` parent comp
 
 Initially, the `Expander` components behave independently when their `Expanded` properties are toggled. The child components maintain their states as expected.
 
-If <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called in a parent component, the Blazor framework rerenders child components if their parameters might have changed. Change detection behavior is covered in detail in the <xref:blazor/components/rendering#rendering-conventions-for-componentbase> article. The following is a summary of the behavior:
+If <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called in a parent component, the Blazor framework rerenders child components if their parameters might have changed:
 
-* For several specific parameter types, Blazor rerenders the child component if it detects that any of the checked parameters have changed.
-* For all other parameter types, the framework doesn't know if parameter values are mutated, so Blazor ***must*** rerender the child component. Child content falls into this category of component parameters that trigger rerendering because child content is of type <xref:Microsoft.AspNetCore.Components.RenderFragment>, which is a delegate that refers to other mutable objects.
+* For a group of parameter types that Blazor explicitly checks, Blazor rerenders a child component if it detects that any of the parameters have changed.
+* For unchecked parameter types, Blazor rerenders the child component *regardless of whether or not the parameters have changed*. Child content falls into this category of parameter types because child content is of type <xref:Microsoft.AspNetCore.Components.RenderFragment>, which is a delegate that refers to other mutable objects.
+
+For more information on change detection, inlcuding information on the exact types that Blazor checks, see <xref:blazor/components/rendering#rendering-conventions-for-componentbase>.
 
 For the `ExpanderExample` component:
 
 * The first `Expander` component sets child content in a potentially mutable <xref:Microsoft.AspNetCore.Components.RenderFragment>, so a call to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in the parent component automatically rerenders the component and potentially overwrites the value of `Expanded` to its intitial value of `true`.
-* The second `Expander` component does ***not*** set child content. Therefore, no potentially mutable <xref:Microsoft.AspNetCore.Components.RenderFragment> exists. A call to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in the parent component doesn't automatically rerender the child component, so the component's `Expanded` value isn't overwritten.
+* The second `Expander` component doesn't set child content. Therefore, a potentially mutable <xref:Microsoft.AspNetCore.Components.RenderFragment> doesn't exist. A call to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in the parent component doesn't automatically rerender the child component, so the component's `Expanded` value isn't overwritten.
 
 To maintain state in the preceding scenario, use a *private field* in the `Expander` component to maintain its toggled state.
 
