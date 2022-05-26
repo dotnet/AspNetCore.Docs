@@ -502,7 +502,7 @@ For information on how a <xref:Microsoft.AspNetCore.Components.RenderFragment> c
 The Blazor framework generally imposes safe parent-to-child parameter assignment:
 
 * Parameters aren't overwritten unexpectedly.
-* Side-effects are minimized. For example, additional renders are avoided because they may create infinite rendering loops.
+* Side effects are minimized. For example, additional renders are avoided because they may create infinite rendering loops.
 
 A child component receives new parameter values that possibly overwrite existing values when the parent component rerenders. Accidentally overwriting parameter values in a child component often occurs when developing the component with one or more data-bound parameters and the developer writes directly to a parameter in the child:
 
@@ -556,7 +556,7 @@ The following revised `Expander` component:
 * Uses the private field to maintain its internal toggle state, which demonstrates how to avoid writing directly to a parameter.
 
 > [!NOTE]
-> The advice in this section extends to similar logic in component parameter `set` accessors, which can result in similar undesirable side-effects.
+> The advice in this section extends to similar logic in component parameter `set` accessors, which can result in similar undesirable side effects.
 
 `Shared/Expander.razor`:
 
@@ -1934,7 +1934,7 @@ For information on how a <xref:Microsoft.AspNetCore.Components.RenderFragment> c
 The Blazor framework generally imposes safe parent-to-child parameter assignment:
 
 * Parameters aren't overwritten unexpectedly.
-* Side-effects are minimized. For example, additional renders are avoided because they may create infinite rendering loops.
+* Side effects are minimized. For example, additional renders are avoided because they may create infinite rendering loops.
 
 A child component receives new parameter values that possibly overwrite existing values when the parent component rerenders. Accidentally overwriting parameter values in a child component often occurs when developing the component with one or more data-bound parameters and the developer writes directly to a parameter in the child:
 
@@ -1988,7 +1988,7 @@ The following revised `Expander` component:
 * Uses the private field to maintain its internal toggle state, which demonstrates how to avoid writing directly to a parameter.
 
 > [!NOTE]
-> The advice in this section extends to similar logic in component parameter `set` accessors, which can result in similar undesirable side-effects.
+> The advice in this section extends to similar logic in component parameter `set` accessors, which can result in similar undesirable side effects.
 
 `Shared/Expander.razor`:
 
@@ -2918,7 +2918,7 @@ For information on how a <xref:Microsoft.AspNetCore.Components.RenderFragment> c
 The Blazor framework generally imposes safe parent-to-child parameter assignment:
 
 * Parameters aren't overwritten unexpectedly.
-* Side-effects are minimized. For example, additional renders are avoided because they may create infinite rendering loops.
+* Side effects are minimized. For example, additional renders are avoided because they may create infinite rendering loops.
 
 A child component receives new parameter values that possibly overwrite existing values when the parent component rerenders. Accidentally overwriting parameter values in a child component often occurs when developing the component with one or more data-bound parameters and the developer writes directly to a parameter in the child:
 
@@ -2972,7 +2972,7 @@ The following revised `Expander` component:
 * Uses the private field to maintain its internal toggle state, which demonstrates how to avoid writing directly to a parameter.
 
 > [!NOTE]
-> The advice in this section extends to similar logic in component parameter `set` accessors, which can result in similar undesirable side-effects.
+> The advice in this section extends to similar logic in component parameter `set` accessors, which can result in similar undesirable side effects.
 
 `Shared/Expander.razor`:
 
