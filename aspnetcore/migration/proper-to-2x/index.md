@@ -11,7 +11,7 @@ uid: migration/proper-to-2x/index
 
 By [Isaac Levin](https://isaaclevin.com)
 
-This article serves as a reference guide for migrating ASP.NET apps to ASP.NET Core. See the ebook [Porting existing ASP.NET apps to .NET Core](https://aka.ms/aspnet-porting-ebook) for a comprehensive porting guide.
+This article serves as a reference guide for migrating ASP.NET apps to ASP.NET Core. See the ebook [Porting existing ASP.NET apps to .NET Core](/dotnet/architecture/porting-existing-aspnet-apps/) for a comprehensive porting guide.
 
 ## Prerequisites
 
