@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.OpenApi;
+
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
@@ -59,6 +61,35 @@ app.MapPost("/todoitems", async (Todo todo, TodoDb db) =>
 
     return Results.Created($"/todoitems/{todo.Id}", todo);
 });
+
+#region snippet_withopenapi
+app.MapPost("/todoitems/{id}", async (int id, Todo todo, TodoDb db) =>
+{
+    todo.Id = id;
+    db.Todos.Add(todo);
+    await db.SaveChangesAsync();
+
+    return Results.Created($"/todoitems/{todo.Id}", todo);
+})
+.WithOpenApi();
+#endregion
+
+#region snippet_withopenapi2
+app.MapPost("/todo2/{id}", async (int id, Todo todo, TodoDb db) =>
+{
+    todo.Id = id;
+    db.Todos.Add(todo);
+    await db.SaveChangesAsync();
+
+    return Results.Created($"/todoitems/{todo.Id}", todo);
+})
+.WithOpenApi(generatedOperation =>
+{
+    var parameter = generatedOperation.Parameters[0];
+    parameter.Description = "The ID associated with the created Todo";
+    return generatedOperation;
+});
+#endregion
 
 app.MapPut("/todoitems/{id}", async (int id, Todo inputTodo, TodoDb db) =>
 {
