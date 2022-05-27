@@ -5,15 +5,13 @@ description: Learn how to configure a hosted Blazor WebAssembly app generated fr
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/25/2022
+ms.date: 05/27/2022
 no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/host-and-deploy/multiple-hosted-webassembly
 ---
 # Multiple hosted ASP.NET Core Blazor WebAssembly apps
 
 This article explains how to configure a hosted Blazor WebAssembly app generated from the Blazor WebAssembly template to host multiple Blazor WebAssembly apps.
-
-:::moniker range=">= aspnetcore-6.0"
 
 ## Configuration
 
@@ -127,20 +125,20 @@ In the server app's `Program.cs` file, remove the following code, which appears 
 * If you plan to serve pages or views from the server app, delete the following line of code:
 
   ```diff
-  -app.UseBlazorFrameworkFiles();
+  - app.UseBlazorFrameworkFiles();
   ```
 
 * If you plan for the server app to only serve the Blazor WebAssembly client apps, delete the following code:
 
   ```diff
-  -app.UseBlazorFrameworkFiles();
-  -app.UseStaticFiles();
+  - app.UseBlazorFrameworkFiles();
+  - app.UseStaticFiles();
 
-  -app.UseRouting();
+  - app.UseRouting();
 
-  -app.MapRazorPages();
-  -app.MapControllers();
-  -app.MapFallbackToFile("index.html");
+  - app.MapRazorPages();
+  - app.MapControllers();
+  - app.MapFallbackToFile("index.html");
   ```
 
 * Add middleware that maps requests to the client apps. The following example configures the middleware to run when:
@@ -298,19 +296,28 @@ For more information on using the Razor components from either of the client app
 
 ## Static assets
 
-When an asset is in a client app's `wwwroot` folder, provide the path normally in components:
+When an asset is in a client app's `wwwroot` folder, provide the static asset request path in components:
 
-```razor
+```html
 <img alt="..." src="/{PATH AND FILE NAME}" />
 ```
 
 The `{PATH AND FILE NAME}` placeholder is the path and file name under `wwwroot`.
 
+For example, the source for a Jeep image (`jeep-yj.png`) in the `vehicle` folder of `wwwroot`:
+
+```html
+<img alt="Jeep Wrangler YJ" src="/vehicle/jeep-yj.png" />
+```
+
 ## Razor class library (RCL) support
 
-Add the [Razor class library (RCL)](xref:blazor/components/class-libraries) to the solution as a new project.
+Add the [Razor class library (RCL)](xref:blazor/components/class-libraries) to the solution as a new project:
 
-For each hosted Blazor WebAssembly app, create a package reference for the RCL project by right-clicking each project and selecting **Add** > **Project Reference** .
+* Right-click the solution in **Solution Explorer** and select **Add** > **New Project**.
+* Use the **Razor Class Library** project template to create the project. The examples in this section use the project name `ComponentLibrary`, which is also the RCL's assembly name. Do ***not*** select the **Support pages and views** checkbox.
+
+For each hosted Blazor WebAssembly client app, create a project reference for the RCL project by right-clicking each client project in **Solution Explorer** and selecting **Add** > **Project Reference**.
 
 Use components from the RCL in the client apps with either of the following approaches:
 
@@ -318,7 +325,7 @@ Use components from the RCL in the client apps with either of the following appr
 * Provide the RCL's namespace along with the Razor syntax for the component (for example, `<ComponentLibrary.Component1 />`). This approach doesn't require an [`@using`](xref:mvc/views/razor#using) directive at the top of the component file.
 
 > [!NOTE]
-> [`@using`](xref:mvc/views/razor#using) directives can also be placed into the client app's `_Import.razor` file, which makes the RCL's namespace globally available to components.
+> An [`@using`](xref:mvc/views/razor#using) directive can also be placed into each client app's `_Import.razor` file, which makes the RCL's namespace globally available to components in that project.
 
 Manually add the RCL's bundled stylesheet to the `<head>` content of `wwwroot/index.html` of each client app that consumes the RCL. The following example is for an RCL with the assembly name `ComponentLibrary`:
 
@@ -326,30 +333,22 @@ Manually add the RCL's bundled stylesheet to the `<head>` content of `wwwroot/in
 <link href="_content/ComponentLibrary/ComponentLibrary.bundle.scp.css" rel="stylesheet" />
 ```
 
-When any other static asset is in the `wwwroot` folder of an RCL, reference the static asset in the client app per the guidance in <xref:razor-pages/ui-class#consume-content-from-a-referenced-rcl>:
+When any other static asset is in the `wwwroot` folder of an RCL, reference the static asset in a client app per the guidance in <xref:razor-pages/ui-class#consume-content-from-a-referenced-rcl>:
 
-```razor
+```html
 <img alt="..." src="_content/{PACKAGE ID}/{PATH AND FILE NAME}" />
 ```
 
-The `{PACKAGE ID}` placeholder is the library's [package ID](/nuget/create-packages/creating-a-package-msbuild#set-properties). The package ID defaults to the project's assembly name if `<PackageId>` isn't specified in the project file. The `{PATH AND FILE NAME}` placeholder is path and file name under `wwwroot`.
+The `{PACKAGE ID}` placeholder is the RCL's [package ID](/nuget/create-packages/creating-a-package-msbuild#set-properties). The package ID defaults to the project's assembly name if `<PackageId>` isn't specified in the project file. The `{PATH AND FILE NAME}` placeholder is path and file name under `wwwroot`.
+
+The following example shows the source for a Jeep image (`jeep-yj.png`) in the `vehicle` folder of the RCL's `wwwroot`. The following example is for an RCL with the assembly name `ComponentLibrary`:
+
+```html
+<img alt="Jeep Wrangler YJ" src="_content/ComponentLibrary/vehicle/jeep-yj.png" />
+```
 
 ## Additional resources
 
 * <xref:blazor/components/class-libraries>
 * <xref:razor-pages/ui-class>
 * <xref:blazor/components/css-isolation>
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
-
-
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-5.0"
-
-
-
-:::moniker-end
