@@ -49,6 +49,8 @@ If the static file exists in the directory */wwwroot/images/*, the generated HTM
 
 The value assigned to the parameter `v` is the hash value of the `asplogo.png` file on disk. If the web server is unable to obtain read access to the static file, no `v` parameter is added to the `src` attribute in the rendered markup.
 
+[!INCLUDE[](~/includes/th_version.md)]
+
 ## Hash caching behavior
 
 The Image Tag Helper uses the cache provider on the local web server to store the calculated `Sha512` hash of a given file. If the file is requested multiple times, the hash isn't recalculated. The cache is invalidated by a file watcher that's attached to the file when the file's `Sha512` hash is calculated. When the file changes on disk, a new hash is calculated and cached.

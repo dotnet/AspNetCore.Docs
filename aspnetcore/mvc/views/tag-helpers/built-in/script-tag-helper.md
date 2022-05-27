@@ -43,6 +43,12 @@ The script method defined in the primary script to use for the fallback test. Fo
 
 The URL of a Script tag to fallback to in the case the primary one fails. For more information, see <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper.FallbackSrc>.
 
+### asp-append-version
+
+When `asp-append-version` is specified with a `true` value along with a `src` attribute, a unique version is generated.
+
+[!INCLUDE[](~/includes/th_version.md)]
+
 ## Additional resources
 
 * <xref:mvc/views/tag-helpers/intro>
