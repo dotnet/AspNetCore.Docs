@@ -207,6 +207,10 @@ The preceding route allows the requested format to be specified using an optiona
 | `/api/todoitems/5.json` | The JSON formatter (if configured) |
 | `/api/todoitems/5.xml`  | The XML formatter (if configured)  |
 
+## Polymorphic deserialization
+
+Built-in features provide a limited range of polymorphic serialization but no support for deserialization at all. Deserialization requires a custom converter. See [Polymorphic deserialization](/dotnet/standard/serialization/system-text-json-converters-how-to?pivots=dotnet-6-0#support-polymorphic-deserialization) for a complete sample of polymorphic deserialization.
+
 ## Additional resources
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/advanced/formatting/samples) ([how to download](xref:index#how-to-download-a-sample))
@@ -664,6 +668,10 @@ The preceding route allows the requested format to be specified using an optiona
 | `/api/todoitems/5`      | The default output formatter       |
 | `/api/todoitems/5.json` | The JSON formatter (if configured) |
 | `/api/todoitems/5.xml`  | The XML formatter (if configured)  |
+
+## Polymorphic deserialization
+
+Built-in features provide a limited range of polymorphic serialization but no support for deserialization at all. Deserialization requires a custom converter. See [Polymorphic deserialization](/dotnet/standard/serialization/system-text-json-converters-how-to?pivots=dotnet-6-0#support-polymorphic-deserialization) for a complete sample of polymorphic deserialization.
 
 ## Additional resources
 
