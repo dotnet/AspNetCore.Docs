@@ -22,7 +22,7 @@ By default, the ASP.NET Core Identity system stores user information in a SQL Se
 
 * You use [Azure Table Storage](/azure/storage/) or another data store.
 * Your database tables have a different structure. 
-* You may wish to use a different data access approach, such as [Dapper](https://github.com/StackExchange/Dapper). 
+* You may wish to use a different data access approach, such as [Dapper](https://github.com/DapperLib/Dapper). 
 
 In each of these cases, you can write a customized provider for your storage mechanism and plug that provider into your app.
 
