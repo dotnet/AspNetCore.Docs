@@ -812,8 +812,8 @@ To provide `Component1`'s `my-component` CSS class, link to the library's styles
 
 `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server):
 
-```diff
-+ <link href="_content/ComponentLibrary/styles.css" rel="stylesheet" />
+```html
+<link href="_content/ComponentLibrary/styles.css" rel="stylesheet" />
 ```
 
 ## Create an RCL with static assets
