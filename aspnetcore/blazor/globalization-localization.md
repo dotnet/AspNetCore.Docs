@@ -1386,10 +1386,10 @@ If the app isn't configured to process controller actions:
 
   The following example shows the call to <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> after the line is added:
 
-  ```diff
+  ```csharp
   app.UseEndpoints(endpoints =>
   {
-  +   endpoints.MapControllers();
+      endpoints.MapControllers();
       endpoints.MapBlazorHub();
       endpoints.MapFallbackToPage("/_Host");
   });
@@ -2017,7 +2017,7 @@ using Microsoft.JSInterop;
 Remove the following line from `Program.cs`:
 
 ```diff
--await builder.Build().RunAsync();
+- await builder.Build().RunAsync();
 ```
 
 Replace the preceding line with the following code. The code adds Blazor's localization service to the app's service collection with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A> and uses [JS interop](xref:blazor/js-interop/call-javascript-from-dotnet) to call into JS and retrieve the user's culture selection from local storage. If local storage doesn't contain a culture for the user, the code sets a default value of United States English (`en-US`).
@@ -2178,10 +2178,10 @@ If the app isn't configured to process controller actions:
 
   The following example shows the call to <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> after the line is added:
 
-  ```diff
+  ```csharp
   app.UseEndpoints(endpoints =>
   {
-  +   endpoints.MapControllers();
+      endpoints.MapControllers();
       endpoints.MapBlazorHub();
       endpoints.MapFallbackToPage("/_Host");
   });

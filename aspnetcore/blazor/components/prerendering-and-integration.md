@@ -1102,11 +1102,11 @@ In the `Home` controller, return the view.
 
 `Controllers/HomeController.cs`:
 
-```diff
-+ public IActionResult Privacy()
-+ {
-+     return View();
-+ }
+```csharp
+public IActionResult Privacy()
+{
+    return View();
+}
 ```
 
 Import static assets to the **`Server`** project from the donor project's `wwwroot` folder:
@@ -1163,14 +1163,14 @@ After [configuring the solution](#solution-configuration), including the [additi
 
 In `Program.cs` of the **`Client`** project, add the namespace for the project's Razor components to the top of the file:
 
-```diff
-+ using BlazorHosted.Client.Pages;
+```csharp
+using BlazorHosted.Client.Pages;
 ```
 
 After the `builder` is established in `Program.cs`, add the `Counter` component as a root component:
 
-```diff
-+ builder.RootComponents.Add<Counter>("#counter-component");
+```csharp
+builder.RootComponents.Add<Counter>("#counter-component");
 ```
 
 In the following Razor Pages example, the `Counter` component is rendered in a page. To make the component interactive, the Blazor WebAssembly script is included in the page's [render section](xref:mvc/views/layout#sections).
@@ -1221,8 +1221,8 @@ An existing Razor Pages or MVC app can integrate Razor components into pages and
 
    * Add the following `<base>` tag to the `<head>` element in `Pages/Shared/_Layout.cshtml` (Razor Pages) or `Views/Shared/_Layout.cshtml` (MVC):
 
-     ```diff
-     + <base href="~/" />
+     ```html
+     <base href="~/" />
      ```
 
      The `href` value (the *app base path*) in the preceding example assumes that the app resides at the root URL path (`/`). If the app is a sub-application, follow the guidance in the *App base path* section of the <xref:blazor/host-and-deploy/index#app-base-path> article.
@@ -1231,9 +1231,9 @@ An existing Razor Pages or MVC app can integrate Razor components into pages and
 
      `Pages/Shared/_Layout.cshtml` (Razor Pages) or `Views/Shared/_Layout.cshtml` (MVC):
 
-     ```diff
+     ```cshtml
          ...
-     +   <script src="_framework/blazor.server.js"></script>
+         <script src="_framework/blazor.server.js"></script>
 
          @await RenderSectionAsync("Scripts", required: false)
      </body>
@@ -1258,18 +1258,18 @@ An existing Razor Pages or MVC app can integrate Razor components into pages and
 
 1. Register the Blazor Server service in `Startup.ConfigureServices`.
 
-   `Startup.cs`:
+   In `Startup.cs`:
 
-   ```diff
-   + services.AddServerSideBlazor();
+   ```csharp
+   services.AddServerSideBlazor();
    ```
 
 1. Add the Blazor Hub endpoint to the endpoints (`app.UseEndpoints`) of `Startup.Configure`.
 
    `Startup.cs`:
 
-   ```diff
-   + endpoints.MapBlazorHub();
+   ```csharp
+   endpoints.MapBlazorHub();
    ```
 
 1. Integrate components into any page or view. For example, add a `Counter` component to the project's `Shared` folder.
@@ -1387,12 +1387,18 @@ To support routable Razor components in Razor Pages apps:
 
 1. In the `Startup.Configure` endpoints of `Startup.cs`, add a low-priority route for the `_Host` page as the last endpoint:
 
-   ```diff
+   ```csharp
+   endpoints.MapFallbackToPage("/_Host");
+   ```
+
+   The following example shows the added line in a typical app's endpoint configuration:
+
+   ```csharp
    app.UseEndpoints(endpoints =>
    {
        endpoints.MapRazorPages();
        endpoints.MapBlazorHub();
-   +   endpoints.MapFallbackToPage("/_Host");
+       endpoints.MapFallbackToPage("/_Host");
    });
    ```
 
@@ -1487,14 +1493,20 @@ To support routable Razor components in MVC apps:
 
 1. In the `Startup.Configure` endpoints of `Startup.cs`, add a low-priority route for the controller action that returns the `_Host` view:
 
-   ```diff
+   ```csharp
+   endpoints.MapFallbackToController("Blazor", "Home");
+   ```
+   
+   The following example shows the added line in a typical app's endpoint configuration:
+
+   ```csharp
    app.UseEndpoints(endpoints =>
    {
        endpoints.MapControllerRoute(
            name: "default",
            pattern: "{controller=Home}/{action=Index}/{id?}");
        endpoints.MapBlazorHub();
-   +   endpoints.MapFallbackToController("Blazor", "Home");
+       endpoints.MapFallbackToController("Blazor", "Home");
    });
    ```
 
@@ -1674,9 +1686,9 @@ An existing Razor Pages or MVC app can integrate Razor components into pages and
 
      `Pages/Shared/_Layout.cshtml` (Razor Pages) or `Views/Shared/_Layout.cshtml` (MVC):
 
-     ```diff
+     ```cshtml
          ...
-     +   <script src="_framework/blazor.server.js"></script>
+         <script src="_framework/blazor.server.js"></script>
 
          @await RenderSectionAsync("Scripts", required: false)
      </body>
@@ -1703,16 +1715,16 @@ An existing Razor Pages or MVC app can integrate Razor components into pages and
 
    `Startup.cs`:
 
-   ```diff
-   + services.AddServerSideBlazor();
+   ```csharp
+   services.AddServerSideBlazor();
    ```
 
 1. Add the Blazor Hub endpoint to the endpoints (`app.UseEndpoints`) of `Startup.Configure`.
 
    `Startup.cs`:
 
-   ```diff
-   + endpoints.MapBlazorHub();
+   ```csharp
+   endpoints.MapBlazorHub();
    ```
 
 1. Integrate components into any page or view. For example, add a `Counter` component to the project's `Shared` folder.
@@ -1828,12 +1840,18 @@ To support routable Razor components in Razor Pages apps:
 
 1. In the `Startup.Configure` endpoints of `Startup.cs`, add a low-priority route for the `_Host` page as the last endpoint:
 
-   ```diff
+   ```csharp
+   endpoints.MapFallbackToPage("/_Host");
+   ```
+
+   The following example shows the added line in a typical app's endpoint configuration:
+
+   ```csharp
    app.UseEndpoints(endpoints =>
    {
        endpoints.MapRazorPages();
        endpoints.MapBlazorHub();
-   +   endpoints.MapFallbackToPage("/_Host");
+       endpoints.MapFallbackToPage("/_Host");
    });
    ```
 
@@ -1926,14 +1944,20 @@ To support routable Razor components in MVC apps:
 
 1. In the `Startup.Configure` endpoints of `Startup.cs`, add a low-priority route for the controller action that returns the `_Host` view:
 
-   ```diff
+   ```csharp
+   endpoints.MapFallbackToController("Blazor", "Home");
+   ```
+
+   The following example shows the added line in a typical app's endpoint configuration:
+
+   ```csharp
    app.UseEndpoints(endpoints =>
    {
        endpoints.MapControllerRoute(
            name: "default",
            pattern: "{controller=Home}/{action=Index}/{id?}");
        endpoints.MapBlazorHub();
-   +   endpoints.MapFallbackToController("Blazor", "Home");
+       endpoints.MapFallbackToController("Blazor", "Home");
    });
    ```
 
