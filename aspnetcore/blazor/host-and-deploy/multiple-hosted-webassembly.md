@@ -1,7 +1,7 @@
 ---
 title: Multiple hosted ASP.NET Core Blazor WebAssembly apps
 author: guardrex
-description: Learn how to configure a hosted Blazor WebAssembly app generated from the Blazor WebAssembly template to host multiple Blazor WebAssembly apps.
+description: Learn how to configure a hosted Blazor WebAssembly app to host multiple Blazor WebAssembly apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
@@ -11,7 +11,7 @@ uid: blazor/host-and-deploy/multiple-hosted-webassembly
 ---
 # Multiple hosted ASP.NET Core Blazor WebAssembly apps
 
-This article explains how to configure a hosted Blazor WebAssembly app generated from the Blazor WebAssembly template to host multiple Blazor WebAssembly apps.
+This article explains how to configure a hosted Blazor WebAssembly app to host multiple Blazor WebAssembly apps.
 
 ## Configuration
 
@@ -28,7 +28,7 @@ In the following example:
 The example shown in this section requires additional configuration for:
 
 * Accessing the apps directly at the example host domains, `firstapp.com` and `secondapp.com`.
-* Certificates for the client apps to enable TLS security (HTTPS).
+* Certificates for the client apps to enable TLS/HTTPS security.
 * Configuring the server app as a Razor Pages app for the following features:
   * Integration of Razor components into pages or views.
   * Prerendering Razor components.
