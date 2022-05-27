@@ -321,8 +321,21 @@ For each hosted Blazor WebAssembly client app, create a project reference for th
 
 Use components from the RCL in the client apps with either of the following approaches:
 
-* Place an [`@using`](xref:mvc/views/razor#using) directive at the top of the component for the RCL's namespace (for example, `@using ComponentLibrary`) and add Razor syntax for the component (for example, `<Component1 />`).
-* Provide the RCL's namespace along with the Razor syntax for the component (for example, `<ComponentLibrary.Component1 />`). This approach doesn't require an [`@using`](xref:mvc/views/razor#using) directive at the top of the component file.
+* Place an [`@using`](xref:mvc/views/razor#using) directive at the top of the component for the RCL's namespace and add Razor syntax for the component. The following example is for an RCL with the assembly name `ComponentLibrary`:
+
+  ```razor
+  @using ComponentLibrary
+
+  ...
+
+  <Component1 />
+  ```
+
+* Provide the RCL's namespace along with the Razor syntax for the component. This approach doesn't require an [`@using`](xref:mvc/views/razor#using) directive at the top of the component file. The following example is for an RCL with the assembly name `ComponentLibrary`:
+
+  ```razor
+  <ComponentLibrary.Component1 />
+  ```
 
 > [!NOTE]
 > An [`@using`](xref:mvc/views/razor#using) directive can also be placed into each client app's `_Import.razor` file, which makes the RCL's namespace globally available to components in that project.
