@@ -11,7 +11,11 @@ uid: migration/proper-to-2x/index
 
 By [Isaac Levin](https://isaaclevin.com)
 
-This article serves as a reference guide for migrating ASP.NET apps to ASP.NET Core. See the ebook [Porting existing ASP.NET apps to .NET Core](https://aka.ms/aspnet-porting-ebook) for a comprehensive porting guide.
+This article serves as a reference guide for migrating ASP.NET apps to ASP.NET Core.
+
+The [.NET Upgrade Assistant](https://dotnet.microsoft.com/en-us/platform/upgrade-assistant) is a is a command-line tool that can help migrate ASP.NET to ASP.NET Core. For more information, see  [Overview of the .NET Upgrade Assistant](/dotnet/core/porting/upgrade-assistant-overview) and [Upgrade an ASP.NET MVC app to .NET 6 with the .NET Upgrade Assistant](/dotnet/core/porting/upgrade-assistant-aspnetmvc).
+
+See the ebook [Porting existing ASP.NET apps to .NET Core](https://aka.ms/aspnet-porting-ebook) for a comprehensive porting guide.
 
 ## Prerequisites
 
