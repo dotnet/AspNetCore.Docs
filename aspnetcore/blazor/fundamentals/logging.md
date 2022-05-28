@@ -195,7 +195,7 @@ var logger4 = LoggerFactory.CreateLogger("CustomCategory2");
 logger4.LogWarning("Someone has clicked me!");
 ```
 
-In the developer tools console output, the filter only permits logging for the `CustomCategory2` category and <xref:Microsoft.Extensions.Logging.LogLevel.Warning> log level message:
+In the developer tools console output, the filter only permits logging for the `CustomCategory2` category and <xref:Microsoft.Extensions.Logging.LogLevel.Information> log level message:
 
 > :::no-loc text="info: CustomCategory2[0]":::  
 > :::no-loc text="Someone has clicked me!":::
