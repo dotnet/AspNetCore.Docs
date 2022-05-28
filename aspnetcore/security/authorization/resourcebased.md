@@ -56,9 +56,9 @@ The handler class specifies both the requirement and resource type. For example,
 
 In the preceding example, imagine that `SameAuthorRequirement` is a special case of a more generic `SpecificAuthorRequirement` class. The `SpecificAuthorRequirement` class (not shown) contains a `Name` property representing the name of the author. The `Name` property could be set to the current user.
 
-Register the requirement and handler in `Startup.ConfigureServices`:
+Register the requirement and handler in `Program.cs`:
 
-[!code-csharp[](resourcebased/samples/3_0/ResourceBasedAuthApp2/Startup.cs?name=snippet_ConfigureServicesSample&highlight=4-8,10)]
+[!code-csharp[](resourcebased/samples/6_0/ResourceBasedAuthApp2/Program.cs?name=snippet_ConfigureServicesSample&highlight=4-8,10)]
 
 ### Operational requirements
 
