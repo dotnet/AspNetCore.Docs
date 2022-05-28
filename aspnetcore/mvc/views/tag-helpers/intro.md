@@ -176,8 +176,11 @@ builder.Services.AddSingleton
     <ITagHelperInitializer<ScriptTagHelper>, AppendVersionTagHelperInitializer>();
 ```
 
-## IntelliSense support for Tag Helpers
+## Tag Helper automatic version generation outside of wwwroot
 
+[!INCLUDE[](~/includes/th_version.md)]
+
+## IntelliSense support for Tag Helpers
 
 Consider writing an HTML `<label>` element. As soon as you enter `<l` in the Visual Studio editor, IntelliSense displays matching elements:
 
