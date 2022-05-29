@@ -33,7 +33,8 @@ The Distributed Cache Tag Helper uses [constructor injection](xref:fundamentals/
 * `vary-by-route`
 * `vary-by-cookie`
 * `vary-by-user`
-* `vary-by priority`
+* `vary-by`
+* `priority`
 
 The Distributed Cache Tag Helper inherits from the same class as Cache Tag Helper. For descriptions of these attributes, see the [Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper).
 
