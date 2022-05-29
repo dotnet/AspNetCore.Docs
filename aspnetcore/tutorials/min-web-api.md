@@ -3,7 +3,7 @@ title: "Tutorial: Create a minimal web API with ASP.NET Core"
 author: rick-anderson
 description: Learn how to build a minimal web API with ASP.NET Core.
 ms.author: riande
-ms.date: 11/12/2021
+ms.date: 05/28/2022
 monikerRange: '>= aspnetcore-6.0'
 no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, Models]
 uid: tutorials/min-web-api
@@ -94,11 +94,11 @@ This tutorial creates the following API:
 
 * Select **File** > **New Project...**.
 
-![macOS New solution](first-web-api-mac/_static/sln.png)
+![macOS New solution](first-web-api-mac/_static/6/sln.png)
 
 * In Visual Studio for Mac 2022, select **Web and Console** > **App** > **API** > **Next**.
 
-![macOS API template selection](first-web-api-mac/_static/api_template.png)
+![macOS API template selection](first-web-api-mac/_static/6/api_template.png)
 
 In the **Configure your new API** dialog, make the following selections:
 - **Target framework:** .NET 6.x (or more recent). 
@@ -108,7 +108,7 @@ In the **Configure your new API** dialog, make the following selections:
 
 Select **Next**.
 
-![Configure Your New API Window 1](first-web-api-mac/_static/configure_your_new_api.png)
+![Configure Your New API Window 1](first-web-api-mac/_static/6/configure_your_new_api.png)
 
 * In the **Configure our new API** window, enter the following:
 - **Project name:** TodoApi
@@ -116,7 +116,7 @@ Select **Next**.
 
 Select **Create**.
 
-![Configure Your New API Window 2](first-web-api-mac/_static/configure_your_new_api2.png)
+![Configure Your New API Window 2](first-web-api-mac/_static/6/configure_your_new_api2.png)
 
 [!INCLUDE[](~/includes/mac-terminal-access.md)]
 
