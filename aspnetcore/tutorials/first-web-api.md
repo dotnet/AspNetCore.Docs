@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to build a web API with ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/25/2022
+ms.date: 05/28/2022
 no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, Models]
 uid: tutorials/first-web-api
 ---
@@ -631,7 +631,7 @@ This tutorial creates the following API:
 
 The following diagram shows the design of the app.
 
-![The client is represented by a box on the left. It submits a request and receives a response from the application, a box drawn on the right. Within the application box, three boxes represent the controller, the model, and the data access layer. The request comes into the application's controller, and read/write operations occur between the controller and the data access layer. The model is serialized and returned to the client in the response.](first-web-api/_static/5/architecture.png)
+![The client is represented by a box on the left. It submits a request and receives a response from the application, a box drawn on the right. Within the application box, three boxes represent the controller, the model, and the data access layer. The request comes into the application's controller, and read/write operations occur between the controller and the data access layer. The model is serialized and returned to the client in the response.](first-web-api/_static/architecture.png)
 
 ## Prerequisites
 
