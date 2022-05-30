@@ -312,6 +312,7 @@ All scopes must belong to the same app per Azure Active Directory rules. Additio
 builder.Services.AddMsalAuthentication(options =>
 {
     ...
+    options.ProviderOptions.ResponseType = "code";
     options.ProviderOptions.DefaultAccessTokenScopes.Add("{SCOPE URI}");
 });
 ```
