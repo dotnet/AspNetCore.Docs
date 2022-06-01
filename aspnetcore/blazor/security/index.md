@@ -52,7 +52,7 @@ For more information on creating apps and configuration, see <xref:blazor/securi
 
 ### Blazor Server authentication
 
-For authentication that's handled by the app where ASP.NET Core stores and manages user accounts, Blazor Server uses [ASP.NET Core Identity](xref:security/authentication/identity). For authentication that's handled externally where user accounts are stored and managed externally, Blazor Server uses:
+When ASP.NET Core stores and manages user accounts, Blazor Server uses [ASP.NET Core Identity](xref:security/authentication/identity). When user accounts are stored and managed externally, Blazor Server uses:
 
 * [Microsoft identity platform](/azure/active-directory/develop/) for Azure Active Directory (AAD) or AAD B2C, which use the [OAuth](https://oauth.net) and [OpenID Connect (OIDC)](https://openid.net/connect/) protocols.
 * Typically, [OAuth](https://oauth.net)/[OpenID Connect (OIDC)](https://openid.net/connect/) directly for non-Microsoft identity providers, often via a third-party API/package that simplifies implementation.
@@ -632,7 +632,7 @@ For more information on creating apps and configuration, see <xref:blazor/securi
 
 ### Blazor Server authentication
 
-For authentication that's handled by the app where ASP.NET Core stores and manages user accounts, Blazor Server uses [ASP.NET Core Identity](xref:security/authentication/identity). For authentication that's handled externally where user accounts are stored and managed externally, Blazor Server uses:
+When ASP.NET Core stores and manages user accounts, Blazor Server uses [ASP.NET Core Identity](xref:security/authentication/identity). When user accounts are stored and managed externally, Blazor Server uses:
 
 * [Microsoft identity platform](/azure/active-directory/develop/) for Azure Active Directory (AAD) or AAD B2C, which use the [OAuth](https://oauth.net) and [OpenID Connect (OIDC)](https://openid.net/connect/) protocols.
 * Typically, [OAuth](https://oauth.net)/[OpenID Connect (OIDC)](https://openid.net/connect/) directly for non-Microsoft identity providers, often via a third-party API/package that simplifies implementation.
@@ -1217,7 +1217,7 @@ For more information on creating apps and configuration, see <xref:blazor/securi
 
 ### Blazor Server authentication
 
-For authentication that's handled by the app where ASP.NET Core stores and manages user accounts, Blazor Server uses [ASP.NET Core Identity](xref:security/authentication/identity). For authentication that's handled externally where user accounts are stored and managed externally, Blazor Server uses:
+When ASP.NET Core stores and manages user accounts, Blazor Server uses [ASP.NET Core Identity](xref:security/authentication/identity). When user accounts are stored and managed externally, Blazor Server uses:
 
 * [Microsoft identity platform](/azure/active-directory/develop/) for Azure Active Directory (AAD) or AAD B2C, which use the [OAuth](https://oauth.net) and [OpenID Connect (OIDC)](https://openid.net/connect/) protocols.
 * Typically, [OAuth](https://oauth.net)/[OpenID Connect (OIDC)](https://openid.net/connect/) directly for non-Microsoft identity providers, often via a third-party API/package that simplifies implementation.
