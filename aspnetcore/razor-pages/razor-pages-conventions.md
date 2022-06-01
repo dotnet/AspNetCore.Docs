@@ -57,7 +57,7 @@ public void ConfigureServices(IServiceCollection services)
 
 Routes specify an <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteModel.Order*> for processing (route matching).
 
-| Order            | Behavior |
+| Order order           | Behavior |
 | :--------------: | -------- |
 | -1               | The route is processed before other routes are processed. |
 | 0                | Order isn't specified (default value). Not assigning `Order` (`Order = null`) defaults the route `Order` to 0 (zero) for processing. |
