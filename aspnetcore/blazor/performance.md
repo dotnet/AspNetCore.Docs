@@ -146,7 +146,7 @@ The preceding example performs well if thousands of messages aren't shown at onc
 
 ##### Define reusable `RenderFragments` in code
 
-You might be factoring out child components purely as a way of reusing rendering logic. If that's the case, you can create reusable rendering logic without implementing additional components. In any component's `@code` block, define a <xref:Microsoft.AspNetCore.Components.RenderFragment>. Render the fragment from any location as many times as needed:
+You might be factoring out child components purely as a way of reusing rendering logic. If that's the case, you can create reusable rendering logic without implementing additional components. In any component's `@code` block, define a [render fragment](xref:blazor/components/index#render-fragments> (<xref:Microsoft.AspNetCore.Components.RenderFragment>). Render the fragment from any location as many times as needed:
 
 ```razor
 <h1>Hello, world!</h1>
@@ -901,7 +901,7 @@ The preceding example performs well if thousands of messages aren't shown at onc
 
 ##### Define reusable `RenderFragments` in code
 
-You might be factoring out child components purely as a way of reusing rendering logic. If that's the case, you can create reusable rendering logic without implementing additional components. In any component's `@code` block, define a <xref:Microsoft.AspNetCore.Components.RenderFragment>. Render the fragment from any location as many times as needed:
+You might be factoring out child components purely as a way of reusing rendering logic. If that's the case, you can create reusable rendering logic without implementing additional components. In any component's `@code` block, define a [render fragment](xref:blazor/components/index#render-fragments> (<xref:Microsoft.AspNetCore.Components.RenderFragment>). Render the fragment from any location as many times as needed:
 
 ```razor
 <h1>Hello, world!</h1>
@@ -1640,7 +1640,7 @@ The preceding example performs well if thousands of messages aren't shown at onc
 
 ##### Define reusable `RenderFragments` in code
 
-You might be factoring out child components purely as a way of reusing rendering logic. If that's the case, you can create reusable rendering logic without implementing additional components. In any component's `@code` block, define a <xref:Microsoft.AspNetCore.Components.RenderFragment>. Render the fragment from any location as many times as needed:
+You might be factoring out child components purely as a way of reusing rendering logic. If that's the case, you can create reusable rendering logic without implementing additional components. In any component's `@code` block, define a [render fragment](xref:blazor/components/index#render-fragments> (<xref:Microsoft.AspNetCore.Components.RenderFragment>). Render the fragment from any location as many times as needed:
 
 ```razor
 <h1>Hello, world!</h1>
