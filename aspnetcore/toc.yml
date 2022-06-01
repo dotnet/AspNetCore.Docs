@@ -667,7 +667,7 @@ items:
   - name: Real-time apps
     displayName: signalr
     items:
-      - name: SignalR overview
+      - name: Overview
         uid: signalr/introduction
       - name: Supported platforms
         uid: signalr/supported-platforms
@@ -775,7 +775,7 @@ items:
             href: https://github.com/aspnet/AspNetCore/blob/main/src/SignalR/docs/specs/TransportProtocols.md
   - name: Remote Procedure Call apps
     items:
-      - name: Introduction to gRPC services
+      - name: Overview
         uid: grpc/index
       - name: Tutorials
         items:
