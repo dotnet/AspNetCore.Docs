@@ -11,7 +11,7 @@ uid: blazor/fundamentals/routing
 ---
 # ASP.NET Core Blazor routing and navigation
 
-This article explains how to manage request routing and how to use the <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component to create a navigation links in Blazor apps.
+This article explains how to manage request routing and how to use the <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component to create navigation links in Blazor apps.
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -661,8 +661,6 @@ For information on configuring <xref:Microsoft.AspNetCore.Builder.RazorPagesEndp
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-This article explains how to manage request routing and how to use the <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component to create a navigation links in Blazor apps.
-
 ## Route templates
 
 The <xref:Microsoft.AspNetCore.Components.Routing.Router> component enables routing to Razor components in a Blazor app. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component is used in the `App` component of Blazor apps.
@@ -1087,8 +1085,6 @@ For information on configuring <xref:Microsoft.AspNetCore.Builder.RazorPagesEndp
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
-
-This article explains how to manage request routing and how to use the <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component to create a navigation links in Blazor apps.
 
 ## Route templates
 
