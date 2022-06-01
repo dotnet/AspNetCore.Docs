@@ -115,6 +115,16 @@ To share protected payloads among apps:
 
 :::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionSetApplicationName":::
 
+> [!WARNING]
+> In .NET 6, <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> normalizes the content root path to always end with a <xref:System.IO.Path.DirectorySeparatorChar> in .NET 6. Other hosts do not normalize the path. This means that most apps migrating from <xref:Microsoft.Extensions.Hosting.HostBuilder> or <xref:Microsoft.AspNetCore.Hosting.WebHost> won't share the same app name. To work around this issue,
+> you can trim the directory seperator character and set the app name manually to what it would have been for other hosts.
+>
+> ```csharp
+> var trimmedContentRootPath = builder.Environment.ContentRootPath.TrimEnd(Path.DirectorySeparatorChar);
+> builder.Services.AddDataProtection()
+>  .SetApplicationName(trimmedContentRootPath);
+>  ```
+
 ## DisableAutomaticKeyGeneration
 
 You may have a scenario where you don't want an app to automatically roll keys (create new keys) as they approach expiration. One example of this scenario might be apps set up in a primary/secondary relationship, where only the primary app is responsible for key management concerns and secondary apps simply have a read-only view of the key ring. The secondary apps can be configured to treat the key ring as read-only by configuring the system with <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.DisableAutomaticKeyGeneration%2A>:
