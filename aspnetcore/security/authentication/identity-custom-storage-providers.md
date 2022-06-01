@@ -108,7 +108,7 @@ The implementation logic for creating the user is in the `_usersTable.CreateAsyn
 
 ## Customize the user class
 
-When implementing a storage provider, create a user class which is equivalent to the [IdentityUser class](xref:security/authentication/customize-identity-model#model-generic-types).
+When implementing a storage provider, create a user class which is equivalent to the [IdentityUser class](xref:security/authentication/customize_identity_model#model-generic-types).
 
 At a minimum, your user class must include an `Id` and a `UserName` property.
 
