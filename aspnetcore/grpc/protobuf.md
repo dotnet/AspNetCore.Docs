@@ -218,9 +218,6 @@ namespace CustomTypes
             Nanos = nanos;
         }
 
-        public long Units { get; }
-        public int Nanos { get; }
-
         public static implicit operator decimal(CustomTypes.DecimalValue grpcDecimal)
         {
             return grpcDecimal.Units + grpcDecimal.Nanos / NanoFactor;
@@ -235,6 +232,11 @@ namespace CustomTypes
     }
 }
 ```
+
+The preceding code:
+
+* Adds a partial class for `DecimalValue`. The partial class is combined with `DecimalValue` generated from the `.proto` file. The generated class declares the `Units` and `Nanos` properties.
+* Has implicit operators for converting between `DecimalValue` and the BCL `decimal` type.
 
 ## Collections
 

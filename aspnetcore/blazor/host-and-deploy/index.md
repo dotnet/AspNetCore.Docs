@@ -216,7 +216,7 @@ In scenarios where an app requires a separate area with custom resources and Raz
 
 ## Host multiple Blazor WebAssembly apps
 
-For more information on hosting multiple Blazor WebAssembly apps in a hosted Blazor [solution](xref:blazor/tooling#visual-studio-solution-file-sln), see <xref:blazor/host-and-deploy/webassembly#hosted-deployment-with-multiple-blazor-webassembly-apps>.
+For more information on hosting multiple Blazor WebAssembly apps in a hosted Blazor [solution](xref:blazor/tooling#visual-studio-solution-file-sln), see <xref:blazor/host-and-deploy/multiple-hosted-webassembly>.
 
 ## Deployment
 
@@ -411,7 +411,7 @@ In scenarios where an app requires a separate area with custom resources and Raz
 
 ### Host multiple Blazor WebAssembly apps
 
-For more information on hosting multiple Blazor WebAssembly apps in a hosted Blazor [solution](xref:blazor/tooling#visual-studio-solution-file-sln), see <xref:blazor/host-and-deploy/webassembly#hosted-deployment-with-multiple-blazor-webassembly-apps>.
+For more information on hosting multiple Blazor WebAssembly apps in a hosted Blazor [solution](xref:blazor/tooling#visual-studio-solution-file-sln), see <xref:blazor/host-and-deploy/multiple-hosted-webassembly>.
 
 ## Deployment
 
@@ -606,7 +606,7 @@ In scenarios where an app requires a separate area with custom resources and Raz
 
 ### Host multiple Blazor WebAssembly apps
 
-For more information on hosting multiple Blazor WebAssembly apps in a hosted Blazor [solution](xref:blazor/tooling#visual-studio-solution-file-sln), see <xref:blazor/host-and-deploy/webassembly#hosted-deployment-with-multiple-blazor-webassembly-apps>.
+For more information on hosting multiple Blazor WebAssembly apps in a hosted Blazor [solution](xref:blazor/tooling#visual-studio-solution-file-sln), see <xref:blazor/host-and-deploy/multiple-hosted-webassembly>.
 
 ## Deployment
 

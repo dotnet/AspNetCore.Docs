@@ -108,9 +108,13 @@ If event handlers are provided in developer code, unhook them on disposal. For m
 <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSet%2A> or <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> are called:
 
 * After the component is initialized in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A> or <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>.
+
 * When the parent component rerenders and supplies:
-  * Known primitive immutable types when at least one parameter has changed.
+
+  * Known or primitive immutable types when at least one parameter has changed.
   * Complex-typed parameters. The framework can't know whether the values of a complex-typed parameter have mutated internally, so the framework always treats the parameter set as changed when one or more complex-typed parameters are present.
+  
+  For more information on rendering conventions, see <xref:blazor/components/rendering#rendering-conventions-for-componentbase>.
 
 For the following example component, navigate to the component's page at a URL:
 
@@ -559,9 +563,13 @@ If event handlers are provided in developer code, unhook them on disposal. For m
 <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSet%2A> or <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> are called:
 
 * After the component is initialized in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A> or <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>.
+
 * When the parent component rerenders and supplies:
-  * Known primitive immutable types when at least one parameter has changed.
+
+  * Known or primitive immutable types when at least one parameter has changed.
   * Complex-typed parameters. The framework can't know whether the values of a complex-typed parameter have mutated internally, so the framework always treats the parameter set as changed when one or more complex-typed parameters are present.
+  
+  For more information on rendering conventions, see <xref:blazor/components/rendering#rendering-conventions-for-componentbase>.
 
 For the following example component, navigate to the component's page at a URL:
 
@@ -1009,9 +1017,13 @@ If event handlers are provided in developer code, unhook them on disposal. For m
 <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSet%2A> or <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> are called:
 
 * After the component is initialized in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A> or <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>.
+
 * When the parent component rerenders and supplies:
-  * Known primitive immutable types when at least one parameter has changed.
+
+  * Known or primitive immutable types when at least one parameter has changed.
   * Complex-typed parameters. The framework can't know whether the values of a complex-typed parameter have mutated internally, so the framework always treats the parameter set as changed when one or more complex-typed parameters are present.
+  
+  For more information on rendering conventions, see <xref:blazor/components/rendering#rendering-conventions-for-componentbase>.
 
 For the following example component, navigate to the component's page at a URL:
 

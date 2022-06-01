@@ -158,8 +158,6 @@ The size of the published app, its *payload size*, is a critical performance fac
 
 ## Blazor Hybrid
 
-[!INCLUDE[](~/blazor/includes/blazor-hybrid-preview-notice.md)]
-
 Hybrid apps use a blend of native and web technologies. A *Blazor Hybrid* app uses Blazor in a native client app. Razor components run natively in the .NET process and render web UI to an embedded :::no-loc text="Web View"::: control using a local interop channel. WebAssembly isn't used in Hybrid apps. Hybrid apps encompass the following technologies:
 
 * [.NET Multi-platform App UI (.NET MAUI)](/dotnet/maui/what-is-maui): A cross-platform framework for creating native mobile and desktop apps with C# and XAML.

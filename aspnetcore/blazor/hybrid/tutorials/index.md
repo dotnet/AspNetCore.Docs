@@ -11,12 +11,10 @@ uid: blazor/hybrid/tutorials/index
 ---
 # ASP.NET Core Blazor Hybrid tutorials
 
-[!INCLUDE[](~/blazor/includes/blazor-hybrid-preview-notice.md)]
-
 * <xref:blazor/hybrid/tutorials/maui>
 
 * <xref:blazor/hybrid/tutorials/windows-forms>
 
 * <xref:blazor/hybrid/tutorials/wpf>
 
-For more information on Blazor hosting models, see <xref:blazor/hosting-models>.
+For more information on hosting models, see <xref:blazor/hosting-models>.

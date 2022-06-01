@@ -94,7 +94,7 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 
 `JsInteropClasses1.cs`:
 
-[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/JsInteropClasses1.cs?highlight=1,5,9,14)]
+[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/JsInteropClasses1.cs)]
 
 `TickerChanged` calls the `handleTickerChanged1` method in the following `CallJsExample3` component.
 
@@ -133,7 +133,7 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 
 `JsInteropClasses2.cs`:
 
-[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/JsInteropClasses2.cs?highlight=1,5,9,14)]
+[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/JsInteropClasses2.cs)]
 
 `TickerChanged` calls the `handleTickerChanged2` method and displays the returned string in the following `CallJsExample5` component.
 

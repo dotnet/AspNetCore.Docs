@@ -13,10 +13,6 @@ uid: blazor/hybrid/routing
 
 This article explains how to manage request routing and navigation in Blazor Hybrid apps.
 
-[!INCLUDE[](~/blazor/includes/blazor-hybrid-preview-notice.md)]
-
-[!INCLUDE[](~/blazor/includes/net-maui-release-candidate-notice.md)]
-
 Default URI request routing behavior:
 
 * A link is *internal* if the host name and scheme match between the app's origin URI and the request URI. When the host names and schemes don't match or if the link sets `target="_blank"`, the link is considered *external*.
@@ -39,7 +35,7 @@ The `UrlLoadingEventArgs.Url` property is used to get or dynamically set the URL
 
 ## Namespace
 
-The `Microsoft.AspNetCore.Components.WebView` namespace is required for the examples in this article:
+The <xref:Microsoft.AspNetCore.Components.WebView?displayProperty=fullName> namespace is required for the examples in this article:
 
 ```csharp
 using Microsoft.AspNetCore.Components.WebView;

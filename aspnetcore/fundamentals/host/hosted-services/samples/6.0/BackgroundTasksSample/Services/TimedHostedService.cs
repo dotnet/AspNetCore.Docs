@@ -5,7 +5,7 @@ namespace BackgroundTasksSample.Services
     {
         private int executionCount = 0;
         private readonly ILogger<TimedHostedService> _logger;
-        private Timer _timer = null!;
+        private Timer? _timer = null;
 
         public TimedHostedService(ILogger<TimedHostedService> logger)
         {
@@ -16,7 +16,7 @@ namespace BackgroundTasksSample.Services
         {
             _logger.LogInformation("Timed Hosted Service running.");
 
-            _timer = new Timer(DoWork, null, TimeSpan.Zero, 
+            _timer = new Timer(DoWork, null, TimeSpan.Zero,
                 TimeSpan.FromSeconds(5));
 
             return Task.CompletedTask;

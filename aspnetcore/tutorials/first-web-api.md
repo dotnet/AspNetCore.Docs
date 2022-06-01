@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to build a web API with ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/09/2021
+ms.date: 05/28/2022
 no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, Models]
 uid: tutorials/first-web-api
 ---
@@ -56,8 +56,7 @@ The following diagram shows the design of the app.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For Visual Studio for Mac, see the .NET 5 version of this tutorial.
-<!-- [!INCLUDE[](~/includes/net-core-prereqs-mac-5.0.md)] -->
+[!INCLUDE[](~/includes/net-prereqs-mac-6.0.md)]
 
 ---
 
@@ -96,22 +95,19 @@ For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For Visual Studio for Mac, see the .NET 5 version of this tutorial.
-
-<!--
 * Select **File** > **New Solution**.
 
-  ![macOS New solution](first-web-api-mac/_static/sln.png)
+  ![macOS New solution](first-web-api-mac/_static/6/sln.png)
 
 * In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **API** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **API** > **Next**.
 
-  ![macOS API template selection](first-web-api-mac/_static/api_template.png)
+  ![macOS API template selection](first-web-api-mac/_static/6/api_template.png)
 
 * In the **Configure the new ASP.NET Core Web API** dialog, select the latest .NET Core 5.x **Target Framework**. Select **Next**.
 
 * Enter *TodoApi* for the **Project Name** and then select **Create**.
 
-  ![config dialog](first-web-api-mac/_static/configure_your_new_api2.png)
+  ![config dialog](first-web-api-mac/_static/6/configure_your_new_api2.png)
 
 [!INCLUDE[](~/includes/mac-terminal-access.md)]
 
@@ -120,7 +116,6 @@ Open a command terminal in the project folder and run the following command:
    ```dotnetcli
    dotnet add package Microsoft.EntityFrameworkCore.InMemory
    ```
--->
 
 ---
 
@@ -253,7 +248,7 @@ For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 <!--
 * Right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
 
-  ![new folder](first-web-api-mac/_static/add_new_folder.png)
+  ![new folder](first-web-api-mac/_static/6/add_new_folder.png)
 
 * Right-click the *Models* folder, and select **Add** > **New File** > **General** > **Empty Class**.
 
@@ -689,17 +684,17 @@ The following diagram shows the design of the app.
 
 * Select **File** > **New Solution**.
 
-  ![macOS New solution](first-web-api-mac/_static/sln.png)
+  ![macOS New solution](first-web-api-mac/_static/5/sln.png)
 
 * In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **API** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **API** > **Next**.
 
-  ![macOS API template selection](first-web-api-mac/_static/api_template.png)
+  ![macOS API template selection](first-web-api-mac/_static/5/api_template.png)
 
 * In the **Configure the new ASP.NET Core Web API** dialog, select the latest .NET Core 5.x **Target Framework**. Select **Next**.
 
 * Enter *TodoApi* for the **Project Name** and then select **Create**.
 
-  ![config dialog](first-web-api-mac/_static/configure_your_new_api2.png)
+  ![config dialog](first-web-api-mac/_static/5/2.png)
 
 [!INCLUDE[](~/includes/mac-terminal-access.md)]
 
@@ -824,7 +819,7 @@ A *model* is a set of classes that represent the data that the app manages. The 
 
 * Right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
 
-  ![new folder](first-web-api-mac/_static/add_new_folder.png)
+  ![new folder](first-web-api-mac/_static/5/folder.png)
 
 * Right-click the *Models* folder, and select **Add** > **New File** > **General** > **Empty Class**.
 
@@ -979,7 +974,7 @@ This tutorial uses Postman to test the web API.
 
 * Select **Send**.
 
-  ![Postman with create request](first-web-api/_static/3/create.png)
+  ![Postman with create request](first-web-api/_static/create.png)
 
 ### Test the location header URI
 
@@ -990,7 +985,7 @@ To test in Postman:
 * Select the **Headers** tab in the **Response** pane.
 * Copy the **Location** header value:
 
-  ![Headers tab of the Postman console](first-web-api/_static/3/create.png)
+  ![Headers tab of the Postman console](first-web-api/_static/create.png)
 
 * Set the HTTP method to `GET`.
 * Set the URI to `https://localhost:<port>/api/todoitems/1`. For example, `https://localhost:5001/api/todoitems/1`.
@@ -1213,17 +1208,18 @@ The following diagram shows the design of the app.
 
 * Select **File** > **New Solution**.
 
-  ![macOS New solution](first-web-api-mac/_static/sln.png)
+  ![macOS New solution](first-web-api-mac/_static/5/sln.png)
 
 * In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **API** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **API** > **Next**.
 
-  ![macOS API template selection](first-web-api-mac/_static/api_template.png)
+  ![macOS API template selection](first-web-api-mac/_static/5/api_template.png
+  )
 
 * In the **Configure the new ASP.NET Core Web API** dialog, select the latest .NET Core 3.x **Target Framework**. Select **Next**.
 
 * Enter *TodoApi* for the **Project Name** and then select **Create**.
 
-  ![config dialog](first-web-api-mac/_static/configure_your_new_api2.png)
+  ![config dialog](first-web-api-mac/_static/5/2.png)
 
 [!INCLUDE[](~/includes/mac-terminal-access.md)]
 
@@ -1316,7 +1312,7 @@ A *model* is a set of classes that represent the data that the app manages. The 
 
 * Right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
 
-  ![new folder](first-web-api-mac/_static/add_new_folder.png)
+  ![new folder](first-web-api-mac/_static/5/folder.png)
 
 * Right-click the *Models* folder, and select **Add** > **New File** > **General** > **Empty Class**.
 

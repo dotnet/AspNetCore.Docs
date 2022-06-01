@@ -157,7 +157,7 @@ Normally, the `@` operator inserts a textual representation of an expression int
 
 ## Tag helper initializers
 
-While attributes can be used to configure individual instances of tag helpers, <xref:Microsoft.AspNetCore.Mvc.Razor.ITagHelperInitializer%601> can be used to configure all tag helper instances of a specific kind. Consider the following example of a tag helper initializer that configures the `asp-append-version` attribute or `AppendVersion` property for all `ScriptTagHelper`s in the app:
+While attributes can be used to configure individual instances of tag helpers, <xref:Microsoft.AspNetCore.Mvc.Razor.ITagHelperInitializer%601> can be used to configure all tag helper instances of a specific kind. Consider the following example of a tag helper initializer that configures the `asp-append-version` attribute or `AppendVersion` property for all instances of `ScriptTagHelper` in the app:
 
 ```csharp
 public class AppendVersionTagHelperInitializer : ITagHelperInitializer<ScriptTagHelper>
@@ -176,8 +176,11 @@ builder.Services.AddSingleton
     <ITagHelperInitializer<ScriptTagHelper>, AppendVersionTagHelperInitializer>();
 ```
 
-## IntelliSense support for Tag Helpers
+## Tag Helper automatic version generation outside of wwwroot
 
+[!INCLUDE[](~/includes/th_version.md)]
+
+## IntelliSense support for Tag Helpers
 
 Consider writing an HTML `<label>` element. As soon as you enter `<l` in the Visual Studio editor, IntelliSense displays matching elements:
 
