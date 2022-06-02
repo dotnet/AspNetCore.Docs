@@ -49,15 +49,6 @@ For more information on creating apps and configuration, see <xref:blazor/securi
 
 ### Blazor Server authentication
 
-Fundamental challenges exist to implementing security within the Blazor framework independent of ASP.NET Core Identity for Blazor Server:
-
-* ASP.NET Core Identity provides the UI layer using Razor Pages, which are designed to work in the context of a request-response model, contrary to Blazor, which works in a stateful model over a WebSocket connection.
-* <xref:Microsoft.AspNetCore.Identity.SignInManager%601>, <xref:Microsoft.AspNetCore.Identity.UserManager%601>, and other Identity abstractions expect an available HTTP request and response to function properly.
-* HTTP cookies and other implementations for authentication can't function over a WebSocket connection, which is a fundamental challenge to performing authentication in Blazor.
-* Creating a new Identity implementation with a new authentication process is difficult to justify when we consider the reusability of ASP.NET Core Identity with all of the design and validation that it has received.
-
-Use of a separate UI stack for part of an app and performing authentication outside of the Blazor portions of an app might be undesirable for some developers or for some app designs. However, the majority of SPA frameworks implement an authentication process where users are redirected to an external provider and returned to the app. In this regard, Blazor is similar to other SPA frameworks.
-
 Blazor Server apps operate over a real-time connection that's created using SignalR. [Authentication in SignalR-based apps](xref:signalr/authn-and-authz) is handled when the connection is established. Authentication can be based on a cookie or some other bearer token.
 
 The built-in <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> service for Blazor Server apps obtains authentication state data from ASP.NET Core's `HttpContext.User`. This is how authentication state integrates with existing ASP.NET Core authentication mechanisms.
@@ -620,15 +611,6 @@ To handle authentication, use of a built-in or custom <xref:Microsoft.AspNetCore
 For more information on creating apps and configuration, see <xref:blazor/security/webassembly/index>.
 
 ### Blazor Server authentication
-
-Fundamental challenges exist to implementing security within the Blazor framework independent of ASP.NET Core Identity for Blazor Server:
-
-* ASP.NET Core Identity provides the UI layer using Razor Pages, which are designed to work in the context of a request-response model, contrary to Blazor, which works in a stateful model over a WebSocket connection.
-* <xref:Microsoft.AspNetCore.Identity.SignInManager%601>, <xref:Microsoft.AspNetCore.Identity.UserManager%601>, and other Identity abstractions expect an available HTTP request and response to function properly.
-* HTTP cookies and other implementations for authentication can't function over a WebSocket connection, which is a fundamental challenge to performing authentication in Blazor.
-* Creating a new Identity implementation with a new authentication process is difficult to justify when we consider the reusability of ASP.NET Core Identity with all of the design and validation that it has received.
-
-Use of a separate UI stack for part of an app and performing authentication outside of the Blazor portions of an app might be undesirable for some developers or for some app designs. However, the majority of SPA frameworks implement an authentication process where users are redirected to an external provider and returned to the app. In this regard, Blazor is similar to other SPA frameworks.
 
 Blazor Server apps operate over a real-time connection that's created using SignalR. [Authentication in SignalR-based apps](xref:signalr/authn-and-authz) is handled when the connection is established. Authentication can be based on a cookie or some other bearer token.
 
@@ -1197,15 +1179,6 @@ To handle authentication, use of a built-in or custom <xref:Microsoft.AspNetCore
 For more information on creating apps and configuration, see <xref:blazor/security/webassembly/index>.
 
 ### Blazor Server authentication
-
-Fundamental challenges exist to implementing security within the Blazor framework independent of ASP.NET Core Identity for Blazor Server:
-
-* ASP.NET Core Identity provides the UI layer using Razor Pages, which are designed to work in the context of a request-response model, contrary to Blazor, which works in a stateful model over a WebSocket connection.
-* <xref:Microsoft.AspNetCore.Identity.SignInManager%601>, <xref:Microsoft.AspNetCore.Identity.UserManager%601>, and other Identity abstractions expect an available HTTP request and response to function properly.
-* HTTP cookies and other implementations for authentication can't function over a WebSocket connection, which is a fundamental challenge to performing authentication in Blazor.
-* Creating a new Identity implementation with a new authentication process is difficult to justify when we consider the reusability of ASP.NET Core Identity with all of the design and validation that it has received.
-
-Use of a separate UI stack for part of an app and performing authentication outside of the Blazor portions of an app might be undesirable for some developers or for some app designs. However, the majority of SPA frameworks implement an authentication process where users are redirected to an external provider and returned to the app. In this regard, Blazor is similar to other SPA frameworks.
 
 Blazor Server apps operate over a real-time connection that's created using SignalR. [Authentication in SignalR-based apps](xref:signalr/authn-and-authz) is handled when the connection is established. Authentication can be based on a cookie or some other bearer token.
 
