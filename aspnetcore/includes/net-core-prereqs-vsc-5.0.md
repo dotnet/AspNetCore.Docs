@@ -1,5 +1,3 @@
----
----
 * [Visual Studio Code](https://code.visualstudio.com/download)
 * [C# for Visual Studio Code (latest version)](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)
 * [!INCLUDE [.NET 5.0 SDK](~/includes/5.0-SDK.md)]

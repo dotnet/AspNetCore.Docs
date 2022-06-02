@@ -1,5 +1,3 @@
----
----
 Reset allows for the server to reset a HTTP/2 request with a specified error code. A reset request is considered aborted.
 
 ```csharp

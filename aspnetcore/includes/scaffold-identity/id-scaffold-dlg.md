@@ -1,5 +1,3 @@
----
----
 Run the Identity scaffolder:
 
 # [Visual Studio](#tab/visual-studio)

@@ -1,5 +1,3 @@
----
----
 Run the following .NET CLI commands:
 
 ```dotnetcli

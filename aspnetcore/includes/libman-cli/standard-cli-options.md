@@ -1,5 +1,3 @@
----
----
 * `-h|--help`
 
   Show help information.

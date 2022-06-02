@@ -1,5 +1,3 @@
----
----
 :::moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
 > [!WARNING]

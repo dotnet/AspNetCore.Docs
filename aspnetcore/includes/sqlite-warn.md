@@ -1,5 +1,3 @@
----
----
 > [!NOTE]
 > 
 > **SQLite limitations**

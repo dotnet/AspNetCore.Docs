@@ -1,5 +1,3 @@
----
----
 <a name="csc"></a>
 
 Consider the following `ConfigureServices` method, which registers services and configures options:

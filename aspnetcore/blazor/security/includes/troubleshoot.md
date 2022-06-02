@@ -1,5 +1,3 @@
----
----
 ## Troubleshoot
 
 ### Common errors

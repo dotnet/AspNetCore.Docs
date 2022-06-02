@@ -1,5 +1,3 @@
----
----
 * Trust the HTTPS development certificate by running the following command:
 
   ```dotnetcli

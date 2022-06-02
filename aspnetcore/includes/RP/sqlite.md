@@ -1,5 +1,3 @@
----
----
 ## SQLite
 
 The [SQLite](https://www.sqlite.org/) website states:

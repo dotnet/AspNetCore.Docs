@@ -1,5 +1,3 @@
----
----
 Blazor server apps live in server memory. That means that there are multiple apps hosted within the same process. For each app session, Blazor starts a circuit with its own DI container scope. That means that scoped services are unique per Blazor session.
 
 > [!WARNING]

@@ -1,5 +1,3 @@
----
----
 > [!IMPORTANT]
 > **ASP.NET Core preview releases with Azure App Service**
 >

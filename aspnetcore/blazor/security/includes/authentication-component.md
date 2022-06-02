@@ -1,5 +1,3 @@
----
----
 The page produced by the `Authentication` component (`Pages/Authentication.razor`) defines the routes required for handling different authentication stages.
 
 The <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticatorView> component:

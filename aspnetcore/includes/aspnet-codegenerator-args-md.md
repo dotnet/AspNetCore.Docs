@@ -1,5 +1,3 @@
----
----
 <!-- Options common to Razor Pages and Controller -->
 | Option               | Description|
 | ----------------- | ------------ |

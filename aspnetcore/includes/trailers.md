@@ -1,5 +1,3 @@
----
----
 HTTP Trailers are similar to HTTP Headers, except they are sent after the response body is sent. For IIS and HTTP.sys, only HTTP/2 response trailers are supported.
 
 ```csharp

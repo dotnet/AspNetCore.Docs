@@ -1,5 +1,3 @@
----
----
 <a name="ddav"></a>
 ### Disable default account verification when Account.RegisterConfirmation has been scaffolded
 

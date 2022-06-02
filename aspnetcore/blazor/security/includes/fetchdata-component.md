@@ -1,5 +1,3 @@
----
----
 The `FetchData` component shows how to:
 
 * Provision an access token.

@@ -1,5 +1,3 @@
----
----
 Visual Studio for Mac displays the following popup:
 
 ![HTTPS Development certificate not found. Do you want to install and trust the certificate?](~/getting-started/_static/trustCertMac.png)

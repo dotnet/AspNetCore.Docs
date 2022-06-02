@@ -1,5 +1,3 @@
----
----
 ## UserManager and SignInManager
 
 Set the user identifier claim type when a Server app requires:

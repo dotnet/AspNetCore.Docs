@@ -1,5 +1,3 @@
----
----
 <!-- USED in RP and MVC tutorial for .NET 6 -->
 
 ## Add validation rules to the movie model

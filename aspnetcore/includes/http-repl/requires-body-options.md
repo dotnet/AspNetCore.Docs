@@ -1,5 +1,3 @@
----
----
 * `-c|--content`
 
   Provides an inline HTTP request body. For example, `-c "{"id":2,"name":"Cherry"}"`.

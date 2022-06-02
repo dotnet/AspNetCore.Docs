@@ -1,5 +1,3 @@
----
----
 # [Visual Studio](#tab/visual-studio)
 
 * Press Ctrl+F5 to run without the debugger.

@@ -1,5 +1,3 @@
----
----
 JavaScript (JS) initializers execute logic before and after a Blazor app loads. JS initializers are useful in the following scenarios:
 
 * Customizing how a Blazor app loads.

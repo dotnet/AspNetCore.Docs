@@ -1,5 +1,3 @@
----
----
 <a name="sqlite-dev"></a>
 ### Use SQLite for development, SQL Server for production
 

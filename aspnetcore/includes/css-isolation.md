@@ -1,5 +1,3 @@
----
----
 Isolate CSS styles to individual pages, views, and components to reduce or avoid:
 
 * Dependencies on global styles that can be challenging to maintain.

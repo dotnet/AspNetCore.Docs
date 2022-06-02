@@ -1,5 +1,3 @@
----
----
 Run the following .NET Core CLI commands:
 
 ```dotnetcli

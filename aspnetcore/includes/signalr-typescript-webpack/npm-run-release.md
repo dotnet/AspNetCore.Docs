@@ -1,5 +1,3 @@
----
----
 ```console
 npm run release
 ```

@@ -1,5 +1,3 @@
----
----
 :::moniker range=">= aspnetcore-6.0"
 
 Run the Identity scaffolder:

@@ -1,5 +1,3 @@
----
----
 ### View the Identity database
 
 # [Visual Studio](#tab/visual-studio) 

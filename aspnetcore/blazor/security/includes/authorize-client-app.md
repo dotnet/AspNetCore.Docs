@@ -1,5 +1,3 @@
----
----
 > [!IMPORTANT]
 > If you don't have the authority to grant admin consent to the tenant in the last step of **API permissions** configuration because consent to use the app is delegated to users, then you must take the following additional steps:
 >

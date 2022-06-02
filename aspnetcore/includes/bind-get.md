@@ -1,5 +1,3 @@
----
----
 > [!WARNING]
 > For security reasons, you must opt in to binding `GET` request data to page model properties. Verify user input before mapping it to properties. Opting into `GET` binding is useful when addressing scenarios that rely on query string or route values.
 >

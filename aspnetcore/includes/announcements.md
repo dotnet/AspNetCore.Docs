@@ -1,3 +1,1 @@
----
----
 Breaking changes and security advisories are reported on the [Announcements repo](https://github.com/aspnet/Announcements/issues). Announcements can be limited to a specific version by selecting a **Label** filter.

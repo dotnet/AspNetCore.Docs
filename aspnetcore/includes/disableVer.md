@@ -1,5 +1,3 @@
----
----
 <a name="ddav"></a>
 ### Disable default account verification
 

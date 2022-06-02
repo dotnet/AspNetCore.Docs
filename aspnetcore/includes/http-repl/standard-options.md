@@ -1,5 +1,3 @@
----
----
 * `-F|--no-formatting`
 
   A flag whose presence suppresses HTTP response formatting.

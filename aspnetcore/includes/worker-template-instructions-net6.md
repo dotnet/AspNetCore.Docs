@@ -1,5 +1,3 @@
----
----
 # [Visual Studio](#tab/visual-studio)
 
 1. Create a new project.

@@ -1,5 +1,3 @@
----
----
 
 ## SQL Logging of Entity Framework Core
 

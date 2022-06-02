@@ -1,5 +1,3 @@
----
----
 
 ### Accessing a Command Terminal on Mac
 

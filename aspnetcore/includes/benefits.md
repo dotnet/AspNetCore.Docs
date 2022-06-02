@@ -1,5 +1,3 @@
----
----
 ASP.NET Core provides the following benefits:
 
 * A unified story for building web UI and web APIs.

@@ -1,5 +1,3 @@
----
----
 # [Visual Studio](#tab/visual-studio)
 
 ## Visual Studio help

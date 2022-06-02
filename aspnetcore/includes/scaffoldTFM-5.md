@@ -1,5 +1,3 @@
----
----
 If you get a scaffolding error, verify the Target Framework Moniker (TFM) matches the NuGet package version in the project file. For example, the following project file uses version 5.0 for .NET and the listed NuGet packages:
 
 ```xml

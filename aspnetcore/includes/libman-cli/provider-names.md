@@ -1,5 +1,3 @@
----
----
 * `cdnjs`
 * `filesystem`
 * `jsdelivr`

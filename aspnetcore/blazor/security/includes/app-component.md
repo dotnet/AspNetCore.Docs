@@ -1,5 +1,3 @@
----
----
 The `App` component (`App.razor`) is similar to the `App` component found in Blazor Server apps:
 
 * The <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> component manages exposing the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState> to the rest of the app.

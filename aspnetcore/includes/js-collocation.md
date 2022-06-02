@@ -1,5 +1,3 @@
----
----
 Collocation of JavaScript (JS) files for pages, views, and Razor components is a convenient way to organize scripts in an app.
 
 Collocate JS files using the following filename extension conventions:

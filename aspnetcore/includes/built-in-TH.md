@@ -1,5 +1,3 @@
----
----
 ## Built-in ASP.NET Core Tag Helpers
 
 **[Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper)**

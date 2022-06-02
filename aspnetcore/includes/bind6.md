@@ -1,5 +1,3 @@
----
----
 The preferred way to read related configuration values is using the [options pattern](xref:fundamentals/configuration/options). For example, to read the following configuration values:
 
 ```json

@@ -1,5 +1,3 @@
----
----
 <a name="csc"></a>
 
 Consider the following which registers services and configures options:

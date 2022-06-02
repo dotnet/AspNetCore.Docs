@@ -1,5 +1,3 @@
----
----
 If `dotnet ef` has not been installed, install it as a global tool:
 
 ```dotnetcli
