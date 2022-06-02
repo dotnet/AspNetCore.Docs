@@ -1,19 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace SampleApp.Pages
 {
     public class AboutModel : PageModel
     {
-        public string Message { get; private set; }
+        public string ? Message { get; private set; }
 
-        public string RouteDataGlobalTemplateValue { get; private set; }
+        public string ? RouteDataGlobalTemplateValue { get; private set; }
 
-        public string RouteDataAboutTemplateValue { get; private set; }
+        public string ? RouteDataAboutTemplateValue { get; private set; }
 
         public void OnGet()
         {

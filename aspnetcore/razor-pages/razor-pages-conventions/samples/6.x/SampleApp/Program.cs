@@ -1,41 +1,60 @@
-using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.EntityFrameworkCore;
+using SampleApp.Conventions;
 using SampleApp.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseInMemoryDatabase("InMemoryDb"));
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
-builder.Services.AddRazorPages();
+builder.Services.AddRazorPages(options =>
+            {
+                #region snippet1
+                options.Conventions.Add(new GlobalTemplatePageRouteModelConvention());
+                #endregion
 
-var app = builder.Build();
+                #region snippet2
+                options.Conventions.Add(new GlobalHeaderPageApplicationModelConvention());
+                #endregion
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseMigrationsEndPoint();
-}
-else
-{
-    app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
-}
+                #region snippet3
+                options.Conventions.AddFolderRouteModelConvention("/OtherPages", model =>
+                {
+                    var selectorCount = model.Selectors.Count;
+                    for (var i = 0; i < selectorCount; i++)
+                    {
+                        var selector = model.Selectors[i];
+                        model.Selectors.Add(new SelectorModel
+                        {
+                            AttributeRouteModel = new AttributeRouteModel
+                            {
+                                Order = 2,
+                                Template = AttributeRouteModel.CombineTemplates(
+                                    selector.AttributeRouteModel!.Template,
+                                    "{otherPagesTemplate?}"),
+                            }
+                        });
+                    }
+                });
+                #endregion
+            });
 
-app.UseHttpsRedirection();
-app.UseStaticFiles();
+            var app = builder.Build();
 
-app.UseRouting();
+            if (!app.Environment.IsDevelopment())
+            {
+                app.UseExceptionHandler("/Error");
+                app.UseHsts();
+            }
 
-app.UseAuthentication();
-app.UseAuthorization();
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
 
-app.MapRazorPages();
+            app.UseRouting();
 
-app.Run();
+            app.UseAuthorization();
+
+            app.MapRazorPages();
+
+            app.Run();

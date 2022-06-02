@@ -29,12 +29,13 @@ There are reserved words that can't be used as route segments or parameter names
 | [Page route action conventions](#page-route-action-conventions)<ul><li>AddFolderRouteModelConvention</li><li>AddPageRouteModelConvention</li><li>AddPageRoute</li></ul> | Add a route template to pages in a folder and to a single page. |
 | [Page model action conventions](#page-model-action-conventions)<ul><li>AddFolderApplicationModelConvention</li><li>AddPageApplicationModelConvention</li><li>ConfigureFilter (filter class, lambda expression, or filter factory)</li></ul> | Add a header to pages in a folder, add a header to a single page, and configure a [filter factory](xref:mvc/controllers/filters#ifilterfactory) to add a header to an app's pages. |
 
-Razor Pages conventions are configured using an <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddRazorPages%2A> overload that configures <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions> in `Startup.ConfigureServices`. The following convention examples are explained later in this topic:
+Razor Pages conventions are configured using an <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddRazorPages%2A> overload that configures <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions>. The following convention examples are explained later in this topic:
 
 ```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddRazorPages(options =>
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddRazorPages(options =>
     {
         options.Conventions.Add( ... );
         options.Conventions.AddFolderRouteModelConvention(
@@ -55,23 +56,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ## Route order
 
-Routes specify an <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteModel.Order*> for processing (route matching).
-
-| Order order           | Behavior |
-| :--------------: | -------- |
-| -1               | The route is processed before other routes are processed. |
-| 0                | Order isn't specified (default value). Not assigning `Order` (`Order = null`) defaults the route `Order` to 0 (zero) for processing. |
-| 1, 2, &hellip; n | Specifies the route processing order. |
-
-Route processing is established by convention:
-
-* Routes are processed in sequential order (-1, 0, 1, 2, &hellip; n).
-* When routes have the same `Order`, the most specific route is matched first followed by less specific routes.
-* When routes with the same `Order` and the same number of parameters match a request URL, routes are processed in the order that they're added to the <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageConventionCollection>.
-
-If possible, avoid depending on an established route processing order. Generally, routing selects the correct route with URL matching. If you must set route `Order` properties to route requests correctly, the app's routing scheme is probably confusing to clients and fragile to maintain. Seek to simplify the app's routing scheme. The sample app requires an explicit route processing order to demonstrate several routing scenarios using a single app. However, you should attempt to avoid the practice of setting route `Order` in production apps.
-
-Razor Pages routing and MVC controller routing share an implementation. Information on route order in the MVC topics is available at [Routing to controller actions: Ordering attribute routes](xref:mvc/controllers/routing#routing-ordering-ref-label).
+See <xref:fundamentals/routing>.
 
 ## Model conventions
 
@@ -83,7 +68,7 @@ Use <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.Conventions> to 
 
 The sample app adds a `{globalTemplate?}` route template to all of the pages in the app:
 
-[!code-csharp[](razor-pages-conventions/samples/3.x/SampleApp/Conventions/GlobalTemplatePageRouteModelConvention.cs?name=snippet1)]
+[!code-csharp[](razor-pages-conventions/samples/6.x/SampleApp/Conventions/GlobalTemplatePageRouteModelConvention.cs)]
 
 The <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteModel.Order*> property for the <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteModel> is set to `1`. This ensures the following route matching behavior in the sample app:
 
@@ -91,13 +76,13 @@ The <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteModel.Order*>
 * An `{aboutTemplate?}` route template is added later in the topic. The `{aboutTemplate?}` template is given an `Order` of `2`. When the About page is requested at `/About/RouteDataValue`, "RouteDataValue" is loaded into `RouteData.Values["globalTemplate"]` (`Order = 1`) and not `RouteData.Values["aboutTemplate"]` (`Order = 2`) due to setting the `Order` property.
 * An `{otherPagesTemplate?}` route template is added later in the topic. The `{otherPagesTemplate?}` template is given an `Order` of `2`. When any page in the *Pages/OtherPages* folder is requested with a route parameter (for example, `/OtherPages/Page1/RouteDataValue`), "RouteDataValue" is loaded into `RouteData.Values["globalTemplate"]` (`Order = 1`) and not `RouteData.Values["otherPagesTemplate"]` (`Order = 2`) due to setting the `Order` property.
 
-Wherever possible, don't set the `Order`, which results in `Order = 0`. Rely on routing to select the correct route.
+When possible, don't set the `Order`, which results in `Order = 0`. Rely on routing to select the correct route.
 
-Razor Pages options, such as adding <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.Conventions>, are added when Razor Pages is added to the service collection in `Startup.ConfigureServices`. For an example, see the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/razor-pages-conventions/samples/).
+Razor Pages options, such as adding <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.Conventions>, are added when Razor Pages is added to the service collection. For an example, see the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/razor-pages-conventions/samples/).
 
 [!code-csharp[](razor-pages-conventions/samples/3.x/SampleApp/Startup.cs?name=snippet1)]
 
-Request the sample's About page at `localhost:5000/About/GlobalRouteValue` and inspect the result:
+Request the sample's `About` page at `localhost:{port}/About/GlobalRouteValue` and inspect the result:
 
 ![The About page is requested with a route segment of GlobalRouteValue. The rendered page shows that the route data value is captured in the OnGet method of the page.](razor-pages-conventions/_static/about-page-global-template.png)
 
@@ -287,6 +272,7 @@ The Page filter (<xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter>) is a filte
 
 ## Additional resources
 
+* [Razor Pages Routing](https://www.learnrazorpages.com/razor-pages/routing)
 * <xref:security/authorization/razor-pages-authorization>
 * <xref:mvc/controllers/areas#areas-with-razor-pages>
 
