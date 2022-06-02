@@ -1,5 +1,4 @@
 ---
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 ---
 Collocation of JavaScript (JS) files for pages, views, and Razor components is a convenient way to organize scripts in an app.
 

@@ -5,7 +5,6 @@ description: Use Facebook, Google, Twitter, etc. account user authentication wit
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.date: 04/05/2022
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/social/social-without-identity
 ---
 # Use social sign-in provider authentication without ASP.NET Core Identity

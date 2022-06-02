@@ -5,7 +5,6 @@ description: Discover how to enable QR code generation for TOTP authenticator ap
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 08/14/2018
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/identity-enable-qrcodes
 ---
 

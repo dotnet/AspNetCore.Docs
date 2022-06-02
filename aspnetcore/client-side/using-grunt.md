@@ -4,7 +4,6 @@ author: rick-anderson
 description: Use Grunt in ASP.NET Core
 ms.author: riande
 ms.date: 12/05/2019
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: client-side/using-grunt
 ---
 # Use Grunt in ASP.NET Core

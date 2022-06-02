@@ -1,5 +1,4 @@
 ---
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 ---
 Blazor server apps live in server memory. That means that there are multiple apps hosted within the same process. For each app session, Blazor starts a circuit with its own DI container scope. That means that scoped services are unique per Blazor session.
 
