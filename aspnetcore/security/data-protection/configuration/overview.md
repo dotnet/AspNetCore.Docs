@@ -120,6 +120,7 @@ To share protected payloads among apps:
 >
 > ```csharp
 > using Microsoft.AspNetCore.DataProtection;
+> using System.Reflection;
 > 
 > var builder = WebApplication.CreateBuilder(args);
 > var trimmedContentRootPath = builder.Environment.ContentRootPath.TrimEnd(Path.DirectorySeparatorChar);
@@ -127,7 +128,7 @@ To share protected payloads among apps:
 >  .SetApplicationName(trimmedContentRootPath);
 > var app = builder.Build();
 > 
-> app.MapGet("/", () => "Hello World!");
+> app.MapGet("/", () => Assembly.GetEntryAssembly()!.GetName().Name);
 > 
 > app.Run();
 >  ```
