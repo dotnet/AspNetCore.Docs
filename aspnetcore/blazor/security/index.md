@@ -25,10 +25,7 @@ Blazor WebAssembly apps run on the client. Authorization is *only* used to deter
 [Razor Pages authorization conventions](xref:security/authorization/razor-pages-authorization) don't apply to routable Razor components. If a non-routable Razor component is [embedded in a page](xref:blazor/components/prerendering-and-integration), the page's authorization conventions indirectly affect the Razor component along with the rest of the page's content.
 
 > [!NOTE]
-> <xref:Microsoft.AspNetCore.Identity.SignInManager%601> and <xref:Microsoft.AspNetCore.Identity.UserManager%601> aren't supported in Razor components. Blazor Server apps use ASP.NET Core Identity. For more information, see the following guidance:
-> 
-> * <xref:blazor/security/server/index>
-> * [Scaffold ASP.NET Core Identity into a Blazor Server app](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project)
+> ASP.NET Core apps that use ASP.NET Core Identity for user management should use Razor Pages instead of Razor components for identity-related UI, such as user registration, login, logout, and other user management tasks. ASP.NET Core Identity is designed to work in the context of an HTTP request and response, which isn't generally available in Blazor apps. ASP.NET Core abstractions, such as <xref:Microsoft.AspNetCore.Identity.SignInManager%601> and <xref:Microsoft.AspNetCore.Identity.UserManager%601>, aren't supported in Razor components. For more information on using ASP.NET Core Identity with Blazor, see [Scaffold ASP.NET Core Identity into a Blazor Server app](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project).
 
 ## Authentication
 
@@ -58,7 +55,7 @@ The built-in <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationS
 
 For more information on creating apps and configuration, see <xref:blazor/security/server/index>.
 
-## AuthenticationStateProvider service
+## `AuthenticationStateProvider` service
 
 <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> is the underlying service used by the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component and <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> component to get the authentication state.
 
@@ -591,10 +588,7 @@ Blazor WebAssembly apps run on the client. Authorization is *only* used to deter
 [Razor Pages authorization conventions](xref:security/authorization/razor-pages-authorization) don't apply to routable Razor components. If a non-routable Razor component is [embedded in a page](xref:blazor/components/prerendering-and-integration), the page's authorization conventions indirectly affect the Razor component along with the rest of the page's content.
 
 > [!NOTE]
-> <xref:Microsoft.AspNetCore.Identity.SignInManager%601> and <xref:Microsoft.AspNetCore.Identity.UserManager%601> aren't supported in Razor components. Blazor Server apps use ASP.NET Core Identity. For more information, see the following guidance:
-> 
-> * <xref:blazor/security/server/index>
-> * [Scaffold ASP.NET Core Identity into a Blazor Server app without existing authorization](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project-without-existing-authorization)
+> ASP.NET Core apps that use ASP.NET Core Identity for user management should use Razor Pages instead of Razor components for identity-related UI, such as user registration, login, logout, and other user management tasks. ASP.NET Core Identity is designed to work in the context of an HTTP request and response, which isn't generally available in Blazor apps. ASP.NET Core abstractions, such as <xref:Microsoft.AspNetCore.Identity.SignInManager%601> and <xref:Microsoft.AspNetCore.Identity.UserManager%601>, aren't supported in Razor components. For more information on using ASP.NET Core Identity with Blazor, see [Scaffold ASP.NET Core Identity into a Blazor Server app](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project).
 
 ## Authentication
 
@@ -624,7 +618,7 @@ The built-in <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationS
 
 For more information on creating apps and configuration, see <xref:blazor/security/server/index>.
 
-## AuthenticationStateProvider service
+## `AuthenticationStateProvider` service
 
 <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> is the underlying service used by the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component and <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> component to get the authentication state.
 
@@ -1162,10 +1156,7 @@ Blazor WebAssembly apps run on the client. Authorization is *only* used to deter
 [Razor Pages authorization conventions](xref:security/authorization/razor-pages-authorization) don't apply to routable Razor components. If a non-routable Razor component is [embedded in a page](xref:blazor/components/prerendering-and-integration), the page's authorization conventions indirectly affect the Razor component along with the rest of the page's content.
 
 > [!NOTE]
-> <xref:Microsoft.AspNetCore.Identity.SignInManager%601> and <xref:Microsoft.AspNetCore.Identity.UserManager%601> aren't supported in Razor components. Blazor Server apps use ASP.NET Core Identity. For more information, see the following guidance:
-> 
-> * <xref:blazor/security/server/index>
-> * [Scaffold ASP.NET Core Identity into a Blazor Server app without existing authorization](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project-without-existing-authorization)
+> ASP.NET Core apps that use ASP.NET Core Identity for user management should use Razor Pages instead of Razor components for identity-related UI, such as user registration, login, logout, and other user management tasks. ASP.NET Core Identity is designed to work in the context of an HTTP request and response, which isn't generally available in Blazor apps. ASP.NET Core abstractions, such as <xref:Microsoft.AspNetCore.Identity.SignInManager%601> and <xref:Microsoft.AspNetCore.Identity.UserManager%601>, aren't supported in Razor components. For more information on using ASP.NET Core Identity with Blazor, see [Scaffold ASP.NET Core Identity into a Blazor Server app](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project).
 
 ## Authentication
 
@@ -1195,7 +1186,7 @@ The built-in <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationS
 
 For more information on creating apps and configuration, see <xref:blazor/security/server/index>.
 
-## AuthenticationStateProvider service
+## `AuthenticationStateProvider` service
 
 <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> is the underlying service used by the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component and <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> component to get the authentication state.
 
