@@ -127,7 +127,7 @@ To share protected payloads among apps:
 >  .SetApplicationName(trimmedContentRootPath);
 > var app = builder.Build();
 > 
-> app.MapGet("/", () => "Hello World!");
+> app.MapGet("/", () => Assembly.GetEntryAssembly()!.GetName().Name);
 > 
 > app.Run();
 >  ```
