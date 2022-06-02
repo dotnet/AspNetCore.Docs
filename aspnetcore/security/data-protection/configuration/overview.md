@@ -116,13 +116,20 @@ To share protected payloads among apps:
 :::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionSetApplicationName":::
 
 > [!WARNING]
-> In .NET 6, <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> normalizes the content root path to always end with a <xref:System.IO.Path.DirectorySeparatorChar> in .NET 6. Other hosts do not normalize the path. This means that most apps migrating from <xref:Microsoft.Extensions.Hosting.HostBuilder> or <xref:Microsoft.AspNetCore.Hosting.WebHost> won't share the same app name. To work around this issue,
-> you can trim the directory seperator character and set the app name manually to what it would have been for other hosts.
+> In .NET 6, <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> normalizes the content root path to end with a <xref:System.IO.Path.DirectorySeparatorChar>. For example, on Windows the content root path ends in `\` and on Linux `/`. Other hosts don't normalize the path. Most apps migrating from <xref:Microsoft.Extensions.Hosting.HostBuilder> or  <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder> won't share the same app name because they won't have the terminating `DirectorySeparatorChar`. To work around this issue, remove the directory separator character and set the app name manually, as shown in the following code:
 >
 > ```csharp
+> using Microsoft.AspNetCore.DataProtection;
+> 
+> var builder = WebApplication.CreateBuilder(args);
 > var trimmedContentRootPath = builder.Environment.ContentRootPath.TrimEnd(Path.DirectorySeparatorChar);
 > builder.Services.AddDataProtection()
 >  .SetApplicationName(trimmedContentRootPath);
+> var app = builder.Build();
+> 
+> app.MapGet("/", () => "Hello World!");
+> 
+> app.Run();
 >  ```
 
 ## DisableAutomaticKeyGeneration
