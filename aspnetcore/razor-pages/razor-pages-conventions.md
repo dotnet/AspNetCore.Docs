@@ -56,8 +56,6 @@ builder.Services.AddRazorPages(options =>
 
 ## Route order
 
-## Route order
-
 Routes specify an <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteModel.Order*> for processing (route matching).
 
 | Route order            | Behavior |
