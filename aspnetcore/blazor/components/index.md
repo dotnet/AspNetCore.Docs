@@ -438,14 +438,12 @@ A <xref:Microsoft.AspNetCore.Components.RenderFragment> represents a segment of 
 Render fragments are used for a variety of rendering purposes throughout Blazor apps and are described with examples in the following articles and article sections:
 
 * To set the content of another component:
+  * [Child content (`ChildContent` component parameter)](#child-content): Described in the next section.
   * [Blazor layouts](xref:blazor/components/layouts)
-  * [Child content&dagger; (`ChildContent` component parameter, described later in this article)](#child-content)
   * [Pass data across a component hierarchy](xref:blazor/components/cascading-values-and-parameters#pass-data-across-a-component-hierarchy)
   * [Templated components](xref:blazor/components/templated-components)
   * [Global exception handling](xref:blazor/fundamentals/handle-errors#global-exception-handling)
 * [Reuse rendering logic](xref:blazor/performance#define-reusable-renderfragments-in-code)
-
-&dagger;Setting child content includes setting the content for [Razor components that are provided by the Blazor framework](xref:blazor/components/built-in-components).
 
 ## Child content
 
@@ -497,21 +495,7 @@ Alternatively, use a [`foreach`](/dotnet/csharp/language-reference/keywords/fore
 ```
 
 > [!NOTE]
-> Assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate is only supported in Razor component files (`.razor`):
-> 
-> ```razor
-> private RenderFragment RenderWelcomeInfo = __builder =>
-> {
->     <p>Welcome to your new app!</p>
-> };
-> ```
->
-> For more information, see <xref:blazor/performance#define-reusable-renderfragments-in-code>.
-
-For information on how a <xref:Microsoft.AspNetCore.Components.RenderFragment> can be used as a template for component UI, see the following articles:
-
-* <xref:blazor/components/templated-components>
-* <xref:blazor/performance#define-reusable-renderfragments-in-code>
+> Blazor framework's [built-in Razor components](xref:blazor/components/built-in-components) use the same `ChildContent` component parameter convention to set their content. You can see the components that set child content by searching for the component parameter property name `ChildContent` in the [API documentation (filters API with the search term "ChildContent")](/dotnet/api/?term=ChildContent).
 
 ## Overwritten parameters
 
@@ -1886,8 +1870,8 @@ A <xref:Microsoft.AspNetCore.Components.RenderFragment> represents a segment of 
 Render fragments are used for a variety of rendering purposes throughout Blazor apps and are described with examples in the following articles and article sections:
 
 * To set the content of another component:
+  * [Child content&dagger; (`ChildContent` component parameter)](#child-content)
   * [Blazor layouts](xref:blazor/components/layouts)
-  * [Child content&dagger; (`ChildContent` component parameter, described later in this article)](#child-content)
   * [Pass data across a component hierarchy](xref:blazor/components/cascading-values-and-parameters#pass-data-across-a-component-hierarchy)
   * [Templated components](xref:blazor/components/templated-components)
   * [Global exception handling](xref:blazor/fundamentals/handle-errors#global-exception-handling)
@@ -1945,21 +1929,7 @@ Alternatively, use a [`foreach`](/dotnet/csharp/language-reference/keywords/fore
 ```
 
 > [!NOTE]
-> Assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate is only supported in Razor component files (`.razor`):
-> 
-> ```razor
-> private RenderFragment RenderWelcomeInfo = __builder =>
-> {
->     <p>Welcome to your new app!</p>
-> };
-> ```
->
-> For more information, see <xref:blazor/performance#define-reusable-renderfragments-in-code>.
-
-For information on how a <xref:Microsoft.AspNetCore.Components.RenderFragment> can be used as a template for component UI, see the following articles:
-
-* <xref:blazor/components/templated-components>
-* <xref:blazor/performance#define-reusable-renderfragments-in-code>
+> Blazor framework's [built-in Razor components](xref:blazor/components/built-in-components) use the same `ChildContent` component parameter convention to set their content. You can see the components that set child content by searching for the component parameter property name `ChildContent` in the [API documentation (filters API with the search term "ChildContent")](/dotnet/api/?term=ChildContent).
 
 ## Overwritten parameters
 
@@ -2886,8 +2856,8 @@ A <xref:Microsoft.AspNetCore.Components.RenderFragment> represents a segment of 
 Render fragments are used for a variety of rendering purposes throughout Blazor apps and are described with examples in the following articles and article sections:
 
 * To set the content of another component:
+  * [Child content&dagger; (`ChildContent` component parameter)](#child-content)
   * [Blazor layouts](xref:blazor/components/layouts)
-  * [Child content&dagger; (`ChildContent` component parameter, described later in this article)](#child-content)
   * [Pass data across a component hierarchy](xref:blazor/components/cascading-values-and-parameters#pass-data-across-a-component-hierarchy)
   * [Templated components](xref:blazor/components/templated-components)
   * [Global exception handling](xref:blazor/fundamentals/handle-errors#global-exception-handling)
@@ -2945,21 +2915,7 @@ Alternatively, use a [`foreach`](/dotnet/csharp/language-reference/keywords/fore
 ```
 
 > [!NOTE]
-> Assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate is only supported in Razor component files (`.razor`):
-> 
-> ```razor
-> private RenderFragment RenderWelcomeInfo = __builder =>
-> {
->     <p>Welcome to your new app!</p>
-> };
-> ```
->
-> For more information, see <xref:blazor/performance#define-reusable-renderfragments-in-code>.
-
-For information on how a <xref:Microsoft.AspNetCore.Components.RenderFragment> can be used as a template for component UI, see the following articles:
-
-* <xref:blazor/components/templated-components>
-* <xref:blazor/performance#define-reusable-renderfragments-in-code>
+> Blazor framework's [built-in Razor components](xref:blazor/components/built-in-components) use the same `ChildContent` component parameter convention to set their content. You can see the components that set child content by searching for the component parameter property name `ChildContent` in the [API documentation (filters API with the search term "ChildContent")](/dotnet/api/?term=ChildContent).
 
 ## Overwritten parameters
 
