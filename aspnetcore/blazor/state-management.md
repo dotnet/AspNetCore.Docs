@@ -300,7 +300,7 @@ else
 ```
 
 > [!NOTE]
-> For more information on <xref:Microsoft.AspNetCore.Components.RenderFragment>, see <xref:blazor/components/index#render-fragments>.
+> For more information on <xref:Microsoft.AspNetCore.Components.RenderFragment>, see <xref:blazor/components/index#child-content-render-fragments>.
 
 The `CounterStateProvider` component handles the loading phase by not rendering its child content until state loading is complete.
 
@@ -741,7 +741,7 @@ else
 ```
 
 > [!NOTE]
-> For more information on <xref:Microsoft.AspNetCore.Components.RenderFragment>, see <xref:blazor/components/index#render-fragments>.
+> For more information on <xref:Microsoft.AspNetCore.Components.RenderFragment>, see <xref:blazor/components/index#child-content-render-fragments>.
 
 The `CounterStateProvider` component handles the loading phase by not rendering its child content until state loading is complete.
 
@@ -1198,7 +1198,7 @@ else
 ```
 
 > [!NOTE]
-> For more information on <xref:Microsoft.AspNetCore.Components.RenderFragment>, see <xref:blazor/components/index#render-fragments>.
+> For more information on <xref:Microsoft.AspNetCore.Components.RenderFragment>, see <xref:blazor/components/index#child-content-render-fragments>.
 
 The `CounterStateProvider` component handles the loading phase by not rendering its child content until state loading is complete.
 
