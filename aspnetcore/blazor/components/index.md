@@ -379,7 +379,7 @@ Single-line attribute lists are also supported:
 public string? Title { get; set; }
 ```
 
-[`Tuples`](/dotnet/csharp/language-reference/builtin-types/value-tuples) ([API documentation](xref:System.Tuple)) are supported for component parameters and [`RenderFragment`](#child-content) types. The following component parameter example passes three values in a `Tuple`:
+[`Tuples`](/dotnet/csharp/language-reference/builtin-types/value-tuples) ([API documentation](xref:System.Tuple)) are supported for component parameters and [`RenderFragment`](#child-content-render-fragments) types. The following component parameter example passes three values in a `Tuple`:
 
 `Shared/RenderTupleChild.razor`:
 
@@ -431,7 +431,7 @@ Optional route parameters are supported. In the following example, the `text` op
 
 For information on catch-all route parameters (`{*pageRoute}`), which capture paths across multiple folder boundaries, see <xref:blazor/fundamentals/routing#catch-all-route-parameters>.
 
-## Child content
+## Child content render fragments
 
 Components can set the content of another component. The assigning component provides the content between the child component's opening and closing tags.
 
@@ -480,22 +480,38 @@ Alternatively, use a [`foreach`](/dotnet/csharp/language-reference/keywords/fore
 }
 ```
 
+Render fragments are used to render child content throughout Blazor apps and are described with examples in the following articles and article sections:
+
+* [Blazor layouts](xref:blazor/components/layouts)
+* [Pass data across a component hierarchy](xref:blazor/components/cascading-values-and-parameters#pass-data-across-a-component-hierarchy)
+* [Templated components](xref:blazor/components/templated-components)
+* [Global exception handling](xref:blazor/fundamentals/handle-errors#global-exception-handling)
+
 > [!NOTE]
-> Assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate is only supported in Razor component files (`.razor`):
-> 
-> ```razor
-> private RenderFragment RenderWelcomeInfo = __builder =>
-> {
->     <p>Welcome to your new app!</p>
-> };
-> ```
->
-> For more information, see <xref:blazor/performance#define-reusable-renderfragments-in-code>.
+> Blazor framework's [built-in Razor components](xref:blazor/components/built-in-components) use the same `ChildContent` component parameter convention to set their content. You can see the components that set child content by searching for the component parameter property name `ChildContent` in the [API documentation (filters API with the search term "ChildContent")](/dotnet/api/?term=ChildContent).
 
-For information on how a <xref:Microsoft.AspNetCore.Components.RenderFragment> can be used as a template for component UI, see the following articles:
+## Render fragments for reusable rendering logic
 
-* <xref:blazor/components/templated-components>
-* <xref:blazor/performance#define-reusable-renderfragments-in-code>
+You can factor out child components purely as a way of reusing rendering logic. In any component's `@code` block, define a <xref:Microsoft.AspNetCore.Components.RenderFragment> and render the fragment from any location as many times as needed:
+
+```razor
+<h1>Hello, world!</h1>
+
+@RenderWelcomeInfo
+
+<p>Render the welcome info a second time:</p>
+
+@RenderWelcomeInfo
+
+@code {
+    private RenderFragment RenderWelcomeInfo = __builder =>
+    {
+        <p>Welcome to your new app!</p>
+    };
+}
+```
+
+For more information, see [Reuse rendering logic](xref:blazor/performance#define-reusable-renderfragments-in-code).
 
 ## Overwritten parameters
 
@@ -1863,7 +1879,7 @@ Optional route parameters are supported. In the following example, the `text` op
 
 For information on catch-all route parameters (`{*pageRoute}`), which capture paths across multiple folder boundaries, see <xref:blazor/fundamentals/routing#catch-all-route-parameters>.
 
-## Child content
+## Child content render fragments
 
 Components can set the content of another component. The assigning component provides the content between the child component's opening and closing tags.
 
@@ -1912,22 +1928,38 @@ Alternatively, use a [`foreach`](/dotnet/csharp/language-reference/keywords/fore
 }
 ```
 
+Render fragments are used to render child content throughout Blazor apps and are described with examples in the following articles and article sections:
+
+* [Blazor layouts](xref:blazor/components/layouts)
+* [Pass data across a component hierarchy](xref:blazor/components/cascading-values-and-parameters#pass-data-across-a-component-hierarchy)
+* [Templated components](xref:blazor/components/templated-components)
+* [Global exception handling](xref:blazor/fundamentals/handle-errors#global-exception-handling)
+
 > [!NOTE]
-> Assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate is only supported in Razor component files (`.razor`):
-> 
-> ```razor
-> private RenderFragment RenderWelcomeInfo = __builder =>
-> {
->     <p>Welcome to your new app!</p>
-> };
-> ```
->
-> For more information, see <xref:blazor/performance#define-reusable-renderfragments-in-code>.
+> Blazor framework's [built-in Razor components](xref:blazor/components/built-in-components) use the same `ChildContent` component parameter convention to set their content. You can see the components that set child content by searching for the component parameter property name `ChildContent` in the [API documentation (filters API with the search term "ChildContent")](/dotnet/api/?term=ChildContent).
 
-For information on how a <xref:Microsoft.AspNetCore.Components.RenderFragment> can be used as a template for component UI, see the following articles:
+## Render fragments for reusable rendering logic
 
-* <xref:blazor/components/templated-components>
-* <xref:blazor/performance#define-reusable-renderfragments-in-code>
+You can factor out child components purely as a way of reusing rendering logic. In any component's `@code` block, define a <xref:Microsoft.AspNetCore.Components.RenderFragment> and render the fragment from any location as many times as needed:
+
+```razor
+<h1>Hello, world!</h1>
+
+@RenderWelcomeInfo
+
+<p>Render the welcome info a second time:</p>
+
+@RenderWelcomeInfo
+
+@code {
+    private RenderFragment RenderWelcomeInfo = __builder =>
+    {
+        <p>Welcome to your new app!</p>
+    };
+}
+```
+
+For more information, see [Reuse rendering logic](xref:blazor/performance#define-reusable-renderfragments-in-code).
 
 ## Overwritten parameters
 
@@ -2847,7 +2879,7 @@ Optional route parameters aren't supported, so two [`@page`][9] directives are a
 
 For information on catch-all route parameters (`{*pageRoute}`), which capture paths across multiple folder boundaries, see <xref:blazor/fundamentals/routing#catch-all-route-parameters>.
 
-## Child content
+## Child content render fragments
 
 Components can set the content of another component. The assigning component provides the content between the child component's opening and closing tags.
 
@@ -2896,22 +2928,38 @@ Alternatively, use a [`foreach`](/dotnet/csharp/language-reference/keywords/fore
 }
 ```
 
+Render fragments are used to render child content throughout Blazor apps and are described with examples in the following articles and article sections:
+
+* [Blazor layouts](xref:blazor/components/layouts)
+* [Pass data across a component hierarchy](xref:blazor/components/cascading-values-and-parameters#pass-data-across-a-component-hierarchy)
+* [Templated components](xref:blazor/components/templated-components)
+* [Global exception handling](xref:blazor/fundamentals/handle-errors#global-exception-handling)
+
 > [!NOTE]
-> Assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate is only supported in Razor component files (`.razor`):
-> 
-> ```razor
-> private RenderFragment RenderWelcomeInfo = __builder =>
-> {
->     <p>Welcome to your new app!</p>
-> };
-> ```
->
-> For more information, see <xref:blazor/performance#define-reusable-renderfragments-in-code>.
+> Blazor framework's [built-in Razor components](xref:blazor/components/built-in-components) use the same `ChildContent` component parameter convention to set their content. You can see the components that set child content by searching for the component parameter property name `ChildContent` in the [API documentation (filters API with the search term "ChildContent")](/dotnet/api/?term=ChildContent).
 
-For information on how a <xref:Microsoft.AspNetCore.Components.RenderFragment> can be used as a template for component UI, see the following articles:
+## Render fragments for reusable rendering logic
 
-* <xref:blazor/components/templated-components>
-* <xref:blazor/performance#define-reusable-renderfragments-in-code>
+You can factor out child components purely as a way of reusing rendering logic. In any component's `@code` block, define a <xref:Microsoft.AspNetCore.Components.RenderFragment> and render the fragment from any location as many times as needed:
+
+```razor
+<h1>Hello, world!</h1>
+
+@RenderWelcomeInfo
+
+<p>Render the welcome info a second time:</p>
+
+@RenderWelcomeInfo
+
+@code {
+    private RenderFragment RenderWelcomeInfo = __builder =>
+    {
+        <p>Welcome to your new app!</p>
+    };
+}
+```
+
+For more information, see [Reuse rendering logic](xref:blazor/performance#define-reusable-renderfragments-in-code).
 
 ## Overwritten parameters
 

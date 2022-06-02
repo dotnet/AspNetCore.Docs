@@ -621,7 +621,7 @@ The following HTML markup is rendered:
 > }
 > ```
 >
-> Using an index variable in this scenario is a requirement for **any** child component that uses a loop variable in its [child content](xref:blazor/components/index#child-content), not just the `NavLink` component.
+> Using an index variable in this scenario is a requirement for **any** child component that uses a loop variable in its [child content](xref:blazor/components/index#child-content-render-fragments), not just the `NavLink` component.
 >
 > Alternatively, use a `foreach` loop with <xref:System.Linq.Enumerable.Range%2A?displayProperty=nameWithType>:
 >
@@ -1049,7 +1049,7 @@ The following HTML markup is rendered:
 > }
 > ```
 >
-> Using an index variable in this scenario is a requirement for **any** child component that uses a loop variable in its [child content](xref:blazor/components/index#child-content), not just the `NavLink` component.
+> Using an index variable in this scenario is a requirement for **any** child component that uses a loop variable in its [child content](xref:blazor/components/index#child-content-render-fragments), not just the `NavLink` component.
 >
 > Alternatively, use a `foreach` loop with <xref:System.Linq.Enumerable.Range%2A?displayProperty=nameWithType>:
 >
@@ -1321,7 +1321,7 @@ The following HTML markup is rendered:
 > }
 > ```
 >
-> Using an index variable in this scenario is a requirement for **any** child component that uses a loop variable in its [child content](xref:blazor/components/index#child-content), not just the `NavLink` component.
+> Using an index variable in this scenario is a requirement for **any** child component that uses a loop variable in its [child content](xref:blazor/components/index#child-content-render-fragments), not just the `NavLink` component.
 >
 > Alternatively, use a `foreach` loop with <xref:System.Linq.Enumerable.Range%2A?displayProperty=nameWithType>:
 >
