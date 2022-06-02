@@ -56,7 +56,25 @@ builder.Services.AddRazorPages(options =>
 
 ## Route order
 
-See <xref:fundamentals/routing>.
+## Route order
+
+Routes specify an <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteModel.Order*> for processing (route matching).
+
+| Route order            | Behavior |
+| :--------------: | -------- |
+| -1               | The route is processed before other routes are processed. |
+| 0                | Order isn't specified (default value). Not assigning `Order` (`Order = null`) defaults the route `Order` to 0 (zero) for processing. |
+| 1, 2, &hellip; n | Specifies the route processing order. |
+
+Route processing is established by convention:
+
+* Routes are processed in sequential order (-1, 0, 1, 2, &hellip; n).
+* When routes have the same `Order`, the most specific route is matched first followed by less specific routes.
+* When routes with the same `Order` and the same number of parameters match a request URL, routes are processed in the order that they're added to the <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageConventionCollection>.
+
+If possible, avoid depending on an established route processing order. Generally, routing selects the correct route with URL matching. If you must set route `Order` properties to route requests correctly, the app's routing scheme is probably confusing to clients and fragile to maintain. Seek to simplify the app's routing scheme. The sample app requires an explicit route processing order to demonstrate several routing scenarios using a single app. However, you should attempt to avoid the practice of setting route `Order` in production apps.
+
+Razor Pages routing and MVC controller routing share an implementation. Information on route order in the MVC topics is available at [Routing to controller actions: Ordering attribute routes](xref:mvc/controllers/routing#routing-ordering-ref-label).
 
 ## Model conventions
 
