@@ -190,7 +190,7 @@ Blazor Hybrid apps have full access to native client API capabilities via .NET n
 
 ### Web-based deployment
 
-Blazor Server and Blazor WebAssemby are deployed as web apps that are updated on the next app refresh.
+Blazor Server and Blazor WebAssembly are deployed as web apps that are updated on the next app refresh.
 
 Blazor Hybrid apps are native client apps that typically require an installer and platform-specific deployment mechanism.
 
