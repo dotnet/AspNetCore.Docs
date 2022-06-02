@@ -174,7 +174,7 @@ Maintaining app code securely and privately on the server is a built-in feature 
 
 ### Run apps offline once downloaded
 
-Blazor WebAssembly, including Blazor PWA, and Blazor Hybrid apps can run offline, which is particularly useful when clients aren't able to connect to the Internet. Blazor Server apps fail to run when the connection to the server is lost. If an app must run offline, Blazor WebAssembly and Blazor Hybrid are the best choices.
+Blazor WebAssembly apps built as Progressive Web Apps and Blazor Hybrid apps can run offline, which is particularly useful when clients aren't able to connect to the Internet. Blazor Server apps fail to run when the connection to the server is lost. If an app must run offline, Blazor WebAssembly and Blazor Hybrid are the best choices.
 
 ### Static site hosting
 
