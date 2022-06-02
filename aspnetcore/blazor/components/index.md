@@ -1870,7 +1870,7 @@ A <xref:Microsoft.AspNetCore.Components.RenderFragment> represents a segment of 
 Render fragments are used for a variety of rendering purposes throughout Blazor apps and are described with examples in the following articles and article sections:
 
 * To set the content of another component:
-  * [Child content&dagger; (`ChildContent` component parameter)](#child-content)
+  * [Child content (`ChildContent` component parameter)](#child-content): Described in the next section.
   * [Blazor layouts](xref:blazor/components/layouts)
   * [Pass data across a component hierarchy](xref:blazor/components/cascading-values-and-parameters#pass-data-across-a-component-hierarchy)
   * [Templated components](xref:blazor/components/templated-components)
@@ -2856,7 +2856,7 @@ A <xref:Microsoft.AspNetCore.Components.RenderFragment> represents a segment of 
 Render fragments are used for a variety of rendering purposes throughout Blazor apps and are described with examples in the following articles and article sections:
 
 * To set the content of another component:
-  * [Child content&dagger; (`ChildContent` component parameter)](#child-content)
+  * [Child content (`ChildContent` component parameter)](#child-content): Described in the next section.
   * [Blazor layouts](xref:blazor/components/layouts)
   * [Pass data across a component hierarchy](xref:blazor/components/cascading-values-and-parameters#pass-data-across-a-component-hierarchy)
   * [Templated components](xref:blazor/components/templated-components)
