@@ -58,7 +58,7 @@ Blazor WebAssembly (WASM) apps run client-side in the browser on a WebAssembly-b
 
 When the Blazor WebAssembly app is created for deployment without a backend ASP.NET Core app to serve its files, the app is called a *standalone* Blazor WebAssembly app. When the app is created for deployment with a backend app to serve its files, the app is called a *hosted* Blazor WebAssembly app.
 
-A Blazor WebAssembly app built as a [Progressive Web Application (PWA)](xref:blazor/progressive-web-app) uses modern browser APIs to enable many of the capabilities of a native client app, such as working offline, running in its own app window, launching from the host's operating system, receiving push notifications, and automatically updating in the background.
+A Blazor WebAssembly app built as a [Progressive Web App (PWA)](xref:blazor/progressive-web-app) uses modern browser APIs to enable many of the capabilities of a native client app, such as working offline, running in its own app window, launching from the host's operating system, receiving push notifications, and automatically updating in the background.
 
 Using hosted Blazor WebAssembly, you get a full-stack web development experience with .NET, including the ability to share code between the client and server apps, support for prerendering, and integration with MVC and Razor Pages. A hosted client app can interact with its backend server app over the network using a variety of messaging frameworks and protocols, such as [web API](xref:web-api/index), [gRPC-web](xref:grpc/index), and [SignalR](xref:signalr/introduction) (<xref:blazor/tutorials/signalr-blazor>).
 
@@ -166,7 +166,7 @@ Blazor Server apps generally execute on the server quickly. However, Blazor Serv
 
 Blazor Hybrid apps run using the .NET runtime natively on the target platform, which offers the best possible speed.
 
-Blazor WebAssembly, including Blazor PWA, apps run using the .NET runtime for WebAssembly, which is slower than running directly on the platform, even for apps that are [ahead-of-time (AOT) compiled](xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation) for WebAssembly in the broswer.
+Blazor WebAssembly, including Progressive Web Apps (PWAs), apps run using the .NET runtime for WebAssembly, which is slower than running directly on the platform, even for apps that are [ahead-of-time (AOT) compiled](xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation) for WebAssembly in the broswer.
 
 ### App code secure and private on the server
 
@@ -174,7 +174,7 @@ Maintaining app code securely and privately on the server is a built-in feature 
 
 ### Run apps offline once downloaded
 
-Blazor WebAssembly apps built as Progressive Web Apps and Blazor Hybrid apps can run offline, which is particularly useful when clients aren't able to connect to the Internet. Blazor Server apps fail to run when the connection to the server is lost. If an app must run offline, Blazor WebAssembly and Blazor Hybrid are the best choices.
+Blazor WebAssembly apps built as Progressive Web Apps (PWAs) and Blazor Hybrid apps can run offline, which is particularly useful when clients aren't able to connect to the Internet. Blazor Server apps fail to run when the connection to the server is lost. If an app must run offline, Blazor WebAssembly and Blazor Hybrid are the best choices.
 
 ### Static site hosting
 
