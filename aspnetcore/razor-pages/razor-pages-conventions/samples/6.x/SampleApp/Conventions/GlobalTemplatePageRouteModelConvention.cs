@@ -1,8 +1,7 @@
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 namespace SampleApp.Conventions;
 
-public class GlobalTemplatePageRouteModelConvention 
-    : IPageRouteModelConvention
+public class GlobalTemplatePageRouteModelConvention : IPageRouteModelConvention
 {
     public void Apply(PageRouteModel model)
     {

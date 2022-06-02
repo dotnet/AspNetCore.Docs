@@ -82,25 +82,40 @@ Add a delegate for <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.IPageConvent
 
 Use <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.Conventions> to create and add an <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.IPageRouteModelConvention> to the collection of <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.IPageConvention> instances that are applied during page route model construction.
 
-The sample app adds a `{globalTemplate?}` route template to all of the pages in the app:
+The sample app contains the `GlobalTemplatePageRouteModelConvention` class to add a `{globalTemplate?}` route template to all of the pages in the app:
 
-[!code-csharp[](razor-pages-conventions/samples/6.x/SampleApp/Conventions/GlobalTemplatePageRouteModelConvention.cs)]
+[!code-csharp[](razor-pages-conventions/samples/6.x/SampleApp/Conventions/GlobalTemplatePageRouteModelConvention.cs?highlight=17-19)]
 
-The <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteModel.Order*> property for the <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteModel> is set to `1`. This ensures the following route matching behavior in the sample app:
+In the preceding code:
 
-* A route template for `TheContactPage/{text?}` is added later in the topic. The Contact Page route has a default order of `null` (`Order = 0`), so it matches before the `{globalTemplate?}` route template.
-* An `{aboutTemplate?}` route template is added later in the topic. The `{aboutTemplate?}` template is given an `Order` of `2`. When the About page is requested at `/About/RouteDataValue`, "RouteDataValue" is loaded into `RouteData.Values["globalTemplate"]` (`Order = 1`) and not `RouteData.Values["aboutTemplate"]` (`Order = 2`) due to setting the `Order` property.
-* An `{otherPagesTemplate?}` route template is added later in the topic. The `{otherPagesTemplate?}` template is given an `Order` of `2`. When any page in the *Pages/OtherPages* folder is requested with a route parameter (for example, `/OtherPages/Page1/RouteDataValue`), "RouteDataValue" is loaded into `RouteData.Values["globalTemplate"]` (`Order = 1`) and not `RouteData.Values["otherPagesTemplate"]` (`Order = 2`) due to setting the `Order` property.
-
-When possible, don't set the `Order`, which results in `Order = 0`. Rely on routing to select the correct route.
+* The <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageRouteModel> is passed to the `Apply` method.
+* The [PageRouteModel.Selectors](xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageRouteModel.Selectors) gets the count of selectors.
+* A new <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.SelectorModel> is added which contains a <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteModel>
 
 Razor Pages options, such as adding <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.Conventions>, are added when Razor Pages is added to the service collection. For an example, see the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/razor-pages-conventions/samples/).
 
-[!code-csharp[](razor-pages-conventions/samples/3.x/SampleApp/Startup.cs?name=snippet1)]
+[!code-csharp[](razor-pages-conventions/samples/6.x/SampleApp/Program.cs?name=snippet11&highlight=13)]
+
+Consider the `GlobalTemplatePageRouteModelConvention` class:
+
+[!code-csharp[](razor-pages-conventions/samples/6.x/SampleApp/Conventions/GlobalTemplatePageRouteModelConvention.cs?highlight=17-19)]
+
+The <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteModel.Order*> property for the <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteModel> is set to `1`. This ensures the following route matching behavior in the sample app:
+
+* A route template for `TheContactPage/{text?}` is added later in this topic. The Contact Page route has a default order of `null` (`Order = 0`), so it matches before the `{globalTemplate?}` route template.
+* An `{aboutTemplate?}` route template is added later in the topic. The `{aboutTemplate?}` template is given an `Order` of `2`. When the About page is requested at `/About/RouteDataValue`, "RouteDataValue" is loaded into `RouteData.Values["globalTemplate"]` (`Order = 1`) and not `RouteData.Values["aboutTemplate"]` (`Order = 2`) due to setting the `Order` property.
+* An `{otherPagesTemplate?}` route template is added later in the topic. The `{otherPagesTemplate?}` template is given an `Order` of `2`. When any page in the *Pages/OtherPages* folder is requested with a route parameter:
+
+* For example, `/OtherPages/Page1/xyz`
+*  The route data value `"xyz"` is loaded into `RouteData.Values["globalTemplate"]` (`Order = 1`)
+* `RouteData.Values["otherPagesTemplate"]` (`Order = 2`) is not loaded due to the `Order` property `2` having a higher value.
+
+When possible, don't set the `Order`. When `Order` is not set, it defaults to `Order = 0`. Rely on routing to select the correct route rather than the `Order` property.
 
 Request the sample's `About` page at `localhost:{port}/About/GlobalRouteValue` and inspect the result:
 
 ![The About page is requested with a route segment of GlobalRouteValue. The rendered page shows that the route data value is captured in the OnGet method of the page.](razor-pages-conventions/_static/about-page-global-template.png)
+
 
 ### Add an app model convention to all pages
 
