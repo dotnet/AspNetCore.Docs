@@ -1877,8 +1877,6 @@ Render fragments are used for a variety of rendering purposes throughout Blazor 
   * [Global exception handling](xref:blazor/fundamentals/handle-errors#global-exception-handling)
 * [Reuse rendering logic](xref:blazor/performance#define-reusable-renderfragments-in-code)
 
-&dagger;Setting child content includes setting the content for [Razor components that are provided by the Blazor framework](xref:blazor/components/built-in-components).
-
 ## Child content
 
 Components can set the content of another component. The assigning component provides the content between the child component's opening and closing tags.
@@ -2862,8 +2860,6 @@ Render fragments are used for a variety of rendering purposes throughout Blazor 
   * [Templated components](xref:blazor/components/templated-components)
   * [Global exception handling](xref:blazor/fundamentals/handle-errors#global-exception-handling)
 * [Reuse rendering logic](xref:blazor/performance#define-reusable-renderfragments-in-code)
-
-&dagger;Setting child content includes setting the content for [Razor components that are provided by the Blazor framework](xref:blazor/components/built-in-components).
 
 ## Child content
 
