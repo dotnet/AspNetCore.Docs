@@ -121,29 +121,23 @@ For more information on Microsoft native client frameworks, see the following re
 
 Select the Blazor hosting model based on the app's feature requirements. The following table shows the primary considerations for selecting the hosting model. 
 
-Technically, a Blazor Progressive Web Application (PWA) is a form of Blazor WebAssembly and not a separate hosting model. However, Blazor PWA offers a unique combination of features, so PWA appears in the following table in its own column.
-
 Blazor Hybrid apps include .NET MAUI, WPF, and Windows Forms framework apps.
 
-| Feature | Blazor Server | Blazor WebAssembly (WASM) | Blazor PWA | Blazor Hybrid |
-| --- | :---: | :---: | :---: | :---: |
-| [Complete .NET API compatibility](#complete-net-api-compatibility) | ✔️ | ❌ | ❌ | ✔️ |
-| [Direct access to server and network resources](#direct-access-to-server-and-network-resources) | ✔️ | ❌&dagger; | ❌&dagger; | ❌&dagger; |
-| [Small payload size with fast initial load time](#small-payload-size-with-fast-initial-load-time) | ✔️ | ❌ | ❌&Dagger; | ❌ |
-| [Relatively larger payload size with faster execution speed](#relatively-larger-payload-size-with-faster-execution-speed) | ❌ | ✔️ | ✔️&Dagger; | ✔️ |
-| [App code secure and private on the server](#app-code-secure-and-private-on-the-server) | ✔️ | ❌&dagger; | ❌&dagger; | ❌&dagger; |
-| [Run apps offline once downloaded](#run-apps-offline-once-downloaded) | ❌ | ✔️ | ✔️ | ✔️ |
-| [Static site hosting](#static-site-hosting) | ❌ | ✔️ | ✔️ | ❌ |
-| [Offloads processing to clients](#offloads-processing-to-clients) | ❌ | ✔️ | ✔️ | ✔️ |
-| [Full access to native client capabilities](#full-access-to-native-client-capabilities) | ❌ | ❌ | ❌ | ✔️ |
-| [Executes in its own app window](#executes-in-its-own-app-window) | ❌ | ❌ | ✔️ | ✔️ |
-| [Launch from the client](#launch-from-the-client) | ❌ | ❌ | ✔️ | ✔️ |
-| [Receive push notifications](#receive-push-notifications) | ❌ | ❌ | ✔️ | ✔️ |
-| [Automatic background updates](#automatic-background-updates) | ❌ | ❌ | ✔️ | ✔️ |
-| [Provided to clients via an installer](#provided-to-clients-via-an-installer) | ❌ | ❌ | ❌ | ✔️ |
+| Feature | Blazor Server | Blazor WebAssembly (WASM) | Blazor Hybrid |
+| --- | :---: | :---: | :---: |
+| [Complete .NET API compatibility](#complete-net-api-compatibility) | ✔️ | ❌ | ✔️ |
+| [Direct access to server and network resources](#direct-access-to-server-and-network-resources) | ✔️ | ❌&dagger; | ❌&dagger; |
+| [Small payload size with fast initial load time](#small-payload-size-with-fast-initial-load-time) | ✔️ | ❌ | ❌ |
+| [Near native execution speed](#near-native-execution-speed) | ✔️ | ✔️&Dagger; | ✔️ |
+| [App code secure and private on the server](#app-code-secure-and-private-on-the-server) | ✔️ | ❌&dagger; | ❌&dagger; |
+| [Run apps offline once downloaded](#run-apps-offline-once-downloaded) | ❌ | ✔️ | ✔️ |
+| [Static site hosting](#static-site-hosting) | ❌ | ✔️ | ❌ |
+| [Offloads processing to clients](#offloads-processing-to-clients) | ❌ | ✔️ | ✔️ |
+| [Full access to native client capabilities](#full-access-to-native-client-capabilities) | ❌ | ❌ | ✔️ |
+| [Web-based deployment](#web-based-deployment) | ✔️ | ✔️ | ❌ |
 
 &dagger;Blazor WebAssembly and Blazor Hybrid apps can use server-based APIs to access server/network resources and access private and secure app code.  
-&Dagger;Blazor PWA apps have a slower initial load due to their initial download from a server and then a faster initial load time when started subsequently on the client.  
+&Dagger;Blazor WebAssembly only reaches near-native performance with [ahead-of-time (AOT) compilation](xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation).
 
 After you choose the app's hosting model, you can generate a Blazor Server or Blazor WebAssembly app from a Blazor project template. For more information, see <xref:blazor/tooling#blazor-template-options>.
 
@@ -166,9 +160,9 @@ To avoid server-based APIs for Blazor WebAssembly or Blazor Hybrid apps, adopt B
 
 Blazor Server apps have relatively small payload sizes with faster initial load times. When a fast initial load time is desired, adopt Blazor Server.
 
-### Relatively larger payload size with faster execution speed
+### Near native execution speed
 
-Blazor Server apps execute on the server and thus are relatively slower than other types of Blazor apps that execute on the client.
+Blazor Server apps generally execute on the server quickly. However, Blazor Server apps are usually slower than other types of apps that execute natively on the client.
 
 Blazor Hybrid apps run using the .NET runtime natively on the target platform, which offers the best possible speed.
 
@@ -194,28 +188,11 @@ Blazor WebAssembly and Blazor Hybrid apps execute on clients and thus offload pr
 
 Blazor Hybrid apps have full access to native client API capabilities via .NET native app frameworks. In Blazor Hybrid apps, Razor components run directly in the native app, not on [WebAssembly](https://developer.mozilla.org/docs/WebAssembly). When full client capabilities are a requirement, Blazor Hybrid is the best choice.
 
-### Executes in its own app window
+### Web-based deployment
 
-Blazor PWA and Blazor Hybrid apps can run in their own app window on the client, so they aren't limited to a browser window.
+Blazor Server and Blazor WebAssemby are deployed as web apps that are updated on the next app refresh.
 
-### Launch from the client
-
-Blazor PWA and Blazor Hybrid apps can be launched from the client's operating system start menu, dock, or home screen.
-
-### Receive push notifications
-
-Blazor PWA and Blazor Hybrid apps are able to receive push notifications, even while the user isn't using the app.
-
-### Automatic background updates
-
-Blazor PWA and Blazor Hybrid apps permit automatic background updates:
-
-* PWAs are updated automatically when the site is updated. Updates via stores aren't possible, and there's no validation or verification process for updates.
-* Blazor Hybrid apps are deployed and updated as any other native app for a given platform, following the appropriate procedures for a given platform.
-
-### Provided to clients via an installer
-
-Blazor Hybrid apps are the only type of Blazor app that use an installer.
+Blazor Hybrid apps are native client apps that typically require an installer and platform-specific deployment mechanism.
 
 ## Additional resources
 
