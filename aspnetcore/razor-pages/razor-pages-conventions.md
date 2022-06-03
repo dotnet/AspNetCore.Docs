@@ -25,9 +25,9 @@ There are reserved words that can't be used as route segments or parameter names
 
 | Scenario | The sample demonstrates ... |
 | -------- | --------------------------- |
-| [Model conventions](#model-conventions)<br><br>Conventions.Add<ul><li>IPageRouteModelConvention</li><li>IPageApplicationModelConvention</li><li>IPageHandlerModelConvention</li></ul> | Add a route template and header to an app's pages. |
-| [Page route action conventions](#page-route-action-conventions)<ul><li>AddFolderRouteModelConvention</li><li>AddPageRouteModelConvention</li><li>AddPageRoute</li></ul> | Add a route template to pages in a folder and to a single page. |
-| [Page model action conventions](#page-model-action-conventions)<ul><li>AddFolderApplicationModelConvention</li><li>AddPageApplicationModelConvention</li><li>ConfigureFilter (filter class, lambda expression, or filter factory)</li></ul> | Add a header to pages in a folder, add a header to a single page, and configure a [filter factory](xref:mvc/controllers/filters#ifilterfactory) to add a header to an app's pages. |
+| [Model conventions](#model-conventions)<br><br>Conventions.Add<ul><li><xref:Microsoft.AspNetCore.Mvc.ApplicationModels.IPageRouteModelConvention></li><li><xref:Microsoft.AspNetCore.Mvc.ApplicationModels.IPageApplicationModelConvention></li><li><xref:Microsoft.AspNetCore.Mvc.ApplicationModels.IPageHandlerModelConvention></li></ul> | Add a route template and header to an app's pages. |
+| [Page route action conventions](#page-route-action-conventions)<ul><li><xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageConventionCollection.AddFolderRouteModelConvention%2A></li><li><xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageConventionCollection.AddPageRouteModelConvention%2A></li><li><xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AddPageRoute%2A></li></ul> | Add a route template to pages in a folder and to a single page. |
+| [Page model action conventions](#page-model-action-conventions)<ul><li><xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageConventionCollection.AddFolderApplicationModelConvention%2A></li><li><xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageConventionCollection.AddPageApplicationModelConvention%2A></li><li><xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.ConfigureFilter%2A> (filter class, lambda expression, or filter factory)</li></ul> | Add a header to pages in a folder, add a header to a single page, and configure a [filter factory](xref:mvc/controllers/filters#ifilterfactory) to add a header to an app's pages. |
 
 Razor Pages conventions are configured using an <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddRazorPages%2A> overload that configures <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions>. The following convention examples are explained later in this topic:
 
@@ -88,34 +88,40 @@ The sample app contains the `GlobalTemplatePageRouteModelConvention` class to ad
 
 In the preceding code:
 
-* The <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageRouteModel> is passed to the `Apply` method.
+* The <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageRouteModel> is passed to the <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.IPageRouteModelConvention.Apply%2A> method.
 * The [PageRouteModel.Selectors](xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageRouteModel.Selectors) gets the count of selectors.
 * A new <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.SelectorModel> is added which contains a <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteModel>
 
 Razor Pages options, such as adding <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.Conventions>, are added when Razor Pages is added to the service collection. For an example, see the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/razor-pages-conventions/samples/).
 
-[!code-csharp[](razor-pages-conventions/samples/6.x/SampleApp/Program.cs?name=snippet11&highlight=13)]
+[!code-csharp[](razor-pages-conventions/samples/6.x/SampleApp/Program.cs?name=snippet11&highlight=13,15,28,47,34)]
 
 Consider the `GlobalTemplatePageRouteModelConvention` class:
 
-[!code-csharp[](razor-pages-conventions/samples/6.x/SampleApp/Conventions/GlobalTemplatePageRouteModelConvention.cs?highlight=17-19)]
+[!code-csharp[](razor-pages-conventions/samples/6.x/SampleApp/Conventions/GlobalTemplatePageRouteModelConvention.cs?highlight=16-19)]
 
 The <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteModel.Order*> property for the <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteModel> is set to `1`. This ensures the following route matching behavior in the sample app:
 
-* A route template for `TheContactPage/{text?}` is added later in this topic. The Contact Page route has a default order of `null` (`Order = 0`), so it matches before the `{globalTemplate?}` route template.
-* An `{aboutTemplate?}` route template is added later in the topic. The `{aboutTemplate?}` template is given an `Order` of `2`. When the About page is requested at `/About/RouteDataValue`, "RouteDataValue" is loaded into `RouteData.Values["globalTemplate"]` (`Order = 1`) and not `RouteData.Values["aboutTemplate"]` (`Order = 2`) due to setting the `Order` property.
-* An `{otherPagesTemplate?}` route template is added later in the topic. The `{otherPagesTemplate?}` template is given an `Order` of `2`. When any page in the *Pages/OtherPages* folder is requested with a route parameter:
+* A route template for `TheContactPage/{text?}` is added later in this topic. The `Contact Page` route has a default order of `null` (`Order = 0`), so it matches before the `{globalTemplate?}` route template which has `Order = 1`.
+* The `{aboutTemplate?}` route template is show in the preceding code. The `{aboutTemplate?}` template is given an `Order` of `2`. When the About page is requested at `/About/RouteDataValue`, "RouteDataValue" is loaded into `RouteData.Values["globalTemplate"]` (`Order = 1`) and not `RouteData.Values["aboutTemplate"]` (`Order = 2`) due to setting the `Order` property.
+* The `{otherPagesTemplate?}` route template is shown in the preceding code. The `{otherPagesTemplate?}` template is given an `Order` of `2`. When any page in the *Pages/OtherPages* folder is requested with a route parameter:
 
 * For example, `/OtherPages/Page1/xyz`
-*  The route data value `"xyz"` is loaded into `RouteData.Values["globalTemplate"]` (`Order = 1`)
-* `RouteData.Values["otherPagesTemplate"]` (`Order = 2`) is not loaded due to the `Order` property `2` having a higher value.
+* The route data value `"xyz"` is loaded into `RouteData.Values["globalTemplate"]` (`Order = 1`).
+* `RouteData.Values["otherPagesTemplate"]` with (`Order = 2`) is not loaded due to the `Order` property `2` having a higher value.
 
-When possible, don't set the `Order`. When `Order` is not set, it defaults to `Order = 0`. Rely on routing to select the correct route rather than the `Order` property.
+**When possible, don't set the `Order`**. When `Order` is not set, it defaults to `Order = 0`. Rely on routing to select the correct route rather than the `Order` property.
 
 Request the sample's `About` page at `localhost:{port}/About/GlobalRouteValue` and inspect the result:
 
 ![The About page is requested with a route segment of GlobalRouteValue. The rendered page shows that the route data value is captured in the OnGet method of the page.](razor-pages-conventions/_static/about-page-global-template.png)
 
+The sample app uses the [Rick.Docs.Samples.RouteInfo](https://www.nuget.org/packages/Rick.Docs.Samples.RouteInfo) NuGet package to display routing information in the logging output. Using `localhost:{port}/About/GlobalRouteValue`, the logger displays the request, the `Order`, and the template used:
+
+```dotnetcli
+info: SampleApp.Pages.AboutModel[0]
+       /About/GlobalRouteValue   Order = 1 Template = About/{globalTemplate?}
+```
 
 ### Add an app model convention to all pages
 
@@ -125,13 +131,13 @@ To demonstrate this and other conventions later in the topic, the sample app inc
 
 The sample app uses the `AddHeaderAttribute` class to add a header, `GlobalHeader`, to all of the pages in the app:
 
-[!code-csharp[](razor-pages-conventions/samples/3.x/SampleApp/Conventions/GlobalHeaderPageApplicationModelConvention.cs?name=snippet1)]
+[!code-csharp[](razor-pages-conventions/samples/6.x/SampleApp/Conventions/GlobalHeaderPageApplicationModelConvention.cs?name=snippet1)]
 
-`Startup.cs`:
+`Program.cs`:
 
-[!code-csharp[](razor-pages-conventions/samples/3.x/SampleApp/Startup.cs?name=snippet2)]
+[!code-csharp[](razor-pages-conventions/samples/6.x/SampleApp/Program.cs?name=snippet2)]
 
-Request the sample's About page at `localhost:5000/About` and inspect the headers to view the result:
+Request the sample's About page at `localhost:{port}/About` and inspect the headers to view the result:
 
 ![Response headers of the About page show that the GlobalHeader has been added.](razor-pages-conventions/_static/about-page-global-header.png)
 
@@ -139,11 +145,11 @@ Request the sample's About page at `localhost:5000/About` and inspect the header
 
 Use <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.Conventions> to create and add an <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.IPageHandlerModelConvention> to the collection of <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.IPageConvention> instances that are applied during page handler model construction.
 
-[!code-csharp[](razor-pages-conventions/samples/3.x/SampleApp/Conventions/GlobalPageHandlerModelConvention.cs?name=snippet1)]
+[!code-csharp[](razor-pages-conventions/samples/6.x/SampleApp/Conventions/GlobalPageHandlerModelConvention.cs?name=snippet1)]
 
 `Startup.cs`:
 
-[!code-csharp[](razor-pages-conventions/samples/3.x/SampleApp/Startup.cs?name=snippet10)]
+[!code-csharp[](razor-pages-conventions/samples/6.x/SampleApp/Program.cs?name=snippet10)]
 
 ## Page route action conventions
 
@@ -209,7 +215,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ## Configure a page route
 
-Use <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AddPageRoute*> to configure a route to a page at the specified page path. Generated links to the page use your specified route. `AddPageRoute` uses `AddPageRouteModelConvention` to establish the route.
+Use <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AddPageRoute*> to configure a route to a page at the specified page path. Generated links to the page use your specified route. <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AddPageRoute%2A> uses <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageConventionCollection.AddPageRouteModelConvention%2A> to establish the route.
 
 The sample app creates a route to `/TheContactPage` for `Contact.cshtml`:
 

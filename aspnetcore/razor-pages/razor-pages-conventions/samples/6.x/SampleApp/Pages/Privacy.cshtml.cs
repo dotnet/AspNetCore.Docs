@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Docs.Samples;
 
 namespace SampleApp.Pages
 {
@@ -14,6 +15,7 @@ namespace SampleApp.Pages
 
         public void OnGet()
         {
+            _logger.LogInformation(PageContext.ToCtxStringP());
         }
     }
 }

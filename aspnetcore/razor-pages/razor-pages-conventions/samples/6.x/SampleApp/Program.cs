@@ -1,4 +1,4 @@
-#define FIRST // FIRST SECOND
+#define SECOND // FIRST SECOND
 #if NEVER
 #elif FIRST
 #region snippet11
@@ -78,7 +78,7 @@ using SampleApp.Conventions;
 using SampleApp.Data;
 using SampleApp.Factories;
 using SampleApp.Filters;
-
+#region snippet2
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -90,7 +90,6 @@ builder.Services.AddRazorPages(options =>
        options.Conventions.Add(new GlobalTemplatePageRouteModelConvention());
 #endregion
 
-#region snippet2
        options.Conventions.Add(new GlobalHeaderPageApplicationModelConvention());
 #endregion
 

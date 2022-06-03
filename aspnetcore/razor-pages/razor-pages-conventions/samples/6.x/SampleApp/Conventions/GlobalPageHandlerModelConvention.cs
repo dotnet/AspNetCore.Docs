@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
-
 namespace SampleApp.Conventions;
 
 #region snippet1
@@ -11,3 +10,4 @@ public class GlobalPageHandlerModelConvention
         // Access the PageHandlerModel
     }
 }
+#endregion
