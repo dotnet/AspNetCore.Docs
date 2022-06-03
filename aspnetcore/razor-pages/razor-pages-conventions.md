@@ -21,7 +21,7 @@ There are reserved words that can't be used as route segments or parameter names
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/razor-pages-conventions/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
-| Scenario | The sample demonstrates ... |
+| Scenario | The sample demonstrates  |
 | -------- | --------------------------- |
 | [Model conventions](#model-conventions)<br><br>Conventions.Add<ul><li><xref:Microsoft.AspNetCore.Mvc.ApplicationModels.IPageRouteModelConvention></li><li><xref:Microsoft.AspNetCore.Mvc.ApplicationModels.IPageApplicationModelConvention></li><li><xref:Microsoft.AspNetCore.Mvc.ApplicationModels.IPageHandlerModelConvention></li></ul> | Add a route template and header to an app's pages. |
 | [Page route action conventions](#page-route-action-conventions)<ul><li><xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageConventionCollection.AddFolderRouteModelConvention%2A></li><li><xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageConventionCollection.AddPageRouteModelConvention%2A></li><li><xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AddPageRoute%2A></li></ul> | Add a route template to pages in a folder and to a single page. |
@@ -92,7 +92,7 @@ In the preceding code:
 
 Razor Pages options, such as adding <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.Conventions>, are added when Razor Pages is added to the service collection. For an example, see the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/razor-pages-conventions/samples/).
 
-[!code-csharp[](razor-pages-conventions/samples/6.x/SampleApp/Program.cs?name=snippet11&highlight=13,15,28,47-49,34)]
+[!code-csharp[](razor-pages-conventions/samples/6.x/SampleApp/Program.cs?name=snippet11&highlight=13,15,28,34,47-49)]
 
 Consider the `GlobalTemplatePageRouteModelConvention` class:
 

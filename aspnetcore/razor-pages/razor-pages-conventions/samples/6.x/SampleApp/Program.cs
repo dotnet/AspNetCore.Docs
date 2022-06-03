@@ -10,7 +10,7 @@ using SampleApp.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseInMemoryDatabase("InMemoryDb"));
+                                   options.UseInMemoryDatabase("InMemoryDb"));
 
 builder.Services.AddRazorPages(options =>
    {
@@ -191,4 +191,4 @@ app.UseAuthorization();
 app.MapRazorPages();
 app.Run();
 #endregion
-#endif
+#endif 
