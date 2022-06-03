@@ -49,7 +49,7 @@ The preceding command creates an ASP.NET Core app with a *ClientApp* directory c
 
 The following sections describe additions to the project when authentication support is included:
 
-### Startup class
+### `Startup` class
 
 The following code examples rely on the [Microsoft.AspNetCore.ApiAuthorization.IdentityServer](https://www.nuget.org/packages/Microsoft.AspNetCore.ApiAuthorization.IdentityServer) NuGet package. The examples configure API authentication and authorization using the <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> and <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiResourceCollection.AddIdentityServerJwt%2A> extension methods. Projects using the React or Angular SPA project templates with authentication include a reference to this package.
 
@@ -114,29 +114,29 @@ Example:
 options.Authority = "https://contoso-service.azurewebsites.net";
 ```
 
-### AddApiAuthorization
+### `AddApiAuthorization`
 
 This helper method configures IdentityServer to use our supported configuration. IdentityServer is a powerful and extensible framework for handling app security concerns. At the same time, that exposes unnecessary complexity for the most common scenarios. Consequently, a set of conventions and configuration options is provided to you that are considered a good starting point. Once your authentication needs change, the full power of IdentityServer is still available to customize authentication to suit your needs.
 
-### AddIdentityServerJwt
+### `AddIdentityServerJwt`
 
 This helper method configures a policy scheme for the app as the default authentication handler. The policy is configured to let Identity handle all requests routed to any subpath in the Identity URL space "/Identity". The `JwtBearerHandler` handles all other requests. Additionally, this method registers an `<<ApplicationName>>API` API resource with IdentityServer with a default scope of `<<ApplicationName>>API` and configures the JWT Bearer token middleware to validate tokens issued by IdentityServer for the app.
 
-### WeatherForecastController
+### `WeatherForecastController`
 
 In the  file, notice the `[Authorize]` attribute applied to the class that indicates that the user needs to be authorized based on the default policy to access the resource. The default authorization policy happens to be configured to use the default authentication scheme, which is set up by `AddIdentityServerJwt` to the policy scheme that was mentioned above, making the `JwtBearerHandler` configured by such helper method the default handler for requests to the app.
 
-### ApplicationDbContext
+### `ApplicationDbContext`
 
 In the  file, notice the same `DbContext` is used in Identity with the exception that it extends `ApiAuthorizationDbContext` (a more derived class from `IdentityDbContext`) to include the schema for IdentityServer.
 
 To gain full control of the database schema, inherit from one of the available Identity `DbContext` classes and configure the context to include the Identity schema by calling `builder.ConfigurePersistedGrantContext(_operationalStoreOptions.Value)` on the `OnModelCreating` method.
 
-### OidcConfigurationController
+### `OidcConfigurationController`
 
 In the  file, notice the endpoint that's provisioned to serve the OIDC parameters that the client needs to use.
 
-### appsettings.json
+### `appsettings.json`
 
 In the `appsettings.json` file of the project root, there's a new `IdentityServer` section that describes the list of configured clients. In the following example, there's a single client. The client name corresponds to the app name and is mapped by convention to the OAuth `ClientId` parameter. The profile indicates the app type being configured. It's used internally to drive conventions that simplify the configuration process for the server. There are several profiles available, as explained in the [Application profiles](#application-profiles) section.
 
@@ -150,7 +150,7 @@ In the `appsettings.json` file of the project root, there's a new `IdentityServe
 }
 ```
 
-### appsettings.Development.json
+### `appsettings.Development.json`
 
 In the `appsettings.Development.json` file of the project root, there's an `IdentityServer` section that describes the key used to sign tokens. When deploying to production, a key needs to be provisioned and deployed alongside the app, as explained in the [Deploy to production](#deploy-to-production) section.
 
@@ -270,7 +270,7 @@ Protecting a route:
 
 Authenticating requests with React is done by first importing the `authService` instance from the `AuthorizeService`. The access token is retrieved from the `authService` and is attached to the request as shown below. In React components, this work is typically done in the `componentDidMount` lifecycle method or as the result from some user interaction.
 
-### Import the authService into your component
+### Import the `authService` into a component
 
 ```javascript
 import authService from './api-authorization/AuthorizeService'
@@ -372,7 +372,7 @@ Application profiles are predefined configurations for apps that further define 
 * `API`: Represents an API that isn't hosted with IdentityServer.
   * The app is configured to have a single scope that defaults to the app name.
 
-### Configuration through AppSettings
+### Configuration through `AppSettings`
 
 Configure the apps through the configuration system by adding them to the list of `Clients` or `Resources`.
 

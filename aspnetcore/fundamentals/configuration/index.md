@@ -102,7 +102,7 @@ Configuration providers that are added later have higher priority and override p
 
 For more information on `CreateBuilder`, see [Default builder settings](xref:fundamentals/host/generic-host#default-builder-settings).
 
-### appsettings.json
+### `appsettings.json`
 
 Consider the following `appsettings.json` file:
 
@@ -956,7 +956,7 @@ The following code displays the enabled configuration providers in the order the
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/Index2.cshtml.cs?name=snippet)]
 
-### appsettings.json
+### `appsettings.json`
 
 Consider the following `appsettings.json` file:
 

@@ -119,7 +119,7 @@ For more information on the development certificate, see [Trust the ASP.NET Core
 
 The following sections show how to specify the custom certificate using the `appsettings.json` file and via configuration.
 
-#### Specify the custom certificate with appsettings.json
+#### Specify the custom certificate with `appsettings.json`
 
 [!code-json[](minimal-apis/samples/WebMinAPIs/appsettings.json?highlight=9-16)]
 
@@ -910,7 +910,7 @@ For more information on the development certificate, see [Trust the ASP.NET Core
 
 The following sections show how to specify the custom certificate using the `appsettings.json` file and via configuration.
 
-#### Specify the custom certificate with appsettings.json
+#### Specify the custom certificate with `appsettings.json`
 
 [!code-json[](minimal-apis/7.0-samples/WebMinAPIs/appsettingsCert.json?highlight=9-16)]
 

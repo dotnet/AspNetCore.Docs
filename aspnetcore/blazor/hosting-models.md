@@ -20,7 +20,7 @@ This article explains the different Blazor hosting models and how to choose whic
 
 :::moniker range=">= aspnetcore-6.0"
 
-Blazor is a web framework for building web UI components ([Razor components](xref:blazor/components/index)) that can be hosted in different ways. Razor components can run server-side in ASP.NET Core (*Blazor Server*) versus client-side in the browser on a [WebAssembly](https://webassembly.org/)-based .NET runtime (*Blazor WebAssembly*, *Blazor WASM*). You can also host Razor components in native mobile and desktop apps that render to an embedded :::no-loc text="Web View"::: control (*Blazor Hybrid*). Regardless of the hosting model, the way you build Razor components *is the same*. The same Razor components can be used with any of the hosting models unchanged.
+Blazor is a web framework for building web UI components ([Razor components](xref:blazor/components/index)) that can be hosted in different ways. Razor components can run server-side in ASP.NET Core (*Blazor Server*) versus client-side in the browser on a [WebAssembly](https://webassembly.org/)-based .NET runtime (*Blazor WebAssembly*, *Blazor WASM*). You can also host Razor components in native mobile and desktop apps that render to an embedded Web View control (*Blazor Hybrid*). Regardless of the hosting model, the way you build Razor components *is the same*. The same Razor components can be used with any of the hosting models unchanged.
 
 ## Blazor Server
 
@@ -89,7 +89,7 @@ Blazor WebAssembly apps can use [native dependencies](xref:blazor/webassembly-na
 
 ## Blazor Hybrid
 
-Blazor can also be used to build native client apps using a hybrid approach. Hybrid apps are native apps that leverage web technologies for their functionality. In a Blazor Hybrid app, Razor components run directly in the native app (not on WebAssembly) along with any other .NET code and render web UI based on HTML and CSS to an embedded :::no-loc text="Web View"::: control through a local interop channel.
+Blazor can also be used to build native client apps using a hybrid approach. Hybrid apps are native apps that leverage web technologies for their functionality. In a Blazor Hybrid app, Razor components run directly in the native app (not on WebAssembly) along with any other .NET code and render web UI based on HTML and CSS to an embedded Web View control through a local interop channel.
 
 ![Hybrid apps with .NET and Blazor render UI in a Web View control, where the HTML Document Object Model (DOM) interacts with Blazor and .NET of the native desktop or mobile app.](~/blazor/hosting-models/_static/hybrid-apps-1.png)
 

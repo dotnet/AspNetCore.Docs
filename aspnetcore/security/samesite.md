@@ -6,7 +6,6 @@ ms.author: riande
 monikerRange: '>= aspnetcore-2.1'
 ms.custom: mvc
 ms.date: 5/20/2022
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, Electron]
 uid: security/samesite
 ---
 # Work with SameSite cookies in ASP.NET Core
