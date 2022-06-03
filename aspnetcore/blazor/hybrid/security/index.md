@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/23/2022
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/hybrid/security/index
 zone_pivot_groups: blazor-hybrid-frameworks
 ---
@@ -524,11 +523,11 @@ The authentication process is external to Blazor, and we recommend that develope
 
 When implementing authentication:
 
-* Avoid authentication in the context of the :::no-loc text="Web View":::. For example, avoid using a JavaScript OAuth library to perform the authentication flow. In a single-page app, authentication tokens aren't hidden in JavaScript and can be easily discovered by malicious users and used for nefarious purposes. Native apps don't suffer this risk because native apps are only able to obtain tokens outside of the browser context, which means that rogue third-party scripts can't steal the tokens and compromise the app.
-* Avoid implementing the authentication workflow yourself. In most cases, platform libraries securely handle the authentication workflow, using the system's browser instead of using a custom :::no-loc text="Web View"::: that can be hijacked.
-* Avoid using the platform's :::no-loc text="Web View"::: control to perform authentication. Instead, rely on the system's browser when possible.
+* Avoid authentication in the context of the Web View. For example, avoid using a JavaScript OAuth library to perform the authentication flow. In a single-page app, authentication tokens aren't hidden in JavaScript and can be easily discovered by malicious users and used for nefarious purposes. Native apps don't suffer this risk because native apps are only able to obtain tokens outside of the browser context, which means that rogue third-party scripts can't steal the tokens and compromise the app.
+* Avoid implementing the authentication workflow yourself. In most cases, platform libraries securely handle the authentication workflow, using the system's browser instead of using a custom Web View that can be hijacked.
+* Avoid using the platform's Web View control to perform authentication. Instead, rely on the system's browser when possible.
 * Avoid passing the tokens to the document context (JavaScript). In some situations, a JavaScript library within the document is required to perform an authorized call to an external service. Instead of making the token available to JavaScript via JS interop:
-  * Provide a generated temporary token to the library and within the :::no-loc text="Web View":::.
+  * Provide a generated temporary token to the library and within the Web View.
   * Intercept the outgoing network request in code.
   * Replace the temporary token with the real token and confirm that the destination of the request is valid.
 

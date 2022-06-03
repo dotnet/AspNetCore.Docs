@@ -5,7 +5,6 @@ description: Explains how Razor Pages in ASP.NET Core makes coding page-focused 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.date: 04/14/2022
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: razor-pages/index
 ---
 # Introduction to Razor Pages in ASP.NET Core

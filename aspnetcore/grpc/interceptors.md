@@ -5,7 +5,6 @@ ms.author: jamesnk
 description: Learn how to use gRPC interceptors on .NET.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 02/26/2022
-no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/interceptors
 ---
 # gRPC interceptors on .NET

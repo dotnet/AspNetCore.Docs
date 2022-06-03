@@ -5,7 +5,6 @@ description: Demonstrates how to use the 'Microsoft.dotnet-openapi' tool to add 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: rybrande
 ms.date: 3/9/2022
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: web-api/Microsoft.dotnet-openapi
 ---
 # .NET OpenAPI tool command reference and installation

@@ -5,7 +5,6 @@ description: Learn how to build a web API with ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/28/2022
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, Models]
 uid: tutorials/first-web-api
 ---
 
@@ -229,28 +228,28 @@ A *model* is a set of classes that represent the data that the app manages. The 
 
 # [Visual Studio](#tab/visual-studio)
 
-* In **Solution Explorer**, right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
+* In **Solution Explorer**, right-click the project. Select **Add** > **New Folder**. Name the folder `Models`.
 
-* Right-click the *Models* folder and select **Add** > **Class**. Name the class *TodoItem* and select **Add**.
+* Right-click the `Models` folder and select **Add** > **Class**. Name the class *TodoItem* and select **Add**.
 
 * Replace the template code with the following:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Add a folder named *Models*.
+* Add a folder named `Models`.
 
-* Add a `TodoItem.cs` file to the *Models* folder with the following code:
+* Add a `TodoItem.cs` file to the `Models` folder with the following code:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 
 <!--
-* Right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
+* Right-click the project. Select **Add** > **New Folder**. Name the folder `Models`.
 
   ![new folder](first-web-api-mac/_static/6/add_new_folder.png)
 
-* Right-click the *Models* folder, and select **Add** > **New File** > **General** > **Empty Class**.
+* Right-click the `Models` folder, and select **Add** > **New File** > **General** > **Empty Class**.
 
 * Name the class *TodoItem*, and then click **New**.
 
@@ -263,7 +262,7 @@ For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 
 The `Id` property functions as the unique key in a relational database.
 
-Model classes can go anywhere in the project, but the *Models* folder is used by convention.
+Model classes can go anywhere in the project, but the `Models` folder is used by convention.
 
 ## Add a database context
 
@@ -280,11 +279,11 @@ The *database context* is the main class that coordinates Entity Framework funct
 
 ## Add the TodoContext database context
 
-* Right-click the *Models* folder and select **Add** > **Class**. Name the class *TodoContext* and click **Add**.
+* Right-click the `Models` folder and select **Add** > **Class**. Name the class *TodoContext* and click **Add**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Add a `TodoContext.cs` file to the *Models* folder. 
+* Add a `TodoContext.cs` file to the `Models` folder. 
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -293,7 +292,7 @@ For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 <!--
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-* Add a `TodoContext` class to the *Models* folder.
+* Add a `TodoContext` class to the `Models` folder.
 -->
 
 ---
@@ -803,25 +802,25 @@ A *model* is a set of classes that represent the data that the app manages. The 
 
 # [Visual Studio](#tab/visual-studio)
 
-* In **Solution Explorer**, right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
+* In **Solution Explorer**, right-click the project. Select **Add** > **New Folder**. Name the folder `Models`.
 
-* Right-click the *Models* folder and select **Add** > **Class**. Name the class *TodoItem* and select **Add**.
+* Right-click the `Models` folder and select **Add** > **Class**. Name the class *TodoItem* and select **Add**.
 
 * Replace the template code with the following:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Add a folder named *Models*.
+* Add a folder named `Models`.
 
-* Add a `TodoItem` class to the *Models* folder with the following code:
+* Add a `TodoItem` class to the `Models` folder with the following code:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* Right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
+* Right-click the project. Select **Add** > **New Folder**. Name the folder `Models`.
 
   ![new folder](first-web-api-mac/_static/5/folder.png)
 
-* Right-click the *Models* folder, and select **Add** > **New File** > **General** > **Empty Class**.
+* Right-click the `Models` folder, and select **Add** > **New File** > **General** > **Empty Class**.
 
 * Name the class *TodoItem*, and then click **New**.
 
@@ -833,7 +832,7 @@ A *model* is a set of classes that represent the data that the app manages. The 
 
 The `Id` property functions as the unique key in a relational database.
 
-Model classes can go anywhere in the project, but the *Models* folder is used by convention.
+Model classes can go anywhere in the project, but the `Models` folder is used by convention.
 
 ## Add a database context
 
@@ -852,11 +851,11 @@ The *database context* is the main class that coordinates Entity Framework funct
 
 ## Add the TodoContext database context
 
-* Right-click the *Models* folder and select **Add** > **Class**. Name the class *TodoContext* and click **Add**.
+* Right-click the `Models` folder and select **Add** > **Class**. Name the class *TodoContext* and click **Add**.
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-* Add a `TodoContext` class to the *Models* folder.
+* Add a `TodoContext` class to the `Models` folder.
 
 ---
 
@@ -1296,25 +1295,25 @@ A *model* is a set of classes that represent the data that the app manages. The 
 
 # [Visual Studio](#tab/visual-studio)
 
-* In **Solution Explorer**, right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
+* In **Solution Explorer**, right-click the project. Select **Add** > **New Folder**. Name the folder `Models`.
 
-* Right-click the *Models* folder and select **Add** > **Class**. Name the class *TodoItem* and select **Add**.
+* Right-click the `Models` folder and select **Add** > **Class**. Name the class *TodoItem* and select **Add**.
 
 * Replace the template code with the following code:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Add a folder named *Models*.
+* Add a folder named `Models`.
 
-* Add a `TodoItem` class to the *Models* folder with the following code:
+* Add a `TodoItem` class to the `Models` folder with the following code:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* Right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
+* Right-click the project. Select **Add** > **New Folder**. Name the folder `Models`.
 
   ![new folder](first-web-api-mac/_static/5/folder.png)
 
-* Right-click the *Models* folder, and select **Add** > **New File** > **General** > **Empty Class**.
+* Right-click the `Models` folder, and select **Add** > **New File** > **General** > **Empty Class**.
 
 * Name the class *TodoItem*, and then click **New**.
 
@@ -1326,7 +1325,7 @@ A *model* is a set of classes that represent the data that the app manages. The 
 
 The `Id` property functions as the unique key in a relational database.
 
-Model classes can go anywhere in the project, but the *Models* folder is used by convention.
+Model classes can go anywhere in the project, but the `Models` folder is used by convention.
 
 ## Add a database context
 
@@ -1345,11 +1344,11 @@ The *database context* is the main class that coordinates Entity Framework funct
 
 ## Add the TodoContext database context
 
-* Right-click the *Models* folder and select **Add** > **Class**. Name the class *TodoContext* and click **Add**.
+* Right-click the `Models` folder and select **Add** > **Class**. Name the class *TodoContext* and click **Add**.
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-* Add a `TodoContext` class to the *Models* folder.
+* Add a `TodoContext` class to the `Models` folder.
 
 ---
 

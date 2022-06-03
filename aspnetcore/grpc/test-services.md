@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: jamesnk
 ms.custom: mvc
 ms.date: 01/01/2022
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/test-services
 ---
 # Test gRPC services in ASP.NET Core

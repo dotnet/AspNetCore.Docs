@@ -5,7 +5,6 @@ description: Provides an overview of minimal APIs in ASP.NET Core 6.0.
 ms.author: riande
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 5/13/2022
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/minimal-apis
 ---
 
@@ -120,7 +119,7 @@ For more information on the development certificate, see [Trust the ASP.NET Core
 
 The following sections show how to specify the custom certificate using the `appsettings.json` file and via configuration.
 
-#### Specify the custom certificate with appsettings.json
+#### Specify the custom certificate with `appsettings.json`
 
 [!code-json[](minimal-apis/samples/WebMinAPIs/appsettings.json?highlight=9-16)]
 
@@ -911,7 +910,7 @@ For more information on the development certificate, see [Trust the ASP.NET Core
 
 The following sections show how to specify the custom certificate using the `appsettings.json` file and via configuration.
 
-#### Specify the custom certificate with appsettings.json
+#### Specify the custom certificate with `appsettings.json`
 
 [!code-json[](minimal-apis/7.0-samples/WebMinAPIs/appsettingsCert.json?highlight=9-16)]
 

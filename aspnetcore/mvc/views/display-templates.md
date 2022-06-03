@@ -5,7 +5,6 @@ ms.author: riande
 description: How to use DisplayTemplates and EditorTemplates in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 05/22/2022
-no-loc: ["DisplayTemplate", "EditorTemplate", Home, Model, "Page Model", "Razor Pages"]
 uid: mvc/views/display-templates
 ---
 
@@ -31,14 +30,14 @@ Display and Editor templates can also reduce code duplication and maintenance co
 
 ## Display templates
 
-*DisplayTemplates* customize the display of model fields or create a layer of abstraction between the model values and their display.
+`DisplayTemplates` customize the display of model fields or create a layer of abstraction between the model values and their display.
 
-A *DisplayTemplate* is a [Razor](xref:mvc/views/razor) file placed in the`DisplayTemplates`folder:
+A `DisplayTemplate` is a [Razor](xref:mvc/views/razor) file placed in the`DisplayTemplates`folder:
 
 * For Razor Pages apps, in the `Pages/Shared/DisplayTemplates` folder.
 * For MVC apps, in the `Views/Shared/DisplayTemplates` folder or the `Views/ControllerName/DisplayTemplates` folder. Display templates in the `Views/Shared/DisplayTemplates` are used by all controllers in the app. Display templates in the `Views/ControllerName/DisplayTemplates` folder are resolved only by the `ControllerName` controller.
 
-By convention, the *DisplayTemplate* file is named after the type to be displayed. The `Address.cshtml` template used in this sample:
+By convention, the `DisplayTemplate` file is named after the type to be displayed. The `Address.cshtml` template used in this sample:
 
 [!code-cshtml[](display-templates/sample/Pages/Shared/DisplayTemplates/Address.cshtml)]
 
@@ -62,16 +61,16 @@ Use one of the available [DisplayFor overloads](xref:Microsoft.AspNetCore.Mvc.Re
 
 Editor templates are used in form controls when the model is edited or updated.
 
-A *EditorTemplate* is a [Razor](xref:mvc/views/razor) file placed in the`EditorTemplates`folder:
+An `EditorTemplate` is a [Razor](xref:mvc/views/razor) file placed in the`EditorTemplates` folder:
 
 * For Razor Pages apps, in the `Pages/Shared/EditorTemplates` folder.
 * For MVC apps, in the `Views/Shared/EditorTemplates` folder or the `Views/ControllerName/EditorTemplates` folder.
 
-The following markup shows the *Pages/Shared/EditorTemplates/Address.cshtml* used in the sample:
+The following markup shows the `Pages/Shared/EditorTemplates/Address.cshtml` used in the sample:
 
 [!code-cshtml[](display-templates/sample/Pages/Shared/EditorTemplates/Address.cshtml)]
 
-The following markup shows the *Edit.cshtml* page which uses the *Pages/Shared/EditorTemplates/Address.cshtml* template:
+The following markup shows the *Edit.cshtml* page which uses the `Pages/Shared/EditorTemplates/Address.cshtml` template:
 
 [!code-cshtml[](display-templates/sample/Pages/Adr2/Edit.cshtml?highlight=17)]
 

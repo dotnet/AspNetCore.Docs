@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/24/2022
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/supported-platforms
 ---
 # ASP.NET Core Blazor supported platforms
@@ -24,7 +23,7 @@ Blazor WebAssembly and Blazor Server are supported in the browsers shown in the 
 
 &dagger;*Current* refers to the latest version of the browser.
 
-For [Blazor Hybrid apps](xref:blazor/hybrid/index), we test on and support the latest platform :::no-loc text="Web View"::: control versions:
+For [Blazor Hybrid apps](xref:blazor/hybrid/index), we test on and support the latest platform Web View control versions:
 
 * [Microsoft Edge `WebView2` on Windows](/microsoft-edge/webview2/)
 * [Chrome on Android](https://play.google.com/store/apps/details?id=com.android.chrome)
