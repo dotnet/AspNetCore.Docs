@@ -94,7 +94,7 @@ In the preceding code:
 
 Razor Pages options, such as adding <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.Conventions>, are added when Razor Pages is added to the service collection. For an example, see the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/razor-pages-conventions/samples/).
 
-[!code-csharp[](razor-pages-conventions/samples/6.x/SampleApp/Program.cs?name=snippet11&highlight=13,15,28,47,34)]
+[!code-csharp[](razor-pages-conventions/samples/6.x/SampleApp/Program.cs?name=snippet11&highlight=13,15,28,47-49,34)]
 
 Consider the `GlobalTemplatePageRouteModelConvention` class:
 

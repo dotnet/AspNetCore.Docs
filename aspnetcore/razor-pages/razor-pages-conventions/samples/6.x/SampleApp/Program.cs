@@ -86,14 +86,14 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddRazorPages(options =>
    {
-#region snippet1
+       #region snippet1
        options.Conventions.Add(new GlobalTemplatePageRouteModelConvention());
-#endregion
+       #endregion
 
        options.Conventions.Add(new GlobalHeaderPageApplicationModelConvention());
-#endregion
+       #endregion
 
-#region snippet3
+       #region snippet3
        options.Conventions.AddFolderRouteModelConvention("/OtherPages", model =>
        {
            var selectorCount = model.Selectors.Count;
@@ -112,8 +112,9 @@ builder.Services.AddRazorPages(options =>
                });
            }
        });
-#endregion
-#region snippet4
+       #endregion
+
+       #region snippet4
        options.Conventions.AddPageRouteModelConvention("/About", model =>
        {
            var selectorCount = model.Selectors.Count;
@@ -132,29 +133,29 @@ builder.Services.AddRazorPages(options =>
                });
            }
        });
-#endregion
+       #endregion
 
-#region snippet5
+       #region snippet5
        options.Conventions.AddPageRoute("/Contact", "TheContactPage/{text?}");
-#endregion
+       #endregion
 
-#region snippet6
+       #region snippet6
        options.Conventions.AddFolderApplicationModelConvention("/OtherPages", model =>
        {
            model.Filters.Add(new AddHeaderAttribute(
                "OtherPagesHeader", new string[] { "OtherPages Header Value" }));
        });
-#endregion
+       #endregion
 
-#region snippet7
+       #region snippet7
        options.Conventions.AddPageApplicationModelConvention("/About", model =>
        {
            model.Filters.Add(new AddHeaderAttribute(
                "AboutHeader", new string[] { "About Header Value" }));
        });
-#endregion
+       #endregion
 
-#region snippet8
+       #region snippet8
        options.Conventions.ConfigureFilter(model =>
        {
            if (model.RelativePath.Contains("OtherPages/Page2"))
@@ -165,15 +166,15 @@ builder.Services.AddRazorPages(options =>
            }
            return new EmptyFilter();
        });
-#endregion
+       #endregion
 
-#region snippet9
+       #region snippet9
        options.Conventions.ConfigureFilter(new AddHeaderWithFactory());
-#endregion
+       #endregion
 
-#region snippet10
+       #region snippet10
        options.Conventions.Add(new GlobalPageHandlerModelConvention());
-#endregion
+       #endregion
    });
 
 var app = builder.Build();
