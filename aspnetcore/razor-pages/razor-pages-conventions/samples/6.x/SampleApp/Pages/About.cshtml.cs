@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Docs.Samples;
 
 namespace SampleApp.Pages;
 
 // can't refactor this because it uses RouteData.Values["aboutTemplate"]
+[AllowAnonymous]
 public class AboutModel : PageModel
 {
     public readonly ILogger<AboutModel> _logger;
