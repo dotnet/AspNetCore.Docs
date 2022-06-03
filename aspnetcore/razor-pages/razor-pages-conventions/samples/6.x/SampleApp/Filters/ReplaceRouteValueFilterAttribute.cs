@@ -22,7 +22,7 @@ namespace SampleApp.Filters
             // Called after a handler method is selected but before model binding occurs.
             context.RouteData.Values.TryGetValue("globalTemplate", 
                 out var globalTemplateValue);
-            if (string.Equals((string)globalTemplateValue, "TriggerValue", 
+            if (string.Equals((string)globalTemplateValue!, "TriggerValue", 
                 StringComparison.Ordinal))
             {
                 context.RouteData.Values["globalTemplate"] = "ReplacementValue";
