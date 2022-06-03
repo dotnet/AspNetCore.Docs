@@ -11,6 +11,8 @@ zone_pivot_groups: blazor-hybrid-operating-systems
 ---
 # Use browser developer tools with ASP.NET Core Blazor Hybrid
 
+<!-- This topic drops loc for "Mac Catalyst" -->
+
 This article explains how to use [browser developer tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) with Blazor Hybrid apps.
 
 ## Browser developer tools with .NET MAUI Blazor
@@ -84,7 +86,7 @@ To use Safari developer tools with an iOS app:
 
 :::zone pivot="macos"
 
-Using browser developer tools with Mac Catalyst apps isn't currently supported. You may wish to run the [iOS](?pivots=ios) application instead, as the behavior is similar between iOS and Mac Catalyst.
+Using browser developer tools with :::no-loc text="Mac Catalyst"::: apps isn't currently supported. You may wish to run the [iOS](?pivots=ios) application instead, as the behavior is similar between iOS and :::no-loc text="Mac Catalyst":::.
 
 <!--
 To use Safari developer tools with a macOS app:

@@ -10,6 +10,7 @@ uid: security/docker-compose-https
 ---
 # Hosting ASP.NET Core images with Docker Compose over HTTPS
 
+<!-- This topic drops loc for "Let's Encrypt" -->
 
 ASP.NET Core uses [HTTPS by default](./enforcing-ssl.md). [HTTPS](https://en.wikipedia.org/wiki/HTTPS) relies on [certificates](https://en.wikipedia.org/wiki/Public_key_certificate) for trust, identity, and encryption.
 
@@ -25,7 +26,7 @@ The [.NET Core 2.2 SDK](https://dotnet.microsoft.com/download) or later is requi
 
 ## Certificates
 
-A certificate from a [certificate authority](https://wikipedia.org/wiki/Certificate_authority) is required for [production hosting](https://blogs.msdn.microsoft.com/webdev/2017/11/29/configuring-https-in-asp-net-core-across-different-platforms/) for a domain. [Let's Encrypt](https://letsencrypt.org/) is a certificate authority that offers free certificates.
+A certificate from a [certificate authority](https://wikipedia.org/wiki/Certificate_authority) is required for [production hosting](https://blogs.msdn.microsoft.com/webdev/2017/11/29/configuring-https-in-asp-net-core-across-different-platforms/) for a domain. [:::no-loc text="Let's Encrypt":::](https://letsencrypt.org/) is a certificate authority that offers free certificates.
 
 This document uses [self-signed development certificates](https://wikipedia.org/wiki/Self-signed_certificate) for hosting pre-built images over `localhost`. The instructions are similar to using production certificates.
 
