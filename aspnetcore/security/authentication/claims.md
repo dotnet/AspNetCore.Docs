@@ -60,11 +60,13 @@ The <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> interface a
 builder.Services.AddTransient<IClaimsTransformation, MyClaimsTransformation>();
 ```
 
+<!-- see https://github.com/dotnet/AspNetCore.Docs/issues/26032
 ## Extend or add custom claims in ASP.NET Core Identity
 
 Refer to the following document:
 
 [Add claims to Identity using IUserClaimsPrincipalFactory](xref:security/authentication/add-user-data#add-claims-to-identity-using-iuserclaimsprincipalfactoryapplicationuser)
+-->
 
 ## Map claims from external identity providers
 
