@@ -5,7 +5,6 @@ description: Learn how to build a minimal web API with ASP.NET Core.
 ms.author: riande
 ms.date: 05/28/2022
 monikerRange: '>= aspnetcore-6.0'
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, Models]
 uid: tutorials/min-web-api
 ---
 
@@ -388,7 +387,7 @@ Update the to-do item that has Id = 1 and set its name to `"feed fish"`:
 
 ```json
 {
-  "Id": 1,
+  "id": 1,
   "name": "feed fish",
   "isComplete": false
 }

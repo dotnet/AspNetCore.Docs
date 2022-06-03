@@ -6,7 +6,6 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/20/2022
 monikerRange: '>= aspnetcore-3.1'
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/views/view-components
 ---
 # View components in ASP.NET Core

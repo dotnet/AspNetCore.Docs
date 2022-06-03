@@ -5,7 +5,6 @@ description: Learn how to use authentication and authorization in gRPC for ASP.N
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 04/13/2022
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/authn-and-authz
 ---
 # Authentication and authorization in gRPC for ASP.NET Core

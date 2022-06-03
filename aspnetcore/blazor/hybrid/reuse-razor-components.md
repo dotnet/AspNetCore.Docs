@@ -6,14 +6,13 @@ monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: "mvc"
 ms.date: 05/23/2022
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/hybrid/reuse-razor-components
 ---
 # Reuse Razor components in ASP.NET Core Blazor Hybrid
 
 This article explains how to author and organize Razor components for the web and and :::no-loc text="Web Views"::: in Blazor Hybrid apps.
 
-Razor components work across hosting models (Blazor WebAssembly, Blazor Server, and in the :::no-loc text="Web View"::: of Blazor Hybrid) and across platforms (Android, iOS, and Windows). Hosting models and platforms have unique capabilities that components can leverage, but components executing across hosting models and platforms must leverage unique capabilities separately, which the following examples demonstrate:
+Razor components work across hosting models (Blazor WebAssembly, Blazor Server, and in the Web View of Blazor Hybrid) and across platforms (Android, iOS, and Windows). Hosting models and platforms have unique capabilities that components can leverage, but components executing across hosting models and platforms must leverage unique capabilities separately, which the following examples demonstrate:
 
 * Blazor WebAssembly supports synchronous JavaScript (JS) interop, which isn't supported by the strictly asynchronous JS interop communication channel in Blazor Server and :::no-loc text="Web Views"::: of Blazor Hybrid apps.
 * Components in a Blazor Server app can access services that are only available on the server, such as an Entity Framework database context.

@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-6.0'
 ms.author: jukotali
 ms.custom: mvc
 ms.date: 04/20/2021
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/http-logging/index
 ---
 

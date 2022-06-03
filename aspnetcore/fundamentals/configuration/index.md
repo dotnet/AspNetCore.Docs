@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 4/21/2022
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/configuration/index
 ---
 # Configuration in ASP.NET Core
@@ -103,7 +102,7 @@ Configuration providers that are added later have higher priority and override p
 
 For more information on `CreateBuilder`, see [Default builder settings](xref:fundamentals/host/generic-host#default-builder-settings).
 
-### appsettings.json
+### `appsettings.json`
 
 Consider the following `appsettings.json` file:
 
@@ -957,7 +956,7 @@ The following code displays the enabled configuration providers in the order the
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/Index2.cshtml.cs?name=snippet)]
 
-### appsettings.json
+### `appsettings.json`
 
 Consider the following `appsettings.json` file:
 

@@ -4,7 +4,6 @@ author: rick-anderson
 description: Part 4 of Razor Pages and Entity Framework tutorial series.
 ms.author: riande
 ms.date: 07/22/2019
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: data/ef-rp/migrations
 ---
 

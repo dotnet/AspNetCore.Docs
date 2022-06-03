@@ -5,7 +5,6 @@ description: Learn how to add custom user data to Identity in an ASP.NET Core pr
 ms.author: riande
 ms.date: 03/15/2022
 ms.custom: "mvc, seodec18"
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/add-user-data
 ---
 # Add, download, and delete custom user data to Identity in an ASP.NET Core project
