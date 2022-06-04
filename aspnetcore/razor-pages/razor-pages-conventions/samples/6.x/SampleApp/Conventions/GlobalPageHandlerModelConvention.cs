@@ -1,15 +1,14 @@
+using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
+namespace SampleApp.Conventions;
 
-namespace SampleApp.Conventions
+#region snippet1
+public class GlobalPageHandlerModelConvention
+    : IPageHandlerModelConvention
 {
-    #region snippet1
-    public class GlobalPageHandlerModelConvention
-        : IPageHandlerModelConvention
+    public void Apply(PageHandlerModel model)
     {
-        public void Apply(PageHandlerModel model)
-        {
-            // Access the PageHandlerModel
-        }
+        // Access the PageHandlerModel
     }
-    #endregion
 }
+#endregion
