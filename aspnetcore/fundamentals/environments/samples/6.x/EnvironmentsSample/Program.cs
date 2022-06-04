@@ -1,4 +1,4 @@
-#define SetInCode
+#define First // SetInCode
 #if First
 #region First
 var builder = WebApplication.CreateBuilder(args);
