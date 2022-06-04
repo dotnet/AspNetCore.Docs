@@ -593,6 +593,8 @@ The `Authentication` component (`Pages/Authentication.razor`) saves and restores
 }
 ```
 
+In the preceding example, `JS` is an injected <xref:Microsoft.JSInterop.IJSRuntime> instance. <xref:Microsoft.JSInterop.IJSRuntime> is registered by the Blazor framework.
+
 This example uses Azure Active Directory (AAD) for authentication. In `Program.cs`:
 
 * The `ApplicationAuthenticationState` is configured as the Microsoft Autentication Library (MSAL) `RemoteAuthenticationState` type.

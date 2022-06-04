@@ -386,7 +386,7 @@ The `CultureSelector` component is placed in the `Shared` folder for use through
 
 ```razor
 @using  System.Globalization
-@inject IJSRuntime JSRuntime
+@inject IJSRuntime JS
 @inject NavigationManager Nav
 
 <p>
@@ -416,7 +416,7 @@ The `CultureSelector` component is placed in the `Shared` folder for use through
         {
             if (CultureInfo.CurrentCulture != value)
             {
-                var js = (IJSInProcessRuntime)JSRuntime;
+                var js = (IJSInProcessRuntime)JS;
                 js.InvokeVoid("blazorCulture.set", value.Name);
 
                 Nav.NavigateTo(Nav.Uri, forceLoad: true);
@@ -1263,7 +1263,7 @@ The following `CultureSelector` component shows how to set the user's culture se
 
 ```razor
 @using  System.Globalization
-@inject IJSRuntime JSRuntime
+@inject IJSRuntime JS
 @inject NavigationManager Nav
 
 <p>
@@ -1293,7 +1293,7 @@ The following `CultureSelector` component shows how to set the user's culture se
         {
             if (CultureInfo.CurrentCulture != value)
             {
-                var js = (IJSInProcessRuntime)JSRuntime;
+                var js = (IJSInProcessRuntime)JS;
                 js.InvokeVoid("blazorCulture.set", value.Name);
 
                 Nav.NavigateTo(Nav.Uri, forceLoad: true);
@@ -2055,7 +2055,7 @@ The following `CultureSelector` component shows how to set the user's culture se
 
 ```razor
 @using  System.Globalization
-@inject IJSRuntime JSRuntime
+@inject IJSRuntime JS
 @inject NavigationManager Nav
 
 <p>
@@ -2085,7 +2085,7 @@ The following `CultureSelector` component shows how to set the user's culture se
         {
             if (CultureInfo.CurrentCulture != value)
             {
-                var js = (IJSInProcessRuntime)JSRuntime;
+                var js = (IJSInProcessRuntime)JS;
                 js.InvokeVoid("blazorCulture.set", value.Name);
 
                 Nav.NavigateTo(Nav.Uri, forceLoad: true);
