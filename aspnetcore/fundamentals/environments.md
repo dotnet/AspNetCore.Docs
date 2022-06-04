@@ -60,8 +60,7 @@ dotnet run --verbosity normal
 
 When the app runs, it displays output similar to the following:
 
-:::code language="bash" source="environments/samples/6.x/dnr-verbose.txt" highlight=8,10:::
-
+:::code language="bash" source="environments/samples/6.x/dnr-verbose.txt" highlight="8,10":::
 
 ### Set environment on the command line
 
@@ -73,7 +72,7 @@ dotnet run --environment Production
 
 The preceding command sets the environment to `Production` and displays output similar to the following in the command window:
 
-:::code language="bash" source="environments/samples/6.x/dnr-verbose.txt":::
+:::code language="bash" source="environments/samples/6.x/dnr-prod.txt" highlight="8":::
 
 <a name="lsj"></a>
 
