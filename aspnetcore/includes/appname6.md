@@ -1,0 +1,3 @@
+## Application name change
+
+ In .NET 6, <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> normalizes the content root path to end with a <xref:System.IO.Path.DirectorySeparatorChar>. Most apps migrating from <xref:Microsoft.Extensions.Hosting.HostBuilder> or  <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder> won't have the same app name because they aren't normalized. For more information, see [SetApplicationName](xref:security/data-protection/configuration/overview#setapplicationname)
