@@ -558,7 +558,7 @@ In the following `App` component example:
     {
         if (context.Path == "/about") 
         {
-            var stats = new Stats = { Page = "/about" };
+            var stats = new Stats { Page = "/about" };
             await Http.PostAsJsonAsync("api/visited", stats, 
                 context.CancellationToken);
         }
@@ -984,7 +984,7 @@ In the following `App` component example:
     {
         if (context.Path == "/about") 
         {
-            var stats = new Stats = { Page = "/about" };
+            var stats = new Stats { Page = "/about" };
             await Http.PostAsJsonAsync("api/visited", stats, 
                 context.CancellationToken);
         }
