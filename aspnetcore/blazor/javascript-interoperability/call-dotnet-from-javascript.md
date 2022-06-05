@@ -253,6 +253,7 @@ In the following `CallDotNetExampleOneHelper` component, the `Trigger JS functio
 
 In the preceding example:
 
+* `JS` is an injected <xref:Microsoft.JSInterop.IJSRuntime> instance. <xref:Microsoft.JSInterop.IJSRuntime> is registered by the Blazor framework.
 * The variable name `dotNetHelper` is arbitrary and can be changed to any preferred name.
 * The component must explicitly dispose of the <xref:Microsoft.JSInterop.DotNetObjectReference> to permit garbage collection and prevent a memory leak.
 
@@ -392,7 +393,7 @@ In the following `GenericsExample` component:
 ```razor
 @page "/generics-example"
 @using System.Runtime.InteropServices
-@inject IJSRuntime JSRuntime
+@inject IJSRuntime JS
 
 <p>
     <button @onclick="InvokeInterop">Invoke Interop</button>
@@ -412,7 +413,7 @@ In the following `GenericsExample` component:
         var syncInterop = 
             RuntimeInformation.IsOSPlatform(OSPlatform.Create("BROWSER"));
 
-        await JSRuntime.InvokeVoidAsync(
+        await JS.InvokeVoidAsync(
             "invokeMethodsAsync",
             syncInterop,
             DotNetObjectReference.Create(genericType1),
@@ -420,6 +421,8 @@ In the following `GenericsExample` component:
     }
 }
 ```
+
+In the preceding example, `JS` is an injected <xref:Microsoft.JSInterop.IJSRuntime> instance. <xref:Microsoft.JSInterop.IJSRuntime> is registered by the Blazor framework.
 
 The following demonstrates typical output of the preceding example when the **`Invoke Interop`** button is selected in a Blazor WebAssembly app:
 
@@ -695,7 +698,7 @@ await dataReferenceStream.CopyToAsync(outputFileStream);
 
 In the preceding example:
 
-* `JS` is an injected <xref:Microsoft.JSInterop.IJSRuntime> instance.
+* `JS` is an injected <xref:Microsoft.JSInterop.IJSRuntime> instance. <xref:Microsoft.JSInterop.IJSRuntime> is registered by the Blazor framework.
 * The `dataReferenceStream` is written to disk (`file.txt`) at the current user's temporary folder path (<xref:System.IO.Path.GetTempPath%2A>).
 
 <xref:blazor/js-interop/call-javascript-from-dotnet#stream-from-net-to-javascript> covers the reverse operation, streaming from .NET to JavaScript using a <xref:Microsoft.JSInterop.DotNetStreamReference>.
