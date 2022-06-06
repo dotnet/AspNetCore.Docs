@@ -668,6 +668,71 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
 });
 ```
 
+To set the culture using custom logic based on the localization cookie:
+
+* Use [JS interop](xref:blazor/js-interop/call-javascript-from-dotnet) to obtain the localization cookie's value.
+* Parse the cookie value to obtain its first value, which is the user's default requested culture.
+* Attempt to match the cookie's culture to the app's supported cultures list. If the cookie isn't present or the cookie's first culture doesn't match a supported culture, set the app's culture to the app's default culture.
+
+The following example is the basis for further customization.
+
+In the `<head>` content of `wwwroot/index.html`:
+
+```html
+<script>
+  window.getCookie = (name) => {
+    name = name + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) === ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) === 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+  };
+</script>
+```
+
+At the end of `Program.Main` (`Program.cs`):
+
+```csharp
+using Microsoft.AspNetCore.Localization;
+using Microsoft.JSInterop;
+
+...
+
+var host = builder.Build();
+
+var supportedCultures = new[]
+    {
+        new CultureInfo("en-US"),
+        new CultureInfo("es-CL")
+    };
+
+var js = host.Services.GetRequiredService<IJSRuntime>();
+var localizationCookie = await js.InvokeAsync<string>("getCookie", 
+    CookieRequestCultureProvider.DefaultCookieName);
+var culture = CookieRequestCultureProvider.ParseCookieValue(localizationCookie)?
+    .UICultures?[0].Value;
+
+if (culture == null || !supportedCultures.Any(c => c.Name.Equals(culture, 
+    StringComparison.OrdinalIgnoreCase)))
+{
+    culture = supportedCultures[0];
+}
+
+var cultureInfo = CultureInfo.GetCultureInfo(culture);
+CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+
+await host.RunAsync();
+```
+
 :::zone-end
 
 :::zone pivot="server"
@@ -1563,6 +1628,71 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
 });
 ```
 
+To set the culture using custom logic based on the localization cookie:
+
+* Use [JS interop](xref:blazor/js-interop/call-javascript-from-dotnet) to obtain the localization cookie's value.
+* Parse the cookie value to obtain its first value, which is the user's default requested culture.
+* Attempt to match the cookie's culture to the app's supported cultures list. If the cookie isn't present or the cookie's first culture doesn't match a supported culture, set the app's culture to the app's default culture.
+
+The following example is the basis for further customization.
+
+In the `<head>` content of `wwwroot/index.html`:
+
+```html
+<script>
+  window.getCookie = (name) => {
+    name = name + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) === ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) === 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+  };
+</script>
+```
+
+At the end of `Program.Main` (`Program.cs`):
+
+```csharp
+using Microsoft.AspNetCore.Localization;
+using Microsoft.JSInterop;
+
+...
+
+var host = builder.Build();
+
+var supportedCultures = new[]
+    {
+        new CultureInfo("en-US"),
+        new CultureInfo("es-CL")
+    };
+
+var js = host.Services.GetRequiredService<IJSRuntime>();
+var localizationCookie = await js.InvokeAsync<string>("getCookie", 
+    CookieRequestCultureProvider.DefaultCookieName);
+var culture = CookieRequestCultureProvider.ParseCookieValue(localizationCookie)?
+    .UICultures?[0].Value;
+
+if (culture == null || !supportedCultures.Any(c => c.Name.Equals(culture, 
+    StringComparison.OrdinalIgnoreCase)))
+{
+    culture = supportedCultures[0];
+}
+
+var cultureInfo = CultureInfo.GetCultureInfo(culture);
+CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+
+await host.RunAsync();
+```
+
 :::zone-end
 
 :::zone pivot="server"
@@ -2364,6 +2494,71 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
     options.SupportedCultures = supportedCultures;
     options.SupportedUICultures = supportedCultures;
 });
+```
+
+To set the culture using custom logic based on the localization cookie:
+
+* Use [JS interop](xref:blazor/js-interop/call-javascript-from-dotnet) to obtain the localization cookie's value.
+* Parse the cookie value to obtain its first value, which is the user's default requested culture.
+* Attempt to match the cookie's culture to the app's supported cultures list. If the cookie isn't present or the cookie's first culture doesn't match a supported culture, set the app's culture to the app's default culture.
+
+The following example is the basis for further customization.
+
+In the `<head>` content of `wwwroot/index.html`:
+
+```html
+<script>
+  window.getCookie = (name) => {
+    name = name + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) === ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) === 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+  };
+</script>
+```
+
+At the end of `Program.Main` (`Program.cs`):
+
+```csharp
+using Microsoft.AspNetCore.Localization;
+using Microsoft.JSInterop;
+
+...
+
+var host = builder.Build();
+
+var supportedCultures = new[]
+    {
+        new CultureInfo("en-US"),
+        new CultureInfo("es-CL")
+    };
+
+var js = host.Services.GetRequiredService<IJSRuntime>();
+var localizationCookie = await js.InvokeAsync<string>("getCookie", 
+    CookieRequestCultureProvider.DefaultCookieName);
+var culture = CookieRequestCultureProvider.ParseCookieValue(localizationCookie)?
+    .UICultures?[0].Value;
+
+if (culture == null || !supportedCultures.Any(c => c.Name.Equals(culture, 
+    StringComparison.OrdinalIgnoreCase)))
+{
+    culture = supportedCultures[0];
+}
+
+var cultureInfo = CultureInfo.GetCultureInfo(culture);
+CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+
+await host.RunAsync();
 ```
 
 :::zone-end
