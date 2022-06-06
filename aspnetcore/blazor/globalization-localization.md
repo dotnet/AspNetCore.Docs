@@ -708,19 +708,14 @@ using Microsoft.JSInterop;
 
 var host = builder.Build();
 
-var supportedCultures = new[]
-    {
-        new CultureInfo("en-US"),
-        new CultureInfo("es-CL")
-    };
-
+var supportedCultures = new[] { "en-US", "es-CL" };
 var js = host.Services.GetRequiredService<IJSRuntime>();
 var localizationCookie = await js.InvokeAsync<string>("getCookie", 
     CookieRequestCultureProvider.DefaultCookieName);
 var culture = CookieRequestCultureProvider.ParseCookieValue(localizationCookie)?
     .UICultures?[0].Value;
 
-if (culture == null || !supportedCultures.Any(c => c.Name.Equals(culture, 
+if (culture == null || !supportedCultures.Any(c => c.Equals(culture, 
     StringComparison.OrdinalIgnoreCase)))
 {
     culture = supportedCultures[0];
@@ -1668,19 +1663,14 @@ using Microsoft.JSInterop;
 
 var host = builder.Build();
 
-var supportedCultures = new[]
-    {
-        new CultureInfo("en-US"),
-        new CultureInfo("es-CL")
-    };
-
+var supportedCultures = new[] { "en-US", "es-CL" };
 var js = host.Services.GetRequiredService<IJSRuntime>();
 var localizationCookie = await js.InvokeAsync<string>("getCookie", 
     CookieRequestCultureProvider.DefaultCookieName);
 var culture = CookieRequestCultureProvider.ParseCookieValue(localizationCookie)?
     .UICultures?[0].Value;
 
-if (culture == null || !supportedCultures.Any(c => c.Name.Equals(culture, 
+if (culture == null || !supportedCultures.Any(c => c.Equals(culture, 
     StringComparison.OrdinalIgnoreCase)))
 {
     culture = supportedCultures[0];
@@ -2536,19 +2526,14 @@ using Microsoft.JSInterop;
 
 var host = builder.Build();
 
-var supportedCultures = new[]
-    {
-        new CultureInfo("en-US"),
-        new CultureInfo("es-CL")
-    };
-
+var supportedCultures = new[] { "en-US", "es-CL" };
 var js = host.Services.GetRequiredService<IJSRuntime>();
 var localizationCookie = await js.InvokeAsync<string>("getCookie", 
     CookieRequestCultureProvider.DefaultCookieName);
 var culture = CookieRequestCultureProvider.ParseCookieValue(localizationCookie)?
     .UICultures?[0].Value;
 
-if (culture == null || !supportedCultures.Any(c => c.Name.Equals(culture, 
+if (culture == null || !supportedCultures.Any(c => c.Equals(culture, 
     StringComparison.OrdinalIgnoreCase)))
 {
     culture = supportedCultures[0];
