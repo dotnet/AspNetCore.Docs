@@ -171,10 +171,7 @@ Set the `BlazorWebAssemblyLoadAllGlobalizationData` property to `true` in the ap
 ```
 
 > [!NOTE]
-> If the app's specification requires limiting the supported cultures to an explicit list, use either of the following approaches described later in this article:
->
-> * [Dynamically set the culture by user preference](#dynamically-set-the-culture-by-user-preference)
-> * [Localization API](#localization)
+> If the app's specification requires limiting the supported cultures to an explicit list, see the [Dynamically set the culture by user preference](#dynamically-set-the-culture-by-user-preference) section of this article.
 
 :::zone-end
 
@@ -1059,10 +1056,7 @@ Set the `BlazorWebAssemblyLoadAllGlobalizationData` property to `true` in the ap
 ```
 
 > [!NOTE]
-> If the app's specification requires limiting the supported cultures to an explicit list, use either of the following approaches described later in this article:
->
-> * [Dynamically set the culture by user preference](#dynamically-set-the-culture-by-user-preference)
-> * [Localization API](#localization)
+> If the app's specification requires limiting the supported cultures to an explicit list, see the [Dynamically set the culture by user preference](#dynamically-set-the-culture-by-user-preference) section of this article.
 
 :::zone-end
 
