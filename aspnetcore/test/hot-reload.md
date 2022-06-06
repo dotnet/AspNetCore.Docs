@@ -63,7 +63,7 @@ The following setting in `Properties/launchSettings.json` disables Hot Reload:
 
 ```json
 "hotReloadEnabled" : false
- ```
+```
 
 ## Additional resources
 
