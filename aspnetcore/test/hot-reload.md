@@ -61,8 +61,8 @@ dotnet watch --no-hot-reload
 
 The following setting in `Properties/launchSettings.json` disables Hot Reload:
 
-```JSON
- "hotReloadEnabled" : false
+```json
+"hotReloadEnabled" : false
  ```
 
 ## Additional resources
