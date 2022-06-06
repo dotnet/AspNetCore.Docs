@@ -57,6 +57,14 @@ To disable support for Hot Reload, pass the `--no-hot-reload` option to the `dot
 dotnet watch --no-hot-reload
 ```
 
+## Disable Hot Reload
+
+The following setting in `Properties/launchSettings.json` disables Hot Reload:
+
+```json
+"hotReloadEnabled" : false
+```
+
 ## Additional resources
 
 For more information, see the following resources in the Visual Studio documentation:
