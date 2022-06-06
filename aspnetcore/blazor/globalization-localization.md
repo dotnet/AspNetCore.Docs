@@ -5,7 +5,7 @@ description: Learn how to render globalized and localized content to users in di
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/09/2021
+ms.date: 06/06/2022
 uid: blazor/globalization-localization
 zone_pivot_groups: blazor-hosting-models
 ---
@@ -169,6 +169,12 @@ Set the `BlazorWebAssemblyLoadAllGlobalizationData` property to `true` in the ap
   <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
 </PropertyGroup>
 ```
+
+> [!NOTE]
+> If the app's specification requires limiting the supported cultures to an explicit list, use either of the following approaches described later in this article:
+>
+> * [Dynamically set the culture by user preference](#dynamically-set-the-culture-by-user-preference)
+> * [Localization API](#localization)
 
 :::zone-end
 
@@ -452,7 +458,7 @@ In `Program.cs`:
 builder.Services.AddLocalization();
 ```
 
-Set the app's default and supported cultures with <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.SetDefaultCulture%2A?displayProperty=nameWithType>.
+Set the app's default and supported cultures with <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions>.
 
 In `Program.cs` immediately after Routing Middleware is added to the processing pipeline:
 
@@ -643,6 +649,23 @@ Add Blazor's localization service to the app's service collection with <xref:Mic
 
 ```csharp
 builder.Services.AddLocalization();
+```
+
+To limit the app's supported cultures and set a default culture, use <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions>:
+
+```csharp
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+    var supportedCultures = new[]
+    {
+        new CultureInfo("en-US"),
+        new CultureInfo("es-CL")
+    };
+
+    options.SetDefaultCulture(supportedCultures[0])
+    options.SupportedCultures = supportedCultures;
+    options.SupportedUICultures = supportedCultures;
+});
 ```
 
 :::zone-end
@@ -1052,6 +1075,12 @@ Set the `BlazorWebAssemblyLoadAllGlobalizationData` property to `true` in the ap
 </PropertyGroup>
 ```
 
+> [!NOTE]
+> If the app's specification requires limiting the supported cultures to an explicit list, use either of the following approaches described later in this article:
+>
+> * [Dynamically set the culture by user preference](#dynamically-set-the-culture-by-user-preference)
+> * [Localization API](#localization)
+
 :::zone-end
 
 :::zone pivot="server"
@@ -1329,7 +1358,7 @@ In `Startup.ConfigureServices` (`Startup.cs`):
 services.AddLocalization();
 ```
 
-Set the app's default and supported cultures with <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.SetDefaultCulture%2A?displayProperty=nameWithType>.
+Set the app's default and supported cultures with <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions>.
 
 In `Startup.Configure` immediately after Routing Middleware is added to the processing pipeline:
 
@@ -1515,6 +1544,23 @@ Add Blazor's localization service to the app's service collection with <xref:Mic
 
 ```csharp
 builder.Services.AddLocalization();
+```
+
+To limit the app's supported cultures and set a default culture, use <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions>:
+
+```csharp
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+    var supportedCultures = new[]
+    {
+        new CultureInfo("en-US"),
+        new CultureInfo("es-CL")
+    };
+
+    options.SetDefaultCulture(supportedCultures[0])
+    options.SupportedCultures = supportedCultures;
+    options.SupportedUICultures = supportedCultures;
+});
 ```
 
 :::zone-end
@@ -2121,7 +2167,7 @@ In `Startup.ConfigureServices` (`Startup.cs`):
 services.AddLocalization();
 ```
 
-Set the app's default and supported cultures with <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.SetDefaultCulture%2A?displayProperty=nameWithType>.
+Set the app's default and supported cultures with <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions>.
 
 In `Startup.Configure` immediately after Routing Middleware is added to the processing pipeline:
 
@@ -2301,6 +2347,23 @@ Add Blazor's localization service to the app's service collection with <xref:Mic
 
 ```csharp
 builder.Services.AddLocalization();
+```
+
+To limit the app's supported cultures and set a default culture, use <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions>:
+
+```csharp
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+    var supportedCultures = new[]
+    {
+        new CultureInfo("en-US"),
+        new CultureInfo("es-CL")
+    };
+
+    options.SetDefaultCulture(supportedCultures[0])
+    options.SupportedCultures = supportedCultures;
+    options.SupportedUICultures = supportedCultures;
+});
 ```
 
 :::zone-end
