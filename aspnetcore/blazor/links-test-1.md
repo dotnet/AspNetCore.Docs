@@ -27,11 +27,3 @@ With `..` path segment:
 ```
 
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/index/HelloWorld.razor" highlight="1":::
-
-With `aspnetcore` path segment:
-
-```markdown
-:::code language="razor" source="~/aspnetcore/blazor-samples/6.0/BlazorSample_WebAssembly/Pages/index/HelloWorld.razor" highlight="1":::
-```
-
-:::code language="razor" source="~/aspnetcore/blazor-samples/6.0/BlazorSample_WebAssembly/Pages/index/HelloWorld.razor" highlight="1":::
