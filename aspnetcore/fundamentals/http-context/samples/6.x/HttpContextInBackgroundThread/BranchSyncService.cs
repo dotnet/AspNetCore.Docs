@@ -24,7 +24,7 @@ public class BranchSyncService : BackgroundService
                 // Cancel sending the request to sync branches if it takes too long rather miss sending the next request scheduled 30 seconds from now.
                 // Having a single loop prevents this service from sending an unbounded number of requests simultaneously.
                 using var syncTokenSource = CancellationTokenSource.CreateLinkedTokenSource(stoppingToken);
-                syncTokenSource.CancelAfter(TimeSpan.FromSeconds(25));
+                syncTokenSource.CancelAfter(TimeSpan.FromSeconds(30));
                 
                 var httpClient = _httpClientFactory.CreateClient("GitHub");
                 var httpResponseMessage = await httpClient.GetAsync("repos/dotnet/AspNetCore.Docs/branches", stoppingToken);
