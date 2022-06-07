@@ -556,7 +556,7 @@ Only HTTP URL prefixes are valid. Kestrel doesn't support HTTPS when configuring
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-6.0"
+:::moniker range="= aspnetcore-6.0"
 
 ASP.NET Core projects are configured to bind to a random HTTP port between 5000-5300 and a random HTTPS port between 7000-7300. This default configuration is specified in the generated `Properties/launchSettings.json` file and can be overridden. If no ports are specified, Kestrel binds to:
 
