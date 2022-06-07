@@ -5,8 +5,7 @@ description: Learn how to use the Configuration API to configure AppSettings in 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/12/2022
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+ms.date: 4/21/2022
 uid: fundamentals/configuration/index
 ---
 # Configuration in ASP.NET Core
@@ -15,7 +14,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://tw
 
 :::moniker range=">= aspnetcore-6.0"
 
-Configuration in ASP.NET Core is performed using one or more [configuration providers](#cp). Configuration providers read configuration data from key-value pairs using a variety of configuration sources:
+Application configuration in ASP.NET Core is performed using one or more [configuration providers](#cp). Configuration providers read configuration data from key-value pairs using a variety of configuration sources:
 
 * Settings files, such as `appsettings.json`
 * Environment variables
@@ -26,13 +25,17 @@ Configuration in ASP.NET Core is performed using one or more [configuration prov
 * Directory files
 * In-memory .NET objects
 
-This topic provides information on configuration in ASP.NET Core. For information on using configuration in console apps, see [.NET Configuration](/dotnet/core/extensions/configuration).
+This article provides information on configuration in ASP.NET Core. For information on using configuration in console apps, see [.NET Configuration](/dotnet/core/extensions/configuration).
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples) ([how to download](xref:index#how-to-download-a-sample))
+## Application and Host Configuration
+
+ASP.NET Core apps configure and launch a *host*. The host is responsible for app startup and lifetime management. The ASP.NET Core templates create a <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> which contains the host. While some configuration can be done in both the host and the application configuration providers, generally, only configuration that is necessary for the host should be done in host configuration.
+
+Application configuration is the highest priority and is detailed in the next section. [Host configuration](#host) follows application configuration, and is described in this article.
 
 <a name="default"></a>
 
-## Default configuration
+### Default application configuration sources
 
 ASP.NET Core web apps created with [dotnet new](/dotnet/core/tools/dotnet-new) or Visual Studio generate the following code:
 
@@ -40,24 +43,66 @@ ASP.NET Core web apps created with [dotnet new](/dotnet/core/tools/dotnet-new) o
 var builder = WebApplication.CreateBuilder(args);
 ```
 
-[WebApplication.CreateBuilder](xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A) initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults. The initialized `WebApplicationBuilder` (`builder`) provides default configuration for the app in the following order:
+<a name="hi2low"></a>
 
-1. [ChainedConfigurationProvider](xref:Microsoft.Extensions.Configuration.ChainedConfigurationSource) :  Adds an existing `IConfiguration` as a source. In the default configuration case, adds the [host](#hvac) configuration and setting it as the first source for the *app* configuration.
-1. [appsettings.json](#appsettingsjson) using the [JSON configuration provider](#file-configuration-provider).
-1. `appsettings.{Environment}.json` using the [JSON configuration provider](#file-configuration-provider). For example, `appsettings.Production.json` and `appsettings.Development.json`.
-1. [App secrets](xref:security/app-secrets) when the app runs in the `Development` environment.
-1. Environment variables using the [Environment Variables configuration provider](#evcp).
+[WebApplication.CreateBuilder](xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A) initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults. The initialized `WebApplicationBuilder` (`builder`) provides default configuration for the app in the following order, from highest to lowest priority:
+
 1. Command-line arguments using the [Command-line configuration provider](#command-line).
+1. Non-prefixed environment variables using the [Non-prefixed environment variables configuration provider](#evcp).
+1. [User secrets](xref:security/app-secrets) when the app runs in the `Development` environment.
+1. `appsettings.{Environment}.json` using the [JSON configuration provider](#file-configuration-provider). For example, `appsettings.Production.json` and `appsettings.Development.json`.
+1. [appsettings.json](#appsettingsjson) using the [JSON configuration provider](#file-configuration-provider).
+1. A fallback to the host configuration described in the [next section](#host).
 
-Configuration providers that are added later override previous key settings. For example, if `MyKey` is set in both `appsettings.json` and the environment, the environment value is used. Using the default configuration providers, the  [Command-line configuration provider](#clcp) overrides all other providers.
+<a name="host"></a>
 
-For more information on `CreateBuilder`, see [Default builder settings](xref:fundamentals/host/generic-host#default-builder-settings).
+### Default host configuration sources
+
+The following list contains the default host configuration sources from highest to lowest priority:
+
+1. `ASPNETCORE_`-prefixed environment variables using the [Environment variables configuration provider](xref:Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider).
+1.  Command-line arguments using the [Command-line configuration provider](#command-line)
+1. `DOTNET_`-prefixed environment variables using the [Environment variables configuration provider](xref:Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider).
+
+When a configuration value is set in host and application configuration, the application configuration is used.
+
+<!--
+Remove next paragraph for .NET 7 as it's fixed in .NET 7 see bottom of the GitHub comment listed below.
+-->
+See [**Explanation** in this GitHub comment](https://github.com/dotnet/AspNetCore.Docs/issues/25626#issuecomment-1098616664) for an explanation of why in host configuration, `ASPNETCORE_` prefixed environment variables have higher priority than command-line arguments.
+
+### Host variables
+
+The following variables are locked in early when initializing the host builders and can't be influenced by application config:
+
+* [Application name](xref:fundamentals/minimal-apis#change-the-content-root-application-name-and-environment)
+* [Environment name](xref:fundamentals/environments), for example `Development`, `Production`, and `Staging`
+* [Content root](xref:fundamentals/index#content-root)
+* [Web root](xref:fundamentals/index#web-root)
+* Whether to scan for [hosting startup assemblies](xref:fundamentals/configuration/platform-specific-configuration) and which assemblies to scan for.
+* Variables read by app and library code from [HostBuilderContext.Configuration](xref:Microsoft.Extensions.Hosting.HostBuilderContext.Configuration) in [IHostBuilder.ConfigureAppConfiguration](xref:Microsoft.Extensions.Hosting.IHostBuilder.ConfigureAppConfiguration%2A) callbacks.
+
+Every other host setting is read from application config instead of host config.
+
+`URLS` is one of the many common host settings that is not a bootstrap setting. Like every other host setting not in the previous list, `URLS` is read later from application config. Host config is a fallback for application config, so host config can be used to set `URLS`, but it will be overridden by any configuration source in application config like `appsettings.json`.
+
+For more information, see [Change the content root, app name, and environment](xref:migration/50-to-60-samples#change-the-content-root-app-name-and-environment) and [Change the content root, app name, and environment by environment variables or command line](xref:migration/50-to-60-samples#change-the-content-root-app-name-and-environment-by-environment-variables-or-command-line)
+
+The remaining sections in this article refer to application configuration.
+
+## Application configuration providers
 
 The following code displays the enabled configuration providers in the order they were added:
 
 [!code-csharp[](index/samples/6.x/ConfigSample/Pages/Index2.cshtml.cs?name=snippet)]
 
-### appsettings.json
+The preceding [list of highest to lowest priority default configuration sources](#hi2low) shows the providers in the opposite order they are added to template generated application. For example, the [JSON configuration provider](#file-configuration-provider) is added before the [Command-line configuration provider](#command-line).
+
+Configuration providers that are added later have higher priority and override previous key settings. For example, if `MyKey` is set in both `appsettings.json` and the environment, the environment value is used. Using the default configuration providers, the  [Command-line configuration provider](#clcp) overrides all other providers.
+
+For more information on `CreateBuilder`, see [Default builder settings](xref:fundamentals/host/generic-host#default-builder-settings).
+
+### `appsettings.json`
 
 Consider the following `appsettings.json` file:
 
@@ -116,7 +161,12 @@ For more information on storing passwords or other sensitive data:
 
 <a name="evcp"></a>
 
-## Environment variables
+## Non-prefixed environment variables
+
+Non-prefixed environment variables are environment variables other than those prefixed by `ASPNETCORE_` or `DOTNET_`. For example, the ASP.NET Core web application templates set `"ASPNETCORE_ENVIRONMENT": "Development"` in `launchSettings.json`. For more information on `ASPNETCORE_` and `DOTNET_` environment variables, see:
+
+* [List of highest to lowest priority default configuration sources](#hi2low) including non-prefixed, `ASPNETCORE_`-prefixed and `DOTNETCORE_`-prefixed environment variables.
+* [`DOTNET_` environment variables](/dotnet/core/tools/dotnet-environment-variables) used outside of [Microsoft.Extensions.Hosting](xref:Microsoft.Extensions.Hosting).
 
 Using the [default](#default) configuration, the <xref:Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider> loads configuration from environment variable key-value pairs after reading `appsettings.json`, `appsettings.{Environment}.json`, and [user secrets](xref:security/app-secrets). Therefore, key values read from the environment override values read from `appsettings.json`, `appsettings.{Environment}.json`, and user secrets.
 
@@ -248,9 +298,7 @@ The following code displays the environment variables and values on application 
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
-var config = app.Services.GetRequiredService<IConfiguration>();
-
-foreach (var c in config.AsEnumerable())
+foreach (var c in builder.Configuration.AsEnumerable())
 {
     Console.WriteLine(c.Key + " = " + c.Value);
 }
@@ -860,6 +908,7 @@ An <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> implementation allows add
 
 * [Configuration source code](https://github.com/dotnet/runtime/tree/main/src/libraries/Microsoft.Extensions.Configuration)
 * [WebApplicationBuilder source code](https://github.com/dotnet/aspnetcore/blob/v6.0.1/src/DefaultBuilder/src/WebApplicationBuilder.cs)
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples) ([how to download](xref:index#how-to-download-a-sample))
 * <xref:fundamentals/configuration/options>
 * <xref:blazor/fundamentals/configuration>
 
@@ -907,7 +956,7 @@ The following code displays the enabled configuration providers in the order the
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/Index2.cshtml.cs?name=snippet)]
 
-### appsettings.json
+### `appsettings.json`
 
 Consider the following `appsettings.json` file:
 

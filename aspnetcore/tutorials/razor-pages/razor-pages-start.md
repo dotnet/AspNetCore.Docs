@@ -6,7 +6,6 @@ ms.author: riande
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 1/6/2022
 ms.custom: contperf-fy21q2
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Index, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/razor-pages/razor-pages-start
 ---
 
@@ -17,7 +16,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 :::moniker range=">= aspnetcore-6.0"
 This is the first tutorial of a series that teaches the basics of building an ASP.NET Core Razor Pages web app.
 
-For a more advanced introduction aimed at developers who are familiar with controllers and views, see [Introduction to Razor Pages](xref:razor-pages/index).
+For a more advanced introduction aimed at developers who are familiar with controllers and views, see [Introduction to Razor Pages](xref:razor-pages/index). For a video introduction, see [Entity Framework Core for Beginners](https://www.youtube.com/playlist?list=PLdo4fOcmZ0oXCPdC3fTFA3Z79-eVH3K-s).
 
 [!INCLUDE [Choose web UI](~/includes/choose-ui-link.md)]
 
@@ -45,8 +44,6 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 [!INCLUDE[](~/includes/net-prereqs-vsc-6.0.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
-
-We hope to have Visual Studio for Mac instructions soon.
 
 [!INCLUDE[](~/includes/net-prereqs-mac-6.0.md)]
 
@@ -103,17 +100,17 @@ We hope to have Visual Studio for Mac instructions soon.
 
 	![macOS New solution](razor-pages-start/_static/6/new_project_vsmac6.png)
 
-1. In Visual Studio 2022 for Mac select **Web and Console** > **App** > **Web Application** > **Continue**.
+1. In Visual Studio 2022 for Mac select **Web and Console** > **App** > **Web Application** > **Next**.
 
 	![macOS web app template selection](razor-pages-start/_static/6/web_app_template_vsmac6.png)
 
 1. In the **Configure your new Web Application** dialog:
 
-	1. Confirm that **Authentication** is set to **No Authentication**.
 	1. Confirm that **Target framework** is set to the latest .NET 6.x version.
-  1. Select **Continue**.
+  1. Confirm that **Authentication** is set to **No Authentication**.
+  1. Select **Next**.
 
-1. Name the project *RazorPagesMovie* and select **Continue**.
+1. Name the project *RazorPagesMovie* and select **Create**.
 
 	![macOS name the project](razor-pages-start/_static/6/razorpagesmovievsmac6.png)
 
@@ -156,7 +153,7 @@ The default browser launched with the following URL: [https://localhost:5001](ht
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Select **Run** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number.
+Select **Debug** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is the port number randomly assigned at project creation and is set in `Properties/launchSettings.json`.
 
 ---
 
@@ -177,7 +174,7 @@ Supporting files have names that begin with an underscore. For example, the `_La
 
 Contains static assets, like HTML files, JavaScript files, and CSS files. For more information, see <xref:fundamentals/static-files>.
 
-### appsettings.json
+### `appsettings.json`
 
 Contains configuration data, like connection strings. For more information, see <xref:fundamentals/configuration/index>.
 
@@ -346,7 +343,7 @@ Supporting files have names that begin with an underscore. For example, the `_La
 
 Contains static assets, like HTML files, JavaScript files, and CSS files. For more information, see <xref:fundamentals/static-files>.
 
-### appsettings.json
+### `appsettings.json`
 
 Contains configuration data, like connection strings. For more information, see <xref:fundamentals/configuration/index>.
 
@@ -492,7 +489,7 @@ Supporting files have names that begin with an underscore. For example, the `_La
 
 Contains static files, like HTML files, JavaScript files, and CSS files. For more information, see <xref:fundamentals/static-files>.
 
-### appSettings.json
+### `appSettings.json`
 
 Contains configuration data, like connection strings. For more information, see <xref:fundamentals/configuration/index>.
 

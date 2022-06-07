@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 04/11/2022
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/routing
 ---
 # Routing in ASP.NET Core
@@ -687,7 +686,7 @@ The preceding code:
 * Returns `/Widget/Index/17`
 * Gets <xref:Microsoft.AspNetCore.Routing.LinkGenerator> via [DI](xref:fundamentals/dependency-injection).
 
-The following code provides no ambient values and explicit values:
+The following code provides only explicit values and no ambient values:
 
 :::code language="csharp" source="routing/samples/6.x/RoutingSample/Snippets/Controllers/WidgetController.cs" id="snippet_HomeSubscribe":::
 

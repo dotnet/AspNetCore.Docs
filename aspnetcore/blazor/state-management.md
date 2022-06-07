@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/state-management
 zone_pivot_groups: blazor-hosting-models
 ---
@@ -298,6 +297,9 @@ else
     }
 }
 ```
+
+> [!NOTE]
+> For more information on <xref:Microsoft.AspNetCore.Components.RenderFragment>, see <xref:blazor/components/index#child-content-render-fragments>.
 
 The `CounterStateProvider` component handles the loading phase by not rendering its child content until state loading is complete.
 
@@ -736,6 +738,9 @@ else
     }
 }
 ```
+
+> [!NOTE]
+> For more information on <xref:Microsoft.AspNetCore.Components.RenderFragment>, see <xref:blazor/components/index#child-content-render-fragments>.
 
 The `CounterStateProvider` component handles the loading phase by not rendering its child content until state loading is complete.
 
@@ -1190,6 +1195,9 @@ else
     }
 }
 ```
+
+> [!NOTE]
+> For more information on <xref:Microsoft.AspNetCore.Components.RenderFragment>, see <xref:blazor/components/index#child-content-render-fragments>.
 
 The `CounterStateProvider` component handles the loading phase by not rendering its child content until state loading is complete.
 

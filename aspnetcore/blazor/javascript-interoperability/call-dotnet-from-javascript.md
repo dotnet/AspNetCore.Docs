@@ -6,10 +6,15 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc 
 ms.date: 11/09/2021
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, JS, Promise]
 uid: blazor/js-interop/call-dotnet-from-javascript
 ---
 # Call .NET methods from JavaScript functions in ASP.NET Core Blazor
+
+<!--
+
+NOTE: The console output block quotes in this topic use a double-space at the ends of lines to generate a bare return in block quote output.
+
+-->
 
 This article explains how to invoke .NET methods from JavaScript (JS).
 
@@ -31,7 +36,7 @@ In the following example:
 DotNet.invokeMethodAsync('{ASSEMBLY NAME}', '{.NET METHOD ID}', {ARGUMENTS});
 ```
 
-`DotNet.invokeMethod` returns the result of the operation. `DotNet.invokeMethodAsync` returns a [JS Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) representing the result of the operation.
+`DotNet.invokeMethod` returns the result of the operation. `DotNet.invokeMethodAsync` returns a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) representing the result of the operation.
 
 The asynchronous function (`invokeMethodAsync`) is preferred over the synchronous version (`invokeMethod`) to support Blazor Server scenarios.
 
@@ -248,6 +253,7 @@ In the following `CallDotNetExampleOneHelper` component, the `Trigger JS functio
 
 In the preceding example:
 
+* `JS` is an injected <xref:Microsoft.JSInterop.IJSRuntime> instance. <xref:Microsoft.JSInterop.IJSRuntime> is registered by the Blazor framework.
 * The variable name `dotNetHelper` is arbitrary and can be changed to any preferred name.
 * The component must explicitly dispose of the <xref:Microsoft.JSInterop.DotNetObjectReference> to permit garbage collection and prevent a memory leak.
 
@@ -387,7 +393,7 @@ In the following `GenericsExample` component:
 ```razor
 @page "/generics-example"
 @using System.Runtime.InteropServices
-@inject IJSRuntime JSRuntime
+@inject IJSRuntime JS
 
 <p>
     <button @onclick="InvokeInterop">Invoke Interop</button>
@@ -407,7 +413,7 @@ In the following `GenericsExample` component:
         var syncInterop = 
             RuntimeInformation.IsOSPlatform(OSPlatform.Create("BROWSER"));
 
-        await JSRuntime.InvokeVoidAsync(
+        await JS.InvokeVoidAsync(
             "invokeMethodsAsync",
             syncInterop,
             DotNetObjectReference.Create(genericType1),
@@ -416,32 +422,34 @@ In the following `GenericsExample` component:
 }
 ```
 
+In the preceding example, `JS` is an injected <xref:Microsoft.JSInterop.IJSRuntime> instance. <xref:Microsoft.JSInterop.IJSRuntime> is registered by the Blazor framework.
+
 The following demonstrates typical output of the preceding example when the **`Invoke Interop`** button is selected in a Blazor WebAssembly app:
 
-> JS: invokeMethodAsync:Update('string 37802')
-> .NET: Update: GenericType<System.String>: string 37802
-> JS: invokeMethodAsync:UpdateAsync('string 53051')
-> JS: invokeMethod:Update('string 26784')
-> .NET: Update: GenericType<System.String>: string 26784
-> JS: invokeMethodAsync:Update(14107)
-> .NET: Update: GenericType<System.Int32>: 14107
-> JS: invokeMethodAsync:UpdateAsync(48995)
-> JS: invokeMethod:Update(12872)
-> .NET: Update: GenericType<System.Int32>: 12872
-> .NET: UpdateAsync: GenericType<System.String>: string 53051
+> JS: invokeMethodAsync:Update('string 37802')  
+> .NET: Update: GenericType<System.String>: string 37802  
+> JS: invokeMethodAsync:UpdateAsync('string 53051')  
+> JS: invokeMethod:Update('string 26784')  
+> .NET: Update: GenericType<System.String>: string 26784  
+> JS: invokeMethodAsync:Update(14107)  
+> .NET: Update: GenericType<System.Int32>: 14107  
+> JS: invokeMethodAsync:UpdateAsync(48995)  
+> JS: invokeMethod:Update(12872)  
+> .NET: Update: GenericType<System.Int32>: 12872  
+> .NET: UpdateAsync: GenericType<System.String>: string 53051  
 > .NET: UpdateAsync: GenericType<System.Int32>: 48995
 
 If the preceding example is implemented in a Blazor Server app, the synchronous calls with `invokeMethod` are avoided. The asynchronous function (`invokeMethodAsync`) is preferred over the synchronous version (`invokeMethod`) in Blazor Server scenarios.
 
 Typical output of a Blazor Server app:
 
-> JS: invokeMethodAsync:Update('string 34809')
-> .NET: Update: GenericType<System.String>: string 34809
-> JS: invokeMethodAsync:UpdateAsync('string 93059')
-> JS: invokeMethodAsync:Update(41997)
-> .NET: Update: GenericType<System.Int32>: 41997
-> JS: invokeMethodAsync:UpdateAsync(24652)
-> .NET: UpdateAsync: GenericType<System.String>: string 93059
+> JS: invokeMethodAsync:Update('string 34809')  
+> .NET: Update: GenericType<System.String>: string 34809  
+> JS: invokeMethodAsync:UpdateAsync('string 93059')  
+> JS: invokeMethodAsync:Update(41997)  
+> .NET: Update: GenericType<System.Int32>: 41997  
+> JS: invokeMethodAsync:UpdateAsync(24652)  
+> .NET: UpdateAsync: GenericType<System.String>: string 93059  
 > .NET: UpdateAsync: GenericType<System.Int32>: 24652
 
 The preceding output examples demonstrate that asynchronous methods execute and complete in an *arbitrary order* depending on several factors, including thread scheduling and the speed of method execution. It isn't possible to reliably predict the order of completion for asynchronous method calls.
@@ -475,7 +483,7 @@ The `CallHelloHelperGetHelloMessage` method in the following `JsInteropClasses3`
 
 `JsInteropClasses3.cs`:
 
-[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/JsInteropClasses3.cs?highlight=15-20)]
+[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/JsInteropClasses3.cs?highlight=15-19)]
 
 In the preceding example, the variable name `dotNetHelper` is arbitrary and can be changed to any preferred name.
 
@@ -535,7 +543,7 @@ The following `MessageUpdateInvokeHelper` class maintains a JS-invokable .NET me
 
 `MessageUpdateInvokeHelper.cs`:
 
-[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/MessageUpdateInvokeHelper.cs?highlight=8,13-17)]
+[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/MessageUpdateInvokeHelper.cs)]
 
 The following `updateMessageCaller` JS function invokes the `UpdateMessageCaller` .NET method. `BlazorSample` is the app's assembly name.
 
@@ -690,7 +698,7 @@ await dataReferenceStream.CopyToAsync(outputFileStream);
 
 In the preceding example:
 
-* `JS` is an injected <xref:Microsoft.JSInterop.IJSRuntime> instance.
+* `JS` is an injected <xref:Microsoft.JSInterop.IJSRuntime> instance. <xref:Microsoft.JSInterop.IJSRuntime> is registered by the Blazor framework.
 * The `dataReferenceStream` is written to disk (`file.txt`) at the current user's temporary folder path (<xref:System.IO.Path.GetTempPath%2A>).
 
 <xref:blazor/js-interop/call-javascript-from-dotnet#stream-from-net-to-javascript> covers the reverse operation, streaming from .NET to JavaScript using a <xref:Microsoft.JSInterop.DotNetStreamReference>.
@@ -727,7 +735,7 @@ In the following example:
 DotNet.invokeMethodAsync('{ASSEMBLY NAME}', '{.NET METHOD ID}', {ARGUMENTS});
 ```
 
-`DotNet.invokeMethod` returns the result of the operation. `DotNet.invokeMethodAsync` returns a [JS Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) representing the result of the operation.
+`DotNet.invokeMethod` returns the result of the operation. `DotNet.invokeMethodAsync` returns a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) representing the result of the operation.
 
 The asynchronous function (`invokeMethodAsync`) is preferred over the synchronous version (`invokeMethod`) to support Blazor Server scenarios.
 
@@ -1049,7 +1057,7 @@ In the following example:
 DotNet.invokeMethodAsync('{ASSEMBLY NAME}', '{.NET METHOD ID}', {ARGUMENTS});
 ```
 
-`DotNet.invokeMethod` returns the result of the operation. `DotNet.invokeMethodAsync` returns a [JS Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) representing the result of the operation.
+`DotNet.invokeMethod` returns the result of the operation. `DotNet.invokeMethodAsync` returns a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) representing the result of the operation.
 
 The asynchronous function (`invokeMethodAsync`) is preferred over the synchronous version (`invokeMethod`) to support Blazor Server scenarios.
 

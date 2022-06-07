@@ -5,7 +5,6 @@ description: Learn how to create gRPC clients using the client factory.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 02/25/2022
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/clientfactory
 ---
 # gRPC client factory integration in .NET
@@ -135,6 +134,28 @@ builder.Services
 > * `LoggerFactory` is set to the <xref:Microsoft.Extensions.Logging.ILoggerFactory> resolved from DI.
 > 
 > These values can be overriden by `ConfigureChannel`.
+
+## Call credentials
+
+An authentication header can be added to gRPC calls using the `AddCallCredentials` method:
+
+```csharp
+builder.Services
+    .AddGrpcClient<Greeter.GreeterClient>(o =>
+    {
+        o.Address = new Uri("https://localhost:5001");
+    })
+    .AddCallCredentials((context, metadata) =>
+    {
+        if (!string.IsNullOrEmpty(_token))
+        {
+            metadata.Add("Authorization", $"Bearer {_token}");
+        }
+        return Task.CompletedTask;
+    });
+```
+
+For more information about configuring call credentials, see [Bearer token with gRPC client factory](xref:grpc/authn-and-authz#bearer-token-with-grpc-client-factory).
 
 ## Deadline and cancellation propagation
 

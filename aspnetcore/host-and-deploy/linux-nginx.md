@@ -1,12 +1,11 @@
 ---
 title: Host ASP.NET Core on Linux with Nginx
 author: rick-anderson
-description: Learn how to set up Nginx as a reverse proxy on Ubuntu 16.04 to forward HTTP traffic to an ASP.NET Core web app running on Kestrel.
+description: Learn how to set up Nginx as a reverse proxy on an Ubuntu 20.04 VM to forward HTTP traffic to an ASP.NET Core web app running on Kestrel.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/30/2021
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: host-and-deploy/linux-nginx
 ---
 # Host ASP.NET Core on Linux with Nginx
@@ -14,12 +13,9 @@ uid: host-and-deploy/linux-nginx
 By [Sourabh Shirhatti](https://twitter.com/sshirhatti)
 
 :::moniker range=">= aspnetcore-6.0"
-This guide explains setting up a production-ready ASP.NET Core environment on an Ubuntu 16.04 server. These instructions likely work with newer versions of Ubuntu, but the instructions haven't been tested with newer versions.
+This guide explains setting up a production-ready ASP.NET Core environment on an Ubuntu 20.04 VM. These instructions likely work with newer versions of Ubuntu, but the instructions haven't been tested with newer versions.
 
 For information on other Linux distributions supported by ASP.NET Core, see [Prerequisites for .NET Core on Linux](/dotnet/core/linux-prerequisites).
-
-> [!NOTE]
-> For Ubuntu 14.04, `supervisord` is recommended as a solution for monitoring the Kestrel process. `systemd` isn't available on Ubuntu 14.04. For Ubuntu 14.04 instructions, see the [previous version of this topic](https://github.com/dotnet/AspNetCore.Docs/blob/e9c1419175c4dd7e152df3746ba1df5935aaafd5/aspnetcore/publishing/linuxproduction.md).
 
 This guide:
 
@@ -30,8 +26,8 @@ This guide:
 
 ## Prerequisites
 
-* Access to an Ubuntu 16.04 server with a standard user account with sudo privilege.
-* The latest non-preview [.NET runtime installed](/dotnet/core/install/linux) on the server.
+* Access to an Ubuntu 20.04 VM with a standard user account with sudo privilege.
+* The latest stable [.NET runtime installed](/dotnet/core/install/linux) on the server.
 * An existing ASP.NET Core app.
 
 At any point in the future after upgrading the shared framework, restart the ASP.NET Core apps hosted by the server.

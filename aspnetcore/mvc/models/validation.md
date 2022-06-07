@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/02/2022
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/models/validation
 ---
 # Model validation in ASP.NET Core MVC and Razor Pages
@@ -79,6 +78,10 @@ When applied to a `Name` property, the error message created by the preceding co
 
 To find out which parameters are passed to `String.Format` for a particular attribute's error message, see the [DataAnnotations source code](https://github.com/dotnet/runtime/tree/main/src/libraries/System.ComponentModel.Annotations/src/System/ComponentModel/DataAnnotations).
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
+
 ## Non-nullable reference types and [Required] attribute
 
 The validation system treats non-nullable parameters or bound properties as if they had a `[Required(AllowEmptyStrings = true)]` attribute. By [enabling `Nullable` contexts](/dotnet/csharp/nullable-references#nullable-contexts), MVC implicitly starts validating non-nullable properties or parameters as if they had been attributed with the `[Required(AllowEmptyStrings = true)]` attribute. Consider the following code:
@@ -105,6 +108,53 @@ This behavior can be disabled by configuring <xref:Microsoft.AspNetCore.Mvc.MvcO
 builder.Services.AddControllers(
     options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
 ```
+
+:::moniker-end
+
+:::moniker range="= aspnetcore-6.0"
+
+## Non-nullable reference types and the [Required] attribute
+
+The validation system treats non-nullable parameters or bound properties as if they had a `[Required(AllowEmptyStrings = true)]` attribute. By [enabling `Nullable` contexts](/dotnet/csharp/nullable-references#nullable-contexts), MVC implicitly starts validating non-nullable properties [on non-generic types](#ngen) or parameters as if they had been attributed with the `[Required(AllowEmptyStrings = true)]` attribute. Consider the following code:
+
+```csharp
+public class Person
+{
+    public string Name { get; set; }
+}
+```
+
+If the app was built with `<Nullable>enable</Nullable>`, a missing value for `Name` in a JSON or form post results in a validation error. Use a nullable reference type to allow null or missing values to be specified for the `Name` property:
+
+```csharp
+public class Person
+{
+    public string? Name { get; set; }
+}
+```
+
+This behavior can be disabled by configuring <xref:Microsoft.AspNetCore.Mvc.MvcOptions.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes> in `Program.cs`:
+
+```csharp
+builder.Services.AddControllers(
+    options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
+```
+
+<a name="ngen"></a>
+
+## Non-nullable properties on generic types and [Required] attribute
+
+Non-nullable properties on generic types must include the `[Required]` attribute when the type is required. In the following code, `TestRequired` is not required:
+
+[!code-csharp[](~/mvc/models/validation/samples/6.x/WeatherForecastG.cs?name=snippet&highlight=3)]
+
+In the following code, `TestRequired` is explicitly marked as required:
+
+[!code-csharp[](~/mvc/models/validation/samples/6.x/WeatherForecastG.cs?name=snippet2&highlight=5-6)]
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 ### [Required] validation on the server
 

@@ -3,10 +3,9 @@ title: Part 2, add a model
 author: rick-anderson
 description: Part 2 of tutorial series on Razor Pages. In this section, model classes are added.
 ms.author: riande
-ms.date: 1/7/2022
+ms.date: 05/11/2022
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: contperf-fy21q2
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Index, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, Models]
 uid: tutorials/razor-pages/model
 ---
 # Part 2, add a model to a Razor Pages app in ASP.NET Core
@@ -25,8 +24,8 @@ The model classes are known as POCO classes (from "**P**lain-**O**ld **C**LR **O
 
 # [Visual Studio](#tab/visual-studio)
 
-1. In **Solution Explorer**, right-click the *RazorPagesMovie* project > **Add** > **New Folder**. Name the folder *Models*.
-1. Right-click the *Models* folder. Select **Add** > **Class**. Name the class *Movie*.
+1. In **Solution Explorer**, right-click the *RazorPagesMovie* project > **Add** > **New Folder**. Name the folder `Models`.
+1. Right-click the `Models` folder. Select **Add** > **Class**. Name the class *Movie*.
 1. Add the following properties to the `Movie` class:
 
    [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Models/Movie.cs?name=snippet1)]
@@ -41,8 +40,8 @@ The `Movie` class contains:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-1. Add a folder named *Models*.
-1. Add a class to the *Models* folder named `Movie.cs`.
+1. Add a folder named `Models`.
+1. Add a class to the `Models` folder named `Movie.cs`.
 
 Add the following properties to the `Movie` class:
 
@@ -64,8 +63,8 @@ The `Movie` class contains:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-1. In the **Solution Tool Window**, right-click the *RazorPagesMovie* project, and then select **Add** > **New Folder...**. Name the folder *Models*.
-1. Right-click the *Models* folder, and then select **Add** > **New File...**.
+1. In the **Solution Tool Window**, right-click the *RazorPagesMovie* project, and then select **Add** > **New Folder...**. Name the folder `Models`.
+1. Right-click the `Models` folder, and then select **Add** > **New File...**.
 1. In the **New File** dialog:
    1. Select **General** in the left pane.
    1. Select **Empty Class** in the center pane.
@@ -233,6 +232,9 @@ In this section, the **Package Manager Console** (PMC) window is used to:
    ```
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+* In the **Solution Tool Window**, right-click the *RazorPagesMovie* project, and then select **Open in Terminal**. 
+
+  The **Terminal** window opens with the command prompt at the project directory, which contains the Program.cs and .csproj files.
 
 * Run the following .NET CLI commands:
 
@@ -330,8 +332,6 @@ The `Pages/Movies/Delete.cshtml.cs` file requires the following `pragma` stateme
 #pragma warning restore CS8604
 ```
 
-Ignore NU1603 package mismatch warnings, they will be fixed when .NET 6 is released.
-
 ### Test the app
 
 1. Run the app and append `/Movies` to the URL in the browser (`http://localhost:port/movies`).
@@ -382,8 +382,8 @@ The model classes are known as POCO classes (from "**P**lain-**O**ld **C**LR **O
 
 # [Visual Studio](#tab/visual-studio)
 
-1. In **Solution Explorer**, right-click the *RazorPagesMovie* project > **Add** > **New Folder**. Name the folder *Models*.
-1. Right-click the *Models* folder. Select **Add** > **Class**. Name the class *Movie*.
+1. In **Solution Explorer**, right-click the *RazorPagesMovie* project > **Add** > **New Folder**. Name the folder `Models`.
+1. Right-click the `Models` folder. Select **Add** > **Class**. Name the class *Movie*.
 1. Add the following properties to the `Movie` class:
 
    [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/Movie.cs?name=snippet1)]
@@ -398,8 +398,8 @@ The `Movie` class contains:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-1. Add a folder named *Models*.
-1. Add a class to the *Models* folder named `Movie.cs`.
+1. Add a folder named `Models`.
+1. Add a class to the `Models` folder named `Movie.cs`.
 
 Add the following properties to the `Movie` class:
 
@@ -421,8 +421,8 @@ The `Movie` class contains:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-1. In the **Solution Tool Window**, control-click the *RazorPagesMovie* project, and then select **Add** > **New Folder...**. Name the folder *Models*.
-1. Control-click the *Models* folder, and then select **Add** > **New File...**.
+1. In the **Solution Tool Window**, control-click the *RazorPagesMovie* project, and then select **Add** > **New Folder...**. Name the folder `Models`.
+1. Control-click the `Models` folder, and then select **Add** > **New File...**.
 1. In the **New File** dialog:
    1. Select **General** in the left pane.
    1. Select **Empty Class** in the center pane.
@@ -667,9 +667,9 @@ The model classes are known as POCO classes (from "plain-old CLR objects") becau
 
 # [Visual Studio](#tab/visual-studio)
 
-Right-click the **RazorPagesMovie** project > **Add** > **New Folder**. Name the folder *Models*.
+Right-click the **RazorPagesMovie** project > **Add** > **New Folder**. Name the folder `Models`.
 
-Right-click the *Models* folder. Select **Add** > **Class**. Name the class **Movie**.
+Right-click the `Models` folder. Select **Add** > **Class**. Name the class **Movie**.
 
 Add the following properties to the `Movie` class:
 
@@ -687,8 +687,8 @@ The `Movie` class contains:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Add a folder named *Models*.
-* Add a class to the *Models* folder named `Movie.cs`.
+* Add a folder named `Models`.
+* Add a class to the `Models` folder named `Movie.cs`.
 
 Add the following properties to the `Movie` class:
 
@@ -744,8 +744,8 @@ Register the database context with the [dependency injection](xref:fundamentals/
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* In the **Solution Tool Window**, control-click the **RazorPagesMovie** project, and then select **Add** > **New Folder...**. Name the folder *Models*.
-* Right-click the *Models* folder, and then select **Add** > **New File...**.
+* In the **Solution Tool Window**, control-click the **RazorPagesMovie** project, and then select **Add** > **New Folder...**. Name the folder `Models`.
+* Right-click the `Models` folder, and then select **Add** > **New File...**.
 * In the **New File** dialog:
 
   * Select **General** in the left pane.
@@ -792,7 +792,7 @@ In the **Add Scaffold** dialog, select **Razor Pages using Entity Framework (CRU
 Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
 
 * In the **Model class** drop down, select **Movie (RazorPagesMovie.Models)**.
-* In the **Data context class** row, select the **+** (plus) sign and change the generated name from RazorPagesMovie.**Models**.RazorPagesMovieContext to RazorPagesMovie.**Data**.RazorPagesMovieContext. [This change](https://developercommunity.visualstudio.com/content/problem/652166/aspnet-core-ef-scaffolder-uses-incorrect-namespace.html) is not required. It creates the database context class with the correct namespace.
+* In the **Data context class** row, select the **+** (plus) sign and change the generated name from RazorPagesMovie.*`Models`*.RazorPagesMovieContext to RazorPagesMovie.**Data**.RazorPagesMovieContext. [This change](https://developercommunity.visualstudio.com/content/problem/652166/aspnet-core-ef-scaffolder-uses-incorrect-namespace.html) is not required. It creates the database context class with the correct namespace.
 * Select **Add**.
 
 ![Add Razor Pages on VScode](model/_static/3/arp.png)

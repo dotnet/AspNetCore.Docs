@@ -5,7 +5,6 @@ description: Learn what Tag Helpers are and how to use them in ASP.NET Core.
 ms.author: riande
 ms.custom: H1Hack27Feb2017
 ms.date: 03/18/2019
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/views/tag-helpers/intro
 ---
 # Tag Helpers in ASP.NET Core
@@ -157,7 +156,7 @@ Normally, the `@` operator inserts a textual representation of an expression int
 
 ## Tag helper initializers
 
-While attributes can be used to configure individual instances of tag helpers, <xref:Microsoft.AspNetCore.Mvc.Razor.ITagHelperInitializer%601> can be used to configure all tag helper instances of a specific kind. Consider the following example of a tag helper initializer that configures the `asp-append-version` attribute or `AppendVersion` property for all `ScriptTagHelper`s in the app:
+While attributes can be used to configure individual instances of tag helpers, <xref:Microsoft.AspNetCore.Mvc.Razor.ITagHelperInitializer%601> can be used to configure all tag helper instances of a specific kind. Consider the following example of a tag helper initializer that configures the `asp-append-version` attribute or `AppendVersion` property for all instances of `ScriptTagHelper` in the app:
 
 ```csharp
 public class AppendVersionTagHelperInitializer : ITagHelperInitializer<ScriptTagHelper>
@@ -176,9 +175,11 @@ builder.Services.AddSingleton
     <ITagHelperInitializer<ScriptTagHelper>, AppendVersionTagHelperInitializer>();
 ```
 
-## IntelliSense support for Tag Helpers
+## Tag Helper automatic version generation outside of wwwroot
 
-When you create a new ASP.NET Core web app in Visual Studio, it adds the NuGet package "Microsoft.AspNetCore.Razor.Tools". This is the package that adds Tag Helper tooling.
+[!INCLUDE[](~/includes/th_version.md)]
+
+## IntelliSense support for Tag Helpers
 
 Consider writing an HTML `<label>` element. As soon as you enter `<l` in the Visual Studio editor, IntelliSense displays matching elements:
 

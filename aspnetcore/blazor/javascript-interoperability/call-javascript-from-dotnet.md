@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, JS, Promise]
 uid: blazor/js-interop/call-javascript-from-dotnet
 ---
 # Call JavaScript functions from .NET methods in ASP.NET Core Blazor
@@ -17,7 +16,7 @@ This article explains how to invoke JavaScript (JS) functions from .NET.
 
 For information on how to call .NET methods from JS, see <xref:blazor/js-interop/call-dotnet-from-javascript>.
 
-To call into JS from .NET, inject the <xref:Microsoft.JSInterop.IJSRuntime> abstraction and call one of the following methods:
+<xref:Microsoft.JSInterop.IJSRuntime> is registered by the Blazor framework. To call into JS from .NET, inject the <xref:Microsoft.JSInterop.IJSRuntime> abstraction and call one of the following methods:
 
 * <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType>
 * <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync%2A?displayProperty=nameWithType>
@@ -30,7 +29,7 @@ For the preceding .NET methods that invoke JS functions:
 * The cancellation token (`CancellationToken`) propagates a notification that operations should be canceled.
 * `TimeSpan` represents a time limit for a JS operation.
 * The `TValue` return type must also be JSON serializable. `TValue` should match the .NET type that best maps to the JSON type returned.
-* A [JS Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) is returned for `InvokeAsync` methods. `InvokeAsync` unwraps the [Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) and returns the value awaited by the [Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise).
+* A [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) is returned for `InvokeAsync` methods. `InvokeAsync` unwraps the [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) and returns the value awaited by the [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise).
 
 For Blazor Server apps with prerendering enabled, calling into JS isn't possible during initial prerendering. JS interop calls must be deferred until after the connection with the browser is established. For more information, see the [Detect when a Blazor Server app is prerendering](#detect-when-a-blazor-server-app-is-prerendering) section.
 
@@ -94,7 +93,7 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 
 `JsInteropClasses1.cs`:
 
-[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/JsInteropClasses1.cs?highlight=2,6,10,15)]
+[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/JsInteropClasses1.cs)]
 
 `TickerChanged` calls the `handleTickerChanged1` method in the following `CallJsExample3` component.
 
@@ -133,7 +132,7 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 
 `JsInteropClasses2.cs`:
 
-[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/JsInteropClasses2.cs?highlight=2,6,10,15)]
+[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/JsInteropClasses2.cs)]
 
 `TickerChanged` calls the `handleTickerChanged2` method and displays the returned string in the following `CallJsExample5` component.
 
@@ -832,7 +831,7 @@ For the preceding .NET methods that invoke JS functions:
 * The cancellation token (`CancellationToken`) propagates a notification that operations should be canceled.
 * `TimeSpan` represents a time limit for a JS operation.
 * The `TValue` return type must also be JSON serializable. `TValue` should match the .NET type that best maps to the JSON type returned.
-* A [JS Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) is returned for `InvokeAsync` methods. `InvokeAsync` unwraps the [Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) and returns the value awaited by the [Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise).
+* A [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) is returned for `InvokeAsync` methods. `InvokeAsync` unwraps the [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) and returns the value awaited by the [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise).
 
 For Blazor Server apps with prerendering enabled, calling into JS isn't possible during initial prerendering. JS interop calls must be deferred until after the connection with the browser is established. For more information, see the [Detect when a Blazor Server app is prerendering](#detect-when-a-blazor-server-app-is-prerendering) section.
 
@@ -1446,7 +1445,7 @@ For the preceding .NET methods that invoke JS functions:
 * The cancellation token (`CancellationToken`) propagates a notification that operations should be canceled.
 * `TimeSpan` represents a time limit for a JS operation.
 * The `TValue` return type must also be JSON serializable. `TValue` should match the .NET type that best maps to the JSON type returned.
-* A [JS Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) is returned for `InvokeAsync` methods. `InvokeAsync` unwraps the [Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) and returns the value awaited by the [Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise).
+* A [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) is returned for `InvokeAsync` methods. `InvokeAsync` unwraps the [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) and returns the value awaited by the [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise).
 
 For Blazor Server apps with prerendering enabled, calling into JS isn't possible during initial prerendering. JS interop calls must be deferred until after the connection with the browser is established. For more information, see the [Detect when a Blazor Server app is prerendering](#detect-when-a-blazor-server-app-is-prerendering) section.
 

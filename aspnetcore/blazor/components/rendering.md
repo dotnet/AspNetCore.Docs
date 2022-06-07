@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/rendering
 ---
 # ASP.NET Core Razor component rendering
@@ -24,11 +23,16 @@ By default, Razor components inherit from the <xref:Microsoft.AspNetCore.Compone
 * After applying an updated set of [parameters](xref:blazor/components/data-binding#binding-with-component-parameters) from a parent component.
 * After applying an updated value for a [cascading parameter](xref:blazor/components/cascading-values-and-parameters).
 * After notification of an event and invoking one of its own [event handlers](xref:blazor/components/event-handling).
-* After a call to its own <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> method (see <xref:blazor/components/lifecycle#state-changes-statehaschanged>).
+* After a call to its own <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> method (see <xref:blazor/components/lifecycle#state-changes-statehaschanged>). For guidance on how to prevent overwriting child component parameters when <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called in a parent component, see <xref:blazor/components/index#overwritten-parameters>.
 
 Components inherited from <xref:Microsoft.AspNetCore.Components.ComponentBase> skip rerenders due to parameter updates if either of the following are true:
 
-* All of the parameter values are of known immutable primitive types, such as `int`, `string`, `DateTime`, and haven't changed since the previous set of parameters were set.
+* All of the parameters are from a set of known types&dagger; or any [primitive type](/dotnet/api/system.type.isprimitive) that hasn't changed since the previous set of parameters were set.
+
+  &dagger;The Blazor framework uses a set of built-in rules and explicit parameter type checks for change detection. These rules and the types are subject to change at any time. For more information, see the [`ChangeDetection` API in the ASP.NET Core reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ChangeDetection.cs).
+  
+  [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
 * The component's [`ShouldRender` method](#suppress-ui-refreshing-shouldrender) returns `false`.
 
 ## Control the rendering flow
@@ -121,12 +125,21 @@ By default, Razor components inherit from the <xref:Microsoft.AspNetCore.Compone
 * After applying an updated set of [parameters](xref:blazor/components/data-binding#binding-with-component-parameters) from a parent component.
 * After applying an updated value for a [cascading parameter](xref:blazor/components/cascading-values-and-parameters).
 * After notification of an event and invoking one of its own [event handlers](xref:blazor/components/event-handling).
-* After a call to its own <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> method (see <xref:blazor/components/lifecycle#state-changes-statehaschanged>).
+* After a call to its own <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> method (see <xref:blazor/components/lifecycle#state-changes-statehaschanged>). For guidance on how to prevent overwriting child component parameters when <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called in a parent component, see <xref:blazor/components/index#overwritten-parameters>.
 
 Components inherited from <xref:Microsoft.AspNetCore.Components.ComponentBase> skip rerenders due to parameter updates if either of the following are true:
 
-* All of the parameter values are of known immutable primitive types, such as `int`, `string`, `DateTime`, and haven't changed since the previous set of parameters were set.
+* All of the parameters are from a set of known types&dagger; or any [primitive type](/dotnet/api/system.type.isprimitive) that hasn't changed since the previous set of parameters were set.
+
+  &dagger;The Blazor framework uses a set of built-in rules and explicit parameter type checks for change detection. These rules and the types are subject to change at any time. For more information, see the [`ChangeDetection` API in the ASP.NET Core reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ChangeDetection.cs).
+
+  [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
 * The component's [`ShouldRender` method](#suppress-ui-refreshing-shouldrender) returns `false`.
+
+Blazor's framework uses a set of built-in rules for change detection, which are subject to change at any time. For more information, see the [`ChangeDetection` API in the ASP.NET Core reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ChangeDetection.cs).
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 ## Control the rendering flow
 
@@ -218,12 +231,21 @@ By default, Razor components inherit from the <xref:Microsoft.AspNetCore.Compone
 * After applying an updated set of [parameters](xref:blazor/components/data-binding#binding-with-component-parameters) from a parent component.
 * After applying an updated value for a [cascading parameter](xref:blazor/components/cascading-values-and-parameters).
 * After notification of an event and invoking one of its own [event handlers](xref:blazor/components/event-handling).
-* After a call to its own <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> method (see <xref:blazor/components/lifecycle#state-changes-statehaschanged>).
+* After a call to its own <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> method (see <xref:blazor/components/lifecycle#state-changes-statehaschanged>). For guidance on how to prevent overwriting child component parameters when <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called in a parent component, see <xref:blazor/components/index#overwritten-parameters>.
 
 Components inherited from <xref:Microsoft.AspNetCore.Components.ComponentBase> skip rerenders due to parameter updates if either of the following are true:
 
-* All of the parameter values are of known immutable primitive types, such as `int`, `string`, `DateTime`, and haven't changed since the previous set of parameters were set.
+* All of the parameters are from a set of known types&dagger; or any [primitive type](/dotnet/api/system.type.isprimitive) that hasn't changed since the previous set of parameters were set.
+
+  &dagger;The Blazor framework uses a set of built-in rules and explicit parameter type checks for change detection. These rules and the types are subject to change at any time. For more information, see the [`ChangeDetection` API in the ASP.NET Core reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ChangeDetection.cs).
+
+  [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
 * The component's [`ShouldRender` method](#suppress-ui-refreshing-shouldrender) returns `false`.
+
+Blazor's framework uses a set of built-in rules for change detection, which are subject to change at any time. For more information, see the [`ChangeDetection` API in the ASP.NET Core reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ChangeDetection.cs).
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 ## Control the rendering flow
 

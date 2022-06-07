@@ -5,7 +5,6 @@ description: Learn how to upload files in Blazor with the InputFile component.
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 ms.date: 11/09/2021
 uid: blazor/file-uploads
 zone_pivot_groups: blazor-hosting-models
@@ -168,7 +167,7 @@ For testing, the preceding URLs are configured in the projects' `Properties/laun
 
 :::zone pivot="webassembly"
 
-The following example demonstrates uploading files to a web API controller in the **`Server`** app of a hosted Blazor WebAssembly solution.
+The following example demonstrates uploading files to a web API controller in the **`Server`** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln).
 
 > [!IMPORTANT]
 > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
@@ -199,7 +198,7 @@ public class UploadResult
 
 The following `UploadResult` class in the **`Shared`** project maintains the result of an uploaded file. When a file fails to upload on the server, an error code is returned in `ErrorCode` for display to the user. A safe file name is generated on the server for each file and returned to the client in `StoredFileName` for display. Files are keyed between the client and server using the unsafe/untrusted file name in `FileName`. In the following example, the project's namespace is `BlazorSample.Shared`.
 
-`UploadResult.cs` in the **`Shared`** project of the hosted Blazor WebAssembly solution:
+`UploadResult.cs` in the **`Shared`** project of the hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln):
 
 ```csharp
 namespace BlazorSample.Shared
@@ -706,7 +705,7 @@ For testing, the preceding URLs are configured in the projects' `Properties/laun
 
 :::zone pivot="webassembly"
 
-The following example demonstrates uploading files to a web API controller in the **`Server`** app of a hosted Blazor WebAssembly solution.
+The following example demonstrates uploading files to a web API controller in the **`Server`** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln).
 
 > [!IMPORTANT]
 > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
@@ -737,7 +736,7 @@ public class UploadResult
 
 The following `UploadResult` class in the **`Shared`** project maintains the result of an uploaded file. When a file fails to upload on the server, an error code is returned in `ErrorCode` for display to the user. A safe file name is generated on the server for each file and returned to the client in `StoredFileName` for display. Files are keyed between the client and server using the unsafe/untrusted file name in `FileName`. In the following example, the project's namespace is `BlazorSample.Shared`.
 
-`UploadResult.cs` in the **`Shared`** project of the hosted Blazor WebAssembly solution:
+`UploadResult.cs` in the **`Shared`** project of the hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln):
 
 ```csharp
 namespace BlazorSample.Shared

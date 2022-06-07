@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/data-binding
 ---
 # ASP.NET Core Blazor data binding
@@ -262,6 +261,7 @@ For an alternative approach suited to sharing data in memory and across componen
 
 ## Additional resources
 
+* [Parameter change detection and additional guidance on Razor component rendering](xref:blazor/components/rendering)
 * <xref:blazor/forms-validation>
 * [Binding to radio buttons in a form](xref:blazor/forms-validation#radio-buttons)
 * [Binding `InputSelect` options to C# object `null` values](xref:blazor/forms-validation#binding-inputselect-options-to-c-object-null-values)
@@ -457,6 +457,7 @@ For an alternative approach suited to sharing data in memory and across componen
 
 ## Additional resources
 
+* [Parameter change detection and additional guidance on Razor component rendering](xref:blazor/components/rendering)
 * <xref:blazor/forms-validation>
 * [Binding to radio buttons in a form](xref:blazor/forms-validation#radio-buttons)
 * [Binding `InputSelect` options to C# object `null` values](xref:blazor/forms-validation#binding-inputselect-options-to-c-object-null-values)
@@ -652,6 +653,7 @@ For an alternative approach suited to sharing data in memory and across componen
 
 ## Additional resources
 
+* [Parameter change detection and additional guidance on Razor component rendering](xref:blazor/components/rendering)
 * <xref:blazor/forms-validation>
 * [Binding to radio buttons in a form](xref:blazor/forms-validation#radio-buttons)
 * [Binding `InputSelect` options to C# object `null` values](xref:blazor/forms-validation#binding-inputselect-options-to-c-object-null-values)

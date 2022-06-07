@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/fundamentals/dependency-injection
 ---
 # ASP.NET Core Blazor dependency injection
@@ -28,9 +27,11 @@ The services shown in the following table are commonly used in Blazor apps.
 
 | Service | Lifetime | Description |
 | ------- | -------- | ----------- |
-| <xref:System.Net.Http.HttpClient> | Scoped | <p>Provides methods for sending HTTP requests and receiving HTTP responses from a resource identified by a URI.</p><p>The instance of <xref:System.Net.Http.HttpClient> in a Blazor WebAssembly app uses the browser for handling the HTTP traffic in the background.</p><p>Blazor Server apps don't include an <xref:System.Net.Http.HttpClient> configured as a service by default. Provide an <xref:System.Net.Http.HttpClient> to a Blazor Server app.</p><p>For more information, see <xref:blazor/call-web-api>.</p><p>An <xref:System.Net.Http.HttpClient> is registered as a scoped service, not singleton. For more information, see the [Service lifetime](#service-lifetime) section.</p> |
-| <xref:Microsoft.JSInterop.IJSRuntime> | <p>**Blazor WebAssembly**: Singleton</p><p>**Blazor Server**: Scoped</p> | Represents an instance of a JavaScript runtime where JavaScript calls are dispatched. For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet>. |
-| <xref:Microsoft.AspNetCore.Components.NavigationManager> | <p>**Blazor WebAssembly**: Singleton</p><p>**Blazor Server**: Scoped</p> | Contains helpers for working with URIs and navigation state. For more information, see [URI and navigation state helpers](xref:blazor/fundamentals/routing#uri-and-navigation-state-helpers). |
+| <xref:System.Net.Http.HttpClient> | Scoped | <p>Provides methods for sending HTTP requests and receiving HTTP responses from a resource identified by a URI.</p><p>The instance of <xref:System.Net.Http.HttpClient> in a Blazor WebAssembly app is registered by the app in `Program.cs` and uses the browser for handling the HTTP traffic in the background.</p><p>Blazor Server apps don't include an <xref:System.Net.Http.HttpClient> configured as a service by default. Provide an <xref:System.Net.Http.HttpClient> to a Blazor Server app.</p><p>For more information, see <xref:blazor/call-web-api>.</p><p>An <xref:System.Net.Http.HttpClient> is registered as a scoped service, not singleton. For more information, see the [Service lifetime](#service-lifetime) section.</p> |
+| <xref:Microsoft.JSInterop.IJSRuntime> | <p>**Blazor WebAssembly**: Singleton</p><p>**Blazor Server**: Scoped</p><p>The Blazor framework registers <xref:Microsoft.JSInterop.IJSRuntime> in the app's service container.</p> | Represents an instance of a JavaScript runtime where JavaScript calls are dispatched. For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet>. |
+| <xref:Microsoft.AspNetCore.Components.NavigationManager> | <p>**Blazor WebAssembly**: Singleton</p><p>**Blazor Server**: Scoped</p><p>The Blazor framework registers <xref:Microsoft.AspNetCore.Components.NavigationManager> in the app's service container.</p> | Contains helpers for working with URIs and navigation state. For more information, see [URI and navigation state helpers](xref:blazor/fundamentals/routing#uri-and-navigation-state-helpers). |
+
+Additional services registered by the Blazor framework are described in the documentation where they're used to describe Blazor features, such as configuration and logging.
 
 A custom service provider doesn't automatically provide the default services listed in the table. If you use a custom service provider and require any of the services shown in the table, add the required services to the new service provider.
 
@@ -100,7 +101,7 @@ builder.Services.AddSingleton<IDataAccess, DataAccess>();
 
 ## Register common services in a hosted Blazor WebAssembly solution
 
-If one or more common services are required by the **`Server`** and **`Client`** projects of a hosted Blazor WebAssembly solution, you can place the common service registrations in a method in the **`Client`** project and call the method to register the services in both projects.
+If one or more common services are required by the **`Server`** and **`Client`** projects of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln), you can place the common service registrations in a method in the **`Client`** project and call the method to register the services in both projects.
 
 First, factor common service registrations into a separate method. For example, create a `ConfigureCommonServices` method in the **`Client`** project:
 
@@ -405,8 +406,10 @@ The services shown in the following table are commonly used in Blazor apps.
 | Service | Lifetime | Description |
 | ------- | -------- | ----------- |
 | <xref:System.Net.Http.HttpClient> | Scoped | <p>Provides methods for sending HTTP requests and receiving HTTP responses from a resource identified by a URI.</p><p>The instance of <xref:System.Net.Http.HttpClient> in a Blazor WebAssembly app uses the browser for handling the HTTP traffic in the background.</p><p>Blazor Server apps don't include an <xref:System.Net.Http.HttpClient> configured as a service by default. Provide an <xref:System.Net.Http.HttpClient> to a Blazor Server app.</p><p>For more information, see <xref:blazor/call-web-api>.</p><p>An <xref:System.Net.Http.HttpClient> is registered as a scoped service, not singleton. For more information, see the [Service lifetime](#service-lifetime) section.</p> |
-| <xref:Microsoft.JSInterop.IJSRuntime> | <p>**Blazor WebAssembly**: Singleton</p><p>**Blazor Server**: Scoped</p> | Represents an instance of a JavaScript runtime where JavaScript calls are dispatched. For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet>. |
-| <xref:Microsoft.AspNetCore.Components.NavigationManager> | <p>**Blazor WebAssembly**: Singleton</p><p>**Blazor Server**: Scoped</p> | Contains helpers for working with URIs and navigation state. For more information, see [URI and navigation state helpers](xref:blazor/fundamentals/routing#uri-and-navigation-state-helpers). |
+| <xref:Microsoft.JSInterop.IJSRuntime> | <p>**Blazor WebAssembly**: Singleton</p><p>**Blazor Server**: Scoped</p><p>The Blazor framework registers <xref:Microsoft.JSInterop.IJSRuntime> in the app's service container.</p> | Represents an instance of a JavaScript runtime where JavaScript calls are dispatched. For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet>. |
+| <xref:Microsoft.AspNetCore.Components.NavigationManager> | <p>**Blazor WebAssembly**: Singleton</p><p>**Blazor Server**: Scoped</p><p>The Blazor framework registers <xref:Microsoft.AspNetCore.Components.NavigationManager> in the app's service container.</p> | Contains helpers for working with URIs and navigation state. For more information, see [URI and navigation state helpers](xref:blazor/fundamentals/routing#uri-and-navigation-state-helpers). |
+
+Additional services registered by the Blazor framework are described in the documentation where they're used to describe Blazor features, such as configuration and logging.
 
 A custom service provider doesn't automatically provide the default services listed in the table. If you use a custom service provider and require any of the services shown in the table, add the required services to the new service provider.
 
@@ -500,7 +503,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ## Register common services in a hosted Blazor WebAssembly solution
 
-If one or more common services are required by the **`Server`** and **`Client`** projects of a hosted Blazor WebAssembly solution, you can place the common service registrations in a method in the **`Client`** project and call the method to register the services in both projects.
+If one or more common services are required by the **`Server`** and **`Client`** projects of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln), you can place the common service registrations in a method in the **`Client`** project and call the method to register the services in both projects.
 
 First, factor common service registrations into a separate method. For example, create a `ConfigureCommonServices` method in the **`Client`** project:
 
@@ -798,8 +801,10 @@ The services shown in the following table are commonly used in Blazor apps.
 | Service | Lifetime | Description |
 | ------- | -------- | ----------- |
 | <xref:System.Net.Http.HttpClient> | Scoped | <p>Provides methods for sending HTTP requests and receiving HTTP responses from a resource identified by a URI.</p><p>The instance of <xref:System.Net.Http.HttpClient> in a Blazor WebAssembly app uses the browser for handling the HTTP traffic in the background.</p><p>Blazor Server apps don't include an <xref:System.Net.Http.HttpClient> configured as a service by default. Provide an <xref:System.Net.Http.HttpClient> to a Blazor Server app.</p><p>For more information, see <xref:blazor/call-web-api>.</p><p>An <xref:System.Net.Http.HttpClient> is registered as a scoped service, not singleton. For more information, see the [Service lifetime](#service-lifetime) section.</p> |
-| <xref:Microsoft.JSInterop.IJSRuntime> | <p>**Blazor WebAssembly**: Singleton</p><p>**Blazor Server**: Scoped</p> | Represents an instance of a JavaScript runtime where JavaScript calls are dispatched. For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet>. |
-| <xref:Microsoft.AspNetCore.Components.NavigationManager> | <p>**Blazor WebAssembly**: Singleton</p><p>**Blazor Server**: Scoped</p> | Contains helpers for working with URIs and navigation state. For more information, see [URI and navigation state helpers](xref:blazor/fundamentals/routing#uri-and-navigation-state-helpers). |
+| <xref:Microsoft.JSInterop.IJSRuntime> | <p>**Blazor WebAssembly**: Singleton</p><p>**Blazor Server**: Scoped</p><p>The Blazor framework registers <xref:Microsoft.JSInterop.IJSRuntime> in the app's service container.</p> | Represents an instance of a JavaScript runtime where JavaScript calls are dispatched. For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet>. |
+| <xref:Microsoft.AspNetCore.Components.NavigationManager> | <p>**Blazor WebAssembly**: Singleton</p><p>**Blazor Server**: Scoped</p><p>The Blazor framework registers <xref:Microsoft.AspNetCore.Components.NavigationManager> in the app's service container.</p> | Contains helpers for working with URIs and navigation state. For more information, see [URI and navigation state helpers](xref:blazor/fundamentals/routing#uri-and-navigation-state-helpers). |
+
+Additional services registered by the Blazor framework are described in the documentation where they're used to describe Blazor features, such as configuration and logging.
 
 A custom service provider doesn't automatically provide the default services listed in the table. If you use a custom service provider and require any of the services shown in the table, add the required services to the new service provider.
 
@@ -893,7 +898,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ## Register common services in a hosted Blazor WebAssembly solution
 
-If one or more common services are required by the **`Server`** and **`Client`** projects of a hosted Blazor WebAssembly solution, you can place the common service registrations in a method in the **`Client`** project and call the method to register the services in both projects.
+If one or more common services are required by the **`Server`** and **`Client`** projects of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln), you can place the common service registrations in a method in the **`Client`** project and call the method to register the services in both projects.
 
 First, factor common service registrations into a separate method. For example, create a `ConfigureCommonServices` method in the **`Client`** project:
 

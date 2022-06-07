@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-5.0'
 ms.author: brecon
 ms.custom: mvc
 ms.date: 05/22/2020
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: signalr/hub-filters
 ---
 

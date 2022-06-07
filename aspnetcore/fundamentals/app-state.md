@@ -5,7 +5,6 @@ description: Discover approaches to preserve session between requests.
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/22/2022
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/app-state
 ---
 # Session and state management in ASP.NET Core

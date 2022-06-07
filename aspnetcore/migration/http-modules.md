@@ -4,7 +4,6 @@ description: Migrate HTTP handlers and modules to ASP.NET Core middleware
 author: rick-anderson
 ms.author: riande
 ms.date: 12/07/2016
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: migration/http-modules
 ---
 # Migrate HTTP handlers and modules to ASP.NET Core middleware

@@ -6,12 +6,11 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/fundamentals/routing
 ---
 # ASP.NET Core Blazor routing and navigation
 
-This article explains how to manage request routing and how to use the <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component to create a navigation links in Blazor apps.
+This article explains how to manage request routing and how to use the <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component to create navigation links in Blazor apps.
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -177,7 +176,7 @@ Consider the following `Example` component that can receive a route parameter fr
 
 [!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/routing/Example.razor?highlight=1)]
 
-To permit the **`Server`** app of a hosted Blazor WebAssembly solution to route the request with a dot in the `param` route parameter, add a fallback file route template with the optional parameter in `Program.cs`:
+To permit the **`Server`** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) to route the request with a dot in the `param` route parameter, add a fallback file route template with the optional parameter in `Program.cs`:
 
 ```csharp
 app.MapFallbackToFile("/example/{param?}", "index.html");
@@ -559,7 +558,7 @@ In the following `App` component example:
     {
         if (context.Path == "/about") 
         {
-            var stats = new Stats = { Page = "/about" };
+            var stats = new Stats { Page = "/about" };
             await Http.PostAsJsonAsync("api/visited", stats, 
                 context.CancellationToken);
         }
@@ -621,7 +620,7 @@ The following HTML markup is rendered:
 > }
 > ```
 >
-> Using an index variable in this scenario is a requirement for **any** child component that uses a loop variable in its [child content](xref:blazor/components/index#child-content), not just the `NavLink` component.
+> Using an index variable in this scenario is a requirement for **any** child component that uses a loop variable in its [child content](xref:blazor/components/index#child-content-render-fragments), not just the `NavLink` component.
 >
 > Alternatively, use a `foreach` loop with <xref:System.Linq.Enumerable.Range%2A?displayProperty=nameWithType>:
 >
@@ -660,8 +659,6 @@ For information on configuring <xref:Microsoft.AspNetCore.Builder.RazorPagesEndp
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
-
-This article explains how to manage request routing and how to use the <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component to create a navigation links in Blazor apps.
 
 ## Route templates
 
@@ -815,7 +812,7 @@ Consider the following `Example` component that can receive a route parameter fr
 
 [!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/routing/Example.razor?highlight=1)]
 
-To permit the **`Server`** app of a hosted Blazor WebAssembly solution to route the request with a dot in the `param` route parameter, add a fallback file route template with the optional parameter in `Startup.Configure`.
+To permit the **`Server`** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) to route the request with a dot in the `param` route parameter, add a fallback file route template with the optional parameter in `Startup.Configure`.
 
 `Startup.cs`:
 
@@ -987,7 +984,7 @@ In the following `App` component example:
     {
         if (context.Path == "/about") 
         {
-            var stats = new Stats = { Page = "/about" };
+            var stats = new Stats { Page = "/about" };
             await Http.PostAsJsonAsync("api/visited", stats, 
                 context.CancellationToken);
         }
@@ -1051,7 +1048,7 @@ The following HTML markup is rendered:
 > }
 > ```
 >
-> Using an index variable in this scenario is a requirement for **any** child component that uses a loop variable in its [child content](xref:blazor/components/index#child-content), not just the `NavLink` component.
+> Using an index variable in this scenario is a requirement for **any** child component that uses a loop variable in its [child content](xref:blazor/components/index#child-content-render-fragments), not just the `NavLink` component.
 >
 > Alternatively, use a `foreach` loop with <xref:System.Linq.Enumerable.Range%2A?displayProperty=nameWithType>:
 >
@@ -1087,8 +1084,6 @@ For information on configuring <xref:Microsoft.AspNetCore.Builder.RazorPagesEndp
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
-
-This article explains how to manage request routing and how to use the <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component to create a navigation links in Blazor apps.
 
 ## Route templates
 
@@ -1215,7 +1210,7 @@ Consider the following `Example` component that can receive a route parameter fr
 
 [!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/routing/Example.razor?highlight=2)]
 
-To permit the **`Server`** app of a hosted Blazor WebAssembly solution to route the request with a dot in the `param` route parameter, add a fallback file route template with the optional parameter in `Startup.Configure`.
+To permit the **`Server`** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) to route the request with a dot in the `param` route parameter, add a fallback file route template with the optional parameter in `Startup.Configure`.
 
 `Startup.cs`:
 
@@ -1325,7 +1320,7 @@ The following HTML markup is rendered:
 > }
 > ```
 >
-> Using an index variable in this scenario is a requirement for **any** child component that uses a loop variable in its [child content](xref:blazor/components/index#child-content), not just the `NavLink` component.
+> Using an index variable in this scenario is a requirement for **any** child component that uses a loop variable in its [child content](xref:blazor/components/index#child-content-render-fragments), not just the `NavLink` component.
 >
 > Alternatively, use a `foreach` loop with <xref:System.Linq.Enumerable.Range%2A?displayProperty=nameWithType>:
 >

@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/14/2022
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/data-protection/configuration/overview
 ---
 # Configure ASP.NET Core Data Protection
@@ -114,6 +113,24 @@ To share protected payloads among apps:
   * Reference the same [Data Protection package](xref:security/data-protection/introduction#package-layout) version.
 
 :::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionSetApplicationName":::
+
+> [!WARNING]
+> In .NET 6, <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> normalizes the content root path to end with a <xref:System.IO.Path.DirectorySeparatorChar>. For example, on Windows the content root path ends in `\` and on Linux `/`. Other hosts don't normalize the path. Most apps migrating from <xref:Microsoft.Extensions.Hosting.HostBuilder> or  <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder> won't share the same app name because they won't have the terminating `DirectorySeparatorChar`. To work around this issue, remove the directory separator character and set the app name manually, as shown in the following code:
+>
+> ```csharp
+> using Microsoft.AspNetCore.DataProtection;
+> using System.Reflection;
+> 
+> var builder = WebApplication.CreateBuilder(args);
+> var trimmedContentRootPath = builder.Environment.ContentRootPath.TrimEnd(Path.DirectorySeparatorChar);
+> builder.Services.AddDataProtection()
+>  .SetApplicationName(trimmedContentRootPath);
+> var app = builder.Build();
+> 
+> app.MapGet("/", () => Assembly.GetEntryAssembly()!.GetName().Name);
+> 
+> app.Run();
+>  ```
 
 ## DisableAutomaticKeyGeneration
 

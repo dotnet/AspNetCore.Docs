@@ -5,7 +5,6 @@ description: Learn how to make scalable, high-performance gRPC apps with client-
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 08/07/2021
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, "service config"]
 uid: grpc/loadbalancing
 ---
 # gRPC client-side load balancing
@@ -17,7 +16,7 @@ Client-side load balancing is a feature that allows gRPC clients to distribute l
 Client-side load balancing requires:
 
 * .NET 5 or later.
-* [`Grpc.Net.Client`](https://www.nuget.org/packages/Grpc.Net.Client) version 2.44.0 or later.
+* [`Grpc.Net.Client`](https://www.nuget.org/packages/Grpc.Net.Client) version 2.45.0 or later.
 
 ## Configure gRPC client-side load balancing
 
@@ -79,7 +78,7 @@ By default, a DNS resolver is refreshed if a connection is interrupted. The DNS 
 
 ```csharp
 services.AddSingleton<ResolverFactory>(
-    () => new DnsResolverFactory(refreshInterval: TimeSpan.FromSeconds(30)));
+    sp => new DnsResolverFactory(refreshInterval: TimeSpan.FromSeconds(30)));
 ```
 
 The preceding code creates a `DnsResolverFactory` with a refresh interval and registers it with dependency injection. For more information on using a custom-configured resolver, see [Configure custom resolvers and load balancers](#configure-custom-resolvers-and-load-balancers).
@@ -94,8 +93,8 @@ A static resolver is provided by `StaticResolverFactory`. This resolver:
 ```csharp
 var factory = new StaticResolverFactory(addr => new[]
 {
-    new DnsEndPoint("localhost", 80),
-    new DnsEndPoint("localhost", 81)
+    new BalancerAddress("localhost", 80),
+    new BalancerAddress("localhost", 81)
 });
 
 var services = new ServiceCollection();
@@ -123,18 +122,18 @@ This example creates a new <xref:Microsoft.Extensions.DependencyInjection.Servic
 
 ## Configure load balancer
 
-A load balancer is specified in a [service config](https://github.com/grpc/grpc/blob/master/doc/service_config.md) using the `ServiceConfig.LoadBalancingConfigs` collection. Two load balancers are built-in and map to load balancer config names:
+A load balancer is specified in a [`service config`](https://github.com/grpc/grpc/blob/master/doc/service_config.md) using the `ServiceConfig.LoadBalancingConfigs` collection. Two load balancers are built-in and map to load balancer config names:
 
 | Name          | Type                            | Description |
 | ------------- | ------------------------------- | ----------- |
 | `pick_first`  | `PickFirstLoadBalancerFactory`  | Attempts to connect to addresses until a connection is successfully made. gRPC calls are all made to the first successful connection. |
 | `round_robin` | `RoundRobinLoadBalancerFactory` | Attempts to connect to all addresses. gRPC calls are distributed across all successful connections using [round-robin](https://www.nginx.com/resources/glossary/round-robin-load-balancing/) logic. |
 
-Service config is an abbreviation of service configuration and is represented by the `ServiceConfig` type. There are a couple of ways a channel can get a service config with a load balancer configured:
+`service config` is an abbreviation of service configuration and is represented by the `ServiceConfig` type. There are a couple of ways a channel can get a `service config` with a load balancer configured:
 
-* An app can specify a service config when a channel is created using `GrpcChannelOptions.ServiceConfig`.
-* Alternatively, a resolver can resolve a service config for a channel. This feature allows an external source to specify how its callers should perform load balancing. Whether a resolver supports resolving a service config is dependent on the resolver implementation. Disable this feature with `GrpcChannelOptions.DisableResolverServiceConfig`.
-* If no service config is provided, or the service config doesn't have a load balancer configured, the channel defaults to `PickFirstLoadBalancerFactory`.
+* An app can specify a `service config` when a channel is created using `GrpcChannelOptions.ServiceConfig`.
+* Alternatively, a resolver can resolve a `service config` for a channel. This feature allows an external source to specify how its callers should perform load balancing. Whether a resolver supports resolving a `service config` is dependent on the resolver implementation. Disable this feature with `GrpcChannelOptions.DisableResolverServiceConfig`.
+* If no `service config` is provided, or the `service config` doesn't have a load balancer configured, the channel defaults to `PickFirstLoadBalancerFactory`.
 
 ```csharp
 var channel = GrpcChannel.ForAddress(
@@ -151,7 +150,7 @@ var response = await client.SayHelloAsync(new HelloRequest { Name = "world" });
 
 The preceding code:
 
-* Specifies a `RoundRobinLoadBalancerFactory` in the service config.
+* Specifies a `RoundRobinLoadBalancerFactory` in the `service config`.
 * Starts the gRPC call `SayHello`:
   * `DnsResolverFactory` creates a resolver that gets addresses for the hostname `my-example-host`.
   * Round-robin load balancer attempts to connect to all resolved addresses.
@@ -329,7 +328,7 @@ The preceding code:
 * Creates a channel configured to use the new implementations:
   * `ServiceCollection` is built into an `IServiceProvider` and set to `GrpcChannelOptions.ServiceProvider`.
   * Channel address is `file:///c:/data/addresses.json`. The `file` scheme maps to `FileResolverFactory`.
-  * Service config load balancer name is `random`. Maps to `RandomLoadBalancerFactory`.
+  * `service config` load balancer name is `random`. Maps to `RandomLoadBalancerFactory`.
 
 ## Why load balancing is important
 

@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/forms-validation
 ---
 # ASP.NET Core Blazor forms and validation
@@ -390,7 +389,7 @@ Server validation is supported in addition to client-side validation:
 
 The following example is based on:
 
-* A hosted Blazor WebAssembly solution created from the [Blazor WebAssembly project template](xref:blazor/project-structure). The approach is supported for any of the secure hosted Blazor solutions described in the [hosted Blazor WebAssembly security documentation](xref:blazor/security/webassembly/index#implementation-guidance).
+* A hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) created from the [Blazor WebAssembly project template](xref:blazor/project-structure). The approach is supported for any of the secure hosted Blazor solutions described in the [hosted Blazor WebAssembly security documentation](xref:blazor/security/webassembly/index#implementation-guidance).
 * The `Starship` model  (`Starship.cs`) from the [Example form](#example-form) section.
 * The `CustomValidation` component shown in the [Validator components](#validator-components) section.
 
@@ -874,7 +873,7 @@ Create a class derived from <xref:Microsoft.AspNetCore.Components.Forms.FieldCss
 
 `CustomFieldClassProvider.cs`:
 
-[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/CustomFieldClassProvider.cs?highlight=11)]
+[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/CustomFieldClassProvider.cs)]
 
 Set the `CustomFieldClassProvider` class as the Field CSS Class Provider on the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> instance with <xref:Microsoft.AspNetCore.Components.Forms.EditContextFieldClassExtensions.SetFieldCssClassProvider%2A>.
 
@@ -886,7 +885,7 @@ The preceding example checks the validity of all form fields and applies a style
 
 `CustomFieldClassProvider2.cs`:
 
-[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/CustomFieldClassProvider2.cs?highlight=9,16)]
+[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/CustomFieldClassProvider2.cs)]
 
 Add an additional property to `ExampleModel`, for example:
 
@@ -928,7 +927,7 @@ In the following example:
 
 `CustomFieldClassProvider3.cs`:
 
-[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/CustomFieldClassProvider3.cs?highlight=17-24)]
+[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/CustomFieldClassProvider3.cs)]
 
 Update the `EditContext` instance in the component's `OnInitialized` method to use the preceding Field CSS Class Provider:
 
@@ -1370,7 +1369,7 @@ Server validation is supported in addition to client-side validation:
 
 The following example is based on:
 
-* A hosted Blazor WebAssembly solution created from the [Blazor WebAssembly project template](xref:blazor/project-structure). The approach is supported for any of the secure hosted Blazor solutions described in the [hosted Blazor WebAssembly security documentation](xref:blazor/security/webassembly/index#implementation-guidance).
+* A hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) created from the [Blazor WebAssembly project template](xref:blazor/project-structure). The approach is supported for any of the secure hosted Blazor solutions described in the [hosted Blazor WebAssembly security documentation](xref:blazor/security/webassembly/index#implementation-guidance).
 * The `Starship` model  (`Starship.cs`) from the [Example form](#example-form) section.
 * The `CustomValidation` component shown in the [Validator components](#validator-components) section.
 
@@ -2315,7 +2314,7 @@ Server validation is supported in addition to client-side validation:
 
 The following example is based on:
 
-* A hosted Blazor WebAssembly solution created from the [Blazor WebAssembly project template](xref:blazor/project-structure). The approach is supported for any of the secure hosted Blazor solutions described in the [hosted Blazor WebAssembly security documentation](xref:blazor/security/webassembly/index#implementation-guidance).
+* A hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) created from the [Blazor WebAssembly project template](xref:blazor/project-structure). The approach is supported for any of the secure hosted Blazor solutions described in the [hosted Blazor WebAssembly security documentation](xref:blazor/security/webassembly/index#implementation-guidance).
 * The `Starship` model  (`Starship.cs`) from the [Example form](#example-form) section.
 * The `CustomValidation` component shown in the [Validator components](#validator-components) section.
 

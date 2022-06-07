@@ -5,7 +5,6 @@ description: Discover the ASP.NET Core Anchor Tag Helper attributes and the role
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 10/13/2019
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/views/tag-helpers/builtin-th/anchor-tag-helper
 ---
 # Anchor Tag Helper in ASP.NET Core
@@ -116,7 +115,7 @@ If either `asp-controller` or `asp-action` aren't specified, then the same defau
 
 The [asp-route](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Route%2A) attribute is used for creating a URL linking directly to a named route. Using [routing attributes](xref:mvc/controllers/routing#ar), a route can be named as shown in the `SpeakerController` and used in its `Evaluations` action:
 
-[!code-csharp[](samples/TagHelpersBuiltIn/Controllers/SpeakerController.cs?range=22-24)]
+[!code-csharp[](samples/TagHelpersBuiltIn/Controllers/SpeakerController.cs?range=24-25)]
 
 In the following markup, the `asp-route` attribute references the named route:
 

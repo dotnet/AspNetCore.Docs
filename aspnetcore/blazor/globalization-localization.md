@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/globalization-localization
 zone_pivot_groups: blazor-hosting-models
 ---
@@ -387,7 +386,7 @@ The `CultureSelector` component is placed in the `Shared` folder for use through
 
 ```razor
 @using  System.Globalization
-@inject IJSRuntime JSRuntime
+@inject IJSRuntime JS
 @inject NavigationManager Nav
 
 <p>
@@ -417,7 +416,7 @@ The `CultureSelector` component is placed in the `Shared` folder for use through
         {
             if (CultureInfo.CurrentCulture != value)
             {
-                var js = (IJSInProcessRuntime)JSRuntime;
+                var js = (IJSInProcessRuntime)JS;
                 js.InvokeVoid("blazorCulture.set", value.Name);
 
                 Nav.NavigateTo(Nav.Uri, forceLoad: true);
@@ -1264,7 +1263,7 @@ The following `CultureSelector` component shows how to set the user's culture se
 
 ```razor
 @using  System.Globalization
-@inject IJSRuntime JSRuntime
+@inject IJSRuntime JS
 @inject NavigationManager Nav
 
 <p>
@@ -1294,7 +1293,7 @@ The following `CultureSelector` component shows how to set the user's culture se
         {
             if (CultureInfo.CurrentCulture != value)
             {
-                var js = (IJSInProcessRuntime)JSRuntime;
+                var js = (IJSInProcessRuntime)JS;
                 js.InvokeVoid("blazorCulture.set", value.Name);
 
                 Nav.NavigateTo(Nav.Uri, forceLoad: true);
@@ -1386,10 +1385,10 @@ If the app isn't configured to process controller actions:
 
   The following example shows the call to <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> after the line is added:
 
-  ```diff
+  ```csharp
   app.UseEndpoints(endpoints =>
   {
-  +   endpoints.MapControllers();
+      endpoints.MapControllers();
       endpoints.MapBlazorHub();
       endpoints.MapFallbackToPage("/_Host");
   });
@@ -2017,7 +2016,7 @@ using Microsoft.JSInterop;
 Remove the following line from `Program.cs`:
 
 ```diff
--await builder.Build().RunAsync();
+- await builder.Build().RunAsync();
 ```
 
 Replace the preceding line with the following code. The code adds Blazor's localization service to the app's service collection with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A> and uses [JS interop](xref:blazor/js-interop/call-javascript-from-dotnet) to call into JS and retrieve the user's culture selection from local storage. If local storage doesn't contain a culture for the user, the code sets a default value of United States English (`en-US`).
@@ -2056,7 +2055,7 @@ The following `CultureSelector` component shows how to set the user's culture se
 
 ```razor
 @using  System.Globalization
-@inject IJSRuntime JSRuntime
+@inject IJSRuntime JS
 @inject NavigationManager Nav
 
 <p>
@@ -2086,7 +2085,7 @@ The following `CultureSelector` component shows how to set the user's culture se
         {
             if (CultureInfo.CurrentCulture != value)
             {
-                var js = (IJSInProcessRuntime)JSRuntime;
+                var js = (IJSInProcessRuntime)JS;
                 js.InvokeVoid("blazorCulture.set", value.Name);
 
                 Nav.NavigateTo(Nav.Uri, forceLoad: true);
@@ -2178,10 +2177,10 @@ If the app isn't configured to process controller actions:
 
   The following example shows the call to <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> after the line is added:
 
-  ```diff
+  ```csharp
   app.UseEndpoints(endpoints =>
   {
-  +   endpoints.MapControllers();
+      endpoints.MapControllers();
       endpoints.MapBlazorHub();
       endpoints.MapFallbackToPage("/_Host");
   });

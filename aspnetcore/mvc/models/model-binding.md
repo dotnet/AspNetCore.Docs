@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.assetid: 0be164aa-1d72-4192-bd6b-192c9c301164
 ms.author: riande
 ms.date: 11/09/2021
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/models/model-binding
 ---
 
@@ -309,7 +308,7 @@ See also the discussion of the `[Required]` attribute in [Model validation](xref
 
 ### [BindNever] attribute
 
-Can only be applied to model properties, not to method parameters. Prevents model binding from setting a model's property. Here's an example:
+Can be applied to a property or a type. Prevents model binding from setting a model's property. When applied to a type, the model binding system excludes all properties the type defines. Here's an example:
 
 :::code language="csharp" source="model-binding/samples/6.x/ModelBindingSample/Snippets/InstructorBindNever.cs" id="snippet_Class" highlight="3":::
 
@@ -752,7 +751,7 @@ These attributes:
 
 ### [FromBody] attribute
 
-Apply the `[FromBody]` attribute to a parameter to populate its properties from the body of an HTTP request. The ASP.NET Core runtime delegates the responsibility of reading the body to an input formatter. Input formatters are explained [later in this article](#input-formatters).
+Apply the `[FromBody]` attribute to a parameter to populate its properties from the body of an HTTP request. The ASP.NET Core runtime delegates the responsibility of reading the body to an input formatter. Input formatters are explained [later in this article](#input-formatters-1).
 
 When `[FromBody]` is applied to a complex type parameter, any binding source attributes applied to its properties are ignored. For example, the following `Create` action specifies that its `pet` parameter is populated from the body:
 
@@ -904,7 +903,7 @@ Several built-in attributes are available for controlling model binding of compl
 * `[BindNever]`
 
 > [!WARNING]
-> These attributes affect model binding when posted form data is the source of values. They do ***not*** affect input formatters, which process posted JSON and XML request bodies. Input formatters are explained [later in this article](#input-formatters).
+> These attributes affect model binding when posted form data is the source of values. They do ***not*** affect input formatters, which process posted JSON and XML request bodies. Input formatters are explained [later in this article](#input-formatters-1).
 
 ### [Bind] attribute
 

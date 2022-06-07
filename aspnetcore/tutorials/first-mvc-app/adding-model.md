@@ -4,7 +4,6 @@ author: rick-anderson
 description: Part 4 of tutorial series on ASP.NET Core MVC.
 ms.author: riande
 ms.date: 10/06/2021
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/adding-model
 ms.custom: contperf-fy21q3
 ---
@@ -474,6 +473,7 @@ Because the `Model` object is strongly typed as an `IEnumerable<Movie>` object, 
 
 ## Additional resources
 
+* [Entity Framework Core for Beginners](https://www.youtube.com/playlist?list=PLdo4fOcmZ0oXCPdC3fTFA3Z79-eVH3K-s)
 * [Tag Helpers](xref:mvc/views/tag-helpers/intro)
 * [Globalization and localization](xref:fundamentals/localization)
 
@@ -905,6 +905,7 @@ Because the `Model` object is strongly typed as an `IEnumerable<Movie>` object, 
 
 ## Additional resources
 
+* [Entity Framework Core for Beginners](https://www.youtube.com/playlist?list=PLdo4fOcmZ0oXCPdC3fTFA3Z79-eVH3K-s)
 * [Tag Helpers](xref:mvc/views/tag-helpers/intro)
 * [Globalization and localization](xref:fundamentals/localization)
 
@@ -1291,6 +1292,7 @@ Because the `Model` object is strongly typed (as an `IEnumerable<Movie>` object)
 
 ## Additional resources
 
+* [Entity Framework Core for Beginners](https://www.youtube.com/playlist?list=PLdo4fOcmZ0oXCPdC3fTFA3Z79-eVH3K-s)
 * [Tag Helpers](xref:mvc/views/tag-helpers/intro)
 * [Globalization and localization](xref:fundamentals/localization)
 

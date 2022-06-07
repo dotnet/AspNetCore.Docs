@@ -6,16 +6,11 @@ monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: "mvc"
 ms.date: 04/14/2022
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/hybrid/routing
 ---
 # ASP.NET Core Blazor Hybrid routing and navigation
 
 This article explains how to manage request routing and navigation in Blazor Hybrid apps.
-
-[!INCLUDE[](~/blazor/includes/blazor-hybrid-preview-notice.md)]
-
-[!INCLUDE[](~/blazor/includes/net-maui-release-candidate-notice.md)]
 
 Default URI request routing behavior:
 
@@ -39,7 +34,7 @@ The `UrlLoadingEventArgs.Url` property is used to get or dynamically set the URL
 
 ## Namespace
 
-The `Microsoft.AspNetCore.Components.WebView` namespace is required for the examples in this article:
+The <xref:Microsoft.AspNetCore.Components.WebView?displayProperty=fullName> namespace is required for the examples in this article:
 
 ```csharp
 using Microsoft.AspNetCore.Components.WebView;

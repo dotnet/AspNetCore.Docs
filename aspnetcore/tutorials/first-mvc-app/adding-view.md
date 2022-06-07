@@ -5,7 +5,6 @@ description: Part 3 of tutorial series on ASP.NET Core MVC.
 ms.author: riande
 ms.date: 09/17/2021
 monikerRange: '>= aspnetcore-3.1'
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/adding-view
 ms.custom: contperf-fy21q3
 ---

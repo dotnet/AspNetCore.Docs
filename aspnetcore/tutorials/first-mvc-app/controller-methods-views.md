@@ -4,7 +4,6 @@ author: rick-anderson
 description: Part 6, add a model to an ASP.NET Core MVC app
 ms.author: riande
 ms.date: 09/17/2021
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/controller-methods-views
 ---
 

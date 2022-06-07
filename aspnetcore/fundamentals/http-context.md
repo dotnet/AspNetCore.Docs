@@ -5,8 +5,7 @@ description: HttpContext in ASP.NET Core. HttpContext isn't thread-safe and can 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 4/21/2022
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+ms.date: 01/31/2022
 uid: fundamentals/httpcontext
 ---
 # Access HttpContext in ASP.NET Core

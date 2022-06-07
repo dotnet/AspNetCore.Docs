@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/tutorials/build-a-blazor-app
 zone_pivot_groups: blazor-hosting-models
 ---
@@ -158,7 +157,7 @@ cd TodoList
    </ul>
    ```
 
-1. Update the `<h1>` header to show a count of the number of todo items that aren't complete (`IsDone` is `false`).
+1. Update the `<h1>` header to show a count of the number of todo items that aren't complete (`IsDone` is `false`). The Razor expression in the following header evaluates each time Blazor rerenders the component.
 
    ```razor
    <h1>Todo (@todos.Count(todo => !todo.IsDone))</h1>
@@ -339,7 +338,7 @@ cd TodoList
    </ul>
    ```
 
-1. Update the `<h1>` header to show a count of the number of todo items that aren't complete (`IsDone` is `false`).
+1. Update the `<h1>` header to show a count of the number of todo items that aren't complete (`IsDone` is `false`). The Razor expression in the following header evaluates each time Blazor rerenders the component.
 
    ```razor
    <h1>Todo (@todos.Count(todo => !todo.IsDone))</h1>
@@ -520,7 +519,7 @@ cd TodoList
    </ul>
    ```
 
-1. Update the `<h1>` header to show a count of the number of todo items that aren't complete (`IsDone` is `false`).
+1. Update the `<h1>` header to show a count of the number of todo items that aren't complete (`IsDone` is `false`). The Razor expression in the following header evaluates each time Blazor rerenders the component.
 
    ```razor
    <h1>Todo (@todos.Count(todo => !todo.IsDone))</h1>

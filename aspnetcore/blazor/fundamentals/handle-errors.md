@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/fundamentals/handle-errors
 ---
 # Handle errors in ASP.NET Core Blazor apps
@@ -49,7 +48,7 @@ In a Blazor WebAssembly app, customize the experience in the `wwwroot/index.html
 </div>
 ```
 
-The `blazor-error-ui` element is normally hidden due the presence of the `display: none` style of the `blazor-error-ui` CSS class in the site's stylesheet (`wwwroot/css/site.css` for Blazor Server or `wwwroot/css/app.css` for Blazor WebAssembly). When an error occurs, the framework applies `display: block` to the element.
+The `blazor-error-ui` element is normally hidden due to the presence of the `display: none` style of the `blazor-error-ui` CSS class in the site's stylesheet (`wwwroot/css/site.css` for Blazor Server or `wwwroot/css/app.css` for Blazor WebAssembly). When an error occurs, the framework applies `display: block` to the element.
 
 ## Detailed circuit errors
 
@@ -220,6 +219,9 @@ The following `Error` component example merely logs errors, but methods of the c
 }
 ```
 
+> [!NOTE]
+> For more information on <xref:Microsoft.AspNetCore.Components.RenderFragment>, see <xref:blazor/components/index#child-content-render-fragments>.
+
 In the `App` component, wrap the `Router` component with the `Error` component. This permits the `Error` component to cascade down to any component of the app where the `Error` component is received as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute).
 
 `App.razor`:
@@ -278,7 +280,7 @@ Error:ProcessError - Type: System.InvalidOperationException Message: Current cou
 
 If the `ProcessError` method directly participates in rendering, such as showing a custom error message bar or changing the CSS styles of the rendered elements, call [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) at the end of the `ProcessErrors` method to rerender the UI.
 
-Because the approaches in this section handle errors with a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement, a Blazor Server app's SignalR connection between the client and server isn't broken when an error occurs and the circuit remains alive. Other unhandled exceptions remain fatal to a circuit. For more information, see the preceding section on [how a Blazor Server app reacts to unhandled exceptions](#how-a-blazor-server-app-reacts-to-unhandled-exceptions).
+Because the approaches in this section handle errors with a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement, a Blazor Server app's SignalR connection between the client and server isn't broken when an error occurs and the circuit remains alive. Other unhandled exceptions remain fatal to a circuit. For more information, see the preceding section on [how a Blazor Server app reacts to unhandled exceptions](#blazor-server-unhandled-exceptions).
 
 ## Log errors with a persistent provider
 
@@ -391,7 +393,7 @@ For more information on component disposal, see <xref:blazor/components/lifecycl
 
 ### JavaScript interop
 
-<xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> allows .NET code to make asynchronous calls to the JavaScript runtime in the user's browser.
+<xref:Microsoft.JSInterop.IJSRuntime> is registered by the Blazor framework. <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> allows .NET code to make asynchronous calls to the JavaScript runtime in the user's browser.
 
 The following conditions apply to error handling with <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A>:
 
@@ -506,7 +508,7 @@ In a Blazor WebAssembly app, customize the experience in the `wwwroot/index.html
 </div>
 ```
 
-The `blazor-error-ui` element is normally hidden due the presence of the `display: none` style of the `blazor-error-ui` CSS class in the app's stylesheet (`wwwroot/css/app.css`). When an error occurs, the framework applies `display: block` to the element.
+The `blazor-error-ui` element is normally hidden due to the presence of the `display: none` style of the `blazor-error-ui` CSS class in the app's stylesheet (`wwwroot/css/app.css`). When an error occurs, the framework applies `display: block` to the element.
 
 ## Manage unhandled exceptions in developer code
 
@@ -544,6 +546,9 @@ The following `Error` component passes itself as a [`CascadingValue`](xref:blazo
     }
 }
 ```
+
+> [!NOTE]
+> For more information on <xref:Microsoft.AspNetCore.Components.RenderFragment>, see <xref:blazor/components/index#child-content-render-fragments>.
 
 In the `App` component, wrap the `Router` component with the `Error` component. This permits the `Error` component to cascade down to any component of the app where the `Error` component is received as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute).
 
@@ -690,7 +695,7 @@ For more information on component disposal, see <xref:blazor/components/lifecycl
 
 ### JavaScript interop (Blazor WebAssembly)
 
-<xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> allows .NET code to make asynchronous calls to the JavaScript runtime in the user's browser.
+<xref:Microsoft.JSInterop.IJSRuntime> is registered by the Blazor framework. <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> allows .NET code to make asynchronous calls to the JavaScript runtime in the user's browser.
 
 The following conditions apply to error handling with <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A>:
 
@@ -731,7 +736,7 @@ In a Blazor Server app, customize the experience in the `Pages/_Host.cshtml` fil
 </div>
 ```
 
-The `blazor-error-ui` element is normally hidden due the presence of the `display: none` style of the `blazor-error-ui` CSS class in the site's stylesheet (`wwwroot/css/site.css`). When an error occurs, the framework applies `display: block` to the element.
+The `blazor-error-ui` element is normally hidden due to the presence of the `display: none` style of the `blazor-error-ui` CSS class in the site's stylesheet (`wwwroot/css/site.css`). When an error occurs, the framework applies `display: block` to the element.
 
 ## Blazor Server detailed circuit errors
 
@@ -881,7 +886,7 @@ For more information on component disposal, see <xref:blazor/components/lifecycl
 
 ### JavaScript interop (Blazor Server)
 
-<xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> allows .NET code to make asynchronous calls to the JavaScript runtime in the user's browser.
+<xref:Microsoft.JSInterop.IJSRuntime> is registered by the Blazor framework. <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> allows .NET code to make asynchronous calls to the JavaScript runtime in the user's browser.
 
 The following conditions apply to error handling with <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A>:
 
@@ -1037,6 +1042,9 @@ The following `Error` component passes itself as a [`CascadingValue`](xref:blazo
 }
 ```
 
+> [!NOTE]
+> For more information on <xref:Microsoft.AspNetCore.Components.RenderFragment>, see <xref:blazor/components/index#child-content-render-fragments>.
+
 In the `App` component, wrap the `Router` component with the `Error` component. This permits the `Error` component to cascade down to any component of the app where the `Error` component is received as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute).
 
 `App.razor`:
@@ -1182,7 +1190,7 @@ For more information on component disposal, see <xref:blazor/components/lifecycl
 
 ### JavaScript interop (Blazor WebAssembly)
 
-<xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> allows .NET code to make asynchronous calls to the JavaScript runtime in the user's browser.
+<xref:Microsoft.JSInterop.IJSRuntime> is registered by the Blazor framework. <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> allows .NET code to make asynchronous calls to the JavaScript runtime in the user's browser.
 
 The following conditions apply to error handling with <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A>:
 
@@ -1373,7 +1381,7 @@ For more information on component disposal, see <xref:blazor/components/lifecycl
 
 ### JavaScript interop (Blazor Server)
 
-<xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> allows .NET code to make asynchronous calls to the JavaScript runtime in the user's browser.
+<xref:Microsoft.JSInterop.IJSRuntime> is registered by the Blazor framework. <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> allows .NET code to make asynchronous calls to the JavaScript runtime in the user's browser.
 
 The following conditions apply to error handling with <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A>:
 

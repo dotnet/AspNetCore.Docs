@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/27/2021
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: test/hot-reload
 ---
 # .NET Hot Reload support for ASP.NET Core
@@ -56,6 +55,14 @@ To disable support for Hot Reload, pass the `--no-hot-reload` option to the `dot
 
 ```dotnetcli
 dotnet watch --no-hot-reload
+```
+
+## Disable Hot Reload
+
+The following setting in `Properties/launchSettings.json` disables Hot Reload:
+
+```json
+"hotReloadEnabled" : false
 ```
 
 ## Additional resources

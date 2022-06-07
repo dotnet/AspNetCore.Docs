@@ -5,7 +5,6 @@ description: Learn how ASP.NET Core implements dependency injection and how to u
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/21/2021
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/dependency-injection
 ---
 # Dependency injection in ASP.NET Core
@@ -163,7 +162,7 @@ The following `Operation` class implements all of the preceding interfaces. The 
 
 The following code creates multiple registrations of the `Operation` class according to the named lifetimes:
 
-[!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/Program.cs?name=snippet3)]
+[!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/Program.cs?name=snippet3&highlight=5-7,20)]
 
 The sample app demonstrates object lifetimes both within and between requests. The `IndexModel` and the middleware request each kind of `IOperation` type and log the `OperationId` for each:
 
@@ -173,7 +172,7 @@ Similar to the `IndexModel`, the middleware resolves the same services:
 
 [!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/Middleware/MyMiddleware.cs?name=snippet)]
 
-Scoped services must be resolved in the `InvokeAsync` method:
+Scoped and transient services must be resolved in the `InvokeAsync` method:
 
 [!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/Middleware/MyMiddleware.cs?name=snippet2&highlight=2)]
 

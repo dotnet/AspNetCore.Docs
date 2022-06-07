@@ -5,8 +5,7 @@ description: Build a Windows Presentation Foundation (WPF) app step-by-step.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/07/2022
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+ms.date: 05/23/2022
 uid: blazor/hybrid/tutorials/wpf
 ---
 # Build a Windows Presentation Foundation (WPF) Blazor app
@@ -18,12 +17,13 @@ This tutorial shows you how to build and run a WPF Blazor app. You learn how to:
 > * Add a Razor component to the project
 > * Run the app on Windows
 
-[!INCLUDE[](~/blazor/includes/blazor-hybrid-preview-notice.md)]
-
 ## Prerequisites
 
 * [Supported platforms (WPF documentation)](/dotnet/desktop/wpf/overview/)
 * [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/) with the **.NET desktop development** workload
+
+> [!NOTE]
+> Blazor Hybrid has reached General Availability (GA) and is fully supported for production workloads. Visual Studio and Visual Studio for Mac are in prerelease for working on Blazor Hybrid apps and may be modified before final release. We recommend keeping Visual Studio 2022 Preview updated for the best tooling experience.
 
 ## Visual Studio workload
 
@@ -51,7 +51,9 @@ In the **Additional information** dialog, select the framework version, which mu
 
 :::image type="content" source="wpf/_static/additional-information.png" alt-text="The Additional Information dialog for the WPF project.":::
 
-Use [NuGet Package Manager](/nuget/consume-packages/install-use-packages-visual-studio) to install the [`Microsoft.AspNetCore.Components.WebView.Wpf`](https://nuget.org/packages/Microsoft.AspNetCore.Components.WebView.Wpf) preview NuGet package.
+Use [NuGet Package Manager](/nuget/consume-packages/install-use-packages-visual-studio) to install the [`Microsoft.AspNetCore.Components.WebView.Wpf`](https://nuget.org/packages/Microsoft.AspNetCore.Components.WebView.Wpf) NuGet package:
+
+:::image type="content" source="wpf/_static/nuget-package-manager.png" alt-text="Use Nuget Package Manager in Visual Studio to install the Microsoft.AspNetCore.Components.WebView.Wpf NuGet package.":::
 
 In **Solution Explorer**, right-click the `WpfBlazor` project and select **Edit Project File** to open the project file (`WpfBlazor.csproj`).
 
@@ -61,7 +63,10 @@ At the top of the project file, change the SDK to `Microsoft.NET.Sdk.Razor`:
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 ```
 
-<!-- The following is a workaround for https://github.com/dotnet/wpf/issues/5697 (fixes https://github.com/dotnet/maui/issues/3526) -->
+<!--
+    The following is a workaround for https://github.com/dotnet/wpf/issues/5697 (fixes https://github.com/dotnet/maui/issues/3526).
+    Additional open issue on it: https://github.com/dotnet/maui/issues/5861
+-->
 
 Set the project's namespace, `WpfBlazor` in this tutorial, as the app's root namespace by adding the following property group to the project file:
 
@@ -211,7 +216,7 @@ Add the namespace <xref:Microsoft.Extensions.DependencyInjection?displayProperty
 using Microsoft.Extensions.DependencyInjection;
 ```
 
-Inside the `MainWindow` constructor, above the `InitializeComponent()` method call, add the following code:
+Inside the `MainWindow` constructor, after the `InitializeComponent()` method call, add the following code:
 
 ```csharp
 var serviceCollection = new ServiceCollection();
@@ -247,11 +252,11 @@ namespace WpfBlazor
     {
         public MainWindow()
         {
+            InitializeComponent();
+
             var serviceCollection = new ServiceCollection();
             serviceCollection.AddWpfBlazorWebView();
             Resources.Add("services", serviceCollection.BuildServiceProvider());
-
-            InitializeComponent();
         }
     }
 }

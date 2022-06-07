@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/13/2022
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/host-and-deploy/index
 ---
 # Host and deploy ASP.NET Core Blazor
@@ -20,7 +19,7 @@ This article explains how to host and deploy Blazor apps.
 Apps are published for deployment in Release configuration.
 
 > [!NOTE]
-> Publish hosted Blazor WebAssembly solutions from the **`Server`** project.
+> Publish a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) from the **`Server`** project.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -59,6 +58,8 @@ The assets in the folder are deployed to the web server. Deployment might be a m
 Sharing an app pool among ASP.NET Core apps isn't supported, including for Blazor apps. Use one app pool per app when hosting with IIS, and avoid the use of IIS's [virtual directories](/iis/get-started/planning-your-iis-architecture/understanding-sites-applications-and-virtual-directories-on-iis#virtual-directories) for hosting multiple apps.
 
 One or more Blazor WebAssembly apps hosted by an ASP.NET Core app, known as a [hosted Blazor WebAssembly solution](xref:blazor/hosting-models#blazor-webassembly), are supported for ***one*** app pool. However, we don't recommend or support assigning a single app pool to multiple hosted Blazor WebAssembly solutions or in sub-app hosting scenarios. For more information, see <xref:host-and-deploy/iis/advanced#sub-applications>.
+
+For more information on *solutions*, see <xref:blazor/tooling#visual-studio-solution-file-sln>.
 
 ## App base path
 
@@ -108,6 +109,8 @@ In other hosting scenarios, such as GitHub Pages and IIS sub-apps, the app base 
 
   ```csharp
   app.UsePathBase("/CoolApp");
+  // ...
+  app.UseRouting();
   ```
 
 * In a Blazor Server app, use ***either*** of the following approaches:
@@ -124,6 +127,8 @@ In other hosting scenarios, such as GitHub Pages and IIS sub-apps, the app base 
 
     ```csharp
     app.UsePathBase("/CoolApp");
+    // ...
+    app.UseRouting();
     ```
 
     Calling <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> is recommended when you also wish to run the Blazor Server app locally. For example, supply the launch URL in `Properties/launchSettings.json`:
@@ -145,6 +150,9 @@ In other hosting scenarios, such as GitHub Pages and IIS sub-apps, the app base 
         "ASPNETCORE_ENVIRONMENT": "Development"
     }
     ```
+
+> [!NOTE]
+> When using <xref:Microsoft.AspNetCore.Builder.WebApplication> (see <xref:migration/50-to-60#new-hosting-model>), [`app.UseRouting`](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A) must be called after `UsePathBase` so that the routing middleware can observe the modified path before matching routes. Otherwise, routes are matched before the path is rewritten by `UsePathBase` as described in the [Middleware Ordering](xref:fundamentals/middleware/index#order) and [Routing](xref:fundamentals/routing) articles.
 
 Do ***not*** prefix links throughout the app with a forward slash. Either avoid the use of a path segment separator or use dot-slash (`./`) relative path notation:
 
@@ -207,7 +215,7 @@ In scenarios where an app requires a separate area with custom resources and Raz
 
 ## Host multiple Blazor WebAssembly apps
 
-For more information on hosting multiple Blazor WebAssembly apps in a hosted Blazor solution, see <xref:blazor/host-and-deploy/webassembly#hosted-deployment-with-multiple-blazor-webassembly-apps>.
+For more information on hosting multiple Blazor WebAssembly apps in a hosted Blazor [solution](xref:blazor/tooling#visual-studio-solution-file-sln), see <xref:blazor/host-and-deploy/multiple-hosted-webassembly>.
 
 ## Deployment
 
@@ -261,6 +269,8 @@ The assets in the folder are deployed to the web server. Deployment might be a m
 Sharing an app pool among ASP.NET Core apps isn't supported, including for Blazor apps. Use one app pool per app when hosting with IIS, and avoid the use of IIS's [virtual directories](/iis/get-started/planning-your-iis-architecture/understanding-sites-applications-and-virtual-directories-on-iis#virtual-directories) for hosting multiple apps.
 
 One or more Blazor WebAssembly apps hosted by an ASP.NET Core app, known as a [hosted Blazor WebAssembly solution](xref:blazor/hosting-models#blazor-webassembly), are supported for ***one*** app pool. However, we don't recommend or support assigning a single app pool to multiple hosted Blazor WebAssembly solutions or in sub-app hosting scenarios. For more information, see <xref:host-and-deploy/iis/advanced#sub-applications>.
+
+For more information on *solutions*, see <xref:blazor/tooling#visual-studio-solution-file-sln>.
 
 ## App base path
 
@@ -400,7 +410,7 @@ In scenarios where an app requires a separate area with custom resources and Raz
 
 ### Host multiple Blazor WebAssembly apps
 
-For more information on hosting multiple Blazor WebAssembly apps in a hosted Blazor solution, see <xref:blazor/host-and-deploy/webassembly#hosted-deployment-with-multiple-blazor-webassembly-apps>.
+For more information on hosting multiple Blazor WebAssembly apps in a hosted Blazor [solution](xref:blazor/tooling#visual-studio-solution-file-sln), see <xref:blazor/host-and-deploy/multiple-hosted-webassembly>.
 
 ## Deployment
 
@@ -454,6 +464,8 @@ The assets in the folder are deployed to the web server. Deployment might be a m
 Sharing an app pool among ASP.NET Core apps isn't supported, including for Blazor apps. Use one app pool per app when hosting with IIS, and avoid the use of IIS's [virtual directories](/iis/get-started/planning-your-iis-architecture/understanding-sites-applications-and-virtual-directories-on-iis#virtual-directories) for hosting multiple apps.
 
 One or more Blazor WebAssembly apps hosted by an ASP.NET Core app, known as a [hosted Blazor WebAssembly solution](xref:blazor/hosting-models#blazor-webassembly), are supported for ***one*** app pool. However, we don't recommend or support assigning a single app pool to multiple hosted Blazor WebAssembly solutions or in sub-app hosting scenarios. For more information, see <xref:host-and-deploy/iis/advanced#sub-applications>.
+
+For more information on *solutions*, see <xref:blazor/tooling#visual-studio-solution-file-sln>.
 
 ## App base path
 
@@ -593,7 +605,7 @@ In scenarios where an app requires a separate area with custom resources and Raz
 
 ### Host multiple Blazor WebAssembly apps
 
-For more information on hosting multiple Blazor WebAssembly apps in a hosted Blazor solution, see <xref:blazor/host-and-deploy/webassembly#hosted-deployment-with-multiple-blazor-webassembly-apps>.
+For more information on hosting multiple Blazor WebAssembly apps in a hosted Blazor [solution](xref:blazor/tooling#visual-studio-solution-file-sln), see <xref:blazor/host-and-deploy/multiple-hosted-webassembly>.
 
 ## Deployment
 

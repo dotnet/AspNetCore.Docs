@@ -1,6 +1,3 @@
----
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
----
 ## Troubleshoot
 
 ### Common errors
@@ -96,7 +93,7 @@ A functioning app may fail immediately after upgrading either the .NET Core SDK 
 
 ### Run the Server app
 
-When testing and troubleshooting a hosted Blazor solution, make sure that you're running the app from the **`Server`** project. For example in Visual Studio, confirm that the Server project is highlighted in **Solution Explorer** before you start the app with any of the following approaches:
+When testing and troubleshooting a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln), make sure that you're running the app from the **`Server`** project. For example in Visual Studio, confirm that the Server project is highlighted in **Solution Explorer** before you start the app with any of the following approaches:
 
 * Select the **Run** button.
 * Use **Debug** > **Start Debugging** from the menu.

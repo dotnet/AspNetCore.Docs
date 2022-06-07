@@ -5,8 +5,7 @@ description: Build a Windows Forms Blazor app step-by-step.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/15/2022
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+ms.date: 05/23/2022
 uid: blazor/hybrid/tutorials/windows-forms
 ---
 # Build a Windows Forms Blazor app
@@ -17,12 +16,13 @@ This tutorial shows you how to build and run a Windows Forms Blazor app. You lea
 > * Create a Windows Forms Blazor app project
 > * Run the app on Windows
 
-[!INCLUDE[](~/blazor/includes/blazor-hybrid-preview-notice.md)]
-
 ## Prerequisites
 
 * [Supported platforms (Windows Forms documentation)](/dotnet/desktop/winforms/overview/)
 * [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/) with the **.NET desktop development** workload
+
+> [!NOTE]
+> Blazor Hybrid has reached General Availability (GA) and is fully supported for production workloads. Visual Studio and Visual Studio for Mac are in prerelease for working on Blazor Hybrid apps and may be modified before final release. We recommend keeping Visual Studio 2022 Preview updated for the best tooling experience.
 
 ## Visual Studio workload
 
@@ -50,7 +50,9 @@ In the **Additional information** dialog, select the framework version, which mu
 
 :::image type="content" source="windows-forms/_static/additional-information.png" alt-text="The Additional Information dialog.":::
 
-Use [NuGet Package Manager](/nuget/consume-packages/install-use-packages-visual-studio) to install the [`Microsoft.AspNetCore.Components.WebView.WindowsForms`](https://nuget.org/packages/Microsoft.AspNetCore.Components.WebView.WindowsForms) preview NuGet package.
+Use [NuGet Package Manager](/nuget/consume-packages/install-use-packages-visual-studio) to install the [`Microsoft.AspNetCore.Components.WebView.WindowsForms`](https://nuget.org/packages/Microsoft.AspNetCore.Components.WebView.WindowsForms) NuGet package:
+
+:::image type="content" source="windows-forms/_static/nuget-package-manager.png" alt-text="Use Nuget Package Manager in Visual Studio to install the Microsoft.AspNetCore.Components.WebView.WindowsForms NuGet package.":::
 
 In **Solution Explorer**, right-click the project's name, `WinFormsBlazor` and select **Edit Project File** to open the project file (`WinFormsBlazor.csproj`).
 
@@ -175,17 +177,21 @@ In **Solution Explorer**, double-click on the `Form1.cs` file to open the design
 
 Open the **Toolbox** by either selecting the **Toolbox** button along the left edge of the Visual Studio window or selecting the **View** > **Toolbox** menu item.
 
-Locate the `BlazorWebView` control under `Microsoft.AspNetCore.Components.WebView.WindowsForms`:
+Locate the `BlazorWebView` control under `Microsoft.AspNetCore.Components.WebView.WindowsForms`. Drag the `BlazorWebView` from the **Toolbox** into the `Form1` designer. Be careful not to accidentally drag a `WebView2` control into the form.
 
 :::image type="content" source="windows-forms/_static/toolbox.png" alt-text="BlazorWebView in the Toolbox.":::
 
-Drag `BlazorWebView` from the **Toolbox** into the `Form1` designer:
+Visual Studio shows the `BlazorWebView` control in the form designer as `WebView2` and automatically names the control `blazorWebView1`:
 
 :::image type="content" source="windows-forms/_static/form1.png" alt-text="BlazorWebView in the Form1 designer.":::
 
-In `Form1`, select `BlazorWebView` with a single click.
+In `Form1`, select the `BlazorWebView` (`WebView2`) with a single click.
 
-In `BlazorWebView`'s **Properties**, change its **Dock** value to **Fill**:
+In the `BlazorWebView`'s **Properties**, confirm that the control is named `blazorWebView1`. If the name isn't `blazorWebView1`, the wrong control was dragged from the **Toolbox**. Delete the `WebView2` control in `Form1` and drag the **`BlazorWebView` control** into the form.
+
+:::image type="content" source="windows-forms/_static/control-properties.png" alt-text="The BlazorWebView is automatically named 'blazorWebView1' by Visual Studio." :::
+
+In the control's properties, change the `BlazorWebView`'s **Dock** value to **Fill**:
 
 :::image type="content" source="windows-forms/_static/properties.png" alt-text="BlazorWebView properties with Dock set to Fill.":::
 
@@ -198,7 +204,7 @@ using Microsoft.AspNetCore.Components.WebView.WindowsForms;
 using Microsoft.Extensions.DependencyInjection;
 ```
 
-Inside the `Form1` constructor, below the `InitializeComponent()` method call, add the following code:
+Inside the `Form1` constructor, after the `InitializeComponent()` method call, add the following code:
 
 ```csharp
 var services = new ServiceCollection();

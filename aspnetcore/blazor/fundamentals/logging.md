@@ -5,11 +5,16 @@ description: Learn about logging in Blazor apps, including configuration and how
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/03/2022
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+ms.date: 05/31/2022
 uid: blazor/fundamentals/logging
 ---
 # ASP.NET Core Blazor logging
+
+<!--
+
+NOTE: The console output block quotes in this topic use a double-space at the ends of lines to generate a bare return in block quote output.
+
+-->
 
 This article explains logging in Blazor apps, including configuration and how to write log messages from Razor components.
 
@@ -19,36 +24,33 @@ This article explains logging in Blazor apps, including configuration and how to
 
 Logging configuration can be loaded from app settings files. For more information, see <xref:blazor/fundamentals/configuration#logging-configuration>.
 
+At default log levels and without configuring additional logging providers:
+
+* Blazor Server apps only log to the server-side .NET console in the `Development` environment at the <xref:Microsoft.Extensions.Logging.LogLevel.Information?displayProperty=nameWithType> level or higher.
+* Blazor WebAssembly apps only log to the client-side [browser developer tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) console at the <xref:Microsoft.Extensions.Logging.LogLevel.Information?displayProperty=nameWithType> level or higher.
+
+When the app is configured in the project file to use implicit namespaces (`<ImplicitUsings>enable</ImplicitUsings>`), a `using` directive for <xref:Microsoft.Extensions.Logging> or any API in the <xref:Microsoft.Extensions.Logging.LoggerExtensions> class isn't required to support API [Visual Studio IntelliSense](/visualstudio/ide/using-intellisense) completions or building apps. If implicit namespaces aren't enabled, Razor components must explicitly define [`@using` directives](xref:mvc/views/razor#using) for logging namespaces that aren't imported via the `_Imports.razor` file.
+
+## Log levels
+
+Log levels in Blazor apps conform to ASP.NET Core app log levels, which are listed in the API documentation at <xref:Microsoft.Extensions.Logging.LogLevel>.
+
 ## Razor component logging
-
-Loggers respect app startup configuration. For configuration information, see <xref:blazor/fundamentals/configuration#logging-configuration>.
-
-The `using` directive for <xref:Microsoft.Extensions.Logging> is required to support [IntelliSense](/visualstudio/ide/using-intellisense) completions for APIs, such as <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogWarning%2A> and <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogError%2A>.
 
 The following example:
 
 * [Injects](xref:blazor/fundamentals/dependency-injection) an <xref:Microsoft.Extensions.Logging.ILogger> (`ILogger<Counter>`) object to create a logger. The log's *category* is the fully qualified name of the component's type, `Counter`.
 * Calls <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogWarning%2A> to log at the <xref:Microsoft.Extensions.Logging.LogLevel.Warning> level.
-* Doesn't require additional setup in the app in order to log to the browser's [developer tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) console.
 
 `Pages/Counter.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/logging/Counter1.razor?highlight=3,16)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/logging/Counter1.razor?highlight=2,15)]
 
 The following example demonstrates logging with an <xref:Microsoft.Extensions.Logging.ILoggerFactory> in components.
 
 `Pages/Counter.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/logging/Counter2.razor?highlight=3,16-17)]
-
-> [!NOTE]
-> Guidance on popular browsers' developer tools can be found in the documentation of each browser maintainer:
->
-> * [Chrome DevTools](https://developer.chrome.com/docs/devtools/)
-> * [Firefox Developer Tools](https://developer.mozilla.org/docs/Tools)
-> * [Microsoft Edge Developer Tools overview](/microsoft-edge/devtools-guide-chromium/)
-
-For more information, see <xref:fundamentals/logging/index>.
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/logging/Counter2.razor?highlight=2,15-16)]
 
 ## Logging in Blazor Server apps
 
@@ -56,15 +58,9 @@ For general ASP.NET Core logging guidance that pertains to Blazor Server, see <x
 
 ## Logging in Blazor WebAssembly apps
 
-Not every feature of [ASP.NET Core logging](xref:fundamentals/logging/index) is available in a Blazor WebAssembly app. For example, Blazor WebAssembly apps don't have access to the client's file system or network, so writing logs to the client's physical or network storage isn't possible. When using a third-party logging service designed to work with single-page apps (SPAs), follow the service's security guidance. Keep in mind that every piece of data, including keys or secrets stored in the Blazor WebAssembly app are ***insecure*** and can be easily discovered by malicious users.
+Not every feature of [ASP.NET Core logging](xref:fundamentals/logging/index) is supported in Blazor WebAssembly apps. For example, Blazor WebAssembly apps don't have access to the client's file system or network, so writing logs to the client's physical or network storage isn't possible. When using a third-party logging service designed to work with single-page apps (SPAs), follow the service's security guidance. Keep in mind that every piece of data, including keys or secrets stored in the Blazor WebAssembly app are ***insecure*** and can be easily discovered by malicious users.
 
-Depending on the framework version and logging features, logging implementations may require adding the namespace for <xref:Microsoft.Extensions.Logging?displayProperty=fullName> to `Program.cs`:
-
-```csharp
-using Microsoft.Extensions.Logging;
-```
-
-Configure logging in Blazor WebAssembly apps with the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.Logging?displayProperty=nameWithType> property. The <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.Logging> property is of type <xref:Microsoft.Extensions.Logging.ILoggingBuilder>, so the extension methods available on <xref:Microsoft.Extensions.Logging.ILoggingBuilder> are available.
+Configure logging in Blazor WebAssembly apps with the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.Logging?displayProperty=nameWithType> property. The <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.Logging> property is of type <xref:Microsoft.Extensions.Logging.ILoggingBuilder>, so the extension methods of <xref:Microsoft.Extensions.Logging.ILoggingBuilder> are supported.
 
 To set the minimum logging level, call <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.SetMinimumLevel%2A?displayProperty=nameWithType> on the host builder in `Program.cs` with the <xref:Microsoft.Extensions.Logging.LogLevel>. The following example sets the minimum log level to <xref:Microsoft.Extensions.Logging.LogLevel.Warning>:
 
@@ -72,7 +68,167 @@ To set the minimum logging level, call <xref:Microsoft.Extensions.Logging.Loggin
 builder.Logging.SetMinimumLevel(LogLevel.Warning);
 ```
 
-### Custom logger provider in Blazor WebAssembly apps
+### Log category
+
+[Log categories](xref:fundamentals/logging/index#log-category) are supported in Blazor WebAssembly apps.
+
+The following example shows how to use log categories with the `Counter` component of an app created from a Blazor project template.
+
+In the `IncrementCount` method of the app's `Counter` component (`Pages/Counter.razor`) that injects an <xref:Microsoft.Extensions.Logging.ILoggerFactory> as `LoggerFactory`:
+
+```csharp
+var logger = LoggerFactory.CreateLogger("CustomCategory");
+logger.LogWarning("Someone has clicked me!");
+```
+
+Developer tools console output:
+
+> :::no-loc text="warn: CustomCategory[0]":::  
+> :::no-loc text="Someone has clicked me!":::
+
+### Log event ID
+
+[Log event ID](xref:fundamentals/logging/index#log-event-id) is supported in Blazor WebAssembly apps.
+
+The following example shows how to use log event IDs with the `Counter` component of an app created from a Blazor project template.
+
+`LogEvent.cs`:
+
+```csharp
+public class LogEvent
+{
+    public const int Event1 = 1000;
+    public const int Event2 = 1001;
+}
+```
+
+In the `IncrementCount` method of the app's `Counter` component (`Pages/Counter.razor`):
+
+```csharp
+logger.LogInformation(LogEvent.Event1, "Someone has clicked me!");
+logger.LogWarning(LogEvent.Event2, "Someone has clicked me!");
+```
+
+Developer tools console output:
+
+> :::no-loc text="info: BlazorSample.Pages.Counter[1000]":::  
+> :::no-loc text="Someone has clicked me!":::  
+> :::no-loc text="warn: BlazorSample.Pages.Counter[1001]":::  
+> :::no-loc text="Someone has clicked me!":::
+
+### Log message template
+
+[Log message templates](xref:fundamentals/logging/index#log-message-template) are supported in Blazor WebAssembly apps:
+
+The following example shows how to use log message templates with the `Counter` component of an app created from a Blazor project template.
+
+In the `IncrementCount` method of the app's `Counter` component (`Pages/Counter.razor`):
+
+```csharp
+logger.LogInformation("Someone clicked me at {CurrentDT}!", DateTime.UtcNow);
+```
+
+Developer tools console output:
+
+> :::no-loc text="info: BlazorSample.Pages.Counter[0]":::  
+> :::no-loc text="Someone clicked me at 04/21/2022 12:15:57!":::
+
+### Log exception parameters
+
+[Log exception parameters](xref:fundamentals/logging/index#log-exceptions) are supported in Blazor WebAssembly apps.
+
+The following example shows how to use log exception parameters with the `Counter` component of an app created from a Blazor project template.
+
+In the `IncrementCount` method of the app's `Counter` component (`Pages/Counter.razor`):
+
+```csharp
+currentCount++;
+
+try
+{
+    if (currentCount == 3)
+    {
+        currentCount = 4;
+        throw new OperationCanceledException("Skip 3");
+    }
+}
+catch (Exception ex)
+{
+    logger.LogWarning(ex, "Exception (currentCount: {Count})!", currentCount);
+}
+```
+
+Developer tools console output:
+
+> :::no-loc text="warn: BlazorSample.Pages.Counter[0]":::  
+> :::no-loc text="Exception (currentCount: 4)!":::  
+> :::no-loc text="System.OperationCanceledException: Skip 3":::  
+> :::no-loc text="at BlazorSample.Pages.Counter.IncrementCount() in C:\Users\Alaba\Desktop\BlazorSample\Pages\Counter.razor:line 28":::
+
+### Filter function
+
+[Filter functions](xref:fundamentals/logging/index#filter-function) are supported in Blazor WebAssembly apps.
+
+The following example shows how to use a filter with the `Counter` component of an app created from a Blazor project template.
+
+In `Program.cs`:
+
+```csharp
+builder.Logging.AddFilter((provider, category, logLevel) =>
+    category.Equals("CustomCategory2") && logLevel == LogLevel.Information);
+```
+
+In the `IncrementCount` method of the app's `Counter` component (`Pages/Counter.razor`) that injects an <xref:Microsoft.Extensions.Logging.ILoggerFactory> as `LoggerFactory`:
+
+```csharp
+var logger1 = LoggerFactory.CreateLogger("CustomCategory1");
+logger1.LogInformation("Someone has clicked me!");
+
+var logger2 = LoggerFactory.CreateLogger("CustomCategory1");
+logger2.LogWarning("Someone has clicked me!");
+
+var logger3 = LoggerFactory.CreateLogger("CustomCategory2");
+logger3.LogInformation("Someone has clicked me!");
+
+var logger4 = LoggerFactory.CreateLogger("CustomCategory2");
+logger4.LogWarning("Someone has clicked me!");
+```
+
+In the developer tools console output, the filter only permits logging for the `CustomCategory2` category and <xref:Microsoft.Extensions.Logging.LogLevel.Information> log level message:
+
+> :::no-loc text="info: CustomCategory2[0]":::  
+> :::no-loc text="Someone has clicked me!":::
+
+The app can also configure log filtering for specific namespaces. For example, set the log level to <xref:Microsoft.Extensions.Logging.LogLevel.Trace> in `Program.cs`:
+
+```csharp
+builder.Logging.SetMinimumLevel(LogLevel.Trace);
+```
+
+Normally at the <xref:Microsoft.Extensions.Logging.LogLevel.Trace> log level, developer tools console output at the **Verbose** level includes <xref:Microsoft.AspNetCore.Components.RenderTree> logging messages, such as the following:
+
+> :::no-loc text="dbug: Microsoft.AspNetCore.Components.RenderTree.Renderer[3]":::  
+> :::no-loc text="Rendering component 14 of type Microsoft.AspNetCore.Components.Web.HeadOutlet":::
+
+In `Program.cs`, logging messages specific to <xref:Microsoft.AspNetCore.Components.RenderTree> can be disabled using ***either*** of the following approaches:
+
+* ```csharp
+  builder.Logging.AddFilter("Microsoft.AspNetCore.Components.RenderTree.*", LogLevel.None);
+  ```
+
+* ```csharp
+  builder.Services.PostConfigure<LoggerFilterOptions>(options =>
+      options.Rules.Add(
+          new LoggerFilterRule(null, 
+                               "Microsoft.AspNetCore.Components.RenderTree.*", 
+                               LogLevel.None, 
+                               null)
+      ));
+  ```
+
+After ***either*** of the preceding filters is added to the app, the console output at the **Verbose** level doesn't show logging messages from the <xref:Microsoft.AspNetCore.Components.RenderTree> API.
+
+### Custom logger provider
 
 The example in this section demonstrates a custom logger provider for further customization.
 
@@ -264,9 +420,9 @@ In the following `Index` component:
 
 The following output is seen in the browser's developer tools console when the **`Log Messages`** button is selected. The log entries reflect the appropriate formats applied by the custom logger:
 
-> LoggingTest.Pages.Index: This is an information message.
-> LoggingTest.Pages.Index: This is a warning message.
-> [ 7: Error       ] LoggingTest.Pages.Index - This is an error message.
+> :::no-loc text="LoggingTest.Pages.Index: This is an information message.":::  
+> :::no-loc text="LoggingTest.Pages.Index: This is a warning message.":::  
+> :::no-loc text="[ 7: Error       ] LoggingTest.Pages.Index - This is an error message.":::
 
 From a casual inspection of the preceding example, it's apparent that setting the log line formats via the dictionary in `CustomLoggerConfiguration` isn't strictly necessary. The line formats applied by the custom logger (`CustomLogger`) could have been applied by merely checking the `logLevel` in the `Log` method. The purpose of assigning the log format via configuration is that the developer can change the log format easily via app configuration, as the following example demonstrates.
 
@@ -299,9 +455,49 @@ The call to <xref:Microsoft.Extensions.Logging.Configuration.LoggingBuilderConfi
 
 Run the app again. Select the the **`Log Messages`** button. Notice that the logging configuration is applied from the `appsettings.json` file. All three log entries are in the long (`LogFormat.Long`) format:
 
-> [ 3: Information ] LoggingTest.Pages.Index - This is an information message.
-> [ 5: Warning     ] LoggingTest.Pages.Index - This is a warning message.
-> [ 7: Error       ] LoggingTest.Pages.Index - This is an error message.
+> :::no-loc text="[ 3: Information ] LoggingTest.Pages.Index - This is an information message.":::  
+> :::no-loc text="[ 5: Warning     ] LoggingTest.Pages.Index - This is a warning message.":::  
+> :::no-loc text="[ 7: Error       ] LoggingTest.Pages.Index - This is an error message.":::
+
+### Log scopes
+
+The Blazor WebAssembly developer tools console logger doesn't support [log scopes](xref:fundamentals/logging/index#log-scopes). However, a [custom logger](#custom-logger-provider) can support log scopes. For an unsupported example that you can further develop to suit your needs, see the prototype in the `dotnet/blazor-samples` GitHub repository:
+
+[`BlazorWebAssemblyScopesLogger` sample app](https://github.com/dotnet/blazor-samples/tree/main/6.0/BlazorWebAssemblyScopesLogger)
+
+The sample app uses standard ASP.NET Core `BeginScope` logging syntax to indicate scopes for logged messages. The `Logger` service in the following example is an `ILogger<Index>`, which is injected into the app's `Index` component (`Pages/Index.razor`).
+
+```csharp
+using (Logger.BeginScope("L1"))
+{
+    Logger.LogInformation(3, "INFO: ONE scope.");
+}
+
+using (Logger.BeginScope("L1"))
+{
+    using (Logger.BeginScope("L2"))
+    {
+        Logger.LogInformation(3, "INFO: TWO scopes.");
+    }
+}
+
+using (Logger.BeginScope("L1"))
+{
+    using (Logger.BeginScope("L2"))
+    {
+        using (Logger.BeginScope("L3"))
+        {
+            Logger.LogInformation(3, "INFO: THREE scopes.");
+        }
+    }
+}
+```
+
+Output:
+
+> :::no-loc text="[ 3: Information ] ScopesLogger.Pages.Index - INFO: ONE scope. => L1 blazor.webassembly.js:1:35542":::  
+> :::no-loc text="[ 3: Information ] ScopesLogger.Pages.Index - INFO: TWO scopes. => L1 => L2 blazor.webassembly.js:1:35542":::  
+> :::no-loc text="[ 3: Information ] ScopesLogger.Pages.Index - INFO: THREE scopes. => L1 => L2 => L3":::
 
 ## Hosted Blazor WebAssembly logging
 
@@ -312,7 +508,7 @@ A hosted Blazor WebAssembly app that [prerenders its content](xref:blazor/compon
 Inject an <xref:Microsoft.Extensions.Logging.ILoggerProvider> to add a `WebAssemblyConsoleLogger` to the logging providers passed to <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder>. Unlike a traditional <xref:Microsoft.Extensions.Logging.Console.ConsoleLogger>, `WebAssemblyConsoleLogger` is a wrapper around browser-specific logging APIs (for example, `console.log`). Use of `WebAssemblyConsoleLogger` makes logging possible within Mono inside a browser context.
 
 > [!NOTE]
-> `WebAssemblyConsoleLogger` is [internal](/dotnet/csharp/language-reference/keywords/internal) and not available for direct use in developer code.
+> `WebAssemblyConsoleLogger` is [internal](/dotnet/csharp/language-reference/keywords/internal) and not supported for direct use in developer code.
 
 Add the namespace for <xref:Microsoft.Extensions.Logging?displayProperty=fullName> and inject an <xref:Microsoft.Extensions.Logging.ILoggerProvider> into the component:
 
@@ -333,7 +529,12 @@ var connection = new HubConnectionBuilder()
 ## Additional resources
 
 * <xref:fundamentals/logging/index>
+* [`Loglevel` Enum (API documentation)](xref:Microsoft.Extensions.Logging.LogLevel)
 * [Implement a custom logging provider in .NET](/dotnet/core/extensions/custom-logging-provider)
+* Browser developer tools documentation:
+  * [Chrome DevTools](https://developer.chrome.com/docs/devtools/)
+  * [Firefox Developer Tools](https://developer.mozilla.org/docs/Tools)
+  * [Microsoft Edge Developer Tools overview](/microsoft-edge/devtools-guide-chromium/)
 
 :::moniker-end
 
@@ -380,7 +581,7 @@ For general ASP.NET Core logging guidance that pertains to Blazor Server, see <x
 
 ## Logging in Blazor WebAssembly apps
 
-Not every feature of [ASP.NET Core logging](xref:fundamentals/logging/index) is available in a Blazor WebAssembly app. For example, Blazor WebAssembly apps don't have access to the client's file system or network, so writing logs to the client's physical or network storage isn't possible. When using a third-party logging service designed to work with single-page apps (SPAs), follow the service's security guidance. Keep in mind that every piece of data, including keys or secrets stored in the Blazor WebAssembly app are ***insecure*** and can be easily discovered by malicious users.
+Not every feature of [ASP.NET Core logging](xref:fundamentals/logging/index) is supported in Blazor WebAssembly apps. For example, Blazor WebAssembly apps don't have access to the client's file system or network, so writing logs to the client's physical or network storage isn't possible. When using a third-party logging service designed to work with single-page apps (SPAs), follow the service's security guidance. Keep in mind that every piece of data, including keys or secrets stored in the Blazor WebAssembly app are ***insecure*** and can be easily discovered by malicious users.
 
 Depending on the framework version and logging features, logging implementations may require adding the namespace for <xref:Microsoft.Extensions.Logging?displayProperty=fullName> to `Program.cs`:
 
@@ -388,7 +589,7 @@ Depending on the framework version and logging features, logging implementations
 using Microsoft.Extensions.Logging;
 ```
 
-Configure logging in Blazor WebAssembly apps with the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.Logging?displayProperty=nameWithType> property. The <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.Logging> property is of type <xref:Microsoft.Extensions.Logging.ILoggingBuilder>, so the extension methods available on <xref:Microsoft.Extensions.Logging.ILoggingBuilder> are available.
+Configure logging in Blazor WebAssembly apps with the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.Logging?displayProperty=nameWithType> property. The <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.Logging> property is of type <xref:Microsoft.Extensions.Logging.ILoggingBuilder>, so the extension methods of <xref:Microsoft.Extensions.Logging.ILoggingBuilder> are supported.
 
 To set the minimum logging level, call <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.SetMinimumLevel%2A?displayProperty=nameWithType> on the host builder in `Program.cs` with the <xref:Microsoft.Extensions.Logging.LogLevel>. The following example sets the minimum log level to <xref:Microsoft.Extensions.Logging.LogLevel.Warning>:
 
@@ -588,9 +789,9 @@ In the following `Index` component:
 
 The following output is seen in the browser's developer tools console when the **`Log Messages`** button is selected. The log entries reflect the appropriate formats applied by the custom logger:
 
-> LoggingTest.Pages.Index: This is an information message.
-> LoggingTest.Pages.Index: This is a warning message.
-> [ 7: Error       ] LoggingTest.Pages.Index - This is an error message.
+> :::no-loc text="LoggingTest.Pages.Index: This is an information message.":::  
+> :::no-loc text="LoggingTest.Pages.Index: This is a warning message.":::  
+> :::no-loc text="[ 7: Error       ] LoggingTest.Pages.Index - This is an error message.":::
 
 From a casual inspection of the preceding example, it's apparent that setting the log line formats via the dictionary in `CustomLoggerConfiguration` isn't strictly necessary. The line formats applied by the custom logger (`CustomLogger`) could have been applied by merely checking the `logLevel` in the `Log` method. The purpose of assigning the log format via configuration is that the developer can change the log format easily via app configuration, as the following example demonstrates.
 
@@ -623,9 +824,9 @@ The call to <xref:Microsoft.Extensions.Logging.Configuration.LoggingBuilderConfi
 
 Run the app again. Select the the **`Log Messages`** button. Notice that the logging configuration is applied from the `appsettings.json` file. All three log entries are in the long (`LogFormat.Long`) format:
 
-> [ 3: Information ] LoggingTest.Pages.Index - This is an information message.
-> [ 5: Warning     ] LoggingTest.Pages.Index - This is a warning message.
-> [ 7: Error       ] LoggingTest.Pages.Index - This is an error message.
+> :::no-loc text="[ 3: Information ] LoggingTest.Pages.Index - This is an information message.":::  
+> :::no-loc text="[ 5: Warning     ] LoggingTest.Pages.Index - This is a warning message.":::  
+> :::no-loc text="[ 7: Error       ] LoggingTest.Pages.Index - This is an error message.":::
 
 ## Hosted Blazor WebAssembly logging
 
@@ -636,7 +837,7 @@ A hosted Blazor WebAssembly app that [prerenders its content](xref:blazor/compon
 Inject an <xref:Microsoft.Extensions.Logging.ILoggerProvider> to add a `WebAssemblyConsoleLogger` to the logging providers passed to <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder>. Unlike a traditional <xref:Microsoft.Extensions.Logging.Console.ConsoleLogger>, `WebAssemblyConsoleLogger` is a wrapper around browser-specific logging APIs (for example, `console.log`). Use of `WebAssemblyConsoleLogger` makes logging possible within Mono inside a browser context.
 
 > [!NOTE]
-> `WebAssemblyConsoleLogger` is [internal](/dotnet/csharp/language-reference/keywords/internal) and not available for direct use in developer code.
+> `WebAssemblyConsoleLogger` is [internal](/dotnet/csharp/language-reference/keywords/internal) and not supported for direct use in developer code.
 
 Add the namespace for <xref:Microsoft.Extensions.Logging?displayProperty=fullName> and inject an <xref:Microsoft.Extensions.Logging.ILoggerProvider> into the component:
 
@@ -704,7 +905,7 @@ For general ASP.NET Core logging guidance that pertains to Blazor Server, see <x
 
 ## Logging in Blazor WebAssembly apps
 
-Not every feature of [ASP.NET Core logging](xref:fundamentals/logging/index) is available in a Blazor WebAssembly app. For example, Blazor WebAssembly apps don't have access to the client's file system or network, so writing logs to the client's physical or network storage isn't possible. When using a third-party logging service designed to work with single-page apps (SPAs), follow the service's security guidance. Keep in mind that every piece of data, including keys or secrets stored in the Blazor WebAssembly app are ***insecure*** and can be easily discovered by malicious users.
+Not every feature of [ASP.NET Core logging](xref:fundamentals/logging/index) is supported in Blazor WebAssembly apps. For example, Blazor WebAssembly apps don't have access to the client's file system or network, so writing logs to the client's physical or network storage isn't possible. When using a third-party logging service designed to work with single-page apps (SPAs), follow the service's security guidance. Keep in mind that every piece of data, including keys or secrets stored in the Blazor WebAssembly app are ***insecure*** and can be easily discovered by malicious users.
 
 Depending on the framework version and logging features, logging implementations may require adding the namespace for <xref:Microsoft.Extensions.Logging?displayProperty=fullName> to `Program.cs`:
 
@@ -712,7 +913,7 @@ Depending on the framework version and logging features, logging implementations
 using Microsoft.Extensions.Logging;
 ```
 
-Configure logging in Blazor WebAssembly apps with the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.Logging?displayProperty=nameWithType> property. The <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.Logging> property is of type <xref:Microsoft.Extensions.Logging.ILoggingBuilder>, so the extension methods available on <xref:Microsoft.Extensions.Logging.ILoggingBuilder> are available.
+Configure logging in Blazor WebAssembly apps with the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.Logging?displayProperty=nameWithType> property. The <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.Logging> property is of type <xref:Microsoft.Extensions.Logging.ILoggingBuilder>, so the extension methods of <xref:Microsoft.Extensions.Logging.ILoggingBuilder> are supported.
 
 To set the minimum logging level, call <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.SetMinimumLevel%2A?displayProperty=nameWithType> on the host builder in `Program.cs` with the <xref:Microsoft.Extensions.Logging.LogLevel>. The following example sets the minimum log level to <xref:Microsoft.Extensions.Logging.LogLevel.Warning>:
 
@@ -912,9 +1113,9 @@ In the following `Index` component:
 
 The following output is seen in the browser's developer tools console when the **`Log Messages`** button is selected. The log entries reflect the appropriate formats applied by the custom logger:
 
-> LoggingTest.Pages.Index: This is an information message.
-> LoggingTest.Pages.Index: This is a warning message.
-> [ 7: Error       ] LoggingTest.Pages.Index - This is an error message.
+> :::no-loc text="LoggingTest.Pages.Index: This is an information message.":::  
+> :::no-loc text="LoggingTest.Pages.Index: This is a warning message.":::  
+> :::no-loc text="[ 7: Error       ] LoggingTest.Pages.Index - This is an error message.":::
 
 From a casual inspection of the preceding example, it's apparent that setting the log line formats via the dictionary in `CustomLoggerConfiguration` isn't strictly necessary. The line formats applied by the custom logger (`CustomLogger`) could have been applied by merely checking the `logLevel` in the `Log` method. The purpose of assigning the log format via configuration is that the developer can change the log format easily via app configuration, as the following example demonstrates.
 
@@ -947,9 +1148,9 @@ The call to <xref:Microsoft.Extensions.Logging.Configuration.LoggingBuilderConfi
 
 Run the app again. Select the the **`Log Messages`** button. Notice that the logging configuration is applied from the `appsettings.json` file. All three log entries are in the long (`LogFormat.Long`) format:
 
-> [ 3: Information ] LoggingTest.Pages.Index - This is an information message.
-> [ 5: Warning     ] LoggingTest.Pages.Index - This is a warning message.
-> [ 7: Error       ] LoggingTest.Pages.Index - This is an error message.
+> :::no-loc text="[ 3: Information ] LoggingTest.Pages.Index - This is an information message.":::  
+> :::no-loc text="[ 5: Warning     ] LoggingTest.Pages.Index - This is a warning message.":::  
+> :::no-loc text="[ 7: Error       ] LoggingTest.Pages.Index - This is an error message.":::
 
 ## Hosted Blazor WebAssembly logging
 
@@ -960,7 +1161,7 @@ A hosted Blazor WebAssembly app that [prerenders its content](xref:blazor/compon
 Inject an <xref:Microsoft.Extensions.Logging.ILoggerProvider> to add a `WebAssemblyConsoleLogger` to the logging providers passed to <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder>. Unlike a traditional <xref:Microsoft.Extensions.Logging.Console.ConsoleLogger>, `WebAssemblyConsoleLogger` is a wrapper around browser-specific logging APIs (for example, `console.log`). Use of `WebAssemblyConsoleLogger` makes logging possible within Mono inside a browser context.
 
 > [!NOTE]
-> `WebAssemblyConsoleLogger` is [internal](/dotnet/csharp/language-reference/keywords/internal) and not available for direct use in developer code.
+> `WebAssemblyConsoleLogger` is [internal](/dotnet/csharp/language-reference/keywords/internal) and not supported for direct use in developer code.
 
 Add the namespace for <xref:Microsoft.Extensions.Logging?displayProperty=fullName> and inject an <xref:Microsoft.Extensions.Logging.ILoggerProvider> into the component:
 

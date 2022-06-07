@@ -5,8 +5,7 @@ description: Learn how to host and deploy Blazor WebAssembly using ASP.NET Core,
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/13/2022
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+ms.date: 05/25/2022
 uid: blazor/host-and-deploy/webassembly
 ---
 # Host and deploy ASP.NET Core Blazor WebAssembly
@@ -24,6 +23,7 @@ The following deployment strategies are supported:
 
 * The Blazor app is served by an ASP.NET Core app. This strategy is covered in the [Hosted deployment with ASP.NET Core](#hosted-deployment-with-aspnet-core) section.
 * The Blazor app is placed on a static hosting web server or service, where .NET isn't used to serve the Blazor app. This strategy is covered in the [Standalone deployment](#standalone-deployment) section, which includes information on hosting a Blazor WebAssembly app as an IIS sub-app.
+* An ASP.NET Core app hosts multiple Blazor WebAssembly apps. For more information, see <xref:blazor/host-and-deploy/multiple-hosted-webassembly>.
 
 ## Ahead-of-time (AOT) compilation
 
@@ -177,198 +177,7 @@ For more information, see the following articles:
 
 ## Hosted deployment with multiple Blazor WebAssembly apps
 
-### App configuration
-
-Hosted Blazor solutions can serve multiple Blazor WebAssembly apps.
-
-> [!NOTE]
-> The example in this section references the use of a Visual Studio *solution*, but the use of Visual Studio and a Visual Studio solution isn't required for multiple client apps to work in a hosted Blazor WebAssembly apps scenario. If you aren't using Visual Studio, ignore the `{SOLUTION NAME}.sln` file and any other files created for Visual Studio.
-
-In the following example:
-
-* The initial (first) client app is the default client project of a solution created from the Blazor WebAssembly project template. The first client app is accessible in a browser from the URL `/FirstApp` on either port 5001 or with a host of `firstapp.com`.
-* A second client app is added to the solution, `SecondBlazorApp.Client`. The second client app is accessible in a browser from the URL `/SecondApp` on either port 5002 or with a host of `secondapp.com`.
-
-Use an existing hosted Blazor solution or create a new solution from the Blazor Hosted project template:
-
-* In the client app's project file, add a [`<StaticWebAssetBasePath>` property](xref:blazor/fundamentals/static-files#static-web-asset-base-path) to the `<PropertyGroup>` with a value of `FirstApp` to set the base path for the project's static assets:
-
-  ```xml
-  <PropertyGroup>
-    ...
-    <StaticWebAssetBasePath>FirstApp</StaticWebAssetBasePath>
-  </PropertyGroup>
-  ```
-
-* Add a second client app to the solution:
-
-  * Add a folder named `SecondClient` to the solution's folder. The solution folder created from the project template contains the following solution file and folders after the `SecondClient` folder is added:
-  
-    * `Client` (folder)
-    * `SecondClient` (folder)
-    * `Server` (folder)
-    * `Shared` (folder)
-    * `{SOLUTION NAME}.sln` (file)
-
-    The placeholder `{SOLUTION NAME}` is the solution's name.
-
-  * Create a Blazor WebAssembly app named `SecondBlazorApp.Client` in the `SecondClient` folder from the Blazor WebAssembly project template.
-
-  * In the `SecondBlazorApp.Client` app's project file:
-
-    * Add a `<StaticWebAssetBasePath>` property to the `<PropertyGroup>` with a value of `SecondApp`:
-
-      ```xml
-      <PropertyGroup>
-        ...
-        <StaticWebAssetBasePath>SecondApp</StaticWebAssetBasePath>
-      </PropertyGroup>
-      ```
-
-    * Add a project reference to the `Shared` project:
-
-      ```xml
-      <ItemGroup>
-        <ProjectReference Include="..\Shared\{SOLUTION NAME}.Shared.csproj" />
-      </ItemGroup>
-      ```
-
-      The placeholder `{SOLUTION NAME}` is the solution's name.
-
-* In the server app's project file, create a project reference for the added `SecondBlazorApp.Client` client app:
-
-  ```xml
-  <ItemGroup>
-    <ProjectReference Include="..\Client\{SOLUTION NAME}.Client.csproj" />
-    <ProjectReference Include="..\SecondClient\SecondBlazorApp.Client.csproj" />
-    <ProjectReference Include="..\Shared\{SOLUTION NAME}.Shared.csproj" />
-  </ItemGroup>
-  ```
-  
-  The placeholder `{SOLUTION NAME}` is the solution's name.
-
-* In the server app's `Properties/launchSettings.json` file, configure the `applicationUrl` of the Kestrel profile (`{SOLUTION NAME}.Server`) to access the client apps at ports 5001 and 5002:
-
-  ```json
-  "applicationUrl": "https://localhost:5001;https://localhost:5002",
-  ```
-
-* In the server app's `Program.cs` file, remove the following lines, which appear after the call to <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A>:
-
-  ```diff
-  -app.UseBlazorFrameworkFiles();
-  -app.UseStaticFiles();
-
-  -app.UseRouting();
-
-  -app.MapRazorPages();
-  -app.MapControllers();
-  -app.MapFallbackToFile("index.html");
-  ```
-
-  Add middleware that maps requests to the client apps. The following example configures the middleware to run when:
-
-  * The request port is either 5001 for the original client app or 5002 for the added client app.
-  * The request host is either `firstapp.com` for the original client app or `secondapp.com` for the added client app.
-
-    > [!NOTE]
-    > The example shown in this section requires additional configuration for:
-    >
-    > * Accessing the apps at the example host domains, `firstapp.com` and `secondapp.com`.
-    > * Certificates for the client apps to enable TLS security (HTTPS).
-    >
-    > The required configuration is beyond the scope of this article and depends on how the solution is hosted. For more information see the [Host and deploy articles](xref:host-and-deploy/index).
-
-  Place the following code where the lines were removed earlier:
-
-  ```csharp
-  app.MapWhen(ctx => ctx.Request.Host.Port == 5001 || 
-      ctx.Request.Host.Equals("firstapp.com"), first =>
-  {
-      first.Use((ctx, nxt) =>
-      {
-          ctx.Request.Path = "/FirstApp" + ctx.Request.Path;
-          return nxt();
-      });
-
-      first.UseBlazorFrameworkFiles("/FirstApp");
-      first.UseStaticFiles();
-      first.UseStaticFiles("/FirstApp");
-      first.UseRouting();
-
-      first.UseEndpoints(endpoints =>
-      {
-          endpoints.MapControllers();
-          endpoints.MapFallbackToFile("/FirstApp/{*path:nonfile}", 
-              "FirstApp/index.html");
-      });
-  });
-  
-  app.MapWhen(ctx => ctx.Request.Host.Port == 5002 || 
-      ctx.Request.Host.Equals("secondapp.com"), second =>
-  {
-      second.Use((ctx, nxt) =>
-      {
-          ctx.Request.Path = "/SecondApp" + ctx.Request.Path;
-          return nxt();
-      });
-
-      second.UseBlazorFrameworkFiles("/SecondApp");
-      second.UseStaticFiles();
-      second.UseStaticFiles("/SecondApp");
-      second.UseRouting();
-
-      second.UseEndpoints(endpoints =>
-      {
-          endpoints.MapControllers();
-          endpoints.MapFallbackToFile("/SecondApp/{*path:nonfile}", 
-              "SecondApp/index.html");
-      });
-  });
-  ```
-
-  For more information on <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>, see <xref:blazor/fundamentals/static-files#static-file-middleware>.
-
-  For more information on `UseBlazorFrameworkFiles` and `MapFallbackToFile`, see the following resources:
-
-  * <xref:Microsoft.AspNetCore.Builder.ComponentsWebAssemblyApplicationBuilderExtensions.UseBlazorFrameworkFiles%2A?displayProperty=fullName> ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/WebAssembly/Server/src/ComponentsWebAssemblyApplicationBuilderExtensions.cs))
-  * <xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A?displayProperty=fullName> ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/StaticFiles/src/StaticFilesEndpointRouteBuilderExtensions.cs))
-
-  [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
-
-* In the server app's weather forecast controller (`Controllers/WeatherForecastController.cs`), replace the existing route (`[Route("[controller]")]`) to `WeatherForecastController` with the following routes:
-
-  ```csharp
-  [Route("FirstApp/[controller]")]
-  [Route("SecondApp/[controller]")]
-  ```
-
-  The middleware added to the server app's request processing pipeline earlier modifies incoming requests to `/WeatherForecast` to either `/FirstApp/WeatherForecast` or `/SecondApp/WeatherForecast` depending on the port (5001/5002) or domain (`firstapp.com`/`secondapp.com`). The preceding controller routes are required in order to return weather data from the server app to the client apps.
-
-### Static assets and class libraries for multiple Blazor WebAssembly apps
-
-Use the following approaches to reference static assets:
-
-* When the asset is in the client app's `wwwroot` folder, provide the path normally:
-
-  ```razor
-  <img alt="..." src="/{PATH AND FILE NAME}" />
-  ```
-
-  The `{PATH AND FILE NAME}` placeholder is the path and file name under `wwwroot`.
-
-* When the asset is in the `wwwroot` folder of a [Razor Class Library (RCL)](xref:blazor/components/class-libraries), reference the static asset in the client app per the guidance in <xref:razor-pages/ui-class#consume-content-from-a-referenced-rcl>:
-
-  ```razor
-  <img alt="..." src="_content/{PACKAGE ID}/{PATH AND FILE NAME}" />
-  ```
-
-  The `{PACKAGE ID}` placeholder is the library's [package ID](/nuget/create-packages/creating-a-package-msbuild#set-properties). The package ID defaults to the project's assembly name if `<PackageId>` isn't specified in the project file. The `{PATH AND FILE NAME}` placeholder is path and file name under `wwwroot`.
-
-For more information on RCLs, see:
-
-* <xref:blazor/components/class-libraries>
-* <xref:razor-pages/ui-class>
+For more information, see <xref:blazor/host-and-deploy/multiple-hosted-webassembly>.
 
 ## Standalone deployment
 
@@ -408,7 +217,7 @@ When a Blazor project is published, a `web.config` file is created with the foll
 
 To use a custom `web.config` file:
 
-1. Place the custom `web.config` file in the project's root folder. For a hosted Blazor WebAssembly solution, place the file in the **`Server`** project's folder.
+1. Place the custom `web.config` file in the project's root folder. For a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln), place the file in the **`Server`** project's folder.
 1. Publish the project. For a hosted Blazor WebAssembly solution, publish the solution from the **`Server`** project. For more information, see <xref:blazor/host-and-deploy/index>.
 
 #### Install the URL Rewrite Module
@@ -1058,6 +867,7 @@ The following deployment strategies are supported:
 
 * The Blazor app is served by an ASP.NET Core app. This strategy is covered in the [Hosted deployment with ASP.NET Core](#hosted-deployment-with-aspnet-core) section.
 * The Blazor app is placed on a static hosting web server or service, where .NET isn't used to serve the Blazor app. This strategy is covered in the [Standalone deployment](#standalone-deployment) section, which includes information on hosting a Blazor WebAssembly app as an IIS sub-app.
+* An ASP.NET Core app hosts multiple Blazor WebAssembly apps. For more information, see <xref:blazor/host-and-deploy/multiple-hosted-webassembly>.
 
 ## Customize how boot resources are loaded
 
@@ -1167,201 +977,7 @@ For more information, see the following articles:
 
 ## Hosted deployment with multiple Blazor WebAssembly apps
 
-### App configuration
-
-Hosted Blazor solutions can serve multiple Blazor WebAssembly apps.
-
-> [!NOTE]
-> The example in this section references the use of a Visual Studio *solution*, but the use of Visual Studio and a Visual Studio solution isn't required for multiple client apps to work in a hosted Blazor WebAssembly apps scenario. If you aren't using Visual Studio, ignore the `{SOLUTION NAME}.sln` file and any other files created for Visual Studio.
-
-In the following example:
-
-* The initial (first) client app is the default client project of a solution created from the Blazor WebAssembly project template. The first client app is accessible in a browser from the URL `/FirstApp` on either port 5001 or with a host of `firstapp.com`.
-* A second client app is added to the solution, `SecondBlazorApp.Client`. The second client app is accessible in a browser from the URL `/SecondApp` on either port 5002 or with a host of `secondapp.com`.
-
-Use an existing hosted Blazor solution or create a new solution from the Blazor Hosted project template:
-
-* In the client app's project file, add a [`<StaticWebAssetBasePath>` property](xref:blazor/fundamentals/static-files#static-web-asset-base-path) to the `<PropertyGroup>` with a value of `FirstApp` to set the base path for the project's static assets:
-
-  ```xml
-  <PropertyGroup>
-    ...
-    <StaticWebAssetBasePath>FirstApp</StaticWebAssetBasePath>
-  </PropertyGroup>
-  ```
-
-* Add a second client app to the solution:
-
-  * Add a folder named `SecondClient` to the solution's folder. The solution folder created from the project template contains the following solution file and folders after the `SecondClient` folder is added:
-  
-    * `Client` (folder)
-    * `SecondClient` (folder)
-    * `Server` (folder)
-    * `Shared` (folder)
-    * `{SOLUTION NAME}.sln` (file)
-
-    The placeholder `{SOLUTION NAME}` is the solution's name.
-
-  * Create a Blazor WebAssembly app named `SecondBlazorApp.Client` in the `SecondClient` folder from the Blazor WebAssembly project template.
-
-  * In the `SecondBlazorApp.Client` app's project file:
-
-    * Add a `<StaticWebAssetBasePath>` property to the `<PropertyGroup>` with a value of `SecondApp`:
-
-      ```xml
-      <PropertyGroup>
-        ...
-        <StaticWebAssetBasePath>SecondApp</StaticWebAssetBasePath>
-      </PropertyGroup>
-      ```
-
-    * Add a project reference to the `Shared` project:
-
-      ```xml
-      <ItemGroup>
-        <ProjectReference Include="..\Shared\{SOLUTION NAME}.Shared.csproj" />
-      </ItemGroup>
-      ```
-
-      The placeholder `{SOLUTION NAME}` is the solution's name.
-
-* In the server app's project file, create a project reference for the added `SecondBlazorApp.Client` client app:
-
-  ```xml
-  <ItemGroup>
-    <ProjectReference Include="..\Client\{SOLUTION NAME}.Client.csproj" />
-    <ProjectReference Include="..\SecondClient\SecondBlazorApp.Client.csproj" />
-    <ProjectReference Include="..\Shared\{SOLUTION NAME}.Shared.csproj" />
-  </ItemGroup>
-  ```
-  
-  The placeholder `{SOLUTION NAME}` is the solution's name.
-
-* In the server app's `Properties/launchSettings.json` file, configure the `applicationUrl` of the Kestrel profile (`{SOLUTION NAME}.Server`) to access the client apps at ports 5001 and 5002:
-
-  ```json
-  "applicationUrl": "https://localhost:5001;https://localhost:5002",
-  ```
-
-* In the server app's `Startup.Configure` method (`Startup.cs`), remove the following lines, which appear after the call to <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A>:
-
-  ```diff
-  -app.UseBlazorFrameworkFiles();
-  -app.UseStaticFiles();
-
-  -app.UseRouting();
-
-  -app.UseEndpoints(endpoints =>
-  -{
-  -    endpoints.MapRazorPages();
-  -    endpoints.MapControllers();
-  -    endpoints.MapFallbackToFile("index.html");
-  -});
-  ```
-
-  Add middleware that maps requests to the client apps. The following example configures the middleware to run when:
-
-  * The request port is either 5001 for the original client app or 5002 for the added client app.
-  * The request host is either `firstapp.com` for the original client app or `secondapp.com` for the added client app.
-
-    > [!NOTE]
-    > The example shown in this section requires additional configuration for:
-    >
-    > * Accessing the apps at the example host domains, `firstapp.com` and `secondapp.com`.
-    > * Certificates for the client apps to enable TLS security (HTTPS).
-    >
-    > The required configuration is beyond the scope of this article and depends on how the solution is hosted. For more information see the [Host and deploy articles](xref:host-and-deploy/index).
-
-  Place the following code where the lines were removed earlier:
-
-  ```csharp
-  app.MapWhen(ctx => ctx.Request.Host.Port == 5001 || 
-      ctx.Request.Host.Equals("firstapp.com"), first =>
-  {
-      first.Use((ctx, nxt) =>
-      {
-          ctx.Request.Path = "/FirstApp" + ctx.Request.Path;
-          return nxt();
-      });
-
-      first.UseBlazorFrameworkFiles("/FirstApp");
-      first.UseStaticFiles();
-      first.UseStaticFiles("/FirstApp");
-      first.UseRouting();
-
-      first.UseEndpoints(endpoints =>
-      {
-          endpoints.MapControllers();
-          endpoints.MapFallbackToFile("/FirstApp/{*path:nonfile}", 
-              "FirstApp/index.html");
-      });
-  });
-  
-  app.MapWhen(ctx => ctx.Request.Host.Port == 5002 || 
-      ctx.Request.Host.Equals("secondapp.com"), second =>
-  {
-      second.Use((ctx, nxt) =>
-      {
-          ctx.Request.Path = "/SecondApp" + ctx.Request.Path;
-          return nxt();
-      });
-
-      second.UseBlazorFrameworkFiles("/SecondApp");
-      second.UseStaticFiles();
-      second.UseStaticFiles("/SecondApp");
-      second.UseRouting();
-
-      second.UseEndpoints(endpoints =>
-      {
-          endpoints.MapControllers();
-          endpoints.MapFallbackToFile("/SecondApp/{*path:nonfile}", 
-              "SecondApp/index.html");
-      });
-  });
-  ```
-
-  For more information on <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>, see <xref:blazor/fundamentals/static-files#static-file-middleware>.
-
-  For more information on `UseBlazorFrameworkFiles` and `MapFallbackToFile`, see the following resources:
-
-  * <xref:Microsoft.AspNetCore.Builder.ComponentsWebAssemblyApplicationBuilderExtensions.UseBlazorFrameworkFiles%2A?displayProperty=fullName> ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/WebAssembly/Server/src/ComponentsWebAssemblyApplicationBuilderExtensions.cs))
-  * <xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A?displayProperty=fullName> ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/StaticFiles/src/StaticFilesEndpointRouteBuilderExtensions.cs))
-
-  [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
-
-* In the server app's weather forecast controller (`Controllers/WeatherForecastController.cs`), replace the existing route (`[Route("[controller]")]`) to `WeatherForecastController` with the following routes:
-
-  ```csharp
-  [Route("FirstApp/[controller]")]
-  [Route("SecondApp/[controller]")]
-  ```
-
-  The middleware added to the server app's `Startup.Configure` method earlier modifies incoming requests to `/WeatherForecast` to either `/FirstApp/WeatherForecast` or `/SecondApp/WeatherForecast` depending on the port (5001/5002) or domain (`firstapp.com`/`secondapp.com`). The preceding controller routes are required in order to return weather data from the server app to the client apps.
-
-### Static assets and class libraries for multiple Blazor WebAssembly apps
-
-Use the following approaches to reference static assets:
-
-* When the asset is in the client app's `wwwroot` folder, provide the path normally:
-
-  ```razor
-  <img alt="..." src="/{PATH AND FILE NAME}" />
-  ```
-
-  The `{PATH AND FILE NAME}` placeholder is the path and file name under `wwwroot`.
-
-* When the asset is in the `wwwroot` folder of a [Razor Class Library (RCL)](xref:blazor/components/class-libraries), reference the static asset in the client app per the guidance in <xref:razor-pages/ui-class#consume-content-from-a-referenced-rcl>:
-
-  ```razor
-  <img alt="..." src="_content/{PACKAGE ID}/{PATH AND FILE NAME}" />
-  ```
-
-  The `{PACKAGE ID}` placeholder is the library's [package ID](/nuget/create-packages/creating-a-package-msbuild#set-properties). The package ID defaults to the project's assembly name if `<PackageId>` isn't specified in the project file. The `{PATH AND FILE NAME}` placeholder is path and file name under `wwwroot`.
-
-For more information on RCLs, see:
-
-* <xref:blazor/components/class-libraries>
-* <xref:razor-pages/ui-class>
+For more information, see <xref:blazor/host-and-deploy/multiple-hosted-webassembly>.
 
 ## Standalone deployment
 
@@ -1401,7 +1017,7 @@ When a Blazor project is published, a `web.config` file is created with the foll
 
 To use a custom `web.config` file:
 
-1. Place the custom `web.config` file in the project's root folder. For a hosted Blazor WebAssembly solution, place the file in the **`Server`** project's folder.
+1. Place the custom `web.config` file in the project's root folder. For a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln), place the file in the **`Server`** project's folder.
 1. Set the `<PublishIISAssets>` property to `true` in the project file (`.csproj`). For a hosted Blazor WebAssembly solution, set the property in the **`Server`** project's project file.
 
    ```xml
@@ -1929,6 +1545,7 @@ The following deployment strategies are supported:
 
 * The Blazor app is served by an ASP.NET Core app. This strategy is covered in the [Hosted deployment with ASP.NET Core](#hosted-deployment-with-aspnet-core) section.
 * The Blazor app is placed on a static hosting web server or service, where .NET isn't used to serve the Blazor app. This strategy is covered in the [Standalone deployment](#standalone-deployment) section, which includes information on hosting a Blazor WebAssembly app as an IIS sub-app.
+* An ASP.NET Core app hosts multiple Blazor WebAssembly apps. For more information, see <xref:blazor/host-and-deploy/multiple-hosted-webassembly>.
 
 ## Customize how boot resources are loaded
 
@@ -2038,201 +1655,7 @@ For more information, see the following articles:
 
 ## Hosted deployment with multiple Blazor WebAssembly apps
 
-### App configuration
-
-Hosted Blazor solutions can serve multiple Blazor WebAssembly apps.
-
-> [!NOTE]
-> The example in this section references the use of a Visual Studio *solution*, but the use of Visual Studio and a Visual Studio solution isn't required for multiple client apps to work in a hosted Blazor WebAssembly apps scenario. If you aren't using Visual Studio, ignore the `{SOLUTION NAME}.sln` file and any other files created for Visual Studio.
-
-In the following example:
-
-* The initial (first) client app is the default client project of a solution created from the Blazor WebAssembly project template. The first client app is accessible in a browser from the URL `/FirstApp` on either port 5001 or with a host of `firstapp.com`.
-* A second client app is added to the solution, `SecondBlazorApp.Client`. The second client app is accessible in a browser from the URL `/SecondApp` on either port 5002 or with a host of `secondapp.com`.
-
-Use an existing hosted Blazor solution or create a new solution from the Blazor Hosted project template:
-
-* In the client app's project file, add a [`<StaticWebAssetBasePath>` property](xref:blazor/fundamentals/static-files#static-web-asset-base-path) to the `<PropertyGroup>` with a value of `FirstApp` to set the base path for the project's static assets:
-
-  ```xml
-  <PropertyGroup>
-    ...
-    <StaticWebAssetBasePath>FirstApp</StaticWebAssetBasePath>
-  </PropertyGroup>
-  ```
-
-* Add a second client app to the solution:
-
-  * Add a folder named `SecondClient` to the solution's folder. The solution folder created from the project template contains the following solution file and folders after the `SecondClient` folder is added:
-  
-    * `Client` (folder)
-    * `SecondClient` (folder)
-    * `Server` (folder)
-    * `Shared` (folder)
-    * `{SOLUTION NAME}.sln` (file)
-
-    The placeholder `{SOLUTION NAME}` is the solution's name.
-
-  * Create a Blazor WebAssembly app named `SecondBlazorApp.Client` in the `SecondClient` folder from the Blazor WebAssembly project template.
-
-  * In the `SecondBlazorApp.Client` app's project file:
-
-    * Add a `<StaticWebAssetBasePath>` property to the `<PropertyGroup>` with a value of `SecondApp`:
-
-      ```xml
-      <PropertyGroup>
-        ...
-        <StaticWebAssetBasePath>SecondApp</StaticWebAssetBasePath>
-      </PropertyGroup>
-      ```
-
-    * Add a project reference to the `Shared` project:
-
-      ```xml
-      <ItemGroup>
-        <ProjectReference Include="..\Shared\{SOLUTION NAME}.Shared.csproj" />
-      </ItemGroup>
-      ```
-
-      The placeholder `{SOLUTION NAME}` is the solution's name.
-
-* In the server app's project file, create a project reference for the added `SecondBlazorApp.Client` client app:
-
-  ```xml
-  <ItemGroup>
-    <ProjectReference Include="..\Client\{SOLUTION NAME}.Client.csproj" />
-    <ProjectReference Include="..\SecondClient\SecondBlazorApp.Client.csproj" />
-    <ProjectReference Include="..\Shared\{SOLUTION NAME}.Shared.csproj" />
-  </ItemGroup>
-  ```
-  
-  The placeholder `{SOLUTION NAME}` is the solution's name.
-
-* In the server app's `Properties/launchSettings.json` file, configure the `applicationUrl` of the Kestrel profile (`{SOLUTION NAME}.Server`) to access the client apps at ports 5001 and 5002:
-
-  ```json
-  "applicationUrl": "https://localhost:5001;https://localhost:5002",
-  ```
-
-* In the server app's `Startup.Configure` method (`Startup.cs`), remove the following lines, which appear after the call to <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A>:
-
-  ```diff
-  -app.UseBlazorFrameworkFiles();
-  -app.UseStaticFiles();
-
-  -app.UseRouting();
-
-  -app.UseEndpoints(endpoints =>
-  -{
-  -    endpoints.MapRazorPages();
-  -    endpoints.MapControllers();
-  -    endpoints.MapFallbackToFile("index.html");
-  -});
-  ```
-
-  Add middleware that maps requests to the client apps. The following example configures the middleware to run when:
-
-  * The request port is either 5001 for the original client app or 5002 for the added client app.
-  * The request host is either `firstapp.com` for the original client app or `secondapp.com` for the added client app.
-
-    > [!NOTE]
-    > The example shown in this section requires additional configuration for:
-    >
-    > * Accessing the apps at the example host domains, `firstapp.com` and `secondapp.com`.
-    > * Certificates for the client apps to enable TLS security (HTTPS).
-    >
-    > The required configuration is beyond the scope of this article and depends on how the solution is hosted. For more information see the [Host and deploy articles](xref:host-and-deploy/index).
-
-  Place the following code where the lines were removed earlier:
-
-  ```csharp
-  app.MapWhen(ctx => ctx.Request.Host.Port == 5001 || 
-      ctx.Request.Host.Equals("firstapp.com"), first =>
-  {
-      first.Use((ctx, nxt) =>
-      {
-          ctx.Request.Path = "/FirstApp" + ctx.Request.Path;
-          return nxt();
-      });
-
-      first.UseBlazorFrameworkFiles("/FirstApp");
-      first.UseStaticFiles();
-      first.UseStaticFiles("/FirstApp");
-      first.UseRouting();
-
-      first.UseEndpoints(endpoints =>
-      {
-          endpoints.MapControllers();
-          endpoints.MapFallbackToFile("/FirstApp/{*path:nonfile}", 
-              "FirstApp/index.html");
-      });
-  });
-  
-  app.MapWhen(ctx => ctx.Request.Host.Port == 5002 || 
-      ctx.Request.Host.Equals("secondapp.com"), second =>
-  {
-      second.Use((ctx, nxt) =>
-      {
-          ctx.Request.Path = "/SecondApp" + ctx.Request.Path;
-          return nxt();
-      });
-
-      second.UseBlazorFrameworkFiles("/SecondApp");
-      second.UseStaticFiles();
-      second.UseStaticFiles("/SecondApp");
-      second.UseRouting();
-
-      second.UseEndpoints(endpoints =>
-      {
-          endpoints.MapControllers();
-          endpoints.MapFallbackToFile("/SecondApp/{*path:nonfile}", 
-              "SecondApp/index.html");
-      });
-  });
-  ```
-
-  For more information on <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>, see <xref:blazor/fundamentals/static-files#static-file-middleware>.
-
-  For more information on `UseBlazorFrameworkFiles` and `MapFallbackToFile`, see the following resources:
-
-  * <xref:Microsoft.AspNetCore.Builder.ComponentsWebAssemblyApplicationBuilderExtensions.UseBlazorFrameworkFiles%2A?displayProperty=fullName> ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/WebAssembly/Server/src/ComponentsWebAssemblyApplicationBuilderExtensions.cs))
-  * <xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A?displayProperty=fullName> ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/StaticFiles/src/StaticFilesEndpointRouteBuilderExtensions.cs))
-
-  [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
-
-* In the server app's weather forecast controller (`Controllers/WeatherForecastController.cs`), replace the existing route (`[Route("[controller]")]`) to `WeatherForecastController` with the following routes:
-
-  ```csharp
-  [Route("FirstApp/[controller]")]
-  [Route("SecondApp/[controller]")]
-  ```
-
-  The middleware added to the server app's `Startup.Configure` method earlier modifies incoming requests to `/WeatherForecast` to either `/FirstApp/WeatherForecast` or `/SecondApp/WeatherForecast` depending on the port (5001/5002) or domain (`firstapp.com`/`secondapp.com`). The preceding controller routes are required in order to return weather data from the server app to the client apps.
-
-### Static assets and class libraries for multiple Blazor WebAssembly apps
-
-Use the following approaches to reference static assets:
-
-* When the asset is in the client app's `wwwroot` folder, provide the path normally:
-
-  ```razor
-  <img alt="..." src="/{PATH AND FILE NAME}" />
-  ```
-
-  The `{PATH AND FILE NAME}` placeholder is the path and file name under `wwwroot`.
-
-* When the asset is in the `wwwroot` folder of a [Razor Class Library (RCL)](xref:blazor/components/class-libraries), reference the static asset in the client app per the guidance in <xref:razor-pages/ui-class#consume-content-from-a-referenced-rcl>:
-
-  ```razor
-  <img alt="..." src="_content/{PACKAGE ID}/{PATH AND FILE NAME}" />
-  ```
-
-  The `{PACKAGE ID}` placeholder is the library's [package ID](/nuget/create-packages/creating-a-package-msbuild#set-properties). The package ID defaults to the project's assembly name if `<PackageId>` isn't specified in the project file. The `{PATH AND FILE NAME}` placeholder is path and file name under `wwwroot`.
-
-For more information on RCLs, see:
-
-* <xref:blazor/components/class-libraries>
-* <xref:razor-pages/ui-class>
+For more information, see <xref:blazor/host-and-deploy/multiple-hosted-webassembly>.
 
 ## Standalone deployment
 
@@ -2272,7 +1695,7 @@ When a Blazor project is published, a `web.config` file is created with the foll
 
 To use a custom `web.config` file:
 
-1. Place the custom `web.config` file in the project's root folder. For a hosted Blazor WebAssembly solution, place the file in the **`Server`** project's folder.
+1. Place the custom `web.config` file in the project's root folder. For a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln), place the file in the **`Server`** project's folder.
 1. Set the `<PublishIISAssets>` property to `true` in the project file (`.csproj`). For a hosted Blazor WebAssembly solution, set the property in the **`Server`** project's project file.
 
    ```xml

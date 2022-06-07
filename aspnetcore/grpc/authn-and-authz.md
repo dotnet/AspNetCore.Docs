@@ -5,7 +5,6 @@ description: Learn how to use authentication and authorization in gRPC for ASP.N
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 04/13/2022
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/authn-and-authz
 ---
 # Authentication and authorization in gRPC for ASP.NET Core
@@ -73,9 +72,10 @@ public bool DoAuthenticatedCall(
 }
 ```
 
-Configuring `ChannelCredentials` on a channel is an alternative way to send the token to the service with gRPC calls. A `ChannelCredentials` can include `CallCredentials`, which provide a way to automatically set `Metadata`.
+Configuring `ChannelCredentials` on a channel is an alternative way to send the token to the service with gRPC calls. A `ChannelCredentials` can include `CallCredentials`, which provide a way to automatically set `Metadata`. `CallCredentials` is run each time a gRPC call is made, which avoids the need to write code in multiple places to pass the token yourself.
 
-`CallCredentials` is run each time a gRPC call is made, which avoids the need to write code in multiple places to pass the token yourself. Note that `CallCredentials` are only applied if the channel is secured with TLS. `CallCredentials` aren't applied on unsecured non-TLS channels.
+> [!NOTE]
+> `CallCredentials` are only applied if the channel is secured with TLS. Sending authentication headers over an insecure connection has security implications and shouldn't be done in production environments. An app can configure a channel to ignore this behavior and always use `CallCredentials` by setting `UnsafeUseInsecureChannelCallCredentials` on a channel.
 
 The credential in the following example configures the channel to send the token with every gRPC call:
 
@@ -91,8 +91,6 @@ private static GrpcChannel CreateAuthenticatedChannel(string address)
         return Task.CompletedTask;
     });
 
-    // SslCredentials is used here because this channel is using TLS.
-    // CallCredentials can't be used with ChannelCredentials.Insecure on non-TLS channels.
     var channel = GrpcChannel.ForAddress(address, new GrpcChannelOptions
     {
         Credentials = ChannelCredentials.Create(new SslCredentials(), credentials)
@@ -103,7 +101,9 @@ private static GrpcChannel CreateAuthenticatedChannel(string address)
 
 #### Bearer token with gRPC client factory
 
-gRPC client factory can create clients that send a bearer token using `ChannelCredentials`. When configuring a client, assign the `CallCredentials` the client should use with the `ConfigureChannel` method.
+gRPC client factory can create clients that send a bearer token using `AddCallCredentials`. This method is available in [Grpc.Net.ClientFactory](https://www.nuget.org/packages/Grpc.Net.ClientFactory) version 2.46.0 or later.
+
+The delegate passed to `AddCallCredentials` is executed for each gRPC call:
 
 ```csharp
 builder.Services
@@ -111,62 +111,68 @@ builder.Services
     {
         o.Address = new Uri("https://localhost:5001");
     })
-    .ConfigureChannel(o =>
+    .AddCallCredentials((context, metadata) =>
     {
-        var credentials = CallCredentials.FromInterceptor((context, metadata) =>
+        if (!string.IsNullOrEmpty(_token))
         {
-            if (!string.IsNullOrEmpty(_token))
-            {
-                metadata.Add("Authorization", $"Bearer {_token}");
-            }
-            return Task.CompletedTask;
-        });
-
-        o.Credentials = ChannelCredentials.Create(new SslCredentials(), credentials);
+            metadata.Add("Authorization", $"Bearer {_token}");
+        }
+        return Task.CompletedTask;
     });
 ```
 
-A gRPC interceptor can also be used to configure a bearer token. An advantage to using an interceptor is the client factory can be configured to create a new interceptor for each client. This allows an interceptor to be [constructed from DI using scoped and transient services](/dotnet/core/extensions/dependency-injection#service-lifetimes).
+Dependency injection (DI) can be combined with `AddCallCredentials`. An overload passes `IServiceProvider` to the delegate, which can be used to get a service [constructed from DI using scoped and transient services](/dotnet/core/extensions/dependency-injection#service-lifetimes).
 
 Consider an app that has:
+
 * A user-defined `ITokenProvider` for getting a bearer token. `ITokenProvider` is registered in DI with a scoped lifetime.
 * gRPC client factory is configured to create clients that are injected into gRPC services and Web API controllers.
 * gRPC calls should use `ITokenProvider` to get a bearer token.
 
 ```csharp
-public class AuthInterceptor : Interceptor
+public interface ITokenProvider
 {
-    private readonly ITokenProvider _tokenProvider;
-    
-    public AuthInterceptor(ITokenProvider tokenProvider)
+    Task<string> GetTokenAsync();
+}
+
+public class AppTokenProvider : ITokenProvider
+{
+    private string _token;
+
+    public async Task<string> GetTokenAsync()
     {
-        _tokenProvider = tokenProvider;
-    }
-    
-    public override AsyncUnaryCall<TResponse> AsyncUnaryCall<TRequest, TResponse>(
-        TRequest request,
-        ClientInterceptorContext<TRequest, TResponse> context,
-        AsyncUnaryCallContinuation<TRequest, TResponse> continuation)
-    {
-        context.Options.Metadata.Add("Authorization", $"Bearer {_tokenProvider.GetToken()}");
-        return continuation(request, context);
+        if (_token == null)
+        {
+            // App code to resolve the token here.
+        }
+
+        return _token;
     }
 }
 ```
 
 ```csharp
+builder.Services.AddScoped<ITokenProvider, AppTokenProvider>();
+
 builder.Services
     .AddGrpcClient<Greeter.GreeterClient>(o =>
     {
         o.Address = new Uri("https://localhost:5001");
     })
-    .AddInterceptor<AuthInterceptor>(InterceptorScope.Client);
+    .AddCallCredentials(async (context, metadata, serviceProvider) =>
+    {
+        var provider = serviceProvider.GetRequiredService<ITokenProvider>();
+        var token = await provider.GetTokenAsync();
+        metadata.Add("Authorization", $"Bearer {token}");
+    }));
 ```
 
-The preceeding code:
-* Defines `AuthInterceptor` which is constructed using the user defined `ITokenProvider`.
+The preceding code:
+
+* Defines `ITokenProvider` and `AppTokenProvider`. These types handle resolving the authentication token for gRPC calls.
+* Registers the `AppTokenProvider` type with DI in a scoped lifetime. `AppTokenProvider` caches the token so that only the first call in the scope is required to calculate it.
 * Registers the `GreeterClient` type with client factory.
-* Configures the `AuthInterceptor` for this client using `InterceptorScope.Client`. A new interceptor is created for each client instance. When a client is created for a gRPC service or Web API controller, the scoped `ITokenProvider` is injected into the interceptor.
+* Configures `AddCallCredentials` for this client. The delegate is executed each time a call is made and adds the token returned by `ITokenProvider` to the metadata.
 
 ### Client certificate authentication
 
@@ -360,7 +366,9 @@ private static GrpcChannel CreateAuthenticatedChannel(string address)
 
 #### Bearer token with gRPC client factory
 
-gRPC client factory can create clients that send a bearer token using `ChannelCredentials`. When configuring a client, assign the `CallCredentials` the client should use with the `ConfigureChannel` method.
+gRPC client factory can create clients that send a bearer token using `AddCallCredentials`. This method is available in [Grpc.Net.ClientFactory](https://www.nuget.org/packages/Grpc.Net.ClientFactory) version 2.46.0 or later.
+
+The delegate passed to `AddCallCredentials` is executed for each gRPC call:
 
 ```csharp
 services
@@ -368,62 +376,68 @@ services
     {
         o.Address = new Uri("https://localhost:5001");
     })
-    .ConfigureChannel(o =>
+    .AddCallCredentials((context, metadata) =>
     {
-        var credentials = CallCredentials.FromInterceptor((context, metadata) =>
+        if (!string.IsNullOrEmpty(_token))
         {
-            if (!string.IsNullOrEmpty(_token))
-            {
-                metadata.Add("Authorization", $"Bearer {_token}");
-            }
-            return Task.CompletedTask;
-        });
-
-        o.Credentials = ChannelCredentials.Create(new SslCredentials(), credentials);
+            metadata.Add("Authorization", $"Bearer {_token}");
+        }
+        return Task.CompletedTask;
     });
 ```
 
-A gRPC interceptor can also be used to configure a bearer token. An advantage to using an interceptor is the client factory can be configured to create a new interceptor for each client. This allows an interceptor to be [constructed from DI using scoped and transient services](/dotnet/core/extensions/dependency-injection#service-lifetimes).
+Dependency injection (DI) can be combined with `AddCallCredentials`. An overload passes `IServiceProvider` to the delegate, which can be used to get a service [constructed from DI using scoped and transient services](/dotnet/core/extensions/dependency-injection#service-lifetimes).
 
 Consider an app that has:
+
 * A user-defined `ITokenProvider` for getting a bearer token. `ITokenProvider` is registered in DI with a scoped lifetime.
 * gRPC client factory is configured to create clients that are injected into gRPC services and Web API controllers.
 * gRPC calls should use `ITokenProvider` to get a bearer token.
 
 ```csharp
-public class AuthInterceptor : Interceptor
+public interface ITokenProvider
 {
-    private readonly ITokenProvider _tokenProvider;
-    
-    public AuthInterceptor(ITokenProvider tokenProvider)
+    Task<string> GetTokenAsync();
+}
+
+public class AppTokenProvider : ITokenProvider
+{
+    private string _token;
+
+    public async Task<string> GetTokenAsync()
     {
-        _tokenProvider = tokenProvider;
-    }
-    
-    public override AsyncUnaryCall<TResponse> AsyncUnaryCall<TRequest, TResponse>(
-        TRequest request,
-        ClientInterceptorContext<TRequest, TResponse> context,
-        AsyncUnaryCallContinuation<TRequest, TResponse> continuation)
-    {
-        context.Options.Metadata.Add("Authorization", $"Bearer {_tokenProvider.GetToken()}");
-        return continuation(request, context);
+        if (_token == null)
+        {
+            // App code to resolve the token here.
+        }
+
+        return _token;
     }
 }
 ```
 
 ```csharp
+services.AddScoped<ITokenProvider, AppTokenProvider>();
+
 services
     .AddGrpcClient<Greeter.GreeterClient>(o =>
     {
         o.Address = new Uri("https://localhost:5001");
     })
-    .AddInterceptor<AuthInterceptor>(InterceptorScope.Client);
+    .AddCallCredentials(async (context, metadata, serviceProvider) =>
+    {
+        var provider = serviceProvider.GetRequiredService<ITokenProvider>();
+        var token = await provider.GetTokenAsync();
+        metadata.Add("Authorization", $"Bearer {token}");
+    }));
 ```
 
-The preceeding code:
-* Defines `AuthInterceptor` which is constructed using the user defined `ITokenProvider`.
+The preceding code:
+
+* Defines `ITokenProvider` and `AppTokenProvider`. These types handle resolving the authentication token for gRPC calls.
+* Registers the `AppTokenProvider` type with DI in a scoped lifetime. `AppTokenProvider` caches the token so that only the first call in the scope is required to calculate it.
 * Registers the `GreeterClient` type with client factory.
-* Configures the `AuthInterceptor` for this client using `InterceptorScope.Client`. A new interceptor is created for each client instance. When a client is created for a gRPC service or Web API controller, the scoped `ITokenProvider` is injected into the interceptor.
+* Configures `AddCallCredentials` for this client. The delegate is executed each time a call is made and adds the token returned by `ITokenProvider` to the metadata.
 
 ### Client certificate authentication
 
