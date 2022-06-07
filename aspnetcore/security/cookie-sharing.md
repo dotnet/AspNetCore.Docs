@@ -24,7 +24,7 @@ In the examples that follow:
 * `Identity.Application` is used as the authentication scheme. Whatever scheme is used, it must be used consistently *within and across* the shared cookie apps either as the default scheme or by explicitly setting it. The scheme is used when encrypting and decrypting cookies, so a consistent scheme must be used across apps.
 * A common [data protection key](xref:security/data-protection/implementation/key-management) storage location is used.
   * In ASP.NET Core apps, <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.PersistKeysToFileSystem*> is used to set the key storage location.
-  * In .NET Framework apps, Cookie Authentication Middleware uses an implementation of <xref:Microsoft.AspNetCore.DataProtection.DataProtectionProvider>. `DataProtectionProvider` provides data protection services for the encryption and decryption of authentication cookie payload data. The `DataProtectionProvider` instance is isolated from the data protection system used by other parts of the app. [DataProtectionProvider.Create(System.IO.DirectoryInfo, Action/<IDataProtectionBuilder>)](xref:Microsoft.AspNetCore.DataProtection.DataProtectionProvider.Create*) accepts a <xref:System.IO.DirectoryInfo> to specify the location for data protection key storage.
+  * In .NET Framework apps, Cookie Authentication Middleware uses an implementation of <xref:Microsoft.AspNetCore.DataProtection.DataProtectionProvider>. `DataProtectionProvider` provides data protection services for the encryption and decryption of authentication cookie payload data. The `DataProtectionProvider` instance is isolated from the data protection system used by other parts of the app. [DataProtectionProvider.Create(System.IO.DirectoryInfo, Action\<IDataProtectionBuilder>)](xref:Microsoft.AspNetCore.DataProtection.DataProtectionProvider.Create*) accepts a <xref:System.IO.DirectoryInfo> to specify the location for data protection key storage.
 * `DataProtectionProvider` requires the [Microsoft.AspNetCore.DataProtection.Extensions](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Extensions/) NuGet package:
   * In .NET Framework apps, add a package reference to [Microsoft.AspNetCore.DataProtection.Extensions](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Extensions/).
 * <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetApplicationName*> sets the common app name. For more information, see [SetApplicationName changes in .NET 6](xref:security/data-protection/configuration/overview#setapplicationname)
@@ -47,19 +47,9 @@ In `Program.cs`:
 
 ## Share authentication cookies without ASP.NET Core Identity
 
-When using cookies directly without ASP.NET Core Identity, configure data protection and authentication in `Startup.ConfigureServices`. In the following example, the authentication type is set to `Identity.Application`:
+When using cookies directly without ASP.NET Core Identity, configure data protection and authentication. In the following example, the authentication type is set to `Identity.Application`:
 
-```csharp
-services.AddDataProtection()
-    .PersistKeysToFileSystem("{PATH TO COMMON KEY RING FOLDER}")
-    .SetApplicationName("SharedCookieApp");
-
-services.AddAuthentication("Identity.Application")
-    .AddCookie("Identity.Application", options =>
-    {
-        options.Cookie.Name = ".AspNet.SharedCookie";
-    });
-```
+[!code-csharp[](~/security/cookie-sharing/samples/WebCookieShare/Program.cs?name=snippet_swo&highlight=7-15)]
 
 [!INCLUDE[](~/includes/cookies-not-compressed.md)]
 
@@ -67,16 +57,7 @@ services.AddAuthentication("Identity.Application")
 
 An authentication cookie uses the [HttpRequest.PathBase](xref:Microsoft.AspNetCore.Http.HttpRequest.PathBase) as its default [Cookie.Path](xref:Microsoft.AspNetCore.Http.CookieBuilder.Path). If the app's cookie must be shared across different base paths, `Path` must be overridden:
 
-```csharp
-services.AddDataProtection()
-    .PersistKeysToFileSystem("{PATH TO COMMON KEY RING FOLDER}")
-    .SetApplicationName("SharedCookieApp");
-
-services.ConfigureApplicationCookie(options => {
-    options.Cookie.Name = ".AspNet.SharedCookie";
-    options.Cookie.Path = "/";
-});
-```
+[!code-csharp[](~/security/cookie-sharing/samples/WebCookieShare/Program.cs?name=snippet_dbp&highlight=7-15)]
 
 ## Share cookies across subdomains
 
@@ -90,10 +71,7 @@ options.Cookie.Domain = ".contoso.com";
 
 For production deployments, configure the `DataProtectionProvider` to encrypt keys at rest with DPAPI or an X509Certificate. For more information, see <xref:security/data-protection/implementation/key-encryption-at-rest>. In the following example, a certificate thumbprint is provided to <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithCertificate*>:
 
-```csharp
-services.AddDataProtection()
-    .ProtectKeysWithCertificate("{CERTIFICATE THUMBPRINT}");
-```
+[!code-csharp[](~/security/cookie-sharing/samples/WebCookieShare/Program.cs?name=snippet_dbp&highlight=7-8)]
 
 ## Share authentication cookies between ASP.NET 4.x and ASP.NET Core apps
 
@@ -120,7 +98,7 @@ In the examples that follow:
 * `Identity.Application` is used as the authentication scheme. Whatever scheme is used, it must be used consistently *within and across* the shared cookie apps either as the default scheme or by explicitly setting it. The scheme is used when encrypting and decrypting cookies, so a consistent scheme must be used across apps.
 * A common [data protection key](xref:security/data-protection/implementation/key-management) storage location is used.
   * In ASP.NET Core apps, <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.PersistKeysToFileSystem*> is used to set the key storage location.
-  * In .NET Framework apps, Cookie Authentication Middleware uses an implementation of <xref:Microsoft.AspNetCore.DataProtection.DataProtectionProvider>. `DataProtectionProvider` provides data protection services for the encryption and decryption of authentication cookie payload data. The `DataProtectionProvider` instance is isolated from the data protection system used by other parts of the app. [DataProtectionProvider.Create(System.IO.DirectoryInfo, Action/<IDataProtectionBuilder>)](xref:Microsoft.AspNetCore.DataProtection.DataProtectionProvider.Create*) accepts a <xref:System.IO.DirectoryInfo> to specify the location for data protection key storage.
+  * In .NET Framework apps, Cookie Authentication Middleware uses an implementation of <xref:Microsoft.AspNetCore.DataProtection.DataProtectionProvider>. `DataProtectionProvider` provides data protection services for the encryption and decryption of authentication cookie payload data. The `DataProtectionProvider` instance is isolated from the data protection system used by other parts of the app. [DataProtectionProvider.Create(System.IO.DirectoryInfo, Action\<IDataProtectionBuilder>)](xref:Microsoft.AspNetCore.DataProtection.DataProtectionProvider.Create*) accepts a <xref:System.IO.DirectoryInfo> to specify the location for data protection key storage.
 * `DataProtectionProvider` requires the [Microsoft.AspNetCore.DataProtection.Extensions](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Extensions/) NuGet package:
   * In ASP.NET Core 2.x apps, reference the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
   * In .NET Framework apps, add a package reference to [Microsoft.AspNetCore.DataProtection.Extensions](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Extensions/).
