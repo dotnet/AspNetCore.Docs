@@ -3,7 +3,7 @@ title: Part 2, add a model
 author: rick-anderson
 description: Part 2 of tutorial series on Razor Pages. In this section, model classes are added.
 ms.author: riande
-ms.date: 05/11/2022
+ms.date: 06/03/2022
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: contperf-fy21q2
 uid: tutorials/razor-pages/model
@@ -195,9 +195,9 @@ The created files are explained in the next tutorial.
 The scaffold process adds the following highlighted code to the `Program.cs` file:
 
 # [Visual Studio](#tab/visual-studio)
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program.cs?name=snippet_all&highlight=1-3,9-10)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program.cs?name=snippet_all&highlight=1-3,8-9)]
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program.cs?name=snippet_all_sl&highlight=1-3,9-10)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program.cs?name=snippet_all_sl&highlight=1-3,8-9)]
 
 ---
 
@@ -288,51 +288,7 @@ The name of the connection string is passed in to the context by calling a metho
 
 <a name="test"></a>
 
-## Build the app
-
-Build the app. The compiler generates several `nullable` warnings. See [this GitHub issue](https://github.com/dotnet/Scaffolding/issues/1594),  [Nullable reference types (NRTs) and .NET compiler null-state static analysis](xref:migration/50-to-60#review-breaking-changes), and [Nullable reference types](/dotnet/csharp/nullable-references) for more information.
-
-### Fix the warning messages
-
-In this section, you can either disable nullable warnings or fix the scaffolded code. To eliminate the warnings from nullable reference types, remove the following line from the `RazorPagesMovie .csproj` file:
-
-```xml
-<Nullable>enable</Nullable>
-```
-
-Alternatively, fix the scaffolded code. The `RazorPagesMovieContext` generates the following warning:
-
-> Warning CS8618 Non-nullable property 'Movie' must contain a non-null value when exiting constructor. Consider declaring the property as nullable.
-
-To fix the warning, apply the suggestion and declare the `Movie` property [nullable](/dotnet/csharp/nullable-references).
-
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Data/RazorPagesMovieContext.cs?name=snippet_fix)]
-
-The `?` declares the property nullable.
-
-An alternative approach is to disable the CS8618 [warning with pragma](/dotnet/fundamentals/code-analysis/suppress-warnings) statements:
-
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Data/RazorPagesMovieContext.cs?name=snippet_prag)]
-
-For the warnings in the Razor Pages C# code behind files, use the [pragma](/dotnet/csharp/language-reference/preprocessor-directives#pragmas) C# preprocessor directive to disable warnings. For example, use the following highlighted code in the `Pages/Movies/Index.cshtml.cs` file:
-
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample6/Pages/Movies/Index.cshtml.cs?name=snippet&highlight=3-4,21,22)]
-
-The `Pages/Movies/Delete.cshtml.cs` file requires the following `pragma` statements:
-
-```csharp
-#pragma warning disable CS8618
-#pragma warning disable CS8601
-#pragma warning disable CS8602
-#pragma warning disable CS8604
-// Class
-#pragma warning restore CS8618
-#pragma warning restore CS8601
-#pragma warning restore CS8602
-#pragma warning restore CS8604
-```
-
-### Test the app
+## Test the app
 
 1. Run the app and append `/Movies` to the URL in the browser (`http://localhost:port/movies`).
 
