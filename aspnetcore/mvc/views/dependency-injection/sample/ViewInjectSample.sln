@@ -1,16 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25402.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26114.2
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EE27383E-733E-49AF-84DF-DF446D31121D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{95F032F2-108B-42A5-84BC-61A986C3600B}"
-	ProjectSection(SolutionItems) = preProject
-		global.json = global.json
-	EndProjectSection
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ViewInjectSample", "src\ViewInjectSample\ViewInjectSample.xproj", "{6B0F51DA-25F3-4F32-9161-D3043B17F09D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewInjectSample", "src\ViewInjectSample\ViewInjectSample.csproj", "{ADFDB270-EE71-4F74-8F0B-4C3276092CFC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,15 +13,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6B0F51DA-25F3-4F32-9161-D3043B17F09D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6B0F51DA-25F3-4F32-9161-D3043B17F09D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6B0F51DA-25F3-4F32-9161-D3043B17F09D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6B0F51DA-25F3-4F32-9161-D3043B17F09D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADFDB270-EE71-4F74-8F0B-4C3276092CFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADFDB270-EE71-4F74-8F0B-4C3276092CFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADFDB270-EE71-4F74-8F0B-4C3276092CFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADFDB270-EE71-4F74-8F0B-4C3276092CFC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{6B0F51DA-25F3-4F32-9161-D3043B17F09D} = {EE27383E-733E-49AF-84DF-DF446D31121D}
+		{ADFDB270-EE71-4F74-8F0B-4C3276092CFC} = {EE27383E-733E-49AF-84DF-DF446D31121D}
 	EndGlobalSection
 EndGlobal
