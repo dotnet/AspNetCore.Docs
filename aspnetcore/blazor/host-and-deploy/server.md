@@ -201,7 +201,7 @@ For more information and configuration guidance, consult the following resources
 
 `Shared/MeasureLatency.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Shared/host-and-deploy/MeasureLatency.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/host-and-deploy/MeasureLatency.razor":::
 
 For a reasonable UI experience, we recommend a sustained UI latency of 250 ms or less.
 

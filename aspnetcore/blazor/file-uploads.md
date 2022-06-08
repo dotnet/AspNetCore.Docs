@@ -114,7 +114,7 @@ The following example demonstrates multiple file upload in a component. <xref:Mi
 
 :::zone pivot="server"
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_Server/Pages/file-uploads/FileUpload1.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_Server/Pages/file-uploads/FileUpload1.razor":::
 
 :::zone-end
 
@@ -126,7 +126,7 @@ The following example demonstrates multiple file upload in a component. <xref:Mi
 > * [Upload files to a server](#upload-files-to-a-server)
 > * [Upload files to an external service](#upload-files-to-an-external-service)
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload1.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload1.razor":::
 
 :::zone-end
 
@@ -243,7 +243,7 @@ The following `FileUpload2` component:
 
 `Pages/FileUpload2.razor` in the Blazor Server app:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_Server/Pages/file-uploads/FileUpload2.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_Server/Pages/file-uploads/FileUpload2.razor":::
 
 :::zone-end
 
@@ -251,7 +251,7 @@ The following `FileUpload2` component:
 
 `Pages/FileUpload2.razor` in the **`Client`** project:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload2.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload2.razor":::
 
 :::zone-end
 
@@ -504,7 +504,7 @@ To use the following example in a test app:
 
 `Pages/FileUpload3.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_Server/Pages/file-uploads/FileUpload3.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_Server/Pages/file-uploads/FileUpload3.razor":::
 
 For more information, see the following API resources:
 
