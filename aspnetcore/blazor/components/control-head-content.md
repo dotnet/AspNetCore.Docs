@@ -22,7 +22,7 @@ The following example sets the page's title and description using Razor.
 
 `Pages/ControlHeadContent.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/control-head-content/ControlHeadContent.razor?highlight=13,15-17)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/control-head-content/ControlHeadContent.razor" highlight="13,15-17":::
 
 ## Control `<head>` content during prerendering
 

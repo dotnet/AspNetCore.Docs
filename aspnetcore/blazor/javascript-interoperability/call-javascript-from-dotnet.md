@@ -56,7 +56,7 @@ The following `CallJsExample1` component:
 
 `Pages/CallJsExample1.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample1.razor?highlight=2,34)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample1.razor" highlight="2,34":::
 
 ## JavaScript API restricted to user gestures
 
@@ -87,19 +87,19 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 
 `Pages/CallJsExample2.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample2.razor?highlight=2,25)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample2.razor" highlight="2,25":::
 
 ### Class (`.cs`) example (`InvokeVoidAsync`)
 
 `JsInteropClasses1.cs`:
 
-[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/JsInteropClasses1.cs)]
+:::code language="csharp" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/JsInteropClasses1.cs":::
 
 `TickerChanged` calls the `handleTickerChanged1` method in the following `CallJsExample3` component.
 
 `Pages/CallJsExample3.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample3.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample3.razor":::
 
 ## Invoke JavaScript functions and read a returned value (`InvokeAsync`)
 
@@ -126,19 +126,19 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 
 `Pages/CallJsExample4.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample4.razor?highlight=2,31-34)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample4.razor" highlight="2,31-34":::
 
 ### Class (`.cs`) example (`InvokeAsync`)
 
 `JsInteropClasses2.cs`:
 
-[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/JsInteropClasses2.cs)]
+:::code language="csharp" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/JsInteropClasses2.cs":::
 
 `TickerChanged` calls the `handleTickerChanged2` method and displays the returned string in the following `CallJsExample5` component.
 
 `Pages/CallJsExample5.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample5.razor?highlight=2-3,25,30,40-42,46)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample5.razor" highlight="2-3,25,30,40-42,46":::
 
 ## Dynamic content generation scenarios
 
@@ -193,7 +193,7 @@ Add the preceding JS module to an app or class library as a static web asset in 
 
 `Pages/CallJsExample6.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample6.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample6.razor":::
 
 In the preceding example:
 
@@ -397,21 +397,21 @@ Add the following script inside closing `</body>` tag of `wwwroot/index.html` (B
 
 `Pages/CallJsExample7.razor` (parent component):
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/CallJsExample7.razor?highlight=5,9)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/CallJsExample7.razor" highlight="5,9":::
 
 `Pages/CallJsExample7.razor.cs`:
 
-[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/CallJsExample7.razor.cs)]
+:::code language="csharp" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/CallJsExample7.razor.cs":::
 
 In the preceding example, the namespace of the app is `BlazorSample` with components in the `Pages` folder. If testing the code locally, update the namespace.
 
 `Shared/SurveyPrompt.razor` (child component):
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Shared/SurveyPrompt.razor?highlight=1)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/SurveyPrompt.razor" highlight="1":::
 
 `Shared/SurveyPrompt.razor.cs`:
 
-[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Shared/SurveyPrompt.razor.cs)]
+:::code language="csharp" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/SurveyPrompt.razor.cs":::
 
 In the preceding example, the namespace of the app is `BlazorSample` with shared components in the `Shared` folder. If testing the code locally, update the namespace.
 
@@ -517,7 +517,7 @@ In `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor S
 
 `Pages/CallJsExample8.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample8.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample8.razor":::
 
 The preceding example produces an interactive map UI. The user:
 
@@ -641,7 +641,7 @@ Place the following `<script>` block in `wwwroot/index.html` (Blazor WebAssembly
 
 `Pages/CallJsExample10.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample10.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample10.razor":::
 
 If an <xref:Microsoft.JSInterop.IJSUnmarshalledObjectReference> instance isn't disposed in C# code, it can be disposed in JS. The following `dispose` function disposes the object reference when called from JS:
 
@@ -717,7 +717,7 @@ In the following example, the `nonFunction` JS function doesn't exist. When the 
 
 `Pages/CallJsExample11.razor`:
 
-[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample11.razor?highlight=28)]
+:::code language="csharp" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample11.razor" highlight="28":::
 
 ## Abort a long-running JavaScript function
 

@@ -333,7 +333,7 @@ In the following example where <xref:Microsoft.AspNetCore.Components.ComponentBa
   * `loadFailed` is set to `true`, which is used to display an error message to the user.
   * The error is logged.
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_Server/Pages/handle-errors/ProductDetails.razor?highlight=11,27-39)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_Server/Pages/handle-errors/ProductDetails.razor" highlight="11,27-39":::
 
 ### Rendering logic
 
