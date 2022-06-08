@@ -1,6 +1,6 @@
 ---
 title: Dependency injection into views in ASP.NET Core
-author: ardalis
+author: rick-anderson
 description: Learn how ASP.NET Core supports dependency injection into MVC views.
 ms.author: riande
 ms.date: 10/14/2016
@@ -10,39 +10,19 @@ uid: mvc/views/dependency-injection
 
 :::moniker range=">= aspnetcore-6.0"
 
-ASP.NET Core supports [dependency injection](xref:fundamentals/dependency-injection) into views. This can be useful for view-specific services, such as localization or data required only for populating view elements. You should try to maintain [separation of concerns](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns) between your controllers and views. Most of the data your views display should be passed in from the controller.
+ASP.NET Core supports [dependency injection](xref:fundamentals/dependency-injection) into views. This can be useful for view-specific services, such as localization or data required only for populating view elements. Most of the data views display should be passed in from the controller.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/dependency-injection/sample) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/dependency-injection/6.0sample) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Configuration injection
 
-`appsettings.json` values can be injected directly into a view.
+The values in settings files, such as `appsettings.json` and `appsettings.Development.json`, can be injected into a view. Consider the `appsettings.Development.json` from the [sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/dependency-injection/6.0sample):
 
-Example of an `appsettings.json` file:
+[!code-json[](~/mvc/views/dependency-injection/6.0sample/WebViewInject/appsettings.Development.json?highlight=8-11)]
 
-```json
-{
-   "root": {
-      "parent": {
-         "child": "myvalue"
-      }
-   }
-}
-```
+The following markup displays the configuration value in a Razor Pages view:
 
-The syntax for `@inject`:
-   `@inject <type> <name>`
-
-An example using `@inject`:
-
-```csharp
-@using Microsoft.Extensions.Configuration
-@inject IConfiguration Configuration
-@{
-   string myValue = Configuration["root:parent:child"];
-   ...
-}
-```
+[!code-cshtml[](~/mvc/views/dependency-injection/6.0sample/WebViewInject/Pages/Privacy.cshtml?highlight=3,4,13)]
 
 ## Service injection
 
