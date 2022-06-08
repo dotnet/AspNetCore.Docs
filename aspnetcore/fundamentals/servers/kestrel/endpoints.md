@@ -13,10 +13,7 @@ uid: fundamentals/servers/kestrel/endpoints
 
 :::moniker range=">= aspnetcore-7.0"
 
-ASP.NET Core projects are configured to bind to a random HTTP port between 5000-5300 and a random HTTPS port between 7000-7300. This default configuration is specified in the generated `Properties/launchSettings.json` file and can be overridden. If no ports are specified, Kestrel binds to:
-
-* `http://localhost:5000`
-* `https://localhost:5001` (when a local development certificate is present)
+ASP.NET Core projects are configured to bind to a random HTTP port between 5000-5300 and a random HTTPS port between 7000-7300. This default configuration is specified in the generated `Properties/launchSettings.json` file and can be overridden. If no ports are specified, Kestrel binds to `http://localhost:5000`.
 
 Specify URLs using the:
 
@@ -52,7 +49,6 @@ Specifies a configuration `Action` to run for each specified endpoint. Calling `
 
 > [!NOTE]
 > Endpoints created by calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen%2A> **before** calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureEndpointDefaults%2A> won't have the defaults applied.
-
 ## Configure(IConfiguration)
 
 Enables Kestrel to load endpoints from an <xref:Microsoft.Extensions.Configuration.IConfiguration>. The configuration must be scoped to the configuration section for Kestrel. The `Configure(IConfiguration, bool)` overload can be used to enable reloading endpoints when the configuration source changes.
@@ -90,7 +86,6 @@ Specifies a configuration `Action` to run for each HTTPS endpoint. Calling `Conf
 
 > [!NOTE]
 > Endpoints created by calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen%2A> **before** calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureHttpsDefaults%2A> won't have the defaults applied.
-
 ## ListenOptions.UseHttps
 
 Configure Kestrel to use HTTPS.
@@ -130,7 +125,7 @@ Supported configurations described next:
 
 ### No configuration
 
-Kestrel listens on `http://localhost:5000` and `https://localhost:5001` (if a default cert is available).
+Kestrel listens on `http://localhost:5000`.
 
 <a name="configuration"></a>
 
@@ -190,7 +185,6 @@ In the following `appsettings.json` example:
 
 > [!WARNING]
 > In the preceding example, certificate passwords are stored in plain-text in `appsettings.json`. The `$CREDENTIAL_PLACEHOLDER$` token is used as a placeholder for each certificate's password. To store certificate passwords securely in development environments, see [Protect secrets in development](xref:security/app-secrets). To store certificate passwords securely in production environments, see [Azure Key Vault configuration provider](xref:security/key-vault-configuration). Development secrets shouldn't be used for production or test.
-
 Schema notes:
 
 * Endpoints names are [case-insensitive](xref:fundamentals/configuration/index#configuration-keys-and-values). For example, `HTTPS` and `Https` are equivalent.
@@ -313,7 +307,6 @@ The following configuration adds an endpoint named `MySniEndpoint` that uses SNI
 
 > [!WARNING]
 > In the preceding example, certificate passwords are stored in plain-text in `appsettings.json`. The `$CREDENTIAL_PLACEHOLDER$` token is used as a placeholder for each certificate's password. To store certificate passwords securely in development environments, see [Protect secrets in development](xref:security/app-secrets). To store certificate passwords securely in production environments, see [Azure Key Vault configuration provider](xref:security/key-vault-configuration). Development secrets shouldn't be used for production or test.
-
 HTTPS options that can be overridden by SNI:
 
 * `Certificate` configures the [certificate source](#certificate-sources).
@@ -358,7 +351,6 @@ SSL Protocols are protocols used for encrypting and decrypting traffic between t
 
 > [!WARNING]
 > In the preceding example, the certificate password is stored in plain-text in `appsettings.json`. The `$CREDENTIAL_PLACEHOLDER$` token is used as a placeholder for the certificate's password. To store certificate passwords securely in development environments, see [Protect secrets in development](xref:security/app-secrets). To store certificate passwords securely in production environments, see [Azure Key Vault configuration provider](xref:security/key-vault-configuration). Development secrets shouldn't be used for production or test.
-
 The default value, `SslProtocols.None`, causes Kestrel to use the operating system defaults to choose the best protocol. Unless you have a specific reason to select a protocol, use the default.
 
 ## Client Certificates
@@ -386,7 +378,6 @@ The default value, `SslProtocols.None`, causes Kestrel to use the operating syst
 
 > [!WARNING]
 > In the preceding example, the certificate password is stored in plain-text in `appsettings.json`. The `$CREDENTIAL_PLACEHOLDER$` token is used as a placeholder for the certificate's password. To store certificate passwords securely in development environments, see [Protect secrets in development](xref:security/app-secrets). To store certificate passwords securely in production environments, see [Azure Key Vault configuration provider](xref:security/key-vault-configuration).
-
 The default value is `ClientCertificateMode.NoCertificate` where Kestrel will not request or require a certificate from the client.
 
 For more information, see <xref:security/authentication/certauth>.
@@ -546,7 +537,6 @@ Only HTTP URL prefixes are valid. Kestrel doesn't support HTTPS when configuring
 
   > [!WARNING]
   > Hosting in a reverse proxy configuration requires [host filtering](xref:fundamentals/servers/kestrel/host-filtering).
-
 * Host `localhost` name with port number or loopback IP with port number
 
   ```
