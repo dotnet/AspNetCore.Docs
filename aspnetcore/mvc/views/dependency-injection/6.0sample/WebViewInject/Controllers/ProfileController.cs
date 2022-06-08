@@ -1,22 +1,20 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using ViewInjectSample.Model;
 
-namespace ViewInjectSample.Controllers
+namespace ViewInjectSample.Controllers;
+
+public class ProfileController : Controller
 {
-    public class ProfileController : Controller
+    public IActionResult Index()
     {
-        [Route("Profile")]
-        public IActionResult Index()
+        // A real app would up profile based on the user.
+        var profile = new Profile()
         {
-            // TODO: look up profile based on logged-in user
-            var profile = new Profile()
-            {
-                Name = "Steve",
-                FavColor = "Blue",
-                Gender = "Male",
-                State = new State("Ohio","OH")
-            };
-            return View(profile);
-        }
+            Name = "Rick",
+            FavColor = "Blue",
+            Gender = "Male",
+            State = new State("Ohio","OH")
+        };
+        return View(profile);
     }
 }
