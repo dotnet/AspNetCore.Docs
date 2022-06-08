@@ -70,7 +70,7 @@ Although [route parameter matching is case insensitive](xref:blazor/fundamentals
 
 `Pages/SetParamsAsync.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/lifecycle/SetParamsAsync.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/lifecycle/SetParamsAsync.razor":::
 
 ## Component initialization (`OnInitialized{Async}`)
 
@@ -80,7 +80,7 @@ For a synchronous operation, override <xref:Microsoft.AspNetCore.Components.Comp
 
 `Pages/OnInit.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/lifecycle/OnInit.razor?highlight=8)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/lifecycle/OnInit.razor" highlight="8":::
 
 To perform an asynchronous operation, override <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> and use the [`await`](/dotnet/csharp/language-reference/operators/await) operator:
 
@@ -125,7 +125,7 @@ For the following example component, navigate to the component's page at a URL:
 > [!NOTE]
 > In a component route, it isn't possible to both constrain a <xref:System.DateTime> parameter with the [route constraint `datetime`](xref:blazor/fundamentals/routing#route-constraints) and [make the parameter optional](xref:blazor/fundamentals/routing#route-parameters). Therefore, the following `OnParamsSet` component uses two [`@page`](xref:mvc/views/razor#page) directives to handle routing with and without a supplied date segment in the URL.
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/lifecycle/OnParamsSet.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/lifecycle/OnParamsSet.razor":::
 
 Asynchronous work when applying parameters and property values must occur during the <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> lifecycle event:
 
@@ -151,7 +151,7 @@ The `firstRender` parameter for <xref:Microsoft.AspNetCore.Components.ComponentB
 
 `Pages/AfterRender.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/lifecycle/AfterRender.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/lifecycle/AfterRender.razor":::
 
 Asynchronous work immediately after rendering must occur during the <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> lifecycle event:
 
@@ -190,7 +190,7 @@ In the `FetchData` component of the Blazor templates, <xref:Microsoft.AspNetCore
 
 `Pages/FetchData.razor` in the Blazor Server template:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_Server/Pages/lifecycle/FetchData.razor?highlight=9,21,25)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_Server/Pages/lifecycle/FetchData.razor" highlight="9,21,25":::
 
 ## Handle errors
 
@@ -209,7 +209,7 @@ The following code demonstrates an updated `WeatherForecastService` in a templat
 
 `WeatherForecastService.cs`:
 
-[!code-csharp[](~/blazor/samples/6.0/BlazorSample_Server/lifecycle/WeatherForecastService.cs)]
+:::code language="csharp" source="~/../blazor-samples/6.0/BlazorSample_Server/lifecycle/WeatherForecastService.cs":::
 
 For more information on the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode>, see <xref:blazor/fundamentals/signalr#render-mode-blazor-server>.
 
@@ -256,7 +256,7 @@ If a single object requires disposal, a lambda can be used to dispose of the obj
 
 `Pages/CounterWithTimerDisposal1.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal1.razor?highlight=3,11,28)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal1.razor" highlight="3,11,28":::
 
 > [!NOTE]
 > In the preceding example, the call to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is wrapped by a call to <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A?displayProperty=nameWithType> because the callback is invoked outside of Blazor's synchronization context. For more information, see <xref:blazor/components/rendering#receiving-a-call-from-something-external-to-the-blazor-rendering-and-event-handling-system>.
@@ -265,7 +265,7 @@ If the object is created in a lifecycle method, such as [`OnInitialized`/`OnInit
 
 `Pages/CounterWithTimerDisposal2.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal2.razor?highlight=15,29)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal2.razor" highlight="15,29":::
 
 For more information, see:
 
@@ -459,7 +459,7 @@ In the following example:
 
 `Pages/BackgroundWork.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/lifecycle/BackgroundWork.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/lifecycle/BackgroundWork.razor":::
 
 ## Blazor Server reconnection events
 

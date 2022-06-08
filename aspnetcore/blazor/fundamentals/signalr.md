@@ -299,7 +299,7 @@ Blazor Server allows code to define a *circuit handler*, which allows running co
 
 `TrackingCircuitHandler.cs`:
 
-[!code-csharp[](~/blazor/samples/6.0/BlazorSample_Server/TrackingCircuitHandler.cs)]
+:::code language="csharp" source="~/../blazor-samples/6.0/BlazorSample_Server/TrackingCircuitHandler.cs":::
 
 Circuit handlers are registered using DI. Scoped instances are created per instance of a circuit. Using the `TrackingCircuitHandler` in the preceding example, a singleton service is created because the state of all circuits must be tracked.
 
