@@ -450,7 +450,7 @@ Delete all the records in the database so the seed method will run. Stop and sta
 
 The app shows the seeded data:
 
-![Movie application open in browser showing movie data](sql/_static/5/m605.png)
+![Movie application open in browser showing movie data](sql/_static/m605.png)
 
 ## Additional resources
 
