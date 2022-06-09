@@ -33,7 +33,7 @@ public class BranchSyncService : BackgroundService
 
                 if (httpResponseMessage.IsSuccessStatusCode)
                 {
-                    using var contentStream =
+                    await using var contentStream =
                         await httpResponseMessage.Content.ReadAsStreamAsync(stoppingToken);
 
                     // Sync the response with preferred datastore.
