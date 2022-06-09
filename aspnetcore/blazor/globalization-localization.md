@@ -5,7 +5,7 @@ description: Learn how to render globalized and localized content to users in di
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/09/2021
+ms.date: 06/06/2022
 uid: blazor/globalization-localization
 zone_pivot_groups: blazor-hosting-models
 ---
@@ -169,6 +169,9 @@ Set the `BlazorWebAssemblyLoadAllGlobalizationData` property to `true` in the ap
   <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
 </PropertyGroup>
 ```
+
+> [!NOTE]
+> If the app's specification requires limiting the supported cultures to an explicit list, see the [Dynamically set the culture by user preference](#dynamically-set-the-culture-by-user-preference) section of this article.
 
 :::zone-end
 
@@ -452,7 +455,7 @@ In `Program.cs`:
 builder.Services.AddLocalization();
 ```
 
-Set the app's default and supported cultures with <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.SetDefaultCulture%2A?displayProperty=nameWithType>.
+Set the app's default and supported cultures with <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions>.
 
 In `Program.cs` immediately after Routing Middleware is added to the processing pipeline:
 
@@ -1052,6 +1055,9 @@ Set the `BlazorWebAssemblyLoadAllGlobalizationData` property to `true` in the ap
 </PropertyGroup>
 ```
 
+> [!NOTE]
+> If the app's specification requires limiting the supported cultures to an explicit list, see the [Dynamically set the culture by user preference](#dynamically-set-the-culture-by-user-preference) section of this article.
+
 :::zone-end
 
 :::zone pivot="server"
@@ -1329,7 +1335,7 @@ In `Startup.ConfigureServices` (`Startup.cs`):
 services.AddLocalization();
 ```
 
-Set the app's default and supported cultures with <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.SetDefaultCulture%2A?displayProperty=nameWithType>.
+Set the app's default and supported cultures with <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions>.
 
 In `Startup.Configure` immediately after Routing Middleware is added to the processing pipeline:
 
@@ -2121,7 +2127,7 @@ In `Startup.ConfigureServices` (`Startup.cs`):
 services.AddLocalization();
 ```
 
-Set the app's default and supported cultures with <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.SetDefaultCulture%2A?displayProperty=nameWithType>.
+Set the app's default and supported cultures with <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions>.
 
 In `Startup.Configure` immediately after Routing Middleware is added to the processing pipeline:
 
