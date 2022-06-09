@@ -3,7 +3,7 @@ title: Part 5, update the generated pages
 author: rick-anderson
 description: Part 5 of tutorial series on Razor Pages.
 ms.author: riande
-ms.date: 09/20/2020
+ms.date: 06/07/2022
 ms.custom: contperf-fy21q2
 uid: tutorials/razor-pages/da1
 ---
@@ -15,7 +15,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 The scaffolded movie app has a good start, but the presentation isn't ideal. **ReleaseDate** should be two words, **Release Date**.
 
-![Movie application open in Chrome](sql/_static/5/m55.png)
+![Movie application open in Chrome](sql/_static/m605.png)
 
 ## Update the generated code
 
