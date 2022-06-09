@@ -21,8 +21,10 @@ public class BranchSyncService : BackgroundService
         {
             try
             {
-                // Cancel sending the request to sync branches if it takes too long rather miss sending the next request scheduled 30 seconds from now.
-                // Having a single loop prevents this service from sending an unbounded number of requests simultaneously.
+                // Cancel sending the request to sync branches if it takes too long
+                // rather than miss sending the next request scheduled 30 seconds from now.
+                // Having a single loop prevents this service from sending an unbounded
+                // number of requests simultaneously.
                 using var syncTokenSource = CancellationTokenSource.CreateLinkedTokenSource(stoppingToken);
                 syncTokenSource.CancelAfter(TimeSpan.FromSeconds(30));
                 
@@ -34,7 +36,7 @@ public class BranchSyncService : BackgroundService
                     using var contentStream =
                         await httpResponseMessage.Content.ReadAsStreamAsync(stoppingToken);
 
-                    // Sync the response with preffered datastore
+                    // Sync the response with preferred datastore.
                     var response = await JsonSerializer.DeserializeAsync<IEnumerable<GitHubBranch>>(contentStream, cancellationToken: stoppingToken);
 
                     _logger.LogInformation($"Branch sync successful! Response: {JsonSerializer.Serialize(response)}");
@@ -42,8 +44,6 @@ public class BranchSyncService : BackgroundService
             }
             catch (Exception ex)
             {
-                // We could use [LoggerMessage(1, LogLevel.Error, "Branch sync failed!")]
-                // if we care about demonstrating the more efficient source generation API.
                 _logger.LogError(1, ex, "Branch sync failed!");
             }
         }

@@ -11,8 +11,8 @@ builder.Services.AddHttpClient("GitHub", httpClient =>
 {
     httpClient.BaseAddress = new Uri("https://api.github.com/");
 
-    // using Microsoft.Net.Http.Headers;
-    // The GitHub API requires two headers. The Use-Agent header will be added dynamically through UserAgentHeaderHandler
+    // The GitHub API requires two headers. The Use-Agent header is added
+    // dynamically through UserAgentHeaderHandler
     httpClient.DefaultRequestHeaders.Add(
         HeaderNames.Accept, "application/vnd.github.v3+json");
 }).AddHttpMessageHandler<UserAgentHeaderHandler>();
