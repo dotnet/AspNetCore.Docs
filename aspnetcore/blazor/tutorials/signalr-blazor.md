@@ -204,14 +204,21 @@ In the `BlazorWebAssemblySignalRApp.Server` project, create a `Hubs` (plural) fo
 
 1. Add SignalR and Response Compression Middleware services to `Program.cs`:
 
-   [!code-csharp[](signalr-blazor/samples/6.0/BlazorWebAssemblySignalRApp/Server/Program.cs?name=snippet_ConfigureServices)]
+   ```csharp
+   builder.Services.AddSignalR();
+   builder.Services.AddResponseCompression(opts =>
+   {
+       opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
+           new[] { "application/octet-stream" });
+   });
+   ```
 
 1. In `Program.cs`:
 
    * Use Response Compression Middleware at the top of the processing pipeline's configuration.
    * Between the endpoints for controllers and the client-side fallback, add an endpoint for the hub.
 
-   [!code-csharp[](signalr-blazor/samples/6.0/BlazorWebAssemblySignalRApp/Server/Program.cs?name=snippet_Configure)]
+   [!code-csharp[](signalr-blazor/samples/6.0/BlazorWebAssemblySignalRApp/Server/Program.cs?name=snippet_Configure&highlight=1,21)]
 
 ## Add Razor component code for chat
 
@@ -717,7 +724,14 @@ In the `BlazorWebAssemblySignalRApp.Server` project, create a `Hubs` (plural) fo
 
 1. Add SignalR and Response Compression Middleware services to `Startup.ConfigureServices`:
 
-   [!code-csharp[](signalr-blazor/samples/5.0/BlazorWebAssemblySignalRApp/Server/Startup.cs?name=snippet_ConfigureServices&highlight=3,6-10)]
+   ```csharp
+   services.AddSignalR();
+   services.AddResponseCompression(opts =>
+   {
+       opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
+           new[] { "application/octet-stream" });
+   });
+   ```
 
 1. In `Startup.Configure`:
 
@@ -1226,7 +1240,14 @@ In the `BlazorWebAssemblySignalRApp.Server` project, create a `Hubs` (plural) fo
 
 1. Add SignalR and Response Compression Middleware services to `Startup.ConfigureServices`:
 
-   [!code-csharp[](signalr-blazor/samples/3.1/BlazorWebAssemblySignalRApp/Server/Startup.cs?name=snippet_ConfigureServices&highlight=3,5-9)]
+   ```csharp
+   services.AddSignalR();
+   services.AddResponseCompression(opts =>
+   {
+       opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
+           new[] { "application/octet-stream" });
+   });
+   ```
 
 1. In `Startup.Configure`:
 

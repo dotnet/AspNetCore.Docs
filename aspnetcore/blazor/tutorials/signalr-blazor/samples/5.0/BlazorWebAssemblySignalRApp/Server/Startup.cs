@@ -19,19 +19,17 @@ namespace BlazorWebAssemblySignalRApp.Server
 
         public IConfiguration Configuration { get; }
 
-        #region snippet_ConfigureServices
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSignalR();
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddSignalR();
             services.AddResponseCompression(opts =>
             {
                 opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
                     new[] { "application/octet-stream" });
             });
         }
-        #endregion
 
         #region snippet_Configure
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
