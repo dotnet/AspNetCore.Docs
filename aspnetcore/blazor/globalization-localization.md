@@ -5,7 +5,7 @@ description: Learn how to render globalized and localized content to users in di
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/06/2022
+ms.date: 06/09/2022
 uid: blazor/globalization-localization
 zone_pivot_groups: blazor-hosting-models
 ---
@@ -428,6 +428,9 @@ The `CultureSelector` component is placed in the `Shared` folder for use through
     }
 }
 ```
+
+> [!NOTE]
+> For more information on <xref:Microsoft.JSInterop.IJSInProcessRuntime>, see <xref:blazor/js-interop/call-javascript-from-dotnet#synchronous-js-interop-in-blazor-webassembly-apps>.
 
 Inside the closing tag of the `<main>` element in `Shared/MainLayout.razor`, add the `CultureSelector` component:
 
@@ -1309,6 +1312,9 @@ The following `CultureSelector` component shows how to set the user's culture se
 }
 ```
 
+> [!NOTE]
+> For more information on <xref:Microsoft.JSInterop.IJSInProcessRuntime>, see <xref:blazor/js-interop/call-javascript-from-dotnet#synchronous-js-interop-in-blazor-webassembly-apps>.
+
 Inside the closing `</div>` tag of the `<div class="main">` element in `Shared/MainLayout.razor`, add the `CultureSelector` component:
 
 ```razor
@@ -2100,6 +2106,9 @@ The following `CultureSelector` component shows how to set the user's culture se
     }
 }
 ```
+
+> [!NOTE]
+> For more information on <xref:Microsoft.JSInterop.IJSInProcessRuntime>, see <xref:blazor/js-interop/call-javascript-from-dotnet#synchronous-js-interop-in-blazor-webassembly-apps>.
 
 Inside the closing `</div>` tag of the `<div class="main">` element in `Shared/MainLayout.razor`, add the `CultureSelector` component:
 
