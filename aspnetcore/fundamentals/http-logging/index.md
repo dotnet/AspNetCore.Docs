@@ -40,7 +40,7 @@ HTTP Logging is enabled with <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuild
 
 By default, HTTP Logging logs common properties such as path, status-code, and headers for requests and responses. Add the following line to the `appsettings.Development.json` file at the `"LogLevel": {` level so the HTTP logs are displayed:
 
-```xml
+```json
  "Microsoft.AspNetCore.HttpLogging.HttpLoggingMiddleware": "Information"
  ```
 

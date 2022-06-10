@@ -230,7 +230,7 @@ In the preceding example, 10.0.0.100 is a proxy server. If the server is a trust
 
 To display the logs, add `"Microsoft.AspNetCore.HttpLogging": "Information"` to the `appsettings.Development.json` file:
 
-[!code-xml[](~/host-and-deploy/proxy-load-balancer/6.1samples/WebPS/appsettings.Development.json?highlight=7)]
+[!code-json[](~/host-and-deploy/proxy-load-balancer/6.1samples/WebPS/appsettings.Development.json?highlight=7)]
 
 > [!IMPORTANT]
 > Only allow trusted proxies and networks to forward headers. Otherwise, [IP spoofing](https://www.iplocation.net/ip-spoofing) attacks are possible.
