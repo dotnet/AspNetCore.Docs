@@ -20,7 +20,7 @@ To make a synchronous call from .NET to JavaScript in a Blazor WebAssembly app, 
 }
 ```
 
-When working with <xref:Microsoft.JSInterop.IJSObjectReference> in ASP.NET Core 5.0 or later Blazor WebAssembly apps, you can make a synchronous call by casting to <xref:Microsoft.JSInterop.IJSInProcessObjectReference>.
+When working with <xref:Microsoft.JSInterop.IJSObjectReference> in ASP.NET Core 5.0 or later Blazor WebAssembly apps, you can use <xref:Microsoft.JSInterop.IJSInProcessObjectReference> synchronously instead:
 
 ```csharp
 private IJSInProcessObjectReference module;
