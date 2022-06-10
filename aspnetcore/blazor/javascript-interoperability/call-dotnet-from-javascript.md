@@ -5,7 +5,7 @@ description: Learn how to invoke .NET methods from JavaScript functions in Blazo
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc 
-ms.date: 11/09/2021
+ms.date: 06/09/2022
 uid: blazor/js-interop/call-dotnet-from-javascript
 ---
 # Call .NET methods from JavaScript functions in ASP.NET Core Blazor
@@ -24,7 +24,12 @@ For information on how to call JS functions from .NET, see <xref:blazor/js-inter
 
 ## Invoke a static .NET method
 
-To invoke a static .NET method from JavaScript (JS), use the JS functions `DotNet.invokeMethod` or `DotNet.invokeMethodAsync`. Pass in the name of the assembly containing the method, the identifier of the static .NET method, and any arguments.
+To invoke a static .NET method from JavaScript (JS), use the JS functions:
+
+* `DotNet.invokeMethodAsync` (*Recommended*): Asynchronous for both Blazor Server and Blazor WebAssembly apps.
+* `DotNet.invokeMethod`: Synchronous for Blazor WebAssembly apps only.
+
+Pass in the name of the assembly containing the method, the identifier of the static .NET method, and any arguments.
 
 In the following example:
 
@@ -36,9 +41,10 @@ In the following example:
 DotNet.invokeMethodAsync('{ASSEMBLY NAME}', '{.NET METHOD ID}', {ARGUMENTS});
 ```
 
-`DotNet.invokeMethod` returns the result of the operation. `DotNet.invokeMethodAsync` returns a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) representing the result of the operation.
+`DotNet.invokeMethodAsync` returns a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) representing the result of the operation. `DotNet.invokeMethod` (Blazor WebAssembly only) returns the result of the operation.
 
-The asynchronous function (`invokeMethodAsync`) is preferred over the synchronous version (`invokeMethod`) to support Blazor Server scenarios.
+> [!IMPORTANT]
+> The asynchronous function (`invokeMethodAsync`) is preferred over the synchronous version (`invokeMethod`) to support Blazor Server scenarios.
 
 The .NET method must be public, static, and have the [`[JSInvokable]` attribute](xref:Microsoft.JSInterop.JSInvokableAttribute).
 
@@ -95,10 +101,10 @@ By default, the .NET method identifier for the JS call is the .NET method name, 
 [JSInvokable("DifferentMethodName")]
 ```
 
-In the call to `DotNet.invokeMethod` or `DotNet.invokeMethodAsync`, call `DifferentMethodName` to execute the `ReturnArrayAsync` .NET method:
+In the call to `DotNet.invokeMethodAsync` or `DotNet.invokeMethod` (Blazor WebAssembly only), call `DifferentMethodName` to execute the `ReturnArrayAsync` .NET method:
 
-* `DotNet.invokeMethod('BlazorSample', 'DifferentMethodName');`
 * `DotNet.invokeMethodAsync('BlazorSample', 'DifferentMethodName');`
+* `DotNet.invokeMethod('BlazorSample', 'DifferentMethodName');` (Blazor WebAssembly only)
 
 > [!NOTE]
 > The `ReturnArrayAsync` method example in this section returns the result of a <xref:System.Threading.Tasks.Task> without the use of explicit C# [`async`](/dotnet/csharp/language-reference/keywords/async) and [`await`](/dotnet/csharp/language-reference/operators/await) keywords. Coding methods with [`async`](/dotnet/csharp/language-reference/keywords/async) and [`await`](/dotnet/csharp/language-reference/operators/await) is typical of methods that use the [`await`](/dotnet/csharp/language-reference/operators/await) keyword to return the value of asynchronous operations.
@@ -120,7 +126,7 @@ In the call to `DotNet.invokeMethod` or `DotNet.invokeMethodAsync`, call `Differ
 To invoke an instance .NET method from JavaScript (JS):
 
 * Pass the .NET instance by reference to JS by wrapping the instance in a <xref:Microsoft.JSInterop.DotNetObjectReference> and calling <xref:Microsoft.JSInterop.DotNetObjectReference.Create%2A> on it.
-* Invoke a .NET instance method from JS using `invokeMethod` or `invokeMethodAsync` from the passed <xref:Microsoft.JSInterop.DotNetObjectReference>. The .NET instance can also be passed as an argument when invoking other .NET methods from JS.
+* Invoke a .NET instance method from JS using `invokeMethodAsync` or `invokeMethod` (Blazor WebAssembly only) from the passed <xref:Microsoft.JSInterop.DotNetObjectReference>. The .NET instance can also be passed as an argument when invoking other .NET methods from JS.
 * Dispose of the <xref:Microsoft.JSInterop.DotNetObjectReference>.
 
 The following sections of this article demonstrate various approaches for invoking an instance .NET method:
@@ -583,6 +589,10 @@ The following image shows the rendered `CallDotNetExample6` parent component aft
 
 ![Rendered 'CallDotNetExample6' component example](~/blazor/javascript-interoperability/call-dotnet-from-javascript/_static/component-example-6.png)
 
+## Synchronous JS interop in Blazor WebAssembly apps
+
+[!INCLUDE[](~/blazor/includes/js-interop/synchronous-js-interop-call-dotnet.md)]
+
 ## Location of JavaScript
 
 Load JavaScript (JS) code using any of approaches described by the [JS interop overview article](xref:blazor/js-interop/index#location-of-javascript):
@@ -723,7 +733,10 @@ For information on how to call JS functions from .NET, see <xref:blazor/js-inter
 
 ## Invoke a static .NET method
 
-To invoke a static .NET method from JavaScript (JS), use the JS functions `DotNet.invokeMethod` or `DotNet.invokeMethodAsync`. Pass in the name of the assembly containing the method, the identifier of the static .NET method, and any arguments.
+To invoke a static .NET method from JavaScript (JS), use the JS functions:
+
+* `DotNet.invokeMethodAsync` (*Recommended*): Asynchronous for both Blazor Server and Blazor WebAssembly apps.
+* `DotNet.invokeMethod`: Synchronous for Blazor WebAssembly apps only.
 
 In the following example:
 
@@ -735,9 +748,10 @@ In the following example:
 DotNet.invokeMethodAsync('{ASSEMBLY NAME}', '{.NET METHOD ID}', {ARGUMENTS});
 ```
 
-`DotNet.invokeMethod` returns the result of the operation. `DotNet.invokeMethodAsync` returns a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) representing the result of the operation.
+`DotNet.invokeMethodAsync` returns a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) representing the result of the operation. `DotNet.invokeMethod` (Blazor WebAssembly only) returns the result of the operation.
 
-The asynchronous function (`invokeMethodAsync`) is preferred over the synchronous version (`invokeMethod`) to support Blazor Server scenarios.
+> [!IMPORTANT]
+> The asynchronous function (`invokeMethodAsync`) is preferred over the synchronous version (`invokeMethod`) to support Blazor Server scenarios.
 
 The .NET method must be public, static, and have the [`[JSInvokable]` attribute](xref:Microsoft.JSInterop.JSInvokableAttribute).
 
@@ -794,10 +808,10 @@ By default, the .NET method identifier for the JS call is the .NET method name, 
 [JSInvokable("DifferentMethodName")]
 ```
 
-In the call to `DotNet.invokeMethod` or `DotNet.invokeMethodAsync`, call `DifferentMethodName` to execute the `ReturnArrayAsync` .NET method:
+In the call to `DotNet.invokeMethodAsync` or `DotNet.invokeMethod` (Blazor WebAssembly only), call `DifferentMethodName` to execute the `ReturnArrayAsync` .NET method:
 
-* `DotNet.invokeMethod('BlazorSample', 'DifferentMethodName');`
 * `DotNet.invokeMethodAsync('BlazorSample', 'DifferentMethodName');`
+* `DotNet.invokeMethod('BlazorSample', 'DifferentMethodName');` (Blazor WebAssembly only)
 
 > [!NOTE]
 > The `ReturnArrayAsync` method example in this section returns the result of a <xref:System.Threading.Tasks.Task> without the use of explicit C# [`async`](/dotnet/csharp/language-reference/keywords/async) and [`await`](/dotnet/csharp/language-reference/operators/await) keywords. Coding methods with [`async`](/dotnet/csharp/language-reference/keywords/async) and [`await`](/dotnet/csharp/language-reference/operators/await) is typical of methods that use the [`await`](/dotnet/csharp/language-reference/operators/await) keyword to return the value of asynchronous operations.
@@ -819,7 +833,7 @@ In the call to `DotNet.invokeMethod` or `DotNet.invokeMethodAsync`, call `Differ
 To invoke an instance .NET method from JavaScript (JS):
 
 * Pass the .NET instance by reference to JS by wrapping the instance in a <xref:Microsoft.JSInterop.DotNetObjectReference> and calling <xref:Microsoft.JSInterop.DotNetObjectReference.Create%2A> on it.
-* Invoke a .NET instance method from JS using `invokeMethod` or `invokeMethodAsync` from the passed <xref:Microsoft.JSInterop.DotNetObjectReference>. The .NET instance can also be passed as an argument when invoking other .NET methods from JS.
+* Invoke a .NET instance method from JS using `invokeMethodAsync` or `invokeMethod` (Blazor WebAssembly only) from the passed <xref:Microsoft.JSInterop.DotNetObjectReference>. The .NET instance can also be passed as an argument when invoking other .NET methods from JS.
 * Dispose of the <xref:Microsoft.JSInterop.DotNetObjectReference>.
 
 The following sections of this article demonstrate various approaches for invoking an instance .NET method:
@@ -1045,7 +1059,10 @@ For information on how to call JS functions from .NET, see <xref:blazor/js-inter
 
 ## Invoke a static .NET method
 
-To invoke a static .NET method from JavaScript (JS), use the JS functions `DotNet.invokeMethod` or `DotNet.invokeMethodAsync`. Pass in the name of the assembly containing the method, the identifier of the static .NET method, and any arguments.
+To invoke a static .NET method from JavaScript (JS), use the JS functions:
+
+* `DotNet.invokeMethodAsync` (*Recommended*): Asynchronous for both Blazor Server and Blazor WebAssembly apps.
+* `DotNet.invokeMethod`: Synchronous for Blazor WebAssembly apps only.
 
 In the following example:
 
@@ -1057,9 +1074,10 @@ In the following example:
 DotNet.invokeMethodAsync('{ASSEMBLY NAME}', '{.NET METHOD ID}', {ARGUMENTS});
 ```
 
-`DotNet.invokeMethod` returns the result of the operation. `DotNet.invokeMethodAsync` returns a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) representing the result of the operation.
+`DotNet.invokeMethodAsync` returns a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) representing the result of the operation. `DotNet.invokeMethod` (Blazor WebAssembly only) returns the result of the operation.
 
-The asynchronous function (`invokeMethodAsync`) is preferred over the synchronous version (`invokeMethod`) to support Blazor Server scenarios.
+> [!IMPORTANT]
+> The asynchronous function (`invokeMethodAsync`) is preferred over the synchronous version (`invokeMethod`) to support Blazor Server scenarios.
 
 The .NET method must be public, static, and have the [`[JSInvokable]` attribute](xref:Microsoft.JSInterop.JSInvokableAttribute).
 
@@ -1116,10 +1134,10 @@ By default, the .NET method identifier for the JS call is the .NET method name, 
 [JSInvokable("DifferentMethodName")]
 ```
 
-In the call to `DotNet.invokeMethod` or `DotNet.invokeMethodAsync`, call `DifferentMethodName` to execute the `ReturnArrayAsync` .NET method:
+In the call to `DotNet.invokeMethodAsync` or `DotNet.invokeMethod` (Blazor WebAssembly only), call `DifferentMethodName` to execute the `ReturnArrayAsync` .NET method:
 
-* `DotNet.invokeMethod('BlazorSample', 'DifferentMethodName');`
 * `DotNet.invokeMethodAsync('BlazorSample', 'DifferentMethodName');`
+* `DotNet.invokeMethod('BlazorSample', 'DifferentMethodName');` (Blazor WebAssembly only)
 
 > [!NOTE]
 > The `ReturnArrayAsync` method example in this section returns the result of a <xref:System.Threading.Tasks.Task> without the use of explicit C# [`async`](/dotnet/csharp/language-reference/keywords/async) and [`await`](/dotnet/csharp/language-reference/operators/await) keywords. Coding methods with [`async`](/dotnet/csharp/language-reference/keywords/async) and [`await`](/dotnet/csharp/language-reference/operators/await) is typical of methods that use the [`await`](/dotnet/csharp/language-reference/operators/await) keyword to return the value of asynchronous operations.
@@ -1141,7 +1159,7 @@ In the call to `DotNet.invokeMethod` or `DotNet.invokeMethodAsync`, call `Differ
 To invoke an instance .NET method from JavaScript (JS):
 
 * Pass the .NET instance by reference to JS by wrapping the instance in a <xref:Microsoft.JSInterop.DotNetObjectReference> and calling <xref:Microsoft.JSInterop.DotNetObjectReference.Create%2A> on it.
-* Invoke a .NET instance method from JS using `invokeMethod` or `invokeMethodAsync` from the passed <xref:Microsoft.JSInterop.DotNetObjectReference>. The .NET instance can also be passed as an argument when invoking other .NET methods from JS.
+* Invoke a .NET instance method from JS using `invokeMethodAsync` or `invokeMethod` (Blazor WebAssembly only) from the passed <xref:Microsoft.JSInterop.DotNetObjectReference>. The .NET instance can also be passed as an argument when invoking other .NET methods from JS.
 * Dispose of the <xref:Microsoft.JSInterop.DotNetObjectReference>.
 
 The following sections of this article demonstrate various approaches for invoking an instance .NET method:

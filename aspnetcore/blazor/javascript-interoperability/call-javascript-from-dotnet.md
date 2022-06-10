@@ -5,7 +5,7 @@ description: Learn how to invoke JavaScript functions from .NET methods in Blazo
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/09/2021
+ms.date: 06/09/2022
 uid: blazor/js-interop/call-javascript-from-dotnet
 ---
 # Call JavaScript functions from .NET methods in ASP.NET Core Blazor
@@ -153,6 +153,10 @@ IJSRuntime JS { get; set; }
 
 [!INCLUDE[](~/blazor/includes/prerendering.md)]
 
+## Synchronous JS interop in Blazor WebAssembly apps
+
+[!INCLUDE[](~/blazor/includes/js-interop/synchronous-js-interop-call-js.md)]
+
 ## Location of JavaScript
 
 Load JavaScript (JS) code using any of approaches described by the [JavaScript (JS) interoperability (interop) overview article](xref:blazor/js-interop/index#location-of-javascript):
@@ -205,7 +209,7 @@ In the preceding example:
 
 Dynamically importing a module requires a network request, so it can only be achieved asynchronously by calling <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A>.
 
-`IJSInProcessObjectReference` represents a reference to a JS object whose functions can be invoked synchronously.
+`IJSInProcessObjectReference` represents a reference to a JS object whose functions can be invoked synchronously in Blazor WebAssembly apps. For more information, see the [Synchronous JS interop in Blazor WebAssembly apps](#synchronous-js-interop-in-blazor-webassembly-apps) section.
 
 > [!NOTE]
 > When the external JS file is supplied by a [Razor class library](xref:blazor/components/class-libraries), specify the module's JS file using its stable static web asset path: `./_content/{PACKAGE ID}/{SCRIPT PATH AND FILENAME (.js)}`:
@@ -955,6 +959,10 @@ IJSRuntime JS { get; set; }
 
 [!INCLUDE[](~/blazor/includes/prerendering.md)]
 
+## Synchronous JS interop in Blazor WebAssembly apps
+
+[!INCLUDE[](~/blazor/includes/js-interop/synchronous-js-interop-call-js.md)]
+
 ## Location of JavaScript
 
 Load JavaScript (JS) code using any of approaches described by the [JavaScript (JS) interoperability (interop) overview article](xref:blazor/js-interop/index#location-of-javascript):
@@ -1005,7 +1013,7 @@ In the preceding example:
 
 Dynamically importing a module requires a network request, so it can only be achieved asynchronously by calling <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A>.
 
-`IJSInProcessObjectReference` represents a reference to a JS object whose functions can be invoked synchronously.
+`IJSInProcessObjectReference` represents a reference to a JS object whose functions can be invoked synchronously in Blazor WebAssembly apps. For more information, see the [Synchronous JS interop in Blazor WebAssembly apps](#synchronous-js-interop-in-blazor-webassembly-apps) section.
 
 > [!NOTE]
 > When the external JS file is supplied by a [Razor class library](xref:blazor/components/class-libraries), specify the module's JS file using its stable static web asset path: `./_content/{PACKAGE ID}/{SCRIPT PATH AND FILENAME (.js)}`:
@@ -1568,6 +1576,10 @@ IJSRuntime JS { get; set; }
 ## Detect when a Blazor Server app is prerendering
 
 [!INCLUDE[](~/blazor/includes/prerendering.md)]
+
+## Synchronous JS interop in Blazor WebAssembly apps
+
+[!INCLUDE[](~/blazor/includes/js-interop/synchronous-js-interop-call-js.md)]
 
 ## Location of JavaScript
 
