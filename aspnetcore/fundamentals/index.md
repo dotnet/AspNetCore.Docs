@@ -74,7 +74,7 @@ There are three different hosts:
 * [.NET Generic Host](xref:fundamentals/host/generic-host)
 * <xref:fundamentals/host/web-host>
 
-The .NET Minimal Host is recommended and used in all the ASP.NET Core templates. The Minimal and Generic Host share many of the same interfaces and classes. The ASP.NET Core Web Host is available only for backward compatibility.
+The .NET WebApplication Host is recommended and used in all the ASP.NET Core templates. The .NET WebApplication Host and .NET Generic Host share many of the same interfaces and classes. The ASP.NET Core Web Host is available only for backward compatibility.
 
 The following example instantiates a WebApplication  Host:
 
