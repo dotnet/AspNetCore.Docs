@@ -23,7 +23,7 @@ In this tutorial, you learn how to:
 > * Add a model class and a database context.
 > * Scaffold a controller with CRUD methods.
 > * Configure routing, URL paths, and return values.
-> * Call the web API with Postman.
+> * Call the web API with http-repl.
 
 At the end, you have a web API that can manage "to-do" items stored in a database.
 
@@ -388,7 +388,7 @@ The <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction%2A> method:
 
 ### Install http-repl
 
-This tutorial uses [http-repl](../web-api/http-repl/index.md) to test the web API.
+This tutorial uses [http-repl](xref:web-api/http-repl) to test the web API.
 
 * Run the following command at a command prompt:
 
