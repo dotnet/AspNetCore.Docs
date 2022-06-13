@@ -42,13 +42,16 @@ using Microsoft.AspNetCore.Components.WebView;
   
 ## .NET MAUI
 
-Add the event handler to the constructor of the `Page` where the `BlazorWebView` is constructed:
+Add the event handler below to the constructor of the `Page` where the `BlazorWebView` is constructed. This would be `MainPage.xaml.cs` in the default `maui-blazor` template.
 
 ```csharp
 blazorWebView.UrlLoading += 
     (sender, urlLoadingEventArgs) =>
     {
-        urlLoadingEventArgs.UrlLoadingStrategy = UrlLoadingStrategy.OpenInWebView;
+        if (urlLoadingEventArgs.Url.Host != "0.0.0.0")
+        {
+            urlLoadingEventArgs.UrlLoadingStrategy = UrlLoadingStrategy.OpenInWebView;
+        }
     };
 ```
 
@@ -69,7 +72,10 @@ Add the event handler in the `.xaml.cs` file:
 private void Handle_UrlLoading(object sender, 
     UrlLoadingEventArgs urlLoadingEventArgs)
 {
-    urlLoadingEventArgs.UrlLoadingStrategy = UrlLoadingStrategy.OpenInWebView;
+    if (urlLoadingEventArgs.Url.Host != "0.0.0.0")
+    {
+        urlLoadingEventArgs.UrlLoadingStrategy = UrlLoadingStrategy.OpenInWebView;
+    }
 }
 ```
 
@@ -81,6 +87,9 @@ In the constructor of the form containing the `BlazorWebView` control, add the f
 blazorWebView.UrlLoading += 
     (sender, urlLoadingEventArgs) =>
     {
-        urlLoadingEventArgs.UrlLoadingStrategy = UrlLoadingStrategy.OpenInWebView;
+        if (urlLoadingEventArgs.Url.Host != "0.0.0.0")
+        {
+            urlLoadingEventArgs.UrlLoadingStrategy = UrlLoadingStrategy.OpenInWebView;
+        }
     };
 ```
