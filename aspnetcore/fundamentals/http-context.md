@@ -41,17 +41,15 @@ Requests to `/send` logs the user agent making the request. In the preceding cod
 * Is better for performance.
 * Makes the code easier to understand and reason about than relying on ambient state.
 
-When the service must access `HttpContext`, it should account for the possibility of `HttpContext` being `null` when not called from a request thread:
+When the service must access `HttpContext`, it should account for the possibility of `HttpContext` being `null` when not called from a request thread.
 
-[!code-csharp[](~/fundamentals/http-context/samples/6.x/HttpContextInBackgroundThread/EmailService.cs?highlight=10,15,24-29)]
-
-The application also includes `NewsletterService`, which sends an email using `EmailService` every 30 seconds:
+The application also includes `PeriodicBranchesLoggerService`, which logs the open GitHub branches of the specified repository every 30 seconds:
 
 [!code-csharp[](~/fundamentals/http-context/samples/6.x/HttpContextInBackgroundThread/Program.cs?highlight=7)]
 
-[!code-csharp[](~/fundamentals/http-context/samples/6.x/HttpContextInBackgroundThread/NewsletterService.cs)]
+[!code-csharp[](~/fundamentals/http-context/samples/6.x/HttpContextInBackgroundThread/PeriodicBranchesLoggerService.cs)]
 
-`NewsletterService` is a [hosted service](xref:fundamentals/host/hosted-services), which runs outside the request and response flow. Email sent from the `NewsletterService` has a null `HttpContext`. The `EmailService` was written to not depend on the `HttpContext`.
+`PeriodicBranchesLoggerService` is a [hosted service](xref:fundamentals/host/hosted-services), which runs outside the request and response flow. Logging from the `PeriodicBranchesLoggerService` has a null `HttpContext`. The `PeriodicBranchesLoggerService` was written to not depend on the `HttpContext`.
 
 ## Use HttpContext from Razor Pages
 
