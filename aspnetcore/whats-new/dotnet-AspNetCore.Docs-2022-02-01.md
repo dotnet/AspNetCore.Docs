@@ -112,7 +112,7 @@ The following people contributed to the ASP.NET Core docs during this period. Th
 - [ericmutta](https://github.com/ericmutta) - Eric Mutta (1)
 - [eslamisepehr](https://github.com/eslamisepehr) - Sepehr Eslami (1)
 - [fscopel](https://github.com/fscopel) - Fabio Scopel (1)
-- [github-actions](https://github.com/github-actions) -  (1)
+- [github-actions](https://github.com/actions) -  (1)
 - [hjoab](https://github.com/hjoab) - Holger Otto André (1)
 - [karayanni](https://github.com/karayanni) - nader karayanni (1)
 - [KieranFoot](https://github.com/KieranFoot) - Kieran Foot (1)

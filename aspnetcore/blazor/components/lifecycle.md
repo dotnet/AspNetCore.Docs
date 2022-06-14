@@ -29,6 +29,9 @@ Component lifecycle events:
 1. Call [`OnParametersSet{Async}`](#after-parameters-are-set-onparameterssetasync). If an incomplete <xref:System.Threading.Tasks.Task> is returned, the <xref:System.Threading.Tasks.Task> is awaited and then the component is rerendered.
 1. Render for all synchronous work and complete <xref:System.Threading.Tasks.Task>s.
 
+> [!NOTE]
+> Asynchronous actions performed in lifecycle events might not have completed before a component is rendered. For more information, see the [Handle incomplete async actions at render](#handle-incomplete-async-actions-at-render) section later in this article.
+
 ![Component lifecycle events of a Razor component in Blazor](~/blazor/components/lifecycle/_static/lifecycle1.png)
 
 Document Object Model (DOM) event processing:
@@ -484,6 +487,9 @@ Component lifecycle events:
 1. Call [`OnParametersSet{Async}`](#after-parameters-are-set-onparameterssetasync). If an incomplete <xref:System.Threading.Tasks.Task> is returned, the <xref:System.Threading.Tasks.Task> is awaited and then the component is rerendered.
 1. Render for all synchronous work and complete <xref:System.Threading.Tasks.Task>s.
 
+> [!NOTE]
+> Asynchronous actions performed in lifecycle events might not have completed before a component is rendered. For more information, see the [Handle incomplete async actions at render](#handle-incomplete-async-actions-at-render) section later in this article.
+
 ![Component lifecycle events of a Razor component in Blazor](~/blazor/components/lifecycle/_static/lifecycle1.png)
 
 Document Object Model (DOM) event processing:
@@ -937,6 +943,9 @@ Component lifecycle events:
    * Call [`OnInitialized{Async}`](#component-initialization-oninitializedasync). If an incomplete <xref:System.Threading.Tasks.Task> is returned, the <xref:System.Threading.Tasks.Task> is awaited and then the component is rerendered.
 1. Call [`OnParametersSet{Async}`](#after-parameters-are-set-onparameterssetasync). If an incomplete <xref:System.Threading.Tasks.Task> is returned, the <xref:System.Threading.Tasks.Task> is awaited and then the component is rerendered.
 1. Render for all synchronous work and complete <xref:System.Threading.Tasks.Task>s.
+
+> [!NOTE]
+> Asynchronous actions performed in lifecycle events might not have completed before a component is rendered. For more information, see the [Handle incomplete async actions at render](#handle-incomplete-async-actions-at-render) section later in this article.
 
 ![Component lifecycle events of a Razor component in Blazor](~/blazor/components/lifecycle/_static/lifecycle1.png)
 
