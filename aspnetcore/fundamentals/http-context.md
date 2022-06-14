@@ -31,10 +31,6 @@ The following sample uses the `EmailService` to send simulated email when reques
 
 [!code-csharp[](~/fundamentals/http-context/samples/6.x/HttpContextInBackgroundThread/Program.cs?highlight=5-6,12)]
 
-The following code shows the `EmailService` interface and implementation:
-
-[!code-csharp[](~/fundamentals/http-context/samples/6.x/HttpContextInBackgroundThread/EmailService.cs)]
-
 Requests to `/send` logs the user agent making the request. In the preceding code, when the `HttpContext` is `null`, the `userAgent` string is set to `"Unknown"`. If possible, `HttpContext` should be explicitly passed to the service if possible. Explicitly passing in `HttpContext` data:
 
 * Makes the service API more useable outside the request flow.
