@@ -19,6 +19,13 @@ builder.Services.AddHttpClient("GitHub", httpClient =>
 
 builder.Services.AddTransient<UserAgentHeaderHandler>();
 
+var logger = LoggerFactory.Create(config =>
+{
+    config.AddConsole();
+    config.AddConfiguration(builder.Configuration.GetSection("Logging"));
+}).CreateLogger("Program");
+
+
 var app = builder.Build();
 
 app.MapGet("/", () => "Hello World!");
@@ -35,8 +42,13 @@ app.MapGet("/branches", async (IHttpClientFactory httpClientFactory) =>
     await using var contentStream =
         await httpResponseMessage.Content.ReadAsStreamAsync();
 
-    return Results.Ok(await JsonSerializer.DeserializeAsync
-        <IEnumerable<GitHubBranch>>(contentStream));
+    var response = await JsonSerializer.DeserializeAsync
+        <IEnumerable<GitHubBranch>>(contentStream);
+
+    logger.LogInformation($"/branches request: {JsonSerializer.Serialize(response)}");
+
+
+    return Results.Ok(response);
 });
 
 app.Run();
