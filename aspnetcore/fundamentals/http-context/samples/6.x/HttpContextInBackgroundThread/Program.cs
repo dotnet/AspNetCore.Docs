@@ -29,17 +29,14 @@ app.MapGet("/branches", async (IHttpClientFactory httpClientFactory) =>
     var httpResponseMessage = await httpClient.GetAsync(
         "repos/dotnet/AspNetCore.Docs/branches");
 
-    if (httpResponseMessage.IsSuccessStatusCode)
-    {
-        using var contentStream =
-            await httpResponseMessage.Content.ReadAsStreamAsync();
-
-        return Results.Ok(await JsonSerializer.DeserializeAsync
-            <IEnumerable<GitHubBranch>>(contentStream));
-    } else
-    {
+    if (!httpResponseMessage.IsSuccessStatusCode) 
         return Results.BadRequest();
-    }
+
+    await using var contentStream =
+        await httpResponseMessage.Content.ReadAsStreamAsync();
+
+    return Results.Ok(await JsonSerializer.DeserializeAsync
+        <IEnumerable<GitHubBranch>>(contentStream));
 });
 
 app.Run();
