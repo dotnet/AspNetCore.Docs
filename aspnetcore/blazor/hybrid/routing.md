@@ -44,7 +44,7 @@ using Microsoft.AspNetCore.Components.WebView;
   
 ## .NET MAUI
 
-Add the following event handler to the constructor of the `Page` where the `BlazorWebView` is created, which is `MainPage.xaml.cs` in an app created from the .NET MAUI project template. The following example assumes a `x:Name="blazorWebView"` ([`x:Name` directive](/dotnet/desktop/xaml-services/xname-directive)) on the `BlazorWebView` within the `.xaml` file.
+Add the following event handler to the constructor of the `Page` where the `BlazorWebView` is created, which is `MainPage.xaml.cs` in an app created from the .NET MAUI project template. The following example assumes an `x:Name="blazorWebView"` ([`x:Name` directive](/dotnet/desktop/xaml-services/xname-directive)) on the `BlazorWebView` within the `.xaml` file.
 
 ```csharp
 blazorWebView.UrlLoading += 
