@@ -12,8 +12,46 @@ uid: fundamentals/httpcontext
 # Access HttpContext in ASP.NET Core
 
 :::moniker range=">= aspnetcore-6.0"
-    
+
 ASP.NET Core apps access `HttpContext` through the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> interface and its default implementation <xref:Microsoft.AspNetCore.Http.HttpContextAccessor>. It's only necessary to use `IHttpContextAccessor` when you need access to the `HttpContext` inside a service.
+
+## HttpContext isn't thread safe
+
+This article primarily discusses using `HttpContext` in request and response flow from ASP.NET Core MVC, Razor Pages, controllers, middleware, etc. Consider the following when using `HttpContext` outside the request and response flow:
+
+* The `HttpContext` is **NOT** thread safe, accessing it from multiple threads can result in exceptions, data corruption and generally unpredictable results.
+* The <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> interface should be used with caution. As always, the `HttpContext` must not be captured outside of the request flow.  `IHttpContextAccessor`:
+  * Relies on  <xref:System.Threading.AsyncLocal%601> which can have a negative performance impact on asynchronous calls.
+  * Creates a dependency on "ambient state" which can make testing more difficult.
+* <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor.HttpContext%2A?displayProperty=nameWithType> may be null if accessed outside of the request flow.
+* To access information from `HttpContext` outside the request flow, copy the information inside the request flow. Be careful to copy the actual data and not just references. For example, rather than copying a reference to an `IHeaderDictionary`, copy the relevant header values or copy the entire dictionary key by key before leaving the request flow.
+* Don't capture `IHttpContextAccessor.HttpContext` in a constructor.
+
+The following sample uses the `EmailService` to send simulated email when requested from the `/send` endpoint:
+
+[!code-csharp[](~/fundamentals/http-context/samples/6.x/HttpContextInBackgroundThread/Program.cs?highlight=5-6,12)]
+
+The following code shows the `EmailService` interface and implementation:
+
+[!code-csharp[](~/fundamentals/http-context/samples/6.x/HttpContextInBackgroundThread/EmailService.cs)]
+
+Requests to `/send` logs the user agent making the request. In the preceding code, when the `HttpContext` is `null`, the `userAgent` string is set to `"Unknown"`. If possible, `HttpContext` should be explicitly passed to the service if possible. Explicitly passing in `HttpContext` data:
+
+* Makes the service API more useable outside the request flow.
+* Is better for performance.
+* Makes the code easier to understand and reason about than relying on ambient state.
+
+When the service must access `HttpContext`, it should account for the possibility of `HttpContext` being `null` when not called from a request thread:
+
+[!code-csharp[](~/fundamentals/http-context/samples/6.x/HttpContextInBackgroundThread/EmailService.cs?highlight=10,15,24-29)]
+
+The application also includes `NewsletterService`, which sends an email using `EmailService` every 30 seconds:
+
+[!code-csharp[](~/fundamentals/http-context/samples/6.x/HttpContextInBackgroundThread/Program.cs?highlight=7)]
+
+[!code-csharp[](~/fundamentals/http-context/samples/6.x/HttpContextInBackgroundThread/NewsletterService.cs)]
+
+`NewsletterService` is a [hosted service](xref:fundamentals/host/hosted-services), which runs outside the request and response flow. Email sent from the `NewsletterService` has a null `HttpContext`. The `EmailService` was written to not depend on the `HttpContext`.
 
 ## Use HttpContext from Razor Pages
 
