@@ -5,7 +5,7 @@ using Microsoft.Net.Http.Headers;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddHttpContextAccessor();
-builder.Services.AddHostedService<BranchSyncService>();
+builder.Services.AddHostedService<PeriodicBranchesLoggerService>();
 
 builder.Services.AddHttpClient("GitHub", httpClient =>
 {

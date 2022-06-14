@@ -2,13 +2,13 @@ using System.Text.Json;
 
 namespace HttpContextInBackgroundThread;
 
-public class BranchSyncService : BackgroundService
+public class PeriodicBranchesLoggerService : BackgroundService
 {
     private readonly IHttpClientFactory _httpClientFactory;
     private readonly ILogger _logger;
     private readonly PeriodicTimer _timer;
 
-    public BranchSyncService(IHttpClientFactory httpClientFactory, ILogger<BranchSyncService> logger)
+    public PeriodicBranchesLoggerService(IHttpClientFactory httpClientFactory, ILogger<PeriodicBranchesLoggerService> logger)
     {
         _httpClientFactory = httpClientFactory;
         _logger = logger;
