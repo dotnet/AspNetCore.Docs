@@ -129,6 +129,10 @@ In the preceding sample:
 
 The following example calls <xref:Microsoft.Extensions.Logging.ConsoleLoggerExtensions.AddConsole(ILoggerFactory)> in `Program.c` and logs the `/Test` endpoint:
 
+<xref:Microsoft.Extensions.Logging.ConsoleLoggerExtensions.AddConsole>
+
+[ConsoleLoggerExtensions.AddConsole](/dotnet/api/microsoft.extensions.logging.consoleloggerextensions.addconsole)
+
 [!code-csharp[](index/samples/6.x/WebLog/Program.cs?name=snippet1)]
 
 The following example calls <xref:Microsoft.Extensions.Logging.ConsoleLoggerExtensions.AddSimpleConsole(ILoggingBuilder)> in `Program.c`, disables color output, and logs the `/Test` endpoint:
