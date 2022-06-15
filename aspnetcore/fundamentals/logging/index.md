@@ -125,6 +125,16 @@ In the preceding sample:
   * `AzureAppServicesBlob`
   * `ApplicationInsights`
 
+## Log in Program.cs
+
+The following example calls <xref:Microsoft.Extensions.Logging.ConsoleLoggerExtensions.AddConsole(ILoggerFactory)> in `Program.c` and logs the `/Test` endpoint:
+
+[!code-csharp[](index/samples/6.x/WebLog/Program.cs?name=snippet1)]
+
+The following example calls <xref:Microsoft.Extensions.Logging.ConsoleLoggerExtensions.AddSimpleConsole(ILoggingBuilder)> in `Program.c`, disables color output, and logs the `/Test` endpoint:
+
+[!code-csharp[](index/samples/6.x/WebLog/Program.cs?name=snippet2)]
+
 ## Set log level by command line, environment variables, and other configuration
 
 Log level can be set by any of the [configuration providers](xref:fundamentals/configuration/index).
