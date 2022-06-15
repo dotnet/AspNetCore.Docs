@@ -153,7 +153,7 @@ private void IncrementCount()
 If the unhandled exception is thrown for a `currentCount` over five:
 
 * The exception is handled by the error boundary.
-* Error UI is rendered (`An error has occurred!`).
+* Error UI is rendered (`An error has occurred.`).
 
 By default, the <xref:Microsoft.AspNetCore.Components.Web.ErrorBoundary> component renders an empty `<div>` element with the `blazor-error-boundary` CSS class for its error content. The colors, text, and icon for the default UI are defined using CSS in the app's stylesheet in the `wwwroot` folder, so you're free to customize the error UI.
 
