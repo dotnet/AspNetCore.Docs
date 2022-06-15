@@ -127,15 +127,11 @@ In the preceding sample:
 
 ## Log in Program.cs
 
-The following example calls <xref:Microsoft.Extensions.Logging.ConsoleLoggerExtensions.AddConsole(ILoggerFactory)> in `Program.c` and logs the `/Test` endpoint:
-
-<xref:Microsoft.Extensions.Logging.ConsoleLoggerExtensions.AddConsole>
-
-[ConsoleLoggerExtensions.AddConsole](/dotnet/api/microsoft.extensions.logging.consoleloggerextensions.addconsole)
+The following example calls [AddConsole](/dotnet/api/microsoft.extensions.logging.consoleloggerextensions.addconsole) <!--<xref:Microsoft.Extensions.Logging.ConsoleLoggerExtensions.AddConsole(ILoggerFactory)>--> in `Program.c` and logs the `/Test` endpoint:
 
 [!code-csharp[](index/samples/6.x/WebLog/Program.cs?name=snippet1)]
 
-The following example calls <xref:Microsoft.Extensions.Logging.ConsoleLoggerExtensions.AddSimpleConsole(ILoggingBuilder)> in `Program.c`, disables color output, and logs the `/Test` endpoint:
+The following example calls [AddSimpleConsole](/dotnet/api/microsoft.extensions.logging.consoleloggerextensions.addsimpleconsole) <!--<xref:Microsoft.Extensions.Logging.ConsoleLoggerExtensions.AddSimpleConsole(ILoggingBuilder)>--> in `Program.c`, disables color output, and logs the `/Test` endpoint:
 
 [!code-csharp[](index/samples/6.x/WebLog/Program.cs?name=snippet2)]
 
