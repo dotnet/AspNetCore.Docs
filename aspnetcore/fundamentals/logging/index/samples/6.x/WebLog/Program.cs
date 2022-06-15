@@ -15,7 +15,7 @@ app.MapGet("/", () => "Hello World!");
 
 app.MapGet("/Test", async context =>
 {
-    logger.LogInformation("Testing logging in Program.c");
+    logger.LogInformation("Testing logging in Program.cs");
     await context.Response.WriteAsync("Testing");
 });
 
@@ -40,7 +40,7 @@ app.MapGet("/", () => "Hello World!");
 
 app.MapGet("/Test", async context =>
 {
-    logger.LogInformation("Testing logging in Program.c");
+    logger.LogInformation("Testing logging in Program.cs");
     await context.Response.WriteAsync("Testing");
 });
 
