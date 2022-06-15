@@ -127,6 +127,10 @@ In the preceding sample:
 
 ## Log in `Program.cs`
 
+The following example calls [Builder.WebApplication.Logger](xref:Microsoft.AspNetCore.Builder.WebApplication.Logger) in `Program.cs` and logs informational messages:
+
+[!code-csharp[](index/samples/6.x/WebLog/Program.cs?name=snippet3)]
+
 The following example calls <xref:Microsoft.Extensions.Logging.ConsoleLoggerExtensions.AddConsole%2A> in `Program.cs` and logs the `/Test` endpoint:
 
 [!code-csharp[](index/samples/6.x/WebLog/Program.cs?name=snippet1)]

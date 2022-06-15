@@ -1,4 +1,4 @@
-#define FIRST // FIRST SECOND
+#define APP3 // FIRST SECOND APP3
 #if NEVER
 #elif FIRST
 #region snippet1
@@ -44,6 +44,15 @@ app.MapGet("/Test", async context =>
     await context.Response.WriteAsync("Testing");
 });
 
+app.Run();
+#endregion
+#elif APP3
+#region snippet3
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+app.Logger.LogInformation("Adding Routes");
+app.MapGet("/", () => "Hello World!");
+app.Logger.LogInformation("Starting the app");
 app.Run();
 #endregion
 #endif
