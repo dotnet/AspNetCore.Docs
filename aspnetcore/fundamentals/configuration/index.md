@@ -913,8 +913,8 @@ An <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> implementation allows add
 * <xref:blazor/fundamentals/configuration>
 
 :::moniker-end
-
-:::moniker range=">= aspnetcore-7.0" <!--Move .NET 7 to the top at RTW -->
+<!--Move .NET 7 to the top at RTW -->
+:::moniker range=">= aspnetcore-7.0" 
 
 Application configuration in ASP.NET Core is performed using one or more [configuration providers](#cp). Configuration providers read configuration data from key-value pairs using a variety of configuration sources:
 
