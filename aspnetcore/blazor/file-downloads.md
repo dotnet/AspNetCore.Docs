@@ -5,7 +5,7 @@ description: Learn how to download files using Blazor Server and Blazor WebAssem
 monikerRange: '>= aspnetcore-6.0'
 ms.author: taparik
 ms.custom: mvc
-ms.date: 06/16/2022
+ms.date: 06/17/2022
 uid: blazor/file-downloads
 ---
 # ASP.NET Core Blazor file downloads
@@ -69,11 +69,11 @@ The following example component:
 
 The recommended approach for downloading files less than 250 MB in size uses
 
-The example in this section uses a dummy log file named `log0001.txt`, which is placed in a folder named `files` in the app's `wwwroot` folder:
+The example in this section uses a dummy log file named `log.bin`, which is placed in a folder named `files` in the app's `wwwroot` folder:
 
-```wwwroot/files/log0001.txt`:
+```wwwroot/files/log.bin`:
 
-:::code language="text" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/wwwroot/files/log0001.txt":::
+:::code language="text" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/wwwroot/files/log.bin":::
 
 Inside the closing `</body>` tag of `Pages/_Layout.razor` (Blazor Server) or `wwwroot/index.html` (Blazor WebAssembly):
 
