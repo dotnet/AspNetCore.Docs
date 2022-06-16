@@ -59,7 +59,7 @@ The following example component:
 * Has a method named `GetFileStream` to retrieve a <xref:System.IO.Stream> for the file that's downloaded to clients. Alternative approaches include retrieving a file from storage or generating a file dynamically in C# code. For this demonstration, the app creates a 50 KB file of random data from a new byte array (`new byte[]`). The bytes are wrapped with a <xref:System.IO.MemoryStream> to serve as the example's dynamically-generated binary file.
 * The `DownloadFileFromStream` method performs the following steps:
   * Retrieves the <xref:System.IO.Stream> from `GetFileStream`.
-  * Specify a file name when file is saved on the user's machine. The following example names the file `log.bin`.
+  * Specify a file name when file is saved on the user's machine. The following example names the file `quote.txt`.
   * Wraps the <xref:System.IO.Stream> in a <xref:Microsoft.JSInterop.DotNetStreamReference>, which allows streaming the file data to the client.
   * Invokes `downloadFileFromStream`, which is the JavaScript function shown earlier in this article that accepts the data on the client.
 
@@ -69,11 +69,11 @@ The following example component:
 
 The recommended approach for downloading files less than 250 MB in size uses
 
-The example in this section uses a dummy log file named `log.bin`, which is placed in a folder named `files` in the app's `wwwroot` folder:
+The example in this section uses a dummy log file named `quote.txt`, which is placed in a folder named `files` in the app's `wwwroot` folder:
 
-```wwwroot/files/log.bin`:
+```wwwroot/files/quote.txt`:
 
-:::code language="text" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/wwwroot/files/log.bin":::
+:::code language="text" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/wwwroot/files/quote.txt":::
 
 Inside the closing `</body>` tag of `Pages/_Layout.razor` (Blazor Server) or `wwwroot/index.html` (Blazor WebAssembly):
 
