@@ -1,83 +1,30 @@
 ---
 title: ASP.NET Core Blazor file downloads
-author: TanayParikh
+author: guardrex
 description: Learn how to download files using Blazor Server and Blazor WebAssembly.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: taparik
 ms.custom: mvc
-ms.date: 11/09/2021
+ms.date: 06/16/2022
 uid: blazor/file-downloads
 ---
 # ASP.NET Core Blazor file downloads
 
 This article explains how to download files in Blazor Server and Blazor WebAssembly apps.
 
-Files can be downloaded from the app's own static assets or from any other location. When downloading files, [Cross-Origin Resource Sharing (CORS)](#cross-origin-resource-sharing-cors) considerations apply.
+Files can be downloaded from the app's own static assets or from any other location. When downloading files, Cross-Origin Resource Sharing (CORS) considerations apply. More information on CORS is in the [Cross-Origin Resource Sharing (CORS)](#cross-origin-resource-sharing-cors) section later in this article.
 
 > [!WARNING]
 > Always follow security best practices when allowing users to download files. For more information, see the [Security considerations](#security-considerations) section.
 
-The following example demonstrates how to download a file. Native `byte[]` streaming interop is used to ensure efficient transfer to the client.
+## Download from a stream
 
-> [!IMPORTANT]
-> The example in this article pertains to downloading files that pass Cross-Origin Resource Sharing (CORS) checks. For more information, see the [Cross-Origin Resource Sharing (CORS)](#cross-origin-resource-sharing-cors) section.
+The recommended approach for downloading files less than 250 MB in size uses [JavaScript (JS) interop](xref:blazor/js-interop/index) to receive the file's name with the file's data stream to trigger the client-side download. The `downloadFileFromStream` function, which is shown in the following example, is used in a Razor component later in this article.
 
-In a Razor component (`.razor`), add [`@using`](xref:mvc/views/razor#using) and [`@inject`](xref:mvc/views/razor#inject) directives for the following:
+> [!WARNING]
+> The approach in this section reads the file's content into an [`ArrayBuffer`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer). This approach loads the entire file into the client's memory, which can impair performance. For file downloads over 250 MB, we recommend following the guidance in the [Download from a URL](#download-from-a-url) section to download the file from a URL instead.
 
-* <xref:System.IO?displayProperty=fullName>
-* <xref:Microsoft.JSInterop.IJSRuntime?displayProperty=fullName>
-
-```razor
-@using System.IO
-@inject IJSRuntime JS
-```
-
-Add a button to trigger the file download:
-
-```razor
-<button @onclick="DownloadFileFromStream">
-    Download File From Stream
-</button>
-```
-
-Create a method that retrieves a <xref:System.IO.Stream> for the file that's downloaded to clients (`GetFileStream` in the following example). You may choose to retrieve a file from storage or dynamically generate a file.
-
-For this demonstration, the app creates a 50 KB file of random data from a new byte array (`new byte[]`). The bytes are wrapped with a <xref:System.IO.MemoryStream> to serve as the example's dynamically-generated binary file:
-
-```razor
-@code {
-    private Stream GetFileStream()
-    {
-        var randomBinaryData = new byte[50 * 1024];
-        var fileStream = new MemoryStream(randomBinaryData);
-
-        return fileStream;
-    }
-}
-```
-
-The following `DownloadFileFromStream` method performs the following steps:
-
-* Retrieves the <xref:System.IO.Stream> from `GetFileStream`.
-* Specify a file name when file is saved on the user's machine. The following example names the file `log.bin`.
-* Wraps the <xref:System.IO.Stream> in a <xref:Microsoft.JSInterop.DotNetStreamReference>, which allows streaming the file data to the client.
-* Invokes `downloadFileFromStream`, which is a JavaScript function that accepts the data on the client. The `downloadFileFromStream` function is shown later in this article.
-
-```razor
-@code {
-    private async Task DownloadFileFromStream()
-    {
-        var fileStream = GetFileStream();
-        var fileName = "log.bin";
-
-        using var streamRef = new DotNetStreamReference(stream: fileStream);
-
-        await JS.InvokeVoidAsync("downloadFileFromStream", fileName, streamRef);
-    }
-}
-```
-
-The JavaScript `downloadFileFromStream` function accepts the file name with the data stream and triggers the client-side download. The function performs the following steps:
+The following `downloadFileFromStream` JS function performs the following steps:
 
 * Read the provided stream into an [`ArrayBuffer`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer).
 * Create a [`Blob`](https://developer.mozilla.org/docs/Web/API/Blob) to wrap the `ArrayBuffer`.
@@ -92,47 +39,62 @@ The `fileName` and object `url` are passed to `triggerFileDownload`, which perfo
 
 At this point, the file download is triggered and then the temporary object URL is revoked by calling [`revokeObjectURL`](https://developer.mozilla.org/docs/Web/API/URL/revokeObjectURL) on the URL. **This is an important step to ensure memory isn't leaked on the client.**
 
-```javascript
-async function downloadFileFromStream(fileName, contentStreamReference) {
-  const arrayBuffer = await contentStreamReference.arrayBuffer();
-  const blob = new Blob([arrayBuffer]);
-  const url = URL.createObjectURL(blob);
+Inside the closing `</body>` tag of `Pages/_Layout.razor` (Blazor Server) or `wwwroot/index.html` (Blazor WebAssembly):
 
-  triggerFileDownload(fileName, url);
-
-  URL.revokeObjectURL(url);
-}
-
-function triggerFileDownload(fileName, url) {
-  const anchorElement = document.createElement('a');
-  anchorElement.href = url;
-  anchorElement.download = fileName ?? '';
-  anchorElement.click();
-  anchorElement.remove();
-}
+```html
+<script>
+  window.downloadFileFromStream = async (fileName, contentStreamReference) => {
+    const arrayBuffer = await contentStreamReference.arrayBuffer();
+    const blob = new Blob([arrayBuffer]);
+    const url = URL.createObjectURL(blob);
+    triggerFileDownload(fileName, url);
+    URL.revokeObjectURL(url);
+  }
+</script>
 ```
 
-In the preceding example, the call to `contentStreamReference.arrayBuffer` loads the entire file into client memory. For file downloads over 250 MB, we recommend downloading the file from a URL instead:
+The following example component:
 
-```razor
-<button @onclick="DownloadFileFromURL">
-    Download File From URL
-</button>
+* Uses native byte-streaming interop to ensure efficient transfer of the file to the client.
+* Has a method named `GetFileStream` to retrieve a <xref:System.IO.Stream> for the file that's downloaded to clients. Alternative approaches include retrieving a file from storage or generating a file dynamically in C# code. For this demonstration, the app creates a 50 KB file of random data from a new byte array (`new byte[]`). The bytes are wrapped with a <xref:System.IO.MemoryStream> to serve as the example's dynamically-generated binary file.
+* The `DownloadFileFromStream` method performs the following steps:
+  * Retrieves the <xref:System.IO.Stream> from `GetFileStream`.
+  * Specify a file name when file is saved on the user's machine. The following example names the file `log.bin`.
+  * Wraps the <xref:System.IO.Stream> in a <xref:Microsoft.JSInterop.DotNetStreamReference>, which allows streaming the file data to the client.
+  * Invokes `downloadFileFromStream`, which is the JavaScript function shown earlier in this article that accepts the data on the client.
 
-@code {
-    private async Task DownloadFileFromURL()
-    {
-        var fileURL = "{FILE URL}";
-        var fileName = "{FILE NAME}";
-        await JS.InvokeVoidAsync("triggerFileDownload", fileName, fileURL);
-    }
-}
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/file-downloads/FileDownload1.razor":::
+
+## Download from a URL
+
+The recommended approach for downloading files less than 250 MB in size uses
+
+The example in this section uses a dummy log file named `log0001.txt`, which is placed in a folder named `files` in the app's `wwwroot` folder:
+
+```wwwroot/files/log0001.txt`:
+
+:::code language="text" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/wwwroot/files/log0001.txt":::
+
+Inside the closing `</body>` tag of `Pages/_Layout.razor` (Blazor Server) or `wwwroot/index.html` (Blazor WebAssembly):
+
+```html
+<script>
+  window.triggerFileDownload = (fileName, url) => {
+    const anchorElement = document.createElement('a');
+    anchorElement.href = url;
+    anchorElement.download = fileName ?? '';
+    anchorElement.click();
+    anchorElement.remove();
+  }
+</script>
 ```
 
-In the preceding example, replace the placeholders with the following values:
+In the following example component:
 
-* `{FILE URL}`: The URL of the file to download at the same origin (same domain) that the app uses. Example: `https://www.contoso.com/files/log0001.txt` for a text file physically located at the path `/wwwroot/files/` in the app and for an app that loads from `https://www.contoso.com`. For more information, see the [Cross-Origin Resource Sharing (CORS)](#cross-origin-resource-sharing-cors) section.
-* `{FILE NAME}`: The file name to use for the saved file. Example: `log-0001.txt`
+* Downloads the file from the same origin (same domain) that the app uses. If the file download is attempted from a different origin (different domain), configure Cross-Origin Resource Sharing (CORS). For more information, see the [Cross-Origin Resource Sharing (CORS)](#cross-origin-resource-sharing-cors) section later in this article.
+* xxx
+
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/file-downloads/FileDownload2.razor":::
 
 ## Cross-Origin Resource Sharing (CORS)
 
