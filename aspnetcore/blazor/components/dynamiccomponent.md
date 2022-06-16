@@ -88,7 +88,7 @@ In the following example, a Razor component renders a component based on the use
 In the preceding example:
 
 * Component names are used as the option values using the [`nameof` operator](/dotnet/csharp/language-reference/operators/nameof), which returns component names as constant strings.
-* The `{APP NAMESPACE}` placeholder is the namespace of the app (for example, `BlazorSample`).
+* The namespace of the app is `BlazorSample`.
 
 ## Pass parameters
 
@@ -116,7 +116,7 @@ The following `RocketLabWithWindowSeat` component (`Shared/RocketLabWithWindowSe
 In the following example:
 
 * Only the `RocketLabWithWindowSeat` component's parameter for a window seat (`WindowSeat`) receives the value of the **`Window Seat`** checkbox.
-* The `{APP NAMESPACE}` placeholder is the namespace of the app (for example, `BlazorSample`).
+* The namespace of the app is `BlazorSample`.
 * The dynamically-rendered components are shared components in the app's `Shared` folder:
   * Shown in this article section: `RocketLabWithWindowSeat` (`Shared/RocketLabWithWindowSeat.razor`)
   * Components shown in the [Example](#example) section earlier in this article:
