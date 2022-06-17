@@ -176,15 +176,15 @@ Add JavaScript code to supply data for the <xref:System.EventArgs> subclass. In 
 
 ```html
 <script>
-    Blazor.registerCustomEventType('custompaste', {
-        browserEventName: 'paste',
-        createEventArgs: event => {
-          return {
-            eventTimestamp: new Date(),
-            pastedData: event.clipboardData.getData('text')
-          };
-        }
-    });
+  Blazor.registerCustomEventType('custompaste', {
+      browserEventName: 'paste',
+      createEventArgs: event => {
+        return {
+          eventTimestamp: new Date(),
+          pastedData: event.clipboardData.getData('text')
+        };
+      }
+  });
 </script>
 ```
 
