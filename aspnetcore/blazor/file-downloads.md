@@ -55,6 +55,8 @@ Inside the closing `</body>` tag of `Pages/_Layout.razor` (Blazor Server) or `ww
 </script>
 ```
 
+[!INCLUDE[](~/blazor/includes/js-location.md)]
+
 The following example component:
 
 * Uses native byte-streaming interop to ensure efficient transfer of the file to the client.
@@ -97,6 +99,8 @@ Inside the closing `</body>` tag of `Pages/_Layout.razor` (Blazor Server) or `ww
   }
 </script>
 ```
+
+[!INCLUDE[](~/blazor/includes/js-location.md)]
 
 The following example component downloads the file from the same origin (same domain) that the app uses. If the file download is attempted from a different origin (different domain), configure Cross-Origin Resource Sharing (CORS). For more information, see the [Cross-Origin Resource Sharing (CORS)](#cross-origin-resource-sharing-cors) section.
 
