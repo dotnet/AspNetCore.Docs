@@ -27,6 +27,7 @@ public class UserAgentHeaderHandler : DelegatingHandler
 
         request.Headers.Add(HeaderNames.UserAgent, userAgentString);
         _logger.LogInformation($"User-Agent: {userAgentString}");
+
         return await base.SendAsync(request, cancellationToken);
     }
 }
