@@ -169,7 +169,20 @@ The following `Counter` component splits HTML and Razor markup from  C# code usi
 
 `Pages/CounterPartialClass.razor.cs`:
 
-:::code language="csharp" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/index/CounterPartialClass.razor.cs":::
+```csharp
+namespace BlazorSample.Pages
+{
+    public partial class CounterPartialClass
+    {
+        private int currentCount = 0;
+
+        void IncrementCount()
+        {
+            currentCount++;
+        }
+    }
+}
+```
 
 [`@using`][2] directives in the `_Imports.razor` file are only applied to Razor files (`.razor`), not C# files (`.cs`). Add namespaces to a partial class file as needed.
 
