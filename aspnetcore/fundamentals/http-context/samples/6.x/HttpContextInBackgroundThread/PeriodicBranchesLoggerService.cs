@@ -8,7 +8,8 @@ public class PeriodicBranchesLoggerService : BackgroundService
     private readonly ILogger _logger;
     private readonly PeriodicTimer _timer;
 
-    public PeriodicBranchesLoggerService(IHttpClientFactory httpClientFactory, ILogger<PeriodicBranchesLoggerService> logger)
+    public PeriodicBranchesLoggerService(IHttpClientFactory httpClientFactory,
+                                         ILogger<PeriodicBranchesLoggerService> logger)
     {
         _httpClientFactory = httpClientFactory;
         _logger = logger;
@@ -29,7 +30,8 @@ public class PeriodicBranchesLoggerService : BackgroundService
                 syncTokenSource.CancelAfter(TimeSpan.FromSeconds(30));
                 
                 var httpClient = _httpClientFactory.CreateClient("GitHub");
-                var httpResponseMessage = await httpClient.GetAsync("repos/dotnet/AspNetCore.Docs/branches", stoppingToken);
+                var httpResponseMessage = await httpClient.GetAsync("repos/dotnet/AspNetCore.Docs/branches",
+                                                                    stoppingToken);
 
                 if (httpResponseMessage.IsSuccessStatusCode)
                 {
@@ -37,9 +39,15 @@ public class PeriodicBranchesLoggerService : BackgroundService
                         await httpResponseMessage.Content.ReadAsStreamAsync(stoppingToken);
 
                     // Sync the response with preferred datastore.
-                    var response = await JsonSerializer.DeserializeAsync<IEnumerable<GitHubBranch>>(contentStream, cancellationToken: stoppingToken);
+                    var response = await JsonSerializer.DeserializeAsync<
+                        IEnumerable<GitHubBranch>>(contentStream, cancellationToken: stoppingToken);
 
-                    _logger.LogInformation($"Branch sync successful! Response: {JsonSerializer.Serialize(response)}");
+                    _logger.LogInformation(
+                        $"Branch sync successful! Response: {JsonSerializer.Serialize(response)}");
+                }
+                else
+                {
+                    _logger.LogError(1, $"Branch sync failed! HTTP status code: {httpResponseMessage.StatusCode}");
                 }
             }
             catch (Exception ex)
