@@ -19,7 +19,7 @@ public class UserAgentHeaderHandler : DelegatingHandler
                                     CancellationToken cancellationToken)
     {
         var contextRequest = _httpContextAccessor.HttpContext?.Request;
-        string ? userAgentString = contextRequest?.Headers["user-agent"].ToString();
+        string? userAgentString = contextRequest?.Headers["user-agent"].ToString();
         
         if (string.IsNullOrEmpty(userAgentString))
         {

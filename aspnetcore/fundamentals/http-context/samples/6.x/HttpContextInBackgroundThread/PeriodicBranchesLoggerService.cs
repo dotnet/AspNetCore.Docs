@@ -45,6 +45,10 @@ public class PeriodicBranchesLoggerService : BackgroundService
                     _logger.LogInformation(
                         $"Branch sync successful! Response: {JsonSerializer.Serialize(response)}");
                 }
+                else
+                {
+                    _logger.LogError(1, $"Branch sync failed! HTTP status code: {httpResponseMessage.StatusCode}");
+                }
             }
             catch (Exception ex)
             {

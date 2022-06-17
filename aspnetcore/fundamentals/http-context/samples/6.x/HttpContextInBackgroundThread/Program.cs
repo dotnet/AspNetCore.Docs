@@ -24,7 +24,7 @@ var app = builder.Build();
 app.MapGet("/", () => "Hello World!");
 
 app.MapGet("/branches", async (IHttpClientFactory httpClientFactory,
-                         HttpContext context,Logger<Program> logger) =>
+                         HttpContext context, Logger<Program> logger) =>
 {
     var httpClient = httpClientFactory.CreateClient("GitHub");
     var httpResponseMessage = await httpClient.GetAsync(
@@ -39,8 +39,8 @@ app.MapGet("/branches", async (IHttpClientFactory httpClientFactory,
     var response = await JsonSerializer.DeserializeAsync
         <IEnumerable<GitHubBranch>>(contentStream);
 
-    app.Logger.LogInformation($"/branches request:" +
-                               $"{JsonSerializer.Serialize(response)}");
+    app.Logger.LogInformation($"/branches request: " +
+                              $"{JsonSerializer.Serialize(response)}");
 
     return Results.Ok(response);
 });
