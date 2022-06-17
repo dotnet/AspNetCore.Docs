@@ -14,8 +14,15 @@ This article explains how to download files in Blazor Server and Blazor WebAssem
 
 Files can be downloaded from the app's own static assets or from any other location. When downloading files, Cross-Origin Resource Sharing (CORS) considerations apply. For more information, see the [Cross-Origin Resource Sharing (CORS)](#cross-origin-resource-sharing-cors) section.
 
-> [!WARNING]
-> Always follow security best practices when allowing users to download files. For more information, see the [Security considerations](#security-considerations) section.
+## Security considerations
+
+Use caution when providing users with the ability to download files from a server. Attackers may execute [denial of service (DOS)](/windows-hardware/drivers/ifs/denial-of-service) attacks, [API exploitation attacks](https://developer.mozilla.org/docs/Web/HTML/Element/a#security_and_privacy), or attempt to compromise networks and servers in other ways.
+
+Security steps that reduce the likelihood of a successful attack are:
+
+* Download files from a dedicated file download area on the server, preferably from a non-system drive. Using a dedicated location makes it easier to impose security restrictions on downloadable files. Disable execute permissions on the file download area.
+* Verify that client-side checks are also performed on the server. Client-side checks are easy to circumvent.
+* Don't receive files from users or other untrusted sources and then make the files available for download without performing security checks on the files first. For more information, see <xref:mvc/models/file-uploads#security-considerations>.
 
 ## Download from a stream
 
@@ -106,16 +113,6 @@ For more information on CORS with ASP.NET Core apps and other Microsoft products
 * [Cross-Origin Resource Sharing (CORS) support for Azure Storage (REST documentation)](/rest/api/storageservices/cross-origin-resource-sharing--cors--support-for-the-azure-storage-services)
 * [Core Cloud Services - Set up CORS for your website and storage assets (Learn Module)](/learn/modules/set-up-cors-website-storage/)
 * [IIS CORS module Configuration Reference (IIS documentation)](/iis/extensions/cors-module/cors-module-configuration-reference)
-
-## Security considerations
-
-Use caution when providing users with the ability to download files from a server. Attackers may execute [denial of service (DOS)](/windows-hardware/drivers/ifs/denial-of-service) attacks, [API exploitation attacks](https://developer.mozilla.org/docs/Web/HTML/Element/a#security_and_privacy), or attempt to compromise networks and servers in other ways.
-
-Security steps that reduce the likelihood of a successful attack are:
-
-* Download files from a dedicated file download area on the server, preferably from a non-system drive. Using a dedicated location makes it easier to impose security restrictions on downloadable files. Disable execute permissions on the file download area.
-* Verify that client-side checks are also performed on the server. Client-side checks are easy to circumvent.
-* Don't receive files from users or other untrusted sources and then make the files available for download without performing security checks on the files first. For more information, see <xref:mvc/models/file-uploads#security-considerations>.
 
 ## Additional resources
 
