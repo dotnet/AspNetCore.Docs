@@ -16,7 +16,7 @@ ASP.NET Core apps access `HttpContext` through the <xref:Microsoft.AspNetCore.Ht
 
 ## HttpContext isn't thread safe
 
-This article primarily discusses using `HttpContext` in request and response flow from ASP.NET Core MVC, Razor Pages, controllers, middleware, etc. Consider the following when using `HttpContext` outside the request and response flow:
+This article primarily discusses using `HttpContext` in request and response flow from Razor Pages, controllers, middleware, etc. Consider the following when using `HttpContext` outside the request and response flow:
 
 * The `HttpContext` is **NOT** thread safe, accessing it from multiple threads can result in exceptions, data corruption and generally unpredictable results.
 * The <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> interface should be used with caution. As always, the `HttpContext` must ***not*** be captured outside of the request flow.  `IHttpContextAccessor`:
