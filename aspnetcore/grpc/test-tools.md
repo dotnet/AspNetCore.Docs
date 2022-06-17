@@ -5,7 +5,6 @@ description: Learn how to test services with gRPC tools. gRPCurl a command-line 
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 03/31/2022
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/test-tools
 ---
 # Test gRPC services with gRPCurl in ASP.NET Core

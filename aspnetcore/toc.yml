@@ -505,6 +505,8 @@ items:
                 uid: blazor/host-and-deploy/configure-trimmer
               - name: WebAssembly deployment layout
                 uid: blazor/host-and-deploy/webassembly-deployment-layout
+              - name: Multiple hosted WebAssembly apps
+                uid: blazor/host-and-deploy/multiple-hosted-webassembly
           - name: Blazor Server and EF Core
             uid: blazor/blazor-server-ef-core
           - name: Advanced scenarios
@@ -608,6 +610,8 @@ items:
             uid: mvc/views/view-components
           - name: View compilation
             uid: mvc/views/view-compilation
+          - name: Display and Editor Templates
+            uid: mvc/views/display-templates
           - name: Upload files
             uid: mvc/models/file-uploads
           - name: Web SDK
@@ -663,7 +667,7 @@ items:
   - name: Real-time apps
     displayName: signalr
     items:
-      - name: SignalR overview
+      - name: Overview
         uid: signalr/introduction
       - name: Supported platforms
         uid: signalr/supported-platforms
@@ -771,7 +775,7 @@ items:
             href: https://github.com/aspnet/AspNetCore/blob/main/src/SignalR/docs/specs/TransportProtocols.md
   - name: Remote Procedure Call apps
     items:
-      - name: Introduction to gRPC services
+      - name: Overview
         uid: grpc/index
       - name: Tutorials
         items:
@@ -1243,7 +1247,7 @@ items:
                   - name: Calling an ASP.NET Core 2.0 Web API from a WPF application using Azure AD V2
                     href: /samples/azure-samples/active-directory-dotnet-native-aspnetcore-v2/calling-an-aspnet-core-web-api-from-a-wpf-application-using-azure-ad-v2/
                   - name: Web API with Azure AD B2C
-                    href: https://azure.microsoft.com/resources/samples/active-directory-b2c-dotnetcore-webapi/
+                    href: /samples/azure-samples/active-directory-aspnetcore-webapp-openidconnect-v2/how-to-secure-a-web-api-built-with-aspnet-core-using-the-azure-ad-b2c/
           - name: Secure ASP.NET Core apps with Duende Identity Server
             href: https://docs.duendesoftware.com
           - name: Secure ASP.NET Core apps with IdentityServer4

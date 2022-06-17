@@ -5,7 +5,6 @@ description: Learn how CORS as a standard for allowing or rejecting cross-origin
 ms.author: riande
 ms.custom: mvc
 ms.date: 04/06/2022
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/cors
 ---
 # Enable Cross-Origin Requests (CORS) in ASP.NET Core

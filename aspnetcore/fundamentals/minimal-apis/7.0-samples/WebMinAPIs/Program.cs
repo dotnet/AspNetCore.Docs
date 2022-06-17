@@ -1,4 +1,4 @@
-#define Default // Default CREATE P1 PM PE I1 I0 IP CERT CERT2 CERT3 RE CONFIG LOG #i REB 
+#define SWAG2 // Default CREATE P1 PM PE I1 I0 IP CERT CERT2 CERT3 RE CONFIG LOG #i REB 
 // CONFIGB LOGB IWHB DEP R1 LE LF IM SM NR NR2 RP WILD PBG PBP EPB OP1 OP2 OP3 OP4
 // CB BA CJSON MULTI STREAM XTN AUTH1 AUTH2 AUTH3 AUTH4 CORS CORS2 SWAG SWAG2 
 // FIL2 IHB CHNGR ADDMID
@@ -767,6 +767,8 @@ app.Run();
 #elif SWAG
 // GET /swagger
 #region snippet_swag
+using Microsoft.AspNetCore.OpenApi;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
@@ -785,14 +787,19 @@ if (app.Environment.IsDevelopment())
                                     $"{builder.Environment.ApplicationName} v1"));
 }
 
-app.MapGet("/swag", () => "Hello Swagger!");
+app.MapGet("/swag", () => "Hello Swagger!")
+                                          .WithName("GetSwagger")
+                                          .WithOpenApi();
 
 app.Run();
 #endregion
 
 #elif SWAG2
 #region snippet_swag2
+using Microsoft.AspNetCore.OpenApi;
+
 var builder = WebApplication.CreateBuilder(args);
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -804,7 +811,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MapGet("/swag", () => "Hello Swagger!");
+app.UseHttpsRedirection();
+
+app.MapGet("/swag", () => "Hello Swagger!")
+    .WithOpenApi();
 app.MapGet("/skipme", () => "Skipping Swagger.")
                     .ExcludeFromDescription();
 

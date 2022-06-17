@@ -4,7 +4,6 @@ author: rick-anderson
 description: This tutorial demonstrates how to install and use the .NET Core CLI's file watcher (dotnet watch) tool in an ASP.NET Core app.
 ms.author: riande
 ms.date: 05/31/2018
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/dotnet-watch
 ---
 # Develop ASP.NET Core apps using a file watcher

@@ -5,7 +5,6 @@ description: Learn about several notable tools and approaches for load testing a
 ms.author: riande
 ms.custom: mvc
 ms.date: 4/05/2019
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: test/loadtests
 ---
 # ASP.NET Core load/stress testing

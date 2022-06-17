@@ -6,7 +6,6 @@ ms.author: riande
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 1/6/2022
 ms.custom: contperf-fy21q2
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Index, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/razor-pages/razor-pages-start
 ---
 
@@ -175,7 +174,7 @@ Supporting files have names that begin with an underscore. For example, the `_La
 
 Contains static assets, like HTML files, JavaScript files, and CSS files. For more information, see <xref:fundamentals/static-files>.
 
-### appsettings.json
+### `appsettings.json`
 
 Contains configuration data, like connection strings. For more information, see <xref:fundamentals/configuration/index>.
 
@@ -344,7 +343,7 @@ Supporting files have names that begin with an underscore. For example, the `_La
 
 Contains static assets, like HTML files, JavaScript files, and CSS files. For more information, see <xref:fundamentals/static-files>.
 
-### appsettings.json
+### `appsettings.json`
 
 Contains configuration data, like connection strings. For more information, see <xref:fundamentals/configuration/index>.
 
@@ -490,7 +489,7 @@ Supporting files have names that begin with an underscore. For example, the `_La
 
 Contains static files, like HTML files, JavaScript files, and CSS files. For more information, see <xref:fundamentals/static-files>.
 
-### appSettings.json
+### `appSettings.json`
 
 Contains configuration data, like connection strings. For more information, see <xref:fundamentals/configuration/index>.
 

@@ -1,0 +1,34 @@
+@page
+@model WebViewInject.Pages.RPprofileModel
+
+@using System.Threading.Tasks
+@using ViewInjectSample.Model.Services
+
+@inject ProfileOptionsService Options
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update RP Profile</title>
+</head>
+<body>
+<div>
+    <h1>Update Profile</h1>
+
+ Name: @Html.TextBoxFor(m => m.MyProfile!.Name)
+    <br/>
+    Gender: @Html.DropDownList("Gender",
+           Options.ListGenders().Select(g => 
+                new SelectListItem() { Text = @Model.MyProfile!.Gender , Value = g }))
+    <br/>
+
+    State: @Html.DropDownListFor(m => m.MyProfile!.State!.Code,
+           Options.ListStates().Select(s => 
+                new SelectListItem() { Text = s.Name, Value = s.Code}))
+    <br />
+
+    Fav. Color: @Html.DropDownList("FavColor",
+           Options.ListColors().Select(c => 
+                new SelectListItem() { Text = c, Value = c }))
+    </div>
+</body>
+</html>

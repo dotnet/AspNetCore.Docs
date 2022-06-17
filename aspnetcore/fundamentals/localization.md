@@ -3,8 +3,8 @@ title: Globalization and localization in ASP.NET Core
 author: rick-anderson
 description: Learn how ASP.NET Core provides services and middleware for localizing content into different languages and cultures.
 ms.author: riande
+monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/30/2019
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/localization
 ---
 # Globalization and localization in ASP.NET Core

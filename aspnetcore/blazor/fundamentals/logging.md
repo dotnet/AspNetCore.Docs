@@ -5,8 +5,7 @@ description: Learn about logging in Blazor apps, including configuration and how
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/22/2022
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+ms.date: 05/31/2022
 uid: blazor/fundamentals/logging
 ---
 # ASP.NET Core Blazor logging
@@ -45,13 +44,13 @@ The following example:
 
 `Pages/Counter.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/logging/Counter1.razor?highlight=2,15)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/logging/Counter1.razor" highlight="2,15":::
 
 The following example demonstrates logging with an <xref:Microsoft.Extensions.Logging.ILoggerFactory> in components.
 
 `Pages/Counter.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/logging/Counter2.razor?highlight=2,15-16)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/logging/Counter2.razor" highlight="2,15-16":::
 
 ## Logging in Blazor Server apps
 
@@ -195,7 +194,7 @@ var logger4 = LoggerFactory.CreateLogger("CustomCategory2");
 logger4.LogWarning("Someone has clicked me!");
 ```
 
-In the developer tools console output, the filter only permits logging for the `CustomCategory2` category and <xref:Microsoft.Extensions.Logging.LogLevel.Warning> log level message:
+In the developer tools console output, the filter only permits logging for the `CustomCategory2` category and <xref:Microsoft.Extensions.Logging.LogLevel.Information> log level message:
 
 > :::no-loc text="info: CustomCategory2[0]":::  
 > :::no-loc text="Someone has clicked me!":::
@@ -462,7 +461,43 @@ Run the app again. Select the the **`Log Messages`** button. Notice that the log
 
 ### Log scopes
 
-The Blazor WebAssembly developer tools console logger doesn't support [log scopes](xref:fundamentals/logging/index#log-scopes). However, you can build a [custom logger](#custom-logger-provider) to support log scopes in an app.
+The Blazor WebAssembly developer tools console logger doesn't support [log scopes](xref:fundamentals/logging/index#log-scopes). However, a [custom logger](#custom-logger-provider) can support log scopes. For an unsupported example that you can further develop to suit your needs, see the prototype in the `dotnet/blazor-samples` GitHub repository:
+
+[`BlazorWebAssemblyScopesLogger` sample app](https://github.com/dotnet/blazor-samples/tree/main/6.0/BlazorWebAssemblyScopesLogger)
+
+The sample app uses standard ASP.NET Core `BeginScope` logging syntax to indicate scopes for logged messages. The `Logger` service in the following example is an `ILogger<Index>`, which is injected into the app's `Index` component (`Pages/Index.razor`).
+
+```csharp
+using (Logger.BeginScope("L1"))
+{
+    Logger.LogInformation(3, "INFO: ONE scope.");
+}
+
+using (Logger.BeginScope("L1"))
+{
+    using (Logger.BeginScope("L2"))
+    {
+        Logger.LogInformation(3, "INFO: TWO scopes.");
+    }
+}
+
+using (Logger.BeginScope("L1"))
+{
+    using (Logger.BeginScope("L2"))
+    {
+        using (Logger.BeginScope("L3"))
+        {
+            Logger.LogInformation(3, "INFO: THREE scopes.");
+        }
+    }
+}
+```
+
+Output:
+
+> :::no-loc text="[ 3: Information ] ScopesLogger.Pages.Index - INFO: ONE scope. => L1 blazor.webassembly.js:1:35542":::  
+> :::no-loc text="[ 3: Information ] ScopesLogger.Pages.Index - INFO: TWO scopes. => L1 => L2 blazor.webassembly.js:1:35542":::  
+> :::no-loc text="[ 3: Information ] ScopesLogger.Pages.Index - INFO: THREE scopes. => L1 => L2 => L3":::
 
 ## Hosted Blazor WebAssembly logging
 

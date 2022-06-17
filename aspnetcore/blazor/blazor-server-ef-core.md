@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: jeliknes
 ms.custom: mvc
 ms.date: 11/09/2021
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/blazor-server-ef-core
 ---
 # ASP.NET Core Blazor Server with Entity Framework Core (EF Core)
@@ -24,16 +23,16 @@ Blazor Server is a stateful app framework. The app maintains an ongoing connecti
 
 The sample app was built as a reference for Blazor Server apps that use EF Core. The sample app includes a grid with sorting and filtering, delete, add, and update operations. The sample demonstrates use of EF Core to handle optimistic concurrency.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/blazor/samples/) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](xref:index#how-to-download-a-sample))
 
 The sample uses a local [SQLite](https://www.sqlite.org/index.html) database so that it can be used on any platform. The sample also configures database logging to show the SQL queries that are generated. This is configured in `appsettings.Development.json`:
 
-[!code-json[](~/blazor/samples/6.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/appsettings.Development.json?highlight=8)]
+:::code language="json" source="~/../blazor-samples/6.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/appsettings.Development.json" highlight="8":::
 
 The grid, add, and view components use the "context-per-operation" pattern, where a context is created for each operation. The edit component uses the "context-per-component" pattern, where a context is created for each component.
 
 > [!NOTE]
-> Some of the code examples in this topic require namespaces and services that aren't shown. To inspect the fully working code, including the required [`@using`](xref:mvc/views/razor#using) and [`@inject`](xref:mvc/views/razor#inject) directives for Razor examples, see the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/blazor/samples/).
+> Some of the code examples in this topic require namespaces and services that aren't shown. To inspect the fully working code, including the required [`@using`](xref:mvc/views/razor#using) and [`@inject`](xref:mvc/views/razor#inject) directives for Razor examples, see the [sample app](https://github.com/dotnet/blazor-samples).
 
 ## Database access
 
@@ -85,14 +84,14 @@ The recommended solution to create a new <xref:Microsoft.EntityFrameworkCore.DbC
 
 The following example configures [SQLite](https://www.sqlite.org/index.html) and enables data logging. The code uses an extension method (`AddDbContextFactory`) to configure the database factory for DI and provide default options:
 
-[!code-csharp[](~/blazor/samples/6.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Program.cs?name=snippet1)]
+:::code language="csharp" source="~/../blazor-samples/6.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Program.cs" id="snippet1":::
 
 The factory is injected into components and used to create new instances. For example, in `Pages/Index.razor`:
 
-[!code-csharp[](~/blazor/samples/6.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor?name=snippet1)]
+:::code language="csharp" source="~/../blazor-samples/6.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor" id="snippet1":::
 
 > [!NOTE]
-> `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/blazor/samples/6.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor).
+> `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/blazor-samples/blob/main/6.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor).
 
 New <xref:Microsoft.EntityFrameworkCore.DbContext> instances can be created with a factory that allows you to configure the connection string per `DbContext`, such as when you use [ASP.NET Core's Identity model](xref:security/authentication/customize_identity_model). For more information, see [Multi-tenancy (EF Core documentation)](/ef/core/miscellaneous/multitenancy).
 
@@ -108,11 +107,11 @@ You can use the factory to create a context and track it for the lifetime of the
 
 The sample app ensures the context is disposed when the component is disposed:
 
-[!code-csharp[](~/blazor/samples/6.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/EditContact.razor?name=snippet1)]
+:::code language="csharp" source="~/../blazor-samples/6.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/EditContact.razor" id="snippet1":::
 
 Finally, [`OnInitializedAsync`](xref:blazor/components/lifecycle) is overridden to create a new context. In the sample app, [`OnInitializedAsync`](xref:blazor/components/lifecycle) loads the contact in the same method:
 
-[!code-csharp[](~/blazor/samples/6.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/EditContact.razor?name=snippet2)]
+:::code language="csharp" source="~/../blazor-samples/6.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/EditContact.razor" id="snippet2":::
 
 ### Enable sensitive data logging
 

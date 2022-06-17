@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/13/2022
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/environments
 ---
 # Use multiple environments in ASP.NET Core
@@ -59,20 +58,21 @@ cd EnvironmentsSample
 dotnet run --verbosity normal
 ```
 
-When the app runs, it displays output similar to the following example:
+When the app runs, it displays output similar to the following:
 
-```bash
-info: Microsoft.Hosting.Lifetime[14]
-      Now listening on: https://localhost:7152
-info: Microsoft.Hosting.Lifetime[14]
-      Now listening on: http://localhost:5105
-info: Microsoft.Hosting.Lifetime[0]
-      Application started. Press Ctrl+C to shut down.
-info: Microsoft.Hosting.Lifetime[0]
-      Hosting environment: Development
-info: Microsoft.Hosting.Lifetime[0]
-      Content root path: C:\Path\To\EnvironmentsSample
+:::code language="bash" source="environments/samples/6.x/dnr-verbose.txt" highlight="8,10":::
+
+### Set environment on the command line
+
+Use the `--environment` flag to set the environment. For example:
+
+```dotnetcli
+dotnet run --environment Production
 ```
+
+The preceding command sets the environment to `Production` and displays output similar to the following in the command window:
+
+:::code language="bash" source="environments/samples/6.x/dnr-prod.txt" highlight="8":::
 
 <a name="lsj"></a>
 

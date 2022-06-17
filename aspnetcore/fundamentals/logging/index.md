@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/10/2022
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/logging/index
 ---
 
@@ -125,6 +124,20 @@ In the preceding sample:
   * `AzureAppServicesFile`
   * `AzureAppServicesBlob`
   * `ApplicationInsights`
+
+## Log in `Program.cs`
+
+The following example calls [Builder.WebApplication.Logger](xref:Microsoft.AspNetCore.Builder.WebApplication.Logger) in `Program.cs` and logs informational messages:
+
+[!code-csharp[](index/samples/6.x/WebLog/Program.cs?name=snippet3)]
+
+The following example calls <xref:Microsoft.Extensions.Logging.ConsoleLoggerExtensions.AddConsole%2A> in `Program.cs` and logs the `/Test` endpoint:
+
+[!code-csharp[](index/samples/6.x/WebLog/Program.cs?name=snippet1)]
+
+The following example calls <xref:Microsoft.Extensions.Logging.ConsoleLoggerExtensions.AddSimpleConsole%2A> in `Program.cs`, disables color output, and logs the `/Test` endpoint:
+
+[!code-csharp[](index/samples/6.x/WebLog/Program.cs?name=snippet2)]
 
 ## Set log level by command line, environment variables, and other configuration
 

@@ -5,7 +5,6 @@ description: Learn about source code analysis in ASP.NET Core
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.date: 12/17/2021
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: diagnostics/code-analysis
 ---
 # Code analysis in ASP.NET Core apps

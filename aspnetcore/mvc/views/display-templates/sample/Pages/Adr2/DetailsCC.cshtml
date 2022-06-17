@@ -1,0 +1,18 @@
+@page
+@model WebAddress.Pages.Adr2.DetailsCCModel
+
+@{
+    ViewData["Title"] = "Details Short";
+}
+
+<h1>Details Short</h1>
+
+<div>
+    <h4>Address Short</h4>
+    <hr />
+    <dl class="row">
+        <dd class="col-sm-10">
+           @Html.DisplayFor(model => model.Address,"AddressShort")
+        </dd>
+    </dl>
+</div>

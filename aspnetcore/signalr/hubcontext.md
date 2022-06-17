@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/12/2019
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, IHubContext]
 uid: signalr/hubcontext
 ---
 # Send messages from outside a hub
@@ -18,24 +17,24 @@ The SignalR hub is the core abstraction for sending messages to clients connecte
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/hubcontext/sample/) [(how to download)](xref:index#how-to-download-a-sample)
 
-## Get an instance of IHubContext
+## Get an instance of `IHubContext`
 
 In ASP.NET Core SignalR, you can access an instance of `IHubContext` via dependency injection. You can inject an instance of `IHubContext` into a controller, middleware, or other DI service. Use the instance to send messages to clients.
 
 > [!NOTE]
 > This differs from ASP.NET 4.x SignalR which used GlobalHost to provide access to the `IHubContext`. ASP.NET Core has a dependency injection framework that removes the need for this global singleton.
 
-### Inject an instance of IHubContext in a controller
+### Inject an instance of `IHubContext` in a controller
 
 You can inject an instance of `IHubContext` into a controller by adding it to your constructor:
 
-[!code-csharp[IHubContext](hubcontext/sample/Controllers/HomeController.cs?range=12-19,57)]
+[!code-csharp[](hubcontext/sample/Controllers/HomeController.cs?range=12-19,57)]
 
 With access to an instance of `IHubContext`, call client methods as if you were in the hub itself:
 
-[!code-csharp[IHubContext](hubcontext/sample/Controllers/HomeController.cs?range=21-25)]
+[!code-csharp[](hubcontext/sample/Controllers/HomeController.cs?range=21-25)]
 
-### Get an instance of IHubContext in middleware
+### Get an instance of `IHubContext` in middleware
 
 Access the `IHubContext` within the middleware pipeline like so:
 
@@ -56,7 +55,7 @@ app.Use(async (context, next) =>
 > [!NOTE]
 > When client methods are called from outside of the `Hub` class, there's no caller associated with the invocation. Therefore, there's no access to the `ConnectionId`, `Caller`, and `Others` properties.
 
-### Get an instance of IHubContext from IHost
+### Get an instance of `IHubContext` from IHost
 
 Accessing an `IHubContext` from the web host is useful for
 integrating with areas outside of ASP.NET Core, for example, using third-party dependency injection frameworks:
@@ -104,7 +103,7 @@ See [Strongly typed hubs](xref:signalr/hubs#strongly-typed-hubs) for more inform
 
 :::moniker range=">= aspnetcore-6.0"
 
-### Use IHubContext in generic code
+### Use `IHubContext` in generic code
 
 An injected `IHubContext<THub>` instance can be cast to `IHubContext` without a generic `Hub` type specified.
 

@@ -5,8 +5,7 @@ description: Find information on Razor components provided by the Blazor framewo
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/09/2021
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+ms.date: 06/09/2022
 uid: blazor/components/built-in-components
 ---
 # ASP.NET Core built-in Razor components
@@ -41,6 +40,7 @@ The following built-in Razor components are provided by the Blazor framework:
 * [`NavMenu`](xref:blazor/fundamentals/routing#navlink-and-navmenu-components)
 * [`PageTitle`](xref:blazor/components/control-head-content)
 * [`Router`](xref:blazor/fundamentals/routing#route-templates)
+* [`RouteView`](xref:blazor/fundamentals/routing#route-templates)
 * [`Virtualize`](xref:blazor/components/virtualization)
 
 :::moniker-end
@@ -67,6 +67,7 @@ The following built-in Razor components are provided by ASP.NET Core:
 * [`NavLink`](xref:blazor/fundamentals/routing#navlink-and-navmenu-components)
 * [`NavMenu`](xref:blazor/fundamentals/routing#navlink-and-navmenu-components)
 * [`Router`](xref:blazor/fundamentals/routing#route-templates)
+* [`RouteView`](xref:blazor/fundamentals/routing#route-templates)
 * [`Virtualize`](xref:blazor/components/virtualization)
 
 :::moniker-end
@@ -92,5 +93,6 @@ The following built-in Razor components are provided by the Blazor framework:
 * [`NavLink`](xref:blazor/fundamentals/routing#navlink-and-navmenu-components)
 * [`NavMenu`](xref:blazor/fundamentals/routing#navlink-and-navmenu-components)
 * [`Router`](xref:blazor/fundamentals/routing#route-templates)
+* [`RouteView`](xref:blazor/fundamentals/routing#route-templates)
 
 :::moniker-end

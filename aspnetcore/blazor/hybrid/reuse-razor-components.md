@@ -5,15 +5,14 @@ description: Learn how to author and organize Razor components for the web and a
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: "mvc"
-ms.date: 05/23/2022
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+ms.date: 06/09/2022
 uid: blazor/hybrid/reuse-razor-components
 ---
 # Reuse Razor components in ASP.NET Core Blazor Hybrid
 
 This article explains how to author and organize Razor components for the web and and :::no-loc text="Web Views"::: in Blazor Hybrid apps.
 
-Razor components work across hosting models (Blazor WebAssembly, Blazor Server, and in the :::no-loc text="Web View"::: of Blazor Hybrid) and across platforms (Android, iOS, and Windows). Hosting models and platforms have unique capabilities that components can leverage, but components executing across hosting models and platforms must leverage unique capabilities separately, which the following examples demonstrate:
+Razor components work across hosting models (Blazor WebAssembly, Blazor Server, and in the Web View of Blazor Hybrid) and across platforms (Android, iOS, and Windows). Hosting models and platforms have unique capabilities that components can leverage, but components executing across hosting models and platforms must leverage unique capabilities separately, which the following examples demonstrate:
 
 * Blazor WebAssembly supports synchronous JavaScript (JS) interop, which isn't supported by the strictly asynchronous JS interop communication channel in Blazor Server and :::no-loc text="Web Views"::: of Blazor Hybrid apps.
 * Components in a Blazor Server app can access services that are only available on the server, such as an Entity Framework database context.
@@ -25,9 +24,9 @@ In order to author Razor components that can seamlessly work across hosting mode
 
 * Place shared UI code in Razor class libraries (RCLs), which are containers designed to maintain reusable pieces of UI for use across different hosting models and platforms.
 * Implementations of unique features shouldn't exist in RCLs. Instead, the RCL should define abstractions (interfaces and base classes) that hosting models and platforms implement.
-* Only opt-in to unique features by hosting model or platform. For example, Blazor WebAssembly supports the use of <xref:Microsoft.JSInterop.IJSInProcessRuntime> in a component as an optimization, but only use it with a conditional cast and fallback implementation that relies on the universal <xref:Microsoft.JSInterop.IJSRuntime> abstraction that all hosting models and platforms support. For more information on <xref:Microsoft.JSInterop.IJSInProcessRuntime>, see <xref:blazor/performance#consider-the-use-of-synchronous-calls>.
+* Only opt-in to unique features by hosting model or platform. For example, Blazor WebAssembly supports the use of <xref:Microsoft.JSInterop.IJSInProcessRuntime> and <xref:Microsoft.JSInterop.IJSInProcessObjectReference> in a component as an optimization, but only use them with conditional casts and fallback implementations that rely on the universal <xref:Microsoft.JSInterop.IJSRuntime> and <xref:Microsoft.JSInterop.IJSObjectReference> abstractions that all hosting models and platforms support. For more information on <xref:Microsoft.JSInterop.IJSInProcessRuntime>, see <xref:blazor/js-interop/call-javascript-from-dotnet#synchronous-js-interop-in-blazor-webassembly-apps>. For more information on <xref:Microsoft.JSInterop.IJSInProcessObjectReference>, see <xref:blazor/js-interop/call-dotnet-from-javascript#synchronous-js-interop-in-blazor-webassembly-apps>.
 * As a general rule, use CSS for HTML styling in components. The most common case is for consistency in the look and feel of an app. In places where UI styles must differ across hosting models or platforms, use CSS to style the differences.
-* If some part of the UI requires additional or different content for a target hosting model or platform, the content can be encapsulated inside a component and rendered inside the RCL using [`DynamicComponent`](xref:blazor/components/dynamiccomponent). Additional UI can also be provided to components via <xref:Microsoft.AspNetCore.Components.RenderFragment> instances. For more information on <xref:Microsoft.AspNetCore.Components.RenderFragment>, see <xref:blazor/performance#define-reusable-renderfragments-in-code>.
+* If some part of the UI requires additional or different content for a target hosting model or platform, the content can be encapsulated inside a component and rendered inside the RCL using [`DynamicComponent`](xref:blazor/components/dynamiccomponent). Additional UI can also be provided to components via <xref:Microsoft.AspNetCore.Components.RenderFragment> instances. For more information on <xref:Microsoft.AspNetCore.Components.RenderFragment>, see [Child content render fragments](xref:blazor/components/index#child-content-render-fragments) and [Render fragments for reusable rendering logic](xref:blazor/components/index#render-fragments-for-reusable-rendering-logic).
 
 ## Project code organization
 

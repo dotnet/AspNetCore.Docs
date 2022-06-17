@@ -1,6 +1,3 @@
----
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
----
 Isolate CSS styles to individual pages, views, and components to reduce or avoid:
 
 * Dependencies on global styles that can be challenging to maintain.
@@ -21,7 +18,7 @@ CSS isolation occurs at build time. The framework rewrites CSS selectors to matc
 In the `<head>` content of the app's `Pages/Shared/_Layout.cshtml` (Razor Pages) or `Views/Shared/_Layout.cshtml` (MVC), add or confirm the presence of the link to the bundled CSS styles:
 
 ```html
-<link rel="stylesheet" href="{APP ASSEMBLY}.styles.css" />
+<link rel="stylesheet" href="~/{APP ASSEMBLY}.styles.css" />
 ```
 
 In the following example, the app's assembly name is `WebApp`:

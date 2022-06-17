@@ -5,7 +5,6 @@ description: Learn how to create Protobuf messages for .NET apps.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 02/12/2021
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/protobuf
 ---
 # Create Protobuf messages for .NET apps
@@ -218,9 +217,6 @@ namespace CustomTypes
             Nanos = nanos;
         }
 
-        public long Units { get; }
-        public int Nanos { get; }
-
         public static implicit operator decimal(CustomTypes.DecimalValue grpcDecimal)
         {
             return grpcDecimal.Units + grpcDecimal.Nanos / NanoFactor;
@@ -235,6 +231,11 @@ namespace CustomTypes
     }
 }
 ```
+
+The preceding code:
+
+* Adds a partial class for `DecimalValue`. The partial class is combined with `DecimalValue` generated from the `.proto` file. The generated class declares the `Units` and `Nanos` properties.
+* Has implicit operators for converting between `DecimalValue` and the BCL `decimal` type.
 
 ## Collections
 

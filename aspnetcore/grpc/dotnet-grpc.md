@@ -5,7 +5,6 @@ description: Learn about adding, updating, removing, and listing Protobuf refere
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 10/17/2019
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/dotnet-grpc
 ---
 # Manage Protobuf references with dotnet-grpc

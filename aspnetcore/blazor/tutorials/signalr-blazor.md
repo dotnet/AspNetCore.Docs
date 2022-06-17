@@ -5,8 +5,7 @@ description: Create a chat app that uses ASP.NET Core SignalR with Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/09/2021
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+ms.date: 06/10/2022
 uid: blazor/tutorials/signalr-blazor
 zone_pivot_groups: blazor-hosting-models
 ---
@@ -191,7 +190,7 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 In the `BlazorWebAssemblySignalRApp.Server` project, create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/ChatHub.cs`):
 
-[!code-csharp[](signalr-blazor/samples/6.0/BlazorWebAssemblySignalRApp/Server/Hubs/ChatHub.cs)]
+:::code language="csharp" source="~/../blazor-samples/6.0/BlazorWebAssemblySignalRApp/Server/Hubs/ChatHub.cs":::
 
 ## Add services and an endpoint for the SignalR hub
 
@@ -205,14 +204,21 @@ In the `BlazorWebAssemblySignalRApp.Server` project, create a `Hubs` (plural) fo
 
 1. Add SignalR and Response Compression Middleware services to `Program.cs`:
 
-   [!code-csharp[](signalr-blazor/samples/6.0/BlazorWebAssemblySignalRApp/Server/Program.cs?name=snippet_ConfigureServices)]
+   ```csharp
+   builder.Services.AddSignalR();
+   builder.Services.AddResponseCompression(opts =>
+   {
+       opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
+           new[] { "application/octet-stream" });
+   });
+   ```
 
 1. In `Program.cs`:
 
    * Use Response Compression Middleware at the top of the processing pipeline's configuration.
    * Between the endpoints for controllers and the client-side fallback, add an endpoint for the hub.
 
-   [!code-csharp[](signalr-blazor/samples/6.0/BlazorWebAssemblySignalRApp/Server/Program.cs?name=snippet_Configure)]
+   :::code language="csharp" source="~/../blazor-samples/6.0/BlazorWebAssemblySignalRApp/Server/Program.cs" id="snippet_Configure" highlight="1,21":::
 
 ## Add Razor component code for chat
 
@@ -220,7 +226,7 @@ In the `BlazorWebAssemblySignalRApp.Server` project, create a `Hubs` (plural) fo
 
 1. Replace the markup with the following code:
 
-   [!code-razor[](signalr-blazor/samples/6.0/BlazorWebAssemblySignalRApp/Client/Pages/Index.razor)]
+   :::code language="razor" source="~/../blazor-samples/6.0/BlazorWebAssemblySignalRApp/Client/Pages/Index.razor":::
 
 ## Run the app
 
@@ -414,7 +420,7 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/ChatHub.cs`):
 
-[!code-csharp[](signalr-blazor/samples/6.0/BlazorServerSignalRApp/Hubs/ChatHub.cs)]
+:::code language="csharp" source="~/../blazor-samples/6.0/BlazorServerSignalRApp/Hubs/ChatHub.cs":::
 
 ## Add services and an endpoint for the SignalR hub
 
@@ -429,7 +435,7 @@ Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/Cha
 
 1. Add Response Compression Middleware services to `Program.cs`:
 
-   [!code-csharp[](signalr-blazor/samples/6.0/BlazorServerSignalRApp/Program.cs?name=snippet_ConfigureServices)]
+   :::code language="csharp" source="~/../blazor-samples/6.0/BlazorServerSignalRApp/Program.cs" id="snippet_ConfigureServices":::
 
 1. In `Program.cs`:
 
@@ -440,7 +446,7 @@ Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/Cha
      app.MapHub<ChatHub>("/chathub");
      ```
 
-   [!code-csharp[](signalr-blazor/samples/6.0/BlazorServerSignalRApp/Program.cs?name=snippet_Configure)]
+   :::code language="csharp" source="~/../blazor-samples/6.0/BlazorServerSignalRApp/Program.cs" id="snippet_Configure":::
 
 ## Add Razor component code for chat
 
@@ -448,7 +454,7 @@ Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/Cha
 
 1. Replace the markup with the following code:
 
-   [!code-razor[](signalr-blazor/samples/6.0/BlazorServerSignalRApp/Pages/Index.razor)]
+   :::code language="razor" source="~/../blazor-samples/6.0/BlazorServerSignalRApp/Pages/Index.razor":::
 
 ## Run the app
 
@@ -718,7 +724,14 @@ In the `BlazorWebAssemblySignalRApp.Server` project, create a `Hubs` (plural) fo
 
 1. Add SignalR and Response Compression Middleware services to `Startup.ConfigureServices`:
 
-   [!code-csharp[](signalr-blazor/samples/5.0/BlazorWebAssemblySignalRApp/Server/Startup.cs?name=snippet_ConfigureServices&highlight=3,6-10)]
+   ```csharp
+   services.AddSignalR();
+   services.AddResponseCompression(opts =>
+   {
+       opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
+           new[] { "application/octet-stream" });
+   });
+   ```
 
 1. In `Startup.Configure`:
 
@@ -1227,7 +1240,14 @@ In the `BlazorWebAssemblySignalRApp.Server` project, create a `Hubs` (plural) fo
 
 1. Add SignalR and Response Compression Middleware services to `Startup.ConfigureServices`:
 
-   [!code-csharp[](signalr-blazor/samples/3.1/BlazorWebAssemblySignalRApp/Server/Startup.cs?name=snippet_ConfigureServices&highlight=3,5-9)]
+   ```csharp
+   services.AddSignalR();
+   services.AddResponseCompression(opts =>
+   {
+       opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
+           new[] { "application/octet-stream" });
+   });
+   ```
 
 1. In `Startup.Configure`:
 

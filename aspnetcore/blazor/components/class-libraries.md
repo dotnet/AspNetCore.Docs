@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/class-libraries
 ---
 # Consume ASP.NET Core Razor components from a Razor class library (RCL)
@@ -812,8 +811,8 @@ To provide `Component1`'s `my-component` CSS class, link to the library's styles
 
 `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server):
 
-```diff
-+ <link href="_content/ComponentLibrary/styles.css" rel="stylesheet" />
+```html
+<link href="_content/ComponentLibrary/styles.css" rel="stylesheet" />
 ```
 
 ## Create an RCL with static assets

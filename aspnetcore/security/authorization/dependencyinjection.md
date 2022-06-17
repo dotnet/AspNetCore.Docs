@@ -5,7 +5,6 @@ description: Learn how to inject authorization requirement handlers into an ASP.
 monikerRange: ">= aspnetcore-2.1"
 ms.author: riande
 ms.date: 03/25/2022
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authorization/dependencyinjection
 ---
 # Dependency injection in requirement handlers in ASP.NET Core

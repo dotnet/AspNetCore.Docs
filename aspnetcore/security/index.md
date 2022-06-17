@@ -5,7 +5,6 @@ description: Provides links to articles on authentication, authorization, and se
 ms.author: riande
 ms.custom: mvc
 ms.date: 3/9/2022
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/index
 ---
 # ASP.NET Core security topics

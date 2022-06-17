@@ -5,8 +5,7 @@ description: Tips for increasing performance in ASP.NET Core Blazor apps and avo
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/09/2021
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+ms.date: 06/09/2022
 uid: blazor/performance
 ---
 # ASP.NET Core Blazor performance best practices
@@ -552,7 +551,7 @@ Blazor's recreation of [lambda expression delegates](xref:blazor/components/even
 
 The following component shown in the [event handling article](xref:blazor/components/event-handling#lambda-expressions) renders a set of buttons. Each button assigns a delegate to its `@onclick` event, which is fine if there aren't many buttons to render:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample5.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample5.razor":::
 
 If a large number of buttons are rendered using the preceding approach, rendering speed is adversely impacted leading to a poor user experience. To render a large number of buttons with a callback for click events, the following example uses a collection of button objects that assign each button's `@onclick` delegate to an <xref:System.Action>. The following approach doesn't require Blazor to rebuild all of the button delegates each time the buttons are rendered:
 
@@ -654,38 +653,13 @@ For Blazor WebAssembly apps, rolling individual JS interop calls into a single c
 
 ### Consider the use of synchronous calls
 
-*This section only applies to Blazor WebAssembly apps.*
+#### Call JavaScript from .NET
 
-JS interop calls are asynchronous by default, regardless of whether the called code is synchronous or asynchronous. Calls are asynchronous by default to ensure that components are compatible across both Blazor hosting models, Blazor Server and Blazor WebAssembly. On Blazor Server, all JS interop calls must be asynchronous because they're sent over a network connection.
+[!INCLUDE[](~/blazor/includes/js-interop/synchronous-js-interop-call-js.md)]
 
-If you know for certain that your app only ever runs on Blazor WebAssembly, you can choose to make synchronous JS interop calls. This has slightly less overhead than making asynchronous calls and can result in fewer render cycles because there's no intermediate state while awaiting results.
+#### Call .NET from JavaScript
 
-To make a synchronous call from .NET to JavaScript in a Blazor WebAssembly app, cast <xref:Microsoft.JSInterop.IJSRuntime> to <xref:Microsoft.JSInterop.IJSInProcessRuntime> to make the JS interop call:
-
-```razor
-@inject IJSRuntime JS
-
-...
-
-@code {
-    protected override void HandleSomeEvent()
-    {
-        var jsInProcess = (IJSInProcessRuntime)JS;
-        var value = jsInProcess.Invoke<string>("javascriptFunctionIdentifier");
-    }
-}
-```
-
-When working with <xref:Microsoft.JSInterop.IJSObjectReference>, you can make a synchronous call by casting to <xref:Microsoft.JSInterop.IJSInProcessObjectReference>.
-
-To make a synchronous call from JavaScript to .NET, use `DotNet.invokeMethod` instead of `DotNet.invokeMethodAsync`.
-
-Synchronous calls work if:
-
-* The app is running on Blazor WebAssembly, not Blazor Server.
-* The called function returns a value synchronously. The function isn't an `async` method and doesn't return a .NET <xref:System.Threading.Tasks.Task> or JavaScript [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise).
-
-For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet>.
+[!INCLUDE[](~/blazor/includes/js-interop/synchronous-js-interop-call-dotnet.md)]
 
 ### Consider the use of unmarshalled calls
 
@@ -1409,38 +1383,13 @@ For Blazor WebAssembly apps, rolling individual JS interop calls into a single c
 
 ### Consider the use of synchronous calls
 
-*This section only applies to Blazor WebAssembly apps.*
+#### Call JavaScript from .NET
 
-JS interop calls are asynchronous by default, regardless of whether the called code is synchronous or asynchronous. Calls are asynchronous by default to ensure that components are compatible across both Blazor hosting models, Blazor Server and Blazor WebAssembly. On Blazor Server, all JS interop calls must be asynchronous because they're sent over a network connection.
+[!INCLUDE[](~/blazor/includes/js-interop/synchronous-js-interop-call-js.md)]
 
-If you know for certain that your app only ever runs on Blazor WebAssembly, you can choose to make synchronous JS interop calls. This has slightly less overhead than making asynchronous calls and can result in fewer render cycles because there is no intermediate state while awaiting results.
+#### Call .NET from JavaScript
 
-To make a synchronous call from .NET to JavaScript, cast <xref:Microsoft.JSInterop.IJSRuntime> to <xref:Microsoft.JSInterop.IJSInProcessRuntime>:
-
-```razor
-@inject IJSRuntime JS
-
-...
-
-@code {
-    protected override void HandleSomeEvent()
-    {
-        var jsInProcess = (IJSInProcessRuntime)JS;
-        var value = jsInProcess.Invoke<string>("javascriptFunctionIdentifier");
-    }
-}
-```
-
-When working with <xref:Microsoft.JSInterop.IJSObjectReference>, you can make a synchronous call by casting to <xref:Microsoft.JSInterop.IJSInProcessObjectReference>.
-
-To make a synchronous call from JavaScript to .NET, use `DotNet.invokeMethod` instead of `DotNet.invokeMethodAsync`.
-
-Synchronous calls work if:
-
-* The app is running on Blazor WebAssembly, not Blazor Server.
-* The called function returns a value synchronously (it isn't an `async` method and doesn't return a .NET <xref:System.Threading.Tasks.Task> or JavaScript [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)).
-
-For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet>.
+[!INCLUDE[](~/blazor/includes/js-interop/synchronous-js-interop-call-dotnet.md)]
 
 ### Consider the use of unmarshalled calls
 
@@ -2148,36 +2097,7 @@ For Blazor WebAssembly apps, rolling individual JS interop calls into a single c
 
 ### Consider the use of synchronous calls
 
-*This section only applies to Blazor WebAssembly apps.*
-
-JS interop calls are asynchronous by default, regardless of whether the called code is synchronous or asynchronous. Calls are asynchronous by default to ensure that components are compatible across both Blazor hosting models, Blazor Server and Blazor WebAssembly. On Blazor Server, all JS interop calls must be asynchronous because they're sent over a network connection.
-
-If you know for certain that your app only ever runs on Blazor WebAssembly, you can choose to make synchronous JS interop calls. This has slightly less overhead than making asynchronous calls and can result in fewer render cycles because there is no intermediate state while awaiting results.
-
-To make a synchronous call from .NET to JavaScript, cast <xref:Microsoft.JSInterop.IJSRuntime> to <xref:Microsoft.JSInterop.IJSInProcessRuntime>:
-
-```razor
-@inject IJSRuntime JS
-
-...
-
-@code {
-    protected override void HandleSomeEvent()
-    {
-        var jsInProcess = (IJSInProcessRuntime)JS;
-        var value = jsInProcess.Invoke<string>("javascriptFunctionIdentifier");
-    }
-}
-```
-
-To make a synchronous call from JavaScript to .NET, use `DotNet.invokeMethod` instead of `DotNet.invokeMethodAsync`.
-
-Synchronous calls work if:
-
-* The app is running on Blazor WebAssembly, not Blazor Server.
-* The called function returns a value synchronously (it isn't an `async` method and doesn't return a .NET <xref:System.Threading.Tasks.Task> or JavaScript [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)).
-
-For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet>.
+[!INCLUDE[](~/blazor/includes/js-interop/synchronous-js-interop-call-js.md)]
 
 ## Minimize app download size
 

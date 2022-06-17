@@ -5,7 +5,6 @@ description: Shows how to work with Image Tag Helper.
 ms.author: riande
 ms.custom: mvc
 ms.date: 04/06/2019
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/views/tag-helpers/builtin-th/image-tag-helper
 ---
 # Image Tag Helper in ASP.NET Core
@@ -48,6 +47,8 @@ If the static file exists in the directory */wwwroot/images/*, the generated HTM
 ```
 
 The value assigned to the parameter `v` is the hash value of the `asplogo.png` file on disk. If the web server is unable to obtain read access to the static file, no `v` parameter is added to the `src` attribute in the rendered markup.
+
+[!INCLUDE[](~/includes/th_version.md)]
 
 ## Hash caching behavior
 

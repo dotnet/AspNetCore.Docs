@@ -5,7 +5,6 @@ description: Learn how to create JSON HTTP APIs for gRPC services using gRPC JSO
 monikerRange: '>= aspnetcore-7.0'
 ms.author: jamesnk
 ms.date: 05/20/2022
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, REST]
 uid: grpc/httpapi
 ---
 # gRPC JSON transcoding

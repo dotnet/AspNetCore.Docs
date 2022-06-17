@@ -5,7 +5,6 @@ description: Learn how to use LibMan in an ASP.NET Core project with Visual Stud
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 08/20/2018
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: client-side/libman/libman-vs
 ---
 # Use LibMan with ASP.NET Core in Visual Studio

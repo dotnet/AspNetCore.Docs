@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/index
 ---
 # ASP.NET Core Razor components
@@ -52,7 +51,7 @@ The following `HelloWorld` component uses a route template of `/hello-world`. Th
 
 `Pages/HelloWorld.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/index/HelloWorld.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/index/HelloWorld.razor":::
 
 The preceding component loads in the browser at `/hello-world` regardless of whether or not you add the component to the app's UI navigation. Optionally, components can be added to the `NavMenu` component so that a link to the component appears in the app's UI-based navigation.
 
@@ -75,7 +74,7 @@ Component members are used in rendering logic using C# expressions that start wi
 
 `Pages/Markup.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/index/Markup.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/index/Markup.razor":::
 
 > [!NOTE]
 > Examples throughout the Blazor documentation specify the [`private` access modifier](/dotnet/csharp/language-reference/keywords/private) for private members. Private members are scoped to a component's class. However, C# assumes the `private` access modifier when no access modifier is present, so explicitly marking members "`private`" in your own code is optional. For more information on access modifiers, see [Access Modifiers (C# Programming Guide)](/dotnet/csharp/programming-guide/classes-and-structs/access-modifiers).
@@ -98,13 +97,13 @@ Consider the following `Heading` component, which can be used by other component
 
 `Shared/Heading.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Shared/index/Heading.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/index/Heading.razor":::
 
 The following markup in the `HeadingExample` component renders the preceding `Heading` component at the location where the `<Heading />` tag appears.
 
 `Pages/HeadingExample.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/index/HeadingExample.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/index/HeadingExample.razor":::
 
 If a component contains an HTML element with an uppercase first letter that doesn't match a component name within the same namespace, a warning is emitted indicating that the element has an unexpected name. Adding an [`@using`][2] directive for the component's namespace makes the component available, which resolves the warning. For more information, see the [Namespaces](#namespaces) section.
 
@@ -160,17 +159,30 @@ The following example shows the default `Counter` component with an [`@code`][1]
 
 `Pages/Counter.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/Counter.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/Counter.razor":::
 
 The following `Counter` component splits HTML and Razor markup from  C# code using a code-behind file with a partial class:
 
 `Pages/CounterPartialClass.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/index/CounterPartialClass.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/index/CounterPartialClass.razor":::
 
 `Pages/CounterPartialClass.razor.cs`:
 
-[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/index/CounterPartialClass.razor.cs)]
+```csharp
+namespace BlazorSample.Pages
+{
+    public partial class CounterPartialClass
+    {
+        private int currentCount = 0;
+
+        void IncrementCount()
+        {
+            currentCount++;
+        }
+    }
+}
+```
 
 [`@using`][2] directives in the `_Imports.razor` file are only applied to Razor files (`.razor`), not C# files (`.cs`). Add namespaces to a partial class file as needed.
 
@@ -200,11 +212,11 @@ The [`@inherits`][6] directive is used to specify a base class for a component. 
 
 `Pages/BlazorRocks.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/index/BlazorRocks.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/index/BlazorRocks.razor":::
 
 `BlazorRocksBase.cs`:
 
-[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/BlazorRocksBase.cs)]
+:::code language="csharp" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/BlazorRocksBase.cs":::
 
 ## Component parameters
 
@@ -212,11 +224,11 @@ The [`@inherits`][6] directive is used to specify a base class for a component. 
 
 `PanelBody.cs`:
 
-[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/PanelBody.cs)]
+:::code language="csharp" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/PanelBody.cs":::
 
 `Shared/ParameterChild.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Shared/index/ParameterChild.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/index/ParameterChild.razor":::
 
 > [!WARNING]
 > Providing initial values for component parameters is supported, but don't create a component that writes to its own parameters after the component is rendered for the first time. For more information, see the [Overwritten parameters](#overwritten-parameters) section of this article.
@@ -228,7 +240,7 @@ The `Title` and `Body` component parameters of the `ParameterChild` component ar
 
 `Pages/ParameterParent.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/index/ParameterParent.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/index/ParameterParent.razor":::
 
 The following rendered HTML markup from the `ParameterParent` component shows `ParameterChild` component default values when the `ParameterParent` component doesn't supply component parameter values. When the `ParameterParent` component provides component parameter values, they replace the `ParameterChild` component's default values.
 
@@ -274,7 +286,7 @@ Throughout the documentation, code examples:
 
 `Pages/ParameterParent2.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/index/ParameterParent2.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/index/ParameterParent2.razor":::
 
 > [!NOTE]
 > When assigning a C# member to a component parameter, prefix the member with the `@` symbol and never prefix the parameter's HTML attribute.
@@ -332,7 +344,7 @@ To support the assignment of a composed value, use a method, field, or property.
 
 `Pages/ParameterParent3.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/index/ParameterParent3.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/index/ParameterParent3.razor":::
 
 For more information, see <xref:mvc/views/razor>.
 
@@ -379,7 +391,7 @@ Single-line attribute lists are also supported:
 public string? Title { get; set; }
 ```
 
-[`Tuples`](/dotnet/csharp/language-reference/builtin-types/value-tuples) ([API documentation](xref:System.Tuple)) are supported for component parameters and [`RenderFragment`](#child-content) types. The following component parameter example passes three values in a `Tuple`:
+[`Tuples`](/dotnet/csharp/language-reference/builtin-types/value-tuples) ([API documentation](xref:System.Tuple)) are supported for component parameters and [`RenderFragment`](#child-content-render-fragments) types. The following component parameter example passes three values in a `Tuple`:
 
 `Shared/RenderTupleChild.razor`:
 
@@ -427,77 +439,19 @@ Optional route parameters are supported. In the following example, the `text` op
 
 `Pages/RouteParameter.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/index/RouteParameter.razor?highlight=1,6-7)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/index/RouteParameter.razor" highlight="1,6-7":::
 
 For information on catch-all route parameters (`{*pageRoute}`), which capture paths across multiple folder boundaries, see <xref:blazor/fundamentals/routing#catch-all-route-parameters>.
 
-## Overwritten parameters
-
-The Blazor framework generally imposes safe parent-to-child parameter assignment:
-
-* Parameters aren't overwritten unexpectedly.
-* Side-effects are minimized. For example, additional renders are avoided because they may create infinite rendering loops.
-
-A child component receives new parameter values that possibly overwrite existing values when the parent component rerenders. Accidentally overwriting parameter values in a child component often occurs when developing the component with one or more data-bound parameters and the developer writes directly to a parameter in the child:
-
-* The child component is rendered with one or more parameter values from the parent component.
-* The child writes directly to the value of a parameter.
-* The parent component rerenders and overwrites the value of the child's parameter.
-
-The potential for overwriting parameter values extends into the child component's property `set` accessors, too.
-
-> [!IMPORTANT]
-> Our general guidance is not to create components that directly write to their own parameters after the component is rendered for the first time.
-
-Consider the following faulty `Expander` component that:
-
-* Renders child content.
-* Toggles showing child content with a component parameter (`Expanded`).
-* The component writes directly to the `Expanded` parameter, which demonstrates the problem with overwritten parameters and should be avoided.
-
-After the following `Expander` component demonstrates the incorrect approach for this scenario, a modified `Expander` component is shown to demonstrate the correct approach. The following examples can be placed in a local sample app to experience the behaviors described.
-
-`Shared/Expander.razor`:
-
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Shared/index/BadExpander.razor)]
-
-The `Expander` component is added to the following `ExpanderExample` parent component that may call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>:
-
-* Calling <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in developer code notifies a component that its state has changed and typically triggers component rerendering to update the UI. <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is covered in more detail later in <xref:blazor/components/lifecycle> and <xref:blazor/components/rendering>.
-* The button's `@onclick` directive attribute attaches an event handler to the button's `onclick` event. Event handling is covered in more detail later in <xref:blazor/components/event-handling>.
-
-`Pages/ExpanderExample.razor`:
-
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/index/ExpanderExample.razor)]
-
-Initially, the `Expander` components behave independently when their `Expanded` properties are toggled. The child components maintain their states as expected. When <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called in the parent, the `Expanded` parameter of the first child component is reset back to its initial value (`true`). The second `Expander` component's `Expanded` value isn't reset because no child content is rendered in the second component.
-
-To maintain state in the preceding scenario, use a *private field* in the `Expander` component to maintain its toggled state.
-
-The following revised `Expander` component:
-
-* Accepts the `Expanded` component parameter value from the parent.
-* Assigns the component parameter value to a *private field* (`expanded`) in the [`OnInitialized` event](xref:blazor/components/lifecycle#component-initialization-oninitializedasync).
-* Uses the private field to maintain its internal toggle state, which demonstrates how to avoid writing directly to a parameter.
-
-> [!NOTE]
-> The advice in this section extends to similar logic in component parameter `set` accessors, which can result in similar undesirable side-effects.
-
-`Shared/Expander.razor`:
-
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Shared/index/Expander.razor)]
-
-For two-way parent-child binding examples, see <xref:blazor/components/data-binding#binding-with-component-parameters>. For additional information, see [Blazor Two Way Binding Error (dotnet/aspnetcore #24599)](https://github.com/dotnet/aspnetcore/issues/24599).
-
-## Child content
+## Child content render fragments
 
 Components can set the content of another component. The assigning component provides the content between the child component's opening and closing tags.
 
-In the following example, the `RenderFragmentChild` component has a `ChildContent` property that represents a segment of the UI to render as a <xref:Microsoft.AspNetCore.Components.RenderFragment>. The position of `ChildContent` in the component's Razor markup is where the content is rendered in the final HTML output.
+In the following example, the `RenderFragmentChild` component has a `ChildContent` component parameter that represents a segment of the UI to render as a <xref:Microsoft.AspNetCore.Components.RenderFragment>. The position of `ChildContent` in the component's Razor markup is where the content is rendered in the final HTML output.
 
 `Shared/RenderFragmentChild.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Shared/index/RenderFragmentChild.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/index/RenderFragmentChild.razor":::
 
 > [!IMPORTANT]
 > The property receiving the <xref:Microsoft.AspNetCore.Components.RenderFragment> content must be named `ChildContent` by convention.
@@ -508,7 +462,7 @@ The following `RenderFragmentParent` component provides content for rendering th
 
 `Pages/RenderFragmentParent.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/index/RenderFragmentParent.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/index/RenderFragmentParent.razor":::
 
 Due to the way that Blazor renders child content, rendering components inside a [`for`](/dotnet/csharp/language-reference/keywords/for) loop requires a local index variable if the incrementing loop variable is used in the `RenderFragmentChild` component's content. The following example can be added to the preceding `RenderFragmentParent` component:
 
@@ -538,22 +492,107 @@ Alternatively, use a [`foreach`](/dotnet/csharp/language-reference/keywords/fore
 }
 ```
 
+Render fragments are used to render child content throughout Blazor apps and are described with examples in the following articles and article sections:
+
+* [Blazor layouts](xref:blazor/components/layouts)
+* [Pass data across a component hierarchy](xref:blazor/components/cascading-values-and-parameters#pass-data-across-a-component-hierarchy)
+* [Templated components](xref:blazor/components/templated-components)
+* [Global exception handling](xref:blazor/fundamentals/handle-errors#global-exception-handling)
+
 > [!NOTE]
-> Assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate is only supported in Razor component files (`.razor`):
-> 
-> ```razor
-> private RenderFragment RenderWelcomeInfo = __builder =>
-> {
->     <p>Welcome to your new app!</p>
-> };
-> ```
->
-> For more information, see <xref:blazor/performance#define-reusable-renderfragments-in-code>.
+> Blazor framework's [built-in Razor components](xref:blazor/components/built-in-components) use the same `ChildContent` component parameter convention to set their content. You can see the components that set child content by searching for the component parameter property name `ChildContent` in the [API documentation (filters API with the search term "ChildContent")](/dotnet/api/?term=ChildContent).
 
-For information on how a <xref:Microsoft.AspNetCore.Components.RenderFragment> can be used as a template for component UI, see the following articles:
+## Render fragments for reusable rendering logic
 
-* <xref:blazor/components/templated-components>
-* <xref:blazor/performance#define-reusable-renderfragments-in-code>
+You can factor out child components purely as a way of reusing rendering logic. In any component's `@code` block, define a <xref:Microsoft.AspNetCore.Components.RenderFragment> and render the fragment from any location as many times as needed:
+
+```razor
+<h1>Hello, world!</h1>
+
+@RenderWelcomeInfo
+
+<p>Render the welcome info a second time:</p>
+
+@RenderWelcomeInfo
+
+@code {
+    private RenderFragment RenderWelcomeInfo = __builder =>
+    {
+        <p>Welcome to your new app!</p>
+    };
+}
+```
+
+For more information, see [Reuse rendering logic](xref:blazor/performance#define-reusable-renderfragments-in-code).
+
+## Overwritten parameters
+
+The Blazor framework generally imposes safe parent-to-child parameter assignment:
+
+* Parameters aren't overwritten unexpectedly.
+* Side effects are minimized. For example, additional renders are avoided because they may create infinite rendering loops.
+
+A child component receives new parameter values that possibly overwrite existing values when the parent component rerenders. Accidentally overwriting parameter values in a child component often occurs when developing the component with one or more data-bound parameters and the developer writes directly to a parameter in the child:
+
+* The child component is rendered with one or more parameter values from the parent component.
+* The child writes directly to the value of a parameter.
+* The parent component rerenders and overwrites the value of the child's parameter.
+
+The potential for overwriting parameter values extends into the child component's property `set` accessors, too.
+
+> [!IMPORTANT]
+> Our general guidance is not to create components that directly write to their own parameters after the component is rendered for the first time.
+
+Consider the following `Expander` component that:
+
+* Renders child content.
+* Toggles showing child content with a component parameter (`Expanded`).
+
+After the following `Expander` component demonstrates an overwritten parameter, a modified `Expander` component is shown to demonstrate the correct approach for this scenario. The following examples can be placed in a local sample app to experience the behaviors described.
+
+`Shared/Expander.razor`:
+
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/index/BadExpander.razor":::
+
+The `Expander` component is added to the following `ExpanderExample` parent component that may call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>:
+
+* Calling <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in developer code notifies a component that its state has changed and typically triggers component rerendering to update the UI. <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is covered in more detail later in <xref:blazor/components/lifecycle> and <xref:blazor/components/rendering>.
+* The button's `@onclick` directive attribute attaches an event handler to the button's `onclick` event. Event handling is covered in more detail later in <xref:blazor/components/event-handling>.
+
+`Pages/ExpanderExample.razor`:
+
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/index/ExpanderExample.razor":::
+
+Initially, the `Expander` components behave independently when their `Expanded` properties are toggled. The child components maintain their states as expected.
+
+If <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called in a parent component, the Blazor framework rerenders child components if their parameters might have changed:
+
+* For a group of parameter types that Blazor explicitly checks, Blazor rerenders a child component if it detects that any of the parameters have changed.
+* For unchecked parameter types, Blazor rerenders the child component *regardless of whether or not the parameters have changed*. Child content falls into this category of parameter types because child content is of type <xref:Microsoft.AspNetCore.Components.RenderFragment>, which is a delegate that refers to other mutable objects.
+
+For the `ExpanderExample` component:
+
+* The first `Expander` component sets child content in a potentially mutable <xref:Microsoft.AspNetCore.Components.RenderFragment>, so a call to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in the parent component automatically rerenders the component and potentially overwrites the value of `Expanded` to its intitial value of `true`.
+* The second `Expander` component doesn't set child content. Therefore, a potentially mutable <xref:Microsoft.AspNetCore.Components.RenderFragment> doesn't exist. A call to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in the parent component doesn't automatically rerender the child component, so the component's `Expanded` value isn't overwritten.
+
+To maintain state in the preceding scenario, use a *private field* in the `Expander` component to maintain its toggled state.
+
+The following revised `Expander` component:
+
+* Accepts the `Expanded` component parameter value from the parent.
+* Assigns the component parameter value to a *private field* (`expanded`) in the [`OnInitialized` event](xref:blazor/components/lifecycle#component-initialization-oninitializedasync).
+* Uses the private field to maintain its internal toggle state, which demonstrates how to avoid writing directly to a parameter.
+
+> [!NOTE]
+> The advice in this section extends to similar logic in component parameter `set` accessors, which can result in similar undesirable side effects.
+
+`Shared/Expander.razor`:
+
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/index/Expander.razor":::
+
+For two-way parent-child binding examples, see <xref:blazor/components/data-binding#binding-with-component-parameters>. For additional information, see [Blazor Two Way Binding Error (dotnet/aspnetcore #24599)](https://github.com/dotnet/aspnetcore/issues/24599).
+
+For more information on change detection, inlcuding information on the exact types that Blazor checks, see <xref:blazor/components/rendering#rendering-conventions-for-componentbase>.
 
 ## Attribute splatting and arbitrary parameters
 
@@ -566,7 +605,7 @@ In the following `Splat` component:
 
 `Pages/Splat.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/index/Splat.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/index/Splat.razor":::
 
 The rendered `<input>` elements in the webpage are identical:
 
@@ -599,11 +638,11 @@ The position of [`@attributes`][3] relative to the position of element attribute
 
 `Shared/AttributeOrderChild1.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Shared/index/AttributeOrderChild1.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/index/AttributeOrderChild1.razor":::
 
 `Pages/AttributeOrderParent1.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/index/AttributeOrderParent1.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/index/AttributeOrderParent1.razor":::
 
 The `AttributeOrderChild1` component's `extra` attribute is set to the right of [`@attributes`][3]. The `AttributeOrderParent1` component's rendered `<div>` contains `extra="5"` when passed through the additional attribute because the attributes are processed right to left (last to first):
 
@@ -615,11 +654,11 @@ In the following example, the order of `extra` and [`@attributes`][3] is reverse
 
 `Shared/AttributeOrderChild2.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Shared/index/AttributeOrderChild2.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/index/AttributeOrderChild2.razor":::
 
 `Pages/AttributeOrderParent2.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/index/AttributeOrderParent2.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/index/AttributeOrderParent2.razor":::
 
 The `<div>` in the parent component's rendered webpage contains `extra="10"` when passed through the additional attribute:
 
@@ -640,7 +679,7 @@ Consider the following `ReferenceChild` component that logs a message when its `
 
 `Shared/ReferenceChild.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Shared/index/ReferenceChild.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/index/ReferenceChild.razor":::
 
 A component reference is only populated after the component is rendered and its output includes `ReferenceChild`'s element. Until the component is rendered, there's nothing to reference.
 
@@ -652,13 +691,13 @@ The following lambda approach uses the preceding `ReferenceChild` component.
 
 `Pages/ReferenceParent1.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/index/ReferenceParent1.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/index/ReferenceParent1.razor":::
 
 The following delegate approach uses the preceding `ReferenceChild` component.
 
 `Pages/ReferenceParent2.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/index/ReferenceParent2.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/index/ReferenceParent2.razor":::
 
 While capturing component references use a similar syntax to [capturing element references](xref:blazor/js-interop/call-javascript-from-dotnet#capture-references-to-elements), capturing component references isn't a JavaScript interop feature. Component references aren't passed to JavaScript code. Component references are only used in .NET code.
 
@@ -691,11 +730,11 @@ In the event a component must be updated based on an external event, such as a t
 
 `TimerService.cs`:
 
-[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/TimerService.cs)]
+:::code language="csharp" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/TimerService.cs":::
 
 `NotifierService.cs`:
 
-[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/NotifierService.cs)]
+:::code language="csharp" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/NotifierService.cs":::
 
 Register the services:
 
@@ -717,7 +756,7 @@ Use the `NotifierService` to update a component.
 
 `Pages/ReceiveNotifications.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/index/ReceiveNotifications.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/index/ReceiveNotifications.razor":::
 
 In the preceding example:
 
@@ -740,13 +779,13 @@ This demonstration allows you to:
 
 `Shared/Details.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Shared/index/Details.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/index/Details.razor":::
 
 In the following `People` component, each iteration of adding a person in `OnTimerCallback` results in Blazor rebuilding the entire collection. The page's focus remains on the *same index* position of `<input>` elements, so the focus shifts each time a person is added. *Shifting the focus away from what the user selected isn't desirable behavior.* After demonstrating the poor behavior with the following component, the [`@key`][5] directive attribute is used to improve the user's experience.
 
 `Pages/People.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/index/People.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/index/People.razor":::
 
 The contents of the `people` collection changes with inserted, deleted, or re-ordered entries. Rerendering can lead to visible behavior differences. Each time a person is inserted into the `people` collection, the *preceding element* of the currently focused element receives the focus. The user's focus is lost.
 
@@ -906,7 +945,7 @@ In the following example, `IsCompleted` determines if the `<input>` element's `c
 
 `Pages/ConditionalAttribute.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/index/ConditionalAttribute.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/index/ConditionalAttribute.razor":::
 
 For more information, see <xref:mvc/views/razor>.
 
@@ -924,7 +963,7 @@ The following example shows using the <xref:Microsoft.AspNetCore.Components.Mark
 
 `Pages/MarkupStringExample.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/index/MarkupStringExample.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/index/MarkupStringExample.razor":::
 
 ## Razor templates
 
@@ -938,7 +977,7 @@ The following example illustrates how to specify <xref:Microsoft.AspNetCore.Comp
 
 `Pages/RazorTemplate.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/index/RazorTemplate.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/index/RazorTemplate.razor":::
 
 Rendered output of the preceding code:
 
@@ -1054,7 +1093,7 @@ In the following example, the `ListGenericTypeItems1` component is generically t
 
 `Shared/ListGenericTypeItems1.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Shared/index/ListGenericTypeItems1.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/index/ListGenericTypeItems1.razor":::
 
 The following `GenericTypeExample1` component renders two `ListGenericTypeItems1` components:
 
@@ -1063,7 +1102,7 @@ The following `GenericTypeExample1` component renders two `ListGenericTypeItems1
 
 `Pages/GenericTypeExample1.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/index/GenericTypeExample1.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/index/GenericTypeExample1.razor":::
 
 For more information, see <xref:mvc/views/razor#typeparam>. For an example of generic typing with templated components, see <xref:blazor/components/templated-components>.
 
@@ -1852,69 +1891,11 @@ Optional route parameters are supported. In the following example, the `text` op
 
 For information on catch-all route parameters (`{*pageRoute}`), which capture paths across multiple folder boundaries, see <xref:blazor/fundamentals/routing#catch-all-route-parameters>.
 
-## Overwritten parameters
-
-The Blazor framework generally imposes safe parent-to-child parameter assignment:
-
-* Parameters aren't overwritten unexpectedly.
-* Side-effects are minimized. For example, additional renders are avoided because they may create infinite rendering loops.
-
-A child component receives new parameter values that possibly overwrite existing values when the parent component rerenders. Accidentally overwriting parameter values in a child component often occurs when developing the component with one or more data-bound parameters and the developer writes directly to a parameter in the child:
-
-* The child component is rendered with one or more parameter values from the parent component.
-* The child writes directly to the value of a parameter.
-* The parent component rerenders and overwrites the value of the child's parameter.
-
-The potential for overwriting parameter values extends into the child component's property `set` accessors, too.
-
-> [!IMPORTANT]
-> Our general guidance is not to create components that directly write to their own parameters after the component is rendered for the first time.
-
-Consider the following faulty `Expander` component that:
-
-* Renders child content.
-* Toggles showing child content with a component parameter (`Expanded`).
-* The component writes directly to the `Expanded` parameter, which demonstrates the problem with overwritten parameters and should be avoided.
-
-After the following `Expander` component demonstrates the incorrect approach for this scenario, a modified `Expander` component is shown to demonstrate the correct approach. The following examples can be placed in a local sample app to experience the behaviors described.
-
-`Shared/Expander.razor`:
-
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Shared/index/BadExpander.razor)]
-
-The `Expander` component is added to the following `ExpanderExample` parent component that may call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>:
-
-* Calling <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in developer code notifies a component that its state has changed and typically triggers component rerendering to update the UI. <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is covered in more detail later in <xref:blazor/components/lifecycle> and <xref:blazor/components/rendering>.
-* The button's `@onclick` directive attribute attaches an event handler to the button's `onclick` event. Event handling is covered in more detail later in <xref:blazor/components/event-handling>.
-
-`Pages/ExpanderExample.razor`:
-
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/index/ExpanderExample.razor)]
-
-Initially, the `Expander` components behave independently when their `Expanded` properties are toggled. The child components maintain their states as expected. When <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called in the parent, the `Expanded` parameter of the first child component is reset back to its initial value (`true`). The second `Expander` component's `Expanded` value isn't reset because no child content is rendered in the second component.
-
-To maintain state in the preceding scenario, use a *private field* in the `Expander` component to maintain its toggled state.
-
-The following revised `Expander` component:
-
-* Accepts the `Expanded` component parameter value from the parent.
-* Assigns the component parameter value to a *private field* (`expanded`) in the [`OnInitialized` event](xref:blazor/components/lifecycle#component-initialization-oninitializedasync).
-* Uses the private field to maintain its internal toggle state, which demonstrates how to avoid writing directly to a parameter.
-
-> [!NOTE]
-> The advice in this section extends to similar logic in component parameter `set` accessors, which can result in similar undesirable side-effects.
-
-`Shared/Expander.razor`:
-
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Shared/index/Expander.razor)]
-
-For additional information, see [Blazor Two Way Binding Error (dotnet/aspnetcore #24599)](https://github.com/dotnet/aspnetcore/issues/24599).
-
-## Child content
+## Child content render fragments
 
 Components can set the content of another component. The assigning component provides the content between the child component's opening and closing tags.
 
-In the following example, the `RenderFragmentChild` component has a `ChildContent` property that represents a segment of the UI to render as a <xref:Microsoft.AspNetCore.Components.RenderFragment>. The position of `ChildContent` in the component's Razor markup is where the content is rendered in the final HTML output.
+In the following example, the `RenderFragmentChild` component has a `ChildContent` component parameter that represents a segment of the UI to render as a <xref:Microsoft.AspNetCore.Components.RenderFragment>. The position of `ChildContent` in the component's Razor markup is where the content is rendered in the final HTML output.
 
 `Shared/RenderFragmentChild.razor`:
 
@@ -1959,22 +1940,107 @@ Alternatively, use a [`foreach`](/dotnet/csharp/language-reference/keywords/fore
 }
 ```
 
+Render fragments are used to render child content throughout Blazor apps and are described with examples in the following articles and article sections:
+
+* [Blazor layouts](xref:blazor/components/layouts)
+* [Pass data across a component hierarchy](xref:blazor/components/cascading-values-and-parameters#pass-data-across-a-component-hierarchy)
+* [Templated components](xref:blazor/components/templated-components)
+* [Global exception handling](xref:blazor/fundamentals/handle-errors#global-exception-handling)
+
 > [!NOTE]
-> Assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate is only supported in Razor component files (`.razor`):
-> 
-> ```razor
-> private RenderFragment RenderWelcomeInfo = __builder =>
-> {
->     <p>Welcome to your new app!</p>
-> };
-> ```
->
-> For more information, see <xref:blazor/performance#define-reusable-renderfragments-in-code>.
+> Blazor framework's [built-in Razor components](xref:blazor/components/built-in-components) use the same `ChildContent` component parameter convention to set their content. You can see the components that set child content by searching for the component parameter property name `ChildContent` in the [API documentation (filters API with the search term "ChildContent")](/dotnet/api/?term=ChildContent).
 
-For information on how a <xref:Microsoft.AspNetCore.Components.RenderFragment> can be used as a template for component UI, see the following articles:
+## Render fragments for reusable rendering logic
 
-* <xref:blazor/components/templated-components>
-* <xref:blazor/performance#define-reusable-renderfragments-in-code>
+You can factor out child components purely as a way of reusing rendering logic. In any component's `@code` block, define a <xref:Microsoft.AspNetCore.Components.RenderFragment> and render the fragment from any location as many times as needed:
+
+```razor
+<h1>Hello, world!</h1>
+
+@RenderWelcomeInfo
+
+<p>Render the welcome info a second time:</p>
+
+@RenderWelcomeInfo
+
+@code {
+    private RenderFragment RenderWelcomeInfo = __builder =>
+    {
+        <p>Welcome to your new app!</p>
+    };
+}
+```
+
+For more information, see [Reuse rendering logic](xref:blazor/performance#define-reusable-renderfragments-in-code).
+
+## Overwritten parameters
+
+The Blazor framework generally imposes safe parent-to-child parameter assignment:
+
+* Parameters aren't overwritten unexpectedly.
+* Side effects are minimized. For example, additional renders are avoided because they may create infinite rendering loops.
+
+A child component receives new parameter values that possibly overwrite existing values when the parent component rerenders. Accidentally overwriting parameter values in a child component often occurs when developing the component with one or more data-bound parameters and the developer writes directly to a parameter in the child:
+
+* The child component is rendered with one or more parameter values from the parent component.
+* The child writes directly to the value of a parameter.
+* The parent component rerenders and overwrites the value of the child's parameter.
+
+The potential for overwriting parameter values extends into the child component's property `set` accessors, too.
+
+> [!IMPORTANT]
+> Our general guidance is not to create components that directly write to their own parameters after the component is rendered for the first time.
+
+Consider the following `Expander` component that:
+
+* Renders child content.
+* Toggles showing child content with a component parameter (`Expanded`).
+
+After the following `Expander` component demonstrates an overwritten parameter, a modified `Expander` component is shown to demonstrate the correct approach for this scenario. The following examples can be placed in a local sample app to experience the behaviors described.
+
+`Shared/Expander.razor`:
+
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Shared/index/BadExpander.razor)]
+
+The `Expander` component is added to the following `ExpanderExample` parent component that may call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>:
+
+* Calling <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in developer code notifies a component that its state has changed and typically triggers component rerendering to update the UI. <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is covered in more detail later in <xref:blazor/components/lifecycle> and <xref:blazor/components/rendering>.
+* The button's `@onclick` directive attribute attaches an event handler to the button's `onclick` event. Event handling is covered in more detail later in <xref:blazor/components/event-handling>.
+
+`Pages/ExpanderExample.razor`:
+
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/index/ExpanderExample.razor)]
+
+Initially, the `Expander` components behave independently when their `Expanded` properties are toggled. The child components maintain their states as expected.
+
+If <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called in a parent component, the Blazor framework rerenders child components if their parameters might have changed:
+
+* For a group of parameter types that Blazor explicitly checks, Blazor rerenders a child component if it detects that any of the parameters have changed.
+* For unchecked parameter types, Blazor rerenders the child component *regardless of whether or not the parameters have changed*. Child content falls into this category of parameter types because child content is of type <xref:Microsoft.AspNetCore.Components.RenderFragment>, which is a delegate that refers to other mutable objects.
+
+For the `ExpanderExample` component:
+
+* The first `Expander` component sets child content in a potentially mutable <xref:Microsoft.AspNetCore.Components.RenderFragment>, so a call to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in the parent component automatically rerenders the component and potentially overwrites the value of `Expanded` to its intitial value of `true`.
+* The second `Expander` component doesn't set child content. Therefore, a potentially mutable <xref:Microsoft.AspNetCore.Components.RenderFragment> doesn't exist. A call to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in the parent component doesn't automatically rerender the child component, so the component's `Expanded` value isn't overwritten.
+
+To maintain state in the preceding scenario, use a *private field* in the `Expander` component to maintain its toggled state.
+
+The following revised `Expander` component:
+
+* Accepts the `Expanded` component parameter value from the parent.
+* Assigns the component parameter value to a *private field* (`expanded`) in the [`OnInitialized` event](xref:blazor/components/lifecycle#component-initialization-oninitializedasync).
+* Uses the private field to maintain its internal toggle state, which demonstrates how to avoid writing directly to a parameter.
+
+> [!NOTE]
+> The advice in this section extends to similar logic in component parameter `set` accessors, which can result in similar undesirable side effects.
+
+`Shared/Expander.razor`:
+
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Shared/index/Expander.razor)]
+
+For additional information, see [Blazor Two Way Binding Error (dotnet/aspnetcore #24599)](https://github.com/dotnet/aspnetcore/issues/24599).
+
+For more information on change detection, inlcuding information on the exact types that Blazor checks, see <xref:blazor/components/rendering#rendering-conventions-for-componentbase>.
 
 ## Attribute splatting and arbitrary parameters
 
@@ -2825,69 +2891,11 @@ Optional route parameters aren't supported, so two [`@page`][9] directives are a
 
 For information on catch-all route parameters (`{*pageRoute}`), which capture paths across multiple folder boundaries, see <xref:blazor/fundamentals/routing#catch-all-route-parameters>.
 
-## Overwritten parameters
-
-The Blazor framework generally imposes safe parent-to-child parameter assignment:
-
-* Parameters aren't overwritten unexpectedly.
-* Side-effects are minimized. For example, additional renders are avoided because they may create infinite rendering loops.
-
-A child component receives new parameter values that possibly overwrite existing values when the parent component rerenders. Accidentally overwriting parameter values in a child component often occurs when developing the component with one or more data-bound parameters and the developer writes directly to a parameter in the child:
-
-* The child component is rendered with one or more parameter values from the parent component.
-* The child writes directly to the value of a parameter.
-* The parent component rerenders and overwrites the value of the child's parameter.
-
-The potential for overwriting parameter values extends into the child component's property `set` accessors, too.
-
-> [!IMPORTANT]
-> Our general guidance is not to create components that directly write to their own parameters after the component is rendered for the first time.
-
-Consider the following faulty `Expander` component that:
-
-* Renders child content.
-* Toggles showing child content with a component parameter (`Expanded`).
-* The component writes directly to the `Expanded` parameter, which demonstrates the problem with overwritten parameters and should be avoided.
-
-After the following `Expander` component demonstrates the incorrect approach for this scenario, a modified `Expander` component is shown to demonstrate the correct approach. The following examples can be placed in a local sample app to experience the behaviors described.
-
-`Shared/Expander.razor`:
-
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Shared/index/BadExpander.razor)]
-
-The `Expander` component is added to the following `ExpanderExample` parent component that may call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>:
-
-* Calling <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in developer code notifies a component that its state has changed and typically triggers component rerendering to update the UI. <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is covered in more detail later in <xref:blazor/components/lifecycle> and <xref:blazor/components/rendering>.
-* The button's `@onclick` directive attribute attaches an event handler to the button's `onclick` event. Event handling is covered in more detail later in <xref:blazor/components/event-handling>.
-
-`Pages/ExpanderExample.razor`:
-
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/index/ExpanderExample.razor)]
-
-Initially, the `Expander` components behave independently when their `Expanded` properties are toggled. The child components maintain their states as expected. When <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called in the parent, the `Expanded` parameter of the first child component is reset back to its initial value (`true`). The second `Expander` component's `Expanded` value isn't reset because no child content is rendered in the second component.
-
-To maintain state in the preceding scenario, use a *private field* in the `Expander` component to maintain its toggled state.
-
-The following revised `Expander` component:
-
-* Accepts the `Expanded` component parameter value from the parent.
-* Assigns the component parameter value to a *private field* (`expanded`) in the [`OnInitialized` event](xref:blazor/components/lifecycle#component-initialization-oninitializedasync).
-* Uses the private field to maintain its internal toggle state, which demonstrates how to avoid writing directly to a parameter.
-
-> [!NOTE]
-> The advice in this section extends to similar logic in component parameter `set` accessors, which can result in similar undesirable side-effects.
-
-`Shared/Expander.razor`:
-
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Shared/index/Expander.razor)]
-
-For additional information, see [Blazor Two Way Binding Error (dotnet/aspnetcore #24599)](https://github.com/dotnet/aspnetcore/issues/24599).
-
-## Child content
+## Child content render fragments
 
 Components can set the content of another component. The assigning component provides the content between the child component's opening and closing tags.
 
-In the following example, the `RenderFragmentChild` component has a `ChildContent` property that represents a segment of the UI to render as a <xref:Microsoft.AspNetCore.Components.RenderFragment>. The position of `ChildContent` in the component's Razor markup is where the content is rendered in the final HTML output.
+In the following example, the `RenderFragmentChild` component has a `ChildContent` component parameter that represents a segment of the UI to render as a <xref:Microsoft.AspNetCore.Components.RenderFragment>. The position of `ChildContent` in the component's Razor markup is where the content is rendered in the final HTML output.
 
 `Shared/RenderFragmentChild.razor`:
 
@@ -2932,22 +2940,107 @@ Alternatively, use a [`foreach`](/dotnet/csharp/language-reference/keywords/fore
 }
 ```
 
+Render fragments are used to render child content throughout Blazor apps and are described with examples in the following articles and article sections:
+
+* [Blazor layouts](xref:blazor/components/layouts)
+* [Pass data across a component hierarchy](xref:blazor/components/cascading-values-and-parameters#pass-data-across-a-component-hierarchy)
+* [Templated components](xref:blazor/components/templated-components)
+* [Global exception handling](xref:blazor/fundamentals/handle-errors#global-exception-handling)
+
 > [!NOTE]
-> Assignment to a <xref:Microsoft.AspNetCore.Components.RenderFragment> delegate is only supported in Razor component files (`.razor`):
-> 
-> ```razor
-> private RenderFragment RenderWelcomeInfo = __builder =>
-> {
->     <p>Welcome to your new app!</p>
-> };
-> ```
->
-> For more information, see <xref:blazor/performance#define-reusable-renderfragments-in-code>.
+> Blazor framework's [built-in Razor components](xref:blazor/components/built-in-components) use the same `ChildContent` component parameter convention to set their content. You can see the components that set child content by searching for the component parameter property name `ChildContent` in the [API documentation (filters API with the search term "ChildContent")](/dotnet/api/?term=ChildContent).
 
-For information on how a <xref:Microsoft.AspNetCore.Components.RenderFragment> can be used as a template for component UI, see the following articles:
+## Render fragments for reusable rendering logic
 
-* <xref:blazor/components/templated-components>
-* <xref:blazor/performance#define-reusable-renderfragments-in-code>
+You can factor out child components purely as a way of reusing rendering logic. In any component's `@code` block, define a <xref:Microsoft.AspNetCore.Components.RenderFragment> and render the fragment from any location as many times as needed:
+
+```razor
+<h1>Hello, world!</h1>
+
+@RenderWelcomeInfo
+
+<p>Render the welcome info a second time:</p>
+
+@RenderWelcomeInfo
+
+@code {
+    private RenderFragment RenderWelcomeInfo = __builder =>
+    {
+        <p>Welcome to your new app!</p>
+    };
+}
+```
+
+For more information, see [Reuse rendering logic](xref:blazor/performance#define-reusable-renderfragments-in-code).
+
+## Overwritten parameters
+
+The Blazor framework generally imposes safe parent-to-child parameter assignment:
+
+* Parameters aren't overwritten unexpectedly.
+* Side effects are minimized. For example, additional renders are avoided because they may create infinite rendering loops.
+
+A child component receives new parameter values that possibly overwrite existing values when the parent component rerenders. Accidentally overwriting parameter values in a child component often occurs when developing the component with one or more data-bound parameters and the developer writes directly to a parameter in the child:
+
+* The child component is rendered with one or more parameter values from the parent component.
+* The child writes directly to the value of a parameter.
+* The parent component rerenders and overwrites the value of the child's parameter.
+
+The potential for overwriting parameter values extends into the child component's property `set` accessors, too.
+
+> [!IMPORTANT]
+> Our general guidance is not to create components that directly write to their own parameters after the component is rendered for the first time.
+
+Consider the following `Expander` component that:
+
+* Renders child content.
+* Toggles showing child content with a component parameter (`Expanded`).
+
+After the following `Expander` component demonstrates an overwritten parameter, a modified `Expander` component is shown to demonstrate the correct approach for this scenario. The following examples can be placed in a local sample app to experience the behaviors described.
+
+`Shared/Expander.razor`:
+
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Shared/index/BadExpander.razor)]
+
+The `Expander` component is added to the following `ExpanderExample` parent component that may call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>:
+
+* Calling <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in developer code notifies a component that its state has changed and typically triggers component rerendering to update the UI. <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is covered in more detail later in <xref:blazor/components/lifecycle> and <xref:blazor/components/rendering>.
+* The button's `@onclick` directive attribute attaches an event handler to the button's `onclick` event. Event handling is covered in more detail later in <xref:blazor/components/event-handling>.
+
+`Pages/ExpanderExample.razor`:
+
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/index/ExpanderExample.razor)]
+
+Initially, the `Expander` components behave independently when their `Expanded` properties are toggled. The child components maintain their states as expected.
+
+If <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called in a parent component, the Blazor framework rerenders child components if their parameters might have changed:
+
+* For a group of parameter types that Blazor explicitly checks, Blazor rerenders a child component if it detects that any of the parameters have changed.
+* For unchecked parameter types, Blazor rerenders the child component *regardless of whether or not the parameters have changed*. Child content falls into this category of parameter types because child content is of type <xref:Microsoft.AspNetCore.Components.RenderFragment>, which is a delegate that refers to other mutable objects.
+
+For the `ExpanderExample` component:
+
+* The first `Expander` component sets child content in a potentially mutable <xref:Microsoft.AspNetCore.Components.RenderFragment>, so a call to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in the parent component automatically rerenders the component and potentially overwrites the value of `Expanded` to its intitial value of `true`.
+* The second `Expander` component doesn't set child content. Therefore, a potentially mutable <xref:Microsoft.AspNetCore.Components.RenderFragment> doesn't exist. A call to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in the parent component doesn't automatically rerender the child component, so the component's `Expanded` value isn't overwritten.
+
+To maintain state in the preceding scenario, use a *private field* in the `Expander` component to maintain its toggled state.
+
+The following revised `Expander` component:
+
+* Accepts the `Expanded` component parameter value from the parent.
+* Assigns the component parameter value to a *private field* (`expanded`) in the [`OnInitialized` event](xref:blazor/components/lifecycle#component-initialization-oninitializedasync).
+* Uses the private field to maintain its internal toggle state, which demonstrates how to avoid writing directly to a parameter.
+
+> [!NOTE]
+> The advice in this section extends to similar logic in component parameter `set` accessors, which can result in similar undesirable side effects.
+
+`Shared/Expander.razor`:
+
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Shared/index/Expander.razor)]
+
+For additional information, see [Blazor Two Way Binding Error (dotnet/aspnetcore #24599)](https://github.com/dotnet/aspnetcore/issues/24599).
+
+For more information on change detection, inlcuding information on the exact types that Blazor checks, see <xref:blazor/components/rendering#rendering-conventions-for-componentbase>.
 
 ## Attribute splatting and arbitrary parameters
 

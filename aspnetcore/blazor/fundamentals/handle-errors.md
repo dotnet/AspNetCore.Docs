@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
-no-loc: [".NET MAUI", "Mac Catalyst", "Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/fundamentals/handle-errors
 ---
 # Handle errors in ASP.NET Core Blazor apps
@@ -154,7 +153,7 @@ private void IncrementCount()
 If the unhandled exception is thrown for a `currentCount` over five:
 
 * The exception is handled by the error boundary.
-* Error UI is rendered (`An error has occurred!`).
+* Error UI is rendered (`An error has occurred.`).
 
 By default, the <xref:Microsoft.AspNetCore.Components.Web.ErrorBoundary> component renders an empty `<div>` element with the `blazor-error-boundary` CSS class for its error content. The colors, text, and icon for the default UI are defined using CSS in the app's stylesheet in the `wwwroot` folder, so you're free to customize the error UI.
 
@@ -219,6 +218,9 @@ The following `Error` component example merely logs errors, but methods of the c
     }
 }
 ```
+
+> [!NOTE]
+> For more information on <xref:Microsoft.AspNetCore.Components.RenderFragment>, see <xref:blazor/components/index#child-content-render-fragments>.
 
 In the `App` component, wrap the `Router` component with the `Error` component. This permits the `Error` component to cascade down to any component of the app where the `Error` component is received as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute).
 
@@ -331,7 +333,7 @@ In the following example where <xref:Microsoft.AspNetCore.Components.ComponentBa
   * `loadFailed` is set to `true`, which is used to display an error message to the user.
   * The error is logged.
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_Server/Pages/handle-errors/ProductDetails.razor?highlight=11,27-39)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_Server/Pages/handle-errors/ProductDetails.razor" highlight="11,27-39":::
 
 ### Rendering logic
 
@@ -391,7 +393,7 @@ For more information on component disposal, see <xref:blazor/components/lifecycl
 
 ### JavaScript interop
 
-<xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> allows .NET code to make asynchronous calls to the JavaScript runtime in the user's browser.
+<xref:Microsoft.JSInterop.IJSRuntime> is registered by the Blazor framework. <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> allows .NET code to make asynchronous calls to the JavaScript runtime in the user's browser.
 
 The following conditions apply to error handling with <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A>:
 
@@ -545,6 +547,9 @@ The following `Error` component passes itself as a [`CascadingValue`](xref:blazo
 }
 ```
 
+> [!NOTE]
+> For more information on <xref:Microsoft.AspNetCore.Components.RenderFragment>, see <xref:blazor/components/index#child-content-render-fragments>.
+
 In the `App` component, wrap the `Router` component with the `Error` component. This permits the `Error` component to cascade down to any component of the app where the `Error` component is received as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute).
 
 `App.razor`:
@@ -690,7 +695,7 @@ For more information on component disposal, see <xref:blazor/components/lifecycl
 
 ### JavaScript interop (Blazor WebAssembly)
 
-<xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> allows .NET code to make asynchronous calls to the JavaScript runtime in the user's browser.
+<xref:Microsoft.JSInterop.IJSRuntime> is registered by the Blazor framework. <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> allows .NET code to make asynchronous calls to the JavaScript runtime in the user's browser.
 
 The following conditions apply to error handling with <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A>:
 
@@ -881,7 +886,7 @@ For more information on component disposal, see <xref:blazor/components/lifecycl
 
 ### JavaScript interop (Blazor Server)
 
-<xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> allows .NET code to make asynchronous calls to the JavaScript runtime in the user's browser.
+<xref:Microsoft.JSInterop.IJSRuntime> is registered by the Blazor framework. <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> allows .NET code to make asynchronous calls to the JavaScript runtime in the user's browser.
 
 The following conditions apply to error handling with <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A>:
 
@@ -1037,6 +1042,9 @@ The following `Error` component passes itself as a [`CascadingValue`](xref:blazo
 }
 ```
 
+> [!NOTE]
+> For more information on <xref:Microsoft.AspNetCore.Components.RenderFragment>, see <xref:blazor/components/index#child-content-render-fragments>.
+
 In the `App` component, wrap the `Router` component with the `Error` component. This permits the `Error` component to cascade down to any component of the app where the `Error` component is received as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute).
 
 `App.razor`:
@@ -1182,7 +1190,7 @@ For more information on component disposal, see <xref:blazor/components/lifecycl
 
 ### JavaScript interop (Blazor WebAssembly)
 
-<xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> allows .NET code to make asynchronous calls to the JavaScript runtime in the user's browser.
+<xref:Microsoft.JSInterop.IJSRuntime> is registered by the Blazor framework. <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> allows .NET code to make asynchronous calls to the JavaScript runtime in the user's browser.
 
 The following conditions apply to error handling with <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A>:
 
@@ -1373,7 +1381,7 @@ For more information on component disposal, see <xref:blazor/components/lifecycl
 
 ### JavaScript interop (Blazor Server)
 
-<xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> allows .NET code to make asynchronous calls to the JavaScript runtime in the user's browser.
+<xref:Microsoft.JSInterop.IJSRuntime> is registered by the Blazor framework. <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> allows .NET code to make asynchronous calls to the JavaScript runtime in the user's browser.
 
 The following conditions apply to error handling with <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A>:
 

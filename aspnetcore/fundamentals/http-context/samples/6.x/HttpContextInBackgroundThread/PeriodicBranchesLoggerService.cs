@@ -44,6 +44,7 @@ public class PeriodicBranchesLoggerService : BackgroundService
 
                     _logger.LogInformation(
                         $"Branch sync successful! Response: {JsonSerializer.Serialize(response)}");
+
                 }
             }
             catch (Exception ex)
