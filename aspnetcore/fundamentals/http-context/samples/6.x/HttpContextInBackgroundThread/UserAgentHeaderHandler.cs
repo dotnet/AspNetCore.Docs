@@ -8,14 +8,15 @@ public class UserAgentHeaderHandler : DelegatingHandler
     private readonly ILogger _logger;
 
     public UserAgentHeaderHandler(IHttpContextAccessor httpContextAccessor,
-                                   ILogger<UserAgentHeaderHandler> logger)
+                                  ILogger<UserAgentHeaderHandler> logger)
     {
         _httpContextAccessor = httpContextAccessor;
         _logger = logger;
     }
 
-    protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, 
-                                                                 CancellationToken cancellationToken)
+    protected override async Task<HttpResponseMessage> 
+                                    SendAsync(HttpRequestMessage request, 
+                                    CancellationToken cancellationToken)
     {
         var contextRequest = _httpContextAccessor.HttpContext?.Request;
         string ? userAgentString = contextRequest?.Headers["user-agent"].ToString();
