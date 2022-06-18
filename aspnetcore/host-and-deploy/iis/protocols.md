@@ -34,7 +34,7 @@ Requirements to run gRPC on IIS:
 
 * In-process hosting.
 * Windows 11 Build 22000 or Windows Server 2022 Build 20348 or later.
-* TLS 1.2 or later connection
+* TLS 1.2 or later connection.
 
 ### Trailers
 
