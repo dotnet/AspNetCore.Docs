@@ -10,10 +10,6 @@ using RazorPagesMovie.Models;
 
 namespace RazorPagesMovie.Pages.Movies
 {
-#pragma warning disable CS8618
-#pragma warning disable CS8601
-#pragma warning disable CS8602
-#pragma warning disable CS8604
     public class DeleteModel : PageModel
     {
         private readonly RazorPagesMovie.Data.RazorPagesMovieContext _context;
@@ -24,35 +20,39 @@ namespace RazorPagesMovie.Pages.Movies
         }
 
         [BindProperty]
-        public Movie Movie { get; set; }
+      public Movie Movie { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null)
+            if (id == null || _context.Movie == null)
             {
                 return NotFound();
             }
 
-            Movie = await _context.Movie.FirstOrDefaultAsync(m => m.ID == id);
+            var movie = await _context.Movie.FirstOrDefaultAsync(m => m.ID == id);
 
-            if (Movie == null)
+            if (movie == null)
             {
                 return NotFound();
+            }
+            else 
+            {
+                Movie = movie;
             }
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            if (id == null)
+            if (id == null || _context.Movie == null)
             {
                 return NotFound();
             }
+            var movie = await _context.Movie.FindAsync(id);
 
-            Movie = await _context.Movie.FindAsync(id);
-
-            if (Movie != null)
+            if (movie != null)
             {
+                Movie = movie;
                 _context.Movie.Remove(Movie);
                 await _context.SaveChangesAsync();
             }
@@ -60,8 +60,4 @@ namespace RazorPagesMovie.Pages.Movies
             return RedirectToPage("./Index");
         }
     }
-#pragma warning restore CS8618
-#pragma warning restore CS8601
-#pragma warning restore CS8602
-#pragma warning restore CS8604
 }

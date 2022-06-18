@@ -4,7 +4,7 @@ author: rick-anderson
 description: Part 3 of tutorial series on Razor Pages.
 ms.author: riande
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 09/25/2020
+ms.date: 06/17/2022
 ms.custom: contperf-fy21q2
 uid: tutorials/razor-pages/page
 ---
@@ -349,7 +349,7 @@ If there are no model errors:
 
 Examine the `Pages/Movies/Create.cshtml` Razor Page file:
 
-[!code-cshtml[](razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Create.cshtml)]
+[!code-cshtml[](razor-pages-start/snapshot_sample6/Pages/Movies/Create.cshtml)]
 
 # [Visual Studio](#tab/visual-studio)
 

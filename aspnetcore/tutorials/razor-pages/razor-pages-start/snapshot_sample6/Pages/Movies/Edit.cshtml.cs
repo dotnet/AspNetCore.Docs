@@ -11,9 +11,7 @@ using RazorPagesMovie.Models;
 
 namespace RazorPagesMovie.Pages.Movies
 {
-#pragma warning disable CS8618
-#pragma warning disable CS8601
-#pragma warning disable CS8604
+#region snippet2
     public class EditModel : PageModel
     {
         private readonly RazorPagesMovie.Data.RazorPagesMovieContext _context;
@@ -24,26 +22,27 @@ namespace RazorPagesMovie.Pages.Movies
         }
 
         [BindProperty]
-        public Movie Movie { get; set; }
+        public Movie Movie { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null)
+            if (id == null || _context.Movie == null)
             {
                 return NotFound();
             }
 
-            Movie = await _context.Movie.FirstOrDefaultAsync(m => m.ID == id);
-
-            if (Movie == null)
+            var movie =  await _context.Movie.FirstOrDefaultAsync(m => m.ID == id);
+            if (movie == null)
             {
                 return NotFound();
             }
+            Movie = movie;
             return Page();
         }
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see https://aka.ms/RazorPagesCRUD.
+		#region snippet1
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -74,10 +73,9 @@ namespace RazorPagesMovie.Pages.Movies
 
         private bool MovieExists(int id)
         {
-            return _context.Movie.Any(e => e.ID == id);
+          return (_context.Movie?.Any(e => e.ID == id)).GetValueOrDefault();
         }
+#endregion
+#endregion
     }
-#pragma warning restore CS8618
-#pragma warning restore CS8601
-#pragma warning restore CS8604
 }
