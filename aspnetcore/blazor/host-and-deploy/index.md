@@ -379,7 +379,7 @@ For additional third-party host support:
 * Consult the host provider's documentation.
 * Consult developers on non-Microsoft support forums:
   * [Stack Overflow (tag: `blazor`)](https://stackoverflow.com/questions/tagged/blazor)
-  * [ASP.NET Core Slack Team](http://tattoocoder.com/aspnet-slack-sign-up/)
+  * [ASP.NET Core Slack Team](https://join.slack.com/t/aspnetcore/shared_invite/zt-1b60h73p0-PZPq3YCCaPbB21RcujMSVA)
   * [Blazor Gitter](https://gitter.im/aspnet/Blazor)
 
 ### Blazor Server `MapFallbackToPage` configuration
@@ -574,7 +574,7 @@ For additional third-party host support:
 * Consult the host provider's documentation.
 * Consult developers on non-Microsoft support forums:
   * [Stack Overflow (tag: `blazor`)](https://stackoverflow.com/questions/tagged/blazor)
-  * [ASP.NET Core Slack Team](http://tattoocoder.com/aspnet-slack-sign-up/)
+  * [ASP.NET Core Slack Team](https://join.slack.com/t/aspnetcore/shared_invite/zt-1b60h73p0-PZPq3YCCaPbB21RcujMSVA)
   * [Blazor Gitter](https://gitter.im/aspnet/Blazor)
 
 ### Blazor Server `MapFallbackToPage` configuration
