@@ -2,7 +2,7 @@
 // More info at https://go.microsoft.com/fwlink/?LinkId=808241
 [
   {
-    "outputFileName": "wwwroot/css/site.min.css",
+    "outputFileName": "wwwroot/css/site.css",
     // An array of relative input file paths. Globbing patterns supported
     "inputFiles": [
       "wwwroot/css/site.css"

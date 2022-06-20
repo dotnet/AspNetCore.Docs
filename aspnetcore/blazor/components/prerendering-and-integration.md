@@ -212,7 +212,7 @@ Update the imported layout file (`_Layout.cshtml`) to include the **`Client`** p
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 -   <title>@ViewData["Title"] - {APP NAME}</title>
 +   <title>@ViewData["Title"] - BlazorHosted</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 +   <link href="css/app.css" rel="stylesheet" />
 -   <link rel="stylesheet" href="~/RPDonor.styles.css" asp-append-version="true" />
@@ -1050,7 +1050,7 @@ Update the imported layout file (`_Layout.cshtml`) to include the **`Client`** p
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 -   <title>@ViewData["Title"] - DonorProject</title>
 +   <title>@ViewData["Title"] - BlazorHosted</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 +   <link href="css/app.css" rel="stylesheet" />
 +   <link href="BlazorHosted.Client.styles.css" rel="stylesheet" />

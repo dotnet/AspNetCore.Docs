@@ -97,10 +97,10 @@ The following `environment` tag renders the unprocessed CSS files when running i
 
 ```cshtml
 <environment names="Staging,Production">
-    <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
-          asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+    <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.css"
+          asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.css"
           asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-    <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </environment>
 ```
 
@@ -112,10 +112,10 @@ The following `environment` tag renders the bundled and minified CSS files when 
 
 ```cshtml
 <environment exclude="Development">
-    <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
-          asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+    <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.css"
+          asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.css"
           asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-    <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </environment>
 ```
 
@@ -125,10 +125,10 @@ The following `environment` tag renders the bundled and minified CSS files when 
 
 ```cshtml
 <environment names="Staging,Production">
-    <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
-          asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+    <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.css"
+          asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.css"
           asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-    <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </environment>
 ```
 

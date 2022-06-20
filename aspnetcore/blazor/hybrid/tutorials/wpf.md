@@ -101,7 +101,7 @@ Add an `index.html` file to the `wwwroot` folder with the following markup.
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WpfBlazor</title>
     <base href="/" />
-    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/bootstrap/bootstrap.css" rel="stylesheet" />
     <link href="css/app.css" rel="stylesheet" />
     <link href="WpfBlazor.styles.css" rel="stylesheet" />
 </head>
