@@ -212,13 +212,14 @@ First, delete the title and the stylesheet from the donor project, which is `RPD
 ```
 
 Include the **`Client`** project's styles in the layout file. In the following example, the **`Client`** project's namespace is `BlazorHosted.Client`. The `<title>` element can be updated at the same time.
+
 Place the following lines in the `<head>` content of the layout file:
 
 ```html
-+   <title>@ViewData["Title"] - BlazorHosted</title>
-+   <link href="css/app.css" rel="stylesheet" />
-+   <link rel="stylesheet" href="BlazorHosted.Client.styles.css" asp-append-version="true" />
-+   <component type="typeof(HeadOutlet)" render-mode="WebAssemblyPrerendered" />
+<title>@ViewData["Title"] - BlazorHosted</title>
+<link href="css/app.css" rel="stylesheet" />
+<link rel="stylesheet" href="BlazorHosted.Client.styles.css" asp-append-version="true" />
+<component type="typeof(HeadOutlet)" render-mode="WebAssemblyPrerendered" />
 ```
 
 The imported layout contains two `Home` (`Index` page) and `Privacy` navigation links. To make the `Home` links point to the hosted Blazor WebAssembly app, change the hyperlinks:
