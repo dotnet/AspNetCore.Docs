@@ -204,15 +204,14 @@ Update the namespaces in the imported `_ViewImports.cshtml` file to match those 
 
 Update the imported layout file, which is `Pages/Shared/_Layout.cshtml` for Razor Pages or `Views/Shared/_Layout.cshtml` for MVC.
 
-First, delete the title and the stylesheet from the donor project, which is `RPDonor.styles.css` in the following example:
+First, delete the title and the stylesheet from the donor project, which is `RPDonor.styles.css` in the following example. The `{APP NAME}` placeholder represents the donor project's app name.
 
 ```diff
 - <title>@ViewData["Title"] - {APP NAME}</title>
 - <link rel="stylesheet" href="~/RPDonor.styles.css" asp-append-version="true" />
 ```
 
-Include the **`Client`** project's styles in the layout file. In the following example, the **`Client`** project's namespace is `BlazorHosted.Client`. The `<title>` element can be updated at the same time. The `{APP NAME}` placeholder represents the donor project's app name.
-
+Include the **`Client`** project's styles in the layout file. In the following example, the **`Client`** project's namespace is `BlazorHosted.Client`. The `<title>` element can be updated at the same time.
 Place the following lines in the `<head>` content of the layout file:
 
 ```html
