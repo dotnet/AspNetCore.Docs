@@ -202,23 +202,24 @@ Update the namespaces in the imported `_ViewImports.cshtml` file to match those 
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 ```
 
-Update the imported layout file (`_Layout.cshtml`) to include the **`Client`** project's styles. In the following example, the **`Client`** project's namespace is `BlazorHosted.Client`. The `<title>` element can be updated at the same time. The `{APP NAME}` placeholder represents the donor project's app name.
+Update the imported layout file, which is `Pages/Shared/_Layout.cshtml` for Razor Pages or `Views/Shared/_Layout.cshtml` for MVC.
 
-`Pages/Shared/_Layout.cshtml` (Razor Pages) or `Views/Shared/_Layout.cshtml` (MVC):
+First, delete the title and the stylesheet from the donor project, which is `RPDonor.styles.css` in the following example:
 
 ```diff
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
--   <title>@ViewData["Title"] - {APP NAME}</title>
+- <title>@ViewData["Title"] - {APP NAME}</title>
+- <link rel="stylesheet" href="~/RPDonor.styles.css" asp-append-version="true" />
+```
+
+Include the **`Client`** project's styles in the layout file. In the following example, the **`Client`** project's namespace is `BlazorHosted.Client`. The `<title>` element can be updated at the same time. The `{APP NAME}` placeholder represents the donor project's app name.
+
+Place the following lines in the `<head>` content of the layout file:
+
+```html
 +   <title>@ViewData["Title"] - BlazorHosted</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
 +   <link href="css/app.css" rel="stylesheet" />
--   <link rel="stylesheet" href="~/RPDonor.styles.css" asp-append-version="true" />
 +   <link rel="stylesheet" href="BlazorHosted.Client.styles.css" asp-append-version="true" />
 +   <component type="typeof(HeadOutlet)" render-mode="WebAssemblyPrerendered" />
-</head>
 ```
 
 The imported layout contains two `Home` (`Index` page) and `Privacy` navigation links. To make the `Home` links point to the hosted Blazor WebAssembly app, change the hyperlinks:
