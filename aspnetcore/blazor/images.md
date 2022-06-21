@@ -18,9 +18,9 @@ The following example demonstrates how to dynamically set an image's source with
 
 For the example in this section:
 
-* Obtain three images from any source or right-click the following images and save them locally. Name the images `image1.png`, `image2.png`, and `image3.png`.
+* Obtain three images from any source or right-click each of the following images to save them locally. Name the images `image1.png`, `image2.png`, and `image3.png`.
 
-  ![Computer icon](~/blazor/images/_static/image1.png) ![Smiley icon](~/blazor/images/_static/image2.png) ![Earth icon](~/blazor/images/_static/image3.png)
+  ![Computer icon](~/blazor/images/_static/image1.png) &nbsp;&nbsp; ![Smiley icon](~/blazor/images/_static/image2.png) &nbsp;&nbsp; ![Earth icon](~/blazor/images/_static/image3.png)
 
 * Place the images in a new folder named `images` in the app's web root (`wwwroot`). The use of the `images` folder is only for demonstration purposes. You can organize images in any folder layout that you prefer, including serving the images directly from the `wwwroot` folder.
 
