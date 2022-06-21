@@ -185,7 +185,7 @@ For a Blazor WebAssembly app with a relative URL path of `/CoolApp/` (`<base hre
 dotnet run --pathbase=/CoolApp
 ```
 
-If you prefer to configure the app's launch profile to specify the `pathbase` automatically instead of manually with `dotnet run`, set the `launchUrl` and `commandLineArgs` properties in `Properties/launchSettings.json`. The following also configures the launch URL:
+If you prefer to configure the app's launch profile to specify the `pathbase` automatically instead of manually with `dotnet run`, set the `commandLineArgs` property in `Properties/launchSettings.json`. The following also configures the launch URL:
 
 ```json
 "launchUrl": "{RELATIVE URL PATH (no trailing slash)}",
@@ -384,7 +384,7 @@ For a Blazor WebAssembly app with a relative URL path of `/CoolApp/` (`<base hre
 dotnet run --pathbase=/CoolApp
 ```
 
-If you prefer to configure the app's launch profile to specify the `pathbase` automatically instead of manually with `dotnet run`, set the `launchUrl` and `commandLineArgs` properties in `Properties/launchSettings.json`. The following also configures the launch URL:
+If you prefer to configure the app's launch profile to specify the `pathbase` automatically instead of manually with `dotnet run`, set the `commandLineArgs` property in `Properties/launchSettings.json`. The following also configures the launch URL:
 
 ```json
 "launchUrl": "{RELATIVE URL PATH (no trailing slash)}",
@@ -593,7 +593,7 @@ For a Blazor WebAssembly app with a relative URL path of `/CoolApp/` (`<base hre
 dotnet run --pathbase=/CoolApp
 ```
 
-If you prefer to configure the app's launch profile to specify the `pathbase` automatically instead of manually with `dotnet run`, set the `launchUrl` and `commandLineArgs` properties in `Properties/launchSettings.json`. The following also configures the launch URL:
+If you prefer to configure the app's launch profile to specify the `pathbase` automatically instead of manually with `dotnet run`, set the `commandLineArgs` property in `Properties/launchSettings.json`. The following also configures the launch URL:
 
 ```json
 "launchUrl": "{RELATIVE URL PATH (no trailing slash)}",
