@@ -400,7 +400,7 @@ Cookie authentication sliding expiration can now be customized or suppressed usi
 
 ### Hot Reload
 
-Quickly make UI and code updates to running apps without losing app state for faster and more productive developer experience using [Hot Reload](xref:test/hot-reload). For more information, see [Update on .NET Hot Reload progress and Visual Studio 2022 Highlights](https://devblogs.microsoft.com/dotnet/update-on-net-hot-reload-progress-and-visual-studio-2022-highlights/).
+Quickly make UI and code updates to running apps without losing app state for faster and more productive developer experience using [Hot Reload](xref:test/hot-reload). For more information, see <xref:test/hot-reload> and [Update on .NET Hot Reload progress and Visual Studio 2022 Highlights](https://devblogs.microsoft.com/dotnet/update-on-net-hot-reload-progress-and-visual-studio-2022-highlights/).
 
 <!-- Notes:
 ### Single-file publishing
@@ -640,10 +640,6 @@ The <xref:Microsoft.AspNetCore.Connections.Features.IConnectionSocketFeature> re
 For example, the following app sets the <xref:System.Net.Sockets.Socket.LingerState> property on the accepted socket:
 
 [!code-csharp[](aspnetcore-6.0/samples/WebApp1/Program.cs?name=snippet_icsf)]
-
-### Hot Reload
-
-Hot Reload minimizes the number of app restarts after code changes. For more information, see <xref:test/hot-reload>.
 
 ### Generic type constraints in Razor
 
