@@ -280,7 +280,7 @@ The data context `RazorPagesMovieContext`:
 * Specifies which entities are included in the data model.
 * Coordinates EF Core functionality, such as Create, Read, Update and Delete, for the `Movie` model.
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Data/RazorPagesMovieContext.cs?name=snippet_1)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Data/RazorPagesMovieContext.cs)]
 
 The preceding code creates a [DbSet\<Movie>](xref:Microsoft.EntityFrameworkCore.DbSet%601) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
 
