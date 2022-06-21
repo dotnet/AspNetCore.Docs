@@ -32,7 +32,7 @@ In preceding code:
 * The `AddFilter` extension method adds a filter to the `/colorSelector/{color}` endpoint.
 * `next` is the `RouteHandlerFilterDelegate`.
 * Returns the color specified except for the `Red`.
-* Returns [Results.Problem](xref:Microsoft.AspNetCore.Http.Results.Problem(ProblemDetails)) when `Red` is specified.
+* Returns [Results.Problem](xref:Microsoft.AspNetCore.Http.Results.Problem%2A) when `Red` is specified.
 
 When registered, the contents of the delegate are executed before the handler is invoked. When multiple `AddFilter` invocations are made on a handler, the filters are executed in order of First In, Last Out (FILO) order, so the first filter registered run lasts.
 
