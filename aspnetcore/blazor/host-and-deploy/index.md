@@ -195,8 +195,8 @@ If you prefer to configure the app's launch profile to specify the `pathbase` au
 Using `CoolApp` as the example:
 
 ```json
-"launchUrl": "CoolApp",
 "commandLineArgs": "--pathbase=/CoolApp",
+"launchUrl": "CoolApp",
 ```
 
 Using either `dotnet run` with the `--pathbase` option or a launch profile configuration that sets the base path, the Blazor WebAssembly app responds locally at `http://localhost:port/CoolApp`.
@@ -394,8 +394,8 @@ If you prefer to configure the app's launch profile to specify the `pathbase` au
 Using `CoolApp` as the example:
 
 ```json
-"launchUrl": "CoolApp",
 "commandLineArgs": "--pathbase=/CoolApp",
+"launchUrl": "CoolApp",
 ```
 
 Using either `dotnet run` with the `--pathbase` option or a launch profile configuration that sets the base path, the Blazor WebAssembly app responds locally at `http://localhost:port/CoolApp`.
@@ -603,8 +603,8 @@ If you prefer to configure the app's launch profile to specify the `pathbase` au
 Using `CoolApp` as the example:
 
 ```json
-"launchUrl": "CoolApp",
 "commandLineArgs": "--pathbase=/CoolApp",
+"launchUrl": "CoolApp",
 ```
 
 Using either `dotnet run` with the `--pathbase` option or a launch profile configuration that sets the base path, the Blazor WebAssembly app responds locally at `http://localhost:port/CoolApp`.
