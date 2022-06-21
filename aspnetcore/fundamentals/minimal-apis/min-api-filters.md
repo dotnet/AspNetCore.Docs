@@ -29,10 +29,12 @@ Filters can be registered by providing a [Delegte](/dotnet/csharp/programming-gu
 
 In preceding code:
 
-* The `AddFilter` extension method adds a filter to the `/hello/{name}` endpoint.
+* The `AddFilter` extension method adds a filter to the `/colorSelector/{color}` endpoint.
 * `next` is the `RouteHandlerFilterDelegate`.
+* Returns the color specified except for the `Red`.
+* Returns [Results.Problem](xref:Microsoft.AspNetCore.Http.Results.Problem(ProblemDetails)) when `Red` is specified.
 
-When registered, the contents of the delegate will be executed before the handler is invoked. When multiple `AddFilter` invocations are made on a handler, the filters will be executed in order of FILO order, so the first filter registered will run last.
+When registered, the contents of the delegate are executed before the handler is invoked. When multiple `AddFilter` invocations are made on a handler, the filters are executed in order of First In, Last Out (FILO) order, so the first filter registered run lasts.
 
 ```csharp
 app.MapGet("/todos/{id}", (int id) => ...)
@@ -41,7 +43,10 @@ app.MapGet("/todos/{id}", (int id) => ...)
   .AddFilter(FilterC);
 ```
 
-In the scenario above, the filters an handlers will be executed in the following order FilterC -> FilterB -> FilterA -> handler, where the `next` for `FilterC` is `FilterB` and so on.
+In the preceding code, the filters and handlers are executed in the following order:
+
+* FilterC -> FilterB -> FilterA -> handler
+* The `next` for `FilterC` is `FilterB` and so on.
 
 
 :::moniker-end
