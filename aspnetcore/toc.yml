@@ -663,7 +663,11 @@ items:
           - name: Telemetry
             uid: web-api/http-repl/telemetry
   - name: Minimal APIs
-    uid: fundamentals/minimal-apis
+    items:
+        - name: Minimal APIs overview
+        uid: fundamentals/minimal-apis
+        - name: Filters in Minimal API apps
+        uid: fundamentals/minimal-apis/min-api-filters
   - name: Real-time apps
     displayName: signalr
     items:
