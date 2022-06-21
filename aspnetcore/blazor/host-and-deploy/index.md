@@ -185,7 +185,21 @@ For a Blazor WebAssembly app with a relative URL path of `/CoolApp/` (`<base hre
 dotnet run --pathbase=/CoolApp
 ```
 
-The Blazor WebAssembly app responds locally at `http://localhost:port/CoolApp`.
+If you prefer to configure the app's launch profile to specify the `pathbase` automatically instead of manually with `dotnet run`, set the `launchUrl` and `commandLineArgs` properties in `launchSettings.json`:
+
+```json
+"launchUrl": "{RELATIVE URL PATH (no trailing slash)}",
+"commandLineArgs": "--pathbase=/{RELATIVE URL PATH (no trailing slash)}",
+```
+
+Using `CoolApp` as the example:
+
+```json
+"launchUrl": "CoolApp",
+"commandLineArgs": "--pathbase=/CoolApp",
+```
+
+Using either `dotnet run` with the `--pathbase` option or a launch profile configuration that sets the base path, the Blazor WebAssembly app responds locally at `http://localhost:port/CoolApp`.
 
 ## Blazor Server `MapFallbackToPage` configuration
 
