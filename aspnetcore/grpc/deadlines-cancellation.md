@@ -57,7 +57,7 @@ The call context provides the deadline with `ServerCallContext.Deadline`:
 Manually propagating deadlines can be cumbersome. The deadline needs to be passed to every call, and it's easy to accidentally miss. An automatic solution is available with gRPC client factory. Specifying `EnableCallContextPropagation`:
 
 * Automatically propagates the deadline and cancellation token to child calls.
-* Ensures the shortest deadline is used when multiple is available. This can happen if a deadline is propogated to the child call ***and*** the child call specifies its own deadline.
+* Doesn't propogated the deadline if the child call specifies a smaller deadline. For example, a propogated deadline of 10 seconds isn't used if a child call specifies a new deadline of 5 seconds using `CallOptions.Deadline`. When multiple deadlines are available the smallest is always used.
 * Is an excellent way of ensuring that complex, nested gRPC scenarios always propagate the deadline and cancellation.
 
 [!code-csharp[](~/grpc/deadlines-cancellation/clientfactory-propagate.cs?highlight=6)]
