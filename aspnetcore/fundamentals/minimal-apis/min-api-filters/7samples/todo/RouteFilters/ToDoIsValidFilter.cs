@@ -9,10 +9,11 @@ public class ToDoIsValidFilter : IRouteHandlerFilter
         _logger = loggerFactory.CreateLogger<ToDoIsValidFilter>();
     }
 
-    public async ValueTask<object?> InvokeAsync(RouteHandlerInvocationContext rhiContextontext,
+    public async ValueTask<object?> InvokeAsync(RouteHandlerInvocationContext rhiContext,
                                                 RouteHandlerFilterDelegate next)
     {
-        var tdparam0 = rhiContextontext.Arguments[0]!;
+        var tdparam0 = rhiContext.Arguments[0]!;
+        var todoParameter = invocationContext.GetParameter<T>(0);
         Todo todo = (Todo)tdparam0;
 
 
@@ -23,7 +24,7 @@ public class ToDoIsValidFilter : IRouteHandlerFilter
             _logger.LogWarning(validationError);
             return Results.Problem(validationError);
         }
-        return await next(rhiContextontext);
+        return await next(rhiContext);
     }
 }
 #endregion
