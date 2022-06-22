@@ -107,7 +107,7 @@ Submit a request to the [sample app](https://responsecompression.azurewebsites.n
 
 Use the <xref:Microsoft.AspNetCore.ResponseCompression.BrotliCompressionProvider> to compress responses with the [Brotli compressed data format](https://tools.ietf.org/html/rfc7932).
 
-If [no compression providers are explicitly added](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/ResponseCompression/src/ResponseCompressionProvider.cs#L46) to the <xref:Microsoft.AspNetCore.ResponseCompression.CompressionProviderCollection>:
+If [no compression providers are explicitly added](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/ResponseCompression/src/ResponseCompressionProvider.cs#L44) to the <xref:Microsoft.AspNetCore.ResponseCompression.CompressionProviderCollection>:
 
 * The Brotli compression provider and Gzip compression provider are added by default to the array of compression providers.
 * Compression defaults to Brotli compression when the Brotli compressed data format is supported by the client. If Brotli isn't supported by the client, compression defaults to Gzip when the client supports Gzip compression.
