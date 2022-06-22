@@ -9,6 +9,11 @@ uid: fundamentals/minimal-apis/min-api-filters
 ---
 # Filters in Minimal API apps
 
+TODO:
+
+* [`routeHandlerInvocationContext.Arguments `](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http.Abstractions/src/RouteHandlerInvocationContext.cs) : Write sample that modifies arguements. Copy  `IsValid` to `IsValidUC` that makes `Name` UpperCase.
+*
+
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 Minimal API filters allows developers to implement business logic that supports:
@@ -30,7 +35,7 @@ Filters can be registered by providing a [Delegte](/dotnet/csharp/programming-gu
 In preceding code:
 
 * The `AddFilter` extension method adds a filter to the `/colorSelector/{color}` endpoint.
-* `next` is the `RouteHandlerFilterDelegate`.
+* `next` is a `RouteHandlerFilterDelegate`.
 * Returns the color specified except for the `Red`.
 * Returns [Results.Problem](xref:Microsoft.AspNetCore.Http.Results.Problem%2A) when the `/colorSelector/Red` endpoint is requested.
 
@@ -43,4 +48,19 @@ In the preceding code, the filters and handlers are executed in the following or
 * `CrouteFilter` -> `BrouteFilter` -> `ArouteFilter` -> route handler
 * The `next` for `FilterC` is `FilterB` and so on.
 
+Filters can also be registered using a `delegate` that takes a `RouteHandlerInvocationContext` and returns a `RouteHandlerFilterDelegate`. This factory pattern is particularly useful to register a filter that depends on the signature of the target route handler. For example, consider a filter that validated endpoints which consume a `Todo` object in the body:
 
+             <!--       ~/fundamentals/minimal-apis/min-api-filters/7samples/todo/Program.cs -->
+[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/todo/Program.cs?name=snippet_filter1)]
+
+In the preceding code, the `RouteHandlerInvocationContext` object provides access to the `MethodInfo` associated with the endpoint's handler and the  `EndpointMetadata` that has been applied on the endpoint.
+
+The preceding filter can be incapsulated in a class which implements `IRouteHandlerFilter`:
+
+[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/todo/RouteFilters/ToDoIsValidFilter.cs?name=snippet)]
+
+The `ToDoIsValidFilter` is applied to the following endpoints:
+
+[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/todo/Program.cs?name=snippet_filter1)]
+
+In addition to being passed as delegates, filters can be registered by implementing the `IRouteHandlerFilter` interface.

@@ -1,4 +1,4 @@
-#define ABC // FIRST SECOND ABC
+#define SECOND // FIRST SECOND ABC
 #if NEVER
 #elif FIRST
 #region snippet1
