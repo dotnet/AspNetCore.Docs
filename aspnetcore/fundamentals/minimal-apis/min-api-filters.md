@@ -50,7 +50,7 @@ In the preceding code, the filters and handlers are executed in the following or
 
 Filters can also be registered using a `delegate` that takes a `RouteHandlerInvocationContext` and returns a `RouteHandlerFilterDelegate`. This factory pattern is useful to register a filter that depends on the signature of the target route handler. For example, consider a filter that validated endpoints which consume a `Todo` object in the body:
 
-             <!--       ~/fundamentals/minimal-apis/min-api-filters/7samples/todo/Program.cs -->
+<!--       ~/fundamentals/minimal-apis/min-api-filters/7samples/todo/Program.cs -->
 [!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/todo/Program.cs?name=snippet_filter1)]
 
 In the preceding code, the `RouteHandlerInvocationContext` object provides access to the `MethodInfo` associated with the endpoint's handler and the  `EndpointMetadata` that has been applied on the endpoint.
