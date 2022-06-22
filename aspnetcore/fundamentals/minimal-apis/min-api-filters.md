@@ -54,7 +54,7 @@ Filters can also be registered using a `delegate` that takes a `RouteHandlerInvo
 
 In the preceding code, the `RouteHandlerInvocationContext` object provides access to the `MethodInfo` associated with the endpoint's handler and the  `EndpointMetadata` that has been applied on the endpoint.
 
-The preceding filter can be encapsulated in a class which implements `IRouteHandlerFilter`:
+In addition to being passed as delegates, filters can be registered by implementing the `IRouteHandlerFilter` interface. The follow code shows the preceding filter encapsulated in a class which implements `IRouteHandlerFilter`:
 
 [!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/todo/RouteFilters/ToDoIsValidFilter.cs?name=snippet)]
 
@@ -62,4 +62,3 @@ The `ToDoIsValidFilter` is applied to the following endpoints:
 
 [!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/todo/Program.cs?name=snippet_2flt)]
 
-In addition to being passed as delegates, filters can be registered by implementing the `IRouteHandlerFilter` interface.

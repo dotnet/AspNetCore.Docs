@@ -33,9 +33,9 @@ app.MapPut("/todoitems/{id}", async (int id, Todo inputTodo, TodoDb db) =>
     await db.SaveChangesAsync();
 
     return Results.NoContent();
-}).AddFilter(async (rhic, next) =>
+}).AddFilter(async (rhiContext, next) =>
 {
-    var tdparam = (Todo)rhic.Arguments[1]!;
+    var tdparam = (Todo)rhiContext.Arguments[1]!;
 
     var validationError = Utilities.IsValid(tdparam);
 
@@ -43,7 +43,7 @@ app.MapPut("/todoitems/{id}", async (int id, Todo inputTodo, TodoDb db) =>
     {
         return Results.Problem(validationError);
     }
-    return await next(rhic);
+    return await next(rhiContext);
 });
 #endregion
 
