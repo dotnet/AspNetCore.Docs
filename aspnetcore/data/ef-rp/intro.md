@@ -529,7 +529,7 @@ Enumerating a large table in a view could return a partially constructed HTTP 20
 
 Paging is covered later in the tutorial.
 
-For more information, see [Performance considerations (EF)](/dotnet/framework/data/adonet/ef/performance-considerations).
+For more information, see [Performance considerations (EF)](/ef/core/performance).
 
 ## Next steps
 
