@@ -3,61 +3,46 @@ namespace Filters.RouteFilters;
 
 public abstract class ABCrouteFilters : IRouteHandlerFilter
 {
-    public abstract ValueTask<object?> InvokeAsync(RouteHandlerInvocationContext context, RouteHandlerFilterDelegate next);
-}
+    protected readonly ILogger Logger;
+    private readonly string? _methodName;
 
-class ArouteFilter : IRouteHandlerFilter
-{
-    public ILogger _logger;
-    public string? _methodName;
-
-    public ArouteFilter(ILoggerFactory loggerFactory)
+    protected ABCrouteFilters(ILoggerFactory loggerFactory)
     {
-        _logger = loggerFactory.CreateLogger<ABCrouteFilters>();
-        _methodName = this.GetType().FullName;
-
+        Logger = loggerFactory.CreateLogger<ABCrouteFilters>();
+        _methodName = GetType().FullName;
     }
 
-    public async ValueTask<object?> InvokeAsync(RouteHandlerInvocationContext context, RouteHandlerFilterDelegate next)
+    public virtual async ValueTask<object?> InvokeAsync(RouteHandlerInvocationContext context,
+        RouteHandlerFilterDelegate next)
     {
-        _logger.LogInformation(_methodName);
-        return await next(context);
-    }
-
-}
-
-class BrouteFilter : IRouteHandlerFilter
-{
-    public ILogger _logger;
-    public string? _methodName;
-
-    public BrouteFilter(ILoggerFactory loggerFactory)
-    {
-        _logger = loggerFactory.CreateLogger<ABCrouteFilters>();
-        _methodName = this.GetType().FullName;
-    }
-
-    public async ValueTask<object?> InvokeAsync(RouteHandlerInvocationContext context, RouteHandlerFilterDelegate next)
-    {
-        _logger.LogInformation(_methodName);
+        Logger.LogInformation("Executing filter method {MethodName}", _methodName);
         return await next(context);
     }
 }
 
-class CrouteFilter : IRouteHandlerFilter
+class ArouteFilter : ABCrouteFilters
 {
-    public ILogger _logger;
-    public string? _methodName;
-
-    public CrouteFilter(ILoggerFactory loggerFactory)
+    public ArouteFilter(ILoggerFactory loggerFactory) : base(loggerFactory)
     {
-        _logger = loggerFactory.CreateLogger<ABCrouteFilters>();
-        _methodName = this.GetType().FullName;
     }
 
-    public async ValueTask<object?> InvokeAsync(RouteHandlerInvocationContext context, RouteHandlerFilterDelegate next)
+    public override ValueTask<object?> InvokeAsync(RouteHandlerInvocationContext context,
+        RouteHandlerFilterDelegate next)
     {
-        _logger.LogInformation(_methodName);
-        return await next(context);
+        var contextRequest = context.HttpContext.Request;
+        var userAgentString = contextRequest.Headers.UserAgent.ToString();
+        
+        Logger.LogInformation("Requesting User Agent: {UserAgent}", userAgentString);
+        return base.InvokeAsync(context, next);
     }
+}
+
+class BrouteFilter : ABCrouteFilters
+{
+    public BrouteFilter(ILoggerFactory loggerFactory) : base(loggerFactory) { }
+}
+
+class CrouteFilter : ABCrouteFilters
+{
+    public CrouteFilter(ILoggerFactory loggerFactory) : base(loggerFactory) { }
 }
