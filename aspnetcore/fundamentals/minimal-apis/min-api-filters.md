@@ -32,12 +32,12 @@ Filters can be registered by providing a [Delegate](/dotnet/csharp/programming-g
 
 [!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/Filters/Program.cs?name=snippet1)]
 
-In preceding code:
+The preceding code:
 
-* The `AddFilter` extension method adds a filter to the `/colorSelector/{color}` endpoint.
-* `next` is a `RouteHandlerFilterDelegate`.
+* Calls the `AddFilter` extension method to add a filter to the `/colorSelector/{color}` endpoint.
 * Returns the color specified except for the `Red`.
 * Returns [Results.Problem](xref:Microsoft.AspNetCore.Http.Results.Problem%2A) when the `/colorSelector/Red` endpoint is requested.
+* Uses `next` as the `RouteHandlerFilterDelegate`.
 
 The filter is run before the endpoint handler. When multiple `AddFilter` invocations are made on a handler, the filters are executed in order of First In, Last Out (FILO) order, so the first filter registered run lasts.
 

@@ -8,17 +8,18 @@ var app = builder.Build();
 
 app.UseHttpsRedirection();
 
-string ColorName(string color) => $"Hello, {color}!";
+string ColorName(string color) => $"Color specified: {color}!";
 
 app.MapGet("/colorSelector/{color}", ColorName)
-    .AddFilter(async (rhiContextontext, next) =>
+    .AddFilter(async (rhiContext, next) =>
     {
-        var color = (string)rhiContextontext.Arguments[0]!;
+        var color = rhiContext.GetArgument<string>(0);
+
         if (color == "Red")
         {
             return Results.Problem("Red not allowed!");
         }
-        return await next(rhiContextontext);
+        return await next(rhiContext);
     });
 
 app.Run();
@@ -47,10 +48,10 @@ class ServiceAccessingRouteHandlerFilter : IRouteHandlerFilter
         _logger = loggerFactory.CreateLogger<ServiceAccessingRouteHandlerFilter>();
     }
 
-    public async ValueTask<object?> InvokeAsync(RouteHandlerInvocationContext rhiContextontext, RouteHandlerFilterDelegate next)
+    public async ValueTask<object?> InvokeAsync(RouteHandlerInvocationContext rhiContext, RouteHandlerFilterDelegate next)
     {
-        rhiContextontext.HttpContext.Items["loggerErrorIsEnabled"] = _logger.IsEnabled(LogLevel.Error);
-        return await next(rhiContextontext);
+        rhiContext.HttpContext.Items["loggerErrorIsEnabled"] = _logger.IsEnabled(LogLevel.Error);
+        return await next(rhiContext);
     }
 }
 #endregion
