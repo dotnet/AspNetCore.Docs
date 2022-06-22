@@ -48,7 +48,7 @@ app.MapPut("/todoitems/{id}", async (int id, Todo inputTodo, TodoDb db) =>
 #endregion
 
 #region snippet_2flt
-app.MapPut("/todoitems2/{id}", async (Todo inputTodo, TodoDb db, int id) =>
+app.MapPut("/todoitems2/{id}", async (Todo inputTodo, int id, TodoDb db) =>
 {
     var todo = await db.Todos.FindAsync(id);
 

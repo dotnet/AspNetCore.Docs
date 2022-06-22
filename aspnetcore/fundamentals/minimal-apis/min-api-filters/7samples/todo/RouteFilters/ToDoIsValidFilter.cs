@@ -2,28 +2,25 @@ namespace TodoApi.RouteFilters;
 #region snippet
 public class ToDoIsValidFilter : IRouteHandlerFilter
 {
+    private ILogger _logger;
+
+    public ToDoIsValidFilter(ILoggerFactory loggerFactory)
+    {
+        _logger = loggerFactory.CreateLogger<ToDoIsValidFilter>();
+    }
+
     public async ValueTask<object?> InvokeAsync(RouteHandlerInvocationContext rhiContextontext,
                                                 RouteHandlerFilterDelegate next)
     {
-        Todo? todo = null;
         var tdparam0 = rhiContextontext.Arguments[0]!;
+        Todo todo = (Todo)tdparam0;
 
-        if (tdparam0.GetType() == typeof(Todo))
-        {
-            todo = (Todo)tdparam0;
-        }
-
-        var tdparam = rhiContextontext.Arguments[1]!;
-
-        if (tdparam.GetType() == typeof(Todo))
-        {
-             todo = (Todo)tdparam;
-        }
 
         var validationError = Utilities.IsValid(todo!);
 
         if (!String.IsNullOrEmpty(validationError))
         {
+            _logger.LogWarning(validationError);
             return Results.Problem(validationError);
         }
         return await next(rhiContextontext);
