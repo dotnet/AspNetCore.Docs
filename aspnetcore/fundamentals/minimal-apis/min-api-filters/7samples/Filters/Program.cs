@@ -1,4 +1,4 @@
-#define SECOND // FIRST SECOND
+#define ABC // FIRST SECOND ABC
 #if NEVER
 #elif FIRST
 #region snippet1
@@ -24,15 +24,16 @@ app.MapGet("/colorSelector/{color}", ColorName)
 app.Run();
 #endregion
 #elif SECOND
-#region snippet1
+#region snippet2
 var builder = WebApplication.CreateBuilder(args);
 
 var app = builder.Build();
 
 app.UseHttpsRedirection();
 
-string? PrintLogger(HttpContext context) => $"Logger Error IsEnabled:" +
-    $"                                 {context.Items["loggerErrorIsEnabled"]}";
+static string? PrintLogger(HttpContext context) => $"Logger Error IsEnabled:" +
+                                            $"{context.Items["loggerErrorIsEnabled"]}";
+
 app.MapGet("/print-logger", PrintLogger).AddFilter<ServiceAccessingRouteHandlerFilter>();
 
 app.Run();
@@ -52,6 +53,21 @@ class ServiceAccessingRouteHandlerFilter : IRouteHandlerFilter
         return await next(context);
     }
 }
+#endregion
+#elif ABC
+#region snippet_abc
+using Filters.RouteFilters;
+
+var builder = WebApplication.CreateBuilder(args);
+
+var app = builder.Build();
+
+app.MapGet("/", () => "Test of MultipleFilters")
+    .AddFilter<ArouteFilter>()
+    .AddFilter<BrouteFilter>()
+    .AddFilter<CrouteFilter>();
+
+app.Run();
 #endregion
 #endif
 

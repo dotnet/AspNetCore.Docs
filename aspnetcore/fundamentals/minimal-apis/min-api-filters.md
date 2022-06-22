@@ -4,16 +4,16 @@ author: rick-anderson
 description: Use filters in Minimal API applications
 ms.author: riande
 ms.date: 6/22/2022
+monikerRange: '>= aspnetcore-7.0'
 uid: fundamentals/minimal-apis/min-api-filters
 ---
 # Filters in Minimal API apps
-
-:::moniker range=">= aspnetcore-7.0"
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 Minimal API filters allows developers to implement business logic that supports:
 
+* Running code before the route handler.
 * Inspecting and modifying parameters provided during a route handler invocation.
 * Intercepting the response behavior of a route handler.
 
@@ -23,7 +23,7 @@ Filters can be helpful in the following scenarios:
 * Logging information about the request and response.
 * Validating that a request is targeting a supported API version
 
-Filters can be registered by providing a [Delegte](/dotnet/csharp/programming-guide/delegates/) that takes a `routeHandlerInvocationContext` and a `RouteHandlerFilterDelegate`. The `RouteHandlerInvocationContext` provides access to the `HttpContext` associated with the request and a `Arguments` list indicating the arguments passed to the handler in the order in which they appear in the argument list of the handler.
+Filters can be registered by providing a [Delegte](/dotnet/csharp/programming-guide/delegates/) that takes a [`routeHandlerInvocationContext`](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http.Abstractions/src/RouteHandlerInvocationContext.cs) and a [`RouteHandlerFilterDelegate`](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http.Abstractions/src/RouteHandlerFilterDelegate.cs). The `RouteHandlerInvocationContext` provides access to the `HttpContext` associated with the request and a `Arguments` list indicating the arguments passed to the handler in the order in which they appear in the argument list of the handler.
 
 [!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/Filters/Program.cs?name=snippet1)]
 
@@ -32,21 +32,15 @@ In preceding code:
 * The `AddFilter` extension method adds a filter to the `/colorSelector/{color}` endpoint.
 * `next` is the `RouteHandlerFilterDelegate`.
 * Returns the color specified except for the `Red`.
-* Returns [Results.Problem](xref:Microsoft.AspNetCore.Http.Results.Problem%2A) when `Red` is specified.
+* Returns [Results.Problem](xref:Microsoft.AspNetCore.Http.Results.Problem%2A) when the `/colorSelector/Red` endpoint is requested.
 
-When registered, the contents of the delegate are executed before the handler is invoked. When multiple `AddFilter` invocations are made on a handler, the filters are executed in order of First In, Last Out (FILO) order, so the first filter registered run lasts.
+The filter is run before the endpoint handler. When multiple `AddFilter` invocations are made on a handler, the filters are executed in order of First In, Last Out (FILO) order, so the first filter registered run lasts.
 
-```csharp
-app.MapGet("/todos/{id}", (int id) => ...)
-  .AddFilter(FilterA)
-  .AddFilter(FilterB)
-  .AddFilter(FilterC);
-```
+[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/Filters/Program.cs?name=snippet_abc)]
 
 In the preceding code, the filters and handlers are executed in the following order:
 
-* FilterC -> FilterB -> FilterA -> handler
+* `CrouteFilter` -> `BrouteFilter` -> `ArouteFilter` -> route handler
 * The `next` for `FilterC` is `FilterB` and so on.
 
 
-:::moniker-end
