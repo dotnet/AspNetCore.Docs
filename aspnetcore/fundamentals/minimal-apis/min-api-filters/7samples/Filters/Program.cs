@@ -1,4 +1,4 @@
-#define FIRST // FIRST SECOND ABC
+#define XYZ // FIRST SECOND ABC XYZ
 #if NEVER
 #elif FIRST
 #region snippet1
@@ -68,6 +68,30 @@ app.MapGet("/", () => "Test of multiple filters")
     .AddFilter<BrouteFilter>()
     .AddFilter<CrouteFilter>();
 
+app.Run();
+#endregion
+#elif XYZ
+#region snippet_xyz
+var builder = WebApplication.CreateBuilder(args);
+
+var app = builder.Build();
+
+app.MapGet("/", () => "Test of multiple filters")
+    .AddFilter(async (rhiContext, next) =>
+    {
+        app.Logger.LogInformation("First filter");
+        return await next(rhiContext);
+    })
+    .AddFilter(async (rhiContext, next) =>
+    {
+        app.Logger.LogInformation("2nd filter");
+        return await next(rhiContext);
+    })
+    .AddFilter(async (rhiContext, next) =>
+    {
+        app.Logger.LogInformation("3rd filter");
+        return await next(rhiContext);
+    });
 app.Run();
 #endregion
 #endif

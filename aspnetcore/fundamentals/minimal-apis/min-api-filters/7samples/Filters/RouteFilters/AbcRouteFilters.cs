@@ -22,19 +22,7 @@ public abstract class ABCrouteFilters : IRouteHandlerFilter
 
 class ArouteFilter : ABCrouteFilters
 {
-    public ArouteFilter(ILoggerFactory loggerFactory) : base(loggerFactory)
-    {
-    }
-
-    public override ValueTask<object?> InvokeAsync(RouteHandlerInvocationContext context,
-        RouteHandlerFilterDelegate next)
-    {
-        var contextRequest = context.HttpContext.Request;
-        var userAgentString = contextRequest.Headers.UserAgent.ToString();
-        
-        Logger.LogInformation("Requesting User Agent: {UserAgent}", userAgentString);
-        return base.InvokeAsync(context, next);
-    }
+    public ArouteFilter(ILoggerFactory loggerFactory) : base(loggerFactory) { }
 }
 
 class BrouteFilter : ABCrouteFilters
