@@ -4,7 +4,7 @@ author: jamesnk
 description: Learn how to make scalable, high-performance gRPC apps with client-side load balancing in .NET.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 08/07/2021
+ms.date: 06/23/2022
 uid: grpc/loadbalancing
 ---
 # gRPC client-side load balancing
