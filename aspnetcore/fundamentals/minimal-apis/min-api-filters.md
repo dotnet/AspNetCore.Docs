@@ -28,7 +28,7 @@ Filters can be helpful in the following scenarios:
 * Logging information about the request and response.
 * Validating that a request is targeting a supported API version
 
-Filters can be registered by providing a [Delegate](/dotnet/csharp/programming-guide/delegates/) that takes a [`routeHandlerInvocationContext`](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http.Abstractions/src/RouteHandlerInvocationContext.cs) and a [`RouteHandlerFilterDelegate`](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http.Abstractions/src/RouteHandlerFilterDelegate.cs). The `RouteHandlerInvocationContext` provides access to the `HttpContext` associated with the request and a `Arguments` list indicating the arguments passed to the handler in the order in which they appear in the argument list of the handler.
+Filters can be registered by providing a [Delegate](/dotnet/csharp/programming-guide/delegates/) that takes a [`routeHandlerInvocationContext`](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http.Abstractions/src/RouteHandlerInvocationContext.cs) and returns  a [`RouteHandlerFilterDelegate`](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http.Abstractions/src/RouteHandlerFilterDelegate.cs). The `RouteHandlerInvocationContext` provides access to the `HttpContext` associated with the request and a `Arguments` list indicating the arguments passed to the handler in the order in which they appear in the argument list of the handler.
 
 [!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/Filters/Program.cs?name=snippet1)]
 
@@ -48,17 +48,26 @@ In the preceding code, the filters and handlers are executed in the following or
 * `CrouteFilter` -> `BrouteFilter` -> `ArouteFilter` -> route handler
 * The `next` for `FilterC` is `FilterB` and so on.
 
-Filters can also be registered using a `delegate` that takes a `RouteHandlerInvocationContext` and returns a `RouteHandlerFilterDelegate`. This factory pattern is useful to register a filter that depends on the signature of the target route handler. For example, consider a filter that validated endpoints which consume a `Todo` object in the body:
+ Consider a filter that validated endpoints which consume a `Todo` object in the body:
 
 [!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/todo/Program.cs?name=snippet_filter1)]
 
-In the preceding code, the `RouteHandlerInvocationContext` object provides access to the `MethodInfo` associated with the endpoint's handler and the  `EndpointMetadata` that has been applied on the endpoint.
+In the preceding code:
+
+* The `RouteHandlerInvocationContext` object provides access to the `MethodInfo` associated with the endpoint's handler and the `EndpointMetadata` that has been applied on the endpoint.
+* The filter is registered using a `delegate` that takes a `RouteHandlerInvocationContext` and returns a `RouteHandlerFilterDelegate`. This factory pattern is useful to register a filter that depends on the signature of the target route handler.
 
 In addition to being passed as delegates, filters can be registered by implementing the `IRouteHandlerFilter` interface. The follow code shows the preceding filter encapsulated in a class which implements `IRouteHandlerFilter`:
 
 [!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/todo/RouteFilters/ToDoIsValidFilter.cs?name=snippet)]
 
+Filters that implement the `IRouteHandlerFilter` interface can resolve dependencies from [Dependency Injection (DI)]](xref:fundamentals/dependency-injection), as shown in the previous code. Although filters can resolve dependencies from DI, filters themselves can ***not*** be resolved from DI.
+
 The `ToDoIsValidFilter` is applied to the following endpoints:
 
 [!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/todo/Program.cs?name=snippet_2flt)]
 
+## Additional Resources
+
+* [View or download sample code](https://github.com/aspnet/Docs/tree/main/aspnetcore/fundamentals/minimal-apis/min-api-filters/7samples) ([how to download](xref:index#how-to-download-a-sample))
+* <xref:tutorials/min-web-api>

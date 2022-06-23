@@ -12,10 +12,7 @@ public class ToDoIsValidFilter : IRouteHandlerFilter
     public async ValueTask<object?> InvokeAsync(RouteHandlerInvocationContext rhiContext,
                                                 RouteHandlerFilterDelegate next)
     {
-        var tdparam0 = rhiContext.Arguments[0]!;
-        var todoParameter = invocationContext.GetParameter<T>(0);
-        Todo todo = (Todo)tdparam0;
-
+        var todo = rhiContext.GetArgument<Todo>(0);
 
         var validationError = Utilities.IsValid(todo!);
 

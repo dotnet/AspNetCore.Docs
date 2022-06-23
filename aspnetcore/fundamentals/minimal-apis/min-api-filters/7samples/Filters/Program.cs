@@ -63,7 +63,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 var app = builder.Build();
 
-app.MapGet("/", () => "Test of MultipleFilters")
+app.MapGet("/", () => "Test of multiple filters")
     .AddFilter<ArouteFilter>()
     .AddFilter<BrouteFilter>()
     .AddFilter<CrouteFilter>();

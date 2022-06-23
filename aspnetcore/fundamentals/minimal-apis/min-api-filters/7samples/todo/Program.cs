@@ -21,7 +21,7 @@ app.MapGet("/todoitems/{id}", async (int id, TodoDb db) =>
             : Results.NotFound());
 
 #region snippet_filter1
-app.MapPut("/todoitems/{id}", async (int id, Todo inputTodo, TodoDb db) =>
+app.MapPut("/todoitems/{id}", async (Todo inputTodo, int id, TodoDb db) =>
 {
     var todo = await db.Todos.FindAsync(id);
 
@@ -35,7 +35,7 @@ app.MapPut("/todoitems/{id}", async (int id, Todo inputTodo, TodoDb db) =>
     return Results.NoContent();
 }).AddFilter(async (rhiContext, next) =>
 {
-    var tdparam = (Todo)rhiContext.Arguments[1]!;
+    var tdparam = rhiContext.GetArgument<Todo>(0);
 
     var validationError = Utilities.IsValid(tdparam);
 
