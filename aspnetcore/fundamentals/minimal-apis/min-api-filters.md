@@ -9,11 +9,6 @@ uid: fundamentals/minimal-apis/min-api-filters
 ---
 # Filters in Minimal API apps
 
-TODO:
-
-* [`routeHandlerInvocationContext.Arguments `](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http.Abstractions/src/RouteHandlerInvocationContext.cs) : Write sample that modifies arguments. Copy  `IsValid` to `IsValidUC` that makes `Name` UpperCase.
-*
-
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 Minimal API filters allow developers to implement business logic that supports:
