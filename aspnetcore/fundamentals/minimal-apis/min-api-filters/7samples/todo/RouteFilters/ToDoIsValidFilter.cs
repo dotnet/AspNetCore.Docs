@@ -16,7 +16,7 @@ public class ToDoIsValidFilter : IRouteHandlerFilter
 
         var validationError = Utilities.IsValid(todo!);
 
-        if (!String.IsNullOrEmpty(validationError))
+        if (!string.IsNullOrEmpty(validationError))
         {
             _logger.LogWarning(validationError);
             return Results.Problem(validationError);
@@ -36,7 +36,7 @@ public class ToDoIsValidUcFilter : IRouteHandlerFilter
 
         var validationError = Utilities.IsValid(todo!);
 
-        if (!String.IsNullOrEmpty(validationError))
+        if (!string.IsNullOrEmpty(validationError))
         {
             return Results.Problem(validationError);
         }

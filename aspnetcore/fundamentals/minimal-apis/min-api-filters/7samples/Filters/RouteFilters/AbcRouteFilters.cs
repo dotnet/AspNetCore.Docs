@@ -16,7 +16,9 @@ public abstract class ABCrouteFilters : IRouteHandlerFilter
         RouteHandlerFilterDelegate next)
     {
         Logger.LogInformation("Executing filter method {MethodName}", _methodName);
-        return await next(context);
+        var result = await next(context);
+        Logger.LogInformation("Executed filter method {MethodName}", _methodName);        
+        return result;
     }
 }
 

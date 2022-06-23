@@ -13,7 +13,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 Minimal API filters allow developers to implement business logic that supports:
 
-* Running code before the route handler.
+* Running code before and after the route handler.
 * Inspecting and modifying parameters provided during a route handler invocation.
 * Intercepting the response behavior of a route handler.
 
@@ -21,9 +21,9 @@ Filters can be helpful in the following scenarios:
 
 * Validating the request parameters and body that are sent to an endpoint.
 * Logging information about the request and response.
-* Validating that a request is targeting a supported API version
+* Validating that a request is targeting a supported API version.
 
-Filters can be registered by providing a [Delegate](/dotnet/csharp/programming-guide/delegates/) that takes a [`routeHandlerInvocationContext`](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http.Abstractions/src/RouteHandlerInvocationContext.cs) and returns  a [`RouteHandlerFilterDelegate`](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http.Abstractions/src/RouteHandlerFilterDelegate.cs). The `RouteHandlerInvocationContext` provides access to the `HttpContext` associated with the request and a `Arguments` list indicating the arguments passed to the handler in the order in which they appear in the argument list of the handler.
+Filters can be registered by providing a [Delegate](/dotnet/csharp/programming-guide/delegates/) that takes a [`RouteHandlerInvocationContext`](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http.Abstractions/src/RouteHandlerInvocationContext.cs) and returns a [`RouteHandlerFilterDelegate`](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http.Abstractions/src/RouteHandlerFilterDelegate.cs). The `RouteHandlerInvocationContext` provides access to the `HttpContext` associated with the request and an `Arguments` list indicating the arguments passed to the handler in the order in which they appear in the declaration of the handler.
 
 [!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/Filters/Program.cs?name=snippet1)]
 
@@ -87,7 +87,7 @@ The `ToDoIsValidFilter` is applied to the following endpoints:
 
 [!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/todo/Program.cs?name=snippet_2flt&highlight=13,21)]
 
-The following filter validates the `ToDo` object and modifies the `Name` property:
+The following filter validates the `Todo` object and modifies the `Name` property:
 
 [!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/todo/RouteFilters/ToDoIsValidFilter.cs?name=snippet2&highlight=7)]
 

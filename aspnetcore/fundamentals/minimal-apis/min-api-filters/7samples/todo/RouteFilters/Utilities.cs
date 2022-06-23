@@ -14,7 +14,7 @@ public static class Utilities
         }
         else
         {
-            return String.Empty;
+            return string.Empty;
         }
     }
 }

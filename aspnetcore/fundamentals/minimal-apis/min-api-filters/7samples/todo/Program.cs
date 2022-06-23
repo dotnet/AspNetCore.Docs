@@ -39,7 +39,7 @@ app.MapPut("/todoitems/{id}", async (Todo inputTodo, int id, TodoDb db) =>
 
     var validationError = Utilities.IsValid(tdparam);
 
-    if (!String.IsNullOrEmpty(validationError))
+    if (!string.IsNullOrEmpty(validationError))
     {
         return Results.Problem(validationError);
     }
