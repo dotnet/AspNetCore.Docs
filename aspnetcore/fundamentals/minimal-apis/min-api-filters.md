@@ -85,9 +85,9 @@ Filters that implement the `IRouteHandlerFilter` interface can resolve dependenc
 
 The `ToDoIsValidFilter` is applied to the following endpoints:
 
-[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/todo/Program.cs?name=snippet_2flt)]
+[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/todo/Program.cs?name=snippet_2flt&highlight=13,21)]
 
-The following filter validates the `ToDo` object and modifies the `Name` field:
+The following filter validates the `ToDo` object and modifies the `Name` property:
 
 [!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/todo/RouteFilters/ToDoIsValidFilter.cs?name=snippet2&highlight=7)]
 
