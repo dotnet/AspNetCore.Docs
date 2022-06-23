@@ -25,3 +25,22 @@ public class ToDoIsValidFilter : IRouteHandlerFilter
     }
 }
 #endregion
+#region snippet
+public class ToDoIsValidUcFilter : IRouteHandlerFilter
+{
+    public async ValueTask<object?> InvokeAsync(RouteHandlerInvocationContext rhiContext,
+                                                RouteHandlerFilterDelegate next)
+    {
+        var todo = rhiContext.GetArgument<Todo>(0);
+        todo.Name = todo.Name!.ToUpper();
+
+        var validationError = Utilities.IsValid(todo!);
+
+        if (!String.IsNullOrEmpty(validationError))
+        {
+            return Results.Problem(validationError);
+        }
+        return await next(rhiContext);
+    }
+}
+#endregion

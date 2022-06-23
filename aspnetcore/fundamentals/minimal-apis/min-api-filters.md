@@ -62,6 +62,10 @@ The `ToDoIsValidFilter` is applied to the following endpoints:
 
 [!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/todo/Program.cs?name=snippet_2flt)]
 
+The following filter validates the `ToDo` object and modifies the `Name` field:
+
+[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/todo/RouteFilters/ToDoIsValidFilter.cs?name=snippet2)]
+
 ## Additional Resources
 
 * [View or download sample code](https://github.com/aspnet/Docs/tree/main/aspnetcore/fundamentals/minimal-apis/min-api-filters/7samples) ([how to download](xref:index#how-to-download-a-sample))

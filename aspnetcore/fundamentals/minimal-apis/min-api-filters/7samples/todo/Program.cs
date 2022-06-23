@@ -71,6 +71,30 @@ app.MapPost("/todoitems", async (Todo todo, TodoDb db) =>
 }).AddFilter<ToDoIsValidFilter>();
 #endregion
 
+#region snippet_UC
+app.MapPut("/todoitemsUC/{id}", async (Todo inputTodo, int id, TodoDb db) =>
+{
+    var todo = await db.Todos.FindAsync(id);
+
+    if (todo is null) return Results.NotFound();
+
+    todo.Name = inputTodo.Name;
+    todo.IsComplete = inputTodo.IsComplete;
+
+    await db.SaveChangesAsync();
+
+    return Results.NoContent();
+}).AddFilter<ToDoIsValidUcFilter>();
+
+app.MapPost("/todoitemsUC", async (Todo todo, TodoDb db) =>
+{
+    db.Todos.Add(todo);
+    await db.SaveChangesAsync();
+
+    return Results.Created($"/todoitems/{todo.Id}", todo);
+}).AddFilter<ToDoIsValidUcFilter>();
+#endregion
+
 app.MapDelete("/todoitems/{id}", async (int id, TodoDb db) =>
 {
     if (await db.Todos.FindAsync(id) is Todo todo)
