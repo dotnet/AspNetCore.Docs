@@ -64,7 +64,7 @@ The `ToDoIsValidFilter` is applied to the following endpoints:
 
 The following filter validates the `ToDo` object and modifies the `Name` field:
 
-[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/todo/RouteFilters/ToDoIsValidFilter.cs?name=snippet2)]
+[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/todo/RouteFilters/ToDoIsValidFilter.cs?name=snippet2&highlight=7)]
 
 ## Additional Resources
 
