@@ -314,8 +314,8 @@ In the `Pages/Shared/Layout.cshtml` file, make the following changes:
       </div>
   </div>
 
-  <script src="~/Identity/lib/jquery/dist/jquery.min.js"></script>
-  <script src="~/Identity/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="~/Identity/lib/jquery/dist/jquery.js"></script>
+  <script src="~/Identity/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
   <script src="~/Identity/js/site.js" asp-append-version="true"></script>
   @RenderSection("Scripts", required: false)
   <script src="_framework/blazor.server.js"></script>
@@ -754,8 +754,8 @@ In the `Pages/Shared/Layout.cshtml` file, make the following changes:
       </div>
   </div>
 
-  <script src="~/Identity/lib/jquery/dist/jquery.min.js"></script>
-  <script src="~/Identity/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="~/Identity/lib/jquery/dist/jquery.js"></script>
+  <script src="~/Identity/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
   <script src="~/Identity/js/site.js" asp-append-version="true"></script>
   @RenderSection("Scripts", required: false)
   <script src="_framework/blazor.server.js"></script>

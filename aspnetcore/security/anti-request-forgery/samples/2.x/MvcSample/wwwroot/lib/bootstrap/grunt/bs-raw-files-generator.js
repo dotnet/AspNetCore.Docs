@@ -1,5 +1,5 @@
 /*!
- * Bootstrap Grunt task for generating raw-files.min.js for the Customizer
+ * Bootstrap Grunt task for generating raw-files.js for the Customizer
  * http://getbootstrap.com
  * Copyright 2014-2015 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
@@ -34,7 +34,7 @@ module.exports = function generateRawFilesJs(grunt, banner) {
   var files = banner + dirs.map(getFiles).reduce(function (combined, file) {
     return combined + file;
   }, '');
-  var rawFilesJs = 'docs/assets/js/raw-files.min.js';
+  var rawFilesJs = 'docs/assets/js/raw-files.js';
   try {
     fs.writeFileSync(rawFilesJs, files);
   } catch (err) {
