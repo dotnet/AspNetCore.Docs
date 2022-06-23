@@ -64,13 +64,13 @@ In the preceding code, the filters and handlers are executed in the following or
 
 Filters implementing the `IRouteHandlerFilter` interface and explained later in this document. The `ArouteFilter`, `BrouteFilter`, and `CrouteFilter` filters:
 
-[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/Filters/Program.cs?name=snippet_abc)]
+[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/Filters/RouteFilters/AbcRouteFilters.cs)]
 
 ## Validate an object with a filter
 
 Consider a filter that validates a `Todo` object:
 
-[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/Filters/RouteFilters/AbcRouteFilters.cs)]
+[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/todo/Program.cs?name=snippet_filter1)]
 
 In the preceding code:
 
