@@ -9,7 +9,7 @@ uid: fundamentals/minimal-apis/min-api-filters
 ---
 # Filters in Minimal API apps
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Martin Costello](https://twitter.com/martin_costello), [Fiyaz Bin Hasan](https://github.com/fiyazbinhasan), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 Minimal API filters allow developers to implement business logic that supports:
 
@@ -23,7 +23,7 @@ Filters can be helpful in the following scenarios:
 * Logging information about the request and response.
 * Validating that a request is targeting a supported API version.
 
-Filters can be registered by providing a [Delegate](/dotnet/csharp/programming-guide/delegates/) that takes a [`RouteHandlerInvocationContext`](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http.Abstractions/src/RouteHandlerInvocationContext.cs) and returns a [`RouteHandlerFilterDelegate`](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http.Abstractions/src/RouteHandlerFilterDelegate.cs). The `RouteHandlerInvocationContext` provides access to the `HttpContext` associated with the request and an `Arguments` list indicating the arguments passed to the handler in the order in which they appear in the declaration of the handler.
+Filters can be registered by providing a [Delegate](/dotnet/csharp/programming-guide/delegates/) that takes a [`RouteHandlerInvocationContext`](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http.Abstractions/src/RouteHandlerInvocationContext.cs) and returns a [`RouteHandlerFilterDelegate`](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http.Abstractions/src/RouteHandlerFilterDelegate.cs). The `RouteHandlerInvocationContext` provides access to the `HttpContext` of the request and an `Arguments` list indicating the arguments passed to the handler in the order in which they appear in the declaration of the handler.
 
 [!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/Filters/Program.cs?name=snippet1)]
 
@@ -36,21 +36,21 @@ The preceding code:
 
 The filter is run before the endpoint handler. When multiple `AddFilter` invocations are made on a handler:
 
-* The filters are executed in order of First In, First Out (FIFO) order.
-* The first filter registered runs first, the last filter registered runs last.
+* Filter code called before the `RouteHandlerFilterDelegate` (`next`) is called are executed in order of First In, First Out (FIFO) order.
+* Filter code called after the `RouteHandlerFilterDelegate` (`next`) is called are executed in order of First In, Last Out (FILO) order.
 
 [!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/Filters/Program.cs?name=snippet_xyz)]
 
 In the preceding code, the filters log the following output:
 
 ```dotnetcli
-info: Filters[0]
-      First filter
-info: Filters[0]
-      2nd filter
-info: Filters[0]
-      3rd filter
-
+Before first filter
+    Before 2nd filter
+        Before 3rd filter
+            Endpoint
+        After 3rd filter
+    After 2nd filter
+After first filter
 ```
 
 The following code uses filters that implement the `IRouteHandlerFilter` interface:

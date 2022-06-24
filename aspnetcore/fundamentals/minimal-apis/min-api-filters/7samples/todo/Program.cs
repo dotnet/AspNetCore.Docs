@@ -60,7 +60,7 @@ app.MapPut("/todoitems2/{id}", async (Todo inputTodo, int id, TodoDb db) =>
     await db.SaveChangesAsync();
 
     return Results.NoContent();
-}).AddFilter<ToDoIsValidFilter>();
+}).AddFilter<TodoIsValidFilter>();
 
 app.MapPost("/todoitems", async (Todo todo, TodoDb db) =>
 {
@@ -68,7 +68,7 @@ app.MapPost("/todoitems", async (Todo todo, TodoDb db) =>
     await db.SaveChangesAsync();
 
     return Results.Created($"/todoitems/{todo.Id}", todo);
-}).AddFilter<ToDoIsValidFilter>();
+}).AddFilter<TodoIsValidFilter>();
 #endregion
 
 #region snippet_UC
@@ -84,7 +84,7 @@ app.MapPut("/todoitemsUC/{id}", async (Todo inputTodo, int id, TodoDb db) =>
     await db.SaveChangesAsync();
 
     return Results.NoContent();
-}).AddFilter<ToDoIsValidUcFilter>();
+}).AddFilter<TodoIsValidUcFilter>();
 
 app.MapPost("/todoitemsUC", async (Todo todo, TodoDb db) =>
 {
@@ -92,7 +92,7 @@ app.MapPost("/todoitemsUC", async (Todo todo, TodoDb db) =>
     await db.SaveChangesAsync();
 
     return Results.Created($"/todoitems/{todo.Id}", todo);
-}).AddFilter<ToDoIsValidUcFilter>();
+}).AddFilter<TodoIsValidUcFilter>();
 #endregion
 
 app.MapDelete("/todoitems/{id}", async (int id, TodoDb db) =>

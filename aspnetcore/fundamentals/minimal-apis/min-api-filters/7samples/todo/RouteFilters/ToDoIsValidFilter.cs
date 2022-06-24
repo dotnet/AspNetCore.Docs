@@ -1,12 +1,12 @@
 namespace TodoApi.RouteFilters;
 #region snippet
-public class ToDoIsValidFilter : IRouteHandlerFilter
+public class TodoIsValidFilter : IRouteHandlerFilter
 {
     private ILogger _logger;
 
-    public ToDoIsValidFilter(ILoggerFactory loggerFactory)
+    public TodoIsValidFilter(ILoggerFactory loggerFactory)
     {
-        _logger = loggerFactory.CreateLogger<ToDoIsValidFilter>();
+        _logger = loggerFactory.CreateLogger<TodoIsValidFilter>();
     }
 
     public async ValueTask<object?> InvokeAsync(RouteHandlerInvocationContext rhiContext,
@@ -26,7 +26,7 @@ public class ToDoIsValidFilter : IRouteHandlerFilter
 }
 #endregion
 #region snippet2
-public class ToDoIsValidUcFilter : IRouteHandlerFilter
+public class TodoIsValidUcFilter : IRouteHandlerFilter
 {
     public async ValueTask<object?> InvokeAsync(RouteHandlerInvocationContext rhiContext,
                                                 RouteHandlerFilterDelegate next)

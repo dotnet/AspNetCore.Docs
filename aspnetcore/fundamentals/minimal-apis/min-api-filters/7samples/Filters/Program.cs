@@ -76,21 +76,31 @@ var builder = WebApplication.CreateBuilder(args);
 
 var app = builder.Build();
 
-app.MapGet("/", () => "Test of multiple filters")
-    .AddFilter(async (rhiContext, next) =>
-    {
-        app.Logger.LogInformation("First filter");
-        return await next(rhiContext);
+app.MapGet("/", () => 
+{
+    app.Logger.LogInformation("             Endpoint");
+    return "Test of multiple filters";
     })
     .AddFilter(async (rhiContext, next) =>
     {
-        app.Logger.LogInformation("2nd filter");
-        return await next(rhiContext);
+        app.Logger.LogInformation("Before first filter");
+        var result = await next(rhiContext);
+        app.Logger.LogInformation("After first filter");
+        return result;
     })
     .AddFilter(async (rhiContext, next) =>
     {
-        app.Logger.LogInformation("3rd filter");
-        return await next(rhiContext);
+        app.Logger.LogInformation(" Before 2nd filter");
+        var result = await next(rhiContext);
+        app.Logger.LogInformation(" After 2nd filter");
+        return result;
+    })
+    .AddFilter(async (rhiContext, next) =>
+    {
+        app.Logger.LogInformation("     Before 3rd filter");
+        var result = await next(rhiContext);
+        app.Logger.LogInformation("     After 3rd filter");
+        return result;
     });
 app.Run();
 #endregion
