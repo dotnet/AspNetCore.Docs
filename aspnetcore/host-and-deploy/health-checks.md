@@ -223,6 +223,29 @@ Using separate readiness and liveness checks is useful in an environment such as
 
 The following example demonstrates a Kubernetes readiness probe configuration:
 
+:::moniker range=">= aspnetcore-6.0"
+
+```yaml
+spec:
+  template:
+  spec:
+    readinessProbe:
+      # an http probe
+      httpGet:
+        path: /healthz/ready
+        port: 80
+      # length of time to wait for a pod to initialize
+      # after pod startup, before applying health checking
+      initialDelaySeconds: 30
+      timeoutSeconds: 1
+    ports:
+      - containerPort: 80
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
 ```yaml
 spec:
   template:
@@ -239,6 +262,8 @@ spec:
     ports:
       - containerPort: 80
 ```
+
+:::moniker-end
 
 ## Distribute a health check library
 
