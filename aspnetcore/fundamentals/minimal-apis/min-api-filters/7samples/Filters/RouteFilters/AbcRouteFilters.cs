@@ -15,9 +15,9 @@ public abstract class ABCrouteFilters : IRouteHandlerFilter
     public virtual async ValueTask<object?> InvokeAsync(RouteHandlerInvocationContext context,
         RouteHandlerFilterDelegate next)
     {
-        Logger.LogInformation("Executing filter method {MethodName}", _methodName);
+        Logger.LogInformation("{MethodName} Before next", _methodName);
         var result = await next(context);
-        Logger.LogInformation("Executed filter method {MethodName}", _methodName);        
+        Logger.LogInformation("{MethodName} After next", _methodName);
         return result;
     }
 }

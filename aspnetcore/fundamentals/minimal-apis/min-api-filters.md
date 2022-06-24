@@ -57,10 +57,17 @@ The following code uses filters that implement the `IRouteHandlerFilter` interfa
 
 [!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/Filters/Program.cs?name=snippet_abc)]
 
-In the preceding code, the filters and handlers are executed in the following order:
+In the preceding code, the filters and handlers logs show the order they are run:
 
-* `ArouteFilter` -> `BrouteFilter` -> `CrouteFilter` -> route handler
-* The `next` delegate (`RouteHandlerFilterDelegate`) for `FilterA` is `FilterB` and so on.
+```dotnetcli
+ArouteFilter Before next
+BrouteFilter Before next
+CrouteFilter Before next
+      Endpoint
+CrouteFilter After next
+BrouteFilter After next
+ArouteFilter After next
+```
 
 Filters implementing the `IRouteHandlerFilter` interface is explained later in this document. The `ArouteFilter`, `BrouteFilter`, and `CrouteFilter` filters:
 

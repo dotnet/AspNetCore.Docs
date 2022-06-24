@@ -1,12 +1,10 @@
-#define XYZ // FIRST SECOND ABC XYZ
+#define ABC // FIRST SECOND ABC XYZ
 #if NEVER
 #elif FIRST
 #region snippet1
 var builder = WebApplication.CreateBuilder(args);
 
 var app = builder.Build();
-
-app.UseHttpsRedirection();
 
 string ColorName(string color) => $"Color specified: {color}!";
 
@@ -29,8 +27,6 @@ app.Run();
 var builder = WebApplication.CreateBuilder(args);
 
 var app = builder.Build();
-
-app.UseHttpsRedirection();
 
 static string? PrintLogger(HttpContext context) => $"Logger Error IsEnabled:" +
                                             $"{context.Items["loggerErrorIsEnabled"]}";
@@ -63,7 +59,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 var app = builder.Build();
 
-app.MapGet("/", () => "Test of multiple filters")
+app.MapGet("/", () =>
+{
+    app.Logger.LogInformation("Endpoint");
+    return "Test of multiple filters";
+})
     .AddFilter<ArouteFilter>()
     .AddFilter<BrouteFilter>()
     .AddFilter<CrouteFilter>();
