@@ -1,4 +1,4 @@
-#define Certificate // Managed
+#define Certificate // Certificate
 
 #if Certificate
 // <snippet_Certificate>
