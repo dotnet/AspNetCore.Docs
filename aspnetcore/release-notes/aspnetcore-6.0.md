@@ -650,7 +650,7 @@ When defining generic type parameters in Razor using the `@typeparam` directive,
 
  The SignalR, MessagePack, and Blazor Server scripts are now significantly smaller, enabling smaller downloads, less JavaScript parsing and compiling by the browser, and faster start-up. The size reductions:
 
-* `signalr.min.js`: 70%
+* `signalr.js`: 70%
 * `blazor.server.js`: 45%
 
 The smaller scripts are a result of a community contribution from [Ben Adams](https://twitter.com/ben_a_adams). For more information on the details of the size reduction, see [Ben's GitHub pull request](https://github.com/dotnet/aspnetcore/pull/30320).
