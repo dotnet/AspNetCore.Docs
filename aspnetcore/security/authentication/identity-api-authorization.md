@@ -49,6 +49,55 @@ The preceding command creates an ASP.NET Core app with a *ClientApp* directory c
 
 The following sections describe additions to the project when authentication support is included:
 
+:::moniker range=">= aspnetcore-6.0"
+
+### `Program` class
+
+The following code examples rely on the [Microsoft.AspNetCore.ApiAuthorization.IdentityServer](https://www.nuget.org/packages/Microsoft.AspNetCore.ApiAuthorization.IdentityServer) NuGet package. The examples configure API authentication and authorization using the <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> and <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiResourceCollection.AddIdentityServerJwt%2A> extension methods. Projects using the React or Angular SPA project templates with authentication include a reference to this package.
+
+The `Program` class has the following additions:
+
+  * Identity with the default UI:
+
+    ```csharp
+    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    builder.Services.AddDbContext<ApplicationDbContext>(options =>
+      options.UseSqlite(connectionString));
+
+    builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+      .AddEntityFrameworkStores<ApplicationDbContext>();
+    ```
+
+  * IdentityServer with an additional `AddApiAuthorization` helper method that sets up some default ASP.NET Core conventions on top of IdentityServer:
+
+    ```csharp
+    builder.Services.AddIdentityServer()
+     .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
+    ```
+
+  * Authentication with an additional `AddIdentityServerJwt` helper method that configures the app to validate JWT tokens produced by IdentityServer:
+
+    ```csharp
+    builder.Services.AddAuthentication()
+        .AddIdentityServerJwt();
+    ```
+
+  * The authentication middleware that is responsible for validating the request credentials and setting the user on the request context:
+
+    ```csharp
+    app.UseAuthentication();
+    ```
+
+  * The IdentityServer middleware that exposes the OpenID Connect endpoints:
+
+    ```csharp
+    app.UseIdentityServer();
+    ```
+    
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
 ### `Startup` class
 
 The following code examples rely on the [Microsoft.AspNetCore.ApiAuthorization.IdentityServer](https://www.nuget.org/packages/Microsoft.AspNetCore.ApiAuthorization.IdentityServer) NuGet package. The examples configure API authentication and authorization using the <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> and <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiResourceCollection.AddIdentityServerJwt%2A> extension methods. Projects using the React or Angular SPA project templates with authentication include a reference to this package.
@@ -92,6 +141,8 @@ The `Startup` class has the following additions:
     ```csharp
     app.UseIdentityServer();
     ```
+
+:::moniker-end
 
 ### Azure App Service on Linux
 
