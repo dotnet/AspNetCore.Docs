@@ -97,7 +97,7 @@ The preceding code requires adding the Response Caching Middleware services <xre
 
 [!code-csharp[](response/samples/6.x/WebRC/Program.cs?name=snippet&highlight=4,13)]
 
-### NoStore and Location.None
+### `NoStore` and `Location.None`
 
 <xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore> overrides most of the other properties. When this property is set to `true`, the `Cache-Control` header is set to `no-store`. If <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> is set to `None`:
 
@@ -116,6 +116,22 @@ The preceding code includes the following headers in the response:
 Cache-Control: no-store,no-cache
 Pragma: no-cache
 ```
+
+To apply the <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> to all of the app's MVC controller or Razor Pages page responses, add it with an [MVC filter](xref:mvc/controllers/filters) or [Razor Pages filter](xref:razor-pages/filter).
+
+In an MVC app:
+
+```csharp
+builder.Services.AddControllersWithViews().AddMvcOptions(options => 
+    options.Filters.Add(
+        new ResponseCacheAttribute
+        {
+            NoStore = true, 
+            Location = ResponseCacheLocation.None
+        }));
+```
+
+For an approach that applies to Razor Pages apps, see [Adding `ResponseCacheAttribute` to MVC global filter list does not apply to Razor Pages (dotnet/aspnetcore #18890)](https://github.com/dotnet/aspnetcore/issues/18890#issuecomment-584290537). The example provided in the issue comment was written for apps targeting ASP.NET Core prior to the release of [Minimal APIs](xref:fundamentals/minimal-apis) at 6.0. For 6.0 or later apps, change the service registration in the example to `builder.Services.AddSingleton...` for `Program.cs`.
 
 ### Location and Duration
 
@@ -284,7 +300,7 @@ Cache-Control: public,max-age=30
 Vary: User-Agent
 ```
 
-### NoStore and Location.None
+### `NoStore` and `Location.None`
 
 <xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore> overrides most of the other properties. When this property is set to `true`, the `Cache-Control` header is set to `no-store`. If <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> is set to `None`:
 
@@ -303,6 +319,22 @@ The sample app returns the Cache2 page with the following headers:
 Cache-Control: no-store,no-cache
 Pragma: no-cache
 ```
+
+To apply the <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> to all of the app's MVC controller or Razor Pages page responses, add it with an [MVC filter](xref:mvc/controllers/filters) or [Razor Pages filter](xref:razor-pages/filter).
+
+In an MVC app:
+
+```csharp
+services.AddMvc().AddMvcOptions(options => 
+    options.Filters.Add(
+        new ResponseCacheAttribute
+        {
+            NoStore = true, 
+            Location = ResponseCacheLocation.None
+        }));
+```
+
+For an approach that applies to Razor Pages apps, see [Adding `ResponseCacheAttribute` to MVC global filter list does not apply to Razor Pages (dotnet/aspnetcore #18890)](https://github.com/dotnet/aspnetcore/issues/18890#issuecomment-584290537).
 
 ### Location and Duration
 
