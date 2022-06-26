@@ -131,7 +131,7 @@ builder.Services.AddControllersWithViews().AddMvcOptions(options =>
         }));
 ```
 
-For an approach that applies to Razor Pages apps, see [Adding `ResponseCacheAttribute` to MVC global filter list does not apply to Razor Pages (dotnet/aspnetcore #18890)](https://github.com/dotnet/aspnetcore/issues/18890#issuecomment-584290537).
+For an approach that applies to Razor Pages apps, see [Adding `ResponseCacheAttribute` to MVC global filter list does not apply to Razor Pages (dotnet/aspnetcore #18890)](https://github.com/dotnet/aspnetcore/issues/18890#issuecomment-584290537). The example provided in the issue comment was written for apps targeting ASP.NET Core prior to the release of [Minimal APIs](xref:fundamentals/minimal-apis) at 6.0. For 6.0 or later apps, change the service registration in the example to `builder.Services.AddSingleton...` for `Program.cs`.
 
 ### Location and Duration
 
