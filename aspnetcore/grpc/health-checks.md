@@ -65,7 +65,7 @@ Health checks are periodically executed using <xref:Microsoft.Extensions.Diagnos
 Publisher intervals can be configured using <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions> at startup:
 
 ```csharp
-serviceCollection.Configure<HealthCheckPublisherOptions>(options =>
+builder.Services.Configure<HealthCheckPublisherOptions>(options =>
 {
     options.Delay = TimeSpan.Zero;
     options.Period = TimeSpan.FromSeconds(10);
@@ -165,7 +165,7 @@ Health checks are periodically executed using <xref:Microsoft.Extensions.Diagnos
 Publisher intervals can be configured using <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions> at startup:
 
 ```csharp
-serviceCollection.Configure<HealthCheckPublisherOptions>(options =>
+services.Configure<HealthCheckPublisherOptions>(options =>
 {
     options.Delay = TimeSpan.Zero;
     options.Period = TimeSpan.FromSeconds(10);
