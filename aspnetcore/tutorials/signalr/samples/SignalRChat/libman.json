@@ -7,7 +7,7 @@
       "destination": "wwwroot/js/signalr/",
       "files": [
         "dist/browser/signalr.js",
-        "dist/browser/signalr.min.js"
+        "dist/browser/signalr.js"
       ]
     }
   ]

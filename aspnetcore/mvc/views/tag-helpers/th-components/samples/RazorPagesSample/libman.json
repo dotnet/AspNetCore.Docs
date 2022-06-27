@@ -6,7 +6,7 @@
       "library": "twitter-bootstrap@3.3.7",
       "destination": "wwwroot/lib/bootstrap/",
       "files": [
-        "js/bootstrap.min.js",
+        "js/bootstrap.js",
         "js/bootstrap.js",
         "fonts/glyphicons-halflings-regular.eot",
         "fonts/glyphicons-halflings-regular.svg",
@@ -15,21 +15,21 @@
         "fonts/glyphicons-halflings-regular.woff2",
         "css/bootstrap-theme.css",
         "css/bootstrap-theme.css.map",
-        "css/bootstrap-theme.min.css",
-        "css/bootstrap-theme.min.css.map",
+        "css/bootstrap-theme.css",
+        "css/bootstrap-theme.css.map",
         "css/bootstrap.css",
         "css/bootstrap.css.map",
-        "css/bootstrap.min.css",
-        "css/bootstrap.min.css.map"
+        "css/bootstrap.css",
+        "css/bootstrap.css.map"
       ]
     },
     {
       "library": "jquery@2.2.0",
       "destination": "wwwroot/lib/jquery/",
       "files": [
-        "jquery.min.js",
         "jquery.js",
-        "jquery.min.map"
+        "jquery.js",
+        "jquery.map"
       ]
     }
   ]

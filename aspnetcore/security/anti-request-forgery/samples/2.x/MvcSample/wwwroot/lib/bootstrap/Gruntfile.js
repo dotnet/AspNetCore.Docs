@@ -74,7 +74,7 @@ module.exports = function (grunt) {
         src: 'js/tests/unit/*.js'
       },
       assets: {
-        src: ['docs/assets/js/src/*.js', 'docs/assets/js/*.js', '!docs/assets/js/*.min.js']
+        src: ['docs/assets/js/src/*.js', 'docs/assets/js/*.js', '!docs/assets/js/*.js']
       }
     },
 
@@ -133,15 +133,15 @@ module.exports = function (grunt) {
       },
       core: {
         src: '<%= concat.bootstrap.dest %>',
-        dest: 'dist/js/<%= pkg.name %>.min.js'
+        dest: 'dist/js/<%= pkg.name %>.js'
       },
       customize: {
         src: configBridge.paths.customizerJs,
-        dest: 'docs/assets/js/customize.min.js'
+        dest: 'docs/assets/js/customize.js'
       },
       docsJs: {
         src: configBridge.paths.docsJs,
-        dest: 'docs/assets/js/docs.min.js'
+        dest: 'docs/assets/js/docs.js'
       }
     },
 
@@ -236,11 +236,11 @@ module.exports = function (grunt) {
       },
       minifyCore: {
         src: 'dist/css/<%= pkg.name %>.css',
-        dest: 'dist/css/<%= pkg.name %>.min.css'
+        dest: 'dist/css/<%= pkg.name %>.css'
       },
       minifyTheme: {
         src: 'dist/css/<%= pkg.name %>-theme.css',
-        dest: 'dist/css/<%= pkg.name %>-theme.min.css'
+        dest: 'dist/css/<%= pkg.name %>-theme.css'
       },
       docs: {
         src: [
@@ -248,7 +248,7 @@ module.exports = function (grunt) {
           'docs/assets/css/src/pygments-manni.css',
           'docs/assets/css/src/docs.css'
         ],
-        dest: 'docs/assets/css/docs.min.css'
+        dest: 'docs/assets/css/docs.css'
       }
     },
 
@@ -259,7 +259,7 @@ module.exports = function (grunt) {
       dist: {
         expand: true,
         cwd: 'dist/css/',
-        src: ['*.css', '!*.min.css'],
+        src: ['*.css', '!*.css'],
         dest: 'dist/css/'
       },
       examples: {

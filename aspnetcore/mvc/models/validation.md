@@ -47,7 +47,7 @@ Validation attributes let you specify validation rules for model properties. The
 Here are some of the built-in validation attributes:
 
 * [[ValidateNever]](xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidateNeverAttribute): Indicates that a property or parameter should be excluded from validation.
-* [[CreditCard]](xref:System.ComponentModel.DataAnnotations.CreditCardAttribute): Validates that the property has a credit card format. Requires [jQuery Validation Additional Methods](https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js).
+* [[CreditCard]](xref:System.ComponentModel.DataAnnotations.CreditCardAttribute): Validates that the property has a credit card format. Requires [jQuery Validation Additional Methods](https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.js).
 * [[Compare]](xref:System.ComponentModel.DataAnnotations.CompareAttribute): Validates that two properties in a model match.
 * [[EmailAddress]](xref:System.ComponentModel.DataAnnotations.EmailAddressAttribute): Validates that the property has an email format.
 * [[Phone]](xref:System.ComponentModel.DataAnnotations.PhoneAttribute): Validates that the property has a telephone number format.
@@ -471,7 +471,7 @@ Validation attributes let you specify validation rules for model properties. The
 Here are some of the built-in validation attributes:
 
 * [[ValidateNever]](xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidateNeverAttribute): Indicates that a property or parameter should be excluded from validation.
-* [[CreditCard]](xref:System.ComponentModel.DataAnnotations.CreditCardAttribute): Validates that the property has a credit card format. Requires [jQuery Validation Additional Methods](https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js).
+* [[CreditCard]](xref:System.ComponentModel.DataAnnotations.CreditCardAttribute): Validates that the property has a credit card format. Requires [jQuery Validation Additional Methods](https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.js).
 * [[Compare]](xref:System.ComponentModel.DataAnnotations.CompareAttribute): Validates that two properties in a model match.
 * [[EmailAddress]](xref:System.ComponentModel.DataAnnotations.EmailAddressAttribute): Validates that the property has an email format.
 * [[Phone]](xref:System.ComponentModel.DataAnnotations.PhoneAttribute): Validates that the property has a telephone number format.

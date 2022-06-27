@@ -15,7 +15,7 @@ public class TimeController : ControllerBase
     #region snippet2
     [Route("api/[controller]/ticks")]
     [HttpGet]
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+    [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
     public ContentResult GetTimeTicks() => Content(
                       DateTime.Now.Ticks.ToString());
     #endregion

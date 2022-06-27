@@ -213,8 +213,8 @@ The `EnvironmentTagHelper` can be used to include different scripts in your view
     <script src="~/lib/jquery/dist/jquery.js"></script>
 </environment>
 <environment names="Staging,Production">
-    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.1.4.min.js"
-            asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.1.4.js"
+            asp-fallback-src="~/lib/jquery/dist/jquery.js"
             asp-fallback-test="window.jQuery">
     </script>
 </environment>

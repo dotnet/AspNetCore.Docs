@@ -20,8 +20,8 @@ The Script Tag Helper allows you to specify a CDN for the script file and a fall
 The following Razor markup shows a `script` element with a fallback:
 
 ```html
-<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
-        asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.js"
+        asp-fallback-src="~/lib/jquery/dist/jquery.js"
         asp-fallback-test="window.jQuery"
         crossorigin="anonymous"
         integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">

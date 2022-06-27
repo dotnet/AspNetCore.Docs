@@ -230,7 +230,7 @@ spec:
     readinessProbe:
       # an http probe
       httpGet:
-        path: /health/ready
+        path: /healthz/ready
         port: 80
       # length of time to wait for a pod to initialize
       # after pod startup, before applying health checking

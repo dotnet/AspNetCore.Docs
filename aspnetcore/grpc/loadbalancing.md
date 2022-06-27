@@ -4,7 +4,7 @@ author: jamesnk
 description: Learn how to make scalable, high-performance gRPC apps with client-side load balancing in .NET.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 08/07/2021
+ms.date: 06/23/2022
 uid: grpc/loadbalancing
 ---
 # gRPC client-side load balancing
@@ -35,7 +35,7 @@ The resolver is configured using the address a channel is created with. The [URI
 
 | Scheme   | Type                    | Description |
 | -------- | ----------------------- | ----------- |
-| `dns`    | `DnsResolverFactory`    | Resolves addresses by querying the hostname for [DNS service records](https://en.wikipedia.org/wiki/SRV_record). |
+| `dns`    | `DnsResolverFactory`    | Resolves addresses by querying the hostname for [DNS address records](https://wikipedia.org/wiki/List_of_DNS_record_types#A). |
 | `static` | `StaticResolverFactory` | Resolves addresses that the app has specified. Recommended if an app already knows the addresses it calls. |
 
 A channel doesn't directly call a URI that matches a resolver. Instead, a matching resolver is created and used to resolve the addresses.
