@@ -31,7 +31,7 @@ In this tutorial, you:
 
 At the end of this tutorial, you'll have a working Razor Pages web app that you'll enhance in later tutorials.
 
-![Home or Index page](razor-pages-start/_static/6/home5.png)
+![Home or Index page](razor-pages-start/_static/6/home6.png)
 
 ## Prerequisites
 
