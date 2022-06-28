@@ -3,7 +3,7 @@ title: Part 4, work with a database
 author: rick-anderson
 description: Part 4 of tutorial series on Razor Pages.
 ms.author: riande
-ms.date: 06/23/2022
+ms.date: 06/28/2022
 ms.custom: contperf-fy21q2
 uid: tutorials/razor-pages/sql
 ---
@@ -363,7 +363,7 @@ LocalDB is a lightweight version of the SQL Server Express database engine that'
 
    ![Contextual menus open on Movie table](sql/_static/5/design.png)
 
-   ![Movie tables open in Designer](sql/_static/dv.png)
+   ![Movie tables open in Designer](sql/_static/dv605.png)
 
    Note the key icon next to `ID`. By default, EF creates a property named `ID` for the primary key.
 
