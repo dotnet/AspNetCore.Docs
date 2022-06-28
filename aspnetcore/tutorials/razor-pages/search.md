@@ -3,7 +3,7 @@ title: Part 6, add search
 author: rick-anderson
 description: Part 6 of tutorial series on Razor Pages.
 ms.author: riande
-ms.date: 10/13/2021
+ms.date: 06/27/2022
 ms.custom: contperf-fy21q2
 uid: tutorials/razor-pages/search
 ---
@@ -50,7 +50,8 @@ The `s => s.Title.Contains()` code is a [Lambda Expression](/dotnet/csharp/progr
 
 > [!NOTE]
 > The <xref:System.Data.Objects.DataClasses.EntityCollection%601.Contains%2A> method is run on the database, not in the C# code. The case sensitivity on the query depends on the database and the collation. On SQL Server, `Contains` maps to [SQL LIKE](/sql/t-sql/language-elements/like-transact-sql), which is case insensitive. SQLite with the default collation is a mixture of case sensitive and case ***IN***sensitive, depending on the query. For information on making case insensitive SQLite queries, see the following:
-* [This GitHub issue](https://github.com/dotnet/efcore/issues/11414).
+
+* [This GitHub issue](https://github.com/dotnet/efcore/issues/11414)
 * [This GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/22314)
 * [Collations and Case Sensitivity](/ef/core/miscellaneous/collations-and-case-sensitivity)
 
@@ -89,7 +90,7 @@ Save the changes and test the filter.
 
 Update the Index page's `OnGetAsync` method with the following code:
 
-   [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Index.cshtml.cs?name=snippet_SearchGenre)]
+   [!code-csharp[](razor-pages-start/sample/RazorPagesMovie60/Pages/Movies/Index.cshtml.cs?name=snippet_SearchGenre)]
 
 The following code is a LINQ query that retrieves all the genres from the database.
 

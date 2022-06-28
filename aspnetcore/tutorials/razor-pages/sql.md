@@ -3,7 +3,7 @@ title: Part 4, work with a database
 author: rick-anderson
 description: Part 4 of tutorial series on Razor Pages.
 ms.author: riande
-ms.date: 06/06/2022
+ms.date: 06/23/2022
 ms.custom: contperf-fy21q2
 uid: tutorials/razor-pages/sql
 ---
@@ -324,7 +324,7 @@ The `RazorPagesMovieContext` object handles the task of connecting to the databa
 
 # [Visual Studio](#tab/visual-studio)
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program.cs?name=snippet_di&highlight=9-10)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program.cs?name=snippet_di&highlight=8-9)]
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
