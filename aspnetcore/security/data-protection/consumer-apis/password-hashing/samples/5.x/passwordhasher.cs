@@ -1,6 +1,6 @@
+using System;
 using System.Security.Cryptography;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
-#nullable disable
 
 public class Program
 {
@@ -11,7 +11,10 @@ public class Program
 
         // generate a 128-bit salt using a cryptographically strong random sequence of nonzero values
         byte[] salt = new byte[128 / 8];
-        RandomNumberGenerator.Create().GetNonZeroBytes(salt);
+        using (var rngCsp = new RNGCryptoServiceProvider())
+        {
+            rngCsp.GetNonZeroBytes(salt);
+        }
         Console.WriteLine($"Salt: {Convert.ToBase64String(salt)}");
 
         // derive a 256-bit subkey (use HMACSHA256 with 100,000 iterations)
@@ -29,6 +32,7 @@ public class Program
  * SAMPLE OUTPUT
  *
  * Enter a password: Xtw9NMgx
- * Salt: SqSBFnfUBCRpH/yd9soRDQ==
- * Hashed: rWc4HTeqV7SA5eGWUEx7t4n5N8gyHgB4sVLTxtpsZNc=
+ * Salt: CGYzqeN4plZekNC88Umm1Q==
+ * Hashed: Gt9Yc4AiIvmsC1QQbe2RZsCIqvoYlst2xbz0Fs8aHnw=
  */
+ 
