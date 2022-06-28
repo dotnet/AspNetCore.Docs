@@ -21,10 +21,10 @@ In rare cases, automatic DI can break apps that have a type in DI that is also a
 
 [!code-csharp[](~/release-notes/aspnetcore-7/samples/ApiController/Program.cs?name=snippet_dis&highlight=8-11)]
 
-Prior to ASP.NET Core 7, one of the following approaches must be used to bind a source in API Controller action:
+Prior to ASP.NET Core 7, one of the following approaches was required to bind a source in API Controller action:
 
-* The parameter must be decorated using an attribute that implements `IFromServiceMetadata`, for example `FromServicesAttribute`.
-* The parameter is resolved from the request Body sent by the client.
+* The parameter decorated using an attribute that implements `IFromServiceMetadata`, for example `FromServicesAttribute`.
+* The parameter is resolved from the request body sent by the client.
 
 In ASP.NET Core 7.0, types in DI are checked at app startup with <xref:System.IServiceProvider> to determine if an argument in an API controller action comes from DI or from the other sources.
 
@@ -42,4 +42,4 @@ The new mechanism to infer binding source of API Controller action parameters us
 
 Shadow copying app assemblies to the [ASP.NET Core Module (ANCM)](xref:host-and-deploy/aspnet-core-module) for IIS can provide a better end user experience than stopping the app by deploying an [app offline file](xref:host-and-deploy/iis/app-offline).
 
-For more information, see [](xref:host-and-deploy/iis/advanced?view=aspnetcore-7.0#shadow-copy)
+For more information, see [Shadow copying in IIS](xref:host-and-deploy/iis/advanced?view=aspnetcore-7.0#shadow-copy)
