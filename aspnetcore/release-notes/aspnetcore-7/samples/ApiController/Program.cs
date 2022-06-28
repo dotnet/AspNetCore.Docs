@@ -34,6 +34,7 @@ app.MapControllers();
 app.Run();
 #endregion
 #elif MIN
+// The following code works in .NET 6, not new to .NET 7
 #region snippet_min
 using Microsoft.AspNetCore.Mvc;
 
@@ -42,8 +43,9 @@ builder.Services.AddSingleton<IDateTime, SystemDateTime>();
 
 var app = builder.Build();
 
-app.MapGet("/", (IDateTime dateTime) => dateTime.Now);
-app.MapGet("/x", ([FromServices] IDateTime dateTime) => dateTime.Now);
+app.MapGet("/",   (               IDateTime dateTime) => dateTime.Now);
+app.MapGet("/fs", ([FromServices] IDateTime dateTime) => dateTime.Now);
 app.Run();
 #endregion
 #endif
+

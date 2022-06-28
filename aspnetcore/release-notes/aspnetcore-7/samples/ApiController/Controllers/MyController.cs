@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 namespace ApiController7.Controllers;
 
 #region snippet
@@ -6,7 +6,8 @@ namespace ApiController7.Controllers;
 [ApiController]
 public class MyController : ControllerBase
 {
-    public ActionResult GetWithAttribute([FromServices] IDateTime dateTime) => Ok(dateTime.Now);
+    public ActionResult GetWithAttribute([FromServices] IDateTime dateTime) 
+                                                        => Ok(dateTime.Now);
 
     [Route("noAttribute")]
     public ActionResult Get(IDateTime dateTime) => Ok(dateTime.Now);
