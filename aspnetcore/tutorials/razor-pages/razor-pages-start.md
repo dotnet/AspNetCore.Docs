@@ -4,7 +4,7 @@ author: rick-anderson
 description: This is the first tutorial of a series that teaches the basics of building an ASP.NET Core Razor Pages web app.
 ms.author: riande
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 1/6/2022
+ms.date: 06/28/2022
 ms.custom: contperf-fy21q2
 uid: tutorials/razor-pages/razor-pages-start
 ---
@@ -31,7 +31,7 @@ In this tutorial, you:
 
 At the end of this tutorial, you'll have a working Razor Pages web app that you'll enhance in later tutorials.
 
-![Home or Index page](razor-pages-start/_static/5/home5.png)
+![Home or Index page](razor-pages-start/_static/6/home5.png)
 
 ## Prerequisites
 
@@ -59,21 +59,21 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
 1. In the **Create a new project** dialog, select **ASP.NET Core Web App**, and then select **Next**.
 
-	![Create an ASP.NET Core Web App](razor-pages-start/_static/6/np.png)
-	
+   ![Create an ASP.NET Core Web App](razor-pages-start/_static/6/np.png)
+
 1. In the **Configure your new project** dialog, enter `RazorPagesMovie` for **Project name**. It's important to name the project *RazorPagesMovie*, including matching the capitalization, so the namespaces will match when you copy and paste example code.
 
-	![Configure your new project](razor-pages-start/_static/6/config.png)
+   ![Configure your new project](razor-pages-start/_static/6/config.png)
 
 1. Select **Next**.
 
 1. In the **Additional information** dialog, select **.NET 6.0 (Long-term support)** and then select **Create**.
 
-	 ![Additional information](razor-pages-start/_static/6/additional-info.png)
+   ![Additional information](razor-pages-start/_static/6/additional-info.png)
 
-	The following starter project is created:
+  The following starter project is created:
 
-	![Solution Explorer](razor-pages-start/_static/6/se.png)
+   ![Solution Explorer](razor-pages-start/_static/6/se.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -86,9 +86,10 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
    dotnet new webapp -o RazorPagesMovie
    code -r RazorPagesMovie
    ```
+
    Visual Studio Code displays a dialog box that asks **Do you trust the authors of the files in this folder**.  Select:
     * The checkbox **trust the authors of all files in the parent folder**
-   * **Yes, I trust the authors** (because dotnet generated the files).
+    * **Yes, I trust the authors** (because dotnet generated the files).
 
    The `dotnet new` command creates a new Razor Pages project in the *RazorPagesMovie* folder.
 
@@ -98,21 +99,21 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
 1. Select **File** > **New Solution**.
 
-	![macOS New solution](razor-pages-start/_static/6/new_project_vsmac6.png)
+   ![macOS New solution](razor-pages-start/_static/6/new_project_vsmac6.png)
 
 1. In Visual Studio 2022 for Mac select **Web and Console** > **App** > **Web Application** > **Next**.
 
-	![macOS web app template selection](razor-pages-start/_static/6/web_app_template_vsmac6.png)
+   ![macOS web app template selection](razor-pages-start/_static/6/web_app_template_vsmac6.png)
 
 1. In the **Configure your new Web Application** dialog:
 
-	1. Confirm that **Target framework** is set to the latest .NET 6.x version.
-  1. Confirm that **Authentication** is set to **No Authentication**.
-  1. Select **Next**.
+   1. Confirm that **Target framework** is set to the latest .NET 6.x version.
+   1. Confirm that **Authentication** is set to **No Authentication**.
+   1. Select **Next**.
 
 1. Name the project *RazorPagesMovie* and select **Create**.
 
-	![macOS name the project](razor-pages-start/_static/6/razorpagesmovievsmac6.png)
+   ![macOS name the project](razor-pages-start/_static/6/razorpagesmovievsmac6.png)
 
 ---
 
@@ -147,7 +148,7 @@ Visual Studio:
 
 [!INCLUDE[](~/includes/trustCertVSC.md)]
 
-In Visual Studio Code, press Ctrl+F5 to run the app. At the **Select environment** prompt, select **.NET Core**. 
+In Visual Studio Code, press Ctrl+F5 to run the app. At the **Select environment** prompt, select **.NET Core**.
 
 The default browser launched with the following URL: [https://localhost:5001](https://localhost:5001)
 
@@ -263,24 +264,24 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
 1. In the **Create a new project** dialog, select **ASP.NET Core Web Application**, and then select **Next**.
 
-	![Create an ASP.NET Core Web Application](razor-pages-start/_static/5/np.png)
-	
+   ![Create an ASP.NET Core Web Application](razor-pages-start/_static/5/np.png)
+
 1. In the **Configure your new project** dialog, enter `RazorPagesMovie` for **Project name**. It's important to name the project *RazorPagesMovie*, including matching the capitalization, so the namespaces will match when you copy and paste example code.
 
 1. Select **Create**.
 
-	![Configure the project](razor-pages-start/_static/config.png)
+   ![Configure the project](razor-pages-start/_static/config.png)
 
 1. In the **Create a new ASP.NET Core web application** dialog, select:
     1. **.NET Core** and **ASP.NET Core 5.0** in the dropdowns.
     1. **Web Application**.
     1. **Create**.
 
-	 ![Select ASP.NET Core Web App](razor-pages-start/_static/5/npx.png)
+   ![Select ASP.NET Core Web App](razor-pages-start/_static/5/npx.png)
 
-	The following starter project is created:
+  The following starter project is created:
 
-	![Solution Explorer](razor-pages-start/_static/se2.2.png)
+   ![Solution Explorer](razor-pages-start/_static/se2.2.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -302,21 +303,21 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
 1. Select **File** > **New Solution**.
 
-	![macOS New solution](../first-mvc-app/start-mvc/_static/new_project_vsmac.png)
-
+  ![macOS New solution](../first-mvc-app/start-mvc/_static/new_project_vsmac.png)
+  
 1. In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **Web Application** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **Web Application** > **Next**.
 
-	![macOS web app template selection](razor-pages-start/_static/web_app_template_vsmac.png)
+  ![macOS web app template selection](razor-pages-start/_static/web_app_template_vsmac.png)
 
 1. In the **Configure the new Web Application** dialog:
 
-	1. Confirm that **Authentication** is set to **No Authentication**.
-	1. If presented an option to select a **Target Framework**, select the latest .NET 5.x version.
-  	1. Select **Next**.
+   1. Confirm that **Authentication** is set to **No Authentication**.
+   1. If presented an option to select a **Target Framework**, select the latest .NET 5.x version.
+   1. Select **Next**.
 
 1. Name the project *RazorPagesMovie* and select **Create**.
 
-	![macOS name the project](razor-pages-start/_static/RazorPagesMovie.png)
+  ![macOS name the project](razor-pages-start/_static/RazorPagesMovie.png)
 
 <!-- End of VS tabs -->
 
