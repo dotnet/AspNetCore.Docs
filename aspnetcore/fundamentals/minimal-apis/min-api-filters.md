@@ -41,7 +41,7 @@ The filter is run before the endpoint handler. When multiple `AddFilter` invocat
 
 [!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/Filters/Program.cs?name=snippet_xyz)]
 
-In the preceding code, the filters log the following output:
+In the preceding code, the filters and endpoint log the following output:
 
 ```dotnetcli
 Before first filter
@@ -69,7 +69,7 @@ BrouteFilter After next
 ArouteFilter After next
 ```
 
-Filters implementing the `IRouteHandlerFilter` interface are shown in the example below:
+Filters implementing the `IRouteHandlerFilter` interface are shown in the following example:
 
 [!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/Filters/RouteFilters/AbcRouteFilters.cs)]
 
