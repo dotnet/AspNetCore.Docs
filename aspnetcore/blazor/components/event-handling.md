@@ -120,7 +120,7 @@ Custom events with custom event arguments are generally enabled with the followi
    }
    ```
 
-1. Wire up the custom event with the event arguments by adding an <xref:Microsoft.AspNetCore.Components.EventHandlerAttribute> attribute annotation for the custom event. The class doesn't require members:
+1. Wire up the custom event with the event arguments by adding an <xref:Microsoft.AspNetCore.Components.EventHandlerAttribute> attribute annotation for the custom event. The class doesn't require members. Note that the class *must* be called `EventHandlers` in order to be found by the Razor compiler, but you should put it in some namespace specific to your application:
 
    ```csharp
    [EventHandler("oncustomevent", typeof(CustomEventArgs), enableStopPropagation: true, enablePreventDefault: true)]
@@ -143,6 +143,8 @@ Custom events with custom event arguments are generally enabled with the followi
        }
    }
    ```
+
+If the `@oncustomevent` attribute isn't recognized by intellisense, make sure your component or your `_Imports.razor` file contains a `@using` statement for the namespace containing your `EventHandler` class.
 
 Whenever the custom event is fired on the DOM, the event handler is called with the data passed from the JavaScript.
 
