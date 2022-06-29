@@ -32,7 +32,7 @@ The preceding code:
 * Calls the `AddFilter` extension method to add a filter to the `/colorSelector/{color}` endpoint.
 * Returns the color specified except for the `Red`.
 * Returns [Results.Problem](xref:Microsoft.AspNetCore.Http.Results.Problem%2A) when the `/colorSelector/Red` is requested.
-* Uses `next` as the `RouteHandlerFilterDelegate` and `rhiContext` as the `RouteHandlerInvocationContext`.
+* Uses `next` as the `RouteHandlerFilterDelegate` and `rhiContext` as the `RouteHandlerInvocationContext` to invoke the next filter in the pipeline or the request delegate if the last filter has been invoked.
 
 The filter is run before the endpoint handler. When multiple `AddFilter` invocations are made on a handler:
 
@@ -69,7 +69,7 @@ BrouteFilter After next
 ArouteFilter After next
 ```
 
-Filters implementing the `IRouteHandlerFilter` interface is explained later in this document. The `ArouteFilter`, `BrouteFilter`, and `CrouteFilter` filters:
+Filters implementing the `IRouteHandlerFilter` interface are shown in the example below:
 
 [!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/Filters/RouteFilters/AbcRouteFilters.cs)]
 

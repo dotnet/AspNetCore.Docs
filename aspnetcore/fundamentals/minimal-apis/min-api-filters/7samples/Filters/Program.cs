@@ -9,7 +9,7 @@ var app = builder.Build();
 string ColorName(string color) => $"Color specified: {color}!";
 
 app.MapGet("/colorSelector/{color}", ColorName)
-    .AddFilter(async (rhiContext, next) =>
+    .AddFilter(async (invocationContext, next) =>
     {
         var color = rhiContext.GetArgument<string>(0);
 
