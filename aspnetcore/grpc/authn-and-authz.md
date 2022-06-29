@@ -269,6 +269,7 @@ public class TicketerService : Ticketer.TicketerBase
 
 * [Bearer Token authentication in ASP.NET Core](https://blogs.msdn.microsoft.com/webdev/2016/10/27/bearer-token-authentication-in-asp-net-core/)
 * [Configure Client Certificate authentication in ASP.NET Core](xref:security/authentication/certauth)
+* [Configure interceptors in a gRPC client factory in .NET](xref:grpc/clientfactory#configure-interceptors)
 
 :::moniker-end
 
@@ -534,5 +535,6 @@ public class TicketerService : Ticketer.TicketerBase
 
 * [Bearer Token authentication in ASP.NET Core](https://blogs.msdn.microsoft.com/webdev/2016/10/27/bearer-token-authentication-in-asp-net-core/)
 * [Configure Client Certificate authentication in ASP.NET Core](xref:security/authentication/certauth)
+* [Configure interceptors in a gRPC client factory in .NET](xref:grpc/clientfactory#configure-interceptors)
 
 :::moniker-end

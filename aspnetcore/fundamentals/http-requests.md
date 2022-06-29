@@ -276,7 +276,7 @@ An approach to managing regularly used policies is to define them once and regis
 
 In the preceding code:
 
-* Two policies, `Regular` and `Short`, are added to the Polly registry.
+* Two policies, `Regular` and `Long`, are added to the Polly registry.
 * <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddPolicyHandlerFromRegistry%2A> configures individual named clients to use these policies from the Polly registry.
 
 For more information on `IHttpClientFactory` and Polly integrations, see the [Polly wiki](https://github.com/App-vNext/Polly/wiki/Polly-and-HttpClientFactory).

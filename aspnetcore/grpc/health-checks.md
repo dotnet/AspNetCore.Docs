@@ -23,7 +23,9 @@ Health checks are exposed by an app as a gRPC service. They are typically used w
 
 ## Set up gRPC health checks
 
-gRPC ASP.NET Core has built-in support for gRPC health checks with the [`Grpc.AspNetCore.HealthChecks`](https://www.nuget.org/packages/Grpc.AspNetCore.HealthChecks) package. Results from [.NET health checks](xref:host-and-deploy/health-checks) are reported to callers. To set up gRPC health checks in an app:
+gRPC ASP.NET Core has built-in support for gRPC health checks with the [`Grpc.AspNetCore.HealthChecks`](https://www.nuget.org/packages/Grpc.AspNetCore.HealthChecks) package. Results from [.NET health checks](xref:host-and-deploy/health-checks) are reported to callers.
+
+To set up gRPC health checks in an app:
 
 * Add a `Grpc.AspNetCore.HealthChecks` package reference.
 * Register gRPC health checks service:
@@ -36,7 +38,8 @@ gRPC ASP.NET Core has built-in support for gRPC health checks with the [`Grpc.As
 When health checks is set up:
 
 * The health checks service is added to the server app.
-* .NET health checks registered with the app are periodically executed for health results. Health results determine what the gRPC service reports:
+* .NET health checks registered with the app are periodically executed for health results. By default, there is a 5 second delay after app startup, and then health checks are executed every 30 seconds. Health check execution interval [can be customized with `HealthCheckPublisherOptions`](#configure-health-checks-execution-interval).
+* Health results determine what the gRPC service reports:
   * `Unknown` is reported when there are no health results.
   * `NotServing` is reported when there are any health results of <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy?displayProperty=nameWithType>.
   * Otherwise, `Serving` is reported.
@@ -55,6 +58,20 @@ gRPC health checks supports the client specifying a service name argument when c
 
 The service name specified by the client is usually the default (`""`) or a package-qualified name of a service in your app. However, nothing prevents the client using arbitrary values to check app health.
 
+## Configure health checks execution interval
+
+Health checks are periodically executed using <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher> to gather health results. By default, the publisher waits 5 seconds after app startup before running health checks, and then health checks are run again every 30 seconds.
+
+Publisher intervals can be configured using <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions> at startup:
+
+```csharp
+builder.Services.Configure<HealthCheckPublisherOptions>(options =>
+{
+    options.Delay = TimeSpan.Zero;
+    options.Period = TimeSpan.FromSeconds(10);
+});
+```
+
 ## Call gRPC health checks service
 
 The [`Grpc.HealthCheck`](https://www.nuget.org/packages/Grpc.HealthCheck) package includes a client for gRPC health checks:
@@ -66,6 +83,11 @@ var client = new Health.HealthClient(channel);
 var response = await client.CheckAsync(new HealthCheckRequest());
 var status = response.Status;
 ```
+
+There are two methods on the `Health` service:
+
+* `Check` is a unary method for getting the current health status. The server returns a `NOT_FOUND` error response if the client requests an unknown service name. This can happen at app startup if health results haven't been published yet.
+* `Watch` is a streaming method that reports changes in health status over time. The server returns an `Unknown` status if the client requests an unknown service name.
 
 ## Additional resources
 
@@ -90,7 +112,9 @@ Health checks are exposed by an app as a gRPC service. They are typically used w
 
 ## Set up gRPC health checks
 
-gRPC ASP.NET Core has built-in support for gRPC health checks with the [`Grpc.AspNetCore.HealthChecks`](https://www.nuget.org/packages/Grpc.AspNetCore.HealthChecks) package. Results from [.NET health checks](xref:host-and-deploy/health-checks) are reported to callers. To set up gRPC health checks in an app:
+gRPC ASP.NET Core has built-in support for gRPC health checks with the [`Grpc.AspNetCore.HealthChecks`](https://www.nuget.org/packages/Grpc.AspNetCore.HealthChecks) package. Results from [.NET health checks](xref:host-and-deploy/health-checks) are reported to callers.
+
+To set up gRPC health checks in an app:
 
 * Add a `Grpc.AspNetCore.HealthChecks` package reference.
 * Register gRPC health checks service in `Startup.cs`:
@@ -103,7 +127,8 @@ gRPC ASP.NET Core has built-in support for gRPC health checks with the [`Grpc.As
 When health checks is set up:
 
 * The health checks service is added to the server app.
-* .NET health checks registered with the app are periodically executed for health results. Health results determine what the gRPC service reports:
+* .NET health checks registered with the app are periodically executed for health results. By default, there is a 5 second delay after app startup, and then health checks are executed every 30 seconds. Health check execution interval [can be customized with `HealthCheckPublisherOptions`](#configure-health-checks-execution-interval).
+* Health results determine what the gRPC service reports:
   * `Unknown` is reported when there are no health results.
   * `NotServing` is reported when there are any health results of <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy?displayProperty=nameWithType>.
   * Otherwise, `Serving` is reported.
@@ -133,6 +158,20 @@ services.AddGrpcHealthChecks(o =>
 
 The service name specified by the client is usually the default (`""`) or a package-qualified name of a service in your app. However, nothing prevents the client using arbitrary values to check app health.
 
+## Configure health checks execution interval
+
+Health checks are periodically executed using <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher> to gather health results. By default, the publisher waits 5 seconds after app startup before running health checks, and then health checks are run again every 30 seconds.
+
+Publisher intervals can be configured using <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions> at startup:
+
+```csharp
+services.Configure<HealthCheckPublisherOptions>(options =>
+{
+    options.Delay = TimeSpan.Zero;
+    options.Period = TimeSpan.FromSeconds(10);
+});
+```
+
 ## Call gRPC health checks service
 
 The [`Grpc.HealthCheck`](https://www.nuget.org/packages/Grpc.HealthCheck) package includes a client for gRPC health checks:
@@ -144,6 +183,11 @@ var client = new Health.HealthClient(channel);
 var response = client.CheckAsync(new HealthCheckRequest());
 var status = response.Status;
 ```
+
+There are two methods on the `Health` service:
+
+* `Check` is a unary method for getting the current health status. The server returns a `NOT_FOUND` error response if the client requests an unknown service name. This can happen at app startup if health results haven't been published yet.
+* `Watch` is a streaming method that reports changes in health status over time. The server returns an `Unknown` status if the client requests an unknown service name.
 
 ## Additional resources
 
