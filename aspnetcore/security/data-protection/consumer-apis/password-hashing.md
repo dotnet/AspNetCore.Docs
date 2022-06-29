@@ -9,7 +9,7 @@ uid: security/data-protection/consumer-apis/password-hashing
 
 # Hash passwords in ASP.NET Core
 
-The data protection code base includes a package *Microsoft.AspNetCore.Cryptography.KeyDerivation* which contains cryptographic key derivation functions. This package is a standalone component and has no dependencies on the rest of the data protection system. It can be used completely independently. The source exists alongside the data protection code base as a convenience.
+The data protection code base includes a NuGet package [Microsoft.AspNetCore.Cryptography.KeyDerivation](https://www.nuget.org/packages/Microsoft.AspNetCore.Cryptography.KeyDerivation/) which contains cryptographic key derivation functions. This package is a standalone component and has no dependencies on the rest of the data protection system. It can be used completely independently. The source exists alongside the data protection code base as a convenience.
 
 The package currently offers a method `KeyDerivation.Pbkdf2` which allows hashing a password using the [PBKDF2 algorithm](https://tools.ietf.org/html/rfc2898#section-5.2). This API is very similar to the .NET Framework's existing <xref:System.Security.Cryptography.Rfc2898DeriveBytes>, but there are three important distinctions:
 
