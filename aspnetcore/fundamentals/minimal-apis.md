@@ -1522,6 +1522,10 @@ We recommend adding an extension method to <xref:Microsoft.AspNetCore.Http.IResu
 
 [!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_xtn)]
 
+## Filters
+
+See <xref:fundamentals/minimal-apis/min-api-filters>
+
 ## Authorization
 
 Routes can be protected using authorization policies. These can be declared via the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute or by using the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> method:
