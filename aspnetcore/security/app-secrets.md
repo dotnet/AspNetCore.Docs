@@ -68,6 +68,14 @@ The Secret Manager tool includes an `init` command. To use user secrets, run the
 dotnet user-secrets init
 ```
 
+If you are running the full-featured Visual Studio IDE, such as Visual Studio 2022, you can run this command by going to the **View** menu and selecting **Terminal**.  The Developer PowerShell terminal window will appear inside Visual Studio.  In the new terminal window, run this commmand:
+
+```Developer PowerShell
+dotnet user-secrets init --project project-name
+```
+
+Where _project-name_ is the name of your specific project.
+
 The preceding command adds a `UserSecretsId` element within a `PropertyGroup` of the project file. By default, the inner text of `UserSecretsId` is a GUID. The inner text is arbitrary, but is unique to the project.
 
 [!code-xml[](app-secrets/samples/3.x/UserSecrets/UserSecrets.csproj?name=snippet_PropertyGroup&highlight=3)]
