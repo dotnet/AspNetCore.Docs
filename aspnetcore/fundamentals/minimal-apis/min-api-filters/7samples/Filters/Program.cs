@@ -64,9 +64,9 @@ app.MapGet("/", () =>
     app.Logger.LogInformation("Endpoint");
     return "Test of multiple filters";
 })
-    .AddFilter<ArouteFilter>()
-    .AddFilter<BrouteFilter>()
-    .AddFilter<CrouteFilter>();
+.AddFilter<ArouteFilter>()
+.AddFilter<BrouteFilter>()
+.AddFilter<CrouteFilter>();
 
 app.Run();
 #endregion
@@ -80,28 +80,28 @@ app.MapGet("/", () =>
 {
     app.Logger.LogInformation("             Endpoint");
     return "Test of multiple filters";
-    })
-    .AddFilter(async (rhiContext, next) =>
-    {
-        app.Logger.LogInformation("Before first filter");
-        var result = await next(rhiContext);
-        app.Logger.LogInformation("After first filter");
-        return result;
-    })
-    .AddFilter(async (rhiContext, next) =>
-    {
-        app.Logger.LogInformation(" Before 2nd filter");
-        var result = await next(rhiContext);
-        app.Logger.LogInformation(" After 2nd filter");
-        return result;
-    })
-    .AddFilter(async (rhiContext, next) =>
-    {
-        app.Logger.LogInformation("     Before 3rd filter");
-        var result = await next(rhiContext);
-        app.Logger.LogInformation("     After 3rd filter");
-        return result;
-    });
+})
+.AddFilter(async (rhiContext, next) =>
+{
+    app.Logger.LogInformation("Before first filter");
+    var result = await next(rhiContext);
+    app.Logger.LogInformation("After first filter");
+    return result;
+})
+.AddFilter(async (rhiContext, next) =>
+{
+    app.Logger.LogInformation(" Before 2nd filter");
+    var result = await next(rhiContext);
+    app.Logger.LogInformation(" After 2nd filter");
+    return result;
+})
+.AddFilter(async (rhiContext, next) =>
+{
+    app.Logger.LogInformation("     Before 3rd filter");
+    var result = await next(rhiContext);
+    app.Logger.LogInformation("     After 3rd filter");
+    return result;
+});
 app.Run();
 #endregion
 #endif
