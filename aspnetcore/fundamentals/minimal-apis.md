@@ -379,7 +379,7 @@ var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
 app.MapGet("/todos/{id:int}", (int id) => db.Todos.Find(id));
-app.MapGet("/todos/{text}", (string text) => db.Todos.Where(t => t.Text.Contains(text));
+app.MapGet("/todos/{text}", (string text) => db.Todos.Where(t => t.Text.Contains(text)));
 app.MapGet("/posts/{slug:regex(^[a-z0-9_-]+$)}", (string slug) => $"Post {slug}");
 
 app.Run();
