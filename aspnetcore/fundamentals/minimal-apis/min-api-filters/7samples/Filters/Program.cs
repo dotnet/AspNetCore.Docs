@@ -60,10 +60,10 @@ var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
 app.MapGet("/", () =>
-{
-    app.Logger.LogInformation("Endpoint");
-    return "Test of multiple filters";
-})
+    {
+        app.Logger.LogInformation("Endpoint");
+        return "Test of multiple filters";
+    })
     .AddFilter<ArouteFilter>()
     .AddFilter<BrouteFilter>()
     .AddFilter<CrouteFilter>();
@@ -76,10 +76,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 var app = builder.Build();
 
-app.MapGet("/", () => 
-{
-    app.Logger.LogInformation("             Endpoint");
-    return "Test of multiple filters";
+app.MapGet("/", () =>
+    {
+        app.Logger.LogInformation("             Endpoint");
+        return "Test of multiple filters";
     })
     .AddFilter(async (rhiContext, next) =>
     {
@@ -102,6 +102,7 @@ app.MapGet("/", () =>
         app.Logger.LogInformation("     After 3rd filter");
         return result;
     });
+
 app.Run();
 #endregion
 #endif
