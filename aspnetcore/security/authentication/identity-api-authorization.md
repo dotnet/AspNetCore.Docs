@@ -53,28 +53,28 @@ The preceding code configures:
 
 * Identity with the default UI:
 
-```csharp
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlite(connectionString));
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
-builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
-```
+  ```csharp
+  builder.Services.AddDbContext<ApplicationDbContext>(options =>
+      options.UseSqlite(connectionString));
+  builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+  
+  builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.  RequireConfirmedAccount = true)
+      .AddEntityFrameworkStores<ApplicationDbContext>();
+  ```
 
 * IdentityServer with an additional `AddApiAuthorization` helper method that sets up some default ASP.NET Core conventions on top of IdentityServer:
 
-```csharp
-builder.Services.AddIdentityServer()
-    .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
-```
+  ```csharp
+  builder.Services.AddIdentityServer()
+      .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
+  ```
 
 * Authentication with an additional `AddIdentityServerJwt` helper method that configures the app to validate JWT tokens produced by IdentityServer:
 
- ```csharp
- builder.Services.AddAuthentication()
- .AddIdentityServerJwt();
- ```
+   ```csharp
+   builder.Services.AddAuthentication()
+   .AddIdentityServerJwt();
+   ```
 
 * The authentication middleware that is responsible for validating the request credentials and setting the user on the request context:
 
