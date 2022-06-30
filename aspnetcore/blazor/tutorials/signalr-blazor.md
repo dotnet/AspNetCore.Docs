@@ -430,7 +430,7 @@ Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/Cha
 
    ```csharp
    using Microsoft.AspNetCore.ResponseCompression;
-   using BlazorServerSignalRApp.Hubs;
+   using BlazorServerSignalRApp.Server.Hubs;
    ```
 
 1. Add Response Compression Middleware services to `Program.cs`:
