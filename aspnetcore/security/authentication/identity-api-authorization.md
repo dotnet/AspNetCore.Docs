@@ -12,7 +12,7 @@ uid: security/authentication/identity/spa
 
 :::moniker range=">= aspnetcore-6.0"
 
-The ASP.NET Core 3.1 and later templates offer authentication in Single Page Apps (SPAs) using the support for API authorization. ASP.NET Core Identity for authenticating and storing users is combined with [Duende Identity Server](https://docs.duendesoftware.com) for implementing OpenID Connect.
+The ASP.NET Core templates offer authentication in Single Page Apps (SPAs) using the support for API authorization. ASP.NET Core Identity for authenticating and storing users is combined with [Duende Identity Server](https://docs.duendesoftware.com) for implementing OpenID Connect.
 
 > [!IMPORTANT]
 > [Duende Software](https://duendesoftware.com/) might require you to pay a license fee for production use of Duende Identity Server. For more information, see <xref:migration/50-to-60#project-templates-use-duende-identity-server>.
@@ -26,13 +26,13 @@ User authentication and authorization can be used with both Angular and React SP
 **Angular**:
 
 ```dotnetcli
-dotnet new angular -au Individual -o output_directory_name
+dotnet new angular -au Individual
 ```
 
 **React**:
 
 ```dotnetcli
-dotnet new react -au Individual -o output_directory_name
+dotnet new react -au Individual
 ```
 
 The preceding command creates an ASP.NET Core app with a *ClientApp* directory containing the SPA.
@@ -45,35 +45,38 @@ The following sections describe additions to the project when authentication sup
 
 The following code examples rely on the [Microsoft.AspNetCore.ApiAuthorization.IdentityServer](https://www.nuget.org/packages/Microsoft.AspNetCore.ApiAuthorization.IdentityServer) NuGet package. The examples configure API authentication and authorization using the <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> and <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiResourceCollection.AddIdentityServerJwt%2A> extension methods. Projects using the React or Angular SPA project templates with authentication include a reference to this package.
 
-The `Startup` class has the following additions:
+`dotnet new angular -au Individual` generates the following `Program.cs` file:
 
-* Inside the `Startup.ConfigureServices` method:
-  * Identity with the default UI:
+[!code-csharp[](~/security/authentication/identity-api-authorization/6samples/Program.cs)]
 
-    ```csharp
-    services.AddDbContext<ApplicationDbContext>(options =>
-        options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+The preceding code configures:
 
-    services.AddDefaultIdentity<ApplicationUser>()
-        .AddEntityFrameworkStores<ApplicationDbContext>();
-    ```
+* Identity with the default UI:
 
-  * IdentityServer with an additional `AddApiAuthorization` helper method that sets up some default ASP.NET Core conventions on top of IdentityServer:
+```csharp
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlite(connectionString));
+builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-    ```csharp
-    services.AddIdentityServer()
-        .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
-    ```
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<ApplicationDbContext>();
+```
 
-  * Authentication with an additional `AddIdentityServerJwt` helper method that configures the app to validate JWT tokens produced by IdentityServer:
+* IdentityServer with an additional `AddApiAuthorization` helper method that sets up some default ASP.NET Core conventions on top of IdentityServer:
 
-    ```csharp
-    services.AddAuthentication()
-        .AddIdentityServerJwt();
-    ```
+```csharp
+builder.Services.AddIdentityServer()
+    .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
+```
 
-* Inside the `Startup.Configure` method:
-  * The authentication middleware that is responsible for validating the request credentials and setting the user on the request context:
+* Authentication with an additional `AddIdentityServerJwt` helper method that configures the app to validate JWT tokens produced by IdentityServer:
+
+ ```csharp
+ builder.Services.AddAuthentication()
+ .AddIdentityServerJwt();
+ ```
+
+* The authentication middleware that is responsible for validating the request credentials and setting the user on the request context:
 
     ```csharp
     app.UseAuthentication();
@@ -87,10 +90,10 @@ The `Startup` class has the following additions:
 
 ### Azure App Service on Linux
 
-For Azure App Service deployments on Linux, specify the issuer explicitly in `Startup.ConfigureServices`:
+For Azure App Service deployments on Linux, specify the issuer explicitly:
 
 ```csharp
-services.Configure<JwtBearerOptions>(
+builder.Services.Configure<JwtBearerOptions>(
     IdentityServerJwtConstants.IdentityServerJwtBearerScheme, 
     options =>
     {
@@ -156,7 +159,7 @@ In the `appsettings.Development.json` file of the project root, there's an `Iden
 
 ## General description of the Angular app
 
-The authentication and API authorization support in the Angular template resides in its own Angular module in the *ClientApp\src\api-authorization* directory. The module is composed of the following elements:
+The authentication and API authorization support in the Angular template resides in its own Angular module in the *ClientApp/src/api-authorization* directory. The module is composed of the following elements:
 
 * 3 components:
   * `login.component.ts`: Handles the app's login flow.
@@ -171,7 +174,7 @@ The authentication and API authorization support in the Angular template resides
 
 ## General description of the React app
 
-The support for authentication and API authorization in the React template resides in the *ClientApp\src\components\api-authorization* directory. It's composed of the following elements:
+The support for authentication and API authorization in the React template resides in the *ClientApp/src/components/api-authorization* directory. It's composed of the following elements:
 
 * 4 components:
   * `Login.js`: Handles the app's login flow.
@@ -193,10 +196,10 @@ By default, the system is configured to easily require authorization for new API
 To customize the configuration of the API's JWT handler, configure its <xref:Microsoft.AspNetCore.Builder.JwtBearerOptions> instance:
 
 ```csharp
-services.AddAuthentication()
+builder.Services.AddAuthentication()
     .AddIdentityServerJwt();
 
-services.Configure<JwtBearerOptions>(
+builder.Services.Configure<JwtBearerOptions>(
     IdentityServerJwtConstants.IdentityServerJwtBearerScheme,
     options =>
     {
@@ -209,7 +212,7 @@ The API's JWT handler raises events that enable control over the authentication 
 To customize the handling of an event, wrap the existing event handler with additional logic as required. For example:
 
 ```csharp
-services.Configure<JwtBearerOptions>(
+builder.Services.Configure<JwtBearerOptions>(
     IdentityServerJwtConstants.IdentityServerJwtBearerScheme,
     options =>
     {
@@ -564,7 +567,7 @@ In the `appsettings.Development.json` file of the project root, there's an `Iden
 
 ## General description of the Angular app
 
-The authentication and API authorization support in the Angular template resides in its own Angular module in the *ClientApp\src\api-authorization* directory. The module is composed of the following elements:
+The authentication and API authorization support in the Angular template resides in its own Angular module in the *ClientApp/src/api-authorization* directory. The module is composed of the following elements:
 
 * 3 components:
   * `login.component.ts`: Handles the app's login flow.
@@ -579,7 +582,7 @@ The authentication and API authorization support in the Angular template resides
 
 ## General description of the React app
 
-The support for authentication and API authorization in the React template resides in the *ClientApp\src\components\api-authorization* directory. It's composed of the following elements:
+The support for authentication and API authorization in the React template resides in the *ClientApp/src/components/api-authorization* directory. It's composed of the following elements:
 
 * 4 components:
   * `Login.js`: Handles the app's login flow.
