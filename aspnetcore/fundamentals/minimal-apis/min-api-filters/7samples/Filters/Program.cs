@@ -1,4 +1,4 @@
-#define ABC // FIRST SECOND ABC XYZ
+#define FIRST // FIRST SECOND ABC XYZ
 #if NEVER
 #elif FIRST
 #region snippet1
@@ -11,13 +11,13 @@ string ColorName(string color) => $"Color specified: {color}!";
 app.MapGet("/colorSelector/{color}", ColorName)
     .AddFilter(async (invocationContext, next) =>
     {
-        var color = rhiContext.GetArgument<string>(0);
+        var color = invocationContext.GetArgument<string>(0);
 
         if (color == "Red")
         {
             return Results.Problem("Red not allowed!");
         }
-        return await next(rhiContext);
+        return await next(invocationContext);
     });
 
 app.Run();
