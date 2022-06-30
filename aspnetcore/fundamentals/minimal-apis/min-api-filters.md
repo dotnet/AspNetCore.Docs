@@ -30,7 +30,7 @@ Filters can be registered by providing a [Delegate](/dotnet/csharp/programming-g
 The preceding code:
 
 * Calls the `AddFilter` extension method to add a filter to the `/colorSelector/{color}` endpoint.
-* Returns the color specified except for the `Red`.
+* Returns the color specified except for the value `"Red"`.
 * Returns [Results.Problem](xref:Microsoft.AspNetCore.Http.Results.Problem%2A) when the `/colorSelector/Red` is requested.
 * Uses `next` as the `RouteHandlerFilterDelegate` and `rhiContext` as the `RouteHandlerInvocationContext` to invoke the next filter in the pipeline or the request delegate if the last filter has been invoked.
 
