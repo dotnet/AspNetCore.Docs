@@ -90,7 +90,7 @@ Welcome to what's new in the ASP.NET Core docs from April 1, 2022 through June 3
 ### Updated articles
 
 - <xref:razor-pages/razor-pages-conventions> - .NET 6 RP routes and app conventions /1
-- <xref:razor-pages/ui-class> - .NET 6 moniker prep Razor UI class /5
+- <xref:razor-pages/ui-class> - .NET 6 
 
 ## Security
 
