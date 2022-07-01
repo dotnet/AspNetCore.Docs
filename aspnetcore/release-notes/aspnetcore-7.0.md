@@ -19,7 +19,7 @@ Parameter binding for API controller actions binds parameters through [dependenc
 
 [!code-csharp[](~/release-notes/aspnetcore-7/samples/ApiController/Controllers/MyController.cs?name=snippet)]
 
-In rare cases, automatic DI can break apps that have a type in DI that is also accepted in an API controllers action methods. It's not common to have a type in DI and as an argument in an API controller action. To disable automatic binding of parameters, set `[DisableImplicitFromServicesParameters](/dotnet/api/microsoft.aspnetcore.mvc.apibehavioroptions.disableimplicitfromservicesparameters?view=aspnetcore-7.0) = true`:
+In rare cases, automatic DI can break apps that have a type in DI that is also accepted in an API controllers action methods. It's not common to have a type in DI and as an argument in an API controller action. To disable automatic binding of parameters, set [DisableImplicitFromServicesParameters](/dotnet/api/microsoft.aspnetcore.mvc.apibehavioroptions.disableimplicitfromservicesparameters?view=aspnetcore-7.0) `= true`:
 
 [!code-csharp[](~/release-notes/aspnetcore-7/samples/ApiController/Program.cs?name=snippet_dis&highlight=8-11)]
 
