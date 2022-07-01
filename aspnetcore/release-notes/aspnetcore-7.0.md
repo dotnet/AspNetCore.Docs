@@ -13,6 +13,8 @@ This article highlights the most significant changes in ASP.NET Core 7.0 with li
 
 ## API controllers
 
+### Parameter binding with DI in API controllers
+
 Parameter binding for API controller actions binds parameters through [dependency injection](xref:fundamentals/dependency-injection) when the type is configured as a service. This means it’s no longer required to explicitly apply the [`[FromServices]`](xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute) attribute to a parameter. In the following code, both actions return the time:
 
 [!code-csharp[](~/release-notes/aspnetcore-7/samples/ApiController/Controllers/MyController.cs?name=snippet)]
@@ -20,11 +22,6 @@ Parameter binding for API controller actions binds parameters through [dependenc
 In rare cases, automatic DI can break apps that have a type in DI that is also accepted in an API controllers action methods. It's not common to have a type in DI and as an argument in an API controller action. To disable automatic binding of parameters, set `[DisableImplicitFromServicesParameters](/dotnet/api/microsoft.aspnetcore.mvc.apibehavioroptions.disableimplicitfromservicesparameters?view=aspnetcore-7.0) = true`:
 
 [!code-csharp[](~/release-notes/aspnetcore-7/samples/ApiController/Program.cs?name=snippet_dis&highlight=8-11)]
-
-Prior to ASP.NET Core 7, one of the following approaches was required to bind a source in API Controller action:
-
-* The parameter decorated using an attribute that implements <xref:Microsoft.AspNetCore.Http.Metadata.IFromServiceMetadata>, for example <xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute>.
-* The parameter is resolved from the request body sent by the client.
 
 In ASP.NET Core 7.0, types in DI are checked at app startup with <xref:System.IServiceProviderIsService> to determine if an argument in an API controller action comes from DI or from the other sources.
 
