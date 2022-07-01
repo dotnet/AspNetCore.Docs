@@ -23,7 +23,7 @@ In rare cases, automatic DI can break apps that have a type in DI that is also a
 
 [!code-csharp[](~/release-notes/aspnetcore-7/samples/ApiController/Program.cs?name=snippet_dis&highlight=8-11)]
 
-In ASP.NET Core 7.0, types in DI are checked at app startup with <xref:System.IServiceProviderIsService> to determine if an argument in an API controller action comes from DI or from the other sources.
+In ASP.NET Core 7.0, types in DI are checked at app startup with <xref:Microsoft.Extensions.DependencyInjection.IServiceProviderIsService> to determine if an argument in an API controller action comes from DI or from the other sources.
 
 The new mechanism to infer binding source of API Controller action parameters uses the following rules:
 
