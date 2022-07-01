@@ -12,6 +12,8 @@ landingContent:
   linkLists:
   - linkListType: whats-new
     links:
+    - text: June 2022
+      url: dotnet-AspNetCore.Docs-2022-04-01.md
     - text: March 2022
       url: dotnet-AspNetCore.Docs-2022-03-01.md
     - text: February 2022
@@ -22,8 +24,6 @@ landingContent:
       url: dotnet-AspNetCore.Docs-2021-12-01.md
     - text: November 2021
       url: 21-11.md
-    - text: October 2021
-      url: 21-10.md
 - title: Get involved - contribute to ASP.NET Core docs
   linkLists:
   - linkListType: overview
