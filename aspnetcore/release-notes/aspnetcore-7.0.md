@@ -26,7 +26,7 @@ Prior to ASP.NET Core 7, one of the following approaches was required to bind a 
 * The parameter decorated using an attribute that implements <xref:Microsoft.AspNetCore.Http.Metadata.IFromServiceMetadata>, for example <xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute>.
 * The parameter is resolved from the request body sent by the client.
 
-In ASP.NET Core 7.0, types in DI are checked at app startup with <xref:System.IServiceProvider> to determine if an argument in an API controller action comes from DI or from the other sources.
+In ASP.NET Core 7.0, types in DI are checked at app startup with <xref:System.IServiceProviderIsService> to determine if an argument in an API controller action comes from DI or from the other sources.
 
 The new mechanism to infer binding source of API Controller action parameters uses the following rules:
 
