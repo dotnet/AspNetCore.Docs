@@ -1,4 +1,4 @@
-#define MIN // FIRST DIS MIN
+#define DIS // FIRST DIS MIN
 #if NEVER
 #elif FIRST
 #region snippet1

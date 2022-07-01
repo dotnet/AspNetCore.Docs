@@ -17,13 +17,13 @@ Parameter binding for API controller actions binds parameters through [dependenc
 
 [!code-csharp[](~/release-notes/aspnetcore-7/samples/ApiController/Controllers/MyController.cs?name=snippet)]
 
-In rare cases, automatic DI can break apps that have a type in DI that is also accepted in an API controllers action methods. It's not common to have a type in DI and as an argument in an API controller action. To disable automatic binding of parameters, set `DisableImplicitFromServicesParameters = true`:
+In rare cases, automatic DI can break apps that have a type in DI that is also accepted in an API controllers action methods. It's not common to have a type in DI and as an argument in an API controller action. To disable automatic binding of parameters, set `[DisableImplicitFromServicesParameters](/dotnet/api/microsoft.aspnetcore.mvc.apibehavioroptions.disableimplicitfromservicesparameters?view=aspnetcore-7.0) = true`:
 
 [!code-csharp[](~/release-notes/aspnetcore-7/samples/ApiController/Program.cs?name=snippet_dis&highlight=8-11)]
 
 Prior to ASP.NET Core 7, one of the following approaches was required to bind a source in API Controller action:
 
-* The parameter decorated using an attribute that implements `IFromServiceMetadata`, for example `FromServicesAttribute`.
+* The parameter decorated using an attribute that implements <xref:Microsoft.AspNetCore.Http.Metadata.IFromServiceMetadata>, for example <xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute>.
 * The parameter is resolved from the request body sent by the client.
 
 In ASP.NET Core 7.0, types in DI are checked at app startup with <xref:System.IServiceProvider> to determine if an argument in an API controller action comes from DI or from the other sources.
@@ -33,8 +33,26 @@ The new mechanism to infer binding source of API Controller action parameters us
 1. A previously specified [`BindingInfo.BindingSource`](xref:Microsoft.AspNetCore.Mvc.ModelBinding.BindingInfo.BindingSource) is never overwritten.
 1. A complex type parameter, registered in the DI container, is assigned [`BindingSource.Services`](xref:Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource.Services).
 1. A complex type parameter, not registered in the DI container, is assigned [`BindingSource.Body`](xref:Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource.Body).
-1. Parameter with a name that appears as a route value in ***any*** route template is assigned [`BindingSource.Path`](xref:Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource.Path).
+1. A parameter with a name that appears as a route value in ***any*** route template is assigned [`BindingSource.Path`](xref:Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource.Path).
 1. All other parameters are [`BindingSource.Query`](xref:Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource.Query).
+
+## Minimal APIs
+
+### Filters in Minimal API apps
+
+Minimal API filters allow developers to implement business logic that supports:
+
+* Running code before and after the route handler.
+* Inspecting and modifying parameters provided during a route handler invocation.
+* Intercepting the response behavior of a route handler.
+
+Filters can be helpful in the following scenarios:
+
+* Validating the request parameters and body that are sent to an endpoint.
+* Logging information about the request and response.
+* Validating that a request is targeting a supported API version.
+
+For more information, see <xref:fundamentals/minimal-apis/min-api-filters>
 
 ## IIS
 
