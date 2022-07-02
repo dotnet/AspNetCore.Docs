@@ -2324,12 +2324,12 @@ The following table describes options for configuring SignalR hubs:
 | `StreamBufferCapacity` | `10` | The maximum number of items that can be buffered for client upload streams. If this limit is reached, the processing of invocations is blocked until the server processes stream items.|
 | `MaximumReceiveMessageSize` | 32 KB | Maximum size of a single incoming hub message. |
 | `MaximumParallelInvocationsPerClient` | 1 | The maximum number of hub methods that each client can call in parallel before queueing. |
-| `DisableImplicitFromServicesParameters` | `false` | Hub method arguments will be resolved from DI if possible. |
+| [`DisableImplicitFromServicesParameters`](/dotnet/api/microsoft.aspnetcore.mvc.apibehavioroptions.disableimplicitfromservicesparameters?view=aspnetcore-7.0) | `false` | Hub method arguments will be resolved from DI if possible. |
 
 Options can be configured for all hubs by providing an options delegate to the `AddSignalR` call in `Program.cs`.
 
 ```csharp
- services.AddSignalR(hubOptions =>
+ builder.Services.AddSignalR(hubOptions =>
  {
      hubOptions.EnableDetailedErrors = true;
      hubOptions.KeepAliveInterval = TimeSpan.FromMinutes(1);
