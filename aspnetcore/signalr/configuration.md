@@ -92,24 +92,9 @@ builder.Services.AddSignalR().AddHubOptions<ChatHub>(options =>
 
 ### Advanced HTTP configuration options
 
-Use `HttpConnectionDispatcherOptions` to configure advanced settings related to transports and memory buffer management. These options are configured by passing a delegate to <xref:Microsoft.AspNetCore.Builder.HubEndpointRouteBuilderExtensions.MapHub%2A> in `Startup.Configure`.
+Use `HttpConnectionDispatcherOptions` to configure advanced settings related to transports and memory buffer management. These options are configured by passing a delegate to <xref:Microsoft.AspNetCore.Builder.HubEndpointRouteBuilderExtensions.MapHub%2A> in `Program.cs`.
 
-```csharp
-public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-{
-    app.UseRouting();
-
-    app.UseEndpoints(endpoints =>
-    {
-        endpoints.MapHub<ChatHub>("/chathub", options =>
-        {
-            options.Transports =
-                HttpTransportType.WebSockets |
-                HttpTransportType.LongPolling;
-        });
-    });
-}
-```
+[!code-csharp[](~\signalr\configuration\6.0-samples\Program.cs&highlight=24-30)]
 
 The following table describes options for configuring ASP.NET Core SignalR's advanced HTTP options:
 
@@ -2347,24 +2332,9 @@ builder.Services.AddSignalR().AddHubOptions<ChatHub>(options =>
 
 ### Advanced HTTP configuration options
 
-Use `HttpConnectionDispatcherOptions` to configure advanced settings related to transports and memory buffer management. These options are configured by passing a delegate to <xref:Microsoft.AspNetCore.Builder.HubEndpointRouteBuilderExtensions.MapHub%2A> in `Startup.Configure`.
+Use `HttpConnectionDispatcherOptions` to configure advanced settings related to transports and memory buffer management. These options are configured by passing a delegate to <xref:Microsoft.AspNetCore.Builder.HubEndpointRouteBuilderExtensions.MapHub%2A> in `Program.cs`.
 
-```csharp
-public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-{
-    app.UseRouting();
-
-    app.UseEndpoints(endpoints =>
-    {
-        endpoints.MapHub<ChatHub>("/chathub", options =>
-        {
-            options.Transports =
-                HttpTransportType.WebSockets |
-                HttpTransportType.LongPolling;
-        });
-    });
-}
-```
+[!code-csharp[](~\signalr\configuration\6.0-samples\Program.cs&highlight=24-30)]
 
 The following table describes options for configuring ASP.NET Core SignalR's advanced HTTP options:
 
