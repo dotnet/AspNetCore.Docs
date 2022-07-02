@@ -213,13 +213,11 @@ By default the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> reads c
 
 For a complete list of configuration sources read, see [Default configuration](xref:fundamentals/configuration/index?view=aspnetcore-6.0#default-configuration) in <xref:fundamentals/configuration/index?view=aspnetcore-6.0>
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_configb)]
-
 ### Read the environment
 
 The following code reads `HelloKey` from configuration and displays the value at the `/` endpoint. If the configuration value is null, "Hello" is assigned to `message`:
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_reb)]
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_configb)]
 
 ### Add logging providers
 
