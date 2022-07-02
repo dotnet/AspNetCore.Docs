@@ -94,7 +94,7 @@ builder.Services.AddSignalR().AddHubOptions<ChatHub>(options =>
 
 Use `HttpConnectionDispatcherOptions` to configure advanced settings related to transports and memory buffer management. These options are configured by passing a delegate to <xref:Microsoft.AspNetCore.Builder.HubEndpointRouteBuilderExtensions.MapHub%2A> in `Program.cs`.
 
-[!code-csharp[](~/signalr/configuration/6.0-samples/Program.cs&highlight=24-30)]
+[!code-csharp[](~/signalr/configuration/6.0-samples/Program.cs?highlight=24-30)]
 
 The following table describes options for configuring ASP.NET Core SignalR's advanced HTTP options:
 
@@ -2309,7 +2309,7 @@ The following table describes options for configuring SignalR hubs:
 | `StreamBufferCapacity` | `10` | The maximum number of items that can be buffered for client upload streams. If this limit is reached, the processing of invocations is blocked until the server processes stream items.|
 | `MaximumReceiveMessageSize` | 32 KB | Maximum size of a single incoming hub message. |
 | `MaximumParallelInvocationsPerClient` | 1 | The maximum number of hub methods that each client can call in parallel before queueing. |
-| [`DisableImplicitFromServicesParameters`](/dotnet/api/microsoft.aspnetcore.mvc.apibehavioroptions.disableimplicitfromservicesparameters?view=aspnetcore-7.0) | `false` | Hub method arguments will be resolved from DI if possible. |
+| [`DisableImplicitFromServicesParameters`](/dotnet/api/microsoft.aspnetcore.mvc.apibehavioroptions.disableimplicitfromservicesparameters?view=aspnetcore-7.0&preserve-view=true) | `false` | Hub method arguments will be resolved from DI if possible. |
 
 Options can be configured for all hubs by providing an options delegate to the `AddSignalR` call in `Program.cs`.
 
@@ -2334,7 +2334,7 @@ builder.Services.AddSignalR().AddHubOptions<ChatHub>(options =>
 
 Use `HttpConnectionDispatcherOptions` to configure advanced settings related to transports and memory buffer management. These options are configured by passing a delegate to <xref:Microsoft.AspNetCore.Builder.HubEndpointRouteBuilderExtensions.MapHub%2A> in `Program.cs`.
 
-[!code-csharp[](~/signalr/configuration/6.0-samples/Program.cs&highlight=24-30)]
+[!code-csharp[](~/signalr/configuration/6.0-samples/Program.cs?highlight=24-30)]
 
 The following table describes options for configuring ASP.NET Core SignalR's advanced HTTP options:
 
