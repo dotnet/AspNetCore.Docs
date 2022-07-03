@@ -49,7 +49,11 @@ Inside the closing `</body>` tag of `Pages/_Layout.razor` (Blazor Server) or `ww
     const arrayBuffer = await contentStreamReference.arrayBuffer();
     const blob = new Blob([arrayBuffer]);
     const url = URL.createObjectURL(blob);
-    triggerFileDownload(fileName, url);
+    const anchorElement = document.createElement('a');
+    anchorElement.href = url;
+    anchorElement.download = fileName ?? '';
+    anchorElement.click();
+    anchorElement.remove();
     URL.revokeObjectURL(url);
   }
 </script>
