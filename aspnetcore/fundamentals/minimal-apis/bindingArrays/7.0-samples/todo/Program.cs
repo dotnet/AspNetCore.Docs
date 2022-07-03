@@ -105,6 +105,7 @@ app.MapPost("/todoitems/batch", async (Todo[] todos, TodoDb db) =>
     return Results.Ok(todos);
 });
 
+// Bind to a string array
 // GET /todoitems/tags?tags=hom&tags=work
 app.MapGet("/todoitems/tags", async (Tag[] tags, TodoDb db) =>
 {
@@ -113,8 +114,18 @@ app.MapGet("/todoitems/tags", async (Tag[] tags, TodoDb db) =>
         .ToListAsync();
 });
 
-// GET /todoitems/ids?ids=1&ids=2
-app.MapGet("/todoitems/ids", async (int[] ids, TodoDb db) =>
+// Bind to headers
+// GET /todoitems/header-ids
+app.MapGet("/todoitems/header-ids", async ([FromHeader(Name = "X-Todo-Id")] int[] ids, TodoDb db) =>
+{
+    return await db.Todos
+        .Where(t => ids.Contains(t.Id))
+        .ToListAsync();
+});
+
+// Bind to a int array
+// GET /todoitems/querystring-ids?ids=1&ids=2
+app.MapGet("/todoitems/query-string-ids", async (int[] ids, TodoDb db) =>
 {
     return await db.Todos
         .Where(t => ids.Contains(t.Id))
@@ -122,8 +133,8 @@ app.MapGet("/todoitems/ids", async (int[] ids, TodoDb db) =>
 });
 
 // Bind to a string array
-// GET /todoitems/names-v1?names=Have%20Breakfast&names=Have%20Lunch
-app.MapGet("/todoitems/names-v1", async (string[] names, TodoDb db) =>
+// GET /todoitems//query-string-names-v1?names=Have%20Breakfast&names=Have%20Lunch
+app.MapGet("/todoitems/query-string-names-v1", async (string[] names, TodoDb db) =>
 {
     return await db.Todos
         .Where(t => names.Contains(t.Name))
@@ -131,8 +142,8 @@ app.MapGet("/todoitems/names-v1", async (string[] names, TodoDb db) =>
 });
 
 // Bind to StringValues
-// GET todoitems/names-v2?names=Have%20Breakfast&names=Have%20Lunch
-app.MapGet("/todoitems/names-v2", async (StringValues names, TodoDb db) =>
+// GET /todoitems//query-string-names-v2?names=Have%20Breakfast&names=Have%20Lunch
+app.MapGet("/todoitems/query-string-names-v2", async (StringValues names, TodoDb db) =>
 {
     return await db.Todos
         .Where(t => names.Contains(t.Name))
