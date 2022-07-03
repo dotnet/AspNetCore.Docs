@@ -148,7 +148,7 @@ For this example, assume a `LanguageFilterAttribute` class is defined. The class
                     str = str.Replace(bannedPhrase, "***");
                 }
 
-                arguments = invocationContext.HubMethodArguments.ToArray();
+                var arguments = invocationContext.HubMethodArguments.ToArray();
                 arguments[languageFilter.FilterArgument] = str;
                 invocationContext = new HubInvocationContext(invocationContext.Context,
                     invocationContext.ServiceProvider,
