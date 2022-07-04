@@ -143,6 +143,13 @@ With the preceding snippet, the SignalR C++ client is ready to use [`#include`](
 
 ## Blazor
 
+### Project template changes
+
+Several project template changes were made for Blazor apps, including the use of the `Pages/_Layout.cshtml` file for layout content that appeared in the `_Host.cshtml` file for earlier Blazor Server apps. Study the changes by creating an app from a 6.0 project template or accessing the ASP.NET Core reference source for the project templates:
+
+* [Blazor Server](https://github.com/dotnet/aspnetcore/tree/v6.0.0/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorServerWeb-CSharp)
+* [Blazor WebAssembly](https://github.com/dotnet/aspnetcore/tree/v6.0.0/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp)
+
 ### Blazor WebAssembly native dependencies support
 
 Blazor WebAssembly apps can use native dependencies built to run on WebAssembly. For more information, see <xref:blazor/webassembly-native-dependencies>.
