@@ -106,7 +106,11 @@ while (await channel.WaitToReadAsync())
 Console.WriteLine("Streaming completed");
 ```
 
-The `StreamAsChannelAsync` method on `HubConnection` is used to invoke a server-to-client streaming method. Pass the hub method name and arguments defined in the hub method to `StreamAsChannelAsync`. The generic parameter on `StreamAsChannelAsync<T>` specifies the type of objects returned by the streaming method. A `ChannelReader<T>` is returned from the stream invocation and represents the stream on the client.
+In the previous code:
+
+* The `StreamAsChannelAsync` method on `HubConnection` is used to invoke a server-to-client streaming method. Pass the hub method name and arguments defined in the hub method to `StreamAsChannelAsync`. 
+* The generic parameter on `StreamAsChannelAsync<T>` specifies the type of objects returned by the streaming method. 
+* A `ChannelReader<T>` is returned from the stream invocation and represents the stream on the client.
 
 
 ### Client-to-server streaming
