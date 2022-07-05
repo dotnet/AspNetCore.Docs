@@ -87,7 +87,7 @@ The following table shows the date and time types:
 | `TimeSpan`       | `google.protobuf.Duration`  |
 
 ```protobuf  
-syntax = "proto3"
+syntax = "proto3";
 
 import "google/protobuf/duration.proto";  
 import "google/protobuf/timestamp.proto";
@@ -124,9 +124,9 @@ The Protobuf code generation for C# uses the native types, such as `int` for `in
 For values that require explicit `null`, such as using `int?` in C# code, Protobuf's Well-Known Types include wrappers that are compiled to nullable C# types. To use them, import `wrappers.proto` into your `.proto` file, like the following code:
 
 ```protobuf  
-syntax = "proto3"
+syntax = "proto3";
 
-import "google/protobuf/wrappers.proto"
+import "google/protobuf/wrappers.proto";
 
 message Person {
     // ...

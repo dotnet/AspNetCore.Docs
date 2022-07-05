@@ -16,7 +16,7 @@ In this tutorial, you:
 > [!div class="checklist"]
 > * Create a gRPC Server.
 > * Create a gRPC client.
-> * Test the gRPC client service with the gRPC Greeter service.
+> * Test the gRPC client with the gRPC Greeter service.
 
 ## Prerequisites
 
@@ -333,7 +333,7 @@ In this tutorial, you:
 > [!div class="checklist"]
 > * Create a gRPC Server.
 > * Create a gRPC client.
-> * Test the gRPC client service with the gRPC Greeter service.
+> * Test the gRPC client with the gRPC Greeter service.
 
 ## Prerequisites
 
@@ -635,7 +635,7 @@ In this tutorial, you:
 > [!div class="checklist"]
 > * Create a gRPC Server.
 > * Create a gRPC client.
-> * Test the gRPC client service with the gRPC Greeter service.
+> * Test the gRPC client with the gRPC Greeter service.
 
 ## Prerequisites
 
