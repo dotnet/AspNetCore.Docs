@@ -8,12 +8,14 @@ ms.custom: mvc
 ms.date: 03/07/2022
 uid: getting-started
 ---
+
 # Tutorial: Get started with ASP.NET Core
+
+hi
 
 This tutorial shows how to create and run an ASP.NET Core web app using the .NET Core CLI.
 
 You'll learn how to:
-
 > [!div class="checklist"]
 > * Create a web app project.
 > * Trust the development certificate.
@@ -27,13 +29,13 @@ At the end, you'll have a working web app running on your local machine.
 ## Prerequisites
 
 :::moniker range=">= aspnetcore-6.0"
-[!INCLUDE[](~/includes/6.0-SDK.md)]
+[!INCLUDE]
 :::moniker-end
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
-[!INCLUDE[](~/includes/5.0-SDK.md)]
+[!INCLUDE]
 :::moniker-end
 :::moniker range="< aspnetcore-5.0"
-[!INCLUDE[](~/includes/3.1-SDK.md)]
+[!INCLUDE]
 :::moniker-end
 
 ## Create a web app project
@@ -107,7 +109,6 @@ Browse to `https://localhost:5001`, refresh the page, and verify the changes are
 ## Next steps
 
 In this tutorial, you learned how to:
-
 > [!div class="checklist"]
 > * Create a web app project.
 > * Trust the development certificate.
@@ -115,6 +116,6 @@ In this tutorial, you learned how to:
 > * Make a change.
 
 To learn more about ASP.NET Core, see the following:
-
 > [!div class="nextstepaction"]
-> <xref:index#recommended-learning-path>
+> <xref:index#recommended-learning-path
+
