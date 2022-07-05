@@ -5,7 +5,7 @@ description: Learn how to work with images in ASP.NET Core Blazor apps.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: taparik
 ms.custom: mvc
-ms.date: 06/21/2022
+ms.date: 07/01/2022
 uid: blazor/images
 ---
 # Work with images in ASP.NET Core Blazor
@@ -53,9 +53,11 @@ The preceding example uses a C# field to hold the image's source data, but you c
 > }
 > ```
 
-## Stream images
+## Stream image data
 
-The examples in this section stream image source data using [JavaScript (JS) interop](xref:blazor/js-interop/index). The following `setImage` JS function accepts the `<img>` tag `id` and data stream for the image for use in the following examples of this section. The function performs the following steps:
+An image can be directly sent to the client using Blazor's streaming interop features instead of hosting the image at a public URL.
+
+The example in this section streams image source data using [JavaScript (JS) interop](xref:blazor/js-interop/index). The following `setImage` JS function accepts the `<img>` tag `id` and data stream for the image. The function performs the following steps:
 
 * Reads the provided stream into an [`ArrayBuffer`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer).
 * Creates a [`Blob`](https://developer.mozilla.org/docs/Web/API/Blob) to wrap the `ArrayBuffer`.
@@ -79,13 +81,6 @@ Inside the closing `</body>` tag of `Pages/_Layout.razor` (Blazor Server) or `ww
 
 [!INCLUDE[](~/blazor/includes/js-location.md)]
 
-> [!NOTE]
-> When implementing the preceding function for a form (<xref:Microsoft.AspNetCore.Components.Forms.EditForm> component), it usually isn't necessary to revoke the object URL because it's typically revoked after the user submits the form for processing, as the object URL is no longer required at that point. For a form that uses `setImage`, you can remove the call to [`revokeObjectURL`](https://developer.mozilla.org/docs/Web/API/URL/revokeObjectURL).
-
-### Stream image data to a client
-
-An image can be directly sent to the client using Blazor's streaming interop features instead of hosting the image at a public URL.
-
 The following `ShowImage2` component:
 
 * Injects services for an <xref:System.Net.Http.HttpClient?displayProperty=fullName> and <xref:Microsoft.JSInterop.IJSRuntime?displayProperty=fullName>.
@@ -94,7 +89,7 @@ The following `ShowImage2` component:
 * Has a `SetImageAsync` method that's triggered on the button's selection by the user. `SetImageAsync` performs the following steps:
   * Retrieves the <xref:System.IO.Stream> from `GetImageStreamAsync`.
   * Wraps the <xref:System.IO.Stream> in a <xref:Microsoft.JSInterop.DotNetStreamReference>, which allows streaming the image data to the client.
-  * Invokes the `setImage` JavaScript function ([shown earlier](#stream-images)), which accepts the data on the client.
+  * Invokes the `setImage` JavaScript function, which accepts the data on the client.
 
 > [!NOTE]
 > Blazor Server apps use a dedicated <xref:System.Net.Http.HttpClient> service to make requests, so no action is required by the developer in Blazor Server apps to register an <xref:System.Net.Http.HttpClient> service. Blazor WebAssembly apps have a default <xref:System.Net.Http.HttpClient> service registration when the app is created from a Blazor WebAssembly project template. If an <xref:System.Net.Http.HttpClient> service registration isn't present in `Program.cs` of a Blazor WebAssembly app, provide one by adding `builder.Services.AddHttpClient();`. For more information, see <xref:fundamentals/http-requests>.
@@ -103,12 +98,9 @@ The following `ShowImage2` component:
 
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/images/ShowImage2.razor":::
 
-### Preview an image provided by the `InputFile` component
-
-[!INCLUDE[](includes/inputfile-preview-images.md)]
-
 ## Additional resources
 
+* <xref:blazor/forms-validation#preview-an-image-provided-by-the-inputfile-component>
 * <xref:blazor/file-uploads>
 * <xref:blazor/file-downloads>
 * <xref:blazor/js-interop/call-dotnet-from-javascript#stream-from-javascript-to-net>
