@@ -722,7 +722,7 @@ public class ChatHub : Hub
 ```
 
 If implicit resolution of parameters from services isn't desired, disable it with [DisableImplicitFromServicesParameters](xref:signalr/configuration#configure-server-options).
-To explicitly specify which parameters are resolved from DI in your hub methods, you can use the `DisableImplicitFromServicesParameters` option and use the `[FromServices]` attribute or a custom attribute that implements `IFromServiceMetadata` on your parameters.
+To explicitly specify which parameters are resolved from DI hub methods, use the [`DisableImplicitFromServicesParameters`](/dotnet/api/microsoft.aspnetcore.signalr.huboptions.disableimplicitfromservicesparameters) option and use the `[FromServices]` attribute or a custom attribute that implements `IFromServiceMetadata` on your parameters.
 
 ```csharp
 services.AddSingleton<IDatabaseService, DatabaseServiceImpl>();
