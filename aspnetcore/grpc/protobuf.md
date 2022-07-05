@@ -126,7 +126,7 @@ For values that require explicit `null`, such as using `int?` in C# code, Protob
 ```protobuf  
 syntax = "proto3"
 
-import "google/protobuf/wrappers.proto"
+import "google/protobuf/wrappers.proto";
 
 message Person {
     // ...
