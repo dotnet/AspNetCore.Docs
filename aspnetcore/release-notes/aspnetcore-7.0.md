@@ -19,7 +19,7 @@ Parameter binding for API controller actions binds parameters through [dependenc
 
 [!code-csharp[](~/release-notes/aspnetcore-7/samples/ApiController/Controllers/MyController.cs?name=snippet)]
 
-In rare cases, automatic DI can break apps that have a type in DI that is also accepted in an API controllers action methods. It's not common to have a type in DI and as an argument in an API controller action. To disable automatic binding of parameters, set [DisableImplicitFromServicesParameters](/dotnet/api/microsoft.aspnetcore.mvc.apibehavioroptions.disableimplicitfromservicesparameters?view=aspnetcore-7.0) `= true`:
+In rare cases, automatic DI can break apps that have a type in DI that is also accepted in an API controllers action methods. It's not common to have a type in DI and as an argument in an API controller action. To disable automatic binding of parameters, set [DisableImplicitFromServicesParameters](/dotnet/api/microsoft.aspnetcore.mvc.apibehavioroptions.disableimplicitfromservicesparameters)
 
 [!code-csharp[](~/release-notes/aspnetcore-7/samples/ApiController/Program.cs?name=snippet_dis&highlight=8-11)]
 
@@ -50,6 +50,14 @@ Filters can be helpful in the following scenarios:
 * Validating that a request is targeting a supported API version.
 
 For more information, see <xref:fundamentals/minimal-apis/min-api-filters>
+
+## Signal R
+
+### Dependency injection for SignalR hub methods
+
+SignalR hub methods now support injecting services through dependency injection (DI).
+
+Hub constructors can accept services from DI as parameters, which can be stored in properties on the class for use in a hub method. For more information, see [Inject services into a hub](xref:signalr/hubs?view=aspnetcore-7.0&preserve-view=true#inject-services-into-a-hub)
 
 ## IIS
 
