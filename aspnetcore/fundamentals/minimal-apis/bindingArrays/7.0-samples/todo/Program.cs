@@ -116,6 +116,7 @@ app.MapGet("/todoitems/tags", async (Tag[] tags, TodoDb db) =>
 
 // Bind to headers
 // GET /todoitems/header-ids
+// BadHttpRequestException: Failed to bind parameter "int[] ids" from "".
 app.MapGet("/todoitems/header-ids", async ([FromHeader(Name = "X-Todo-Id")] int[] ids, TodoDb db) =>
 {
     return await db.Todos
@@ -125,6 +126,7 @@ app.MapGet("/todoitems/header-ids", async ([FromHeader(Name = "X-Todo-Id")] int[
 
 // Bind to a int array
 // GET /todoitems/querystring-ids?ids=1&ids=2
+// BadHttpRequestException: Failed to bind parameter "int id" from "querystring-ids".
 app.MapGet("/todoitems/query-string-ids", async (int[] ids, TodoDb db) =>
 {
     return await db.Todos
@@ -133,7 +135,7 @@ app.MapGet("/todoitems/query-string-ids", async (int[] ids, TodoDb db) =>
 });
 
 // Bind to a string array
-// GET /todoitems//query-string-names-v1?names=Have%20Breakfast&names=Have%20Lunch
+// GET /todoitems/query-string-names-v1?names=Have%20Breakfast&names=Have%20Lunch
 app.MapGet("/todoitems/query-string-names-v1", async (string[] names, TodoDb db) =>
 {
     return await db.Todos
@@ -142,7 +144,7 @@ app.MapGet("/todoitems/query-string-names-v1", async (string[] names, TodoDb db)
 });
 
 // Bind to StringValues
-// GET /todoitems//query-string-names-v2?names=Have%20Breakfast&names=Have%20Lunch
+// GET /todoitems/query-string-names-v2?names=Have%20Breakfast&names=Have%20Lunch
 app.MapGet("/todoitems/query-string-names-v2", async (StringValues names, TodoDb db) =>
 {
     return await db.Todos
