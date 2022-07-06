@@ -57,7 +57,7 @@ For more information, see <xref:fundamentals/minimal-apis/min-api-filters>
 
 SignalR hub methods now support injecting services through dependency injection (DI).
 
-Hub constructors can accept services from DI as parameters, which can be stored in properties on the class for use in a hub method. For more information, see [Inject services into a hub](xref:signalr/hubs?view=aspnetcore-7.0#inject-services-into-a-hub)
+Hub constructors can accept services from DI as parameters, which can be stored in properties on the class for use in a hub method. For more information, see [Inject services into a hub](xref:signalr/hubs?view=aspnetcore-7.0&preserve-view#inject-services-into-a-hub)
 
 ## IIS
 
