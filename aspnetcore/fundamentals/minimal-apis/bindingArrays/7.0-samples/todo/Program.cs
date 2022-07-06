@@ -106,7 +106,7 @@ app.MapPost("/todoitems/batch", async (Todo[] todos, TodoDb db) =>
 });
 
 // Bind to a string array
-// GET /todoitems/tags?tags=hom&tags=work
+// GET /todoitems/tags?tags=home&tags=work
 app.MapGet("/todoitems/tags", async (Tag[] tags, TodoDb db) =>
 {
     return await db.Todos
