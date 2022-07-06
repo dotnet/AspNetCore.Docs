@@ -51,6 +51,14 @@ Filters can be helpful in the following scenarios:
 
 For more information, see <xref:fundamentals/minimal-apis/min-api-filters>
 
+## Signal R
+
+### Dependency injection for SignalR hub methods
+
+SignalR hub methods now support injecting services through dependency injection (DI).
+
+Hub constructors can accept services from DI as parameters, which can be stored in properties on the class for use in a hub method. For more information, see [Inject services into a hub](xref:https:signalr/hubs?view=aspnetcore-7.0#inject-services-into-a-hub)
+
 ## IIS
 
 ### Shadow copying in IIS
