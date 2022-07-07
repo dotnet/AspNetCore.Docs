@@ -1,7 +1,7 @@
 ---
 title: Share assets across web and native clients using a Razor class library (RCL)
 author: guardrex
-description: Learn how to share Razor components, C# code, and static assets web and native clients from a Razor class library (RCL).
+description: Learn how to share Razor components, C# code, and static assets across web and native clients using a Razor class library (RCL).
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
