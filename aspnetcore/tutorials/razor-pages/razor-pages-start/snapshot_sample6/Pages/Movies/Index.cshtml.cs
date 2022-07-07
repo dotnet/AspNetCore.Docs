@@ -6,8 +6,6 @@ using RazorPagesMovie.Models;
 #region snippet
 namespace RazorPagesMovie.Pages.Movies
 {
-#pragma warning disable CS8618
-#pragma warning disable CS8604
     #region snippet2
     public class IndexModel : PageModel
     {
@@ -19,15 +17,16 @@ namespace RazorPagesMovie.Pages.Movies
         }
         #endregion
 
-        public IList<Movie> Movie { get; set; }
+        public IList<Movie> Movie { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            Movie = await _context.Movie.ToListAsync();
+            if (_context.Movie != null)
+            {
+                Movie = await _context.Movie.ToListAsync();
+            }
         }
     }
-#pragma warning restore CS8618
-#pragma warning restore CS8604
 }
 #endregion
 #endregion

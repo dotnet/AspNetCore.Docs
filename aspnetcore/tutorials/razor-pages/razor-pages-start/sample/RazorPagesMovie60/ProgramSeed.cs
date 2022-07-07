@@ -4,13 +4,11 @@
 using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie.Data;
 using RazorPagesMovie.Models;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
-
 builder.Services.AddDbContext<RazorPagesMovieContext>(options =>
-       options.UseSqlServer(builder.Configuration.GetConnectionString("RazorPagesMovieContext")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("RazorPagesMovieContext") ?? throw new InvalidOperationException("Connection string 'RazorPagesMovieContext' not found.")));
 
 var app = builder.Build();
 
@@ -49,7 +47,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 
 builder.Services.AddDbContext<RazorPagesMovieContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("RazorPagesMovieContext")));
+    options.UseSqlite(builder.Configuration.GetConnectionString("RazorPagesMovieContext") ?? throw new InvalidOperationException("Connection string 'RazorPagesMovieContext' not found.")));
 
 var app = builder.Build();
 

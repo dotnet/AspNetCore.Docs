@@ -3,7 +3,7 @@ title: Part 5, update the generated pages
 author: rick-anderson
 description: Part 5 of tutorial series on Razor Pages.
 ms.author: riande
-ms.date: 09/20/2020
+ms.date: 06/07/2022
 ms.custom: contperf-fy21q2
 uid: tutorials/razor-pages/da1
 ---
@@ -15,7 +15,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 The scaffolded movie app has a good start, but the presentation isn't ideal. **ReleaseDate** should be two words, **Release Date**.
 
-![Movie application open in Chrome](sql/_static/5/m55.png)
+![Movie application open in Chrome](sql/_static/m605.png)
 
 ## Update the generated code
 
@@ -83,13 +83,13 @@ Test the behavior of `@page "{id:int?}"`:
 
 With the `@page "{id:int}"` directive, the break point is never hit. The routing engine returns HTTP 404. Using `@page "{id:int?}"`, the `OnGetAsync` method returns `NotFound` (HTTP 404):
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50/Pages/Movies/Details.cshtml.cs?name=snippet1&highlight=3-6)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Pages/Movies/Details.cshtml.cs?name=snippet1&highlight=3-6)]
 
 ### Review concurrency exception handling
 
 Review the `OnPostAsync` method in the `Pages/Movies/Edit.cshtml.cs` file:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Edit.cshtml.cs?name=snippet)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample6/Pages/Movies/Edit.cshtml.cs?name=snippet1)]
 
 The previous code detects concurrency exceptions when one client deletes the movie and the other client posts changes to the movie.
 
@@ -106,7 +106,7 @@ Production code may want to detect concurrency conflicts. See [Handle concurrenc
 
 Examine the `Pages/Movies/Edit.cshtml.cs` file:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/SnapShots/Edit.cshtml.cs?name=snippet2)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample6/Pages/Movies/Edit.cshtml.cs?name=snippet2)]
 
 When an HTTP GET request is made to the Movies/Edit page, for example, `https://localhost:5001/Movies/Edit/3`:
 
