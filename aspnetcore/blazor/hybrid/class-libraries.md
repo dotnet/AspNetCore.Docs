@@ -44,7 +44,7 @@ The .NET Podcasts app showcases the following technologies:
 * [Blazor](https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor)
 * [.NET MAUI](https://dotnet.microsoft.com/apps/maui)
 * [Azure Container Apps](https://azure.microsoft.com/services/container-apps/)
-* [Orleans](https://docs.microsoft.com/dotnet/orleans/overview)
+* [Orleans](/dotnet/orleans/overview)
 
 ## Share web UI Razor components, code, and static assets
 
