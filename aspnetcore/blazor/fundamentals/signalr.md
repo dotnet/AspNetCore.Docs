@@ -140,15 +140,18 @@ In `Program.cs`, Blazor Server apps call <xref:Microsoft.AspNetCore.Builder.Comp
 
 When the client detects that the connection has been lost, a default UI is displayed to the user while the client attempts to reconnect. If reconnection fails, the user is provided the option to retry.
 
-To customize the UI, define an element with an `id` of `components-reconnect-modal` in the `<body>` of the `_Layout.cshtml` Razor page.
+To customize the UI, define a single element with an `id` of `components-reconnect-modal`. The following example places the element in the layout page:
 
 `Pages/_Layout.cshtml`:
 
 ```cshtml
 <div id="components-reconnect-modal">
-    ...
+    There was a problem with the connection!
 </div>
 ```
+
+> ![NOTE]
+> If more than one element with an `id` of `components-reconnect-modal` are rendered by the app, only the first rendered element receives CSS class changes to display or hide the element. 
 
 Add the following CSS styles to the site's stylesheet.
 
@@ -159,7 +162,9 @@ Add the following CSS styles to the site's stylesheet.
     display: none;
 }
 
-#components-reconnect-modal.components-reconnect-show {
+#components-reconnect-modal.components-reconnect-show, 
+#components-reconnect-modal.components-reconnect-failed, 
+#components-reconnect-modal.components-reconnect-rejected {
     display: block;
 }
 ```
@@ -453,15 +458,18 @@ In `Startup.Configure`, Blazor Server apps call <xref:Microsoft.AspNetCore.Build
 
 When the client detects that the connection has been lost, a default UI is displayed to the user while the client attempts to reconnect. If reconnection fails, the user is provided the option to retry.
 
-To customize the UI, define an element with an `id` of `components-reconnect-modal` in the `<body>` of the `_Host.cshtml` Razor page.
+To customize the UI, define a single element with an `id` of `components-reconnect-modal`. The following example places the element in the host page:
 
 `Pages/_Host.cshtml`:
 
 ```cshtml
 <div id="components-reconnect-modal">
-    ...
+    There was a problem with the connection!
 </div>
 ```
+
+> ![NOTE]
+> If more than one element with an `id` of `components-reconnect-modal` are rendered by the app, only the first rendered element receives CSS class changes to display or hide the element. 
 
 Add the following CSS styles to the site's stylesheet.
 
@@ -472,7 +480,9 @@ Add the following CSS styles to the site's stylesheet.
     display: none;
 }
 
-#components-reconnect-modal.components-reconnect-show {
+#components-reconnect-modal.components-reconnect-show, 
+#components-reconnect-modal.components-reconnect-failed, 
+#components-reconnect-modal.components-reconnect-rejected {
     display: block;
 }
 ```
@@ -763,15 +773,18 @@ In `Startup.Configure`, Blazor Server apps call <xref:Microsoft.AspNetCore.Build
 
 When the client detects that the connection has been lost, a default UI is displayed to the user while the client attempts to reconnect. If reconnection fails, the user is provided the option to retry.
 
-To customize the UI, define an element with an `id` of `components-reconnect-modal` in the `<body>` of the `_Host.cshtml` Razor page.
+To customize the UI, define a single element with an `id` of `components-reconnect-modal`. The following example places the element in the host page:
 
 `Pages/_Host.cshtml`:
 
 ```cshtml
 <div id="components-reconnect-modal">
-    ...
+    There was a problem with the connection!
 </div>
 ```
+
+> ![NOTE]
+> If more than one element with an `id` of `components-reconnect-modal` are rendered by the app, only the first rendered element receives CSS class changes to display or hide the element. 
 
 Add the following CSS styles to the site's stylesheet.
 
@@ -782,7 +795,9 @@ Add the following CSS styles to the site's stylesheet.
     display: none;
 }
 
-#components-reconnect-modal.components-reconnect-show {
+#components-reconnect-modal.components-reconnect-show, 
+#components-reconnect-modal.components-reconnect-failed, 
+#components-reconnect-modal.components-reconnect-rejected {
     display: block;
 }
 ```
