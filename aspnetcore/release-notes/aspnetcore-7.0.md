@@ -66,3 +66,12 @@ Hub constructors can accept services from DI as parameters, which can be stored 
 Shadow copying app assemblies to the [ASP.NET Core Module (ANCM)](xref:host-and-deploy/aspnet-core-module) for IIS can provide a better end user experience than stopping the app by deploying an [app offline file](xref:host-and-deploy/iis/app-offline).
 
 For more information, see [Shadow copying in IIS](xref:host-and-deploy/iis/advanced?view=aspnetcore-7.0#shadow-copy)
+
+<!--
+## Miscellaneous
+
+### Customize the cookie consent value
+
+In previous versions, cookie consent validation performed an equality comparison against the constant cookie value `yes`. In .NET 7, the value can be customized.
+-->
+

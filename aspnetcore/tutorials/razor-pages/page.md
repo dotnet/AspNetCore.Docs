@@ -4,7 +4,7 @@ author: rick-anderson
 description: Part 3 of tutorial series on Razor Pages.
 ms.author: riande
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 09/25/2020
+ms.date: 06/17/2022
 ms.custom: contperf-fy21q2
 uid: tutorials/razor-pages/page
 ---
@@ -288,7 +288,7 @@ The `Title` property is used in the `Pages/Shared/_Layout.cshtml` file. The foll
 
 <!-- We need a snapshot copy of layout because we are changing in the next step. -->
 
-[!code-cshtml[](razor-pages-start/sample/RazorPagesMovie60/Pages/Shared/_Layout.cshtml?highlight=6&range=1-7)]
+[!code-cshtml[](razor-pages-start/snapshot_sample6/Pages/Shared/_Layout.cshtml?highlight=6&range=1-9)]
 
 The line `@*Markup removed for brevity.*@` is a Razor comment. Unlike HTML comments `<!-- -->`, Razor comments are not sent to the client. See [MDN web docs: Getting started with HTML](https://developer.mozilla.org/docs/Learn/HTML/Introduction_to_HTML/Getting_started#HTML_comments) for more information.
 
@@ -349,7 +349,7 @@ If there are no model errors:
 
 Examine the `Pages/Movies/Create.cshtml` Razor Page file:
 
-[!code-cshtml[](razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Create.cshtml)]
+[!code-cshtml[](razor-pages-start/snapshot_sample6/Pages/Movies/Create.cshtml)]
 
 # [Visual Studio](#tab/visual-studio)
 

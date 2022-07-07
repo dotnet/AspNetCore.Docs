@@ -124,7 +124,7 @@ Using conventional routing with the default route allows creating the app withou
 * Makes the UI more predictable.
 
 > [!WARNING]
-> The `id` in the preceding code is defined as optional by the route template. Actions can execute without the optional ID provided as part of the URL. Generally, when`id` is omitted from the URL:
+> The `id` in the preceding code is defined as optional by the route template. Actions can execute without the optional ID provided as part of the URL. Generally, when `id` is omitted from the URL:
 >
 > * `id` is set to `0` by model binding.
 > * No entity is found in the database matching `id == 0`.
@@ -964,7 +964,7 @@ Using conventional routing with the default route allows creating the app withou
 * Makes the UI more predictable.
 
 > [!WARNING]
-> The `id` in the preceding code is defined as optional by the route template. Actions can execute without the optional ID provided as part of the URL. Generally, when`id` is omitted from the URL:
+> The `id` in the preceding code is defined as optional by the route template. Actions can execute without the optional ID provided as part of the URL. Generally, when `id` is omitted from the URL:
 >
 > * `id` is set to `0` by model binding.
 > * No entity is found in the database matching `id == 0`.

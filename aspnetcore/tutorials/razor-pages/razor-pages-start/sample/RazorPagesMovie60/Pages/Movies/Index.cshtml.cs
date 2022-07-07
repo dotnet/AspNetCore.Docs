@@ -21,12 +21,12 @@ namespace RazorPagesMovie.Pages.Movies
             _context = context;
         }
 
-        public IList<Movie> Movie { get; set; }
+        public IList<Movie> Movie { get;set; } = default!;
         [BindProperty(SupportsGet = true)]
-        public string SearchString { get; set; }
-        public SelectList Genres { get; set; }
+        public string ? SearchString { get; set; }
+        public SelectList ? Genres { get; set; }
         [BindProperty(SupportsGet = true)]
-        public string MovieGenre { get; set; }
+        public string ? MovieGenre { get; set; }
 #endregion
 
 #region snippet_1stSearch
@@ -68,7 +68,7 @@ namespace RazorPagesMovie.Pages.Movies
             _context = context;
         }
 
-        public IList<Movie> Movie { get; set; }
+        public IList<Movie> Movie { get;set; } = default!;
         [BindProperty(SupportsGet = true)]
         public string SearchString { get; set; }
         public SelectList Genres { get; set; }
