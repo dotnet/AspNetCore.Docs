@@ -301,7 +301,7 @@ The name of the connection string is passed in to the context by calling a metho
 
    You missed the [migrations step](#pmc6).
 
-1. Test the **Create** link.
+1. Test the **Create New** link.
 
    ![Create page](model/_static/conan5.png)
 
