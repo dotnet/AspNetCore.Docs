@@ -81,11 +81,14 @@ Shadow copying app assemblies to the [ASP.NET Core Module (ANCM)](xref:host-and-
 
 For more information, see [Shadow copying in IIS](xref:host-and-deploy/iis/advanced?view=aspnetcore-7.0#shadow-copy)
 
-<!--
 ## Miscellaneous
 
-### Customize the cookie consent value
+### Developer exception page dark mode
 
-In previous versions, cookie consent validation performed an equality comparison against the constant cookie value `yes`. In .NET 7, the value can be customized.
--->
+Dark mode support has been added to the developer exception page, thanks to a contribution by [Patrick Westerhoff](https://twitter.com/poke). To test dark mode in a browser, from the developer tools page, set the mode to dark. For example, in Firefox:
 
+![F12 tools FF dark mode](https://user-images.githubusercontent.com/3605364/178082215-7bd1dfbe-3f11-421c-9918-fa11d8b99736.png)
+
+In Chrome:
+
+![F12 tools Chrome dark mode](https://user-images.githubusercontent.com/3605364/178082535-7719b77f-563a-4d0d-b70a-267801bb6526.png)
