@@ -94,7 +94,7 @@ The following table lists .NET implementations and their gRPC client support:
 | Universal Windows Platform 10.0.16299        | ❌                | ✔️         |
 | Unity 2018.1                                 | ❌                | ✔️         |
 
-&dagger;.NET Framework requires <xref:System.Net.Http.WinHttpHandler> to be configured and Windows 10 Build 19622 or later, which may require the use of a [Windows Insider](https://insider.windows.com) build.
+&dagger;.NET Framework requires <xref:System.Net.Http.WinHttpHandler> to be configured and Windows 11 or later.
 
 Using `Grpc.Net.Client` on .NET Framework or with gRPC-Web requires additional configuration. For more information, see <xref:grpc/netstandard>.
 
