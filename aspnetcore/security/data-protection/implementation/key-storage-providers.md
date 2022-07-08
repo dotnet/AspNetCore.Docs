@@ -46,13 +46,16 @@ If the web app is running as an Azure service, connection string can be used to 
 ```csharp
 string connectionString = "<connection_string>";
 string containerName = "my-key-container";
+string blobName = "keys.xml"
 BlobContainerClient container = new BlobContainerClient(connectionString, containerName);
 
 // optional - provision the container automatically
 await container.CreateIfNotExistsAsync();
 
+BlobClient blobClient = container.GetBlobClient(blobName);
+
 services.AddDataProtection()
-    .PersistKeysToAzureBlobStorage(container, "keys.xml");
+    .PersistKeysToAzureBlobStorage(blobClient);
 ```
 
 > [!NOTE]
