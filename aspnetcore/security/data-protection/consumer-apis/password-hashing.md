@@ -19,6 +19,9 @@ The package currently offers a method [`KeyDerivation.Pbkdf2`](/dotnet/api/micro
 
 3. The `KeyDerivation.Pbkdf2` method requires the caller to specify all parameters (salt, PRF, and iteration count). The `Rfc2898DeriveBytes` type provides default values for these.
 
+> [!WARNING]
+> The following code shows how to use `KeyDerivation.Pbkdf2` to  generate a shared secret key. It should not be used to hash a password for storage in a datastore.
+
 :::moniker range=">= aspnetcore-6.0"
 
 [!code-csharp[](password-hashing/samples/6.x/passwordhasher.cs)]
