@@ -61,9 +61,11 @@ Hub constructors can accept services from DI as parameters, which can be stored 
 
 ## Performance
 
-### Improved HTTP/2 performance when using many streams on a connection
+### Improved HTTP/2 performance
 
-The HTTP/2 frame writing improves performance when there are multiple streams trying to write data on a single HTTP/2 connection. TLS work is dispatched to the thread pool and more quickly releases a write lock that other streams can acquire to write data. The reduction in wait times can yield significant performance improvements in cases where there is contention for this write lock. A gRPC benchmark with 70 streams on a single connection, with TLS, showed a ~15% improvement in requests per second.
+HTTP/2 allows up to 100 requests to run on a TCP connection in parallel, which is called multiplexing. Previous versions used the [lock](/dotnet/csharp/language-reference/statements/lock) statement to control which request could write to the TCP connection. While lock is a simple solution to writing safe multi-threading code, it’s inefficient under high thread contention. In ASP.NET Core 7, a  [thread-safe queue](https://devblogs.microsoft.com/dotnet/an-introduction-to-system-threading-channels/) replaces the write lock. The tread-safe queue results in a dramatic improvement in the Kestrel gRPC benchmark:
+
+![Entity diagram](https://user-images.githubusercontent.com/219224/177910504-e93579b4-02e4-4079-8a8c-d9d24857aabf.png)
 
 ## Server
 
