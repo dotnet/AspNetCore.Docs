@@ -59,6 +59,18 @@ SignalR hub methods now support injecting services through dependency injection 
 
 Hub constructors can accept services from DI as parameters, which can be stored in properties on the class for use in a hub method. For more information, see [Inject services into a hub](xref:signalr/hubs?view=aspnetcore-7.0&preserve-view=true#inject-services-into-a-hub)
 
+## Performance
+
+### Improved HTTP/2 performance when using many streams on a connection
+
+The HTTP/2 frame writing improves performance when there are multiple streams trying to write data on a single HTTP/2 connection. TLS work is dispatched to the thread pool and more quickly releases a write lock that other streams can acquire to write data. The reduction in wait times can yield significant performance improvements in cases where there is contention for this write lock. A gRPC benchmark with 70 streams on a single connection, with TLS, showed a ~15% improvement in requests per second.
+
+## Server
+
+### New ServerReady event for measuring startup time
+
+The [`ServerReady`](https://github.com/dotnet/aspnetcore/blob/v7.0.0-preview.5.22303.8/src/Hosting/Hosting/src/Internal/HostingEventSource.cs#L75-L79) event has been added to measure [startup time](https://github.com/dotnet/aspnetcore/blob/v7.0.0-preview.5.22303.8/src/Hosting/Hosting/src/GenericHost/GenericWebHostService.cs#L138) of ASP.NET Core apps.
+
 ## IIS
 
 ### Shadow copying in IIS
