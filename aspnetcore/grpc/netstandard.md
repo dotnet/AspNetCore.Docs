@@ -65,8 +65,9 @@ For more information, see [Configure gRPC-Web with the .NET gRPC client](xref:gr
 
 Requirements and restrictions to using `WinHttpHandler`:
 
-* Windows 11.
+* Windows 11 and later or Windows Server 2022 or later.
 * A reference to [`System.Net.Http.WinHttpHandler`](https://www.nuget.org/packages/System.Net.Http.WinHttpHandler/) version 6.0.1 or later.
+* Configure `WinHttpHandler` on the channel using `HttpHandler`.
 * .NET Framework 4.6.1 or later.
 * Only unary and server streaming gRPC calls are supported.
 * Only gRPC calls over TLS are supported.
