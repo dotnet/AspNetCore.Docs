@@ -7,7 +7,7 @@ string? password = Console.ReadLine();
 // Generate a 128-bit salt using a cryptographically strong
 // random sequence of nonzero values.
 byte[] salt = new byte[128 / 8];
-RandomNumberGenerator.Create().GetNonZeroBytes(salt);
+RandomNumberGenerator.Create().GetBytes(salt);
 Console.WriteLine($"Salt: {Convert.ToBase64String(salt)}");
 
 // derive a 256-bit subkey (use HMACSHA256 with 100,000 iterations)
