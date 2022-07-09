@@ -59,6 +59,24 @@ SignalR hub methods now support injecting services through dependency injection 
 
 Hub constructors can accept services from DI as parameters, which can be stored in properties on the class for use in a hub method. For more information, see [Inject services into a hub](xref:signalr/hubs?view=aspnetcore-7.0&preserve-view=true#inject-services-into-a-hub)
 
+## Performance
+
+### HTTP/2 Performance improvements
+
+.NET 7 introduces a significant re-architecture of how Kestrel processes HTTP/2 requests. ASP.NET Core apps with busy HTTP/2 connections will experience reduced CPU usage and higher throughput.
+
+Previously, the HTTP/2 multiplexing implementation relied on a [lock](/dotnet/csharp/language-reference/statements/lock) controlling which request can write to the underlying TCP connection. A [thread-safe queue](https://devblogs.microsoft.com/dotnet/an-introduction-to-system-threading-channels/) replaces the write lock. Now, rather than fighting over which thread gets to use the write lock, requests now queue up and a dedicated consumer processes them. Previously wasted CPU resources are available to the rest of the app.
+
+One place where these improvements can be noticed is in gRPC, a popular RPC framework that uses HTTP/2. Kestrel + gRPC benchmarks show a dramatic improvement:
+
+![Entity diagram](https://user-images.githubusercontent.com/219224/177910504-e93579b4-02e4-4079-8a8c-d9d24857aabf.png)
+
+## Server
+
+### New ServerReady event for measuring startup time
+
+The [`ServerReady`](https://github.com/dotnet/aspnetcore/blob/v7.0.0-preview.5.22303.8/src/Hosting/Hosting/src/Internal/HostingEventSource.cs#L75-L79) event has been added to measure [startup time](https://github.com/dotnet/aspnetcore/blob/v7.0.0-preview.5.22303.8/src/Hosting/Hosting/src/GenericHost/GenericWebHostService.cs#L138) of ASP.NET Core apps.
+
 ## IIS
 
 ### Shadow copying in IIS
@@ -67,11 +85,14 @@ Shadow copying app assemblies to the [ASP.NET Core Module (ANCM)](xref:host-and-
 
 For more information, see [Shadow copying in IIS](xref:host-and-deploy/iis/advanced?view=aspnetcore-7.0#shadow-copy)
 
-<!--
 ## Miscellaneous
 
-### Customize the cookie consent value
+### Developer exception page dark mode
 
-In previous versions, cookie consent validation performed an equality comparison against the constant cookie value `yes`. In .NET 7, the value can be customized.
--->
+Dark mode support has been added to the developer exception page, thanks to a contribution by [Patrick Westerhoff](https://twitter.com/poke). To test dark mode in a browser, from the developer tools page, set the mode to dark. For example, in Firefox:
 
+![F12 tools FF dark mode](https://user-images.githubusercontent.com/3605364/178082215-7bd1dfbe-3f11-421c-9918-fa11d8b99736.png)
+
+In Chrome:
+
+![F12 tools Chrome dark mode](https://user-images.githubusercontent.com/3605364/178082535-7719b77f-563a-4d0d-b70a-267801bb6526.png)
